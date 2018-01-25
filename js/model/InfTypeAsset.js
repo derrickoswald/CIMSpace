@@ -89,7 +89,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratorTypeAsset_collapse" aria-expanded="true" aria-controls="GeneratorTypeAsset_collapse" style="margin-left: 10px;">GeneratorTypeAsset</a></legend>
-                    <div id="GeneratorTypeAsset_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GeneratorTypeAsset_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + InfAssets.GenericAssetModelOrMaterial.prototype.template.call (this) +
                     `
@@ -132,7 +132,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GeneratorTypeAsset_collapse" aria-expanded="true" aria-controls="{{id}}_GeneratorTypeAsset_collapse" style="margin-left: 10px;">GeneratorTypeAsset</a></legend>
-                    <div id="{{id}}_GeneratorTypeAsset_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GeneratorTypeAsset_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + InfAssets.GenericAssetModelOrMaterial.prototype.edit_template.call (this) +
                     `
@@ -242,7 +242,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TypeAssetCatalogue_collapse" aria-expanded="true" aria-controls="TypeAssetCatalogue_collapse" style="margin-left: 10px;">TypeAssetCatalogue</a></legend>
-                    <div id="TypeAssetCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TypeAssetCatalogue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -273,7 +273,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TypeAssetCatalogue_collapse" aria-expanded="true" aria-controls="{{id}}_TypeAssetCatalogue_collapse" style="margin-left: 10px;">TypeAssetCatalogue</a></legend>
-                    <div id="{{id}}_TypeAssetCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TypeAssetCatalogue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `

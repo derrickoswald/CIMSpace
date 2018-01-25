@@ -79,7 +79,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketProduct_collapse" aria-expanded="true" aria-controls="MarketProduct_collapse" style="margin-left: 10px;">MarketProduct</a></legend>
-                    <div id="MarketProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketProduct_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -125,7 +125,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketProduct_collapse" aria-expanded="true" aria-controls="{{id}}_MarketProduct_collapse" style="margin-left: 10px;">MarketProduct</a></legend>
-                    <div id="{{id}}_MarketProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketProduct_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -236,7 +236,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PlannedMarketEvent_collapse" aria-expanded="true" aria-controls="PlannedMarketEvent_collapse" style="margin-left: 10px;">PlannedMarketEvent</a></legend>
-                    <div id="PlannedMarketEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PlannedMarketEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -273,7 +273,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PlannedMarketEvent_collapse" aria-expanded="true" aria-controls="{{id}}_PlannedMarketEvent_collapse" style="margin-left: 10px;">PlannedMarketEvent</a></legend>
-                    <div id="{{id}}_PlannedMarketEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PlannedMarketEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -379,7 +379,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketPlan_collapse" aria-expanded="true" aria-controls="MarketPlan_collapse" style="margin-left: 10px;">MarketPlan</a></legend>
-                    <div id="MarketPlan_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketPlan_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -413,7 +413,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketPlan_collapse" aria-expanded="true" aria-controls="{{id}}_MarketPlan_collapse" style="margin-left: 10px;">MarketPlan</a></legend>
-                    <div id="{{id}}_MarketPlan_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketPlan_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -512,7 +512,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketFactors_collapse" aria-expanded="true" aria-controls="MarketFactors_collapse" style="margin-left: 10px;">MarketFactors</a></legend>
-                    <div id="MarketFactors_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketFactors_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
@@ -545,7 +545,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketFactors_collapse" aria-expanded="true" aria-controls="{{id}}_MarketFactors_collapse" style="margin-left: 10px;">MarketFactors</a></legend>
-                    <div id="{{id}}_MarketFactors_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketFactors_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -665,7 +665,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Market_collapse" aria-expanded="true" aria-controls="Market_collapse" style="margin-left: 10px;">Market</a></legend>
-                    <div id="Market_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Market_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -711,13 +711,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Market_collapse" aria-expanded="true" aria-controls="{{id}}_Market_collapse" style="margin-left: 10px;">Market</a></legend>
-                    <div id="{{id}}_Market_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Market_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='{{id}}_actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualStart'>actualStart: </label><div class='col-sm-8'><input id='{{id}}_actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_dst'>dst: </label><div class='col-sm-8'><input id='{{id}}_dst' class='form-check-input' type='checkbox'{{#dst}} checked{{/dst}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_dst'>dst: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_dst' class='form-check-input' type='checkbox'{{#dst}} checked{{/dst}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_end'>end: </label><div class='col-sm-8'><input id='{{id}}_end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localTimeZone'>localTimeZone: </label><div class='col-sm-8'><input id='{{id}}_localTimeZone' class='form-control' type='text'{{#localTimeZone}} value='{{localTimeZone}}'{{/localTimeZone}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_start'>start: </label><div class='col-sm-8'><input id='{{id}}_start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
@@ -826,7 +826,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketActualEvent_collapse" aria-expanded="true" aria-controls="MarketActualEvent_collapse" style="margin-left: 10px;">MarketActualEvent</a></legend>
-                    <div id="MarketActualEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketActualEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -858,7 +858,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketActualEvent_collapse" aria-expanded="true" aria-controls="{{id}}_MarketActualEvent_collapse" style="margin-left: 10px;">MarketActualEvent</a></legend>
-                    <div id="{{id}}_MarketActualEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketActualEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -968,7 +968,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PlannedMarket_collapse" aria-expanded="true" aria-controls="PlannedMarket_collapse" style="margin-left: 10px;">PlannedMarket</a></legend>
-                    <div id="PlannedMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PlannedMarket_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1006,7 +1006,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PlannedMarket_collapse" aria-expanded="true" aria-controls="{{id}}_PlannedMarket_collapse" style="margin-left: 10px;">PlannedMarket</a></legend>
-                    <div id="{{id}}_PlannedMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PlannedMarket_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1131,7 +1131,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRun_collapse" aria-expanded="true" aria-controls="MarketRun_collapse" style="margin-left: 10px;">MarketRun</a></legend>
-                    <div id="MarketRun_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketRun_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1173,13 +1173,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketRun_collapse" aria-expanded="true" aria-controls="{{id}}_MarketRun_collapse" style="margin-left: 10px;">MarketRun</a></legend>
-                    <div id="{{id}}_MarketRun_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketRun_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_executionType'>executionType: </label><div class='col-sm-8'><input id='{{id}}_executionType' class='form-control' type='text'{{#executionType}} value='{{executionType}}'{{/executionType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketApprovalTime'>marketApprovalTime: </label><div class='col-sm-8'><input id='{{id}}_marketApprovalTime' class='form-control' type='text'{{#marketApprovalTime}} value='{{marketApprovalTime}}'{{/marketApprovalTime}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_marketApprovedStatus'>marketApprovedStatus: </label><div class='col-sm-8'><input id='{{id}}_marketApprovedStatus' class='form-check-input' type='checkbox'{{#marketApprovedStatus}} checked{{/marketApprovedStatus}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_marketApprovedStatus'>marketApprovedStatus: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_marketApprovedStatus' class='form-check-input' type='checkbox'{{#marketApprovedStatus}} checked{{/marketApprovedStatus}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='{{id}}_marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketID'>marketID: </label><div class='col-sm-8'><input id='{{id}}_marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketRunID'>marketRunID: </label><div class='col-sm-8'><input id='{{id}}_marketRunID' class='form-control' type='text'{{#marketRunID}} value='{{marketRunID}}'{{/marketRunID}}></div></div>
@@ -1294,7 +1294,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyMarket_collapse" aria-expanded="true" aria-controls="EnergyMarket_collapse" style="margin-left: 10px;">EnergyMarket</a></legend>
-                    <div id="EnergyMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EnergyMarket_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Market.prototype.template.call (this) +
                     `
@@ -1332,7 +1332,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyMarket_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyMarket_collapse" style="margin-left: 10px;">EnergyMarket</a></legend>
-                    <div id="{{id}}_EnergyMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EnergyMarket_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Market.prototype.edit_template.call (this) +
                     `
@@ -1429,7 +1429,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CRRMarket_collapse" aria-expanded="true" aria-controls="CRRMarket_collapse" style="margin-left: 10px;">CRRMarket</a></legend>
-                    <div id="CRRMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CRRMarket_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Market.prototype.template.call (this) +
                     `
@@ -1460,7 +1460,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CRRMarket_collapse" aria-expanded="true" aria-controls="{{id}}_CRRMarket_collapse" style="margin-left: 10px;">CRRMarket</a></legend>
-                    <div id="{{id}}_CRRMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CRRMarket_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Market.prototype.edit_template.call (this) +
                     `

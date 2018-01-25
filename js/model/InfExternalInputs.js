@@ -59,7 +59,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceGroupReq_collapse" aria-expanded="true" aria-controls="ResourceGroupReq_collapse" style="margin-left: 10px;">ResourceGroupReq</a></legend>
-                    <div id="ResourceGroupReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ResourceGroupReq_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -90,7 +90,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceGroupReq_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceGroupReq_collapse" style="margin-left: 10px;">ResourceGroupReq</a></legend>
-                    <div id="{{id}}_ResourceGroupReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ResourceGroupReq_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -182,7 +182,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveReqCurve_collapse" aria-expanded="true" aria-controls="ReserveReqCurve_collapse" style="margin-left: 10px;">ReserveReqCurve</a></legend>
-                    <div id="ReserveReqCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ReserveReqCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -210,7 +210,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReserveReqCurve_collapse" aria-expanded="true" aria-controls="{{id}}_ReserveReqCurve_collapse" style="margin-left: 10px;">ReserveReqCurve</a></legend>
-                    <div id="{{id}}_ReserveReqCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ReserveReqCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -303,7 +303,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceGroup_collapse" aria-expanded="true" aria-controls="ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
-                    <div id="ResourceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ResourceGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -338,7 +338,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
-                    <div id="{{id}}_ResourceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ResourceGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -432,7 +432,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
-                    <div id="SensitivityPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SensitivityPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -460,7 +460,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
-                    <div id="{{id}}_SensitivityPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SensitivityPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -551,7 +551,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveReq_collapse" aria-expanded="true" aria-controls="ReserveReq_collapse" style="margin-left: 10px;">ReserveReq</a></legend>
-                    <div id="ReserveReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ReserveReq_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ResourceGroupReq.prototype.template.call (this) +
                     `
@@ -581,7 +581,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReserveReq_collapse" aria-expanded="true" aria-controls="{{id}}_ReserveReq_collapse" style="margin-left: 10px;">ReserveReq</a></legend>
-                    <div id="{{id}}_ReserveReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ReserveReq_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ResourceGroupReq.prototype.edit_template.call (this) +
                     `

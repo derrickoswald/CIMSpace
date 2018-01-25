@@ -120,7 +120,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="SynchronousMachineDynamics_collapse" style="margin-left: 10px;">SynchronousMachineDynamics</a></legend>
-                    <div id="SynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SynchronousMachineDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
                     `
@@ -156,7 +156,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineDynamics_collapse" style="margin-left: 10px;">SynchronousMachineDynamics</a></legend>
-                    <div id="{{id}}_SynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SynchronousMachineDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.RotatingMachineDynamics.prototype.edit_template.call (this) +
                     `
@@ -261,7 +261,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineDetailed_collapse" aria-expanded="true" aria-controls="SynchronousMachineDetailed_collapse" style="margin-left: 10px;">SynchronousMachineDetailed</a></legend>
-                    <div id="SynchronousMachineDetailed_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SynchronousMachineDetailed_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDynamics.prototype.template.call (this) +
                     `
@@ -294,7 +294,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineDetailed_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineDetailed_collapse" style="margin-left: 10px;">SynchronousMachineDetailed</a></legend>
-                    <div id="{{id}}_SynchronousMachineDetailed_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SynchronousMachineDetailed_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
@@ -422,7 +422,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="SynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">SynchronousMachineEquivalentCircuit</a></legend>
-                    <div id="SynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SynchronousMachineEquivalentCircuit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDetailed.prototype.template.call (this) +
                     `
@@ -460,7 +460,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">SynchronousMachineEquivalentCircuit</a></legend>
-                    <div id="{{id}}_SynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SynchronousMachineEquivalentCircuit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDetailed.prototype.edit_template.call (this) +
                     `
@@ -556,7 +556,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineSimplified_collapse" aria-expanded="true" aria-controls="SynchronousMachineSimplified_collapse" style="margin-left: 10px;">SynchronousMachineSimplified</a></legend>
-                    <div id="SynchronousMachineSimplified_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SynchronousMachineSimplified_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDynamics.prototype.template.call (this) +
                     `
@@ -583,7 +583,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineSimplified_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineSimplified_collapse" style="margin-left: 10px;">SynchronousMachineSimplified</a></legend>
-                    <div id="{{id}}_SynchronousMachineSimplified_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SynchronousMachineSimplified_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
@@ -715,7 +715,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="SynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">SynchronousMachineTimeConstantReactance</a></legend>
-                    <div id="SynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SynchronousMachineTimeConstantReactance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDetailed.prototype.template.call (this) +
                     `
@@ -760,7 +760,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">SynchronousMachineTimeConstantReactance</a></legend>
-                    <div id="{{id}}_SynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SynchronousMachineTimeConstantReactance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDetailed.prototype.edit_template.call (this) +
                     `

@@ -22,20 +22,22 @@ define
                 this._onMap = false;
                 this._themes = [];
                 this._template =
-                "<div class='well'>\n" +
-                "  <h3>Themes</h3>\n" +
-                "{{#themes}}\n" +
-                "  <div class='form-check'>\n" +
-                "    <label class='form-check-label'>\n" +
-                "      <input id='{{name}}' class='form-check-input' type='radio' name='themeRadios' value='{{name}}' aria-describedby='{{name}}Description'>\n" +
-                "      {{title}}\n" +
-                "    </label>\n" +
-                "  </div>\n" +
-                "  <em><small id='{{name}}Description' class='form-text text-muted'>\n" +
-                "    {{description}}\n" +
-                "  </small></em>\n" +
-                "{{/themes}}\n" +
-                "</div>\n";
+                    "<div class='card'>\n" +
+                    "  <div class='card-body'>\n" +
+                    "    <h5 class='card-title'>Themes</h5>\n" +
+                    "{{#themes}}\n" +
+                    "    <div class='form-check'>\n" +
+                    "      <label class='form-check-label'>\n" +
+                    "        <input id='{{name}}' class='form-check-input' type='radio' name='themeRadios' value='{{name}}' aria-describedby='{{name}}Description'>\n" +
+                    "        {{title}}\n" +
+                    "      </label>\n" +
+                    "    </div>\n" +
+                    "    <em><small id='{{name}}Description' class='form-text text-muted'>\n" +
+                    "    {{description}}\n" +
+                    "    </small></em>\n" +
+                    "{{/themes}}\n" +
+                    "  </div>\n";
+                    "</div>\n";
             }
 
             onAdd (map)

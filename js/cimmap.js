@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "cimdetails", "cimedit", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
+    ["cimnav", "cimdetails", "cimcoordinates", "cimedit", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, CIMDetails, CIMEdit, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
+    function (cimnav, CIMDetails, CIMCoordinates, CIMEdit, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
     {
         /**
          * The map object.
@@ -45,6 +45,11 @@ define
          * The scale bar control.
          */
         var TheScaleBar = null;
+
+        /**
+         * The coordinate display control.
+         */
+        var TheCoordinates = null;
 
         /**
          * The user specific token to access mapbox tiles.
@@ -208,6 +213,16 @@ define
         function show_scale_bar ()
         {
             return (document.getElementById ("scale_bar").checked);
+        }
+
+        /**
+         * Get the user's choice for whether coordinates are displayed or not.
+         * @returns {boolean} <code>true</code> if coordinates should be shown, <code>false</code> otherwise
+         * @function show_coordinates
+         */
+        function show_coordinates ()
+        {
+            return (document.getElementById ("coordinate").checked);
         }
 
         /**
@@ -488,6 +503,33 @@ define
                 {
                     TheMap.removeControl (TheScaleBar);
                     TheScaleBar = null;
+                }
+            }
+        }
+
+        /**
+         * Turn on or off the coordinates
+         * @description Add or remove the coordinates control.
+         * @ param {object} event - optional event trigger <em>not used</em>
+         * @function coordinates
+         * @memberOf module:cimmap
+         */
+        function coordinates (event)
+        {
+            if (show_coordinates ())
+            {
+                if (null == TheCoordinates)
+                {
+                    TheCoordinates = new CIMCoordinates ();
+                    TheMap.addControl (TheCoordinates);
+                }
+            }
+            else
+            {
+                if (null != TheCoordinates)
+                {
+                    TheMap.removeControl (TheCoordinates);
+                    TheCoordinates = null;
                 }
             }
         }
@@ -960,27 +1002,15 @@ define
             }
         }
 
-        function default_mousemove_listener (event)
-        {
-            var lng = event.lngLat.lng;
-            var lat = event.lngLat.lat;
-            lng = Math.round (lng * 100000) / 100000;
-            lat = Math.round (lat * 100000) / 100000;
-            document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
-        }
-
         function add_listeners ()
         {
             // handle mouse click
             TheMap.on ("mousedown", default_mousedown_listener);
-            // handle mouse movement
-            TheMap.on ("mousemove", default_mousemove_listener);
         }
 
         function remove_listeners ()
         {
             TheMap.off ("mousedown", default_mousedown_listener);
-            TheMap.off ("mousemove", default_mousemove_listener);
         }
 
         /**
@@ -1063,11 +1093,13 @@ define
                      show_internal_features: show_internal_features,
                      show_3d_buildings: show_3d_buildings,
                      show_scale_bar: show_scale_bar,
+                     show_coordinates: show_coordinates,
                      show_streetview: show_streetview,
                      zoom_extents: zoom_extents,
                      select: select,
                      buildings_3d: buildings_3d,
                      scale_bar: scale_bar,
+                     coordinates: coordinates,
                      highlight: highlight,
                      unhighlight: unhighlight,
                      trace: trace,

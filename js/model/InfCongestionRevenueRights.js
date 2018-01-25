@@ -63,7 +63,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ViolationLimit_collapse" aria-expanded="true" aria-controls="ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
-                    <div id="ViolationLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ViolationLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Meas.Limit.prototype.template.call (this) +
                     `
@@ -96,11 +96,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ViolationLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
-                    <div id="{{id}}_ViolationLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ViolationLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Meas.Limit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_enforced'>enforced: </label><div class='col-sm-8'><input id='{{id}}_enforced' class='form-check-input' type='checkbox'{{#enforced}} checked{{/enforced}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_enforced'>enforced: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enforced' class='form-check-input' type='checkbox'{{#enforced}} checked{{/enforced}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='{{id}}_MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
@@ -205,7 +205,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#FTR_collapse" aria-expanded="true" aria-controls="FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
-                    <div id="FTR_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="FTR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.template.call (this) +
                     `
@@ -242,7 +242,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FTR_collapse" aria-expanded="true" aria-controls="{{id}}_FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
-                    <div id="{{id}}_FTR_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_FTR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `

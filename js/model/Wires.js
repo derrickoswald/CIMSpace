@@ -238,7 +238,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerStarImpedance_collapse" aria-expanded="true" aria-controls="TransformerStarImpedance_collapse" style="margin-left: 10px;">TransformerStarImpedance</a></legend>
-                    <div id="TransformerStarImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TransformerStarImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -273,7 +273,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerStarImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerStarImpedance_collapse" style="margin-left: 10px;">TransformerStarImpedance</a></legend>
-                    <div id="{{id}}_TransformerStarImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TransformerStarImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -387,7 +387,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MutualCoupling_collapse" aria-expanded="true" aria-controls="MutualCoupling_collapse" style="margin-left: 10px;">MutualCoupling</a></legend>
-                    <div id="MutualCoupling_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MutualCoupling_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -424,7 +424,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MutualCoupling_collapse" aria-expanded="true" aria-controls="{{id}}_MutualCoupling_collapse" style="margin-left: 10px;">MutualCoupling</a></legend>
-                    <div id="{{id}}_MutualCoupling_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MutualCoupling_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -554,7 +554,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyConsumer_collapse" aria-expanded="true" aria-controls="EnergyConsumer_collapse" style="margin-left: 10px;">EnergyConsumer</a></legend>
-                    <div id="EnergyConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EnergyConsumer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -598,12 +598,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyConsumer_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyConsumer_collapse" style="margin-left: 10px;">EnergyConsumer</a></legend>
-                    <div id="{{id}}_EnergyConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EnergyConsumer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_customerCount'>customerCount: </label><div class='col-sm-8'><input id='{{id}}_customerCount' class='form-control' type='text'{{#customerCount}} value='{{customerCount}}'{{/customerCount}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_grounded'>grounded: </label><div class='col-sm-8'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_grounded'>grounded: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfixed'>pfixed: </label><div class='col-sm-8'><input id='{{id}}_pfixed' class='form-control' type='text'{{#pfixed}} value='{{pfixed}}'{{/pfixed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfixedPct'>pfixedPct: </label><div class='col-sm-8'><input id='{{id}}_pfixedPct' class='form-control' type='text'{{#pfixedPct}} value='{{pfixedPct}}'{{/pfixedPct}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseConnection'>phaseConnection: </label><div class='col-sm-8'><select id='{{id}}_phaseConnection' class='form-control'>{{#PhaseShuntConnectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseShuntConnectionKind}}</select></div></div>
@@ -724,7 +724,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SeriesCompensator_collapse" aria-expanded="true" aria-controls="SeriesCompensator_collapse" style="margin-left: 10px;">SeriesCompensator</a></legend>
-                    <div id="SeriesCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SeriesCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -758,7 +758,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SeriesCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_SeriesCompensator_collapse" style="margin-left: 10px;">SeriesCompensator</a></legend>
-                    <div id="{{id}}_SeriesCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SeriesCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -766,7 +766,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r0'>r0: </label><div class='col-sm-8'><input id='{{id}}_r0' class='form-control' type='text'{{#r0}} value='{{r0}}'{{/r0}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x'>x: </label><div class='col-sm-8'><input id='{{id}}_x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x0'>x0: </label><div class='col-sm-8'><input id='{{id}}_x0' class='form-control' type='text'{{#x0}} value='{{x0}}'{{/x0}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_varistorPresent'>varistorPresent: </label><div class='col-sm-8'><input id='{{id}}_varistorPresent' class='form-check-input' type='checkbox'{{#varistorPresent}} checked{{/varistorPresent}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_varistorPresent'>varistorPresent: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_varistorPresent' class='form-check-input' type='checkbox'{{#varistorPresent}} checked{{/varistorPresent}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_varistorRatedCurrent'>varistorRatedCurrent: </label><div class='col-sm-8'><input id='{{id}}_varistorRatedCurrent' class='form-control' type='text'{{#varistorRatedCurrent}} value='{{varistorRatedCurrent}}'{{/varistorRatedCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_varistorVoltageThreshold'>varistorVoltageThreshold: </label><div class='col-sm-8'><input id='{{id}}_varistorVoltageThreshold' class='form-control' type='text'{{#varistorVoltageThreshold}} value='{{varistorVoltageThreshold}}'{{/varistorVoltageThreshold}}></div></div>
                     </div>
@@ -870,7 +870,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Switch_collapse" aria-expanded="true" aria-controls="Switch_collapse" style="margin-left: 10px;">Switch</a></legend>
-                    <div id="Switch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Switch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -915,16 +915,16 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Switch_collapse" aria-expanded="true" aria-controls="{{id}}_Switch_collapse" style="margin-left: 10px;">Switch</a></legend>
-                    <div id="{{id}}_Switch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Switch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_normalOpen'>normalOpen: </label><div class='col-sm-8'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalOpen'>normalOpen: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_retained'>retained: </label><div class='col-sm-8'><input id='{{id}}_retained' class='form-check-input' type='checkbox'{{#retained}} checked{{/retained}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_retained'>retained: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_retained' class='form-check-input' type='checkbox'{{#retained}} checked{{/retained}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOnCount'>switchOnCount: </label><div class='col-sm-8'><input id='{{id}}_switchOnCount' class='form-control' type='text'{{#switchOnCount}} value='{{switchOnCount}}'{{/switchOnCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOnDate'>switchOnDate: </label><div class='col-sm-8'><input id='{{id}}_switchOnDate' class='form-control' type='text'{{#switchOnDate}} value='{{switchOnDate}}'{{/switchOnDate}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_open'>open: </label><div class='col-sm-8'><input id='{{id}}_open' class='form-check-input' type='checkbox'{{#open}} checked{{/open}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_open'>open: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_open' class='form-check-input' type='checkbox'{{#open}} checked{{/open}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompositeSwitch'>CompositeSwitch: </label><div class='col-sm-8'><input id='{{id}}_CompositeSwitch' class='form-control' type='text'{{#CompositeSwitch}} value='{{CompositeSwitch}}'{{/CompositeSwitch}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConnectDisconnectFunctions'>ConnectDisconnectFunctions: </label><div class='col-sm-8'><input id='{{id}}_ConnectDisconnectFunctions' class='form-control' type='text'{{#ConnectDisconnectFunctions}} value='{{ConnectDisconnectFunctions}}_string'{{/ConnectDisconnectFunctions}}></div></div>
@@ -1037,7 +1037,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerCoreAdmittance_collapse" aria-expanded="true" aria-controls="TransformerCoreAdmittance_collapse" style="margin-left: 10px;">TransformerCoreAdmittance</a></legend>
-                    <div id="TransformerCoreAdmittance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TransformerCoreAdmittance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1072,7 +1072,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerCoreAdmittance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerCoreAdmittance_collapse" style="margin-left: 10px;">TransformerCoreAdmittance</a></legend>
-                    <div id="{{id}}_TransformerCoreAdmittance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TransformerCoreAdmittance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1172,7 +1172,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageControlZone_collapse" aria-expanded="true" aria-controls="VoltageControlZone_collapse" style="margin-left: 10px;">VoltageControlZone</a></legend>
-                    <div id="VoltageControlZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="VoltageControlZone_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -1201,7 +1201,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageControlZone_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageControlZone_collapse" style="margin-left: 10px;">VoltageControlZone</a></legend>
-                    <div id="{{id}}_VoltageControlZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_VoltageControlZone_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
@@ -1307,7 +1307,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerMeshImpedance_collapse" aria-expanded="true" aria-controls="TransformerMeshImpedance_collapse" style="margin-left: 10px;">TransformerMeshImpedance</a></legend>
-                    <div id="TransformerMeshImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TransformerMeshImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1346,7 +1346,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerMeshImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerMeshImpedance_collapse" style="margin-left: 10px;">TransformerMeshImpedance</a></legend>
-                    <div id="{{id}}_TransformerMeshImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TransformerMeshImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1460,7 +1460,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#NonlinearShuntCompensatorPoint_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPoint</a></legend>
-                    <div id="NonlinearShuntCompensatorPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="NonlinearShuntCompensatorPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1493,7 +1493,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPoint_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPoint</a></legend>
-                    <div id="{{id}}_NonlinearShuntCompensatorPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_NonlinearShuntCompensatorPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1596,7 +1596,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#NonlinearShuntCompensatorPhasePoint_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPhasePoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhasePoint</a></legend>
-                    <div id="NonlinearShuntCompensatorPhasePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="NonlinearShuntCompensatorPhasePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1627,7 +1627,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhasePoint</a></legend>
-                    <div id="{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1726,7 +1726,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerTablePoint_collapse" aria-expanded="true" aria-controls="TapChangerTablePoint_collapse" style="margin-left: 10px;">TapChangerTablePoint</a></legend>
-                    <div id="TapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1759,7 +1759,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_TapChangerTablePoint_collapse" style="margin-left: 10px;">TapChangerTablePoint</a></legend>
-                    <div id="{{id}}_TapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1855,7 +1855,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ReactiveCapabilityCurve_collapse" aria-expanded="true" aria-controls="ReactiveCapabilityCurve_collapse" style="margin-left: 10px;">ReactiveCapabilityCurve</a></legend>
-                    <div id="ReactiveCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ReactiveCapabilityCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -1893,7 +1893,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReactiveCapabilityCurve_collapse" aria-expanded="true" aria-controls="{{id}}_ReactiveCapabilityCurve_collapse" style="margin-left: 10px;">ReactiveCapabilityCurve</a></legend>
-                    <div id="{{id}}_ReactiveCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ReactiveCapabilityCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -1984,7 +1984,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Connector_collapse" aria-expanded="true" aria-controls="Connector_collapse" style="margin-left: 10px;">Connector</a></legend>
-                    <div id="Connector_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Connector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -2011,7 +2011,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Connector_collapse" aria-expanded="true" aria-controls="{{id}}_Connector_collapse" style="margin-left: 10px;">Connector</a></legend>
-                    <div id="{{id}}_Connector_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Connector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -2085,7 +2085,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RatioTapChangerTable_collapse" aria-expanded="true" aria-controls="RatioTapChangerTable_collapse" style="margin-left: 10px;">RatioTapChangerTable</a></legend>
-                    <div id="RatioTapChangerTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RatioTapChangerTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2118,7 +2118,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RatioTapChangerTable_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChangerTable_collapse" style="margin-left: 10px;">RatioTapChangerTable</a></legend>
-                    <div id="{{id}}_RatioTapChangerTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RatioTapChangerTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2220,7 +2220,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerTransformer_collapse" aria-expanded="true" aria-controls="PowerTransformer_collapse" style="margin-left: 10px;">PowerTransformer</a></legend>
-                    <div id="PowerTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PowerTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -2260,7 +2260,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_PowerTransformer_collapse" style="margin-left: 10px;">PowerTransformer</a></legend>
-                    <div id="{{id}}_PowerTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PowerTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -2268,8 +2268,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_beforeShCircuitHighestOperatingVoltage'>beforeShCircuitHighestOperatingVoltage: </label><div class='col-sm-8'><input id='{{id}}_beforeShCircuitHighestOperatingVoltage' class='form-control' type='text'{{#beforeShCircuitHighestOperatingVoltage}} value='{{beforeShCircuitHighestOperatingVoltage}}'{{/beforeShCircuitHighestOperatingVoltage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_beforeShortCircuitAnglePf'>beforeShortCircuitAnglePf: </label><div class='col-sm-8'><input id='{{id}}_beforeShortCircuitAnglePf' class='form-control' type='text'{{#beforeShortCircuitAnglePf}} value='{{beforeShortCircuitAnglePf}}'{{/beforeShortCircuitAnglePf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highSideMinOperatingU'>highSideMinOperatingU: </label><div class='col-sm-8'><input id='{{id}}_highSideMinOperatingU' class='form-control' type='text'{{#highSideMinOperatingU}} value='{{highSideMinOperatingU}}'{{/highSideMinOperatingU}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPartOfGeneratorUnit'>isPartOfGeneratorUnit: </label><div class='col-sm-8'><input id='{{id}}_isPartOfGeneratorUnit' class='form-check-input' type='checkbox'{{#isPartOfGeneratorUnit}} checked{{/isPartOfGeneratorUnit}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_operationalValuesConsidered'>operationalValuesConsidered: </label><div class='col-sm-8'><input id='{{id}}_operationalValuesConsidered' class='form-check-input' type='checkbox'{{#operationalValuesConsidered}} checked{{/operationalValuesConsidered}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isPartOfGeneratorUnit'>isPartOfGeneratorUnit: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isPartOfGeneratorUnit' class='form-check-input' type='checkbox'{{#isPartOfGeneratorUnit}} checked{{/isPartOfGeneratorUnit}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_operationalValuesConsidered'>operationalValuesConsidered: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_operationalValuesConsidered' class='form-check-input' type='checkbox'{{#operationalValuesConsidered}} checked{{/operationalValuesConsidered}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vectorGroup'>vectorGroup: </label><div class='col-sm-8'><input id='{{id}}_vectorGroup' class='form-control' type='text'{{#vectorGroup}} value='{{vectorGroup}}'{{/vectorGroup}}></div></div>
                     </div>
                     <fieldset>
@@ -2370,7 +2370,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyConsumerPhase_collapse" aria-expanded="true" aria-controls="EnergyConsumerPhase_collapse" style="margin-left: 10px;">EnergyConsumerPhase</a></legend>
-                    <div id="EnergyConsumerPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EnergyConsumerPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -2405,7 +2405,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyConsumerPhase_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyConsumerPhase_collapse" style="margin-left: 10px;">EnergyConsumerPhase</a></legend>
-                    <div id="{{id}}_EnergyConsumerPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EnergyConsumerPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
@@ -2504,7 +2504,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthLineParameter_collapse" style="margin-left: 10px;">PerLengthLineParameter</a></legend>
-                    <div id="PerLengthLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PerLengthLineParameter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2535,7 +2535,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthLineParameter_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthLineParameter_collapse" style="margin-left: 10px;">PerLengthLineParameter</a></legend>
-                    <div id="{{id}}_PerLengthLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PerLengthLineParameter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2633,7 +2633,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseImpedanceData_collapse" aria-expanded="true" aria-controls="PhaseImpedanceData_collapse" style="margin-left: 10px;">PhaseImpedanceData</a></legend>
-                    <div id="PhaseImpedanceData_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseImpedanceData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -2665,7 +2665,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseImpedanceData_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseImpedanceData_collapse" style="margin-left: 10px;">PhaseImpedanceData</a></legend>
-                    <div id="{{id}}_PhaseImpedanceData_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseImpedanceData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -2762,7 +2762,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerTable_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTable_collapse" style="margin-left: 10px;">PhaseTapChangerTable</a></legend>
-                    <div id="PhaseTapChangerTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseTapChangerTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2795,7 +2795,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerTable_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTable_collapse" style="margin-left: 10px;">PhaseTapChangerTable</a></legend>
-                    <div id="{{id}}_PhaseTapChangerTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseTapChangerTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2879,7 +2879,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Line_collapse" aria-expanded="true" aria-controls="Line_collapse" style="margin-left: 10px;">Line</a></legend>
-                    <div id="Line_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Line_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.template.call (this) +
                     `
@@ -2907,7 +2907,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Line_collapse" aria-expanded="true" aria-controls="{{id}}_Line_collapse" style="margin-left: 10px;">Line</a></legend>
-                    <div id="{{id}}_Line_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Line_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.edit_template.call (this) +
                     `
@@ -3000,7 +3000,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTank_collapse" aria-expanded="true" aria-controls="TransformerTank_collapse" style="margin-left: 10px;">TransformerTank</a></legend>
-                    <div id="TransformerTank_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TransformerTank_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
                     `
@@ -3034,7 +3034,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerTank_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerTank_collapse" style="margin-left: 10px;">TransformerTank</a></legend>
-                    <div id="{{id}}_TransformerTank_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TransformerTank_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
                     `
@@ -3123,7 +3123,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TapSchedule_collapse" aria-expanded="true" aria-controls="TapSchedule_collapse" style="margin-left: 10px;">TapSchedule</a></legend>
-                    <div id="TapSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TapSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
@@ -3151,7 +3151,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_TapSchedule_collapse" style="margin-left: 10px;">TapSchedule</a></legend>
-                    <div id="{{id}}_TapSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TapSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.edit_template.call (this) +
                     `
@@ -3240,7 +3240,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EarthFaultCompensator_collapse" aria-expanded="true" aria-controls="EarthFaultCompensator_collapse" style="margin-left: 10px;">EarthFaultCompensator</a></legend>
-                    <div id="EarthFaultCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EarthFaultCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -3268,7 +3268,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EarthFaultCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_EarthFaultCompensator_collapse" style="margin-left: 10px;">EarthFaultCompensator</a></legend>
-                    <div id="{{id}}_EarthFaultCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EarthFaultCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -3348,7 +3348,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Clamp_collapse" aria-expanded="true" aria-controls="Clamp_collapse" style="margin-left: 10px;">Clamp</a></legend>
-                    <div id="Clamp_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Clamp_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -3377,7 +3377,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Clamp_collapse" aria-expanded="true" aria-controls="{{id}}_Clamp_collapse" style="margin-left: 10px;">Clamp</a></legend>
-                    <div id="{{id}}_Clamp_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Clamp_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -3468,7 +3468,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RegulationSchedule_collapse" aria-expanded="true" aria-controls="RegulationSchedule_collapse" style="margin-left: 10px;">RegulationSchedule</a></legend>
-                    <div id="RegulationSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RegulationSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
@@ -3499,7 +3499,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegulationSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_RegulationSchedule_collapse" style="margin-left: 10px;">RegulationSchedule</a></legend>
-                    <div id="{{id}}_RegulationSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RegulationSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.edit_template.call (this) +
                     `
@@ -3589,7 +3589,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ACLineSegmentPhase_collapse" aria-expanded="true" aria-controls="ACLineSegmentPhase_collapse" style="margin-left: 10px;">ACLineSegmentPhase</a></legend>
-                    <div id="ACLineSegmentPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ACLineSegmentPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -3620,7 +3620,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ACLineSegmentPhase_collapse" aria-expanded="true" aria-controls="{{id}}_ACLineSegmentPhase_collapse" style="margin-left: 10px;">ACLineSegmentPhase</a></legend>
-                    <div id="{{id}}_ACLineSegmentPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ACLineSegmentPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
@@ -3743,7 +3743,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerEnd_collapse" aria-expanded="true" aria-controls="TransformerEnd_collapse" style="margin-left: 10px;">TransformerEnd</a></legend>
-                    <div id="TransformerEnd_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TransformerEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3795,13 +3795,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerEnd_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerEnd_collapse" style="margin-left: 10px;">TransformerEnd</a></legend>
-                    <div id="{{id}}_TransformerEnd_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TransformerEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bmagSat'>bmagSat: </label><div class='col-sm-8'><input id='{{id}}_bmagSat' class='form-control' type='text'{{#bmagSat}} value='{{bmagSat}}'{{/bmagSat}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endNumber'>endNumber: </label><div class='col-sm-8'><input id='{{id}}_endNumber' class='form-control' type='text'{{#endNumber}} value='{{endNumber}}'{{/endNumber}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_grounded'>grounded: </label><div class='col-sm-8'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_grounded'>grounded: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_magBaseU'>magBaseU: </label><div class='col-sm-8'><input id='{{id}}_magBaseU' class='form-control' type='text'{{#magBaseU}} value='{{magBaseU}}'{{/magBaseU}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_magSatFlux'>magSatFlux: </label><div class='col-sm-8'><input id='{{id}}_magSatFlux' class='form-control' type='text'{{#magSatFlux}} value='{{magSatFlux}}'{{/magSatFlux}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rground'>rground: </label><div class='col-sm-8'><input id='{{id}}_rground' class='form-control' type='text'{{#rground}} value='{{rground}}'{{/rground}}></div></div>
@@ -3919,7 +3919,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchSchedule_collapse" aria-expanded="true" aria-controls="SwitchSchedule_collapse" style="margin-left: 10px;">SwitchSchedule</a></legend>
-                    <div id="SwitchSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SwitchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
@@ -3947,7 +3947,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchSchedule_collapse" style="margin-left: 10px;">SwitchSchedule</a></legend>
-                    <div id="{{id}}_SwitchSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SwitchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.edit_template.call (this) +
                     `
@@ -4056,7 +4056,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RegulatingControl_collapse" aria-expanded="true" aria-controls="RegulatingControl_collapse" style="margin-left: 10px;">RegulatingControl</a></legend>
-                    <div id="RegulatingControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RegulatingControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -4102,17 +4102,17 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegulatingControl_collapse" aria-expanded="true" aria-controls="{{id}}_RegulatingControl_collapse" style="margin-left: 10px;">RegulatingControl</a></legend>
-                    <div id="{{id}}_RegulatingControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RegulatingControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_discrete'>discrete: </label><div class='col-sm-8'><input id='{{id}}_discrete' class='form-check-input' type='checkbox'{{#discrete}} checked{{/discrete}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_discrete'>discrete: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_discrete' class='form-check-input' type='checkbox'{{#discrete}} checked{{/discrete}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mode'>mode: </label><div class='col-sm-8'><select id='{{id}}_mode' class='form-control'>{{#RegulatingControlModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RegulatingControlModeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_monitoredPhase'>monitoredPhase: </label><div class='col-sm-8'><input id='{{id}}_monitoredPhase' class='form-control' type='text'{{#monitoredPhase}} value='{{monitoredPhase}}'{{/monitoredPhase}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetDeadband'>targetDeadband: </label><div class='col-sm-8'><input id='{{id}}_targetDeadband' class='form-control' type='text'{{#targetDeadband}} value='{{targetDeadband}}'{{/targetDeadband}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValue'>targetValue: </label><div class='col-sm-8'><input id='{{id}}_targetValue' class='form-control' type='text'{{#targetValue}} value='{{targetValue}}'{{/targetValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValueUnitMultiplier'>targetValueUnitMultiplier: </label><div class='col-sm-8'><input id='{{id}}_targetValueUnitMultiplier' class='form-control' type='text'{{#targetValueUnitMultiplier}} value='{{targetValueUnitMultiplier}}'{{/targetValueUnitMultiplier}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_enabled'>enabled: </label><div class='col-sm-8'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
                     <fieldset>
@@ -4230,7 +4230,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChanger_collapse" aria-expanded="true" aria-controls="TapChanger_collapse" style="margin-left: 10px;">TapChanger</a></legend>
-                    <div id="TapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -4272,19 +4272,19 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_TapChanger_collapse" style="margin-left: 10px;">TapChanger</a></legend>
-                    <div id="{{id}}_TapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highStep'>highStep: </label><div class='col-sm-8'><input id='{{id}}_highStep' class='form-control' type='text'{{#highStep}} value='{{highStep}}'{{/highStep}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initialDelay'>initialDelay: </label><div class='col-sm-8'><input id='{{id}}_initialDelay' class='form-control' type='text'{{#initialDelay}} value='{{initialDelay}}'{{/initialDelay}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowStep'>lowStep: </label><div class='col-sm-8'><input id='{{id}}_lowStep' class='form-control' type='text'{{#lowStep}} value='{{lowStep}}'{{/lowStep}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_ltcFlag'>ltcFlag: </label><div class='col-sm-8'><input id='{{id}}_ltcFlag' class='form-check-input' type='checkbox'{{#ltcFlag}} checked{{/ltcFlag}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_ltcFlag'>ltcFlag: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_ltcFlag' class='form-check-input' type='checkbox'{{#ltcFlag}} checked{{/ltcFlag}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStep'>neutralStep: </label><div class='col-sm-8'><input id='{{id}}_neutralStep' class='form-control' type='text'{{#neutralStep}} value='{{neutralStep}}'{{/neutralStep}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralU'>neutralU: </label><div class='col-sm-8'><input id='{{id}}_neutralU' class='form-control' type='text'{{#neutralU}} value='{{neutralU}}'{{/neutralU}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalStep'>normalStep: </label><div class='col-sm-8'><input id='{{id}}_normalStep' class='form-control' type='text'{{#normalStep}} value='{{normalStep}}'{{/normalStep}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subsequentDelay'>subsequentDelay: </label><div class='col-sm-8'><input id='{{id}}_subsequentDelay' class='form-control' type='text'{{#subsequentDelay}} value='{{subsequentDelay}}'{{/subsequentDelay}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_controlEnabled'>controlEnabled: </label><div class='col-sm-8'><input id='{{id}}_controlEnabled' class='form-check-input' type='checkbox'{{#controlEnabled}} checked{{/controlEnabled}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_controlEnabled'>controlEnabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_controlEnabled' class='form-check-input' type='checkbox'{{#controlEnabled}} checked{{/controlEnabled}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_step'>step: </label><div class='col-sm-8'><input id='{{id}}_step' class='form-control' type='text'{{#step}} value='{{step}}'{{/step}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TapChangerControl'>TapChangerControl: </label><div class='col-sm-8'><input id='{{id}}_TapChangerControl' class='form-control' type='text'{{#TapChangerControl}} value='{{TapChangerControl}}'{{/TapChangerControl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SvTapStep'>SvTapStep: </label><div class='col-sm-8'><input id='{{id}}_SvTapStep' class='form-control' type='text'{{#SvTapStep}} value='{{SvTapStep}}'{{/SvTapStep}}></div></div>
@@ -4409,7 +4409,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergySource_collapse" aria-expanded="true" aria-controls="EnergySource_collapse" style="margin-left: 10px;">EnergySource</a></legend>
-                    <div id="EnergySource_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EnergySource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -4450,7 +4450,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergySource_collapse" aria-expanded="true" aria-controls="{{id}}_EnergySource_collapse" style="margin-left: 10px;">EnergySource</a></legend>
-                    <div id="{{id}}_EnergySource_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EnergySource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -4571,7 +4571,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="ShuntCompensatorPhase_collapse" style="margin-left: 10px;">ShuntCompensatorPhase</a></legend>
-                    <div id="ShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -4604,7 +4604,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensatorPhase_collapse" style="margin-left: 10px;">ShuntCompensatorPhase</a></legend>
-                    <div id="{{id}}_ShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
@@ -4705,7 +4705,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchPhase_collapse" aria-expanded="true" aria-controls="SwitchPhase_collapse" style="margin-left: 10px;">SwitchPhase</a></legend>
-                    <div id="SwitchPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SwitchPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -4741,14 +4741,14 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchPhase_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchPhase_collapse" style="margin-left: 10px;">SwitchPhase</a></legend>
-                    <div id="{{id}}_SwitchPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SwitchPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_normalOpen'>normalOpen: </label><div class='col-sm-8'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalOpen'>normalOpen: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseSide1'>phaseSide1: </label><div class='col-sm-8'><select id='{{id}}_phaseSide1' class='form-control'>{{#SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseSide2'>phaseSide2: </label><div class='col-sm-8'><select id='{{id}}_phaseSide2' class='form-control'>{{#SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SinglePhaseKind}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_closed'>closed: </label><div class='col-sm-8'><input id='{{id}}_closed' class='form-check-input' type='checkbox'{{#closed}} checked{{/closed}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_closed'>closed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_closed' class='form-check-input' type='checkbox'{{#closed}} checked{{/closed}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switch'>Switch: </label><div class='col-sm-8'><input id='{{id}}_Switch' class='form-control' type='text'{{#Switch}} value='{{Switch}}'{{/Switch}}></div></div>
                     </div>
                     <fieldset>
@@ -4840,7 +4840,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CompositeSwitch_collapse" aria-expanded="true" aria-controls="CompositeSwitch_collapse" style="margin-left: 10px;">CompositeSwitch</a></legend>
-                    <div id="CompositeSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CompositeSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
                     `
@@ -4871,7 +4871,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CompositeSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_CompositeSwitch_collapse" style="margin-left: 10px;">CompositeSwitch</a></legend>
-                    <div id="{{id}}_CompositeSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CompositeSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
                     `
@@ -4960,7 +4960,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RegulatingCondEq_collapse" aria-expanded="true" aria-controls="RegulatingCondEq_collapse" style="margin-left: 10px;">RegulatingCondEq</a></legend>
-                    <div id="RegulatingCondEq_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RegulatingCondEq_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -4989,11 +4989,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegulatingCondEq_collapse" aria-expanded="true" aria-controls="{{id}}_RegulatingCondEq_collapse" style="margin-left: 10px;">RegulatingCondEq</a></legend>
-                    <div id="{{id}}_RegulatingCondEq_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RegulatingCondEq_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_controlEnabled'>controlEnabled: </label><div class='col-sm-8'><input id='{{id}}_controlEnabled' class='form-check-input' type='checkbox'{{#controlEnabled}} checked{{/controlEnabled}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_controlEnabled'>controlEnabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_controlEnabled' class='form-check-input' type='checkbox'{{#controlEnabled}} checked{{/controlEnabled}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegulatingControl'>RegulatingControl: </label><div class='col-sm-8'><input id='{{id}}_RegulatingControl' class='form-control' type='text'{{#RegulatingControl}} value='{{RegulatingControl}}'{{/RegulatingControl}}></div></div>
                     </div>
                     <fieldset>
@@ -5080,7 +5080,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Ground_collapse" aria-expanded="true" aria-controls="Ground_collapse" style="margin-left: 10px;">Ground</a></legend>
-                    <div id="Ground_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Ground_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -5108,7 +5108,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Ground_collapse" aria-expanded="true" aria-controls="{{id}}_Ground_collapse" style="margin-left: 10px;">Ground</a></legend>
-                    <div id="{{id}}_Ground_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Ground_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -5195,7 +5195,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Conductor_collapse" aria-expanded="true" aria-controls="Conductor_collapse" style="margin-left: 10px;">Conductor</a></legend>
-                    <div id="Conductor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Conductor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -5223,7 +5223,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Conductor_collapse" aria-expanded="true" aria-controls="{{id}}_Conductor_collapse" style="margin-left: 10px;">Conductor</a></legend>
-                    <div id="{{id}}_Conductor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Conductor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -5297,7 +5297,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Plant_collapse" aria-expanded="true" aria-controls="Plant_collapse" style="margin-left: 10px;">Plant</a></legend>
-                    <div id="Plant_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Plant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.template.call (this) +
                     `
@@ -5324,7 +5324,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Plant_collapse" aria-expanded="true" aria-controls="{{id}}_Plant_collapse" style="margin-left: 10px;">Plant</a></legend>
-                    <div id="{{id}}_Plant_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Plant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.edit_template.call (this) +
                     `
@@ -5396,7 +5396,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Sectionaliser_collapse" aria-expanded="true" aria-controls="Sectionaliser_collapse" style="margin-left: 10px;">Sectionaliser</a></legend>
-                    <div id="Sectionaliser_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Sectionaliser_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
                     `
@@ -5423,7 +5423,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Sectionaliser_collapse" aria-expanded="true" aria-controls="{{id}}_Sectionaliser_collapse" style="margin-left: 10px;">Sectionaliser</a></legend>
-                    <div id="{{id}}_Sectionaliser_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Sectionaliser_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
                     `
@@ -5495,7 +5495,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Fuse_collapse" aria-expanded="true" aria-controls="Fuse_collapse" style="margin-left: 10px;">Fuse</a></legend>
-                    <div id="Fuse_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Fuse_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
                     `
@@ -5522,7 +5522,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Fuse_collapse" aria-expanded="true" aria-controls="{{id}}_Fuse_collapse" style="margin-left: 10px;">Fuse</a></legend>
-                    <div id="{{id}}_Fuse_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Fuse_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
                     `
@@ -5592,7 +5592,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GroundDisconnector_collapse" aria-expanded="true" aria-controls="GroundDisconnector_collapse" style="margin-left: 10px;">GroundDisconnector</a></legend>
-                    <div id="GroundDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GroundDisconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
                     `
@@ -5619,7 +5619,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GroundDisconnector_collapse" aria-expanded="true" aria-controls="{{id}}_GroundDisconnector_collapse" style="margin-left: 10px;">GroundDisconnector</a></legend>
-                    <div id="{{id}}_GroundDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GroundDisconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
                     `
@@ -5695,7 +5695,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectedSwitch_collapse" aria-expanded="true" aria-controls="ProtectedSwitch_collapse" style="margin-left: 10px;">ProtectedSwitch</a></legend>
-                    <div id="ProtectedSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ProtectedSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
                     `
@@ -5729,7 +5729,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectedSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectedSwitch_collapse" style="margin-left: 10px;">ProtectedSwitch</a></legend>
-                    <div id="{{id}}_ProtectedSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ProtectedSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
                     `
@@ -5825,7 +5825,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Cut_collapse" aria-expanded="true" aria-controls="Cut_collapse" style="margin-left: 10px;">Cut</a></legend>
-                    <div id="Cut_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Cut_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
                     `
@@ -5855,7 +5855,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Cut_collapse" aria-expanded="true" aria-controls="{{id}}_Cut_collapse" style="margin-left: 10px;">Cut</a></legend>
-                    <div id="{{id}}_Cut_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Cut_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
                     `
@@ -5947,7 +5947,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Breaker_collapse" aria-expanded="true" aria-controls="Breaker_collapse" style="margin-left: 10px;">Breaker</a></legend>
-                    <div id="Breaker_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Breaker_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.template.call (this) +
                     `
@@ -5975,7 +5975,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Breaker_collapse" aria-expanded="true" aria-controls="{{id}}_Breaker_collapse" style="margin-left: 10px;">Breaker</a></legend>
-                    <div id="{{id}}_Breaker_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Breaker_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.edit_template.call (this) +
                     `
@@ -6053,7 +6053,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Jumper_collapse" aria-expanded="true" aria-controls="Jumper_collapse" style="margin-left: 10px;">Jumper</a></legend>
-                    <div id="Jumper_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Jumper_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
                     `
@@ -6081,7 +6081,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Jumper_collapse" aria-expanded="true" aria-controls="{{id}}_Jumper_collapse" style="margin-left: 10px;">Jumper</a></legend>
-                    <div id="{{id}}_Jumper_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Jumper_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
                     `
@@ -6166,7 +6166,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Recloser_collapse" aria-expanded="true" aria-controls="Recloser_collapse" style="margin-left: 10px;">Recloser</a></legend>
-                    <div id="Recloser_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Recloser_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.template.call (this) +
                     `
@@ -6193,7 +6193,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Recloser_collapse" aria-expanded="true" aria-controls="{{id}}_Recloser_collapse" style="margin-left: 10px;">Recloser</a></legend>
-                    <div id="{{id}}_Recloser_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Recloser_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.edit_template.call (this) +
                     `
@@ -6265,7 +6265,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Disconnector_collapse" aria-expanded="true" aria-controls="Disconnector_collapse" style="margin-left: 10px;">Disconnector</a></legend>
-                    <div id="Disconnector_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Disconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
                     `
@@ -6292,7 +6292,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Disconnector_collapse" aria-expanded="true" aria-controls="{{id}}_Disconnector_collapse" style="margin-left: 10px;">Disconnector</a></legend>
-                    <div id="{{id}}_Disconnector_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Disconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
                     `
@@ -6362,7 +6362,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadBreakSwitch_collapse" aria-expanded="true" aria-controls="LoadBreakSwitch_collapse" style="margin-left: 10px;">LoadBreakSwitch</a></legend>
-                    <div id="LoadBreakSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LoadBreakSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.template.call (this) +
                     `
@@ -6389,7 +6389,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadBreakSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_LoadBreakSwitch_collapse" style="margin-left: 10px;">LoadBreakSwitch</a></legend>
-                    <div id="{{id}}_LoadBreakSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LoadBreakSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.edit_template.call (this) +
                     `
@@ -6463,7 +6463,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTablePoint_collapse" style="margin-left: 10px;">PhaseTapChangerTablePoint</a></legend>
-                    <div id="PhaseTapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseTapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChangerTablePoint.prototype.template.call (this) +
                     `
@@ -6492,7 +6492,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTablePoint_collapse" style="margin-left: 10px;">PhaseTapChangerTablePoint</a></legend>
-                    <div id="{{id}}_PhaseTapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseTapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChangerTablePoint.prototype.edit_template.call (this) +
                     `
@@ -6581,7 +6581,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RatioTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="RatioTapChangerTablePoint_collapse" style="margin-left: 10px;">RatioTapChangerTablePoint</a></legend>
-                    <div id="RatioTapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RatioTapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChangerTablePoint.prototype.template.call (this) +
                     `
@@ -6609,7 +6609,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RatioTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChangerTablePoint_collapse" style="margin-left: 10px;">RatioTapChangerTablePoint</a></legend>
-                    <div id="{{id}}_RatioTapChangerTablePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RatioTapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChangerTablePoint.prototype.edit_template.call (this) +
                     `
@@ -6694,7 +6694,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Junction_collapse" aria-expanded="true" aria-controls="Junction_collapse" style="margin-left: 10px;">Junction</a></legend>
-                    <div id="Junction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Junction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Connector.prototype.template.call (this) +
                     `
@@ -6721,7 +6721,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Junction_collapse" aria-expanded="true" aria-controls="{{id}}_Junction_collapse" style="margin-left: 10px;">Junction</a></legend>
-                    <div id="{{id}}_Junction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Junction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Connector.prototype.edit_template.call (this) +
                     `
@@ -6797,7 +6797,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BusbarSection_collapse" aria-expanded="true" aria-controls="BusbarSection_collapse" style="margin-left: 10px;">BusbarSection</a></legend>
-                    <div id="BusbarSection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BusbarSection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Connector.prototype.template.call (this) +
                     `
@@ -6826,7 +6826,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusbarSection_collapse" aria-expanded="true" aria-controls="{{id}}_BusbarSection_collapse" style="margin-left: 10px;">BusbarSection</a></legend>
-                    <div id="{{id}}_BusbarSection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BusbarSection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Connector.prototype.edit_template.call (this) +
                     `
@@ -6915,7 +6915,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthImpedance_collapse" aria-expanded="true" aria-controls="PerLengthImpedance_collapse" style="margin-left: 10px;">PerLengthImpedance</a></legend>
-                    <div id="PerLengthImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PerLengthImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthLineParameter.prototype.template.call (this) +
                     `
@@ -6945,7 +6945,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthImpedance_collapse" style="margin-left: 10px;">PerLengthImpedance</a></legend>
-                    <div id="{{id}}_PerLengthImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PerLengthImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthLineParameter.prototype.edit_template.call (this) +
                     `
@@ -7030,7 +7030,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthPhaseImpedance_collapse" aria-expanded="true" aria-controls="PerLengthPhaseImpedance_collapse" style="margin-left: 10px;">PerLengthPhaseImpedance</a></legend>
-                    <div id="PerLengthPhaseImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PerLengthPhaseImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthImpedance.prototype.template.call (this) +
                     `
@@ -7061,7 +7061,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthPhaseImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthPhaseImpedance_collapse" style="margin-left: 10px;">PerLengthPhaseImpedance</a></legend>
-                    <div id="{{id}}_PerLengthPhaseImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PerLengthPhaseImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthImpedance.prototype.edit_template.call (this) +
                     `
@@ -7164,7 +7164,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthSequenceImpedance_collapse" aria-expanded="true" aria-controls="PerLengthSequenceImpedance_collapse" style="margin-left: 10px;">PerLengthSequenceImpedance</a></legend>
-                    <div id="PerLengthSequenceImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PerLengthSequenceImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthImpedance.prototype.template.call (this) +
                     `
@@ -7199,7 +7199,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthSequenceImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthSequenceImpedance_collapse" style="margin-left: 10px;">PerLengthSequenceImpedance</a></legend>
-                    <div id="{{id}}_PerLengthSequenceImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PerLengthSequenceImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthImpedance.prototype.edit_template.call (this) +
                     `
@@ -7301,7 +7301,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PetersenCoil_collapse" aria-expanded="true" aria-controls="PetersenCoil_collapse" style="margin-left: 10px;">PetersenCoil</a></legend>
-                    <div id="PetersenCoil_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PetersenCoil_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EarthFaultCompensator.prototype.template.call (this) +
                     `
@@ -7337,7 +7337,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PetersenCoil_collapse" aria-expanded="true" aria-controls="{{id}}_PetersenCoil_collapse" style="margin-left: 10px;">PetersenCoil</a></legend>
-                    <div id="{{id}}_PetersenCoil_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PetersenCoil_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EarthFaultCompensator.prototype.edit_template.call (this) +
                     `
@@ -7425,7 +7425,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GroundingImpedance_collapse" aria-expanded="true" aria-controls="GroundingImpedance_collapse" style="margin-left: 10px;">GroundingImpedance</a></legend>
-                    <div id="GroundingImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GroundingImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EarthFaultCompensator.prototype.template.call (this) +
                     `
@@ -7453,7 +7453,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GroundingImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_GroundingImpedance_collapse" style="margin-left: 10px;">GroundingImpedance</a></legend>
-                    <div id="{{id}}_GroundingImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GroundingImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EarthFaultCompensator.prototype.edit_template.call (this) +
                     `
@@ -7555,7 +7555,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerTransformerEnd_collapse" aria-expanded="true" aria-controls="PowerTransformerEnd_collapse" style="margin-left: 10px;">PowerTransformerEnd</a></legend>
-                    <div id="PowerTransformerEnd_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PowerTransformerEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TransformerEnd.prototype.template.call (this) +
                     `
@@ -7597,7 +7597,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerTransformerEnd_collapse" aria-expanded="true" aria-controls="{{id}}_PowerTransformerEnd_collapse" style="margin-left: 10px;">PowerTransformerEnd</a></legend>
-                    <div id="{{id}}_PowerTransformerEnd_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PowerTransformerEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TransformerEnd.prototype.edit_template.call (this) +
                     `
@@ -7710,7 +7710,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTankEnd_collapse" aria-expanded="true" aria-controls="TransformerTankEnd_collapse" style="margin-left: 10px;">TransformerTankEnd</a></legend>
-                    <div id="TransformerTankEnd_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TransformerTankEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TransformerEnd.prototype.template.call (this) +
                     `
@@ -7739,7 +7739,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerTankEnd_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerTankEnd_collapse" style="margin-left: 10px;">TransformerTankEnd</a></legend>
-                    <div id="{{id}}_TransformerTankEnd_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TransformerTankEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TransformerEnd.prototype.edit_template.call (this) +
                     `
@@ -7840,7 +7840,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerControl_collapse" aria-expanded="true" aria-controls="TapChangerControl_collapse" style="margin-left: 10px;">TapChangerControl</a></legend>
-                    <div id="TapChangerControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TapChangerControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingControl.prototype.template.call (this) +
                     `
@@ -7876,12 +7876,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapChangerControl_collapse" aria-expanded="true" aria-controls="{{id}}_TapChangerControl_collapse" style="margin-left: 10px;">TapChangerControl</a></legend>
-                    <div id="{{id}}_TapChangerControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TapChangerControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingControl.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitVoltage'>limitVoltage: </label><div class='col-sm-8'><input id='{{id}}_limitVoltage' class='form-control' type='text'{{#limitVoltage}} value='{{limitVoltage}}'{{/limitVoltage}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_lineDropCompensation'>lineDropCompensation: </label><div class='col-sm-8'><input id='{{id}}_lineDropCompensation' class='form-check-input' type='checkbox'{{#lineDropCompensation}} checked{{/lineDropCompensation}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_lineDropCompensation'>lineDropCompensation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_lineDropCompensation' class='form-check-input' type='checkbox'{{#lineDropCompensation}} checked{{/lineDropCompensation}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineDropR'>lineDropR: </label><div class='col-sm-8'><input id='{{id}}_lineDropR' class='form-control' type='text'{{#lineDropR}} value='{{lineDropR}}'{{/lineDropR}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineDropX'>lineDropX: </label><div class='col-sm-8'><input id='{{id}}_lineDropX' class='form-control' type='text'{{#lineDropX}} value='{{lineDropX}}'{{/lineDropX}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reverseLineDropR'>reverseLineDropR: </label><div class='col-sm-8'><input id='{{id}}_reverseLineDropR' class='form-control' type='text'{{#reverseLineDropR}} value='{{reverseLineDropR}}'{{/reverseLineDropR}}></div></div>
@@ -7975,7 +7975,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChanger_collapse" aria-expanded="true" aria-controls="PhaseTapChanger_collapse" style="margin-left: 10px;">PhaseTapChanger</a></legend>
-                    <div id="PhaseTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseTapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChanger.prototype.template.call (this) +
                     `
@@ -8003,7 +8003,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChanger_collapse" style="margin-left: 10px;">PhaseTapChanger</a></legend>
-                    <div id="{{id}}_PhaseTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseTapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChanger.prototype.edit_template.call (this) +
                     `
@@ -8096,7 +8096,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerLinear_collapse" aria-expanded="true" aria-controls="PhaseTapChangerLinear_collapse" style="margin-left: 10px;">PhaseTapChangerLinear</a></legend>
-                    <div id="PhaseTapChangerLinear_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseTapChangerLinear_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.template.call (this) +
                     `
@@ -8126,7 +8126,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerLinear_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerLinear_collapse" style="margin-left: 10px;">PhaseTapChangerLinear</a></legend>
-                    <div id="{{id}}_PhaseTapChangerLinear_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseTapChangerLinear_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.edit_template.call (this) +
                     `
@@ -8212,7 +8212,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RatioTapChanger_collapse" aria-expanded="true" aria-controls="RatioTapChanger_collapse" style="margin-left: 10px;">RatioTapChanger</a></legend>
-                    <div id="RatioTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RatioTapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChanger.prototype.template.call (this) +
                     `
@@ -8245,7 +8245,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RatioTapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChanger_collapse" style="margin-left: 10px;">RatioTapChanger</a></legend>
-                    <div id="{{id}}_RatioTapChanger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RatioTapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChanger.prototype.edit_template.call (this) +
                     `
@@ -8345,7 +8345,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerNonLinear_collapse" aria-expanded="true" aria-controls="PhaseTapChangerNonLinear_collapse" style="margin-left: 10px;">PhaseTapChangerNonLinear</a></legend>
-                    <div id="PhaseTapChangerNonLinear_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseTapChangerNonLinear_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.template.call (this) +
                     `
@@ -8375,7 +8375,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerNonLinear_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerNonLinear_collapse" style="margin-left: 10px;">PhaseTapChangerNonLinear</a></legend>
-                    <div id="{{id}}_PhaseTapChangerNonLinear_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseTapChangerNonLinear_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.edit_template.call (this) +
                     `
@@ -8451,7 +8451,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerTabular_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTabular_collapse" style="margin-left: 10px;">PhaseTapChangerTabular</a></legend>
-                    <div id="PhaseTapChangerTabular_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseTapChangerTabular_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.template.call (this) +
                     `
@@ -8479,7 +8479,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerTabular_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTabular_collapse" style="margin-left: 10px;">PhaseTapChangerTabular</a></legend>
-                    <div id="{{id}}_PhaseTapChangerTabular_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseTapChangerTabular_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.edit_template.call (this) +
                     `
@@ -8568,7 +8568,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerAsymmetrical_collapse" aria-expanded="true" aria-controls="PhaseTapChangerAsymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerAsymmetrical</a></legend>
-                    <div id="PhaseTapChangerAsymmetrical_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseTapChangerAsymmetrical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChangerNonLinear.prototype.template.call (this) +
                     `
@@ -8596,7 +8596,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerAsymmetrical_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerAsymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerAsymmetrical</a></legend>
-                    <div id="{{id}}_PhaseTapChangerAsymmetrical_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseTapChangerAsymmetrical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChangerNonLinear.prototype.edit_template.call (this) +
                     `
@@ -8672,7 +8672,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerSymmetrical_collapse" aria-expanded="true" aria-controls="PhaseTapChangerSymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerSymmetrical</a></legend>
-                    <div id="PhaseTapChangerSymmetrical_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PhaseTapChangerSymmetrical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChangerNonLinear.prototype.template.call (this) +
                     `
@@ -8699,7 +8699,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerSymmetrical_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerSymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerSymmetrical</a></legend>
-                    <div id="{{id}}_PhaseTapChangerSymmetrical_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PhaseTapChangerSymmetrical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChangerNonLinear.prototype.edit_template.call (this) +
                     `
@@ -8773,7 +8773,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="LinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">LinearShuntCompensatorPhase</a></legend>
-                    <div id="LinearShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LinearShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensatorPhase.prototype.template.call (this) +
                     `
@@ -8802,7 +8802,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_LinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">LinearShuntCompensatorPhase</a></legend>
-                    <div id="{{id}}_LinearShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LinearShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensatorPhase.prototype.edit_template.call (this) +
                     `
@@ -8880,7 +8880,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#NonlinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhase</a></legend>
-                    <div id="NonlinearShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="NonlinearShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensatorPhase.prototype.template.call (this) +
                     `
@@ -8910,7 +8910,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhase</a></legend>
-                    <div id="{{id}}_NonlinearShuntCompensatorPhase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_NonlinearShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensatorPhase.prototype.edit_template.call (this) +
                     `
@@ -9017,7 +9017,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensator_collapse" aria-expanded="true" aria-controls="ShuntCompensator_collapse" style="margin-left: 10px;">ShuntCompensator</a></legend>
-                    <div id="ShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
                     `
@@ -9060,12 +9060,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensator_collapse" style="margin-left: 10px;">ShuntCompensator</a></legend>
-                    <div id="{{id}}_ShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aVRDelay'>aVRDelay: </label><div class='col-sm-8'><input id='{{id}}_aVRDelay' class='form-control' type='text'{{#aVRDelay}} value='{{aVRDelay}}'{{/aVRDelay}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_grounded'>grounded: </label><div class='col-sm-8'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_grounded'>grounded: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumSections'>maximumSections: </label><div class='col-sm-8'><input id='{{id}}_maximumSections' class='form-control' type='text'{{#maximumSections}} value='{{maximumSections}}'{{/maximumSections}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nomU'>nomU: </label><div class='col-sm-8'><input id='{{id}}_nomU' class='form-control' type='text'{{#nomU}} value='{{nomU}}'{{/nomU}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalSections'>normalSections: </label><div class='col-sm-8'><input id='{{id}}_normalSections' class='form-control' type='text'{{#normalSections}} value='{{normalSections}}'{{/normalSections}}></div></div>
@@ -9180,7 +9180,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RotatingMachine_collapse" aria-expanded="true" aria-controls="RotatingMachine_collapse" style="margin-left: 10px;">RotatingMachine</a></legend>
-                    <div id="RotatingMachine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RotatingMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
                     `
@@ -9214,7 +9214,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RotatingMachine_collapse" aria-expanded="true" aria-controls="{{id}}_RotatingMachine_collapse" style="margin-left: 10px;">RotatingMachine</a></legend>
-                    <div id="{{id}}_RotatingMachine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RotatingMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
                     `
@@ -9324,7 +9324,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#FrequencyConverter_collapse" aria-expanded="true" aria-controls="FrequencyConverter_collapse" style="margin-left: 10px;">FrequencyConverter</a></legend>
-                    <div id="FrequencyConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="FrequencyConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
                     `
@@ -9356,7 +9356,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FrequencyConverter_collapse" aria-expanded="true" aria-controls="{{id}}_FrequencyConverter_collapse" style="margin-left: 10px;">FrequencyConverter</a></legend>
-                    <div id="{{id}}_FrequencyConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_FrequencyConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
                     `
@@ -9508,7 +9508,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachine_collapse" aria-expanded="true" aria-controls="SynchronousMachine_collapse" style="margin-left: 10px;">SynchronousMachine</a></legend>
-                    <div id="SynchronousMachine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SynchronousMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RotatingMachine.prototype.template.call (this) +
                     `
@@ -9581,7 +9581,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachine_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachine_collapse" style="margin-left: 10px;">SynchronousMachine</a></legend>
-                    <div id="{{id}}_SynchronousMachine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SynchronousMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RotatingMachine.prototype.edit_template.call (this) +
                     `
@@ -9591,7 +9591,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condenserP'>condenserP: </label><div class='col-sm-8'><input id='{{id}}_condenserP' class='form-control' type='text'{{#condenserP}} value='{{condenserP}}'{{/condenserP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coolantCondition'>coolantCondition: </label><div class='col-sm-8'><input id='{{id}}_coolantCondition' class='form-control' type='text'{{#coolantCondition}} value='{{coolantCondition}}'{{/coolantCondition}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coolantType'>coolantType: </label><div class='col-sm-8'><select id='{{id}}_coolantType' class='form-control'>{{#CoolantType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CoolantType}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_earthing'>earthing: </label><div class='col-sm-8'><input id='{{id}}_earthing' class='form-check-input' type='checkbox'{{#earthing}} checked{{/earthing}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_earthing'>earthing: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_earthing' class='form-check-input' type='checkbox'{{#earthing}} checked{{/earthing}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_earthingStarPointR'>earthingStarPointR: </label><div class='col-sm-8'><input id='{{id}}_earthingStarPointR' class='form-control' type='text'{{#earthingStarPointR}} value='{{earthingStarPointR}}'{{/earthingStarPointR}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_earthingStarPointX'>earthingStarPointX: </label><div class='col-sm-8'><input id='{{id}}_earthingStarPointX' class='form-control' type='text'{{#earthingStarPointX}} value='{{earthingStarPointX}}'{{/earthingStarPointX}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ikk'>ikk: </label><div class='col-sm-8'><input id='{{id}}_ikk' class='form-control' type='text'{{#ikk}} value='{{ikk}}'{{/ikk}}></div></div>
@@ -9749,7 +9749,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#StaticVarCompensator_collapse" aria-expanded="true" aria-controls="StaticVarCompensator_collapse" style="margin-left: 10px;">StaticVarCompensator</a></legend>
-                    <div id="StaticVarCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="StaticVarCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
                     `
@@ -9784,7 +9784,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StaticVarCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_StaticVarCompensator_collapse" style="margin-left: 10px;">StaticVarCompensator</a></legend>
-                    <div id="{{id}}_StaticVarCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_StaticVarCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
                     `
@@ -9870,7 +9870,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#NonlinearShuntCompensator_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensator_collapse" style="margin-left: 10px;">NonlinearShuntCompensator</a></legend>
-                    <div id="NonlinearShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="NonlinearShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensator.prototype.template.call (this) +
                     `
@@ -9900,7 +9900,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensator_collapse" style="margin-left: 10px;">NonlinearShuntCompensator</a></legend>
-                    <div id="{{id}}_NonlinearShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_NonlinearShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensator.prototype.edit_template.call (this) +
                     `
@@ -10017,7 +10017,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExternalNetworkInjection_collapse" aria-expanded="true" aria-controls="ExternalNetworkInjection_collapse" style="margin-left: 10px;">ExternalNetworkInjection</a></legend>
-                    <div id="ExternalNetworkInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExternalNetworkInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
                     `
@@ -10062,12 +10062,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExternalNetworkInjection_collapse" aria-expanded="true" aria-controls="{{id}}_ExternalNetworkInjection_collapse" style="margin-left: 10px;">ExternalNetworkInjection</a></legend>
-                    <div id="{{id}}_ExternalNetworkInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExternalNetworkInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_governorSCD'>governorSCD: </label><div class='col-sm-8'><input id='{{id}}_governorSCD' class='form-control' type='text'{{#governorSCD}} value='{{governorSCD}}'{{/governorSCD}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_ikSecond'>ikSecond: </label><div class='col-sm-8'><input id='{{id}}_ikSecond' class='form-check-input' type='checkbox'{{#ikSecond}} checked{{/ikSecond}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_ikSecond'>ikSecond: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_ikSecond' class='form-check-input' type='checkbox'{{#ikSecond}} checked{{/ikSecond}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxInitialSymShCCurrent'>maxInitialSymShCCurrent: </label><div class='col-sm-8'><input id='{{id}}_maxInitialSymShCCurrent' class='form-control' type='text'{{#maxInitialSymShCCurrent}} value='{{maxInitialSymShCCurrent}}'{{/maxInitialSymShCCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxP'>maxP: </label><div class='col-sm-8'><input id='{{id}}_maxP' class='form-control' type='text'{{#maxP}} value='{{maxP}}'{{/maxP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxQ'>maxQ: </label><div class='col-sm-8'><input id='{{id}}_maxQ' class='form-control' type='text'{{#maxQ}} value='{{maxQ}}'{{/maxQ}}></div></div>
@@ -10178,7 +10178,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LinearShuntCompensator_collapse" aria-expanded="true" aria-controls="LinearShuntCompensator_collapse" style="margin-left: 10px;">LinearShuntCompensator</a></legend>
-                    <div id="LinearShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LinearShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensator.prototype.template.call (this) +
                     `
@@ -10209,7 +10209,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LinearShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_LinearShuntCompensator_collapse" style="margin-left: 10px;">LinearShuntCompensator</a></legend>
-                    <div id="{{id}}_LinearShuntCompensator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LinearShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensator.prototype.edit_template.call (this) +
                     `
@@ -10333,7 +10333,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachine_collapse" aria-expanded="true" aria-controls="AsynchronousMachine_collapse" style="margin-left: 10px;">AsynchronousMachine</a></legend>
-                    <div id="AsynchronousMachine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AsynchronousMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RotatingMachine.prototype.template.call (this) +
                     `
@@ -10383,18 +10383,18 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachine_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachine_collapse" style="margin-left: 10px;">AsynchronousMachine</a></legend>
-                    <div id="{{id}}_AsynchronousMachine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AsynchronousMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RotatingMachine.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_converterFedDrive'>converterFedDrive: </label><div class='col-sm-8'><input id='{{id}}_converterFedDrive' class='form-check-input' type='checkbox'{{#converterFedDrive}} checked{{/converterFedDrive}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_converterFedDrive'>converterFedDrive: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_converterFedDrive' class='form-check-input' type='checkbox'{{#converterFedDrive}} checked{{/converterFedDrive}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efficiency'>efficiency: </label><div class='col-sm-8'><input id='{{id}}_efficiency' class='form-control' type='text'{{#efficiency}} value='{{efficiency}}'{{/efficiency}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iaIrRatio'>iaIrRatio: </label><div class='col-sm-8'><input id='{{id}}_iaIrRatio' class='form-control' type='text'{{#iaIrRatio}} value='{{iaIrRatio}}'{{/iaIrRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalFrequency'>nominalFrequency: </label><div class='col-sm-8'><input id='{{id}}_nominalFrequency' class='form-control' type='text'{{#nominalFrequency}} value='{{nominalFrequency}}'{{/nominalFrequency}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalSpeed'>nominalSpeed: </label><div class='col-sm-8'><input id='{{id}}_nominalSpeed' class='form-control' type='text'{{#nominalSpeed}} value='{{nominalSpeed}}'{{/nominalSpeed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_polePairNumber'>polePairNumber: </label><div class='col-sm-8'><input id='{{id}}_polePairNumber' class='form-control' type='text'{{#polePairNumber}} value='{{polePairNumber}}'{{/polePairNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedMechanicalPower'>ratedMechanicalPower: </label><div class='col-sm-8'><input id='{{id}}_ratedMechanicalPower' class='form-control' type='text'{{#ratedMechanicalPower}} value='{{ratedMechanicalPower}}'{{/ratedMechanicalPower}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_reversible'>reversible: </label><div class='col-sm-8'><input id='{{id}}_reversible' class='form-check-input' type='checkbox'{{#reversible}} checked{{/reversible}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_reversible'>reversible: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_reversible' class='form-check-input' type='checkbox'{{#reversible}} checked{{/reversible}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rr1'>rr1: </label><div class='col-sm-8'><input id='{{id}}_rr1' class='form-control' type='text'{{#rr1}} value='{{rr1}}'{{/rr1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rr2'>rr2: </label><div class='col-sm-8'><input id='{{id}}_rr2' class='form-control' type='text'{{#rr2}} value='{{rr2}}'{{/rr2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rxLockedRotorRatio'>rxLockedRotorRatio: </label><div class='col-sm-8'><input id='{{id}}_rxLockedRotorRatio' class='form-control' type='text'{{#rxLockedRotorRatio}} value='{{rxLockedRotorRatio}}'{{/rxLockedRotorRatio}}></div></div>
@@ -10542,7 +10542,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ACLineSegment_collapse" aria-expanded="true" aria-controls="ACLineSegment_collapse" style="margin-left: 10px;">ACLineSegment</a></legend>
-                    <div id="ACLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ACLineSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Conductor.prototype.template.call (this) +
                     `
@@ -10593,7 +10593,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ACLineSegment_collapse" aria-expanded="true" aria-controls="{{id}}_ACLineSegment_collapse" style="margin-left: 10px;">ACLineSegment</a></legend>
-                    <div id="{{id}}_ACLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ACLineSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Conductor.prototype.edit_template.call (this) +
                     `

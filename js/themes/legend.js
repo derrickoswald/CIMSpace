@@ -22,22 +22,24 @@ define
                 this._onMap = false;
                 this._theme = theme;
                 this._template =
-                "<div class='well'>\n" +
-                "  <h3>Legend</h3>\n" +
+                "<div class='card'>\n" +
+                "  <div class='card-body'>\n" +
+                "    <h5 class='card-title'>Legend</h5>\n" +
                 "{{#items}}\n" +
-                "  <div class='form-check'>\n" +
+                "    <div class='form-check'>\n" +
 // custom
 //                "    <label class='custom-control custom-checkbox'>\n" +
 //                "      <input id='{{id}}' type='checkbox' class='custom-control-input'>\n" +
 //                "      <span class='custom-control-indicator'></span>\n" +
 //                "      <span class='custom-control-description'>{{{description}}}</span>\n" +
 //                "    </label>\n" +
-                "    <label class='form-check-label' for='{{id}}'>\n" +
-                "      <input id='{{id}}' class='form-check-input' type='checkbox' value=''{{enabled}}>\n" +
-                "      {{{description}}}\n" +
-                "    </label>\n" +
-                "  </div>\n" +
+                "      <label class='form-check-label' for='{{id}}'>\n" +
+                "        <input id='{{id}}' class='form-check-input' type='checkbox' value=''{{enabled}}>\n" +
+                "        {{{description}}}\n" +
+                "      </label>\n" +
+                "    </div>\n" +
                 "{{/items}}\n" +
+                "  </div>\n" +
                 "</div>\n";
             }
 

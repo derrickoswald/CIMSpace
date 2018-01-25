@@ -224,7 +224,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DemandResponseProgram_collapse" aria-expanded="true" aria-controls="DemandResponseProgram_collapse" style="margin-left: 10px;">DemandResponseProgram</a></legend>
-                    <div id="DemandResponseProgram_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DemandResponseProgram_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -262,7 +262,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DemandResponseProgram_collapse" aria-expanded="true" aria-controls="{{id}}_DemandResponseProgram_collapse" style="margin-left: 10px;">DemandResponseProgram</a></legend>
-                    <div id="{{id}}_DemandResponseProgram_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DemandResponseProgram_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -367,7 +367,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceGroup_collapse" aria-expanded="true" aria-controls="EndDeviceGroup_collapse" style="margin-left: 10px;">EndDeviceGroup</a></legend>
-                    <div id="EndDeviceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -404,7 +404,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceGroup_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceGroup_collapse" style="margin-left: 10px;">EndDeviceGroup</a></legend>
-                    <div id="{{id}}_EndDeviceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -521,7 +521,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlledAppliance_collapse" aria-expanded="true" aria-controls="ControlledAppliance_collapse" style="margin-left: 10px;">ControlledAppliance</a></legend>
-                    <div id="ControlledAppliance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ControlledAppliance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -560,22 +560,22 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ControlledAppliance_collapse" aria-expanded="true" aria-controls="{{id}}_ControlledAppliance_collapse" style="margin-left: 10px;">ControlledAppliance</a></legend>
-                    <div id="{{id}}_ControlledAppliance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ControlledAppliance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isElectricVehicle'>isElectricVehicle: </label><div class='col-sm-8'><input id='{{id}}_isElectricVehicle' class='form-check-input' type='checkbox'{{#isElectricVehicle}} checked{{/isElectricVehicle}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isExteriorLighting'>isExteriorLighting: </label><div class='col-sm-8'><input id='{{id}}_isExteriorLighting' class='form-check-input' type='checkbox'{{#isExteriorLighting}} checked{{/isExteriorLighting}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isGenerationSystem'>isGenerationSystem: </label><div class='col-sm-8'><input id='{{id}}_isGenerationSystem' class='form-check-input' type='checkbox'{{#isGenerationSystem}} checked{{/isGenerationSystem}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isHvacCompressorOrFurnace'>isHvacCompressorOrFurnace: </label><div class='col-sm-8'><input id='{{id}}_isHvacCompressorOrFurnace' class='form-check-input' type='checkbox'{{#isHvacCompressorOrFurnace}} checked{{/isHvacCompressorOrFurnace}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isInteriorLighting'>isInteriorLighting: </label><div class='col-sm-8'><input id='{{id}}_isInteriorLighting' class='form-check-input' type='checkbox'{{#isInteriorLighting}} checked{{/isInteriorLighting}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isIrrigationPump'>isIrrigationPump: </label><div class='col-sm-8'><input id='{{id}}_isIrrigationPump' class='form-check-input' type='checkbox'{{#isIrrigationPump}} checked{{/isIrrigationPump}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isManagedCommercialIndustrialLoad'>isManagedCommercialIndustrialLoad: </label><div class='col-sm-8'><input id='{{id}}_isManagedCommercialIndustrialLoad' class='form-check-input' type='checkbox'{{#isManagedCommercialIndustrialLoad}} checked{{/isManagedCommercialIndustrialLoad}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPoolPumpSpaJacuzzi'>isPoolPumpSpaJacuzzi: </label><div class='col-sm-8'><input id='{{id}}_isPoolPumpSpaJacuzzi' class='form-check-input' type='checkbox'{{#isPoolPumpSpaJacuzzi}} checked{{/isPoolPumpSpaJacuzzi}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isSimpleMiscLoad'>isSimpleMiscLoad: </label><div class='col-sm-8'><input id='{{id}}_isSimpleMiscLoad' class='form-check-input' type='checkbox'{{#isSimpleMiscLoad}} checked{{/isSimpleMiscLoad}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isSmartAppliance'>isSmartAppliance: </label><div class='col-sm-8'><input id='{{id}}_isSmartAppliance' class='form-check-input' type='checkbox'{{#isSmartAppliance}} checked{{/isSmartAppliance}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isStripAndBaseboardHeater'>isStripAndBaseboardHeater: </label><div class='col-sm-8'><input id='{{id}}_isStripAndBaseboardHeater' class='form-check-input' type='checkbox'{{#isStripAndBaseboardHeater}} checked{{/isStripAndBaseboardHeater}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isWaterHeater'>isWaterHeater: </label><div class='col-sm-8'><input id='{{id}}_isWaterHeater' class='form-check-input' type='checkbox'{{#isWaterHeater}} checked{{/isWaterHeater}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isElectricVehicle'>isElectricVehicle: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isElectricVehicle' class='form-check-input' type='checkbox'{{#isElectricVehicle}} checked{{/isElectricVehicle}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isExteriorLighting'>isExteriorLighting: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isExteriorLighting' class='form-check-input' type='checkbox'{{#isExteriorLighting}} checked{{/isExteriorLighting}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isGenerationSystem'>isGenerationSystem: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isGenerationSystem' class='form-check-input' type='checkbox'{{#isGenerationSystem}} checked{{/isGenerationSystem}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isHvacCompressorOrFurnace'>isHvacCompressorOrFurnace: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isHvacCompressorOrFurnace' class='form-check-input' type='checkbox'{{#isHvacCompressorOrFurnace}} checked{{/isHvacCompressorOrFurnace}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isInteriorLighting'>isInteriorLighting: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isInteriorLighting' class='form-check-input' type='checkbox'{{#isInteriorLighting}} checked{{/isInteriorLighting}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isIrrigationPump'>isIrrigationPump: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isIrrigationPump' class='form-check-input' type='checkbox'{{#isIrrigationPump}} checked{{/isIrrigationPump}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isManagedCommercialIndustrialLoad'>isManagedCommercialIndustrialLoad: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isManagedCommercialIndustrialLoad' class='form-check-input' type='checkbox'{{#isManagedCommercialIndustrialLoad}} checked{{/isManagedCommercialIndustrialLoad}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isPoolPumpSpaJacuzzi'>isPoolPumpSpaJacuzzi: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isPoolPumpSpaJacuzzi' class='form-check-input' type='checkbox'{{#isPoolPumpSpaJacuzzi}} checked{{/isPoolPumpSpaJacuzzi}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isSimpleMiscLoad'>isSimpleMiscLoad: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isSimpleMiscLoad' class='form-check-input' type='checkbox'{{#isSimpleMiscLoad}} checked{{/isSimpleMiscLoad}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isSmartAppliance'>isSmartAppliance: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isSmartAppliance' class='form-check-input' type='checkbox'{{#isSmartAppliance}} checked{{/isSmartAppliance}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isStripAndBaseboardHeater'>isStripAndBaseboardHeater: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isStripAndBaseboardHeater' class='form-check-input' type='checkbox'{{#isStripAndBaseboardHeater}} checked{{/isStripAndBaseboardHeater}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isWaterHeater'>isWaterHeater: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isWaterHeater' class='form-check-input' type='checkbox'{{#isWaterHeater}} checked{{/isWaterHeater}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -670,7 +670,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Register_collapse" aria-expanded="true" aria-controls="Register_collapse" style="margin-left: 10px;">Register</a></legend>
-                    <div id="Register_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Register_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -706,11 +706,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Register_collapse" aria-expanded="true" aria-controls="{{id}}_Register_collapse" style="margin-left: 10px;">Register</a></legend>
-                    <div id="{{id}}_Register_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Register_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isVirtual'>isVirtual: </label><div class='col-sm-8'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isVirtual'>isVirtual: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_leftDigitCount'>leftDigitCount: </label><div class='col-sm-8'><input id='{{id}}_leftDigitCount' class='form-control' type='text'{{#leftDigitCount}} value='{{leftDigitCount}}'{{/leftDigitCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rightDigitCount'>rightDigitCount: </label><div class='col-sm-8'><input id='{{id}}_rightDigitCount' class='form-control' type='text'{{#rightDigitCount}} value='{{rightDigitCount}}'{{/rightDigitCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_touTier'>touTier: </label><div class='col-sm-8'><input id='{{id}}_touTier' class='form-control' type='text'{{#touTier}} value='{{touTier}}'{{/touTier}}></div></div>
@@ -832,7 +832,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceControl_collapse" aria-expanded="true" aria-controls="EndDeviceControl_collapse" style="margin-left: 10px;">EndDeviceControl</a></legend>
-                    <div id="EndDeviceControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -882,12 +882,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceControl_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceControl_collapse" style="margin-left: 10px;">EndDeviceControl</a></legend>
-                    <div id="{{id}}_EndDeviceControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_drProgramLevel'>drProgramLevel: </label><div class='col-sm-8'><input id='{{id}}_drProgramLevel' class='form-control' type='text'{{#drProgramLevel}} value='{{drProgramLevel}}'{{/drProgramLevel}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_drProgramMandatory'>drProgramMandatory: </label><div class='col-sm-8'><input id='{{id}}_drProgramMandatory' class='form-check-input' type='checkbox'{{#drProgramMandatory}} checked{{/drProgramMandatory}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_drProgramMandatory'>drProgramMandatory: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_drProgramMandatory' class='form-check-input' type='checkbox'{{#drProgramMandatory}} checked{{/drProgramMandatory}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issuerID'>issuerID: </label><div class='col-sm-8'><input id='{{id}}_issuerID' class='form-control' type='text'{{#issuerID}} value='{{issuerID}}'{{/issuerID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issuerTrackingID'>issuerTrackingID: </label><div class='col-sm-8'><input id='{{id}}_issuerTrackingID' class='form-control' type='text'{{#issuerTrackingID}} value='{{issuerTrackingID}}'{{/issuerTrackingID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSignal'>priceSignal: </label><div class='col-sm-8'><input id='{{id}}_priceSignal' class='form-control' type='text'{{#priceSignal}} value='{{priceSignal}}'{{/priceSignal}}></div></div>
@@ -1028,7 +1028,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PanPricingDetail_collapse" aria-expanded="true" aria-controls="PanPricingDetail_collapse" style="margin-left: 10px;">PanPricingDetail</a></legend>
-                    <div id="PanPricingDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PanPricingDetail_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1069,7 +1069,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PanPricingDetail_collapse" aria-expanded="true" aria-controls="{{id}}_PanPricingDetail_collapse" style="margin-left: 10px;">PanPricingDetail</a></legend>
-                    <div id="{{id}}_PanPricingDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PanPricingDetail_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1250,7 +1250,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePoint_collapse" aria-expanded="true" aria-controls="UsagePoint_collapse" style="margin-left: 10px;">UsagePoint</a></legend>
-                    <div id="UsagePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="UsagePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1339,18 +1339,18 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UsagePoint_collapse" aria-expanded="true" aria-controls="{{id}}_UsagePoint_collapse" style="margin-left: 10px;">UsagePoint</a></legend>
-                    <div id="{{id}}_UsagePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_UsagePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amiBillingReady'>amiBillingReady: </label><div class='col-sm-8'><select id='{{id}}_amiBillingReady' class='form-control'>{{#AmiBillingReadyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AmiBillingReadyKind}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_checkBilling'>checkBilling: </label><div class='col-sm-8'><input id='{{id}}_checkBilling' class='form-check-input' type='checkbox'{{#checkBilling}} checked{{/checkBilling}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_checkBilling'>checkBilling: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_checkBilling' class='form-check-input' type='checkbox'{{#checkBilling}} checked{{/checkBilling}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_connectionState'>connectionState: </label><div class='col-sm-8'><select id='{{id}}_connectionState' class='form-control'>{{#UsagePointConnectedKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UsagePointConnectedKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedLoad'>estimatedLoad: </label><div class='col-sm-8'><input id='{{id}}_estimatedLoad' class='form-control' type='text'{{#estimatedLoad}} value='{{estimatedLoad}}'{{/estimatedLoad}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_grounded'>grounded: </label><div class='col-sm-8'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isSdp'>isSdp: </label><div class='col-sm-8'><input id='{{id}}_isSdp' class='form-check-input' type='checkbox'{{#isSdp}} checked{{/isSdp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isVirtual'>isVirtual: </label><div class='col-sm-8'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_minimalUsageExpected'>minimalUsageExpected: </label><div class='col-sm-8'><input id='{{id}}_minimalUsageExpected' class='form-check-input' type='checkbox'{{#minimalUsageExpected}} checked{{/minimalUsageExpected}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_grounded'>grounded: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isSdp'>isSdp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isSdp' class='form-check-input' type='checkbox'{{#isSdp}} checked{{/isSdp}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isVirtual'>isVirtual: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_minimalUsageExpected'>minimalUsageExpected: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_minimalUsageExpected' class='form-check-input' type='checkbox'{{#minimalUsageExpected}} checked{{/minimalUsageExpected}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalServiceVoltage'>nominalServiceVoltage: </label><div class='col-sm-8'><input id='{{id}}_nominalServiceVoltage' class='form-control' type='text'{{#nominalServiceVoltage}} value='{{nominalServiceVoltage}}'{{/nominalServiceVoltage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outageRegion'>outageRegion: </label><div class='col-sm-8'><input id='{{id}}_outageRegion' class='form-control' type='text'{{#outageRegion}} value='{{outageRegion}}'{{/outageRegion}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='{{id}}_phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
@@ -1498,7 +1498,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RationalNumber_collapse" aria-expanded="true" aria-controls="RationalNumber_collapse" style="margin-left: 10px;">RationalNumber</a></legend>
-                    <div id="RationalNumber_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RationalNumber_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1527,7 +1527,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RationalNumber_collapse" aria-expanded="true" aria-controls="{{id}}_RationalNumber_collapse" style="margin-left: 10px;">RationalNumber</a></legend>
-                    <div id="{{id}}_RationalNumber_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RationalNumber_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1609,7 +1609,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEventDetail_collapse" aria-expanded="true" aria-controls="EndDeviceEventDetail_collapse" style="margin-left: 10px;">EndDeviceEventDetail</a></legend>
-                    <div id="EndDeviceEventDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceEventDetail_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1639,7 +1639,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceEventDetail_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceEventDetail_collapse" style="margin-left: 10px;">EndDeviceEventDetail</a></legend>
-                    <div id="{{id}}_EndDeviceEventDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceEventDetail_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1744,7 +1744,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterReading_collapse" aria-expanded="true" aria-controls="MeterReading_collapse" style="margin-left: 10px;">MeterReading</a></legend>
-                    <div id="MeterReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MeterReading_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1785,11 +1785,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeterReading_collapse" aria-expanded="true" aria-controls="{{id}}_MeterReading_collapse" style="margin-left: 10px;">MeterReading</a></legend>
-                    <div id="{{id}}_MeterReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MeterReading_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isCoincidentTrigger'>isCoincidentTrigger: </label><div class='col-sm-8'><input id='{{id}}_isCoincidentTrigger' class='form-check-input' type='checkbox'{{#isCoincidentTrigger}} checked{{/isCoincidentTrigger}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isCoincidentTrigger'>isCoincidentTrigger: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isCoincidentTrigger' class='form-check-input' type='checkbox'{{#isCoincidentTrigger}} checked{{/isCoincidentTrigger}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valuesInterval'>valuesInterval: </label><div class='col-sm-8'><input id='{{id}}_valuesInterval' class='form-control' type='text'{{#valuesInterval}} value='{{valuesInterval}}'{{/valuesInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='{{id}}_UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Meter'>Meter: </label><div class='col-sm-8'><input id='{{id}}_Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
@@ -1893,7 +1893,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Channel_collapse" aria-expanded="true" aria-controls="Channel_collapse" style="margin-left: 10px;">Channel</a></legend>
-                    <div id="Channel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Channel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1923,11 +1923,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Channel_collapse" aria-expanded="true" aria-controls="{{id}}_Channel_collapse" style="margin-left: 10px;">Channel</a></legend>
-                    <div id="{{id}}_Channel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Channel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isVirtual'>isVirtual: </label><div class='col-sm-8'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isVirtual'>isVirtual: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Register'>Register: </label><div class='col-sm-8'><input id='{{id}}_Register' class='form-control' type='text'{{#Register}} value='{{Register}}'{{/Register}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='{{id}}_ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
                     </div>
@@ -2025,7 +2025,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingQuality_collapse" aria-expanded="true" aria-controls="ReadingQuality_collapse" style="margin-left: 10px;">ReadingQuality</a></legend>
-                    <div id="ReadingQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ReadingQuality_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -2057,7 +2057,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReadingQuality_collapse" aria-expanded="true" aria-controls="{{id}}_ReadingQuality_collapse" style="margin-left: 10px;">ReadingQuality</a></legend>
-                    <div id="{{id}}_ReadingQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ReadingQuality_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -2157,7 +2157,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterMultiplier_collapse" aria-expanded="true" aria-controls="MeterMultiplier_collapse" style="margin-left: 10px;">MeterMultiplier</a></legend>
-                    <div id="MeterMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MeterMultiplier_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2189,7 +2189,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeterMultiplier_collapse" aria-expanded="true" aria-controls="{{id}}_MeterMultiplier_collapse" style="margin-left: 10px;">MeterMultiplier</a></legend>
-                    <div id="{{id}}_MeterMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MeterMultiplier_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2286,7 +2286,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePointLocation_collapse" aria-expanded="true" aria-controls="UsagePointLocation_collapse" style="margin-left: 10px;">UsagePointLocation</a></legend>
-                    <div id="UsagePointLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="UsagePointLocation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Location.prototype.template.call (this) +
                     `
@@ -2319,7 +2319,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UsagePointLocation_collapse" aria-expanded="true" aria-controls="{{id}}_UsagePointLocation_collapse" style="margin-left: 10px;">UsagePointLocation</a></legend>
-                    <div id="{{id}}_UsagePointLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_UsagePointLocation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Location.prototype.edit_template.call (this) +
                     `
@@ -2414,7 +2414,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MetrologyRequirement_collapse" aria-expanded="true" aria-controls="MetrologyRequirement_collapse" style="margin-left: 10px;">MetrologyRequirement</a></legend>
-                    <div id="MetrologyRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MetrologyRequirement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2450,7 +2450,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MetrologyRequirement_collapse" aria-expanded="true" aria-controls="{{id}}_MetrologyRequirement_collapse" style="margin-left: 10px;">MetrologyRequirement</a></legend>
-                    <div id="{{id}}_MetrologyRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MetrologyRequirement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2546,7 +2546,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceFunction_collapse" aria-expanded="true" aria-controls="EndDeviceFunction_collapse" style="margin-left: 10px;">EndDeviceFunction</a></legend>
-                    <div id="EndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceFunction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetFunction.prototype.template.call (this) +
                     `
@@ -2578,11 +2578,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceFunction_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceFunction_collapse" style="margin-left: 10px;">EndDeviceFunction</a></legend>
-                    <div id="{{id}}_EndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceFunction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetFunction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_enabled'>enabled: </label><div class='col-sm-8'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDevice'>EndDevice: </label><div class='col-sm-8'><input id='{{id}}_EndDevice' class='form-control' type='text'{{#EndDevice}} value='{{EndDevice}}'{{/EndDevice}}></div></div>
                     </div>
                     <fieldset>
@@ -2676,7 +2676,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ComModule_collapse" aria-expanded="true" aria-controls="ComModule_collapse" style="margin-left: 10px;">ComModule</a></legend>
-                    <div id="ComModule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ComModule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.template.call (this) +
                     `
@@ -2709,12 +2709,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ComModule_collapse" aria-expanded="true" aria-controls="{{id}}_ComModule_collapse" style="margin-left: 10px;">ComModule</a></legend>
-                    <div id="{{id}}_ComModule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ComModule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amrSystem'>amrSystem: </label><div class='col-sm-8'><input id='{{id}}_amrSystem' class='form-control' type='text'{{#amrSystem}} value='{{amrSystem}}'{{/amrSystem}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_supportsAutonomousDst'>supportsAutonomousDst: </label><div class='col-sm-8'><input id='{{id}}_supportsAutonomousDst' class='form-check-input' type='checkbox'{{#supportsAutonomousDst}} checked{{/supportsAutonomousDst}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_supportsAutonomousDst'>supportsAutonomousDst: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_supportsAutonomousDst' class='form-check-input' type='checkbox'{{#supportsAutonomousDst}} checked{{/supportsAutonomousDst}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeZoneOffset'>timeZoneOffset: </label><div class='col-sm-8'><input id='{{id}}_timeZoneOffset' class='form-control' type='text'{{#timeZoneOffset}} value='{{timeZoneOffset}}'{{/timeZoneOffset}}></div></div>
                     </div>
                     <fieldset>
@@ -2842,7 +2842,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingType_collapse" aria-expanded="true" aria-controls="ReadingType_collapse" style="margin-left: 10px;">ReadingType</a></legend>
-                    <div id="ReadingType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ReadingType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2896,7 +2896,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReadingType_collapse" aria-expanded="true" aria-controls="{{id}}_ReadingType_collapse" style="margin-left: 10px;">ReadingType</a></legend>
-                    <div id="{{id}}_ReadingType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ReadingType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3031,7 +3031,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#IntervalBlock_collapse" aria-expanded="true" aria-controls="IntervalBlock_collapse" style="margin-left: 10px;">IntervalBlock</a></legend>
-                    <div id="IntervalBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="IntervalBlock_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -3064,7 +3064,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IntervalBlock_collapse" aria-expanded="true" aria-controls="{{id}}_IntervalBlock_collapse" style="margin-left: 10px;">IntervalBlock</a></legend>
-                    <div id="{{id}}_IntervalBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_IntervalBlock_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -3166,7 +3166,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceTiming_collapse" aria-expanded="true" aria-controls="EndDeviceTiming_collapse" style="margin-left: 10px;">EndDeviceTiming</a></legend>
-                    <div id="EndDeviceTiming_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceTiming_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -3199,12 +3199,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceTiming_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceTiming_collapse" style="margin-left: 10px;">EndDeviceTiming</a></legend>
-                    <div id="{{id}}_EndDeviceTiming_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceTiming_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_durationIndefinite'>durationIndefinite: </label><div class='col-sm-8'><input id='{{id}}_durationIndefinite' class='form-check-input' type='checkbox'{{#durationIndefinite}} checked{{/durationIndefinite}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_durationIndefinite'>durationIndefinite: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_durationIndefinite' class='form-check-input' type='checkbox'{{#durationIndefinite}} checked{{/durationIndefinite}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interval'>interval: </label><div class='col-sm-8'><input id='{{id}}_interval' class='form-control' type='text'{{#interval}} value='{{interval}}'{{/interval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_randomisation'>randomisation: </label><div class='col-sm-8'><select id='{{id}}_randomisation' class='form-control'>{{#RandomisationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RandomisationKind}}</select></div></div>
                     </div>
@@ -3289,7 +3289,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceAction_collapse" aria-expanded="true" aria-controls="EndDeviceAction_collapse" style="margin-left: 10px;">EndDeviceAction</a></legend>
-                    <div id="EndDeviceAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceAction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -3321,13 +3321,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceAction_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceAction_collapse" style="margin-left: 10px;">EndDeviceAction</a></legend>
-                    <div id="{{id}}_EndDeviceAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceAction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_command'>command: </label><div class='col-sm-8'><input id='{{id}}_command' class='form-control' type='text'{{#command}} value='{{command}}'{{/command}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_durationIndefinite'>durationIndefinite: </label><div class='col-sm-8'><input id='{{id}}_durationIndefinite' class='form-check-input' type='checkbox'{{#durationIndefinite}} checked{{/durationIndefinite}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_durationIndefinite'>durationIndefinite: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_durationIndefinite' class='form-check-input' type='checkbox'{{#durationIndefinite}} checked{{/durationIndefinite}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startDateTime'>startDateTime: </label><div class='col-sm-8'><input id='{{id}}_startDateTime' class='form-control' type='text'{{#startDateTime}} value='{{startDateTime}}'{{/startDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControl'>EndDeviceControl: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControl' class='form-control' type='text'{{#EndDeviceControl}} value='{{EndDeviceControl}}'{{/EndDeviceControl}}></div></div>
                     </div>
@@ -3426,7 +3426,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BaseReading_collapse" aria-expanded="true" aria-controls="BaseReading_collapse" style="margin-left: 10px;">BaseReading</a></legend>
-                    <div id="BaseReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BaseReading_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Meas.MeasurementValue.prototype.template.call (this) +
                     `
@@ -3460,7 +3460,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BaseReading_collapse" aria-expanded="true" aria-controls="{{id}}_BaseReading_collapse" style="margin-left: 10px;">BaseReading</a></legend>
-                    <div id="{{id}}_BaseReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BaseReading_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Meas.MeasurementValue.prototype.edit_template.call (this) +
                     `
@@ -3567,7 +3567,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEvent_collapse" aria-expanded="true" aria-controls="EndDeviceEvent_collapse" style="margin-left: 10px;">EndDeviceEvent</a></legend>
-                    <div id="EndDeviceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.template.call (this) +
                     `
@@ -3604,7 +3604,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceEvent_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceEvent_collapse" style="margin-left: 10px;">EndDeviceEvent</a></legend>
-                    <div id="{{id}}_EndDeviceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.edit_template.call (this) +
                     `
@@ -3711,7 +3711,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceMultiplier_collapse" aria-expanded="true" aria-controls="ServiceMultiplier_collapse" style="margin-left: 10px;">ServiceMultiplier</a></legend>
-                    <div id="ServiceMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ServiceMultiplier_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3743,7 +3743,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ServiceMultiplier_collapse" aria-expanded="true" aria-controls="{{id}}_ServiceMultiplier_collapse" style="margin-left: 10px;">ServiceMultiplier</a></legend>
-                    <div id="{{id}}_ServiceMultiplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ServiceMultiplier_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3848,7 +3848,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PendingCalculation_collapse" aria-expanded="true" aria-controls="PendingCalculation_collapse" style="margin-left: 10px;">PendingCalculation</a></legend>
-                    <div id="PendingCalculation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PendingCalculation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -3884,11 +3884,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PendingCalculation_collapse" aria-expanded="true" aria-controls="{{id}}_PendingCalculation_collapse" style="margin-left: 10px;">PendingCalculation</a></legend>
-                    <div id="{{id}}_PendingCalculation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PendingCalculation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_multiplyBeforeAdd'>multiplyBeforeAdd: </label><div class='col-sm-8'><input id='{{id}}_multiplyBeforeAdd' class='form-check-input' type='checkbox'{{#multiplyBeforeAdd}} checked{{/multiplyBeforeAdd}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_multiplyBeforeAdd'>multiplyBeforeAdd: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_multiplyBeforeAdd' class='form-check-input' type='checkbox'{{#multiplyBeforeAdd}} checked{{/multiplyBeforeAdd}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offset'>offset: </label><div class='col-sm-8'><input id='{{id}}_offset' class='form-control' type='text'{{#offset}} value='{{offset}}'{{/offset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scalarDenominator'>scalarDenominator: </label><div class='col-sm-8'><input id='{{id}}_scalarDenominator' class='form-control' type='text'{{#scalarDenominator}} value='{{scalarDenominator}}'{{/scalarDenominator}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scalarFloat'>scalarFloat: </label><div class='col-sm-8'><input id='{{id}}_scalarFloat' class='form-control' type='text'{{#scalarFloat}} value='{{scalarFloat}}'{{/scalarFloat}}></div></div>
@@ -3984,7 +3984,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingInterharmonic_collapse" aria-expanded="true" aria-controls="ReadingInterharmonic_collapse" style="margin-left: 10px;">ReadingInterharmonic</a></legend>
-                    <div id="ReadingInterharmonic_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ReadingInterharmonic_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -4013,7 +4013,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReadingInterharmonic_collapse" aria-expanded="true" aria-controls="{{id}}_ReadingInterharmonic_collapse" style="margin-left: 10px;">ReadingInterharmonic</a></legend>
-                    <div id="{{id}}_ReadingInterharmonic_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ReadingInterharmonic_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -4101,7 +4101,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceControlType_collapse" aria-expanded="true" aria-controls="EndDeviceControlType_collapse" style="margin-left: 10px;">EndDeviceControlType</a></legend>
-                    <div id="EndDeviceControlType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceControlType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -4135,7 +4135,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceControlType_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceControlType_collapse" style="margin-left: 10px;">EndDeviceControlType</a></legend>
-                    <div id="{{id}}_EndDeviceControlType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceControlType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4236,7 +4236,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#UsagePointGroup_collapse" aria-expanded="true" aria-controls="UsagePointGroup_collapse" style="margin-left: 10px;">UsagePointGroup</a></legend>
-                    <div id="UsagePointGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="UsagePointGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -4273,7 +4273,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UsagePointGroup_collapse" aria-expanded="true" aria-controls="{{id}}_UsagePointGroup_collapse" style="margin-left: 10px;">UsagePointGroup</a></legend>
-                    <div id="{{id}}_UsagePointGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_UsagePointGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4372,7 +4372,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MeterServiceWork_collapse" aria-expanded="true" aria-controls="MeterServiceWork_collapse" style="margin-left: 10px;">MeterServiceWork</a></legend>
-                    <div id="MeterServiceWork_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MeterServiceWork_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Work.Work.prototype.template.call (this) +
                     `
@@ -4402,7 +4402,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeterServiceWork_collapse" aria-expanded="true" aria-controls="{{id}}_MeterServiceWork_collapse" style="margin-left: 10px;">MeterServiceWork</a></legend>
-                    <div id="{{id}}_MeterServiceWork_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MeterServiceWork_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Work.Work.prototype.edit_template.call (this) +
                     `
@@ -4503,7 +4503,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ReadingQualityType_collapse" aria-expanded="true" aria-controls="ReadingQualityType_collapse" style="margin-left: 10px;">ReadingQualityType</a></legend>
-                    <div id="ReadingQualityType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ReadingQualityType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -4536,7 +4536,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReadingQualityType_collapse" aria-expanded="true" aria-controls="{{id}}_ReadingQualityType_collapse" style="margin-left: 10px;">ReadingQualityType</a></legend>
-                    <div id="{{id}}_ReadingQualityType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ReadingQualityType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4637,7 +4637,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceEventType_collapse" aria-expanded="true" aria-controls="EndDeviceEventType_collapse" style="margin-left: 10px;">EndDeviceEventType</a></legend>
-                    <div id="EndDeviceEventType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceEventType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -4671,7 +4671,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceEventType_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceEventType_collapse" style="margin-left: 10px;">EndDeviceEventType</a></legend>
-                    <div id="{{id}}_EndDeviceEventType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceEventType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4790,7 +4790,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDevice_collapse" aria-expanded="true" aria-controls="EndDevice_collapse" style="margin-left: 10px;">EndDevice</a></legend>
-                    <div id="EndDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDevice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.template.call (this) +
                     `
@@ -4838,14 +4838,14 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDevice_collapse" aria-expanded="true" aria-controls="{{id}}_EndDevice_collapse" style="margin-left: 10px;">EndDevice</a></legend>
-                    <div id="{{id}}_EndDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDevice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amrSystem'>amrSystem: </label><div class='col-sm-8'><input id='{{id}}_amrSystem' class='form-control' type='text'{{#amrSystem}} value='{{amrSystem}}'{{/amrSystem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_installCode'>installCode: </label><div class='col-sm-8'><input id='{{id}}_installCode' class='form-control' type='text'{{#installCode}} value='{{installCode}}'{{/installCode}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPan'>isPan: </label><div class='col-sm-8'><input id='{{id}}_isPan' class='form-check-input' type='checkbox'{{#isPan}} checked{{/isPan}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isVirtual'>isVirtual: </label><div class='col-sm-8'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isPan'>isPan: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isPan' class='form-check-input' type='checkbox'{{#isPan}} checked{{/isPan}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isVirtual'>isVirtual: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeZoneOffset'>timeZoneOffset: </label><div class='col-sm-8'><input id='{{id}}_timeZoneOffset' class='form-control' type='text'{{#timeZoneOffset}} value='{{timeZoneOffset}}'{{/timeZoneOffset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceInfo'>EndDeviceInfo: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceInfo' class='form-control' type='text'{{#EndDeviceInfo}} value='{{EndDeviceInfo}}'{{/EndDeviceInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceLocation'>ServiceLocation: </label><div class='col-sm-8'><input id='{{id}}_ServiceLocation' class='form-control' type='text'{{#ServiceLocation}} value='{{ServiceLocation}}'{{/ServiceLocation}}></div></div>
@@ -4986,7 +4986,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceCapability_collapse" aria-expanded="true" aria-controls="EndDeviceCapability_collapse" style="margin-left: 10px;">EndDeviceCapability</a></legend>
-                    <div id="EndDeviceCapability_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceCapability_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -5031,28 +5031,28 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceCapability_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceCapability_collapse" style="margin-left: 10px;">EndDeviceCapability</a></legend>
-                    <div id="{{id}}_EndDeviceCapability_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceCapability_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_autonomousDst'>autonomousDst: </label><div class='col-sm-8'><input id='{{id}}_autonomousDst' class='form-check-input' type='checkbox'{{#autonomousDst}} checked{{/autonomousDst}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_communication'>communication: </label><div class='col-sm-8'><input id='{{id}}_communication' class='form-check-input' type='checkbox'{{#communication}} checked{{/communication}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_connectDisconnect'>connectDisconnect: </label><div class='col-sm-8'><input id='{{id}}_connectDisconnect' class='form-check-input' type='checkbox'{{#connectDisconnect}} checked{{/connectDisconnect}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_demandResponse'>demandResponse: </label><div class='col-sm-8'><input id='{{id}}_demandResponse' class='form-check-input' type='checkbox'{{#demandResponse}} checked{{/demandResponse}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_electricMetering'>electricMetering: </label><div class='col-sm-8'><input id='{{id}}_electricMetering' class='form-check-input' type='checkbox'{{#electricMetering}} checked{{/electricMetering}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_gasMetering'>gasMetering: </label><div class='col-sm-8'><input id='{{id}}_gasMetering' class='form-check-input' type='checkbox'{{#gasMetering}} checked{{/gasMetering}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_metrology'>metrology: </label><div class='col-sm-8'><input id='{{id}}_metrology' class='form-check-input' type='checkbox'{{#metrology}} checked{{/metrology}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_onRequestRead'>onRequestRead: </label><div class='col-sm-8'><input id='{{id}}_onRequestRead' class='form-check-input' type='checkbox'{{#onRequestRead}} checked{{/onRequestRead}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_outageHistory'>outageHistory: </label><div class='col-sm-8'><input id='{{id}}_outageHistory' class='form-check-input' type='checkbox'{{#outageHistory}} checked{{/outageHistory}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_pressureCompensation'>pressureCompensation: </label><div class='col-sm-8'><input id='{{id}}_pressureCompensation' class='form-check-input' type='checkbox'{{#pressureCompensation}} checked{{/pressureCompensation}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_pricingInfo'>pricingInfo: </label><div class='col-sm-8'><input id='{{id}}_pricingInfo' class='form-check-input' type='checkbox'{{#pricingInfo}} checked{{/pricingInfo}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_pulseOutput'>pulseOutput: </label><div class='col-sm-8'><input id='{{id}}_pulseOutput' class='form-check-input' type='checkbox'{{#pulseOutput}} checked{{/pulseOutput}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_relaysProgramming'>relaysProgramming: </label><div class='col-sm-8'><input id='{{id}}_relaysProgramming' class='form-check-input' type='checkbox'{{#relaysProgramming}} checked{{/relaysProgramming}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_reverseFlow'>reverseFlow: </label><div class='col-sm-8'><input id='{{id}}_reverseFlow' class='form-check-input' type='checkbox'{{#reverseFlow}} checked{{/reverseFlow}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_superCompressibilityCompensation'>superCompressibilityCompensation: </label><div class='col-sm-8'><input id='{{id}}_superCompressibilityCompensation' class='form-check-input' type='checkbox'{{#superCompressibilityCompensation}} checked{{/superCompressibilityCompensation}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_temperatureCompensation'>temperatureCompensation: </label><div class='col-sm-8'><input id='{{id}}_temperatureCompensation' class='form-check-input' type='checkbox'{{#temperatureCompensation}} checked{{/temperatureCompensation}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_textMessage'>textMessage: </label><div class='col-sm-8'><input id='{{id}}_textMessage' class='form-check-input' type='checkbox'{{#textMessage}} checked{{/textMessage}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_waterMetering'>waterMetering: </label><div class='col-sm-8'><input id='{{id}}_waterMetering' class='form-check-input' type='checkbox'{{#waterMetering}} checked{{/waterMetering}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_autonomousDst'>autonomousDst: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_autonomousDst' class='form-check-input' type='checkbox'{{#autonomousDst}} checked{{/autonomousDst}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_communication'>communication: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_communication' class='form-check-input' type='checkbox'{{#communication}} checked{{/communication}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_connectDisconnect'>connectDisconnect: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_connectDisconnect' class='form-check-input' type='checkbox'{{#connectDisconnect}} checked{{/connectDisconnect}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_demandResponse'>demandResponse: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_demandResponse' class='form-check-input' type='checkbox'{{#demandResponse}} checked{{/demandResponse}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_electricMetering'>electricMetering: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_electricMetering' class='form-check-input' type='checkbox'{{#electricMetering}} checked{{/electricMetering}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_gasMetering'>gasMetering: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_gasMetering' class='form-check-input' type='checkbox'{{#gasMetering}} checked{{/gasMetering}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_metrology'>metrology: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_metrology' class='form-check-input' type='checkbox'{{#metrology}} checked{{/metrology}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_onRequestRead'>onRequestRead: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_onRequestRead' class='form-check-input' type='checkbox'{{#onRequestRead}} checked{{/onRequestRead}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_outageHistory'>outageHistory: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_outageHistory' class='form-check-input' type='checkbox'{{#outageHistory}} checked{{/outageHistory}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_pressureCompensation'>pressureCompensation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_pressureCompensation' class='form-check-input' type='checkbox'{{#pressureCompensation}} checked{{/pressureCompensation}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_pricingInfo'>pricingInfo: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_pricingInfo' class='form-check-input' type='checkbox'{{#pricingInfo}} checked{{/pricingInfo}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_pulseOutput'>pulseOutput: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_pulseOutput' class='form-check-input' type='checkbox'{{#pulseOutput}} checked{{/pulseOutput}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_relaysProgramming'>relaysProgramming: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_relaysProgramming' class='form-check-input' type='checkbox'{{#relaysProgramming}} checked{{/relaysProgramming}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_reverseFlow'>reverseFlow: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_reverseFlow' class='form-check-input' type='checkbox'{{#reverseFlow}} checked{{/reverseFlow}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_superCompressibilityCompensation'>superCompressibilityCompensation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_superCompressibilityCompensation' class='form-check-input' type='checkbox'{{#superCompressibilityCompensation}} checked{{/superCompressibilityCompensation}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_temperatureCompensation'>temperatureCompensation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_temperatureCompensation' class='form-check-input' type='checkbox'{{#temperatureCompensation}} checked{{/temperatureCompensation}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_textMessage'>textMessage: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_textMessage' class='form-check-input' type='checkbox'{{#textMessage}} checked{{/textMessage}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_waterMetering'>waterMetering: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_waterMetering' class='form-check-input' type='checkbox'{{#waterMetering}} checked{{/waterMetering}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -5151,7 +5151,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EndDeviceInfo_collapse" aria-expanded="true" aria-controls="EndDeviceInfo_collapse" style="margin-left: 10px;">EndDeviceInfo</a></legend>
-                    <div id="EndDeviceInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EndDeviceInfo_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
@@ -5186,12 +5186,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EndDeviceInfo_collapse" aria-expanded="true" aria-controls="{{id}}_EndDeviceInfo_collapse" style="margin-left: 10px;">EndDeviceInfo</a></legend>
-                    <div id="{{id}}_EndDeviceInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EndDeviceInfo_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capability'>capability: </label><div class='col-sm-8'><input id='{{id}}_capability' class='form-control' type='text'{{#capability}} value='{{capability}}'{{/capability}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isSolidState'>isSolidState: </label><div class='col-sm-8'><input id='{{id}}_isSolidState' class='form-check-input' type='checkbox'{{#isSolidState}} checked{{/isSolidState}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isSolidState'>isSolidState: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isSolidState' class='form-check-input' type='checkbox'{{#isSolidState}} checked{{/isSolidState}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='{{id}}_phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
@@ -5283,7 +5283,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SimpleEndDeviceFunction_collapse" aria-expanded="true" aria-controls="SimpleEndDeviceFunction_collapse" style="margin-left: 10px;">SimpleEndDeviceFunction</a></legend>
-                    <div id="SimpleEndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SimpleEndDeviceFunction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceFunction.prototype.template.call (this) +
                     `
@@ -5313,7 +5313,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SimpleEndDeviceFunction_collapse" aria-expanded="true" aria-controls="{{id}}_SimpleEndDeviceFunction_collapse" style="margin-left: 10px;">SimpleEndDeviceFunction</a></legend>
-                    <div id="{{id}}_SimpleEndDeviceFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SimpleEndDeviceFunction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceFunction.prototype.edit_template.call (this) +
                     `
@@ -5397,7 +5397,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ComFunction_collapse" aria-expanded="true" aria-controls="ComFunction_collapse" style="margin-left: 10px;">ComFunction</a></legend>
-                    <div id="ComFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ComFunction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceFunction.prototype.template.call (this) +
                     `
@@ -5433,7 +5433,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ComFunction_collapse" aria-expanded="true" aria-controls="{{id}}_ComFunction_collapse" style="margin-left: 10px;">ComFunction</a></legend>
-                    <div id="{{id}}_ComFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ComFunction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceFunction.prototype.edit_template.call (this) +
                     `
@@ -5534,7 +5534,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PanDisplay_collapse" aria-expanded="true" aria-controls="PanDisplay_collapse" style="margin-left: 10px;">PanDisplay</a></legend>
-                    <div id="PanDisplay_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PanDisplay_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceAction.prototype.template.call (this) +
                     `
@@ -5567,11 +5567,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PanDisplay_collapse" aria-expanded="true" aria-controls="{{id}}_PanDisplay_collapse" style="margin-left: 10px;">PanDisplay</a></legend>
-                    <div id="{{id}}_PanDisplay_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PanDisplay_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceAction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_confirmationRequired'>confirmationRequired: </label><div class='col-sm-8'><input id='{{id}}_confirmationRequired' class='form-check-input' type='checkbox'{{#confirmationRequired}} checked{{/confirmationRequired}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_confirmationRequired'>confirmationRequired: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_confirmationRequired' class='form-check-input' type='checkbox'{{#confirmationRequired}} checked{{/confirmationRequired}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_textMessage'>textMessage: </label><div class='col-sm-8'><input id='{{id}}_textMessage' class='form-control' type='text'{{#textMessage}} value='{{textMessage}}'{{/textMessage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transmissionMode'>transmissionMode: </label><div class='col-sm-8'><select id='{{id}}_transmissionMode' class='form-control'>{{#TransmissionModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransmissionModeKind}}</select></div></div>
@@ -5671,7 +5671,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PanDemandResponse_collapse" aria-expanded="true" aria-controls="PanDemandResponse_collapse" style="margin-left: 10px;">PanDemandResponse</a></legend>
-                    <div id="PanDemandResponse_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PanDemandResponse_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceAction.prototype.template.call (this) +
                     `
@@ -5710,7 +5710,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PanDemandResponse_collapse" aria-expanded="true" aria-controls="{{id}}_PanDemandResponse_collapse" style="margin-left: 10px;">PanDemandResponse</a></legend>
-                    <div id="{{id}}_PanDemandResponse_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PanDemandResponse_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceAction.prototype.edit_template.call (this) +
                     `
@@ -5718,7 +5718,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_avgLoadAdjustment'>avgLoadAdjustment: </label><div class='col-sm-8'><input id='{{id}}_avgLoadAdjustment' class='form-control' type='text'{{#avgLoadAdjustment}} value='{{avgLoadAdjustment}}'{{/avgLoadAdjustment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelControlMode'>cancelControlMode: </label><div class='col-sm-8'><input id='{{id}}_cancelControlMode' class='form-control' type='text'{{#cancelControlMode}} value='{{cancelControlMode}}'{{/cancelControlMode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelDateTime'>cancelDateTime: </label><div class='col-sm-8'><input id='{{id}}_cancelDateTime' class='form-control' type='text'{{#cancelDateTime}} value='{{cancelDateTime}}'{{/cancelDateTime}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_cancelNow'>cancelNow: </label><div class='col-sm-8'><input id='{{id}}_cancelNow' class='form-check-input' type='checkbox'{{#cancelNow}} checked{{/cancelNow}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_cancelNow'>cancelNow: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_cancelNow' class='form-check-input' type='checkbox'{{#cancelNow}} checked{{/cancelNow}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coolingOffset'>coolingOffset: </label><div class='col-sm-8'><input id='{{id}}_coolingOffset' class='form-control' type='text'{{#coolingOffset}} value='{{coolingOffset}}'{{/coolingOffset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coolingSetpoint'>coolingSetpoint: </label><div class='col-sm-8'><input id='{{id}}_coolingSetpoint' class='form-control' type='text'{{#coolingSetpoint}} value='{{coolingSetpoint}}'{{/coolingSetpoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_criticalityLevel'>criticalityLevel: </label><div class='col-sm-8'><input id='{{id}}_criticalityLevel' class='form-control' type='text'{{#criticalityLevel}} value='{{criticalityLevel}}'{{/criticalityLevel}}></div></div>
@@ -5810,7 +5810,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PanPricing_collapse" aria-expanded="true" aria-controls="PanPricing_collapse" style="margin-left: 10px;">PanPricing</a></legend>
-                    <div id="PanPricing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PanPricing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceAction.prototype.template.call (this) +
                     `
@@ -5841,7 +5841,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PanPricing_collapse" aria-expanded="true" aria-controls="{{id}}_PanPricing_collapse" style="margin-left: 10px;">PanPricing</a></legend>
-                    <div id="{{id}}_PanPricing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PanPricing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDeviceAction.prototype.edit_template.call (this) +
                     `
@@ -5930,7 +5930,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#IntervalReading_collapse" aria-expanded="true" aria-controls="IntervalReading_collapse" style="margin-left: 10px;">IntervalReading</a></legend>
-                    <div id="IntervalReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="IntervalReading_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BaseReading.prototype.template.call (this) +
                     `
@@ -5960,7 +5960,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IntervalReading_collapse" aria-expanded="true" aria-controls="{{id}}_IntervalReading_collapse" style="margin-left: 10px;">IntervalReading</a></legend>
-                    <div id="{{id}}_IntervalReading_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_IntervalReading_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BaseReading.prototype.edit_template.call (this) +
                     `
@@ -6053,7 +6053,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Reading_collapse" aria-expanded="true" aria-controls="Reading_collapse" style="margin-left: 10px;">Reading</a></legend>
-                    <div id="Reading_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Reading_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BaseReading.prototype.template.call (this) +
                     `
@@ -6087,7 +6087,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Reading_collapse" aria-expanded="true" aria-controls="{{id}}_Reading_collapse" style="margin-left: 10px;">Reading</a></legend>
-                    <div id="{{id}}_Reading_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Reading_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BaseReading.prototype.edit_template.call (this) +
                     `
@@ -6191,7 +6191,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Meter_collapse" aria-expanded="true" aria-controls="Meter_collapse" style="margin-left: 10px;">Meter</a></legend>
-                    <div id="Meter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Meter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDevice.prototype.template.call (this) +
                     `
@@ -6234,7 +6234,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Meter_collapse" aria-expanded="true" aria-controls="{{id}}_Meter_collapse" style="margin-left: 10px;">Meter</a></legend>
-                    <div id="{{id}}_Meter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Meter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EndDevice.prototype.edit_template.call (this) +
                     `

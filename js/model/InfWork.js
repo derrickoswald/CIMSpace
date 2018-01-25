@@ -102,7 +102,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkStatusEntry_collapse" aria-expanded="true" aria-controls="WorkStatusEntry_collapse" style="margin-left: 10px;">WorkStatusEntry</a></legend>
-                    <div id="WorkStatusEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WorkStatusEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.template.call (this) +
                     `
@@ -130,7 +130,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkStatusEntry_collapse" aria-expanded="true" aria-controls="{{id}}_WorkStatusEntry_collapse" style="margin-left: 10px;">WorkStatusEntry</a></legend>
-                    <div id="{{id}}_WorkStatusEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WorkStatusEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.edit_template.call (this) +
                     `
@@ -206,7 +206,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkDocument_collapse" aria-expanded="true" aria-controls="WorkDocument_collapse" style="margin-left: 10px;">WorkDocument</a></legend>
-                    <div id="WorkDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WorkDocument_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
@@ -233,7 +233,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkDocument_collapse" aria-expanded="true" aria-controls="{{id}}_WorkDocument_collapse" style="margin-left: 10px;">WorkDocument</a></legend>
-                    <div id="{{id}}_WorkDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WorkDocument_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -305,7 +305,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkIdentifiedObject_collapse" aria-expanded="true" aria-controls="WorkIdentifiedObject_collapse" style="margin-left: 10px;">WorkIdentifiedObject</a></legend>
-                    <div id="WorkIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WorkIdentifiedObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -332,7 +332,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkIdentifiedObject_collapse" aria-expanded="true" aria-controls="{{id}}_WorkIdentifiedObject_collapse" style="margin-left: 10px;">WorkIdentifiedObject</a></legend>
-                    <div id="{{id}}_WorkIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WorkIdentifiedObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -424,7 +424,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OldWorkTask_collapse" aria-expanded="true" aria-controls="OldWorkTask_collapse" style="margin-left: 10px;">OldWorkTask</a></legend>
-                    <div id="OldWorkTask_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OldWorkTask_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Work.WorkTask.prototype.template.call (this) +
                     `
@@ -478,7 +478,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OldWorkTask_collapse" aria-expanded="true" aria-controls="{{id}}_OldWorkTask_collapse" style="margin-left: 10px;">OldWorkTask</a></legend>
-                    <div id="{{id}}_OldWorkTask_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OldWorkTask_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Work.WorkTask.prototype.edit_template.call (this) +
                     `
@@ -589,7 +589,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessCase_collapse" aria-expanded="true" aria-controls="BusinessCase_collapse" style="margin-left: 10px;">BusinessCase</a></legend>
-                    <div id="BusinessCase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BusinessCase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -623,7 +623,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusinessCase_collapse" aria-expanded="true" aria-controls="{{id}}_BusinessCase_collapse" style="margin-left: 10px;">BusinessCase</a></legend>
-                    <div id="{{id}}_BusinessCase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BusinessCase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -713,7 +713,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Regulation_collapse" aria-expanded="true" aria-controls="Regulation_collapse" style="margin-left: 10px;">Regulation</a></legend>
-                    <div id="Regulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Regulation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -741,7 +741,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Regulation_collapse" aria-expanded="true" aria-controls="{{id}}_Regulation_collapse" style="margin-left: 10px;">Regulation</a></legend>
-                    <div id="{{id}}_Regulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Regulation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -821,7 +821,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Assignment_collapse" aria-expanded="true" aria-controls="Assignment_collapse" style="margin-left: 10px;">Assignment</a></legend>
-                    <div id="Assignment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Assignment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -852,7 +852,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Assignment_collapse" aria-expanded="true" aria-controls="{{id}}_Assignment_collapse" style="margin-left: 10px;">Assignment</a></legend>
-                    <div id="{{id}}_Assignment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Assignment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -953,7 +953,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Project_collapse" aria-expanded="true" aria-controls="Project_collapse" style="margin-left: 10px;">Project</a></legend>
-                    <div id="Project_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Project_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -990,7 +990,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Project_collapse" aria-expanded="true" aria-controls="{{id}}_Project_collapse" style="margin-left: 10px;">Project</a></legend>
-                    <div id="{{id}}_Project_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Project_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -1089,7 +1089,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkCostSummary_collapse" aria-expanded="true" aria-controls="WorkCostSummary_collapse" style="margin-left: 10px;">WorkCostSummary</a></legend>
-                    <div id="WorkCostSummary_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WorkCostSummary_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -1117,7 +1117,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkCostSummary_collapse" aria-expanded="true" aria-controls="{{id}}_WorkCostSummary_collapse" style="margin-left: 10px;">WorkCostSummary</a></legend>
-                    <div id="{{id}}_WorkCostSummary_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WorkCostSummary_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -1230,7 +1230,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkCostDetail_collapse" aria-expanded="true" aria-controls="WorkCostDetail_collapse" style="margin-left: 10px;">WorkCostDetail</a></legend>
-                    <div id="WorkCostDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WorkCostDetail_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -1281,12 +1281,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkCostDetail_collapse" aria-expanded="true" aria-controls="{{id}}_WorkCostDetail_collapse" style="margin-left: 10px;">WorkCostDetail</a></legend>
-                    <div id="{{id}}_WorkCostDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WorkCostDetail_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isDebit'>isDebit: </label><div class='col-sm-8'><input id='{{id}}_isDebit' class='form-check-input' type='checkbox'{{#isDebit}} checked{{/isDebit}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isDebit'>isDebit: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isDebit' class='form-check-input' type='checkbox'{{#isDebit}} checked{{/isDebit}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CostType'>CostType: </label><div class='col-sm-8'><input id='{{id}}_CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='{{id}}_OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
@@ -1422,7 +1422,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CompatibleUnit_collapse" aria-expanded="true" aria-controls="CompatibleUnit_collapse" style="margin-left: 10px;">CompatibleUnit</a></legend>
-                    <div id="CompatibleUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CompatibleUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -1476,7 +1476,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CompatibleUnit_collapse" aria-expanded="true" aria-controls="{{id}}_CompatibleUnit_collapse" style="margin-left: 10px;">CompatibleUnit</a></legend>
-                    <div id="{{id}}_CompatibleUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CompatibleUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -1611,7 +1611,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#InfoQuestion_collapse" aria-expanded="true" aria-controls="InfoQuestion_collapse" style="margin-left: 10px;">InfoQuestion</a></legend>
-                    <div id="InfoQuestion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="InfoQuestion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -1645,7 +1645,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InfoQuestion_collapse" aria-expanded="true" aria-controls="{{id}}_InfoQuestion_collapse" style="margin-left: 10px;">InfoQuestion</a></legend>
-                    <div id="{{id}}_InfoQuestion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_InfoQuestion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -1749,7 +1749,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TypeMaterial_collapse" aria-expanded="true" aria-controls="TypeMaterial_collapse" style="margin-left: 10px;">TypeMaterial</a></legend>
-                    <div id="TypeMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TypeMaterial_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -1792,14 +1792,14 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TypeMaterial_collapse" aria-expanded="true" aria-controls="{{id}}_TypeMaterial_collapse" style="margin-left: 10px;">TypeMaterial</a></legend>
-                    <div id="{{id}}_TypeMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TypeMaterial_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costType'>costType: </label><div class='col-sm-8'><input id='{{id}}_costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estUnitCost'>estUnitCost: </label><div class='col-sm-8'><input id='{{id}}_estUnitCost' class='form-control' type='text'{{#estUnitCost}} value='{{estUnitCost}}'{{/estUnitCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_stockItem'>stockItem: </label><div class='col-sm-8'><input id='{{id}}_stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_stockItem'>stockItem: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1888,7 +1888,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#NonStandardItem_collapse" aria-expanded="true" aria-controls="NonStandardItem_collapse" style="margin-left: 10px;">NonStandardItem</a></legend>
-                    <div id="NonStandardItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="NonStandardItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -1916,7 +1916,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonStandardItem_collapse" aria-expanded="true" aria-controls="{{id}}_NonStandardItem_collapse" style="margin-left: 10px;">NonStandardItem</a></legend>
-                    <div id="{{id}}_NonStandardItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_NonStandardItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -2002,7 +2002,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AccessPermit_collapse" aria-expanded="true" aria-controls="AccessPermit_collapse" style="margin-left: 10px;">AccessPermit</a></legend>
-                    <div id="AccessPermit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AccessPermit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -2034,7 +2034,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AccessPermit_collapse" aria-expanded="true" aria-controls="{{id}}_AccessPermit_collapse" style="margin-left: 10px;">AccessPermit</a></legend>
-                    <div id="{{id}}_AccessPermit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AccessPermit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -2124,7 +2124,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OneCallRequest_collapse" aria-expanded="true" aria-controls="OneCallRequest_collapse" style="margin-left: 10px;">OneCallRequest</a></legend>
-                    <div id="OneCallRequest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OneCallRequest_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -2157,12 +2157,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OneCallRequest_collapse" aria-expanded="true" aria-controls="{{id}}_OneCallRequest_collapse" style="margin-left: 10px;">OneCallRequest</a></legend>
-                    <div id="{{id}}_OneCallRequest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OneCallRequest_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_explosivesUsed'>explosivesUsed: </label><div class='col-sm-8'><input id='{{id}}_explosivesUsed' class='form-check-input' type='checkbox'{{#explosivesUsed}} checked{{/explosivesUsed}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_markedIndicator'>markedIndicator: </label><div class='col-sm-8'><input id='{{id}}_markedIndicator' class='form-check-input' type='checkbox'{{#markedIndicator}} checked{{/markedIndicator}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_explosivesUsed'>explosivesUsed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_explosivesUsed' class='form-check-input' type='checkbox'{{#explosivesUsed}} checked{{/explosivesUsed}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_markedIndicator'>markedIndicator: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_markedIndicator' class='form-check-input' type='checkbox'{{#markedIndicator}} checked{{/markedIndicator}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_markingInstruction'>markingInstruction: </label><div class='col-sm-8'><input id='{{id}}_markingInstruction' class='form-control' type='text'{{#markingInstruction}} value='{{markingInstruction}}'{{/markingInstruction}}></div></div>
                     </div>
                     <fieldset>
@@ -2270,7 +2270,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Design_collapse" aria-expanded="true" aria-controls="Design_collapse" style="margin-left: 10px;">Design</a></legend>
-                    <div id="Design_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Design_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.template.call (this) +
                     `
@@ -2322,7 +2322,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Design_collapse" aria-expanded="true" aria-controls="{{id}}_Design_collapse" style="margin-left: 10px;">Design</a></legend>
-                    <div id="{{id}}_Design_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Design_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
@@ -2444,7 +2444,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LaborItem_collapse" aria-expanded="true" aria-controls="LaborItem_collapse" style="margin-left: 10px;">LaborItem</a></legend>
-                    <div id="LaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LaborItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -2481,7 +2481,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LaborItem_collapse" aria-expanded="true" aria-controls="{{id}}_LaborItem_collapse" style="margin-left: 10px;">LaborItem</a></legend>
-                    <div id="{{id}}_LaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LaborItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2594,7 +2594,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ConditionFactor_collapse" aria-expanded="true" aria-controls="ConditionFactor_collapse" style="margin-left: 10px;">ConditionFactor</a></legend>
-                    <div id="ConditionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ConditionFactor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -2635,7 +2635,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConditionFactor_collapse" aria-expanded="true" aria-controls="{{id}}_ConditionFactor_collapse" style="margin-left: 10px;">ConditionFactor</a></legend>
-                    <div id="{{id}}_ConditionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ConditionFactor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2738,7 +2738,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Usage_collapse" aria-expanded="true" aria-controls="Usage_collapse" style="margin-left: 10px;">Usage</a></legend>
-                    <div id="Usage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Usage_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -2767,7 +2767,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Usage_collapse" aria-expanded="true" aria-controls="{{id}}_Usage_collapse" style="margin-left: 10px;">Usage</a></legend>
-                    <div id="{{id}}_Usage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Usage_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2876,7 +2876,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CostType_collapse" aria-expanded="true" aria-controls="CostType_collapse" style="margin-left: 10px;">CostType</a></legend>
-                    <div id="CostType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CostType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -2921,11 +2921,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CostType_collapse" aria-expanded="true" aria-controls="{{id}}_CostType_collapse" style="margin-left: 10px;">CostType</a></legend>
-                    <div id="{{id}}_CostType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CostType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_amountAssignable'>amountAssignable: </label><div class='col-sm-8'><input id='{{id}}_amountAssignable' class='form-check-input' type='checkbox'{{#amountAssignable}} checked{{/amountAssignable}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_amountAssignable'>amountAssignable: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_amountAssignable' class='form-check-input' type='checkbox'{{#amountAssignable}} checked{{/amountAssignable}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><input id='{{id}}_level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stage'>stage: </label><div class='col-sm-8'><input id='{{id}}_stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
@@ -3028,7 +3028,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CULaborCode_collapse" aria-expanded="true" aria-controls="CULaborCode_collapse" style="margin-left: 10px;">CULaborCode</a></legend>
-                    <div id="CULaborCode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CULaborCode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -3060,7 +3060,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CULaborCode_collapse" aria-expanded="true" aria-controls="{{id}}_CULaborCode_collapse" style="margin-left: 10px;">CULaborCode</a></legend>
-                    <div id="{{id}}_CULaborCode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CULaborCode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3165,7 +3165,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DesignLocation_collapse" aria-expanded="true" aria-controls="DesignLocation_collapse" style="margin-left: 10px;">DesignLocation</a></legend>
-                    <div id="DesignLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DesignLocation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -3212,7 +3212,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DesignLocation_collapse" aria-expanded="true" aria-controls="{{id}}_DesignLocation_collapse" style="margin-left: 10px;">DesignLocation</a></legend>
-                    <div id="{{id}}_DesignLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DesignLocation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3320,7 +3320,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CUWorkEquipmentItem_collapse" aria-expanded="true" aria-controls="CUWorkEquipmentItem_collapse" style="margin-left: 10px;">CUWorkEquipmentItem</a></legend>
-                    <div id="CUWorkEquipmentItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CUWorkEquipmentItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -3354,7 +3354,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUWorkEquipmentItem_collapse" aria-expanded="true" aria-controls="{{id}}_CUWorkEquipmentItem_collapse" style="margin-left: 10px;">CUWorkEquipmentItem</a></legend>
-                    <div id="{{id}}_CUWorkEquipmentItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CUWorkEquipmentItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3462,7 +3462,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CUMaterialItem_collapse" aria-expanded="true" aria-controls="CUMaterialItem_collapse" style="margin-left: 10px;">CUMaterialItem</a></legend>
-                    <div id="CUMaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CUMaterialItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -3499,7 +3499,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUMaterialItem_collapse" aria-expanded="true" aria-controls="{{id}}_CUMaterialItem_collapse" style="margin-left: 10px;">CUMaterialItem</a></legend>
-                    <div id="{{id}}_CUMaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CUMaterialItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3606,7 +3606,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OverheadCost_collapse" aria-expanded="true" aria-controls="OverheadCost_collapse" style="margin-left: 10px;">OverheadCost</a></legend>
-                    <div id="OverheadCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OverheadCost_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -3642,7 +3642,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverheadCost_collapse" aria-expanded="true" aria-controls="{{id}}_OverheadCost_collapse" style="margin-left: 10px;">OverheadCost</a></legend>
-                    <div id="{{id}}_OverheadCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OverheadCost_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3740,7 +3740,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkFlowStep_collapse" aria-expanded="true" aria-controls="WorkFlowStep_collapse" style="margin-left: 10px;">WorkFlowStep</a></legend>
-                    <div id="WorkFlowStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WorkFlowStep_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -3773,7 +3773,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkFlowStep_collapse" aria-expanded="true" aria-controls="{{id}}_WorkFlowStep_collapse" style="margin-left: 10px;">WorkFlowStep</a></legend>
-                    <div id="{{id}}_WorkFlowStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WorkFlowStep_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3867,7 +3867,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CUAllowableAction_collapse" aria-expanded="true" aria-controls="CUAllowableAction_collapse" style="margin-left: 10px;">CUAllowableAction</a></legend>
-                    <div id="CUAllowableAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CUAllowableAction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -3898,7 +3898,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUAllowableAction_collapse" aria-expanded="true" aria-controls="{{id}}_CUAllowableAction_collapse" style="margin-left: 10px;">CUAllowableAction</a></legend>
-                    <div id="{{id}}_CUAllowableAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CUAllowableAction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3993,7 +3993,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#QualificationRequirement_collapse" aria-expanded="true" aria-controls="QualificationRequirement_collapse" style="margin-left: 10px;">QualificationRequirement</a></legend>
-                    <div id="QualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="QualificationRequirement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -4033,7 +4033,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_QualificationRequirement_collapse" aria-expanded="true" aria-controls="{{id}}_QualificationRequirement_collapse" style="margin-left: 10px;">QualificationRequirement</a></legend>
-                    <div id="{{id}}_QualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_QualificationRequirement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4143,7 +4143,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ContractorItem_collapse" aria-expanded="true" aria-controls="ContractorItem_collapse" style="margin-left: 10px;">ContractorItem</a></legend>
-                    <div id="ContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ContractorItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -4179,7 +4179,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContractorItem_collapse" aria-expanded="true" aria-controls="{{id}}_ContractorItem_collapse" style="margin-left: 10px;">ContractorItem</a></legend>
-                    <div id="{{id}}_ContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ContractorItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4288,7 +4288,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CUGroup_collapse" aria-expanded="true" aria-controls="CUGroup_collapse" style="margin-left: 10px;">CUGroup</a></legend>
-                    <div id="CUGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CUGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -4328,7 +4328,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUGroup_collapse" aria-expanded="true" aria-controls="{{id}}_CUGroup_collapse" style="margin-left: 10px;">CUGroup</a></legend>
-                    <div id="{{id}}_CUGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CUGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4432,7 +4432,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ShiftPattern_collapse" aria-expanded="true" aria-controls="ShiftPattern_collapse" style="margin-left: 10px;">ShiftPattern</a></legend>
-                    <div id="ShiftPattern_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ShiftPattern_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -4466,7 +4466,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShiftPattern_collapse" aria-expanded="true" aria-controls="{{id}}_ShiftPattern_collapse" style="margin-left: 10px;">ShiftPattern</a></legend>
-                    <div id="{{id}}_ShiftPattern_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ShiftPattern_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4573,7 +4573,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CULaborItem_collapse" aria-expanded="true" aria-controls="CULaborItem_collapse" style="margin-left: 10px;">CULaborItem</a></legend>
-                    <div id="CULaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CULaborItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -4611,7 +4611,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CULaborItem_collapse" aria-expanded="true" aria-controls="{{id}}_CULaborItem_collapse" style="margin-left: 10px;">CULaborItem</a></legend>
-                    <div id="{{id}}_CULaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CULaborItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4724,7 +4724,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PropertyUnit_collapse" aria-expanded="true" aria-controls="PropertyUnit_collapse" style="margin-left: 10px;">PropertyUnit</a></legend>
-                    <div id="PropertyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PropertyUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -4766,7 +4766,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PropertyUnit_collapse" aria-expanded="true" aria-controls="{{id}}_PropertyUnit_collapse" style="margin-left: 10px;">PropertyUnit</a></legend>
-                    <div id="{{id}}_PropertyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PropertyUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4877,7 +4877,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Capability_collapse" aria-expanded="true" aria-controls="Capability_collapse" style="margin-left: 10px;">Capability</a></legend>
-                    <div id="Capability_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Capability_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -4915,7 +4915,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Capability_collapse" aria-expanded="true" aria-controls="{{id}}_Capability_collapse" style="margin-left: 10px;">Capability</a></legend>
-                    <div id="{{id}}_Capability_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Capability_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -5040,7 +5040,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DesignLocationCU_collapse" aria-expanded="true" aria-controls="DesignLocationCU_collapse" style="margin-left: 10px;">DesignLocationCU</a></legend>
-                    <div id="DesignLocationCU_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DesignLocationCU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -5092,7 +5092,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DesignLocationCU_collapse" aria-expanded="true" aria-controls="{{id}}_DesignLocationCU_collapse" style="margin-left: 10px;">DesignLocationCU</a></legend>
-                    <div id="{{id}}_DesignLocationCU_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DesignLocationCU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -5102,7 +5102,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuUsage'>cuUsage: </label><div class='col-sm-8'><input id='{{id}}_cuUsage' class='form-control' type='text'{{#cuUsage}} value='{{cuUsage}}'{{/cuUsage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_removalDate'>removalDate: </label><div class='col-sm-8'><input id='{{id}}_removalDate' class='form-control' type='text'{{#removalDate}} value='{{removalDate}}'{{/removalDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_toBeEnergised'>toBeEnergised: </label><div class='col-sm-8'><input id='{{id}}_toBeEnergised' class='form-check-input' type='checkbox'{{#toBeEnergised}} checked{{/toBeEnergised}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_toBeEnergised'>toBeEnergised: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_toBeEnergised' class='form-check-input' type='checkbox'{{#toBeEnergised}} checked{{/toBeEnergised}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='{{id}}_DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUGroups'>CUGroups: </label><div class='col-sm-8'><input id='{{id}}_CUGroups' class='form-control' type='text'{{#CUGroups}} value='{{CUGroups}}_string'{{/CUGroups}}></div></div>
@@ -5226,7 +5226,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MiscCostItem_collapse" aria-expanded="true" aria-controls="MiscCostItem_collapse" style="margin-left: 10px;">MiscCostItem</a></legend>
-                    <div id="MiscCostItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MiscCostItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -5262,7 +5262,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MiscCostItem_collapse" aria-expanded="true" aria-controls="{{id}}_MiscCostItem_collapse" style="margin-left: 10px;">MiscCostItem</a></legend>
-                    <div id="{{id}}_MiscCostItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MiscCostItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -5373,7 +5373,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CUContractorItem_collapse" aria-expanded="true" aria-controls="CUContractorItem_collapse" style="margin-left: 10px;">CUContractorItem</a></legend>
-                    <div id="CUContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CUContractorItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -5406,7 +5406,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUContractorItem_collapse" aria-expanded="true" aria-controls="{{id}}_CUContractorItem_collapse" style="margin-left: 10px;">CUContractorItem</a></legend>
-                    <div id="{{id}}_CUContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CUContractorItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -5507,7 +5507,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CUAsset_collapse" aria-expanded="true" aria-controls="CUAsset_collapse" style="margin-left: 10px;">CUAsset</a></legend>
-                    <div id="CUAsset_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CUAsset_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
@@ -5541,7 +5541,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUAsset_collapse" aria-expanded="true" aria-controls="{{id}}_CUAsset_collapse" style="margin-left: 10px;">CUAsset</a></legend>
-                    <div id="{{id}}_CUAsset_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CUAsset_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `

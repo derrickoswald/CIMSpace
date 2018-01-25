@@ -21,17 +21,22 @@ define
             {
                 this._cimmap = cimmap;
                 this._template =
-                "<div class='well'>\n" +
-                "  <h3>Edit</h3>\n" +
-                "    <div class='form-group'>\n" +
-                "      <label for='class_name'>Class</label>\n" +
-                "      <select id='class_name' class='form-control'>\n" +
+                "<div class='card'>\n" +
+                "  <div class='card-body'>\n" +
+                "    <h5 class='card-title'>Edit</h5>\n" +
+                "    <div class='form-group row'>\n" +
+                "      <label class='col-sm-4 col-form-label' for='class_name'>Class</label>\n" +
+                "      <div class='col-sm-8'>\n" +
+                "        <select id='class_name' class='form-control'>\n" +
                 "{{#classes}}\n" +
                 "              <option value='{{.}}'>{{.}}</option>\n" +
                 "{{/classes}}\n" +
-                "      </select>\n" +
+                "        </select>\n" +
+                "      </div>\n" +
                 "    </div>\n" +
-                "  <button id='create' type='button' class='btn btn-primary'>Create</button>\n" +
+                "    <div class='card-footer'>\n" +
+                "      <button id='create' type='button' class='btn btn-primary'>Create</button>\n" +
+                "  </div>\n" +
                 "</div>\n";
             }
 
@@ -1025,14 +1030,16 @@ define
                 if (top_level)
                 {
                     var frame =
-                        "<div id='edit_frame' class='well'>\n" +
-                        "  <h3>Edit</h3>\n" +
-                        "  <div id='edit_contents'></div>\n" +
-                        "  <div>\n" +
-                        "    <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
-                        "    <button id='delete' type='button' class='btn btn-danger' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().del ();})'>Delete</button>\n" +
-                        "    <button id='cancel' type='button' class='btn btn-success' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().cancel ();})'>Cancel</button>\n" +
-                        "    <button id='create_new' type='button' class='btn btn-info' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().create_new ();})'>Create new</button>\n" +
+                        "<div id='edit_frame' class='card'>\n" +
+                        "  <div class='card-body'>\n" +
+                        "    <h5 id='view_title' class='card-title'>Edit</h5>\n" +
+                        "    <div id='edit_contents' class='card-text'></div>\n" +
+                        "    <div class='card-footer'>\n" +
+                        "      <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
+                        "      <button id='delete' type='button' class='btn btn-danger' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().del ();})'>Delete</button>\n" +
+                        "      <button id='cancel' type='button' class='btn btn-success' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().cancel ();})'>Cancel</button>\n" +
+                        "      <button id='create_new' type='button' class='btn btn-info' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().create_new ();})'>Create new</button>\n" +
+                        "    </div>\n" +
                         "  </div>\n" +
                         "</div>\n";
                     this._container.innerHTML = frame;

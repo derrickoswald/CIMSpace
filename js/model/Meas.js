@@ -81,7 +81,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ValueAliasSet_collapse" aria-expanded="true" aria-controls="ValueAliasSet_collapse" style="margin-left: 10px;">ValueAliasSet</a></legend>
-                    <div id="ValueAliasSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ValueAliasSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -120,7 +120,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ValueAliasSet_collapse" aria-expanded="true" aria-controls="{{id}}_ValueAliasSet_collapse" style="margin-left: 10px;">ValueAliasSet</a></legend>
-                    <div id="{{id}}_ValueAliasSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ValueAliasSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -220,7 +220,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValue_collapse" aria-expanded="true" aria-controls="MeasurementValue_collapse" style="margin-left: 10px;">MeasurementValue</a></legend>
-                    <div id="MeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MeasurementValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -256,7 +256,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeasurementValue_collapse" aria-expanded="true" aria-controls="{{id}}_MeasurementValue_collapse" style="margin-left: 10px;">MeasurementValue</a></legend>
-                    <div id="{{id}}_MeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MeasurementValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -381,7 +381,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Quality61850_collapse" aria-expanded="true" aria-controls="Quality61850_collapse" style="margin-left: 10px;">Quality61850</a></legend>
-                    <div id="Quality61850_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Quality61850_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -422,21 +422,21 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Quality61850_collapse" aria-expanded="true" aria-controls="{{id}}_Quality61850_collapse" style="margin-left: 10px;">Quality61850</a></legend>
-                    <div id="{{id}}_Quality61850_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Quality61850_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_badReference'>badReference: </label><div class='col-sm-8'><input id='{{id}}_badReference' class='form-check-input' type='checkbox'{{#badReference}} checked{{/badReference}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_estimatorReplaced'>estimatorReplaced: </label><div class='col-sm-8'><input id='{{id}}_estimatorReplaced' class='form-check-input' type='checkbox'{{#estimatorReplaced}} checked{{/estimatorReplaced}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_failure'>failure: </label><div class='col-sm-8'><input id='{{id}}_failure' class='form-check-input' type='checkbox'{{#failure}} checked{{/failure}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_oldData'>oldData: </label><div class='col-sm-8'><input id='{{id}}_oldData' class='form-check-input' type='checkbox'{{#oldData}} checked{{/oldData}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_operatorBlocked'>operatorBlocked: </label><div class='col-sm-8'><input id='{{id}}_operatorBlocked' class='form-check-input' type='checkbox'{{#operatorBlocked}} checked{{/operatorBlocked}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_oscillatory'>oscillatory: </label><div class='col-sm-8'><input id='{{id}}_oscillatory' class='form-check-input' type='checkbox'{{#oscillatory}} checked{{/oscillatory}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_outOfRange'>outOfRange: </label><div class='col-sm-8'><input id='{{id}}_outOfRange' class='form-check-input' type='checkbox'{{#outOfRange}} checked{{/outOfRange}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_overFlow'>overFlow: </label><div class='col-sm-8'><input id='{{id}}_overFlow' class='form-check-input' type='checkbox'{{#overFlow}} checked{{/overFlow}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_badReference'>badReference: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_badReference' class='form-check-input' type='checkbox'{{#badReference}} checked{{/badReference}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_estimatorReplaced'>estimatorReplaced: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_estimatorReplaced' class='form-check-input' type='checkbox'{{#estimatorReplaced}} checked{{/estimatorReplaced}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_failure'>failure: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_failure' class='form-check-input' type='checkbox'{{#failure}} checked{{/failure}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_oldData'>oldData: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_oldData' class='form-check-input' type='checkbox'{{#oldData}} checked{{/oldData}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_operatorBlocked'>operatorBlocked: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_operatorBlocked' class='form-check-input' type='checkbox'{{#operatorBlocked}} checked{{/operatorBlocked}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_oscillatory'>oscillatory: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_oscillatory' class='form-check-input' type='checkbox'{{#oscillatory}} checked{{/oscillatory}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_outOfRange'>outOfRange: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_outOfRange' class='form-check-input' type='checkbox'{{#outOfRange}} checked{{/outOfRange}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_overFlow'>overFlow: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_overFlow' class='form-check-input' type='checkbox'{{#overFlow}} checked{{/overFlow}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_source'>source: </label><div class='col-sm-8'><input id='{{id}}_source' class='form-control' type='text'{{#source}} value='{{source}}'{{/source}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_suspect'>suspect: </label><div class='col-sm-8'><input id='{{id}}_suspect' class='form-check-input' type='checkbox'{{#suspect}} checked{{/suspect}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_test'>test: </label><div class='col-sm-8'><input id='{{id}}_test' class='form-check-input' type='checkbox'{{#test}} checked{{/test}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_suspect'>suspect: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_suspect' class='form-check-input' type='checkbox'{{#suspect}} checked{{/suspect}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_test'>test: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_test' class='form-check-input' type='checkbox'{{#test}} checked{{/test}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validity'>validity: </label><div class='col-sm-8'><select id='{{id}}_validity' class='form-control'>{{#Validity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Validity}}</select></div></div>
                     </div>
                     <fieldset>
@@ -522,7 +522,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Limit_collapse" aria-expanded="true" aria-controls="Limit_collapse" style="margin-left: 10px;">Limit</a></legend>
-                    <div id="Limit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Limit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -552,7 +552,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Limit_collapse" aria-expanded="true" aria-controls="{{id}}_Limit_collapse" style="margin-left: 10px;">Limit</a></legend>
-                    <div id="{{id}}_Limit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Limit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -653,7 +653,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Control_collapse" aria-expanded="true" aria-controls="Control_collapse" style="margin-left: 10px;">Control</a></legend>
-                    <div id="Control_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Control_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -687,11 +687,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Control_collapse" aria-expanded="true" aria-controls="{{id}}_Control_collapse" style="margin-left: 10px;">Control</a></legend>
-                    <div id="{{id}}_Control_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Control_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_operationInProgress'>operationInProgress: </label><div class='col-sm-8'><input id='{{id}}_operationInProgress' class='form-check-input' type='checkbox'{{#operationInProgress}} checked{{/operationInProgress}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_operationInProgress'>operationInProgress: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_operationInProgress' class='form-check-input' type='checkbox'{{#operationInProgress}} checked{{/operationInProgress}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeStamp'>timeStamp: </label><div class='col-sm-8'><input id='{{id}}_timeStamp' class='form-control' type='text'{{#timeStamp}} value='{{timeStamp}}'{{/timeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='{{id}}_unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='{{id}}_unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
@@ -789,7 +789,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValueSource_collapse" aria-expanded="true" aria-controls="MeasurementValueSource_collapse" style="margin-left: 10px;">MeasurementValueSource</a></legend>
-                    <div id="MeasurementValueSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MeasurementValueSource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -819,7 +819,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeasurementValueSource_collapse" aria-expanded="true" aria-controls="{{id}}_MeasurementValueSource_collapse" style="margin-left: 10px;">MeasurementValueSource</a></legend>
-                    <div id="{{id}}_MeasurementValueSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MeasurementValueSource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -926,7 +926,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Measurement_collapse" aria-expanded="true" aria-controls="Measurement_collapse" style="margin-left: 10px;">Measurement</a></legend>
-                    <div id="Measurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Measurement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -975,7 +975,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Measurement_collapse" aria-expanded="true" aria-controls="{{id}}_Measurement_collapse" style="margin-left: 10px;">Measurement</a></legend>
-                    <div id="{{id}}_Measurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Measurement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1087,7 +1087,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitSet_collapse" aria-expanded="true" aria-controls="LimitSet_collapse" style="margin-left: 10px;">LimitSet</a></legend>
-                    <div id="LimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1115,11 +1115,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LimitSet_collapse" aria-expanded="true" aria-controls="{{id}}_LimitSet_collapse" style="margin-left: 10px;">LimitSet</a></legend>
-                    <div id="{{id}}_LimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPercentageLimits'>isPercentageLimits: </label><div class='col-sm-8'><input id='{{id}}_isPercentageLimits' class='form-check-input' type='checkbox'{{#isPercentageLimits}} checked{{/isPercentageLimits}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isPercentageLimits'>isPercentageLimits: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isPercentageLimits' class='form-check-input' type='checkbox'{{#isPercentageLimits}} checked{{/isPercentageLimits}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1193,7 +1193,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ValueToAlias_collapse" aria-expanded="true" aria-controls="ValueToAlias_collapse" style="margin-left: 10px;">ValueToAlias</a></legend>
-                    <div id="ValueToAlias_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ValueToAlias_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1222,7 +1222,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ValueToAlias_collapse" aria-expanded="true" aria-controls="{{id}}_ValueToAlias_collapse" style="margin-left: 10px;">ValueToAlias</a></legend>
-                    <div id="{{id}}_ValueToAlias_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ValueToAlias_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1315,7 +1315,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscreteValue_collapse" aria-expanded="true" aria-controls="DiscreteValue_collapse" style="margin-left: 10px;">DiscreteValue</a></legend>
-                    <div id="DiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DiscreteValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MeasurementValue.prototype.template.call (this) +
                     `
@@ -1345,7 +1345,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiscreteValue_collapse" aria-expanded="true" aria-controls="{{id}}_DiscreteValue_collapse" style="margin-left: 10px;">DiscreteValue</a></legend>
-                    <div id="{{id}}_DiscreteValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DiscreteValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MeasurementValue.prototype.edit_template.call (this) +
                     `
@@ -1439,7 +1439,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#StringMeasurementValue_collapse" aria-expanded="true" aria-controls="StringMeasurementValue_collapse" style="margin-left: 10px;">StringMeasurementValue</a></legend>
-                    <div id="StringMeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="StringMeasurementValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MeasurementValue.prototype.template.call (this) +
                     `
@@ -1468,7 +1468,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StringMeasurementValue_collapse" aria-expanded="true" aria-controls="{{id}}_StringMeasurementValue_collapse" style="margin-left: 10px;">StringMeasurementValue</a></legend>
-                    <div id="{{id}}_StringMeasurementValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_StringMeasurementValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MeasurementValue.prototype.edit_template.call (this) +
                     `
@@ -1561,7 +1561,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorValue_collapse" aria-expanded="true" aria-controls="AccumulatorValue_collapse" style="margin-left: 10px;">AccumulatorValue</a></legend>
-                    <div id="AccumulatorValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AccumulatorValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MeasurementValue.prototype.template.call (this) +
                     `
@@ -1591,7 +1591,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AccumulatorValue_collapse" aria-expanded="true" aria-controls="{{id}}_AccumulatorValue_collapse" style="margin-left: 10px;">AccumulatorValue</a></legend>
-                    <div id="{{id}}_AccumulatorValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AccumulatorValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MeasurementValue.prototype.edit_template.call (this) +
                     `
@@ -1691,7 +1691,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogValue_collapse" aria-expanded="true" aria-controls="AnalogValue_collapse" style="margin-left: 10px;">AnalogValue</a></legend>
-                    <div id="AnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AnalogValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MeasurementValue.prototype.template.call (this) +
                     `
@@ -1727,7 +1727,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AnalogValue_collapse" aria-expanded="true" aria-controls="{{id}}_AnalogValue_collapse" style="margin-left: 10px;">AnalogValue</a></legend>
-                    <div id="{{id}}_AnalogValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AnalogValue_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MeasurementValue.prototype.edit_template.call (this) +
                     `
@@ -1823,7 +1823,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementValueQuality_collapse" aria-expanded="true" aria-controls="MeasurementValueQuality_collapse" style="margin-left: 10px;">MeasurementValueQuality</a></legend>
-                    <div id="MeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MeasurementValueQuality_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Quality61850.prototype.template.call (this) +
                     `
@@ -1851,7 +1851,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeasurementValueQuality_collapse" aria-expanded="true" aria-controls="{{id}}_MeasurementValueQuality_collapse" style="margin-left: 10px;">MeasurementValueQuality</a></legend>
-                    <div id="{{id}}_MeasurementValueQuality_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MeasurementValueQuality_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Quality61850.prototype.edit_template.call (this) +
                     `
@@ -1940,7 +1940,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorLimit_collapse" aria-expanded="true" aria-controls="AccumulatorLimit_collapse" style="margin-left: 10px;">AccumulatorLimit</a></legend>
-                    <div id="AccumulatorLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AccumulatorLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Limit.prototype.template.call (this) +
                     `
@@ -1969,7 +1969,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AccumulatorLimit_collapse" aria-expanded="true" aria-controls="{{id}}_AccumulatorLimit_collapse" style="margin-left: 10px;">AccumulatorLimit</a></legend>
-                    <div id="{{id}}_AccumulatorLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AccumulatorLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Limit.prototype.edit_template.call (this) +
                     `
@@ -2060,7 +2060,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogLimit_collapse" aria-expanded="true" aria-controls="AnalogLimit_collapse" style="margin-left: 10px;">AnalogLimit</a></legend>
-                    <div id="AnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AnalogLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Limit.prototype.template.call (this) +
                     `
@@ -2089,7 +2089,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AnalogLimit_collapse" aria-expanded="true" aria-controls="{{id}}_AnalogLimit_collapse" style="margin-left: 10px;">AnalogLimit</a></legend>
-                    <div id="{{id}}_AnalogLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AnalogLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Limit.prototype.edit_template.call (this) +
                     `
@@ -2178,7 +2178,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorReset_collapse" aria-expanded="true" aria-controls="AccumulatorReset_collapse" style="margin-left: 10px;">AccumulatorReset</a></legend>
-                    <div id="AccumulatorReset_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AccumulatorReset_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Control.prototype.template.call (this) +
                     `
@@ -2206,7 +2206,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AccumulatorReset_collapse" aria-expanded="true" aria-controls="{{id}}_AccumulatorReset_collapse" style="margin-left: 10px;">AccumulatorReset</a></legend>
-                    <div id="{{id}}_AccumulatorReset_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AccumulatorReset_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Control.prototype.edit_template.call (this) +
                     `
@@ -2297,7 +2297,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogControl_collapse" aria-expanded="true" aria-controls="AnalogControl_collapse" style="margin-left: 10px;">AnalogControl</a></legend>
-                    <div id="AnalogControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AnalogControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Control.prototype.template.call (this) +
                     `
@@ -2327,7 +2327,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AnalogControl_collapse" aria-expanded="true" aria-controls="{{id}}_AnalogControl_collapse" style="margin-left: 10px;">AnalogControl</a></legend>
-                    <div id="{{id}}_AnalogControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AnalogControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Control.prototype.edit_template.call (this) +
                     `
@@ -2424,7 +2424,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Command_collapse" aria-expanded="true" aria-controls="Command_collapse" style="margin-left: 10px;">Command</a></legend>
-                    <div id="Command_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Command_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Control.prototype.template.call (this) +
                     `
@@ -2455,7 +2455,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Command_collapse" aria-expanded="true" aria-controls="{{id}}_Command_collapse" style="margin-left: 10px;">Command</a></legend>
-                    <div id="{{id}}_Command_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Command_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Control.prototype.edit_template.call (this) +
                     `
@@ -2543,7 +2543,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscreteCommand_collapse" aria-expanded="true" aria-controls="DiscreteCommand_collapse" style="margin-left: 10px;">DiscreteCommand</a></legend>
-                    <div id="DiscreteCommand_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DiscreteCommand_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Command.prototype.template.call (this) +
                     `
@@ -2570,7 +2570,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiscreteCommand_collapse" aria-expanded="true" aria-controls="{{id}}_DiscreteCommand_collapse" style="margin-left: 10px;">DiscreteCommand</a></legend>
-                    <div id="{{id}}_DiscreteCommand_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DiscreteCommand_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Command.prototype.edit_template.call (this) +
                     `
@@ -2642,7 +2642,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RaiseLowerCommand_collapse" aria-expanded="true" aria-controls="RaiseLowerCommand_collapse" style="margin-left: 10px;">RaiseLowerCommand</a></legend>
-                    <div id="RaiseLowerCommand_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RaiseLowerCommand_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AnalogControl.prototype.template.call (this) +
                     `
@@ -2670,7 +2670,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RaiseLowerCommand_collapse" aria-expanded="true" aria-controls="{{id}}_RaiseLowerCommand_collapse" style="margin-left: 10px;">RaiseLowerCommand</a></legend>
-                    <div id="{{id}}_RaiseLowerCommand_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RaiseLowerCommand_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AnalogControl.prototype.edit_template.call (this) +
                     `
@@ -2759,7 +2759,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SetPoint_collapse" aria-expanded="true" aria-controls="SetPoint_collapse" style="margin-left: 10px;">SetPoint</a></legend>
-                    <div id="SetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SetPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AnalogControl.prototype.template.call (this) +
                     `
@@ -2788,7 +2788,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SetPoint_collapse" aria-expanded="true" aria-controls="{{id}}_SetPoint_collapse" style="margin-left: 10px;">SetPoint</a></legend>
-                    <div id="{{id}}_SetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SetPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AnalogControl.prototype.edit_template.call (this) +
                     `
@@ -2874,7 +2874,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Discrete_collapse" aria-expanded="true" aria-controls="Discrete_collapse" style="margin-left: 10px;">Discrete</a></legend>
-                    <div id="Discrete_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Discrete_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Measurement.prototype.template.call (this) +
                     `
@@ -2908,7 +2908,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Discrete_collapse" aria-expanded="true" aria-controls="{{id}}_Discrete_collapse" style="margin-left: 10px;">Discrete</a></legend>
-                    <div id="{{id}}_Discrete_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Discrete_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Measurement.prototype.edit_template.call (this) +
                     `
@@ -3012,7 +3012,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Analog_collapse" aria-expanded="true" aria-controls="Analog_collapse" style="margin-left: 10px;">Analog</a></legend>
-                    <div id="Analog_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Analog_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Measurement.prototype.template.call (this) +
                     `
@@ -3049,14 +3049,14 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Analog_collapse" aria-expanded="true" aria-controls="{{id}}_Analog_collapse" style="margin-left: 10px;">Analog</a></legend>
-                    <div id="{{id}}_Analog_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Analog_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Measurement.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxValue'>maxValue: </label><div class='col-sm-8'><input id='{{id}}_maxValue' class='form-control' type='text'{{#maxValue}} value='{{maxValue}}'{{/maxValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minValue'>minValue: </label><div class='col-sm-8'><input id='{{id}}_minValue' class='form-control' type='text'{{#minValue}} value='{{minValue}}'{{/minValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalValue'>normalValue: </label><div class='col-sm-8'><input id='{{id}}_normalValue' class='form-control' type='text'{{#normalValue}} value='{{normalValue}}'{{/normalValue}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_positiveFlowIn'>positiveFlowIn: </label><div class='col-sm-8'><input id='{{id}}_positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_positiveFlowIn'>positiveFlowIn: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSets'>LimitSets: </label><div class='col-sm-8'><input id='{{id}}_LimitSets' class='form-control' type='text'{{#LimitSets}} value='{{LimitSets}}_string'{{/LimitSets}}></div></div>
                     </div>
                     <fieldset>
@@ -3149,7 +3149,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Accumulator_collapse" aria-expanded="true" aria-controls="Accumulator_collapse" style="margin-left: 10px;">Accumulator</a></legend>
-                    <div id="Accumulator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Accumulator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Measurement.prototype.template.call (this) +
                     `
@@ -3183,7 +3183,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Accumulator_collapse" aria-expanded="true" aria-controls="{{id}}_Accumulator_collapse" style="margin-left: 10px;">Accumulator</a></legend>
-                    <div id="{{id}}_Accumulator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Accumulator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Measurement.prototype.edit_template.call (this) +
                     `
@@ -3273,7 +3273,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#StringMeasurement_collapse" aria-expanded="true" aria-controls="StringMeasurement_collapse" style="margin-left: 10px;">StringMeasurement</a></legend>
-                    <div id="StringMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="StringMeasurement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Measurement.prototype.template.call (this) +
                     `
@@ -3303,7 +3303,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StringMeasurement_collapse" aria-expanded="true" aria-controls="{{id}}_StringMeasurement_collapse" style="margin-left: 10px;">StringMeasurement</a></legend>
-                    <div id="{{id}}_StringMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_StringMeasurement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Measurement.prototype.edit_template.call (this) +
                     `
@@ -3388,7 +3388,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AccumulatorLimitSet_collapse" aria-expanded="true" aria-controls="AccumulatorLimitSet_collapse" style="margin-left: 10px;">AccumulatorLimitSet</a></legend>
-                    <div id="AccumulatorLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AccumulatorLimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LimitSet.prototype.template.call (this) +
                     `
@@ -3421,7 +3421,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AccumulatorLimitSet_collapse" aria-expanded="true" aria-controls="{{id}}_AccumulatorLimitSet_collapse" style="margin-left: 10px;">AccumulatorLimitSet</a></legend>
-                    <div id="{{id}}_AccumulatorLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AccumulatorLimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LimitSet.prototype.edit_template.call (this) +
                     `
@@ -3511,7 +3511,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AnalogLimitSet_collapse" aria-expanded="true" aria-controls="AnalogLimitSet_collapse" style="margin-left: 10px;">AnalogLimitSet</a></legend>
-                    <div id="AnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AnalogLimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LimitSet.prototype.template.call (this) +
                     `
@@ -3544,7 +3544,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AnalogLimitSet_collapse" aria-expanded="true" aria-controls="{{id}}_AnalogLimitSet_collapse" style="margin-left: 10px;">AnalogLimitSet</a></legend>
-                    <div id="{{id}}_AnalogLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AnalogLimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LimitSet.prototype.edit_template.call (this) +
                     `

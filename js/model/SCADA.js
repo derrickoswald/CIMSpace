@@ -90,7 +90,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RemotePoint_collapse" aria-expanded="true" aria-controls="RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
-                    <div id="RemotePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RemotePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -118,7 +118,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemotePoint_collapse" aria-expanded="true" aria-controls="{{id}}_RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
-                    <div id="{{id}}_RemotePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RemotePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -211,7 +211,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteUnit_collapse" aria-expanded="true" aria-controls="RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
-                    <div id="RemoteUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RemoteUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -247,7 +247,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteUnit_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
-                    <div id="{{id}}_RemoteUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RemoteUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
@@ -339,7 +339,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CommunicationLink_collapse" aria-expanded="true" aria-controls="CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
-                    <div id="CommunicationLink_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CommunicationLink_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -369,7 +369,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CommunicationLink_collapse" aria-expanded="true" aria-controls="{{id}}_CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
-                    <div id="{{id}}_CommunicationLink_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CommunicationLink_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
@@ -464,7 +464,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteSource_collapse" aria-expanded="true" aria-controls="RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
-                    <div id="RemoteSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RemoteSource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.template.call (this) +
                     `
@@ -496,7 +496,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteSource_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
-                    <div id="{{id}}_RemoteSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RemoteSource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.edit_template.call (this) +
                     `
@@ -597,7 +597,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteControl_collapse" aria-expanded="true" aria-controls="RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
-                    <div id="RemoteControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RemoteControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.template.call (this) +
                     `
@@ -628,13 +628,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteControl_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
-                    <div id="{{id}}_RemoteControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RemoteControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actuatorMaximum'>actuatorMaximum: </label><div class='col-sm-8'><input id='{{id}}_actuatorMaximum' class='form-control' type='text'{{#actuatorMaximum}} value='{{actuatorMaximum}}'{{/actuatorMaximum}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actuatorMinimum'>actuatorMinimum: </label><div class='col-sm-8'><input id='{{id}}_actuatorMinimum' class='form-control' type='text'{{#actuatorMinimum}} value='{{actuatorMinimum}}'{{/actuatorMinimum}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_remoteControlled'>remoteControlled: </label><div class='col-sm-8'><input id='{{id}}_remoteControlled' class='form-check-input' type='checkbox'{{#remoteControlled}} checked{{/remoteControlled}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_remoteControlled'>remoteControlled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remoteControlled' class='form-check-input' type='checkbox'{{#remoteControlled}} checked{{/remoteControlled}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Control'>Control: </label><div class='col-sm-8'><input id='{{id}}_Control' class='form-control' type='text'{{#Control}} value='{{Control}}'{{/Control}}></div></div>
                     </div>
                     <fieldset>

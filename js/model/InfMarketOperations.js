@@ -71,7 +71,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BilateralTransaction_collapse" aria-expanded="true" aria-controls="BilateralTransaction_collapse" style="margin-left: 10px;">BilateralTransaction</a></legend>
-                    <div id="BilateralTransaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BilateralTransaction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -106,7 +106,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BilateralTransaction_collapse" aria-expanded="true" aria-controls="{{id}}_BilateralTransaction_collapse" style="margin-left: 10px;">BilateralTransaction</a></legend>
-                    <div id="{{id}}_BilateralTransaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BilateralTransaction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -196,7 +196,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Participation_collapse" aria-expanded="true" aria-controls="Participation_collapse" style="margin-left: 10px;">Participation</a></legend>
-                    <div id="Participation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Participation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -224,7 +224,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Participation_collapse" aria-expanded="true" aria-controls="{{id}}_Participation_collapse" style="margin-left: 10px;">Participation</a></legend>
-                    <div id="{{id}}_Participation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Participation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -328,7 +328,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceCertification_collapse" aria-expanded="true" aria-controls="ResourceCertification_collapse" style="margin-left: 10px;">ResourceCertification</a></legend>
-                    <div id="ResourceCertification_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ResourceCertification_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -371,7 +371,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceCertification_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceCertification_collapse" style="margin-left: 10px;">ResourceCertification</a></legend>
-                    <div id="{{id}}_ResourceCertification_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ResourceCertification_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `

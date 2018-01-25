@@ -59,7 +59,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SVC_collapse" aria-expanded="true" aria-controls="SVC_collapse" style="margin-left: 10px;">SVC</a></legend>
-                    <div id="SVC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SVC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.ShuntCompensator.prototype.template.call (this) +
                     `
@@ -88,7 +88,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SVC_collapse" aria-expanded="true" aria-controls="{{id}}_SVC_collapse" style="margin-left: 10px;">SVC</a></legend>
-                    <div id="{{id}}_SVC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SVC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.ShuntCompensator.prototype.edit_template.call (this) +
                     `
@@ -200,7 +200,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="ShuntCompensatorControl_collapse" style="margin-left: 10px;">ShuntCompensatorControl</a></legend>
-                    <div id="ShuntCompensatorControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ShuntCompensatorControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.RegulatingControl.prototype.template.call (this) +
                     `
@@ -245,7 +245,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensatorControl_collapse" style="margin-left: 10px;">ShuntCompensatorControl</a></legend>
-                    <div id="{{id}}_ShuntCompensatorControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ShuntCompensatorControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.RegulatingControl.prototype.edit_template.call (this) +
                     `
@@ -256,16 +256,16 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localControlKind'>localControlKind: </label><div class='col-sm-8'><input id='{{id}}_localControlKind' class='form-control' type='text'{{#localControlKind}} value='{{localControlKind}}'{{/localControlKind}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localOffLevel'>localOffLevel: </label><div class='col-sm-8'><input id='{{id}}_localOffLevel' class='form-control' type='text'{{#localOffLevel}} value='{{localOffLevel}}'{{/localOffLevel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localOnLevel'>localOnLevel: </label><div class='col-sm-8'><input id='{{id}}_localOnLevel' class='form-control' type='text'{{#localOnLevel}} value='{{localOnLevel}}'{{/localOnLevel}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_localOverride'>localOverride: </label><div class='col-sm-8'><input id='{{id}}_localOverride' class='form-check-input' type='checkbox'{{#localOverride}} checked{{/localOverride}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_localOverride'>localOverride: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_localOverride' class='form-check-input' type='checkbox'{{#localOverride}} checked{{/localOverride}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowVoltageOverride'>lowVoltageOverride: </label><div class='col-sm-8'><input id='{{id}}_lowVoltageOverride' class='form-control' type='text'{{#lowVoltageOverride}} value='{{lowVoltageOverride}}'{{/lowVoltageOverride}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxSwitchOperationCount'>maxSwitchOperationCount: </label><div class='col-sm-8'><input id='{{id}}_maxSwitchOperationCount' class='form-control' type='text'{{#maxSwitchOperationCount}} value='{{maxSwitchOperationCount}}'{{/maxSwitchOperationCount}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_normalOpen'>normalOpen: </label><div class='col-sm-8'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalOpen'>normalOpen: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranch'>regBranch: </label><div class='col-sm-8'><input id='{{id}}_regBranch' class='form-control' type='text'{{#regBranch}} value='{{regBranch}}'{{/regBranch}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranchEnd'>regBranchEnd: </label><div class='col-sm-8'><input id='{{id}}_regBranchEnd' class='form-control' type='text'{{#regBranchEnd}} value='{{regBranchEnd}}'{{/regBranchEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranchKind'>regBranchKind: </label><div class='col-sm-8'><input id='{{id}}_regBranchKind' class='form-control' type='text'{{#regBranchKind}} value='{{regBranchKind}}'{{/regBranchKind}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sensingPhaseCode'>sensingPhaseCode: </label><div class='col-sm-8'><input id='{{id}}_sensingPhaseCode' class='form-control' type='text'{{#sensingPhaseCode}} value='{{sensingPhaseCode}}'{{/sensingPhaseCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOperationCycle'>switchOperationCycle: </label><div class='col-sm-8'><input id='{{id}}_switchOperationCycle' class='form-control' type='text'{{#switchOperationCycle}} value='{{switchOperationCycle}}'{{/switchOperationCycle}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vRegLineLine'>vRegLineLine: </label><div class='col-sm-8'><input id='{{id}}_vRegLineLine' class='form-check-input' type='checkbox'{{#vRegLineLine}} checked{{/vRegLineLine}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vRegLineLine'>vRegLineLine: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vRegLineLine' class='form-check-input' type='checkbox'{{#vRegLineLine}} checked{{/vRegLineLine}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensatorInfo'>ShuntCompensatorInfo: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensatorInfo' class='form-control' type='text'{{#ShuntCompensatorInfo}} value='{{ShuntCompensatorInfo}}'{{/ShuntCompensatorInfo}}></div></div>
                     </div>
                     <fieldset>

@@ -99,7 +99,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteInputSignal_collapse" aria-expanded="true" aria-controls="RemoteInputSignal_collapse" style="margin-left: 10px;">RemoteInputSignal</a></legend>
-                    <div id="RemoteInputSignal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RemoteInputSignal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -138,7 +138,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteInputSignal_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteInputSignal_collapse" style="margin-left: 10px;">RemoteInputSignal</a></legend>
-                    <div id="{{id}}_RemoteInputSignal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RemoteInputSignal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `

@@ -92,7 +92,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="TurbineGovernorDynamics_collapse" style="margin-left: 10px;">TurbineGovernorDynamics</a></legend>
-                    <div id="TurbineGovernorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TurbineGovernorDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -124,7 +124,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_TurbineGovernorDynamics_collapse" style="margin-left: 10px;">TurbineGovernorDynamics</a></legend>
-                    <div id="{{id}}_TurbineGovernorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TurbineGovernorDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -249,7 +249,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamCC_collapse" aria-expanded="true" aria-controls="GovSteamCC_collapse" style="margin-left: 10px;">GovSteamCC</a></legend>
-                    <div id="GovSteamCC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteamCC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -293,7 +293,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamCC_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamCC_collapse" style="margin-left: 10px;">GovSteamCC</a></legend>
-                    <div id="{{id}}_GovSteamCC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteamCC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -465,7 +465,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPID_collapse" aria-expanded="true" aria-controls="GovHydroPID_collapse" style="margin-left: 10px;">GovHydroPID</a></legend>
-                    <div id="GovHydroPID_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroPID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -525,7 +525,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroPID_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPID_collapse" style="margin-left: 10px;">GovHydroPID</a></legend>
-                    <div id="{{id}}_GovHydroPID_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroPID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -540,7 +540,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv4'>gv4: </label><div class='col-sm-8'><input id='{{id}}_gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv5'>gv5: </label><div class='col-sm-8'><input id='{{id}}_gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv6'>gv6: </label><div class='col-sm-8'><input id='{{id}}_gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_inputSignal'>inputSignal: </label><div class='col-sm-8'><input id='{{id}}_inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_inputSignal'>inputSignal: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kd'>kd: </label><div class='col-sm-8'><input id='{{id}}_kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kg'>kg: </label><div class='col-sm-8'><input id='{{id}}_kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
@@ -777,7 +777,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovCT2_collapse" aria-expanded="true" aria-controls="GovCT2_collapse" style="margin-left: 10px;">GovCT2</a></legend>
-                    <div id="GovCT2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovCT2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -862,7 +862,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovCT2_collapse" aria-expanded="true" aria-controls="{{id}}_GovCT2_collapse" style="margin-left: 10px;">GovCT2</a></legend>
-                    <div id="{{id}}_GovCT2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovCT2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -921,7 +921,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmax'>vmax: </label><div class='col-sm-8'><input id='{{id}}_vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin'>vmin: </label><div class='col-sm-8'><input id='{{id}}_vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wfnl'>wfnl: </label><div class='col-sm-8'><input id='{{id}}_wfnl' class='form-control' type='text'{{#wfnl}} value='{{wfnl}}'{{/wfnl}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_wfspd'>wfspd: </label><div class='col-sm-8'><input id='{{id}}_wfspd' class='form-check-input' type='checkbox'{{#wfspd}} checked{{/wfspd}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_wfspd'>wfspd: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_wfspd' class='form-check-input' type='checkbox'{{#wfspd}} checked{{/wfspd}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1104,7 +1104,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro2_collapse" aria-expanded="true" aria-controls="GovHydro2_collapse" style="margin-left: 10px;">GovHydro2</a></legend>
-                    <div id="GovHydro2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydro2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -1160,7 +1160,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydro2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro2_collapse" style="margin-left: 10px;">GovHydro2</a></legend>
-                    <div id="{{id}}_GovHydro2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydro2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -1344,7 +1344,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="GovHydroIEEE2_collapse" style="margin-left: 10px;">GovHydroIEEE2</a></legend>
-                    <div id="GovHydroIEEE2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroIEEE2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -1397,7 +1397,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroIEEE2_collapse" style="margin-left: 10px;">GovHydroIEEE2</a></legend>
-                    <div id="{{id}}_GovHydroIEEE2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroIEEE2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -1565,7 +1565,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroWPID_collapse" aria-expanded="true" aria-controls="GovHydroWPID_collapse" style="margin-left: 10px;">GovHydroWPID</a></legend>
-                    <div id="GovHydroWPID_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroWPID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -1614,7 +1614,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroWPID_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroWPID_collapse" style="margin-left: 10px;">GovHydroWPID</a></legend>
-                    <div id="{{id}}_GovHydroWPID_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroWPID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -1832,7 +1832,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV4_collapse" aria-expanded="true" aria-controls="GovSteamFV4_collapse" style="margin-left: 10px;">GovSteamFV4</a></legend>
-                    <div id="GovSteamFV4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteamFV4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -1910,7 +1910,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamFV4_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV4_collapse" style="margin-left: 10px;">GovSteamFV4</a></legend>
-                    <div id="{{id}}_GovSteamFV4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteamFV4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -2130,7 +2130,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPID2_collapse" aria-expanded="true" aria-controls="GovHydroPID2_collapse" style="margin-left: 10px;">GovHydroPID2</a></legend>
-                    <div id="GovHydroPID2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroPID2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -2179,13 +2179,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroPID2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPID2_collapse" style="margin-left: 10px;">GovHydroPID2</a></legend>
-                    <div id="{{id}}_GovHydroPID2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroPID2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_atw'>atw: </label><div class='col-sm-8'><input id='{{id}}_atw' class='form-control' type='text'{{#atw}} value='{{atw}}'{{/atw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_d'>d: </label><div class='col-sm-8'><input id='{{id}}_d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_feedbackSignal'>feedbackSignal: </label><div class='col-sm-8'><input id='{{id}}_feedbackSignal' class='form-check-input' type='checkbox'{{#feedbackSignal}} checked{{/feedbackSignal}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_feedbackSignal'>feedbackSignal: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_feedbackSignal' class='form-check-input' type='checkbox'{{#feedbackSignal}} checked{{/feedbackSignal}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g0'>g0: </label><div class='col-sm-8'><input id='{{id}}_g0' class='form-control' type='text'{{#g0}} value='{{g0}}'{{/g0}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g1'>g1: </label><div class='col-sm-8'><input id='{{id}}_g1' class='form-control' type='text'{{#g1}} value='{{g1}}'{{/g1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g2'>g2: </label><div class='col-sm-8'><input id='{{id}}_g2' class='form-control' type='text'{{#g2}} value='{{g2}}'{{/g2}}></div></div>
@@ -2315,7 +2315,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST_collapse" aria-expanded="true" aria-controls="GovGAST_collapse" style="margin-left: 10px;">GovGAST</a></legend>
-                    <div id="GovGAST_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovGAST_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -2352,7 +2352,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST_collapse" style="margin-left: 10px;">GovGAST</a></legend>
-                    <div id="{{id}}_GovGAST_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovGAST_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -2514,7 +2514,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamEU_collapse" aria-expanded="true" aria-controls="GovSteamEU_collapse" style="margin-left: 10px;">GovSteamEU</a></legend>
-                    <div id="GovSteamEU_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteamEU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -2576,7 +2576,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamEU_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamEU_collapse" style="margin-left: 10px;">GovSteamEU</a></legend>
-                    <div id="{{id}}_GovSteamEU_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteamEU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -2792,7 +2792,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro3_collapse" aria-expanded="true" aria-controls="GovHydro3_collapse" style="margin-left: 10px;">GovHydro3</a></legend>
-                    <div id="GovHydro3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydro3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -2855,7 +2855,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydro3_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro3_collapse" style="margin-left: 10px;">GovHydro3</a></legend>
-                    <div id="{{id}}_GovHydro3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydro3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -2864,7 +2864,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_db2'>db2: </label><div class='col-sm-8'><input id='{{id}}_db2' class='form-control' type='text'{{#db2}} value='{{db2}}'{{/db2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dturb'>dturb: </label><div class='col-sm-8'><input id='{{id}}_dturb' class='form-control' type='text'{{#dturb}} value='{{dturb}}'{{/dturb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eps'>eps: </label><div class='col-sm-8'><input id='{{id}}_eps' class='form-control' type='text'{{#eps}} value='{{eps}}'{{/eps}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_governorControl'>governorControl: </label><div class='col-sm-8'><input id='{{id}}_governorControl' class='form-check-input' type='checkbox'{{#governorControl}} checked{{/governorControl}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_governorControl'>governorControl: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_governorControl' class='form-check-input' type='checkbox'{{#governorControl}} checked{{/governorControl}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv1'>gv1: </label><div class='col-sm-8'><input id='{{id}}_gv1' class='form-control' type='text'{{#gv1}} value='{{gv1}}'{{/gv1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv2'>gv2: </label><div class='col-sm-8'><input id='{{id}}_gv2' class='form-control' type='text'{{#gv2}} value='{{gv2}}'{{/gv2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv3'>gv3: </label><div class='col-sm-8'><input id='{{id}}_gv3' class='form-control' type='text'{{#gv3}} value='{{gv3}}'{{/gv3}}></div></div>
@@ -3043,7 +3043,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="GovSteamIEEE1_collapse" style="margin-left: 10px;">GovSteamIEEE1</a></legend>
-                    <div id="GovSteamIEEE1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteamIEEE1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -3091,7 +3091,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamIEEE1_collapse" style="margin-left: 10px;">GovSteamIEEE1</a></legend>
-                    <div id="{{id}}_GovSteamIEEE1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteamIEEE1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -3271,7 +3271,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGASTWD_collapse" aria-expanded="true" aria-controls="GovGASTWD_collapse" style="margin-left: 10px;">GovGASTWD</a></legend>
-                    <div id="GovGASTWD_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovGASTWD_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -3331,7 +3331,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGASTWD_collapse" aria-expanded="true" aria-controls="{{id}}_GovGASTWD_collapse" style="margin-left: 10px;">GovGASTWD</a></legend>
-                    <div id="{{id}}_GovGASTWD_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovGASTWD_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -3511,7 +3511,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST3_collapse" aria-expanded="true" aria-controls="GovGAST3_collapse" style="margin-left: 10px;">GovGAST3</a></legend>
-                    <div id="GovGAST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovGAST3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -3559,7 +3559,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST3_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST3_collapse" style="margin-left: 10px;">GovGAST3</a></legend>
-                    <div id="{{id}}_GovGAST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovGAST3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -3699,7 +3699,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV2_collapse" aria-expanded="true" aria-controls="GovSteamFV2_collapse" style="margin-left: 10px;">GovSteamFV2</a></legend>
-                    <div id="GovSteamFV2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteamFV2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -3739,7 +3739,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamFV2_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV2_collapse" style="margin-left: 10px;">GovSteamFV2</a></legend>
-                    <div id="{{id}}_GovSteamFV2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteamFV2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -3895,7 +3895,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPelton_collapse" aria-expanded="true" aria-controls="GovHydroPelton_collapse" style="margin-left: 10px;">GovHydroPelton</a></legend>
-                    <div id="GovHydroPelton_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroPelton_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -3950,7 +3950,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroPelton_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPelton_collapse" style="margin-left: 10px;">GovHydroPelton</a></legend>
-                    <div id="{{id}}_GovHydroPelton_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroPelton_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -3966,8 +3966,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kg'>kg: </label><div class='col-sm-8'><input id='{{id}}_kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qc0'>qc0: </label><div class='col-sm-8'><input id='{{id}}_qc0' class='form-control' type='text'{{#qc0}} value='{{qc0}}'{{/qc0}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qn'>qn: </label><div class='col-sm-8'><input id='{{id}}_qn' class='form-control' type='text'{{#qn}} value='{{qn}}'{{/qn}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_simplifiedPelton'>simplifiedPelton: </label><div class='col-sm-8'><input id='{{id}}_simplifiedPelton' class='form-check-input' type='checkbox'{{#simplifiedPelton}} checked{{/simplifiedPelton}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_staticCompensating'>staticCompensating: </label><div class='col-sm-8'><input id='{{id}}_staticCompensating' class='form-check-input' type='checkbox'{{#staticCompensating}} checked{{/staticCompensating}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_simplifiedPelton'>simplifiedPelton: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_simplifiedPelton' class='form-check-input' type='checkbox'{{#simplifiedPelton}} checked{{/simplifiedPelton}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_staticCompensating'>staticCompensating: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_staticCompensating' class='form-check-input' type='checkbox'{{#staticCompensating}} checked{{/staticCompensating}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts'>ts: </label><div class='col-sm-8'><input id='{{id}}_ts' class='form-control' type='text'{{#ts}} value='{{ts}}'{{/ts}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tv'>tv: </label><div class='col-sm-8'><input id='{{id}}_tv' class='form-control' type='text'{{#tv}} value='{{tv}}'{{/tv}}></div></div>
@@ -3980,7 +3980,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vav'>vav: </label><div class='col-sm-8'><input id='{{id}}_vav' class='form-control' type='text'{{#vav}} value='{{vav}}'{{/vav}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vc'>vc: </label><div class='col-sm-8'><input id='{{id}}_vc' class='form-control' type='text'{{#vc}} value='{{vc}}'{{/vc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcv'>vcv: </label><div class='col-sm-8'><input id='{{id}}_vcv' class='form-control' type='text'{{#vcv}} value='{{vcv}}'{{/vcv}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_waterTunnelSurgeChamberSimulation'>waterTunnelSurgeChamberSimulation: </label><div class='col-sm-8'><input id='{{id}}_waterTunnelSurgeChamberSimulation' class='form-check-input' type='checkbox'{{#waterTunnelSurgeChamberSimulation}} checked{{/waterTunnelSurgeChamberSimulation}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_waterTunnelSurgeChamberSimulation'>waterTunnelSurgeChamberSimulation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_waterTunnelSurgeChamberSimulation' class='form-check-input' type='checkbox'{{#waterTunnelSurgeChamberSimulation}} checked{{/waterTunnelSurgeChamberSimulation}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zsfc'>zsfc: </label><div class='col-sm-8'><input id='{{id}}_zsfc' class='form-control' type='text'{{#zsfc}} value='{{zsfc}}'{{/zsfc}}></div></div>
                     </div>
                     <fieldset>
@@ -4150,7 +4150,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovCT1_collapse" aria-expanded="true" aria-controls="GovCT1_collapse" style="margin-left: 10px;">GovCT1</a></legend>
-                    <div id="GovCT1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovCT1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -4214,7 +4214,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovCT1_collapse" aria-expanded="true" aria-controls="{{id}}_GovCT1_collapse" style="margin-left: 10px;">GovCT1</a></legend>
-                    <div id="{{id}}_GovCT1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovCT1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -4252,7 +4252,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmax'>vmax: </label><div class='col-sm-8'><input id='{{id}}_vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin'>vmin: </label><div class='col-sm-8'><input id='{{id}}_vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wfnl'>wfnl: </label><div class='col-sm-8'><input id='{{id}}_wfnl' class='form-control' type='text'{{#wfnl}} value='{{wfnl}}'{{/wfnl}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_wfspd'>wfspd: </label><div class='col-sm-8'><input id='{{id}}_wfspd' class='form-check-input' type='checkbox'{{#wfspd}} checked{{/wfspd}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_wfspd'>wfspd: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_wfspd' class='form-check-input' type='checkbox'{{#wfspd}} checked{{/wfspd}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4384,7 +4384,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro1_collapse" aria-expanded="true" aria-controls="GovHydro1_collapse" style="margin-left: 10px;">GovHydro1</a></legend>
-                    <div id="GovHydro1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydro1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -4425,7 +4425,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydro1_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro1_collapse" style="margin-left: 10px;">GovHydro1</a></legend>
-                    <div id="{{id}}_GovHydro1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydro1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -4541,7 +4541,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam2_collapse" aria-expanded="true" aria-controls="GovSteam2_collapse" style="margin-left: 10px;">GovSteam2</a></legend>
-                    <div id="GovSteam2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteam2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -4576,7 +4576,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteam2_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam2_collapse" style="margin-left: 10px;">GovSteam2</a></legend>
-                    <div id="{{id}}_GovSteam2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteam2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -4734,7 +4734,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroDD_collapse" aria-expanded="true" aria-controls="GovHydroDD_collapse" style="margin-left: 10px;">GovHydroDD</a></legend>
-                    <div id="GovHydroDD_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroDD_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -4796,7 +4796,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroDD_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroDD_collapse" style="margin-left: 10px;">GovHydroDD</a></legend>
-                    <div id="{{id}}_GovHydroDD_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroDD_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -4813,7 +4813,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv4'>gv4: </label><div class='col-sm-8'><input id='{{id}}_gv4' class='form-control' type='text'{{#gv4}} value='{{gv4}}'{{/gv4}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv5'>gv5: </label><div class='col-sm-8'><input id='{{id}}_gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv6'>gv6: </label><div class='col-sm-8'><input id='{{id}}_gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_inputSignal'>inputSignal: </label><div class='col-sm-8'><input id='{{id}}_inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_inputSignal'>inputSignal: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kg'>kg: </label><div class='col-sm-8'><input id='{{id}}_kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
@@ -4956,7 +4956,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="GovHydroIEEE0_collapse" style="margin-left: 10px;">GovHydroIEEE0</a></legend>
-                    <div id="GovHydroIEEE0_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroIEEE0_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -4991,7 +4991,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroIEEE0_collapse" style="margin-left: 10px;">GovHydroIEEE0</a></legend>
-                    <div id="{{id}}_GovHydroIEEE0_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroIEEE0_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -5095,7 +5095,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam0_collapse" aria-expanded="true" aria-controls="GovSteam0_collapse" style="margin-left: 10px;">GovSteam0</a></legend>
-                    <div id="GovSteam0_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteam0_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -5130,7 +5130,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteam0_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam0_collapse" style="margin-left: 10px;">GovSteam0</a></legend>
-                    <div id="{{id}}_GovSteam0_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteam0_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -5242,7 +5242,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamSGO_collapse" aria-expanded="true" aria-controls="GovSteamSGO_collapse" style="margin-left: 10px;">GovSteamSGO</a></legend>
-                    <div id="GovSteamSGO_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteamSGO_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -5281,7 +5281,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamSGO_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamSGO_collapse" style="margin-left: 10px;">GovSteamSGO</a></legend>
-                    <div id="{{id}}_GovSteamSGO_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteamSGO_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -5461,7 +5461,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroR_collapse" aria-expanded="true" aria-controls="GovHydroR_collapse" style="margin-left: 10px;">GovHydroR</a></legend>
-                    <div id="GovHydroR_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -5530,7 +5530,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroR_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroR_collapse" style="margin-left: 10px;">GovHydroR</a></legend>
-                    <div id="{{id}}_GovHydroR_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -5548,7 +5548,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv5'>gv5: </label><div class='col-sm-8'><input id='{{id}}_gv5' class='form-control' type='text'{{#gv5}} value='{{gv5}}'{{/gv5}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gv6'>gv6: </label><div class='col-sm-8'><input id='{{id}}_gv6' class='form-control' type='text'{{#gv6}} value='{{gv6}}'{{/gv6}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_h0'>h0: </label><div class='col-sm-8'><input id='{{id}}_h0' class='form-control' type='text'{{#h0}} value='{{h0}}'{{/h0}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_inputSignal'>inputSignal: </label><div class='col-sm-8'><input id='{{id}}_inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_inputSignal'>inputSignal: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_inputSignal' class='form-check-input' type='checkbox'{{#inputSignal}} checked{{/inputSignal}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kg'>kg: </label><div class='col-sm-8'><input id='{{id}}_kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwbase'>mwbase: </label><div class='col-sm-8'><input id='{{id}}_mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
@@ -5764,7 +5764,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro4_collapse" aria-expanded="true" aria-controls="GovHydro4_collapse" style="margin-left: 10px;">GovHydro4</a></legend>
-                    <div id="GovHydro4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydro4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -5829,7 +5829,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydro4_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro4_collapse" style="margin-left: 10px;">GovHydro4</a></legend>
-                    <div id="{{id}}_GovHydro4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydro4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -6045,7 +6045,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST1_collapse" aria-expanded="true" aria-controls="GovGAST1_collapse" style="margin-left: 10px;">GovGAST1</a></legend>
-                    <div id="GovGAST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovGAST1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -6106,7 +6106,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST1_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST1_collapse" style="margin-left: 10px;">GovGAST1</a></legend>
-                    <div id="{{id}}_GovGAST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovGAST1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -6324,7 +6324,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam1_collapse" aria-expanded="true" aria-controls="GovSteam1_collapse" style="margin-left: 10px;">GovSteam1</a></legend>
-                    <div id="GovSteam1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteam1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -6390,7 +6390,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteam1_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam1_collapse" style="margin-left: 10px;">GovSteam1</a></legend>
-                    <div id="{{id}}_GovSteam1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteam1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -6421,8 +6421,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv6'>pgv6: </label><div class='col-sm-8'><input id='{{id}}_pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmax'>pmax: </label><div class='col-sm-8'><input id='{{id}}_pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmin'>pmin: </label><div class='col-sm-8'><input id='{{id}}_pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_sdb1'>sdb1: </label><div class='col-sm-8'><input id='{{id}}_sdb1' class='form-check-input' type='checkbox'{{#sdb1}} checked{{/sdb1}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_sdb2'>sdb2: </label><div class='col-sm-8'><input id='{{id}}_sdb2' class='form-check-input' type='checkbox'{{#sdb2}} checked{{/sdb2}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_sdb1'>sdb1: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_sdb1' class='form-check-input' type='checkbox'{{#sdb1}} checked{{/sdb1}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_sdb2'>sdb2: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_sdb2' class='form-check-input' type='checkbox'{{#sdb2}} checked{{/sdb2}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
@@ -6432,7 +6432,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t7'>t7: </label><div class='col-sm-8'><input id='{{id}}_t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uc'>uc: </label><div class='col-sm-8'><input id='{{id}}_uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uo'>uo: </label><div class='col-sm-8'><input id='{{id}}_uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_valve'>valve: </label><div class='col-sm-8'><input id='{{id}}_valve' class='form-check-input' type='checkbox'{{#valve}} checked{{/valve}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_valve'>valve: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_valve' class='form-check-input' type='checkbox'{{#valve}} checked{{/valve}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -6596,7 +6596,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroFrancis_collapse" aria-expanded="true" aria-controls="GovHydroFrancis_collapse" style="margin-left: 10px;">GovHydroFrancis</a></legend>
-                    <div id="GovHydroFrancis_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroFrancis_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -6652,7 +6652,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroFrancis_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroFrancis_collapse" style="margin-left: 10px;">GovHydroFrancis</a></legend>
-                    <div id="{{id}}_GovHydroFrancis_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroFrancis_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -6681,7 +6681,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valvmax'>valvmax: </label><div class='col-sm-8'><input id='{{id}}_valvmax' class='form-control' type='text'{{#valvmax}} value='{{valvmax}}'{{/valvmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valvmin'>valvmin: </label><div class='col-sm-8'><input id='{{id}}_valvmin' class='form-control' type='text'{{#valvmin}} value='{{valvmin}}'{{/valvmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vc'>vc: </label><div class='col-sm-8'><input id='{{id}}_vc' class='form-control' type='text'{{#vc}} value='{{vc}}'{{/vc}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_waterTunnelSurgeChamberSimulation'>waterTunnelSurgeChamberSimulation: </label><div class='col-sm-8'><input id='{{id}}_waterTunnelSurgeChamberSimulation' class='form-check-input' type='checkbox'{{#waterTunnelSurgeChamberSimulation}} checked{{/waterTunnelSurgeChamberSimulation}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_waterTunnelSurgeChamberSimulation'>waterTunnelSurgeChamberSimulation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_waterTunnelSurgeChamberSimulation' class='form-check-input' type='checkbox'{{#waterTunnelSurgeChamberSimulation}} checked{{/waterTunnelSurgeChamberSimulation}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zsfc'>zsfc: </label><div class='col-sm-8'><input id='{{id}}_zsfc' class='form-control' type='text'{{#zsfc}} value='{{zsfc}}'{{/zsfc}}></div></div>
                     </div>
                     <fieldset>
@@ -6800,7 +6800,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST4_collapse" aria-expanded="true" aria-controls="GovGAST4_collapse" style="margin-left: 10px;">GovGAST4</a></legend>
-                    <div id="GovGAST4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovGAST4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -6838,7 +6838,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST4_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST4_collapse" style="margin-left: 10px;">GovGAST4</a></legend>
-                    <div id="{{id}}_GovGAST4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovGAST4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -6970,7 +6970,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV3_collapse" aria-expanded="true" aria-controls="GovSteamFV3_collapse" style="margin-left: 10px;">GovSteamFV3</a></legend>
-                    <div id="GovSteamFV3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovSteamFV3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -7016,7 +7016,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamFV3_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV3_collapse" style="margin-left: 10px;">GovSteamFV3</a></legend>
-                    <div id="{{id}}_GovSteamFV3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovSteamFV3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -7228,7 +7228,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroWEH_collapse" aria-expanded="true" aria-controls="GovHydroWEH_collapse" style="margin-left: 10px;">GovHydroWEH</a></legend>
-                    <div id="GovHydroWEH_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovHydroWEH_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -7306,7 +7306,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroWEH_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroWEH_collapse" style="margin-left: 10px;">GovHydroWEH</a></legend>
-                    <div id="{{id}}_GovHydroWEH_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovHydroWEH_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -7314,7 +7314,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dicn'>dicn: </label><div class='col-sm-8'><input id='{{id}}_dicn' class='form-control' type='text'{{#dicn}} value='{{dicn}}'{{/dicn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpv'>dpv: </label><div class='col-sm-8'><input id='{{id}}_dpv' class='form-control' type='text'{{#dpv}} value='{{dpv}}'{{/dpv}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dturb'>dturb: </label><div class='col-sm-8'><input id='{{id}}_dturb' class='form-control' type='text'{{#dturb}} value='{{dturb}}'{{/dturb}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_feedbackSignal'>feedbackSignal: </label><div class='col-sm-8'><input id='{{id}}_feedbackSignal' class='form-check-input' type='checkbox'{{#feedbackSignal}} checked{{/feedbackSignal}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_feedbackSignal'>feedbackSignal: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_feedbackSignal' class='form-check-input' type='checkbox'{{#feedbackSignal}} checked{{/feedbackSignal}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fl1'>fl1: </label><div class='col-sm-8'><input id='{{id}}_fl1' class='form-control' type='text'{{#fl1}} value='{{fl1}}'{{/fl1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fl2'>fl2: </label><div class='col-sm-8'><input id='{{id}}_fl2' class='form-control' type='text'{{#fl2}} value='{{fl2}}'{{/fl2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fl3'>fl3: </label><div class='col-sm-8'><input id='{{id}}_fl3' class='form-control' type='text'{{#fl3}} value='{{fl3}}'{{/fl3}}></div></div>
@@ -7544,7 +7544,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST2_collapse" aria-expanded="true" aria-controls="GovGAST2_collapse" style="margin-left: 10px;">GovGAST2</a></legend>
-                    <div id="GovGAST2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GovGAST2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
@@ -7603,7 +7603,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST2_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST2_collapse" style="margin-left: 10px;">GovGAST2</a></legend>
-                    <div id="{{id}}_GovGAST2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GovGAST2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
@@ -7638,7 +7638,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_w'>w: </label><div class='col-sm-8'><input id='{{id}}_w' class='form-control' type='text'{{#w}} value='{{w}}'{{/w}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x'>x: </label><div class='col-sm-8'><input id='{{id}}_x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y'>y: </label><div class='col-sm-8'><input id='{{id}}_y' class='form-control' type='text'{{#y}} value='{{y}}'{{/y}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_z'>z: </label><div class='col-sm-8'><input id='{{id}}_z' class='form-check-input' type='checkbox'{{#z}} checked{{/z}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_z'>z: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_z' class='form-check-input' type='checkbox'{{#z}} checked{{/z}}></div></div></div>
                     </div>
                     <fieldset>
                     `

@@ -4,8 +4,7 @@ body {
 }
 
 .intro {
-    height: calc(100% - 60px);
-    margin-top: -20px;
+    height: calc(100% - 56px);
     padding: 0;
     -webkit-background-size: cover;
     -moz-background-size: cover;

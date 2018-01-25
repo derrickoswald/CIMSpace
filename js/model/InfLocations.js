@@ -100,7 +100,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RedLine_collapse" aria-expanded="true" aria-controls="RedLine_collapse" style="margin-left: 10px;">RedLine</a></legend>
-                    <div id="RedLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RedLine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -128,7 +128,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RedLine_collapse" aria-expanded="true" aria-controls="{{id}}_RedLine_collapse" style="margin-left: 10px;">RedLine</a></legend>
-                    <div id="{{id}}_RedLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RedLine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -206,7 +206,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Zone_collapse" aria-expanded="true" aria-controls="Zone_collapse" style="margin-left: 10px;">Zone</a></legend>
-                    <div id="Zone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Zone_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Location.prototype.template.call (this) +
                     `
@@ -236,7 +236,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Zone_collapse" aria-expanded="true" aria-controls="{{id}}_Zone_collapse" style="margin-left: 10px;">Zone</a></legend>
-                    <div id="{{id}}_Zone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Zone_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Location.prototype.edit_template.call (this) +
                     `
@@ -316,7 +316,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LocationGrant_collapse" aria-expanded="true" aria-controls="LocationGrant_collapse" style="margin-left: 10px;">LocationGrant</a></legend>
-                    <div id="LocationGrant_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LocationGrant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.template.call (this) +
                     `
@@ -345,7 +345,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LocationGrant_collapse" aria-expanded="true" aria-controls="{{id}}_LocationGrant_collapse" style="margin-left: 10px;">LocationGrant</a></legend>
-                    <div id="{{id}}_LocationGrant_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LocationGrant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
@@ -440,7 +440,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Route_collapse" aria-expanded="true" aria-controls="Route_collapse" style="margin-left: 10px;">Route</a></legend>
-                    <div id="Route_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Route_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -475,7 +475,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Route_collapse" aria-expanded="true" aria-controls="{{id}}_Route_collapse" style="margin-left: 10px;">Route</a></legend>
-                    <div id="{{id}}_Route_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Route_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -589,7 +589,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LandProperty_collapse" aria-expanded="true" aria-controls="LandProperty_collapse" style="margin-left: 10px;">LandProperty</a></legend>
-                    <div id="LandProperty_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LandProperty_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -645,7 +645,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LandProperty_collapse" aria-expanded="true" aria-controls="{{id}}_LandProperty_collapse" style="margin-left: 10px;">LandProperty</a></legend>
-                    <div id="{{id}}_LandProperty_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LandProperty_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -754,7 +754,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RightOfWay_collapse" aria-expanded="true" aria-controls="RightOfWay_collapse" style="margin-left: 10px;">RightOfWay</a></legend>
-                    <div id="RightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RightOfWay_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.template.call (this) +
                     `
@@ -785,7 +785,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RightOfWay_collapse" aria-expanded="true" aria-controls="{{id}}_RightOfWay_collapse" style="margin-left: 10px;">RightOfWay</a></legend>
-                    <div id="{{id}}_RightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RightOfWay_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `

@@ -88,7 +88,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#IPAccessPoint_collapse" aria-expanded="true" aria-controls="IPAccessPoint_collapse" style="margin-left: 10px;">IPAccessPoint</a></legend>
-                    <div id="IPAccessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="IPAccessPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -119,7 +119,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IPAccessPoint_collapse" aria-expanded="true" aria-controls="{{id}}_IPAccessPoint_collapse" style="margin-left: 10px;">IPAccessPoint</a></legend>
-                    <div id="{{id}}_IPAccessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_IPAccessPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -201,7 +201,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#IPAddressType_collapse" aria-expanded="true" aria-controls="IPAddressType_collapse" style="margin-left: 10px;">IPAddressType</a></legend>
-                    <div id="IPAddressType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="IPAddressType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -231,7 +231,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IPAddressType_collapse" aria-expanded="true" aria-controls="{{id}}_IPAddressType_collapse" style="margin-left: 10px;">IPAddressType</a></legend>
-                    <div id="{{id}}_IPAddressType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_IPAddressType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -315,7 +315,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPInformationMessage_collapse" aria-expanded="true" aria-controls="ICCPInformationMessage_collapse" style="margin-left: 10px;">ICCPInformationMessage</a></legend>
-                    <div id="ICCPInformationMessage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ICCPInformationMessage_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -346,7 +346,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPInformationMessage_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPInformationMessage_collapse" style="margin-left: 10px;">ICCPInformationMessage</a></legend>
-                    <div id="{{id}}_ICCPInformationMessage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ICCPInformationMessage_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -426,7 +426,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPPoint_collapse" aria-expanded="true" aria-controls="ICCPPoint_collapse" style="margin-left: 10px;">ICCPPoint</a></legend>
-                    <div id="ICCPPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ICCPPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -456,7 +456,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPPoint_collapse" style="margin-left: 10px;">ICCPPoint</a></legend>
-                    <div id="{{id}}_ICCPPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ICCPPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -540,7 +540,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TASE2BilateralTable_collapse" aria-expanded="true" aria-controls="TASE2BilateralTable_collapse" style="margin-left: 10px;">TASE2BilateralTable</a></legend>
-                    <div id="TASE2BilateralTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TASE2BilateralTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -571,12 +571,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TASE2BilateralTable_collapse" aria-expanded="true" aria-controls="{{id}}_TASE2BilateralTable_collapse" style="margin-left: 10px;">TASE2BilateralTable</a></legend>
-                    <div id="{{id}}_TASE2BilateralTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TASE2BilateralTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bilateralTableID'>bilateralTableID: </label><div class='col-sm-8'><input id='{{id}}_bilateralTableID' class='form-control' type='text'{{#bilateralTableID}} value='{{bilateralTableID}}'{{/bilateralTableID}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_calling'>calling: </label><div class='col-sm-8'><input id='{{id}}_calling' class='form-check-input' type='checkbox'{{#calling}} checked{{/calling}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_calling'>calling: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_calling' class='form-check-input' type='checkbox'{{#calling}} checked{{/calling}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nameOfICC'>nameOfICC: </label><div class='col-sm-8'><input id='{{id}}_nameOfICC' class='form-control' type='text'{{#nameOfICC}} value='{{nameOfICC}}'{{/nameOfICC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tase2version'>tase2version: </label><div class='col-sm-8'><input id='{{id}}_tase2version' class='form-control' type='text'{{#tase2version}} value='{{tase2version}}'{{/tase2version}}></div></div>
                     </div>
@@ -653,7 +653,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ISOAPAddressing_collapse" aria-expanded="true" aria-controls="ISOAPAddressing_collapse" style="margin-left: 10px;">ISOAPAddressing</a></legend>
-                    <div id="ISOAPAddressing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ISOAPAddressing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -683,7 +683,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ISOAPAddressing_collapse" aria-expanded="true" aria-controls="{{id}}_ISOAPAddressing_collapse" style="margin-left: 10px;">ISOAPAddressing</a></legend>
-                    <div id="{{id}}_ISOAPAddressing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ISOAPAddressing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -761,7 +761,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TCPAcessPoint_collapse" aria-expanded="true" aria-controls="TCPAcessPoint_collapse" style="margin-left: 10px;">TCPAcessPoint</a></legend>
-                    <div id="TCPAcessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TCPAcessPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + IPAccessPoint.prototype.template.call (this) +
                     `
@@ -790,7 +790,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TCPAcessPoint_collapse" aria-expanded="true" aria-controls="{{id}}_TCPAcessPoint_collapse" style="margin-left: 10px;">TCPAcessPoint</a></legend>
-                    <div id="{{id}}_TCPAcessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TCPAcessPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + IPAccessPoint.prototype.edit_template.call (this) +
                     `
@@ -870,7 +870,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ISOUpperLayer_collapse" aria-expanded="true" aria-controls="ISOUpperLayer_collapse" style="margin-left: 10px;">ISOUpperLayer</a></legend>
-                    <div id="ISOUpperLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ISOUpperLayer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TCPAcessPoint.prototype.template.call (this) +
                     `
@@ -901,7 +901,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ISOUpperLayer_collapse" aria-expanded="true" aria-controls="{{id}}_ISOUpperLayer_collapse" style="margin-left: 10px;">ISOUpperLayer</a></legend>
-                    <div id="{{id}}_ISOUpperLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ISOUpperLayer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TCPAcessPoint.prototype.edit_template.call (this) +
                     `
@@ -979,7 +979,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPIndicationPoint_collapse" aria-expanded="true" aria-controls="ICCPIndicationPoint_collapse" style="margin-left: 10px;">ICCPIndicationPoint</a></legend>
-                    <div id="ICCPIndicationPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ICCPIndicationPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ICCPPoint.prototype.template.call (this) +
                     `
@@ -1009,7 +1009,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPIndicationPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPIndicationPoint_collapse" style="margin-left: 10px;">ICCPIndicationPoint</a></legend>
-                    <div id="{{id}}_ICCPIndicationPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ICCPIndicationPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
@@ -1081,7 +1081,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPControlPoint_collapse" aria-expanded="true" aria-controls="ICCPControlPoint_collapse" style="margin-left: 10px;">ICCPControlPoint</a></legend>
-                    <div id="ICCPControlPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ICCPControlPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ICCPPoint.prototype.template.call (this) +
                     `
@@ -1111,7 +1111,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPControlPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPControlPoint_collapse" style="margin-left: 10px;">ICCPControlPoint</a></legend>
-                    <div id="{{id}}_ICCPControlPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ICCPControlPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
@@ -1181,7 +1181,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPCommandPoint_collapse" aria-expanded="true" aria-controls="ICCPCommandPoint_collapse" style="margin-left: 10px;">ICCPCommandPoint</a></legend>
-                    <div id="ICCPCommandPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ICCPCommandPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ICCPControlPoint.prototype.template.call (this) +
                     `
@@ -1208,7 +1208,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPCommandPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPCommandPoint_collapse" style="margin-left: 10px;">ICCPCommandPoint</a></legend>
-                    <div id="{{id}}_ICCPCommandPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ICCPCommandPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
@@ -1276,7 +1276,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPSetPoint_collapse" aria-expanded="true" aria-controls="ICCPSetPoint_collapse" style="margin-left: 10px;">ICCPSetPoint</a></legend>
-                    <div id="ICCPSetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ICCPSetPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ICCPControlPoint.prototype.template.call (this) +
                     `
@@ -1306,7 +1306,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPSetPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPSetPoint_collapse" style="margin-left: 10px;">ICCPSetPoint</a></legend>
-                    <div id="{{id}}_ICCPSetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ICCPSetPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `

@@ -75,7 +75,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="AsynchronousMachineDynamics_collapse" style="margin-left: 10px;">AsynchronousMachineDynamics</a></legend>
-                    <div id="AsynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AsynchronousMachineDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
                     `
@@ -106,7 +106,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachineDynamics_collapse" style="margin-left: 10px;">AsynchronousMachineDynamics</a></legend>
-                    <div id="{{id}}_AsynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AsynchronousMachineDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.RotatingMachineDynamics.prototype.edit_template.call (this) +
                     `
@@ -225,7 +225,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="AsynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">AsynchronousMachineEquivalentCircuit</a></legend>
-                    <div id="AsynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AsynchronousMachineEquivalentCircuit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AsynchronousMachineDynamics.prototype.template.call (this) +
                     `
@@ -257,7 +257,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">AsynchronousMachineEquivalentCircuit</a></legend>
-                    <div id="{{id}}_AsynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AsynchronousMachineEquivalentCircuit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AsynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
@@ -370,7 +370,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="AsynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">AsynchronousMachineTimeConstantReactance</a></legend>
-                    <div id="AsynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AsynchronousMachineTimeConstantReactance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AsynchronousMachineDynamics.prototype.template.call (this) +
                     `
@@ -402,7 +402,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">AsynchronousMachineTimeConstantReactance</a></legend>
-                    <div id="{{id}}_AsynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AsynchronousMachineTimeConstantReactance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AsynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `

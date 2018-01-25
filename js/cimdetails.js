@@ -146,10 +146,13 @@ define
             render ()
             {
                 this._container.innerHTML =
-                    "<div id='view_frame' class='well'>\n" +
-                    "  <h3 id='view_title'>" + this._cimmap.get_selected_feature () + "</h3>\n" +
-                    "  <div id='view_contents'>\n" +
-                    "    <div id='feature_detail_contents'></div>\n" +
+                    "<div id='view_frame' class='card'>\n" +
+                    "  <div class='card-body'>\n" +
+                    "    <h5 id='view_title' class='card-title'>" + this._cimmap.get_selected_feature () + "</h5>\n" +
+                    "    <h6 id='streetviewlink' class='card-subtitle mb-2'></h6>\n" +
+                    "    <div id='view_contents' class='card-text'>\n" +
+                    "      <div id='feature_detail_contents'></div>\n" +
+                    "    </div>\n" +
                     "  </div>\n" +
                     "</div>\n";
                 this._frame_height = document.getElementById ("view_frame").clientHeight; // frame height with no contents
@@ -191,7 +194,7 @@ define
                                         if (-1 != url.indexOf ("pano"))
                                         {
                                             var link = "<a href='" + url + "' target='_blank'>StreetView</a>";
-                                            document.getElementById ("view_title").innerHTML = mrid + " " + link;
+                                            document.getElementById ("streetviewlink").innerHTML = link;
                                         }
                                     }
                                 );

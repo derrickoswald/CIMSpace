@@ -63,7 +63,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
-                    <div id="DynamicsFunctionBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DynamicsFunctionBlock_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -91,11 +91,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="{{id}}_DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
-                    <div id="{{id}}_DynamicsFunctionBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DynamicsFunctionBlock_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_enabled'>enabled: </label><div class='col-sm-8'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -177,7 +177,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
-                    <div id="RotatingMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RotatingMachineDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -210,7 +210,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
-                    <div id="{{id}}_RotatingMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RotatingMachineDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `

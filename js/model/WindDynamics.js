@@ -149,7 +149,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPitchAngleIEC_collapse" aria-expanded="true" aria-controls="WindContPitchAngleIEC_collapse" style="margin-left: 10px;">WindContPitchAngleIEC</a></legend>
-                    <div id="WindContPitchAngleIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContPitchAngleIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -187,7 +187,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContPitchAngleIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContPitchAngleIEC_collapse" style="margin-left: 10px;">WindContPitchAngleIEC</a></legend>
-                    <div id="{{id}}_WindContPitchAngleIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContPitchAngleIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -314,7 +314,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPitchContPowerIEC_collapse" aria-expanded="true" aria-controls="WindPitchContPowerIEC_collapse" style="margin-left: 10px;">WindPitchContPowerIEC</a></legend>
-                    <div id="WindPitchContPowerIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindPitchContPowerIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -353,7 +353,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPitchContPowerIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindPitchContPowerIEC_collapse" style="margin-left: 10px;">WindPitchContPowerIEC</a></legend>
-                    <div id="{{id}}_WindPitchContPowerIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindPitchContPowerIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -470,7 +470,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType4IEC_collapse" aria-expanded="true" aria-controls="WindGenType4IEC_collapse" style="margin-left: 10px;">WindGenType4IEC</a></legend>
-                    <div id="WindGenType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindGenType4IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -503,7 +503,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenType4IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenType4IEC_collapse" style="margin-left: 10px;">WindGenType4IEC</a></legend>
-                    <div id="{{id}}_WindGenType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindGenType4IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -641,7 +641,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantReactiveControlIEC_collapse" aria-expanded="true" aria-controls="WindPlantReactiveControlIEC_collapse" style="margin-left: 10px;">WindPlantReactiveControlIEC</a></legend>
-                    <div id="WindPlantReactiveControlIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindPlantReactiveControlIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -692,7 +692,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantReactiveControlIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantReactiveControlIEC_collapse" style="margin-left: 10px;">WindPlantReactiveControlIEC</a></legend>
-                    <div id="{{id}}_WindPlantReactiveControlIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindPlantReactiveControlIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -866,7 +866,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType3IEC_collapse" aria-expanded="true" aria-controls="WindContPType3IEC_collapse" style="margin-left: 10px;">WindContPType3IEC</a></legend>
-                    <div id="WindContPType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContPType3IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -920,7 +920,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContPType3IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContPType3IEC_collapse" style="margin-left: 10px;">WindContPType3IEC</a></legend>
-                    <div id="{{id}}_WindContPType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContPType3IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -932,7 +932,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kdtd'>kdtd: </label><div class='col-sm-8'><input id='{{id}}_kdtd' class='form-control' type='text'{{#kdtd}} value='{{kdtd}}'{{/kdtd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kip'>kip: </label><div class='col-sm-8'><input id='{{id}}_kip' class='form-control' type='text'{{#kip}} value='{{kip}}'{{/kip}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpp'>kpp: </label><div class='col-sm-8'><input id='{{id}}_kpp' class='form-control' type='text'{{#kpp}} value='{{kpp}}'{{/kpp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mpuvrt'>mpuvrt: </label><div class='col-sm-8'><input id='{{id}}_mpuvrt' class='form-check-input' type='checkbox'{{#mpuvrt}} checked{{/mpuvrt}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_mpuvrt'>mpuvrt: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mpuvrt' class='form-check-input' type='checkbox'{{#mpuvrt}} checked{{/mpuvrt}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omegaoffset'>omegaoffset: </label><div class='col-sm-8'><input id='{{id}}_omegaoffset' class='form-control' type='text'{{#omegaoffset}} value='{{omegaoffset}}'{{/omegaoffset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pdtdmax'>pdtdmax: </label><div class='col-sm-8'><input id='{{id}}_pdtdmax' class='form-control' type='text'{{#pdtdmax}} value='{{pdtdmax}}'{{/pdtdmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tdvs'>tdvs: </label><div class='col-sm-8'><input id='{{id}}_tdvs' class='form-control' type='text'{{#tdvs}} value='{{tdvs}}'{{/tdvs}}></div></div>
@@ -1102,7 +1102,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQIEC_collapse" aria-expanded="true" aria-controls="WindContQIEC_collapse" style="margin-left: 10px;">WindContQIEC</a></legend>
-                    <div id="WindContQIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContQIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1157,7 +1157,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContQIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContQIEC_collapse" style="margin-left: 10px;">WindContQIEC</a></legend>
-                    <div id="{{id}}_WindContQIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContQIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1292,7 +1292,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroConstIEC_collapse" aria-expanded="true" aria-controls="WindAeroConstIEC_collapse" style="margin-left: 10px;">WindAeroConstIEC</a></legend>
-                    <div id="WindAeroConstIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindAeroConstIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1320,7 +1320,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindAeroConstIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindAeroConstIEC_collapse" style="margin-left: 10px;">WindAeroConstIEC</a></legend>
-                    <div id="{{id}}_WindAeroConstIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindAeroConstIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1411,7 +1411,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3or4Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4Dynamics_collapse" style="margin-left: 10px;">WindTurbineType3or4Dynamics</a></legend>
-                    <div id="WindTurbineType3or4Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindTurbineType3or4Dynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -1441,7 +1441,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType3or4Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType3or4Dynamics_collapse" style="margin-left: 10px;">WindTurbineType3or4Dynamics</a></legend>
-                    <div id="{{id}}_WindTurbineType3or4Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindTurbineType3or4Dynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -1542,7 +1542,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQPQULimIEC_collapse" aria-expanded="true" aria-controls="WindContQPQULimIEC_collapse" style="margin-left: 10px;">WindContQPQULimIEC</a></legend>
-                    <div id="WindContQPQULimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContQPQULimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1575,7 +1575,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContQPQULimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContQPQULimIEC_collapse" style="margin-left: 10px;">WindContQPQULimIEC</a></legend>
-                    <div id="{{id}}_WindContQPQULimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContQPQULimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1681,7 +1681,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindMechIEC_collapse" aria-expanded="true" aria-controls="WindMechIEC_collapse" style="margin-left: 10px;">WindMechIEC</a></legend>
-                    <div id="WindMechIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindMechIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1715,7 +1715,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindMechIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindMechIEC_collapse" style="margin-left: 10px;">WindMechIEC</a></legend>
-                    <div id="{{id}}_WindMechIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindMechIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1832,7 +1832,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroTwoDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroTwoDimIEC_collapse" style="margin-left: 10px;">WindAeroTwoDimIEC</a></legend>
-                    <div id="WindAeroTwoDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindAeroTwoDimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1867,7 +1867,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindAeroTwoDimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindAeroTwoDimIEC_collapse" style="margin-left: 10px;">WindAeroTwoDimIEC</a></legend>
-                    <div id="{{id}}_WindAeroTwoDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindAeroTwoDimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1974,7 +1974,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQLimIEC_collapse" aria-expanded="true" aria-controls="WindContQLimIEC_collapse" style="margin-left: 10px;">WindContQLimIEC</a></legend>
-                    <div id="WindContQLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContQLimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2004,7 +2004,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContQLimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContQLimIEC_collapse" style="margin-left: 10px;">WindContQLimIEC</a></legend>
-                    <div id="{{id}}_WindContQLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContQLimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2101,7 +2101,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3IEC_collapse" aria-expanded="true" aria-controls="WindGenType3IEC_collapse" style="margin-left: 10px;">WindGenType3IEC</a></legend>
-                    <div id="WindGenType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindGenType3IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2132,7 +2132,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenType3IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenType3IEC_collapse" style="margin-left: 10px;">WindGenType3IEC</a></legend>
-                    <div id="{{id}}_WindGenType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindGenType3IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2245,7 +2245,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindProtectionIEC_collapse" aria-expanded="true" aria-controls="WindProtectionIEC_collapse" style="margin-left: 10px;">WindProtectionIEC</a></legend>
-                    <div id="WindProtectionIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindProtectionIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2284,14 +2284,14 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindProtectionIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindProtectionIEC_collapse" style="margin-left: 10px;">WindProtectionIEC</a></legend>
-                    <div id="{{id}}_WindProtectionIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindProtectionIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dfimax'>dfimax: </label><div class='col-sm-8'><input id='{{id}}_dfimax' class='form-control' type='text'{{#dfimax}} value='{{dfimax}}'{{/dfimax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fover'>fover: </label><div class='col-sm-8'><input id='{{id}}_fover' class='form-control' type='text'{{#fover}} value='{{fover}}'{{/fover}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_funder'>funder: </label><div class='col-sm-8'><input id='{{id}}_funder' class='form-control' type='text'{{#funder}} value='{{funder}}'{{/funder}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mzc'>mzc: </label><div class='col-sm-8'><input id='{{id}}_mzc' class='form-check-input' type='checkbox'{{#mzc}} checked{{/mzc}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_mzc'>mzc: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mzc' class='form-check-input' type='checkbox'{{#mzc}} checked{{/mzc}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tfma'>tfma: </label><div class='col-sm-8'><input id='{{id}}_tfma' class='form-control' type='text'{{#tfma}} value='{{tfma}}'{{/tfma}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uover'>uover: </label><div class='col-sm-8'><input id='{{id}}_uover' class='form-control' type='text'{{#uover}} value='{{uover}}'{{/uover}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uunder'>uunder: </label><div class='col-sm-8'><input id='{{id}}_uunder' class='form-control' type='text'{{#uunder}} value='{{uunder}}'{{/uunder}}></div></div>
@@ -2409,7 +2409,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContRotorRIEC_collapse" aria-expanded="true" aria-controls="WindContRotorRIEC_collapse" style="margin-left: 10px;">WindContRotorRIEC</a></legend>
-                    <div id="WindContRotorRIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContRotorRIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2448,7 +2448,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContRotorRIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContRotorRIEC_collapse" style="margin-left: 10px;">WindContRotorRIEC</a></legend>
-                    <div id="{{id}}_WindContRotorRIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContRotorRIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2562,7 +2562,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType4bIEC_collapse" aria-expanded="true" aria-controls="WindContPType4bIEC_collapse" style="margin-left: 10px;">WindContPType4bIEC</a></legend>
-                    <div id="WindContPType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContPType4bIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2594,7 +2594,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContPType4bIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContPType4bIEC_collapse" style="margin-left: 10px;">WindContPType4bIEC</a></legend>
-                    <div id="{{id}}_WindContPType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContPType4bIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2697,7 +2697,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindRefFrameRotIEC_collapse" aria-expanded="true" aria-controls="WindRefFrameRotIEC_collapse" style="margin-left: 10px;">WindRefFrameRotIEC</a></legend>
-                    <div id="WindRefFrameRotIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindRefFrameRotIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2728,7 +2728,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindRefFrameRotIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindRefFrameRotIEC_collapse" style="margin-left: 10px;">WindRefFrameRotIEC</a></legend>
-                    <div id="{{id}}_WindRefFrameRotIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindRefFrameRotIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2845,7 +2845,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindDynamicsLookupTable_collapse" aria-expanded="true" aria-controls="WindDynamicsLookupTable_collapse" style="margin-left: 10px;">WindDynamicsLookupTable</a></legend>
-                    <div id="WindDynamicsLookupTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindDynamicsLookupTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2887,7 +2887,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindDynamicsLookupTable_collapse" aria-expanded="true" aria-controls="{{id}}_WindDynamicsLookupTable_collapse" style="margin-left: 10px;">WindDynamicsLookupTable</a></legend>
-                    <div id="{{id}}_WindDynamicsLookupTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindDynamicsLookupTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3008,7 +3008,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType1or2Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2Dynamics_collapse" style="margin-left: 10px;">WindTurbineType1or2Dynamics</a></legend>
-                    <div id="WindTurbineType1or2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindTurbineType1or2Dynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -3037,7 +3037,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType1or2Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType1or2Dynamics_collapse" style="margin-left: 10px;">WindTurbineType1or2Dynamics</a></legend>
-                    <div id="{{id}}_WindTurbineType1or2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindTurbineType1or2Dynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -3161,7 +3161,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantFreqPcontrolIEC_collapse" aria-expanded="true" aria-controls="WindPlantFreqPcontrolIEC_collapse" style="margin-left: 10px;">WindPlantFreqPcontrolIEC</a></legend>
-                    <div id="WindPlantFreqPcontrolIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindPlantFreqPcontrolIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3207,7 +3207,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantFreqPcontrolIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantFreqPcontrolIEC_collapse" style="margin-left: 10px;">WindPlantFreqPcontrolIEC</a></legend>
-                    <div id="{{id}}_WindPlantFreqPcontrolIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindPlantFreqPcontrolIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3333,7 +3333,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType4aIEC_collapse" aria-expanded="true" aria-controls="WindContPType4aIEC_collapse" style="margin-left: 10px;">WindContPType4aIEC</a></legend>
-                    <div id="WindContPType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContPType4aIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3364,7 +3364,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContPType4aIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContPType4aIEC_collapse" style="margin-left: 10px;">WindContPType4aIEC</a></legend>
-                    <div id="{{id}}_WindContPType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContPType4aIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3475,7 +3475,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContCurrLimIEC_collapse" aria-expanded="true" aria-controls="WindContCurrLimIEC_collapse" style="margin-left: 10px;">WindContCurrLimIEC</a></legend>
-                    <div id="WindContCurrLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindContCurrLimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3513,15 +3513,15 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContCurrLimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContCurrLimIEC_collapse" style="margin-left: 10px;">WindContCurrLimIEC</a></legend>
-                    <div id="{{id}}_WindContCurrLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindContCurrLimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_imax'>imax: </label><div class='col-sm-8'><input id='{{id}}_imax' class='form-control' type='text'{{#imax}} value='{{imax}}'{{/imax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_imaxdip'>imaxdip: </label><div class='col-sm-8'><input id='{{id}}_imaxdip' class='form-control' type='text'{{#imaxdip}} value='{{imaxdip}}'{{/imaxdip}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpqu'>kpqu: </label><div class='col-sm-8'><input id='{{id}}_kpqu' class='form-control' type='text'{{#kpqu}} value='{{kpqu}}'{{/kpqu}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mdfslim'>mdfslim: </label><div class='col-sm-8'><input id='{{id}}_mdfslim' class='form-check-input' type='checkbox'{{#mdfslim}} checked{{/mdfslim}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mqpri'>mqpri: </label><div class='col-sm-8'><input id='{{id}}_mqpri' class='form-check-input' type='checkbox'{{#mqpri}} checked{{/mqpri}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_mdfslim'>mdfslim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mdfslim' class='form-check-input' type='checkbox'{{#mdfslim}} checked{{/mdfslim}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_mqpri'>mqpri: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mqpri' class='form-check-input' type='checkbox'{{#mqpri}} checked{{/mqpri}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltcl'>tufiltcl: </label><div class='col-sm-8'><input id='{{id}}_tufiltcl' class='form-control' type='text'{{#tufiltcl}} value='{{tufiltcl}}'{{/tufiltcl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upqumax'>upqumax: </label><div class='col-sm-8'><input id='{{id}}_upqumax' class='form-control' type='text'{{#upqumax}} value='{{upqumax}}'{{/upqumax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
@@ -3621,7 +3621,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroOneDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroOneDimIEC_collapse" style="margin-left: 10px;">WindAeroOneDimIEC</a></legend>
-                    <div id="WindAeroOneDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindAeroOneDimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3651,7 +3651,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindAeroOneDimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindAeroOneDimIEC_collapse" style="margin-left: 10px;">WindAeroOneDimIEC</a></legend>
-                    <div id="{{id}}_WindAeroOneDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindAeroOneDimIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3744,7 +3744,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantDynamics_collapse" aria-expanded="true" aria-controls="WindPlantDynamics_collapse" style="margin-left: 10px;">WindPlantDynamics</a></legend>
-                    <div id="WindPlantDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindPlantDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -3775,7 +3775,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantDynamics_collapse" style="margin-left: 10px;">WindPlantDynamics</a></legend>
-                    <div id="{{id}}_WindPlantDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindPlantDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -3873,7 +3873,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3or4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4IEC_collapse" style="margin-left: 10px;">WindTurbineType3or4IEC</a></legend>
-                    <div id="WindTurbineType3or4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindTurbineType3or4IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4Dynamics.prototype.template.call (this) +
                     `
@@ -3906,7 +3906,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType3or4IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType3or4IEC_collapse" style="margin-left: 10px;">WindTurbineType3or4IEC</a></legend>
-                    <div id="{{id}}_WindTurbineType3or4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindTurbineType3or4IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4Dynamics.prototype.edit_template.call (this) +
                     `
@@ -4008,7 +4008,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4IEC_collapse" style="margin-left: 10px;">WindTurbineType4IEC</a></legend>
-                    <div id="WindTurbineType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindTurbineType4IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4IEC.prototype.template.call (this) +
                     `
@@ -4036,7 +4036,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType4IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType4IEC_collapse" style="margin-left: 10px;">WindTurbineType4IEC</a></legend>
-                    <div id="{{id}}_WindTurbineType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindTurbineType4IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4IEC.prototype.edit_template.call (this) +
                     `
@@ -4133,7 +4133,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3IEC_collapse" style="margin-left: 10px;">WindTurbineType3IEC</a></legend>
-                    <div id="WindTurbineType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindTurbineType3IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4IEC.prototype.template.call (this) +
                     `
@@ -4166,7 +4166,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType3IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType3IEC_collapse" style="margin-left: 10px;">WindTurbineType3IEC</a></legend>
-                    <div id="{{id}}_WindTurbineType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindTurbineType3IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4IEC.prototype.edit_template.call (this) +
                     `
@@ -4272,7 +4272,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4aIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4aIEC_collapse" style="margin-left: 10px;">WindTurbineType4aIEC</a></legend>
-                    <div id="WindTurbineType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindTurbineType4aIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType4IEC.prototype.template.call (this) +
                     `
@@ -4301,7 +4301,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType4aIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType4aIEC_collapse" style="margin-left: 10px;">WindTurbineType4aIEC</a></legend>
-                    <div id="{{id}}_WindTurbineType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindTurbineType4aIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType4IEC.prototype.edit_template.call (this) +
                     `
@@ -4397,7 +4397,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4bIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4bIEC_collapse" style="margin-left: 10px;">WindTurbineType4bIEC</a></legend>
-                    <div id="WindTurbineType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindTurbineType4bIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType4IEC.prototype.template.call (this) +
                     `
@@ -4427,7 +4427,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType4bIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType4bIEC_collapse" style="margin-left: 10px;">WindTurbineType4bIEC</a></legend>
-                    <div id="{{id}}_WindTurbineType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindTurbineType4bIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType4IEC.prototype.edit_template.call (this) +
                     `
@@ -4526,7 +4526,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3aIEC_collapse" aria-expanded="true" aria-controls="WindGenType3aIEC_collapse" style="margin-left: 10px;">WindGenType3aIEC</a></legend>
-                    <div id="WindGenType3aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindGenType3aIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindGenType3IEC.prototype.template.call (this) +
                     `
@@ -4556,7 +4556,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenType3aIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenType3aIEC_collapse" style="margin-left: 10px;">WindGenType3aIEC</a></legend>
-                    <div id="{{id}}_WindGenType3aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindGenType3aIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindGenType3IEC.prototype.edit_template.call (this) +
                     `
@@ -4655,7 +4655,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3bIEC_collapse" aria-expanded="true" aria-controls="WindGenType3bIEC_collapse" style="margin-left: 10px;">WindGenType3bIEC</a></legend>
-                    <div id="WindGenType3bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindGenType3bIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindGenType3IEC.prototype.template.call (this) +
                     `
@@ -4688,11 +4688,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenType3bIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenType3bIEC_collapse" style="margin-left: 10px;">WindGenType3bIEC</a></legend>
-                    <div id="{{id}}_WindGenType3bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindGenType3bIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindGenType3IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mwtcwp'>mwtcwp: </label><div class='col-sm-8'><input id='{{id}}_mwtcwp' class='form-check-input' type='checkbox'{{#mwtcwp}} checked{{/mwtcwp}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_mwtcwp'>mwtcwp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mwtcwp' class='form-check-input' type='checkbox'{{#mwtcwp}} checked{{/mwtcwp}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tg'>tg: </label><div class='col-sm-8'><input id='{{id}}_tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_two'>two: </label><div class='col-sm-8'><input id='{{id}}_two' class='form-control' type='text'{{#two}} value='{{two}}'{{/two}}></div></div>
                     </div>
@@ -4783,7 +4783,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType1or2IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2IEC_collapse" style="margin-left: 10px;">WindTurbineType1or2IEC</a></legend>
-                    <div id="WindTurbineType1or2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindTurbineType1or2IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2Dynamics.prototype.template.call (this) +
                     `
@@ -4812,7 +4812,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType1or2IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType1or2IEC_collapse" style="margin-left: 10px;">WindTurbineType1or2IEC</a></legend>
-                    <div id="{{id}}_WindTurbineType1or2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindTurbineType1or2IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2Dynamics.prototype.edit_template.call (this) +
                     `
@@ -4904,7 +4904,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType1bIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1bIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1bIEC</a></legend>
-                    <div id="WindGenTurbineType1bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindGenTurbineType1bIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.template.call (this) +
                     `
@@ -4932,7 +4932,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenTurbineType1bIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenTurbineType1bIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1bIEC</a></legend>
-                    <div id="{{id}}_WindGenTurbineType1bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindGenTurbineType1bIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
                     `
@@ -5021,7 +5021,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType1aIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1aIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1aIEC</a></legend>
-                    <div id="WindGenTurbineType1aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindGenTurbineType1aIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.template.call (this) +
                     `
@@ -5049,7 +5049,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenTurbineType1aIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenTurbineType1aIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1aIEC</a></legend>
-                    <div id="{{id}}_WindGenTurbineType1aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindGenTurbineType1aIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
                     `
@@ -5140,7 +5140,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType2IEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType2IEC_collapse" style="margin-left: 10px;">WindGenTurbineType2IEC</a></legend>
-                    <div id="WindGenTurbineType2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindGenTurbineType2IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.template.call (this) +
                     `
@@ -5169,7 +5169,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenTurbineType2IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenTurbineType2IEC_collapse" style="margin-left: 10px;">WindGenTurbineType2IEC</a></legend>
-                    <div id="{{id}}_WindGenTurbineType2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindGenTurbineType2IEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
                     `
@@ -5263,7 +5263,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantIEC_collapse" aria-expanded="true" aria-controls="WindPlantIEC_collapse" style="margin-left: 10px;">WindPlantIEC</a></legend>
-                    <div id="WindPlantIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindPlantIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindPlantDynamics.prototype.template.call (this) +
                     `
@@ -5292,7 +5292,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantIEC_collapse" style="margin-left: 10px;">WindPlantIEC</a></legend>
-                    <div id="{{id}}_WindPlantIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindPlantIEC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + WindPlantDynamics.prototype.edit_template.call (this) +
                     `

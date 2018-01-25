@@ -77,7 +77,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktConnectivityNode_collapse" aria-expanded="true" aria-controls="MktConnectivityNode_collapse" style="margin-left: 10px;">MktConnectivityNode</a></legend>
-                    <div id="MktConnectivityNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktConnectivityNode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConnectivityNode.prototype.template.call (this) +
                     `
@@ -121,7 +121,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktConnectivityNode_collapse" aria-expanded="true" aria-controls="{{id}}_MktConnectivityNode_collapse" style="margin-left: 10px;">MktConnectivityNode</a></legend>
-                    <div id="{{id}}_MktConnectivityNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktConnectivityNode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConnectivityNode.prototype.edit_template.call (this) +
                     `
@@ -232,7 +232,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktUserAttribute_collapse" aria-expanded="true" aria-controls="MktUserAttribute_collapse" style="margin-left: 10px;">MktUserAttribute</a></legend>
-                    <div id="MktUserAttribute_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktUserAttribute_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.UserAttribute.prototype.template.call (this) +
                     `
@@ -277,7 +277,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktUserAttribute_collapse" aria-expanded="true" aria-controls="{{id}}_MktUserAttribute_collapse" style="margin-left: 10px;">MktUserAttribute</a></legend>
-                    <div id="{{id}}_MktUserAttribute_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktUserAttribute_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.UserAttribute.prototype.edit_template.call (this) +
                     `
@@ -379,7 +379,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktGeneratingUnit_collapse" aria-expanded="true" aria-controls="MktGeneratingUnit_collapse" style="margin-left: 10px;">MktGeneratingUnit</a></legend>
-                    <div id="MktGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Production.GeneratingUnit.prototype.template.call (this) +
                     `
@@ -410,7 +410,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_MktGeneratingUnit_collapse" style="margin-left: 10px;">MktGeneratingUnit</a></legend>
-                    <div id="{{id}}_MktGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Production.GeneratingUnit.prototype.edit_template.call (this) +
                     `
@@ -498,7 +498,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktActivityRecord_collapse" aria-expanded="true" aria-controls="MktActivityRecord_collapse" style="margin-left: 10px;">MktActivityRecord</a></legend>
-                    <div id="MktActivityRecord_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktActivityRecord_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.template.call (this) +
                     `
@@ -528,7 +528,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktActivityRecord_collapse" aria-expanded="true" aria-controls="{{id}}_MktActivityRecord_collapse" style="margin-left: 10px;">MktActivityRecord</a></legend>
-                    <div id="{{id}}_MktActivityRecord_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktActivityRecord_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.edit_template.call (this) +
                     `
@@ -617,7 +617,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktLoadArea_collapse" aria-expanded="true" aria-controls="MktLoadArea_collapse" style="margin-left: 10px;">MktLoadArea</a></legend>
-                    <div id="MktLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktLoadArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.LoadArea.prototype.template.call (this) +
                     `
@@ -650,7 +650,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktLoadArea_collapse" aria-expanded="true" aria-controls="{{id}}_MktLoadArea_collapse" style="margin-left: 10px;">MktLoadArea</a></legend>
-                    <div id="{{id}}_MktLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktLoadArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.LoadArea.prototype.edit_template.call (this) +
                     `
@@ -736,7 +736,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktLine_collapse" aria-expanded="true" aria-controls="MktLine_collapse" style="margin-left: 10px;">MktLine</a></legend>
-                    <div id="MktLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktLine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.Line.prototype.template.call (this) +
                     `
@@ -767,7 +767,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktLine_collapse" aria-expanded="true" aria-controls="{{id}}_MktLine_collapse" style="margin-left: 10px;">MktLine</a></legend>
-                    <div id="{{id}}_MktLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktLine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.Line.prototype.edit_template.call (this) +
                     `
@@ -859,7 +859,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketLedger_collapse" aria-expanded="true" aria-controls="MarketLedger_collapse" style="margin-left: 10px;">MarketLedger</a></legend>
-                    <div id="MarketLedger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketLedger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -889,7 +889,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketLedger_collapse" aria-expanded="true" aria-controls="{{id}}_MarketLedger_collapse" style="margin-left: 10px;">MarketLedger</a></legend>
-                    <div id="{{id}}_MarketLedger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketLedger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -976,7 +976,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktPowerTransformer_collapse" aria-expanded="true" aria-controls="MktPowerTransformer_collapse" style="margin-left: 10px;">MktPowerTransformer</a></legend>
-                    <div id="MktPowerTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktPowerTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.PowerTransformer.prototype.template.call (this) +
                     `
@@ -1008,7 +1008,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktPowerTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_MktPowerTransformer_collapse" style="margin-left: 10px;">MktPowerTransformer</a></legend>
-                    <div id="{{id}}_MktPowerTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktPowerTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.PowerTransformer.prototype.edit_template.call (this) +
                     `
@@ -1123,7 +1123,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketInvoice_collapse" aria-expanded="true" aria-controls="MarketInvoice_collapse" style="margin-left: 10px;">MarketInvoice</a></legend>
-                    <div id="MarketInvoice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketInvoice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1165,7 +1165,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketInvoice_collapse" aria-expanded="true" aria-controls="{{id}}_MarketInvoice_collapse" style="margin-left: 10px;">MarketInvoice</a></legend>
-                    <div id="{{id}}_MarketInvoice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketInvoice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1174,7 +1174,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dueDate'>dueDate: </label><div class='col-sm-8'><input id='{{id}}_dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><input id='{{id}}_kind' class='form-control' type='text'{{#kind}} value='{{kind}}'{{/kind}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mailedDate'>mailedDate: </label><div class='col-sm-8'><input id='{{id}}_mailedDate' class='form-control' type='text'{{#mailedDate}} value='{{mailedDate}}'{{/mailedDate}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proForma'>proForma: </label><div class='col-sm-8'><input id='{{id}}_proForma' class='form-check-input' type='checkbox'{{#proForma}} checked{{/proForma}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_proForma'>proForma: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proForma' class='form-check-input' type='checkbox'{{#proForma}} checked{{/proForma}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='{{id}}_referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transferType'>transferType: </label><div class='col-sm-8'><input id='{{id}}_transferType' class='form-control' type='text'{{#transferType}} value='{{transferType}}'{{/transferType}}></div></div>
@@ -1285,7 +1285,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketLedgerEntry_collapse" aria-expanded="true" aria-controls="MarketLedgerEntry_collapse" style="margin-left: 10px;">MarketLedgerEntry</a></legend>
-                    <div id="MarketLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketLedgerEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1322,7 +1322,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketLedgerEntry_collapse" aria-expanded="true" aria-controls="{{id}}_MarketLedgerEntry_collapse" style="margin-left: 10px;">MarketLedgerEntry</a></legend>
-                    <div id="{{id}}_MarketLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketLedgerEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1448,7 +1448,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketInvoiceLineItem_collapse" aria-expanded="true" aria-controls="MarketInvoiceLineItem_collapse" style="margin-left: 10px;">MarketInvoiceLineItem</a></legend>
-                    <div id="MarketInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketInvoiceLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1492,7 +1492,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketInvoiceLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_MarketInvoiceLineItem_collapse" style="margin-left: 10px;">MarketInvoiceLineItem</a></legend>
-                    <div id="{{id}}_MarketInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketInvoiceLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1610,7 +1610,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktTerminal_collapse" aria-expanded="true" aria-controls="MktTerminal_collapse" style="margin-left: 10px;">MktTerminal</a></legend>
-                    <div id="MktTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Terminal.prototype.template.call (this) +
                     `
@@ -1643,7 +1643,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_MktTerminal_collapse" style="margin-left: 10px;">MktTerminal</a></legend>
-                    <div id="{{id}}_MktTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Terminal.prototype.edit_template.call (this) +
                     `
@@ -1763,7 +1763,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktOrganisation_collapse" aria-expanded="true" aria-controls="MktOrganisation_collapse" style="margin-left: 10px;">MktOrganisation</a></legend>
-                    <div id="MktOrganisation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktOrganisation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Organisation.prototype.template.call (this) +
                     `
@@ -1821,7 +1821,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktOrganisation_collapse" aria-expanded="true" aria-controls="{{id}}_MktOrganisation_collapse" style="margin-left: 10px;">MktOrganisation</a></legend>
-                    <div id="{{id}}_MktOrganisation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktOrganisation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
@@ -1935,7 +1935,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktEnergyConsumer_collapse" aria-expanded="true" aria-controls="MktEnergyConsumer_collapse" style="margin-left: 10px;">MktEnergyConsumer</a></legend>
-                    <div id="MktEnergyConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktEnergyConsumer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.template.call (this) +
                     `
@@ -1966,7 +1966,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktEnergyConsumer_collapse" aria-expanded="true" aria-controls="{{id}}_MktEnergyConsumer_collapse" style="margin-left: 10px;">MktEnergyConsumer</a></legend>
-                    <div id="{{id}}_MktEnergyConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktEnergyConsumer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.edit_template.call (this) +
                     `
@@ -2062,7 +2062,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MktMeasurement_collapse" aria-expanded="true" aria-controls="MktMeasurement_collapse" style="margin-left: 10px;">MktMeasurement</a></legend>
-                    <div id="MktMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MktMeasurement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Meas.Measurement.prototype.template.call (this) +
                     `
@@ -2098,7 +2098,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktMeasurement_collapse" aria-expanded="true" aria-controls="{{id}}_MktMeasurement_collapse" style="margin-left: 10px;">MktMeasurement</a></legend>
-                    <div id="{{id}}_MktMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MktMeasurement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Meas.Measurement.prototype.edit_template.call (this) +
                     `

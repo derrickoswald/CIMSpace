@@ -140,7 +140,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="ExcitationSystemDynamics_collapse" style="margin-left: 10px;">ExcitationSystemDynamics</a></legend>
-                    <div id="ExcitationSystemDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcitationSystemDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -175,7 +175,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_ExcitationSystemDynamics_collapse" style="margin-left: 10px;">ExcitationSystemDynamics</a></legend>
-                    <div id="{{id}}_ExcitationSystemDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcitationSystemDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -315,7 +315,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC1A_collapse" style="margin-left: 10px;">ExcIEEEDC1A</a></legend>
-                    <div id="ExcIEEEDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEDC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -358,13 +358,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC1A_collapse" style="margin-left: 10px;">ExcIEEEDC1A</a></legend>
-                    <div id="{{id}}_ExcIEEEDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEDC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd1'>efd1: </label><div class='col-sm-8'><input id='{{id}}_efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd2'>efd2: </label><div class='col-sm-8'><input id='{{id}}_efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exclim'>exclim: </label><div class='col-sm-8'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exclim'>exclim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ke'>ke: </label><div class='col-sm-8'><input id='{{id}}_ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
@@ -375,7 +375,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_uelin'>uelin: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
@@ -478,7 +478,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSCRX_collapse" aria-expanded="true" aria-controls="ExcSCRX_collapse" style="margin-left: 10px;">ExcSCRX</a></legend>
-                    <div id="ExcSCRX_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcSCRX_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -513,11 +513,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcSCRX_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSCRX_collapse" style="margin-left: 10px;">ExcSCRX</a></legend>
-                    <div id="{{id}}_ExcSCRX_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcSCRX_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_cswitch'>cswitch: </label><div class='col-sm-8'><input id='{{id}}_cswitch' class='form-check-input' type='checkbox'{{#cswitch}} checked{{/cswitch}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_cswitch'>cswitch: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_cswitch' class='form-check-input' type='checkbox'{{#cswitch}} checked{{/cswitch}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emax'>emax: </label><div class='col-sm-8'><input id='{{id}}_emax' class='form-control' type='text'{{#emax}} value='{{emax}}'{{/emax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emin'>emin: </label><div class='col-sm-8'><input id='{{id}}_emin' class='form-control' type='text'{{#emin}} value='{{emin}}'{{/emin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
@@ -641,7 +641,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="ExcIEEEDC4B_collapse" style="margin-left: 10px;">ExcIEEEDC4B</a></legend>
-                    <div id="ExcIEEEDC4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEDC4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -687,7 +687,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC4B_collapse" style="margin-left: 10px;">ExcIEEEDC4B</a></legend>
-                    <div id="{{id}}_ExcIEEEDC4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEDC4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -699,14 +699,14 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><input id='{{id}}_oelin' class='form-check-input' type='checkbox'{{#oelin}} checked{{/oelin}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_oelin'>oelin: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_oelin' class='form-check-input' type='checkbox'{{#oelin}} checked{{/oelin}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_seefd1'>seefd1: </label><div class='col-sm-8'><input id='{{id}}_seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_seefd2'>seefd2: </label><div class='col-sm-8'><input id='{{id}}_seefd2' class='form-control' type='text'{{#seefd2}} value='{{seefd2}}'{{/seefd2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td'>td: </label><div class='col-sm-8'><input id='{{id}}_td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_uelin'>uelin: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vemin'>vemin: </label><div class='col-sm-8'><input id='{{id}}_vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
@@ -841,7 +841,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC3A_collapse" style="margin-left: 10px;">ExcIEEEAC3A</a></legend>
-                    <div id="ExcIEEEAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEAC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -889,7 +889,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC3A_collapse" style="margin-left: 10px;">ExcIEEEAC3A</a></legend>
-                    <div id="{{id}}_ExcIEEEAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEAC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -1011,7 +1011,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR5_collapse" aria-expanded="true" aria-controls="ExcAVR5_collapse" style="margin-left: 10px;">ExcAVR5</a></legend>
-                    <div id="ExcAVR5_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAVR5_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -1041,7 +1041,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR5_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR5_collapse" style="margin-left: 10px;">ExcAVR5</a></legend>
-                    <div id="{{id}}_ExcAVR5_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAVR5_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -1149,7 +1149,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST2A_collapse" aria-expanded="true" aria-controls="ExcST2A_collapse" style="margin-left: 10px;">ExcST2A</a></legend>
-                    <div id="ExcST2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcST2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -1191,7 +1191,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST2A_collapse" style="margin-left: 10px;">ExcST2A</a></legend>
-                    <div id="{{id}}_ExcST2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcST2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -1207,7 +1207,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_uelin'>uelin: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
@@ -1349,7 +1349,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcELIN2_collapse" aria-expanded="true" aria-controls="ExcELIN2_collapse" style="margin-left: 10px;">ExcELIN2</a></legend>
-                    <div id="ExcELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcELIN2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -1403,7 +1403,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcELIN2_collapse" aria-expanded="true" aria-controls="{{id}}_ExcELIN2_collapse" style="margin-left: 10px;">ExcELIN2</a></legend>
-                    <div id="{{id}}_ExcELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcELIN2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -1553,7 +1553,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC3A_collapse" style="margin-left: 10px;">ExcIEEEDC3A</a></legend>
-                    <div id="ExcIEEEDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEDC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -1591,13 +1591,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC3A_collapse" style="margin-left: 10px;">ExcIEEEDC3A</a></legend>
-                    <div id="{{id}}_ExcIEEEDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEDC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd1'>efd1: </label><div class='col-sm-8'><input id='{{id}}_efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd2'>efd2: </label><div class='col-sm-8'><input id='{{id}}_efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exclim'>exclim: </label><div class='col-sm-8'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exclim'>exclim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ke'>ke: </label><div class='col-sm-8'><input id='{{id}}_ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kv'>kv: </label><div class='col-sm-8'><input id='{{id}}_kv' class='form-control' type='text'{{#kv}} value='{{kv}}'{{/kv}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_seefd1'>seefd1: </label><div class='col-sm-8'><input id='{{id}}_seefd1' class='form-control' type='text'{{#seefd1}} value='{{seefd1}}'{{/seefd1}}></div></div>
@@ -1729,7 +1729,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC2A_collapse" style="margin-left: 10px;">ExcIEEEAC2A</a></legend>
-                    <div id="ExcIEEEAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEAC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -1777,7 +1777,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC2A_collapse" style="margin-left: 10px;">ExcIEEEAC2A</a></legend>
-                    <div id="{{id}}_ExcIEEEAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEAC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -1935,7 +1935,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC1A_collapse" aria-expanded="true" aria-controls="ExcAC1A_collapse" style="margin-left: 10px;">ExcAC1A</a></legend>
-                    <div id="ExcAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -1984,11 +1984,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC1A_collapse" style="margin-left: 10px;">ExcAC1A</a></legend>
-                    <div id="{{id}}_ExcAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_hvlvgates'>hvlvgates: </label><div class='col-sm-8'><input id='{{id}}_hvlvgates' class='form-check-input' type='checkbox'{{#hvlvgates}} checked{{/hvlvgates}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_hvlvgates'>hvlvgates: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_hvlvgates' class='form-check-input' type='checkbox'{{#hvlvgates}} checked{{/hvlvgates}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kc'>kc: </label><div class='col-sm-8'><input id='{{id}}_kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kd'>kd: </label><div class='col-sm-8'><input id='{{id}}_kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
@@ -2120,7 +2120,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSEXS_collapse" aria-expanded="true" aria-controls="ExcSEXS_collapse" style="margin-left: 10px;">ExcSEXS</a></legend>
-                    <div id="ExcSEXS_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcSEXS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -2157,7 +2157,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcSEXS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSEXS_collapse" style="margin-left: 10px;">ExcSEXS</a></legend>
-                    <div id="{{id}}_ExcSEXS_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcSEXS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -2277,7 +2277,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR2_collapse" aria-expanded="true" aria-controls="ExcAVR2_collapse" style="margin-left: 10px;">ExcAVR2</a></legend>
-                    <div id="ExcAVR2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAVR2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -2317,7 +2317,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR2_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR2_collapse" style="margin-left: 10px;">ExcAVR2</a></legend>
-                    <div id="{{id}}_ExcAVR2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAVR2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -2449,7 +2449,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC3A_collapse" aria-expanded="true" aria-controls="ExcDC3A_collapse" style="margin-left: 10px;">ExcDC3A</a></legend>
-                    <div id="ExcDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcDC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -2492,16 +2492,16 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcDC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC3A_collapse" style="margin-left: 10px;">ExcDC3A</a></legend>
-                    <div id="{{id}}_ExcDC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcDC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_edfmax'>edfmax: </label><div class='col-sm-8'><input id='{{id}}_edfmax' class='form-control' type='text'{{#edfmax}} value='{{edfmax}}'{{/edfmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd1'>efd1: </label><div class='col-sm-8'><input id='{{id}}_efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd2'>efd2: </label><div class='col-sm-8'><input id='{{id}}_efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_efdlim'>efdlim: </label><div class='col-sm-8'><input id='{{id}}_efdlim' class='form-check-input' type='checkbox'{{#efdlim}} checked{{/efdlim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_efdlim'>efdlim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_efdlim' class='form-check-input' type='checkbox'{{#efdlim}} checked{{/efdlim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdmin'>efdmin: </label><div class='col-sm-8'><input id='{{id}}_efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exclim'>exclim: </label><div class='col-sm-8'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exclim'>exclim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ke'>ke: </label><div class='col-sm-8'><input id='{{id}}_ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kr'>kr: </label><div class='col-sm-8'><input id='{{id}}_kr' class='form-control' type='text'{{#kr}} value='{{kr}}'{{/kr}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
@@ -2642,7 +2642,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST6B_collapse" aria-expanded="true" aria-controls="ExcST6B_collapse" style="margin-left: 10px;">ExcST6B</a></legend>
-                    <div id="ExcST6B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcST6B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -2694,12 +2694,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST6B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST6B_collapse" style="margin-left: 10px;">ExcST6B</a></legend>
-                    <div id="{{id}}_ExcST6B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcST6B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ilr'>ilr: </label><div class='col-sm-8'><input id='{{id}}_ilr' class='form-control' type='text'{{#ilr}} value='{{ilr}}'{{/ilr}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-check-input' type='checkbox'{{#k1}} checked{{/k1}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_k1'>k1: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_k1' class='form-check-input' type='checkbox'{{#k1}} checked{{/k1}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kcl'>kcl: </label><div class='col-sm-8'><input id='{{id}}_kcl' class='form-control' type='text'{{#kcl}} value='{{kcl}}'{{/kcl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kff'>kff: </label><div class='col-sm-8'><input id='{{id}}_kff' class='form-control' type='text'{{#kff}} value='{{kff}}'{{/kff}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kg'>kg: </label><div class='col-sm-8'><input id='{{id}}_kg' class='form-control' type='text'{{#kg}} value='{{kg}}'{{/kg}}></div></div>
@@ -2714,10 +2714,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tvd'>tvd: </label><div class='col-sm-8'><input id='{{id}}_tvd' class='form-control' type='text'{{#tvd}} value='{{tvd}}'{{/tvd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamax'>vamax: </label><div class='col-sm-8'><input id='{{id}}_vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamin'>vamin: </label><div class='col-sm-8'><input id='{{id}}_vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vilim'>vilim: </label><div class='col-sm-8'><input id='{{id}}_vilim' class='form-check-input' type='checkbox'{{#vilim}} checked{{/vilim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vilim'>vilim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vilim' class='form-check-input' type='checkbox'{{#vilim}} checked{{/vilim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vimax'>vimax: </label><div class='col-sm-8'><input id='{{id}}_vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vimin'>vimin: </label><div class='col-sm-8'><input id='{{id}}_vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vmult'>vmult: </label><div class='col-sm-8'><input id='{{id}}_vmult' class='form-check-input' type='checkbox'{{#vmult}} checked{{/vmult}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vmult'>vmult: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vmult' class='form-check-input' type='checkbox'{{#vmult}} checked{{/vmult}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xc'>xc: </label><div class='col-sm-8'><input id='{{id}}_xc' class='form-control' type='text'{{#xc}} value='{{xc}}'{{/xc}}></div></div>
@@ -2860,7 +2860,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcPIC_collapse" aria-expanded="true" aria-controls="ExcPIC_collapse" style="margin-left: 10px;">ExcPIC</a></legend>
-                    <div id="ExcPIC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcPIC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -2910,7 +2910,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcPIC_collapse" aria-expanded="true" aria-controls="{{id}}_ExcPIC_collapse" style="margin-left: 10px;">ExcPIC</a></legend>
-                    <div id="{{id}}_ExcPIC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcPIC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -3048,7 +3048,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcCZ_collapse" aria-expanded="true" aria-controls="ExcCZ_collapse" style="margin-left: 10px;">ExcCZ</a></legend>
-                    <div id="ExcCZ_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcCZ_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -3085,7 +3085,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcCZ_collapse" aria-expanded="true" aria-controls="{{id}}_ExcCZ_collapse" style="margin-left: 10px;">ExcCZ</a></legend>
-                    <div id="{{id}}_ExcCZ_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcCZ_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -3231,7 +3231,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC8B_collapse" aria-expanded="true" aria-controls="ExcAC8B_collapse" style="margin-left: 10px;">ExcAC8B</a></legend>
-                    <div id="ExcAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAC8B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -3285,11 +3285,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC8B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC8B_collapse" style="margin-left: 10px;">ExcAC8B</a></legend>
-                    <div id="{{id}}_ExcAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAC8B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_inlim'>inlim: </label><div class='col-sm-8'><input id='{{id}}_inlim' class='form-check-input' type='checkbox'{{#inlim}} checked{{/inlim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_inlim'>inlim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_inlim' class='form-check-input' type='checkbox'{{#inlim}} checked{{/inlim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kc'>kc: </label><div class='col-sm-8'><input id='{{id}}_kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kd'>kd: </label><div class='col-sm-8'><input id='{{id}}_kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
@@ -3298,13 +3298,13 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kir'>kir: </label><div class='col-sm-8'><input id='{{id}}_kir' class='form-control' type='text'{{#kir}} value='{{kir}}'{{/kir}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpr'>kpr: </label><div class='col-sm-8'><input id='{{id}}_kpr' class='form-control' type='text'{{#kpr}} value='{{kpr}}'{{/kpr}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_pidlim'>pidlim: </label><div class='col-sm-8'><input id='{{id}}_pidlim' class='form-check-input' type='checkbox'{{#pidlim}} checked{{/pidlim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_pidlim'>pidlim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_pidlim' class='form-check-input' type='checkbox'{{#pidlim}} checked{{/pidlim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_seve1'>seve1: </label><div class='col-sm-8'><input id='{{id}}_seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_seve2'>seve2: </label><div class='col-sm-8'><input id='{{id}}_seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tdr'>tdr: </label><div class='col-sm-8'><input id='{{id}}_tdr' class='form-control' type='text'{{#tdr}} value='{{tdr}}'{{/tdr}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_telim'>telim: </label><div class='col-sm-8'><input id='{{id}}_telim' class='form-check-input' type='checkbox'{{#telim}} checked{{/telim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_telim'>telim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_telim' class='form-check-input' type='checkbox'{{#telim}} checked{{/telim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve1'>ve1: </label><div class='col-sm-8'><input id='{{id}}_ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve2'>ve2: </label><div class='col-sm-8'><input id='{{id}}_ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vemin'>vemin: </label><div class='col-sm-8'><input id='{{id}}_vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
@@ -3315,7 +3315,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpidmin'>vpidmin: </label><div class='col-sm-8'><input id='{{id}}_vpidmin' class='form-control' type='text'{{#vpidmin}} value='{{vpidmin}}'{{/vpidmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vtmult'>vtmult: </label><div class='col-sm-8'><input id='{{id}}_vtmult' class='form-check-input' type='checkbox'{{#vtmult}} checked{{/vtmult}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vtmult'>vtmult: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vtmult' class='form-check-input' type='checkbox'{{#vtmult}} checked{{/vtmult}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3441,7 +3441,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC5A_collapse" style="margin-left: 10px;">ExcIEEEAC5A</a></legend>
-                    <div id="ExcIEEEAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEAC5A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -3482,7 +3482,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC5A_collapse" style="margin-left: 10px;">ExcIEEEAC5A</a></legend>
-                    <div id="{{id}}_ExcIEEEAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEAC5A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -3610,7 +3610,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="ExcIEEEST2A_collapse" style="margin-left: 10px;">ExcIEEEST2A</a></legend>
-                    <div id="ExcIEEEST2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEST2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -3650,7 +3650,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST2A_collapse" style="margin-left: 10px;">ExcIEEEST2A</a></legend>
-                    <div id="{{id}}_ExcIEEEST2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEST2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -3664,7 +3664,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_uelin'>uelin: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
@@ -3784,7 +3784,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="ExcIEEEST5B_collapse" style="margin-left: 10px;">ExcIEEEST5B</a></legend>
-                    <div id="ExcIEEEST5B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEST5B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -3828,7 +3828,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST5B_collapse" style="margin-left: 10px;">ExcIEEEST5B</a></legend>
-                    <div id="{{id}}_ExcIEEEST5B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEST5B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -3952,7 +3952,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC4A_collapse" aria-expanded="true" aria-controls="ExcAC4A_collapse" style="margin-left: 10px;">ExcAC4A</a></legend>
-                    <div id="ExcAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAC4A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -3988,7 +3988,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC4A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC4A_collapse" style="margin-left: 10px;">ExcAC4A</a></legend>
-                    <div id="{{id}}_ExcAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAC4A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -4116,7 +4116,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC8B_collapse" style="margin-left: 10px;">ExcIEEEAC8B</a></legend>
-                    <div id="ExcIEEEAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEAC8B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -4161,7 +4161,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC8B_collapse" style="margin-left: 10px;">ExcIEEEAC8B</a></legend>
-                    <div id="{{id}}_ExcIEEEAC8B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEAC8B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -4335,7 +4335,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSK_collapse" aria-expanded="true" aria-controls="ExcSK_collapse" style="margin-left: 10px;">ExcSK</a></legend>
-                    <div id="ExcSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcSK_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -4394,7 +4394,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcSK_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSK_collapse" style="margin-left: 10px;">ExcSK</a></legend>
-                    <div id="{{id}}_ExcSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcSK_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -4414,9 +4414,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kqob'>kqob: </label><div class='col-sm-8'><input id='{{id}}_kqob' class='form-control' type='text'{{#kqob}} value='{{kqob}}'{{/kqob}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kqp'>kqp: </label><div class='col-sm-8'><input id='{{id}}_kqp' class='form-control' type='text'{{#kqp}} value='{{kqp}}'{{/kqp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nq'>nq: </label><div class='col-sm-8'><input id='{{id}}_nq' class='form-control' type='text'{{#nq}} value='{{nq}}'{{/nq}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_qconoff'>qconoff: </label><div class='col-sm-8'><input id='{{id}}_qconoff' class='form-check-input' type='checkbox'{{#qconoff}} checked{{/qconoff}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_qconoff'>qconoff: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_qconoff' class='form-check-input' type='checkbox'{{#qconoff}} checked{{/qconoff}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qz'>qz: </label><div class='col-sm-8'><input id='{{id}}_qz' class='form-control' type='text'{{#qz}} value='{{qz}}'{{/qz}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_remote'>remote: </label><div class='col-sm-8'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_remote'>remote: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sbase'>sbase: </label><div class='col-sm-8'><input id='{{id}}_sbase' class='form-control' type='text'{{#sbase}} value='{{sbase}}'{{/sbase}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
@@ -4604,7 +4604,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcREXS_collapse" aria-expanded="true" aria-controls="ExcREXS_collapse" style="margin-left: 10px;">ExcREXS</a></legend>
-                    <div id="ExcREXS_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcREXS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -4669,7 +4669,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcREXS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcREXS_collapse" style="margin-left: 10px;">ExcREXS</a></legend>
-                    <div id="{{id}}_ExcREXS_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcREXS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -4843,7 +4843,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcANS_collapse" aria-expanded="true" aria-controls="ExcANS_collapse" style="margin-left: 10px;">ExcANS</a></legend>
-                    <div id="ExcANS_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcANS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -4884,7 +4884,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcANS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcANS_collapse" style="margin-left: 10px;">ExcANS</a></legend>
-                    <div id="{{id}}_ExcANS_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcANS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -5038,7 +5038,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC7B_collapse" style="margin-left: 10px;">ExcIEEEAC7B</a></legend>
-                    <div id="ExcIEEEAC7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEAC7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -5091,7 +5091,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC7B_collapse" style="margin-left: 10px;">ExcIEEEAC7B</a></legend>
-                    <div id="{{id}}_ExcIEEEAC7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEAC7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -5249,7 +5249,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="ExcIEEEST4B_collapse" style="margin-left: 10px;">ExcIEEEST4B</a></legend>
-                    <div id="ExcIEEEST4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEST4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -5292,7 +5292,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST4B_collapse" style="margin-left: 10px;">ExcIEEEST4B</a></legend>
-                    <div id="{{id}}_ExcIEEEST4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEST4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -5428,7 +5428,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST7B_collapse" aria-expanded="true" aria-controls="ExcST7B_collapse" style="margin-left: 10px;">ExcST7B</a></legend>
-                    <div id="ExcST7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcST7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -5475,7 +5475,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST7B_collapse" style="margin-left: 10px;">ExcST7B</a></legend>
-                    <div id="{{id}}_ExcST7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcST7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -5615,7 +5615,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC1A_collapse" aria-expanded="true" aria-controls="ExcDC1A_collapse" style="margin-left: 10px;">ExcDC1A</a></legend>
-                    <div id="ExcDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcDC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -5660,7 +5660,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcDC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC1A_collapse" style="margin-left: 10px;">ExcDC1A</a></legend>
-                    <div id="{{id}}_ExcDC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcDC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -5668,7 +5668,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd1'>efd1: </label><div class='col-sm-8'><input id='{{id}}_efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd2'>efd2: </label><div class='col-sm-8'><input id='{{id}}_efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdmin'>efdmin: </label><div class='col-sm-8'><input id='{{id}}_efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exclim'>exclim: </label><div class='col-sm-8'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exclim'>exclim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ke'>ke: </label><div class='col-sm-8'><input id='{{id}}_ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
@@ -5808,7 +5808,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST3A_collapse" aria-expanded="true" aria-controls="ExcST3A_collapse" style="margin-left: 10px;">ExcST3A</a></legend>
-                    <div id="ExcST3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcST3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -5855,7 +5855,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST3A_collapse" style="margin-left: 10px;">ExcST3A</a></legend>
-                    <div id="{{id}}_ExcST3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcST3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -6005,7 +6005,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC1A_collapse" style="margin-left: 10px;">ExcIEEEAC1A</a></legend>
-                    <div id="ExcIEEEAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEAC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -6050,7 +6050,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC1A_collapse" style="margin-left: 10px;">ExcIEEEAC1A</a></legend>
-                    <div id="{{id}}_ExcIEEEAC1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEAC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -6194,7 +6194,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC5A_collapse" aria-expanded="true" aria-controls="ExcAC5A_collapse" style="margin-left: 10px;">ExcAC5A</a></legend>
-                    <div id="ExcAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAC5A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -6239,7 +6239,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC5A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC5A_collapse" style="margin-left: 10px;">ExcAC5A</a></legend>
-                    <div id="{{id}}_ExcAC5A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAC5A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -6371,7 +6371,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcHU_collapse" aria-expanded="true" aria-controls="ExcHU_collapse" style="margin-left: 10px;">ExcHU</a></legend>
-                    <div id="ExcHU_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcHU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -6410,7 +6410,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcHU_collapse" aria-expanded="true" aria-controls="{{id}}_ExcHU_collapse" style="margin-left: 10px;">ExcHU</a></legend>
-                    <div id="{{id}}_ExcHU_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcHU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -6548,7 +6548,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR7_collapse" aria-expanded="true" aria-controls="ExcAVR7_collapse" style="margin-left: 10px;">ExcAVR7</a></legend>
-                    <div id="ExcAVR7_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAVR7_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -6596,7 +6596,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR7_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR7_collapse" style="margin-left: 10px;">ExcAVR7</a></legend>
-                    <div id="{{id}}_ExcAVR7_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAVR7_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -6742,7 +6742,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="ExcIEEEST7B_collapse" style="margin-left: 10px;">ExcIEEEST7B</a></legend>
-                    <div id="ExcIEEEST7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEST7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -6788,7 +6788,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST7B_collapse" style="margin-left: 10px;">ExcIEEEST7B</a></legend>
-                    <div id="{{id}}_ExcIEEEST7B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEST7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -6924,7 +6924,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC2A_collapse" style="margin-left: 10px;">ExcIEEEDC2A</a></legend>
-                    <div id="ExcIEEEDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEDC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -6967,7 +6967,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC2A_collapse" style="margin-left: 10px;">ExcIEEEDC2A</a></legend>
-                    <div id="{{id}}_ExcIEEEDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEDC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -6984,7 +6984,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_uelin'>uelin: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_uelin' class='form-check-input' type='checkbox'{{#uelin}} checked{{/uelin}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
@@ -7097,7 +7097,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR3_collapse" aria-expanded="true" aria-controls="ExcAVR3_collapse" style="margin-left: 10px;">ExcAVR3</a></legend>
-                    <div id="ExcAVR3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAVR3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -7136,7 +7136,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR3_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR3_collapse" style="margin-left: 10px;">ExcAVR3</a></legend>
-                    <div id="{{id}}_ExcAVR3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAVR3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -7252,7 +7252,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC4A_collapse" style="margin-left: 10px;">ExcIEEEAC4A</a></legend>
-                    <div id="ExcIEEEAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEAC4A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -7288,7 +7288,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC4A_collapse" style="margin-left: 10px;">ExcIEEEAC4A</a></legend>
-                    <div id="{{id}}_ExcIEEEAC4A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEAC4A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -7434,7 +7434,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC2A_collapse" aria-expanded="true" aria-controls="ExcAC2A_collapse" style="margin-left: 10px;">ExcAC2A</a></legend>
-                    <div id="ExcAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -7489,11 +7489,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC2A_collapse" style="margin-left: 10px;">ExcAC2A</a></legend>
-                    <div id="{{id}}_ExcAC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_hvgate'>hvgate: </label><div class='col-sm-8'><input id='{{id}}_hvgate' class='form-check-input' type='checkbox'{{#hvgate}} checked{{/hvgate}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_hvgate'>hvgate: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_hvgate' class='form-check-input' type='checkbox'{{#hvgate}} checked{{/hvgate}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kb'>kb: </label><div class='col-sm-8'><input id='{{id}}_kb' class='form-control' type='text'{{#kb}} value='{{kb}}'{{/kb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kb1'>kb1: </label><div class='col-sm-8'><input id='{{id}}_kb1' class='form-control' type='text'{{#kb1}} value='{{kb1}}'{{/kb1}}></div></div>
@@ -7505,7 +7505,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl'>kl: </label><div class='col-sm-8'><input id='{{id}}_kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl1'>kl1: </label><div class='col-sm-8'><input id='{{id}}_kl1' class='form-control' type='text'{{#kl1}} value='{{kl1}}'{{/kl1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_lvgate'>lvgate: </label><div class='col-sm-8'><input id='{{id}}_lvgate' class='form-check-input' type='checkbox'{{#lvgate}} checked{{/lvgate}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_lvgate'>lvgate: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_lvgate' class='form-check-input' type='checkbox'{{#lvgate}} checked{{/lvgate}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_seve1'>seve1: </label><div class='col-sm-8'><input id='{{id}}_seve1' class='form-control' type='text'{{#seve1}} value='{{seve1}}'{{/seve1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_seve2'>seve2: </label><div class='col-sm-8'><input id='{{id}}_seve2' class='form-control' type='text'{{#seve2}} value='{{seve2}}'{{/seve2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
@@ -7645,7 +7645,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC3A1_collapse" aria-expanded="true" aria-controls="ExcDC3A1_collapse" style="margin-left: 10px;">ExcDC3A1</a></legend>
-                    <div id="ExcDC3A1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcDC3A1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -7686,11 +7686,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcDC3A1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC3A1_collapse" style="margin-left: 10px;">ExcDC3A1</a></legend>
-                    <div id="{{id}}_ExcDC3A1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcDC3A1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exclim'>exclim: </label><div class='col-sm-8'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exclim'>exclim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ke'>ke: </label><div class='col-sm-8'><input id='{{id}}_ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
@@ -7700,7 +7700,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vb1max'>vb1max: </label><div class='col-sm-8'><input id='{{id}}_vb1max' class='form-control' type='text'{{#vb1max}} value='{{vb1max}}'{{/vb1max}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vblim'>vblim: </label><div class='col-sm-8'><input id='{{id}}_vblim' class='form-check-input' type='checkbox'{{#vblim}} checked{{/vblim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vblim'>vblim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vblim' class='form-check-input' type='checkbox'{{#vblim}} checked{{/vblim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vbmax'>vbmax: </label><div class='col-sm-8'><input id='{{id}}_vbmax' class='form-control' type='text'{{#vbmax}} value='{{vbmax}}'{{/vbmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
@@ -7826,7 +7826,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="ExcIEEEST1A_collapse" style="margin-left: 10px;">ExcIEEEST1A</a></legend>
-                    <div id="ExcIEEEST1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEST1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -7874,7 +7874,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST1A_collapse" style="margin-left: 10px;">ExcIEEEST1A</a></legend>
-                    <div id="{{id}}_ExcIEEEST1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEST1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -7883,7 +7883,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kc'>kc: </label><div class='col-sm-8'><input id='{{id}}_kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_klr'>klr: </label><div class='col-sm-8'><input id='{{id}}_klr' class='form-control' type='text'{{#klr}} value='{{klr}}'{{/klr}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_pssin'>pssin: </label><div class='col-sm-8'><input id='{{id}}_pssin' class='form-check-input' type='checkbox'{{#pssin}} checked{{/pssin}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_pssin'>pssin: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_pssin' class='form-check-input' type='checkbox'{{#pssin}} checked{{/pssin}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb'>tb: </label><div class='col-sm-8'><input id='{{id}}_tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb1'>tb1: </label><div class='col-sm-8'><input id='{{id}}_tb1' class='form-control' type='text'{{#tb1}} value='{{tb1}}'{{/tb1}}></div></div>
@@ -8008,7 +8008,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcBBC_collapse" aria-expanded="true" aria-controls="ExcBBC_collapse" style="margin-left: 10px;">ExcBBC</a></legend>
-                    <div id="ExcBBC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcBBC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -8046,14 +8046,14 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcBBC_collapse" aria-expanded="true" aria-controls="{{id}}_ExcBBC_collapse" style="margin-left: 10px;">ExcBBC</a></legend>
-                    <div id="{{id}}_ExcBBC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcBBC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdmax'>efdmax: </label><div class='col-sm-8'><input id='{{id}}_efdmax' class='form-control' type='text'{{#efdmax}} value='{{efdmax}}'{{/efdmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdmin'>efdmin: </label><div class='col-sm-8'><input id='{{id}}_efdmin' class='form-control' type='text'{{#efdmin}} value='{{efdmin}}'{{/efdmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_switch'>switch: </label><div class='col-sm-8'><input id='{{id}}_switch' class='form-check-input' type='checkbox'{{#switch}} checked{{/switch}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_switch'>switch: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_switch' class='form-check-input' type='checkbox'{{#switch}} checked{{/switch}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
@@ -8178,7 +8178,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST4B_collapse" aria-expanded="true" aria-controls="ExcST4B_collapse" style="margin-left: 10px;">ExcST4B</a></legend>
-                    <div id="ExcST4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcST4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -8224,7 +8224,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST4B_collapse" style="margin-left: 10px;">ExcST4B</a></legend>
-                    <div id="{{id}}_ExcST4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcST4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -8236,10 +8236,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpm'>kpm: </label><div class='col-sm-8'><input id='{{id}}_kpm' class='form-control' type='text'{{#kpm}} value='{{kpm}}'{{/kpm}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpr'>kpr: </label><div class='col-sm-8'><input id='{{id}}_kpr' class='form-control' type='text'{{#kpr}} value='{{kpr}}'{{/kpr}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_lvgate'>lvgate: </label><div class='col-sm-8'><input id='{{id}}_lvgate' class='form-check-input' type='checkbox'{{#lvgate}} checked{{/lvgate}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_lvgate'>lvgate: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_lvgate' class='form-check-input' type='checkbox'{{#lvgate}} checked{{/lvgate}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetap'>thetap: </label><div class='col-sm-8'><input id='{{id}}_thetap' class='form-control' type='text'{{#thetap}} value='{{thetap}}'{{/thetap}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_uel'>uel: </label><div class='col-sm-8'><input id='{{id}}_uel' class='form-check-input' type='checkbox'{{#uel}} checked{{/uel}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_uel'>uel: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_uel' class='form-check-input' type='checkbox'{{#uel}} checked{{/uel}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vbmax'>vbmax: </label><div class='col-sm-8'><input id='{{id}}_vbmax' class='form-control' type='text'{{#vbmax}} value='{{vbmax}}'{{/vbmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vgmax'>vgmax: </label><div class='col-sm-8'><input id='{{id}}_vgmax' class='form-control' type='text'{{#vgmax}} value='{{vgmax}}'{{/vgmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmmax'>vmmax: </label><div class='col-sm-8'><input id='{{id}}_vmmax' class='form-control' type='text'{{#vmmax}} value='{{vmmax}}'{{/vmmax}}></div></div>
@@ -8380,7 +8380,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC6A_collapse" aria-expanded="true" aria-controls="ExcAC6A_collapse" style="margin-left: 10px;">ExcAC6A</a></legend>
-                    <div id="ExcAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAC6A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -8430,7 +8430,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC6A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC6A_collapse" style="margin-left: 10px;">ExcAC6A</a></legend>
-                    <div id="{{id}}_ExcAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAC6A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -8586,7 +8586,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcOEX3T_collapse" aria-expanded="true" aria-controls="ExcOEX3T_collapse" style="margin-left: 10px;">ExcOEX3T</a></legend>
-                    <div id="ExcOEX3T_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcOEX3T_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -8632,7 +8632,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcOEX3T_collapse" aria-expanded="true" aria-controls="{{id}}_ExcOEX3T_collapse" style="margin-left: 10px;">ExcOEX3T</a></legend>
-                    <div id="{{id}}_ExcOEX3T_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcOEX3T_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -8794,7 +8794,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC3A_collapse" aria-expanded="true" aria-controls="ExcAC3A_collapse" style="margin-left: 10px;">ExcAC3A</a></legend>
-                    <div id="ExcAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -8847,7 +8847,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC3A_collapse" style="margin-left: 10px;">ExcAC3A</a></legend>
-                    <div id="{{id}}_ExcAC3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -9017,7 +9017,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC6A_collapse" style="margin-left: 10px;">ExcIEEEAC6A</a></legend>
-                    <div id="ExcIEEEAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEAC6A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -9066,7 +9066,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC6A_collapse" style="margin-left: 10px;">ExcIEEEAC6A</a></legend>
-                    <div id="{{id}}_ExcIEEEAC6A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEAC6A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -9218,7 +9218,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST1A_collapse" aria-expanded="true" aria-controls="ExcST1A_collapse" style="margin-left: 10px;">ExcST1A</a></legend>
-                    <div id="ExcST1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcST1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -9263,7 +9263,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST1A_collapse" style="margin-left: 10px;">ExcST1A</a></legend>
-                    <div id="{{id}}_ExcST1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcST1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -9403,7 +9403,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcELIN1_collapse" aria-expanded="true" aria-controls="ExcELIN1_collapse" style="margin-left: 10px;">ExcELIN1</a></legend>
-                    <div id="ExcELIN1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcELIN1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -9445,7 +9445,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcELIN1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcELIN1_collapse" style="margin-left: 10px;">ExcELIN1</a></legend>
-                    <div id="{{id}}_ExcELIN1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcELIN1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -9577,7 +9577,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR4_collapse" aria-expanded="true" aria-controls="ExcAVR4_collapse" style="margin-left: 10px;">ExcAVR4</a></legend>
-                    <div id="ExcAVR4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAVR4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -9618,11 +9618,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR4_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR4_collapse" style="margin-left: 10px;">ExcAVR4</a></legend>
-                    <div id="{{id}}_ExcAVR4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAVR4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_imul'>imul: </label><div class='col-sm-8'><input id='{{id}}_imul' class='form-check-input' type='checkbox'{{#imul}} checked{{/imul}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_imul'>imul: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_imul' class='form-check-input' type='checkbox'{{#imul}} checked{{/imul}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ke'>ke: </label><div class='col-sm-8'><input id='{{id}}_ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kif'>kif: </label><div class='col-sm-8'><input id='{{id}}_kif' class='form-control' type='text'{{#kif}} value='{{kif}}'{{/kif}}></div></div>
@@ -9760,7 +9760,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="ExcIEEEST3A_collapse" style="margin-left: 10px;">ExcIEEEST3A</a></legend>
-                    <div id="ExcIEEEST3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEST3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -9807,7 +9807,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST3A_collapse" style="margin-left: 10px;">ExcIEEEST3A</a></legend>
-                    <div id="{{id}}_ExcIEEEST3A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEST3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -9957,7 +9957,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC2A_collapse" aria-expanded="true" aria-controls="ExcDC2A_collapse" style="margin-left: 10px;">ExcDC2A</a></legend>
-                    <div id="ExcDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcDC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -10002,13 +10002,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcDC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC2A_collapse" style="margin-left: 10px;">ExcDC2A</a></legend>
-                    <div id="{{id}}_ExcDC2A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcDC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd1'>efd1: </label><div class='col-sm-8'><input id='{{id}}_efd1' class='form-control' type='text'{{#efd1}} value='{{efd1}}'{{/efd1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efd2'>efd2: </label><div class='col-sm-8'><input id='{{id}}_efd2' class='form-control' type='text'{{#efd2}} value='{{efd2}}'{{/efd2}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exclim'>exclim: </label><div class='col-sm-8'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exclim'>exclim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exclim' class='form-check-input' type='checkbox'{{#exclim}} checked{{/exclim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ke'>ke: </label><div class='col-sm-8'><input id='{{id}}_ke' class='form-control' type='text'{{#ke}} value='{{ke}}'{{/ke}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
@@ -10023,7 +10023,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf1'>tf1: </label><div class='col-sm-8'><input id='{{id}}_tf1' class='form-control' type='text'{{#tf1}} value='{{tf1}}'{{/tf1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vtlim'>vtlim: </label><div class='col-sm-8'><input id='{{id}}_vtlim' class='form-check-input' type='checkbox'{{#vtlim}} checked{{/vtlim}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vtlim'>vtlim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vtlim' class='form-check-input' type='checkbox'{{#vtlim}} checked{{/vtlim}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -10136,7 +10136,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR1_collapse" aria-expanded="true" aria-controls="ExcAVR1_collapse" style="margin-left: 10px;">ExcAVR1</a></legend>
-                    <div id="ExcAVR1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcAVR1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -10175,7 +10175,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR1_collapse" style="margin-left: 10px;">ExcAVR1</a></legend>
-                    <div id="{{id}}_ExcAVR1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcAVR1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
@@ -10301,7 +10301,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="ExcIEEEST6B_collapse" style="margin-left: 10px;">ExcIEEEST6B</a></legend>
-                    <div id="ExcIEEEST6B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ExcIEEEST6B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
@@ -10344,7 +10344,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST6B_collapse" style="margin-left: 10px;">ExcIEEEST6B</a></legend>
-                    <div id="{{id}}_ExcIEEEST6B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ExcIEEEST6B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `

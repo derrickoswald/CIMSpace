@@ -63,7 +63,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageAdjusterDynamics_collapse" aria-expanded="true" aria-controls="VoltageAdjusterDynamics_collapse" style="margin-left: 10px;">VoltageAdjusterDynamics</a></legend>
-                    <div id="VoltageAdjusterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="VoltageAdjusterDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -91,7 +91,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageAdjusterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageAdjusterDynamics_collapse" style="margin-left: 10px;">VoltageAdjusterDynamics</a></legend>
-                    <div id="{{id}}_VoltageAdjusterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_VoltageAdjusterDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -190,7 +190,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#VAdjIEEE_collapse" aria-expanded="true" aria-controls="VAdjIEEE_collapse" style="margin-left: 10px;">VAdjIEEE</a></legend>
-                    <div id="VAdjIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="VAdjIEEE_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + VoltageAdjusterDynamics.prototype.template.call (this) +
                     `
@@ -223,7 +223,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VAdjIEEE_collapse" aria-expanded="true" aria-controls="{{id}}_VAdjIEEE_collapse" style="margin-left: 10px;">VAdjIEEE</a></legend>
-                    <div id="{{id}}_VAdjIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_VAdjIEEE_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + VoltageAdjusterDynamics.prototype.edit_template.call (this) +
                     `

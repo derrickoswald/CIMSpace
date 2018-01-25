@@ -25,151 +25,132 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-light">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand waves-effect waves-light" href="#">CIM Space</a>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CIM Space</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#CIMNav" aria-controls="CIMNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a id="load_files" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#file_modal">Load</a></li>
-                    <li><a id="save_file" href="#" class="waves-effect waves-light" data-toggle="modal" data-target="#save_modal">Save</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Trace <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a id="trace" href="#">Trace</a></li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label" for="trace_through_open_switches">
-                                        <input id="trace_through_open_switches" class="form-check-input" type="checkbox" value="">
-                                        Trace through open switches
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label" for="trace_though_voltage_level_changes">
-                                        <input id="trace_though_voltage_level_changes" class="form-check-input" type="checkbox" value="">
-                                        Trace through voltage levels
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <input id="number_of_elements" type="text" class="form-control" placeholder="# elements" style="margin-left: 15px; width: 120px;">
-                            </li>
-                            <li><a id="unhighlight" href="#">Un-Highlight</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label" for="internal_features">
-                                        <input id="internal_features" class="form-check-input" type="checkbox" value="">
-                                        Internals
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label" for="buildings_3d">
-                                        <input id="buildings_3d" class="form-check-input" type="checkbox" value="">
-                                        3D buildings
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label" for="scale_bar">
-                                        <input id="scale_bar" class="form-check-input" type="checkbox" value="">
-                                        Scale bar
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-check">
-                                    <label class="form-check-label" for="streetview">
-                                        <input id="streetview" class="form-check-input" type="checkbox" value="">
-                                        Streetview
-                                    </label>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a id="coordinates"></a></li>
-                </ul>
-                <form id="search" class="navbar-form navbar-right waves-effect waves-light" role="search">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input id="search_text" type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button id="search_button" class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-                            </span>
+        <div id="CIMNav" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a id="load_files" class="nav-link" href="#"data-toggle="modal" data-target="#file_modal">Load</a>
+                </li>
+                <li class="nav-item">
+                    <a id="save_file" class="nav-link" href="#" data-toggle="modal" data-target="#save_modal">Save</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="trace_menu" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Trace
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="trace_menu">
+                        <a id="trace" class="dropdown-item" href="#">Trace</a>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label" for="trace_through_open_switches">
+                                <input id="trace_through_open_switches" class="form-check-input" type="checkbox" value="">
+                                Trace through open switches
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label" for="trace_though_voltage_level_changes">
+                                <input id="trace_though_voltage_level_changes" class="form-check-input" type="checkbox" value="">
+                                Trace through voltage levels
+                            </label>
+                        </div>
+                        <input id="number_of_elements" class="form-control dropdown-item" type="text" placeholder="# elements" style="margin-left: 15px; width: 120px;">
+                        <a id="unhighlight" class="dropdown-item" href="#">Un-Highlight</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="options_menu" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Options
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="options_menu">
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label" for="internal_features">
+                                <input id="internal_features" class="form-check-input" type="checkbox" value="">
+                                Internals
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label" for="buildings_3d">
+                                <input id="buildings_3d" class="form-check-input" type="checkbox" value="">
+                                3D buildings
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label" for="scale_bar">
+                                <input id="scale_bar" class="form-check-input" type="checkbox" value="">
+                                Scale bar
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label" for="coordinate">
+                                <input id="coordinate" class="form-check-input" type="checkbox" value="">
+                                Coordinates
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label" for="streetview">
+                                <input id="streetview" class="form-check-input" type="checkbox" value="">
+                                Streetview
+                            </label>
                         </div>
                     </div>
-                </form>
-            </div>
+                </li>
+            </ul>
+            <form id="search" class="form-inline my-2 my-lg-0">
+                <input id="search_text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button id="search_button" class="btn btn-outline-success my-2 my-sm-0" type="button"><i class="fa fa-search"></i></button>
+            </form>
         </div>
     </nav>
-
 
     <!-- Content -->
     <section id="map" class="intro">
     </section>
 
     <!-- File Dialog Modal -->
-    <div id="file_modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div id="file_modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header text-center" style="padding:35px 50px;">
-                    <button id="close_file_modal" type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-header">
                     <h2><i class="fa fa-upload"></i> Load files</h2>
+                    <button id="close_file_modal" class="close" type="button" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="modal-body" style="padding:40px 50px;">
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-sm-3">
-                                <div class="file-field input-field" aria-describedby="files_help">
-                                    <div class="btn btn-file">
-                                        <span>Browse</span>
-                                        <input id="file_button" type="file" name="files[]" multiple/>
-                                    </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <div class="file-field input-field" aria-describedby="files_help">
+                                <div class="btn btn-file">
+                                    <span>Browse</span>
+                                    <input id="file_button" type="file" name="files[]" multiple/>
                                 </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="input-group" aria-describedby="files_help" style="width: 100%;">
-                                    <div id="files_drop_zone" class="form-control drop_zone">
-                                        Drop files here...
-                                    </div>
-                                </div>
-                                <span id="files_help" class="help-block nonexpert">
-                                    Click the browse button and choose a CIM XML file,
-                                    or drag a file from your operating system file browser onto the drop zone above.
-                                </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="server_url">Server URL</label>
-                            <div class="col-sm-9">
-                                <input id="server_url" class="form-control" type="text" name="server_url" placeholder="http://9code.ch" value="http://9code.ch/data/NIS_CIM_Export_NS_INITIAL_FILL.zip">
+                        <div class="col-sm-9">
+                            <div class="input-group" aria-describedby="files_help" style="width: 100%;">
+                                <div id="files_drop_zone" class="form-control drop_zone">
+                                    Drop files here...
+                                </div>
                             </div>
+                            <span id="files_help" class="help-block nonexpert">
+                                Click the browse button and choose a CIM XML file,
+                                or drag a file from your operating system file browser onto the drop zone above.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 control-label" for="server_url">Server URL</label>
+                        <div class="col-sm-9">
+                            <input id="server_url" class="form-control" type="text" name="server_url" placeholder="http://9code.ch" value="http://9code.ch/data/NIS_CIM_Export_NS_INITIAL_FILL.zip">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="connect" type="submit" class="btn btn-info" data-dismiss="modal">Load</button>
+                    <button id="connect" class="btn btn-info" type="submit" data-dismiss="modal">Load</button>
                     <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
@@ -177,14 +158,16 @@
     </div>
 
     <!-- Save Dialog Modal -->
-    <div id="save_modal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div id="save_modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header text-center" style="padding:35px 50px;">
-                    <button id="close_save_modal" type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2><i class="fa fa-download"></i> Save</h2>
+                <div class="modal-header">
+                    <h5><i class="fa fa-download"></i> Save</h5>
+                    <button id="close_save_modal" class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="modal-body" style="padding:40px 50px;">
+                <div class="modal-body">
                     <div class="form-row">
                         <div class="form-group">
                             <label class="col-form-label" for="save_name">File name</label>

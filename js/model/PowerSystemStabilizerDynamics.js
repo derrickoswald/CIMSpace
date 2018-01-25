@@ -86,7 +86,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
-                    <div id="PowerSystemStabilizerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PowerSystemStabilizerDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -117,7 +117,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
-                    <div id="{{id}}_PowerSystemStabilizerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PowerSystemStabilizerDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -225,7 +225,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST1_collapse" aria-expanded="true" aria-controls="PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
-                    <div id="PssPTIST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssPTIST1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -263,7 +263,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssPTIST1_collapse" aria-expanded="true" aria-controls="{{id}}_PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
-                    <div id="{{id}}_PssPTIST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssPTIST1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -413,7 +413,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE2B_collapse" aria-expanded="true" aria-controls="PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
-                    <div id="PssIEEE2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssIEEE2B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -471,7 +471,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE2B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
-                    <div id="{{id}}_PssIEEE2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssIEEE2B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -633,7 +633,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2ST_collapse" aria-expanded="true" aria-controls="Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
-                    <div id="Pss2ST_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Pss2ST_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -682,7 +682,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss2ST_collapse" aria-expanded="true" aria-controls="{{id}}_Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
-                    <div id="{{id}}_Pss2ST_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Pss2ST_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -820,7 +820,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1_collapse" aria-expanded="true" aria-controls="Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
-                    <div id="Pss1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Pss1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -862,7 +862,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss1_collapse" aria-expanded="true" aria-controls="{{id}}_Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
-                    <div id="{{id}}_Pss1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Pss1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -878,7 +878,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t8'>t8: </label><div class='col-sm-8'><input id='{{id}}_t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t9'>t9: </label><div class='col-sm-8'><input id='{{id}}_t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpe'>tpe: </label><div class='col-sm-8'><input id='{{id}}_tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vadat'>vadat: </label><div class='col-sm-8'><input id='{{id}}_vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vadat'>vadat: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmn'>vsmn: </label><div class='col-sm-8'><input id='{{id}}_vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmx'>vsmx: </label><div class='col-sm-8'><input id='{{id}}_vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
                     </div>
@@ -990,7 +990,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSH_collapse" aria-expanded="true" aria-controls="PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
-                    <div id="PssSH_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssSH_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -1030,7 +1030,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSH_collapse" aria-expanded="true" aria-controls="{{id}}_PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
-                    <div id="{{id}}_PssSH_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssSH_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -1174,7 +1174,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1A_collapse" aria-expanded="true" aria-controls="Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
-                    <div id="Pss1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Pss1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -1225,7 +1225,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss1A_collapse" aria-expanded="true" aria-controls="{{id}}_Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
-                    <div id="{{id}}_Pss1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Pss1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -1238,7 +1238,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a7'>a7: </label><div class='col-sm-8'><input id='{{id}}_a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a8'>a8: </label><div class='col-sm-8'><input id='{{id}}_a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='{{id}}_inputSignalType' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_kd'>kd: </label><div class='col-sm-8'><input id='{{id}}_kd' class='form-check-input' type='checkbox'{{#kd}} checked{{/kd}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_kd'>kd: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_kd' class='form-check-input' type='checkbox'{{#kd}} checked{{/kd}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
@@ -1363,7 +1363,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSK_collapse" aria-expanded="true" aria-controls="PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
-                    <div id="PssSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssSK_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -1401,7 +1401,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSK_collapse" aria-expanded="true" aria-controls="{{id}}_PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
-                    <div id="{{id}}_PssSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssSK_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -1521,7 +1521,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE1A_collapse" aria-expanded="true" aria-controls="PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
-                    <div id="PssIEEE1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssIEEE1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -1562,7 +1562,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE1A_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
-                    <div id="{{id}}_PssIEEE1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssIEEE1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -1726,7 +1726,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST3_collapse" aria-expanded="true" aria-controls="PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
-                    <div id="PssPTIST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssPTIST3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -1787,7 +1787,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssPTIST3_collapse" aria-expanded="true" aria-controls="{{id}}_PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
-                    <div id="{{id}}_PssPTIST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssPTIST3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -1809,7 +1809,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtc'>dtc: </label><div class='col-sm-8'><input id='{{id}}_dtc' class='form-control' type='text'{{#dtc}} value='{{dtc}}'{{/dtc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtf'>dtf: </label><div class='col-sm-8'><input id='{{id}}_dtf' class='form-control' type='text'{{#dtf}} value='{{dtf}}'{{/dtf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtp'>dtp: </label><div class='col-sm-8'><input id='{{id}}_dtp' class='form-control' type='text'{{#dtp}} value='{{dtp}}'{{/dtp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isw'>isw: </label><div class='col-sm-8'><input id='{{id}}_isw' class='form-check-input' type='checkbox'{{#isw}} checked{{/isw}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isw'>isw: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isw' class='form-check-input' type='checkbox'{{#isw}} checked{{/isw}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lthres'>lthres: </label><div class='col-sm-8'><input id='{{id}}_lthres' class='form-control' type='text'{{#lthres}} value='{{lthres}}'{{/lthres}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_m'>m: </label><div class='col-sm-8'><input id='{{id}}_m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
@@ -2063,7 +2063,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE4B_collapse" aria-expanded="true" aria-controls="PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
-                    <div id="PssIEEE4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssIEEE4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -2157,7 +2157,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE4B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
-                    <div id="{{id}}_PssIEEE4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssIEEE4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -2397,7 +2397,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss5_collapse" aria-expanded="true" aria-controls="Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
-                    <div id="Pss5_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Pss5_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -2441,13 +2441,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss5_collapse" aria-expanded="true" aria-controls="{{id}}_Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
-                    <div id="{{id}}_Pss5_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Pss5_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_ctw2'>ctw2: </label><div class='col-sm-8'><input id='{{id}}_ctw2' class='form-check-input' type='checkbox'{{#ctw2}} checked{{/ctw2}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_ctw2'>ctw2: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_ctw2' class='form-check-input' type='checkbox'{{#ctw2}} checked{{/ctw2}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deadband'>deadband: </label><div class='col-sm-8'><input id='{{id}}_deadband' class='form-control' type='text'{{#deadband}} value='{{deadband}}'{{/deadband}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isfreq'>isfreq: </label><div class='col-sm-8'><input id='{{id}}_isfreq' class='form-check-input' type='checkbox'{{#isfreq}} checked{{/isfreq}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isfreq'>isfreq: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isfreq' class='form-check-input' type='checkbox'{{#isfreq}} checked{{/isfreq}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpe'>kpe: </label><div class='col-sm-8'><input id='{{id}}_kpe' class='form-control' type='text'{{#kpe}} value='{{kpe}}'{{/kpe}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpss'>kpss: </label><div class='col-sm-8'><input id='{{id}}_kpss' class='form-control' type='text'{{#kpss}} value='{{kpss}}'{{/kpss}}></div></div>
@@ -2459,7 +2459,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpe'>tpe: </label><div class='col-sm-8'><input id='{{id}}_tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw1'>tw1: </label><div class='col-sm-8'><input id='{{id}}_tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw2'>tw2: </label><div class='col-sm-8'><input id='{{id}}_tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vadat'>vadat: </label><div class='col-sm-8'><input id='{{id}}_vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vadat'>vadat: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmn'>vsmn: </label><div class='col-sm-8'><input id='{{id}}_vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmx'>vsmx: </label><div class='col-sm-8'><input id='{{id}}_vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
                     </div>
@@ -2569,7 +2569,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSB4_collapse" aria-expanded="true" aria-controls="PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
-                    <div id="PssSB4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssSB4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -2607,7 +2607,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSB4_collapse" aria-expanded="true" aria-controls="{{id}}_PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
-                    <div id="{{id}}_PssSB4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssSB4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -2741,7 +2741,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE3B_collapse" aria-expanded="true" aria-controls="PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
-                    <div id="PssIEEE3B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssIEEE3B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -2791,7 +2791,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE3B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
-                    <div id="{{id}}_PssIEEE3B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssIEEE3B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -2923,7 +2923,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssELIN2_collapse" aria-expanded="true" aria-controls="PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
-                    <div id="PssELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssELIN2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -2961,7 +2961,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssELIN2_collapse" aria-expanded="true" aria-controls="{{id}}_PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
-                    <div id="{{id}}_PssELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssELIN2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -3119,7 +3119,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2B_collapse" aria-expanded="true" aria-controls="Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
-                    <div id="Pss2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Pss2B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -3181,7 +3181,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss2B_collapse" aria-expanded="true" aria-controls="{{id}}_Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
-                    <div id="{{id}}_Pss2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Pss2B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
@@ -3351,7 +3351,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PssWECC_collapse" aria-expanded="true" aria-controls="PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
-                    <div id="PssWECC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PssWECC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
@@ -3400,7 +3400,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssWECC_collapse" aria-expanded="true" aria-controls="{{id}}_PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
-                    <div id="{{id}}_PssWECC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PssWECC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `

@@ -69,7 +69,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BusNameMarker_collapse" aria-expanded="true" aria-controls="BusNameMarker_collapse" style="margin-left: 10px;">BusNameMarker</a></legend>
-                    <div id="BusNameMarker_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BusNameMarker_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -101,7 +101,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusNameMarker_collapse" aria-expanded="true" aria-controls="{{id}}_BusNameMarker_collapse" style="margin-left: 10px;">BusNameMarker</a></legend>
-                    <div id="{{id}}_BusNameMarker_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BusNameMarker_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -197,7 +197,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTopologicalNode_collapse" aria-expanded="true" aria-controls="DCTopologicalNode_collapse" style="margin-left: 10px;">DCTopologicalNode</a></legend>
-                    <div id="DCTopologicalNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DCTopologicalNode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -232,7 +232,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCTopologicalNode_collapse" aria-expanded="true" aria-controls="{{id}}_DCTopologicalNode_collapse" style="margin-left: 10px;">DCTopologicalNode</a></legend>
-                    <div id="{{id}}_DCTopologicalNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DCTopologicalNode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -346,7 +346,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TopologicalNode_collapse" aria-expanded="true" aria-controls="TopologicalNode_collapse" style="margin-left: 10px;">TopologicalNode</a></legend>
-                    <div id="TopologicalNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TopologicalNode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -388,7 +388,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TopologicalNode_collapse" aria-expanded="true" aria-controls="{{id}}_TopologicalNode_collapse" style="margin-left: 10px;">TopologicalNode</a></legend>
-                    <div id="{{id}}_TopologicalNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TopologicalNode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -503,7 +503,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TopologicalIsland_collapse" aria-expanded="true" aria-controls="TopologicalIsland_collapse" style="margin-left: 10px;">TopologicalIsland</a></legend>
-                    <div id="TopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TopologicalIsland_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -534,7 +534,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TopologicalIsland_collapse" aria-expanded="true" aria-controls="{{id}}_TopologicalIsland_collapse" style="margin-left: 10px;">TopologicalIsland</a></legend>
-                    <div id="{{id}}_TopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TopologicalIsland_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `

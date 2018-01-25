@@ -63,7 +63,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
-                    <div id="EquivalentNetwork_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EquivalentNetwork_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConnectivityNodeContainer.prototype.template.call (this) +
                     `
@@ -93,7 +93,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentNetwork_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
-                    <div id="{{id}}_EquivalentNetwork_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EquivalentNetwork_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConnectivityNodeContainer.prototype.edit_template.call (this) +
                     `
@@ -178,7 +178,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentEquipment_collapse" aria-expanded="true" aria-controls="EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
-                    <div id="EquivalentEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EquivalentEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
@@ -206,7 +206,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
-                    <div id="{{id}}_EquivalentEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EquivalentEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -295,7 +295,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
-                    <div id="EquivalentShunt_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EquivalentShunt_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.template.call (this) +
                     `
@@ -324,7 +324,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentShunt_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
-                    <div id="{{id}}_EquivalentShunt_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EquivalentShunt_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +
                     `
@@ -432,7 +432,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentBranch_collapse" aria-expanded="true" aria-controls="EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
-                    <div id="EquivalentBranch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EquivalentBranch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.template.call (this) +
                     `
@@ -475,7 +475,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentBranch_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
-                    <div id="{{id}}_EquivalentBranch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EquivalentBranch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +
                     `
@@ -613,7 +613,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentInjection_collapse" aria-expanded="true" aria-controls="EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
-                    <div id="EquivalentInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EquivalentInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.template.call (this) +
                     `
@@ -656,7 +656,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentInjection_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
-                    <div id="{{id}}_EquivalentInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EquivalentInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +
                     `
@@ -667,8 +667,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r0'>r0: </label><div class='col-sm-8'><input id='{{id}}_r0' class='form-control' type='text'{{#r0}} value='{{r0}}'{{/r0}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r2'>r2: </label><div class='col-sm-8'><input id='{{id}}_r2' class='form-control' type='text'{{#r2}} value='{{r2}}'{{/r2}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_regulationCapability'>regulationCapability: </label><div class='col-sm-8'><input id='{{id}}_regulationCapability' class='form-check-input' type='checkbox'{{#regulationCapability}} checked{{/regulationCapability}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_regulationStatus'>regulationStatus: </label><div class='col-sm-8'><input id='{{id}}_regulationStatus' class='form-check-input' type='checkbox'{{#regulationStatus}} checked{{/regulationStatus}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_regulationCapability'>regulationCapability: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_regulationCapability' class='form-check-input' type='checkbox'{{#regulationCapability}} checked{{/regulationCapability}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_regulationStatus'>regulationStatus: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_regulationStatus' class='form-check-input' type='checkbox'{{#regulationStatus}} checked{{/regulationStatus}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationTarget'>regulationTarget: </label><div class='col-sm-8'><input id='{{id}}_regulationTarget' class='form-control' type='text'{{#regulationTarget}} value='{{regulationTarget}}'{{/regulationTarget}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x'>x: </label><div class='col-sm-8'><input id='{{id}}_x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x0'>x0: </label><div class='col-sm-8'><input id='{{id}}_x0' class='form-control' type='text'{{#x0}} value='{{x0}}'{{/x0}}></div></div>

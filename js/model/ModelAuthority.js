@@ -61,7 +61,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelingAuthority_collapse" aria-expanded="true" aria-controls="ModelingAuthority_collapse" style="margin-left: 10px;">ModelingAuthority</a></legend>
-                    <div id="ModelingAuthority_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ModelingAuthority_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -91,7 +91,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ModelingAuthority_collapse" aria-expanded="true" aria-controls="{{id}}_ModelingAuthority_collapse" style="margin-left: 10px;">ModelingAuthority</a></legend>
-                    <div id="{{id}}_ModelingAuthority_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ModelingAuthority_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -176,7 +176,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelingAuthoritySet_collapse" aria-expanded="true" aria-controls="ModelingAuthoritySet_collapse" style="margin-left: 10px;">ModelingAuthoritySet</a></legend>
-                    <div id="ModelingAuthoritySet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ModelingAuthoritySet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -204,7 +204,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ModelingAuthoritySet_collapse" aria-expanded="true" aria-controls="{{id}}_ModelingAuthoritySet_collapse" style="margin-left: 10px;">ModelingAuthoritySet</a></legend>
-                    <div id="{{id}}_ModelingAuthoritySet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ModelingAuthoritySet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `

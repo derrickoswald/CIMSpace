@@ -61,7 +61,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SecurityConstraintsClearing_collapse" aria-expanded="true" aria-controls="SecurityConstraintsClearing_collapse" style="margin-left: 10px;">SecurityConstraintsClearing</a></legend>
-                    <div id="SecurityConstraintsClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SecurityConstraintsClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
@@ -91,7 +91,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SecurityConstraintsClearing_collapse" aria-expanded="true" aria-controls="{{id}}_SecurityConstraintsClearing_collapse" style="margin-left: 10px;">SecurityConstraintsClearing</a></legend>
-                    <div id="{{id}}_SecurityConstraintsClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SecurityConstraintsClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
@@ -177,7 +177,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketCaseClearing_collapse" aria-expanded="true" aria-controls="MarketCaseClearing_collapse" style="margin-left: 10px;">MarketCaseClearing</a></legend>
-                    <div id="MarketCaseClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketCaseClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
@@ -210,7 +210,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketCaseClearing_collapse" aria-expanded="true" aria-controls="{{id}}_MarketCaseClearing_collapse" style="margin-left: 10px;">MarketCaseClearing</a></legend>
-                    <div id="{{id}}_MarketCaseClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketCaseClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
@@ -303,7 +303,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieClearing_collapse" aria-expanded="true" aria-controls="InterTieClearing_collapse" style="margin-left: 10px;">InterTieClearing</a></legend>
-                    <div id="InterTieClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="InterTieClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
@@ -333,7 +333,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InterTieClearing_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieClearing_collapse" style="margin-left: 10px;">InterTieClearing</a></legend>
-                    <div id="{{id}}_InterTieClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_InterTieClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
@@ -424,7 +424,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieResults_collapse" aria-expanded="true" aria-controls="InterTieResults_collapse" style="margin-left: 10px;">InterTieResults</a></legend>
-                    <div id="InterTieResults_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="InterTieResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -455,7 +455,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InterTieResults_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieResults_collapse" style="margin-left: 10px;">InterTieResults</a></legend>
-                    <div id="{{id}}_InterTieResults_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_InterTieResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `

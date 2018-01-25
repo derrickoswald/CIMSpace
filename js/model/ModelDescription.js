@@ -59,7 +59,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#URI_collapse" aria-expanded="true" aria-controls="URI_collapse" style="margin-left: 10px;">URI</a></legend>
-                    <div id="URI_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="URI_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -86,7 +86,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_URI_collapse" aria-expanded="true" aria-controls="{{id}}_URI_collapse" style="margin-left: 10px;">URI</a></legend>
-                    <div id="{{id}}_URI_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_URI_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -156,7 +156,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelDescriptionCIMVersion_collapse" aria-expanded="true" aria-controls="ModelDescriptionCIMVersion_collapse" style="margin-left: 10px;">ModelDescriptionCIMVersion</a></legend>
-                    <div id="ModelDescriptionCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ModelDescriptionCIMVersion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -185,7 +185,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ModelDescriptionCIMVersion_collapse" aria-expanded="true" aria-controls="{{id}}_ModelDescriptionCIMVersion_collapse" style="margin-left: 10px;">ModelDescriptionCIMVersion</a></legend>
-                    <div id="{{id}}_ModelDescriptionCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ModelDescriptionCIMVersion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -257,7 +257,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#FullModelDocumentElement_collapse" aria-expanded="true" aria-controls="FullModelDocumentElement_collapse" style="margin-left: 10px;">FullModelDocumentElement</a></legend>
-                    <div id="FullModelDocumentElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="FullModelDocumentElement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -284,7 +284,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FullModelDocumentElement_collapse" aria-expanded="true" aria-controls="{{id}}_FullModelDocumentElement_collapse" style="margin-left: 10px;">FullModelDocumentElement</a></legend>
-                    <div id="{{id}}_FullModelDocumentElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_FullModelDocumentElement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -360,7 +360,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Description_collapse" aria-expanded="true" aria-controls="Description_collapse" style="margin-left: 10px;">Description</a></legend>
-                    <div id="Description_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Description_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -390,7 +390,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Description_collapse" aria-expanded="true" aria-controls="{{id}}_Description_collapse" style="margin-left: 10px;">Description</a></legend>
-                    <div id="{{id}}_Description_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Description_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -484,7 +484,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Model_collapse" aria-expanded="true" aria-controls="Model_collapse" style="margin-left: 10px;">Model</a></legend>
-                    <div id="Model_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Model_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -529,7 +529,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Model_collapse" aria-expanded="true" aria-controls="{{id}}_Model_collapse" style="margin-left: 10px;">Model</a></legend>
-                    <div id="{{id}}_Model_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Model_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -631,7 +631,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#FullModel_collapse" aria-expanded="true" aria-controls="FullModel_collapse" style="margin-left: 10px;">FullModel</a></legend>
-                    <div id="FullModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="FullModel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FullModelDocumentElement.prototype.template.call (this) +
                     `
@@ -658,7 +658,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FullModel_collapse" aria-expanded="true" aria-controls="{{id}}_FullModel_collapse" style="margin-left: 10px;">FullModel</a></legend>
-                    <div id="{{id}}_FullModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_FullModel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FullModelDocumentElement.prototype.edit_template.call (this) +
                     `
@@ -724,7 +724,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Statements_collapse" aria-expanded="true" aria-controls="Statements_collapse" style="margin-left: 10px;">Statements</a></legend>
-                    <div id="Statements_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Statements_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FullModelDocumentElement.prototype.template.call (this) +
                     `
@@ -751,7 +751,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Statements_collapse" aria-expanded="true" aria-controls="{{id}}_Statements_collapse" style="margin-left: 10px;">Statements</a></legend>
-                    <div id="{{id}}_Statements_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Statements_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FullModelDocumentElement.prototype.edit_template.call (this) +
                     `
@@ -819,7 +819,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DescriptionID_collapse" aria-expanded="true" aria-controls="DescriptionID_collapse" style="margin-left: 10px;">DescriptionID</a></legend>
-                    <div id="DescriptionID_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DescriptionID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Description.prototype.template.call (this) +
                     `
@@ -847,7 +847,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DescriptionID_collapse" aria-expanded="true" aria-controls="{{id}}_DescriptionID_collapse" style="margin-left: 10px;">DescriptionID</a></legend>
-                    <div id="{{id}}_DescriptionID_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DescriptionID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Description.prototype.edit_template.call (this) +
                     `
@@ -921,7 +921,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DifferenceModel_collapse" aria-expanded="true" aria-controls="DifferenceModel_collapse" style="margin-left: 10px;">DifferenceModel</a></legend>
-                    <div id="DifferenceModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DifferenceModel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Model.prototype.template.call (this) +
                     `
@@ -950,7 +950,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DifferenceModel_collapse" aria-expanded="true" aria-controls="{{id}}_DifferenceModel_collapse" style="margin-left: 10px;">DifferenceModel</a></legend>
-                    <div id="{{id}}_DifferenceModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DifferenceModel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Model.prototype.edit_template.call (this) +
                     `

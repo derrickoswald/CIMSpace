@@ -63,7 +63,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterDynamics_collapse" style="margin-left: 10px;">OverexcitationLimiterDynamics</a></legend>
-                    <div id="OverexcitationLimiterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OverexcitationLimiterDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -91,7 +91,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcitationLimiterDynamics_collapse" style="margin-left: 10px;">OverexcitationLimiterDynamics</a></legend>
-                    <div id="{{id}}_OverexcitationLimiterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OverexcitationLimiterDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -186,7 +186,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLim2_collapse" aria-expanded="true" aria-controls="OverexcLim2_collapse" style="margin-left: 10px;">OverexcLim2</a></legend>
-                    <div id="OverexcLim2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OverexcLim2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.template.call (this) +
                     `
@@ -217,7 +217,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcLim2_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLim2_collapse" style="margin-left: 10px;">OverexcLim2</a></legend>
-                    <div id="{{id}}_OverexcLim2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OverexcLim2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
@@ -311,7 +311,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="OverexcLimIEEE_collapse" style="margin-left: 10px;">OverexcLimIEEE</a></legend>
-                    <div id="OverexcLimIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OverexcLimIEEE_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.template.call (this) +
                     `
@@ -344,7 +344,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimIEEE_collapse" style="margin-left: 10px;">OverexcLimIEEE</a></legend>
-                    <div id="{{id}}_OverexcLimIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OverexcLimIEEE_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
@@ -448,7 +448,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimX1_collapse" aria-expanded="true" aria-controls="OverexcLimX1_collapse" style="margin-left: 10px;">OverexcLimX1</a></legend>
-                    <div id="OverexcLimX1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OverexcLimX1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.template.call (this) +
                     `
@@ -485,7 +485,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcLimX1_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimX1_collapse" style="margin-left: 10px;">OverexcLimX1</a></legend>
-                    <div id="{{id}}_OverexcLimX1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OverexcLimX1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
@@ -599,7 +599,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimX2_collapse" aria-expanded="true" aria-controls="OverexcLimX2_collapse" style="margin-left: 10px;">OverexcLimX2</a></legend>
-                    <div id="OverexcLimX2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OverexcLimX2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.template.call (this) +
                     `
@@ -637,7 +637,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcLimX2_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimX2_collapse" style="margin-left: 10px;">OverexcLimX2</a></legend>
-                    <div id="{{id}}_OverexcLimX2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OverexcLimX2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
@@ -647,7 +647,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efddes'>efddes: </label><div class='col-sm-8'><input id='{{id}}_efddes' class='form-control' type='text'{{#efddes}} value='{{efddes}}'{{/efddes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdrated'>efdrated: </label><div class='col-sm-8'><input id='{{id}}_efdrated' class='form-control' type='text'{{#efdrated}} value='{{efdrated}}'{{/efdrated}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kmx'>kmx: </label><div class='col-sm-8'><input id='{{id}}_kmx' class='form-control' type='text'{{#kmx}} value='{{kmx}}'{{/kmx}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_m'>m: </label><div class='col-sm-8'><input id='{{id}}_m' class='form-check-input' type='checkbox'{{#m}} checked{{/m}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_m'>m: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_m' class='form-check-input' type='checkbox'{{#m}} checked{{/m}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>

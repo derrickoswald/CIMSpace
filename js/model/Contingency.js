@@ -74,7 +74,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Contingency_collapse" aria-expanded="true" aria-controls="Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
-                    <div id="Contingency_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Contingency_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -105,11 +105,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Contingency_collapse" aria-expanded="true" aria-controls="{{id}}_Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
-                    <div id="{{id}}_Contingency_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Contingency_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mustStudy'>mustStudy: </label><div class='col-sm-8'><input id='{{id}}_mustStudy' class='form-check-input' type='checkbox'{{#mustStudy}} checked{{/mustStudy}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_mustStudy'>mustStudy: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mustStudy' class='form-check-input' type='checkbox'{{#mustStudy}} checked{{/mustStudy}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -192,7 +192,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyElement_collapse" aria-expanded="true" aria-controls="ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
-                    <div id="ContingencyElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ContingencyElement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -220,7 +220,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContingencyElement_collapse" aria-expanded="true" aria-controls="{{id}}_ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
-                    <div id="{{id}}_ContingencyElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ContingencyElement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -309,7 +309,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyEquipment_collapse" aria-expanded="true" aria-controls="ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
-                    <div id="ContingencyEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ContingencyEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ContingencyElement.prototype.template.call (this) +
                     `
@@ -340,7 +340,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContingencyEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
-                    <div id="{{id}}_ContingencyEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ContingencyEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ContingencyElement.prototype.edit_template.call (this) +
                     `

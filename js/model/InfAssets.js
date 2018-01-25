@@ -305,7 +305,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#FACTSDevice_collapse" aria-expanded="true" aria-controls="FACTSDevice_collapse" style="margin-left: 10px;">FACTSDevice</a></legend>
-                    <div id="FACTSDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="FACTSDevice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.template.call (this) +
                     `
@@ -335,7 +335,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FACTSDevice_collapse" aria-expanded="true" aria-controls="{{id}}_FACTSDevice_collapse" style="margin-left: 10px;">FACTSDevice</a></legend>
-                    <div id="{{id}}_FACTSDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_FACTSDevice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.edit_template.call (this) +
                     `
@@ -425,7 +425,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Specification_collapse" aria-expanded="true" aria-controls="Specification_collapse" style="margin-left: 10px;">Specification</a></legend>
-                    <div id="Specification_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Specification_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
@@ -473,7 +473,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Specification_collapse" aria-expanded="true" aria-controls="{{id}}_Specification_collapse" style="margin-left: 10px;">Specification</a></legend>
-                    <div id="{{id}}_Specification_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Specification_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -574,7 +574,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#FailureEvent_collapse" aria-expanded="true" aria-controls="FailureEvent_collapse" style="margin-left: 10px;">FailureEvent</a></legend>
-                    <div id="FailureEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="FailureEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.template.call (this) +
                     `
@@ -607,7 +607,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FailureEvent_collapse" aria-expanded="true" aria-controls="{{id}}_FailureEvent_collapse" style="margin-left: 10px;">FailureEvent</a></legend>
-                    <div id="{{id}}_FailureEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_FailureEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.edit_template.call (this) +
                     `
@@ -707,7 +707,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Structure_collapse" aria-expanded="true" aria-controls="Structure_collapse" style="margin-left: 10px;">Structure</a></legend>
-                    <div id="Structure_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Structure_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.template.call (this) +
                     `
@@ -749,7 +749,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Structure_collapse" aria-expanded="true" aria-controls="{{id}}_Structure_collapse" style="margin-left: 10px;">Structure</a></legend>
-                    <div id="{{id}}_Structure_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Structure_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.edit_template.call (this) +
                     `
@@ -758,7 +758,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_height'>height: </label><div class='col-sm-8'><input id='{{id}}_height' class='form-control' type='text'{{#height}} value='{{height}}'{{/height}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_materialKind'>materialKind: </label><div class='col-sm-8'><select id='{{id}}_materialKind' class='form-control'>{{#StructureMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StructureMaterialKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_removeWeed'>removeWeed: </label><div class='col-sm-8'><input id='{{id}}_removeWeed' class='form-check-input' type='checkbox'{{#removeWeed}} checked{{/removeWeed}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_removeWeed'>removeWeed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_removeWeed' class='form-check-input' type='checkbox'{{#removeWeed}} checked{{/removeWeed}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_weedRemovedDate'>weedRemovedDate: </label><div class='col-sm-8'><input id='{{id}}_weedRemovedDate' class='form-control' type='text'{{#weedRemovedDate}} value='{{weedRemovedDate}}'{{/weedRemovedDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfos'>WireSpacingInfos: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfos' class='form-control' type='text'{{#WireSpacingInfos}} value='{{WireSpacingInfos}}_string'{{/WireSpacingInfos}}></div></div>
                     </div>
@@ -869,7 +869,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GenericAssetModelOrMaterial_collapse" aria-expanded="true" aria-controls="GenericAssetModelOrMaterial_collapse" style="margin-left: 10px;">GenericAssetModelOrMaterial</a></legend>
-                    <div id="GenericAssetModelOrMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GenericAssetModelOrMaterial_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetModel.prototype.template.call (this) +
                     `
@@ -914,13 +914,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GenericAssetModelOrMaterial_collapse" aria-expanded="true" aria-controls="{{id}}_GenericAssetModelOrMaterial_collapse" style="margin-left: 10px;">GenericAssetModelOrMaterial</a></legend>
-                    <div id="{{id}}_GenericAssetModelOrMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GenericAssetModelOrMaterial_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetModel.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedUnitCost'>estimatedUnitCost: </label><div class='col-sm-8'><input id='{{id}}_estimatedUnitCost' class='form-control' type='text'{{#estimatedUnitCost}} value='{{estimatedUnitCost}}'{{/estimatedUnitCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_stockItem'>stockItem: </label><div class='col-sm-8'><input id='{{id}}_stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_stockItem'>stockItem: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUWorkEquipmentAsset'>CUWorkEquipmentAsset: </label><div class='col-sm-8'><input id='{{id}}_CUWorkEquipmentAsset' class='form-control' type='text'{{#CUWorkEquipmentAsset}} value='{{CUWorkEquipmentAsset}}'{{/CUWorkEquipmentAsset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAssetCatalogue'>TypeAssetCatalogue: </label><div class='col-sm-8'><input id='{{id}}_TypeAssetCatalogue' class='form-control' type='text'{{#TypeAssetCatalogue}} value='{{TypeAssetCatalogue}}'{{/TypeAssetCatalogue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUAsset'>CUAsset: </label><div class='col-sm-8'><input id='{{id}}_CUAsset' class='form-control' type='text'{{#CUAsset}} value='{{CUAsset}}'{{/CUAsset}}></div></div>
@@ -1025,7 +1025,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CoolingPowerRating_collapse" aria-expanded="true" aria-controls="CoolingPowerRating_collapse" style="margin-left: 10px;">CoolingPowerRating</a></legend>
-                    <div id="CoolingPowerRating_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CoolingPowerRating_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1060,7 +1060,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CoolingPowerRating_collapse" aria-expanded="true" aria-controls="{{id}}_CoolingPowerRating_collapse" style="margin-left: 10px;">CoolingPowerRating</a></legend>
-                    <div id="{{id}}_CoolingPowerRating_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CoolingPowerRating_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1177,7 +1177,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#FinancialInfo_collapse" aria-expanded="true" aria-controls="FinancialInfo_collapse" style="margin-left: 10px;">FinancialInfo</a></legend>
-                    <div id="FinancialInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="FinancialInfo_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1216,7 +1216,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FinancialInfo_collapse" aria-expanded="true" aria-controls="{{id}}_FinancialInfo_collapse" style="margin-left: 10px;">FinancialInfo</a></legend>
-                    <div id="{{id}}_FinancialInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_FinancialInfo_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1339,7 +1339,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#StructureSupport_collapse" aria-expanded="true" aria-controls="StructureSupport_collapse" style="margin-left: 10px;">StructureSupport</a></legend>
-                    <div id="StructureSupport_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="StructureSupport_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.template.call (this) +
                     `
@@ -1378,7 +1378,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StructureSupport_collapse" aria-expanded="true" aria-controls="{{id}}_StructureSupport_collapse" style="margin-left: 10px;">StructureSupport</a></legend>
-                    <div id="{{id}}_StructureSupport_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_StructureSupport_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.edit_template.call (this) +
                     `
@@ -1481,7 +1481,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DuctBank_collapse" aria-expanded="true" aria-controls="DuctBank_collapse" style="margin-left: 10px;">DuctBank</a></legend>
-                    <div id="DuctBank_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DuctBank_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.template.call (this) +
                     `
@@ -1512,7 +1512,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DuctBank_collapse" aria-expanded="true" aria-controls="{{id}}_DuctBank_collapse" style="margin-left: 10px;">DuctBank</a></legend>
-                    <div id="{{id}}_DuctBank_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DuctBank_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.edit_template.call (this) +
                     `
@@ -1611,7 +1611,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Bushing_collapse" aria-expanded="true" aria-controls="Bushing_collapse" style="margin-left: 10px;">Bushing</a></legend>
-                    <div id="Bushing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Bushing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.template.call (this) +
                     `
@@ -1649,7 +1649,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Bushing_collapse" aria-expanded="true" aria-controls="{{id}}_Bushing_collapse" style="margin-left: 10px;">Bushing</a></legend>
-                    <div id="{{id}}_Bushing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Bushing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.edit_template.call (this) +
                     `
@@ -1753,7 +1753,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ReliabilityInfo_collapse" aria-expanded="true" aria-controls="ReliabilityInfo_collapse" style="margin-left: 10px;">ReliabilityInfo</a></legend>
-                    <div id="ReliabilityInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ReliabilityInfo_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1786,7 +1786,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReliabilityInfo_collapse" aria-expanded="true" aria-controls="{{id}}_ReliabilityInfo_collapse" style="margin-left: 10px;">ReliabilityInfo</a></legend>
-                    <div id="{{id}}_ReliabilityInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ReliabilityInfo_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1892,7 +1892,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#WindingInsulation_collapse" aria-expanded="true" aria-controls="WindingInsulation_collapse" style="margin-left: 10px;">WindingInsulation</a></legend>
-                    <div id="WindingInsulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="WindingInsulation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1926,7 +1926,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindingInsulation_collapse" aria-expanded="true" aria-controls="{{id}}_WindingInsulation_collapse" style="margin-left: 10px;">WindingInsulation</a></legend>
-                    <div id="{{id}}_WindingInsulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_WindingInsulation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2025,7 +2025,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Cabinet_collapse" aria-expanded="true" aria-controls="Cabinet_collapse" style="margin-left: 10px;">Cabinet</a></legend>
-                    <div id="Cabinet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Cabinet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.template.call (this) +
                     `
@@ -2052,7 +2052,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Cabinet_collapse" aria-expanded="true" aria-controls="{{id}}_Cabinet_collapse" style="margin-left: 10px;">Cabinet</a></legend>
-                    <div id="{{id}}_Cabinet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Cabinet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.edit_template.call (this) +
                     `
@@ -2128,7 +2128,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetPropertyCurve_collapse" aria-expanded="true" aria-controls="AssetPropertyCurve_collapse" style="margin-left: 10px;">AssetPropertyCurve</a></legend>
-                    <div id="AssetPropertyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AssetPropertyCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -2159,7 +2159,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AssetPropertyCurve_collapse" aria-expanded="true" aria-controls="{{id}}_AssetPropertyCurve_collapse" style="margin-left: 10px;">AssetPropertyCurve</a></legend>
-                    <div id="{{id}}_AssetPropertyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AssetPropertyCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -2261,7 +2261,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DimensionsInfo_collapse" aria-expanded="true" aria-controls="DimensionsInfo_collapse" style="margin-left: 10px;">DimensionsInfo</a></legend>
-                    <div id="DimensionsInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DimensionsInfo_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2296,7 +2296,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DimensionsInfo_collapse" aria-expanded="true" aria-controls="{{id}}_DimensionsInfo_collapse" style="margin-left: 10px;">DimensionsInfo</a></legend>
-                    <div id="{{id}}_DimensionsInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DimensionsInfo_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2431,7 +2431,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerObservation_collapse" aria-expanded="true" aria-controls="TransformerObservation_collapse" style="margin-left: 10px;">TransformerObservation</a></legend>
-                    <div id="TransformerObservation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TransformerObservation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2483,7 +2483,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerObservation_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerObservation_collapse" style="margin-left: 10px;">TransformerObservation</a></legend>
-                    <div id="{{id}}_TransformerObservation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TransformerObservation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2612,7 +2612,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Joint_collapse" aria-expanded="true" aria-controls="Joint_collapse" style="margin-left: 10px;">Joint</a></legend>
-                    <div id="Joint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Joint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.template.call (this) +
                     `
@@ -2646,7 +2646,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Joint_collapse" aria-expanded="true" aria-controls="{{id}}_Joint_collapse" style="margin-left: 10px;">Joint</a></legend>
-                    <div id="{{id}}_Joint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Joint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.edit_template.call (this) +
                     `
@@ -2732,7 +2732,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Reconditioning_collapse" aria-expanded="true" aria-controls="Reconditioning_collapse" style="margin-left: 10px;">Reconditioning</a></legend>
-                    <div id="Reconditioning_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Reconditioning_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2767,7 +2767,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Reconditioning_collapse" aria-expanded="true" aria-controls="{{id}}_Reconditioning_collapse" style="margin-left: 10px;">Reconditioning</a></legend>
-                    <div id="{{id}}_Reconditioning_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Reconditioning_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2866,7 +2866,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Medium_collapse" aria-expanded="true" aria-controls="Medium_collapse" style="margin-left: 10px;">Medium</a></legend>
-                    <div id="Medium_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Medium_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2901,7 +2901,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Medium_collapse" aria-expanded="true" aria-controls="{{id}}_Medium_collapse" style="margin-left: 10px;">Medium</a></legend>
-                    <div id="{{id}}_Medium_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Medium_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2995,7 +2995,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Facility_collapse" aria-expanded="true" aria-controls="Facility_collapse" style="margin-left: 10px;">Facility</a></legend>
-                    <div id="Facility_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Facility_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.template.call (this) +
                     `
@@ -3023,7 +3023,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Facility_collapse" aria-expanded="true" aria-controls="{{id}}_Facility_collapse" style="margin-left: 10px;">Facility</a></legend>
-                    <div id="{{id}}_Facility_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Facility_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.AssetContainer.prototype.edit_template.call (this) +
                     `
@@ -3107,7 +3107,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BushingInsulationPF_collapse" aria-expanded="true" aria-controls="BushingInsulationPF_collapse" style="margin-left: 10px;">BushingInsulationPF</a></legend>
-                    <div id="BushingInsulationPF_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BushingInsulationPF_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3140,7 +3140,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BushingInsulationPF_collapse" aria-expanded="true" aria-controls="{{id}}_BushingInsulationPF_collapse" style="margin-left: 10px;">BushingInsulationPF</a></legend>
-                    <div id="{{id}}_BushingInsulationPF_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BushingInsulationPF_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3240,7 +3240,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Streetlight_collapse" aria-expanded="true" aria-controls="Streetlight_collapse" style="margin-left: 10px;">Streetlight</a></legend>
-                    <div id="Streetlight_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Streetlight_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.template.call (this) +
                     `
@@ -3273,7 +3273,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Streetlight_collapse" aria-expanded="true" aria-controls="{{id}}_Streetlight_collapse" style="margin-left: 10px;">Streetlight</a></legend>
-                    <div id="{{id}}_Streetlight_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Streetlight_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.Asset.prototype.edit_template.call (this) +
                     `
@@ -3388,7 +3388,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Pole_collapse" aria-expanded="true" aria-controls="Pole_collapse" style="margin-left: 10px;">Pole</a></legend>
-                    <div id="Pole_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Pole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Structure.prototype.template.call (this) +
                     `
@@ -3435,12 +3435,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pole_collapse" aria-expanded="true" aria-controls="{{id}}_Pole_collapse" style="margin-left: 10px;">Pole</a></legend>
-                    <div id="{{id}}_Pole_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Pole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Structure.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_baseKind'>baseKind: </label><div class='col-sm-8'><select id='{{id}}_baseKind' class='form-control'>{{#PoleBaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PoleBaseKind}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_breastBlock'>breastBlock: </label><div class='col-sm-8'><input id='{{id}}_breastBlock' class='form-check-input' type='checkbox'{{#breastBlock}} checked{{/breastBlock}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_breastBlock'>breastBlock: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_breastBlock' class='form-check-input' type='checkbox'{{#breastBlock}} checked{{/breastBlock}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_classification'>classification: </label><div class='col-sm-8'><input id='{{id}}_classification' class='form-control' type='text'{{#classification}} value='{{classification}}'{{/classification}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_construction'>construction: </label><div class='col-sm-8'><input id='{{id}}_construction' class='form-control' type='text'{{#construction}} value='{{construction}}'{{/construction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameter'>diameter: </label><div class='col-sm-8'><input id='{{id}}_diameter' class='form-control' type='text'{{#diameter}} value='{{diameter}}'{{/diameter}}></div></div>
@@ -3544,7 +3544,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Tower_collapse" aria-expanded="true" aria-controls="Tower_collapse" style="margin-left: 10px;">Tower</a></legend>
-                    <div id="Tower_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Tower_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Structure.prototype.template.call (this) +
                     `
@@ -3574,7 +3574,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Tower_collapse" aria-expanded="true" aria-controls="{{id}}_Tower_collapse" style="margin-left: 10px;">Tower</a></legend>
-                    <div id="{{id}}_Tower_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Tower_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Structure.prototype.edit_template.call (this) +
                     `
@@ -3656,7 +3656,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#UndergroundStructure_collapse" aria-expanded="true" aria-controls="UndergroundStructure_collapse" style="margin-left: 10px;">UndergroundStructure</a></legend>
-                    <div id="UndergroundStructure_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="UndergroundStructure_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Structure.prototype.template.call (this) +
                     `
@@ -3689,11 +3689,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UndergroundStructure_collapse" aria-expanded="true" aria-controls="{{id}}_UndergroundStructure_collapse" style="margin-left: 10px;">UndergroundStructure</a></legend>
-                    <div id="{{id}}_UndergroundStructure_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_UndergroundStructure_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Structure.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_hasVentilation'>hasVentilation: </label><div class='col-sm-8'><input id='{{id}}_hasVentilation' class='form-check-input' type='checkbox'{{#hasVentilation}} checked{{/hasVentilation}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_hasVentilation'>hasVentilation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_hasVentilation' class='form-check-input' type='checkbox'{{#hasVentilation}} checked{{/hasVentilation}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#UndergroundStructureKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UndergroundStructureKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_material'>material: </label><div class='col-sm-8'><input id='{{id}}_material' class='form-control' type='text'{{#material}} value='{{material}}'{{/material}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sealingWarrantyExpiresDate'>sealingWarrantyExpiresDate: </label><div class='col-sm-8'><input id='{{id}}_sealingWarrantyExpiresDate' class='form-control' type='text'{{#sealingWarrantyExpiresDate}} value='{{sealingWarrantyExpiresDate}}'{{/sealingWarrantyExpiresDate}}></div></div>

@@ -75,7 +75,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ChargeGroup_collapse" aria-expanded="true" aria-controls="ChargeGroup_collapse" style="margin-left: 10px;">ChargeGroup</a></legend>
-                    <div id="ChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -115,7 +115,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ChargeGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeGroup_collapse" style="margin-left: 10px;">ChargeGroup</a></legend>
-                    <div id="{{id}}_ChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -225,7 +225,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ProductBid_collapse" aria-expanded="true" aria-controls="ProductBid_collapse" style="margin-left: 10px;">ProductBid</a></legend>
-                    <div id="ProductBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ProductBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -266,7 +266,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProductBid_collapse" aria-expanded="true" aria-controls="{{id}}_ProductBid_collapse" style="margin-left: 10px;">ProductBid</a></legend>
-                    <div id="{{id}}_ProductBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ProductBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -368,7 +368,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadFollowingInst_collapse" aria-expanded="true" aria-controls="LoadFollowingInst_collapse" style="margin-left: 10px;">LoadFollowingInst</a></legend>
-                    <div id="LoadFollowingInst_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LoadFollowingInst_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -400,7 +400,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadFollowingInst_collapse" aria-expanded="true" aria-controls="{{id}}_LoadFollowingInst_collapse" style="margin-left: 10px;">LoadFollowingInst</a></legend>
-                    <div id="{{id}}_LoadFollowingInst_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LoadFollowingInst_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -501,7 +501,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AttributeProperty_collapse" aria-expanded="true" aria-controls="AttributeProperty_collapse" style="margin-left: 10px;">AttributeProperty</a></legend>
-                    <div id="AttributeProperty_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AttributeProperty_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -532,7 +532,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AttributeProperty_collapse" aria-expanded="true" aria-controls="{{id}}_AttributeProperty_collapse" style="margin-left: 10px;">AttributeProperty</a></legend>
-                    <div id="{{id}}_AttributeProperty_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AttributeProperty_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -629,7 +629,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="LoadReductionPriceCurve_collapse" style="margin-left: 10px;">LoadReductionPriceCurve</a></legend>
-                    <div id="LoadReductionPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LoadReductionPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -660,7 +660,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LoadReductionPriceCurve_collapse" style="margin-left: 10px;">LoadReductionPriceCurve</a></legend>
-                    <div id="{{id}}_LoadReductionPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LoadReductionPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -750,7 +750,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="BidHourlyProductSchedule_collapse" style="margin-left: 10px;">BidHourlyProductSchedule</a></legend>
-                    <div id="BidHourlyProductSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BidHourlyProductSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
                     `
@@ -778,7 +778,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidHourlyProductSchedule_collapse" style="margin-left: 10px;">BidHourlyProductSchedule</a></legend>
-                    <div id="{{id}}_BidHourlyProductSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BidHourlyProductSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
@@ -869,7 +869,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="StartUpTimeCurve_collapse" style="margin-left: 10px;">StartUpTimeCurve</a></legend>
-                    <div id="StartUpTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="StartUpTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -900,7 +900,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpTimeCurve_collapse" style="margin-left: 10px;">StartUpTimeCurve</a></legend>
-                    <div id="{{id}}_StartUpTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_StartUpTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -990,7 +990,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="EnergyPriceCurve_collapse" style="margin-left: 10px;">EnergyPriceCurve</a></legend>
-                    <div id="EnergyPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EnergyPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -1023,7 +1023,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyPriceCurve_collapse" style="margin-left: 10px;">EnergyPriceCurve</a></legend>
-                    <div id="{{id}}_EnergyPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EnergyPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -1139,7 +1139,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BidSelfSched_collapse" aria-expanded="true" aria-controls="BidSelfSched_collapse" style="margin-left: 10px;">BidSelfSched</a></legend>
-                    <div id="BidSelfSched_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BidSelfSched_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
                     `
@@ -1181,7 +1181,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidSelfSched_collapse" aria-expanded="true" aria-controls="{{id}}_BidSelfSched_collapse" style="margin-left: 10px;">BidSelfSched</a></legend>
-                    <div id="{{id}}_BidSelfSched_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BidSelfSched_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
@@ -1306,7 +1306,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BidPriceSchedule_collapse" aria-expanded="true" aria-controls="BidPriceSchedule_collapse" style="margin-left: 10px;">BidPriceSchedule</a></legend>
-                    <div id="BidPriceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BidPriceSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
                     `
@@ -1337,7 +1337,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidPriceSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceSchedule_collapse" style="margin-left: 10px;">BidPriceSchedule</a></legend>
-                    <div id="{{id}}_BidPriceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BidPriceSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
@@ -1449,7 +1449,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ChargeComponent_collapse" aria-expanded="true" aria-controls="ChargeComponent_collapse" style="margin-left: 10px;">ChargeComponent</a></legend>
-                    <div id="ChargeComponent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ChargeComponent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1490,7 +1490,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ChargeComponent_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeComponent_collapse" style="margin-left: 10px;">ChargeComponent</a></legend>
-                    <div id="{{id}}_ChargeComponent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ChargeComponent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1620,7 +1620,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MajorChargeGroup_collapse" aria-expanded="true" aria-controls="MajorChargeGroup_collapse" style="margin-left: 10px;">MajorChargeGroup</a></legend>
-                    <div id="MajorChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MajorChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -1667,7 +1667,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MajorChargeGroup_collapse" aria-expanded="true" aria-controls="{{id}}_MajorChargeGroup_collapse" style="margin-left: 10px;">MajorChargeGroup</a></legend>
-                    <div id="{{id}}_MajorChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MajorChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1799,7 +1799,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ChargeType_collapse" aria-expanded="true" aria-controls="ChargeType_collapse" style="margin-left: 10px;">ChargeType</a></legend>
-                    <div id="ChargeType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ChargeType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
@@ -1845,7 +1845,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ChargeType_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeType_collapse" style="margin-left: 10px;">ChargeType</a></legend>
-                    <div id="{{id}}_ChargeType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ChargeType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -1959,7 +1959,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#StartUpCostCurve_collapse" aria-expanded="true" aria-controls="StartUpCostCurve_collapse" style="margin-left: 10px;">StartUpCostCurve</a></legend>
-                    <div id="StartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="StartUpCostCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -1992,7 +1992,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartUpCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpCostCurve_collapse" style="margin-left: 10px;">StartUpCostCurve</a></legend>
-                    <div id="{{id}}_StartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_StartUpCostCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -2086,7 +2086,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BidDistributionFactor_collapse" aria-expanded="true" aria-controls="BidDistributionFactor_collapse" style="margin-left: 10px;">BidDistributionFactor</a></legend>
-                    <div id="BidDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BidDistributionFactor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -2119,7 +2119,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidDistributionFactor_collapse" aria-expanded="true" aria-controls="{{id}}_BidDistributionFactor_collapse" style="margin-left: 10px;">BidDistributionFactor</a></legend>
-                    <div id="{{id}}_BidDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BidDistributionFactor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -2224,7 +2224,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TradeProduct_collapse" aria-expanded="true" aria-controls="TradeProduct_collapse" style="margin-left: 10px;">TradeProduct</a></legend>
-                    <div id="TradeProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TradeProduct_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -2256,7 +2256,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TradeProduct_collapse" aria-expanded="true" aria-controls="{{id}}_TradeProduct_collapse" style="margin-left: 10px;">TradeProduct</a></legend>
-                    <div id="{{id}}_TradeProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TradeProduct_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -2357,7 +2357,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TradeError_collapse" aria-expanded="true" aria-controls="TradeError_collapse" style="margin-left: 10px;">TradeError</a></legend>
-                    <div id="TradeError_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TradeError_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2391,7 +2391,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TradeError_collapse" aria-expanded="true" aria-controls="{{id}}_TradeError_collapse" style="margin-left: 10px;">TradeError</a></legend>
-                    <div id="{{id}}_TradeError_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TradeError_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2514,7 +2514,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Bid_collapse" aria-expanded="true" aria-controls="Bid_collapse" style="margin-left: 10px;">Bid</a></legend>
-                    <div id="Bid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Bid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
@@ -2566,7 +2566,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Bid_collapse" aria-expanded="true" aria-controls="{{id}}_Bid_collapse" style="margin-left: 10px;">Bid</a></legend>
-                    <div id="{{id}}_Bid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Bid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -2720,7 +2720,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Trade_collapse" aria-expanded="true" aria-controls="Trade_collapse" style="margin-left: 10px;">Trade</a></legend>
-                    <div id="Trade_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Trade_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2773,7 +2773,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Trade_collapse" aria-expanded="true" aria-controls="{{id}}_Trade_collapse" style="margin-left: 10px;">Trade</a></legend>
-                    <div id="{{id}}_Trade_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Trade_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -2930,7 +2930,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BidError_collapse" aria-expanded="true" aria-controls="BidError_collapse" style="margin-left: 10px;">BidError</a></legend>
-                    <div id="BidError_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BidError_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -2969,7 +2969,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidError_collapse" aria-expanded="true" aria-controls="{{id}}_BidError_collapse" style="margin-left: 10px;">BidError</a></legend>
-                    <div id="{{id}}_BidError_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BidError_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3079,7 +3079,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ActionRequest_collapse" aria-expanded="true" aria-controls="ActionRequest_collapse" style="margin-left: 10px;">ActionRequest</a></legend>
-                    <div id="ActionRequest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ActionRequest_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -3113,7 +3113,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ActionRequest_collapse" aria-expanded="true" aria-controls="{{id}}_ActionRequest_collapse" style="margin-left: 10px;">ActionRequest</a></legend>
-                    <div id="{{id}}_ActionRequest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ActionRequest_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -3211,7 +3211,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="InterTieDispatchResponse_collapse" style="margin-left: 10px;">InterTieDispatchResponse</a></legend>
-                    <div id="InterTieDispatchResponse_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="InterTieDispatchResponse_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -3244,7 +3244,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieDispatchResponse_collapse" style="margin-left: 10px;">InterTieDispatchResponse</a></legend>
-                    <div id="{{id}}_InterTieDispatchResponse_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_InterTieDispatchResponse_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -3343,7 +3343,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BidSet_collapse" aria-expanded="true" aria-controls="BidSet_collapse" style="margin-left: 10px;">BidSet</a></legend>
-                    <div id="BidSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BidSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3373,7 +3373,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidSet_collapse" aria-expanded="true" aria-controls="{{id}}_BidSet_collapse" style="margin-left: 10px;">BidSet</a></legend>
-                    <div id="{{id}}_BidSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BidSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3468,7 +3468,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#RampRateCurve_collapse" aria-expanded="true" aria-controls="RampRateCurve_collapse" style="margin-left: 10px;">RampRateCurve</a></legend>
-                    <div id="RampRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="RampRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -3504,7 +3504,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RampRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RampRateCurve_collapse" style="margin-left: 10px;">RampRateCurve</a></legend>
-                    <div id="{{id}}_RampRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_RampRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -3624,7 +3624,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DispatchInstReply_collapse" aria-expanded="true" aria-controls="DispatchInstReply_collapse" style="margin-left: 10px;">DispatchInstReply</a></legend>
-                    <div id="DispatchInstReply_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DispatchInstReply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3661,7 +3661,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DispatchInstReply_collapse" aria-expanded="true" aria-controls="{{id}}_DispatchInstReply_collapse" style="margin-left: 10px;">DispatchInstReply</a></legend>
-                    <div id="{{id}}_DispatchInstReply_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DispatchInstReply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3768,7 +3768,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="NotificationTimeCurve_collapse" style="margin-left: 10px;">NotificationTimeCurve</a></legend>
-                    <div id="NotificationTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="NotificationTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -3798,7 +3798,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_NotificationTimeCurve_collapse" style="margin-left: 10px;">NotificationTimeCurve</a></legend>
-                    <div id="{{id}}_NotificationTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_NotificationTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -3887,7 +3887,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="MarketScheduledEvent_collapse" style="margin-left: 10px;">MarketScheduledEvent</a></legend>
-                    <div id="MarketScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="MarketScheduledEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -3918,7 +3918,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="{{id}}_MarketScheduledEvent_collapse" style="margin-left: 10px;">MarketScheduledEvent</a></legend>
-                    <div id="{{id}}_MarketScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_MarketScheduledEvent_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4011,7 +4011,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BidPriceCurve_collapse" aria-expanded="true" aria-controls="BidPriceCurve_collapse" style="margin-left: 10px;">BidPriceCurve</a></legend>
-                    <div id="BidPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BidPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
@@ -4041,7 +4041,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceCurve_collapse" style="margin-left: 10px;">BidPriceCurve</a></legend>
-                    <div id="{{id}}_BidPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BidPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -4124,7 +4124,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BidHourlySchedule_collapse" aria-expanded="true" aria-controls="BidHourlySchedule_collapse" style="margin-left: 10px;">BidHourlySchedule</a></legend>
-                    <div id="BidHourlySchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BidHourlySchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
                     `
@@ -4152,7 +4152,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidHourlySchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidHourlySchedule_collapse" style="margin-left: 10px;">BidHourlySchedule</a></legend>
-                    <div id="{{id}}_BidHourlySchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BidHourlySchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
@@ -4241,7 +4241,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="PumpingLevelSchedule_collapse" style="margin-left: 10px;">PumpingLevelSchedule</a></legend>
-                    <div id="PumpingLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PumpingLevelSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.template.call (this) +
                     `
@@ -4269,7 +4269,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingLevelSchedule_collapse" style="margin-left: 10px;">PumpingLevelSchedule</a></legend>
-                    <div id="{{id}}_PumpingLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PumpingLevelSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.edit_template.call (this) +
                     `
@@ -4347,7 +4347,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingCostSchedule_collapse" style="margin-left: 10px;">PumpingCostSchedule</a></legend>
-                    <div id="PumpingCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PumpingCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.template.call (this) +
                     `
@@ -4375,7 +4375,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingCostSchedule_collapse" style="margin-left: 10px;">PumpingCostSchedule</a></legend>
-                    <div id="{{id}}_PumpingCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PumpingCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.edit_template.call (this) +
                     `
@@ -4453,7 +4453,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingShutDownCostSchedule_collapse" style="margin-left: 10px;">PumpingShutDownCostSchedule</a></legend>
-                    <div id="PumpingShutDownCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PumpingShutDownCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.template.call (this) +
                     `
@@ -4481,7 +4481,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingShutDownCostSchedule_collapse" style="margin-left: 10px;">PumpingShutDownCostSchedule</a></legend>
-                    <div id="{{id}}_PumpingShutDownCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PumpingShutDownCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.edit_template.call (this) +
                     `
@@ -4587,7 +4587,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceBid_collapse" aria-expanded="true" aria-controls="ResourceBid_collapse" style="margin-left: 10px;">ResourceBid</a></legend>
-                    <div id="ResourceBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ResourceBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Bid.prototype.template.call (this) +
                     `
@@ -4632,7 +4632,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceBid_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceBid_collapse" style="margin-left: 10px;">ResourceBid</a></legend>
-                    <div id="{{id}}_ResourceBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ResourceBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Bid.prototype.edit_template.call (this) +
                     `
@@ -4650,7 +4650,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shutDownsMaxWeek'>shutDownsMaxWeek: </label><div class='col-sm-8'><input id='{{id}}_shutDownsMaxWeek' class='form-control' type='text'{{#shutDownsMaxWeek}} value='{{shutDownsMaxWeek}}'{{/shutDownsMaxWeek}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpsMaxDay'>startUpsMaxDay: </label><div class='col-sm-8'><input id='{{id}}_startUpsMaxDay' class='form-control' type='text'{{#startUpsMaxDay}} value='{{startUpsMaxDay}}'{{/startUpsMaxDay}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpsMaxWeek'>startUpsMaxWeek: </label><div class='col-sm-8'><input id='{{id}}_startUpsMaxWeek' class='form-control' type='text'{{#startUpsMaxWeek}} value='{{startUpsMaxWeek}}'{{/startUpsMaxWeek}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_virtual'>virtual: </label><div class='col-sm-8'><input id='{{id}}_virtual' class='form-check-input' type='checkbox'{{#virtual}} checked{{/virtual}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_virtual'>virtual: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_virtual' class='form-check-input' type='checkbox'{{#virtual}} checked{{/virtual}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidError'>BidError: </label><div class='col-sm-8'><input id='{{id}}_BidError' class='form-control' type='text'{{#BidError}} value='{{BidError}}_string'{{/BidError}}></div></div>
                     </div>
                     <fieldset>
@@ -4753,7 +4753,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieBid_collapse" aria-expanded="true" aria-controls="InterTieBid_collapse" style="margin-left: 10px;">InterTieBid</a></legend>
-                    <div id="InterTieBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="InterTieBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.template.call (this) +
                     `
@@ -4785,7 +4785,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InterTieBid_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieBid_collapse" style="margin-left: 10px;">InterTieBid</a></legend>
-                    <div id="{{id}}_InterTieBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_InterTieBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.edit_template.call (this) +
                     `
@@ -4889,7 +4889,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TransactionBid_collapse" aria-expanded="true" aria-controls="TransactionBid_collapse" style="margin-left: 10px;">TransactionBid</a></legend>
-                    <div id="TransactionBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TransactionBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Bid.prototype.template.call (this) +
                     `
@@ -4928,13 +4928,13 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransactionBid_collapse" aria-expanded="true" aria-controls="{{id}}_TransactionBid_collapse" style="margin-left: 10px;">TransactionBid</a></legend>
-                    <div id="{{id}}_TransactionBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TransactionBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Bid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_demandTransaction'>demandTransaction: </label><div class='col-sm-8'><input id='{{id}}_demandTransaction' class='form-check-input' type='checkbox'{{#demandTransaction}} checked{{/demandTransaction}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_dispatchable'>dispatchable: </label><div class='col-sm-8'><input id='{{id}}_dispatchable' class='form-check-input' type='checkbox'{{#dispatchable}} checked{{/dispatchable}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_payCongestion'>payCongestion: </label><div class='col-sm-8'><input id='{{id}}_payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_demandTransaction'>demandTransaction: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_demandTransaction' class='form-check-input' type='checkbox'{{#demandTransaction}} checked{{/demandTransaction}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_dispatchable'>dispatchable: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_dispatchable' class='form-check-input' type='checkbox'{{#dispatchable}} checked{{/dispatchable}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_payCongestion'>payCongestion: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Receipt_Pnode'>Receipt_Pnode: </label><div class='col-sm-8'><input id='{{id}}_Receipt_Pnode' class='form-control' type='text'{{#Receipt_Pnode}} value='{{Receipt_Pnode}}'{{/Receipt_Pnode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Delivery_Pnode'>Delivery_Pnode: </label><div class='col-sm-8'><input id='{{id}}_Delivery_Pnode' class='form-control' type='text'{{#Delivery_Pnode}} value='{{Delivery_Pnode}}'{{/Delivery_Pnode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionReservation'>TransmissionReservation: </label><div class='col-sm-8'><input id='{{id}}_TransmissionReservation' class='form-control' type='text'{{#TransmissionReservation}} value='{{TransmissionReservation}}'{{/TransmissionReservation}}></div></div>
@@ -5033,7 +5033,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#AreaLoadBid_collapse" aria-expanded="true" aria-controls="AreaLoadBid_collapse" style="margin-left: 10px;">AreaLoadBid</a></legend>
-                    <div id="AreaLoadBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="AreaLoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Bid.prototype.template.call (this) +
                     `
@@ -5064,7 +5064,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AreaLoadBid_collapse" aria-expanded="true" aria-controls="{{id}}_AreaLoadBid_collapse" style="margin-left: 10px;">AreaLoadBid</a></legend>
-                    <div id="{{id}}_AreaLoadBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_AreaLoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Bid.prototype.edit_template.call (this) +
                     `
@@ -5185,7 +5185,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadBid_collapse" aria-expanded="true" aria-controls="LoadBid_collapse" style="margin-left: 10px;">LoadBid</a></legend>
-                    <div id="LoadBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.template.call (this) +
                     `
@@ -5234,7 +5234,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadBid_collapse" aria-expanded="true" aria-controls="{{id}}_LoadBid_collapse" style="margin-left: 10px;">LoadBid</a></legend>
-                    <div id="{{id}}_LoadBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.edit_template.call (this) +
                     `
@@ -5242,14 +5242,14 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRedInitiationCost'>loadRedInitiationCost: </label><div class='col-sm-8'><input id='{{id}}_loadRedInitiationCost' class='form-control' type='text'{{#loadRedInitiationCost}} value='{{loadRedInitiationCost}}'{{/loadRedInitiationCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRedInitiationTime'>loadRedInitiationTime: </label><div class='col-sm-8'><input id='{{id}}_loadRedInitiationTime' class='form-control' type='text'{{#loadRedInitiationTime}} value='{{loadRedInitiationTime}}'{{/loadRedInitiationTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketDate'>marketDate: </label><div class='col-sm-8'><input id='{{id}}_marketDate' class='form-control' type='text'{{#marketDate}} value='{{marketDate}}'{{/marketDate}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_meteredValue'>meteredValue: </label><div class='col-sm-8'><input id='{{id}}_meteredValue' class='form-check-input' type='checkbox'{{#meteredValue}} checked{{/meteredValue}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_meteredValue'>meteredValue: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_meteredValue' class='form-check-input' type='checkbox'{{#meteredValue}} checked{{/meteredValue}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoad'>minLoad: </label><div class='col-sm-8'><input id='{{id}}_minLoad' class='form-control' type='text'{{#minLoad}} value='{{minLoad}}'{{/minLoad}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReduction'>minLoadReduction: </label><div class='col-sm-8'><input id='{{id}}_minLoadReduction' class='form-control' type='text'{{#minLoadReduction}} value='{{minLoadReduction}}'{{/minLoadReduction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionCost'>minLoadReductionCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionCost' class='form-control' type='text'{{#minLoadReductionCost}} value='{{minLoadReductionCost}}'{{/minLoadReductionCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='{{id}}_minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pickUpRampRate'>pickUpRampRate: </label><div class='col-sm-8'><input id='{{id}}_pickUpRampRate' class='form-control' type='text'{{#pickUpRampRate}} value='{{pickUpRampRate}}'{{/pickUpRampRate}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_priceSetting'>priceSetting: </label><div class='col-sm-8'><input id='{{id}}_priceSetting' class='form-check-input' type='checkbox'{{#priceSetting}} checked{{/priceSetting}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_priceSetting'>priceSetting: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_priceSetting' class='form-check-input' type='checkbox'{{#priceSetting}} checked{{/priceSetting}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='{{id}}_reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shutdownCost'>shutdownCost: </label><div class='col-sm-8'><input id='{{id}}_shutdownCost' class='form-control' type='text'{{#shutdownCost}} value='{{shutdownCost}}'{{/shutdownCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AreaLoadBid'>AreaLoadBid: </label><div class='col-sm-8'><input id='{{id}}_AreaLoadBid' class='form-control' type='text'{{#AreaLoadBid}} value='{{AreaLoadBid}}'{{/AreaLoadBid}}></div></div>
@@ -5400,7 +5400,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratingBid_collapse" aria-expanded="true" aria-controls="GeneratingBid_collapse" style="margin-left: 10px;">GeneratingBid</a></legend>
-                    <div id="GeneratingBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="GeneratingBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.template.call (this) +
                     `
@@ -5455,7 +5455,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GeneratingBid_collapse" aria-expanded="true" aria-controls="{{id}}_GeneratingBid_collapse" style="margin-left: 10px;">GeneratingBid</a></legend>
-                    <div id="{{id}}_GeneratingBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_GeneratingBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.edit_template.call (this) +
                     `
@@ -5592,7 +5592,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OpenTieSchedule_collapse" aria-expanded="true" aria-controls="OpenTieSchedule_collapse" style="margin-left: 10px;">OpenTieSchedule</a></legend>
-                    <div id="OpenTieSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OpenTieSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlySchedule.prototype.template.call (this) +
                     `
@@ -5620,11 +5620,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OpenTieSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_OpenTieSchedule_collapse" style="margin-left: 10px;">OpenTieSchedule</a></legend>
-                    <div id="{{id}}_OpenTieSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OpenTieSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlySchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_value'>value: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -5698,7 +5698,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="HourlyPreDispatchSchedule_collapse" style="margin-left: 10px;">HourlyPreDispatchSchedule</a></legend>
-                    <div id="HourlyPreDispatchSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="HourlyPreDispatchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlySchedule.prototype.template.call (this) +
                     `
@@ -5726,11 +5726,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_HourlyPreDispatchSchedule_collapse" style="margin-left: 10px;">HourlyPreDispatchSchedule</a></legend>
-                    <div id="{{id}}_HourlyPreDispatchSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_HourlyPreDispatchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + BidHourlySchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_value'>value: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div></div>
                     </div>
                     <fieldset>
                     `

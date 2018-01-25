@@ -79,7 +79,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitSet_collapse" aria-expanded="true" aria-controls="OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
-                    <div id="OperationalLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OperationalLimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -111,7 +111,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimitSet_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
-                    <div id="{{id}}_OperationalLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OperationalLimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -210,7 +210,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimit_collapse" aria-expanded="true" aria-controls="OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
-                    <div id="OperationalLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OperationalLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -245,7 +245,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimit_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
-                    <div id="{{id}}_OperationalLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OperationalLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -343,7 +343,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
-                    <div id="BranchGroupTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BranchGroupTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -373,11 +373,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
-                    <div id="{{id}}_BranchGroupTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BranchGroupTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_positiveFlowIn'>positiveFlowIn: </label><div class='col-sm-8'><input id='{{id}}_positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_positiveFlowIn'>positiveFlowIn: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BranchGroup'>BranchGroup: </label><div class='col-sm-8'><input id='{{id}}_BranchGroup' class='form-control' type='text'{{#BranchGroup}} value='{{BranchGroup}}'{{/BranchGroup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
@@ -481,7 +481,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroup_collapse" aria-expanded="true" aria-controls="BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
-                    <div id="BranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="BranchGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -520,7 +520,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BranchGroup_collapse" aria-expanded="true" aria-controls="{{id}}_BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
-                    <div id="{{id}}_BranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_BranchGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -528,8 +528,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumReactivePower'>maximumReactivePower: </label><div class='col-sm-8'><input id='{{id}}_maximumReactivePower' class='form-control' type='text'{{#maximumReactivePower}} value='{{maximumReactivePower}}'{{/maximumReactivePower}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumActivePower'>minimumActivePower: </label><div class='col-sm-8'><input id='{{id}}_minimumActivePower' class='form-control' type='text'{{#minimumActivePower}} value='{{minimumActivePower}}'{{/minimumActivePower}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumReactivePower'>minimumReactivePower: </label><div class='col-sm-8'><input id='{{id}}_minimumReactivePower' class='form-control' type='text'{{#minimumReactivePower}} value='{{minimumReactivePower}}'{{/minimumReactivePower}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_monitorActivePower'>monitorActivePower: </label><div class='col-sm-8'><input id='{{id}}_monitorActivePower' class='form-check-input' type='checkbox'{{#monitorActivePower}} checked{{/monitorActivePower}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_monitorReactivePower'>monitorReactivePower: </label><div class='col-sm-8'><input id='{{id}}_monitorReactivePower' class='form-check-input' type='checkbox'{{#monitorReactivePower}} checked{{/monitorReactivePower}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_monitorActivePower'>monitorActivePower: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_monitorActivePower' class='form-check-input' type='checkbox'{{#monitorActivePower}} checked{{/monitorActivePower}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_monitorReactivePower'>monitorReactivePower: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_monitorReactivePower' class='form-check-input' type='checkbox'{{#monitorReactivePower}} checked{{/monitorReactivePower}}></div></div></div>
                     </div>
                     <fieldset>
                     `
@@ -626,7 +626,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitType_collapse" aria-expanded="true" aria-controls="OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
-                    <div id="OperationalLimitType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="OperationalLimitType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -664,7 +664,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimitType_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
-                    <div id="{{id}}_OperationalLimitType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_OperationalLimitType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -757,7 +757,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentLimit_collapse" aria-expanded="true" aria-controls="CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
-                    <div id="CurrentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CurrentLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.template.call (this) +
                     `
@@ -785,7 +785,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentLimit_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
-                    <div id="{{id}}_CurrentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CurrentLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
                     `
@@ -861,7 +861,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
-                    <div id="ApparentPowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ApparentPowerLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.template.call (this) +
                     `
@@ -889,7 +889,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
-                    <div id="{{id}}_ApparentPowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ApparentPowerLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
                     `
@@ -965,7 +965,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageLimit_collapse" aria-expanded="true" aria-controls="VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
-                    <div id="VoltageLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="VoltageLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.template.call (this) +
                     `
@@ -993,7 +993,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageLimit_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
-                    <div id="{{id}}_VoltageLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_VoltageLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
                     `
@@ -1069,7 +1069,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerLimit_collapse" aria-expanded="true" aria-controls="ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
-                    <div id="ActivePowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ActivePowerLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.template.call (this) +
                     `
@@ -1097,7 +1097,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ActivePowerLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
-                    <div id="{{id}}_ActivePowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ActivePowerLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
                     `

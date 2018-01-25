@@ -79,7 +79,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CRRSegment_collapse" aria-expanded="true" aria-controls="CRRSegment_collapse" style="margin-left: 10px;">CRRSegment</a></legend>
-                    <div id="CRRSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CRRSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -118,7 +118,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CRRSegment_collapse" aria-expanded="true" aria-controls="{{id}}_CRRSegment_collapse" style="margin-left: 10px;">CRRSegment</a></legend>
-                    <div id="{{id}}_CRRSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CRRSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -239,7 +239,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CRR_collapse" aria-expanded="true" aria-controls="CRR_collapse" style="margin-left: 10px;">CRR</a></legend>
-                    <div id="CRR_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CRR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
@@ -279,7 +279,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CRR_collapse" aria-expanded="true" aria-controls="{{id}}_CRR_collapse" style="margin-left: 10px;">CRR</a></legend>
-                    <div id="{{id}}_CRR_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CRR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -387,7 +387,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#CRROrgRole_collapse" aria-expanded="true" aria-controls="CRROrgRole_collapse" style="margin-left: 10px;">CRROrgRole</a></legend>
-                    <div id="CRROrgRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="CRROrgRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
                     `
@@ -418,7 +418,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CRROrgRole_collapse" aria-expanded="true" aria-controls="{{id}}_CRROrgRole_collapse" style="margin-left: 10px;">CRROrgRole</a></legend>
-                    <div id="{{id}}_CRROrgRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_CRROrgRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `

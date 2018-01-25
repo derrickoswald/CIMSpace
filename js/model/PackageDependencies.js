@@ -65,7 +65,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PackageDependenciesCIMVersion_collapse" aria-expanded="true" aria-controls="PackageDependenciesCIMVersion_collapse" style="margin-left: 10px;">PackageDependenciesCIMVersion</a></legend>
-                    <div id="PackageDependenciesCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PackageDependenciesCIMVersion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -94,7 +94,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PackageDependenciesCIMVersion_collapse" aria-expanded="true" aria-controls="{{id}}_PackageDependenciesCIMVersion_collapse" style="margin-left: 10px;">PackageDependenciesCIMVersion</a></legend>
-                    <div id="{{id}}_PackageDependenciesCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PackageDependenciesCIMVersion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `

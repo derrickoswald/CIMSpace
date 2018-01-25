@@ -86,7 +86,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectPoint_collapse" aria-expanded="true" aria-controls="DiagramObjectPoint_collapse" style="margin-left: 10px;">DiagramObjectPoint</a></legend>
-                    <div id="DiagramObjectPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DiagramObjectPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -119,7 +119,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramObjectPoint_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramObjectPoint_collapse" style="margin-left: 10px;">DiagramObjectPoint</a></legend>
-                    <div id="{{id}}_DiagramObjectPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DiagramObjectPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -219,7 +219,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectStyle_collapse" aria-expanded="true" aria-controls="DiagramObjectStyle_collapse" style="margin-left: 10px;">DiagramObjectStyle</a></legend>
-                    <div id="DiagramObjectStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DiagramObjectStyle_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -249,7 +249,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramObjectStyle_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramObjectStyle_collapse" style="margin-left: 10px;">DiagramObjectStyle</a></legend>
-                    <div id="{{id}}_DiagramObjectStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DiagramObjectStyle_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -332,7 +332,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectGluePoint_collapse" aria-expanded="true" aria-controls="DiagramObjectGluePoint_collapse" style="margin-left: 10px;">DiagramObjectGluePoint</a></legend>
-                    <div id="DiagramObjectGluePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DiagramObjectGluePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
@@ -362,7 +362,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramObjectGluePoint_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramObjectGluePoint_collapse" style="margin-left: 10px;">DiagramObjectGluePoint</a></legend>
-                    <div id="{{id}}_DiagramObjectGluePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DiagramObjectGluePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -459,7 +459,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Diagram_collapse" aria-expanded="true" aria-controls="Diagram_collapse" style="margin-left: 10px;">Diagram</a></legend>
-                    <div id="Diagram_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Diagram_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -497,7 +497,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Diagram_collapse" aria-expanded="true" aria-controls="{{id}}_Diagram_collapse" style="margin-left: 10px;">Diagram</a></legend>
-                    <div id="{{id}}_Diagram_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Diagram_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -599,7 +599,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#VisibilityLayer_collapse" aria-expanded="true" aria-controls="VisibilityLayer_collapse" style="margin-left: 10px;">VisibilityLayer</a></legend>
-                    <div id="VisibilityLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="VisibilityLayer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -630,7 +630,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VisibilityLayer_collapse" aria-expanded="true" aria-controls="{{id}}_VisibilityLayer_collapse" style="margin-left: 10px;">VisibilityLayer</a></legend>
-                    <div id="{{id}}_VisibilityLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_VisibilityLayer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -739,7 +739,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObject_collapse" aria-expanded="true" aria-controls="DiagramObject_collapse" style="margin-left: 10px;">DiagramObject</a></legend>
-                    <div id="DiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DiagramObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -780,12 +780,12 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramObject_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramObject_collapse" style="margin-left: 10px;">DiagramObject</a></legend>
-                    <div id="{{id}}_DiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DiagramObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='{{id}}_drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPolygon'>isPolygon: </label><div class='col-sm-8'><input id='{{id}}_isPolygon' class='form-check-input' type='checkbox'{{#isPolygon}} checked{{/isPolygon}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isPolygon'>isPolygon: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isPolygon' class='form-check-input' type='checkbox'{{#isPolygon}} checked{{/isPolygon}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offsetX'>offsetX: </label><div class='col-sm-8'><input id='{{id}}_offsetX' class='form-control' type='text'{{#offsetX}} value='{{offsetX}}'{{/offsetX}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offsetY'>offsetY: </label><div class='col-sm-8'><input id='{{id}}_offsetY' class='form-control' type='text'{{#offsetY}} value='{{offsetY}}'{{/offsetY}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rotation'>rotation: </label><div class='col-sm-8'><input id='{{id}}_rotation' class='form-control' type='text'{{#rotation}} value='{{rotation}}'{{/rotation}}></div></div>
@@ -889,7 +889,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramStyle_collapse" aria-expanded="true" aria-controls="DiagramStyle_collapse" style="margin-left: 10px;">DiagramStyle</a></legend>
-                    <div id="DiagramStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DiagramStyle_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -919,7 +919,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramStyle_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramStyle_collapse" style="margin-left: 10px;">DiagramStyle</a></legend>
-                    <div id="{{id}}_DiagramStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DiagramStyle_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1002,7 +1002,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TextDiagramObject_collapse" aria-expanded="true" aria-controls="TextDiagramObject_collapse" style="margin-left: 10px;">TextDiagramObject</a></legend>
-                    <div id="TextDiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TextDiagramObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DiagramObject.prototype.template.call (this) +
                     `
@@ -1030,7 +1030,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TextDiagramObject_collapse" aria-expanded="true" aria-controls="{{id}}_TextDiagramObject_collapse" style="margin-left: 10px;">TextDiagramObject</a></legend>
-                    <div id="{{id}}_TextDiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TextDiagramObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DiagramObject.prototype.edit_template.call (this) +
                     `

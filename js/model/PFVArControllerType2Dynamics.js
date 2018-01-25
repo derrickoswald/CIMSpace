@@ -66,7 +66,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType2Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType2Dynamics</a></legend>
-                    <div id="PFVArControllerType2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PFVArControllerType2Dynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -94,7 +94,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArControllerType2Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType2Dynamics</a></legend>
-                    <div id="{{id}}_PFVArControllerType2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PFVArControllerType2Dynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -191,7 +191,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2Common1_collapse" aria-expanded="true" aria-controls="PFVArType2Common1_collapse" style="margin-left: 10px;">PFVArType2Common1</a></legend>
-                    <div id="PFVArType2Common1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PFVArType2Common1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.template.call (this) +
                     `
@@ -223,11 +223,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2Common1_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2Common1_collapse" style="margin-left: 10px;">PFVArType2Common1</a></legend>
-                    <div id="{{id}}_PFVArType2Common1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PFVArType2Common1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_j'>j: </label><div class='col-sm-8'><input id='{{id}}_j' class='form-check-input' type='checkbox'{{#j}} checked{{/j}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_j'>j: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_j' class='form-check-input' type='checkbox'{{#j}} checked{{/j}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_max'>max: </label><div class='col-sm-8'><input id='{{id}}_max' class='form-control' type='text'{{#max}} value='{{max}}'{{/max}}></div></div>
@@ -321,7 +321,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEVArController_collapse" style="margin-left: 10px;">PFVArType2IEEEVArController</a></legend>
-                    <div id="PFVArType2IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PFVArType2IEEEVArController_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.template.call (this) +
                     `
@@ -355,11 +355,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2IEEEVArController_collapse" style="margin-left: 10px;">PFVArType2IEEEVArController</a></legend>
-                    <div id="{{id}}_PFVArType2IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PFVArType2IEEEVArController_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exlon'>exlon: </label><div class='col-sm-8'><input id='{{id}}_exlon' class='form-check-input' type='checkbox'{{#exlon}} checked{{/exlon}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exlon'>exlon: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exlon' class='form-check-input' type='checkbox'{{#exlon}} checked{{/exlon}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qref'>qref: </label><div class='col-sm-8'><input id='{{id}}_qref' class='form-control' type='text'{{#qref}} value='{{qref}}'{{/qref}}></div></div>
@@ -457,7 +457,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEPFController_collapse" style="margin-left: 10px;">PFVArType2IEEEPFController</a></legend>
-                    <div id="PFVArType2IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PFVArType2IEEEPFController_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.template.call (this) +
                     `
@@ -491,11 +491,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2IEEEPFController_collapse" style="margin-left: 10px;">PFVArType2IEEEPFController</a></legend>
-                    <div id="{{id}}_PFVArType2IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PFVArType2IEEEPFController_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exlon'>exlon: </label><div class='col-sm-8'><input id='{{id}}_exlon' class='form-check-input' type='checkbox'{{#exlon}} checked{{/exlon}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exlon'>exlon: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exlon' class='form-check-input' type='checkbox'{{#exlon}} checked{{/exlon}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfref'>pfref: </label><div class='col-sm-8'><input id='{{id}}_pfref' class='form-control' type='text'{{#pfref}} value='{{pfref}}'{{/pfref}}></div></div>

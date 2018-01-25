@@ -61,7 +61,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerDynamics_collapse" style="margin-left: 10px;">TurbineLoadControllerDynamics</a></legend>
-                    <div id="TurbineLoadControllerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TurbineLoadControllerDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
@@ -89,7 +89,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_TurbineLoadControllerDynamics_collapse" style="margin-left: 10px;">TurbineLoadControllerDynamics</a></legend>
-                    <div id="{{id}}_TurbineLoadControllerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TurbineLoadControllerDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
@@ -200,7 +200,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbLCFB1_collapse" aria-expanded="true" aria-controls="TurbLCFB1_collapse" style="margin-left: 10px;">TurbLCFB1</a></legend>
-                    <div id="TurbLCFB1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="TurbLCFB1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineLoadControllerDynamics.prototype.template.call (this) +
                     `
@@ -239,21 +239,21 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TurbLCFB1_collapse" aria-expanded="true" aria-controls="{{id}}_TurbLCFB1_collapse" style="margin-left: 10px;">TurbLCFB1</a></legend>
-                    <div id="{{id}}_TurbLCFB1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_TurbLCFB1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineLoadControllerDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_db'>db: </label><div class='col-sm-8'><input id='{{id}}_db' class='form-control' type='text'{{#db}} value='{{db}}'{{/db}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emax'>emax: </label><div class='col-sm-8'><input id='{{id}}_emax' class='form-control' type='text'{{#emax}} value='{{emax}}'{{/emax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fb'>fb: </label><div class='col-sm-8'><input id='{{id}}_fb' class='form-control' type='text'{{#fb}} value='{{fb}}'{{/fb}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_fbf'>fbf: </label><div class='col-sm-8'><input id='{{id}}_fbf' class='form-check-input' type='checkbox'{{#fbf}} checked{{/fbf}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_fbf'>fbf: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_fbf' class='form-check-input' type='checkbox'{{#fbf}} checked{{/fbf}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_irmax'>irmax: </label><div class='col-sm-8'><input id='{{id}}_irmax' class='form-control' type='text'{{#irmax}} value='{{irmax}}'{{/irmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwbase'>mwbase: </label><div class='col-sm-8'><input id='{{id}}_mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_pbf'>pbf: </label><div class='col-sm-8'><input id='{{id}}_pbf' class='form-check-input' type='checkbox'{{#pbf}} checked{{/pbf}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_pbf'>pbf: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_pbf' class='form-check-input' type='checkbox'{{#pbf}} checked{{/pbf}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmwset'>pmwset: </label><div class='col-sm-8'><input id='{{id}}_pmwset' class='form-control' type='text'{{#pmwset}} value='{{pmwset}}'{{/pmwset}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_speedReferenceGovernor'>speedReferenceGovernor: </label><div class='col-sm-8'><input id='{{id}}_speedReferenceGovernor' class='form-check-input' type='checkbox'{{#speedReferenceGovernor}} checked{{/speedReferenceGovernor}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_speedReferenceGovernor'>speedReferenceGovernor: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_speedReferenceGovernor' class='form-check-input' type='checkbox'{{#speedReferenceGovernor}} checked{{/speedReferenceGovernor}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpelec'>tpelec: </label><div class='col-sm-8'><input id='{{id}}_tpelec' class='form-control' type='text'{{#tpelec}} value='{{tpelec}}'{{/tpelec}}></div></div>
                     </div>
                     <fieldset>

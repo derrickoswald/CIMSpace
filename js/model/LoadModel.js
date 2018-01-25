@@ -69,7 +69,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#Season_collapse" aria-expanded="true" aria-controls="Season_collapse" style="margin-left: 10px;">Season</a></legend>
-                    <div id="Season_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="Season_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -104,7 +104,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Season_collapse" aria-expanded="true" aria-controls="{{id}}_Season_collapse" style="margin-left: 10px;">Season</a></legend>
-                    <div id="{{id}}_Season_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_Season_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -196,7 +196,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SeasonDayTypeSchedule_collapse" aria-expanded="true" aria-controls="SeasonDayTypeSchedule_collapse" style="margin-left: 10px;">SeasonDayTypeSchedule</a></legend>
-                    <div id="SeasonDayTypeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SeasonDayTypeSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
                     `
@@ -225,7 +225,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SeasonDayTypeSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_SeasonDayTypeSchedule_collapse" style="margin-left: 10px;">SeasonDayTypeSchedule</a></legend>
-                    <div id="{{id}}_SeasonDayTypeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SeasonDayTypeSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
@@ -315,7 +315,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadGroup_collapse" aria-expanded="true" aria-controls="LoadGroup_collapse" style="margin-left: 10px;">LoadGroup</a></legend>
-                    <div id="LoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LoadGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -343,7 +343,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadGroup_collapse" aria-expanded="true" aria-controls="{{id}}_LoadGroup_collapse" style="margin-left: 10px;">LoadGroup</a></legend>
-                    <div id="{{id}}_LoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LoadGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -432,7 +432,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyArea_collapse" aria-expanded="true" aria-controls="EnergyArea_collapse" style="margin-left: 10px;">EnergyArea</a></legend>
-                    <div id="EnergyArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="EnergyArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -460,7 +460,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyArea_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyArea_collapse" style="margin-left: 10px;">EnergyArea</a></legend>
-                    <div id="{{id}}_EnergyArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_EnergyArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -549,7 +549,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#DayType_collapse" aria-expanded="true" aria-controls="DayType_collapse" style="margin-left: 10px;">DayType</a></legend>
-                    <div id="DayType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="DayType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -579,7 +579,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DayType_collapse" aria-expanded="true" aria-controls="{{id}}_DayType_collapse" style="margin-left: 10px;">DayType</a></legend>
-                    <div id="{{id}}_DayType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_DayType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -686,7 +686,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadResponseCharacteristic_collapse" aria-expanded="true" aria-controls="LoadResponseCharacteristic_collapse" style="margin-left: 10px;">LoadResponseCharacteristic</a></legend>
-                    <div id="LoadResponseCharacteristic_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LoadResponseCharacteristic_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
@@ -727,11 +727,11 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadResponseCharacteristic_collapse" aria-expanded="true" aria-controls="{{id}}_LoadResponseCharacteristic_collapse" style="margin-left: 10px;">LoadResponseCharacteristic</a></legend>
-                    <div id="{{id}}_LoadResponseCharacteristic_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LoadResponseCharacteristic_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exponentModel'>exponentModel: </label><div class='col-sm-8'><input id='{{id}}_exponentModel' class='form-check-input' type='checkbox'{{#exponentModel}} checked{{/exponentModel}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_exponentModel'>exponentModel: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exponentModel' class='form-check-input' type='checkbox'{{#exponentModel}} checked{{/exponentModel}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pConstantCurrent'>pConstantCurrent: </label><div class='col-sm-8'><input id='{{id}}_pConstantCurrent' class='form-control' type='text'{{#pConstantCurrent}} value='{{pConstantCurrent}}'{{/pConstantCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pConstantImpedance'>pConstantImpedance: </label><div class='col-sm-8'><input id='{{id}}_pConstantImpedance' class='form-control' type='text'{{#pConstantImpedance}} value='{{pConstantImpedance}}'{{/pConstantImpedance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pConstantPower'>pConstantPower: </label><div class='col-sm-8'><input id='{{id}}_pConstantPower' class='form-control' type='text'{{#pConstantPower}} value='{{pConstantPower}}'{{/pConstantPower}}></div></div>
@@ -838,7 +838,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerCutZone_collapse" aria-expanded="true" aria-controls="PowerCutZone_collapse" style="margin-left: 10px;">PowerCutZone</a></legend>
-                    <div id="PowerCutZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="PowerCutZone_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
@@ -870,7 +870,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerCutZone_collapse" aria-expanded="true" aria-controls="{{id}}_PowerCutZone_collapse" style="margin-left: 10px;">PowerCutZone</a></legend>
-                    <div id="{{id}}_PowerCutZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_PowerCutZone_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
@@ -959,7 +959,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoadSchedule_collapse" aria-expanded="true" aria-controls="NonConformLoadSchedule_collapse" style="margin-left: 10px;">NonConformLoadSchedule</a></legend>
-                    <div id="NonConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="NonConformLoadSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
@@ -987,7 +987,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonConformLoadSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_NonConformLoadSchedule_collapse" style="margin-left: 10px;">NonConformLoadSchedule</a></legend>
-                    <div id="{{id}}_NonConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_NonConformLoadSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SeasonDayTypeSchedule.prototype.edit_template.call (this) +
                     `
@@ -1076,7 +1076,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoadSchedule_collapse" aria-expanded="true" aria-controls="ConformLoadSchedule_collapse" style="margin-left: 10px;">ConformLoadSchedule</a></legend>
-                    <div id="ConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ConformLoadSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
@@ -1104,7 +1104,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConformLoadSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_ConformLoadSchedule_collapse" style="margin-left: 10px;">ConformLoadSchedule</a></legend>
-                    <div id="{{id}}_ConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ConformLoadSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SeasonDayTypeSchedule.prototype.edit_template.call (this) +
                     `
@@ -1193,7 +1193,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoadGroup_collapse" aria-expanded="true" aria-controls="NonConformLoadGroup_collapse" style="margin-left: 10px;">NonConformLoadGroup</a></legend>
-                    <div id="NonConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="NonConformLoadGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadGroup.prototype.template.call (this) +
                     `
@@ -1226,7 +1226,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonConformLoadGroup_collapse" aria-expanded="true" aria-controls="{{id}}_NonConformLoadGroup_collapse" style="margin-left: 10px;">NonConformLoadGroup</a></legend>
-                    <div id="{{id}}_NonConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_NonConformLoadGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadGroup.prototype.edit_template.call (this) +
                     `
@@ -1312,7 +1312,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoadGroup_collapse" aria-expanded="true" aria-controls="ConformLoadGroup_collapse" style="margin-left: 10px;">ConformLoadGroup</a></legend>
-                    <div id="ConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="ConformLoadGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadGroup.prototype.template.call (this) +
                     `
@@ -1345,7 +1345,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConformLoadGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ConformLoadGroup_collapse" style="margin-left: 10px;">ConformLoadGroup</a></legend>
-                    <div id="{{id}}_ConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_ConformLoadGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadGroup.prototype.edit_template.call (this) +
                     `
@@ -1431,7 +1431,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#SubLoadArea_collapse" aria-expanded="true" aria-controls="SubLoadArea_collapse" style="margin-left: 10px;">SubLoadArea</a></legend>
-                    <div id="SubLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="SubLoadArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EnergyArea.prototype.template.call (this) +
                     `
@@ -1462,7 +1462,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SubLoadArea_collapse" aria-expanded="true" aria-controls="{{id}}_SubLoadArea_collapse" style="margin-left: 10px;">SubLoadArea</a></legend>
-                    <div id="{{id}}_SubLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_SubLoadArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EnergyArea.prototype.edit_template.call (this) +
                     `
@@ -1550,7 +1550,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadArea_collapse" aria-expanded="true" aria-controls="LoadArea_collapse" style="margin-left: 10px;">LoadArea</a></legend>
-                    <div id="LoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="LoadArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EnergyArea.prototype.template.call (this) +
                     `
@@ -1580,7 +1580,7 @@ define
                     `
                     <fieldset>
                     <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadArea_collapse" aria-expanded="true" aria-controls="{{id}}_LoadArea_collapse" style="margin-left: 10px;">LoadArea</a></legend>
-                    <div id="{{id}}_LoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <div id="{{id}}_LoadArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EnergyArea.prototype.edit_template.call (this) +
                     `
