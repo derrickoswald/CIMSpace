@@ -24,7 +24,11 @@ define
                 this._template =
                     "<div class='card'>\n" +
                     "  <div class='card-body'>\n" +
-                    "    <h5 class='card-title'>Themes</h5>\n" +
+                    "    <h5 class='card-title'>Themes\n" +
+                    "      <button type='button' class='close' aria-label='Close'>\n" +
+                    "        <span aria-hidden='true'>&times;</span>\n" +
+                    "      </button>\n" +
+                    "    </h5>\n" +
                     "{{#themes}}\n" +
                     "    <div class='form-check'>\n" +
                     "      <label class='form-check-label'>\n" +
@@ -69,6 +73,7 @@ define
                     for (var i = 0; i < list.length; i++)
                         list[i].onchange = this.theme_change.bind (this);
                 }
+                this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                 this._onMap = true;
                 return (this._container);
             }
@@ -84,6 +89,11 @@ define
             getDefaultPosition ()
             {
                 return ("bottom-right");
+            }
+
+            close (event)
+            {
+                this._map.removeControl (this);
             }
 
             addTheme (theme)

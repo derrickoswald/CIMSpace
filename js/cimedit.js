@@ -23,7 +23,11 @@ define
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
-                "    <h5 class='card-title'>Edit</h5>\n" +
+                "    <h5 class='card-title'>Edit\n" +
+                "      <button type='button' class='close' aria-label='Close'>\n" +
+                "        <span aria-hidden='true'>&times;</span>\n" +
+                "      </button>\n" +
+                "    </h5>\n" +
                 "    <div class='form-group row'>\n" +
                 "      <label class='col-sm-4 col-form-label' for='class_name'>Class</label>\n" +
                 "      <div class='col-sm-8'>\n" +
@@ -75,6 +79,12 @@ define
                 return ("bottom-left");
             }
 
+            close (event)
+            {
+                this.cancel ();
+                this._map.removeControl (this);
+            }
+
             visible ()
             {
                 return (null != this._container);
@@ -89,6 +99,7 @@ define
                         classes.push (property);
                 classes.sort ();
                 this._container.innerHTML = mustache.render (this._template, { classes: classes });
+                this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                 this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.create.bind (this);
             }
 

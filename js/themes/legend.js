@@ -24,7 +24,11 @@ define
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
-                "    <h5 class='card-title'>Legend</h5>\n" +
+                "    <h5 class='card-title'>Legend\n" +
+                "      <button type='button' class='close' aria-label='Close'>\n" +
+                "        <span aria-hidden='true'>&times;</span>\n" +
+                "      </button>\n" +
+                "    </h5>\n" +
                 "{{#items}}\n" +
                 "    <div class='form-check'>\n" +
 // custom
@@ -53,6 +57,7 @@ define
                 var list = this._container.getElementsByTagName ("input");
                 for (var i = 0; i < list.length; i++)
                     list[i].onchange = this.legend_change.bind (this);
+                this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                 this._onMap = true;
                 return (this._container);
             }
@@ -67,6 +72,11 @@ define
             getDefaultPosition ()
             {
                 return ("bottom-right");
+            }
+
+            close (event)
+            {
+                this._map.removeControl (this);
             }
 
             visible ()
