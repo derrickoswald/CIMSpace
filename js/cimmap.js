@@ -677,6 +677,11 @@ define
                     return (ret);
                 }
 
+                function deleted (equipment)
+                {
+                    return (equipment.EditDisposition && ("delete" == equipment.EditDisposition));
+                }
+
                 function preload (source, terminal)
                 {
                     if (null != source)
@@ -729,6 +734,11 @@ define
                     var count = number_of_elements ();
                     while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
                     {
+                        // don't trace deleted elements
+                        var element = CIM_Data.Element[source];
+                        if (null == element || deleted (element))
+                            continue;
+
                         equipment.push (source);
                         var ce = CIM_Data.ConductingEquipment[source];
                         if (null == ce || stop (ce))
@@ -738,14 +748,14 @@ define
                             for (var i = 0; i < terms.length; i++)
                             {
                                 var terminal = CIM_Data.Terminal[terms[i]];
-                                if (null != terminal)
+                                if (null != terminal && !deleted (terminal))
                                 {
                                     var equp = terminal.ConductingEquipment;
-                                    if (null != equp)
+                                    if (null != equp && !deleted (equp))
                                         if (!equipment.includes (equp) && !todo.includes (equp))
                                             todo.push (equp); // this should never happen
                                     var node = terminal.ConnectivityNode;
-                                    if (null != node)
+                                    if (null != node && !deleted (node))
                                     {
                                         var next = terminals_by_node[node];
                                         if (null != next)
@@ -754,10 +764,10 @@ define
                                                 if (next[j] != terms[i]) // don't trace back the way we came
                                                 {
                                                     var t = CIM_Data.Terminal[next[j]];
-                                                    if (null != t)
+                                                    if (null != t && !deleted (t))
                                                     {
                                                         var e = t.ConductingEquipment;
-                                                        if (null != e)
+                                                        if (null != e && !deleted (e))
                                                             if (!equipment.includes (e) && !todo.includes (e))
                                                                 todo.push (e);
                                                     }
