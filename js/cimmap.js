@@ -952,6 +952,43 @@ define
             return ({ url: _url });
         }
 
+        function poink (x, y)
+        {
+            var width = 4;
+            var height = 4;
+            var features = TheMap.queryRenderedFeatures
+            (
+                [
+                  [x - width / 2, y - height / 2],
+                  [x + width / 2, y + height / 2]
+                ],
+                {}
+            );
+            if ((null != features) && (0 != features.length))
+            {
+                var selection = [];
+                for (var i = 0; i < features.length; i++)
+                {
+                    var mrid = features[i].properties.mRID;
+                    if (null != mrid && !selection.includes (mrid))
+                        selection.push (mrid);
+                }
+                if (selection.length > 0)
+                {
+                    if (selection[0] != get_selected_feature ())
+                    {
+                        CURRENT_FEATURE = selection[0];
+                        CURRENT_SELECTION = selection;
+                        highlight ();
+                    }
+                }
+                else
+                    unhighlight ();
+            }
+            else
+                unhighlight ();
+        }
+
         function default_mousedown_listener (event)
         {
             // only do something if no key is pressed
@@ -965,41 +1002,7 @@ define
                 var leftbutton = 0 != (buttons & 1);
                 var rightbutton = 0 != (buttons & 2);
                 if (leftbutton)
-                {
-                    var width = 4;
-                    var height = 4;
-                    var features = TheMap.queryRenderedFeatures
-                    (
-                        [
-                          [event.point.x - width / 2, event.point.y - height / 2],
-                          [event.point.x + width / 2, event.point.y + height / 2]
-                        ],
-                        {}
-                    );
-                    if ((null != features) && (0 != features.length))
-                    {
-                        var selection = [];
-                        for (var i = 0; i < features.length; i++)
-                        {
-                            var mrid = features[i].properties.mRID;
-                            if (null != mrid && !selection.includes (mrid))
-                                selection.push (mrid);
-                        }
-                        if (selection.length > 0)
-                        {
-                            if (selection[0] != get_selected_feature ())
-                            {
-                                CURRENT_FEATURE = selection[0];
-                                CURRENT_SELECTION = selection;
-                                highlight ();
-                            }
-                        }
-                        else
-                            unhighlight ();
-                    }
-                    else
-                        unhighlight ();
-                }
+                    poink (event.point.x, event.point.y);
                 else if (rightbutton)
                 {
                     //<i id="" class="fa fa-map-marker"></i>
@@ -1012,15 +1015,25 @@ define
             }
         }
 
+        function default_touchstart_listener (event)
+        {
+            // only do something if no key is pressed
+            var key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
+            if (!key)
+                poink (event.point.x, event.point.y);
+        }
+
         function add_listeners ()
         {
             // handle mouse click
             TheMap.on ("mousedown", default_mousedown_listener);
+            TheMap.on ("touchstart", default_touchstart_listener);
         }
 
         function remove_listeners ()
         {
             TheMap.off ("mousedown", default_mousedown_listener);
+            TheMap.off ("touchstart", default_touchstart_listener);
         }
 
         /**
