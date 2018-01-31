@@ -74,8 +74,18 @@ define
                         function (zipReader)
                         {
                             zipReader.getEntries (
-                                function (entries) {
-                                    entries[0].getData (
+                                function (entries)
+                                {
+                                    // find the CIM file with extension rdf or xml... if any
+                                    var j = 0;
+                                    for (var i = 0; i < entries.length; i++)
+                                    {
+                                        var name = entries[i].filename.toLowerCase ();
+                                        if (name.endsWith (".rdf") || name.endsWith (".xml"))
+                                            j = i;
+                                    }
+                                    console.log ("file: " + entries[j].filename);
+                                    entries[j].getData (
                                         new zip.BlobWriter (mimeTypes.getMimeType (entries[0].filename)),
                                         function (data)
                                         {
@@ -84,8 +94,9 @@ define
                                             console.log ("finished unzip (" + (Math.round (end - start) / 1000) + " seconds)");
                                             read_cim (data);
                                         }
-                                );
-                            })
+                                    );
+                                }
+                            )
                         }
                     );
                 }
