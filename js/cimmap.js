@@ -81,6 +81,17 @@ define
             return (TheMap);
         }
 
+        function empty (obj)
+        {
+            var ret = true;
+            for (var property in CIM_Data)
+            {
+                ret = false;
+                break;
+            }
+            return (ret);
+        }
+
         /**
          * Set the CIM data for the map to draw.
          * @param {JSON} Data parsed from the cim module.
@@ -90,7 +101,7 @@ define
         function set_data (data)
         {
             CIM_Data = data;
-            if (null != CIM_Data)
+            if (null != CIM_Data && !empty (CIM_Data))
                 make_map (function () { zoom_extents (); });
         }
 
@@ -911,7 +922,7 @@ define
 
         /**
          * @summary Redraw the map.
-         * @description Given some CIM datra has been loaded, redraws the map.
+         * @description Given some CIM data has been loaded, redraws the map.
          * @param {object} event - optional, the vector tile checkbox change event
          * @function redraw
          * @memberOf module:cimmap
@@ -1118,6 +1129,7 @@ define
                      show_scale_bar: show_scale_bar,
                      show_coordinates: show_coordinates,
                      show_streetview: show_streetview,
+                     make_map, make_map,
                      zoom_extents: zoom_extents,
                      select: select,
                      buildings_3d: buildings_3d,

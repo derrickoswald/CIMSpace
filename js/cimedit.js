@@ -1152,7 +1152,7 @@ define
             regen ()
             {
                 this.shutdown ();
-                this._cimmap.redraw ();
+                this._cimmap.make_map ();
             }
 
             save ()
