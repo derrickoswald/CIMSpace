@@ -934,7 +934,7 @@ define
                     proto.mRID = proto.id;
                 obj = new cls (proto, this._features); // do it again, possibly with mRID set
 
-                this.edit (obj, true);
+                this.edit (obj, true, true);
 
                 // here's some rules
                 if (this._features.Conductor)
@@ -1035,7 +1035,7 @@ define
                 return (text);
             }
 
-            edit (element, top_level)
+            edit (element, top_level, is_new)
             {
                 var cls = cim.class_map (element);
                 if (top_level)
@@ -1047,7 +1047,7 @@ define
                         "    <div id='edit_contents' class='card-text'></div>\n" +
                         "    <div class='card-footer'>\n" +
                         "      <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
-                        "      <button id='delete' type='button' class='btn btn-danger' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().del ();})'>Delete</button>\n" +
+                        (is_new ? "" : "      <button id='delete' type='button' class='btn btn-danger' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().del ();})'>Delete</button>\n") +
                         "      <button id='cancel' type='button' class='btn btn-success' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().cancel ();})'>Cancel</button>\n" +
                         "      <button id='create_new' type='button' class='btn btn-info' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().create_new ();})'>Create new</button>\n" +
                         "    </div>\n" +
