@@ -70,7 +70,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryCost_collapse" aria-expanded="true" aria-controls="AuxiliaryCost_collapse" style="margin-left: 10px;">AuxiliaryCost</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AuxiliaryCost_collapse" aria-expanded="true" aria-controls="AuxiliaryCost_collapse" style="margin-left: 10px;">AuxiliaryCost</a></legend>
                     <div id="AuxiliaryCost_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -104,7 +104,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryCost_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryCost_collapse" style="margin-left: 10px;">AuxiliaryCost</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AuxiliaryCost_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryCost_collapse" style="margin-left: 10px;">AuxiliaryCost</a></legend>
                     <div id="{{id}}_AuxiliaryCost_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -203,7 +203,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="ExpectedEnergyValues_collapse" style="margin-left: 10px;">ExpectedEnergyValues</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="ExpectedEnergyValues_collapse" style="margin-left: 10px;">ExpectedEnergyValues</a></legend>
                     <div id="ExpectedEnergyValues_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -234,7 +234,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="{{id}}_ExpectedEnergyValues_collapse" style="margin-left: 10px;">ExpectedEnergyValues</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="{{id}}_ExpectedEnergyValues_collapse" style="margin-left: 10px;">ExpectedEnergyValues</a></legend>
                     <div id="{{id}}_ExpectedEnergyValues_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -330,7 +330,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryObject_collapse" aria-expanded="true" aria-controls="AuxiliaryObject_collapse" style="margin-left: 10px;">AuxiliaryObject</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AuxiliaryObject_collapse" aria-expanded="true" aria-controls="AuxiliaryObject_collapse" style="margin-left: 10px;">AuxiliaryObject</a></legend>
                     <div id="AuxiliaryObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -359,7 +359,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryObject_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryObject_collapse" style="margin-left: 10px;">AuxiliaryObject</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AuxiliaryObject_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryObject_collapse" style="margin-left: 10px;">AuxiliaryObject</a></legend>
                     <div id="{{id}}_AuxiliaryObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -453,7 +453,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradingHubValues_collapse" aria-expanded="true" aria-controls="TradingHubValues_collapse" style="margin-left: 10px;">TradingHubValues</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TradingHubValues_collapse" aria-expanded="true" aria-controls="TradingHubValues_collapse" style="margin-left: 10px;">TradingHubValues</a></legend>
                     <div id="TradingHubValues_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -483,7 +483,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TradingHubValues_collapse" aria-expanded="true" aria-controls="{{id}}_TradingHubValues_collapse" style="margin-left: 10px;">TradingHubValues</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TradingHubValues_collapse" aria-expanded="true" aria-controls="{{id}}_TradingHubValues_collapse" style="margin-left: 10px;">TradingHubValues</a></legend>
                     <div id="{{id}}_TradingHubValues_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -583,7 +583,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradingHubPrice_collapse" aria-expanded="true" aria-controls="TradingHubPrice_collapse" style="margin-left: 10px;">TradingHubPrice</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TradingHubPrice_collapse" aria-expanded="true" aria-controls="TradingHubPrice_collapse" style="margin-left: 10px;">TradingHubPrice</a></legend>
                     <div id="TradingHubPrice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -617,7 +617,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TradingHubPrice_collapse" aria-expanded="true" aria-controls="{{id}}_TradingHubPrice_collapse" style="margin-left: 10px;">TradingHubPrice</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TradingHubPrice_collapse" aria-expanded="true" aria-controls="{{id}}_TradingHubPrice_collapse" style="margin-left: 10px;">TradingHubPrice</a></legend>
                     <div id="{{id}}_TradingHubPrice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -716,7 +716,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExpectedEnergy_collapse" aria-expanded="true" aria-controls="ExpectedEnergy_collapse" style="margin-left: 10px;">ExpectedEnergy</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExpectedEnergy_collapse" aria-expanded="true" aria-controls="ExpectedEnergy_collapse" style="margin-left: 10px;">ExpectedEnergy</a></legend>
                     <div id="ExpectedEnergy_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -749,7 +749,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExpectedEnergy_collapse" aria-expanded="true" aria-controls="{{id}}_ExpectedEnergy_collapse" style="margin-left: 10px;">ExpectedEnergy</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExpectedEnergy_collapse" aria-expanded="true" aria-controls="{{id}}_ExpectedEnergy_collapse" style="margin-left: 10px;">ExpectedEnergy</a></legend>
                     <div id="{{id}}_ExpectedEnergy_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -846,7 +846,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="TenMinAuxiliaryData_collapse" style="margin-left: 10px;">TenMinAuxiliaryData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="TenMinAuxiliaryData_collapse" style="margin-left: 10px;">TenMinAuxiliaryData</a></legend>
                     <div id="TenMinAuxiliaryData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -879,7 +879,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="{{id}}_TenMinAuxiliaryData_collapse" style="margin-left: 10px;">TenMinAuxiliaryData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="{{id}}_TenMinAuxiliaryData_collapse" style="margin-left: 10px;">TenMinAuxiliaryData</a></legend>
                     <div id="{{id}}_TenMinAuxiliaryData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -978,7 +978,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AllocationResult_collapse" aria-expanded="true" aria-controls="AllocationResult_collapse" style="margin-left: 10px;">AllocationResult</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AllocationResult_collapse" aria-expanded="true" aria-controls="AllocationResult_collapse" style="margin-left: 10px;">AllocationResult</a></legend>
                     <div id="AllocationResult_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1011,7 +1011,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AllocationResult_collapse" aria-expanded="true" aria-controls="{{id}}_AllocationResult_collapse" style="margin-left: 10px;">AllocationResult</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AllocationResult_collapse" aria-expanded="true" aria-controls="{{id}}_AllocationResult_collapse" style="margin-left: 10px;">AllocationResult</a></legend>
                     <div id="{{id}}_AllocationResult_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1114,7 +1114,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AllocationResultValues_collapse" aria-expanded="true" aria-controls="AllocationResultValues_collapse" style="margin-left: 10px;">AllocationResultValues</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AllocationResultValues_collapse" aria-expanded="true" aria-controls="AllocationResultValues_collapse" style="margin-left: 10px;">AllocationResultValues</a></legend>
                     <div id="AllocationResultValues_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1148,7 +1148,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AllocationResultValues_collapse" aria-expanded="true" aria-controls="{{id}}_AllocationResultValues_collapse" style="margin-left: 10px;">AllocationResultValues</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AllocationResultValues_collapse" aria-expanded="true" aria-controls="{{id}}_AllocationResultValues_collapse" style="margin-left: 10px;">AllocationResultValues</a></legend>
                     <div id="{{id}}_AllocationResultValues_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1254,7 +1254,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="FiveMinAuxiliaryData_collapse" style="margin-left: 10px;">FiveMinAuxiliaryData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="FiveMinAuxiliaryData_collapse" style="margin-left: 10px;">FiveMinAuxiliaryData</a></legend>
                     <div id="FiveMinAuxiliaryData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1287,7 +1287,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="{{id}}_FiveMinAuxiliaryData_collapse" style="margin-left: 10px;">FiveMinAuxiliaryData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="{{id}}_FiveMinAuxiliaryData_collapse" style="margin-left: 10px;">FiveMinAuxiliaryData</a></legend>
                     <div id="{{id}}_FiveMinAuxiliaryData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1398,7 +1398,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryValues_collapse" aria-expanded="true" aria-controls="AuxiliaryValues_collapse" style="margin-left: 10px;">AuxiliaryValues</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AuxiliaryValues_collapse" aria-expanded="true" aria-controls="AuxiliaryValues_collapse" style="margin-left: 10px;">AuxiliaryValues</a></legend>
                     <div id="AuxiliaryValues_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryObject.prototype.template.call (this) +
@@ -1436,7 +1436,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryValues_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryValues_collapse" style="margin-left: 10px;">AuxiliaryValues</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AuxiliaryValues_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryValues_collapse" style="margin-left: 10px;">AuxiliaryValues</a></legend>
                     <div id="{{id}}_AuxiliaryValues_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryObject.prototype.edit_template.call (this) +

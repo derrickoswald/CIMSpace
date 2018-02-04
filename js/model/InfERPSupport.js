@@ -110,7 +110,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpDocument_collapse" aria-expanded="true" aria-controls="ErpDocument_collapse" style="margin-left: 10px;">ErpDocument</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpDocument_collapse" aria-expanded="true" aria-controls="ErpDocument_collapse" style="margin-left: 10px;">ErpDocument</a></legend>
                     <div id="ErpDocument_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -137,7 +137,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpDocument_collapse" aria-expanded="true" aria-controls="{{id}}_ErpDocument_collapse" style="margin-left: 10px;">ErpDocument</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpDocument_collapse" aria-expanded="true" aria-controls="{{id}}_ErpDocument_collapse" style="margin-left: 10px;">ErpDocument</a></legend>
                     <div id="{{id}}_ErpDocument_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -209,7 +209,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="ErpIdentifiedObject_collapse" style="margin-left: 10px;">ErpIdentifiedObject</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="ErpIdentifiedObject_collapse" style="margin-left: 10px;">ErpIdentifiedObject</a></legend>
                     <div id="ErpIdentifiedObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -236,7 +236,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="{{id}}_ErpIdentifiedObject_collapse" style="margin-left: 10px;">ErpIdentifiedObject</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="{{id}}_ErpIdentifiedObject_collapse" style="margin-left: 10px;">ErpIdentifiedObject</a></legend>
                     <div id="{{id}}_ErpIdentifiedObject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -310,7 +310,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBankAccount_collapse" aria-expanded="true" aria-controls="ErpBankAccount_collapse" style="margin-left: 10px;">ErpBankAccount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpBankAccount_collapse" aria-expanded="true" aria-controls="ErpBankAccount_collapse" style="margin-left: 10px;">ErpBankAccount</a></legend>
                     <div id="ErpBankAccount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + InfCommon.BankAccount.prototype.template.call (this) +
@@ -338,7 +338,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpBankAccount_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBankAccount_collapse" style="margin-left: 10px;">ErpBankAccount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpBankAccount_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBankAccount_collapse" style="margin-left: 10px;">ErpBankAccount</a></legend>
                     <div id="{{id}}_ErpBankAccount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + InfCommon.BankAccount.prototype.edit_template.call (this) +
@@ -414,7 +414,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpSalesOrder_collapse" aria-expanded="true" aria-controls="ErpSalesOrder_collapse" style="margin-left: 10px;">ErpSalesOrder</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpSalesOrder_collapse" aria-expanded="true" aria-controls="ErpSalesOrder_collapse" style="margin-left: 10px;">ErpSalesOrder</a></legend>
                     <div id="ErpSalesOrder_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -441,7 +441,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpSalesOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpSalesOrder_collapse" style="margin-left: 10px;">ErpSalesOrder</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpSalesOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpSalesOrder_collapse" style="margin-left: 10px;">ErpSalesOrder</a></legend>
                     <div id="{{id}}_ErpSalesOrder_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -515,7 +515,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpTimeSheet_collapse" aria-expanded="true" aria-controls="ErpTimeSheet_collapse" style="margin-left: 10px;">ErpTimeSheet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpTimeSheet_collapse" aria-expanded="true" aria-controls="ErpTimeSheet_collapse" style="margin-left: 10px;">ErpTimeSheet</a></legend>
                     <div id="ErpTimeSheet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -545,7 +545,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpTimeSheet_collapse" aria-expanded="true" aria-controls="{{id}}_ErpTimeSheet_collapse" style="margin-left: 10px;">ErpTimeSheet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpTimeSheet_collapse" aria-expanded="true" aria-controls="{{id}}_ErpTimeSheet_collapse" style="margin-left: 10px;">ErpTimeSheet</a></legend>
                     <div id="{{id}}_ErpTimeSheet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -634,7 +634,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPOLineItem_collapse" aria-expanded="true" aria-controls="ErpPOLineItem_collapse" style="margin-left: 10px;">ErpPOLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpPOLineItem_collapse" aria-expanded="true" aria-controls="ErpPOLineItem_collapse" style="margin-left: 10px;">ErpPOLineItem</a></legend>
                     <div id="ErpPOLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -665,7 +665,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPOLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPOLineItem_collapse" style="margin-left: 10px;">ErpPOLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpPOLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPOLineItem_collapse" style="margin-left: 10px;">ErpPOLineItem</a></legend>
                     <div id="{{id}}_ErpPOLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -763,7 +763,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="ErpReceiveDelivery_collapse" style="margin-left: 10px;">ErpReceiveDelivery</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="ErpReceiveDelivery_collapse" style="margin-left: 10px;">ErpReceiveDelivery</a></legend>
                     <div id="ErpReceiveDelivery_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -793,7 +793,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReceiveDelivery_collapse" style="margin-left: 10px;">ErpReceiveDelivery</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReceiveDelivery_collapse" style="margin-left: 10px;">ErpReceiveDelivery</a></legend>
                     <div id="{{id}}_ErpReceiveDelivery_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -884,7 +884,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayment_collapse" aria-expanded="true" aria-controls="ErpPayment_collapse" style="margin-left: 10px;">ErpPayment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpPayment_collapse" aria-expanded="true" aria-controls="ErpPayment_collapse" style="margin-left: 10px;">ErpPayment</a></legend>
                     <div id="ErpPayment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -921,7 +921,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPayment_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayment_collapse" style="margin-left: 10px;">ErpPayment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpPayment_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayment_collapse" style="margin-left: 10px;">ErpPayment</a></legend>
                     <div id="{{id}}_ErpPayment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -1018,7 +1018,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpJournal_collapse" aria-expanded="true" aria-controls="ErpJournal_collapse" style="margin-left: 10px;">ErpJournal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpJournal_collapse" aria-expanded="true" aria-controls="ErpJournal_collapse" style="margin-left: 10px;">ErpJournal</a></legend>
                     <div id="ErpJournal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -1048,7 +1048,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpJournal_collapse" aria-expanded="true" aria-controls="{{id}}_ErpJournal_collapse" style="margin-left: 10px;">ErpJournal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpJournal_collapse" aria-expanded="true" aria-controls="{{id}}_ErpJournal_collapse" style="margin-left: 10px;">ErpJournal</a></legend>
                     <div id="{{id}}_ErpJournal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -1153,7 +1153,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInvoice_collapse" aria-expanded="true" aria-controls="ErpInvoice_collapse" style="margin-left: 10px;">ErpInvoice</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpInvoice_collapse" aria-expanded="true" aria-controls="ErpInvoice_collapse" style="margin-left: 10px;">ErpInvoice</a></legend>
                     <div id="ErpInvoice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -1197,7 +1197,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpInvoice_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInvoice_collapse" style="margin-left: 10px;">ErpInvoice</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpInvoice_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInvoice_collapse" style="margin-left: 10px;">ErpInvoice</a></legend>
                     <div id="{{id}}_ErpInvoice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -1305,7 +1305,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="ErpPurchaseOrder_collapse" style="margin-left: 10px;">ErpPurchaseOrder</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="ErpPurchaseOrder_collapse" style="margin-left: 10px;">ErpPurchaseOrder</a></legend>
                     <div id="ErpPurchaseOrder_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -1335,7 +1335,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPurchaseOrder_collapse" style="margin-left: 10px;">ErpPurchaseOrder</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPurchaseOrder_collapse" style="margin-left: 10px;">ErpPurchaseOrder</a></legend>
                     <div id="{{id}}_ErpPurchaseOrder_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -1420,7 +1420,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedger_collapse" aria-expanded="true" aria-controls="ErpLedger_collapse" style="margin-left: 10px;">ErpLedger</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpLedger_collapse" aria-expanded="true" aria-controls="ErpLedger_collapse" style="margin-left: 10px;">ErpLedger</a></legend>
                     <div id="ErpLedger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -1450,7 +1450,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpLedger_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedger_collapse" style="margin-left: 10px;">ErpLedger</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpLedger_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedger_collapse" style="margin-left: 10px;">ErpLedger</a></legend>
                     <div id="{{id}}_ErpLedger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -1535,7 +1535,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRequisition_collapse" aria-expanded="true" aria-controls="ErpRequisition_collapse" style="margin-left: 10px;">ErpRequisition</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpRequisition_collapse" aria-expanded="true" aria-controls="ErpRequisition_collapse" style="margin-left: 10px;">ErpRequisition</a></legend>
                     <div id="ErpRequisition_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -1565,7 +1565,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpRequisition_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRequisition_collapse" style="margin-left: 10px;">ErpRequisition</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpRequisition_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRequisition_collapse" style="margin-left: 10px;">ErpRequisition</a></legend>
                     <div id="{{id}}_ErpRequisition_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -1652,7 +1652,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBOM_collapse" aria-expanded="true" aria-controls="ErpBOM_collapse" style="margin-left: 10px;">ErpBOM</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpBOM_collapse" aria-expanded="true" aria-controls="ErpBOM_collapse" style="margin-left: 10px;">ErpBOM</a></legend>
                     <div id="ErpBOM_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -1683,7 +1683,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpBOM_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBOM_collapse" style="margin-left: 10px;">ErpBOM</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpBOM_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBOM_collapse" style="margin-left: 10px;">ErpBOM</a></legend>
                     <div id="{{id}}_ErpBOM_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -1779,7 +1779,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="ErpProjectAccounting_collapse" style="margin-left: 10px;">ErpProjectAccounting</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="ErpProjectAccounting_collapse" style="margin-left: 10px;">ErpProjectAccounting</a></legend>
                     <div id="ErpProjectAccounting_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -1818,7 +1818,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="{{id}}_ErpProjectAccounting_collapse" style="margin-left: 10px;">ErpProjectAccounting</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="{{id}}_ErpProjectAccounting_collapse" style="margin-left: 10px;">ErpProjectAccounting</a></legend>
                     <div id="{{id}}_ErpProjectAccounting_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -1944,7 +1944,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItem_collapse" style="margin-left: 10px;">ErpInvoiceLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItem_collapse" style="margin-left: 10px;">ErpInvoiceLineItem</a></legend>
                     <div id="ErpInvoiceLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -2006,7 +2006,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInvoiceLineItem_collapse" style="margin-left: 10px;">ErpInvoiceLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInvoiceLineItem_collapse" style="margin-left: 10px;">ErpInvoiceLineItem</a></legend>
                     <div id="{{id}}_ErpInvoiceLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -2140,7 +2140,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="ErpChartOfAccounts_collapse" style="margin-left: 10px;">ErpChartOfAccounts</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="ErpChartOfAccounts_collapse" style="margin-left: 10px;">ErpChartOfAccounts</a></legend>
                     <div id="ErpChartOfAccounts_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -2167,7 +2167,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="{{id}}_ErpChartOfAccounts_collapse" style="margin-left: 10px;">ErpChartOfAccounts</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="{{id}}_ErpChartOfAccounts_collapse" style="margin-left: 10px;">ErpChartOfAccounts</a></legend>
                     <div id="{{id}}_ErpChartOfAccounts_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -2241,7 +2241,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReceivable_collapse" aria-expanded="true" aria-controls="ErpReceivable_collapse" style="margin-left: 10px;">ErpReceivable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpReceivable_collapse" aria-expanded="true" aria-controls="ErpReceivable_collapse" style="margin-left: 10px;">ErpReceivable</a></legend>
                     <div id="ErpReceivable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -2271,7 +2271,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpReceivable_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReceivable_collapse" style="margin-left: 10px;">ErpReceivable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpReceivable_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReceivable_collapse" style="margin-left: 10px;">ErpReceivable</a></legend>
                     <div id="{{id}}_ErpReceivable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -2352,7 +2352,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="ErpEngChangeOrder_collapse" style="margin-left: 10px;">ErpEngChangeOrder</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="ErpEngChangeOrder_collapse" style="margin-left: 10px;">ErpEngChangeOrder</a></legend>
                     <div id="ErpEngChangeOrder_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -2379,7 +2379,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpEngChangeOrder_collapse" style="margin-left: 10px;">ErpEngChangeOrder</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpEngChangeOrder_collapse" style="margin-left: 10px;">ErpEngChangeOrder</a></legend>
                     <div id="{{id}}_ErpEngChangeOrder_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -2455,7 +2455,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayable_collapse" aria-expanded="true" aria-controls="ErpPayable_collapse" style="margin-left: 10px;">ErpPayable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpPayable_collapse" aria-expanded="true" aria-controls="ErpPayable_collapse" style="margin-left: 10px;">ErpPayable</a></legend>
                     <div id="ErpPayable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -2488,7 +2488,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPayable_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayable_collapse" style="margin-left: 10px;">ErpPayable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpPayable_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayable_collapse" style="margin-left: 10px;">ErpPayable</a></legend>
                     <div id="{{id}}_ErpPayable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -2578,7 +2578,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="ErpLedgerBudget_collapse" style="margin-left: 10px;">ErpLedgerBudget</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="ErpLedgerBudget_collapse" style="margin-left: 10px;">ErpLedgerBudget</a></legend>
                     <div id="ErpLedgerBudget_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -2608,7 +2608,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedgerBudget_collapse" style="margin-left: 10px;">ErpLedgerBudget</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedgerBudget_collapse" style="margin-left: 10px;">ErpLedgerBudget</a></legend>
                     <div id="{{id}}_ErpLedgerBudget_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -2693,7 +2693,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpQuote_collapse" aria-expanded="true" aria-controls="ErpQuote_collapse" style="margin-left: 10px;">ErpQuote</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpQuote_collapse" aria-expanded="true" aria-controls="ErpQuote_collapse" style="margin-left: 10px;">ErpQuote</a></legend>
                     <div id="ErpQuote_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.template.call (this) +
@@ -2723,7 +2723,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpQuote_collapse" aria-expanded="true" aria-controls="{{id}}_ErpQuote_collapse" style="margin-left: 10px;">ErpQuote</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpQuote_collapse" aria-expanded="true" aria-controls="{{id}}_ErpQuote_collapse" style="margin-left: 10px;">ErpQuote</a></legend>
                     <div id="{{id}}_ErpQuote_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
@@ -2810,7 +2810,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="ErpLedBudLineItem_collapse" style="margin-left: 10px;">ErpLedBudLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="ErpLedBudLineItem_collapse" style="margin-left: 10px;">ErpLedBudLineItem</a></legend>
                     <div id="ErpLedBudLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -2840,7 +2840,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedBudLineItem_collapse" style="margin-left: 10px;">ErpLedBudLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedBudLineItem_collapse" style="margin-left: 10px;">ErpLedBudLineItem</a></legend>
                     <div id="{{id}}_ErpLedBudLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -2936,7 +2936,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInventoryCount_collapse" aria-expanded="true" aria-controls="ErpInventoryCount_collapse" style="margin-left: 10px;">ErpInventoryCount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpInventoryCount_collapse" aria-expanded="true" aria-controls="ErpInventoryCount_collapse" style="margin-left: 10px;">ErpInventoryCount</a></legend>
                     <div id="ErpInventoryCount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -2965,7 +2965,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpInventoryCount_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInventoryCount_collapse" style="margin-left: 10px;">ErpInventoryCount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpInventoryCount_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInventoryCount_collapse" style="margin-left: 10px;">ErpInventoryCount</a></legend>
                     <div id="{{id}}_ErpInventoryCount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -3058,7 +3058,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpTimeEntry_collapse" aria-expanded="true" aria-controls="ErpTimeEntry_collapse" style="margin-left: 10px;">ErpTimeEntry</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpTimeEntry_collapse" aria-expanded="true" aria-controls="ErpTimeEntry_collapse" style="margin-left: 10px;">ErpTimeEntry</a></legend>
                     <div id="ErpTimeEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -3088,7 +3088,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpTimeEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpTimeEntry_collapse" style="margin-left: 10px;">ErpTimeEntry</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpTimeEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpTimeEntry_collapse" style="margin-left: 10px;">ErpTimeEntry</a></legend>
                     <div id="{{id}}_ErpTimeEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -3190,7 +3190,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="ErpQuoteLineItem_collapse" style="margin-left: 10px;">ErpQuoteLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="ErpQuoteLineItem_collapse" style="margin-left: 10px;">ErpQuoteLineItem</a></legend>
                     <div id="ErpQuoteLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -3223,7 +3223,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpQuoteLineItem_collapse" style="margin-left: 10px;">ErpQuoteLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpQuoteLineItem_collapse" style="margin-left: 10px;">ErpQuoteLineItem</a></legend>
                     <div id="{{id}}_ErpQuoteLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -3342,7 +3342,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="ErpLedgerEntry_collapse" style="margin-left: 10px;">ErpLedgerEntry</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="ErpLedgerEntry_collapse" style="margin-left: 10px;">ErpLedgerEntry</a></legend>
                     <div id="ErpLedgerEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -3383,7 +3383,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedgerEntry_collapse" style="margin-left: 10px;">ErpLedgerEntry</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedgerEntry_collapse" style="margin-left: 10px;">ErpLedgerEntry</a></legend>
                     <div id="{{id}}_ErpLedgerEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -3495,7 +3495,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpItemMaster_collapse" aria-expanded="true" aria-controls="ErpItemMaster_collapse" style="margin-left: 10px;">ErpItemMaster</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpItemMaster_collapse" aria-expanded="true" aria-controls="ErpItemMaster_collapse" style="margin-left: 10px;">ErpItemMaster</a></legend>
                     <div id="ErpItemMaster_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -3524,7 +3524,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpItemMaster_collapse" aria-expanded="true" aria-controls="{{id}}_ErpItemMaster_collapse" style="margin-left: 10px;">ErpItemMaster</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpItemMaster_collapse" aria-expanded="true" aria-controls="{{id}}_ErpItemMaster_collapse" style="margin-left: 10px;">ErpItemMaster</a></legend>
                     <div id="{{id}}_ErpItemMaster_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -3621,7 +3621,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="ErpPayableLineItem_collapse" style="margin-left: 10px;">ErpPayableLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="ErpPayableLineItem_collapse" style="margin-left: 10px;">ErpPayableLineItem</a></legend>
                     <div id="ErpPayableLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -3657,7 +3657,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayableLineItem_collapse" style="margin-left: 10px;">ErpPayableLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayableLineItem_collapse" style="margin-left: 10px;">ErpPayableLineItem</a></legend>
                     <div id="{{id}}_ErpPayableLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -3763,7 +3763,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRecLineItem_collapse" aria-expanded="true" aria-controls="ErpRecLineItem_collapse" style="margin-left: 10px;">ErpRecLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpRecLineItem_collapse" aria-expanded="true" aria-controls="ErpRecLineItem_collapse" style="margin-left: 10px;">ErpRecLineItem</a></legend>
                     <div id="ErpRecLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -3799,7 +3799,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpRecLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRecLineItem_collapse" style="margin-left: 10px;">ErpRecLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpRecLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRecLineItem_collapse" style="margin-left: 10px;">ErpRecLineItem</a></legend>
                     <div id="{{id}}_ErpRecLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -3901,7 +3901,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpIssueInventory_collapse" aria-expanded="true" aria-controls="ErpIssueInventory_collapse" style="margin-left: 10px;">ErpIssueInventory</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpIssueInventory_collapse" aria-expanded="true" aria-controls="ErpIssueInventory_collapse" style="margin-left: 10px;">ErpIssueInventory</a></legend>
                     <div id="ErpIssueInventory_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -3931,7 +3931,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpIssueInventory_collapse" aria-expanded="true" aria-controls="{{id}}_ErpIssueInventory_collapse" style="margin-left: 10px;">ErpIssueInventory</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpIssueInventory_collapse" aria-expanded="true" aria-controls="{{id}}_ErpIssueInventory_collapse" style="margin-left: 10px;">ErpIssueInventory</a></legend>
                     <div id="{{id}}_ErpIssueInventory_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -4027,7 +4027,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInventory_collapse" aria-expanded="true" aria-controls="ErpInventory_collapse" style="margin-left: 10px;">ErpInventory</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpInventory_collapse" aria-expanded="true" aria-controls="ErpInventory_collapse" style="margin-left: 10px;">ErpInventory</a></legend>
                     <div id="ErpInventory_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -4056,7 +4056,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpInventory_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInventory_collapse" style="margin-left: 10px;">ErpInventory</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpInventory_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInventory_collapse" style="margin-left: 10px;">ErpInventory</a></legend>
                     <div id="{{id}}_ErpInventory_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -4163,7 +4163,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReqLineItem_collapse" aria-expanded="true" aria-controls="ErpReqLineItem_collapse" style="margin-left: 10px;">ErpReqLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpReqLineItem_collapse" aria-expanded="true" aria-controls="ErpReqLineItem_collapse" style="margin-left: 10px;">ErpReqLineItem</a></legend>
                     <div id="ErpReqLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -4200,7 +4200,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpReqLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReqLineItem_collapse" style="margin-left: 10px;">ErpReqLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpReqLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReqLineItem_collapse" style="margin-left: 10px;">ErpReqLineItem</a></legend>
                     <div id="{{id}}_ErpReqLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -4311,7 +4311,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPersonnel_collapse" aria-expanded="true" aria-controls="ErpPersonnel_collapse" style="margin-left: 10px;">ErpPersonnel</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpPersonnel_collapse" aria-expanded="true" aria-controls="ErpPersonnel_collapse" style="margin-left: 10px;">ErpPersonnel</a></legend>
                     <div id="ErpPersonnel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -4342,7 +4342,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPersonnel_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPersonnel_collapse" style="margin-left: 10px;">ErpPersonnel</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpPersonnel_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPersonnel_collapse" style="margin-left: 10px;">ErpPersonnel</a></legend>
                     <div id="{{id}}_ErpPersonnel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -4451,7 +4451,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpJournalEntry_collapse" aria-expanded="true" aria-controls="ErpJournalEntry_collapse" style="margin-left: 10px;">ErpJournalEntry</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpJournalEntry_collapse" aria-expanded="true" aria-controls="ErpJournalEntry_collapse" style="margin-left: 10px;">ErpJournalEntry</a></legend>
                     <div id="ErpJournalEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -4496,7 +4496,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpJournalEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpJournalEntry_collapse" style="margin-left: 10px;">ErpJournalEntry</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpJournalEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpJournalEntry_collapse" style="margin-left: 10px;">ErpJournalEntry</a></legend>
                     <div id="{{id}}_ErpJournalEntry_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -4614,7 +4614,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBomItemData_collapse" aria-expanded="true" aria-controls="ErpBomItemData_collapse" style="margin-left: 10px;">ErpBomItemData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpBomItemData_collapse" aria-expanded="true" aria-controls="ErpBomItemData_collapse" style="margin-left: 10px;">ErpBomItemData</a></legend>
                     <div id="ErpBomItemData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -4644,7 +4644,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpBomItemData_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBomItemData_collapse" style="margin-left: 10px;">ErpBomItemData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpBomItemData_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBomItemData_collapse" style="margin-left: 10px;">ErpBomItemData</a></legend>
                     <div id="{{id}}_ErpBomItemData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -4741,7 +4741,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="ErpSiteLevelData_collapse" style="margin-left: 10px;">ErpSiteLevelData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="ErpSiteLevelData_collapse" style="margin-left: 10px;">ErpSiteLevelData</a></legend>
                     <div id="ErpSiteLevelData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -4770,7 +4770,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="{{id}}_ErpSiteLevelData_collapse" style="margin-left: 10px;">ErpSiteLevelData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="{{id}}_ErpSiteLevelData_collapse" style="margin-left: 10px;">ErpSiteLevelData</a></legend>
                     <div id="{{id}}_ErpSiteLevelData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -4869,7 +4869,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="ErpRecDelvLineItem_collapse" style="margin-left: 10px;">ErpRecDelvLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="ErpRecDelvLineItem_collapse" style="margin-left: 10px;">ErpRecDelvLineItem</a></legend>
                     <div id="ErpRecDelvLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -4903,7 +4903,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRecDelvLineItem_collapse" style="margin-left: 10px;">ErpRecDelvLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRecDelvLineItem_collapse" style="margin-left: 10px;">ErpRecDelvLineItem</a></legend>
                     <div id="{{id}}_ErpRecDelvLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
@@ -5003,7 +5003,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpCompetency_collapse" aria-expanded="true" aria-controls="ErpCompetency_collapse" style="margin-left: 10px;">ErpCompetency</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ErpCompetency_collapse" aria-expanded="true" aria-controls="ErpCompetency_collapse" style="margin-left: 10px;">ErpCompetency</a></legend>
                     <div id="ErpCompetency_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
@@ -5033,7 +5033,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpCompetency_collapse" aria-expanded="true" aria-controls="{{id}}_ErpCompetency_collapse" style="margin-left: 10px;">ErpCompetency</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ErpCompetency_collapse" aria-expanded="true" aria-controls="{{id}}_ErpCompetency_collapse" style="margin-left: 10px;">ErpCompetency</a></legend>
                     <div id="{{id}}_ErpCompetency_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +

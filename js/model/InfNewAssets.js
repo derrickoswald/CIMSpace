@@ -60,7 +60,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="MaintenanceDataSet_collapse" style="margin-left: 10px;">MaintenanceDataSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="MaintenanceDataSet_collapse" style="margin-left: 10px;">MaintenanceDataSet</a></legend>
                     <div id="MaintenanceDataSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.template.call (this) +
@@ -90,7 +90,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_MaintenanceDataSet_collapse" style="margin-left: 10px;">MaintenanceDataSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_MaintenanceDataSet_collapse" style="margin-left: 10px;">MaintenanceDataSet</a></legend>
                     <div id="{{id}}_MaintenanceDataSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
@@ -172,7 +172,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InspectionDataSet_collapse" aria-expanded="true" aria-controls="InspectionDataSet_collapse" style="margin-left: 10px;">InspectionDataSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#InspectionDataSet_collapse" aria-expanded="true" aria-controls="InspectionDataSet_collapse" style="margin-left: 10px;">InspectionDataSet</a></legend>
                     <div id="InspectionDataSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.template.call (this) +
@@ -203,7 +203,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InspectionDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_InspectionDataSet_collapse" style="margin-left: 10px;">InspectionDataSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_InspectionDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_InspectionDataSet_collapse" style="margin-left: 10px;">InspectionDataSet</a></legend>
                     <div id="{{id}}_InspectionDataSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
@@ -314,7 +314,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="DiagnosisDataSet_collapse" style="margin-left: 10px;">DiagnosisDataSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="DiagnosisDataSet_collapse" style="margin-left: 10px;">DiagnosisDataSet</a></legend>
                     <div id="DiagnosisDataSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.template.call (this) +
@@ -354,7 +354,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_DiagnosisDataSet_collapse" style="margin-left: 10px;">DiagnosisDataSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_DiagnosisDataSet_collapse" style="margin-left: 10px;">DiagnosisDataSet</a></legend>
                     <div id="{{id}}_DiagnosisDataSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
@@ -458,7 +458,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TestDataSet_collapse" aria-expanded="true" aria-controls="TestDataSet_collapse" style="margin-left: 10px;">TestDataSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TestDataSet_collapse" aria-expanded="true" aria-controls="TestDataSet_collapse" style="margin-left: 10px;">TestDataSet</a></legend>
                     <div id="TestDataSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.template.call (this) +
@@ -488,7 +488,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TestDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_TestDataSet_collapse" style="margin-left: 10px;">TestDataSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TestDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_TestDataSet_collapse" style="margin-left: 10px;">TestDataSet</a></legend>
                     <div id="{{id}}_TestDataSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.edit_template.call (this) +

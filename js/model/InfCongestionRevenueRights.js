@@ -62,7 +62,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ViolationLimit_collapse" aria-expanded="true" aria-controls="ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ViolationLimit_collapse" aria-expanded="true" aria-controls="ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
                     <div id="ViolationLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Meas.Limit.prototype.template.call (this) +
@@ -95,7 +95,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ViolationLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ViolationLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
                     <div id="{{id}}_ViolationLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Meas.Limit.prototype.edit_template.call (this) +
@@ -204,7 +204,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FTR_collapse" aria-expanded="true" aria-controls="FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FTR_collapse" aria-expanded="true" aria-controls="FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
                     <div id="FTR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.template.call (this) +
@@ -241,7 +241,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FTR_collapse" aria-expanded="true" aria-controls="{{id}}_FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FTR_collapse" aria-expanded="true" aria-controls="{{id}}_FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
                     <div id="{{id}}_FTR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +

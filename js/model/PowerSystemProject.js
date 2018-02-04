@@ -89,7 +89,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="PowerSystemProjectSchedule_collapse" style="margin-left: 10px;">PowerSystemProjectSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="PowerSystemProjectSchedule_collapse" style="margin-left: 10px;">PowerSystemProjectSchedule</a></legend>
                     <div id="PowerSystemProjectSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -126,7 +126,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemProjectSchedule_collapse" style="margin-left: 10px;">PowerSystemProjectSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemProjectSchedule_collapse" style="margin-left: 10px;">PowerSystemProjectSchedule</a></legend>
                     <div id="{{id}}_PowerSystemProjectSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -228,7 +228,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemProject_collapse" aria-expanded="true" aria-controls="PowerSystemProject_collapse" style="margin-left: 10px;">PowerSystemProject</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PowerSystemProject_collapse" aria-expanded="true" aria-controls="PowerSystemProject_collapse" style="margin-left: 10px;">PowerSystemProject</a></legend>
                     <div id="PowerSystemProject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -270,7 +270,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemProject_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemProject_collapse" style="margin-left: 10px;">PowerSystemProject</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PowerSystemProject_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemProject_collapse" style="margin-left: 10px;">PowerSystemProject</a></legend>
                     <div id="{{id}}_PowerSystemProject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -381,7 +381,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProjectStep_collapse" aria-expanded="true" aria-controls="ProjectStep_collapse" style="margin-left: 10px;">ProjectStep</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProjectStep_collapse" aria-expanded="true" aria-controls="ProjectStep_collapse" style="margin-left: 10px;">ProjectStep</a></legend>
                     <div id="ProjectStep_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -418,7 +418,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProjectStep_collapse" aria-expanded="true" aria-controls="{{id}}_ProjectStep_collapse" style="margin-left: 10px;">ProjectStep</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProjectStep_collapse" aria-expanded="true" aria-controls="{{id}}_ProjectStep_collapse" style="margin-left: 10px;">ProjectStep</a></legend>
                     <div id="{{id}}_ProjectStep_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -504,7 +504,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="PowerSystemSubProject_collapse" style="margin-left: 10px;">PowerSystemSubProject</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="PowerSystemSubProject_collapse" style="margin-left: 10px;">PowerSystemSubProject</a></legend>
                     <div id="PowerSystemSubProject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemProject.prototype.template.call (this) +
@@ -532,7 +532,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemSubProject_collapse" style="margin-left: 10px;">PowerSystemSubProject</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemSubProject_collapse" style="margin-left: 10px;">PowerSystemSubProject</a></legend>
                     <div id="{{id}}_PowerSystemSubProject_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemProject.prototype.edit_template.call (this) +

@@ -159,7 +159,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerNotification_collapse" aria-expanded="true" aria-controls="CustomerNotification_collapse" style="margin-left: 10px;">CustomerNotification</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CustomerNotification_collapse" aria-expanded="true" aria-controls="CustomerNotification_collapse" style="margin-left: 10px;">CustomerNotification</a></legend>
                     <div id="CustomerNotification_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -198,7 +198,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CustomerNotification_collapse" aria-expanded="true" aria-controls="{{id}}_CustomerNotification_collapse" style="margin-left: 10px;">CustomerNotification</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CustomerNotification_collapse" aria-expanded="true" aria-controls="{{id}}_CustomerNotification_collapse" style="margin-left: 10px;">CustomerNotification</a></legend>
                     <div id="{{id}}_CustomerNotification_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -321,7 +321,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PricingStructure_collapse" aria-expanded="true" aria-controls="PricingStructure_collapse" style="margin-left: 10px;">PricingStructure</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PricingStructure_collapse" aria-expanded="true" aria-controls="PricingStructure_collapse" style="margin-left: 10px;">PricingStructure</a></legend>
                     <div id="PricingStructure_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -369,7 +369,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PricingStructure_collapse" aria-expanded="true" aria-controls="{{id}}_PricingStructure_collapse" style="margin-left: 10px;">PricingStructure</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PricingStructure_collapse" aria-expanded="true" aria-controls="{{id}}_PricingStructure_collapse" style="margin-left: 10px;">PricingStructure</a></legend>
                     <div id="{{id}}_PricingStructure_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -486,7 +486,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Tariff_collapse" aria-expanded="true" aria-controls="Tariff_collapse" style="margin-left: 10px;">Tariff</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Tariff_collapse" aria-expanded="true" aria-controls="Tariff_collapse" style="margin-left: 10px;">Tariff</a></legend>
                     <div id="Tariff_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -521,7 +521,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Tariff_collapse" aria-expanded="true" aria-controls="{{id}}_Tariff_collapse" style="margin-left: 10px;">Tariff</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Tariff_collapse" aria-expanded="true" aria-controls="{{id}}_Tariff_collapse" style="margin-left: 10px;">Tariff</a></legend>
                     <div id="{{id}}_Tariff_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -641,7 +641,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Customer_collapse" aria-expanded="true" aria-controls="Customer_collapse" style="margin-left: 10px;">Customer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Customer_collapse" aria-expanded="true" aria-controls="Customer_collapse" style="margin-left: 10px;">Customer</a></legend>
                     <div id="Customer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
@@ -698,7 +698,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Customer_collapse" aria-expanded="true" aria-controls="{{id}}_Customer_collapse" style="margin-left: 10px;">Customer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Customer_collapse" aria-expanded="true" aria-controls="{{id}}_Customer_collapse" style="margin-left: 10px;">Customer</a></legend>
                     <div id="{{id}}_Customer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
@@ -809,7 +809,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IncidentHazard_collapse" aria-expanded="true" aria-controls="IncidentHazard_collapse" style="margin-left: 10px;">IncidentHazard</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#IncidentHazard_collapse" aria-expanded="true" aria-controls="IncidentHazard_collapse" style="margin-left: 10px;">IncidentHazard</a></legend>
                     <div id="IncidentHazard_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Hazard.prototype.template.call (this) +
@@ -838,7 +838,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IncidentHazard_collapse" aria-expanded="true" aria-controls="{{id}}_IncidentHazard_collapse" style="margin-left: 10px;">IncidentHazard</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_IncidentHazard_collapse" aria-expanded="true" aria-controls="{{id}}_IncidentHazard_collapse" style="margin-left: 10px;">IncidentHazard</a></legend>
                     <div id="{{id}}_IncidentHazard_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Hazard.prototype.edit_template.call (this) +
@@ -952,7 +952,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerAgreement_collapse" aria-expanded="true" aria-controls="CustomerAgreement_collapse" style="margin-left: 10px;">CustomerAgreement</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CustomerAgreement_collapse" aria-expanded="true" aria-controls="CustomerAgreement_collapse" style="margin-left: 10px;">CustomerAgreement</a></legend>
                     <div id="CustomerAgreement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.template.call (this) +
@@ -1003,7 +1003,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CustomerAgreement_collapse" aria-expanded="true" aria-controls="{{id}}_CustomerAgreement_collapse" style="margin-left: 10px;">CustomerAgreement</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CustomerAgreement_collapse" aria-expanded="true" aria-controls="{{id}}_CustomerAgreement_collapse" style="margin-left: 10px;">CustomerAgreement</a></legend>
                     <div id="{{id}}_CustomerAgreement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
@@ -1126,7 +1126,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceLocation_collapse" aria-expanded="true" aria-controls="ServiceLocation_collapse" style="margin-left: 10px;">ServiceLocation</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ServiceLocation_collapse" aria-expanded="true" aria-controls="ServiceLocation_collapse" style="margin-left: 10px;">ServiceLocation</a></legend>
                     <div id="ServiceLocation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Work.WorkLocation.prototype.template.call (this) +
@@ -1165,7 +1165,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ServiceLocation_collapse" aria-expanded="true" aria-controls="{{id}}_ServiceLocation_collapse" style="margin-left: 10px;">ServiceLocation</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ServiceLocation_collapse" aria-expanded="true" aria-controls="{{id}}_ServiceLocation_collapse" style="margin-left: 10px;">ServiceLocation</a></legend>
                     <div id="{{id}}_ServiceLocation_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Work.WorkLocation.prototype.edit_template.call (this) +
@@ -1268,7 +1268,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceCategory_collapse" aria-expanded="true" aria-controls="ServiceCategory_collapse" style="margin-left: 10px;">ServiceCategory</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ServiceCategory_collapse" aria-expanded="true" aria-controls="ServiceCategory_collapse" style="margin-left: 10px;">ServiceCategory</a></legend>
                     <div id="ServiceCategory_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -1310,7 +1310,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ServiceCategory_collapse" aria-expanded="true" aria-controls="{{id}}_ServiceCategory_collapse" style="margin-left: 10px;">ServiceCategory</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ServiceCategory_collapse" aria-expanded="true" aria-controls="{{id}}_ServiceCategory_collapse" style="margin-left: 10px;">ServiceCategory</a></legend>
                     <div id="{{id}}_ServiceCategory_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -1412,7 +1412,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TroubleTicket_collapse" aria-expanded="true" aria-controls="TroubleTicket_collapse" style="margin-left: 10px;">TroubleTicket</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TroubleTicket_collapse" aria-expanded="true" aria-controls="TroubleTicket_collapse" style="margin-left: 10px;">TroubleTicket</a></legend>
                     <div id="TroubleTicket_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -1452,7 +1452,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TroubleTicket_collapse" aria-expanded="true" aria-controls="{{id}}_TroubleTicket_collapse" style="margin-left: 10px;">TroubleTicket</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TroubleTicket_collapse" aria-expanded="true" aria-controls="{{id}}_TroubleTicket_collapse" style="margin-left: 10px;">TroubleTicket</a></legend>
                     <div id="{{id}}_TroubleTicket_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -1572,7 +1572,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerAccount_collapse" aria-expanded="true" aria-controls="CustomerAccount_collapse" style="margin-left: 10px;">CustomerAccount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CustomerAccount_collapse" aria-expanded="true" aria-controls="CustomerAccount_collapse" style="margin-left: 10px;">CustomerAccount</a></legend>
                     <div id="CustomerAccount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -1617,7 +1617,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CustomerAccount_collapse" aria-expanded="true" aria-controls="{{id}}_CustomerAccount_collapse" style="margin-left: 10px;">CustomerAccount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CustomerAccount_collapse" aria-expanded="true" aria-controls="{{id}}_CustomerAccount_collapse" style="margin-left: 10px;">CustomerAccount</a></legend>
                     <div id="{{id}}_CustomerAccount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +

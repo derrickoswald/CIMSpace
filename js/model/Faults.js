@@ -72,7 +72,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultCauseType_collapse" aria-expanded="true" aria-controls="FaultCauseType_collapse" style="margin-left: 10px;">FaultCauseType</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FaultCauseType_collapse" aria-expanded="true" aria-controls="FaultCauseType_collapse" style="margin-left: 10px;">FaultCauseType</a></legend>
                     <div id="FaultCauseType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -102,7 +102,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FaultCauseType_collapse" aria-expanded="true" aria-controls="{{id}}_FaultCauseType_collapse" style="margin-left: 10px;">FaultCauseType</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FaultCauseType_collapse" aria-expanded="true" aria-controls="{{id}}_FaultCauseType_collapse" style="margin-left: 10px;">FaultCauseType</a></legend>
                     <div id="{{id}}_FaultCauseType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -195,7 +195,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultImpedance_collapse" aria-expanded="true" aria-controls="FaultImpedance_collapse" style="margin-left: 10px;">FaultImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FaultImpedance_collapse" aria-expanded="true" aria-controls="FaultImpedance_collapse" style="margin-left: 10px;">FaultImpedance</a></legend>
                     <div id="FaultImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -226,7 +226,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FaultImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_FaultImpedance_collapse" style="margin-left: 10px;">FaultImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FaultImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_FaultImpedance_collapse" style="margin-left: 10px;">FaultImpedance</a></legend>
                     <div id="{{id}}_FaultImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -318,7 +318,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Fault_collapse" aria-expanded="true" aria-controls="Fault_collapse" style="margin-left: 10px;">Fault</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Fault_collapse" aria-expanded="true" aria-controls="Fault_collapse" style="margin-left: 10px;">Fault</a></legend>
                     <div id="Fault_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -355,7 +355,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Fault_collapse" aria-expanded="true" aria-controls="{{id}}_Fault_collapse" style="margin-left: 10px;">Fault</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Fault_collapse" aria-expanded="true" aria-controls="{{id}}_Fault_collapse" style="margin-left: 10px;">Fault</a></legend>
                     <div id="{{id}}_Fault_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -456,7 +456,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LineFault_collapse" aria-expanded="true" aria-controls="LineFault_collapse" style="margin-left: 10px;">LineFault</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LineFault_collapse" aria-expanded="true" aria-controls="LineFault_collapse" style="margin-left: 10px;">LineFault</a></legend>
                     <div id="LineFault_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Fault.prototype.template.call (this) +
@@ -485,7 +485,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LineFault_collapse" aria-expanded="true" aria-controls="{{id}}_LineFault_collapse" style="margin-left: 10px;">LineFault</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LineFault_collapse" aria-expanded="true" aria-controls="{{id}}_LineFault_collapse" style="margin-left: 10px;">LineFault</a></legend>
                     <div id="{{id}}_LineFault_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Fault.prototype.edit_template.call (this) +
@@ -576,7 +576,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentFault_collapse" aria-expanded="true" aria-controls="EquipmentFault_collapse" style="margin-left: 10px;">EquipmentFault</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquipmentFault_collapse" aria-expanded="true" aria-controls="EquipmentFault_collapse" style="margin-left: 10px;">EquipmentFault</a></legend>
                     <div id="EquipmentFault_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Fault.prototype.template.call (this) +
@@ -604,7 +604,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquipmentFault_collapse" aria-expanded="true" aria-controls="{{id}}_EquipmentFault_collapse" style="margin-left: 10px;">EquipmentFault</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquipmentFault_collapse" aria-expanded="true" aria-controls="{{id}}_EquipmentFault_collapse" style="margin-left: 10px;">EquipmentFault</a></legend>
                     <div id="{{id}}_EquipmentFault_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Fault.prototype.edit_template.call (this) +

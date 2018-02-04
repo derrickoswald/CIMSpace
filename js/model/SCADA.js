@@ -89,7 +89,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemotePoint_collapse" aria-expanded="true" aria-controls="RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RemotePoint_collapse" aria-expanded="true" aria-controls="RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
                     <div id="RemotePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -117,7 +117,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemotePoint_collapse" aria-expanded="true" aria-controls="{{id}}_RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RemotePoint_collapse" aria-expanded="true" aria-controls="{{id}}_RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
                     <div id="{{id}}_RemotePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -210,7 +210,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteUnit_collapse" aria-expanded="true" aria-controls="RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RemoteUnit_collapse" aria-expanded="true" aria-controls="RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
                     <div id="RemoteUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -246,7 +246,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteUnit_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RemoteUnit_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
                     <div id="{{id}}_RemoteUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -338,7 +338,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CommunicationLink_collapse" aria-expanded="true" aria-controls="CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CommunicationLink_collapse" aria-expanded="true" aria-controls="CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
                     <div id="CommunicationLink_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -368,7 +368,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CommunicationLink_collapse" aria-expanded="true" aria-controls="{{id}}_CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CommunicationLink_collapse" aria-expanded="true" aria-controls="{{id}}_CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
                     <div id="{{id}}_CommunicationLink_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -463,7 +463,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteSource_collapse" aria-expanded="true" aria-controls="RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RemoteSource_collapse" aria-expanded="true" aria-controls="RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
                     <div id="RemoteSource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.template.call (this) +
@@ -495,7 +495,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteSource_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RemoteSource_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
                     <div id="{{id}}_RemoteSource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.edit_template.call (this) +
@@ -596,7 +596,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteControl_collapse" aria-expanded="true" aria-controls="RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RemoteControl_collapse" aria-expanded="true" aria-controls="RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
                     <div id="RemoteControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.template.call (this) +
@@ -627,7 +627,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteControl_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RemoteControl_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
                     <div id="{{id}}_RemoteControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.edit_template.call (this) +

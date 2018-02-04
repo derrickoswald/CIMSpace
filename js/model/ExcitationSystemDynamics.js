@@ -139,7 +139,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="ExcitationSystemDynamics_collapse" style="margin-left: 10px;">ExcitationSystemDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="ExcitationSystemDynamics_collapse" style="margin-left: 10px;">ExcitationSystemDynamics</a></legend>
                     <div id="ExcitationSystemDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -174,7 +174,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_ExcitationSystemDynamics_collapse" style="margin-left: 10px;">ExcitationSystemDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcitationSystemDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_ExcitationSystemDynamics_collapse" style="margin-left: 10px;">ExcitationSystemDynamics</a></legend>
                     <div id="{{id}}_ExcitationSystemDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -314,7 +314,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC1A_collapse" style="margin-left: 10px;">ExcIEEEDC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC1A_collapse" style="margin-left: 10px;">ExcIEEEDC1A</a></legend>
                     <div id="ExcIEEEDC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -357,7 +357,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC1A_collapse" style="margin-left: 10px;">ExcIEEEDC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEDC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC1A_collapse" style="margin-left: 10px;">ExcIEEEDC1A</a></legend>
                     <div id="{{id}}_ExcIEEEDC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -477,7 +477,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSCRX_collapse" aria-expanded="true" aria-controls="ExcSCRX_collapse" style="margin-left: 10px;">ExcSCRX</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcSCRX_collapse" aria-expanded="true" aria-controls="ExcSCRX_collapse" style="margin-left: 10px;">ExcSCRX</a></legend>
                     <div id="ExcSCRX_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -512,7 +512,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcSCRX_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSCRX_collapse" style="margin-left: 10px;">ExcSCRX</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcSCRX_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSCRX_collapse" style="margin-left: 10px;">ExcSCRX</a></legend>
                     <div id="{{id}}_ExcSCRX_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -640,7 +640,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="ExcIEEEDC4B_collapse" style="margin-left: 10px;">ExcIEEEDC4B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="ExcIEEEDC4B_collapse" style="margin-left: 10px;">ExcIEEEDC4B</a></legend>
                     <div id="ExcIEEEDC4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -686,7 +686,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC4B_collapse" style="margin-left: 10px;">ExcIEEEDC4B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEDC4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC4B_collapse" style="margin-left: 10px;">ExcIEEEDC4B</a></legend>
                     <div id="{{id}}_ExcIEEEDC4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -840,7 +840,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC3A_collapse" style="margin-left: 10px;">ExcIEEEAC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC3A_collapse" style="margin-left: 10px;">ExcIEEEAC3A</a></legend>
                     <div id="ExcIEEEAC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -888,7 +888,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC3A_collapse" style="margin-left: 10px;">ExcIEEEAC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEAC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC3A_collapse" style="margin-left: 10px;">ExcIEEEAC3A</a></legend>
                     <div id="{{id}}_ExcIEEEAC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -1010,7 +1010,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR5_collapse" aria-expanded="true" aria-controls="ExcAVR5_collapse" style="margin-left: 10px;">ExcAVR5</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAVR5_collapse" aria-expanded="true" aria-controls="ExcAVR5_collapse" style="margin-left: 10px;">ExcAVR5</a></legend>
                     <div id="ExcAVR5_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -1040,7 +1040,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR5_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR5_collapse" style="margin-left: 10px;">ExcAVR5</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAVR5_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR5_collapse" style="margin-left: 10px;">ExcAVR5</a></legend>
                     <div id="{{id}}_ExcAVR5_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -1148,7 +1148,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST2A_collapse" aria-expanded="true" aria-controls="ExcST2A_collapse" style="margin-left: 10px;">ExcST2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcST2A_collapse" aria-expanded="true" aria-controls="ExcST2A_collapse" style="margin-left: 10px;">ExcST2A</a></legend>
                     <div id="ExcST2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -1190,7 +1190,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST2A_collapse" style="margin-left: 10px;">ExcST2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcST2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST2A_collapse" style="margin-left: 10px;">ExcST2A</a></legend>
                     <div id="{{id}}_ExcST2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -1348,7 +1348,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcELIN2_collapse" aria-expanded="true" aria-controls="ExcELIN2_collapse" style="margin-left: 10px;">ExcELIN2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcELIN2_collapse" aria-expanded="true" aria-controls="ExcELIN2_collapse" style="margin-left: 10px;">ExcELIN2</a></legend>
                     <div id="ExcELIN2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -1402,7 +1402,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcELIN2_collapse" aria-expanded="true" aria-controls="{{id}}_ExcELIN2_collapse" style="margin-left: 10px;">ExcELIN2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcELIN2_collapse" aria-expanded="true" aria-controls="{{id}}_ExcELIN2_collapse" style="margin-left: 10px;">ExcELIN2</a></legend>
                     <div id="{{id}}_ExcELIN2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -1552,7 +1552,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC3A_collapse" style="margin-left: 10px;">ExcIEEEDC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC3A_collapse" style="margin-left: 10px;">ExcIEEEDC3A</a></legend>
                     <div id="ExcIEEEDC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -1590,7 +1590,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC3A_collapse" style="margin-left: 10px;">ExcIEEEDC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEDC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC3A_collapse" style="margin-left: 10px;">ExcIEEEDC3A</a></legend>
                     <div id="{{id}}_ExcIEEEDC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -1728,7 +1728,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC2A_collapse" style="margin-left: 10px;">ExcIEEEAC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC2A_collapse" style="margin-left: 10px;">ExcIEEEAC2A</a></legend>
                     <div id="ExcIEEEAC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -1776,7 +1776,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC2A_collapse" style="margin-left: 10px;">ExcIEEEAC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEAC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC2A_collapse" style="margin-left: 10px;">ExcIEEEAC2A</a></legend>
                     <div id="{{id}}_ExcIEEEAC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -1934,7 +1934,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC1A_collapse" aria-expanded="true" aria-controls="ExcAC1A_collapse" style="margin-left: 10px;">ExcAC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAC1A_collapse" aria-expanded="true" aria-controls="ExcAC1A_collapse" style="margin-left: 10px;">ExcAC1A</a></legend>
                     <div id="ExcAC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -1983,7 +1983,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC1A_collapse" style="margin-left: 10px;">ExcAC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC1A_collapse" style="margin-left: 10px;">ExcAC1A</a></legend>
                     <div id="{{id}}_ExcAC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -2119,7 +2119,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSEXS_collapse" aria-expanded="true" aria-controls="ExcSEXS_collapse" style="margin-left: 10px;">ExcSEXS</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcSEXS_collapse" aria-expanded="true" aria-controls="ExcSEXS_collapse" style="margin-left: 10px;">ExcSEXS</a></legend>
                     <div id="ExcSEXS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -2156,7 +2156,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcSEXS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSEXS_collapse" style="margin-left: 10px;">ExcSEXS</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcSEXS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSEXS_collapse" style="margin-left: 10px;">ExcSEXS</a></legend>
                     <div id="{{id}}_ExcSEXS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -2276,7 +2276,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR2_collapse" aria-expanded="true" aria-controls="ExcAVR2_collapse" style="margin-left: 10px;">ExcAVR2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAVR2_collapse" aria-expanded="true" aria-controls="ExcAVR2_collapse" style="margin-left: 10px;">ExcAVR2</a></legend>
                     <div id="ExcAVR2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -2316,7 +2316,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR2_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR2_collapse" style="margin-left: 10px;">ExcAVR2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAVR2_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR2_collapse" style="margin-left: 10px;">ExcAVR2</a></legend>
                     <div id="{{id}}_ExcAVR2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -2448,7 +2448,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC3A_collapse" aria-expanded="true" aria-controls="ExcDC3A_collapse" style="margin-left: 10px;">ExcDC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcDC3A_collapse" aria-expanded="true" aria-controls="ExcDC3A_collapse" style="margin-left: 10px;">ExcDC3A</a></legend>
                     <div id="ExcDC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -2491,7 +2491,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcDC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC3A_collapse" style="margin-left: 10px;">ExcDC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcDC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC3A_collapse" style="margin-left: 10px;">ExcDC3A</a></legend>
                     <div id="{{id}}_ExcDC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -2641,7 +2641,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST6B_collapse" aria-expanded="true" aria-controls="ExcST6B_collapse" style="margin-left: 10px;">ExcST6B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcST6B_collapse" aria-expanded="true" aria-controls="ExcST6B_collapse" style="margin-left: 10px;">ExcST6B</a></legend>
                     <div id="ExcST6B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -2693,7 +2693,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST6B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST6B_collapse" style="margin-left: 10px;">ExcST6B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcST6B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST6B_collapse" style="margin-left: 10px;">ExcST6B</a></legend>
                     <div id="{{id}}_ExcST6B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -2859,7 +2859,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcPIC_collapse" aria-expanded="true" aria-controls="ExcPIC_collapse" style="margin-left: 10px;">ExcPIC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcPIC_collapse" aria-expanded="true" aria-controls="ExcPIC_collapse" style="margin-left: 10px;">ExcPIC</a></legend>
                     <div id="ExcPIC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -2909,7 +2909,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcPIC_collapse" aria-expanded="true" aria-controls="{{id}}_ExcPIC_collapse" style="margin-left: 10px;">ExcPIC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcPIC_collapse" aria-expanded="true" aria-controls="{{id}}_ExcPIC_collapse" style="margin-left: 10px;">ExcPIC</a></legend>
                     <div id="{{id}}_ExcPIC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -3047,7 +3047,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcCZ_collapse" aria-expanded="true" aria-controls="ExcCZ_collapse" style="margin-left: 10px;">ExcCZ</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcCZ_collapse" aria-expanded="true" aria-controls="ExcCZ_collapse" style="margin-left: 10px;">ExcCZ</a></legend>
                     <div id="ExcCZ_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -3084,7 +3084,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcCZ_collapse" aria-expanded="true" aria-controls="{{id}}_ExcCZ_collapse" style="margin-left: 10px;">ExcCZ</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcCZ_collapse" aria-expanded="true" aria-controls="{{id}}_ExcCZ_collapse" style="margin-left: 10px;">ExcCZ</a></legend>
                     <div id="{{id}}_ExcCZ_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -3230,7 +3230,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC8B_collapse" aria-expanded="true" aria-controls="ExcAC8B_collapse" style="margin-left: 10px;">ExcAC8B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAC8B_collapse" aria-expanded="true" aria-controls="ExcAC8B_collapse" style="margin-left: 10px;">ExcAC8B</a></legend>
                     <div id="ExcAC8B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -3284,7 +3284,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC8B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC8B_collapse" style="margin-left: 10px;">ExcAC8B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAC8B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC8B_collapse" style="margin-left: 10px;">ExcAC8B</a></legend>
                     <div id="{{id}}_ExcAC8B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -3440,7 +3440,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC5A_collapse" style="margin-left: 10px;">ExcIEEEAC5A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC5A_collapse" style="margin-left: 10px;">ExcIEEEAC5A</a></legend>
                     <div id="ExcIEEEAC5A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -3481,7 +3481,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC5A_collapse" style="margin-left: 10px;">ExcIEEEAC5A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEAC5A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC5A_collapse" style="margin-left: 10px;">ExcIEEEAC5A</a></legend>
                     <div id="{{id}}_ExcIEEEAC5A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -3609,7 +3609,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="ExcIEEEST2A_collapse" style="margin-left: 10px;">ExcIEEEST2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="ExcIEEEST2A_collapse" style="margin-left: 10px;">ExcIEEEST2A</a></legend>
                     <div id="ExcIEEEST2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -3649,7 +3649,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST2A_collapse" style="margin-left: 10px;">ExcIEEEST2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEST2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST2A_collapse" style="margin-left: 10px;">ExcIEEEST2A</a></legend>
                     <div id="{{id}}_ExcIEEEST2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -3783,7 +3783,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="ExcIEEEST5B_collapse" style="margin-left: 10px;">ExcIEEEST5B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="ExcIEEEST5B_collapse" style="margin-left: 10px;">ExcIEEEST5B</a></legend>
                     <div id="ExcIEEEST5B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -3827,7 +3827,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST5B_collapse" style="margin-left: 10px;">ExcIEEEST5B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEST5B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST5B_collapse" style="margin-left: 10px;">ExcIEEEST5B</a></legend>
                     <div id="{{id}}_ExcIEEEST5B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -3951,7 +3951,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC4A_collapse" aria-expanded="true" aria-controls="ExcAC4A_collapse" style="margin-left: 10px;">ExcAC4A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAC4A_collapse" aria-expanded="true" aria-controls="ExcAC4A_collapse" style="margin-left: 10px;">ExcAC4A</a></legend>
                     <div id="ExcAC4A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -3987,7 +3987,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC4A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC4A_collapse" style="margin-left: 10px;">ExcAC4A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAC4A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC4A_collapse" style="margin-left: 10px;">ExcAC4A</a></legend>
                     <div id="{{id}}_ExcAC4A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -4115,7 +4115,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC8B_collapse" style="margin-left: 10px;">ExcIEEEAC8B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC8B_collapse" style="margin-left: 10px;">ExcIEEEAC8B</a></legend>
                     <div id="ExcIEEEAC8B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -4160,7 +4160,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC8B_collapse" style="margin-left: 10px;">ExcIEEEAC8B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEAC8B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC8B_collapse" style="margin-left: 10px;">ExcIEEEAC8B</a></legend>
                     <div id="{{id}}_ExcIEEEAC8B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -4334,7 +4334,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcSK_collapse" aria-expanded="true" aria-controls="ExcSK_collapse" style="margin-left: 10px;">ExcSK</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcSK_collapse" aria-expanded="true" aria-controls="ExcSK_collapse" style="margin-left: 10px;">ExcSK</a></legend>
                     <div id="ExcSK_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -4393,7 +4393,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcSK_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSK_collapse" style="margin-left: 10px;">ExcSK</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcSK_collapse" aria-expanded="true" aria-controls="{{id}}_ExcSK_collapse" style="margin-left: 10px;">ExcSK</a></legend>
                     <div id="{{id}}_ExcSK_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -4603,7 +4603,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcREXS_collapse" aria-expanded="true" aria-controls="ExcREXS_collapse" style="margin-left: 10px;">ExcREXS</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcREXS_collapse" aria-expanded="true" aria-controls="ExcREXS_collapse" style="margin-left: 10px;">ExcREXS</a></legend>
                     <div id="ExcREXS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -4668,7 +4668,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcREXS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcREXS_collapse" style="margin-left: 10px;">ExcREXS</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcREXS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcREXS_collapse" style="margin-left: 10px;">ExcREXS</a></legend>
                     <div id="{{id}}_ExcREXS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -4842,7 +4842,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcANS_collapse" aria-expanded="true" aria-controls="ExcANS_collapse" style="margin-left: 10px;">ExcANS</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcANS_collapse" aria-expanded="true" aria-controls="ExcANS_collapse" style="margin-left: 10px;">ExcANS</a></legend>
                     <div id="ExcANS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -4883,7 +4883,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcANS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcANS_collapse" style="margin-left: 10px;">ExcANS</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcANS_collapse" aria-expanded="true" aria-controls="{{id}}_ExcANS_collapse" style="margin-left: 10px;">ExcANS</a></legend>
                     <div id="{{id}}_ExcANS_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -5037,7 +5037,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC7B_collapse" style="margin-left: 10px;">ExcIEEEAC7B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="ExcIEEEAC7B_collapse" style="margin-left: 10px;">ExcIEEEAC7B</a></legend>
                     <div id="ExcIEEEAC7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -5090,7 +5090,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC7B_collapse" style="margin-left: 10px;">ExcIEEEAC7B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEAC7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC7B_collapse" style="margin-left: 10px;">ExcIEEEAC7B</a></legend>
                     <div id="{{id}}_ExcIEEEAC7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -5248,7 +5248,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="ExcIEEEST4B_collapse" style="margin-left: 10px;">ExcIEEEST4B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="ExcIEEEST4B_collapse" style="margin-left: 10px;">ExcIEEEST4B</a></legend>
                     <div id="ExcIEEEST4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -5291,7 +5291,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST4B_collapse" style="margin-left: 10px;">ExcIEEEST4B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEST4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST4B_collapse" style="margin-left: 10px;">ExcIEEEST4B</a></legend>
                     <div id="{{id}}_ExcIEEEST4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -5427,7 +5427,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST7B_collapse" aria-expanded="true" aria-controls="ExcST7B_collapse" style="margin-left: 10px;">ExcST7B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcST7B_collapse" aria-expanded="true" aria-controls="ExcST7B_collapse" style="margin-left: 10px;">ExcST7B</a></legend>
                     <div id="ExcST7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -5474,7 +5474,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST7B_collapse" style="margin-left: 10px;">ExcST7B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcST7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST7B_collapse" style="margin-left: 10px;">ExcST7B</a></legend>
                     <div id="{{id}}_ExcST7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -5614,7 +5614,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC1A_collapse" aria-expanded="true" aria-controls="ExcDC1A_collapse" style="margin-left: 10px;">ExcDC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcDC1A_collapse" aria-expanded="true" aria-controls="ExcDC1A_collapse" style="margin-left: 10px;">ExcDC1A</a></legend>
                     <div id="ExcDC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -5659,7 +5659,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcDC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC1A_collapse" style="margin-left: 10px;">ExcDC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcDC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC1A_collapse" style="margin-left: 10px;">ExcDC1A</a></legend>
                     <div id="{{id}}_ExcDC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -5807,7 +5807,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST3A_collapse" aria-expanded="true" aria-controls="ExcST3A_collapse" style="margin-left: 10px;">ExcST3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcST3A_collapse" aria-expanded="true" aria-controls="ExcST3A_collapse" style="margin-left: 10px;">ExcST3A</a></legend>
                     <div id="ExcST3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -5854,7 +5854,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST3A_collapse" style="margin-left: 10px;">ExcST3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcST3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST3A_collapse" style="margin-left: 10px;">ExcST3A</a></legend>
                     <div id="{{id}}_ExcST3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -6004,7 +6004,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC1A_collapse" style="margin-left: 10px;">ExcIEEEAC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC1A_collapse" style="margin-left: 10px;">ExcIEEEAC1A</a></legend>
                     <div id="ExcIEEEAC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -6049,7 +6049,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC1A_collapse" style="margin-left: 10px;">ExcIEEEAC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEAC1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC1A_collapse" style="margin-left: 10px;">ExcIEEEAC1A</a></legend>
                     <div id="{{id}}_ExcIEEEAC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -6193,7 +6193,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC5A_collapse" aria-expanded="true" aria-controls="ExcAC5A_collapse" style="margin-left: 10px;">ExcAC5A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAC5A_collapse" aria-expanded="true" aria-controls="ExcAC5A_collapse" style="margin-left: 10px;">ExcAC5A</a></legend>
                     <div id="ExcAC5A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -6238,7 +6238,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC5A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC5A_collapse" style="margin-left: 10px;">ExcAC5A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAC5A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC5A_collapse" style="margin-left: 10px;">ExcAC5A</a></legend>
                     <div id="{{id}}_ExcAC5A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -6370,7 +6370,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcHU_collapse" aria-expanded="true" aria-controls="ExcHU_collapse" style="margin-left: 10px;">ExcHU</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcHU_collapse" aria-expanded="true" aria-controls="ExcHU_collapse" style="margin-left: 10px;">ExcHU</a></legend>
                     <div id="ExcHU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -6409,7 +6409,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcHU_collapse" aria-expanded="true" aria-controls="{{id}}_ExcHU_collapse" style="margin-left: 10px;">ExcHU</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcHU_collapse" aria-expanded="true" aria-controls="{{id}}_ExcHU_collapse" style="margin-left: 10px;">ExcHU</a></legend>
                     <div id="{{id}}_ExcHU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -6547,7 +6547,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR7_collapse" aria-expanded="true" aria-controls="ExcAVR7_collapse" style="margin-left: 10px;">ExcAVR7</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAVR7_collapse" aria-expanded="true" aria-controls="ExcAVR7_collapse" style="margin-left: 10px;">ExcAVR7</a></legend>
                     <div id="ExcAVR7_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -6595,7 +6595,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR7_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR7_collapse" style="margin-left: 10px;">ExcAVR7</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAVR7_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR7_collapse" style="margin-left: 10px;">ExcAVR7</a></legend>
                     <div id="{{id}}_ExcAVR7_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -6741,7 +6741,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="ExcIEEEST7B_collapse" style="margin-left: 10px;">ExcIEEEST7B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="ExcIEEEST7B_collapse" style="margin-left: 10px;">ExcIEEEST7B</a></legend>
                     <div id="ExcIEEEST7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -6787,7 +6787,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST7B_collapse" style="margin-left: 10px;">ExcIEEEST7B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEST7B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST7B_collapse" style="margin-left: 10px;">ExcIEEEST7B</a></legend>
                     <div id="{{id}}_ExcIEEEST7B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -6923,7 +6923,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC2A_collapse" style="margin-left: 10px;">ExcIEEEDC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="ExcIEEEDC2A_collapse" style="margin-left: 10px;">ExcIEEEDC2A</a></legend>
                     <div id="ExcIEEEDC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -6966,7 +6966,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC2A_collapse" style="margin-left: 10px;">ExcIEEEDC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEDC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEDC2A_collapse" style="margin-left: 10px;">ExcIEEEDC2A</a></legend>
                     <div id="{{id}}_ExcIEEEDC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -7096,7 +7096,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR3_collapse" aria-expanded="true" aria-controls="ExcAVR3_collapse" style="margin-left: 10px;">ExcAVR3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAVR3_collapse" aria-expanded="true" aria-controls="ExcAVR3_collapse" style="margin-left: 10px;">ExcAVR3</a></legend>
                     <div id="ExcAVR3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -7135,7 +7135,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR3_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR3_collapse" style="margin-left: 10px;">ExcAVR3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAVR3_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR3_collapse" style="margin-left: 10px;">ExcAVR3</a></legend>
                     <div id="{{id}}_ExcAVR3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -7251,7 +7251,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC4A_collapse" style="margin-left: 10px;">ExcIEEEAC4A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC4A_collapse" style="margin-left: 10px;">ExcIEEEAC4A</a></legend>
                     <div id="ExcIEEEAC4A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -7287,7 +7287,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC4A_collapse" style="margin-left: 10px;">ExcIEEEAC4A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEAC4A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC4A_collapse" style="margin-left: 10px;">ExcIEEEAC4A</a></legend>
                     <div id="{{id}}_ExcIEEEAC4A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -7433,7 +7433,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC2A_collapse" aria-expanded="true" aria-controls="ExcAC2A_collapse" style="margin-left: 10px;">ExcAC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAC2A_collapse" aria-expanded="true" aria-controls="ExcAC2A_collapse" style="margin-left: 10px;">ExcAC2A</a></legend>
                     <div id="ExcAC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -7488,7 +7488,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC2A_collapse" style="margin-left: 10px;">ExcAC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC2A_collapse" style="margin-left: 10px;">ExcAC2A</a></legend>
                     <div id="{{id}}_ExcAC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -7644,7 +7644,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC3A1_collapse" aria-expanded="true" aria-controls="ExcDC3A1_collapse" style="margin-left: 10px;">ExcDC3A1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcDC3A1_collapse" aria-expanded="true" aria-controls="ExcDC3A1_collapse" style="margin-left: 10px;">ExcDC3A1</a></legend>
                     <div id="ExcDC3A1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -7685,7 +7685,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcDC3A1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC3A1_collapse" style="margin-left: 10px;">ExcDC3A1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcDC3A1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC3A1_collapse" style="margin-left: 10px;">ExcDC3A1</a></legend>
                     <div id="{{id}}_ExcDC3A1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -7825,7 +7825,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="ExcIEEEST1A_collapse" style="margin-left: 10px;">ExcIEEEST1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="ExcIEEEST1A_collapse" style="margin-left: 10px;">ExcIEEEST1A</a></legend>
                     <div id="ExcIEEEST1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -7873,7 +7873,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST1A_collapse" style="margin-left: 10px;">ExcIEEEST1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEST1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST1A_collapse" style="margin-left: 10px;">ExcIEEEST1A</a></legend>
                     <div id="{{id}}_ExcIEEEST1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -8007,7 +8007,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcBBC_collapse" aria-expanded="true" aria-controls="ExcBBC_collapse" style="margin-left: 10px;">ExcBBC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcBBC_collapse" aria-expanded="true" aria-controls="ExcBBC_collapse" style="margin-left: 10px;">ExcBBC</a></legend>
                     <div id="ExcBBC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -8045,7 +8045,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcBBC_collapse" aria-expanded="true" aria-controls="{{id}}_ExcBBC_collapse" style="margin-left: 10px;">ExcBBC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcBBC_collapse" aria-expanded="true" aria-controls="{{id}}_ExcBBC_collapse" style="margin-left: 10px;">ExcBBC</a></legend>
                     <div id="{{id}}_ExcBBC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -8177,7 +8177,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST4B_collapse" aria-expanded="true" aria-controls="ExcST4B_collapse" style="margin-left: 10px;">ExcST4B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcST4B_collapse" aria-expanded="true" aria-controls="ExcST4B_collapse" style="margin-left: 10px;">ExcST4B</a></legend>
                     <div id="ExcST4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -8223,7 +8223,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST4B_collapse" style="margin-left: 10px;">ExcST4B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcST4B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST4B_collapse" style="margin-left: 10px;">ExcST4B</a></legend>
                     <div id="{{id}}_ExcST4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -8379,7 +8379,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC6A_collapse" aria-expanded="true" aria-controls="ExcAC6A_collapse" style="margin-left: 10px;">ExcAC6A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAC6A_collapse" aria-expanded="true" aria-controls="ExcAC6A_collapse" style="margin-left: 10px;">ExcAC6A</a></legend>
                     <div id="ExcAC6A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -8429,7 +8429,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC6A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC6A_collapse" style="margin-left: 10px;">ExcAC6A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAC6A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC6A_collapse" style="margin-left: 10px;">ExcAC6A</a></legend>
                     <div id="{{id}}_ExcAC6A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -8585,7 +8585,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcOEX3T_collapse" aria-expanded="true" aria-controls="ExcOEX3T_collapse" style="margin-left: 10px;">ExcOEX3T</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcOEX3T_collapse" aria-expanded="true" aria-controls="ExcOEX3T_collapse" style="margin-left: 10px;">ExcOEX3T</a></legend>
                     <div id="ExcOEX3T_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -8631,7 +8631,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcOEX3T_collapse" aria-expanded="true" aria-controls="{{id}}_ExcOEX3T_collapse" style="margin-left: 10px;">ExcOEX3T</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcOEX3T_collapse" aria-expanded="true" aria-controls="{{id}}_ExcOEX3T_collapse" style="margin-left: 10px;">ExcOEX3T</a></legend>
                     <div id="{{id}}_ExcOEX3T_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -8793,7 +8793,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAC3A_collapse" aria-expanded="true" aria-controls="ExcAC3A_collapse" style="margin-left: 10px;">ExcAC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAC3A_collapse" aria-expanded="true" aria-controls="ExcAC3A_collapse" style="margin-left: 10px;">ExcAC3A</a></legend>
                     <div id="ExcAC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -8846,7 +8846,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC3A_collapse" style="margin-left: 10px;">ExcAC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAC3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAC3A_collapse" style="margin-left: 10px;">ExcAC3A</a></legend>
                     <div id="{{id}}_ExcAC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -9016,7 +9016,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC6A_collapse" style="margin-left: 10px;">ExcIEEEAC6A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="ExcIEEEAC6A_collapse" style="margin-left: 10px;">ExcIEEEAC6A</a></legend>
                     <div id="ExcIEEEAC6A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -9065,7 +9065,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC6A_collapse" style="margin-left: 10px;">ExcIEEEAC6A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEAC6A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEAC6A_collapse" style="margin-left: 10px;">ExcIEEEAC6A</a></legend>
                     <div id="{{id}}_ExcIEEEAC6A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -9217,7 +9217,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcST1A_collapse" aria-expanded="true" aria-controls="ExcST1A_collapse" style="margin-left: 10px;">ExcST1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcST1A_collapse" aria-expanded="true" aria-controls="ExcST1A_collapse" style="margin-left: 10px;">ExcST1A</a></legend>
                     <div id="ExcST1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -9262,7 +9262,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcST1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST1A_collapse" style="margin-left: 10px;">ExcST1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcST1A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcST1A_collapse" style="margin-left: 10px;">ExcST1A</a></legend>
                     <div id="{{id}}_ExcST1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -9402,7 +9402,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcELIN1_collapse" aria-expanded="true" aria-controls="ExcELIN1_collapse" style="margin-left: 10px;">ExcELIN1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcELIN1_collapse" aria-expanded="true" aria-controls="ExcELIN1_collapse" style="margin-left: 10px;">ExcELIN1</a></legend>
                     <div id="ExcELIN1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -9444,7 +9444,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcELIN1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcELIN1_collapse" style="margin-left: 10px;">ExcELIN1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcELIN1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcELIN1_collapse" style="margin-left: 10px;">ExcELIN1</a></legend>
                     <div id="{{id}}_ExcELIN1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -9576,7 +9576,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR4_collapse" aria-expanded="true" aria-controls="ExcAVR4_collapse" style="margin-left: 10px;">ExcAVR4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAVR4_collapse" aria-expanded="true" aria-controls="ExcAVR4_collapse" style="margin-left: 10px;">ExcAVR4</a></legend>
                     <div id="ExcAVR4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -9617,7 +9617,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR4_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR4_collapse" style="margin-left: 10px;">ExcAVR4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAVR4_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR4_collapse" style="margin-left: 10px;">ExcAVR4</a></legend>
                     <div id="{{id}}_ExcAVR4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -9759,7 +9759,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="ExcIEEEST3A_collapse" style="margin-left: 10px;">ExcIEEEST3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="ExcIEEEST3A_collapse" style="margin-left: 10px;">ExcIEEEST3A</a></legend>
                     <div id="ExcIEEEST3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -9806,7 +9806,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST3A_collapse" style="margin-left: 10px;">ExcIEEEST3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEST3A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST3A_collapse" style="margin-left: 10px;">ExcIEEEST3A</a></legend>
                     <div id="{{id}}_ExcIEEEST3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -9956,7 +9956,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcDC2A_collapse" aria-expanded="true" aria-controls="ExcDC2A_collapse" style="margin-left: 10px;">ExcDC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcDC2A_collapse" aria-expanded="true" aria-controls="ExcDC2A_collapse" style="margin-left: 10px;">ExcDC2A</a></legend>
                     <div id="ExcDC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -10001,7 +10001,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcDC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC2A_collapse" style="margin-left: 10px;">ExcDC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcDC2A_collapse" aria-expanded="true" aria-controls="{{id}}_ExcDC2A_collapse" style="margin-left: 10px;">ExcDC2A</a></legend>
                     <div id="{{id}}_ExcDC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -10135,7 +10135,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcAVR1_collapse" aria-expanded="true" aria-controls="ExcAVR1_collapse" style="margin-left: 10px;">ExcAVR1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcAVR1_collapse" aria-expanded="true" aria-controls="ExcAVR1_collapse" style="margin-left: 10px;">ExcAVR1</a></legend>
                     <div id="ExcAVR1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -10174,7 +10174,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcAVR1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR1_collapse" style="margin-left: 10px;">ExcAVR1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcAVR1_collapse" aria-expanded="true" aria-controls="{{id}}_ExcAVR1_collapse" style="margin-left: 10px;">ExcAVR1</a></legend>
                     <div id="{{id}}_ExcAVR1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
@@ -10300,7 +10300,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="ExcIEEEST6B_collapse" style="margin-left: 10px;">ExcIEEEST6B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="ExcIEEEST6B_collapse" style="margin-left: 10px;">ExcIEEEST6B</a></legend>
                     <div id="ExcIEEEST6B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
@@ -10343,7 +10343,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST6B_collapse" style="margin-left: 10px;">ExcIEEEST6B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExcIEEEST6B_collapse" aria-expanded="true" aria-controls="{{id}}_ExcIEEEST6B_collapse" style="margin-left: 10px;">ExcIEEEST6B</a></legend>
                     <div id="{{id}}_ExcIEEEST6B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +

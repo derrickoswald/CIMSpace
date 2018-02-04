@@ -58,7 +58,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SVC_collapse" aria-expanded="true" aria-controls="SVC_collapse" style="margin-left: 10px;">SVC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SVC_collapse" aria-expanded="true" aria-controls="SVC_collapse" style="margin-left: 10px;">SVC</a></legend>
                     <div id="SVC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.ShuntCompensator.prototype.template.call (this) +
@@ -87,7 +87,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SVC_collapse" aria-expanded="true" aria-controls="{{id}}_SVC_collapse" style="margin-left: 10px;">SVC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SVC_collapse" aria-expanded="true" aria-controls="{{id}}_SVC_collapse" style="margin-left: 10px;">SVC</a></legend>
                     <div id="{{id}}_SVC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.ShuntCompensator.prototype.edit_template.call (this) +
@@ -199,7 +199,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="ShuntCompensatorControl_collapse" style="margin-left: 10px;">ShuntCompensatorControl</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="ShuntCompensatorControl_collapse" style="margin-left: 10px;">ShuntCompensatorControl</a></legend>
                     <div id="ShuntCompensatorControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.RegulatingControl.prototype.template.call (this) +
@@ -244,7 +244,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensatorControl_collapse" style="margin-left: 10px;">ShuntCompensatorControl</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensatorControl_collapse" style="margin-left: 10px;">ShuntCompensatorControl</a></legend>
                     <div id="{{id}}_ShuntCompensatorControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.RegulatingControl.prototype.edit_template.call (this) +

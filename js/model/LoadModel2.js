@@ -62,7 +62,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoad_collapse" aria-expanded="true" aria-controls="NonConformLoad_collapse" style="margin-left: 10px;">NonConformLoad</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#NonConformLoad_collapse" aria-expanded="true" aria-controls="NonConformLoad_collapse" style="margin-left: 10px;">NonConformLoad</a></legend>
                     <div id="NonConformLoad_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.template.call (this) +
@@ -90,7 +90,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonConformLoad_collapse" aria-expanded="true" aria-controls="{{id}}_NonConformLoad_collapse" style="margin-left: 10px;">NonConformLoad</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_NonConformLoad_collapse" aria-expanded="true" aria-controls="{{id}}_NonConformLoad_collapse" style="margin-left: 10px;">NonConformLoad</a></legend>
                     <div id="{{id}}_NonConformLoad_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.edit_template.call (this) +
@@ -177,7 +177,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoad_collapse" aria-expanded="true" aria-controls="ConformLoad_collapse" style="margin-left: 10px;">ConformLoad</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ConformLoad_collapse" aria-expanded="true" aria-controls="ConformLoad_collapse" style="margin-left: 10px;">ConformLoad</a></legend>
                     <div id="ConformLoad_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.template.call (this) +
@@ -205,7 +205,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConformLoad_collapse" aria-expanded="true" aria-controls="{{id}}_ConformLoad_collapse" style="margin-left: 10px;">ConformLoad</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ConformLoad_collapse" aria-expanded="true" aria-controls="{{id}}_ConformLoad_collapse" style="margin-left: 10px;">ConformLoad</a></legend>
                     <div id="{{id}}_ConformLoad_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.edit_template.call (this) +
@@ -290,7 +290,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StationSupply_collapse" aria-expanded="true" aria-controls="StationSupply_collapse" style="margin-left: 10px;">StationSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StationSupply_collapse" aria-expanded="true" aria-controls="StationSupply_collapse" style="margin-left: 10px;">StationSupply</a></legend>
                     <div id="StationSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.template.call (this) +
@@ -317,7 +317,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StationSupply_collapse" aria-expanded="true" aria-controls="{{id}}_StationSupply_collapse" style="margin-left: 10px;">StationSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StationSupply_collapse" aria-expanded="true" aria-controls="{{id}}_StationSupply_collapse" style="margin-left: 10px;">StationSupply</a></legend>
                     <div id="{{id}}_StationSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.edit_template.call (this) +

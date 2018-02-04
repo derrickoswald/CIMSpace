@@ -64,7 +64,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscontinuousExcitationControlDynamics_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlDynamics_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DiscontinuousExcitationControlDynamics_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlDynamics_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlDynamics</a></legend>
                     <div id="DiscontinuousExcitationControlDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -93,7 +93,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiscontinuousExcitationControlDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_DiscontinuousExcitationControlDynamics_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DiscontinuousExcitationControlDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_DiscontinuousExcitationControlDynamics_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlDynamics</a></legend>
                     <div id="{{id}}_DiscontinuousExcitationControlDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -193,7 +193,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
                     <div id="DiscExcContIEEEDEC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
@@ -225,7 +225,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="{{id}}_DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="{{id}}_DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
                     <div id="{{id}}_DiscExcContIEEEDEC2A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
@@ -345,7 +345,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC1A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC1A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DiscExcContIEEEDEC1A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC1A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC1A</a></legend>
                     <div id="DiscExcContIEEEDEC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
@@ -390,7 +390,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiscExcContIEEEDEC1A_collapse" aria-expanded="true" aria-controls="{{id}}_DiscExcContIEEEDEC1A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DiscExcContIEEEDEC1A_collapse" aria-expanded="true" aria-controls="{{id}}_DiscExcContIEEEDEC1A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC1A</a></legend>
                     <div id="{{id}}_DiscExcContIEEEDEC1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
@@ -504,7 +504,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscExcContIEEEDEC3A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC3A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DiscExcContIEEEDEC3A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC3A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC3A</a></legend>
                     <div id="DiscExcContIEEEDEC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
@@ -533,7 +533,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiscExcContIEEEDEC3A_collapse" aria-expanded="true" aria-controls="{{id}}_DiscExcContIEEEDEC3A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC3A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DiscExcContIEEEDEC3A_collapse" aria-expanded="true" aria-controls="{{id}}_DiscExcContIEEEDEC3A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC3A</a></legend>
                     <div id="{{id}}_DiscExcContIEEEDEC3A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +

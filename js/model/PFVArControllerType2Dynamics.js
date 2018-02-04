@@ -65,7 +65,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType2Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType2Dynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType2Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType2Dynamics</a></legend>
                     <div id="PFVArControllerType2Dynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -93,7 +93,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArControllerType2Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType2Dynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArControllerType2Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType2Dynamics</a></legend>
                     <div id="{{id}}_PFVArControllerType2Dynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -190,7 +190,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2Common1_collapse" aria-expanded="true" aria-controls="PFVArType2Common1_collapse" style="margin-left: 10px;">PFVArType2Common1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PFVArType2Common1_collapse" aria-expanded="true" aria-controls="PFVArType2Common1_collapse" style="margin-left: 10px;">PFVArType2Common1</a></legend>
                     <div id="PFVArType2Common1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.template.call (this) +
@@ -222,7 +222,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2Common1_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2Common1_collapse" style="margin-left: 10px;">PFVArType2Common1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PFVArType2Common1_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2Common1_collapse" style="margin-left: 10px;">PFVArType2Common1</a></legend>
                     <div id="{{id}}_PFVArType2Common1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
@@ -320,7 +320,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEVArController_collapse" style="margin-left: 10px;">PFVArType2IEEEVArController</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEVArController_collapse" style="margin-left: 10px;">PFVArType2IEEEVArController</a></legend>
                     <div id="PFVArType2IEEEVArController_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.template.call (this) +
@@ -354,7 +354,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2IEEEVArController_collapse" style="margin-left: 10px;">PFVArType2IEEEVArController</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2IEEEVArController_collapse" style="margin-left: 10px;">PFVArType2IEEEVArController</a></legend>
                     <div id="{{id}}_PFVArType2IEEEVArController_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
@@ -456,7 +456,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEPFController_collapse" style="margin-left: 10px;">PFVArType2IEEEPFController</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEPFController_collapse" style="margin-left: 10px;">PFVArType2IEEEPFController</a></legend>
                     <div id="PFVArType2IEEEPFController_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.template.call (this) +
@@ -490,7 +490,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2IEEEPFController_collapse" style="margin-left: 10px;">PFVArType2IEEEPFController</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2IEEEPFController_collapse" style="margin-left: 10px;">PFVArType2IEEEPFController</a></legend>
                     <div id="{{id}}_PFVArType2IEEEPFController_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +

@@ -56,7 +56,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergySchedulingType_collapse" aria-expanded="true" aria-controls="EnergySchedulingType_collapse" style="margin-left: 10px;">EnergySchedulingType</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EnergySchedulingType_collapse" aria-expanded="true" aria-controls="EnergySchedulingType_collapse" style="margin-left: 10px;">EnergySchedulingType</a></legend>
                     <div id="EnergySchedulingType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -86,7 +86,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergySchedulingType_collapse" aria-expanded="true" aria-controls="{{id}}_EnergySchedulingType_collapse" style="margin-left: 10px;">EnergySchedulingType</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EnergySchedulingType_collapse" aria-expanded="true" aria-controls="{{id}}_EnergySchedulingType_collapse" style="margin-left: 10px;">EnergySchedulingType</a></legend>
                     <div id="{{id}}_EnergySchedulingType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +

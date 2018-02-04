@@ -77,7 +77,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Bank_collapse" aria-expanded="true" aria-controls="Bank_collapse" style="margin-left: 10px;">Bank</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Bank_collapse" aria-expanded="true" aria-controls="Bank_collapse" style="margin-left: 10px;">Bank</a></legend>
                     <div id="Bank_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
@@ -109,7 +109,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Bank_collapse" aria-expanded="true" aria-controls="{{id}}_Bank_collapse" style="margin-left: 10px;">Bank</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Bank_collapse" aria-expanded="true" aria-controls="{{id}}_Bank_collapse" style="margin-left: 10px;">Bank</a></legend>
                     <div id="{{id}}_Bank_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
@@ -202,7 +202,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessRole_collapse" aria-expanded="true" aria-controls="BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BusinessRole_collapse" aria-expanded="true" aria-controls="BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
                     <div id="BusinessRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
@@ -231,7 +231,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusinessRole_collapse" aria-expanded="true" aria-controls="{{id}}_BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BusinessRole_collapse" aria-expanded="true" aria-controls="{{id}}_BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
                     <div id="{{id}}_BusinessRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
@@ -309,7 +309,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
                     <div id="PropertyOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
@@ -339,7 +339,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
                     <div id="{{id}}_PropertyOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
@@ -434,7 +434,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldCrew_collapse" aria-expanded="true" aria-controls="OldCrew_collapse" style="margin-left: 10px;">OldCrew</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OldCrew_collapse" aria-expanded="true" aria-controls="OldCrew_collapse" style="margin-left: 10px;">OldCrew</a></legend>
                     <div id="OldCrew_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Crew.prototype.template.call (this) +
@@ -478,7 +478,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OldCrew_collapse" aria-expanded="true" aria-controls="{{id}}_OldCrew_collapse" style="margin-left: 10px;">OldCrew</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OldCrew_collapse" aria-expanded="true" aria-controls="{{id}}_OldCrew_collapse" style="margin-left: 10px;">OldCrew</a></legend>
                     <div id="{{id}}_OldCrew_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Crew.prototype.edit_template.call (this) +
@@ -582,7 +582,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OrgOrgRole_collapse" aria-expanded="true" aria-controls="OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OrgOrgRole_collapse" aria-expanded="true" aria-controls="OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
                     <div id="OrgOrgRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
@@ -610,7 +610,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OrgOrgRole_collapse" aria-expanded="true" aria-controls="{{id}}_OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OrgOrgRole_collapse" aria-expanded="true" aria-controls="{{id}}_OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
                     <div id="{{id}}_OrgOrgRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
@@ -696,7 +696,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Skill_collapse" aria-expanded="true" aria-controls="Skill_collapse" style="margin-left: 10px;">Skill</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Skill_collapse" aria-expanded="true" aria-controls="Skill_collapse" style="margin-left: 10px;">Skill</a></legend>
                     <div id="Skill_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -735,7 +735,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Skill_collapse" aria-expanded="true" aria-controls="{{id}}_Skill_collapse" style="margin-left: 10px;">Skill</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Skill_collapse" aria-expanded="true" aria-controls="{{id}}_Skill_collapse" style="margin-left: 10px;">Skill</a></legend>
                     <div id="{{id}}_Skill_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -834,7 +834,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessPlan_collapse" aria-expanded="true" aria-controls="BusinessPlan_collapse" style="margin-left: 10px;">BusinessPlan</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BusinessPlan_collapse" aria-expanded="true" aria-controls="BusinessPlan_collapse" style="margin-left: 10px;">BusinessPlan</a></legend>
                     <div id="BusinessPlan_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -861,7 +861,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusinessPlan_collapse" aria-expanded="true" aria-controls="{{id}}_BusinessPlan_collapse" style="margin-left: 10px;">BusinessPlan</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BusinessPlan_collapse" aria-expanded="true" aria-controls="{{id}}_BusinessPlan_collapse" style="margin-left: 10px;">BusinessPlan</a></legend>
                     <div id="{{id}}_BusinessPlan_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -935,7 +935,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Role_collapse" aria-expanded="true" aria-controls="Role_collapse" style="margin-left: 10px;">Role</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Role_collapse" aria-expanded="true" aria-controls="Role_collapse" style="margin-left: 10px;">Role</a></legend>
                     <div id="Role_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -964,7 +964,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Role_collapse" aria-expanded="true" aria-controls="{{id}}_Role_collapse" style="margin-left: 10px;">Role</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Role_collapse" aria-expanded="true" aria-controls="{{id}}_Role_collapse" style="margin-left: 10px;">Role</a></legend>
                     <div id="{{id}}_Role_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -1040,7 +1040,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
                     <div id="DocumentOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
@@ -1067,7 +1067,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
                     <div id="{{id}}_DocumentOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
@@ -1141,7 +1141,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Ratio_collapse" aria-expanded="true" aria-controls="Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Ratio_collapse" aria-expanded="true" aria-controls="Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
                     <div id="Ratio_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1170,7 +1170,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Ratio_collapse" aria-expanded="true" aria-controls="{{id}}_Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Ratio_collapse" aria-expanded="true" aria-controls="{{id}}_Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
                     <div id="{{id}}_Ratio_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1258,7 +1258,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Craft_collapse" aria-expanded="true" aria-controls="Craft_collapse" style="margin-left: 10px;">Craft</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Craft_collapse" aria-expanded="true" aria-controls="Craft_collapse" style="margin-left: 10px;">Craft</a></legend>
                     <div id="Craft_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -1296,7 +1296,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Craft_collapse" aria-expanded="true" aria-controls="{{id}}_Craft_collapse" style="margin-left: 10px;">Craft</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Craft_collapse" aria-expanded="true" aria-controls="{{id}}_Craft_collapse" style="margin-left: 10px;">Craft</a></legend>
                     <div id="{{id}}_Craft_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -1415,7 +1415,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldPerson_collapse" aria-expanded="true" aria-controls="OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OldPerson_collapse" aria-expanded="true" aria-controls="OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
                     <div id="OldPerson_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Person.prototype.template.call (this) +
@@ -1468,7 +1468,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OldPerson_collapse" aria-expanded="true" aria-controls="{{id}}_OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OldPerson_collapse" aria-expanded="true" aria-controls="{{id}}_OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
                     <div id="{{id}}_OldPerson_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Person.prototype.edit_template.call (this) +
@@ -1578,7 +1578,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
                     <div id="PersonOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
@@ -1607,7 +1607,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
                     <div id="{{id}}_PersonOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
@@ -1700,7 +1700,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BankAccount_collapse" aria-expanded="true" aria-controls="BankAccount_collapse" style="margin-left: 10px;">BankAccount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BankAccount_collapse" aria-expanded="true" aria-controls="BankAccount_collapse" style="margin-left: 10px;">BankAccount</a></legend>
                     <div id="BankAccount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -1730,7 +1730,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BankAccount_collapse" aria-expanded="true" aria-controls="{{id}}_BankAccount_collapse" style="margin-left: 10px;">BankAccount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BankAccount_collapse" aria-expanded="true" aria-controls="{{id}}_BankAccount_collapse" style="margin-left: 10px;">BankAccount</a></legend>
                     <div id="{{id}}_BankAccount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -1822,7 +1822,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonDocumentRole_collapse" aria-expanded="true" aria-controls="PersonDocumentRole_collapse" style="margin-left: 10px;">PersonDocumentRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PersonDocumentRole_collapse" aria-expanded="true" aria-controls="PersonDocumentRole_collapse" style="margin-left: 10px;">PersonDocumentRole</a></legend>
                     <div id="PersonDocumentRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Role.prototype.template.call (this) +
@@ -1850,7 +1850,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PersonDocumentRole_collapse" aria-expanded="true" aria-controls="{{id}}_PersonDocumentRole_collapse" style="margin-left: 10px;">PersonDocumentRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PersonDocumentRole_collapse" aria-expanded="true" aria-controls="{{id}}_PersonDocumentRole_collapse" style="margin-left: 10px;">PersonDocumentRole</a></legend>
                     <div id="{{id}}_PersonDocumentRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Role.prototype.edit_template.call (this) +
@@ -1941,7 +1941,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PersonPropertyRole_collapse" aria-expanded="true" aria-controls="PersonPropertyRole_collapse" style="margin-left: 10px;">PersonPropertyRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PersonPropertyRole_collapse" aria-expanded="true" aria-controls="PersonPropertyRole_collapse" style="margin-left: 10px;">PersonPropertyRole</a></legend>
                     <div id="PersonPropertyRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Role.prototype.template.call (this) +
@@ -1970,7 +1970,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PersonPropertyRole_collapse" aria-expanded="true" aria-controls="{{id}}_PersonPropertyRole_collapse" style="margin-left: 10px;">PersonPropertyRole</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PersonPropertyRole_collapse" aria-expanded="true" aria-controls="{{id}}_PersonPropertyRole_collapse" style="margin-left: 10px;">PersonPropertyRole</a></legend>
                     <div id="{{id}}_PersonPropertyRole_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Role.prototype.edit_template.call (this) +

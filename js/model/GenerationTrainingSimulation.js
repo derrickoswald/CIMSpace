@@ -83,7 +83,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="CTTempActivePowerCurve_collapse" style="margin-left: 10px;">CTTempActivePowerCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="CTTempActivePowerCurve_collapse" style="margin-left: 10px;">CTTempActivePowerCurve</a></legend>
                     <div id="CTTempActivePowerCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -111,7 +111,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="{{id}}_CTTempActivePowerCurve_collapse" style="margin-left: 10px;">CTTempActivePowerCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="{{id}}_CTTempActivePowerCurve_collapse" style="margin-left: 10px;">CTTempActivePowerCurve</a></legend>
                     <div id="{{id}}_CTTempActivePowerCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -200,7 +200,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamSupply_collapse" aria-expanded="true" aria-controls="SteamSupply_collapse" style="margin-left: 10px;">SteamSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SteamSupply_collapse" aria-expanded="true" aria-controls="SteamSupply_collapse" style="margin-left: 10px;">SteamSupply</a></legend>
                     <div id="SteamSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -231,7 +231,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_SteamSupply_collapse" style="margin-left: 10px;">SteamSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_SteamSupply_collapse" style="margin-left: 10px;">SteamSupply</a></legend>
                     <div id="{{id}}_SteamSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -322,7 +322,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PrimeMover_collapse" aria-expanded="true" aria-controls="PrimeMover_collapse" style="margin-left: 10px;">PrimeMover</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PrimeMover_collapse" aria-expanded="true" aria-controls="PrimeMover_collapse" style="margin-left: 10px;">PrimeMover</a></legend>
                     <div id="PrimeMover_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -353,7 +353,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PrimeMover_collapse" aria-expanded="true" aria-controls="{{id}}_PrimeMover_collapse" style="margin-left: 10px;">PrimeMover</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PrimeMover_collapse" aria-expanded="true" aria-controls="{{id}}_PrimeMover_collapse" style="margin-left: 10px;">PrimeMover</a></legend>
                     <div id="{{id}}_PrimeMover_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -482,7 +482,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BWRSteamSupply_collapse" aria-expanded="true" aria-controls="BWRSteamSupply_collapse" style="margin-left: 10px;">BWRSteamSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BWRSteamSupply_collapse" aria-expanded="true" aria-controls="BWRSteamSupply_collapse" style="margin-left: 10px;">BWRSteamSupply</a></legend>
                     <div id="BWRSteamSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.template.call (this) +
@@ -530,7 +530,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BWRSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_BWRSteamSupply_collapse" style="margin-left: 10px;">BWRSteamSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BWRSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_BWRSteamSupply_collapse" style="margin-left: 10px;">BWRSteamSupply</a></legend>
                     <div id="{{id}}_BWRSteamSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.edit_template.call (this) +
@@ -696,7 +696,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FossilSteamSupply_collapse" aria-expanded="true" aria-controls="FossilSteamSupply_collapse" style="margin-left: 10px;">FossilSteamSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FossilSteamSupply_collapse" aria-expanded="true" aria-controls="FossilSteamSupply_collapse" style="margin-left: 10px;">FossilSteamSupply</a></legend>
                     <div id="FossilSteamSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.template.call (this) +
@@ -751,7 +751,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FossilSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_FossilSteamSupply_collapse" style="margin-left: 10px;">FossilSteamSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FossilSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_FossilSteamSupply_collapse" style="margin-left: 10px;">FossilSteamSupply</a></legend>
                     <div id="{{id}}_FossilSteamSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.edit_template.call (this) +
@@ -875,7 +875,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Supercritical_collapse" aria-expanded="true" aria-controls="Supercritical_collapse" style="margin-left: 10px;">Supercritical</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Supercritical_collapse" aria-expanded="true" aria-controls="Supercritical_collapse" style="margin-left: 10px;">Supercritical</a></legend>
                     <div id="Supercritical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.template.call (this) +
@@ -902,7 +902,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Supercritical_collapse" aria-expanded="true" aria-controls="{{id}}_Supercritical_collapse" style="margin-left: 10px;">Supercritical</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Supercritical_collapse" aria-expanded="true" aria-controls="{{id}}_Supercritical_collapse" style="margin-left: 10px;">Supercritical</a></legend>
                     <div id="{{id}}_Supercritical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.edit_template.call (this) +
@@ -1012,7 +1012,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PWRSteamSupply_collapse" aria-expanded="true" aria-controls="PWRSteamSupply_collapse" style="margin-left: 10px;">PWRSteamSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PWRSteamSupply_collapse" aria-expanded="true" aria-controls="PWRSteamSupply_collapse" style="margin-left: 10px;">PWRSteamSupply</a></legend>
                     <div id="PWRSteamSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.template.call (this) +
@@ -1059,7 +1059,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PWRSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_PWRSteamSupply_collapse" style="margin-left: 10px;">PWRSteamSupply</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PWRSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_PWRSteamSupply_collapse" style="margin-left: 10px;">PWRSteamSupply</a></legend>
                     <div id="{{id}}_PWRSteamSupply_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.edit_template.call (this) +
@@ -1175,7 +1175,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="HeatRecoveryBoiler_collapse" style="margin-left: 10px;">HeatRecoveryBoiler</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="HeatRecoveryBoiler_collapse" style="margin-left: 10px;">HeatRecoveryBoiler</a></legend>
                     <div id="HeatRecoveryBoiler_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.template.call (this) +
@@ -1206,7 +1206,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="{{id}}_HeatRecoveryBoiler_collapse" style="margin-left: 10px;">HeatRecoveryBoiler</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="{{id}}_HeatRecoveryBoiler_collapse" style="margin-left: 10px;">HeatRecoveryBoiler</a></legend>
                     <div id="{{id}}_HeatRecoveryBoiler_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.edit_template.call (this) +
@@ -1293,7 +1293,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DrumBoiler_collapse" aria-expanded="true" aria-controls="DrumBoiler_collapse" style="margin-left: 10px;">DrumBoiler</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DrumBoiler_collapse" aria-expanded="true" aria-controls="DrumBoiler_collapse" style="margin-left: 10px;">DrumBoiler</a></legend>
                     <div id="DrumBoiler_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.template.call (this) +
@@ -1321,7 +1321,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DrumBoiler_collapse" aria-expanded="true" aria-controls="{{id}}_DrumBoiler_collapse" style="margin-left: 10px;">DrumBoiler</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DrumBoiler_collapse" aria-expanded="true" aria-controls="{{id}}_DrumBoiler_collapse" style="margin-left: 10px;">DrumBoiler</a></legend>
                     <div id="{{id}}_DrumBoiler_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.edit_template.call (this) +
@@ -1395,7 +1395,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Subcritical_collapse" aria-expanded="true" aria-controls="Subcritical_collapse" style="margin-left: 10px;">Subcritical</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Subcritical_collapse" aria-expanded="true" aria-controls="Subcritical_collapse" style="margin-left: 10px;">Subcritical</a></legend>
                     <div id="Subcritical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.template.call (this) +
@@ -1422,7 +1422,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Subcritical_collapse" aria-expanded="true" aria-controls="{{id}}_Subcritical_collapse" style="margin-left: 10px;">Subcritical</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Subcritical_collapse" aria-expanded="true" aria-controls="{{id}}_Subcritical_collapse" style="margin-left: 10px;">Subcritical</a></legend>
                     <div id="{{id}}_Subcritical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.edit_template.call (this) +
@@ -1516,7 +1516,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroTurbine_collapse" aria-expanded="true" aria-controls="HydroTurbine_collapse" style="margin-left: 10px;">HydroTurbine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HydroTurbine_collapse" aria-expanded="true" aria-controls="HydroTurbine_collapse" style="margin-left: 10px;">HydroTurbine</a></legend>
                     <div id="HydroTurbine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.template.call (this) +
@@ -1556,7 +1556,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HydroTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_HydroTurbine_collapse" style="margin-left: 10px;">HydroTurbine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HydroTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_HydroTurbine_collapse" style="margin-left: 10px;">HydroTurbine</a></legend>
                     <div id="{{id}}_HydroTurbine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.edit_template.call (this) +
@@ -1676,7 +1676,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamTurbine_collapse" aria-expanded="true" aria-controls="SteamTurbine_collapse" style="margin-left: 10px;">SteamTurbine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SteamTurbine_collapse" aria-expanded="true" aria-controls="SteamTurbine_collapse" style="margin-left: 10px;">SteamTurbine</a></legend>
                     <div id="SteamTurbine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.template.call (this) +
@@ -1718,7 +1718,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SteamTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_SteamTurbine_collapse" style="margin-left: 10px;">SteamTurbine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SteamTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_SteamTurbine_collapse" style="margin-left: 10px;">SteamTurbine</a></legend>
                     <div id="{{id}}_SteamTurbine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.edit_template.call (this) +
@@ -1849,7 +1849,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombustionTurbine_collapse" aria-expanded="true" aria-controls="CombustionTurbine_collapse" style="margin-left: 10px;">CombustionTurbine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CombustionTurbine_collapse" aria-expanded="true" aria-controls="CombustionTurbine_collapse" style="margin-left: 10px;">CombustionTurbine</a></legend>
                     <div id="CombustionTurbine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.template.call (this) +
@@ -1887,7 +1887,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CombustionTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_CombustionTurbine_collapse" style="margin-left: 10px;">CombustionTurbine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CombustionTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_CombustionTurbine_collapse" style="margin-left: 10px;">CombustionTurbine</a></legend>
                     <div id="{{id}}_CombustionTurbine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.edit_template.call (this) +

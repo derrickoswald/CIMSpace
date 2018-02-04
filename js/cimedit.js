@@ -1067,6 +1067,15 @@ define
                     guts.style.maxHeight = (max_height - this._frame_height).toString () + "px";
             }
 
+            // manually toggle the state to collapsed
+            setCollapsed (text)
+            {
+                text = text.replace ("class=\"collapse-link\"", "class=\"collapse-link collapsed\"");
+                text = text.replace ("aria-expanded=\"true\"", "aria-expanded=\"false\"");
+                text = text.replace ("class=\"collapse in show\"", "class=\"collapse in\"");
+                return (text);
+            }
+
             build (element)
             {
                 this._elements.push (element);
@@ -1075,6 +1084,7 @@ define
                 var template = cls.prototype.edit_template ();
                 var text = mustache.render (template, element);
                 cls.prototype.uncondition (element);
+                text = this.setCollapsed (text);
                 return (text);
             }
 

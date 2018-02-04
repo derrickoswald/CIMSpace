@@ -66,7 +66,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RecloseSequence_collapse" aria-expanded="true" aria-controls="RecloseSequence_collapse" style="margin-left: 10px;">RecloseSequence</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RecloseSequence_collapse" aria-expanded="true" aria-controls="RecloseSequence_collapse" style="margin-left: 10px;">RecloseSequence</a></legend>
                     <div id="RecloseSequence_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -96,7 +96,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RecloseSequence_collapse" aria-expanded="true" aria-controls="{{id}}_RecloseSequence_collapse" style="margin-left: 10px;">RecloseSequence</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RecloseSequence_collapse" aria-expanded="true" aria-controls="{{id}}_RecloseSequence_collapse" style="margin-left: 10px;">RecloseSequence</a></legend>
                     <div id="{{id}}_RecloseSequence_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -205,7 +205,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectionEquipment_collapse" aria-expanded="true" aria-controls="ProtectionEquipment_collapse" style="margin-left: 10px;">ProtectionEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProtectionEquipment_collapse" aria-expanded="true" aria-controls="ProtectionEquipment_collapse" style="margin-left: 10px;">ProtectionEquipment</a></legend>
                     <div id="ProtectionEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
@@ -247,7 +247,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectionEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectionEquipment_collapse" style="margin-left: 10px;">ProtectionEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProtectionEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectionEquipment_collapse" style="margin-left: 10px;">ProtectionEquipment</a></legend>
                     <div id="{{id}}_ProtectionEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
@@ -362,7 +362,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentRelay_collapse" aria-expanded="true" aria-controls="CurrentRelay_collapse" style="margin-left: 10px;">CurrentRelay</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CurrentRelay_collapse" aria-expanded="true" aria-controls="CurrentRelay_collapse" style="margin-left: 10px;">CurrentRelay</a></legend>
                     <div id="CurrentRelay_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectionEquipment.prototype.template.call (this) +
@@ -396,7 +396,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentRelay_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentRelay_collapse" style="margin-left: 10px;">CurrentRelay</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CurrentRelay_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentRelay_collapse" style="margin-left: 10px;">CurrentRelay</a></legend>
                     <div id="{{id}}_CurrentRelay_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectionEquipment.prototype.edit_template.call (this) +
@@ -490,7 +490,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="SynchrocheckRelay_collapse" style="margin-left: 10px;">SynchrocheckRelay</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="SynchrocheckRelay_collapse" style="margin-left: 10px;">SynchrocheckRelay</a></legend>
                     <div id="SynchrocheckRelay_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectionEquipment.prototype.template.call (this) +
@@ -520,7 +520,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="{{id}}_SynchrocheckRelay_collapse" style="margin-left: 10px;">SynchrocheckRelay</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="{{id}}_SynchrocheckRelay_collapse" style="margin-left: 10px;">SynchrocheckRelay</a></legend>
                     <div id="{{id}}_SynchrocheckRelay_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectionEquipment.prototype.edit_template.call (this) +

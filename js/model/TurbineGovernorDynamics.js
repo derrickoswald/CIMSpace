@@ -91,7 +91,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="TurbineGovernorDynamics_collapse" style="margin-left: 10px;">TurbineGovernorDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="TurbineGovernorDynamics_collapse" style="margin-left: 10px;">TurbineGovernorDynamics</a></legend>
                     <div id="TurbineGovernorDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -123,7 +123,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_TurbineGovernorDynamics_collapse" style="margin-left: 10px;">TurbineGovernorDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TurbineGovernorDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_TurbineGovernorDynamics_collapse" style="margin-left: 10px;">TurbineGovernorDynamics</a></legend>
                     <div id="{{id}}_TurbineGovernorDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -248,7 +248,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamCC_collapse" aria-expanded="true" aria-controls="GovSteamCC_collapse" style="margin-left: 10px;">GovSteamCC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteamCC_collapse" aria-expanded="true" aria-controls="GovSteamCC_collapse" style="margin-left: 10px;">GovSteamCC</a></legend>
                     <div id="GovSteamCC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -292,7 +292,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamCC_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamCC_collapse" style="margin-left: 10px;">GovSteamCC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteamCC_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamCC_collapse" style="margin-left: 10px;">GovSteamCC</a></legend>
                     <div id="{{id}}_GovSteamCC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -464,7 +464,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPID_collapse" aria-expanded="true" aria-controls="GovHydroPID_collapse" style="margin-left: 10px;">GovHydroPID</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroPID_collapse" aria-expanded="true" aria-controls="GovHydroPID_collapse" style="margin-left: 10px;">GovHydroPID</a></legend>
                     <div id="GovHydroPID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -524,7 +524,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroPID_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPID_collapse" style="margin-left: 10px;">GovHydroPID</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroPID_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPID_collapse" style="margin-left: 10px;">GovHydroPID</a></legend>
                     <div id="{{id}}_GovHydroPID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -776,7 +776,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovCT2_collapse" aria-expanded="true" aria-controls="GovCT2_collapse" style="margin-left: 10px;">GovCT2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovCT2_collapse" aria-expanded="true" aria-controls="GovCT2_collapse" style="margin-left: 10px;">GovCT2</a></legend>
                     <div id="GovCT2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -861,7 +861,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovCT2_collapse" aria-expanded="true" aria-controls="{{id}}_GovCT2_collapse" style="margin-left: 10px;">GovCT2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovCT2_collapse" aria-expanded="true" aria-controls="{{id}}_GovCT2_collapse" style="margin-left: 10px;">GovCT2</a></legend>
                     <div id="{{id}}_GovCT2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -1103,7 +1103,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro2_collapse" aria-expanded="true" aria-controls="GovHydro2_collapse" style="margin-left: 10px;">GovHydro2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydro2_collapse" aria-expanded="true" aria-controls="GovHydro2_collapse" style="margin-left: 10px;">GovHydro2</a></legend>
                     <div id="GovHydro2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -1159,7 +1159,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydro2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro2_collapse" style="margin-left: 10px;">GovHydro2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydro2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro2_collapse" style="margin-left: 10px;">GovHydro2</a></legend>
                     <div id="{{id}}_GovHydro2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -1343,7 +1343,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="GovHydroIEEE2_collapse" style="margin-left: 10px;">GovHydroIEEE2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="GovHydroIEEE2_collapse" style="margin-left: 10px;">GovHydroIEEE2</a></legend>
                     <div id="GovHydroIEEE2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -1396,7 +1396,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroIEEE2_collapse" style="margin-left: 10px;">GovHydroIEEE2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroIEEE2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroIEEE2_collapse" style="margin-left: 10px;">GovHydroIEEE2</a></legend>
                     <div id="{{id}}_GovHydroIEEE2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -1564,7 +1564,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroWPID_collapse" aria-expanded="true" aria-controls="GovHydroWPID_collapse" style="margin-left: 10px;">GovHydroWPID</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroWPID_collapse" aria-expanded="true" aria-controls="GovHydroWPID_collapse" style="margin-left: 10px;">GovHydroWPID</a></legend>
                     <div id="GovHydroWPID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -1613,7 +1613,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroWPID_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroWPID_collapse" style="margin-left: 10px;">GovHydroWPID</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroWPID_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroWPID_collapse" style="margin-left: 10px;">GovHydroWPID</a></legend>
                     <div id="{{id}}_GovHydroWPID_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -1831,7 +1831,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV4_collapse" aria-expanded="true" aria-controls="GovSteamFV4_collapse" style="margin-left: 10px;">GovSteamFV4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteamFV4_collapse" aria-expanded="true" aria-controls="GovSteamFV4_collapse" style="margin-left: 10px;">GovSteamFV4</a></legend>
                     <div id="GovSteamFV4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -1909,7 +1909,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamFV4_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV4_collapse" style="margin-left: 10px;">GovSteamFV4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteamFV4_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV4_collapse" style="margin-left: 10px;">GovSteamFV4</a></legend>
                     <div id="{{id}}_GovSteamFV4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -2129,7 +2129,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPID2_collapse" aria-expanded="true" aria-controls="GovHydroPID2_collapse" style="margin-left: 10px;">GovHydroPID2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroPID2_collapse" aria-expanded="true" aria-controls="GovHydroPID2_collapse" style="margin-left: 10px;">GovHydroPID2</a></legend>
                     <div id="GovHydroPID2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -2178,7 +2178,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroPID2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPID2_collapse" style="margin-left: 10px;">GovHydroPID2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroPID2_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPID2_collapse" style="margin-left: 10px;">GovHydroPID2</a></legend>
                     <div id="{{id}}_GovHydroPID2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -2314,7 +2314,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST_collapse" aria-expanded="true" aria-controls="GovGAST_collapse" style="margin-left: 10px;">GovGAST</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovGAST_collapse" aria-expanded="true" aria-controls="GovGAST_collapse" style="margin-left: 10px;">GovGAST</a></legend>
                     <div id="GovGAST_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -2351,7 +2351,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST_collapse" style="margin-left: 10px;">GovGAST</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovGAST_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST_collapse" style="margin-left: 10px;">GovGAST</a></legend>
                     <div id="{{id}}_GovGAST_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -2513,7 +2513,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamEU_collapse" aria-expanded="true" aria-controls="GovSteamEU_collapse" style="margin-left: 10px;">GovSteamEU</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteamEU_collapse" aria-expanded="true" aria-controls="GovSteamEU_collapse" style="margin-left: 10px;">GovSteamEU</a></legend>
                     <div id="GovSteamEU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -2575,7 +2575,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamEU_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamEU_collapse" style="margin-left: 10px;">GovSteamEU</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteamEU_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamEU_collapse" style="margin-left: 10px;">GovSteamEU</a></legend>
                     <div id="{{id}}_GovSteamEU_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -2791,7 +2791,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro3_collapse" aria-expanded="true" aria-controls="GovHydro3_collapse" style="margin-left: 10px;">GovHydro3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydro3_collapse" aria-expanded="true" aria-controls="GovHydro3_collapse" style="margin-left: 10px;">GovHydro3</a></legend>
                     <div id="GovHydro3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -2854,7 +2854,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydro3_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro3_collapse" style="margin-left: 10px;">GovHydro3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydro3_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro3_collapse" style="margin-left: 10px;">GovHydro3</a></legend>
                     <div id="{{id}}_GovHydro3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -3042,7 +3042,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="GovSteamIEEE1_collapse" style="margin-left: 10px;">GovSteamIEEE1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="GovSteamIEEE1_collapse" style="margin-left: 10px;">GovSteamIEEE1</a></legend>
                     <div id="GovSteamIEEE1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -3090,7 +3090,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamIEEE1_collapse" style="margin-left: 10px;">GovSteamIEEE1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteamIEEE1_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamIEEE1_collapse" style="margin-left: 10px;">GovSteamIEEE1</a></legend>
                     <div id="{{id}}_GovSteamIEEE1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -3270,7 +3270,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGASTWD_collapse" aria-expanded="true" aria-controls="GovGASTWD_collapse" style="margin-left: 10px;">GovGASTWD</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovGASTWD_collapse" aria-expanded="true" aria-controls="GovGASTWD_collapse" style="margin-left: 10px;">GovGASTWD</a></legend>
                     <div id="GovGASTWD_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -3330,7 +3330,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGASTWD_collapse" aria-expanded="true" aria-controls="{{id}}_GovGASTWD_collapse" style="margin-left: 10px;">GovGASTWD</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovGASTWD_collapse" aria-expanded="true" aria-controls="{{id}}_GovGASTWD_collapse" style="margin-left: 10px;">GovGASTWD</a></legend>
                     <div id="{{id}}_GovGASTWD_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -3510,7 +3510,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST3_collapse" aria-expanded="true" aria-controls="GovGAST3_collapse" style="margin-left: 10px;">GovGAST3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovGAST3_collapse" aria-expanded="true" aria-controls="GovGAST3_collapse" style="margin-left: 10px;">GovGAST3</a></legend>
                     <div id="GovGAST3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -3558,7 +3558,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST3_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST3_collapse" style="margin-left: 10px;">GovGAST3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovGAST3_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST3_collapse" style="margin-left: 10px;">GovGAST3</a></legend>
                     <div id="{{id}}_GovGAST3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -3698,7 +3698,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV2_collapse" aria-expanded="true" aria-controls="GovSteamFV2_collapse" style="margin-left: 10px;">GovSteamFV2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteamFV2_collapse" aria-expanded="true" aria-controls="GovSteamFV2_collapse" style="margin-left: 10px;">GovSteamFV2</a></legend>
                     <div id="GovSteamFV2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -3738,7 +3738,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamFV2_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV2_collapse" style="margin-left: 10px;">GovSteamFV2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteamFV2_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV2_collapse" style="margin-left: 10px;">GovSteamFV2</a></legend>
                     <div id="{{id}}_GovSteamFV2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -3894,7 +3894,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroPelton_collapse" aria-expanded="true" aria-controls="GovHydroPelton_collapse" style="margin-left: 10px;">GovHydroPelton</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroPelton_collapse" aria-expanded="true" aria-controls="GovHydroPelton_collapse" style="margin-left: 10px;">GovHydroPelton</a></legend>
                     <div id="GovHydroPelton_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -3949,7 +3949,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroPelton_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPelton_collapse" style="margin-left: 10px;">GovHydroPelton</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroPelton_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroPelton_collapse" style="margin-left: 10px;">GovHydroPelton</a></legend>
                     <div id="{{id}}_GovHydroPelton_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -4149,7 +4149,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovCT1_collapse" aria-expanded="true" aria-controls="GovCT1_collapse" style="margin-left: 10px;">GovCT1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovCT1_collapse" aria-expanded="true" aria-controls="GovCT1_collapse" style="margin-left: 10px;">GovCT1</a></legend>
                     <div id="GovCT1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -4213,7 +4213,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovCT1_collapse" aria-expanded="true" aria-controls="{{id}}_GovCT1_collapse" style="margin-left: 10px;">GovCT1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovCT1_collapse" aria-expanded="true" aria-controls="{{id}}_GovCT1_collapse" style="margin-left: 10px;">GovCT1</a></legend>
                     <div id="{{id}}_GovCT1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -4383,7 +4383,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro1_collapse" aria-expanded="true" aria-controls="GovHydro1_collapse" style="margin-left: 10px;">GovHydro1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydro1_collapse" aria-expanded="true" aria-controls="GovHydro1_collapse" style="margin-left: 10px;">GovHydro1</a></legend>
                     <div id="GovHydro1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -4424,7 +4424,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydro1_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro1_collapse" style="margin-left: 10px;">GovHydro1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydro1_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro1_collapse" style="margin-left: 10px;">GovHydro1</a></legend>
                     <div id="{{id}}_GovHydro1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -4540,7 +4540,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam2_collapse" aria-expanded="true" aria-controls="GovSteam2_collapse" style="margin-left: 10px;">GovSteam2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteam2_collapse" aria-expanded="true" aria-controls="GovSteam2_collapse" style="margin-left: 10px;">GovSteam2</a></legend>
                     <div id="GovSteam2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -4575,7 +4575,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteam2_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam2_collapse" style="margin-left: 10px;">GovSteam2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteam2_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam2_collapse" style="margin-left: 10px;">GovSteam2</a></legend>
                     <div id="{{id}}_GovSteam2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -4733,7 +4733,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroDD_collapse" aria-expanded="true" aria-controls="GovHydroDD_collapse" style="margin-left: 10px;">GovHydroDD</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroDD_collapse" aria-expanded="true" aria-controls="GovHydroDD_collapse" style="margin-left: 10px;">GovHydroDD</a></legend>
                     <div id="GovHydroDD_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -4795,7 +4795,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroDD_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroDD_collapse" style="margin-left: 10px;">GovHydroDD</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroDD_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroDD_collapse" style="margin-left: 10px;">GovHydroDD</a></legend>
                     <div id="{{id}}_GovHydroDD_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -4955,7 +4955,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="GovHydroIEEE0_collapse" style="margin-left: 10px;">GovHydroIEEE0</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="GovHydroIEEE0_collapse" style="margin-left: 10px;">GovHydroIEEE0</a></legend>
                     <div id="GovHydroIEEE0_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -4990,7 +4990,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroIEEE0_collapse" style="margin-left: 10px;">GovHydroIEEE0</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroIEEE0_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroIEEE0_collapse" style="margin-left: 10px;">GovHydroIEEE0</a></legend>
                     <div id="{{id}}_GovHydroIEEE0_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -5094,7 +5094,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam0_collapse" aria-expanded="true" aria-controls="GovSteam0_collapse" style="margin-left: 10px;">GovSteam0</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteam0_collapse" aria-expanded="true" aria-controls="GovSteam0_collapse" style="margin-left: 10px;">GovSteam0</a></legend>
                     <div id="GovSteam0_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -5129,7 +5129,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteam0_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam0_collapse" style="margin-left: 10px;">GovSteam0</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteam0_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam0_collapse" style="margin-left: 10px;">GovSteam0</a></legend>
                     <div id="{{id}}_GovSteam0_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -5241,7 +5241,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamSGO_collapse" aria-expanded="true" aria-controls="GovSteamSGO_collapse" style="margin-left: 10px;">GovSteamSGO</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteamSGO_collapse" aria-expanded="true" aria-controls="GovSteamSGO_collapse" style="margin-left: 10px;">GovSteamSGO</a></legend>
                     <div id="GovSteamSGO_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -5280,7 +5280,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamSGO_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamSGO_collapse" style="margin-left: 10px;">GovSteamSGO</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteamSGO_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamSGO_collapse" style="margin-left: 10px;">GovSteamSGO</a></legend>
                     <div id="{{id}}_GovSteamSGO_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -5460,7 +5460,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroR_collapse" aria-expanded="true" aria-controls="GovHydroR_collapse" style="margin-left: 10px;">GovHydroR</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroR_collapse" aria-expanded="true" aria-controls="GovHydroR_collapse" style="margin-left: 10px;">GovHydroR</a></legend>
                     <div id="GovHydroR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -5529,7 +5529,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroR_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroR_collapse" style="margin-left: 10px;">GovHydroR</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroR_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroR_collapse" style="margin-left: 10px;">GovHydroR</a></legend>
                     <div id="{{id}}_GovHydroR_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -5763,7 +5763,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydro4_collapse" aria-expanded="true" aria-controls="GovHydro4_collapse" style="margin-left: 10px;">GovHydro4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydro4_collapse" aria-expanded="true" aria-controls="GovHydro4_collapse" style="margin-left: 10px;">GovHydro4</a></legend>
                     <div id="GovHydro4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -5828,7 +5828,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydro4_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro4_collapse" style="margin-left: 10px;">GovHydro4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydro4_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydro4_collapse" style="margin-left: 10px;">GovHydro4</a></legend>
                     <div id="{{id}}_GovHydro4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -6044,7 +6044,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST1_collapse" aria-expanded="true" aria-controls="GovGAST1_collapse" style="margin-left: 10px;">GovGAST1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovGAST1_collapse" aria-expanded="true" aria-controls="GovGAST1_collapse" style="margin-left: 10px;">GovGAST1</a></legend>
                     <div id="GovGAST1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -6105,7 +6105,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST1_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST1_collapse" style="margin-left: 10px;">GovGAST1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovGAST1_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST1_collapse" style="margin-left: 10px;">GovGAST1</a></legend>
                     <div id="{{id}}_GovGAST1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -6323,7 +6323,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteam1_collapse" aria-expanded="true" aria-controls="GovSteam1_collapse" style="margin-left: 10px;">GovSteam1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteam1_collapse" aria-expanded="true" aria-controls="GovSteam1_collapse" style="margin-left: 10px;">GovSteam1</a></legend>
                     <div id="GovSteam1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -6389,7 +6389,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteam1_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam1_collapse" style="margin-left: 10px;">GovSteam1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteam1_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteam1_collapse" style="margin-left: 10px;">GovSteam1</a></legend>
                     <div id="{{id}}_GovSteam1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -6595,7 +6595,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroFrancis_collapse" aria-expanded="true" aria-controls="GovHydroFrancis_collapse" style="margin-left: 10px;">GovHydroFrancis</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroFrancis_collapse" aria-expanded="true" aria-controls="GovHydroFrancis_collapse" style="margin-left: 10px;">GovHydroFrancis</a></legend>
                     <div id="GovHydroFrancis_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -6651,7 +6651,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroFrancis_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroFrancis_collapse" style="margin-left: 10px;">GovHydroFrancis</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroFrancis_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroFrancis_collapse" style="margin-left: 10px;">GovHydroFrancis</a></legend>
                     <div id="{{id}}_GovHydroFrancis_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -6799,7 +6799,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST4_collapse" aria-expanded="true" aria-controls="GovGAST4_collapse" style="margin-left: 10px;">GovGAST4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovGAST4_collapse" aria-expanded="true" aria-controls="GovGAST4_collapse" style="margin-left: 10px;">GovGAST4</a></legend>
                     <div id="GovGAST4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -6837,7 +6837,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST4_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST4_collapse" style="margin-left: 10px;">GovGAST4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovGAST4_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST4_collapse" style="margin-left: 10px;">GovGAST4</a></legend>
                     <div id="{{id}}_GovGAST4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -6969,7 +6969,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovSteamFV3_collapse" aria-expanded="true" aria-controls="GovSteamFV3_collapse" style="margin-left: 10px;">GovSteamFV3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovSteamFV3_collapse" aria-expanded="true" aria-controls="GovSteamFV3_collapse" style="margin-left: 10px;">GovSteamFV3</a></legend>
                     <div id="GovSteamFV3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -7015,7 +7015,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovSteamFV3_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV3_collapse" style="margin-left: 10px;">GovSteamFV3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovSteamFV3_collapse" aria-expanded="true" aria-controls="{{id}}_GovSteamFV3_collapse" style="margin-left: 10px;">GovSteamFV3</a></legend>
                     <div id="{{id}}_GovSteamFV3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -7227,7 +7227,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovHydroWEH_collapse" aria-expanded="true" aria-controls="GovHydroWEH_collapse" style="margin-left: 10px;">GovHydroWEH</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovHydroWEH_collapse" aria-expanded="true" aria-controls="GovHydroWEH_collapse" style="margin-left: 10px;">GovHydroWEH</a></legend>
                     <div id="GovHydroWEH_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -7305,7 +7305,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovHydroWEH_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroWEH_collapse" style="margin-left: 10px;">GovHydroWEH</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovHydroWEH_collapse" aria-expanded="true" aria-controls="{{id}}_GovHydroWEH_collapse" style="margin-left: 10px;">GovHydroWEH</a></legend>
                     <div id="{{id}}_GovHydroWEH_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
@@ -7543,7 +7543,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GovGAST2_collapse" aria-expanded="true" aria-controls="GovGAST2_collapse" style="margin-left: 10px;">GovGAST2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GovGAST2_collapse" aria-expanded="true" aria-controls="GovGAST2_collapse" style="margin-left: 10px;">GovGAST2</a></legend>
                     <div id="GovGAST2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
@@ -7602,7 +7602,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GovGAST2_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST2_collapse" style="margin-left: 10px;">GovGAST2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GovGAST2_collapse" aria-expanded="true" aria-controls="{{id}}_GovGAST2_collapse" style="margin-left: 10px;">GovGAST2</a></legend>
                     <div id="{{id}}_GovGAST2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +

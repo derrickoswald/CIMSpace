@@ -62,7 +62,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
                     <div id="DynamicsFunctionBlock_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -90,7 +90,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="{{id}}_DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="{{id}}_DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
                     <div id="{{id}}_DynamicsFunctionBlock_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -176,7 +176,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
                     <div id="RotatingMachineDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DynamicsFunctionBlock.prototype.template.call (this) +
@@ -209,7 +209,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
                     <div id="{{id}}_RotatingMachineDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DynamicsFunctionBlock.prototype.edit_template.call (this) +

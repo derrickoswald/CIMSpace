@@ -58,7 +58,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StateVariable_collapse" aria-expanded="true" aria-controls="StateVariable_collapse" style="margin-left: 10px;">StateVariable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StateVariable_collapse" aria-expanded="true" aria-controls="StateVariable_collapse" style="margin-left: 10px;">StateVariable</a></legend>
                     <div id="StateVariable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -85,7 +85,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StateVariable_collapse" aria-expanded="true" aria-controls="{{id}}_StateVariable_collapse" style="margin-left: 10px;">StateVariable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StateVariable_collapse" aria-expanded="true" aria-controls="{{id}}_StateVariable_collapse" style="margin-left: 10px;">StateVariable</a></legend>
                     <div id="{{id}}_StateVariable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -163,7 +163,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvInjection_collapse" aria-expanded="true" aria-controls="SvInjection_collapse" style="margin-left: 10px;">SvInjection</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SvInjection_collapse" aria-expanded="true" aria-controls="SvInjection_collapse" style="margin-left: 10px;">SvInjection</a></legend>
                     <div id="SvInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.template.call (this) +
@@ -193,7 +193,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvInjection_collapse" aria-expanded="true" aria-controls="{{id}}_SvInjection_collapse" style="margin-left: 10px;">SvInjection</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SvInjection_collapse" aria-expanded="true" aria-controls="{{id}}_SvInjection_collapse" style="margin-left: 10px;">SvInjection</a></legend>
                     <div id="{{id}}_SvInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
@@ -286,7 +286,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvStatus_collapse" aria-expanded="true" aria-controls="SvStatus_collapse" style="margin-left: 10px;">SvStatus</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SvStatus_collapse" aria-expanded="true" aria-controls="SvStatus_collapse" style="margin-left: 10px;">SvStatus</a></legend>
                     <div id="SvStatus_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.template.call (this) +
@@ -315,7 +315,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvStatus_collapse" aria-expanded="true" aria-controls="{{id}}_SvStatus_collapse" style="margin-left: 10px;">SvStatus</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SvStatus_collapse" aria-expanded="true" aria-controls="{{id}}_SvStatus_collapse" style="margin-left: 10px;">SvStatus</a></legend>
                     <div id="{{id}}_SvStatus_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
@@ -408,7 +408,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvTapStep_collapse" aria-expanded="true" aria-controls="SvTapStep_collapse" style="margin-left: 10px;">SvTapStep</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SvTapStep_collapse" aria-expanded="true" aria-controls="SvTapStep_collapse" style="margin-left: 10px;">SvTapStep</a></legend>
                     <div id="SvTapStep_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.template.call (this) +
@@ -437,7 +437,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvTapStep_collapse" aria-expanded="true" aria-controls="{{id}}_SvTapStep_collapse" style="margin-left: 10px;">SvTapStep</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SvTapStep_collapse" aria-expanded="true" aria-controls="{{id}}_SvTapStep_collapse" style="margin-left: 10px;">SvTapStep</a></legend>
                     <div id="{{id}}_SvTapStep_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
@@ -528,7 +528,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="SvShuntCompensatorSections_collapse" style="margin-left: 10px;">SvShuntCompensatorSections</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="SvShuntCompensatorSections_collapse" style="margin-left: 10px;">SvShuntCompensatorSections</a></legend>
                     <div id="SvShuntCompensatorSections_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.template.call (this) +
@@ -557,7 +557,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="{{id}}_SvShuntCompensatorSections_collapse" style="margin-left: 10px;">SvShuntCompensatorSections</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="{{id}}_SvShuntCompensatorSections_collapse" style="margin-left: 10px;">SvShuntCompensatorSections</a></legend>
                     <div id="{{id}}_SvShuntCompensatorSections_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
@@ -652,7 +652,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvPowerFlow_collapse" aria-expanded="true" aria-controls="SvPowerFlow_collapse" style="margin-left: 10px;">SvPowerFlow</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SvPowerFlow_collapse" aria-expanded="true" aria-controls="SvPowerFlow_collapse" style="margin-left: 10px;">SvPowerFlow</a></legend>
                     <div id="SvPowerFlow_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.template.call (this) +
@@ -682,7 +682,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvPowerFlow_collapse" aria-expanded="true" aria-controls="{{id}}_SvPowerFlow_collapse" style="margin-left: 10px;">SvPowerFlow</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SvPowerFlow_collapse" aria-expanded="true" aria-controls="{{id}}_SvPowerFlow_collapse" style="margin-left: 10px;">SvPowerFlow</a></legend>
                     <div id="{{id}}_SvPowerFlow_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
@@ -777,7 +777,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvVoltage_collapse" aria-expanded="true" aria-controls="SvVoltage_collapse" style="margin-left: 10px;">SvVoltage</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SvVoltage_collapse" aria-expanded="true" aria-controls="SvVoltage_collapse" style="margin-left: 10px;">SvVoltage</a></legend>
                     <div id="SvVoltage_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.template.call (this) +
@@ -807,7 +807,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvVoltage_collapse" aria-expanded="true" aria-controls="{{id}}_SvVoltage_collapse" style="margin-left: 10px;">SvVoltage</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SvVoltage_collapse" aria-expanded="true" aria-controls="{{id}}_SvVoltage_collapse" style="margin-left: 10px;">SvVoltage</a></legend>
                     <div id="{{id}}_SvVoltage_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +

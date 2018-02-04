@@ -62,7 +62,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
                     <div id="EquivalentNetwork_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConnectivityNodeContainer.prototype.template.call (this) +
@@ -92,7 +92,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentNetwork_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentNetwork_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
                     <div id="{{id}}_EquivalentNetwork_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConnectivityNodeContainer.prototype.edit_template.call (this) +
@@ -177,7 +177,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentEquipment_collapse" aria-expanded="true" aria-controls="EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentEquipment_collapse" aria-expanded="true" aria-controls="EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
                     <div id="EquivalentEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -205,7 +205,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
                     <div id="{{id}}_EquivalentEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -294,7 +294,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
                     <div id="EquivalentShunt_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.template.call (this) +
@@ -323,7 +323,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentShunt_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentShunt_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
                     <div id="{{id}}_EquivalentShunt_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +
@@ -431,7 +431,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentBranch_collapse" aria-expanded="true" aria-controls="EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentBranch_collapse" aria-expanded="true" aria-controls="EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
                     <div id="EquivalentBranch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.template.call (this) +
@@ -474,7 +474,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentBranch_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentBranch_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
                     <div id="{{id}}_EquivalentBranch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +
@@ -612,7 +612,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentInjection_collapse" aria-expanded="true" aria-controls="EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentInjection_collapse" aria-expanded="true" aria-controls="EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
                     <div id="EquivalentInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.template.call (this) +
@@ -655,7 +655,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentInjection_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentInjection_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
                     <div id="{{id}}_EquivalentInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +

@@ -80,7 +80,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TieFlow_collapse" aria-expanded="true" aria-controls="TieFlow_collapse" style="margin-left: 10px;">TieFlow</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TieFlow_collapse" aria-expanded="true" aria-controls="TieFlow_collapse" style="margin-left: 10px;">TieFlow</a></legend>
                     <div id="TieFlow_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -113,7 +113,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TieFlow_collapse" aria-expanded="true" aria-controls="{{id}}_TieFlow_collapse" style="margin-left: 10px;">TieFlow</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TieFlow_collapse" aria-expanded="true" aria-controls="{{id}}_TieFlow_collapse" style="margin-left: 10px;">TieFlow</a></legend>
                     <div id="{{id}}_TieFlow_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -212,7 +212,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlAreaGeneratingUnit_collapse" aria-expanded="true" aria-controls="ControlAreaGeneratingUnit_collapse" style="margin-left: 10px;">ControlAreaGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ControlAreaGeneratingUnit_collapse" aria-expanded="true" aria-controls="ControlAreaGeneratingUnit_collapse" style="margin-left: 10px;">ControlAreaGeneratingUnit</a></legend>
                     <div id="ControlAreaGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -244,7 +244,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ControlAreaGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_ControlAreaGeneratingUnit_collapse" style="margin-left: 10px;">ControlAreaGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ControlAreaGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_ControlAreaGeneratingUnit_collapse" style="margin-left: 10px;">ControlAreaGeneratingUnit</a></legend>
                     <div id="{{id}}_ControlAreaGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -339,7 +339,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AltTieMeas_collapse" aria-expanded="true" aria-controls="AltTieMeas_collapse" style="margin-left: 10px;">AltTieMeas</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AltTieMeas_collapse" aria-expanded="true" aria-controls="AltTieMeas_collapse" style="margin-left: 10px;">AltTieMeas</a></legend>
                     <div id="AltTieMeas_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -369,7 +369,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AltTieMeas_collapse" aria-expanded="true" aria-controls="{{id}}_AltTieMeas_collapse" style="margin-left: 10px;">AltTieMeas</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AltTieMeas_collapse" aria-expanded="true" aria-controls="{{id}}_AltTieMeas_collapse" style="margin-left: 10px;">AltTieMeas</a></legend>
                     <div id="{{id}}_AltTieMeas_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -465,7 +465,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AltGeneratingUnitMeas_collapse" aria-expanded="true" aria-controls="AltGeneratingUnitMeas_collapse" style="margin-left: 10px;">AltGeneratingUnitMeas</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AltGeneratingUnitMeas_collapse" aria-expanded="true" aria-controls="AltGeneratingUnitMeas_collapse" style="margin-left: 10px;">AltGeneratingUnitMeas</a></legend>
                     <div id="AltGeneratingUnitMeas_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -495,7 +495,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AltGeneratingUnitMeas_collapse" aria-expanded="true" aria-controls="{{id}}_AltGeneratingUnitMeas_collapse" style="margin-left: 10px;">AltGeneratingUnitMeas</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AltGeneratingUnitMeas_collapse" aria-expanded="true" aria-controls="{{id}}_AltGeneratingUnitMeas_collapse" style="margin-left: 10px;">AltGeneratingUnitMeas</a></legend>
                     <div id="{{id}}_AltGeneratingUnitMeas_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -599,7 +599,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlArea_collapse" aria-expanded="true" aria-controls="ControlArea_collapse" style="margin-left: 10px;">ControlArea</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ControlArea_collapse" aria-expanded="true" aria-controls="ControlArea_collapse" style="margin-left: 10px;">ControlArea</a></legend>
                     <div id="ControlArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -638,7 +638,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ControlArea_collapse" aria-expanded="true" aria-controls="{{id}}_ControlArea_collapse" style="margin-left: 10px;">ControlArea</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ControlArea_collapse" aria-expanded="true" aria-controls="{{id}}_ControlArea_collapse" style="margin-left: 10px;">ControlArea</a></legend>
                     <div id="{{id}}_ControlArea_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +

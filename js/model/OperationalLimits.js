@@ -78,7 +78,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitSet_collapse" aria-expanded="true" aria-controls="OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OperationalLimitSet_collapse" aria-expanded="true" aria-controls="OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
                     <div id="OperationalLimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -110,7 +110,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimitSet_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OperationalLimitSet_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
                     <div id="{{id}}_OperationalLimitSet_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -209,7 +209,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimit_collapse" aria-expanded="true" aria-controls="OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OperationalLimit_collapse" aria-expanded="true" aria-controls="OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
                     <div id="OperationalLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -244,7 +244,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimit_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OperationalLimit_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
                     <div id="{{id}}_OperationalLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -342,7 +342,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
                     <div id="BranchGroupTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -372,7 +372,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
                     <div id="{{id}}_BranchGroupTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -480,7 +480,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroup_collapse" aria-expanded="true" aria-controls="BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BranchGroup_collapse" aria-expanded="true" aria-controls="BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
                     <div id="BranchGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -519,7 +519,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BranchGroup_collapse" aria-expanded="true" aria-controls="{{id}}_BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BranchGroup_collapse" aria-expanded="true" aria-controls="{{id}}_BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
                     <div id="{{id}}_BranchGroup_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -625,7 +625,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitType_collapse" aria-expanded="true" aria-controls="OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OperationalLimitType_collapse" aria-expanded="true" aria-controls="OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
                     <div id="OperationalLimitType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -663,7 +663,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimitType_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OperationalLimitType_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
                     <div id="{{id}}_OperationalLimitType_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -756,7 +756,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentLimit_collapse" aria-expanded="true" aria-controls="CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CurrentLimit_collapse" aria-expanded="true" aria-controls="CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
                     <div id="CurrentLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.template.call (this) +
@@ -784,7 +784,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentLimit_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CurrentLimit_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
                     <div id="{{id}}_CurrentLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
@@ -860,7 +860,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
                     <div id="ApparentPowerLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.template.call (this) +
@@ -888,7 +888,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
                     <div id="{{id}}_ApparentPowerLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
@@ -964,7 +964,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageLimit_collapse" aria-expanded="true" aria-controls="VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#VoltageLimit_collapse" aria-expanded="true" aria-controls="VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
                     <div id="VoltageLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.template.call (this) +
@@ -992,7 +992,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageLimit_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_VoltageLimit_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
                     <div id="{{id}}_VoltageLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
@@ -1068,7 +1068,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerLimit_collapse" aria-expanded="true" aria-controls="ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ActivePowerLimit_collapse" aria-expanded="true" aria-controls="ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
                     <div id="ActivePowerLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.template.call (this) +
@@ -1096,7 +1096,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ActivePowerLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ActivePowerLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
                     <div id="{{id}}_ActivePowerLimit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +

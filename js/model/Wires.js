@@ -237,7 +237,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerStarImpedance_collapse" aria-expanded="true" aria-controls="TransformerStarImpedance_collapse" style="margin-left: 10px;">TransformerStarImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransformerStarImpedance_collapse" aria-expanded="true" aria-controls="TransformerStarImpedance_collapse" style="margin-left: 10px;">TransformerStarImpedance</a></legend>
                     <div id="TransformerStarImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -272,7 +272,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerStarImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerStarImpedance_collapse" style="margin-left: 10px;">TransformerStarImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransformerStarImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerStarImpedance_collapse" style="margin-left: 10px;">TransformerStarImpedance</a></legend>
                     <div id="{{id}}_TransformerStarImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -386,7 +386,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MutualCoupling_collapse" aria-expanded="true" aria-controls="MutualCoupling_collapse" style="margin-left: 10px;">MutualCoupling</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MutualCoupling_collapse" aria-expanded="true" aria-controls="MutualCoupling_collapse" style="margin-left: 10px;">MutualCoupling</a></legend>
                     <div id="MutualCoupling_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -423,7 +423,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MutualCoupling_collapse" aria-expanded="true" aria-controls="{{id}}_MutualCoupling_collapse" style="margin-left: 10px;">MutualCoupling</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MutualCoupling_collapse" aria-expanded="true" aria-controls="{{id}}_MutualCoupling_collapse" style="margin-left: 10px;">MutualCoupling</a></legend>
                     <div id="{{id}}_MutualCoupling_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -553,7 +553,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyConsumer_collapse" aria-expanded="true" aria-controls="EnergyConsumer_collapse" style="margin-left: 10px;">EnergyConsumer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EnergyConsumer_collapse" aria-expanded="true" aria-controls="EnergyConsumer_collapse" style="margin-left: 10px;">EnergyConsumer</a></legend>
                     <div id="EnergyConsumer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -597,7 +597,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyConsumer_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyConsumer_collapse" style="margin-left: 10px;">EnergyConsumer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EnergyConsumer_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyConsumer_collapse" style="margin-left: 10px;">EnergyConsumer</a></legend>
                     <div id="{{id}}_EnergyConsumer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -723,7 +723,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SeriesCompensator_collapse" aria-expanded="true" aria-controls="SeriesCompensator_collapse" style="margin-left: 10px;">SeriesCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SeriesCompensator_collapse" aria-expanded="true" aria-controls="SeriesCompensator_collapse" style="margin-left: 10px;">SeriesCompensator</a></legend>
                     <div id="SeriesCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -757,7 +757,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SeriesCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_SeriesCompensator_collapse" style="margin-left: 10px;">SeriesCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SeriesCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_SeriesCompensator_collapse" style="margin-left: 10px;">SeriesCompensator</a></legend>
                     <div id="{{id}}_SeriesCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -869,7 +869,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Switch_collapse" aria-expanded="true" aria-controls="Switch_collapse" style="margin-left: 10px;">Switch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Switch_collapse" aria-expanded="true" aria-controls="Switch_collapse" style="margin-left: 10px;">Switch</a></legend>
                     <div id="Switch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -914,7 +914,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Switch_collapse" aria-expanded="true" aria-controls="{{id}}_Switch_collapse" style="margin-left: 10px;">Switch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Switch_collapse" aria-expanded="true" aria-controls="{{id}}_Switch_collapse" style="margin-left: 10px;">Switch</a></legend>
                     <div id="{{id}}_Switch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -1036,7 +1036,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerCoreAdmittance_collapse" aria-expanded="true" aria-controls="TransformerCoreAdmittance_collapse" style="margin-left: 10px;">TransformerCoreAdmittance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransformerCoreAdmittance_collapse" aria-expanded="true" aria-controls="TransformerCoreAdmittance_collapse" style="margin-left: 10px;">TransformerCoreAdmittance</a></legend>
                     <div id="TransformerCoreAdmittance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -1071,7 +1071,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerCoreAdmittance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerCoreAdmittance_collapse" style="margin-left: 10px;">TransformerCoreAdmittance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransformerCoreAdmittance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerCoreAdmittance_collapse" style="margin-left: 10px;">TransformerCoreAdmittance</a></legend>
                     <div id="{{id}}_TransformerCoreAdmittance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -1171,7 +1171,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageControlZone_collapse" aria-expanded="true" aria-controls="VoltageControlZone_collapse" style="margin-left: 10px;">VoltageControlZone</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#VoltageControlZone_collapse" aria-expanded="true" aria-controls="VoltageControlZone_collapse" style="margin-left: 10px;">VoltageControlZone</a></legend>
                     <div id="VoltageControlZone_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -1200,7 +1200,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageControlZone_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageControlZone_collapse" style="margin-left: 10px;">VoltageControlZone</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_VoltageControlZone_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageControlZone_collapse" style="margin-left: 10px;">VoltageControlZone</a></legend>
                     <div id="{{id}}_VoltageControlZone_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -1306,7 +1306,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerMeshImpedance_collapse" aria-expanded="true" aria-controls="TransformerMeshImpedance_collapse" style="margin-left: 10px;">TransformerMeshImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransformerMeshImpedance_collapse" aria-expanded="true" aria-controls="TransformerMeshImpedance_collapse" style="margin-left: 10px;">TransformerMeshImpedance</a></legend>
                     <div id="TransformerMeshImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -1345,7 +1345,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerMeshImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerMeshImpedance_collapse" style="margin-left: 10px;">TransformerMeshImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransformerMeshImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerMeshImpedance_collapse" style="margin-left: 10px;">TransformerMeshImpedance</a></legend>
                     <div id="{{id}}_TransformerMeshImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -1459,7 +1459,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonlinearShuntCompensatorPoint_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#NonlinearShuntCompensatorPoint_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPoint</a></legend>
                     <div id="NonlinearShuntCompensatorPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1492,7 +1492,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPoint_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPoint_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPoint</a></legend>
                     <div id="{{id}}_NonlinearShuntCompensatorPoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1595,7 +1595,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonlinearShuntCompensatorPhasePoint_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPhasePoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhasePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#NonlinearShuntCompensatorPhasePoint_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPhasePoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhasePoint</a></legend>
                     <div id="NonlinearShuntCompensatorPhasePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1626,7 +1626,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhasePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhasePoint</a></legend>
                     <div id="{{id}}_NonlinearShuntCompensatorPhasePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1725,7 +1725,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerTablePoint_collapse" aria-expanded="true" aria-controls="TapChangerTablePoint_collapse" style="margin-left: 10px;">TapChangerTablePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TapChangerTablePoint_collapse" aria-expanded="true" aria-controls="TapChangerTablePoint_collapse" style="margin-left: 10px;">TapChangerTablePoint</a></legend>
                     <div id="TapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1758,7 +1758,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_TapChangerTablePoint_collapse" style="margin-left: 10px;">TapChangerTablePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_TapChangerTablePoint_collapse" style="margin-left: 10px;">TapChangerTablePoint</a></legend>
                     <div id="{{id}}_TapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1854,7 +1854,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReactiveCapabilityCurve_collapse" aria-expanded="true" aria-controls="ReactiveCapabilityCurve_collapse" style="margin-left: 10px;">ReactiveCapabilityCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ReactiveCapabilityCurve_collapse" aria-expanded="true" aria-controls="ReactiveCapabilityCurve_collapse" style="margin-left: 10px;">ReactiveCapabilityCurve</a></legend>
                     <div id="ReactiveCapabilityCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -1892,7 +1892,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReactiveCapabilityCurve_collapse" aria-expanded="true" aria-controls="{{id}}_ReactiveCapabilityCurve_collapse" style="margin-left: 10px;">ReactiveCapabilityCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ReactiveCapabilityCurve_collapse" aria-expanded="true" aria-controls="{{id}}_ReactiveCapabilityCurve_collapse" style="margin-left: 10px;">ReactiveCapabilityCurve</a></legend>
                     <div id="{{id}}_ReactiveCapabilityCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -1983,7 +1983,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Connector_collapse" aria-expanded="true" aria-controls="Connector_collapse" style="margin-left: 10px;">Connector</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Connector_collapse" aria-expanded="true" aria-controls="Connector_collapse" style="margin-left: 10px;">Connector</a></legend>
                     <div id="Connector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -2010,7 +2010,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Connector_collapse" aria-expanded="true" aria-controls="{{id}}_Connector_collapse" style="margin-left: 10px;">Connector</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Connector_collapse" aria-expanded="true" aria-controls="{{id}}_Connector_collapse" style="margin-left: 10px;">Connector</a></legend>
                     <div id="{{id}}_Connector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -2084,7 +2084,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RatioTapChangerTable_collapse" aria-expanded="true" aria-controls="RatioTapChangerTable_collapse" style="margin-left: 10px;">RatioTapChangerTable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RatioTapChangerTable_collapse" aria-expanded="true" aria-controls="RatioTapChangerTable_collapse" style="margin-left: 10px;">RatioTapChangerTable</a></legend>
                     <div id="RatioTapChangerTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -2117,7 +2117,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RatioTapChangerTable_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChangerTable_collapse" style="margin-left: 10px;">RatioTapChangerTable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RatioTapChangerTable_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChangerTable_collapse" style="margin-left: 10px;">RatioTapChangerTable</a></legend>
                     <div id="{{id}}_RatioTapChangerTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -2219,7 +2219,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerTransformer_collapse" aria-expanded="true" aria-controls="PowerTransformer_collapse" style="margin-left: 10px;">PowerTransformer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PowerTransformer_collapse" aria-expanded="true" aria-controls="PowerTransformer_collapse" style="margin-left: 10px;">PowerTransformer</a></legend>
                     <div id="PowerTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -2259,7 +2259,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_PowerTransformer_collapse" style="margin-left: 10px;">PowerTransformer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PowerTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_PowerTransformer_collapse" style="margin-left: 10px;">PowerTransformer</a></legend>
                     <div id="{{id}}_PowerTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -2369,7 +2369,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyConsumerPhase_collapse" aria-expanded="true" aria-controls="EnergyConsumerPhase_collapse" style="margin-left: 10px;">EnergyConsumerPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EnergyConsumerPhase_collapse" aria-expanded="true" aria-controls="EnergyConsumerPhase_collapse" style="margin-left: 10px;">EnergyConsumerPhase</a></legend>
                     <div id="EnergyConsumerPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -2404,7 +2404,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyConsumerPhase_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyConsumerPhase_collapse" style="margin-left: 10px;">EnergyConsumerPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EnergyConsumerPhase_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyConsumerPhase_collapse" style="margin-left: 10px;">EnergyConsumerPhase</a></legend>
                     <div id="{{id}}_EnergyConsumerPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -2503,7 +2503,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthLineParameter_collapse" style="margin-left: 10px;">PerLengthLineParameter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PerLengthLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthLineParameter_collapse" style="margin-left: 10px;">PerLengthLineParameter</a></legend>
                     <div id="PerLengthLineParameter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -2534,7 +2534,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthLineParameter_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthLineParameter_collapse" style="margin-left: 10px;">PerLengthLineParameter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PerLengthLineParameter_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthLineParameter_collapse" style="margin-left: 10px;">PerLengthLineParameter</a></legend>
                     <div id="{{id}}_PerLengthLineParameter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -2632,7 +2632,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseImpedanceData_collapse" aria-expanded="true" aria-controls="PhaseImpedanceData_collapse" style="margin-left: 10px;">PhaseImpedanceData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseImpedanceData_collapse" aria-expanded="true" aria-controls="PhaseImpedanceData_collapse" style="margin-left: 10px;">PhaseImpedanceData</a></legend>
                     <div id="PhaseImpedanceData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -2664,7 +2664,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseImpedanceData_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseImpedanceData_collapse" style="margin-left: 10px;">PhaseImpedanceData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseImpedanceData_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseImpedanceData_collapse" style="margin-left: 10px;">PhaseImpedanceData</a></legend>
                     <div id="{{id}}_PhaseImpedanceData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -2761,7 +2761,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerTable_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTable_collapse" style="margin-left: 10px;">PhaseTapChangerTable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseTapChangerTable_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTable_collapse" style="margin-left: 10px;">PhaseTapChangerTable</a></legend>
                     <div id="PhaseTapChangerTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -2794,7 +2794,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerTable_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTable_collapse" style="margin-left: 10px;">PhaseTapChangerTable</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseTapChangerTable_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTable_collapse" style="margin-left: 10px;">PhaseTapChangerTable</a></legend>
                     <div id="{{id}}_PhaseTapChangerTable_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -2878,7 +2878,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Line_collapse" aria-expanded="true" aria-controls="Line_collapse" style="margin-left: 10px;">Line</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Line_collapse" aria-expanded="true" aria-controls="Line_collapse" style="margin-left: 10px;">Line</a></legend>
                     <div id="Line_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.template.call (this) +
@@ -2906,7 +2906,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Line_collapse" aria-expanded="true" aria-controls="{{id}}_Line_collapse" style="margin-left: 10px;">Line</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Line_collapse" aria-expanded="true" aria-controls="{{id}}_Line_collapse" style="margin-left: 10px;">Line</a></legend>
                     <div id="{{id}}_Line_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.edit_template.call (this) +
@@ -2999,7 +2999,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTank_collapse" aria-expanded="true" aria-controls="TransformerTank_collapse" style="margin-left: 10px;">TransformerTank</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransformerTank_collapse" aria-expanded="true" aria-controls="TransformerTank_collapse" style="margin-left: 10px;">TransformerTank</a></legend>
                     <div id="TransformerTank_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
@@ -3033,7 +3033,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerTank_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerTank_collapse" style="margin-left: 10px;">TransformerTank</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransformerTank_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerTank_collapse" style="margin-left: 10px;">TransformerTank</a></legend>
                     <div id="{{id}}_TransformerTank_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
@@ -3122,7 +3122,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapSchedule_collapse" aria-expanded="true" aria-controls="TapSchedule_collapse" style="margin-left: 10px;">TapSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TapSchedule_collapse" aria-expanded="true" aria-controls="TapSchedule_collapse" style="margin-left: 10px;">TapSchedule</a></legend>
                     <div id="TapSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
@@ -3150,7 +3150,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_TapSchedule_collapse" style="margin-left: 10px;">TapSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TapSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_TapSchedule_collapse" style="margin-left: 10px;">TapSchedule</a></legend>
                     <div id="{{id}}_TapSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.edit_template.call (this) +
@@ -3239,7 +3239,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EarthFaultCompensator_collapse" aria-expanded="true" aria-controls="EarthFaultCompensator_collapse" style="margin-left: 10px;">EarthFaultCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EarthFaultCompensator_collapse" aria-expanded="true" aria-controls="EarthFaultCompensator_collapse" style="margin-left: 10px;">EarthFaultCompensator</a></legend>
                     <div id="EarthFaultCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -3267,7 +3267,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EarthFaultCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_EarthFaultCompensator_collapse" style="margin-left: 10px;">EarthFaultCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EarthFaultCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_EarthFaultCompensator_collapse" style="margin-left: 10px;">EarthFaultCompensator</a></legend>
                     <div id="{{id}}_EarthFaultCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -3347,7 +3347,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Clamp_collapse" aria-expanded="true" aria-controls="Clamp_collapse" style="margin-left: 10px;">Clamp</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Clamp_collapse" aria-expanded="true" aria-controls="Clamp_collapse" style="margin-left: 10px;">Clamp</a></legend>
                     <div id="Clamp_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -3376,7 +3376,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Clamp_collapse" aria-expanded="true" aria-controls="{{id}}_Clamp_collapse" style="margin-left: 10px;">Clamp</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Clamp_collapse" aria-expanded="true" aria-controls="{{id}}_Clamp_collapse" style="margin-left: 10px;">Clamp</a></legend>
                     <div id="{{id}}_Clamp_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -3467,7 +3467,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegulationSchedule_collapse" aria-expanded="true" aria-controls="RegulationSchedule_collapse" style="margin-left: 10px;">RegulationSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RegulationSchedule_collapse" aria-expanded="true" aria-controls="RegulationSchedule_collapse" style="margin-left: 10px;">RegulationSchedule</a></legend>
                     <div id="RegulationSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
@@ -3498,7 +3498,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegulationSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_RegulationSchedule_collapse" style="margin-left: 10px;">RegulationSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RegulationSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_RegulationSchedule_collapse" style="margin-left: 10px;">RegulationSchedule</a></legend>
                     <div id="{{id}}_RegulationSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.edit_template.call (this) +
@@ -3588,7 +3588,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACLineSegmentPhase_collapse" aria-expanded="true" aria-controls="ACLineSegmentPhase_collapse" style="margin-left: 10px;">ACLineSegmentPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ACLineSegmentPhase_collapse" aria-expanded="true" aria-controls="ACLineSegmentPhase_collapse" style="margin-left: 10px;">ACLineSegmentPhase</a></legend>
                     <div id="ACLineSegmentPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -3619,7 +3619,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ACLineSegmentPhase_collapse" aria-expanded="true" aria-controls="{{id}}_ACLineSegmentPhase_collapse" style="margin-left: 10px;">ACLineSegmentPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ACLineSegmentPhase_collapse" aria-expanded="true" aria-controls="{{id}}_ACLineSegmentPhase_collapse" style="margin-left: 10px;">ACLineSegmentPhase</a></legend>
                     <div id="{{id}}_ACLineSegmentPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -3742,7 +3742,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerEnd_collapse" aria-expanded="true" aria-controls="TransformerEnd_collapse" style="margin-left: 10px;">TransformerEnd</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransformerEnd_collapse" aria-expanded="true" aria-controls="TransformerEnd_collapse" style="margin-left: 10px;">TransformerEnd</a></legend>
                     <div id="TransformerEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -3794,7 +3794,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerEnd_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerEnd_collapse" style="margin-left: 10px;">TransformerEnd</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransformerEnd_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerEnd_collapse" style="margin-left: 10px;">TransformerEnd</a></legend>
                     <div id="{{id}}_TransformerEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -3918,7 +3918,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchSchedule_collapse" aria-expanded="true" aria-controls="SwitchSchedule_collapse" style="margin-left: 10px;">SwitchSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SwitchSchedule_collapse" aria-expanded="true" aria-controls="SwitchSchedule_collapse" style="margin-left: 10px;">SwitchSchedule</a></legend>
                     <div id="SwitchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
@@ -3946,7 +3946,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchSchedule_collapse" style="margin-left: 10px;">SwitchSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SwitchSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchSchedule_collapse" style="margin-left: 10px;">SwitchSchedule</a></legend>
                     <div id="{{id}}_SwitchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.edit_template.call (this) +
@@ -4055,7 +4055,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegulatingControl_collapse" aria-expanded="true" aria-controls="RegulatingControl_collapse" style="margin-left: 10px;">RegulatingControl</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RegulatingControl_collapse" aria-expanded="true" aria-controls="RegulatingControl_collapse" style="margin-left: 10px;">RegulatingControl</a></legend>
                     <div id="RegulatingControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -4101,7 +4101,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegulatingControl_collapse" aria-expanded="true" aria-controls="{{id}}_RegulatingControl_collapse" style="margin-left: 10px;">RegulatingControl</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RegulatingControl_collapse" aria-expanded="true" aria-controls="{{id}}_RegulatingControl_collapse" style="margin-left: 10px;">RegulatingControl</a></legend>
                     <div id="{{id}}_RegulatingControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -4229,7 +4229,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChanger_collapse" aria-expanded="true" aria-controls="TapChanger_collapse" style="margin-left: 10px;">TapChanger</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TapChanger_collapse" aria-expanded="true" aria-controls="TapChanger_collapse" style="margin-left: 10px;">TapChanger</a></legend>
                     <div id="TapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -4271,7 +4271,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_TapChanger_collapse" style="margin-left: 10px;">TapChanger</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_TapChanger_collapse" style="margin-left: 10px;">TapChanger</a></legend>
                     <div id="{{id}}_TapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -4408,7 +4408,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergySource_collapse" aria-expanded="true" aria-controls="EnergySource_collapse" style="margin-left: 10px;">EnergySource</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EnergySource_collapse" aria-expanded="true" aria-controls="EnergySource_collapse" style="margin-left: 10px;">EnergySource</a></legend>
                     <div id="EnergySource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -4449,7 +4449,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergySource_collapse" aria-expanded="true" aria-controls="{{id}}_EnergySource_collapse" style="margin-left: 10px;">EnergySource</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EnergySource_collapse" aria-expanded="true" aria-controls="{{id}}_EnergySource_collapse" style="margin-left: 10px;">EnergySource</a></legend>
                     <div id="{{id}}_EnergySource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -4570,7 +4570,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="ShuntCompensatorPhase_collapse" style="margin-left: 10px;">ShuntCompensatorPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="ShuntCompensatorPhase_collapse" style="margin-left: 10px;">ShuntCompensatorPhase</a></legend>
                     <div id="ShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -4603,7 +4603,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensatorPhase_collapse" style="margin-left: 10px;">ShuntCompensatorPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensatorPhase_collapse" style="margin-left: 10px;">ShuntCompensatorPhase</a></legend>
                     <div id="{{id}}_ShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -4704,7 +4704,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchPhase_collapse" aria-expanded="true" aria-controls="SwitchPhase_collapse" style="margin-left: 10px;">SwitchPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SwitchPhase_collapse" aria-expanded="true" aria-controls="SwitchPhase_collapse" style="margin-left: 10px;">SwitchPhase</a></legend>
                     <div id="SwitchPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -4740,7 +4740,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchPhase_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchPhase_collapse" style="margin-left: 10px;">SwitchPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SwitchPhase_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchPhase_collapse" style="margin-left: 10px;">SwitchPhase</a></legend>
                     <div id="{{id}}_SwitchPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -4839,7 +4839,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CompositeSwitch_collapse" aria-expanded="true" aria-controls="CompositeSwitch_collapse" style="margin-left: 10px;">CompositeSwitch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CompositeSwitch_collapse" aria-expanded="true" aria-controls="CompositeSwitch_collapse" style="margin-left: 10px;">CompositeSwitch</a></legend>
                     <div id="CompositeSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
@@ -4870,7 +4870,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CompositeSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_CompositeSwitch_collapse" style="margin-left: 10px;">CompositeSwitch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CompositeSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_CompositeSwitch_collapse" style="margin-left: 10px;">CompositeSwitch</a></legend>
                     <div id="{{id}}_CompositeSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
@@ -4959,7 +4959,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegulatingCondEq_collapse" aria-expanded="true" aria-controls="RegulatingCondEq_collapse" style="margin-left: 10px;">RegulatingCondEq</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RegulatingCondEq_collapse" aria-expanded="true" aria-controls="RegulatingCondEq_collapse" style="margin-left: 10px;">RegulatingCondEq</a></legend>
                     <div id="RegulatingCondEq_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -4988,7 +4988,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegulatingCondEq_collapse" aria-expanded="true" aria-controls="{{id}}_RegulatingCondEq_collapse" style="margin-left: 10px;">RegulatingCondEq</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RegulatingCondEq_collapse" aria-expanded="true" aria-controls="{{id}}_RegulatingCondEq_collapse" style="margin-left: 10px;">RegulatingCondEq</a></legend>
                     <div id="{{id}}_RegulatingCondEq_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -5079,7 +5079,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Ground_collapse" aria-expanded="true" aria-controls="Ground_collapse" style="margin-left: 10px;">Ground</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Ground_collapse" aria-expanded="true" aria-controls="Ground_collapse" style="margin-left: 10px;">Ground</a></legend>
                     <div id="Ground_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -5107,7 +5107,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Ground_collapse" aria-expanded="true" aria-controls="{{id}}_Ground_collapse" style="margin-left: 10px;">Ground</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Ground_collapse" aria-expanded="true" aria-controls="{{id}}_Ground_collapse" style="margin-left: 10px;">Ground</a></legend>
                     <div id="{{id}}_Ground_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -5194,7 +5194,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Conductor_collapse" aria-expanded="true" aria-controls="Conductor_collapse" style="margin-left: 10px;">Conductor</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Conductor_collapse" aria-expanded="true" aria-controls="Conductor_collapse" style="margin-left: 10px;">Conductor</a></legend>
                     <div id="Conductor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -5222,7 +5222,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Conductor_collapse" aria-expanded="true" aria-controls="{{id}}_Conductor_collapse" style="margin-left: 10px;">Conductor</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Conductor_collapse" aria-expanded="true" aria-controls="{{id}}_Conductor_collapse" style="margin-left: 10px;">Conductor</a></legend>
                     <div id="{{id}}_Conductor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -5296,7 +5296,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Plant_collapse" aria-expanded="true" aria-controls="Plant_collapse" style="margin-left: 10px;">Plant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Plant_collapse" aria-expanded="true" aria-controls="Plant_collapse" style="margin-left: 10px;">Plant</a></legend>
                     <div id="Plant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.template.call (this) +
@@ -5323,7 +5323,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Plant_collapse" aria-expanded="true" aria-controls="{{id}}_Plant_collapse" style="margin-left: 10px;">Plant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Plant_collapse" aria-expanded="true" aria-controls="{{id}}_Plant_collapse" style="margin-left: 10px;">Plant</a></legend>
                     <div id="{{id}}_Plant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.edit_template.call (this) +
@@ -5395,7 +5395,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Sectionaliser_collapse" aria-expanded="true" aria-controls="Sectionaliser_collapse" style="margin-left: 10px;">Sectionaliser</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Sectionaliser_collapse" aria-expanded="true" aria-controls="Sectionaliser_collapse" style="margin-left: 10px;">Sectionaliser</a></legend>
                     <div id="Sectionaliser_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
@@ -5422,7 +5422,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Sectionaliser_collapse" aria-expanded="true" aria-controls="{{id}}_Sectionaliser_collapse" style="margin-left: 10px;">Sectionaliser</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Sectionaliser_collapse" aria-expanded="true" aria-controls="{{id}}_Sectionaliser_collapse" style="margin-left: 10px;">Sectionaliser</a></legend>
                     <div id="{{id}}_Sectionaliser_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
@@ -5494,7 +5494,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Fuse_collapse" aria-expanded="true" aria-controls="Fuse_collapse" style="margin-left: 10px;">Fuse</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Fuse_collapse" aria-expanded="true" aria-controls="Fuse_collapse" style="margin-left: 10px;">Fuse</a></legend>
                     <div id="Fuse_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
@@ -5521,7 +5521,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Fuse_collapse" aria-expanded="true" aria-controls="{{id}}_Fuse_collapse" style="margin-left: 10px;">Fuse</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Fuse_collapse" aria-expanded="true" aria-controls="{{id}}_Fuse_collapse" style="margin-left: 10px;">Fuse</a></legend>
                     <div id="{{id}}_Fuse_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
@@ -5591,7 +5591,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GroundDisconnector_collapse" aria-expanded="true" aria-controls="GroundDisconnector_collapse" style="margin-left: 10px;">GroundDisconnector</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GroundDisconnector_collapse" aria-expanded="true" aria-controls="GroundDisconnector_collapse" style="margin-left: 10px;">GroundDisconnector</a></legend>
                     <div id="GroundDisconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
@@ -5618,7 +5618,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GroundDisconnector_collapse" aria-expanded="true" aria-controls="{{id}}_GroundDisconnector_collapse" style="margin-left: 10px;">GroundDisconnector</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GroundDisconnector_collapse" aria-expanded="true" aria-controls="{{id}}_GroundDisconnector_collapse" style="margin-left: 10px;">GroundDisconnector</a></legend>
                     <div id="{{id}}_GroundDisconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
@@ -5694,7 +5694,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectedSwitch_collapse" aria-expanded="true" aria-controls="ProtectedSwitch_collapse" style="margin-left: 10px;">ProtectedSwitch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProtectedSwitch_collapse" aria-expanded="true" aria-controls="ProtectedSwitch_collapse" style="margin-left: 10px;">ProtectedSwitch</a></legend>
                     <div id="ProtectedSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
@@ -5728,7 +5728,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectedSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectedSwitch_collapse" style="margin-left: 10px;">ProtectedSwitch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProtectedSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectedSwitch_collapse" style="margin-left: 10px;">ProtectedSwitch</a></legend>
                     <div id="{{id}}_ProtectedSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
@@ -5824,7 +5824,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cut_collapse" aria-expanded="true" aria-controls="Cut_collapse" style="margin-left: 10px;">Cut</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Cut_collapse" aria-expanded="true" aria-controls="Cut_collapse" style="margin-left: 10px;">Cut</a></legend>
                     <div id="Cut_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
@@ -5854,7 +5854,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Cut_collapse" aria-expanded="true" aria-controls="{{id}}_Cut_collapse" style="margin-left: 10px;">Cut</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Cut_collapse" aria-expanded="true" aria-controls="{{id}}_Cut_collapse" style="margin-left: 10px;">Cut</a></legend>
                     <div id="{{id}}_Cut_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
@@ -5946,7 +5946,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Breaker_collapse" aria-expanded="true" aria-controls="Breaker_collapse" style="margin-left: 10px;">Breaker</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Breaker_collapse" aria-expanded="true" aria-controls="Breaker_collapse" style="margin-left: 10px;">Breaker</a></legend>
                     <div id="Breaker_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.template.call (this) +
@@ -5974,7 +5974,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Breaker_collapse" aria-expanded="true" aria-controls="{{id}}_Breaker_collapse" style="margin-left: 10px;">Breaker</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Breaker_collapse" aria-expanded="true" aria-controls="{{id}}_Breaker_collapse" style="margin-left: 10px;">Breaker</a></legend>
                     <div id="{{id}}_Breaker_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.edit_template.call (this) +
@@ -6052,7 +6052,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Jumper_collapse" aria-expanded="true" aria-controls="Jumper_collapse" style="margin-left: 10px;">Jumper</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Jumper_collapse" aria-expanded="true" aria-controls="Jumper_collapse" style="margin-left: 10px;">Jumper</a></legend>
                     <div id="Jumper_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
@@ -6080,7 +6080,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Jumper_collapse" aria-expanded="true" aria-controls="{{id}}_Jumper_collapse" style="margin-left: 10px;">Jumper</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Jumper_collapse" aria-expanded="true" aria-controls="{{id}}_Jumper_collapse" style="margin-left: 10px;">Jumper</a></legend>
                     <div id="{{id}}_Jumper_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
@@ -6165,7 +6165,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Recloser_collapse" aria-expanded="true" aria-controls="Recloser_collapse" style="margin-left: 10px;">Recloser</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Recloser_collapse" aria-expanded="true" aria-controls="Recloser_collapse" style="margin-left: 10px;">Recloser</a></legend>
                     <div id="Recloser_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.template.call (this) +
@@ -6192,7 +6192,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Recloser_collapse" aria-expanded="true" aria-controls="{{id}}_Recloser_collapse" style="margin-left: 10px;">Recloser</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Recloser_collapse" aria-expanded="true" aria-controls="{{id}}_Recloser_collapse" style="margin-left: 10px;">Recloser</a></legend>
                     <div id="{{id}}_Recloser_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.edit_template.call (this) +
@@ -6264,7 +6264,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Disconnector_collapse" aria-expanded="true" aria-controls="Disconnector_collapse" style="margin-left: 10px;">Disconnector</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Disconnector_collapse" aria-expanded="true" aria-controls="Disconnector_collapse" style="margin-left: 10px;">Disconnector</a></legend>
                     <div id="Disconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.template.call (this) +
@@ -6291,7 +6291,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Disconnector_collapse" aria-expanded="true" aria-controls="{{id}}_Disconnector_collapse" style="margin-left: 10px;">Disconnector</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Disconnector_collapse" aria-expanded="true" aria-controls="{{id}}_Disconnector_collapse" style="margin-left: 10px;">Disconnector</a></legend>
                     <div id="{{id}}_Disconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Switch.prototype.edit_template.call (this) +
@@ -6361,7 +6361,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadBreakSwitch_collapse" aria-expanded="true" aria-controls="LoadBreakSwitch_collapse" style="margin-left: 10px;">LoadBreakSwitch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadBreakSwitch_collapse" aria-expanded="true" aria-controls="LoadBreakSwitch_collapse" style="margin-left: 10px;">LoadBreakSwitch</a></legend>
                     <div id="LoadBreakSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.template.call (this) +
@@ -6388,7 +6388,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadBreakSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_LoadBreakSwitch_collapse" style="margin-left: 10px;">LoadBreakSwitch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadBreakSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_LoadBreakSwitch_collapse" style="margin-left: 10px;">LoadBreakSwitch</a></legend>
                     <div id="{{id}}_LoadBreakSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ProtectedSwitch.prototype.edit_template.call (this) +
@@ -6462,7 +6462,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTablePoint_collapse" style="margin-left: 10px;">PhaseTapChangerTablePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTablePoint_collapse" style="margin-left: 10px;">PhaseTapChangerTablePoint</a></legend>
                     <div id="PhaseTapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChangerTablePoint.prototype.template.call (this) +
@@ -6491,7 +6491,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTablePoint_collapse" style="margin-left: 10px;">PhaseTapChangerTablePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTablePoint_collapse" style="margin-left: 10px;">PhaseTapChangerTablePoint</a></legend>
                     <div id="{{id}}_PhaseTapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChangerTablePoint.prototype.edit_template.call (this) +
@@ -6580,7 +6580,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RatioTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="RatioTapChangerTablePoint_collapse" style="margin-left: 10px;">RatioTapChangerTablePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RatioTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="RatioTapChangerTablePoint_collapse" style="margin-left: 10px;">RatioTapChangerTablePoint</a></legend>
                     <div id="RatioTapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChangerTablePoint.prototype.template.call (this) +
@@ -6608,7 +6608,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RatioTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChangerTablePoint_collapse" style="margin-left: 10px;">RatioTapChangerTablePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RatioTapChangerTablePoint_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChangerTablePoint_collapse" style="margin-left: 10px;">RatioTapChangerTablePoint</a></legend>
                     <div id="{{id}}_RatioTapChangerTablePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChangerTablePoint.prototype.edit_template.call (this) +
@@ -6693,7 +6693,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Junction_collapse" aria-expanded="true" aria-controls="Junction_collapse" style="margin-left: 10px;">Junction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Junction_collapse" aria-expanded="true" aria-controls="Junction_collapse" style="margin-left: 10px;">Junction</a></legend>
                     <div id="Junction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Connector.prototype.template.call (this) +
@@ -6720,7 +6720,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Junction_collapse" aria-expanded="true" aria-controls="{{id}}_Junction_collapse" style="margin-left: 10px;">Junction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Junction_collapse" aria-expanded="true" aria-controls="{{id}}_Junction_collapse" style="margin-left: 10px;">Junction</a></legend>
                     <div id="{{id}}_Junction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Connector.prototype.edit_template.call (this) +
@@ -6796,7 +6796,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusbarSection_collapse" aria-expanded="true" aria-controls="BusbarSection_collapse" style="margin-left: 10px;">BusbarSection</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BusbarSection_collapse" aria-expanded="true" aria-controls="BusbarSection_collapse" style="margin-left: 10px;">BusbarSection</a></legend>
                     <div id="BusbarSection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Connector.prototype.template.call (this) +
@@ -6825,7 +6825,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusbarSection_collapse" aria-expanded="true" aria-controls="{{id}}_BusbarSection_collapse" style="margin-left: 10px;">BusbarSection</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BusbarSection_collapse" aria-expanded="true" aria-controls="{{id}}_BusbarSection_collapse" style="margin-left: 10px;">BusbarSection</a></legend>
                     <div id="{{id}}_BusbarSection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Connector.prototype.edit_template.call (this) +
@@ -6914,7 +6914,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthImpedance_collapse" aria-expanded="true" aria-controls="PerLengthImpedance_collapse" style="margin-left: 10px;">PerLengthImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PerLengthImpedance_collapse" aria-expanded="true" aria-controls="PerLengthImpedance_collapse" style="margin-left: 10px;">PerLengthImpedance</a></legend>
                     <div id="PerLengthImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthLineParameter.prototype.template.call (this) +
@@ -6944,7 +6944,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthImpedance_collapse" style="margin-left: 10px;">PerLengthImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PerLengthImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthImpedance_collapse" style="margin-left: 10px;">PerLengthImpedance</a></legend>
                     <div id="{{id}}_PerLengthImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthLineParameter.prototype.edit_template.call (this) +
@@ -7029,7 +7029,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthPhaseImpedance_collapse" aria-expanded="true" aria-controls="PerLengthPhaseImpedance_collapse" style="margin-left: 10px;">PerLengthPhaseImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PerLengthPhaseImpedance_collapse" aria-expanded="true" aria-controls="PerLengthPhaseImpedance_collapse" style="margin-left: 10px;">PerLengthPhaseImpedance</a></legend>
                     <div id="PerLengthPhaseImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthImpedance.prototype.template.call (this) +
@@ -7060,7 +7060,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthPhaseImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthPhaseImpedance_collapse" style="margin-left: 10px;">PerLengthPhaseImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PerLengthPhaseImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthPhaseImpedance_collapse" style="margin-left: 10px;">PerLengthPhaseImpedance</a></legend>
                     <div id="{{id}}_PerLengthPhaseImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthImpedance.prototype.edit_template.call (this) +
@@ -7163,7 +7163,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthSequenceImpedance_collapse" aria-expanded="true" aria-controls="PerLengthSequenceImpedance_collapse" style="margin-left: 10px;">PerLengthSequenceImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PerLengthSequenceImpedance_collapse" aria-expanded="true" aria-controls="PerLengthSequenceImpedance_collapse" style="margin-left: 10px;">PerLengthSequenceImpedance</a></legend>
                     <div id="PerLengthSequenceImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthImpedance.prototype.template.call (this) +
@@ -7198,7 +7198,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthSequenceImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthSequenceImpedance_collapse" style="margin-left: 10px;">PerLengthSequenceImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PerLengthSequenceImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthSequenceImpedance_collapse" style="margin-left: 10px;">PerLengthSequenceImpedance</a></legend>
                     <div id="{{id}}_PerLengthSequenceImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PerLengthImpedance.prototype.edit_template.call (this) +
@@ -7300,7 +7300,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PetersenCoil_collapse" aria-expanded="true" aria-controls="PetersenCoil_collapse" style="margin-left: 10px;">PetersenCoil</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PetersenCoil_collapse" aria-expanded="true" aria-controls="PetersenCoil_collapse" style="margin-left: 10px;">PetersenCoil</a></legend>
                     <div id="PetersenCoil_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EarthFaultCompensator.prototype.template.call (this) +
@@ -7336,7 +7336,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PetersenCoil_collapse" aria-expanded="true" aria-controls="{{id}}_PetersenCoil_collapse" style="margin-left: 10px;">PetersenCoil</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PetersenCoil_collapse" aria-expanded="true" aria-controls="{{id}}_PetersenCoil_collapse" style="margin-left: 10px;">PetersenCoil</a></legend>
                     <div id="{{id}}_PetersenCoil_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EarthFaultCompensator.prototype.edit_template.call (this) +
@@ -7424,7 +7424,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GroundingImpedance_collapse" aria-expanded="true" aria-controls="GroundingImpedance_collapse" style="margin-left: 10px;">GroundingImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GroundingImpedance_collapse" aria-expanded="true" aria-controls="GroundingImpedance_collapse" style="margin-left: 10px;">GroundingImpedance</a></legend>
                     <div id="GroundingImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EarthFaultCompensator.prototype.template.call (this) +
@@ -7452,7 +7452,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GroundingImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_GroundingImpedance_collapse" style="margin-left: 10px;">GroundingImpedance</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GroundingImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_GroundingImpedance_collapse" style="margin-left: 10px;">GroundingImpedance</a></legend>
                     <div id="{{id}}_GroundingImpedance_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + EarthFaultCompensator.prototype.edit_template.call (this) +
@@ -7554,7 +7554,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerTransformerEnd_collapse" aria-expanded="true" aria-controls="PowerTransformerEnd_collapse" style="margin-left: 10px;">PowerTransformerEnd</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PowerTransformerEnd_collapse" aria-expanded="true" aria-controls="PowerTransformerEnd_collapse" style="margin-left: 10px;">PowerTransformerEnd</a></legend>
                     <div id="PowerTransformerEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TransformerEnd.prototype.template.call (this) +
@@ -7596,7 +7596,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerTransformerEnd_collapse" aria-expanded="true" aria-controls="{{id}}_PowerTransformerEnd_collapse" style="margin-left: 10px;">PowerTransformerEnd</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PowerTransformerEnd_collapse" aria-expanded="true" aria-controls="{{id}}_PowerTransformerEnd_collapse" style="margin-left: 10px;">PowerTransformerEnd</a></legend>
                     <div id="{{id}}_PowerTransformerEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TransformerEnd.prototype.edit_template.call (this) +
@@ -7709,7 +7709,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTankEnd_collapse" aria-expanded="true" aria-controls="TransformerTankEnd_collapse" style="margin-left: 10px;">TransformerTankEnd</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransformerTankEnd_collapse" aria-expanded="true" aria-controls="TransformerTankEnd_collapse" style="margin-left: 10px;">TransformerTankEnd</a></legend>
                     <div id="TransformerTankEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TransformerEnd.prototype.template.call (this) +
@@ -7738,7 +7738,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerTankEnd_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerTankEnd_collapse" style="margin-left: 10px;">TransformerTankEnd</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransformerTankEnd_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerTankEnd_collapse" style="margin-left: 10px;">TransformerTankEnd</a></legend>
                     <div id="{{id}}_TransformerTankEnd_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TransformerEnd.prototype.edit_template.call (this) +
@@ -7839,7 +7839,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerControl_collapse" aria-expanded="true" aria-controls="TapChangerControl_collapse" style="margin-left: 10px;">TapChangerControl</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TapChangerControl_collapse" aria-expanded="true" aria-controls="TapChangerControl_collapse" style="margin-left: 10px;">TapChangerControl</a></legend>
                     <div id="TapChangerControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingControl.prototype.template.call (this) +
@@ -7875,7 +7875,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapChangerControl_collapse" aria-expanded="true" aria-controls="{{id}}_TapChangerControl_collapse" style="margin-left: 10px;">TapChangerControl</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TapChangerControl_collapse" aria-expanded="true" aria-controls="{{id}}_TapChangerControl_collapse" style="margin-left: 10px;">TapChangerControl</a></legend>
                     <div id="{{id}}_TapChangerControl_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingControl.prototype.edit_template.call (this) +
@@ -7974,7 +7974,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChanger_collapse" aria-expanded="true" aria-controls="PhaseTapChanger_collapse" style="margin-left: 10px;">PhaseTapChanger</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseTapChanger_collapse" aria-expanded="true" aria-controls="PhaseTapChanger_collapse" style="margin-left: 10px;">PhaseTapChanger</a></legend>
                     <div id="PhaseTapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChanger.prototype.template.call (this) +
@@ -8002,7 +8002,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChanger_collapse" style="margin-left: 10px;">PhaseTapChanger</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseTapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChanger_collapse" style="margin-left: 10px;">PhaseTapChanger</a></legend>
                     <div id="{{id}}_PhaseTapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChanger.prototype.edit_template.call (this) +
@@ -8095,7 +8095,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerLinear_collapse" aria-expanded="true" aria-controls="PhaseTapChangerLinear_collapse" style="margin-left: 10px;">PhaseTapChangerLinear</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseTapChangerLinear_collapse" aria-expanded="true" aria-controls="PhaseTapChangerLinear_collapse" style="margin-left: 10px;">PhaseTapChangerLinear</a></legend>
                     <div id="PhaseTapChangerLinear_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.template.call (this) +
@@ -8125,7 +8125,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerLinear_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerLinear_collapse" style="margin-left: 10px;">PhaseTapChangerLinear</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseTapChangerLinear_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerLinear_collapse" style="margin-left: 10px;">PhaseTapChangerLinear</a></legend>
                     <div id="{{id}}_PhaseTapChangerLinear_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.edit_template.call (this) +
@@ -8211,7 +8211,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RatioTapChanger_collapse" aria-expanded="true" aria-controls="RatioTapChanger_collapse" style="margin-left: 10px;">RatioTapChanger</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RatioTapChanger_collapse" aria-expanded="true" aria-controls="RatioTapChanger_collapse" style="margin-left: 10px;">RatioTapChanger</a></legend>
                     <div id="RatioTapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChanger.prototype.template.call (this) +
@@ -8244,7 +8244,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RatioTapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChanger_collapse" style="margin-left: 10px;">RatioTapChanger</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RatioTapChanger_collapse" aria-expanded="true" aria-controls="{{id}}_RatioTapChanger_collapse" style="margin-left: 10px;">RatioTapChanger</a></legend>
                     <div id="{{id}}_RatioTapChanger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TapChanger.prototype.edit_template.call (this) +
@@ -8344,7 +8344,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerNonLinear_collapse" aria-expanded="true" aria-controls="PhaseTapChangerNonLinear_collapse" style="margin-left: 10px;">PhaseTapChangerNonLinear</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseTapChangerNonLinear_collapse" aria-expanded="true" aria-controls="PhaseTapChangerNonLinear_collapse" style="margin-left: 10px;">PhaseTapChangerNonLinear</a></legend>
                     <div id="PhaseTapChangerNonLinear_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.template.call (this) +
@@ -8374,7 +8374,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerNonLinear_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerNonLinear_collapse" style="margin-left: 10px;">PhaseTapChangerNonLinear</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseTapChangerNonLinear_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerNonLinear_collapse" style="margin-left: 10px;">PhaseTapChangerNonLinear</a></legend>
                     <div id="{{id}}_PhaseTapChangerNonLinear_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.edit_template.call (this) +
@@ -8450,7 +8450,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerTabular_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTabular_collapse" style="margin-left: 10px;">PhaseTapChangerTabular</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseTapChangerTabular_collapse" aria-expanded="true" aria-controls="PhaseTapChangerTabular_collapse" style="margin-left: 10px;">PhaseTapChangerTabular</a></legend>
                     <div id="PhaseTapChangerTabular_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.template.call (this) +
@@ -8478,7 +8478,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerTabular_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTabular_collapse" style="margin-left: 10px;">PhaseTapChangerTabular</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseTapChangerTabular_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerTabular_collapse" style="margin-left: 10px;">PhaseTapChangerTabular</a></legend>
                     <div id="{{id}}_PhaseTapChangerTabular_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChanger.prototype.edit_template.call (this) +
@@ -8567,7 +8567,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerAsymmetrical_collapse" aria-expanded="true" aria-controls="PhaseTapChangerAsymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerAsymmetrical</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseTapChangerAsymmetrical_collapse" aria-expanded="true" aria-controls="PhaseTapChangerAsymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerAsymmetrical</a></legend>
                     <div id="PhaseTapChangerAsymmetrical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChangerNonLinear.prototype.template.call (this) +
@@ -8595,7 +8595,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerAsymmetrical_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerAsymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerAsymmetrical</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseTapChangerAsymmetrical_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerAsymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerAsymmetrical</a></legend>
                     <div id="{{id}}_PhaseTapChangerAsymmetrical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChangerNonLinear.prototype.edit_template.call (this) +
@@ -8671,7 +8671,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PhaseTapChangerSymmetrical_collapse" aria-expanded="true" aria-controls="PhaseTapChangerSymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerSymmetrical</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PhaseTapChangerSymmetrical_collapse" aria-expanded="true" aria-controls="PhaseTapChangerSymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerSymmetrical</a></legend>
                     <div id="PhaseTapChangerSymmetrical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChangerNonLinear.prototype.template.call (this) +
@@ -8698,7 +8698,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PhaseTapChangerSymmetrical_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerSymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerSymmetrical</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PhaseTapChangerSymmetrical_collapse" aria-expanded="true" aria-controls="{{id}}_PhaseTapChangerSymmetrical_collapse" style="margin-left: 10px;">PhaseTapChangerSymmetrical</a></legend>
                     <div id="{{id}}_PhaseTapChangerSymmetrical_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PhaseTapChangerNonLinear.prototype.edit_template.call (this) +
@@ -8772,7 +8772,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="LinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">LinearShuntCompensatorPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="LinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">LinearShuntCompensatorPhase</a></legend>
                     <div id="LinearShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensatorPhase.prototype.template.call (this) +
@@ -8801,7 +8801,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_LinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">LinearShuntCompensatorPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_LinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">LinearShuntCompensatorPhase</a></legend>
                     <div id="{{id}}_LinearShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensatorPhase.prototype.edit_template.call (this) +
@@ -8879,7 +8879,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonlinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#NonlinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhase</a></legend>
                     <div id="NonlinearShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensatorPhase.prototype.template.call (this) +
@@ -8909,7 +8909,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhase</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensatorPhase_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensatorPhase_collapse" style="margin-left: 10px;">NonlinearShuntCompensatorPhase</a></legend>
                     <div id="{{id}}_NonlinearShuntCompensatorPhase_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensatorPhase.prototype.edit_template.call (this) +
@@ -9016,7 +9016,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensator_collapse" aria-expanded="true" aria-controls="ShuntCompensator_collapse" style="margin-left: 10px;">ShuntCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ShuntCompensator_collapse" aria-expanded="true" aria-controls="ShuntCompensator_collapse" style="margin-left: 10px;">ShuntCompensator</a></legend>
                     <div id="ShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
@@ -9059,7 +9059,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensator_collapse" style="margin-left: 10px;">ShuntCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensator_collapse" style="margin-left: 10px;">ShuntCompensator</a></legend>
                     <div id="{{id}}_ShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
@@ -9179,7 +9179,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RotatingMachine_collapse" aria-expanded="true" aria-controls="RotatingMachine_collapse" style="margin-left: 10px;">RotatingMachine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RotatingMachine_collapse" aria-expanded="true" aria-controls="RotatingMachine_collapse" style="margin-left: 10px;">RotatingMachine</a></legend>
                     <div id="RotatingMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
@@ -9213,7 +9213,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RotatingMachine_collapse" aria-expanded="true" aria-controls="{{id}}_RotatingMachine_collapse" style="margin-left: 10px;">RotatingMachine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RotatingMachine_collapse" aria-expanded="true" aria-controls="{{id}}_RotatingMachine_collapse" style="margin-left: 10px;">RotatingMachine</a></legend>
                     <div id="{{id}}_RotatingMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
@@ -9323,7 +9323,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FrequencyConverter_collapse" aria-expanded="true" aria-controls="FrequencyConverter_collapse" style="margin-left: 10px;">FrequencyConverter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FrequencyConverter_collapse" aria-expanded="true" aria-controls="FrequencyConverter_collapse" style="margin-left: 10px;">FrequencyConverter</a></legend>
                     <div id="FrequencyConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
@@ -9355,7 +9355,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FrequencyConverter_collapse" aria-expanded="true" aria-controls="{{id}}_FrequencyConverter_collapse" style="margin-left: 10px;">FrequencyConverter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FrequencyConverter_collapse" aria-expanded="true" aria-controls="{{id}}_FrequencyConverter_collapse" style="margin-left: 10px;">FrequencyConverter</a></legend>
                     <div id="{{id}}_FrequencyConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
@@ -9507,7 +9507,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachine_collapse" aria-expanded="true" aria-controls="SynchronousMachine_collapse" style="margin-left: 10px;">SynchronousMachine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SynchronousMachine_collapse" aria-expanded="true" aria-controls="SynchronousMachine_collapse" style="margin-left: 10px;">SynchronousMachine</a></legend>
                     <div id="SynchronousMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RotatingMachine.prototype.template.call (this) +
@@ -9580,7 +9580,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachine_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachine_collapse" style="margin-left: 10px;">SynchronousMachine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SynchronousMachine_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachine_collapse" style="margin-left: 10px;">SynchronousMachine</a></legend>
                     <div id="{{id}}_SynchronousMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RotatingMachine.prototype.edit_template.call (this) +
@@ -9748,7 +9748,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StaticVarCompensator_collapse" aria-expanded="true" aria-controls="StaticVarCompensator_collapse" style="margin-left: 10px;">StaticVarCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StaticVarCompensator_collapse" aria-expanded="true" aria-controls="StaticVarCompensator_collapse" style="margin-left: 10px;">StaticVarCompensator</a></legend>
                     <div id="StaticVarCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
@@ -9783,7 +9783,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StaticVarCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_StaticVarCompensator_collapse" style="margin-left: 10px;">StaticVarCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StaticVarCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_StaticVarCompensator_collapse" style="margin-left: 10px;">StaticVarCompensator</a></legend>
                     <div id="{{id}}_StaticVarCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
@@ -9869,7 +9869,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonlinearShuntCompensator_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensator_collapse" style="margin-left: 10px;">NonlinearShuntCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#NonlinearShuntCompensator_collapse" aria-expanded="true" aria-controls="NonlinearShuntCompensator_collapse" style="margin-left: 10px;">NonlinearShuntCompensator</a></legend>
                     <div id="NonlinearShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensator.prototype.template.call (this) +
@@ -9899,7 +9899,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensator_collapse" style="margin-left: 10px;">NonlinearShuntCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_NonlinearShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_NonlinearShuntCompensator_collapse" style="margin-left: 10px;">NonlinearShuntCompensator</a></legend>
                     <div id="{{id}}_NonlinearShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensator.prototype.edit_template.call (this) +
@@ -10016,7 +10016,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExternalNetworkInjection_collapse" aria-expanded="true" aria-controls="ExternalNetworkInjection_collapse" style="margin-left: 10px;">ExternalNetworkInjection</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExternalNetworkInjection_collapse" aria-expanded="true" aria-controls="ExternalNetworkInjection_collapse" style="margin-left: 10px;">ExternalNetworkInjection</a></legend>
                     <div id="ExternalNetworkInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.template.call (this) +
@@ -10061,7 +10061,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExternalNetworkInjection_collapse" aria-expanded="true" aria-controls="{{id}}_ExternalNetworkInjection_collapse" style="margin-left: 10px;">ExternalNetworkInjection</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExternalNetworkInjection_collapse" aria-expanded="true" aria-controls="{{id}}_ExternalNetworkInjection_collapse" style="margin-left: 10px;">ExternalNetworkInjection</a></legend>
                     <div id="{{id}}_ExternalNetworkInjection_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RegulatingCondEq.prototype.edit_template.call (this) +
@@ -10177,7 +10177,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LinearShuntCompensator_collapse" aria-expanded="true" aria-controls="LinearShuntCompensator_collapse" style="margin-left: 10px;">LinearShuntCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LinearShuntCompensator_collapse" aria-expanded="true" aria-controls="LinearShuntCompensator_collapse" style="margin-left: 10px;">LinearShuntCompensator</a></legend>
                     <div id="LinearShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensator.prototype.template.call (this) +
@@ -10208,7 +10208,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LinearShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_LinearShuntCompensator_collapse" style="margin-left: 10px;">LinearShuntCompensator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LinearShuntCompensator_collapse" aria-expanded="true" aria-controls="{{id}}_LinearShuntCompensator_collapse" style="margin-left: 10px;">LinearShuntCompensator</a></legend>
                     <div id="{{id}}_LinearShuntCompensator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ShuntCompensator.prototype.edit_template.call (this) +
@@ -10332,7 +10332,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachine_collapse" aria-expanded="true" aria-controls="AsynchronousMachine_collapse" style="margin-left: 10px;">AsynchronousMachine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AsynchronousMachine_collapse" aria-expanded="true" aria-controls="AsynchronousMachine_collapse" style="margin-left: 10px;">AsynchronousMachine</a></legend>
                     <div id="AsynchronousMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RotatingMachine.prototype.template.call (this) +
@@ -10382,7 +10382,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachine_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachine_collapse" style="margin-left: 10px;">AsynchronousMachine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AsynchronousMachine_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachine_collapse" style="margin-left: 10px;">AsynchronousMachine</a></legend>
                     <div id="{{id}}_AsynchronousMachine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + RotatingMachine.prototype.edit_template.call (this) +
@@ -10541,7 +10541,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACLineSegment_collapse" aria-expanded="true" aria-controls="ACLineSegment_collapse" style="margin-left: 10px;">ACLineSegment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ACLineSegment_collapse" aria-expanded="true" aria-controls="ACLineSegment_collapse" style="margin-left: 10px;">ACLineSegment</a></legend>
                     <div id="ACLineSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Conductor.prototype.template.call (this) +
@@ -10592,7 +10592,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ACLineSegment_collapse" aria-expanded="true" aria-controls="{{id}}_ACLineSegment_collapse" style="margin-left: 10px;">ACLineSegment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ACLineSegment_collapse" aria-expanded="true" aria-controls="{{id}}_ACLineSegment_collapse" style="margin-left: 10px;">ACLineSegment</a></legend>
                     <div id="{{id}}_ACLineSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Conductor.prototype.edit_template.call (this) +

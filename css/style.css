@@ -54,6 +54,56 @@ body {
     margin-bottom: 20px;
 }
 
+.collapsed.collapse-link::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+        border-top-width: 0.3em;
+        border-top-style: solid;
+        border-top-color: currentcolor;
+    border-right: .3em solid transparent;
+        border-right-width: 0.3em;
+        border-right-style: solid;
+        border-right-color: transparent;
+	border-bottom: 0;
+		border-bottom-width: 0px;
+		border-bottom-style: none;
+		border-bottom-color: currentcolor;
+	border-left: .3em solid transparent;
+		border-left-width: 0.3em;
+		border-left-style: solid;
+		border-left-color: transparent;
+}
+
+:not(.collapsed).collapse-link::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: 0;
+        border-top-width: 0px;
+        border-top-style: none;
+        border-top-color: currentcolor;
+    border-right: .3em solid transparent;
+        border-right-width: 0.3em;
+        border-right-style: solid;
+        border-right-color: transparent;
+	border-bottom: .3em solid;
+		border-bottom-width: .3em;
+		border-bottom-style: solid;
+		border-bottom-color: currentcolor;
+	border-left: .3em solid transparent;
+		border-left-width: 0.3em;
+		border-left-style: solid;
+		border-left-color: transparent;
+}
+
 .mapboxgl-popup-close-button {
     font-size: large;
 }

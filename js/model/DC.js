@@ -133,7 +133,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCNode_collapse" aria-expanded="true" aria-controls="DCNode_collapse" style="margin-left: 10px;">DCNode</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCNode_collapse" aria-expanded="true" aria-controls="DCNode_collapse" style="margin-left: 10px;">DCNode</a></legend>
                     <div id="DCNode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -165,7 +165,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCNode_collapse" aria-expanded="true" aria-controls="{{id}}_DCNode_collapse" style="margin-left: 10px;">DCNode</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCNode_collapse" aria-expanded="true" aria-controls="{{id}}_DCNode_collapse" style="margin-left: 10px;">DCNode</a></legend>
                     <div id="{{id}}_DCNode_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -258,7 +258,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="DCTopologicalIsland_collapse" style="margin-left: 10px;">DCTopologicalIsland</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="DCTopologicalIsland_collapse" style="margin-left: 10px;">DCTopologicalIsland</a></legend>
                     <div id="DCTopologicalIsland_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -288,7 +288,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="{{id}}_DCTopologicalIsland_collapse" style="margin-left: 10px;">DCTopologicalIsland</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="{{id}}_DCTopologicalIsland_collapse" style="margin-left: 10px;">DCTopologicalIsland</a></legend>
                     <div id="{{id}}_DCTopologicalIsland_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -375,7 +375,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBaseTerminal_collapse" aria-expanded="true" aria-controls="DCBaseTerminal_collapse" style="margin-left: 10px;">DCBaseTerminal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCBaseTerminal_collapse" aria-expanded="true" aria-controls="DCBaseTerminal_collapse" style="margin-left: 10px;">DCBaseTerminal</a></legend>
                     <div id="DCBaseTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ACDCTerminal.prototype.template.call (this) +
@@ -404,7 +404,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCBaseTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_DCBaseTerminal_collapse" style="margin-left: 10px;">DCBaseTerminal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCBaseTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_DCBaseTerminal_collapse" style="margin-left: 10px;">DCBaseTerminal</a></legend>
                     <div id="{{id}}_DCBaseTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ACDCTerminal.prototype.edit_template.call (this) +
@@ -530,7 +530,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCConverter_collapse" aria-expanded="true" aria-controls="ACDCConverter_collapse" style="margin-left: 10px;">ACDCConverter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ACDCConverter_collapse" aria-expanded="true" aria-controls="ACDCConverter_collapse" style="margin-left: 10px;">ACDCConverter</a></legend>
                     <div id="ACDCConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
@@ -578,7 +578,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ACDCConverter_collapse" aria-expanded="true" aria-controls="{{id}}_ACDCConverter_collapse" style="margin-left: 10px;">ACDCConverter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ACDCConverter_collapse" aria-expanded="true" aria-controls="{{id}}_ACDCConverter_collapse" style="margin-left: 10px;">ACDCConverter</a></legend>
                     <div id="{{id}}_ACDCConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
@@ -702,7 +702,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthDCLineParameter_collapse" style="margin-left: 10px;">PerLengthDCLineParameter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthDCLineParameter_collapse" style="margin-left: 10px;">PerLengthDCLineParameter</a></legend>
                     <div id="PerLengthDCLineParameter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.PerLengthLineParameter.prototype.template.call (this) +
@@ -735,7 +735,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthDCLineParameter_collapse" style="margin-left: 10px;">PerLengthDCLineParameter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthDCLineParameter_collapse" style="margin-left: 10px;">PerLengthDCLineParameter</a></legend>
                     <div id="{{id}}_PerLengthDCLineParameter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Wires.PerLengthLineParameter.prototype.edit_template.call (this) +
@@ -830,7 +830,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="DCEquipmentContainer_collapse" style="margin-left: 10px;">DCEquipmentContainer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="DCEquipmentContainer_collapse" style="margin-left: 10px;">DCEquipmentContainer</a></legend>
                     <div id="DCEquipmentContainer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.template.call (this) +
@@ -863,7 +863,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="{{id}}_DCEquipmentContainer_collapse" style="margin-left: 10px;">DCEquipmentContainer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="{{id}}_DCEquipmentContainer_collapse" style="margin-left: 10px;">DCEquipmentContainer</a></legend>
                     <div id="{{id}}_DCEquipmentContainer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.edit_template.call (this) +
@@ -947,7 +947,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="VsCapabilityCurve_collapse" style="margin-left: 10px;">VsCapabilityCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="VsCapabilityCurve_collapse" style="margin-left: 10px;">VsCapabilityCurve</a></legend>
                     <div id="VsCapabilityCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -977,7 +977,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="{{id}}_VsCapabilityCurve_collapse" style="margin-left: 10px;">VsCapabilityCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="{{id}}_VsCapabilityCurve_collapse" style="margin-left: 10px;">VsCapabilityCurve</a></legend>
                     <div id="{{id}}_VsCapabilityCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -1062,7 +1062,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCConductingEquipment_collapse" aria-expanded="true" aria-controls="DCConductingEquipment_collapse" style="margin-left: 10px;">DCConductingEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCConductingEquipment_collapse" aria-expanded="true" aria-controls="DCConductingEquipment_collapse" style="margin-left: 10px;">DCConductingEquipment</a></legend>
                     <div id="DCConductingEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
@@ -1095,7 +1095,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCConductingEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_DCConductingEquipment_collapse" style="margin-left: 10px;">DCConductingEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCConductingEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_DCConductingEquipment_collapse" style="margin-left: 10px;">DCConductingEquipment</a></legend>
                     <div id="{{id}}_DCConductingEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
@@ -1183,7 +1183,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCConverterDCTerminal_collapse" style="margin-left: 10px;">ACDCConverterDCTerminal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCConverterDCTerminal_collapse" style="margin-left: 10px;">ACDCConverterDCTerminal</a></legend>
                     <div id="ACDCConverterDCTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCBaseTerminal.prototype.template.call (this) +
@@ -1214,7 +1214,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_ACDCConverterDCTerminal_collapse" style="margin-left: 10px;">ACDCConverterDCTerminal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_ACDCConverterDCTerminal_collapse" style="margin-left: 10px;">ACDCConverterDCTerminal</a></legend>
                     <div id="{{id}}_ACDCConverterDCTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCBaseTerminal.prototype.edit_template.call (this) +
@@ -1303,7 +1303,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTerminal_collapse" aria-expanded="true" aria-controls="DCTerminal_collapse" style="margin-left: 10px;">DCTerminal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCTerminal_collapse" aria-expanded="true" aria-controls="DCTerminal_collapse" style="margin-left: 10px;">DCTerminal</a></legend>
                     <div id="DCTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCBaseTerminal.prototype.template.call (this) +
@@ -1331,7 +1331,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_DCTerminal_collapse" style="margin-left: 10px;">DCTerminal</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_DCTerminal_collapse" style="margin-left: 10px;">DCTerminal</a></legend>
                     <div id="{{id}}_DCTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCBaseTerminal.prototype.edit_template.call (this) +
@@ -1444,7 +1444,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CsConverter_collapse" aria-expanded="true" aria-controls="CsConverter_collapse" style="margin-left: 10px;">CsConverter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CsConverter_collapse" aria-expanded="true" aria-controls="CsConverter_collapse" style="margin-left: 10px;">CsConverter</a></legend>
                     <div id="CsConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ACDCConverter.prototype.template.call (this) +
@@ -1489,7 +1489,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CsConverter_collapse" aria-expanded="true" aria-controls="{{id}}_CsConverter_collapse" style="margin-left: 10px;">CsConverter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CsConverter_collapse" aria-expanded="true" aria-controls="{{id}}_CsConverter_collapse" style="margin-left: 10px;">CsConverter</a></legend>
                     <div id="{{id}}_CsConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ACDCConverter.prototype.edit_template.call (this) +
@@ -1613,7 +1613,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VsConverter_collapse" aria-expanded="true" aria-controls="VsConverter_collapse" style="margin-left: 10px;">VsConverter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#VsConverter_collapse" aria-expanded="true" aria-controls="VsConverter_collapse" style="margin-left: 10px;">VsConverter</a></legend>
                     <div id="VsConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ACDCConverter.prototype.template.call (this) +
@@ -1656,7 +1656,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VsConverter_collapse" aria-expanded="true" aria-controls="{{id}}_VsConverter_collapse" style="margin-left: 10px;">VsConverter</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_VsConverter_collapse" aria-expanded="true" aria-controls="{{id}}_VsConverter_collapse" style="margin-left: 10px;">VsConverter</a></legend>
                     <div id="{{id}}_VsConverter_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ACDCConverter.prototype.edit_template.call (this) +
@@ -1765,7 +1765,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCLine_collapse" aria-expanded="true" aria-controls="DCLine_collapse" style="margin-left: 10px;">DCLine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCLine_collapse" aria-expanded="true" aria-controls="DCLine_collapse" style="margin-left: 10px;">DCLine</a></legend>
                     <div id="DCLine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCEquipmentContainer.prototype.template.call (this) +
@@ -1793,7 +1793,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCLine_collapse" aria-expanded="true" aria-controls="{{id}}_DCLine_collapse" style="margin-left: 10px;">DCLine</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCLine_collapse" aria-expanded="true" aria-controls="{{id}}_DCLine_collapse" style="margin-left: 10px;">DCLine</a></legend>
                     <div id="{{id}}_DCLine_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCEquipmentContainer.prototype.edit_template.call (this) +
@@ -1882,7 +1882,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCConverterUnit_collapse" aria-expanded="true" aria-controls="DCConverterUnit_collapse" style="margin-left: 10px;">DCConverterUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCConverterUnit_collapse" aria-expanded="true" aria-controls="DCConverterUnit_collapse" style="margin-left: 10px;">DCConverterUnit</a></legend>
                     <div id="DCConverterUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCEquipmentContainer.prototype.template.call (this) +
@@ -1913,7 +1913,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCConverterUnit_collapse" aria-expanded="true" aria-controls="{{id}}_DCConverterUnit_collapse" style="margin-left: 10px;">DCConverterUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCConverterUnit_collapse" aria-expanded="true" aria-controls="{{id}}_DCConverterUnit_collapse" style="margin-left: 10px;">DCConverterUnit</a></legend>
                     <div id="{{id}}_DCConverterUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCEquipmentContainer.prototype.edit_template.call (this) +
@@ -2000,7 +2000,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCSwitch_collapse" aria-expanded="true" aria-controls="DCSwitch_collapse" style="margin-left: 10px;">DCSwitch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCSwitch_collapse" aria-expanded="true" aria-controls="DCSwitch_collapse" style="margin-left: 10px;">DCSwitch</a></legend>
                     <div id="DCSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.template.call (this) +
@@ -2027,7 +2027,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_DCSwitch_collapse" style="margin-left: 10px;">DCSwitch</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_DCSwitch_collapse" style="margin-left: 10px;">DCSwitch</a></legend>
                     <div id="{{id}}_DCSwitch_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
@@ -2097,7 +2097,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCDisconnector_collapse" aria-expanded="true" aria-controls="DCDisconnector_collapse" style="margin-left: 10px;">DCDisconnector</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCDisconnector_collapse" aria-expanded="true" aria-controls="DCDisconnector_collapse" style="margin-left: 10px;">DCDisconnector</a></legend>
                     <div id="DCDisconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCSwitch.prototype.template.call (this) +
@@ -2124,7 +2124,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCDisconnector_collapse" aria-expanded="true" aria-controls="{{id}}_DCDisconnector_collapse" style="margin-left: 10px;">DCDisconnector</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCDisconnector_collapse" aria-expanded="true" aria-controls="{{id}}_DCDisconnector_collapse" style="margin-left: 10px;">DCDisconnector</a></legend>
                     <div id="{{id}}_DCDisconnector_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCSwitch.prototype.edit_template.call (this) +
@@ -2202,7 +2202,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCSeriesDevice_collapse" aria-expanded="true" aria-controls="DCSeriesDevice_collapse" style="margin-left: 10px;">DCSeriesDevice</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCSeriesDevice_collapse" aria-expanded="true" aria-controls="DCSeriesDevice_collapse" style="margin-left: 10px;">DCSeriesDevice</a></legend>
                     <div id="DCSeriesDevice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.template.call (this) +
@@ -2232,7 +2232,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCSeriesDevice_collapse" aria-expanded="true" aria-controls="{{id}}_DCSeriesDevice_collapse" style="margin-left: 10px;">DCSeriesDevice</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCSeriesDevice_collapse" aria-expanded="true" aria-controls="{{id}}_DCSeriesDevice_collapse" style="margin-left: 10px;">DCSeriesDevice</a></legend>
                     <div id="{{id}}_DCSeriesDevice_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
@@ -2310,7 +2310,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBusbar_collapse" aria-expanded="true" aria-controls="DCBusbar_collapse" style="margin-left: 10px;">DCBusbar</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCBusbar_collapse" aria-expanded="true" aria-controls="DCBusbar_collapse" style="margin-left: 10px;">DCBusbar</a></legend>
                     <div id="DCBusbar_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.template.call (this) +
@@ -2337,7 +2337,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCBusbar_collapse" aria-expanded="true" aria-controls="{{id}}_DCBusbar_collapse" style="margin-left: 10px;">DCBusbar</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCBusbar_collapse" aria-expanded="true" aria-controls="{{id}}_DCBusbar_collapse" style="margin-left: 10px;">DCBusbar</a></legend>
                     <div id="{{id}}_DCBusbar_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
@@ -2415,7 +2415,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCShunt_collapse" aria-expanded="true" aria-controls="DCShunt_collapse" style="margin-left: 10px;">DCShunt</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCShunt_collapse" aria-expanded="true" aria-controls="DCShunt_collapse" style="margin-left: 10px;">DCShunt</a></legend>
                     <div id="DCShunt_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.template.call (this) +
@@ -2445,7 +2445,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCShunt_collapse" aria-expanded="true" aria-controls="{{id}}_DCShunt_collapse" style="margin-left: 10px;">DCShunt</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCShunt_collapse" aria-expanded="true" aria-controls="{{id}}_DCShunt_collapse" style="margin-left: 10px;">DCShunt</a></legend>
                     <div id="{{id}}_DCShunt_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
@@ -2533,7 +2533,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCLineSegment_collapse" aria-expanded="true" aria-controls="DCLineSegment_collapse" style="margin-left: 10px;">DCLineSegment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCLineSegment_collapse" aria-expanded="true" aria-controls="DCLineSegment_collapse" style="margin-left: 10px;">DCLineSegment</a></legend>
                     <div id="DCLineSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.template.call (this) +
@@ -2565,7 +2565,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCLineSegment_collapse" aria-expanded="true" aria-controls="{{id}}_DCLineSegment_collapse" style="margin-left: 10px;">DCLineSegment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCLineSegment_collapse" aria-expanded="true" aria-controls="{{id}}_DCLineSegment_collapse" style="margin-left: 10px;">DCLineSegment</a></legend>
                     <div id="{{id}}_DCLineSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
@@ -2662,7 +2662,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCGround_collapse" aria-expanded="true" aria-controls="DCGround_collapse" style="margin-left: 10px;">DCGround</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCGround_collapse" aria-expanded="true" aria-controls="DCGround_collapse" style="margin-left: 10px;">DCGround</a></legend>
                     <div id="DCGround_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.template.call (this) +
@@ -2691,7 +2691,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCGround_collapse" aria-expanded="true" aria-controls="{{id}}_DCGround_collapse" style="margin-left: 10px;">DCGround</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCGround_collapse" aria-expanded="true" aria-controls="{{id}}_DCGround_collapse" style="margin-left: 10px;">DCGround</a></legend>
                     <div id="{{id}}_DCGround_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
@@ -2767,7 +2767,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBreaker_collapse" aria-expanded="true" aria-controls="DCBreaker_collapse" style="margin-left: 10px;">DCBreaker</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCBreaker_collapse" aria-expanded="true" aria-controls="DCBreaker_collapse" style="margin-left: 10px;">DCBreaker</a></legend>
                     <div id="DCBreaker_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCSwitch.prototype.template.call (this) +
@@ -2794,7 +2794,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCBreaker_collapse" aria-expanded="true" aria-controls="{{id}}_DCBreaker_collapse" style="margin-left: 10px;">DCBreaker</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCBreaker_collapse" aria-expanded="true" aria-controls="{{id}}_DCBreaker_collapse" style="margin-left: 10px;">DCBreaker</a></legend>
                     <div id="{{id}}_DCBreaker_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCSwitch.prototype.edit_template.call (this) +
@@ -2866,7 +2866,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCChopper_collapse" aria-expanded="true" aria-controls="DCChopper_collapse" style="margin-left: 10px;">DCChopper</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DCChopper_collapse" aria-expanded="true" aria-controls="DCChopper_collapse" style="margin-left: 10px;">DCChopper</a></legend>
                     <div id="DCChopper_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.template.call (this) +
@@ -2893,7 +2893,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCChopper_collapse" aria-expanded="true" aria-controls="{{id}}_DCChopper_collapse" style="margin-left: 10px;">DCChopper</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DCChopper_collapse" aria-expanded="true" aria-controls="{{id}}_DCChopper_collapse" style="margin-left: 10px;">DCChopper</a></legend>
                     <div id="{{id}}_DCChopper_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +

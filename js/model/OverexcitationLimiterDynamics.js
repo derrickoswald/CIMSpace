@@ -62,7 +62,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterDynamics_collapse" style="margin-left: 10px;">OverexcitationLimiterDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterDynamics_collapse" style="margin-left: 10px;">OverexcitationLimiterDynamics</a></legend>
                     <div id="OverexcitationLimiterDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -90,7 +90,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcitationLimiterDynamics_collapse" style="margin-left: 10px;">OverexcitationLimiterDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OverexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcitationLimiterDynamics_collapse" style="margin-left: 10px;">OverexcitationLimiterDynamics</a></legend>
                     <div id="{{id}}_OverexcitationLimiterDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -185,7 +185,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLim2_collapse" aria-expanded="true" aria-controls="OverexcLim2_collapse" style="margin-left: 10px;">OverexcLim2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OverexcLim2_collapse" aria-expanded="true" aria-controls="OverexcLim2_collapse" style="margin-left: 10px;">OverexcLim2</a></legend>
                     <div id="OverexcLim2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.template.call (this) +
@@ -216,7 +216,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcLim2_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLim2_collapse" style="margin-left: 10px;">OverexcLim2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OverexcLim2_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLim2_collapse" style="margin-left: 10px;">OverexcLim2</a></legend>
                     <div id="{{id}}_OverexcLim2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
@@ -310,7 +310,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="OverexcLimIEEE_collapse" style="margin-left: 10px;">OverexcLimIEEE</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="OverexcLimIEEE_collapse" style="margin-left: 10px;">OverexcLimIEEE</a></legend>
                     <div id="OverexcLimIEEE_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.template.call (this) +
@@ -343,7 +343,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimIEEE_collapse" style="margin-left: 10px;">OverexcLimIEEE</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OverexcLimIEEE_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimIEEE_collapse" style="margin-left: 10px;">OverexcLimIEEE</a></legend>
                     <div id="{{id}}_OverexcLimIEEE_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
@@ -447,7 +447,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimX1_collapse" aria-expanded="true" aria-controls="OverexcLimX1_collapse" style="margin-left: 10px;">OverexcLimX1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OverexcLimX1_collapse" aria-expanded="true" aria-controls="OverexcLimX1_collapse" style="margin-left: 10px;">OverexcLimX1</a></legend>
                     <div id="OverexcLimX1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.template.call (this) +
@@ -484,7 +484,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcLimX1_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimX1_collapse" style="margin-left: 10px;">OverexcLimX1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OverexcLimX1_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimX1_collapse" style="margin-left: 10px;">OverexcLimX1</a></legend>
                     <div id="{{id}}_OverexcLimX1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
@@ -598,7 +598,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcLimX2_collapse" aria-expanded="true" aria-controls="OverexcLimX2_collapse" style="margin-left: 10px;">OverexcLimX2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OverexcLimX2_collapse" aria-expanded="true" aria-controls="OverexcLimX2_collapse" style="margin-left: 10px;">OverexcLimX2</a></legend>
                     <div id="OverexcLimX2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.template.call (this) +
@@ -636,7 +636,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcLimX2_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimX2_collapse" style="margin-left: 10px;">OverexcLimX2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OverexcLimX2_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcLimX2_collapse" style="margin-left: 10px;">OverexcLimX2</a></legend>
                     <div id="{{id}}_OverexcLimX2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.prototype.edit_template.call (this) +

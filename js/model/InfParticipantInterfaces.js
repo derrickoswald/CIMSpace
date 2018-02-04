@@ -58,7 +58,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WheelingReferenceSchedule_collapse" aria-expanded="true" aria-controls="WheelingReferenceSchedule_collapse" style="margin-left: 10px;">WheelingReferenceSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#WheelingReferenceSchedule_collapse" aria-expanded="true" aria-controls="WheelingReferenceSchedule_collapse" style="margin-left: 10px;">WheelingReferenceSchedule</a></legend>
                     <div id="WheelingReferenceSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ParticipantInterfaces.BidHourlySchedule.prototype.template.call (this) +
@@ -86,7 +86,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WheelingReferenceSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_WheelingReferenceSchedule_collapse" style="margin-left: 10px;">WheelingReferenceSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_WheelingReferenceSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_WheelingReferenceSchedule_collapse" style="margin-left: 10px;">WheelingReferenceSchedule</a></legend>
                     <div id="{{id}}_WheelingReferenceSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ParticipantInterfaces.BidHourlySchedule.prototype.edit_template.call (this) +

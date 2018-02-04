@@ -62,7 +62,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IEC61970CIMVersion_collapse" aria-expanded="true" aria-controls="IEC61970CIMVersion_collapse" style="margin-left: 10px;">IEC61970CIMVersion</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#IEC61970CIMVersion_collapse" aria-expanded="true" aria-controls="IEC61970CIMVersion_collapse" style="margin-left: 10px;">IEC61970CIMVersion</a></legend>
                     <div id="IEC61970CIMVersion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -91,7 +91,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IEC61970CIMVersion_collapse" aria-expanded="true" aria-controls="{{id}}_IEC61970CIMVersion_collapse" style="margin-left: 10px;">IEC61970CIMVersion</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_IEC61970CIMVersion_collapse" aria-expanded="true" aria-controls="{{id}}_IEC61970CIMVersion_collapse" style="margin-left: 10px;">IEC61970CIMVersion</a></legend>
                     <div id="{{id}}_IEC61970CIMVersion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +

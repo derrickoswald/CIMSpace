@@ -68,7 +68,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="GenICompensationForGenJ_collapse" style="margin-left: 10px;">GenICompensationForGenJ</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="GenICompensationForGenJ_collapse" style="margin-left: 10px;">GenICompensationForGenJ</a></legend>
                     <div id="GenICompensationForGenJ_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -99,7 +99,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="{{id}}_GenICompensationForGenJ_collapse" style="margin-left: 10px;">GenICompensationForGenJ</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="{{id}}_GenICompensationForGenJ_collapse" style="margin-left: 10px;">GenICompensationForGenJ</a></legend>
                     <div id="{{id}}_GenICompensationForGenJ_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -195,7 +195,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="VoltageCompensatorDynamics_collapse" style="margin-left: 10px;">VoltageCompensatorDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="VoltageCompensatorDynamics_collapse" style="margin-left: 10px;">VoltageCompensatorDynamics</a></legend>
                     <div id="VoltageCompensatorDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -224,7 +224,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageCompensatorDynamics_collapse" style="margin-left: 10px;">VoltageCompensatorDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageCompensatorDynamics_collapse" style="margin-left: 10px;">VoltageCompensatorDynamics</a></legend>
                     <div id="{{id}}_VoltageCompensatorDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -318,7 +318,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VCompIEEEType2_collapse" aria-expanded="true" aria-controls="VCompIEEEType2_collapse" style="margin-left: 10px;">VCompIEEEType2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#VCompIEEEType2_collapse" aria-expanded="true" aria-controls="VCompIEEEType2_collapse" style="margin-left: 10px;">VCompIEEEType2</a></legend>
                     <div id="VCompIEEEType2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + VoltageCompensatorDynamics.prototype.template.call (this) +
@@ -349,7 +349,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VCompIEEEType2_collapse" aria-expanded="true" aria-controls="{{id}}_VCompIEEEType2_collapse" style="margin-left: 10px;">VCompIEEEType2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_VCompIEEEType2_collapse" aria-expanded="true" aria-controls="{{id}}_VCompIEEEType2_collapse" style="margin-left: 10px;">VCompIEEEType2</a></legend>
                     <div id="{{id}}_VCompIEEEType2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + VoltageCompensatorDynamics.prototype.edit_template.call (this) +
@@ -442,7 +442,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VCompIEEEType1_collapse" aria-expanded="true" aria-controls="VCompIEEEType1_collapse" style="margin-left: 10px;">VCompIEEEType1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#VCompIEEEType1_collapse" aria-expanded="true" aria-controls="VCompIEEEType1_collapse" style="margin-left: 10px;">VCompIEEEType1</a></legend>
                     <div id="VCompIEEEType1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + VoltageCompensatorDynamics.prototype.template.call (this) +
@@ -472,7 +472,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VCompIEEEType1_collapse" aria-expanded="true" aria-controls="{{id}}_VCompIEEEType1_collapse" style="margin-left: 10px;">VCompIEEEType1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_VCompIEEEType1_collapse" aria-expanded="true" aria-controls="{{id}}_VCompIEEEType1_collapse" style="margin-left: 10px;">VCompIEEEType1</a></legend>
                     <div id="{{id}}_VCompIEEEType1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + VoltageCompensatorDynamics.prototype.edit_template.call (this) +

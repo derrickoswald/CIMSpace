@@ -169,7 +169,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Emission_collapse" aria-expanded="true" aria-controls="Emission_collapse" style="margin-left: 10px;">Emission</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Emission_collapse" aria-expanded="true" aria-controls="Emission_collapse" style="margin-left: 10px;">Emission</a></legend>
                     <div id="Emission_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -201,7 +201,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Emission_collapse" aria-expanded="true" aria-controls="{{id}}_Emission_collapse" style="margin-left: 10px;">Emission</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Emission_collapse" aria-expanded="true" aria-controls="{{id}}_Emission_collapse" style="margin-left: 10px;">Emission</a></legend>
                     <div id="{{id}}_Emission_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -297,7 +297,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPump_collapse" aria-expanded="true" aria-controls="HydroPump_collapse" style="margin-left: 10px;">HydroPump</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HydroPump_collapse" aria-expanded="true" aria-controls="HydroPump_collapse" style="margin-left: 10px;">HydroPump</a></legend>
                     <div id="HydroPump_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
@@ -331,7 +331,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HydroPump_collapse" aria-expanded="true" aria-controls="{{id}}_HydroPump_collapse" style="margin-left: 10px;">HydroPump</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HydroPump_collapse" aria-expanded="true" aria-controls="{{id}}_HydroPump_collapse" style="margin-left: 10px;">HydroPump</a></legend>
                     <div id="{{id}}_HydroPump_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
@@ -434,7 +434,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PenstockLossCurve_collapse" aria-expanded="true" aria-controls="PenstockLossCurve_collapse" style="margin-left: 10px;">PenstockLossCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PenstockLossCurve_collapse" aria-expanded="true" aria-controls="PenstockLossCurve_collapse" style="margin-left: 10px;">PenstockLossCurve</a></legend>
                     <div id="PenstockLossCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -462,7 +462,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PenstockLossCurve_collapse" aria-expanded="true" aria-controls="{{id}}_PenstockLossCurve_collapse" style="margin-left: 10px;">PenstockLossCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PenstockLossCurve_collapse" aria-expanded="true" aria-controls="{{id}}_PenstockLossCurve_collapse" style="margin-left: 10px;">PenstockLossCurve</a></legend>
                     <div id="{{id}}_PenstockLossCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -563,7 +563,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CogenerationPlant_collapse" aria-expanded="true" aria-controls="CogenerationPlant_collapse" style="margin-left: 10px;">CogenerationPlant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CogenerationPlant_collapse" aria-expanded="true" aria-controls="CogenerationPlant_collapse" style="margin-left: 10px;">CogenerationPlant</a></legend>
                     <div id="CogenerationPlant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -599,7 +599,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CogenerationPlant_collapse" aria-expanded="true" aria-controls="{{id}}_CogenerationPlant_collapse" style="margin-left: 10px;">CogenerationPlant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CogenerationPlant_collapse" aria-expanded="true" aria-controls="{{id}}_CogenerationPlant_collapse" style="margin-left: 10px;">CogenerationPlant</a></legend>
                     <div id="{{id}}_CogenerationPlant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -701,7 +701,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IncrementalHeatRateCurve_collapse" aria-expanded="true" aria-controls="IncrementalHeatRateCurve_collapse" style="margin-left: 10px;">IncrementalHeatRateCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#IncrementalHeatRateCurve_collapse" aria-expanded="true" aria-controls="IncrementalHeatRateCurve_collapse" style="margin-left: 10px;">IncrementalHeatRateCurve</a></legend>
                     <div id="IncrementalHeatRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -730,7 +730,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IncrementalHeatRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_IncrementalHeatRateCurve_collapse" style="margin-left: 10px;">IncrementalHeatRateCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_IncrementalHeatRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_IncrementalHeatRateCurve_collapse" style="margin-left: 10px;">IncrementalHeatRateCurve</a></legend>
                     <div id="{{id}}_IncrementalHeatRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -855,7 +855,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Reservoir_collapse" aria-expanded="true" aria-controls="Reservoir_collapse" style="margin-left: 10px;">Reservoir</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Reservoir_collapse" aria-expanded="true" aria-controls="Reservoir_collapse" style="margin-left: 10px;">Reservoir</a></legend>
                     <div id="Reservoir_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -910,7 +910,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Reservoir_collapse" aria-expanded="true" aria-controls="{{id}}_Reservoir_collapse" style="margin-left: 10px;">Reservoir</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Reservoir_collapse" aria-expanded="true" aria-controls="{{id}}_Reservoir_collapse" style="margin-left: 10px;">Reservoir</a></legend>
                     <div id="{{id}}_Reservoir_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -1033,7 +1033,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Classification_collapse" aria-expanded="true" aria-controls="Classification_collapse" style="margin-left: 10px;">Classification</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Classification_collapse" aria-expanded="true" aria-controls="Classification_collapse" style="margin-left: 10px;">Classification</a></legend>
                     <div id="Classification_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1063,7 +1063,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Classification_collapse" aria-expanded="true" aria-controls="{{id}}_Classification_collapse" style="margin-left: 10px;">Classification</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Classification_collapse" aria-expanded="true" aria-controls="{{id}}_Classification_collapse" style="margin-left: 10px;">Classification</a></legend>
                     <div id="{{id}}_Classification_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1145,7 +1145,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartIgnFuelCurve_collapse" aria-expanded="true" aria-controls="StartIgnFuelCurve_collapse" style="margin-left: 10px;">StartIgnFuelCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StartIgnFuelCurve_collapse" aria-expanded="true" aria-controls="StartIgnFuelCurve_collapse" style="margin-left: 10px;">StartIgnFuelCurve</a></legend>
                     <div id="StartIgnFuelCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -1176,7 +1176,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartIgnFuelCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartIgnFuelCurve_collapse" style="margin-left: 10px;">StartIgnFuelCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StartIgnFuelCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartIgnFuelCurve_collapse" style="margin-left: 10px;">StartIgnFuelCurve</a></legend>
                     <div id="{{id}}_StartIgnFuelCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -1267,7 +1267,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LevelVsVolumeCurve_collapse" aria-expanded="true" aria-controls="LevelVsVolumeCurve_collapse" style="margin-left: 10px;">LevelVsVolumeCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LevelVsVolumeCurve_collapse" aria-expanded="true" aria-controls="LevelVsVolumeCurve_collapse" style="margin-left: 10px;">LevelVsVolumeCurve</a></legend>
                     <div id="LevelVsVolumeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -1295,7 +1295,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LevelVsVolumeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LevelVsVolumeCurve_collapse" style="margin-left: 10px;">LevelVsVolumeCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LevelVsVolumeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LevelVsVolumeCurve_collapse" style="margin-left: 10px;">LevelVsVolumeCurve</a></legend>
                     <div id="{{id}}_LevelVsVolumeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -1384,7 +1384,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GrossToNetActivePowerCurve_collapse" aria-expanded="true" aria-controls="GrossToNetActivePowerCurve_collapse" style="margin-left: 10px;">GrossToNetActivePowerCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GrossToNetActivePowerCurve_collapse" aria-expanded="true" aria-controls="GrossToNetActivePowerCurve_collapse" style="margin-left: 10px;">GrossToNetActivePowerCurve</a></legend>
                     <div id="GrossToNetActivePowerCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -1412,7 +1412,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GrossToNetActivePowerCurve_collapse" aria-expanded="true" aria-controls="{{id}}_GrossToNetActivePowerCurve_collapse" style="margin-left: 10px;">GrossToNetActivePowerCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GrossToNetActivePowerCurve_collapse" aria-expanded="true" aria-controls="{{id}}_GrossToNetActivePowerCurve_collapse" style="margin-left: 10px;">GrossToNetActivePowerCurve</a></legend>
                     <div id="{{id}}_GrossToNetActivePowerCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -1503,7 +1503,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AirCompressor_collapse" aria-expanded="true" aria-controls="AirCompressor_collapse" style="margin-left: 10px;">AirCompressor</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AirCompressor_collapse" aria-expanded="true" aria-controls="AirCompressor_collapse" style="margin-left: 10px;">AirCompressor</a></legend>
                     <div id="AirCompressor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -1533,7 +1533,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AirCompressor_collapse" aria-expanded="true" aria-controls="{{id}}_AirCompressor_collapse" style="margin-left: 10px;">AirCompressor</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AirCompressor_collapse" aria-expanded="true" aria-controls="{{id}}_AirCompressor_collapse" style="margin-left: 10px;">AirCompressor</a></legend>
                     <div id="{{id}}_AirCompressor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -1633,7 +1633,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRate_collapse" aria-expanded="true" aria-controls="HeatRate_collapse" style="margin-left: 10px;">HeatRate</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HeatRate_collapse" aria-expanded="true" aria-controls="HeatRate_collapse" style="margin-left: 10px;">HeatRate</a></legend>
                     <div id="HeatRate_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1665,7 +1665,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HeatRate_collapse" aria-expanded="true" aria-controls="{{id}}_HeatRate_collapse" style="margin-left: 10px;">HeatRate</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HeatRate_collapse" aria-expanded="true" aria-controls="{{id}}_HeatRate_collapse" style="margin-left: 10px;">HeatRate</a></legend>
                     <div id="{{id}}_HeatRate_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1761,7 +1761,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FuelAllocationSchedule_collapse" aria-expanded="true" aria-controls="FuelAllocationSchedule_collapse" style="margin-left: 10px;">FuelAllocationSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FuelAllocationSchedule_collapse" aria-expanded="true" aria-controls="FuelAllocationSchedule_collapse" style="margin-left: 10px;">FuelAllocationSchedule</a></legend>
                     <div id="FuelAllocationSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -1797,7 +1797,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FuelAllocationSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_FuelAllocationSchedule_collapse" style="margin-left: 10px;">FuelAllocationSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FuelAllocationSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_FuelAllocationSchedule_collapse" style="margin-left: 10px;">FuelAllocationSchedule</a></legend>
                     <div id="{{id}}_FuelAllocationSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -1899,7 +1899,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroGeneratingEfficiencyCurve_collapse" aria-expanded="true" aria-controls="HydroGeneratingEfficiencyCurve_collapse" style="margin-left: 10px;">HydroGeneratingEfficiencyCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HydroGeneratingEfficiencyCurve_collapse" aria-expanded="true" aria-controls="HydroGeneratingEfficiencyCurve_collapse" style="margin-left: 10px;">HydroGeneratingEfficiencyCurve</a></legend>
                     <div id="HydroGeneratingEfficiencyCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -1927,7 +1927,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HydroGeneratingEfficiencyCurve_collapse" aria-expanded="true" aria-controls="{{id}}_HydroGeneratingEfficiencyCurve_collapse" style="margin-left: 10px;">HydroGeneratingEfficiencyCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HydroGeneratingEfficiencyCurve_collapse" aria-expanded="true" aria-controls="{{id}}_HydroGeneratingEfficiencyCurve_collapse" style="margin-left: 10px;">HydroGeneratingEfficiencyCurve</a></legend>
                     <div id="{{id}}_HydroGeneratingEfficiencyCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -2016,7 +2016,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenUnitOpSchedule_collapse" aria-expanded="true" aria-controls="GenUnitOpSchedule_collapse" style="margin-left: 10px;">GenUnitOpSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GenUnitOpSchedule_collapse" aria-expanded="true" aria-controls="GenUnitOpSchedule_collapse" style="margin-left: 10px;">GenUnitOpSchedule</a></legend>
                     <div id="GenUnitOpSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
@@ -2044,7 +2044,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GenUnitOpSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_GenUnitOpSchedule_collapse" style="margin-left: 10px;">GenUnitOpSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GenUnitOpSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_GenUnitOpSchedule_collapse" style="margin-left: 10px;">GenUnitOpSchedule</a></legend>
                     <div id="{{id}}_GenUnitOpSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
@@ -2135,7 +2135,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRateCurve_collapse" aria-expanded="true" aria-controls="HeatRateCurve_collapse" style="margin-left: 10px;">HeatRateCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HeatRateCurve_collapse" aria-expanded="true" aria-controls="HeatRateCurve_collapse" style="margin-left: 10px;">HeatRateCurve</a></legend>
                     <div id="HeatRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -2164,7 +2164,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HeatRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_HeatRateCurve_collapse" style="margin-left: 10px;">HeatRateCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HeatRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_HeatRateCurve_collapse" style="margin-left: 10px;">HeatRateCurve</a></legend>
                     <div id="{{id}}_HeatRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -2257,7 +2257,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenUnitOpCostCurve_collapse" aria-expanded="true" aria-controls="GenUnitOpCostCurve_collapse" style="margin-left: 10px;">GenUnitOpCostCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GenUnitOpCostCurve_collapse" aria-expanded="true" aria-controls="GenUnitOpCostCurve_collapse" style="margin-left: 10px;">GenUnitOpCostCurve</a></legend>
                     <div id="GenUnitOpCostCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -2286,7 +2286,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GenUnitOpCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_GenUnitOpCostCurve_collapse" style="margin-left: 10px;">GenUnitOpCostCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GenUnitOpCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_GenUnitOpCostCurve_collapse" style="margin-left: 10px;">GenUnitOpCostCurve</a></legend>
                     <div id="{{id}}_GenUnitOpCostCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -2375,7 +2375,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamSendoutSchedule_collapse" aria-expanded="true" aria-controls="SteamSendoutSchedule_collapse" style="margin-left: 10px;">SteamSendoutSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SteamSendoutSchedule_collapse" aria-expanded="true" aria-controls="SteamSendoutSchedule_collapse" style="margin-left: 10px;">SteamSendoutSchedule</a></legend>
                     <div id="SteamSendoutSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
@@ -2403,7 +2403,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SteamSendoutSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_SteamSendoutSchedule_collapse" style="margin-left: 10px;">SteamSendoutSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SteamSendoutSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_SteamSendoutSchedule_collapse" style="margin-left: 10px;">SteamSendoutSchedule</a></legend>
                     <div id="{{id}}_SteamSendoutSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
@@ -2492,7 +2492,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TailbayLossCurve_collapse" aria-expanded="true" aria-controls="TailbayLossCurve_collapse" style="margin-left: 10px;">TailbayLossCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TailbayLossCurve_collapse" aria-expanded="true" aria-controls="TailbayLossCurve_collapse" style="margin-left: 10px;">TailbayLossCurve</a></legend>
                     <div id="TailbayLossCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -2520,7 +2520,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TailbayLossCurve_collapse" aria-expanded="true" aria-controls="{{id}}_TailbayLossCurve_collapse" style="margin-left: 10px;">TailbayLossCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TailbayLossCurve_collapse" aria-expanded="true" aria-controls="{{id}}_TailbayLossCurve_collapse" style="margin-left: 10px;">TailbayLossCurve</a></legend>
                     <div id="{{id}}_TailbayLossCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -2613,7 +2613,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CAESPlant_collapse" aria-expanded="true" aria-controls="CAESPlant_collapse" style="margin-left: 10px;">CAESPlant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CAESPlant_collapse" aria-expanded="true" aria-controls="CAESPlant_collapse" style="margin-left: 10px;">CAESPlant</a></legend>
                     <div id="CAESPlant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -2644,7 +2644,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CAESPlant_collapse" aria-expanded="true" aria-controls="{{id}}_CAESPlant_collapse" style="margin-left: 10px;">CAESPlant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CAESPlant_collapse" aria-expanded="true" aria-controls="{{id}}_CAESPlant_collapse" style="margin-left: 10px;">CAESPlant</a></legend>
                     <div id="{{id}}_CAESPlant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -2746,7 +2746,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EmissionCurve_collapse" aria-expanded="true" aria-controls="EmissionCurve_collapse" style="margin-left: 10px;">EmissionCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EmissionCurve_collapse" aria-expanded="true" aria-controls="EmissionCurve_collapse" style="margin-left: 10px;">EmissionCurve</a></legend>
                     <div id="EmissionCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -2779,7 +2779,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EmissionCurve_collapse" aria-expanded="true" aria-controls="{{id}}_EmissionCurve_collapse" style="margin-left: 10px;">EmissionCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EmissionCurve_collapse" aria-expanded="true" aria-controls="{{id}}_EmissionCurve_collapse" style="margin-left: 10px;">EmissionCurve</a></legend>
                     <div id="{{id}}_EmissionCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -2874,7 +2874,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartMainFuelCurve_collapse" aria-expanded="true" aria-controls="StartMainFuelCurve_collapse" style="margin-left: 10px;">StartMainFuelCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StartMainFuelCurve_collapse" aria-expanded="true" aria-controls="StartMainFuelCurve_collapse" style="margin-left: 10px;">StartMainFuelCurve</a></legend>
                     <div id="StartMainFuelCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -2905,7 +2905,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartMainFuelCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartMainFuelCurve_collapse" style="margin-left: 10px;">StartMainFuelCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StartMainFuelCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartMainFuelCurve_collapse" style="margin-left: 10px;">StartMainFuelCurve</a></legend>
                     <div id="{{id}}_StartMainFuelCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -2996,7 +2996,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartRampCurve_collapse" aria-expanded="true" aria-controls="StartRampCurve_collapse" style="margin-left: 10px;">StartRampCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StartRampCurve_collapse" aria-expanded="true" aria-controls="StartRampCurve_collapse" style="margin-left: 10px;">StartRampCurve</a></legend>
                     <div id="StartRampCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -3025,7 +3025,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartRampCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartRampCurve_collapse" style="margin-left: 10px;">StartRampCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StartRampCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartRampCurve_collapse" style="margin-left: 10px;">StartRampCurve</a></legend>
                     <div id="{{id}}_StartRampCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -3138,7 +3138,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FossilFuel_collapse" aria-expanded="true" aria-controls="FossilFuel_collapse" style="margin-left: 10px;">FossilFuel</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FossilFuel_collapse" aria-expanded="true" aria-controls="FossilFuel_collapse" style="margin-left: 10px;">FossilFuel</a></legend>
                     <div id="FossilFuel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -3181,7 +3181,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FossilFuel_collapse" aria-expanded="true" aria-controls="{{id}}_FossilFuel_collapse" style="margin-left: 10px;">FossilFuel</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FossilFuel_collapse" aria-expanded="true" aria-controls="{{id}}_FossilFuel_collapse" style="margin-left: 10px;">FossilFuel</a></legend>
                     <div id="{{id}}_FossilFuel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -3373,7 +3373,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratingUnit_collapse" aria-expanded="true" aria-controls="GeneratingUnit_collapse" style="margin-left: 10px;">GeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GeneratingUnit_collapse" aria-expanded="true" aria-controls="GeneratingUnit_collapse" style="margin-left: 10px;">GeneratingUnit</a></legend>
                     <div id="GeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
@@ -3454,7 +3454,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_GeneratingUnit_collapse" style="margin-left: 10px;">GeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_GeneratingUnit_collapse" style="margin-left: 10px;">GeneratingUnit</a></legend>
                     <div id="{{id}}_GeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
@@ -3645,7 +3645,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPowerPlant_collapse" aria-expanded="true" aria-controls="HydroPowerPlant_collapse" style="margin-left: 10px;">HydroPowerPlant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HydroPowerPlant_collapse" aria-expanded="true" aria-controls="HydroPowerPlant_collapse" style="margin-left: 10px;">HydroPowerPlant</a></legend>
                     <div id="HydroPowerPlant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -3691,7 +3691,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HydroPowerPlant_collapse" aria-expanded="true" aria-controls="{{id}}_HydroPowerPlant_collapse" style="margin-left: 10px;">HydroPowerPlant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HydroPowerPlant_collapse" aria-expanded="true" aria-controls="{{id}}_HydroPowerPlant_collapse" style="margin-left: 10px;">HydroPowerPlant</a></legend>
                     <div id="{{id}}_HydroPowerPlant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -3803,7 +3803,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroPumpOpSchedule_collapse" aria-expanded="true" aria-controls="HydroPumpOpSchedule_collapse" style="margin-left: 10px;">HydroPumpOpSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HydroPumpOpSchedule_collapse" aria-expanded="true" aria-controls="HydroPumpOpSchedule_collapse" style="margin-left: 10px;">HydroPumpOpSchedule</a></legend>
                     <div id="HydroPumpOpSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
@@ -3831,7 +3831,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HydroPumpOpSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_HydroPumpOpSchedule_collapse" style="margin-left: 10px;">HydroPumpOpSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HydroPumpOpSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_HydroPumpOpSchedule_collapse" style="margin-left: 10px;">HydroPumpOpSchedule</a></legend>
                     <div id="{{id}}_HydroPumpOpSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
@@ -3922,7 +3922,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShutdownCurve_collapse" aria-expanded="true" aria-controls="ShutdownCurve_collapse" style="margin-left: 10px;">ShutdownCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ShutdownCurve_collapse" aria-expanded="true" aria-controls="ShutdownCurve_collapse" style="margin-left: 10px;">ShutdownCurve</a></legend>
                     <div id="ShutdownCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -3952,7 +3952,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShutdownCurve_collapse" aria-expanded="true" aria-controls="{{id}}_ShutdownCurve_collapse" style="margin-left: 10px;">ShutdownCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ShutdownCurve_collapse" aria-expanded="true" aria-controls="{{id}}_ShutdownCurve_collapse" style="margin-left: 10px;">ShutdownCurve</a></legend>
                     <div id="{{id}}_ShutdownCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -4049,7 +4049,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EmissionAccount_collapse" aria-expanded="true" aria-controls="EmissionAccount_collapse" style="margin-left: 10px;">EmissionAccount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EmissionAccount_collapse" aria-expanded="true" aria-controls="EmissionAccount_collapse" style="margin-left: 10px;">EmissionAccount</a></legend>
                     <div id="EmissionAccount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -4083,7 +4083,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EmissionAccount_collapse" aria-expanded="true" aria-controls="{{id}}_EmissionAccount_collapse" style="margin-left: 10px;">EmissionAccount</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EmissionAccount_collapse" aria-expanded="true" aria-controls="{{id}}_EmissionAccount_collapse" style="margin-left: 10px;">EmissionAccount</a></legend>
                     <div id="{{id}}_EmissionAccount_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -4186,7 +4186,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatInputCurve_collapse" aria-expanded="true" aria-controls="HeatInputCurve_collapse" style="margin-left: 10px;">HeatInputCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HeatInputCurve_collapse" aria-expanded="true" aria-controls="HeatInputCurve_collapse" style="margin-left: 10px;">HeatInputCurve</a></legend>
                     <div id="HeatInputCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -4219,7 +4219,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HeatInputCurve_collapse" aria-expanded="true" aria-controls="{{id}}_HeatInputCurve_collapse" style="margin-left: 10px;">HeatInputCurve</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HeatInputCurve_collapse" aria-expanded="true" aria-controls="{{id}}_HeatInputCurve_collapse" style="margin-left: 10px;">HeatInputCurve</a></legend>
                     <div id="{{id}}_HeatInputCurve_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -4342,7 +4342,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartupModel_collapse" aria-expanded="true" aria-controls="StartupModel_collapse" style="margin-left: 10px;">StartupModel</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StartupModel_collapse" aria-expanded="true" aria-controls="StartupModel_collapse" style="margin-left: 10px;">StartupModel</a></legend>
                     <div id="StartupModel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -4383,7 +4383,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartupModel_collapse" aria-expanded="true" aria-controls="{{id}}_StartupModel_collapse" style="margin-left: 10px;">StartupModel</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StartupModel_collapse" aria-expanded="true" aria-controls="{{id}}_StartupModel_collapse" style="margin-left: 10px;">StartupModel</a></legend>
                     <div id="{{id}}_StartupModel_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -4507,7 +4507,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostPerHeatUnit_collapse" aria-expanded="true" aria-controls="CostPerHeatUnit_collapse" style="margin-left: 10px;">CostPerHeatUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CostPerHeatUnit_collapse" aria-expanded="true" aria-controls="CostPerHeatUnit_collapse" style="margin-left: 10px;">CostPerHeatUnit</a></legend>
                     <div id="CostPerHeatUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -4539,7 +4539,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CostPerHeatUnit_collapse" aria-expanded="true" aria-controls="{{id}}_CostPerHeatUnit_collapse" style="margin-left: 10px;">CostPerHeatUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CostPerHeatUnit_collapse" aria-expanded="true" aria-controls="{{id}}_CostPerHeatUnit_collapse" style="margin-left: 10px;">CostPerHeatUnit</a></legend>
                     <div id="{{id}}_CostPerHeatUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -4625,7 +4625,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombinedCyclePlant_collapse" aria-expanded="true" aria-controls="CombinedCyclePlant_collapse" style="margin-left: 10px;">CombinedCyclePlant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CombinedCyclePlant_collapse" aria-expanded="true" aria-controls="CombinedCyclePlant_collapse" style="margin-left: 10px;">CombinedCyclePlant</a></legend>
                     <div id="CombinedCyclePlant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
@@ -4656,7 +4656,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CombinedCyclePlant_collapse" aria-expanded="true" aria-controls="{{id}}_CombinedCyclePlant_collapse" style="margin-left: 10px;">CombinedCyclePlant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CombinedCyclePlant_collapse" aria-expanded="true" aria-controls="{{id}}_CombinedCyclePlant_collapse" style="margin-left: 10px;">CombinedCyclePlant</a></legend>
                     <div id="{{id}}_CombinedCyclePlant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
@@ -4749,7 +4749,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TargetLevelSchedule_collapse" aria-expanded="true" aria-controls="TargetLevelSchedule_collapse" style="margin-left: 10px;">TargetLevelSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TargetLevelSchedule_collapse" aria-expanded="true" aria-controls="TargetLevelSchedule_collapse" style="margin-left: 10px;">TargetLevelSchedule</a></legend>
                     <div id="TargetLevelSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.template.call (this) +
@@ -4779,7 +4779,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TargetLevelSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_TargetLevelSchedule_collapse" style="margin-left: 10px;">TargetLevelSchedule</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TargetLevelSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_TargetLevelSchedule_collapse" style="margin-left: 10px;">TargetLevelSchedule</a></legend>
                     <div id="{{id}}_TargetLevelSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
@@ -4872,7 +4872,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InflowForecast_collapse" aria-expanded="true" aria-controls="InflowForecast_collapse" style="margin-left: 10px;">InflowForecast</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#InflowForecast_collapse" aria-expanded="true" aria-controls="InflowForecast_collapse" style="margin-left: 10px;">InflowForecast</a></legend>
                     <div id="InflowForecast_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
@@ -4900,7 +4900,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InflowForecast_collapse" aria-expanded="true" aria-controls="{{id}}_InflowForecast_collapse" style="margin-left: 10px;">InflowForecast</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_InflowForecast_collapse" aria-expanded="true" aria-controls="{{id}}_InflowForecast_collapse" style="margin-left: 10px;">InflowForecast</a></legend>
                     <div id="{{id}}_InflowForecast_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
@@ -5011,7 +5011,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="ThermalGeneratingUnit_collapse" style="margin-left: 10px;">ThermalGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="ThermalGeneratingUnit_collapse" style="margin-left: 10px;">ThermalGeneratingUnit</a></legend>
                     <div id="ThermalGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.template.call (this) +
@@ -5059,7 +5059,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_ThermalGeneratingUnit_collapse" style="margin-left: 10px;">ThermalGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_ThermalGeneratingUnit_collapse" style="margin-left: 10px;">ThermalGeneratingUnit</a></legend>
                     <div id="{{id}}_ThermalGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.edit_template.call (this) +
@@ -5183,7 +5183,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroGeneratingUnit_collapse" aria-expanded="true" aria-controls="HydroGeneratingUnit_collapse" style="margin-left: 10px;">HydroGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HydroGeneratingUnit_collapse" aria-expanded="true" aria-controls="HydroGeneratingUnit_collapse" style="margin-left: 10px;">HydroGeneratingUnit</a></legend>
                     <div id="HydroGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.template.call (this) +
@@ -5222,7 +5222,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HydroGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_HydroGeneratingUnit_collapse" style="margin-left: 10px;">HydroGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HydroGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_HydroGeneratingUnit_collapse" style="margin-left: 10px;">HydroGeneratingUnit</a></legend>
                     <div id="{{id}}_HydroGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.edit_template.call (this) +
@@ -5320,7 +5320,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGeneratingUnit_collapse" aria-expanded="true" aria-controls="WindGeneratingUnit_collapse" style="margin-left: 10px;">WindGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#WindGeneratingUnit_collapse" aria-expanded="true" aria-controls="WindGeneratingUnit_collapse" style="margin-left: 10px;">WindGeneratingUnit</a></legend>
                     <div id="WindGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.template.call (this) +
@@ -5350,7 +5350,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_WindGeneratingUnit_collapse" style="margin-left: 10px;">WindGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_WindGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_WindGeneratingUnit_collapse" style="margin-left: 10px;">WindGeneratingUnit</a></legend>
                     <div id="{{id}}_WindGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.edit_template.call (this) +
@@ -5424,7 +5424,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NuclearGeneratingUnit_collapse" aria-expanded="true" aria-controls="NuclearGeneratingUnit_collapse" style="margin-left: 10px;">NuclearGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#NuclearGeneratingUnit_collapse" aria-expanded="true" aria-controls="NuclearGeneratingUnit_collapse" style="margin-left: 10px;">NuclearGeneratingUnit</a></legend>
                     <div id="NuclearGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.template.call (this) +
@@ -5451,7 +5451,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NuclearGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_NuclearGeneratingUnit_collapse" style="margin-left: 10px;">NuclearGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_NuclearGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_NuclearGeneratingUnit_collapse" style="margin-left: 10px;">NuclearGeneratingUnit</a></legend>
                     <div id="{{id}}_NuclearGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.edit_template.call (this) +
@@ -5521,7 +5521,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SolarGeneratingUnit_collapse" aria-expanded="true" aria-controls="SolarGeneratingUnit_collapse" style="margin-left: 10px;">SolarGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SolarGeneratingUnit_collapse" aria-expanded="true" aria-controls="SolarGeneratingUnit_collapse" style="margin-left: 10px;">SolarGeneratingUnit</a></legend>
                     <div id="SolarGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.template.call (this) +
@@ -5548,7 +5548,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SolarGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_SolarGeneratingUnit_collapse" style="margin-left: 10px;">SolarGeneratingUnit</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SolarGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_SolarGeneratingUnit_collapse" style="margin-left: 10px;">SolarGeneratingUnit</a></legend>
                     <div id="{{id}}_SolarGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + GeneratingUnit.prototype.edit_template.call (this) +

@@ -75,7 +75,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="AuxiliaryEquipment_collapse" style="margin-left: 10px;">AuxiliaryEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="AuxiliaryEquipment_collapse" style="margin-left: 10px;">AuxiliaryEquipment</a></legend>
                     <div id="AuxiliaryEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.template.call (this) +
@@ -103,7 +103,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryEquipment_collapse" style="margin-left: 10px;">AuxiliaryEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryEquipment_collapse" style="margin-left: 10px;">AuxiliaryEquipment</a></legend>
                     <div id="{{id}}_AuxiliaryEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
@@ -188,7 +188,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Sensor_collapse" aria-expanded="true" aria-controls="Sensor_collapse" style="margin-left: 10px;">Sensor</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Sensor_collapse" aria-expanded="true" aria-controls="Sensor_collapse" style="margin-left: 10px;">Sensor</a></legend>
                     <div id="Sensor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.template.call (this) +
@@ -215,7 +215,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Sensor_collapse" aria-expanded="true" aria-controls="{{id}}_Sensor_collapse" style="margin-left: 10px;">Sensor</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Sensor_collapse" aria-expanded="true" aria-controls="{{id}}_Sensor_collapse" style="margin-left: 10px;">Sensor</a></legend>
                     <div id="{{id}}_Sensor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
@@ -285,7 +285,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WaveTrap_collapse" aria-expanded="true" aria-controls="WaveTrap_collapse" style="margin-left: 10px;">WaveTrap</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#WaveTrap_collapse" aria-expanded="true" aria-controls="WaveTrap_collapse" style="margin-left: 10px;">WaveTrap</a></legend>
                     <div id="WaveTrap_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.template.call (this) +
@@ -312,7 +312,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WaveTrap_collapse" aria-expanded="true" aria-controls="{{id}}_WaveTrap_collapse" style="margin-left: 10px;">WaveTrap</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_WaveTrap_collapse" aria-expanded="true" aria-controls="{{id}}_WaveTrap_collapse" style="margin-left: 10px;">WaveTrap</a></legend>
                     <div id="{{id}}_WaveTrap_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
@@ -392,7 +392,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PotentialTransformer_collapse" aria-expanded="true" aria-controls="PotentialTransformer_collapse" style="margin-left: 10px;">PotentialTransformer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PotentialTransformer_collapse" aria-expanded="true" aria-controls="PotentialTransformer_collapse" style="margin-left: 10px;">PotentialTransformer</a></legend>
                     <div id="PotentialTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.template.call (this) +
@@ -425,7 +425,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PotentialTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_PotentialTransformer_collapse" style="margin-left: 10px;">PotentialTransformer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PotentialTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_PotentialTransformer_collapse" style="margin-left: 10px;">PotentialTransformer</a></legend>
                     <div id="{{id}}_PotentialTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.edit_template.call (this) +
@@ -507,7 +507,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultIndicator_collapse" aria-expanded="true" aria-controls="FaultIndicator_collapse" style="margin-left: 10px;">FaultIndicator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FaultIndicator_collapse" aria-expanded="true" aria-controls="FaultIndicator_collapse" style="margin-left: 10px;">FaultIndicator</a></legend>
                     <div id="FaultIndicator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.template.call (this) +
@@ -534,7 +534,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FaultIndicator_collapse" aria-expanded="true" aria-controls="{{id}}_FaultIndicator_collapse" style="margin-left: 10px;">FaultIndicator</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FaultIndicator_collapse" aria-expanded="true" aria-controls="{{id}}_FaultIndicator_collapse" style="margin-left: 10px;">FaultIndicator</a></legend>
                     <div id="{{id}}_FaultIndicator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
@@ -616,7 +616,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentTransformer_collapse" aria-expanded="true" aria-controls="CurrentTransformer_collapse" style="margin-left: 10px;">CurrentTransformer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CurrentTransformer_collapse" aria-expanded="true" aria-controls="CurrentTransformer_collapse" style="margin-left: 10px;">CurrentTransformer</a></legend>
                     <div id="CurrentTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.template.call (this) +
@@ -648,7 +648,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentTransformer_collapse" style="margin-left: 10px;">CurrentTransformer</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CurrentTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentTransformer_collapse" style="margin-left: 10px;">CurrentTransformer</a></legend>
                     <div id="{{id}}_CurrentTransformer_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.edit_template.call (this) +
@@ -730,7 +730,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PostLineSensor_collapse" aria-expanded="true" aria-controls="PostLineSensor_collapse" style="margin-left: 10px;">PostLineSensor</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PostLineSensor_collapse" aria-expanded="true" aria-controls="PostLineSensor_collapse" style="margin-left: 10px;">PostLineSensor</a></legend>
                     <div id="PostLineSensor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.template.call (this) +
@@ -757,7 +757,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PostLineSensor_collapse" aria-expanded="true" aria-controls="{{id}}_PostLineSensor_collapse" style="margin-left: 10px;">PostLineSensor</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PostLineSensor_collapse" aria-expanded="true" aria-controls="{{id}}_PostLineSensor_collapse" style="margin-left: 10px;">PostLineSensor</a></legend>
                     <div id="{{id}}_PostLineSensor_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.edit_template.call (this) +
@@ -827,7 +827,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SurgeArrester_collapse" aria-expanded="true" aria-controls="SurgeArrester_collapse" style="margin-left: 10px;">SurgeArrester</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SurgeArrester_collapse" aria-expanded="true" aria-controls="SurgeArrester_collapse" style="margin-left: 10px;">SurgeArrester</a></legend>
                     <div id="SurgeArrester_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.template.call (this) +
@@ -854,7 +854,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SurgeArrester_collapse" aria-expanded="true" aria-controls="{{id}}_SurgeArrester_collapse" style="margin-left: 10px;">SurgeArrester</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SurgeArrester_collapse" aria-expanded="true" aria-controls="{{id}}_SurgeArrester_collapse" style="margin-left: 10px;">SurgeArrester</a></legend>
                     <div id="{{id}}_SurgeArrester_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +

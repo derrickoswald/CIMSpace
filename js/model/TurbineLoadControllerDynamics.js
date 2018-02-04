@@ -60,7 +60,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerDynamics_collapse" style="margin-left: 10px;">TurbineLoadControllerDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerDynamics_collapse" style="margin-left: 10px;">TurbineLoadControllerDynamics</a></legend>
                     <div id="TurbineLoadControllerDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -88,7 +88,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_TurbineLoadControllerDynamics_collapse" style="margin-left: 10px;">TurbineLoadControllerDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TurbineLoadControllerDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_TurbineLoadControllerDynamics_collapse" style="margin-left: 10px;">TurbineLoadControllerDynamics</a></legend>
                     <div id="{{id}}_TurbineLoadControllerDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -199,7 +199,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbLCFB1_collapse" aria-expanded="true" aria-controls="TurbLCFB1_collapse" style="margin-left: 10px;">TurbLCFB1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TurbLCFB1_collapse" aria-expanded="true" aria-controls="TurbLCFB1_collapse" style="margin-left: 10px;">TurbLCFB1</a></legend>
                     <div id="TurbLCFB1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineLoadControllerDynamics.prototype.template.call (this) +
@@ -238,7 +238,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TurbLCFB1_collapse" aria-expanded="true" aria-controls="{{id}}_TurbLCFB1_collapse" style="margin-left: 10px;">TurbLCFB1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TurbLCFB1_collapse" aria-expanded="true" aria-controls="{{id}}_TurbLCFB1_collapse" style="margin-left: 10px;">TurbLCFB1</a></legend>
                     <div id="{{id}}_TurbLCFB1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + TurbineLoadControllerDynamics.prototype.edit_template.call (this) +

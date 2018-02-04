@@ -62,7 +62,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="MechanicalLoadDynamics_collapse" style="margin-left: 10px;">MechanicalLoadDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="MechanicalLoadDynamics_collapse" style="margin-left: 10px;">MechanicalLoadDynamics</a></legend>
                     <div id="MechanicalLoadDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -91,7 +91,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_MechanicalLoadDynamics_collapse" style="margin-left: 10px;">MechanicalLoadDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_MechanicalLoadDynamics_collapse" style="margin-left: 10px;">MechanicalLoadDynamics</a></legend>
                     <div id="{{id}}_MechanicalLoadDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -187,7 +187,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechLoad1_collapse" aria-expanded="true" aria-controls="MechLoad1_collapse" style="margin-left: 10px;">MechLoad1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MechLoad1_collapse" aria-expanded="true" aria-controls="MechLoad1_collapse" style="margin-left: 10px;">MechLoad1</a></legend>
                     <div id="MechLoad1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MechanicalLoadDynamics.prototype.template.call (this) +
@@ -218,7 +218,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MechLoad1_collapse" aria-expanded="true" aria-controls="{{id}}_MechLoad1_collapse" style="margin-left: 10px;">MechLoad1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MechLoad1_collapse" aria-expanded="true" aria-controls="{{id}}_MechLoad1_collapse" style="margin-left: 10px;">MechLoad1</a></legend>
                     <div id="{{id}}_MechLoad1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MechanicalLoadDynamics.prototype.edit_template.call (this) +

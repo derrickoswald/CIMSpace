@@ -64,7 +64,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="UnderexcitationLimiterDynamics_collapse" style="margin-left: 10px;">UnderexcitationLimiterDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#UnderexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="UnderexcitationLimiterDynamics_collapse" style="margin-left: 10px;">UnderexcitationLimiterDynamics</a></legend>
                     <div id="UnderexcitationLimiterDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -93,7 +93,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcitationLimiterDynamics_collapse" style="margin-left: 10px;">UnderexcitationLimiterDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_UnderexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcitationLimiterDynamics_collapse" style="margin-left: 10px;">UnderexcitationLimiterDynamics</a></legend>
                     <div id="{{id}}_UnderexcitationLimiterDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -263,7 +263,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLimIEEE2_collapse" aria-expanded="true" aria-controls="UnderexcLimIEEE2_collapse" style="margin-left: 10px;">UnderexcLimIEEE2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#UnderexcLimIEEE2_collapse" aria-expanded="true" aria-controls="UnderexcLimIEEE2_collapse" style="margin-left: 10px;">UnderexcLimIEEE2</a></legend>
                     <div id="UnderexcLimIEEE2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.template.call (this) +
@@ -330,7 +330,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLimIEEE2_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimIEEE2_collapse" style="margin-left: 10px;">UnderexcLimIEEE2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_UnderexcLimIEEE2_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimIEEE2_collapse" style="margin-left: 10px;">UnderexcLimIEEE2</a></legend>
                     <div id="{{id}}_UnderexcLimIEEE2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
@@ -494,7 +494,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLimX1_collapse" aria-expanded="true" aria-controls="UnderexcLimX1_collapse" style="margin-left: 10px;">UnderexcLimX1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#UnderexcLimX1_collapse" aria-expanded="true" aria-controls="UnderexcLimX1_collapse" style="margin-left: 10px;">UnderexcLimX1</a></legend>
                     <div id="UnderexcLimX1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.template.call (this) +
@@ -527,7 +527,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLimX1_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimX1_collapse" style="margin-left: 10px;">UnderexcLimX1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_UnderexcLimX1_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimX1_collapse" style="margin-left: 10px;">UnderexcLimX1</a></legend>
                     <div id="{{id}}_UnderexcLimX1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
@@ -625,7 +625,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLimX2_collapse" aria-expanded="true" aria-controls="UnderexcLimX2_collapse" style="margin-left: 10px;">UnderexcLimX2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#UnderexcLimX2_collapse" aria-expanded="true" aria-controls="UnderexcLimX2_collapse" style="margin-left: 10px;">UnderexcLimX2</a></legend>
                     <div id="UnderexcLimX2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.template.call (this) +
@@ -659,7 +659,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLimX2_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimX2_collapse" style="margin-left: 10px;">UnderexcLimX2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_UnderexcLimX2_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimX2_collapse" style="margin-left: 10px;">UnderexcLimX2</a></legend>
                     <div id="{{id}}_UnderexcLimX2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
@@ -777,7 +777,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLimIEEE1_collapse" aria-expanded="true" aria-controls="UnderexcLimIEEE1_collapse" style="margin-left: 10px;">UnderexcLimIEEE1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#UnderexcLimIEEE1_collapse" aria-expanded="true" aria-controls="UnderexcLimIEEE1_collapse" style="margin-left: 10px;">UnderexcLimIEEE1</a></legend>
                     <div id="UnderexcLimIEEE1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.template.call (this) +
@@ -819,7 +819,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLimIEEE1_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimIEEE1_collapse" style="margin-left: 10px;">UnderexcLimIEEE1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_UnderexcLimIEEE1_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimIEEE1_collapse" style="margin-left: 10px;">UnderexcLimIEEE1</a></legend>
                     <div id="{{id}}_UnderexcLimIEEE1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
@@ -937,7 +937,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLim2Simplified_collapse" aria-expanded="true" aria-controls="UnderexcLim2Simplified_collapse" style="margin-left: 10px;">UnderexcLim2Simplified</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#UnderexcLim2Simplified_collapse" aria-expanded="true" aria-controls="UnderexcLim2Simplified_collapse" style="margin-left: 10px;">UnderexcLim2Simplified</a></legend>
                     <div id="UnderexcLim2Simplified_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.template.call (this) +
@@ -971,7 +971,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLim2Simplified_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLim2Simplified_collapse" style="margin-left: 10px;">UnderexcLim2Simplified</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_UnderexcLim2Simplified_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLim2Simplified_collapse" style="margin-left: 10px;">UnderexcLim2Simplified</a></legend>
                     <div id="{{id}}_UnderexcLim2Simplified_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +

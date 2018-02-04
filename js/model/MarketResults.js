@@ -64,7 +64,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceClearing_collapse" aria-expanded="true" aria-controls="ResourceClearing_collapse" style="margin-left: 10px;">ResourceClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceClearing_collapse" aria-expanded="true" aria-controls="ResourceClearing_collapse" style="margin-left: 10px;">ResourceClearing</a></legend>
                     <div id="ResourceClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -97,7 +97,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceClearing_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceClearing_collapse" style="margin-left: 10px;">ResourceClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceClearing_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceClearing_collapse" style="margin-left: 10px;">ResourceClearing</a></legend>
                     <div id="{{id}}_ResourceClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -197,7 +197,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketResults_collapse" aria-expanded="true" aria-controls="MarketResults_collapse" style="margin-left: 10px;">MarketResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketResults_collapse" aria-expanded="true" aria-controls="MarketResults_collapse" style="margin-left: 10px;">MarketResults</a></legend>
                     <div id="MarketResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -232,7 +232,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketResults_collapse" aria-expanded="true" aria-controls="{{id}}_MarketResults_collapse" style="margin-left: 10px;">MarketResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketResults_collapse" aria-expanded="true" aria-controls="{{id}}_MarketResults_collapse" style="margin-left: 10px;">MarketResults</a></legend>
                     <div id="{{id}}_MarketResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -353,7 +353,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PnodeResults_collapse" aria-expanded="true" aria-controls="PnodeResults_collapse" style="margin-left: 10px;">PnodeResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PnodeResults_collapse" aria-expanded="true" aria-controls="PnodeResults_collapse" style="margin-left: 10px;">PnodeResults</a></legend>
                     <div id="PnodeResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -390,7 +390,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PnodeResults_collapse" aria-expanded="true" aria-controls="{{id}}_PnodeResults_collapse" style="margin-left: 10px;">PnodeResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PnodeResults_collapse" aria-expanded="true" aria-controls="{{id}}_PnodeResults_collapse" style="margin-left: 10px;">PnodeResults</a></legend>
                     <div id="{{id}}_PnodeResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -496,7 +496,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConstraintClearing_collapse" aria-expanded="true" aria-controls="ConstraintClearing_collapse" style="margin-left: 10px;">ConstraintClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ConstraintClearing_collapse" aria-expanded="true" aria-controls="ConstraintClearing_collapse" style="margin-left: 10px;">ConstraintClearing</a></legend>
                     <div id="ConstraintClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -526,7 +526,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConstraintClearing_collapse" aria-expanded="true" aria-controls="{{id}}_ConstraintClearing_collapse" style="margin-left: 10px;">ConstraintClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ConstraintClearing_collapse" aria-expanded="true" aria-controls="{{id}}_ConstraintClearing_collapse" style="margin-left: 10px;">ConstraintClearing</a></legend>
                     <div id="{{id}}_ConstraintClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -611,7 +611,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InstructionClearing_collapse" aria-expanded="true" aria-controls="InstructionClearing_collapse" style="margin-left: 10px;">InstructionClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#InstructionClearing_collapse" aria-expanded="true" aria-controls="InstructionClearing_collapse" style="margin-left: 10px;">InstructionClearing</a></legend>
                     <div id="InstructionClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -641,7 +641,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InstructionClearing_collapse" aria-expanded="true" aria-controls="{{id}}_InstructionClearing_collapse" style="margin-left: 10px;">InstructionClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_InstructionClearing_collapse" aria-expanded="true" aria-controls="{{id}}_InstructionClearing_collapse" style="margin-left: 10px;">InstructionClearing</a></legend>
                     <div id="{{id}}_InstructionClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -734,7 +734,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SelfScheduleBreakdown_collapse" aria-expanded="true" aria-controls="SelfScheduleBreakdown_collapse" style="margin-left: 10px;">SelfScheduleBreakdown</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SelfScheduleBreakdown_collapse" aria-expanded="true" aria-controls="SelfScheduleBreakdown_collapse" style="margin-left: 10px;">SelfScheduleBreakdown</a></legend>
                     <div id="SelfScheduleBreakdown_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -764,7 +764,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SelfScheduleBreakdown_collapse" aria-expanded="true" aria-controls="{{id}}_SelfScheduleBreakdown_collapse" style="margin-left: 10px;">SelfScheduleBreakdown</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SelfScheduleBreakdown_collapse" aria-expanded="true" aria-controls="{{id}}_SelfScheduleBreakdown_collapse" style="margin-left: 10px;">SelfScheduleBreakdown</a></legend>
                     <div id="{{id}}_SelfScheduleBreakdown_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -863,7 +863,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExPostLossResults_collapse" aria-expanded="true" aria-controls="ExPostLossResults_collapse" style="margin-left: 10px;">ExPostLossResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExPostLossResults_collapse" aria-expanded="true" aria-controls="ExPostLossResults_collapse" style="margin-left: 10px;">ExPostLossResults</a></legend>
                     <div id="ExPostLossResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -894,7 +894,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExPostLossResults_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostLossResults_collapse" style="margin-left: 10px;">ExPostLossResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExPostLossResults_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostLossResults_collapse" style="margin-left: 10px;">ExPostLossResults</a></legend>
                     <div id="{{id}}_ExPostLossResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1026,7 +1026,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceDispatchResults_collapse" aria-expanded="true" aria-controls="ResourceDispatchResults_collapse" style="margin-left: 10px;">ResourceDispatchResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceDispatchResults_collapse" aria-expanded="true" aria-controls="ResourceDispatchResults_collapse" style="margin-left: 10px;">ResourceDispatchResults</a></legend>
                     <div id="ResourceDispatchResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1072,7 +1072,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceDispatchResults_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceDispatchResults_collapse" style="margin-left: 10px;">ResourceDispatchResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceDispatchResults_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceDispatchResults_collapse" style="margin-left: 10px;">ResourceDispatchResults</a></legend>
                     <div id="{{id}}_ResourceDispatchResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1240,7 +1240,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DotInstruction_collapse" aria-expanded="true" aria-controls="DotInstruction_collapse" style="margin-left: 10px;">DotInstruction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DotInstruction_collapse" aria-expanded="true" aria-controls="DotInstruction_collapse" style="margin-left: 10px;">DotInstruction</a></legend>
                     <div id="DotInstruction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1291,7 +1291,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DotInstruction_collapse" aria-expanded="true" aria-controls="{{id}}_DotInstruction_collapse" style="margin-left: 10px;">DotInstruction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DotInstruction_collapse" aria-expanded="true" aria-controls="{{id}}_DotInstruction_collapse" style="margin-left: 10px;">DotInstruction</a></legend>
                     <div id="{{id}}_DotInstruction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1431,7 +1431,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MPMTestResults_collapse" aria-expanded="true" aria-controls="MPMTestResults_collapse" style="margin-left: 10px;">MPMTestResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MPMTestResults_collapse" aria-expanded="true" aria-controls="MPMTestResults_collapse" style="margin-left: 10px;">MPMTestResults</a></legend>
                     <div id="MPMTestResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1463,7 +1463,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MPMTestResults_collapse" aria-expanded="true" aria-controls="{{id}}_MPMTestResults_collapse" style="margin-left: 10px;">MPMTestResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MPMTestResults_collapse" aria-expanded="true" aria-controls="{{id}}_MPMTestResults_collapse" style="margin-left: 10px;">MPMTestResults</a></legend>
                     <div id="{{id}}_MPMTestResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1568,7 +1568,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RMROperatorInput_collapse" aria-expanded="true" aria-controls="RMROperatorInput_collapse" style="margin-left: 10px;">RMROperatorInput</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RMROperatorInput_collapse" aria-expanded="true" aria-controls="RMROperatorInput_collapse" style="margin-left: 10px;">RMROperatorInput</a></legend>
                     <div id="RMROperatorInput_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -1600,7 +1600,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RMROperatorInput_collapse" aria-expanded="true" aria-controls="{{id}}_RMROperatorInput_collapse" style="margin-left: 10px;">RMROperatorInput</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RMROperatorInput_collapse" aria-expanded="true" aria-controls="{{id}}_RMROperatorInput_collapse" style="margin-left: 10px;">RMROperatorInput</a></legend>
                     <div id="{{id}}_RMROperatorInput_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -1759,7 +1759,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceAwardInstruction_collapse" aria-expanded="true" aria-controls="ResourceAwardInstruction_collapse" style="margin-left: 10px;">ResourceAwardInstruction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceAwardInstruction_collapse" aria-expanded="true" aria-controls="ResourceAwardInstruction_collapse" style="margin-left: 10px;">ResourceAwardInstruction</a></legend>
                     <div id="ResourceAwardInstruction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -1822,7 +1822,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceAwardInstruction_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceAwardInstruction_collapse" style="margin-left: 10px;">ResourceAwardInstruction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceAwardInstruction_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceAwardInstruction_collapse" style="margin-left: 10px;">ResourceAwardInstruction</a></legend>
                     <div id="{{id}}_ResourceAwardInstruction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -1986,7 +1986,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadFollowingOperatorInput_collapse" aria-expanded="true" aria-controls="LoadFollowingOperatorInput_collapse" style="margin-left: 10px;">LoadFollowingOperatorInput</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadFollowingOperatorInput_collapse" aria-expanded="true" aria-controls="LoadFollowingOperatorInput_collapse" style="margin-left: 10px;">LoadFollowingOperatorInput</a></legend>
                     <div id="LoadFollowingOperatorInput_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -2020,7 +2020,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadFollowingOperatorInput_collapse" aria-expanded="true" aria-controls="{{id}}_LoadFollowingOperatorInput_collapse" style="margin-left: 10px;">LoadFollowingOperatorInput</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadFollowingOperatorInput_collapse" aria-expanded="true" aria-controls="{{id}}_LoadFollowingOperatorInput_collapse" style="margin-left: 10px;">LoadFollowingOperatorInput</a></legend>
                     <div id="{{id}}_LoadFollowingOperatorInput_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -2125,7 +2125,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MPMResourceStatus_collapse" aria-expanded="true" aria-controls="MPMResourceStatus_collapse" style="margin-left: 10px;">MPMResourceStatus</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MPMResourceStatus_collapse" aria-expanded="true" aria-controls="MPMResourceStatus_collapse" style="margin-left: 10px;">MPMResourceStatus</a></legend>
                     <div id="MPMResourceStatus_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -2158,7 +2158,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MPMResourceStatus_collapse" aria-expanded="true" aria-controls="{{id}}_MPMResourceStatus_collapse" style="margin-left: 10px;">MPMResourceStatus</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MPMResourceStatus_collapse" aria-expanded="true" aria-controls="{{id}}_MPMResourceStatus_collapse" style="margin-left: 10px;">MPMResourceStatus</a></legend>
                     <div id="{{id}}_MPMResourceStatus_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -2263,7 +2263,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MitigatedBidSegment_collapse" aria-expanded="true" aria-controls="MitigatedBidSegment_collapse" style="margin-left: 10px;">MitigatedBidSegment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MitigatedBidSegment_collapse" aria-expanded="true" aria-controls="MitigatedBidSegment_collapse" style="margin-left: 10px;">MitigatedBidSegment</a></legend>
                     <div id="MitigatedBidSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -2295,7 +2295,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MitigatedBidSegment_collapse" aria-expanded="true" aria-controls="{{id}}_MitigatedBidSegment_collapse" style="margin-left: 10px;">MitigatedBidSegment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MitigatedBidSegment_collapse" aria-expanded="true" aria-controls="{{id}}_MitigatedBidSegment_collapse" style="margin-left: 10px;">MitigatedBidSegment</a></legend>
                     <div id="{{id}}_MitigatedBidSegment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -2402,7 +2402,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketStatement_collapse" aria-expanded="true" aria-controls="MarketStatement_collapse" style="margin-left: 10px;">MarketStatement</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketStatement_collapse" aria-expanded="true" aria-controls="MarketStatement_collapse" style="margin-left: 10px;">MarketStatement</a></legend>
                     <div id="MarketStatement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -2437,7 +2437,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketStatement_collapse" aria-expanded="true" aria-controls="{{id}}_MarketStatement_collapse" style="margin-left: 10px;">MarketStatement</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketStatement_collapse" aria-expanded="true" aria-controls="{{id}}_MarketStatement_collapse" style="margin-left: 10px;">MarketStatement</a></legend>
                     <div id="{{id}}_MarketStatement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -2544,7 +2544,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceLoadFollowingInst_collapse" aria-expanded="true" aria-controls="ResourceLoadFollowingInst_collapse" style="margin-left: 10px;">ResourceLoadFollowingInst</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceLoadFollowingInst_collapse" aria-expanded="true" aria-controls="ResourceLoadFollowingInst_collapse" style="margin-left: 10px;">ResourceLoadFollowingInst</a></legend>
                     <div id="ResourceLoadFollowingInst_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -2578,7 +2578,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceLoadFollowingInst_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceLoadFollowingInst_collapse" style="margin-left: 10px;">ResourceLoadFollowingInst</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceLoadFollowingInst_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceLoadFollowingInst_collapse" style="margin-left: 10px;">ResourceLoadFollowingInst</a></legend>
                     <div id="{{id}}_ResourceLoadFollowingInst_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -2678,7 +2678,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PnodeClearing_collapse" aria-expanded="true" aria-controls="PnodeClearing_collapse" style="margin-left: 10px;">PnodeClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PnodeClearing_collapse" aria-expanded="true" aria-controls="PnodeClearing_collapse" style="margin-left: 10px;">PnodeClearing</a></legend>
                     <div id="PnodeClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -2708,7 +2708,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PnodeClearing_collapse" aria-expanded="true" aria-controls="{{id}}_PnodeClearing_collapse" style="margin-left: 10px;">PnodeClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PnodeClearing_collapse" aria-expanded="true" aria-controls="{{id}}_PnodeClearing_collapse" style="margin-left: 10px;">PnodeClearing</a></legend>
                     <div id="{{id}}_PnodeClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -2797,7 +2797,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InstructionClearingDOT_collapse" aria-expanded="true" aria-controls="InstructionClearingDOT_collapse" style="margin-left: 10px;">InstructionClearingDOT</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#InstructionClearingDOT_collapse" aria-expanded="true" aria-controls="InstructionClearingDOT_collapse" style="margin-left: 10px;">InstructionClearingDOT</a></legend>
                     <div id="InstructionClearingDOT_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -2829,7 +2829,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InstructionClearingDOT_collapse" aria-expanded="true" aria-controls="{{id}}_InstructionClearingDOT_collapse" style="margin-left: 10px;">InstructionClearingDOT</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_InstructionClearingDOT_collapse" aria-expanded="true" aria-controls="{{id}}_InstructionClearingDOT_collapse" style="margin-left: 10px;">InstructionClearingDOT</a></legend>
                     <div id="{{id}}_InstructionClearingDOT_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -2928,7 +2928,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LossClearingResults_collapse" aria-expanded="true" aria-controls="LossClearingResults_collapse" style="margin-left: 10px;">LossClearingResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LossClearingResults_collapse" aria-expanded="true" aria-controls="LossClearingResults_collapse" style="margin-left: 10px;">LossClearingResults</a></legend>
                     <div id="LossClearingResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -2960,7 +2960,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LossClearingResults_collapse" aria-expanded="true" aria-controls="{{id}}_LossClearingResults_collapse" style="margin-left: 10px;">LossClearingResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LossClearingResults_collapse" aria-expanded="true" aria-controls="{{id}}_LossClearingResults_collapse" style="margin-left: 10px;">LossClearingResults</a></legend>
                     <div id="{{id}}_LossClearingResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -3076,7 +3076,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RUCAwardInstruction_collapse" aria-expanded="true" aria-controls="RUCAwardInstruction_collapse" style="margin-left: 10px;">RUCAwardInstruction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RUCAwardInstruction_collapse" aria-expanded="true" aria-controls="RUCAwardInstruction_collapse" style="margin-left: 10px;">RUCAwardInstruction</a></legend>
                     <div id="RUCAwardInstruction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -3115,7 +3115,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RUCAwardInstruction_collapse" aria-expanded="true" aria-controls="{{id}}_RUCAwardInstruction_collapse" style="margin-left: 10px;">RUCAwardInstruction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RUCAwardInstruction_collapse" aria-expanded="true" aria-controls="{{id}}_RUCAwardInstruction_collapse" style="margin-left: 10px;">RUCAwardInstruction</a></legend>
                     <div id="{{id}}_RUCAwardInstruction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -3229,7 +3229,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MPMClearing_collapse" aria-expanded="true" aria-controls="MPMClearing_collapse" style="margin-left: 10px;">MPMClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MPMClearing_collapse" aria-expanded="true" aria-controls="MPMClearing_collapse" style="margin-left: 10px;">MPMClearing</a></legend>
                     <div id="MPMClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -3262,7 +3262,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MPMClearing_collapse" aria-expanded="true" aria-controls="{{id}}_MPMClearing_collapse" style="margin-left: 10px;">MPMClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MPMClearing_collapse" aria-expanded="true" aria-controls="{{id}}_MPMClearing_collapse" style="margin-left: 10px;">MPMClearing</a></legend>
                     <div id="{{id}}_MPMClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -3393,7 +3393,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BillDeterminant_collapse" aria-expanded="true" aria-controls="BillDeterminant_collapse" style="margin-left: 10px;">BillDeterminant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BillDeterminant_collapse" aria-expanded="true" aria-controls="BillDeterminant_collapse" style="margin-left: 10px;">BillDeterminant</a></legend>
                     <div id="BillDeterminant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -3447,7 +3447,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BillDeterminant_collapse" aria-expanded="true" aria-controls="{{id}}_BillDeterminant_collapse" style="margin-left: 10px;">BillDeterminant</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BillDeterminant_collapse" aria-expanded="true" aria-controls="{{id}}_BillDeterminant_collapse" style="margin-left: 10px;">BillDeterminant</a></legend>
                     <div id="{{id}}_BillDeterminant_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -3577,7 +3577,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExPostPricing_collapse" aria-expanded="true" aria-controls="ExPostPricing_collapse" style="margin-left: 10px;">ExPostPricing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExPostPricing_collapse" aria-expanded="true" aria-controls="ExPostPricing_collapse" style="margin-left: 10px;">ExPostPricing</a></legend>
                     <div id="ExPostPricing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -3608,7 +3608,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExPostPricing_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostPricing_collapse" style="margin-left: 10px;">ExPostPricing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExPostPricing_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostPricing_collapse" style="margin-left: 10px;">ExPostPricing</a></legend>
                     <div id="{{id}}_ExPostPricing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -3701,7 +3701,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransactionBidResults_collapse" aria-expanded="true" aria-controls="TransactionBidResults_collapse" style="margin-left: 10px;">TransactionBidResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransactionBidResults_collapse" aria-expanded="true" aria-controls="TransactionBidResults_collapse" style="margin-left: 10px;">TransactionBidResults</a></legend>
                     <div id="TransactionBidResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -3732,7 +3732,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransactionBidResults_collapse" aria-expanded="true" aria-controls="{{id}}_TransactionBidResults_collapse" style="margin-left: 10px;">TransactionBidResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransactionBidResults_collapse" aria-expanded="true" aria-controls="{{id}}_TransactionBidResults_collapse" style="margin-left: 10px;">TransactionBidResults</a></legend>
                     <div id="{{id}}_TransactionBidResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -3828,7 +3828,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AncillaryServiceClearing_collapse" aria-expanded="true" aria-controls="AncillaryServiceClearing_collapse" style="margin-left: 10px;">AncillaryServiceClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AncillaryServiceClearing_collapse" aria-expanded="true" aria-controls="AncillaryServiceClearing_collapse" style="margin-left: 10px;">AncillaryServiceClearing</a></legend>
                     <div id="AncillaryServiceClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -3859,7 +3859,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AncillaryServiceClearing_collapse" aria-expanded="true" aria-controls="{{id}}_AncillaryServiceClearing_collapse" style="margin-left: 10px;">AncillaryServiceClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AncillaryServiceClearing_collapse" aria-expanded="true" aria-controls="{{id}}_AncillaryServiceClearing_collapse" style="margin-left: 10px;">AncillaryServiceClearing</a></legend>
                     <div id="{{id}}_AncillaryServiceClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -3955,7 +3955,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneralClearingResults_collapse" aria-expanded="true" aria-controls="GeneralClearingResults_collapse" style="margin-left: 10px;">GeneralClearingResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GeneralClearingResults_collapse" aria-expanded="true" aria-controls="GeneralClearingResults_collapse" style="margin-left: 10px;">GeneralClearingResults</a></legend>
                     <div id="GeneralClearingResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -3987,7 +3987,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GeneralClearingResults_collapse" aria-expanded="true" aria-controls="{{id}}_GeneralClearingResults_collapse" style="margin-left: 10px;">GeneralClearingResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GeneralClearingResults_collapse" aria-expanded="true" aria-controls="{{id}}_GeneralClearingResults_collapse" style="margin-left: 10px;">GeneralClearingResults</a></legend>
                     <div id="{{id}}_GeneralClearingResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -4107,7 +4107,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Commitments_collapse" aria-expanded="true" aria-controls="Commitments_collapse" style="margin-left: 10px;">Commitments</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Commitments_collapse" aria-expanded="true" aria-controls="Commitments_collapse" style="margin-left: 10px;">Commitments</a></legend>
                     <div id="Commitments_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -4148,7 +4148,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Commitments_collapse" aria-expanded="true" aria-controls="{{id}}_Commitments_collapse" style="margin-left: 10px;">Commitments</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Commitments_collapse" aria-expanded="true" aria-controls="{{id}}_Commitments_collapse" style="margin-left: 10px;">Commitments</a></legend>
                     <div id="{{id}}_Commitments_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -4260,7 +4260,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MitigatedBid_collapse" aria-expanded="true" aria-controls="MitigatedBid_collapse" style="margin-left: 10px;">MitigatedBid</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MitigatedBid_collapse" aria-expanded="true" aria-controls="MitigatedBid_collapse" style="margin-left: 10px;">MitigatedBid</a></legend>
                     <div id="MitigatedBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -4291,7 +4291,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MitigatedBid_collapse" aria-expanded="true" aria-controls="{{id}}_MitigatedBid_collapse" style="margin-left: 10px;">MitigatedBid</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MitigatedBid_collapse" aria-expanded="true" aria-controls="{{id}}_MitigatedBid_collapse" style="margin-left: 10px;">MitigatedBid</a></legend>
                     <div id="{{id}}_MitigatedBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -4381,7 +4381,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExPostResource_collapse" aria-expanded="true" aria-controls="ExPostResource_collapse" style="margin-left: 10px;">ExPostResource</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExPostResource_collapse" aria-expanded="true" aria-controls="ExPostResource_collapse" style="margin-left: 10px;">ExPostResource</a></legend>
                     <div id="ExPostResource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -4411,7 +4411,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExPostResource_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostResource_collapse" style="margin-left: 10px;">ExPostResource</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExPostResource_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostResource_collapse" style="margin-left: 10px;">ExPostResource</a></legend>
                     <div id="{{id}}_ExPostResource_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -4496,7 +4496,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneralClearing_collapse" aria-expanded="true" aria-controls="GeneralClearing_collapse" style="margin-left: 10px;">GeneralClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#GeneralClearing_collapse" aria-expanded="true" aria-controls="GeneralClearing_collapse" style="margin-left: 10px;">GeneralClearing</a></legend>
                     <div id="GeneralClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -4526,7 +4526,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GeneralClearing_collapse" aria-expanded="true" aria-controls="{{id}}_GeneralClearing_collapse" style="margin-left: 10px;">GeneralClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_GeneralClearing_collapse" aria-expanded="true" aria-controls="{{id}}_GeneralClearing_collapse" style="margin-left: 10px;">GeneralClearing</a></legend>
                     <div id="{{id}}_GeneralClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -4665,7 +4665,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PassThroughBill_collapse" aria-expanded="true" aria-controls="PassThroughBill_collapse" style="margin-left: 10px;">PassThroughBill</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PassThroughBill_collapse" aria-expanded="true" aria-controls="PassThroughBill_collapse" style="margin-left: 10px;">PassThroughBill</a></legend>
                     <div id="PassThroughBill_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -4723,7 +4723,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PassThroughBill_collapse" aria-expanded="true" aria-controls="{{id}}_PassThroughBill_collapse" style="margin-left: 10px;">PassThroughBill</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PassThroughBill_collapse" aria-expanded="true" aria-controls="{{id}}_PassThroughBill_collapse" style="margin-left: 10px;">PassThroughBill</a></legend>
                     <div id="{{id}}_PassThroughBill_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -4884,7 +4884,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExPostResourceResults_collapse" aria-expanded="true" aria-controls="ExPostResourceResults_collapse" style="margin-left: 10px;">ExPostResourceResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExPostResourceResults_collapse" aria-expanded="true" aria-controls="ExPostResourceResults_collapse" style="margin-left: 10px;">ExPostResourceResults</a></legend>
                     <div id="ExPostResourceResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -4922,7 +4922,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExPostResourceResults_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostResourceResults_collapse" style="margin-left: 10px;">ExPostResourceResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExPostResourceResults_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostResourceResults_collapse" style="margin-left: 10px;">ExPostResourceResults</a></legend>
                     <div id="{{id}}_ExPostResourceResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -5032,7 +5032,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransactionBidClearing_collapse" aria-expanded="true" aria-controls="TransactionBidClearing_collapse" style="margin-left: 10px;">TransactionBidClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransactionBidClearing_collapse" aria-expanded="true" aria-controls="TransactionBidClearing_collapse" style="margin-left: 10px;">TransactionBidClearing</a></legend>
                     <div id="TransactionBidClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -5062,7 +5062,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransactionBidClearing_collapse" aria-expanded="true" aria-controls="{{id}}_TransactionBidClearing_collapse" style="margin-left: 10px;">TransactionBidClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransactionBidClearing_collapse" aria-expanded="true" aria-controls="{{id}}_TransactionBidClearing_collapse" style="margin-left: 10px;">TransactionBidClearing</a></legend>
                     <div id="{{id}}_TransactionBidClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -5153,7 +5153,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Settlement_collapse" aria-expanded="true" aria-controls="Settlement_collapse" style="margin-left: 10px;">Settlement</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Settlement_collapse" aria-expanded="true" aria-controls="Settlement_collapse" style="margin-left: 10px;">Settlement</a></legend>
                     <div id="Settlement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.template.call (this) +
@@ -5191,7 +5191,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Settlement_collapse" aria-expanded="true" aria-controls="{{id}}_Settlement_collapse" style="margin-left: 10px;">Settlement</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Settlement_collapse" aria-expanded="true" aria-controls="{{id}}_Settlement_collapse" style="margin-left: 10px;">Settlement</a></legend>
                     <div id="{{id}}_Settlement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
@@ -5299,7 +5299,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExPostPricingResults_collapse" aria-expanded="true" aria-controls="ExPostPricingResults_collapse" style="margin-left: 10px;">ExPostPricingResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExPostPricingResults_collapse" aria-expanded="true" aria-controls="ExPostPricingResults_collapse" style="margin-left: 10px;">ExPostPricingResults</a></legend>
                     <div id="ExPostPricingResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -5331,7 +5331,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExPostPricingResults_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostPricingResults_collapse" style="margin-left: 10px;">ExPostPricingResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExPostPricingResults_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostPricingResults_collapse" style="margin-left: 10px;">ExPostPricingResults</a></legend>
                     <div id="{{id}}_ExPostPricingResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -5453,7 +5453,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Instructions_collapse" aria-expanded="true" aria-controls="Instructions_collapse" style="margin-left: 10px;">Instructions</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Instructions_collapse" aria-expanded="true" aria-controls="Instructions_collapse" style="margin-left: 10px;">Instructions</a></legend>
                     <div id="Instructions_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -5495,7 +5495,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Instructions_collapse" aria-expanded="true" aria-controls="{{id}}_Instructions_collapse" style="margin-left: 10px;">Instructions</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Instructions_collapse" aria-expanded="true" aria-controls="{{id}}_Instructions_collapse" style="margin-left: 10px;">Instructions</a></legend>
                     <div id="{{id}}_Instructions_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -5615,7 +5615,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceAwardClearing_collapse" aria-expanded="true" aria-controls="ResourceAwardClearing_collapse" style="margin-left: 10px;">ResourceAwardClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceAwardClearing_collapse" aria-expanded="true" aria-controls="ResourceAwardClearing_collapse" style="margin-left: 10px;">ResourceAwardClearing</a></legend>
                     <div id="ResourceAwardClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -5650,7 +5650,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceAwardClearing_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceAwardClearing_collapse" style="margin-left: 10px;">ResourceAwardClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceAwardClearing_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceAwardClearing_collapse" style="margin-left: 10px;">ResourceAwardClearing</a></legend>
                     <div id="{{id}}_ResourceAwardClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -5750,7 +5750,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExPostMarketRegionResults_collapse" aria-expanded="true" aria-controls="ExPostMarketRegionResults_collapse" style="margin-left: 10px;">ExPostMarketRegionResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExPostMarketRegionResults_collapse" aria-expanded="true" aria-controls="ExPostMarketRegionResults_collapse" style="margin-left: 10px;">ExPostMarketRegionResults</a></legend>
                     <div id="ExPostMarketRegionResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -5780,7 +5780,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExPostMarketRegionResults_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostMarketRegionResults_collapse" style="margin-left: 10px;">ExPostMarketRegionResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExPostMarketRegionResults_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostMarketRegionResults_collapse" style="margin-left: 10px;">ExPostMarketRegionResults</a></legend>
                     <div id="{{id}}_ExPostMarketRegionResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -5872,7 +5872,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExPostMarketRegion_collapse" aria-expanded="true" aria-controls="ExPostMarketRegion_collapse" style="margin-left: 10px;">ExPostMarketRegion</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExPostMarketRegion_collapse" aria-expanded="true" aria-controls="ExPostMarketRegion_collapse" style="margin-left: 10px;">ExPostMarketRegion</a></legend>
                     <div id="ExPostMarketRegion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -5900,7 +5900,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExPostMarketRegion_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostMarketRegion_collapse" style="margin-left: 10px;">ExPostMarketRegion</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExPostMarketRegion_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostMarketRegion_collapse" style="margin-left: 10px;">ExPostMarketRegion</a></legend>
                     <div id="{{id}}_ExPostMarketRegion_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -6001,7 +6001,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ChargeProfile_collapse" aria-expanded="true" aria-controls="ChargeProfile_collapse" style="margin-left: 10px;">ChargeProfile</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ChargeProfile_collapse" aria-expanded="true" aria-controls="ChargeProfile_collapse" style="margin-left: 10px;">ChargeProfile</a></legend>
                     <div id="ChargeProfile_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExternalInputs.Profile.prototype.template.call (this) +
@@ -6038,7 +6038,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ChargeProfile_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeProfile_collapse" style="margin-left: 10px;">ChargeProfile</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ChargeProfile_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeProfile_collapse" style="margin-left: 10px;">ChargeProfile</a></legend>
                     <div id="{{id}}_ChargeProfile_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ExternalInputs.Profile.prototype.edit_template.call (this) +
@@ -6140,7 +6140,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LossClearing_collapse" aria-expanded="true" aria-controls="LossClearing_collapse" style="margin-left: 10px;">LossClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LossClearing_collapse" aria-expanded="true" aria-controls="LossClearing_collapse" style="margin-left: 10px;">LossClearing</a></legend>
                     <div id="LossClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -6170,7 +6170,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LossClearing_collapse" aria-expanded="true" aria-controls="{{id}}_LossClearing_collapse" style="margin-left: 10px;">LossClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LossClearing_collapse" aria-expanded="true" aria-controls="{{id}}_LossClearing_collapse" style="margin-left: 10px;">LossClearing</a></legend>
                     <div id="{{id}}_LossClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -6255,7 +6255,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RMRDetermination_collapse" aria-expanded="true" aria-controls="RMRDetermination_collapse" style="margin-left: 10px;">RMRDetermination</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RMRDetermination_collapse" aria-expanded="true" aria-controls="RMRDetermination_collapse" style="margin-left: 10px;">RMRDetermination</a></legend>
                     <div id="RMRDetermination_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -6286,7 +6286,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RMRDetermination_collapse" aria-expanded="true" aria-controls="{{id}}_RMRDetermination_collapse" style="margin-left: 10px;">RMRDetermination</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RMRDetermination_collapse" aria-expanded="true" aria-controls="{{id}}_RMRDetermination_collapse" style="margin-left: 10px;">RMRDetermination</a></legend>
                     <div id="{{id}}_RMRDetermination_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -6378,7 +6378,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InstructionClearingDOP_collapse" aria-expanded="true" aria-controls="InstructionClearingDOP_collapse" style="margin-left: 10px;">InstructionClearingDOP</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#InstructionClearingDOP_collapse" aria-expanded="true" aria-controls="InstructionClearingDOP_collapse" style="margin-left: 10px;">InstructionClearingDOP</a></legend>
                     <div id="InstructionClearingDOP_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -6408,7 +6408,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InstructionClearingDOP_collapse" aria-expanded="true" aria-controls="{{id}}_InstructionClearingDOP_collapse" style="margin-left: 10px;">InstructionClearingDOP</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_InstructionClearingDOP_collapse" aria-expanded="true" aria-controls="{{id}}_InstructionClearingDOP_collapse" style="margin-left: 10px;">InstructionClearingDOP</a></legend>
                     <div id="{{id}}_InstructionClearingDOP_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -6531,7 +6531,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConstraintResults_collapse" aria-expanded="true" aria-controls="ConstraintResults_collapse" style="margin-left: 10px;">ConstraintResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ConstraintResults_collapse" aria-expanded="true" aria-controls="ConstraintResults_collapse" style="margin-left: 10px;">ConstraintResults</a></legend>
                     <div id="ConstraintResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -6576,7 +6576,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConstraintResults_collapse" aria-expanded="true" aria-controls="{{id}}_ConstraintResults_collapse" style="margin-left: 10px;">ConstraintResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ConstraintResults_collapse" aria-expanded="true" aria-controls="{{id}}_ConstraintResults_collapse" style="margin-left: 10px;">ConstraintResults</a></legend>
                     <div id="{{id}}_ConstraintResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -6733,7 +6733,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRegionResults_collapse" aria-expanded="true" aria-controls="MarketRegionResults_collapse" style="margin-left: 10px;">MarketRegionResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketRegionResults_collapse" aria-expanded="true" aria-controls="MarketRegionResults_collapse" style="margin-left: 10px;">MarketRegionResults</a></legend>
                     <div id="MarketRegionResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -6777,7 +6777,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketRegionResults_collapse" aria-expanded="true" aria-controls="{{id}}_MarketRegionResults_collapse" style="margin-left: 10px;">MarketRegionResults</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketRegionResults_collapse" aria-expanded="true" aria-controls="{{id}}_MarketRegionResults_collapse" style="margin-left: 10px;">MarketRegionResults</a></legend>
                     <div id="{{id}}_MarketRegionResults_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -6916,7 +6916,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DopInstruction_collapse" aria-expanded="true" aria-controls="DopInstruction_collapse" style="margin-left: 10px;">DopInstruction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DopInstruction_collapse" aria-expanded="true" aria-controls="DopInstruction_collapse" style="margin-left: 10px;">DopInstruction</a></legend>
                     <div id="DopInstruction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -6954,7 +6954,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DopInstruction_collapse" aria-expanded="true" aria-controls="{{id}}_DopInstruction_collapse" style="margin-left: 10px;">DopInstruction</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DopInstruction_collapse" aria-expanded="true" aria-controls="{{id}}_DopInstruction_collapse" style="margin-left: 10px;">DopInstruction</a></legend>
                     <div id="{{id}}_DopInstruction_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -7058,7 +7058,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExPostLoss_collapse" aria-expanded="true" aria-controls="ExPostLoss_collapse" style="margin-left: 10px;">ExPostLoss</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ExPostLoss_collapse" aria-expanded="true" aria-controls="ExPostLoss_collapse" style="margin-left: 10px;">ExPostLoss</a></legend>
                     <div id="ExPostLoss_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -7088,7 +7088,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExPostLoss_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostLoss_collapse" style="margin-left: 10px;">ExPostLoss</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ExPostLoss_collapse" aria-expanded="true" aria-controls="{{id}}_ExPostLoss_collapse" style="margin-left: 10px;">ExPostLoss</a></legend>
                     <div id="{{id}}_ExPostLoss_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -7215,7 +7215,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketStatementLineItem_collapse" aria-expanded="true" aria-controls="MarketStatementLineItem_collapse" style="margin-left: 10px;">MarketStatementLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketStatementLineItem_collapse" aria-expanded="true" aria-controls="MarketStatementLineItem_collapse" style="margin-left: 10px;">MarketStatementLineItem</a></legend>
                     <div id="MarketStatementLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -7269,7 +7269,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketStatementLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_MarketStatementLineItem_collapse" style="margin-left: 10px;">MarketStatementLineItem</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketStatementLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_MarketStatementLineItem_collapse" style="margin-left: 10px;">MarketStatementLineItem</a></legend>
                     <div id="{{id}}_MarketStatementLineItem_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -7408,7 +7408,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MitigatedBidClearing_collapse" aria-expanded="true" aria-controls="MitigatedBidClearing_collapse" style="margin-left: 10px;">MitigatedBidClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MitigatedBidClearing_collapse" aria-expanded="true" aria-controls="MitigatedBidClearing_collapse" style="margin-left: 10px;">MitigatedBidClearing</a></legend>
                     <div id="MitigatedBidClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -7444,7 +7444,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MitigatedBidClearing_collapse" aria-expanded="true" aria-controls="{{id}}_MitigatedBidClearing_collapse" style="margin-left: 10px;">MitigatedBidClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MitigatedBidClearing_collapse" aria-expanded="true" aria-controls="{{id}}_MitigatedBidClearing_collapse" style="margin-left: 10px;">MitigatedBidClearing</a></legend>
                     <div id="{{id}}_MitigatedBidClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
@@ -7545,7 +7545,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ChargeProfileData_collapse" aria-expanded="true" aria-controls="ChargeProfileData_collapse" style="margin-left: 10px;">ChargeProfileData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ChargeProfileData_collapse" aria-expanded="true" aria-controls="ChargeProfileData_collapse" style="margin-left: 10px;">ChargeProfileData</a></legend>
                     <div id="ChargeProfileData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
@@ -7577,7 +7577,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ChargeProfileData_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeProfileData_collapse" style="margin-left: 10px;">ChargeProfileData</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ChargeProfileData_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeProfileData_collapse" style="margin-left: 10px;">ChargeProfileData</a></legend>
                     <div id="{{id}}_ChargeProfileData_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
@@ -7673,7 +7673,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CommitmentClearing_collapse" aria-expanded="true" aria-controls="CommitmentClearing_collapse" style="margin-left: 10px;">CommitmentClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#CommitmentClearing_collapse" aria-expanded="true" aria-controls="CommitmentClearing_collapse" style="margin-left: 10px;">CommitmentClearing</a></legend>
                     <div id="CommitmentClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
@@ -7703,7 +7703,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CommitmentClearing_collapse" aria-expanded="true" aria-controls="{{id}}_CommitmentClearing_collapse" style="margin-left: 10px;">CommitmentClearing</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_CommitmentClearing_collapse" aria-expanded="true" aria-controls="{{id}}_CommitmentClearing_collapse" style="margin-left: 10px;">CommitmentClearing</a></legend>
                     <div id="{{id}}_CommitmentClearing_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +

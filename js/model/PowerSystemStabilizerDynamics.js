@@ -85,7 +85,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
                     <div id="PowerSystemStabilizerDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
@@ -116,7 +116,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
                     <div id="{{id}}_PowerSystemStabilizerDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
@@ -224,7 +224,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST1_collapse" aria-expanded="true" aria-controls="PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssPTIST1_collapse" aria-expanded="true" aria-controls="PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
                     <div id="PssPTIST1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -262,7 +262,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssPTIST1_collapse" aria-expanded="true" aria-controls="{{id}}_PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssPTIST1_collapse" aria-expanded="true" aria-controls="{{id}}_PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
                     <div id="{{id}}_PssPTIST1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -412,7 +412,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE2B_collapse" aria-expanded="true" aria-controls="PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssIEEE2B_collapse" aria-expanded="true" aria-controls="PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
                     <div id="PssIEEE2B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -470,7 +470,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE2B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssIEEE2B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
                     <div id="{{id}}_PssIEEE2B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -632,7 +632,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2ST_collapse" aria-expanded="true" aria-controls="Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Pss2ST_collapse" aria-expanded="true" aria-controls="Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
                     <div id="Pss2ST_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -681,7 +681,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss2ST_collapse" aria-expanded="true" aria-controls="{{id}}_Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Pss2ST_collapse" aria-expanded="true" aria-controls="{{id}}_Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
                     <div id="{{id}}_Pss2ST_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -819,7 +819,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1_collapse" aria-expanded="true" aria-controls="Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Pss1_collapse" aria-expanded="true" aria-controls="Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
                     <div id="Pss1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -861,7 +861,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss1_collapse" aria-expanded="true" aria-controls="{{id}}_Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Pss1_collapse" aria-expanded="true" aria-controls="{{id}}_Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
                     <div id="{{id}}_Pss1_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -989,7 +989,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSH_collapse" aria-expanded="true" aria-controls="PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssSH_collapse" aria-expanded="true" aria-controls="PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
                     <div id="PssSH_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -1029,7 +1029,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSH_collapse" aria-expanded="true" aria-controls="{{id}}_PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssSH_collapse" aria-expanded="true" aria-controls="{{id}}_PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
                     <div id="{{id}}_PssSH_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -1173,7 +1173,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1A_collapse" aria-expanded="true" aria-controls="Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Pss1A_collapse" aria-expanded="true" aria-controls="Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
                     <div id="Pss1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -1224,7 +1224,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss1A_collapse" aria-expanded="true" aria-controls="{{id}}_Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Pss1A_collapse" aria-expanded="true" aria-controls="{{id}}_Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
                     <div id="{{id}}_Pss1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -1362,7 +1362,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSK_collapse" aria-expanded="true" aria-controls="PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssSK_collapse" aria-expanded="true" aria-controls="PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
                     <div id="PssSK_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -1400,7 +1400,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSK_collapse" aria-expanded="true" aria-controls="{{id}}_PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssSK_collapse" aria-expanded="true" aria-controls="{{id}}_PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
                     <div id="{{id}}_PssSK_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -1520,7 +1520,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE1A_collapse" aria-expanded="true" aria-controls="PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssIEEE1A_collapse" aria-expanded="true" aria-controls="PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
                     <div id="PssIEEE1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -1561,7 +1561,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE1A_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssIEEE1A_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
                     <div id="{{id}}_PssIEEE1A_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -1725,7 +1725,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST3_collapse" aria-expanded="true" aria-controls="PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssPTIST3_collapse" aria-expanded="true" aria-controls="PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
                     <div id="PssPTIST3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -1786,7 +1786,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssPTIST3_collapse" aria-expanded="true" aria-controls="{{id}}_PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssPTIST3_collapse" aria-expanded="true" aria-controls="{{id}}_PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
                     <div id="{{id}}_PssPTIST3_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -2062,7 +2062,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE4B_collapse" aria-expanded="true" aria-controls="PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssIEEE4B_collapse" aria-expanded="true" aria-controls="PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
                     <div id="PssIEEE4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -2156,7 +2156,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE4B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssIEEE4B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
                     <div id="{{id}}_PssIEEE4B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -2396,7 +2396,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss5_collapse" aria-expanded="true" aria-controls="Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Pss5_collapse" aria-expanded="true" aria-controls="Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
                     <div id="Pss5_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -2440,7 +2440,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss5_collapse" aria-expanded="true" aria-controls="{{id}}_Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Pss5_collapse" aria-expanded="true" aria-controls="{{id}}_Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
                     <div id="{{id}}_Pss5_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -2568,7 +2568,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSB4_collapse" aria-expanded="true" aria-controls="PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssSB4_collapse" aria-expanded="true" aria-controls="PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
                     <div id="PssSB4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -2606,7 +2606,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSB4_collapse" aria-expanded="true" aria-controls="{{id}}_PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssSB4_collapse" aria-expanded="true" aria-controls="{{id}}_PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
                     <div id="{{id}}_PssSB4_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -2740,7 +2740,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE3B_collapse" aria-expanded="true" aria-controls="PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssIEEE3B_collapse" aria-expanded="true" aria-controls="PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
                     <div id="PssIEEE3B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -2790,7 +2790,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE3B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssIEEE3B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
                     <div id="{{id}}_PssIEEE3B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -2922,7 +2922,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssELIN2_collapse" aria-expanded="true" aria-controls="PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssELIN2_collapse" aria-expanded="true" aria-controls="PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
                     <div id="PssELIN2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -2960,7 +2960,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssELIN2_collapse" aria-expanded="true" aria-controls="{{id}}_PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssELIN2_collapse" aria-expanded="true" aria-controls="{{id}}_PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
                     <div id="{{id}}_PssELIN2_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -3118,7 +3118,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2B_collapse" aria-expanded="true" aria-controls="Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Pss2B_collapse" aria-expanded="true" aria-controls="Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
                     <div id="Pss2B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -3180,7 +3180,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss2B_collapse" aria-expanded="true" aria-controls="{{id}}_Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Pss2B_collapse" aria-expanded="true" aria-controls="{{id}}_Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
                     <div id="{{id}}_Pss2B_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
@@ -3350,7 +3350,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssWECC_collapse" aria-expanded="true" aria-controls="PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PssWECC_collapse" aria-expanded="true" aria-controls="PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
                     <div id="PssWECC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
@@ -3399,7 +3399,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssWECC_collapse" aria-expanded="true" aria-controls="{{id}}_PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PssWECC_collapse" aria-expanded="true" aria-controls="{{id}}_PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
                     <div id="{{id}}_PssWECC_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +

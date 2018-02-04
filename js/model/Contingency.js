@@ -73,7 +73,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Contingency_collapse" aria-expanded="true" aria-controls="Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Contingency_collapse" aria-expanded="true" aria-controls="Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
                     <div id="Contingency_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -104,7 +104,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Contingency_collapse" aria-expanded="true" aria-controls="{{id}}_Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Contingency_collapse" aria-expanded="true" aria-controls="{{id}}_Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
                     <div id="{{id}}_Contingency_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -191,7 +191,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyElement_collapse" aria-expanded="true" aria-controls="ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ContingencyElement_collapse" aria-expanded="true" aria-controls="ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
                     <div id="ContingencyElement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -219,7 +219,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContingencyElement_collapse" aria-expanded="true" aria-controls="{{id}}_ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ContingencyElement_collapse" aria-expanded="true" aria-controls="{{id}}_ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
                     <div id="{{id}}_ContingencyElement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
@@ -308,7 +308,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyEquipment_collapse" aria-expanded="true" aria-controls="ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ContingencyEquipment_collapse" aria-expanded="true" aria-controls="ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
                     <div id="ContingencyEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ContingencyElement.prototype.template.call (this) +
@@ -339,7 +339,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContingencyEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ContingencyEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
                     <div id="{{id}}_ContingencyEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + ContingencyElement.prototype.edit_template.call (this) +

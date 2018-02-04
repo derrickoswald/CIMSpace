@@ -62,7 +62,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TiePoint_collapse" aria-expanded="true" aria-controls="TiePoint_collapse" style="margin-left: 10px;">TiePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TiePoint_collapse" aria-expanded="true" aria-controls="TiePoint_collapse" style="margin-left: 10px;">TiePoint</a></legend>
                     <div id="TiePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
@@ -96,7 +96,7 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TiePoint_collapse" aria-expanded="true" aria-controls="{{id}}_TiePoint_collapse" style="margin-left: 10px;">TiePoint</a></legend>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TiePoint_collapse" aria-expanded="true" aria-controls="{{id}}_TiePoint_collapse" style="margin-left: 10px;">TiePoint</a></legend>
                     <div id="{{id}}_TiePoint_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
