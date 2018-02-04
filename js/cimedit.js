@@ -595,6 +595,40 @@ define
                 return (ret);
             }
 
+            /**
+             * Generate a GUID.
+             * See https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript#2117523
+             */
+            uuidv4 ()
+            {
+                return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace (/[018]/g, c =>
+                    (c ^ crypto.getRandomValues (new Uint8Array(1))[0] & 15 >> c / 4).toString (16)
+                )
+            }
+
+            /**
+             * Predicate to check if the <code>id</code> looks like a GUID.
+             * @param s the string to test
+             * @return <code>true</code> if the string has the form of a GUID, <code>false</code> otherwise.
+             */
+            isGUID (s)
+            {
+                return ((null != s) ? /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test (s) : false);
+            }
+
+            /**
+             * Generate a 'unique' id.
+             * If the supplied string looks like a GUID, this generates another GUID,
+             * else it appends the suffix to the suplied string to generate a 'unique' id - if you know what you are doing.
+             * @param s the 'base' id
+             * @param the suffix to add to the base id if the base id isn't a GUID
+             * @return a GUID or the supplied string with the suffix
+             */
+            generateId (s, suffix)
+            {
+                return (this.isGUID (s) ? this.uuidv4 () : s + suffix);
+            }
+
             new_connectivity (name)
             {
                 return (
@@ -636,12 +670,13 @@ define
                 var id = psr.id;
 
                 // create the location
+                var lid = this.generateId (id, "_location");
                 var location =
                 {
                     EditDisposition: "new",
                     cls: "Location",
-                    id: id + "_location",
-                    mRID: id + "_location",
+                    id: lid,
+                    mRID: lid,
                     CoordinateSystem: "wgs84",
                     type: "geographic"
                 };
@@ -653,7 +688,7 @@ define
                     EditDisposition: "new",
                     Location: location.id,
                     cls: "PositionPoint",
-                    id: id + "_location_p",
+                    id: this.generateId (id, "_location_p"),
                     sequenceNumber: 1,
                     xPosition: feature.geometry.coordinates[0].toString (),
                     yPosition: feature.geometry.coordinates[1].toString ()
@@ -665,7 +700,7 @@ define
                 var cls = cim.class_map (psr);
                 this._elements[0] = new cls (psr, this._features);
 
-                // add the base voltage to the form (if it's conducting equipment)
+                // set the base voltage in the form (if it's conducting equipment)
                 if (psr.BaseVoltage)
                 {
                     var bv = document.getElementById (id + "_BaseVoltage");
@@ -691,7 +726,7 @@ define
                 var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
                 if (null == connectivity) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (id + "_node");
+                    var node = this.new_connectivity (this.generateId (id, "_node"));
                     this.edit (new Core.ConnectivityNode (node, this._features));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
@@ -701,13 +736,14 @@ define
                         equipment.BaseVoltage = connectivity.BaseVoltage;
 
                 // add the terminal
+                var tid = this.generateId (id, "_terminal_1");
                 var terminal =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
-                    id: id + "_terminal_1",
-                    mRID: id + "_terminal_1",
-                    name: id + "_terminal_1",
+                    id: tid,
+                    mRID: tid,
+                    name: tid,
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
                     ConductingEquipment: id,
@@ -732,20 +768,21 @@ define
                 var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
                 if (null == connectivity) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (id + "_node_1");
+                    var node = this.new_connectivity (this.generateId (id, "_node_1"));
                     this.edit (new Core.ConnectivityNode (node, this._features));
                     console.log ("no connectivity found, created primary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
 
                 // add the terminal
+                var tid1 = this.generateId (id, "_terminal_1");
                 var terminal1 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
-                    id: id + "_terminal_1",
-                    mRID: id + "_terminal_1",
-                    name: id + "_terminal_1",
+                    id: tid1,
+                    mRID: tid1,
+                    name: tid1,
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
                     ConductingEquipment: id,
@@ -757,18 +794,19 @@ define
 
                 // add a secondary connectivity node
                 {
-                    var node = this.new_connectivity (id + "_node_2");
+                    var node = this.new_connectivity (this.generateId (id, "_node_2"));
                     this.edit (new Core.ConnectivityNode (node, this._features));
                     console.log ("created secondary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
+                var tid2 = this.generateId (id, "_terminal_2");
                 var terminal2 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
-                    id: id + "_terminal_2",
-                    mRID: id + "_terminal_2",
-                    name: id + "_terminal_2",
+                    id: tid2,
+                    mRID: tid2,
+                    name: tid2,
                     sequenceNumber: 2,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
                     ConductingEquipment: id,
@@ -777,27 +815,29 @@ define
                 this.edit (new Core.Terminal (terminal2, this._features));
 
                 // add power transformer ends
+                var eid1 = this.generateId (id, "_end_1");
                 var end1 =
                 {
                     EditDisposition: "new",
                     cls: "PowerTransformerEnd",
-                    id: id + "_end_1",
-                    mRID: id + "_end_1",
+                    id: eid1,
+                    mRID: eid1,
                     description: "PowerTransformer End",
-                    name: id + "_end_1",
+                    name: eid1,
                     endNumber: 1,
                     Terminal: terminal1.id,
                     connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.D",
                     PowerTransformer: id
                 };
+                var eid2 = this.generateId (id, "_end_2");
                 var end2 =
                 {
                     EditDisposition: "new",
                     cls: "PowerTransformerEnd",
-                    id: id + "_end_2",
-                    mRID: id + "_end_2",
+                    id: eid2,
+                    mRID: eid2,
                     description: "PowerTransformer End",
-                    name: id + "_end_2",
+                    name: eid2,
                     endNumber: 2,
                     Terminal: terminal2.id,
                     connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.Yn",
@@ -818,13 +858,14 @@ define
                 var id = line.id;
 
                 // create the location
+                var lid = this.generateId (id, "_location");
                 var location =
                 {
                     EditDisposition: "new",
                     CoordinateSystem: "wgs84",
                     cls: "Location",
-                    id: id + "_location",
-                    mRID: id + "_location",
+                    id: lid,
+                    mRID: lid,
                     type: "geographic"
                 };
                 this.edit (new Common.Location (location, this._features));
@@ -839,7 +880,7 @@ define
                                 EditDisposition: "new",
                                 Location: location.id,
                                 cls: "PositionPoint",
-                                id: id + "_location_p" + (i + 1).toString (),
+                                id: this.generateId (id, "_location_p" + (i + 1).toString ()),
                                 sequenceNumber: (i + 1).toString (),
                                 xPosition: lnglat[0].toString (),
                                 yPosition: lnglat[1].toString ()
@@ -852,7 +893,7 @@ define
                 var connectivity1 = this.get_connectivity (feature.geometry.coordinates[0][0], feature.geometry.coordinates[0][1]);
                 if (null == connectivity1) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (id + "_node_1");
+                    var node = this.new_connectivity (this.generateId (id, "_node_1"));
                     this.edit (new Core.ConnectivityNode (node, this._features));
                     console.log ("no connectivity found at end 1, created ConnectivityNode " + node.id);
                     connectivity1 = { ConnectivityNode: node.id };
@@ -862,13 +903,14 @@ define
                         line.BaseVoltage = connectivity1.BaseVoltage;
 
                 // add the terminals
+                var tid1 = this.generateId (id, "_terminal_1");
                 var terminal1 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
-                    id: id + "_terminal_1",
-                    mRID: id + "_terminal_1",
-                    name: id + "_terminal_1",
+                    id: tid1,
+                    mRID: tid1,
+                    name: tid1,
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
                     ConductingEquipment: id,
@@ -881,7 +923,7 @@ define
                 var connectivity2 = this.get_connectivity (feature.geometry.coordinates[last][0], feature.geometry.coordinates[last][1]);
                 if (null == connectivity2) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (id + "_node_2");
+                    var node = this.new_connectivity (this.generateId (id, "_node_2"));
                     this.edit (new Core.ConnectivityNode (node, this._features));
                     console.log ("no connectivity found at end 2, created ConnectivityNode " + node.id);
                     connectivity2 = { ConnectivityNode: node.id };
@@ -890,13 +932,14 @@ define
                     if (connectivity2.BaseVoltage)
                         line.BaseVoltage = connectivity2.BaseVoltage;
 
+                var tid2 = this.generateId (id, "_terminal_2");
                 var terminal2 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
-                    id: id + "_terminal_2",
-                    mRID: id + "_terminal_2",
-                    name: id + "_terminal_2",
+                    id: tid2,
+                    mRID: tid2,
+                    name: tid2,
                     sequenceNumber: 2,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
                     ConductingEquipment: id,
@@ -950,7 +993,7 @@ define
             create ()
             {
                 var class_name = document.getElementById ("class_name").value;
-                var id = class_name + (~~(1e6 * Math.random ())).toString ();
+                var id = this.uuidv4 ();
                 var proto = { cls: class_name, id: id };
                 this.create_from (proto);
             }
@@ -958,7 +1001,7 @@ define
             create_new ()
             {
                 var proto = JSON.parse (JSON.stringify (this._elements[0]));
-                proto.id = proto.cls + (~~(1e6 * Math.random ())).toString ();
+                proto.id = this.uuidv4 ();
                 this.create_from (proto);
             }
 
