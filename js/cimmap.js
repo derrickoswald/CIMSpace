@@ -534,7 +534,7 @@ define
         {
             if (show_coordinates ())
             {
-                if (null == TheCoordinates)
+                if ((null != TheMap) && (null == TheCoordinates))
                 {
                     TheCoordinates = new CIMCoordinates ();
                     TheMap.addControl (TheCoordinates);
@@ -542,7 +542,7 @@ define
             }
             else
             {
-                if (null != TheCoordinates)
+                if ((null != TheMap) && (null != TheCoordinates))
                 {
                     TheMap.removeControl (TheCoordinates);
                     TheCoordinates = null;
