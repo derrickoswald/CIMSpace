@@ -125,7 +125,7 @@ define
                                 {
                                     var links = "";
                                     for (var j = 0; j < equipment.length; j++)
-                                        links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + equipment[j] + "\"); return false;})'>" + equipment[j] + "</a>";
+                                        links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + equipment[j] + "\"); }); return false;'>" + equipment[j] + "</a>";
                                     text = text + "<div>" + terminal + ": " + links + "</div>\n";
                                 }
                             }
@@ -133,6 +133,7 @@ define
                     }
                 }
 
+                // add links to other selected elements
                 var mrids = this._cimmap.get_selected_features ();
                 if (null != mrids)
                     if (mrids.some (function (element) { return (element != mrid); }))
@@ -141,9 +142,18 @@ define
                         for (var i = 0; i < mrids.length; i++)
                         {
                             if (mrids[i] != mrid)
-                                text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + mrids[i] + "\"); return false;})'>" + mrids[i] + "</a></div>\n";
+                                text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + mrids[i] + "\"); }); return false;'>" + mrids[i] + "</a></div>\n";
                         }
                     }
+
+                // add details from simulation or analysis
+                var toHTML = this._cimmap.get_themer ().getTheme ().toHTML;
+                if (toHTML)
+                {
+                    var html = toHTML.bind (this._cimmap.get_themer ().getTheme ()) (feature);
+                    if ("" != html)
+                        text = text + "<div>" + this._cimmap.get_themer ().getTheme ().getTitle () + ":</div>\n" + html;
+                }
 
                 return (text);
             }

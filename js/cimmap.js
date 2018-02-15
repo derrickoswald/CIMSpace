@@ -417,6 +417,7 @@ define
             CURRENT_FEATURE = null;
             CURRENT_SELECTION = null;
             hide_details ();
+            return (false);
         }
 
         /**
@@ -807,6 +808,8 @@ define
                     get_details ().render ();
                 }
             }
+
+            return (false);
         }
 
         /**

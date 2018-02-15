@@ -425,7 +425,7 @@ define
             }
 
             /**
-             * Remove layers and sourcs from the map.
+             * Remove layers and sources from the map.
              * @function remove_theme
              * @memberOf module:default_theme
              */

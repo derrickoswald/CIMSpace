@@ -72,7 +72,7 @@ define
                     + PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -192,7 +192,7 @@ define
                     + TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -312,7 +312,7 @@ define
                     + VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -432,7 +432,7 @@ define
                     + TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -552,7 +552,7 @@ define
                     + LoadDynamics.LoadDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -672,7 +672,7 @@ define
                     + ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -792,7 +792,7 @@ define
                     + WindDynamics.WindPlantDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -912,7 +912,7 @@ define
                     + PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1032,7 +1032,7 @@ define
                     + WindDynamics.WindTurbineType3or4Dynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1152,7 +1152,7 @@ define
                     + AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1272,7 +1272,7 @@ define
                     + PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1392,7 +1392,7 @@ define
                     + MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1512,7 +1512,7 @@ define
                     + VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1632,7 +1632,7 @@ define
                     + UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1752,7 +1752,7 @@ define
                     + WindDynamics.WindTurbineType1or2Dynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1872,7 +1872,7 @@ define
                     + OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -2037,24 +2037,24 @@ define
                     {{#floatParameterValue}}<div><b>floatParameterValue</b>: {{floatParameterValue}}</div>{{/floatParameterValue}}
                     {{#integerParameterValue}}<div><b>integerParameterValue</b>: {{integerParameterValue}}</div>{{/integerParameterValue}}
                     {{#parameterNumber}}<div><b>parameterNumber</b>: {{parameterNumber}}</div>{{/parameterNumber}}
-                    {{#TurbineGovernorUserDefined}}<div><b>TurbineGovernorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorUserDefined}}&quot;);})'>{{TurbineGovernorUserDefined}}</a></div>{{/TurbineGovernorUserDefined}}
-                    {{#PFVArControllerType2UserDefined}}<div><b>PFVArControllerType2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2UserDefined}}&quot;);})'>{{PFVArControllerType2UserDefined}}</a></div>{{/PFVArControllerType2UserDefined}}
-                    {{#WindType1or2UserDefined}}<div><b>WindType1or2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType1or2UserDefined}}&quot;);})'>{{WindType1or2UserDefined}}</a></div>{{/WindType1or2UserDefined}}
-                    {{#VoltageAdjusterUserDefined}}<div><b>VoltageAdjusterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterUserDefined}}&quot;);})'>{{VoltageAdjusterUserDefined}}</a></div>{{/VoltageAdjusterUserDefined}}
-                    {{#TurbineLoadControllerUserDefined}}<div><b>TurbineLoadControllerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerUserDefined}}&quot;);})'>{{TurbineLoadControllerUserDefined}}</a></div>{{/TurbineLoadControllerUserDefined}}
-                    {{#DiscontinuousExcitationControlUserDefined}}<div><b>DiscontinuousExcitationControlUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlUserDefined}}&quot;);})'>{{DiscontinuousExcitationControlUserDefined}}</a></div>{{/DiscontinuousExcitationControlUserDefined}}
-                    {{#PowerSystemStabilizerUserDefined}}<div><b>PowerSystemStabilizerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerUserDefined}}&quot;);})'>{{PowerSystemStabilizerUserDefined}}</a></div>{{/PowerSystemStabilizerUserDefined}}
-                    {{#ExcitationSystemUserDefined}}<div><b>ExcitationSystemUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemUserDefined}}&quot;);})'>{{ExcitationSystemUserDefined}}</a></div>{{/ExcitationSystemUserDefined}}
-                    {{#LoadUserDefined}}<div><b>LoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadUserDefined}}&quot;);})'>{{LoadUserDefined}}</a></div>{{/LoadUserDefined}}
-                    {{#AsynchronousMachineUserDefined}}<div><b>AsynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineUserDefined}}&quot;);})'>{{AsynchronousMachineUserDefined}}</a></div>{{/AsynchronousMachineUserDefined}}
-                    {{#VoltageCompensatorUserDefined}}<div><b>VoltageCompensatorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorUserDefined}}&quot;);})'>{{VoltageCompensatorUserDefined}}</a></div>{{/VoltageCompensatorUserDefined}}
-                    {{#SynchronousMachineUserDefined}}<div><b>SynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineUserDefined}}&quot;);})'>{{SynchronousMachineUserDefined}}</a></div>{{/SynchronousMachineUserDefined}}
-                    {{#MechanicalLoadUserDefined}}<div><b>MechanicalLoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadUserDefined}}&quot;);})'>{{MechanicalLoadUserDefined}}</a></div>{{/MechanicalLoadUserDefined}}
-                    {{#WindType3or4UserDefined}}<div><b>WindType3or4UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType3or4UserDefined}}&quot;);})'>{{WindType3or4UserDefined}}</a></div>{{/WindType3or4UserDefined}}
-                    {{#PFVArControllerType1UserDefined}}<div><b>PFVArControllerType1UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1UserDefined}}&quot;);})'>{{PFVArControllerType1UserDefined}}</a></div>{{/PFVArControllerType1UserDefined}}
-                    {{#WindPlantUserDefined}}<div><b>WindPlantUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantUserDefined}}&quot;);})'>{{WindPlantUserDefined}}</a></div>{{/WindPlantUserDefined}}
-                    {{#UnderexcitationLimiterUserDefined}}<div><b>UnderexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterUserDefined}}&quot;);})'>{{UnderexcitationLimiterUserDefined}}</a></div>{{/UnderexcitationLimiterUserDefined}}
-                    {{#OverexcitationLimiterUserDefined}}<div><b>OverexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterUserDefined}}&quot;);})'>{{OverexcitationLimiterUserDefined}}</a></div>{{/OverexcitationLimiterUserDefined}}
+                    {{#TurbineGovernorUserDefined}}<div><b>TurbineGovernorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorUserDefined}}&quot;);}); return false;'>{{TurbineGovernorUserDefined}}</a></div>{{/TurbineGovernorUserDefined}}
+                    {{#PFVArControllerType2UserDefined}}<div><b>PFVArControllerType2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2UserDefined}}&quot;);}); return false;'>{{PFVArControllerType2UserDefined}}</a></div>{{/PFVArControllerType2UserDefined}}
+                    {{#WindType1or2UserDefined}}<div><b>WindType1or2UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType1or2UserDefined}}&quot;);}); return false;'>{{WindType1or2UserDefined}}</a></div>{{/WindType1or2UserDefined}}
+                    {{#VoltageAdjusterUserDefined}}<div><b>VoltageAdjusterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterUserDefined}}&quot;);}); return false;'>{{VoltageAdjusterUserDefined}}</a></div>{{/VoltageAdjusterUserDefined}}
+                    {{#TurbineLoadControllerUserDefined}}<div><b>TurbineLoadControllerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerUserDefined}}&quot;);}); return false;'>{{TurbineLoadControllerUserDefined}}</a></div>{{/TurbineLoadControllerUserDefined}}
+                    {{#DiscontinuousExcitationControlUserDefined}}<div><b>DiscontinuousExcitationControlUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlUserDefined}}&quot;);}); return false;'>{{DiscontinuousExcitationControlUserDefined}}</a></div>{{/DiscontinuousExcitationControlUserDefined}}
+                    {{#PowerSystemStabilizerUserDefined}}<div><b>PowerSystemStabilizerUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerUserDefined}}&quot;);}); return false;'>{{PowerSystemStabilizerUserDefined}}</a></div>{{/PowerSystemStabilizerUserDefined}}
+                    {{#ExcitationSystemUserDefined}}<div><b>ExcitationSystemUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemUserDefined}}&quot;);}); return false;'>{{ExcitationSystemUserDefined}}</a></div>{{/ExcitationSystemUserDefined}}
+                    {{#LoadUserDefined}}<div><b>LoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadUserDefined}}&quot;);}); return false;'>{{LoadUserDefined}}</a></div>{{/LoadUserDefined}}
+                    {{#AsynchronousMachineUserDefined}}<div><b>AsynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineUserDefined}}&quot;);}); return false;'>{{AsynchronousMachineUserDefined}}</a></div>{{/AsynchronousMachineUserDefined}}
+                    {{#VoltageCompensatorUserDefined}}<div><b>VoltageCompensatorUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorUserDefined}}&quot;);}); return false;'>{{VoltageCompensatorUserDefined}}</a></div>{{/VoltageCompensatorUserDefined}}
+                    {{#SynchronousMachineUserDefined}}<div><b>SynchronousMachineUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineUserDefined}}&quot;);}); return false;'>{{SynchronousMachineUserDefined}}</a></div>{{/SynchronousMachineUserDefined}}
+                    {{#MechanicalLoadUserDefined}}<div><b>MechanicalLoadUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadUserDefined}}&quot;);}); return false;'>{{MechanicalLoadUserDefined}}</a></div>{{/MechanicalLoadUserDefined}}
+                    {{#WindType3or4UserDefined}}<div><b>WindType3or4UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindType3or4UserDefined}}&quot;);}); return false;'>{{WindType3or4UserDefined}}</a></div>{{/WindType3or4UserDefined}}
+                    {{#PFVArControllerType1UserDefined}}<div><b>PFVArControllerType1UserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1UserDefined}}&quot;);}); return false;'>{{PFVArControllerType1UserDefined}}</a></div>{{/PFVArControllerType1UserDefined}}
+                    {{#WindPlantUserDefined}}<div><b>WindPlantUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantUserDefined}}&quot;);}); return false;'>{{WindPlantUserDefined}}</a></div>{{/WindPlantUserDefined}}
+                    {{#UnderexcitationLimiterUserDefined}}<div><b>UnderexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterUserDefined}}&quot;);}); return false;'>{{UnderexcitationLimiterUserDefined}}</a></div>{{/UnderexcitationLimiterUserDefined}}
+                    {{#OverexcitationLimiterUserDefined}}<div><b>OverexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterUserDefined}}&quot;);}); return false;'>{{OverexcitationLimiterUserDefined}}</a></div>{{/OverexcitationLimiterUserDefined}}
                     </div>
                     <fieldset>
 
@@ -2231,7 +2231,7 @@ define
                     + SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -2351,7 +2351,7 @@ define
                     + DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
-                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 

@@ -65,7 +65,7 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#ModelingAuthoritySets}}<div><b>ModelingAuthoritySets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ModelingAuthoritySets}}
+                    {{#ModelingAuthoritySets}}<div><b>ModelingAuthoritySets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelingAuthoritySets}}
                     </div>
                     <fieldset>
 
@@ -180,7 +180,7 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#ModelingAuthority}}<div><b>ModelingAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelingAuthority}}&quot;);})'>{{ModelingAuthority}}</a></div>{{/ModelingAuthority}}
+                    {{#ModelingAuthority}}<div><b>ModelingAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelingAuthority}}&quot;);}); return false;'>{{ModelingAuthority}}</a></div>{{/ModelingAuthority}}
                     </div>
                     <fieldset>
 
