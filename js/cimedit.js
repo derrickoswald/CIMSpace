@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "themes/layers", "model/Common", "model/Core", "model/Wires"],
+    ["mustache", "cim", "digitizer", "themes/layers", "model/Common", "model/Core", "model/Wires"],
     /**
      * @summary Edit control.
      * @description UI element for editing
@@ -13,7 +13,7 @@ define
      * @exports cimedit
      * @version 1.0
      */
-    function (mustache, cim, layers, Common, Core, Wires)
+    function (mustache, cim, Digitizer, layers, Common, Core, Wires)
     {
         class CIMEdit
         {
@@ -54,6 +54,7 @@ define
                     this.add_layers ();
                 this._resizer = this.on_map_resize.bind (this);
                 this._map.on ("resize", this._resizer);
+                this._digitizer = new Digitizer (this._map, this._cimmap);
                 return (this._container);
             }
 
@@ -123,294 +124,6 @@ define
 //                    ymax: Math.max (extents.ymax, old_extents.ymax)
 //                };
 //                this._cimmap.set_extents (new_extents);
-            }
-
-            popup (html, position)
-            {
-                var lnglat = position || this._map.getCenter ();
-                var popup = new mapboxgl.Popup ();
-                popup.setLngLat (lnglat)
-                popup.setHTML (html)
-                popup.addTo (this._map);
-                return (popup);
-            }
-
-            distance (a, b)
-            {
-                var dx = a.lng - b.lng;
-                var dy = a.lat - b.lat;
-                return (dx * dx + dy * dy);
-            }
-
-            snap (event)
-            {
-                var ret = event.lngLat
-                var width = 4;
-                var height = 4;
-                var features = this._map.queryRenderedFeatures
-                (
-                    [
-                      [event.point.x - width / 2, event.point.y - height / 2],
-                      [event.point.x + width / 2, event.point.y + height / 2]
-                    ],
-                    {}
-                );
-                if ((null != features) && (0 != features.length))
-                {
-                    var mrid = this._elements[0].mRID;
-                    var best_lnglat = null;
-                    var best_feature = null;
-                    var dist = this.distance.bind (this);
-                    function assign_best (lnglat, feature)
-                    {
-                        best_lnglat = lnglat;
-                        best_feature = feature;
-                        console.log ("snap " + feature.properties.cls + ":" + feature.properties.mRID + " " + dist (ret, lnglat) + " [" + lnglat.lng + "," + lnglat.lat + "]");
-                    }
-                    for (var i = 0; i < features.length; i++)
-                    {
-                        if (features[i].properties.mRID && (mrid != features[i].properties.mRID)) // only our features and not the current one
-                        {
-                            if ("Point" == features[i].geometry.type)
-                            {
-                                var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates);
-                                if (null == best_lnglat)
-                                    assign_best (candidate, features[i]);
-                                else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
-                                    assign_best (candidate, features[i]);
-                            }
-                            else if ("LineString" == features[i].geometry.type)
-                            {
-                                for (var j = 0; j < features[i].geometry.coordinates.length; j++)
-                                {
-                                    var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates[j]);
-                                    if (null == best_lnglat)
-                                        assign_best (candidate, features[i]);
-                                    else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
-                                        assign_best (candidate, features[i]);
-                                }
-                            }
-                        }
-                    }
-                    if (null != best_lnglat)
-                        ret = best_lnglat;
-                }
-
-                return (ret);
-            }
-
-            digitize_point_mousedown_listener (points, callback_success, callback_failure, event)
-            {
-                var buttons = event.originalEvent.buttons;
-                var leftbutton = 0 != (buttons & 1);
-                if (leftbutton)
-                {
-                    var lnglat = this.snap (event);
-                    var feature = points.features[points.features.length - 1];
-                    feature.geometry.coordinates = [lnglat.lng, lnglat.lat];
-                    this._map.getSource ("edit points").setData (points);
-                    callback_success (feature);
-                }
-                else
-                    callback_failure ();
-            }
-
-            set_point_listeners (mousedown)
-            {
-                // set up our listeners
-                this._map.dragPan.disable ();
-                this._map.dragRotate.disable ();
-                this._cimmap.remove_listeners ();
-                this._map.on ("mousedown", mousedown);
-            }
-
-            reset_point_listeners (mousedown)
-            {
-                this._map.dragPan.enable ();
-                this._map.dragRotate.enable ();
-                this._map.off ("mousedown", mousedown);
-                this._cimmap.add_listeners ();
-            }
-
-            digitize_point (obj, callback_success, callback_failure)
-            {
-                // get the current GeoJSON
-                var options =
-                    {
-                        show_internal_features: this._cimmap.show_internal_features ()
-                    };
-                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this._features, options);
-                var points = geo.points;
-                points.features.push
-                (
-                    {
-                        type: "Feature",
-                        geometry:
-                        {
-                            type: "Point",
-                            coordinates: []
-                        },
-                        properties: obj
-                    }
-                );
-                var cancel = cb_failure.bind (this);
-                var mousedown = this.digitize_point_mousedown_listener.bind (this, points, cb_success.bind (this), cancel);
-                function cb_success (feature)
-                {
-                    if (this._popup)
-                    {
-                        this._popup.remove ();
-                        delete this._popup;
-                    }
-                    this.reset_point_listeners (mousedown);
-                    callback_success (feature);
-                }
-                function cb_failure ()
-                {
-                    if (this._popup)
-                    {
-                        this._popup.remove ();
-                        delete this._popup;
-                    }
-                    this.reset_point_listeners (mousedown);
-                    callback_failure ();
-                }
-
-                this.set_point_listeners (mousedown);
-
-                // pop up a prompt and wait
-                this._popup = this.popup ("<h1>Digitize point geometry</h1>");
-
-                return (cancel);
-            }
-
-            digitize_line_mousedown_listener (lines, callback_success, callback_failure, event)
-            {
-                var feature = lines.features[lines.features.length - 1];
-                var coordinates = feature.geometry.coordinates;
-                var lnglat = this.snap (event);
-                var buttons = event.originalEvent.buttons;
-                var leftbutton = 0 != (buttons & 1);
-                var rightbutton = 0 != (buttons & 2);
-
-                if (leftbutton)
-                {
-                    // ToDo: snap to point or end of line
-                    coordinates.push ([lnglat.lng, lnglat.lat]);
-                    if (coordinates.length > 2)
-                        this._map.getSource ("edit lines").setData (lines);
-                }
-                else if (rightbutton)
-                {
-                    lines.features.length = lines.features.length - 1;
-                    if (coordinates.length > 1)
-                        callback_success (feature);
-                    else
-                        callback_failure ()
-                }
-            }
-
-            digitize_line_mousemove_listener (lines, event)
-            {
-                var lnglat = event.lngLat;
-                var feature = lines.features[lines.features.length - 1];
-                // ToDo: snap to point or end of line
-                feature.transient = [lnglat.lng, lnglat.lat];
-            }
-
-            animate_line (lines, timestamp)
-            {
-                var feature = lines.features[lines.features.length - 1];
-                if (null != feature.transient)
-                {
-                    var coordinates = feature.geometry.coordinates;
-                    coordinates.push (feature.transient);
-                    if (coordinates.length >= 2)
-                        this._map.getSource ("edit lines").setData (lines);
-                    coordinates.length = coordinates.length - 1;
-                    feature.transient = null;
-                }
-                // trigger next animation
-                this._animation = requestAnimationFrame (this._animate);
-            }
-
-            set_line_listeners (mousemove, mousedown, animate)
-            {
-                // set up our listeners
-                this._cimmap.remove_listeners ();
-                this._map.dragPan.disable ();
-                this._map.dragRotate.disable ();
-                this._map.on ("mousedown", mousedown);
-                // handle mouse movement
-                this._map.on ("mousemove", mousemove);
-                // start animation
-                this._animation = requestAnimationFrame (animate);
-            }
-
-            reset_line_listeners (mousemove, mousedown)
-            {
-                cancelAnimationFrame (this._animation);
-                delete this._animation;
-                this._map.dragPan.enable ();
-                this._map.dragRotate.enable ();
-                this._map.off ("mousedown", mousedown);
-                this._map.off ("mousemove", mousemove);
-                this._cimmap.add_listeners ();
-            }
-
-            digitize_line (obj, callback_success, callback_failure)
-            {
-                // get the current GeoJSON
-                var options =
-                    {
-                        show_internal_features: this._cimmap.show_internal_features ()
-                    };
-                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this._features, options);
-                var lines = geo.lines;
-
-                // add an empty line
-                lines.features.push
-                (
-                    {
-                        type: "Feature",
-                        geometry:
-                        {
-                            type: "LineString",
-                            coordinates: []
-                        },
-                        properties: obj,
-                        transient: null
-                    }
-                );
-                var cancel = cb_failure.bind (this);
-                var mousedown = this.digitize_line_mousedown_listener.bind (this, lines, cb_success.bind (this), cancel);
-                var mousemove = this.digitize_line_mousemove_listener.bind (this, lines);
-                this._animate = this.animate_line.bind (this, lines);
-                function cb_success (feature)
-                {
-                    if (this._popup)
-                    {
-                        this._popup.remove ();
-                        delete this._popup;
-                    }
-                    this.reset_line_listeners (mousemove, mousedown);
-                    callback_success (feature);
-                }
-                function cb_failure ()
-                {
-                    if (this._popup)
-                    {
-                        this._popup.remove ();
-                        delete this._popup;
-                    }
-                    this.reset_line_listeners (mousemove, mousedown);
-                    callback_failure ();
-                }
-
-                this.set_line_listeners (mousemove, mousedown, this._animate);
-                // pop up a prompt
-                this._popup = this.popup ("<h1>Digitize linear geometry<br>Right-click to finsh</h1>");
-                return (cancel);
             }
 
             get_connectivity_for_equipment (equipment, point)
@@ -981,13 +694,13 @@ define
 
                 // here's some rules
                 if (this._features.Conductor)
-                    this._canceler = this.digitize_line (obj, this.make_cable.bind (this), this.cancel.bind (this));
+                    this._canceler = this._digitizer.digitize_line (obj, this._features, this.make_cable.bind (this), this.cancel.bind (this));
                 else if (this._features.PowerTransformer)
-                    this._canceler = this.digitize_point (obj, this.make_transformer.bind (this), this.cancel.bind (this));
+                    this._canceler = this._digitizer.digitize_point (obj, this._features, this.make_transformer.bind (this), this.cancel.bind (this));
                 else if (this._features.ConductingEquipment)
-                    this._canceler = this.digitize_point (obj, this.make_equipment.bind (this), this.cancel.bind (this));
+                    this._canceler = this._digitizer.digitize_point (obj, this._features, this.make_equipment.bind (this), this.cancel.bind (this));
                 else if (this._features.PowerSystemResource)
-                    this._canceler = this.digitize_point (obj, this.make_psr.bind (this), this.cancel.bind (this));
+                    this._canceler = this._digitizer.digitize_point (obj, this._features, this.make_psr.bind (this), this.cancel.bind (this));
             }
 
             create ()
@@ -1088,6 +801,51 @@ define
                 return (text);
             }
 
+            get_related (element)
+            {
+                var ret = [];
+                function add (e)
+                {
+                    if (!ret.find (x => x.id == e.id))
+                        ret.push (e);
+                }
+                var cls = cim.class_map (element);
+                var data = this._cimmap.get_data ();
+                if (data)
+                {
+                    var relations = cls.prototype.relations ();
+                    for (var i = 0; i < relations.length; i++)
+                        if (relations[i][1] == "0..1")
+                        {
+                            var ref = element[relations[i][0]];
+                            if (ref)
+                            {
+                                var related = data[relations[i][3]];
+                                if (related)
+                                {
+                                    var obj = related[ref];
+                                    if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
+                                        add (obj)
+                                }
+                            }
+                        }
+                        else if (relations[i][2] == "0..1" || relations[i][2] == "1")
+                        {
+                            var related = data[relations[i][3]];
+                            if (related)
+                                for (var id in related)
+                                {
+                                    var obj = related[id];
+                                    if (obj[relations[i][4]] == element.id)
+                                        if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                            add (obj)
+                                }
+                        }
+                }
+
+                return (ret);
+            }
+
             edit (element, top_level, is_new)
             {
                 var cls = cim.class_map (element);
@@ -1113,27 +871,9 @@ define
                     var text = this.build (element);
 
                     // get related elements
-                    var relations = cls.prototype.relations ();
-                    for (var i = 0; i < relations.length; i++)
-                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
-                        {
-                            var data = this._cimmap.get_data ();
-                            if (data)
-                            {
-                                var related = data[relations[i][3]];
-                                var relatives = [];
-                                if (related)
-                                    for (var id in related)
-                                    {
-                                        var obj = related[id];
-                                        if (obj[relations[i][4]] == element.id)
-                                            if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                                relatives.push (related[id]);
-                                    }
-                                for (var j = 0; j < relatives.length; j++)
-                                    text = text + this.build (relatives[j]);
-                            }
-                        }
+                    var relatives = this.get_related (element)
+                    for (var j = 0; j < relatives.length; j++)
+                        text = text + this.build (relatives[j]);
                     document.getElementById ("edit_contents").innerHTML = text;
                 }
                 else
