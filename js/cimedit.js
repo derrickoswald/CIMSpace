@@ -469,6 +469,69 @@ define
                 this.make_psr (feature);
             }
 
+            make_switch (feature)
+            {
+                if (this._canceler)
+                    delete this._canceler;
+
+                var equipment = this.primary_element ();
+                var id = equipment.id;
+
+                var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
+                if (null == connectivity) // invent a new node if there are none
+                {
+                    var node = this.new_connectivity (this.generateId (id, "_node_1"));
+                    this.edit (new Core.ConnectivityNode (node, this._features));
+                    console.log ("no connectivity found, created ConnectivityNode " + node.id);
+                    connectivity = { ConnectivityNode: node.id };
+                }
+                else
+                    if (connectivity.BaseVoltage)
+                        equipment.BaseVoltage = connectivity.BaseVoltage;
+
+                // add the terminal
+                var tid1 = this.generateId (id, "_terminal_1");
+                var terminal =
+                {
+                    EditDisposition: "new",
+                    cls: "Terminal",
+                    id: tid1,
+                    mRID: tid1,
+                    name: tid1,
+                    sequenceNumber: 1,
+                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    ConductingEquipment: id,
+                    ConnectivityNode: connectivity.ConnectivityNode
+                };
+                if (connectivity.TopologicalNode)
+                    terminal.TopologicalNode = connectivity.TopologicalNode;
+                this.edit (new Core.Terminal (terminal, this._features));
+
+                // add a secondary connectivity node
+                {
+                    var node = this.new_connectivity (this.generateId (id, "_node_2"));
+                    this.edit (new Core.ConnectivityNode (node, this._features));
+                    console.log ("created second ConnectivityNode " + node.id);
+                    connectivity = { ConnectivityNode: node.id };
+                }
+                var tid2 = this.generateId (id, "_terminal_2");
+                var terminal2 =
+                {
+                    EditDisposition: "new",
+                    cls: "Terminal",
+                    id: tid2,
+                    mRID: tid2,
+                    name: tid2,
+                    sequenceNumber: 2,
+                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    ConductingEquipment: id,
+                    ConnectivityNode: connectivity.ConnectivityNode
+                };
+                this.edit (new Core.Terminal (terminal2, this._features));
+
+                this.make_psr (feature);
+            }
+
             make_transformer (feature)
             {
                 if (this._canceler)
@@ -697,6 +760,8 @@ define
                     this._canceler = this._digitizer.digitize_line (obj, this._features, this.make_cable.bind (this), this.cancel.bind (this));
                 else if (this._features.PowerTransformer)
                     this._canceler = this._digitizer.digitize_point (obj, this._features, this.make_transformer.bind (this), this.cancel.bind (this));
+                else if (this._features.Switch)
+                    this._canceler = this._digitizer.digitize_point (obj, this._features, this.make_switch.bind (this), this.cancel.bind (this));
                 else if (this._features.ConductingEquipment)
                     this._canceler = this._digitizer.digitize_point (obj, this._features, this.make_equipment.bind (this), this.cancel.bind (this));
                 else if (this._features.PowerSystemResource)

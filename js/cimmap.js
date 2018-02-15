@@ -686,7 +686,8 @@ define
                 {
                     var ret = false;
 
-                    if (!through_opens && (("undefined" != typeof (equipment.normalOpen)) && equipment.normalOpen))
+                    if (!through_opens &&
+                        (equipment.open || ("undefined" == typeof (equipment.open) && equipment.normalOpen)))
                         ret = true;
                     else if (!through_voltages && (null != transformers[equipment.mRID]))
                         ret = true;
