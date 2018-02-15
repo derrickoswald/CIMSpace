@@ -369,6 +369,7 @@ define
                     this._elements = [];
                     var text = this.build (element);
                     document.getElementById ("edit_contents").innerHTML = text;
+                    this.process_related (element);
                 }
 
                 return (element);
@@ -880,21 +881,23 @@ define
                 {
                     var relations = cls.prototype.relations ();
                     for (var i = 0; i < relations.length; i++)
-                        if (relations[i][1] == "0..1")
-                        {
-                            var ref = element[relations[i][0]];
-                            if (ref)
-                            {
-                                var related = data[relations[i][3]];
-                                if (related)
-                                {
-                                    var obj = related[ref];
-                                    if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
-                                        add (obj)
-                                }
-                            }
-                        }
-                        else if (relations[i][2] == "0..1" || relations[i][2] == "1")
+// until we get a more sophisticated relation graph traversal, exclude direct relationships from cascade delete
+//                        if (relations[i][1] == "0..1")
+//                        {
+//                            var ref = element[relations[i][0]];
+//                            if (ref)
+//                            {
+//                                var related = data[relations[i][3]];
+//                                if (related)
+//                                {
+//                                    var obj = related[ref];
+//                                    if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
+//                                        add (obj)
+//                                }
+//                            }
+//                        }
+//                        else
+                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
                         {
                             var related = data[relations[i][3]];
                             if (related)
@@ -909,6 +912,54 @@ define
                 }
 
                 return (ret);
+            }
+
+            // fix the form to make references into select drop-downs, i.e. turn this:
+            //  <input id="Switch_location_CoordinateSystem" class="form-control" value="wgs84" type="text">
+            //into this:
+            //  <select id="Switch_location_CoordinateSystem" class="form-control custom-select">
+            //    <option></option>
+            //    <option>pseudo_wgs84</option>
+            //    <option selected>wgs84</option>
+            //  </select>
+            process_related (element)
+            {
+                var cls = cim.class_map (element);
+                var data = this._cimmap.get_data ();
+                if (data)
+                {
+                    var relations = cls.prototype.relations ();
+                    for (var i = 0; i < relations.length; i++)
+                        if (relations[i][1] == "0..1")
+                        {
+                            var member = relations[i][0]; // object member name
+                            var ref = element[member]; // mRID of current reference or undefined
+                            var domid = element.id + "_" + member; // the HTML DOM element id
+                            var relatable = data[relations[i][3]];
+                            if (relatable)
+                            {
+                                var ids = [];
+                                for (var id in relatable)
+                                    ids.push (id);
+
+                                var obj = ref ? relatable[ref] : undefined;
+                                var selected = obj ? obj.id : "";
+                                // change class to alert alert-danger if object deleted or doesn't exist
+                                // if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
+                                if (!obj)
+                                    ids.push ("");
+                                ids.sort ();
+                                var options = ids.map (choice => "<option" + (choice == selected ? " selected" : "") + ">" + choice + "</option>");
+                                var select = document.createElement ("select");
+                                select.setAttribute ("class", "form-control custom-select");
+                                select.innerHTML = options.join ('');
+                                select.id = domid;
+                                var input = document.getElementById (domid);
+                                if (input)
+                                    input.parentNode.replaceChild (select, input);
+                            }
+                        }
+                }
             }
 
             edit (element, top_level, is_new)
@@ -939,12 +990,17 @@ define
                     var relatives = this.get_related (element)
                     for (var j = 0; j < relatives.length; j++)
                         text = text + this.build (relatives[j]);
+
                     document.getElementById ("edit_contents").innerHTML = text;
+                    this.process_related (element);
+                    for (var j = 0; j < relatives.length; j++)
+                        this.process_related (relatives[j]);
                 }
                 else
                 {
                     var text = this.build (element);
                     document.getElementById ("edit_contents").innerHTML = document.getElementById ("edit_contents").innerHTML + text;
+                    this.process_related (element);
                 }
                 this.on_map_resize ();
             }

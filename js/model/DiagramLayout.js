@@ -501,7 +501,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_orientation'>orientation: </label><div class='col-sm-8'><select id='{{id}}_orientation' class='form-control'>{{#OrientationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OrientationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_orientation'>orientation: </label><div class='col-sm-8'><select id='{{id}}_orientation' class='form-control custom-select'>{{#OrientationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OrientationKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x1InitialView'>x1InitialView: </label><div class='col-sm-8'><input id='{{id}}_x1InitialView' class='form-control' type='text'{{#x1InitialView}} value='{{x1InitialView}}'{{/x1InitialView}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x2InitialView'>x2InitialView: </label><div class='col-sm-8'><input id='{{id}}_x2InitialView' class='form-control' type='text'{{#x2InitialView}} value='{{x2InitialView}}'{{/x2InitialView}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1InitialView'>y1InitialView: </label><div class='col-sm-8'><input id='{{id}}_y1InitialView' class='form-control' type='text'{{#y1InitialView}} value='{{y1InitialView}}'{{/y1InitialView}}></div></div>

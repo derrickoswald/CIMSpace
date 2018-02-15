@@ -437,7 +437,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_source'>source: </label><div class='col-sm-8'><input id='{{id}}_source' class='form-control' type='text'{{#source}} value='{{source}}'{{/source}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_suspect'>suspect: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_suspect' class='form-check-input' type='checkbox'{{#suspect}} checked{{/suspect}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_test'>test: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_test' class='form-check-input' type='checkbox'{{#test}} checked{{/test}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validity'>validity: </label><div class='col-sm-8'><select id='{{id}}_validity' class='form-control'>{{#Validity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Validity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validity'>validity: </label><div class='col-sm-8'><select id='{{id}}_validity' class='form-control custom-select'>{{#Validity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Validity}}</select></div></div>
                     </div>
                     <fieldset>
                     `
