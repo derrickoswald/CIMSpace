@@ -100,6 +100,8 @@ define
 
             digitize_point_mousedown_listener (points, callback_success, callback_failure, event)
             {
+                event.originalEvent.preventDefault ();
+                event.originalEvent.stopPropagation ();
                 var buttons = event.originalEvent.buttons;
                 var leftbutton = 0 != (buttons & 1);
                 if (leftbutton)
@@ -116,24 +118,26 @@ define
 
             set_point_listeners ()
             {
-                // set up our listeners
-                this._map.dragPan.disable ();
-                this._map.dragRotate.disable ();
-                this._cimmap.remove_listeners ();
                 if (this._mousedown)
+                {
+                    // set up our listeners
+                    this._map.dragPan.disable ();
+                    this._map.dragRotate.disable ();
+                    this._cimmap.remove_listeners ();
                     this._map.on ("mousedown", this._mousedown);
+                }
             }
 
             reset_point_listeners ()
             {
-                this._map.dragPan.enable ();
-                this._map.dragRotate.enable ();
                 if (this._mousedown)
                 {
+                    this._map.dragPan.enable ();
+                    this._map.dragRotate.enable ();
                     this._map.off ("mousedown", this._mousedown);
                     delete this._mousedown;
+                    this._cimmap.add_listeners ();
                 }
-                this._cimmap.add_listeners ();
             }
 
             digitize_point (obj, features, callback_success, callback_failure)
@@ -178,7 +182,7 @@ define
                         delete this._popup;
                     }
                     this.reset_point_listeners ();
-                    callback_failure ();
+                    callback_failure ({canceled: true});
                 }
                 this._mousedown = this.digitize_point_mousedown_listener.bind (this, points, cb_success.bind (this), cb_failure.bind (this));
 
@@ -193,11 +197,13 @@ define
                 var status = null;
                 function cb_success (feature)
                 {
-                    status = feature;
+                    status = "success";
+                    callback_success (feature);
                 }
-                function cb_failure ()
+                function cb_failure (error)
                 {
-                    status = "failed";
+                    status = "fail";
+                    callback_failure (error);
                 }
                 function sleep (ms)
                 {
@@ -207,13 +213,9 @@ define
                 do
                     await sleep (500);
                 while (null == status);
-                if ("failed" == status)
-                    callback_failure ();
-                else
-                    callback_success (status);
             }
 
-            point (obj, features, cancel)
+            point (obj, features)
             {
                 function abort ()
                 {
@@ -223,13 +225,14 @@ define
                         delete this._popup;
                     }
                     this.reset_point_listeners ();
-                    cancel ();
                 }
                 return (new CancelablePromise (new Promise (this.digitize_point_wait.bind (this, obj, features)), abort.bind (this)));
             }
 
             digitize_line_mousedown_listener (lines, callback_success, callback_failure, event)
             {
+                event.originalEvent.preventDefault ();
+                event.originalEvent.stopPropagation ();
                 var feature = lines.features[lines.features.length - 1];
                 var coordinates = feature.geometry.coordinates;
                 var lnglat = this.snap (event);
@@ -255,6 +258,8 @@ define
 
             digitize_line_mousemove_listener (lines, event)
             {
+                event.originalEvent.preventDefault ();
+                event.originalEvent.stopPropagation ();
                 var lnglat = event.lngLat;
                 var feature = lines.features[lines.features.length - 1];
                 // ToDo: snap to point or end of line
@@ -279,35 +284,33 @@ define
 
             set_line_listeners ()
             {
-                // set up our listeners
-                this._cimmap.remove_listeners ();
-                this._map.dragPan.disable ();
-                this._map.dragRotate.disable ();
                 if (this._mousedown)
+                {
+                    // set up our listeners
+                    this._cimmap.remove_listeners ();
+                    this._map.dragPan.disable ();
+                    this._map.dragRotate.disable ();
                     this._map.on ("mousedown", this._mousedown);
-                if (this._mousemove)
                     this._map.on ("mousemove", this._mousemove);
-                // start animation
-                this._animation = requestAnimationFrame (this._animate);
+                    // start animation
+                    this._animation = requestAnimationFrame (this._animate);
+                }
             }
 
             reset_line_listeners ()
             {
-                cancelAnimationFrame (this._animation);
-                delete this._animation;
-                this._map.dragPan.enable ();
-                this._map.dragRotate.enable ();
                 if (this._mousedown)
                 {
+                    cancelAnimationFrame (this._animation);
+                    delete this._animation;
+                    this._map.dragPan.enable ();
+                    this._map.dragRotate.enable ();
                     this._map.off ("mousedown", this._mousedown);
                     delete this._mousedown;
-                }
-                if (this._mousemove)
-                {
                     this._map.off ("mousemove", this._mousemove);
                     delete this._mousemove;
+                    this._cimmap.add_listeners ();
                 }
-                this._cimmap.add_listeners ();
             }
 
             digitize_line (obj, features, callback_success, callback_failure)
@@ -354,7 +357,7 @@ define
                         delete this._popup;
                     }
                     this.reset_line_listeners ();
-                    callback_failure ();
+                    callback_failure ({canceled: true});
                 }
                 this._mousedown = this.digitize_line_mousedown_listener.bind (this, lines, cb_success.bind (this), cb_failure.bind (this));
                 this._mousemove = this.digitize_line_mousemove_listener.bind (this, lines);
@@ -370,11 +373,13 @@ define
                 var status = null;
                 function cb_success (feature)
                 {
-                    status = feature;
+                    status = "success";
+                    callback_success (feature);
                 }
-                function cb_failure ()
+                function cb_failure (error)
                 {
-                    status = "failed";
+                    status = "fail";
+                    callback_failure (error);
                 }
                 function sleep (ms)
                 {
@@ -384,13 +389,9 @@ define
                 do
                     await sleep (500);
                 while (null == status);
-                if ("failed" == status)
-                    callback_failure ();
-                else
-                    callback_success (status);
             }
 
-            line (obj, features, cancel)
+            line (obj, features)
             {
                 function abort ()
                 {
@@ -400,9 +401,8 @@ define
                         delete this._popup;
                     }
                     this.reset_line_listeners ();
-                    cancel ();
                 }
-                return (new CancelablePromise (new Promise (this.digitize_line.bind (this, obj, features)), abort.bind (this)));
+                return (new CancelablePromise (new Promise (this.digitize_line_wait.bind (this, obj, features)), abort.bind (this)));
             }
 
         }

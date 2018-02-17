@@ -171,32 +171,32 @@ define
                 if (this._features.Conductor)
                 {
                     var cm = new ConductorMaker (this._cimmap, this, this._digitizer);
-                    this._maker = cm.make (obj, this._elements, this._features, this.cancel.bind (this));
-                    this._maker.promise ().then (this.editnew.bind (this));
+                    this._maker = cm.make (obj, this._elements, this._features);
+                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
                 else if (this._features.PowerTransformer)
                 {
                     var ptm = new PowerTransformerMaker (this._cimmap, this, this._digitizer);
-                    this._maker = ptm.make (obj, this._elements, this._features, this.cancel.bind (this));
-                    this._maker.promise ().then (this.editnew.bind (this));
+                    this._maker = ptm.make (obj, this._elements, this._features);
+                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
                 else if (this._features.Switch)
                 {
                     var sm = new SwitchMaker (this._cimmap, this, this._digitizer);
-                    this._maker = sm.make (obj, this._elements, this._features, this.cancel.bind (this));
-                    this._maker.promise ().then (this.editnew.bind (this));
+                    this._maker = sm.make (obj, this._elements, this._features);
+                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
                 else if (this._features.ConductingEquipment)
                 {
                     var cem = new ConductingEquipmentMaker (this._cimmap, this, this._digitizer);
-                    this._maker = cem.make (obj, this._elements, this._features, this.cancel.bind (this));
-                    this._maker.promise ().then (this.editnew.bind (this));
+                    this._maker = cem.make (obj, this._elements, this._features);
+                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
                 else if (this._features.PowerSystemResource)
                 {
                     var psr = new PowerSystemResourceMaker (this._cimmap, this, this._digitizer);
-                    this._maker = psr.make (obj, this._elements, this._features, this.cancel.bind (this));
-                    this._maker.promise ().then (this.editnew.bind (this));
+                    this._maker = psr.make (obj, this._elements, this._features);
+                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
             }
 

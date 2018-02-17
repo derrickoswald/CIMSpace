@@ -86,11 +86,11 @@ define
                 return (ret);
             }
 
-            make (obj, elements, features, cancel)
+            make (obj, elements, features)
             {
                 this._elements = elements;
                 this._features = features;
-                var cpromise = this._digitizer.point (obj, this._features, cancel);
+                var cpromise = this._digitizer.point (obj, this._features);
                 cpromise.setPromise (cpromise.promise ().then (this.make_switch.bind (this)));
                 return (cpromise);
             }
