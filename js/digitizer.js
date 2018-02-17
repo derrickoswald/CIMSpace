@@ -5,7 +5,7 @@
 
 define
 (
-    [],
+    ["cancelablepromise"],
     /**
      * @summary Point and line digitizer.
      * @description functions to digitize a point or a line
@@ -13,7 +13,7 @@ define
      * @exports digitizer
      * @version 1.0
      */
-    function ()
+    function (CancelablePromise)
     {
         class Digitizer
         {
@@ -114,20 +114,25 @@ define
                     callback_failure ();
             }
 
-            set_point_listeners (mousedown)
+            set_point_listeners ()
             {
                 // set up our listeners
                 this._map.dragPan.disable ();
                 this._map.dragRotate.disable ();
                 this._cimmap.remove_listeners ();
-                this._map.on ("mousedown", mousedown);
+                if (this._mousedown)
+                    this._map.on ("mousedown", this._mousedown);
             }
 
-            reset_point_listeners (mousedown)
+            reset_point_listeners ()
             {
                 this._map.dragPan.enable ();
                 this._map.dragRotate.enable ();
-                this._map.off ("mousedown", mousedown);
+                if (this._mousedown)
+                {
+                    this._map.off ("mousedown", this._mousedown);
+                    delete this._mousedown;
+                }
                 this._cimmap.add_listeners ();
             }
 
@@ -154,8 +159,7 @@ define
                         properties: obj
                     }
                 );
-                var cancel = cb_failure.bind (this);
-                var mousedown = this.digitize_point_mousedown_listener.bind (this, points, cb_success.bind (this), cancel);
+
                 function cb_success (feature)
                 {
                     if (this._popup)
@@ -163,7 +167,7 @@ define
                         this._popup.remove ();
                         delete this._popup;
                     }
-                    this.reset_point_listeners (mousedown);
+                    this.reset_point_listeners ();
                     callback_success (feature);
                 }
                 function cb_failure ()
@@ -173,16 +177,55 @@ define
                         this._popup.remove ();
                         delete this._popup;
                     }
-                    this.reset_point_listeners (mousedown);
+                    this.reset_point_listeners ();
                     callback_failure ();
                 }
+                this._mousedown = this.digitize_point_mousedown_listener.bind (this, points, cb_success.bind (this), cb_failure.bind (this));
 
-                this.set_point_listeners (mousedown);
+                this.set_point_listeners ();
 
                 // pop up a prompt and wait
                 this._popup = this.popup ("<h1>Digitize point geometry</h1>");
+            }
 
-                return (cancel);
+            async digitize_point_wait (obj, features, callback_success, callback_failure)
+            {
+                var status = null;
+                function cb_success (feature)
+                {
+                    status = feature;
+                }
+                function cb_failure ()
+                {
+                    status = "failed";
+                }
+                function sleep (ms)
+                {
+                    return (new Promise (resolve => setTimeout (resolve, ms)));
+                }
+                this.digitize_point (obj, features, cb_success, cb_failure)
+                do
+                    await sleep (500);
+                while (null == status);
+                if ("failed" == status)
+                    callback_failure ();
+                else
+                    callback_success (status);
+            }
+
+            point (obj, features, cancel)
+            {
+                function abort ()
+                {
+                    if (this._popup)
+                    {
+                        this._popup.remove ();
+                        delete this._popup;
+                    }
+                    this.reset_point_listeners ();
+                    cancel ();
+                }
+                return (new CancelablePromise (new Promise (this.digitize_point_wait.bind (this, obj, features)), abort.bind (this)));
             }
 
             digitize_line_mousedown_listener (lines, callback_success, callback_failure, event)
@@ -234,27 +277,36 @@ define
                 this._animation = requestAnimationFrame (this._animate);
             }
 
-            set_line_listeners (mousemove, mousedown, animate)
+            set_line_listeners ()
             {
                 // set up our listeners
                 this._cimmap.remove_listeners ();
                 this._map.dragPan.disable ();
                 this._map.dragRotate.disable ();
-                this._map.on ("mousedown", mousedown);
-                // handle mouse movement
-                this._map.on ("mousemove", mousemove);
+                if (this._mousedown)
+                    this._map.on ("mousedown", this._mousedown);
+                if (this._mousemove)
+                    this._map.on ("mousemove", this._mousemove);
                 // start animation
-                this._animation = requestAnimationFrame (animate);
+                this._animation = requestAnimationFrame (this._animate);
             }
 
-            reset_line_listeners (mousemove, mousedown)
+            reset_line_listeners ()
             {
                 cancelAnimationFrame (this._animation);
                 delete this._animation;
                 this._map.dragPan.enable ();
                 this._map.dragRotate.enable ();
-                this._map.off ("mousedown", mousedown);
-                this._map.off ("mousemove", mousemove);
+                if (this._mousedown)
+                {
+                    this._map.off ("mousedown", this._mousedown);
+                    delete this._mousedown;
+                }
+                if (this._mousemove)
+                {
+                    this._map.off ("mousemove", this._mousemove);
+                    delete this._mousemove;
+                }
                 this._cimmap.add_listeners ();
             }
 
@@ -284,10 +336,6 @@ define
                         transient: null
                     }
                 );
-                var cancel = cb_failure.bind (this);
-                var mousedown = this.digitize_line_mousedown_listener.bind (this, lines, cb_success.bind (this), cancel);
-                var mousemove = this.digitize_line_mousemove_listener.bind (this, lines);
-                this._animate = this.animate_line.bind (this, lines);
                 function cb_success (feature)
                 {
                     if (this._popup)
@@ -295,7 +343,7 @@ define
                         this._popup.remove ();
                         delete this._popup;
                     }
-                    this.reset_line_listeners (mousemove, mousedown);
+                    this.reset_line_listeners ();
                     callback_success (feature);
                 }
                 function cb_failure ()
@@ -305,14 +353,56 @@ define
                         this._popup.remove ();
                         delete this._popup;
                     }
-                    this.reset_line_listeners (mousemove, mousedown);
+                    this.reset_line_listeners ();
                     callback_failure ();
                 }
+                this._mousedown = this.digitize_line_mousedown_listener.bind (this, lines, cb_success.bind (this), cb_failure.bind (this));
+                this._mousemove = this.digitize_line_mousemove_listener.bind (this, lines);
+                this._animate = this.animate_line.bind (this, lines);
 
-                this.set_line_listeners (mousemove, mousedown, this._animate);
+                this.set_line_listeners ();
                 // pop up a prompt
                 this._popup = this.popup ("<h1>Digitize linear geometry<br>Right-click to finsh</h1>");
-                return (cancel);
+            }
+
+            async digitize_line_wait (obj, features, callback_success, callback_failure)
+            {
+                var status = null;
+                function cb_success (feature)
+                {
+                    status = feature;
+                }
+                function cb_failure ()
+                {
+                    status = "failed";
+                }
+                function sleep (ms)
+                {
+                    return (new Promise (resolve => setTimeout (resolve, ms)));
+                }
+                this.digitize_line (obj, features, cb_success, cb_failure)
+                do
+                    await sleep (500);
+                while (null == status);
+                if ("failed" == status)
+                    callback_failure ();
+                else
+                    callback_success (status);
+            }
+
+            line (obj, features, cancel)
+            {
+                function abort ()
+                {
+                    if (this._popup)
+                    {
+                        this._popup.remove ();
+                        delete this._popup;
+                    }
+                    this.reset_line_listeners ();
+                    cancel ();
+                }
+                return (new CancelablePromise (new Promise (this.digitize_line.bind (this, obj, features)), abort.bind (this)));
             }
 
         }
