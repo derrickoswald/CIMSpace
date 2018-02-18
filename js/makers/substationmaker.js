@@ -5,7 +5,7 @@
 
 define
 (
-    ["cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
+    ["cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires", "model/StateVariables"],
     /**
      * @summary Make a collection of objects representing a Substation with internal data.
      * @description Digitizes a point and makes a Substation, PowerTransformer, BusbarSection, a number of Switch and Fuse with Connector and connectivity.
@@ -13,7 +13,7 @@ define
      * @exports substationmaker
      * @version 1.0
      */
-    function (cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
+    function (cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires, StateVariables)
     {
         class SubstationMaker extends PowerSystemResourceMaker
         {
@@ -25,14 +25,66 @@ define
                 this._yoffset = 3.0e-5;
             }
 
+            distribution_box ()
+            {
+                return ("PSRType_DistributionBox");
+            }
+
+            transformer_station ()
+            {
+                return ("PSRType_TransformerStation");
+            }
+
+            substation ()
+            {
+                return ("PSRType_Substation");
+            }
+
+            ensure_stations (features)
+            {
+                var ret = [];
+                var data = this._cimmap.get_data ();
+                if (!data || !data.PSRType || !data.PSRType["PSRType_DistributionBox"])
+                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_DistributionBox", mRID: "PSRType_DistributionBox", name: "Distribution Box", description: "N7 level station" }, features));
+                if (!data || !data.PSRType || !data.PSRType["PSRType_TransformerStation"])
+                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_TransformerStation", mRID: "PSRType_TransformerStation", name: "Transformer Station", description: "N6 transfer level station" }, features));
+                if (!data || !data.PSRType || !data.PSRType["PSRType_Substation"])
+                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_Substation", mRID: "PSRType_Substation", name: "Substation", description: "N4 transfer level statin" }, features));
+                return (ret);
+            }
+
+            in_use ()
+            {
+                return ("in_use");
+            }
+
+            not_in_use ()
+            {
+                return ("not_in_use");
+            }
+
+            ensure_status (features)
+            {
+                var ret = [];
+                var data = this._cimmap.get_data ();
+                if (!data || !data.SvStatus || !data.SvStatus["in_use"])
+                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use Status", description: "Status for equipment in use.", inService: true }, features));
+                if (!data || !data.SvStatus || !data.SvStatus["not_in_use"])
+                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use Status", description: "Status for equipment not in use", inService: false }, features));
+                return (ret);
+            }
+
             make_substation (feature)
             {
                 var station = this._cimedit.primary_element ();
                 var id = station.id;
+                station.PSRType = this.transformer_station ();
 
                 var ret = this.make_psr (feature);
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 ret = ret.concat (eqm.ensure_voltages (this._features));
+                ret = ret.concat (this.ensure_stations (this._features));
+                ret = ret.concat (this.ensure_status (this._features));
 
                 var x = feature.geometry.coordinates[0];
                 var y = feature.geometry.coordinates[1];
@@ -50,6 +102,8 @@ define
                     mRID: bid,
                     name: "Busbar",
                     BaseVoltage: eqm.low_voltage (),
+                    normallyInService: true,
+                    SvStatus: this.in_use (),
                     EquipmentContainer: id,
                     Location: location[0].id
                 };
@@ -64,7 +118,8 @@ define
                     mRID: tid,
                     name: tid,
                     sequenceNumber: 1,
-                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABCN",
+                    connected: true,
                     ConductingEquipment: busbar.id,
                     ConnectivityNode: node.id
                 };
@@ -96,6 +151,9 @@ define
                             mRID: did,
                             name: "S",
                             BaseVoltage: eqm.low_voltage (),
+                            normallyInService: true,
+                            retained: true,
+                            SvStatus: this.in_use (),
                             EquipmentContainer: id,
                             Location: location[0].id
                         };
@@ -113,6 +171,9 @@ define
                             mRID: did,
                             name: "F" + i,
                             BaseVoltage: eqm.low_voltage (),
+                            ratedCurrent: 125.0,
+                            normallyInService: true,
+                            SvStatus: this.in_use (),
                             EquipmentContainer: id,
                             Location: location[0].id
                         };
@@ -128,7 +189,8 @@ define
                         mRID: tid1,
                         name: tid1,
                         sequenceNumber: 1,
-                        phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                        phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABCN",
+                        connected: true,
                         ConductingEquipment: device.id,
                         ConnectivityNode: node.id
                     };
@@ -144,7 +206,8 @@ define
                         mRID: tid2,
                         name: tid2,
                         sequenceNumber: 2,
-                        phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                        phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABCN",
+                        connected: true,
                         ConductingEquipment: device.id,
                         ConnectivityNode: n.id
                     };
@@ -167,6 +230,8 @@ define
                         mRID: cid,
                         name: "C" + (i + 1),
                         BaseVoltage: eqm.low_voltage (),
+                        normallyInService: true,
+                        SvStatus: this.in_use (),
                         EquipmentContainer: id,
                         Location: location[0].id
                     };
@@ -180,7 +245,8 @@ define
                         mRID: tid3,
                         name: tid3,
                         sequenceNumber: 1,
-                        phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                        phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABCN",
+                        connected: true,
                         ConductingEquipment: connector.id,
                         ConnectivityNode: n.id
                     };
