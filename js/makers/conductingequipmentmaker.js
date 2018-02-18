@@ -22,6 +22,22 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
+            static classes ()
+            {
+                var ret = [];
+                var cimclasses = cim.classes ();
+                for (var name in cimclasses)
+                {
+                    var cls = cimclasses[name];
+                    var data = {};
+                    var obj = new cls ({}, data);
+                    if (data.ConductingEquipment && !(data.Switch || data.Conductor || data.PowerTransformer))
+                        ret.push (name);
+                }
+                ret.sort ();
+                return (ret);
+            }
+
             low_voltage ()
             {
                 return ("BaseVoltage_400");

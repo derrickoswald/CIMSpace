@@ -24,6 +24,22 @@ define
                 this._digitizer = digitizer;
             }
 
+            static classes ()
+            {
+                var ret = [];
+                var cimclasses = cim.classes ();
+                for (var name in cimclasses)
+                {
+                    var cls = cimclasses[name];
+                    var data = {};
+                    var obj = new cls ({}, data);
+                    if (data.PowerSystemResource && !(data.Substation || data.ConductingEquipment))
+                        ret.push (name);
+                }
+                ret.sort ();
+                return (ret);
+            }
+
             get_connectivity_for_equipment (equipment, point)
             {
                 var ret = {};

@@ -22,6 +22,22 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
+            static classes ()
+            {
+                var ret = [];
+                var cimclasses = cim.classes ();
+                for (var name in cimclasses)
+                {
+                    var cls = cimclasses[name];
+                    var data = {};
+                    var obj = new cls ({}, data);
+                    if (data.Conductor)
+                        ret.push (name);
+                }
+                ret.sort ();
+                return (ret);
+            }
+
             make_conductor (feature)
             {
                 var line = this._cimedit.primary_element ();

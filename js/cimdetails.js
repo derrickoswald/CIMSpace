@@ -160,25 +160,28 @@ define
 
             render ()
             {
-                this._container.innerHTML =
-                    "<div id='view_frame' class='card'>\n" +
-                    "  <div class='card-body'>\n" +
-                    "    <h5 class='card-title'>" + this._cimmap.get_selected_feature () + "\n" +
-                    "      <button type='button' class='close' aria-label='Close'>\n" +
-                    "        <span aria-hidden='true'>&times;</span>\n" +
-                    "      </button>\n" +
-                    "    </h5>\n" +
-                    "    <h6 id='streetviewlink' class='card-subtitle mb-2'></h6>\n" +
-                    "    <div id='view_contents' class='card-text'>\n" +
-                    "      <div id='feature_detail_contents'></div>\n" +
-                    "    </div>\n" +
-                    "  </div>\n" +
-                    "</div>\n";
-                this._frame_height = document.getElementById ("view_frame").clientHeight; // frame height with no contents
-                document.getElementById ("feature_detail_contents").innerHTML = this.detail_text ()
-                this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
-                this.maybe_streetview ();
-                this.on_map_resize ();
+                if (this.visible ())
+                {
+                    this._container.innerHTML =
+                        "<div id='view_frame' class='card'>\n" +
+                        "  <div class='card-body'>\n" +
+                        "    <h5 class='card-title'>" + this._cimmap.get_selected_feature () + "\n" +
+                        "      <button type='button' class='close' aria-label='Close'>\n" +
+                        "        <span aria-hidden='true'>&times;</span>\n" +
+                        "      </button>\n" +
+                        "    </h5>\n" +
+                        "    <h6 id='streetviewlink' class='card-subtitle mb-2'></h6>\n" +
+                        "    <div id='view_contents' class='card-text'>\n" +
+                        "      <div id='feature_detail_contents'></div>\n" +
+                        "    </div>\n" +
+                        "  </div>\n" +
+                        "</div>\n";
+                    this._frame_height = document.getElementById ("view_frame").clientHeight; // frame height with no contents
+                    document.getElementById ("feature_detail_contents").innerHTML = this.detail_text ()
+                    this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
+                    this.maybe_streetview ();
+                    this.on_map_resize ();
+                }
             }
 
             maybe_streetview ()

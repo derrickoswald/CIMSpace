@@ -1076,7 +1076,7 @@ define
                     container: "map",
                     center: [7.48634000000001, 46.93003],
                     zoom: 8,
-                    maxZoom: 20,
+                    maxZoom: 22,
                     // Note: this local copy is the same as mapbox (as of 3.10.2017) except for the reference
                     // to the sprite URL which is changed to     sprite: "/styles/streets-v9-sprites"
                     // style: "mapbox://styles/mapbox/streets-v9",

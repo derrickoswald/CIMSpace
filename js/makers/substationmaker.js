@@ -25,6 +25,22 @@ define
                 this._yoffset = 3.0e-5;
             }
 
+            static classes ()
+            {
+                var ret = [];
+                var cimclasses = cim.classes ();
+                for (var name in cimclasses)
+                {
+                    var cls = cimclasses[name];
+                    var data = {};
+                    var obj = new cls ({}, data);
+                    if (data.Substation)
+                        ret.push (name);
+                }
+                ret.sort ();
+                return (ret);
+            }
+
             distribution_box ()
             {
                 return ("PSRType_DistributionBox");

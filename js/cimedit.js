@@ -20,6 +20,11 @@ define
             constructor (cimmap)
             {
                 this._cimmap = cimmap;
+                this._selections =
+                "              <option value='' selected></option>\n" +
+                "{{#classes}}\n" +
+                "              <option value='{{.}}'>{{.}}</option>\n" +
+                "{{/classes}}\n";
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
@@ -29,19 +34,44 @@ define
                 "      </button>\n" +
                 "    </h5>\n" +
                 "    <div class='form-group row'>\n" +
+                "      <label class='col-sm-4 col-form-label' for='maker_name'>Maker</label>\n" +
+                "      <div class='col-sm-8'>\n" +
+                "        <select id='maker_name' class='form-control custom-select'>\n" +
+                "              <option value='' selected></option>\n" +
+                "{{#makers}}\n" +
+                "              <option value='{{.}}'>{{.}}</option>\n" +
+                "{{/makers}}\n" +
+                "        </select>\n" +
+                "      </div>\n" +
+                "    </div>\n" +
+                "    <div class='form-group row'>\n" +
                 "      <label class='col-sm-4 col-form-label' for='class_name'>Class</label>\n" +
                 "      <div class='col-sm-8'>\n" +
-                "        <select id='class_name' class='form-control'>\n" +
-                "{{#classes}}\n" +
-                "              <option value='{{.}}'>{{.}}</option>\n" +
-                "{{/classes}}\n" +
+                "        <select id='class_name' class='form-control custom-select'>\n" +
+                this._selections +
                 "        </select>\n" +
                 "      </div>\n" +
                 "    </div>\n" +
                 "    <div class='card-footer'>\n" +
-                "      <button id='create' type='button' class='btn btn-primary'>Create</button>\n" +
+                "      <button id='create' type='button' class='btn btn-primary' disabled>Create</button>\n" +
                 "  </div>\n" +
                 "</div>\n";
+                this._makers =
+                [
+                    ConductingEquipmentMaker,
+                    ConductorMaker,
+                    PowerSystemResourceMaker,
+                    PowerTransformerMaker,
+                    SubstationMaker,
+                    SwitchMaker
+                ];
+                var cls_map = cim.classes ();
+                var classes = [];
+                for (var property in cls_map)
+                    if (cls_map.hasOwnProperty (property))
+                        classes.push (property);
+                classes.sort ();
+                this._classes = classes;
             }
 
             onAdd (map)
@@ -86,6 +116,21 @@ define
                 this._map.removeControl (this);
             }
 
+            change (event)
+            {
+                if (event.target.id == "class_name")
+                {
+                    document.getElementById ("create").disabled = "" == event.target.value;
+                }
+                else if (event.target.id == "maker_name")
+                {
+                    var text = ("" == event.target.value) ? mustache.render (this._selections, { classes: this._classes }) :
+                        mustache.render (this._selections, { classes: this._makers.find (x => x.name == event.target.value).classes () });
+                    document.getElementById ("class_name").innerHTML = text;
+                    document.getElementById ("create").disabled = true;
+                }
+            }
+
             visible ()
             {
                 return (null != this._container);
@@ -93,15 +138,12 @@ define
 
             render ()
             {
-                var cls_map = cim.classes ();
-                var classes = [];
-                for (var property in cls_map)
-                    if (cls_map.hasOwnProperty (property))
-                        classes.push (property);
-                classes.sort ();
-                this._container.innerHTML = mustache.render (this._template, { classes: classes });
+                this._container.innerHTML = mustache.render (this._template, { classes: this._classes, makers: this._makers.map (x => x.name) });
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                 this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.create.bind (this);
+                var selects = this._container.getElementsByClassName ("form-control custom-select");
+                for (var i = 0; i < selects.length; i++)
+                    selects.item (i).onchange = this.change.bind (this);
             }
 
             refresh ()
@@ -175,7 +217,7 @@ define
                     this.edit (array[i]);
             }
 
-            create_from (proto)
+            create_from (proto, maker)
             {
                 proto.EditDisposition = "new";
                 this._features = {};
@@ -187,51 +229,24 @@ define
 
                 this.edit (obj, true, true);
 
-                // here's some rules
-                if (this._features.Substation)
+                if (maker)
                 {
-                    var ssm = new SubstationMaker (this._cimmap, this, this._digitizer);
-                    this._maker = ssm.make (obj, this._elements, this._features);
-                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
-                }
-                else if (this._features.Conductor)
-                {
-                    var cm = new ConductorMaker (this._cimmap, this, this._digitizer);
-                    this._maker = cm.make (obj, this._elements, this._features);
-                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
-                }
-                else if (this._features.PowerTransformer)
-                {
-                    var ptm = new PowerTransformerMaker (this._cimmap, this, this._digitizer);
-                    this._maker = ptm.make (obj, this._elements, this._features);
-                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
-                }
-                else if (this._features.Switch)
-                {
-                    var sm = new SwitchMaker (this._cimmap, this, this._digitizer);
-                    this._maker = sm.make (obj, this._elements, this._features);
-                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
-                }
-                else if (this._features.ConductingEquipment)
-                {
-                    var cem = new ConductingEquipmentMaker (this._cimmap, this, this._digitizer);
-                    this._maker = cem.make (obj, this._elements, this._features);
-                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
-                }
-                else if (this._features.PowerSystemResource)
-                {
-                    var psr = new PowerSystemResourceMaker (this._cimmap, this, this._digitizer);
-                    this._maker = psr.make (obj, this._elements, this._features);
+                    var m = new maker (this._cimmap, this, this._digitizer);
+                    this._maker = m.make (obj, this._elements, this._features);
                     this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
             }
 
             create ()
             {
+                var maker_name = document.getElementById ("maker_name").value;
                 var class_name = document.getElementById ("class_name").value;
                 var id = this.uuidv4 ();
                 var proto = { cls: class_name, id: id };
-                this.create_from (proto);
+                if ("" != maker_name)
+                    this.create_from (proto, this._makers.find (x => x.name == maker_name));
+                else if ("" != class_name)
+                    this.create_from (proto);
             }
 
             create_new ()
