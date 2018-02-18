@@ -32,10 +32,17 @@ define
                 return ("BaseVoltage_16000");
             }
 
+            high_voltage ()
+            {
+                return ("BaseVoltage_150000");
+            }
+
             ensure_voltages (features)
             {
                 var ret = [];
                 var data = this._cimmap.get_data ();
+                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_150000"])
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_150000", mRID: "BaseVoltage_150000", name: "150kV", description: "high voltage", nominalVoltage: 150.0 }, features));
                 if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_16000"])
                     ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, features));
                 if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_400"])

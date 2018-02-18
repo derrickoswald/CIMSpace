@@ -121,19 +121,18 @@ define
              */
             uuidv4 ()
             {
-                return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace (/[018]/g, c =>
-                    (c ^ crypto.getRandomValues (new Uint8Array(1))[0] & 15 >> c / 4).toString (16)
-                )
+                var uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace (/[018]/g, c => (c ^ crypto.getRandomValues (new Uint8Array (1))[0] & 15 >> c / 4).toString (16));
+                return ("_" + uuid);
             }
 
             /**
              * Predicate to check if the <code>id</code> looks like a GUID.
              * @param s the string to test
-             * @return <code>true</code> if the string has the form of a GUID, <code>false</code> otherwise.
+             * @return <code>true</code> if the string has the form of a GUID with an optional leading underscore, <code>false</code> otherwise.
              */
             isGUID (s)
             {
-                return ((null != s) ? /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test (s) : false);
+                return ((null != s) ? /^[_]?[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test (s) : false);
             }
 
             /**
@@ -325,12 +324,33 @@ define
                 return (text);
             }
 
+            // true if obj is only referenced by element and no other
+            only_related (obj, element)
+            {
+                var cls = cim.class_map (obj);
+                var data = this._cimmap.get_data ();
+                var relations = cls.prototype.relations ();
+                for (var i = 0; i < relations.length; i++)
+                    if (relations[i][2] == "0..1")
+                    {
+                        var related = data[relations[i][3]];
+                        if (related)
+                            for (var id in related)
+                            {
+                                var child = related[id];
+                                if (child[relations[i][4]] == obj.id && child.id != element.id)
+                                    return (false);
+                            }
+                    }
+                return (true);
+            }
+
             get_related (element)
             {
                 var ret = [];
                 function add (e)
                 {
-                    if (!ret.find (x => x.id == e.id))
+                    if ((e.id != element.id) && !ret.find (x => x.id == e.id))
                         ret.push (e);
                 }
                 var cls = cim.class_map (element);
@@ -339,22 +359,22 @@ define
                 {
                     var relations = cls.prototype.relations ();
                     for (var i = 0; i < relations.length; i++)
-// until we get a more sophisticated relation graph traversal, exclude direct relationships from cascade delete
-//                        if (relations[i][1] == "0..1")
-//                        {
-//                            var ref = element[relations[i][0]];
-//                            if (ref)
-//                            {
-//                                var related = data[relations[i][3]];
-//                                if (related)
-//                                {
-//                                    var obj = related[ref];
-//                                    if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
-//                                        add (obj)
-//                                }
-//                            }
-//                        }
-//                        else
+                        if (relations[i][1] == "0..1")
+                        {
+                            var ref = element[relations[i][0]];
+                            if (ref)
+                            {
+                                var related = data[relations[i][3]];
+                                if (related)
+                                {
+                                    var obj = related[ref];
+                                    if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
+                                        if (this.only_related (obj, element))
+                                            add (obj)
+                                }
+                            }
+                        }
+                        else
                         if (relations[i][2] == "0..1" || relations[i][2] == "1")
                         {
                             var related = data[relations[i][3]];
@@ -367,6 +387,42 @@ define
                                             add (obj)
                                 }
                         }
+                    // get ConnectivityNode and PositionPoint
+                    // ToDo: should it/can it be made fully recursive
+                    for (var j = 0; j < ret.length; j++)
+                    {
+                        var cls = cim.class_map (ret[j]);
+                        var relations = cls.prototype.relations ();
+                        for (var i = 0; i < relations.length; i++)
+                            if (relations[i][1] == "0..1")
+                            {
+                                var ref = ret[j][relations[i][0]];
+                                if (ref)
+                                {
+                                    var related = data[relations[i][3]];
+                                    if (related)
+                                    {
+                                        var obj = related[ref];
+                                        if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
+                                            if (this.only_related (obj, ret[j]))
+                                                add (obj)
+                                    }
+                                }
+                            }
+                        else
+                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
+                        {
+                            var related = data[relations[i][3]];
+                            if (related)
+                                for (var id in related)
+                                {
+                                    var obj = related[id];
+                                    if (obj[relations[i][4]] == ret[j].id)
+                                        if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                            add (obj)
+                                }
+                        }
+                    }
                 }
 
                 return (ret);
@@ -478,7 +534,7 @@ define
 
             mrid (feature)
             {
-                var mrid = feature.mRID;
+                var mrid = feature.id;
 
                 while (!isNaN (Number (mrid.charAt (0))))
                     mrid = mrid.substring (1);
@@ -492,7 +548,7 @@ define
             {
                 var version = 0;
 
-                var mrid = feature.mRID;
+                var mrid = feature.id;
                 var i = 0;
                 while (!isNaN (Number (mrid.charAt (i))))
                 {
