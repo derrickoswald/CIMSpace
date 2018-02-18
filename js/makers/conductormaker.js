@@ -24,7 +24,7 @@ define
 
             make_conductor (feature)
             {
-                var ret = [];
+                var ret = this.ensure_coordinate_systems ();
 
                 var line = this.primary_element ();
                 var id = line.id;
