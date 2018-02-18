@@ -24,43 +24,11 @@ define
 
             make_conductor (feature)
             {
-                var ret = this.ensure_coordinate_systems ();
-
-                var line = this.primary_element ();
+                var line = this._cimedit.primary_element ();
                 var id = line.id;
 
-                // create the location
-                var lid = this._cimedit.generateId (id, "_location");
-                var location =
-                {
-                    EditDisposition: "new",
-                    CoordinateSystem: "wgs84",
-                    cls: "Location",
-                    id: lid,
-                    mRID: lid,
-                    type: "geographic"
-                };
-                ret.push (new Common.Location (location, this._features));
-
-                // set the position points
-                for (var i = 0; i < feature.geometry.coordinates.length; i++)
-                {
-                    var lnglat = feature.geometry.coordinates[i];
-                    ret.push (
-                        new Common.PositionPoint (
-                            {
-                                EditDisposition: "new",
-                                Location: location.id,
-                                cls: "PositionPoint",
-                                id: this._cimedit.generateId (id, "_location_p" + (i + 1).toString ()),
-                                sequenceNumber: (i + 1).toString (),
-                                xPosition: lnglat[0].toString (),
-                                yPosition: lnglat[1].toString ()
-                            },
-                            this._features
-                        )
-                    );
-                }
+                var ret = this.make_location (id, "wgs84", feature);
+                var location = ret[0];
 
                 var connectivity1 = this.get_connectivity (feature.geometry.coordinates[0][0], feature.geometry.coordinates[0][1]);
                 if (null == connectivity1) // invent a new node if there are none

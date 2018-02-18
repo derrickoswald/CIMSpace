@@ -26,7 +26,7 @@ define
             {
                 var ret = [];
 
-                var trafo = this.primary_element ();
+                var trafo = this._cimedit.primary_element ();
                 var id = trafo.id;
 
                 // ToDo: assume it's the primary?

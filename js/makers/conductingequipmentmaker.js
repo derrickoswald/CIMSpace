@@ -22,11 +22,32 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
+            low_voltage ()
+            {
+                return ("BaseVoltage_400");
+            }
+
+            medium_voltage ()
+            {
+                return ("BaseVoltage_16000");
+            }
+
+            ensure_voltages (features)
+            {
+                var ret = [];
+                var data = this._cimmap.get_data ();
+                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_16000"])
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, features));
+                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_400"])
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, features));
+                return (ret);
+            }
+
             make_equipment (feature)
             {
                 var ret = [];
 
-                var equipment = this.primary_element ();
+                var equipment = this._cimedit.primary_element ();
                 var id = equipment.id;
 
                 var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);

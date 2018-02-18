@@ -26,7 +26,7 @@ define
             {
                 var ret = [];
 
-                var swtch = this.primary_element ();
+                var swtch = this._cimedit.primary_element ();
                 var id = swtch.id;
 
                 var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
@@ -59,7 +59,7 @@ define
                     terminal.TopologicalNode = connectivity.TopologicalNode;
                 ret.push (new Core.Terminal (terminal, this._features));
 
-                // add a secondary connectivity node
+                // add a second connectivity node
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_2"));
                     ret.push (new Core.ConnectivityNode (node, this._features));

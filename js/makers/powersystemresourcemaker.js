@@ -206,37 +206,18 @@ define
                 return (ret);
             }
 
-            new_connectivity (name)
+            new_connectivity (id, container)
             {
-                return (
-                    {
-                        EditDisposition: "new",
-                        cls: "ConnectivityNode",
-                        id: name,
-                        mRID: name,
-                    }
-                );
-            }
-
-            primary_element ()
-            {
-                var element = this._elements[0];
-                var id = element.id;
-                // read attributes from the form
-                var cls = cim.class_map (element);
-                element = Object.assign (element, cls.prototype.submit (element.id));
-                if (element.mRID)
-                    element.id = element.mRID; // reassign id based on mRID
-                if (id != element.id)
+                var c =
                 {
-                    // update the form if the id changed
-                    this._elements = [];
-                    var text = this._cimedit.build (element);
-                    document.getElementById ("edit_contents").innerHTML = text;
-                    this._cimedit.process_related (element);
-                }
-
-                return (element);
+                    EditDisposition: "new",
+                    cls: "ConnectivityNode",
+                    id: id,
+                    mRID: id
+                };
+                if (container)
+                    c.ConnectivityNodeContainer = container;
+                return (c);
             }
 
             ensure_coordinate_systems ()
@@ -250,12 +231,9 @@ define
                 return (ret);
             }
 
-            make_psr (feature)
+            make_location (id, coordsys, feature)
             {
-                var ret = this.ensure_coordinate_systems ();
-
-                var psr = this.primary_element ();
-                var id = psr.id;
+                var ret = [];
 
                 // create the location
                 var lid = this._cimedit.generateId (id, "_location");
@@ -265,23 +243,61 @@ define
                     cls: "Location",
                     id: lid,
                     mRID: lid,
-                    CoordinateSystem: "wgs84",
+                    CoordinateSystem: coordsys,
                     type: "geographic"
                 };
                 ret.push (new Common.Location (location, this._features));
 
-                // set the position point
-                var pp =
+                if (feature.geometry.type == "Point")
                 {
-                    EditDisposition: "new",
-                    Location: location.id,
-                    cls: "PositionPoint",
-                    id: this._cimedit.generateId (id, "_location_p"),
-                    sequenceNumber: 1,
-                    xPosition: feature.geometry.coordinates[0].toString (),
-                    yPosition: feature.geometry.coordinates[1].toString ()
-                };
-                ret.push (new Common.PositionPoint (pp, this._features));
+                    // set the position point
+                    var pp =
+                    {
+                        EditDisposition: "new",
+                        Location: location.id,
+                        cls: "PositionPoint",
+                        id: this._cimedit.generateId (id, "_location_p"),
+                        sequenceNumber: 1,
+                        xPosition: feature.geometry.coordinates[0].toString (),
+                        yPosition: feature.geometry.coordinates[1].toString ()
+                    };
+                    ret.push (new Common.PositionPoint (pp, this._features));
+                }
+                else if (feature.geometry.type == "LineString")
+                {
+                    // set the position points
+                    for (var i = 0; i < feature.geometry.coordinates.length; i++)
+                    {
+                        var lnglat = feature.geometry.coordinates[i];
+                        ret.push (
+                            new Common.PositionPoint (
+                                {
+                                    EditDisposition: "new",
+                                    Location: location.id,
+                                    cls: "PositionPoint",
+                                    id: this._cimedit.generateId (id, "_location_p" + (i + 1).toString ()),
+                                    sequenceNumber: (i + 1).toString (),
+                                    xPosition: lnglat[0].toString (),
+                                    yPosition: lnglat[1].toString ()
+                                },
+                                this._features
+                            )
+                        );
+                    }
+                }
+
+                ret = ret.concat (this.ensure_coordinate_systems ());
+
+                return (ret);
+            }
+
+            make_psr (feature)
+            {
+                var psr = this._cimedit.primary_element ();
+                var id = psr.id;
+
+                var ret = this.make_location (id, "wgs84", feature);
+                var location = ret[0];
 
                 // add the location to the PSR object
                 psr.Location = location.id;

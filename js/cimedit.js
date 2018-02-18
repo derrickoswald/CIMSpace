@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
+    ["mustache", "cim", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
     /**
      * @summary Edit control.
      * @description UI element for editing
@@ -13,7 +13,7 @@ define
      * @exports cimedit
      * @version 1.0
      */
-    function (mustache, cim, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, layers, Common, Core, Wires)
+    function (mustache, cim, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, layers, Common, Core, Wires)
     {
         class CIMEdit
         {
@@ -149,6 +149,27 @@ define
                 return (this.isGUID (s) ? this.uuidv4 () : s + suffix);
             }
 
+            primary_element ()
+            {
+                var element = this._elements[0];
+                var id = element.id;
+                // read attributes from the form
+                var cls = cim.class_map (element);
+                element = Object.assign (element, cls.prototype.submit (element.id));
+                if (element.mRID)
+                    element.id = element.mRID; // reassign id based on mRID
+                if (id != element.id)
+                {
+                    // update the form if the id changed
+                    this._elements = [];
+                    var text = this.build (element);
+                    document.getElementById ("edit_contents").innerHTML = text;
+                    this.process_related (element);
+                }
+
+                return (element);
+            }
+
             editnew (array)
             {
                 for (var i = 0; i < array.length; i++)
@@ -167,8 +188,14 @@ define
 
                 this.edit (obj, true, true);
 
-//                // here's some rules
-                if (this._features.Conductor)
+                // here's some rules
+                if (this._features.Substation)
+                {
+                    var ssm = new SubstationMaker (this._cimmap, this, this._digitizer);
+                    this._maker = ssm.make (obj, this._elements, this._features);
+                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
+                }
+                else if (this._features.Conductor)
                 {
                     var cm = new ConductorMaker (this._cimmap, this, this._digitizer);
                     this._maker = cm.make (obj, this._elements, this._features);
@@ -589,8 +616,10 @@ define
                 this.regen ();
             }
 
-            cancel ()
+            cancel (error)
             {
+                if (error)
+                    console.log (error);
                 if (this._maker)
                 {
                     var maker = this._maker; // ensure recursion doesn't happen
