@@ -249,8 +249,7 @@ define
                     {{#isLocalAutoReconOp}}<div><b>isLocalAutoReconOp</b>: {{isLocalAutoReconOp}}</div>{{/isLocalAutoReconOp}}
                     {{#isRemoteAutoDisconOp}}<div><b>isRemoteAutoDisconOp</b>: {{isRemoteAutoDisconOp}}</div>{{/isRemoteAutoDisconOp}}
                     {{#isRemoteAutoReconOp}}<div><b>isRemoteAutoReconOp</b>: {{isRemoteAutoReconOp}}</div>{{/isRemoteAutoReconOp}}
-                    {{#rcdInfo}}<div><b>rcdInfo</b>: {{rcdInfo}}</div>{{/rcdInfo}}
-                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Switches}}
+                    {{#rcdInfo}}<div><b>rcdInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{rcdInfo}}&quot;);}); return false;'>{{rcdInfo}}</a></div>{{/rcdInfo}}\n                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Switches}}
                     </div>
                     <fieldset>
 
@@ -288,7 +287,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isRemoteAutoDisconOp'>isRemoteAutoDisconOp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isRemoteAutoDisconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoDisconOp}} checked{{/isRemoteAutoDisconOp}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isRemoteAutoReconOp'>isRemoteAutoReconOp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isRemoteAutoReconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoReconOp}} checked{{/isRemoteAutoReconOp}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcdInfo'>rcdInfo: </label><div class='col-sm-8'><input id='{{id}}_rcdInfo' class='form-control' type='text'{{#rcdInfo}} value='{{rcdInfo}}'{{/rcdInfo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switches'>Switches: </label><div class='col-sm-8'><input id='{{id}}_Switches' class='form-control' type='text'{{#Switches}} value='{{Switches}}_string'{{/Switches}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switches'>Switches: </label><div class='col-sm-8'><input id='{{id}}_Switches' class='form-control' type='text'{{#Switches}} value='{{Switches_string}}'{{/Switches}}></div></div>
                     </div>
                     <fieldset>
                     `

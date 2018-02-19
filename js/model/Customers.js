@@ -380,10 +380,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dailyFloorUsage'>dailyFloorUsage: </label><div class='col-sm-8'><input id='{{id}}_dailyFloorUsage' class='form-control' type='text'{{#dailyFloorUsage}} value='{{dailyFloorUsage}}'{{/dailyFloorUsage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_revenueKind'>revenueKind: </label><div class='col-sm-8'><select id='{{id}}_revenueKind' class='form-control custom-select'>{{#RevenueKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RevenueKind}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_taxExemption'>taxExemption: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_taxExemption' class='form-check-input' type='checkbox'{{#taxExemption}} checked{{/taxExemption}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='{{id}}_Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs}}_string'{{/Tariffs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='{{id}}_Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs_string}}'{{/Tariffs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='{{id}}_ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements}}_string'{{/CustomerAgreements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints_string}}'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements_string}}'{{/CustomerAgreements}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -528,8 +528,8 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endDate'>endDate: </label><div class='col-sm-8'><input id='{{id}}_endDate' class='form-control' type='text'{{#endDate}} value='{{endDate}}'{{/endDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startDate'>startDate: </label><div class='col-sm-8'><input id='{{id}}_startDate' class='form-control' type='text'{{#startDate}} value='{{startDate}}'{{/startDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='{{id}}_PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures}}_string'{{/PricingStructures}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles}}_string'{{/TariffProfiles}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='{{id}}_PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures_string}}'{{/PricingStructures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles_string}}'{{/TariffProfiles}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -649,10 +649,8 @@ define
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#pucNumber}}<div><b>pucNumber</b>: {{pucNumber}}</div>{{/pucNumber}}
                     {{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#vip}}<div><b>vip</b>: {{vip}}</div>{{/vip}}
-                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
-                    {{#locale}}<div><b>locale</b>: {{locale}}</div>{{/locale}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#vip}}<div><b>vip</b>: {{vip}}</div>{{/vip}}
+                    {{#priority}}<div><b>priority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{priority}}&quot;);}); return false;'>{{priority}}</a></div>{{/priority}}\n                    {{#locale}}<div><b>locale</b>: {{locale}}</div>{{/locale}}
                     {{#Works}}<div><b>Works</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Works}}
                     {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersons}}
                     {{#Notifications}}<div><b>Notifications</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Notifications}}
@@ -710,7 +708,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_vip'>vip: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vip' class='form-check-input' type='checkbox'{{#vip}} checked{{/vip}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_locale'>locale: </label><div class='col-sm-8'><input id='{{id}}_locale' class='form-control' type='text'{{#locale}} value='{{locale}}'{{/locale}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1011,12 +1009,12 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadMgmt'>loadMgmt: </label><div class='col-sm-8'><input id='{{id}}_loadMgmt' class='form-control' type='text'{{#loadMgmt}} value='{{loadMgmt}}'{{/loadMgmt}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='{{id}}_ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='{{id}}_ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='{{id}}_DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms}}_string'{{/DemandResponsePrograms}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='{{id}}_DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms_string}}'{{/DemandResponsePrograms}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Customer'>Customer: </label><div class='col-sm-8'><input id='{{id}}_Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StandardIndustryCode'>StandardIndustryCode: </label><div class='col-sm-8'><input id='{{id}}_StandardIndustryCode' class='form-control' type='text'{{#StandardIndustryCode}} value='{{StandardIndustryCode}}'{{/StandardIndustryCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='{{id}}_PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures}}_string'{{/PricingStructures}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceLocations'>ServiceLocations: </label><div class='col-sm-8'><input id='{{id}}_ServiceLocations' class='form-control' type='text'{{#ServiceLocations}} value='{{ServiceLocations}}_string'{{/ServiceLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='{{id}}_PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures_string}}'{{/PricingStructures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceLocations'>ServiceLocations: </label><div class='col-sm-8'><input id='{{id}}_ServiceLocations' class='form-control' type='text'{{#ServiceLocations}} value='{{ServiceLocations_string}}'{{/ServiceLocations}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1173,7 +1171,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accessMethod'>accessMethod: </label><div class='col-sm-8'><input id='{{id}}_accessMethod' class='form-control' type='text'{{#accessMethod}} value='{{accessMethod}}'{{/accessMethod}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_needsInspection'>needsInspection: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_needsInspection' class='form-check-input' type='checkbox'{{#needsInspection}} checked{{/needsInspection}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_siteAccessProblem'>siteAccessProblem: </label><div class='col-sm-8'><input id='{{id}}_siteAccessProblem' class='form-control' type='text'{{#siteAccessProblem}} value='{{siteAccessProblem}}'{{/siteAccessProblem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements}}_string'{{/CustomerAgreements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements_string}}'{{/CustomerAgreements}}></div></div>
                     </div>
                     <fieldset>
                     `

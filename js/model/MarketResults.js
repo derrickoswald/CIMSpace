@@ -646,7 +646,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Instructions'>Instructions: </label><div class='col-sm-8'><input id='{{id}}_Instructions' class='form-control' type='text'{{#Instructions}} value='{{Instructions}}_string'{{/Instructions}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Instructions'>Instructions: </label><div class='col-sm-8'><input id='{{id}}_Instructions' class='form-control' type='text'{{#Instructions}} value='{{Instructions_string}}'{{/Instructions}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1317,7 +1317,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_supplementalEnergy'>supplementalEnergy: </label><div class='col-sm-8'><input id='{{id}}_supplementalEnergy' class='form-control' type='text'{{#supplementalEnergy}} value='{{supplementalEnergy}}'{{/supplementalEnergy}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitStatus'>unitStatus: </label><div class='col-sm-8'><input id='{{id}}_unitStatus' class='form-control' type='text'{{#unitStatus}} value='{{unitStatus}}'{{/unitStatus}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InstructionClearingDOT'>InstructionClearingDOT: </label><div class='col-sm-8'><input id='{{id}}_InstructionClearingDOT' class='form-control' type='text'{{#InstructionClearingDOT}} value='{{InstructionClearingDOT}}_string'{{/InstructionClearingDOT}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InstructionClearingDOT'>InstructionClearingDOT: </label><div class='col-sm-8'><input id='{{id}}_InstructionClearingDOT' class='form-control' type='text'{{#InstructionClearingDOT}} value='{{InstructionClearingDOT_string}}'{{/InstructionClearingDOT}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1857,7 +1857,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ClearingResourceAward'>ClearingResourceAward: </label><div class='col-sm-8'><input id='{{id}}_ClearingResourceAward' class='form-control' type='text'{{#ClearingResourceAward}} value='{{ClearingResourceAward}}_string'{{/ClearingResourceAward}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ClearingResourceAward'>ClearingResourceAward: </label><div class='col-sm-8'><input id='{{id}}_ClearingResourceAward' class='form-control' type='text'{{#ClearingResourceAward}} value='{{ClearingResourceAward_string}}'{{/ClearingResourceAward}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2166,7 +2166,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceStatus'>resourceStatus: </label><div class='col-sm-8'><input id='{{id}}_resourceStatus' class='form-control' type='text'{{#resourceStatus}} value='{{resourceStatus}}'{{/resourceStatus}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestCategory'>MPMTestCategory: </label><div class='col-sm-8'><input id='{{id}}_MPMTestCategory' class='form-control' type='text'{{#MPMTestCategory}} value='{{MPMTestCategory}}'{{/MPMTestCategory}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='{{id}}_MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing}}_string'{{/MitigatedBidClearing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='{{id}}_MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing_string}}'{{/MitigatedBidClearing}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2836,7 +2836,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyActive'>contingencyActive: </label><div class='col-sm-8'><input id='{{id}}_contingencyActive' class='form-control' type='text'{{#contingencyActive}} value='{{contingencyActive}}'{{/contingencyActive}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchMode'>dispatchMode: </label><div class='col-sm-8'><input id='{{id}}_dispatchMode' class='form-control' type='text'{{#dispatchMode}} value='{{dispatchMode}}'{{/dispatchMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DotInstruction'>DotInstruction: </label><div class='col-sm-8'><input id='{{id}}_DotInstruction' class='form-control' type='text'{{#DotInstruction}} value='{{DotInstruction}}_string'{{/DotInstruction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DotInstruction'>DotInstruction: </label><div class='col-sm-8'><input id='{{id}}_DotInstruction' class='form-control' type='text'{{#DotInstruction}} value='{{DotInstruction_string}}'{{/DotInstruction}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3128,7 +3128,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><input id='{{id}}_updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ClearingResourceAward'>ClearingResourceAward: </label><div class='col-sm-8'><input id='{{id}}_ClearingResourceAward' class='form-control' type='text'{{#ClearingResourceAward}} value='{{ClearingResourceAward}}_string'{{/ClearingResourceAward}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ClearingResourceAward'>ClearingResourceAward: </label><div class='col-sm-8'><input id='{{id}}_ClearingResourceAward' class='form-control' type='text'{{#ClearingResourceAward}} value='{{ClearingResourceAward_string}}'{{/ClearingResourceAward}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
@@ -3470,8 +3470,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitOfMeasure'>unitOfMeasure: </label><div class='col-sm-8'><input id='{{id}}_unitOfMeasure' class='form-control' type='text'{{#unitOfMeasure}} value='{{unitOfMeasure}}'{{/unitOfMeasure}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeProfile'>ChargeProfile: </label><div class='col-sm-8'><input id='{{id}}_ChargeProfile' class='form-control' type='text'{{#ChargeProfile}} value='{{ChargeProfile}}'{{/ChargeProfile}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='{{id}}_ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents}}_string'{{/ChargeComponents}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='{{id}}_ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents_string}}'{{/ChargeComponents}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4163,7 +4163,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><input id='{{id}}_updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CommitmentClearing'>CommitmentClearing: </label><div class='col-sm-8'><input id='{{id}}_CommitmentClearing' class='form-control' type='text'{{#CommitmentClearing}} value='{{CommitmentClearing}}_string'{{/CommitmentClearing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CommitmentClearing'>CommitmentClearing: </label><div class='col-sm-8'><input id='{{id}}_CommitmentClearing' class='form-control' type='text'{{#CommitmentClearing}} value='{{CommitmentClearing_string}}'{{/CommitmentClearing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
@@ -4296,7 +4296,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='{{id}}_MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing}}_string'{{/MitigatedBidClearing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='{{id}}_MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing_string}}'{{/MitigatedBidClearing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bid'>Bid: </label><div class='col-sm-8'><input id='{{id}}_Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
                     </div>
                     <fieldset>
@@ -4752,7 +4752,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeDate'>tradeDate: </label><div class='col-sm-8'><input id='{{id}}_tradeDate' class='form-control' type='text'{{#tradeDate}} value='{{tradeDate}}'{{/tradeDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDate'>transactionDate: </label><div class='col-sm-8'><input id='{{id}}_transactionDate' class='form-control' type='text'{{#transactionDate}} value='{{transactionDate}}'{{/transactionDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionType'>transactionType: </label><div class='col-sm-8'><input id='{{id}}_transactionType' class='form-control' type='text'{{#transactionType}} value='{{transactionType}}'{{/transactionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketStatementLineItem'>MarketStatementLineItem: </label><div class='col-sm-8'><input id='{{id}}_MarketStatementLineItem' class='form-control' type='text'{{#MarketStatementLineItem}} value='{{MarketStatementLineItem}}'{{/MarketStatementLineItem}}></div></div>
                     </div>
                     <fieldset>
@@ -5197,9 +5197,9 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeDate'>tradeDate: </label><div class='col-sm-8'><input id='{{id}}_tradeDate' class='form-control' type='text'{{#tradeDate}} value='{{tradeDate}}'{{/tradeDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}_string'{{/MajorChargeGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketInvoiceLineItem'>MarketInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_MarketInvoiceLineItem' class='form-control' type='text'{{#MarketInvoiceLineItem}} value='{{MarketInvoiceLineItem}}_string'{{/MarketInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketLedgerEntry'>MarketLedgerEntry: </label><div class='col-sm-8'><input id='{{id}}_MarketLedgerEntry' class='form-control' type='text'{{#MarketLedgerEntry}} value='{{MarketLedgerEntry}}_string'{{/MarketLedgerEntry}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup_string}}'{{/MajorChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketInvoiceLineItem'>MarketInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_MarketInvoiceLineItem' class='form-control' type='text'{{#MarketInvoiceLineItem}} value='{{MarketInvoiceLineItem_string}}'{{/MarketInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketLedgerEntry'>MarketLedgerEntry: </label><div class='col-sm-8'><input id='{{id}}_MarketLedgerEntry' class='form-control' type='text'{{#MarketLedgerEntry}} value='{{MarketLedgerEntry_string}}'{{/MarketLedgerEntry}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyMarket'>EnergyMarket: </label><div class='col-sm-8'><input id='{{id}}_EnergyMarket' class='form-control' type='text'{{#EnergyMarket}} value='{{EnergyMarket}}'{{/EnergyMarket}}></div></div>
                     </div>
                     <fieldset>
@@ -5512,7 +5512,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><input id='{{id}}_updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InstructionClearing'>InstructionClearing: </label><div class='col-sm-8'><input id='{{id}}_InstructionClearing' class='form-control' type='text'{{#InstructionClearing}} value='{{InstructionClearing}}_string'{{/InstructionClearing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InstructionClearing'>InstructionClearing: </label><div class='col-sm-8'><input id='{{id}}_InstructionClearing' class='form-control' type='text'{{#InstructionClearing}} value='{{InstructionClearing_string}}'{{/InstructionClearing}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -5657,8 +5657,8 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchMode'>dispatchMode: </label><div class='col-sm-8'><input id='{{id}}_dispatchMode' class='form-control' type='text'{{#dispatchMode}} value='{{dispatchMode}}'{{/dispatchMode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyActive'>contingencyActive: </label><div class='col-sm-8'><input id='{{id}}_contingencyActive' class='form-control' type='text'{{#contingencyActive}} value='{{contingencyActive}}'{{/contingencyActive}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RUCAwardInstruction'>RUCAwardInstruction: </label><div class='col-sm-8'><input id='{{id}}_RUCAwardInstruction' class='form-control' type='text'{{#RUCAwardInstruction}} value='{{RUCAwardInstruction}}_string'{{/RUCAwardInstruction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceAwardInstruction'>ResourceAwardInstruction: </label><div class='col-sm-8'><input id='{{id}}_ResourceAwardInstruction' class='form-control' type='text'{{#ResourceAwardInstruction}} value='{{ResourceAwardInstruction}}_string'{{/ResourceAwardInstruction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RUCAwardInstruction'>RUCAwardInstruction: </label><div class='col-sm-8'><input id='{{id}}_RUCAwardInstruction' class='form-control' type='text'{{#RUCAwardInstruction}} value='{{RUCAwardInstruction_string}}'{{/RUCAwardInstruction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceAwardInstruction'>ResourceAwardInstruction: </label><div class='col-sm-8'><input id='{{id}}_ResourceAwardInstruction' class='form-control' type='text'{{#ResourceAwardInstruction}} value='{{ResourceAwardInstruction_string}}'{{/ResourceAwardInstruction}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -6292,7 +6292,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bid'>Bid: </label><div class='col-sm-8'><input id='{{id}}_Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='{{id}}_MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing}}_string'{{/MitigatedBidClearing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='{{id}}_MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing_string}}'{{/MitigatedBidClearing}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -6413,7 +6413,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DopInstruction'>DopInstruction: </label><div class='col-sm-8'><input id='{{id}}_DopInstruction' class='form-control' type='text'{{#DopInstruction}} value='{{DopInstruction}}_string'{{/DopInstruction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DopInstruction'>DopInstruction: </label><div class='col-sm-8'><input id='{{id}}_DopInstruction' class='form-control' type='text'{{#DopInstruction}} value='{{DopInstruction_string}}'{{/DopInstruction}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -6966,7 +6966,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><input id='{{id}}_updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InstructionClearingDOP'>InstructionClearingDOP: </label><div class='col-sm-8'><input id='{{id}}_InstructionClearingDOP' class='form-control' type='text'{{#InstructionClearingDOP}} value='{{InstructionClearingDOP}}_string'{{/InstructionClearingDOP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InstructionClearingDOP'>InstructionClearingDOP: </label><div class='col-sm-8'><input id='{{id}}_InstructionClearingDOP' class='form-control' type='text'{{#InstructionClearingDOP}} value='{{InstructionClearingDOP_string}}'{{/InstructionClearingDOP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResouce'>RegisteredResouce: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResouce' class='form-control' type='text'{{#RegisteredResouce}} value='{{RegisteredResouce}}'{{/RegisteredResouce}}></div></div>
                     </div>
                     <fieldset>
@@ -7293,7 +7293,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currentISOQuantity'>currentISOQuantity: </label><div class='col-sm-8'><input id='{{id}}_currentISOQuantity' class='form-control' type='text'{{#currentISOQuantity}} value='{{currentISOQuantity}}'{{/currentISOQuantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_netISOQuantity'>netISOQuantity: </label><div class='col-sm-8'><input id='{{id}}_netISOQuantity' class='form-control' type='text'{{#netISOQuantity}} value='{{netISOQuantity}}'{{/netISOQuantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketStatement'>MarketStatement: </label><div class='col-sm-8'><input id='{{id}}_MarketStatement' class='form-control' type='text'{{#MarketStatement}} value='{{MarketStatement}}'{{/MarketStatement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ContainerMarketStatementLineItem'>ContainerMarketStatementLineItem: </label><div class='col-sm-8'><input id='{{id}}_ContainerMarketStatementLineItem' class='form-control' type='text'{{#ContainerMarketStatementLineItem}} value='{{ContainerMarketStatementLineItem}}'{{/ContainerMarketStatementLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PassThroughBill'>PassThroughBill: </label><div class='col-sm-8'><input id='{{id}}_PassThroughBill' class='form-control' type='text'{{#PassThroughBill}} value='{{PassThroughBill}}'{{/PassThroughBill}}></div></div>
                     </div>
@@ -7449,9 +7449,9 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MitigatedBid'>MitigatedBid: </label><div class='col-sm-8'><input id='{{id}}_MitigatedBid' class='form-control' type='text'{{#MitigatedBid}} value='{{MitigatedBid}}_string'{{/MitigatedBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRDetermination'>RMRDetermination: </label><div class='col-sm-8'><input id='{{id}}_RMRDetermination' class='form-control' type='text'{{#RMRDetermination}} value='{{RMRDetermination}}_string'{{/RMRDetermination}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMResourceStatus'>MPMResourceStatus: </label><div class='col-sm-8'><input id='{{id}}_MPMResourceStatus' class='form-control' type='text'{{#MPMResourceStatus}} value='{{MPMResourceStatus}}_string'{{/MPMResourceStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MitigatedBid'>MitigatedBid: </label><div class='col-sm-8'><input id='{{id}}_MitigatedBid' class='form-control' type='text'{{#MitigatedBid}} value='{{MitigatedBid_string}}'{{/MitigatedBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRDetermination'>RMRDetermination: </label><div class='col-sm-8'><input id='{{id}}_RMRDetermination' class='form-control' type='text'{{#RMRDetermination}} value='{{RMRDetermination_string}}'{{/RMRDetermination}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMResourceStatus'>MPMResourceStatus: </label><div class='col-sm-8'><input id='{{id}}_MPMResourceStatus' class='form-control' type='text'{{#MPMResourceStatus}} value='{{MPMResourceStatus_string}}'{{/MPMResourceStatus}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -7708,7 +7708,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Commitments'>Commitments: </label><div class='col-sm-8'><input id='{{id}}_Commitments' class='form-control' type='text'{{#Commitments}} value='{{Commitments}}_string'{{/Commitments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Commitments'>Commitments: </label><div class='col-sm-8'><input id='{{id}}_Commitments' class='form-control' type='text'{{#Commitments}} value='{{Commitments_string}}'{{/Commitments}}></div></div>
                     </div>
                     <fieldset>
                     `

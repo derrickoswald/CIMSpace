@@ -107,7 +107,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Faults'>Faults: </label><div class='col-sm-8'><input id='{{id}}_Faults' class='form-control' type='text'{{#Faults}} value='{{Faults}}_string'{{/Faults}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Faults'>Faults: </label><div class='col-sm-8'><input id='{{id}}_Faults' class='form-control' type='text'{{#Faults}} value='{{Faults_string}}'{{/Faults}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -325,8 +325,7 @@ define
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
-                    {{#impedance}}<div><b>impedance</b>: {{impedance}}</div>{{/impedance}}
-                    {{#FaultyEquipment}}<div><b>FaultyEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FaultyEquipment}}&quot;);}); return false;'>{{FaultyEquipment}}</a></div>{{/FaultyEquipment}}
+                    {{#impedance}}<div><b>impedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{impedance}}&quot;);}); return false;'>{{impedance}}</a></div>{{/impedance}}\n                    {{#FaultyEquipment}}<div><b>FaultyEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FaultyEquipment}}&quot;);}); return false;'>{{FaultyEquipment}}</a></div>{{/FaultyEquipment}}
                     {{#FaultCauseTypes}}<div><b>FaultCauseTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FaultCauseTypes}}
                     {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);}); return false;'>{{Outage}}</a></div>{{/Outage}}
                     </div>
@@ -364,7 +363,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><input id='{{id}}_phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_impedance'>impedance: </label><div class='col-sm-8'><input id='{{id}}_impedance' class='form-control' type='text'{{#impedance}} value='{{impedance}}'{{/impedance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultyEquipment'>FaultyEquipment: </label><div class='col-sm-8'><input id='{{id}}_FaultyEquipment' class='form-control' type='text'{{#FaultyEquipment}} value='{{FaultyEquipment}}'{{/FaultyEquipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultCauseTypes'>FaultCauseTypes: </label><div class='col-sm-8'><input id='{{id}}_FaultCauseTypes' class='form-control' type='text'{{#FaultCauseTypes}} value='{{FaultCauseTypes}}_string'{{/FaultCauseTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultCauseTypes'>FaultCauseTypes: </label><div class='col-sm-8'><input id='{{id}}_FaultCauseTypes' class='form-control' type='text'{{#FaultCauseTypes}} value='{{FaultCauseTypes_string}}'{{/FaultCauseTypes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
                     <fieldset>

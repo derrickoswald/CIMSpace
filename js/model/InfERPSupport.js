@@ -927,9 +927,9 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_termsPayment'>termsPayment: </label><div class='col-sm-8'><input id='{{id}}_termsPayment' class='form-control' type='text'{{#termsPayment}} value='{{termsPayment}}'{{/termsPayment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems}}_string'{{/ErpPayableLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems}}_string'{{/ErpRecLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems}}_string'{{/ErpInvoiceLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems_string}}'{{/ErpPayableLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems_string}}'{{/ErpRecLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems_string}}'{{/ErpInvoiceLineItems}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2023,13 +2023,13 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ContainerErpInvoiceLineItem'>ContainerErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ContainerErpInvoiceLineItem' class='form-control' type='text'{{#ContainerErpInvoiceLineItem}} value='{{ContainerErpInvoiceLineItem}}'{{/ContainerErpInvoiceLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItem'>ErpPayableLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItem' class='form-control' type='text'{{#ErpPayableLineItem}} value='{{ErpPayableLineItem}}'{{/ErpPayableLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoice'>ErpInvoice: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoice' class='form-control' type='text'{{#ErpInvoice}} value='{{ErpInvoice}}'{{/ErpInvoice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerBillingInfos'>CustomerBillingInfos: </label><div class='col-sm-8'><input id='{{id}}_CustomerBillingInfos' class='form-control' type='text'{{#CustomerBillingInfos}} value='{{CustomerBillingInfos}}_string'{{/CustomerBillingInfos}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerBillingInfos'>CustomerBillingInfos: </label><div class='col-sm-8'><input id='{{id}}_CustomerBillingInfos' class='form-control' type='text'{{#CustomerBillingInfos}} value='{{CustomerBillingInfos_string}}'{{/CustomerBillingInfos}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItem'>ErpRecLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItem' class='form-control' type='text'{{#ErpRecLineItem}} value='{{ErpRecLineItem}}'{{/ErpRecLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='{{id}}_UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes}}_string'{{/UserAttributes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='{{id}}_UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes_string}}'{{/UserAttributes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecDelvLineItem'>ErpRecDelvLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpRecDelvLineItem' class='form-control' type='text'{{#ErpRecDelvLineItem}} value='{{ErpRecDelvLineItem}}'{{/ErpRecDelvLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments_string}}'{{/ErpPayments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkBillingInfos'>WorkBillingInfos: </label><div class='col-sm-8'><input id='{{id}}_WorkBillingInfos' class='form-control' type='text'{{#WorkBillingInfos}} value='{{WorkBillingInfos}}_string'{{/WorkBillingInfos}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkBillingInfos'>WorkBillingInfos: </label><div class='col-sm-8'><input id='{{id}}_WorkBillingInfos' class='form-control' type='text'{{#WorkBillingInfos}} value='{{WorkBillingInfos_string}}'{{/WorkBillingInfos}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2493,7 +2493,7 @@ define
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ContractorItems'>ContractorItems: </label><div class='col-sm-8'><input id='{{id}}_ContractorItems' class='form-control' type='text'{{#ContractorItems}} value='{{ContractorItems}}_string'{{/ContractorItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ContractorItems'>ContractorItems: </label><div class='col-sm-8'><input id='{{id}}_ContractorItems' class='form-control' type='text'{{#ContractorItems}} value='{{ContractorItems_string}}'{{/ContractorItems}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2815,8 +2815,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpLedgerBudget}}<div><b>ErpLedgerBudget</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerBudget}}&quot;);}); return false;'>{{ErpLedgerBudget}}</a></div>{{/ErpLedgerBudget}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpLedgerBudget}}<div><b>ErpLedgerBudget</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerBudget}}&quot;);}); return false;'>{{ErpLedgerBudget}}</a></div>{{/ErpLedgerBudget}}
                     {{#ErpLedBudLineItem}}<div><b>ErpLedBudLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedBudLineItem}}&quot;);}); return false;'>{{ErpLedBudLineItem}}</a></div>{{/ErpLedBudLineItem}}
                     </div>
                     <fieldset>
@@ -2941,8 +2940,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);}); return false;'>{{AssetModel}}</a></div>{{/AssetModel}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);}); return false;'>{{AssetModel}}</a></div>{{/AssetModel}}
                     </div>
                     <fieldset>
 
@@ -3063,8 +3061,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpTimeSheet}}<div><b>ErpTimeSheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpTimeSheet}}&quot;);}); return false;'>{{ErpTimeSheet}}</a></div>{{/ErpTimeSheet}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpTimeSheet}}<div><b>ErpTimeSheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpTimeSheet}}&quot;);}); return false;'>{{ErpTimeSheet}}</a></div>{{/ErpTimeSheet}}
                     {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);}); return false;'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
                     </div>
                     <fieldset>
@@ -3195,8 +3192,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);}); return false;'>{{Design}}</a></div>{{/Design}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);}); return false;'>{{Design}}</a></div>{{/Design}}
                     {{#ErpQuote}}<div><b>ErpQuote</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuote}}&quot;);}); return false;'>{{ErpQuote}}</a></div>{{/ErpQuote}}
                     {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);}); return false;'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
                     {{#ErpReqLineItem}}<div><b>ErpReqLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReqLineItem}}&quot;);}); return false;'>{{ErpReqLineItem}}</a></div>{{/ErpReqLineItem}}
@@ -3351,8 +3347,7 @@ define
                     {{#accountKind}}<div><b>accountKind</b>: {{accountKind}}</div>{{/accountKind}}
                     {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
                     {{#postedDateTime}}<div><b>postedDateTime</b>: {{postedDateTime}}</div>{{/postedDateTime}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
                     {{#ErpJounalEntry}}<div><b>ErpJounalEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpJounalEntry}}&quot;);}); return false;'>{{ErpJounalEntry}}</a></div>{{/ErpJounalEntry}}
                     {{#ErpLedgerEntry}}<div><b>ErpLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerEntry}}&quot;);}); return false;'>{{ErpLedgerEntry}}</a></div>{{/ErpLedgerEntry}}
                     {{#UserAttributes}}<div><b>UserAttributes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UserAttributes}}
@@ -3396,7 +3391,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJounalEntry'>ErpJounalEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpJounalEntry' class='form-control' type='text'{{#ErpJounalEntry}} value='{{ErpJounalEntry}}'{{/ErpJounalEntry}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='{{id}}_UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes}}_string'{{/UserAttributes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='{{id}}_UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes_string}}'{{/UserAttributes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedger'>ErpLedger: </label><div class='col-sm-8'><input id='{{id}}_ErpLedger' class='form-control' type='text'{{#ErpLedger}} value='{{ErpLedger}}'{{/ErpLedger}}></div></div>
                     </div>
                     <fieldset>
@@ -3500,8 +3495,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
                     </div>
                     <fieldset>
 
@@ -3626,8 +3620,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpPayments}}<div><b>ErpPayments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPayments}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpPayments}}<div><b>ErpPayments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPayments}}
                     {{#ErpPayable}}<div><b>ErpPayable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPayable}}&quot;);}); return false;'>{{ErpPayable}}</a></div>{{/ErpPayable}}
                     {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);}); return false;'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
                     {{#ErpJournalEntries}}<div><b>ErpJournalEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpJournalEntries}}
@@ -3663,10 +3656,10 @@ define
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments_string}}'{{/ErpPayments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayable'>ErpPayable: </label><div class='col-sm-8'><input id='{{id}}_ErpPayable' class='form-control' type='text'{{#ErpPayable}} value='{{ErpPayable}}'{{/ErpPayable}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries_string}}'{{/ErpJournalEntries}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3768,8 +3761,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);}); return false;'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);}); return false;'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
                     {{#ErpPayments}}<div><b>ErpPayments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPayments}}
                     {{#ErpJournalEntries}}<div><b>ErpJournalEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpJournalEntries}}
                     {{#ErpReceivable}}<div><b>ErpReceivable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceivable}}&quot;);}); return false;'>{{ErpReceivable}}</a></div>{{/ErpReceivable}}
@@ -3806,8 +3798,8 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments_string}}'{{/ErpPayments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries_string}}'{{/ErpJournalEntries}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReceivable'>ErpReceivable: </label><div class='col-sm-8'><input id='{{id}}_ErpReceivable' class='form-control' type='text'{{#ErpReceivable}} value='{{ErpReceivable}}'{{/ErpReceivable}}></div></div>
                     </div>
                     <fieldset>
@@ -3906,8 +3898,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
                     {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);}); return false;'>{{TypeAsset}}</a></div>{{/TypeAsset}}
                     </div>
                     <fieldset>
@@ -4032,8 +4023,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
                     </div>
                     <fieldset>
 
@@ -4172,8 +4162,7 @@ define
                     {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
                     {{#deliveryDate}}<div><b>deliveryDate</b>: {{deliveryDate}}</div>{{/deliveryDate}}
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);}); return false;'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);}); return false;'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
                     {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
                     {{#ErpRequisition}}<div><b>ErpRequisition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpRequisition}}&quot;);}); return false;'>{{ErpRequisition}}</a></div>{{/ErpRequisition}}
                     {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);}); return false;'>{{TypeAsset}}</a></div>{{/TypeAsset}}
@@ -4316,8 +4305,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersons}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersons}}
                     </div>
                     <fieldset>
 
@@ -4460,8 +4448,7 @@ define
                     {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
                     {{#postingDateTime}}<div><b>postingDateTime</b>: {{postingDateTime}}</div>{{/postingDateTime}}
                     {{#sourceID}}<div><b>sourceID</b>: {{sourceID}}</div>{{/sourceID}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
                     {{#ErpLedgerEntry}}<div><b>ErpLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerEntry}}&quot;);}); return false;'>{{ErpLedgerEntry}}</a></div>{{/ErpLedgerEntry}}
                     {{#ErpPayableLineItems}}<div><b>ErpPayableLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPayableLineItems}}
                     {{#ErpJournal}}<div><b>ErpJournal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpJournal}}&quot;);}); return false;'>{{ErpJournal}}</a></div>{{/ErpJournal}}
@@ -4508,10 +4495,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems}}_string'{{/ErpPayableLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems_string}}'{{/ErpPayableLineItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournal'>ErpJournal: </label><div class='col-sm-8'><input id='{{id}}_ErpJournal' class='form-control' type='text'{{#ErpJournal}} value='{{ErpJournal}}'{{/ErpJournal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems}}_string'{{/ErpRecLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CostTypes'>CostTypes: </label><div class='col-sm-8'><input id='{{id}}_CostTypes' class='form-control' type='text'{{#CostTypes}} value='{{CostTypes}}_string'{{/CostTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems_string}}'{{/ErpRecLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CostTypes'>CostTypes: </label><div class='col-sm-8'><input id='{{id}}_CostTypes' class='form-control' type='text'{{#CostTypes}} value='{{CostTypes_string}}'{{/CostTypes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
                     </div>
                     <fieldset>
@@ -4746,8 +4733,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);}); return false;'>{{LandProperty}}</a></div>{{/LandProperty}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);}); return false;'>{{LandProperty}}</a></div>{{/LandProperty}}
                     </div>
                     <fieldset>
 
@@ -4874,8 +4860,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);}); return false;'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpPOLineItem}}<div><b>ErpPOLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPOLineItem}}&quot;);}); return false;'>{{ErpPOLineItem}}</a></div>{{/ErpPOLineItem}}
                     {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);}); return false;'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#ErpReceiveDelivery}}<div><b>ErpReceiveDelivery</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceiveDelivery}}&quot;);}); return false;'>{{ErpReceiveDelivery}}</a></div>{{/ErpReceiveDelivery}}
@@ -4911,7 +4896,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReceiveDelivery'>ErpReceiveDelivery: </label><div class='col-sm-8'><input id='{{id}}_ErpReceiveDelivery' class='form-control' type='text'{{#ErpReceiveDelivery}} value='{{ErpReceiveDelivery}}'{{/ErpReceiveDelivery}}></div></div>
                     </div>
                     <fieldset>

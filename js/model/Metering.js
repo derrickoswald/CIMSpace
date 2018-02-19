@@ -268,9 +268,9 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups}}_string'{{/EndDeviceGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements}}_string'{{/CustomerAgreements}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='{{id}}_UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups}}_string'{{/UsagePointGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups_string}}'{{/EndDeviceGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements_string}}'{{/CustomerAgreements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='{{id}}_UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups_string}}'{{/UsagePointGroups}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -409,9 +409,9 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='{{id}}_DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms}}_string'{{/DemandResponsePrograms}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls}}_string'{{/EndDeviceControls}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDevices'>EndDevices: </label><div class='col-sm-8'><input id='{{id}}_EndDevices' class='form-control' type='text'{{#EndDevices}} value='{{EndDevices}}_string'{{/EndDevices}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='{{id}}_DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms_string}}'{{/DemandResponsePrograms}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls_string}}'{{/EndDeviceControls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDevices'>EndDevices: </label><div class='col-sm-8'><input id='{{id}}_EndDevices' class='form-control' type='text'{{#EndDevices}} value='{{EndDevices_string}}'{{/EndDevices}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -841,11 +841,9 @@ define
                     {{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
                     {{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
                     {{#priceSignal}}<div><b>priceSignal</b>: {{priceSignal}}</div>{{/priceSignal}}
-                    {{#primaryDeviceTiming}}<div><b>primaryDeviceTiming</b>: {{primaryDeviceTiming}}</div>{{/primaryDeviceTiming}}
-                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    {{#primaryDeviceTiming}}<div><b>primaryDeviceTiming</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{primaryDeviceTiming}}&quot;);}); return false;'>{{primaryDeviceTiming}}</a></div>{{/primaryDeviceTiming}}\n                    {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
                     {{#scheduledInterval}}<div><b>scheduledInterval</b>: {{scheduledInterval}}</div>{{/scheduledInterval}}
-                    {{#secondaryDeviceTiming}}<div><b>secondaryDeviceTiming</b>: {{secondaryDeviceTiming}}</div>{{/secondaryDeviceTiming}}
-                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroups}}
+                    {{#secondaryDeviceTiming}}<div><b>secondaryDeviceTiming</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryDeviceTiming}}&quot;);}); return false;'>{{secondaryDeviceTiming}}</a></div>{{/secondaryDeviceTiming}}\n                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroups}}
                     {{#EndDeviceControlType}}<div><b>EndDeviceControlType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControlType}}&quot;);}); return false;'>{{EndDeviceControlType}}</a></div>{{/EndDeviceControlType}}
                     {{#EndDeviceAction}}<div><b>EndDeviceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceAction}}&quot;);}); return false;'>{{EndDeviceAction}}</a></div>{{/EndDeviceAction}}
                     {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePoints}}
@@ -895,12 +893,12 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><input id='{{id}}_reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledInterval'>scheduledInterval: </label><div class='col-sm-8'><input id='{{id}}_scheduledInterval' class='form-control' type='text'{{#scheduledInterval}} value='{{scheduledInterval}}'{{/scheduledInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryDeviceTiming'>secondaryDeviceTiming: </label><div class='col-sm-8'><input id='{{id}}_secondaryDeviceTiming' class='form-control' type='text'{{#secondaryDeviceTiming}} value='{{secondaryDeviceTiming}}'{{/secondaryDeviceTiming}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups}}_string'{{/EndDeviceGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups_string}}'{{/EndDeviceGroups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControlType'>EndDeviceControlType: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControlType' class='form-control' type='text'{{#EndDeviceControlType}} value='{{EndDeviceControlType}}'{{/EndDeviceControlType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceAction'>EndDeviceAction: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceAction' class='form-control' type='text'{{#EndDeviceAction}} value='{{EndDeviceAction}}'{{/EndDeviceAction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='{{id}}_UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups}}_string'{{/UsagePointGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDevices'>EndDevices: </label><div class='col-sm-8'><input id='{{id}}_EndDevices' class='form-control' type='text'{{#EndDevices}} value='{{EndDevices}}_string'{{/EndDevices}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints_string}}'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='{{id}}_UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups_string}}'{{/UsagePointGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDevices'>EndDevices: </label><div class='col-sm-8'><input id='{{id}}_EndDevices' class='form-control' type='text'{{#EndDevices}} value='{{EndDevices_string}}'{{/EndDevices}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1360,17 +1358,17 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_readRoute'>readRoute: </label><div class='col-sm-8'><input id='{{id}}_readRoute' class='form-control' type='text'{{#readRoute}} value='{{readRoute}}'{{/readRoute}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceDeliveryRemark'>serviceDeliveryRemark: </label><div class='col-sm-8'><input id='{{id}}_serviceDeliveryRemark' class='form-control' type='text'{{#serviceDeliveryRemark}} value='{{serviceDeliveryRemark}}'{{/serviceDeliveryRemark}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_servicePriority'>servicePriority: </label><div class='col-sm-8'><input id='{{id}}_servicePriority' class='form-control' type='text'{{#servicePriority}} value='{{servicePriority}}'{{/servicePriority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments_string}}'{{/Equipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='{{id}}_PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures}}_string'{{/PricingStructures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='{{id}}_PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures_string}}'{{/PricingStructures}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='{{id}}_ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outages'>Outages: </label><div class='col-sm-8'><input id='{{id}}_Outages' class='form-control' type='text'{{#Outages}} value='{{Outages}}_string'{{/Outages}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MetrologyRequirements'>MetrologyRequirements: </label><div class='col-sm-8'><input id='{{id}}_MetrologyRequirements' class='form-control' type='text'{{#MetrologyRequirements}} value='{{MetrologyRequirements}}_string'{{/MetrologyRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outages'>Outages: </label><div class='col-sm-8'><input id='{{id}}_Outages' class='form-control' type='text'{{#Outages}} value='{{Outages_string}}'{{/Outages}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MetrologyRequirements'>MetrologyRequirements: </label><div class='col-sm-8'><input id='{{id}}_MetrologyRequirements' class='form-control' type='text'{{#MetrologyRequirements}} value='{{MetrologyRequirements_string}}'{{/MetrologyRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointLocation'>UsagePointLocation: </label><div class='col-sm-8'><input id='{{id}}_UsagePointLocation' class='form-control' type='text'{{#UsagePointLocation}} value='{{UsagePointLocation}}'{{/UsagePointLocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='{{id}}_ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceLocation'>ServiceLocation: </label><div class='col-sm-8'><input id='{{id}}_ServiceLocation' class='form-control' type='text'{{#ServiceLocation}} value='{{ServiceLocation}}'{{/ServiceLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='{{id}}_UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups}}_string'{{/UsagePointGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls}}_string'{{/EndDeviceControls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='{{id}}_UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups_string}}'{{/UsagePointGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls_string}}'{{/EndDeviceControls}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1793,7 +1791,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valuesInterval'>valuesInterval: </label><div class='col-sm-8'><input id='{{id}}_valuesInterval' class='form-control' type='text'{{#valuesInterval}} value='{{valuesInterval}}'{{/valuesInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='{{id}}_UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Meter'>Meter: </label><div class='col-sm-8'><input id='{{id}}_Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Readings'>Readings: </label><div class='col-sm-8'><input id='{{id}}_Readings' class='form-control' type='text'{{#Readings}} value='{{Readings}}_string'{{/Readings}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Readings'>Readings: </label><div class='col-sm-8'><input id='{{id}}_Readings' class='form-control' type='text'{{#Readings}} value='{{Readings_string}}'{{/Readings}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
                     </div>
                     <fieldset>
@@ -2455,8 +2453,8 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><select id='{{id}}_reason' class='form-control custom-select'>{{#ReadingReasonKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReadingReasonKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReadingTypes'>ReadingTypes: </label><div class='col-sm-8'><input id='{{id}}_ReadingTypes' class='form-control' type='text'{{#ReadingTypes}} value='{{ReadingTypes}}_string'{{/ReadingTypes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReadingTypes'>ReadingTypes: </label><div class='col-sm-8'><input id='{{id}}_ReadingTypes' class='form-control' type='text'{{#ReadingTypes}} value='{{ReadingTypes_string}}'{{/ReadingTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints_string}}'{{/UsagePoints}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2848,14 +2846,12 @@ define
                     `
                     {{#accumulation}}<div><b>accumulation</b>: {{accumulation}}</div>{{/accumulation}}
                     {{#aggregate}}<div><b>aggregate</b>: {{aggregate}}</div>{{/aggregate}}
-                    {{#argument}}<div><b>argument</b>: {{argument}}</div>{{/argument}}
-                    {{#commodity}}<div><b>commodity</b>: {{commodity}}</div>{{/commodity}}
+                    {{#argument}}<div><b>argument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{argument}}&quot;);}); return false;'>{{argument}}</a></div>{{/argument}}\n                    {{#commodity}}<div><b>commodity</b>: {{commodity}}</div>{{/commodity}}
                     {{#consumptionTier}}<div><b>consumptionTier</b>: {{consumptionTier}}</div>{{/consumptionTier}}
                     {{#cpp}}<div><b>cpp</b>: {{cpp}}</div>{{/cpp}}
                     {{#currency}}<div><b>currency</b>: {{currency}}</div>{{/currency}}
                     {{#flowDirection}}<div><b>flowDirection</b>: {{flowDirection}}</div>{{/flowDirection}}
-                    {{#interharmonic}}<div><b>interharmonic</b>: {{interharmonic}}</div>{{/interharmonic}}
-                    {{#macroPeriod}}<div><b>macroPeriod</b>: {{macroPeriod}}</div>{{/macroPeriod}}
+                    {{#interharmonic}}<div><b>interharmonic</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{interharmonic}}&quot;);}); return false;'>{{interharmonic}}</a></div>{{/interharmonic}}\n                    {{#macroPeriod}}<div><b>macroPeriod</b>: {{macroPeriod}}</div>{{/macroPeriod}}
                     {{#measurementKind}}<div><b>measurementKind</b>: {{measurementKind}}</div>{{/measurementKind}}
                     {{#measuringPeriod}}<div><b>measuringPeriod</b>: {{measuringPeriod}}</div>{{/measuringPeriod}}
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
@@ -2917,7 +2913,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tou'>tou: </label><div class='col-sm-8'><input id='{{id}}_tou' class='form-control' type='text'{{#tou}} value='{{tou}}'{{/tou}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PendingCalculation'>PendingCalculation: </label><div class='col-sm-8'><input id='{{id}}_PendingCalculation' class='form-control' type='text'{{#PendingCalculation}} value='{{PendingCalculation}}'{{/PendingCalculation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MetrologyRequirements'>MetrologyRequirements: </label><div class='col-sm-8'><input id='{{id}}_MetrologyRequirements' class='form-control' type='text'{{#MetrologyRequirements}} value='{{MetrologyRequirements}}_string'{{/MetrologyRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MetrologyRequirements'>MetrologyRequirements: </label><div class='col-sm-8'><input id='{{id}}_MetrologyRequirements' class='form-control' type='text'{{#MetrologyRequirements}} value='{{MetrologyRequirements_string}}'{{/MetrologyRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Channel'>Channel: </label><div class='col-sm-8'><input id='{{id}}_Channel' class='form-control' type='text'{{#Channel}} value='{{Channel}}'{{/Channel}}></div></div>
                     </div>
                     <fieldset>
@@ -3070,7 +3066,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PendingCalculation'>PendingCalculation: </label><div class='col-sm-8'><input id='{{id}}_PendingCalculation' class='form-control' type='text'{{#PendingCalculation}} value='{{PendingCalculation}}'{{/PendingCalculation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='{{id}}_ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IntervalReadings'>IntervalReadings: </label><div class='col-sm-8'><input id='{{id}}_IntervalReadings' class='form-control' type='text'{{#IntervalReadings}} value='{{IntervalReadings}}_string'{{/IntervalReadings}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IntervalReadings'>IntervalReadings: </label><div class='col-sm-8'><input id='{{id}}_IntervalReadings' class='form-control' type='text'{{#IntervalReadings}} value='{{IntervalReadings_string}}'{{/IntervalReadings}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeterReading'>MeterReading: </label><div class='col-sm-8'><input id='{{id}}_MeterReading' class='form-control' type='text'{{#MeterReading}} value='{{MeterReading}}'{{/MeterReading}}></div></div>
                     </div>
                     <fieldset>
@@ -4278,9 +4274,9 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls}}_string'{{/EndDeviceControls}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='{{id}}_DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms}}_string'{{/DemandResponsePrograms}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints_string}}'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls_string}}'{{/EndDeviceControls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='{{id}}_DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms_string}}'{{/DemandResponsePrograms}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4851,8 +4847,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceLocation'>ServiceLocation: </label><div class='col-sm-8'><input id='{{id}}_ServiceLocation' class='form-control' type='text'{{#ServiceLocation}} value='{{ServiceLocation}}'{{/ServiceLocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Customer'>Customer: </label><div class='col-sm-8'><input id='{{id}}_Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='{{id}}_UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups}}_string'{{/EndDeviceGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls}}_string'{{/EndDeviceControls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups_string}}'{{/EndDeviceGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls_string}}'{{/EndDeviceControls}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -5155,8 +5151,7 @@ define
                     `
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
-                    {{#capability}}<div><b>capability</b>: {{capability}}</div>{{/capability}}
-                    {{#isSolidState}}<div><b>isSolidState</b>: {{isSolidState}}</div>{{/isSolidState}}
+                    {{#capability}}<div><b>capability</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{capability}}&quot;);}); return false;'>{{capability}}</a></div>{{/capability}}\n                    {{#isSolidState}}<div><b>isSolidState</b>: {{isSolidState}}</div>{{/isSolidState}}
                     {{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
                     {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
@@ -5675,8 +5670,7 @@ define
                     `
                     + EndDeviceAction.prototype.template.call (this) +
                     `
-                    {{#appliance}}<div><b>appliance</b>: {{appliance}}</div>{{/appliance}}
-                    {{#avgLoadAdjustment}}<div><b>avgLoadAdjustment</b>: {{avgLoadAdjustment}}</div>{{/avgLoadAdjustment}}
+                    {{#appliance}}<div><b>appliance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{appliance}}&quot;);}); return false;'>{{appliance}}</a></div>{{/appliance}}\n                    {{#avgLoadAdjustment}}<div><b>avgLoadAdjustment</b>: {{avgLoadAdjustment}}</div>{{/avgLoadAdjustment}}
                     {{#cancelControlMode}}<div><b>cancelControlMode</b>: {{cancelControlMode}}</div>{{/cancelControlMode}}
                     {{#cancelDateTime}}<div><b>cancelDateTime</b>: {{cancelDateTime}}</div>{{/cancelDateTime}}
                     {{#cancelNow}}<div><b>cancelNow</b>: {{cancelNow}}</div>{{/cancelNow}}
@@ -5964,7 +5958,7 @@ define
                     `
                     + BaseReading.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IntervalBlocks'>IntervalBlocks: </label><div class='col-sm-8'><input id='{{id}}_IntervalBlocks' class='form-control' type='text'{{#IntervalBlocks}} value='{{IntervalBlocks}}_string'{{/IntervalBlocks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IntervalBlocks'>IntervalBlocks: </label><div class='col-sm-8'><input id='{{id}}_IntervalBlocks' class='form-control' type='text'{{#IntervalBlocks}} value='{{IntervalBlocks_string}}'{{/IntervalBlocks}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -6093,7 +6087,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><select id='{{id}}_reason' class='form-control custom-select'>{{#ReadingReasonKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReadingReasonKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='{{id}}_ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeterReadings'>MeterReadings: </label><div class='col-sm-8'><input id='{{id}}_MeterReadings' class='form-control' type='text'{{#MeterReadings}} value='{{MeterReadings}}_string'{{/MeterReadings}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeterReadings'>MeterReadings: </label><div class='col-sm-8'><input id='{{id}}_MeterReadings' class='form-control' type='text'{{#MeterReadings}} value='{{MeterReadings_string}}'{{/MeterReadings}}></div></div>
                     </div>
                     <fieldset>
                     `

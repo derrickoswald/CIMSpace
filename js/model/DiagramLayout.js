@@ -635,7 +635,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='{{id}}_drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VisibleObjects'>VisibleObjects: </label><div class='col-sm-8'><input id='{{id}}_VisibleObjects' class='form-control' type='text'{{#VisibleObjects}} value='{{VisibleObjects}}_string'{{/VisibleObjects}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VisibleObjects'>VisibleObjects: </label><div class='col-sm-8'><input id='{{id}}_VisibleObjects' class='form-control' type='text'{{#VisibleObjects}} value='{{VisibleObjects_string}}'{{/VisibleObjects}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -792,7 +792,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Diagram'>Diagram: </label><div class='col-sm-8'><input id='{{id}}_Diagram' class='form-control' type='text'{{#Diagram}} value='{{Diagram}}'{{/Diagram}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiagramObjectStyle'>DiagramObjectStyle: </label><div class='col-sm-8'><input id='{{id}}_DiagramObjectStyle' class='form-control' type='text'{{#DiagramObjectStyle}} value='{{DiagramObjectStyle}}'{{/DiagramObjectStyle}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IdentifiedObject'>IdentifiedObject: </label><div class='col-sm-8'><input id='{{id}}_IdentifiedObject' class='form-control' type='text'{{#IdentifiedObject}} value='{{IdentifiedObject}}'{{/IdentifiedObject}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VisibilityLayers'>VisibilityLayers: </label><div class='col-sm-8'><input id='{{id}}_VisibilityLayers' class='form-control' type='text'{{#VisibilityLayers}} value='{{VisibilityLayers}}_string'{{/VisibilityLayers}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VisibilityLayers'>VisibilityLayers: </label><div class='col-sm-8'><input id='{{id}}_VisibilityLayers' class='form-control' type='text'{{#VisibilityLayers}} value='{{VisibilityLayers_string}}'{{/VisibilityLayers}}></div></div>
                     </div>
                     <fieldset>
                     `

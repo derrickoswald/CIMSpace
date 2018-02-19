@@ -289,9 +289,18 @@ define
                 callback ();
         }
 
+        function valid_extents ()
+        {
+            return (null != TheExtents &&
+                (TheExtents.xmin >= -180.0) && (TheExtents.xmin <= 180.0) &&
+                (TheExtents.ymin >=  -90.0) && (TheExtents.ymin <=  90.0) &&
+                (TheExtents.xmax >= -180.0) && (TheExtents.xmax <= 180.0) &&
+                (TheExtents.ymax >=  -90.0) && (TheExtents.ymax <=  90.0));
+        }
+
         function zoom_extents ()
         {
-            if (null != TheExtents)
+            if (valid_extents ())
                 TheMap.fitBounds (
                     [[TheExtents.xmin, TheExtents.ymin], [TheExtents.xmax, TheExtents.ymax]],
                     { linear: true, padding: 50 });

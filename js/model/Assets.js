@@ -204,17 +204,13 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#acceptanceTest}}<div><b>acceptanceTest</b>: {{acceptanceTest}}</div>{{/acceptanceTest}}
-                    {{#critical}}<div><b>critical</b>: {{critical}}</div>{{/critical}}
-                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-                    {{#initialCondition}}<div><b>initialCondition</b>: {{initialCondition}}</div>{{/initialCondition}}
+                    {{#acceptanceTest}}<div><b>acceptanceTest</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{acceptanceTest}}&quot;);}); return false;'>{{acceptanceTest}}</a></div>{{/acceptanceTest}}\n                    {{#critical}}<div><b>critical</b>: {{critical}}</div>{{/critical}}
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddress}}&quot;);}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}\n                    {{#initialCondition}}<div><b>initialCondition</b>: {{initialCondition}}</div>{{/initialCondition}}
                     {{#initialLossOfLife}}<div><b>initialLossOfLife</b>: {{initialLossOfLife}}</div>{{/initialLossOfLife}}
-                    {{#lifecycle}}<div><b>lifecycle</b>: {{lifecycle}}</div>{{/lifecycle}}
-                    {{#lotNumber}}<div><b>lotNumber</b>: {{lotNumber}}</div>{{/lotNumber}}
+                    {{#lifecycle}}<div><b>lifecycle</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{lifecycle}}&quot;);}); return false;'>{{lifecycle}}</a></div>{{/lifecycle}}\n                    {{#lotNumber}}<div><b>lotNumber</b>: {{lotNumber}}</div>{{/lotNumber}}
                     {{#purchasePrice}}<div><b>purchasePrice</b>: {{purchasePrice}}</div>{{/purchasePrice}}
                     {{#serialNumber}}<div><b>serialNumber</b>: {{serialNumber}}</div>{{/serialNumber}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#utcNumber}}<div><b>utcNumber</b>: {{utcNumber}}</div>{{/utcNumber}}
                     {{#OperationTags}}<div><b>OperationTags</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperationTags}}
                     {{#ActivityRecords}}<div><b>ActivityRecords</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ActivityRecords}}
@@ -309,21 +305,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_utcNumber'>utcNumber: </label><div class='col-sm-8'><input id='{{id}}_utcNumber' class='form-control' type='text'{{#utcNumber}} value='{{utcNumber}}'{{/utcNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords}}_string'{{/ActivityRecords}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords_string}}'{{/ActivityRecords}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FinancialInfo'>FinancialInfo: </label><div class='col-sm-8'><input id='{{id}}_FinancialInfo' class='form-control' type='text'{{#FinancialInfo}} value='{{FinancialInfo}}'{{/FinancialInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpItemMaster'>ErpItemMaster: </label><div class='col-sm-8'><input id='{{id}}_ErpItemMaster' class='form-control' type='text'{{#ErpItemMaster}} value='{{ErpItemMaster}}'{{/ErpItemMaster}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetContainer'>AssetContainer: </label><div class='col-sm-8'><input id='{{id}}_AssetContainer' class='form-control' type='text'{{#AssetContainer}} value='{{AssetContainer}}'{{/AssetContainer}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Mediums'>Mediums: </label><div class='col-sm-8'><input id='{{id}}_Mediums' class='form-control' type='text'{{#Mediums}} value='{{Mediums}}_string'{{/Mediums}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ScheduledEvents'>ScheduledEvents: </label><div class='col-sm-8'><input id='{{id}}_ScheduledEvents' class='form-control' type='text'{{#ScheduledEvents}} value='{{ScheduledEvents}}_string'{{/ScheduledEvents}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OrganisationRoles'>OrganisationRoles: </label><div class='col-sm-8'><input id='{{id}}_OrganisationRoles' class='form-control' type='text'{{#OrganisationRoles}} value='{{OrganisationRoles}}_string'{{/OrganisationRoles}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures}}_string'{{/Procedures}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResources'>PowerSystemResources: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResources' class='form-control' type='text'{{#PowerSystemResources}} value='{{PowerSystemResources}}_string'{{/PowerSystemResources}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Mediums'>Mediums: </label><div class='col-sm-8'><input id='{{id}}_Mediums' class='form-control' type='text'{{#Mediums}} value='{{Mediums_string}}'{{/Mediums}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ScheduledEvents'>ScheduledEvents: </label><div class='col-sm-8'><input id='{{id}}_ScheduledEvents' class='form-control' type='text'{{#ScheduledEvents}} value='{{ScheduledEvents_string}}'{{/ScheduledEvents}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OrganisationRoles'>OrganisationRoles: </label><div class='col-sm-8'><input id='{{id}}_OrganisationRoles' class='form-control' type='text'{{#OrganisationRoles}} value='{{OrganisationRoles_string}}'{{/OrganisationRoles}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks_string}}'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures_string}}'{{/Procedures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResources'>PowerSystemResources: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResources' class='form-control' type='text'{{#PowerSystemResources}} value='{{PowerSystemResources_string}}'{{/PowerSystemResources}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Location'>Location: </label><div class='col-sm-8'><input id='{{id}}_Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetPropertyCurves'>AssetPropertyCurves: </label><div class='col-sm-8'><input id='{{id}}_AssetPropertyCurves' class='form-control' type='text'{{#AssetPropertyCurves}} value='{{AssetPropertyCurves}}_string'{{/AssetPropertyCurves}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetPropertyCurves'>AssetPropertyCurves: </label><div class='col-sm-8'><input id='{{id}}_AssetPropertyCurves' class='form-control' type='text'{{#AssetPropertyCurves}} value='{{AssetPropertyCurves_string}}'{{/AssetPropertyCurves}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInventory'>ErpInventory: </label><div class='col-sm-8'><input id='{{id}}_ErpInventory' class='form-control' type='text'{{#ErpInventory}} value='{{ErpInventory}}'{{/ErpInventory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecDeliveryItems'>ErpRecDeliveryItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecDeliveryItems' class='form-control' type='text'{{#ErpRecDeliveryItems}} value='{{ErpRecDeliveryItems}}_string'{{/ErpRecDeliveryItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReliabilityInfos'>ReliabilityInfos: </label><div class='col-sm-8'><input id='{{id}}_ReliabilityInfos' class='form-control' type='text'{{#ReliabilityInfos}} value='{{ReliabilityInfos}}_string'{{/ReliabilityInfos}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecDeliveryItems'>ErpRecDeliveryItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecDeliveryItems' class='form-control' type='text'{{#ErpRecDeliveryItems}} value='{{ErpRecDeliveryItems_string}}'{{/ErpRecDeliveryItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReliabilityInfos'>ReliabilityInfos: </label><div class='col-sm-8'><input id='{{id}}_ReliabilityInfos' class='form-control' type='text'{{#ReliabilityInfos}} value='{{ReliabilityInfos_string}}'{{/ReliabilityInfos}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetInfo'>AssetInfo: </label><div class='col-sm-8'><input id='{{id}}_AssetInfo' class='form-control' type='text'{{#AssetInfo}} value='{{AssetInfo}}'{{/AssetInfo}}></div></div>
                     </div>
                     <fieldset>
@@ -734,7 +730,7 @@ define
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -983,9 +979,9 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_completedDateTime'>completedDateTime: </label><div class='col-sm-8'><input id='{{id}}_completedDateTime' class='form-control' type='text'{{#completedDateTime}} value='{{completedDateTime}}'{{/completedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerObservations'>TransformerObservations: </label><div class='col-sm-8'><input id='{{id}}_TransformerObservations' class='form-control' type='text'{{#TransformerObservations}} value='{{TransformerObservations}}_string'{{/TransformerObservations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementValues'>MeasurementValues: </label><div class='col-sm-8'><input id='{{id}}_MeasurementValues' class='form-control' type='text'{{#MeasurementValues}} value='{{MeasurementValues}}_string'{{/MeasurementValues}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Properties'>Properties: </label><div class='col-sm-8'><input id='{{id}}_Properties' class='form-control' type='text'{{#Properties}} value='{{Properties}}_string'{{/Properties}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerObservations'>TransformerObservations: </label><div class='col-sm-8'><input id='{{id}}_TransformerObservations' class='form-control' type='text'{{#TransformerObservations}} value='{{TransformerObservations_string}}'{{/TransformerObservations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementValues'>MeasurementValues: </label><div class='col-sm-8'><input id='{{id}}_MeasurementValues' class='form-control' type='text'{{#MeasurementValues}} value='{{MeasurementValues_string}}'{{/MeasurementValues}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Properties'>Properties: </label><div class='col-sm-8'><input id='{{id}}_Properties' class='form-control' type='text'{{#Properties}} value='{{Properties_string}}'{{/Properties}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedure'>Procedure: </label><div class='col-sm-8'><input id='{{id}}_Procedure' class='form-control' type='text'{{#Procedure}} value='{{Procedure}}'{{/Procedure}}></div></div>
                     </div>
                     <fieldset>
@@ -1375,7 +1371,7 @@ define
                     `
                     + Common.Hazard.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1778,10 +1774,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instruction'>instruction: </label><div class='col-sm-8'><input id='{{id}}_instruction' class='form-control' type='text'{{#instruction}} value='{{instruction}}'{{/instruction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ProcedureKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProcedureKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements}}_string'{{/Measurements}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Limits'>Limits: </label><div class='col-sm-8'><input id='{{id}}_Limits' class='form-control' type='text'{{#Limits}} value='{{Limits}}_string'{{/Limits}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Limits'>Limits: </label><div class='col-sm-8'><input id='{{id}}_Limits' class='form-control' type='text'{{#Limits}} value='{{Limits_string}}'{{/Limits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1918,7 +1914,7 @@ define
                     `
                     + Asset.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties}}_string'{{/LandProperties}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties_string}}'{{/LandProperties}}></div></div>
                     </div>
                     <fieldset>
                     `

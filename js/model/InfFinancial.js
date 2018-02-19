@@ -103,7 +103,7 @@ define
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlledBy'>ControlledBy: </label><div class='col-sm-8'><input id='{{id}}_ControlledBy' class='form-control' type='text'{{#ControlledBy}} value='{{ControlledBy}}'{{/ControlledBy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CAChildOf'>CAChildOf: </label><div class='col-sm-8'><input id='{{id}}_CAChildOf' class='form-control' type='text'{{#CAChildOf}} value='{{CAChildOf}}_string'{{/CAChildOf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CAChildOf'>CAChildOf: </label><div class='col-sm-8'><input id='{{id}}_CAChildOf' class='form-control' type='text'{{#CAChildOf}} value='{{CAChildOf_string}}'{{/CAChildOf}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -322,7 +322,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transmissionProductType'>transmissionProductType: </label><div class='col-sm-8'><input id='{{id}}_transmissionProductType' class='form-control' type='text'{{#transmissionProductType}} value='{{transmissionProductType}}'{{/transmissionProductType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LocationFor'>LocationFor: </label><div class='col-sm-8'><input id='{{id}}_LocationFor' class='form-control' type='text'{{#LocationFor}} value='{{LocationFor}}_string'{{/LocationFor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LocationFor'>LocationFor: </label><div class='col-sm-8'><input id='{{id}}_LocationFor' class='form-control' type='text'{{#LocationFor}} value='{{LocationFor_string}}'{{/LocationFor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionProvider'>TransmissionProvider: </label><div class='col-sm-8'><input id='{{id}}_TransmissionProvider' class='form-control' type='text'{{#TransmissionProvider}} value='{{TransmissionProvider}}'{{/TransmissionProvider}}></div></div>
                     </div>
                     <fieldset>
@@ -447,7 +447,7 @@ define
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultIntegrationMethod'>defaultIntegrationMethod: </label><div class='col-sm-8'><input id='{{id}}_defaultIntegrationMethod' class='form-control' type='text'{{#defaultIntegrationMethod}} value='{{defaultIntegrationMethod}}'{{/defaultIntegrationMethod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation_string}}'{{/MktOrganisation}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -804,7 +804,7 @@ define
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Resells_EnergyProduct'>Resells_EnergyProduct: </label><div class='col-sm-8'><input id='{{id}}_Resells_EnergyProduct' class='form-control' type='text'{{#Resells_EnergyProduct}} value='{{Resells_EnergyProduct}}_string'{{/Resells_EnergyProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Resells_EnergyProduct'>Resells_EnergyProduct: </label><div class='col-sm-8'><input id='{{id}}_Resells_EnergyProduct' class='form-control' type='text'{{#Resells_EnergyProduct}} value='{{Resells_EnergyProduct_string}}'{{/Resells_EnergyProduct}}></div></div>
                     </div>
                     <fieldset>
                     `

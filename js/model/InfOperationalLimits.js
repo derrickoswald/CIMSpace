@@ -471,7 +471,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}_string'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment_string}}'{{/Equipment}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -594,7 +594,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimit'>OperationalLimit: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimit' class='form-control' type='text'{{#OperationalLimit}} value='{{OperationalLimit}}_string'{{/OperationalLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimit'>OperationalLimit: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimit' class='form-control' type='text'{{#OperationalLimit}} value='{{OperationalLimit_string}}'{{/OperationalLimit}}></div></div>
                     </div>
                     <fieldset>
                     `

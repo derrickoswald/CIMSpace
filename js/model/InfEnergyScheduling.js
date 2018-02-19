@@ -107,7 +107,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SideA_SubControlArea'>SideA_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SideA_SubControlArea' class='form-control' type='text'{{#SideA_SubControlArea}} value='{{SideA_SubControlArea}}'{{/SideA_SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentOfA'>ParentOfA: </label><div class='col-sm-8'><input id='{{id}}_ParentOfA' class='form-control' type='text'{{#ParentOfA}} value='{{ParentOfA}}_string'{{/ParentOfA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentOfA'>ParentOfA: </label><div class='col-sm-8'><input id='{{id}}_ParentOfA' class='form-control' type='text'{{#ParentOfA}} value='{{ParentOfA_string}}'{{/ParentOfA}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentOfB'>ParentOfB: </label><div class='col-sm-8'><input id='{{id}}_ParentOfB' class='form-control' type='text'{{#ParentOfB}} value='{{ParentOfB}}'{{/ParentOfB}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SideB_SubControlArea'>SideB_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SideB_SubControlArea' class='form-control' type='text'{{#SideB_SubControlArea}} value='{{SideB_SubControlArea}}'{{/SideB_SubControlArea}}></div></div>
                     </div>
@@ -1258,7 +1258,7 @@ define
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResoldBy_Marketer'>ResoldBy_Marketer: </label><div class='col-sm-8'><input id='{{id}}_ResoldBy_Marketer' class='form-control' type='text'{{#ResoldBy_Marketer}} value='{{ResoldBy_Marketer}}_string'{{/ResoldBy_Marketer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResoldBy_Marketer'>ResoldBy_Marketer: </label><div class='col-sm-8'><input id='{{id}}_ResoldBy_Marketer' class='form-control' type='text'{{#ResoldBy_Marketer}} value='{{ResoldBy_Marketer_string}}'{{/ResoldBy_Marketer}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenerationProvider'>GenerationProvider: </label><div class='col-sm-8'><input id='{{id}}_GenerationProvider' class='form-control' type='text'{{#GenerationProvider}} value='{{GenerationProvider}}'{{/GenerationProvider}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TitleHeldBy_Marketer'>TitleHeldBy_Marketer: </label><div class='col-sm-8'><input id='{{id}}_TitleHeldBy_Marketer' class='form-control' type='text'{{#TitleHeldBy_Marketer}} value='{{TitleHeldBy_Marketer}}'{{/TitleHeldBy_Marketer}}></div></div>
                     </div>

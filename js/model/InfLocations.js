@@ -104,8 +104,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    </div>
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    </div>
                     <fieldset>
 
                     `
@@ -444,8 +443,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#Locations}}<div><b>Locations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Locations}}
                     {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crews}}
                     </div>
@@ -481,7 +479,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -596,8 +594,7 @@ define
                     {{#demographicKind}}<div><b>demographicKind</b>: {{demographicKind}}</div>{{/demographicKind}}
                     {{#externalRecordReference}}<div><b>externalRecordReference</b>: {{externalRecordReference}}</div>{{/externalRecordReference}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpOrganisationRoles}}<div><b>ErpOrganisationRoles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpOrganisationRoles}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpOrganisationRoles}}<div><b>ErpOrganisationRoles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpOrganisationRoles}}
                     {{#LocationGrants}}<div><b>LocationGrants</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LocationGrants}}
                     {{#RightOfWays}}<div><b>RightOfWays</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RightOfWays}}
                     {{#Locations}}<div><b>Locations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Locations}}
@@ -653,9 +650,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_externalRecordReference'>externalRecordReference: </label><div class='col-sm-8'><input id='{{id}}_externalRecordReference' class='form-control' type='text'{{#externalRecordReference}} value='{{externalRecordReference}}'{{/externalRecordReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#LandPropertyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LandPropertyKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RightOfWays'>RightOfWays: </label><div class='col-sm-8'><input id='{{id}}_RightOfWays' class='form-control' type='text'{{#RightOfWays}} value='{{RightOfWays}}_string'{{/RightOfWays}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetContainers'>AssetContainers: </label><div class='col-sm-8'><input id='{{id}}_AssetContainers' class='form-control' type='text'{{#AssetContainers}} value='{{AssetContainers}}_string'{{/AssetContainers}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RightOfWays'>RightOfWays: </label><div class='col-sm-8'><input id='{{id}}_RightOfWays' class='form-control' type='text'{{#RightOfWays}} value='{{RightOfWays_string}}'{{/RightOfWays}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetContainers'>AssetContainers: </label><div class='col-sm-8'><input id='{{id}}_AssetContainers' class='form-control' type='text'{{#AssetContainers}} value='{{AssetContainers_string}}'{{/AssetContainers}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -790,7 +787,7 @@ define
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyData'>propertyData: </label><div class='col-sm-8'><input id='{{id}}_propertyData' class='form-control' type='text'{{#propertyData}} value='{{propertyData}}'{{/propertyData}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties}}_string'{{/LandProperties}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties_string}}'{{/LandProperties}}></div></div>
                     </div>
                     <fieldset>
                     `

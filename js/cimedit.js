@@ -28,7 +28,7 @@ define
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
-                "    <h5 class='card-title'>Edit\n" +
+                "    <h5 class='card-title'>Edit <span id='edit_id'></span>\n" +
                 "      <button type='button' class='close' aria-label='Close'>\n" +
                 "        <span aria-hidden='true'>&times;</span>\n" +
                 "      </button>\n" +
@@ -478,7 +478,7 @@ define
                                 if (!obj)
                                     ids.push ("");
                                 ids.sort ();
-                                var options = ids.map (choice => "<option" + (choice == selected ? " selected" : "") + ">" + choice + "</option>");
+                                var options = ids.map (choice => "<option value='" + choice + "' " + (choice == selected ? " selected" : "") + ">" + (relatable[choice] && relatable[choice].name ? relatable[choice].name : choice) + "</option>");
                                 var select = document.createElement ("select");
                                 select.setAttribute ("class", "form-control custom-select");
                                 select.innerHTML = options.join ('');
@@ -499,7 +499,7 @@ define
                     var frame =
                         "<div id='edit_frame' class='card'>\n" +
                         "  <div class='card-body'>\n" +
-                        "    <h5 id='view_title' class='card-title'>Edit</h5>\n" +
+                        "    <h5 id='view_title' class='card-title'>Edit <span id='edit_id'></span></h5>\n" +
                         "    <div id='edit_contents' class='card-text'></div>\n" +
                         "    <div class='card-footer'>\n" +
                         "      <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
@@ -510,6 +510,8 @@ define
                         "  </div>\n" +
                         "</div>\n";
                     this._container.innerHTML = frame;
+                    // for non-IdentifiedObject elements, display the id
+                    document.getElementById ("edit_id").innerHTML = element.id;
                     this._frame_height = document.getElementById ("edit_frame").clientHeight; // frame height with no edit template contents
 
                     this._elements = [];

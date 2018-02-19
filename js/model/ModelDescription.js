@@ -491,9 +491,7 @@ define
                     {{#created}}<div><b>created</b>: {{created}}</div>{{/created}}
                     {{#scenarioTime}}<div><b>scenarioTime</b>: {{scenarioTime}}</div>{{/scenarioTime}}
                     {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-                    {{#modelingAuthoritySet}}<div><b>modelingAuthoritySet</b>: {{modelingAuthoritySet}}</div>{{/modelingAuthoritySet}}
-                    {{#profile}}<div><b>profile</b>: {{profile}}</div>{{/profile}}
-                    {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+                    {{#modelingAuthoritySet}}<div><b>modelingAuthoritySet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{modelingAuthoritySet}}&quot;);}); return false;'>{{modelingAuthoritySet}}</a></div>{{/modelingAuthoritySet}}\n                    {{#profile}}<div><b>profile</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{profile}}&quot;);}); return false;'>{{profile}}</a></div>{{/profile}}\n                    {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
                     {{#Supersedes}}<div><b>Supersedes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Supersedes}}
                     {{#SupersededBy}}<div><b>SupersededBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SupersededBy}}
                     {{#DependentOn}}<div><b>DependentOn</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DependentOn}}
@@ -539,10 +537,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelingAuthoritySet'>modelingAuthoritySet: </label><div class='col-sm-8'><input id='{{id}}_modelingAuthoritySet' class='form-control' type='text'{{#modelingAuthoritySet}} value='{{modelingAuthoritySet}}'{{/modelingAuthoritySet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_profile'>profile: </label><div class='col-sm-8'><input id='{{id}}_profile' class='form-control' type='text'{{#profile}} value='{{profile}}'{{/profile}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Supersedes'>Supersedes: </label><div class='col-sm-8'><input id='{{id}}_Supersedes' class='form-control' type='text'{{#Supersedes}} value='{{Supersedes}}_string'{{/Supersedes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SupersededBy'>SupersededBy: </label><div class='col-sm-8'><input id='{{id}}_SupersededBy' class='form-control' type='text'{{#SupersededBy}} value='{{SupersededBy}}_string'{{/SupersededBy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DependentOn'>DependentOn: </label><div class='col-sm-8'><input id='{{id}}_DependentOn' class='form-control' type='text'{{#DependentOn}} value='{{DependentOn}}_string'{{/DependentOn}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Depending'>Depending: </label><div class='col-sm-8'><input id='{{id}}_Depending' class='form-control' type='text'{{#Depending}} value='{{Depending}}_string'{{/Depending}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Supersedes'>Supersedes: </label><div class='col-sm-8'><input id='{{id}}_Supersedes' class='form-control' type='text'{{#Supersedes}} value='{{Supersedes_string}}'{{/Supersedes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SupersededBy'>SupersededBy: </label><div class='col-sm-8'><input id='{{id}}_SupersededBy' class='form-control' type='text'{{#SupersededBy}} value='{{SupersededBy_string}}'{{/SupersededBy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DependentOn'>DependentOn: </label><div class='col-sm-8'><input id='{{id}}_DependentOn' class='form-control' type='text'{{#DependentOn}} value='{{DependentOn_string}}'{{/DependentOn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Depending'>Depending: </label><div class='col-sm-8'><input id='{{id}}_Depending' class='form-control' type='text'{{#Depending}} value='{{Depending_string}}'{{/Depending}}></div></div>
                     </div>
                     <fieldset>
                     `

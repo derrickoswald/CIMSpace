@@ -2751,8 +2751,7 @@ define
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
-                    {{#emissionContent}}<div><b>emissionContent</b>: {{emissionContent}}</div>{{/emissionContent}}
-                    {{#emissionType}}<div><b>emissionType</b>: {{emissionType}}</div>{{/emissionType}}
+                    {{#emissionContent}}<div><b>emissionContent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{emissionContent}}&quot;);}); return false;'>{{emissionContent}}</a></div>{{/emissionContent}}\n                    {{#emissionType}}<div><b>emissionType</b>: {{emissionType}}</div>{{/emissionType}}
                     {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
@@ -3144,11 +3143,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#fossilFuelType}}<div><b>fossilFuelType</b>: {{fossilFuelType}}</div>{{/fossilFuelType}}
-                    {{#fuelCost}}<div><b>fuelCost</b>: {{fuelCost}}</div>{{/fuelCost}}
-                    {{#fuelDispatchCost}}<div><b>fuelDispatchCost</b>: {{fuelDispatchCost}}</div>{{/fuelDispatchCost}}
-                    {{#fuelEffFactor}}<div><b>fuelEffFactor</b>: {{fuelEffFactor}}</div>{{/fuelEffFactor}}
-                    {{#fuelHandlingCost}}<div><b>fuelHandlingCost</b>: {{fuelHandlingCost}}</div>{{/fuelHandlingCost}}
-                    {{#fuelHeatContent}}<div><b>fuelHeatContent</b>: {{fuelHeatContent}}</div>{{/fuelHeatContent}}
+                    {{#fuelCost}}<div><b>fuelCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{fuelCost}}&quot;);}); return false;'>{{fuelCost}}</a></div>{{/fuelCost}}\n                    {{#fuelDispatchCost}}<div><b>fuelDispatchCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{fuelDispatchCost}}&quot;);}); return false;'>{{fuelDispatchCost}}</a></div>{{/fuelDispatchCost}}\n                    {{#fuelEffFactor}}<div><b>fuelEffFactor</b>: {{fuelEffFactor}}</div>{{/fuelEffFactor}}
+                    {{#fuelHandlingCost}}<div><b>fuelHandlingCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{fuelHandlingCost}}&quot;);}); return false;'>{{fuelHandlingCost}}</a></div>{{/fuelHandlingCost}}\n                    {{#fuelHeatContent}}<div><b>fuelHeatContent</b>: {{fuelHeatContent}}</div>{{/fuelHeatContent}}
                     {{#fuelMixture}}<div><b>fuelMixture</b>: {{fuelMixture}}</div>{{/fuelMixture}}
                     {{#fuelSulfur}}<div><b>fuelSulfur</b>: {{fuelSulfur}}</div>{{/fuelSulfur}}
                     {{#highBreakpointP}}<div><b>highBreakpointP</b>: {{highBreakpointP}}</div>{{/highBreakpointP}}
@@ -3401,8 +3397,7 @@ define
                     {{#minEconomicP}}<div><b>minEconomicP</b>: {{minEconomicP}}</div>{{/minEconomicP}}
                     {{#minimumOffTime}}<div><b>minimumOffTime</b>: {{minimumOffTime}}</div>{{/minimumOffTime}}
                     {{#minOperatingP}}<div><b>minOperatingP</b>: {{minOperatingP}}</div>{{/minOperatingP}}
-                    {{#modelDetail}}<div><b>modelDetail</b>: {{modelDetail}}</div>{{/modelDetail}}
-                    {{#nominalP}}<div><b>nominalP</b>: {{nominalP}}</div>{{/nominalP}}
+                    {{#modelDetail}}<div><b>modelDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{modelDetail}}&quot;);}); return false;'>{{modelDetail}}</a></div>{{/modelDetail}}\n                    {{#nominalP}}<div><b>nominalP</b>: {{nominalP}}</div>{{/nominalP}}
                     {{#normalPF}}<div><b>normalPF</b>: {{normalPF}}</div>{{/normalPF}}
                     {{#penaltyFactor}}<div><b>penaltyFactor</b>: {{penaltyFactor}}</div>{{/penaltyFactor}}
                     {{#raiseRampRate}}<div><b>raiseRampRate</b>: {{raiseRampRate}}</div>{{/raiseRampRate}}
@@ -4194,8 +4189,7 @@ define
                     {{#auxPowerMult}}<div><b>auxPowerMult</b>: {{auxPowerMult}}</div>{{/auxPowerMult}}
                     {{#auxPowerOffset}}<div><b>auxPowerOffset</b>: {{auxPowerOffset}}</div>{{/auxPowerOffset}}
                     {{#heatInputEff}}<div><b>heatInputEff</b>: {{heatInputEff}}</div>{{/heatInputEff}}
-                    {{#heatInputOffset}}<div><b>heatInputOffset</b>: {{heatInputOffset}}</div>{{/heatInputOffset}}
-                    {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
+                    {{#heatInputOffset}}<div><b>heatInputOffset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{heatInputOffset}}&quot;);}); return false;'>{{heatInputOffset}}</a></div>{{/heatInputOffset}}\n                    {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
                     <fieldset>
@@ -4348,8 +4342,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#fixedMaintCost}}<div><b>fixedMaintCost</b>: {{fixedMaintCost}}</div>{{/fixedMaintCost}}
-                    {{#hotStandbyHeat}}<div><b>hotStandbyHeat</b>: {{hotStandbyHeat}}</div>{{/hotStandbyHeat}}
-                    {{#incrementalMaintCost}}<div><b>incrementalMaintCost</b>: {{incrementalMaintCost}}</div>{{/incrementalMaintCost}}
+                    {{#hotStandbyHeat}}<div><b>hotStandbyHeat</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{hotStandbyHeat}}&quot;);}); return false;'>{{hotStandbyHeat}}</a></div>{{/hotStandbyHeat}}\n                    {{#incrementalMaintCost}}<div><b>incrementalMaintCost</b>: {{incrementalMaintCost}}</div>{{/incrementalMaintCost}}
                     {{#minimumDownTime}}<div><b>minimumDownTime</b>: {{minimumDownTime}}</div>{{/minimumDownTime}}
                     {{#minimumRunTime}}<div><b>minimumRunTime</b>: {{minimumRunTime}}</div>{{/minimumRunTime}}
                     {{#riskFactorCost}}<div><b>riskFactorCost</b>: {{riskFactorCost}}</div>{{/riskFactorCost}}
@@ -5016,8 +5009,7 @@ define
                     `
                     + GeneratingUnit.prototype.template.call (this) +
                     `
-                    {{#oMCost}}<div><b>oMCost</b>: {{oMCost}}</div>{{/oMCost}}
-                    {{#ShutdownCurve}}<div><b>ShutdownCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShutdownCurve}}&quot;);}); return false;'>{{ShutdownCurve}}</a></div>{{/ShutdownCurve}}
+                    {{#oMCost}}<div><b>oMCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{oMCost}}&quot;);}); return false;'>{{oMCost}}</a></div>{{/oMCost}}\n                    {{#ShutdownCurve}}<div><b>ShutdownCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShutdownCurve}}&quot;);}); return false;'>{{ShutdownCurve}}</a></div>{{/ShutdownCurve}}
                     {{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);}); return false;'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
                     {{#HeatRateCurve}}<div><b>HeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRateCurve}}&quot;);}); return false;'>{{HeatRateCurve}}</a></div>{{/HeatRateCurve}}
                     {{#EmissionCurves}}<div><b>EmissionCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EmissionCurves}}

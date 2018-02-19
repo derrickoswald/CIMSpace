@@ -102,7 +102,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_enforced'>enforced: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enforced' class='form-check-input' type='checkbox'{{#enforced}} checked{{/enforced}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='{{id}}_MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation_string}}'{{/MktOrganisation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
@@ -253,7 +253,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_class'>class: </label><div class='col-sm-8'><input id='{{id}}_class' class='form-control' type='text'{{#class}} value='{{class}}'{{/class}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyPriceCurve'>EnergyPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_EnergyPriceCurve' class='form-control' type='text'{{#EnergyPriceCurve}} value='{{EnergyPriceCurve}}'{{/EnergyPriceCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnodes'>Pnodes: </label><div class='col-sm-8'><input id='{{id}}_Pnodes' class='form-control' type='text'{{#Pnodes}} value='{{Pnodes}}_string'{{/Pnodes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnodes'>Pnodes: </label><div class='col-sm-8'><input id='{{id}}_Pnodes' class='form-control' type='text'{{#Pnodes}} value='{{Pnodes_string}}'{{/Pnodes}}></div></div>
                     </div>
                     <fieldset>
                     `

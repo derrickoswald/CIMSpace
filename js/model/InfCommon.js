@@ -207,8 +207,7 @@ define
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
                     <fieldset>
 
@@ -484,10 +483,10 @@ define
                     + Common.Crew.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assignments'>Assignments: </label><div class='col-sm-8'><input id='{{id}}_Assignments' class='form-control' type='text'{{#Assignments}} value='{{Assignments}}_string'{{/Assignments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Organisations'>Organisations: </label><div class='col-sm-8'><input id='{{id}}_Organisations' class='form-control' type='text'{{#Organisations}} value='{{Organisations}}_string'{{/Organisations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShiftPatterns'>ShiftPatterns: </label><div class='col-sm-8'><input id='{{id}}_ShiftPatterns' class='form-control' type='text'{{#ShiftPatterns}} value='{{ShiftPatterns}}_string'{{/ShiftPatterns}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assignments'>Assignments: </label><div class='col-sm-8'><input id='{{id}}_Assignments' class='form-control' type='text'{{#Assignments}} value='{{Assignments_string}}'{{/Assignments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Organisations'>Organisations: </label><div class='col-sm-8'><input id='{{id}}_Organisations' class='form-control' type='text'{{#Organisations}} value='{{Organisations_string}}'{{/Organisations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShiftPatterns'>ShiftPatterns: </label><div class='col-sm-8'><input id='{{id}}_ShiftPatterns' class='form-control' type='text'{{#ShiftPatterns}} value='{{ShiftPatterns_string}}'{{/ShiftPatterns}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Route'>Route: </label><div class='col-sm-8'><input id='{{id}}_Route' class='form-control' type='text'{{#Route}} value='{{Route}}'{{/Route}}></div></div>
                     </div>
                     <fieldset>
@@ -744,8 +743,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><select id='{{id}}_level' class='form-control custom-select'>{{#SkillLevelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SkillLevelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts}}_string'{{/Crafts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements_string}}'{{/QualificationRequirements}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -940,8 +939,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
                     <fieldset>
 
@@ -1263,8 +1261,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#Capabilities}}<div><b>Capabilities</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Capabilities}}
                     {{#Skills}}<div><b>Skills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Skills}}
                     {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersons}}
@@ -1303,9 +1300,9 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='{{id}}_Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities}}_string'{{/Capabilities}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills}}_string'{{/Skills}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='{{id}}_ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons}}_string'{{/ErpPersons}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='{{id}}_Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities_string}}'{{/Capabilities}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills_string}}'{{/Skills}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='{{id}}_ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons_string}}'{{/ErpPersons}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1420,8 +1417,7 @@ define
                     `
                     + Common.Person.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#Skills}}<div><b>Skills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Skills}}
                     {{#CustomerData}}<div><b>CustomerData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerData}}&quot;);}); return false;'>{{CustomerData}}</a></div>{{/CustomerData}}
                     {{#ErpPersonnel}}<div><b>ErpPersonnel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPersonnel}}&quot;);}); return false;'>{{ErpPersonnel}}</a></div>{{/ErpPersonnel}}
@@ -1478,8 +1474,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerData'>CustomerData: </label><div class='col-sm-8'><input id='{{id}}_CustomerData' class='form-control' type='text'{{#CustomerData}} value='{{CustomerData}}'{{/CustomerData}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersonnel'>ErpPersonnel: </label><div class='col-sm-8'><input id='{{id}}_ErpPersonnel' class='form-control' type='text'{{#ErpPersonnel}} value='{{ErpPersonnel}}'{{/ErpPersonnel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpCompetency'>ErpCompetency: </label><div class='col-sm-8'><input id='{{id}}_ErpCompetency' class='form-control' type='text'{{#ErpCompetency}} value='{{ErpCompetency}}'{{/ErpCompetency}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LaborItems'>LaborItems: </label><div class='col-sm-8'><input id='{{id}}_LaborItems' class='form-control' type='text'{{#LaborItems}} value='{{LaborItems}}_string'{{/LaborItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts}}_string'{{/Crafts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LaborItems'>LaborItems: </label><div class='col-sm-8'><input id='{{id}}_LaborItems' class='form-control' type='text'{{#LaborItems}} value='{{LaborItems_string}}'{{/LaborItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
                     </div>
                     <fieldset>
                     `

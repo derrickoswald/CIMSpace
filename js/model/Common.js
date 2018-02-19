@@ -91,12 +91,9 @@ define
                     `
                     {{#authorName}}<div><b>authorName</b>: {{authorName}}</div>{{/authorName}}
                     {{#createdDateTime}}<div><b>createdDateTime</b>: {{createdDateTime}}</div>{{/createdDateTime}}
-                    {{#docStatus}}<div><b>docStatus</b>: {{docStatus}}</div>{{/docStatus}}
-                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-                    {{#lastModifiedDateTime}}<div><b>lastModifiedDateTime</b>: {{lastModifiedDateTime}}</div>{{/lastModifiedDateTime}}
+                    {{#docStatus}}<div><b>docStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{docStatus}}&quot;);}); return false;'>{{docStatus}}</a></div>{{/docStatus}}\n                    {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddress}}&quot;);}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}\n                    {{#lastModifiedDateTime}}<div><b>lastModifiedDateTime</b>: {{lastModifiedDateTime}}</div>{{/lastModifiedDateTime}}
                     {{#revisionNumber}}<div><b>revisionNumber</b>: {{revisionNumber}}</div>{{/revisionNumber}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#subject}}<div><b>subject</b>: {{subject}}</div>{{/subject}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#subject}}<div><b>subject</b>: {{subject}}</div>{{/subject}}
                     {{#title}}<div><b>title</b>: {{title}}</div>{{/title}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
@@ -241,10 +238,7 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#streetDetail}}<div><b>streetDetail</b>: {{streetDetail}}</div>{{/streetDetail}}
-                    {{#townDetail}}<div><b>townDetail</b>: {{townDetail}}</div>{{/townDetail}}
-                    </div>
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#streetDetail}}<div><b>streetDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{streetDetail}}&quot;);}); return false;'>{{streetDetail}}</a></div>{{/streetDetail}}\n                    {{#townDetail}}<div><b>townDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{townDetail}}&quot;);}); return false;'>{{townDetail}}</a></div>{{/townDetail}}\n                    </div>
                     <fieldset>
 
                     `
@@ -619,8 +613,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#CrewMembers}}<div><b>CrewMembers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CrewMembers}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#CrewMembers}}<div><b>CrewMembers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CrewMembers}}
                     {{#WorkAssets}}<div><b>WorkAssets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkAssets}}
                     {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkTasks}}
                     {{#CrewType}}<div><b>CrewType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CrewType}}&quot;);}); return false;'>{{CrewType}}</a></div>{{/CrewType}}
@@ -658,7 +651,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks_string}}'{{/WorkTasks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CrewType'>CrewType: </label><div class='col-sm-8'><input id='{{id}}_CrewType' class='form-control' type='text'{{#CrewType}} value='{{CrewType}}'{{/CrewType}}></div></div>
                     </div>
                     <fieldset>
@@ -760,8 +753,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#ScheduledEventData}}<div><b>ScheduledEventData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledEventData}}&quot;);}); return false;'>{{ScheduledEventData}}</a></div>{{/ScheduledEventData}}
                     </div>
@@ -796,7 +788,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ScheduledEventData'>ScheduledEventData: </label><div class='col-sm-8'><input id='{{id}}_ScheduledEventData' class='form-control' type='text'{{#ScheduledEventData}} value='{{ScheduledEventData}}'{{/ScheduledEventData}}></div></div>
                     </div>
                     <fieldset>
@@ -1016,8 +1008,7 @@ define
                     {{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
                     {{#relativeTimeInterval}}<div><b>relativeTimeInterval</b>: {{relativeTimeInterval}}</div>{{/relativeTimeInterval}}
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#window}}<div><b>window</b>: {{window}}</div>{{/window}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#window}}<div><b>window</b>: {{window}}</div>{{/window}}
                     {{#TimeSchedule}}<div><b>TimeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TimeSchedule}}&quot;);}); return false;'>{{TimeSchedule}}</a></div>{{/TimeSchedule}}
                     </div>
                     <fieldset>
@@ -1158,8 +1149,7 @@ define
                     {{#createdDateTime}}<div><b>createdDateTime</b>: {{createdDateTime}}</div>{{/createdDateTime}}
                     {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
                     {{#severity}}<div><b>severity</b>: {{severity}}</div>{{/severity}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#Organisations}}<div><b>Organisations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Organisations}}
                     </div>
@@ -1198,8 +1188,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_severity'>severity: </label><div class='col-sm-8'><input id='{{id}}_severity' class='form-control' type='text'{{#severity}} value='{{severity}}'{{/severity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Organisations'>Organisations: </label><div class='col-sm-8'><input id='{{id}}_Organisations' class='form-control' type='text'{{#Organisations}} value='{{Organisations}}_string'{{/Organisations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Organisations'>Organisations: </label><div class='col-sm-8'><input id='{{id}}_Organisations' class='form-control' type='text'{{#Organisations}} value='{{Organisations_string}}'{{/Organisations}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1301,9 +1291,7 @@ define
                     `
                     {{#poBox}}<div><b>poBox</b>: {{poBox}}</div>{{/poBox}}
                     {{#postalCode}}<div><b>postalCode</b>: {{postalCode}}</div>{{/postalCode}}
-                    {{#streetDetail}}<div><b>streetDetail</b>: {{streetDetail}}</div>{{/streetDetail}}
-                    {{#townDetail}}<div><b>townDetail</b>: {{townDetail}}</div>{{/townDetail}}
-                    </div>
+                    {{#streetDetail}}<div><b>streetDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{streetDetail}}&quot;);}); return false;'>{{streetDetail}}</a></div>{{/streetDetail}}\n                    {{#townDetail}}<div><b>townDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{townDetail}}&quot;);}); return false;'>{{townDetail}}</a></div>{{/townDetail}}\n                    </div>
                     <fieldset>
 
                     `
@@ -1447,7 +1435,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Person'>Person: </label><div class='col-sm-8'><input id='{{id}}_Person' class='form-control' type='text'{{#Person}} value='{{Person}}'{{/Person}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Appointments'>Appointments: </label><div class='col-sm-8'><input id='{{id}}_Appointments' class='form-control' type='text'{{#Appointments}} value='{{Appointments}}_string'{{/Appointments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Appointments'>Appointments: </label><div class='col-sm-8'><input id='{{id}}_Appointments' class='form-control' type='text'{{#Appointments}} value='{{Appointments_string}}'{{/Appointments}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1659,8 +1647,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
                     <fieldset>
 
@@ -1904,12 +1891,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-                    {{#phone1}}<div><b>phone1</b>: {{phone1}}</div>{{/phone1}}
-                    {{#phone2}}<div><b>phone2</b>: {{phone2}}</div>{{/phone2}}
-                    {{#postalAddress}}<div><b>postalAddress</b>: {{postalAddress}}</div>{{/postalAddress}}
-                    {{#streetAddress}}<div><b>streetAddress</b>: {{streetAddress}}</div>{{/streetAddress}}
-                    {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crews}}
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddress}}&quot;);}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}\n                    {{#phone1}}<div><b>phone1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{phone1}}&quot;);}); return false;'>{{phone1}}</a></div>{{/phone1}}\n                    {{#phone2}}<div><b>phone2</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{phone2}}&quot;);}); return false;'>{{phone2}}</a></div>{{/phone2}}\n                    {{#postalAddress}}<div><b>postalAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{postalAddress}}&quot;);}); return false;'>{{postalAddress}}</a></div>{{/postalAddress}}\n                    {{#streetAddress}}<div><b>streetAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{streetAddress}}&quot;);}); return false;'>{{streetAddress}}</a></div>{{/streetAddress}}\n                    {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crews}}
                     {{#ActivityRecords}}<div><b>ActivityRecords</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ActivityRecords}}
                     {{#Roles}}<div><b>Roles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Roles}}
                     </div>
@@ -1950,8 +1932,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone2'>phone2: </label><div class='col-sm-8'><input id='{{id}}_phone2' class='form-control' type='text'{{#phone2}} value='{{phone2}}'{{/phone2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postalAddress'>postalAddress: </label><div class='col-sm-8'><input id='{{id}}_postalAddress' class='form-control' type='text'{{#postalAddress}} value='{{postalAddress}}'{{/postalAddress}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetAddress'>streetAddress: </label><div class='col-sm-8'><input id='{{id}}_streetAddress' class='form-control' type='text'{{#streetAddress}} value='{{streetAddress}}'{{/streetAddress}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords}}_string'{{/ActivityRecords}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords_string}}'{{/ActivityRecords}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2200,14 +2182,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
-                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-                    {{#geoInfoReference}}<div><b>geoInfoReference</b>: {{geoInfoReference}}</div>{{/geoInfoReference}}
-                    {{#mainAddress}}<div><b>mainAddress</b>: {{mainAddress}}</div>{{/mainAddress}}
-                    {{#phone1}}<div><b>phone1</b>: {{phone1}}</div>{{/phone1}}
-                    {{#phone2}}<div><b>phone2</b>: {{phone2}}</div>{{/phone2}}
-                    {{#secondaryAddress}}<div><b>secondaryAddress</b>: {{secondaryAddress}}</div>{{/secondaryAddress}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddress}}&quot;);}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}\n                    {{#geoInfoReference}}<div><b>geoInfoReference</b>: {{geoInfoReference}}</div>{{/geoInfoReference}}
+                    {{#mainAddress}}<div><b>mainAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{mainAddress}}&quot;);}); return false;'>{{mainAddress}}</a></div>{{/mainAddress}}\n                    {{#phone1}}<div><b>phone1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{phone1}}&quot;);}); return false;'>{{phone1}}</a></div>{{/phone1}}\n                    {{#phone2}}<div><b>phone2</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{phone2}}&quot;);}); return false;'>{{phone2}}</a></div>{{/phone2}}\n                    {{#secondaryAddress}}<div><b>secondaryAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryAddress}}&quot;);}); return false;'>{{secondaryAddress}}</a></div>{{/secondaryAddress}}\n                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#PowerSystemResources}}<div><b>PowerSystemResources</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PowerSystemResources}}
                     {{#Measurements}}<div><b>Measurements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Measurements}}
@@ -2272,11 +2248,11 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryAddress'>secondaryAddress: </label><div class='col-sm-8'><input id='{{id}}_secondaryAddress' class='form-control' type='text'{{#secondaryAddress}} value='{{secondaryAddress}}'{{/secondaryAddress}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements}}_string'{{/Measurements}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Hazards'>Hazards: </label><div class='col-sm-8'><input id='{{id}}_Hazards' class='form-control' type='text'{{#Hazards}} value='{{Hazards}}_string'{{/Hazards}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties}}_string'{{/LandProperties}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Routes'>Routes: </label><div class='col-sm-8'><input id='{{id}}_Routes' class='form-control' type='text'{{#Routes}} value='{{Routes}}_string'{{/Routes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Hazards'>Hazards: </label><div class='col-sm-8'><input id='{{id}}_Hazards' class='form-control' type='text'{{#Hazards}} value='{{Hazards_string}}'{{/Hazards}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties_string}}'{{/LandProperties}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Routes'>Routes: </label><div class='col-sm-8'><input id='{{id}}_Routes' class='form-control' type='text'{{#Routes}} value='{{Routes_string}}'{{/Routes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CoordinateSystem'>CoordinateSystem: </label><div class='col-sm-8'><input id='{{id}}_CoordinateSystem' class='form-control' type='text'{{#CoordinateSystem}} value='{{CoordinateSystem}}'{{/CoordinateSystem}}></div></div>
                     </div>
                     <fieldset>
@@ -2835,11 +2811,11 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_name'>name: </label><div class='col-sm-8'><input id='{{id}}_name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems}}_string'{{/ErpInvoiceLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems_string}}'{{/ErpInvoiceLineItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Transaction'>Transaction: </label><div class='col-sm-8'><input id='{{id}}_Transaction' class='form-control' type='text'{{#Transaction}} value='{{Transaction}}'{{/Transaction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RatingSpecification'>RatingSpecification: </label><div class='col-sm-8'><input id='{{id}}_RatingSpecification' class='form-control' type='text'{{#RatingSpecification}} value='{{RatingSpecification}}'{{/RatingSpecification}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='{{id}}_ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets}}_string'{{/ProcedureDataSets}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntries'>ErpLedgerEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntries' class='form-control' type='text'{{#ErpLedgerEntries}} value='{{ErpLedgerEntries}}_string'{{/ErpLedgerEntries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='{{id}}_ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets_string}}'{{/ProcedureDataSets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntries'>ErpLedgerEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntries' class='form-control' type='text'{{#ErpLedgerEntries}} value='{{ErpLedgerEntries_string}}'{{/ErpLedgerEntries}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertySpecification'>PropertySpecification: </label><div class='col-sm-8'><input id='{{id}}_PropertySpecification' class='form-control' type='text'{{#PropertySpecification}} value='{{PropertySpecification}}'{{/PropertySpecification}}></div></div>
                     </div>
                     <fieldset>
@@ -2950,8 +2926,7 @@ define
                     `
                     {{#estimatedWindow}}<div><b>estimatedWindow</b>: {{estimatedWindow}}</div>{{/estimatedWindow}}
                     {{#requestedWindow}}<div><b>requestedWindow</b>: {{requestedWindow}}</div>{{/requestedWindow}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#InspectionDataSet}}<div><b>InspectionDataSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InspectionDataSet}}&quot;);}); return false;'>{{InspectionDataSet}}</a></div>{{/InspectionDataSet}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#InspectionDataSet}}<div><b>InspectionDataSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InspectionDataSet}}&quot;);}); return false;'>{{InspectionDataSet}}</a></div>{{/InspectionDataSet}}
                     {{#ScheduledEvents}}<div><b>ScheduledEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ScheduledEvents}}
                     </div>
                     <fieldset>
@@ -3213,13 +3188,10 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-                    {{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
-                    {{#landlinePhone}}<div><b>landlinePhone</b>: {{landlinePhone}}</div>{{/landlinePhone}}
-                    {{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddress}}&quot;);}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}\n                    {{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
+                    {{#landlinePhone}}<div><b>landlinePhone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{landlinePhone}}&quot;);}); return false;'>{{landlinePhone}}</a></div>{{/landlinePhone}}\n                    {{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
                     {{#mName}}<div><b>mName</b>: {{mName}}</div>{{/mName}}
-                    {{#mobilePhone}}<div><b>mobilePhone</b>: {{mobilePhone}}</div>{{/mobilePhone}}
-                    {{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
+                    {{#mobilePhone}}<div><b>mobilePhone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{mobilePhone}}&quot;);}); return false;'>{{mobilePhone}}</a></div>{{/mobilePhone}}\n                    {{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
                     {{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
                     {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
                     {{#Roles}}<div><b>Roles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Roles}}
@@ -3398,8 +3370,8 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_callAhead'>callAhead: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_callAhead' class='form-check-input' type='checkbox'{{#callAhead}} checked{{/callAhead}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_meetingInterval'>meetingInterval: </label><div class='col-sm-8'><input id='{{id}}_meetingInterval' class='form-control' type='text'{{#meetingInterval}} value='{{meetingInterval}}'{{/meetingInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Persons'>Persons: </label><div class='col-sm-8'><input id='{{id}}_Persons' class='form-control' type='text'{{#Persons}} value='{{Persons}}_string'{{/Persons}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Persons'>Persons: </label><div class='col-sm-8'><input id='{{id}}_Persons' class='form-control' type='text'{{#Persons}} value='{{Persons_string}}'{{/Persons}}></div></div>
                     </div>
                     <fieldset>
                     `

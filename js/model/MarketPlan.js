@@ -281,7 +281,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eventType'>eventType: </label><div class='col-sm-8'><input id='{{id}}_eventType' class='form-control' type='text'{{#eventType}} value='{{eventType}}'{{/eventType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plannedEventID'>plannedEventID: </label><div class='col-sm-8'><input id='{{id}}_plannedEventID' class='form-control' type='text'{{#plannedEventID}} value='{{plannedEventID}}'{{/plannedEventID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plannedTime'>plannedTime: </label><div class='col-sm-8'><input id='{{id}}_plannedTime' class='form-control' type='text'{{#plannedTime}} value='{{plannedTime}}'{{/plannedTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarket'>PlannedMarket: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarket' class='form-control' type='text'{{#PlannedMarket}} value='{{PlannedMarket}}_string'{{/PlannedMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarket'>PlannedMarket: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarket' class='form-control' type='text'{{#PlannedMarket}} value='{{PlannedMarket_string}}'{{/PlannedMarket}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -552,7 +552,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='{{id}}_intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Market'>Market: </label><div class='col-sm-8'><input id='{{id}}_Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktActivityRecord'>MktActivityRecord: </label><div class='col-sm-8'><input id='{{id}}_MktActivityRecord' class='form-control' type='text'{{#MktActivityRecord}} value='{{MktActivityRecord}}_string'{{/MktActivityRecord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktActivityRecord'>MktActivityRecord: </label><div class='col-sm-8'><input id='{{id}}_MktActivityRecord' class='form-control' type='text'{{#MktActivityRecord}} value='{{MktActivityRecord_string}}'{{/MktActivityRecord}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1014,7 +1014,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketID'>marketID: </label><div class='col-sm-8'><input id='{{id}}_marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='{{id}}_marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarketEvent'>PlannedMarketEvent: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarketEvent' class='form-control' type='text'{{#PlannedMarketEvent}} value='{{PlannedMarketEvent}}_string'{{/PlannedMarketEvent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarketEvent'>PlannedMarketEvent: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarketEvent' class='form-control' type='text'{{#PlannedMarketEvent}} value='{{PlannedMarketEvent_string}}'{{/PlannedMarketEvent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketPlan'>MarketPlan: </label><div class='col-sm-8'><input id='{{id}}_MarketPlan' class='form-control' type='text'{{#MarketPlan}} value='{{MarketPlan}}'{{/MarketPlan}}></div></div>
                     </div>
                     <fieldset>
@@ -1338,7 +1338,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketResults'>MarketResults: </label><div class='col-sm-8'><input id='{{id}}_MarketResults' class='form-control' type='text'{{#MarketResults}} value='{{MarketResults}}'{{/MarketResults}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources}}_string'{{/RegisteredResources}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources_string}}'{{/RegisteredResources}}></div></div>
                     </div>
                     <fieldset>
                     `

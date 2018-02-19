@@ -152,8 +152,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#isBankable}}<div><b>isBankable</b>: {{isBankable}}</div>{{/isBankable}}
-                    {{#line}}<div><b>line</b>: {{line}}</div>{{/line}}
-                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Transactions}}
+                    {{#line}}<div><b>line</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{line}}&quot;);}); return false;'>{{line}}</a></div>{{/line}}\n                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Transactions}}
                     {{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VendorShift}}&quot;);}); return false;'>{{VendorShift}}</a></div>{{/VendorShift}}
                     {{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CashierShift}}&quot;);}); return false;'>{{CashierShift}}</a></div>{{/CashierShift}}
                     {{#Tenders}}<div><b>Tenders</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Tenders}}
@@ -559,8 +558,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#fixedPortion}}<div><b>fixedPortion</b>: {{fixedPortion}}</div>{{/fixedPortion}}
-                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#fixedPortion}}<div><b>fixedPortion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{fixedPortion}}&quot;);}); return false;'>{{fixedPortion}}</a></div>{{/fixedPortion}}\n                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#variablePortion}}<div><b>variablePortion</b>: {{variablePortion}}</div>{{/variablePortion}}
                     {{#AuxiliaryAccounts}}<div><b>AuxiliaryAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxiliaryAccounts}}
                     {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
@@ -607,10 +605,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fixedPortion'>fixedPortion: </label><div class='col-sm-8'><input id='{{id}}_fixedPortion' class='form-control' type='text'{{#fixedPortion}} value='{{fixedPortion}}'{{/fixedPortion}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ChargeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChargeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_variablePortion'>variablePortion: </label><div class='col-sm-8'><input id='{{id}}_variablePortion' class='form-control' type='text'{{#variablePortion}} value='{{variablePortion}}'{{/variablePortion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAccounts'>AuxiliaryAccounts: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAccounts' class='form-control' type='text'{{#AuxiliaryAccounts}} value='{{AuxiliaryAccounts}}_string'{{/AuxiliaryAccounts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAccounts'>AuxiliaryAccounts: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAccounts' class='form-control' type='text'{{#AuxiliaryAccounts}} value='{{AuxiliaryAccounts_string}}'{{/AuxiliaryAccounts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals_string}}'{{/ConsumptionTariffIntervals}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCharge'>ParentCharge: </label><div class='col-sm-8'><input id='{{id}}_ParentCharge' class='form-control' type='text'{{#ParentCharge}} value='{{ParentCharge}}'{{/ParentCharge}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals}}_string'{{/TimeTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals_string}}'{{/TimeTariffIntervals}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -753,9 +751,9 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tariffCycle'>tariffCycle: </label><div class='col-sm-8'><input id='{{id}}_tariffCycle' class='form-control' type='text'{{#tariffCycle}} value='{{tariffCycle}}'{{/tariffCycle}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals}}_string'{{/TimeTariffIntervals}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='{{id}}_Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs}}_string'{{/Tariffs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals_string}}'{{/TimeTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='{{id}}_Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs_string}}'{{/Tariffs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals_string}}'{{/ConsumptionTariffIntervals}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1011,9 +1009,9 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startValue'>startValue: </label><div class='col-sm-8'><input id='{{id}}_startValue' class='form-control' type='text'{{#startValue}} value='{{startValue}}'{{/startValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TouTariffIntervals'>TouTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TouTariffIntervals' class='form-control' type='text'{{#TouTariffIntervals}} value='{{TouTariffIntervals}}_string'{{/TouTariffIntervals}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles}}_string'{{/TariffProfiles}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges_string}}'{{/Charges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TouTariffIntervals'>TouTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TouTariffIntervals' class='form-control' type='text'{{#TouTariffIntervals}} value='{{TouTariffIntervals_string}}'{{/TouTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles_string}}'{{/TariffProfiles}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1156,9 +1154,9 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles}}_string'{{/TariffProfiles}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles_string}}'{{/TariffProfiles}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals_string}}'{{/ConsumptionTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges_string}}'{{/Charges}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2032,8 +2030,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#electronicAddress}}<div><b>electronicAddress</b>: {{electronicAddress}}</div>{{/electronicAddress}}
-                    {{#CashierShifts}}<div><b>CashierShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CashierShifts}}
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddress}}&quot;);}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}\n                    {{#CashierShifts}}<div><b>CashierShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CashierShifts}}
                     </div>
                     <fieldset>
 
@@ -2299,8 +2296,7 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#bankAccountDetail}}<div><b>bankAccountDetail</b>: {{bankAccountDetail}}</div>{{/bankAccountDetail}}
-                    {{#chequeNumber}}<div><b>chequeNumber</b>: {{chequeNumber}}</div>{{/chequeNumber}}
+                    {{#bankAccountDetail}}<div><b>bankAccountDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{bankAccountDetail}}&quot;);}); return false;'>{{bankAccountDetail}}</a></div>{{/bankAccountDetail}}\n                    {{#chequeNumber}}<div><b>chequeNumber</b>: {{chequeNumber}}</div>{{/chequeNumber}}
                     {{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#micrNumber}}<div><b>micrNumber</b>: {{micrNumber}}</div>{{/micrNumber}}
@@ -2607,7 +2603,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAccounts'>MerchantAccounts: </label><div class='col-sm-8'><input id='{{id}}_MerchantAccounts' class='form-control' type='text'{{#MerchantAccounts}} value='{{MerchantAccounts}}_string'{{/MerchantAccounts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAccounts'>MerchantAccounts: </label><div class='col-sm-8'><input id='{{id}}_MerchantAccounts' class='form-control' type='text'{{#MerchantAccounts}} value='{{MerchantAccounts_string}}'{{/MerchantAccounts}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2709,10 +2705,7 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     {{#balance}}<div><b>balance</b>: {{balance}}</div>{{/balance}}
-                    {{#due}}<div><b>due</b>: {{due}}</div>{{/due}}
-                    {{#lastCredit}}<div><b>lastCredit</b>: {{lastCredit}}</div>{{/lastCredit}}
-                    {{#lastDebit}}<div><b>lastDebit</b>: {{lastDebit}}</div>{{/lastDebit}}
-                    {{#principleAmount}}<div><b>principleAmount</b>: {{principleAmount}}</div>{{/principleAmount}}
+                    {{#due}}<div><b>due</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{due}}&quot;);}); return false;'>{{due}}</a></div>{{/due}}\n                    {{#lastCredit}}<div><b>lastCredit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{lastCredit}}&quot;);}); return false;'>{{lastCredit}}</a></div>{{/lastCredit}}\n                    {{#lastDebit}}<div><b>lastDebit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{lastDebit}}&quot;);}); return false;'>{{lastDebit}}</a></div>{{/lastDebit}}\n                    {{#principleAmount}}<div><b>principleAmount</b>: {{principleAmount}}</div>{{/principleAmount}}
                     {{#PaymentTransactions}}<div><b>PaymentTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PaymentTransactions}}
                     {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Charges}}
                     {{#AuxiliaryAgreement}}<div><b>AuxiliaryAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxiliaryAgreement}}&quot;);}); return false;'>{{AuxiliaryAgreement}}</a></div>{{/AuxiliaryAgreement}}
@@ -2752,7 +2745,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastCredit'>lastCredit: </label><div class='col-sm-8'><input id='{{id}}_lastCredit' class='form-control' type='text'{{#lastCredit}} value='{{lastCredit}}'{{/lastCredit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastDebit'>lastDebit: </label><div class='col-sm-8'><input id='{{id}}_lastDebit' class='form-control' type='text'{{#lastDebit}} value='{{lastDebit}}'{{/lastDebit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_principleAmount'>principleAmount: </label><div class='col-sm-8'><input id='{{id}}_principleAmount' class='form-control' type='text'{{#principleAmount}} value='{{principleAmount}}'{{/principleAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges_string}}'{{/Charges}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAgreement'>AuxiliaryAgreement: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAgreement' class='form-control' type='text'{{#AuxiliaryAgreement}} value='{{AuxiliaryAgreement}}'{{/AuxiliaryAgreement}}></div></div>
                     </div>
                     <fieldset>
@@ -3115,8 +3108,7 @@ define
                     {{#diverseReference}}<div><b>diverseReference</b>: {{diverseReference}}</div>{{/diverseReference}}
                     {{#donorReference}}<div><b>donorReference</b>: {{donorReference}}</div>{{/donorReference}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#line}}<div><b>line</b>: {{line}}</div>{{/line}}
-                    {{#receiverReference}}<div><b>receiverReference</b>: {{receiverReference}}</div>{{/receiverReference}}
+                    {{#line}}<div><b>line</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{line}}&quot;);}); return false;'>{{line}}</a></div>{{/line}}\n                    {{#receiverReference}}<div><b>receiverReference</b>: {{receiverReference}}</div>{{/receiverReference}}
                     {{#reversedId}}<div><b>reversedId</b>: {{reversedId}}</div>{{/reversedId}}
                     {{#serviceUnitsEnergy}}<div><b>serviceUnitsEnergy</b>: {{serviceUnitsEnergy}}</div>{{/serviceUnitsEnergy}}
                     {{#serviceUnitsError}}<div><b>serviceUnitsError</b>: {{serviceUnitsError}}</div>{{/serviceUnitsError}}
@@ -3329,7 +3321,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currentBalance'>currentBalance: </label><div class='col-sm-8'><input id='{{id}}_currentBalance' class='form-control' type='text'{{#currentBalance}} value='{{currentBalance}}'{{/currentBalance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_provisionalBalance'>provisionalBalance: </label><div class='col-sm-8'><input id='{{id}}_provisionalBalance' class='form-control' type='text'{{#provisionalBalance}} value='{{provisionalBalance}}'{{/provisionalBalance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Transactors'>Transactors: </label><div class='col-sm-8'><input id='{{id}}_Transactors' class='form-control' type='text'{{#Transactors}} value='{{Transactors}}_string'{{/Transactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Transactors'>Transactors: </label><div class='col-sm-8'><input id='{{id}}_Transactors' class='form-control' type='text'{{#Transactors}} value='{{Transactors_string}}'{{/Transactors}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAgreement'>MerchantAgreement: </label><div class='col-sm-8'><input id='{{id}}_MerchantAgreement' class='form-control' type='text'{{#MerchantAgreement}} value='{{MerchantAgreement}}'{{/MerchantAgreement}}></div></div>
                     </div>
                     <fieldset>

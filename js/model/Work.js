@@ -272,8 +272,7 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
-                    {{#statusKind}}<div><b>statusKind</b>: {{statusKind}}</div>{{/statusKind}}
+                    {{#priority}}<div><b>priority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{priority}}&quot;);}); return false;'>{{priority}}</a></div>{{/priority}}\n                    {{#statusKind}}<div><b>statusKind</b>: {{statusKind}}</div>{{/statusKind}}
                     {{#WorkLocation}}<div><b>WorkLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkLocation}}&quot;);}); return false;'>{{WorkLocation}}</a></div>{{/WorkLocation}}
                     {{#TimeSchedules}}<div><b>TimeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TimeSchedules}}
                     </div>
@@ -442,7 +441,7 @@ define
                     + Common.Location.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OneCallRequest'>OneCallRequest: </label><div class='col-sm-8'><input id='{{id}}_OneCallRequest' class='form-control' type='text'{{#OneCallRequest}} value='{{OneCallRequest}}'{{/OneCallRequest}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations_string}}'{{/DesignLocations}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -838,8 +837,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_schedOverride'>schedOverride: </label><div class='col-sm-8'><input id='{{id}}_schedOverride' class='form-control' type='text'{{#schedOverride}} value='{{schedOverride}}'{{/schedOverride}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_taskKind'>taskKind: </label><div class='col-sm-8'><select id='{{id}}_taskKind' class='form-control custom-select'>{{#WorkTaskKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkTaskKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_crewETA'>crewETA: </label><div class='col-sm-8'><input id='{{id}}_crewETA' class='form-control' type='text'{{#crewETA}} value='{{crewETA}}'{{/crewETA}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Work'>Work: </label><div class='col-sm-8'><input id='{{id}}_Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OldAsset'>OldAsset: </label><div class='col-sm-8'><input id='{{id}}_OldAsset' class='form-control' type='text'{{#OldAsset}} value='{{OldAsset}}'{{/OldAsset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingPlan'>SwitchingPlan: </label><div class='col-sm-8'><input id='{{id}}_SwitchingPlan' class='form-control' type='text'{{#SwitchingPlan}} value='{{SwitchingPlan}}'{{/SwitchingPlan}}></div></div>
@@ -1018,13 +1017,13 @@ define
                     + BaseWork.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_requestDateTime'>requestDateTime: </label><div class='col-sm-8'><input id='{{id}}_requestDateTime' class='form-control' type='text'{{#requestDateTime}} value='{{requestDateTime}}'{{/requestDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Appointments'>Appointments: </label><div class='col-sm-8'><input id='{{id}}_Appointments' class='form-control' type='text'{{#Appointments}} value='{{Appointments}}_string'{{/Appointments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Customers'>Customers: </label><div class='col-sm-8'><input id='{{id}}_Customers' class='form-control' type='text'{{#Customers}} value='{{Customers}}_string'{{/Customers}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Appointments'>Appointments: </label><div class='col-sm-8'><input id='{{id}}_Appointments' class='form-control' type='text'{{#Appointments}} value='{{Appointments_string}}'{{/Appointments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Customers'>Customers: </label><div class='col-sm-8'><input id='{{id}}_Customers' class='form-control' type='text'{{#Customers}} value='{{Customers_string}}'{{/Customers}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkBillingInfo'>WorkBillingInfo: </label><div class='col-sm-8'><input id='{{id}}_WorkBillingInfo' class='form-control' type='text'{{#WorkBillingInfo}} value='{{WorkBillingInfo}}'{{/WorkBillingInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Project'>Project: </label><div class='col-sm-8'><input id='{{id}}_Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Incidents'>Incidents: </label><div class='col-sm-8'><input id='{{id}}_Incidents' class='form-control' type='text'{{#Incidents}} value='{{Incidents}}_string'{{/Incidents}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Incidents'>Incidents: </label><div class='col-sm-8'><input id='{{id}}_Incidents' class='form-control' type='text'{{#Incidents}} value='{{Incidents_string}}'{{/Incidents}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BusinessCase'>BusinessCase: </label><div class='col-sm-8'><input id='{{id}}_BusinessCase' class='form-control' type='text'{{#BusinessCase}} value='{{BusinessCase}}'{{/BusinessCase}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails}}_string'{{/WorkCostDetails}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails_string}}'{{/WorkCostDetails}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
                     </div>
                     <fieldset>

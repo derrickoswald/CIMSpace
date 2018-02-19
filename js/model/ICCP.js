@@ -93,8 +93,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#address}}<div><b>address</b>: {{address}}</div>{{/address}}
-                    {{#addressType}}<div><b>addressType</b>: {{addressType}}</div>{{/addressType}}
-                    {{#gateway}}<div><b>gateway</b>: {{gateway}}</div>{{/gateway}}
+                    {{#addressType}}<div><b>addressType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{addressType}}&quot;);}); return false;'>{{addressType}}</a></div>{{/addressType}}\n                    {{#gateway}}<div><b>gateway</b>: {{gateway}}</div>{{/gateway}}
                     {{#subnet}}<div><b>subnet</b>: {{subnet}}</div>{{/subnet}}
                     </div>
                     <fieldset>
@@ -874,8 +873,7 @@ define
                     `
                     + TCPAcessPoint.prototype.template.call (this) +
                     `
-                    {{#ap}}<div><b>ap</b>: {{ap}}</div>{{/ap}}
-                    {{#osiPsel}}<div><b>osiPsel</b>: {{osiPsel}}</div>{{/osiPsel}}
+                    {{#ap}}<div><b>ap</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ap}}&quot;);}); return false;'>{{ap}}</a></div>{{/ap}}\n                    {{#osiPsel}}<div><b>osiPsel</b>: {{osiPsel}}</div>{{/osiPsel}}
                     {{#osiSsel}}<div><b>osiSsel</b>: {{osiSsel}}</div>{{/osiSsel}}
                     {{#osiTsel}}<div><b>osiTsel</b>: {{osiTsel}}</div>{{/osiTsel}}
                     </div>

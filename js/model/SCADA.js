@@ -252,7 +252,7 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteUnitType'>remoteUnitType: </label><div class='col-sm-8'><select id='{{id}}_remoteUnitType' class='form-control custom-select'>{{#RemoteUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteUnitType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CommunicationLinks'>CommunicationLinks: </label><div class='col-sm-8'><input id='{{id}}_CommunicationLinks' class='form-control' type='text'{{#CommunicationLinks}} value='{{CommunicationLinks}}_string'{{/CommunicationLinks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CommunicationLinks'>CommunicationLinks: </label><div class='col-sm-8'><input id='{{id}}_CommunicationLinks' class='form-control' type='text'{{#CommunicationLinks}} value='{{CommunicationLinks_string}}'{{/CommunicationLinks}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -373,7 +373,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteUnits'>RemoteUnits: </label><div class='col-sm-8'><input id='{{id}}_RemoteUnits' class='form-control' type='text'{{#RemoteUnits}} value='{{RemoteUnits}}_string'{{/RemoteUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteUnits'>RemoteUnits: </label><div class='col-sm-8'><input id='{{id}}_RemoteUnits' class='form-control' type='text'{{#RemoteUnits}} value='{{RemoteUnits_string}}'{{/RemoteUnits}}></div></div>
                     </div>
                     <fieldset>
                     `

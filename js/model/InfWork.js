@@ -482,12 +482,12 @@ define
                     `
                     + Work.WorkTask.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements_string}}'{{/QualificationRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Design'>Design: </label><div class='col-sm-8'><input id='{{id}}_Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='{{id}}_Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities}}_string'{{/Capabilities}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='{{id}}_Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities_string}}'{{/Capabilities}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkFlowStep'>WorkFlowStep: </label><div class='col-sm-8'><input id='{{id}}_WorkFlowStep' class='form-control' type='text'{{#WorkFlowStep}} value='{{WorkFlowStep}}'{{/WorkFlowStep}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='{{id}}_OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs_string}}'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -857,7 +857,7 @@ define
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectivePeriod'>effectivePeriod: </label><div class='col-sm-8'><input id='{{id}}_effectivePeriod' class='form-control' type='text'{{#effectivePeriod}} value='{{effectivePeriod}}'{{/effectivePeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1293,9 +1293,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Design'>Design: </label><div class='col-sm-8'><input id='{{id}}_Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostSummary'>WorkCostSummary: </label><div class='col-sm-8'><input id='{{id}}_WorkCostSummary' class='form-control' type='text'{{#WorkCostSummary}} value='{{WorkCostSummary}}'{{/WorkCostSummary}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits}}_string'{{/PropertyUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits_string}}'{{/PropertyUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1482,15 +1482,15 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estCost'>estCost: </label><div class='col-sm-8'><input id='{{id}}_estCost' class='form-control' type='text'{{#estCost}} value='{{estCost}}'{{/estCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUWorkEquipmentItems'>CUWorkEquipmentItems: </label><div class='col-sm-8'><input id='{{id}}_CUWorkEquipmentItems' class='form-control' type='text'{{#CUWorkEquipmentItems}} value='{{CUWorkEquipmentItems}}_string'{{/CUWorkEquipmentItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUAssets'>CUAssets: </label><div class='col-sm-8'><input id='{{id}}_CUAssets' class='form-control' type='text'{{#CUAssets}} value='{{CUAssets}}_string'{{/CUAssets}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUContractorItems'>CUContractorItems: </label><div class='col-sm-8'><input id='{{id}}_CUContractorItems' class='form-control' type='text'{{#CUContractorItems}} value='{{CUContractorItems}}_string'{{/CUContractorItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUWorkEquipmentItems'>CUWorkEquipmentItems: </label><div class='col-sm-8'><input id='{{id}}_CUWorkEquipmentItems' class='form-control' type='text'{{#CUWorkEquipmentItems}} value='{{CUWorkEquipmentItems_string}}'{{/CUWorkEquipmentItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUAssets'>CUAssets: </label><div class='col-sm-8'><input id='{{id}}_CUAssets' class='form-control' type='text'{{#CUAssets}} value='{{CUAssets_string}}'{{/CUAssets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs_string}}'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUContractorItems'>CUContractorItems: </label><div class='col-sm-8'><input id='{{id}}_CUContractorItems' class='form-control' type='text'{{#CUContractorItems}} value='{{CUContractorItems_string}}'{{/CUContractorItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUGroup'>CUGroup: </label><div class='col-sm-8'><input id='{{id}}_CUGroup' class='form-control' type='text'{{#CUGroup}} value='{{CUGroup}}'{{/CUGroup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnit'>PropertyUnit: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnit' class='form-control' type='text'{{#PropertyUnit}} value='{{PropertyUnit}}'{{/PropertyUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='{{id}}_CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems}}_string'{{/CULaborItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='{{id}}_CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems}}_string'{{/CUMaterialItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures}}_string'{{/Procedures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='{{id}}_CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems_string}}'{{/CULaborItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='{{id}}_CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems_string}}'{{/CUMaterialItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures_string}}'{{/Procedures}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CostType'>CostType: </label><div class='col-sm-8'><input id='{{id}}_CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUAllowableAction'>CUAllowableAction: </label><div class='col-sm-8'><input id='{{id}}_CUAllowableAction' class='form-control' type='text'{{#CUAllowableAction}} value='{{CUAllowableAction}}'{{/CUAllowableAction}}></div></div>
                     </div>
@@ -2331,9 +2331,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_price'>price: </label><div class='col-sm-8'><input id='{{id}}_price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Work'>Work: </label><div class='col-sm-8'><input id='{{id}}_Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationsCUs'>DesignLocationsCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationsCUs' class='form-control' type='text'{{#DesignLocationsCUs}} value='{{DesignLocationsCUs}}_string'{{/DesignLocationsCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors_string}}'{{/ConditionFactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations_string}}'{{/DesignLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationsCUs'>DesignLocationsCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationsCUs' class='form-control' type='text'{{#DesignLocationsCUs}} value='{{DesignLocationsCUs_string}}'{{/DesignLocationsCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2452,8 +2452,7 @@ define
                     {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
                     {{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
                     {{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);}); return false;'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);}); return false;'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
                     {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
                     {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersons}}
                     </div>
@@ -2492,7 +2491,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='{{id}}_ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons}}_string'{{/ErpPersons}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='{{id}}_ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons_string}}'{{/ErpPersons}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2600,8 +2599,7 @@ define
                     `
                     {{#cfValue}}<div><b>cfValue</b>: {{cfValue}}</div>{{/cfValue}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DesignLocations}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DesignLocations}}
                     {{#Designs}}<div><b>Designs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Designs}}
                     {{#DesignLocationCUs}}<div><b>DesignLocationCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DesignLocationCUs}}
                     </div>
@@ -2642,9 +2640,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cfValue'>cfValue: </label><div class='col-sm-8'><input id='{{id}}_cfValue' class='form-control' type='text'{{#cfValue}} value='{{cfValue}}'{{/cfValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ConditionFactorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ConditionFactorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations_string}}'{{/DesignLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs_string}}'{{/Designs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs_string}}'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2742,8 +2740,7 @@ define
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
                     </div>
                     <fieldset>
 
@@ -2884,8 +2881,7 @@ define
                     {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
                     {{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
                     {{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
                     {{#ChildCostTypes}}<div><b>ChildCostTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ChildCostTypes}}
                     {{#ParentCostType}}<div><b>ParentCostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCostType}}&quot;);}); return false;'>{{ParentCostType}}</a></div>{{/ParentCostType}}
                     {{#ErpJournalEntries}}<div><b>ErpJournalEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpJournalEntries}}
@@ -2931,7 +2927,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stage'>stage: </label><div class='col-sm-8'><input id='{{id}}_stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCostType'>ParentCostType: </label><div class='col-sm-8'><input id='{{id}}_ParentCostType' class='form-control' type='text'{{#ParentCostType}} value='{{ParentCostType}}'{{/ParentCostType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries_string}}'{{/ErpJournalEntries}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3033,8 +3029,7 @@ define
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
                     {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#CULaborItems}}<div><b>CULaborItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CULaborItems}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#CULaborItems}}<div><b>CULaborItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CULaborItems}}
                     </div>
                     <fieldset>
 
@@ -3170,8 +3165,7 @@ define
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
                     {{#spanLength}}<div><b>spanLength</b>: {{spanLength}}</div>{{/spanLength}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ConditionFactors}}<div><b>ConditionFactors</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConditionFactors}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ConditionFactors}}<div><b>ConditionFactors</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConditionFactors}}
                     {{#DesignLocationCUs}}<div><b>DesignLocationCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DesignLocationCUs}}
                     {{#MiscCostItems}}<div><b>MiscCostItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MiscCostItems}}
                     {{#ErpBomItemDatas}}<div><b>ErpBomItemDatas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpBomItemDatas}}
@@ -3218,9 +3212,9 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_spanLength'>spanLength: </label><div class='col-sm-8'><input id='{{id}}_spanLength' class='form-control' type='text'{{#spanLength}} value='{{spanLength}}'{{/spanLength}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkLocations'>WorkLocations: </label><div class='col-sm-8'><input id='{{id}}_WorkLocations' class='form-control' type='text'{{#WorkLocations}} value='{{WorkLocations}}_string'{{/WorkLocations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors_string}}'{{/ConditionFactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkLocations'>WorkLocations: </label><div class='col-sm-8'><input id='{{id}}_WorkLocations' class='form-control' type='text'{{#WorkLocations}} value='{{WorkLocations_string}}'{{/WorkLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs_string}}'{{/Designs}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3326,8 +3320,7 @@ define
                     `
                     {{#equipCode}}<div><b>equipCode</b>: {{equipCode}}</div>{{/equipCode}}
                     {{#rate}}<div><b>rate</b>: {{rate}}</div>{{/rate}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);}); return false;'>{{TypeAsset}}</a></div>{{/TypeAsset}}
                     </div>
                     <fieldset>
@@ -3361,7 +3354,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_equipCode'>equipCode: </label><div class='col-sm-8'><input id='{{id}}_equipCode' class='form-control' type='text'{{#equipCode}} value='{{equipCode}}'{{/equipCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rate'>rate: </label><div class='col-sm-8'><input id='{{id}}_rate' class='form-control' type='text'{{#rate}} value='{{rate}}'{{/rate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
                     <fieldset>
@@ -3468,8 +3461,7 @@ define
                     `
                     {{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
                     {{#PropertyUnits}}<div><b>PropertyUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PropertyUnits}}
                     {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
@@ -3507,8 +3499,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits}}_string'{{/PropertyUnits}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits_string}}'{{/PropertyUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3612,8 +3604,7 @@ define
                     `
                     {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
                     {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
                     {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkTasks}}
                     </div>
                     <fieldset>
@@ -3745,8 +3736,7 @@ define
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkTasks}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkTasks}}
                     {{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);}); return false;'>{{Work}}</a></div>{{/Work}}
                     </div>
                     <fieldset>
@@ -3871,8 +3861,7 @@ define
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
                     <fieldset>
 
@@ -4038,10 +4027,10 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='{{id}}_qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specifications'>Specifications: </label><div class='col-sm-8'><input id='{{id}}_Specifications' class='form-control' type='text'{{#Specifications}} value='{{Specifications}}_string'{{/Specifications}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='{{id}}_CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems}}_string'{{/CULaborItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills}}_string'{{/Skills}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks_string}}'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specifications'>Specifications: </label><div class='col-sm-8'><input id='{{id}}_Specifications' class='form-control' type='text'{{#Specifications}} value='{{Specifications_string}}'{{/Specifications}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='{{id}}_CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems_string}}'{{/CULaborItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills_string}}'{{/Skills}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4150,8 +4139,7 @@ define
                     {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
                     {{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
                     {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ErpPayables}}<div><b>ErpPayables</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPayables}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpPayables}}<div><b>ErpPayables</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPayables}}
                     {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);}); return false;'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
                     {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
                     </div>
@@ -4187,7 +4175,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='{{id}}_bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayables'>ErpPayables: </label><div class='col-sm-8'><input id='{{id}}_ErpPayables' class='form-control' type='text'{{#ErpPayables}} value='{{ErpPayables}}_string'{{/ErpPayables}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayables'>ErpPayables: </label><div class='col-sm-8'><input id='{{id}}_ErpPayables' class='form-control' type='text'{{#ErpPayables}} value='{{ErpPayables_string}}'{{/ErpPayables}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
@@ -4292,8 +4280,7 @@ define
                     `
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ChildCUGroups}}<div><b>ChildCUGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ChildCUGroups}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ChildCUGroups}}<div><b>ChildCUGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ChildCUGroups}}
                     {{#ParentCUGroups}}<div><b>ParentCUGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ParentCUGroups}}
                     {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#DesignLocationCUs}}<div><b>DesignLocationCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DesignLocationCUs}}
@@ -4333,9 +4320,9 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChildCUGroups'>ChildCUGroups: </label><div class='col-sm-8'><input id='{{id}}_ChildCUGroups' class='form-control' type='text'{{#ChildCUGroups}} value='{{ChildCUGroups}}_string'{{/ChildCUGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCUGroups'>ParentCUGroups: </label><div class='col-sm-8'><input id='{{id}}_ParentCUGroups' class='form-control' type='text'{{#ParentCUGroups}} value='{{ParentCUGroups}}_string'{{/ParentCUGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChildCUGroups'>ChildCUGroups: </label><div class='col-sm-8'><input id='{{id}}_ChildCUGroups' class='form-control' type='text'{{#ChildCUGroups}} value='{{ChildCUGroups_string}}'{{/ChildCUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCUGroups'>ParentCUGroups: </label><div class='col-sm-8'><input id='{{id}}_ParentCUGroups' class='form-control' type='text'{{#ParentCUGroups}} value='{{ParentCUGroups_string}}'{{/ParentCUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs_string}}'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4438,8 +4425,7 @@ define
                     `
                     {{#assignmentType}}<div><b>assignmentType</b>: {{assignmentType}}</div>{{/assignmentType}}
                     {{#cycleCount}}<div><b>cycleCount</b>: {{cycleCount}}</div>{{/cycleCount}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
                     {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crews}}
                     </div>
                     <fieldset>
@@ -4474,7 +4460,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cycleCount'>cycleCount: </label><div class='col-sm-8'><input id='{{id}}_cycleCount' class='form-control' type='text'{{#cycleCount}} value='{{cycleCount}}'{{/cycleCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4580,8 +4566,7 @@ define
                     {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
                     {{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
                     {{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#QualificationRequirements}}<div><b>QualificationRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/QualificationRequirements}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#QualificationRequirements}}<div><b>QualificationRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/QualificationRequirements}}
                     {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#CULaborCode}}<div><b>CULaborCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CULaborCode}}&quot;);}); return false;'>{{CULaborCode}}</a></div>{{/CULaborCode}}
                     </div>
@@ -4619,8 +4604,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='{{id}}_laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborRate'>laborRate: </label><div class='col-sm-8'><input id='{{id}}_laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements_string}}'{{/QualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborCode'>CULaborCode: </label><div class='col-sm-8'><input id='{{id}}_CULaborCode' class='form-control' type='text'{{#CULaborCode}} value='{{CULaborCode}}'{{/CULaborCode}}></div></div>
                     </div>
                     <fieldset>
@@ -4731,8 +4716,7 @@ define
                     {{#accountingUsage}}<div><b>accountingUsage</b>: {{accountingUsage}}</div>{{/accountingUsage}}
                     {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
                     {{#propertyAccount}}<div><b>propertyAccount</b>: {{propertyAccount}}</div>{{/propertyAccount}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#CUMaterialItems}}<div><b>CUMaterialItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CUMaterialItems}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#CUMaterialItems}}<div><b>CUMaterialItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CUMaterialItems}}
                     {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
                     </div>
@@ -4774,8 +4758,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><select id='{{id}}_activityCode' class='form-control custom-select'>{{#WorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkActionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyAccount'>propertyAccount: </label><div class='col-sm-8'><input id='{{id}}_propertyAccount' class='form-control' type='text'{{#propertyAccount}} value='{{propertyAccount}}'{{/propertyAccount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='{{id}}_CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems}}_string'{{/CUMaterialItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails}}_string'{{/WorkCostDetails}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='{{id}}_CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems_string}}'{{/CUMaterialItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails_string}}'{{/WorkCostDetails}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4882,8 +4866,7 @@ define
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
                     {{#performanceFactor}}<div><b>performanceFactor</b>: {{performanceFactor}}</div>{{/performanceFactor}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
                     {{#Crafts}}<div><b>Crafts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crafts}}
                     {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkTasks}}
@@ -4923,8 +4906,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts}}_string'{{/Crafts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks_string}}'{{/WorkTasks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crew'>Crew: </label><div class='col-sm-8'><input id='{{id}}_Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
                     </div>
                     <fieldset>
@@ -5049,8 +5032,7 @@ define
                     {{#cuQuantity}}<div><b>cuQuantity</b>: {{cuQuantity}}</div>{{/cuQuantity}}
                     {{#cuUsage}}<div><b>cuUsage</b>: {{cuUsage}}</div>{{/cuUsage}}
                     {{#removalDate}}<div><b>removalDate</b>: {{removalDate}}</div>{{/removalDate}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#toBeEnergised}}<div><b>toBeEnergised</b>: {{toBeEnergised}}</div>{{/toBeEnergised}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#toBeEnergised}}<div><b>toBeEnergised</b>: {{toBeEnergised}}</div>{{/toBeEnergised}}
                     {{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);}); return false;'>{{DesignLocation}}</a></div>{{/DesignLocation}}
                     {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#CUGroups}}<div><b>CUGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CUGroups}}
@@ -5104,11 +5086,11 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_toBeEnergised'>toBeEnergised: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_toBeEnergised' class='form-check-input' type='checkbox'{{#toBeEnergised}} checked{{/toBeEnergised}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='{{id}}_DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUGroups'>CUGroups: </label><div class='col-sm-8'><input id='{{id}}_CUGroups' class='form-control' type='text'{{#CUGroups}} value='{{CUGroups}}_string'{{/CUGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUGroups'>CUGroups: </label><div class='col-sm-8'><input id='{{id}}_CUGroups' class='form-control' type='text'{{#CUGroups}} value='{{CUGroups_string}}'{{/CUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks_string}}'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs_string}}'{{/Designs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors_string}}'{{/ConditionFactors}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -5235,8 +5217,7 @@ define
                     {{#costType}}<div><b>costType</b>: {{costType}}</div>{{/costType}}
                     {{#externalRefID}}<div><b>externalRefID</b>: {{externalRefID}}</div>{{/externalRefID}}
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
                     {{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);}); return false;'>{{DesignLocation}}</a></div>{{/DesignLocation}}
                     {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);}); return false;'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
                     </div>
@@ -5379,8 +5360,7 @@ define
                     `
                     {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
                     {{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
                     <fieldset>
 
@@ -5413,7 +5393,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><input id='{{id}}_activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='{{id}}_bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -5512,8 +5492,7 @@ define
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#typeAssetCode}}<div><b>typeAssetCode</b>: {{typeAssetCode}}</div>{{/typeAssetCode}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#typeAssetCode}}<div><b>typeAssetCode</b>: {{typeAssetCode}}</div>{{/typeAssetCode}}
                     {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);}); return false;'>{{TypeAsset}}</a></div>{{/TypeAsset}}
                     </div>
@@ -5548,7 +5527,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_typeAssetCode'>typeAssetCode: </label><div class='col-sm-8'><input id='{{id}}_typeAssetCode' class='form-control' type='text'{{#typeAssetCode}} value='{{typeAssetCode}}'{{/typeAssetCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
                     <fieldset>

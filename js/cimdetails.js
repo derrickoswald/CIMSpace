@@ -82,7 +82,7 @@ define
                 var cls = cim.class_map (feature);
                 var template = cls.prototype.template ();
                 var text = mustache.render (template, feature);
-                var conducting = cim_data.ConductingEquipment[mrid];
+                var conducting = cim_data.ConductingEquipment ? cim_data.ConductingEquipment[mrid] : undefined;
                 if ("undefined" != typeof (conducting))
                 {
                     var terminals = cim_data.Terminal;

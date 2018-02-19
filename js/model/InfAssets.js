@@ -477,8 +477,8 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DimensionsInfos'>DimensionsInfos: </label><div class='col-sm-8'><input id='{{id}}_DimensionsInfos' class='form-control' type='text'{{#DimensionsInfos}} value='{{DimensionsInfos}}_string'{{/DimensionsInfos}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements_string}}'{{/QualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DimensionsInfos'>DimensionsInfos: </label><div class='col-sm-8'><input id='{{id}}_DimensionsInfos' class='form-control' type='text'{{#DimensionsInfos}} value='{{DimensionsInfos_string}}'{{/DimensionsInfos}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -760,7 +760,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_removeWeed'>removeWeed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_removeWeed' class='form-check-input' type='checkbox'{{#removeWeed}} checked{{/removeWeed}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_weedRemovedDate'>weedRemovedDate: </label><div class='col-sm-8'><input id='{{id}}_weedRemovedDate' class='form-control' type='text'{{#weedRemovedDate}} value='{{weedRemovedDate}}'{{/weedRemovedDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfos'>WireSpacingInfos: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfos' class='form-control' type='text'{{#WireSpacingInfos}} value='{{WireSpacingInfos}}_string'{{/WireSpacingInfos}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfos'>WireSpacingInfos: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfos' class='form-control' type='text'{{#WireSpacingInfos}} value='{{WireSpacingInfos_string}}'{{/WireSpacingInfos}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1067,7 +1067,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coolingKind'>coolingKind: </label><div class='col-sm-8'><select id='{{id}}_coolingKind' class='form-control custom-select'>{{#CoolingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CoolingKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_powerRating'>powerRating: </label><div class='col-sm-8'><input id='{{id}}_powerRating' class='form-control' type='text'{{#powerRating}} value='{{powerRating}}'{{/powerRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stage'>stage: </label><div class='col-sm-8'><input id='{{id}}_stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reconditionings'>Reconditionings: </label><div class='col-sm-8'><input id='{{id}}_Reconditionings' class='form-control' type='text'{{#Reconditionings}} value='{{Reconditionings}}_string'{{/Reconditionings}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reconditionings'>Reconditionings: </label><div class='col-sm-8'><input id='{{id}}_Reconditionings' class='form-control' type='text'{{#Reconditionings}} value='{{Reconditionings_string}}'{{/Reconditionings}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1792,7 +1792,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_momFailureRate'>momFailureRate: </label><div class='col-sm-8'><input id='{{id}}_momFailureRate' class='form-control' type='text'{{#momFailureRate}} value='{{momFailureRate}}'{{/momFailureRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mTTR'>mTTR: </label><div class='col-sm-8'><input id='{{id}}_mTTR' class='form-control' type='text'{{#mTTR}} value='{{mTTR}}'{{/mTTR}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specification'>Specification: </label><div class='col-sm-8'><input id='{{id}}_Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
                     </div>
                     <fieldset>
@@ -1899,8 +1899,7 @@ define
                     {{#insulationPFStatus}}<div><b>insulationPFStatus</b>: {{insulationPFStatus}}</div>{{/insulationPFStatus}}
                     {{#insulationResistance}}<div><b>insulationResistance</b>: {{insulationResistance}}</div>{{/insulationResistance}}
                     {{#leakageReactance}}<div><b>leakageReactance</b>: {{leakageReactance}}</div>{{/leakageReactance}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ToWinding}}<div><b>ToWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ToWinding}}&quot;);}); return false;'>{{ToWinding}}</a></div>{{/ToWinding}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ToWinding}}<div><b>ToWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ToWinding}}&quot;);}); return false;'>{{ToWinding}}</a></div>{{/ToWinding}}
                     {{#FromWinding}}<div><b>FromWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromWinding}}&quot;);}); return false;'>{{FromWinding}}</a></div>{{/FromWinding}}
                     {{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);}); return false;'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
                     </div>
@@ -2163,7 +2162,7 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specification'>Specification: </label><div class='col-sm-8'><input id='{{id}}_Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
                     </div>
                     <fieldset>
@@ -2305,7 +2304,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sizeDiameter'>sizeDiameter: </label><div class='col-sm-8'><input id='{{id}}_sizeDiameter' class='form-control' type='text'{{#sizeDiameter}} value='{{sizeDiameter}}'{{/sizeDiameter}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sizeLength'>sizeLength: </label><div class='col-sm-8'><input id='{{id}}_sizeLength' class='form-control' type='text'{{#sizeLength}} value='{{sizeLength}}'{{/sizeLength}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sizeWidth'>sizeWidth: </label><div class='col-sm-8'><input id='{{id}}_sizeWidth' class='form-control' type='text'{{#sizeWidth}} value='{{sizeWidth}}'{{/sizeWidth}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specifications'>Specifications: </label><div class='col-sm-8'><input id='{{id}}_Specifications' class='form-control' type='text'{{#Specifications}} value='{{Specifications}}_string'{{/Specifications}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specifications'>Specifications: </label><div class='col-sm-8'><input id='{{id}}_Specifications' class='form-control' type='text'{{#Specifications}} value='{{Specifications_string}}'{{/Specifications}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2446,8 +2445,7 @@ define
                     {{#oilLevel}}<div><b>oilLevel</b>: {{oilLevel}}</div>{{/oilLevel}}
                     {{#oilNeutralizationNumber}}<div><b>oilNeutralizationNumber</b>: {{oilNeutralizationNumber}}</div>{{/oilNeutralizationNumber}}
                     {{#pumpVibration}}<div><b>pumpVibration</b>: {{pumpVibration}}</div>{{/pumpVibration}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#topOilTemp}}<div><b>topOilTemp</b>: {{topOilTemp}}</div>{{/topOilTemp}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#topOilTemp}}<div><b>topOilTemp</b>: {{topOilTemp}}</div>{{/topOilTemp}}
                     {{#waterContent}}<div><b>waterContent</b>: {{waterContent}}</div>{{/waterContent}}
                     {{#ProcedureDataSets}}<div><b>ProcedureDataSets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProcedureDataSets}}
                     {{#Reconditioning}}<div><b>Reconditioning</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reconditioning}}&quot;);}); return false;'>{{Reconditioning}}</a></div>{{/Reconditioning}}
@@ -2501,7 +2499,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_topOilTemp'>topOilTemp: </label><div class='col-sm-8'><input id='{{id}}_topOilTemp' class='form-control' type='text'{{#topOilTemp}} value='{{topOilTemp}}'{{/topOilTemp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_waterContent'>waterContent: </label><div class='col-sm-8'><input id='{{id}}_waterContent' class='form-control' type='text'{{#waterContent}} value='{{waterContent}}'{{/waterContent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='{{id}}_ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets}}_string'{{/ProcedureDataSets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='{{id}}_ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets_string}}'{{/ProcedureDataSets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reconditioning'>Reconditioning: </label><div class='col-sm-8'><input id='{{id}}_Reconditioning' class='form-control' type='text'{{#Reconditioning}} value='{{Reconditioning}}'{{/Reconditioning}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Transformer'>Transformer: </label><div class='col-sm-8'><input id='{{id}}_Transformer' class='form-control' type='text'{{#Transformer}} value='{{Transformer}}'{{/Transformer}}></div></div>
                     </div>
@@ -2773,7 +2771,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dateTime'>dateTime: </label><div class='col-sm-8'><input id='{{id}}_dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerRatings'>PowerRatings: </label><div class='col-sm-8'><input id='{{id}}_PowerRatings' class='form-control' type='text'{{#PowerRatings}} value='{{PowerRatings}}_string'{{/PowerRatings}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerRatings'>PowerRatings: </label><div class='col-sm-8'><input id='{{id}}_PowerRatings' class='form-control' type='text'{{#PowerRatings}} value='{{PowerRatings_string}}'{{/PowerRatings}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2907,7 +2905,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#MediumKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MediumKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_volumeSpec'>volumeSpec: </label><div class='col-sm-8'><input id='{{id}}_volumeSpec' class='form-control' type='text'{{#volumeSpec}} value='{{volumeSpec}}'{{/volumeSpec}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specification'>Specification: </label><div class='col-sm-8'><input id='{{id}}_Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
                     </div>
                     <fieldset>
@@ -3111,8 +3109,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#testKind}}<div><b>testKind</b>: {{testKind}}</div>{{/testKind}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#testKind}}<div><b>testKind</b>: {{testKind}}</div>{{/testKind}}
                     {{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);}); return false;'>{{Bushing}}</a></div>{{/Bushing}}
                     {{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);}); return false;'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
                     </div>

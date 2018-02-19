@@ -581,8 +581,7 @@ define
                     {{#estimatedPeriod}}<div><b>estimatedPeriod</b>: {{estimatedPeriod}}</div>{{/estimatedPeriod}}
                     {{#isPlanned}}<div><b>isPlanned</b>: {{isPlanned}}</div>{{/isPlanned}}
                     {{#actualPeriod}}<div><b>actualPeriod</b>: {{actualPeriod}}</div>{{/actualPeriod}}
-                    {{#summary}}<div><b>summary</b>: {{summary}}</div>{{/summary}}
-                    {{#cancelledDateTime}}<div><b>cancelledDateTime</b>: {{cancelledDateTime}}</div>{{/cancelledDateTime}}
+                    {{#summary}}<div><b>summary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{summary}}&quot;);}); return false;'>{{summary}}</a></div>{{/summary}}\n                    {{#cancelledDateTime}}<div><b>cancelledDateTime</b>: {{cancelledDateTime}}</div>{{/cancelledDateTime}}
                     {{#OutageSchedule}}<div><b>OutageSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OutageSchedule}}&quot;);}); return false;'>{{OutageSchedule}}</a></div>{{/OutageSchedule}}
                     {{#PlannedSwitchActions}}<div><b>PlannedSwitchActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PlannedSwitchActions}}
                     {{#Equipments}}<div><b>Equipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Equipments}}
@@ -640,8 +639,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_summary'>summary: </label><div class='col-sm-8'><input id='{{id}}_summary' class='form-control' type='text'{{#summary}} value='{{summary}}'{{/summary}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelledDateTime'>cancelledDateTime: </label><div class='col-sm-8'><input id='{{id}}_cancelledDateTime' class='form-control' type='text'{{#cancelledDateTime}} value='{{cancelledDateTime}}'{{/cancelledDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OutageSchedule'>OutageSchedule: </label><div class='col-sm-8'><input id='{{id}}_OutageSchedule' class='form-control' type='text'{{#OutageSchedule}} value='{{OutageSchedule}}'{{/OutageSchedule}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments_string}}'{{/Equipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints_string}}'{{/UsagePoints}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Incident'>Incident: </label><div class='col-sm-8'><input id='{{id}}_Incident' class='form-control' type='text'{{#Incident}} value='{{Incident}}'{{/Incident}}></div></div>
                     </div>
                     <fieldset>
@@ -804,7 +803,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cause'>cause: </label><div class='col-sm-8'><input id='{{id}}_cause' class='form-control' type='text'{{#cause}} value='{{cause}}'{{/cause}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Owner'>Owner: </label><div class='col-sm-8'><input id='{{id}}_Owner' class='form-control' type='text'{{#Owner}} value='{{Owner}}'{{/Owner}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
                     <fieldset>
@@ -943,7 +942,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activePeriod'>activePeriod: </label><div class='col-sm-8'><input id='{{id}}_activePeriod' class='form-control' type='text'{{#activePeriod}} value='{{activePeriod}}'{{/activePeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_restrictedValue'>restrictedValue: </label><div class='col-sm-8'><input id='{{id}}_restrictedValue' class='form-control' type='text'{{#restrictedValue}} value='{{restrictedValue}}'{{/restrictedValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments_string}}'{{/Equipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductAssetModel'>ProductAssetModel: </label><div class='col-sm-8'><input id='{{id}}_ProductAssetModel' class='form-control' type='text'{{#ProductAssetModel}} value='{{ProductAssetModel}}'{{/ProductAssetModel}}></div></div>
                     </div>
                     <fieldset>
@@ -1831,7 +1830,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_mustBeDeenergised'>mustBeDeenergised: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mustBeDeenergised' class='form-check-input' type='checkbox'{{#mustBeDeenergised}} checked{{/mustBeDeenergised}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_mustBeGrounded'>mustBeGrounded: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mustBeGrounded' class='form-check-input' type='checkbox'{{#mustBeGrounded}} checked{{/mustBeGrounded}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TaggedPSRs'>TaggedPSRs: </label><div class='col-sm-8'><input id='{{id}}_TaggedPSRs' class='form-control' type='text'{{#TaggedPSRs}} value='{{TaggedPSRs}}_string'{{/TaggedPSRs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TaggedPSRs'>TaggedPSRs: </label><div class='col-sm-8'><input id='{{id}}_TaggedPSRs' class='form-control' type='text'{{#TaggedPSRs}} value='{{TaggedPSRs_string}}'{{/TaggedPSRs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ClearanceAction'>ClearanceAction: </label><div class='col-sm-8'><input id='{{id}}_ClearanceAction' class='form-control' type='text'{{#ClearanceAction}} value='{{ClearanceAction}}'{{/ClearanceAction}}></div></div>
                     </div>
                     <fieldset>

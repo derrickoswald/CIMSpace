@@ -123,8 +123,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroupParent'>ChargeGroupParent: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroupParent' class='form-control' type='text'{{#ChargeGroupParent}} value='{{ChargeGroupParent}}'{{/ChargeGroupParent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType}}_string'{{/ChargeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType_string}}'{{/ChargeType}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -665,7 +665,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}_string'{{/RegisteredLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad_string}}'{{/RegisteredLoad}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1027,7 +1027,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransactions'>EnergyTransactions: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransactions' class='form-control' type='text'{{#EnergyTransactions}} value='{{EnergyTransactions}}_string'{{/EnergyTransactions}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransactions'>EnergyTransactions: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransactions' class='form-control' type='text'{{#EnergyTransactions}} value='{{EnergyTransactions_string}}'{{/EnergyTransactions}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1502,8 +1502,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sum'>sum: </label><div class='col-sm-8'><input id='{{id}}_sum' class='form-control' type='text'{{#sum}} value='{{sum}}'{{/sum}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_roundOff'>roundOff: </label><div class='col-sm-8'><input id='{{id}}_roundOff' class='form-control' type='text'{{#roundOff}} value='{{roundOff}}'{{/roundOff}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_equation'>equation: </label><div class='col-sm-8'><input id='{{id}}_equation' class='form-control' type='text'{{#equation}} value='{{equation}}'{{/equation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeTypes'>ChargeTypes: </label><div class='col-sm-8'><input id='{{id}}_ChargeTypes' class='form-control' type='text'{{#ChargeTypes}} value='{{ChargeTypes}}_string'{{/ChargeTypes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BillDeterminants'>BillDeterminants: </label><div class='col-sm-8'><input id='{{id}}_BillDeterminants' class='form-control' type='text'{{#BillDeterminants}} value='{{BillDeterminants}}_string'{{/BillDeterminants}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeTypes'>ChargeTypes: </label><div class='col-sm-8'><input id='{{id}}_ChargeTypes' class='form-control' type='text'{{#ChargeTypes}} value='{{ChargeTypes_string}}'{{/ChargeTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BillDeterminants'>BillDeterminants: </label><div class='col-sm-8'><input id='{{id}}_BillDeterminants' class='form-control' type='text'{{#BillDeterminants}} value='{{BillDeterminants_string}}'{{/BillDeterminants}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1679,9 +1679,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_requireAutorun'>requireAutorun: </label><div class='col-sm-8'><input id='{{id}}_requireAutorun' class='form-control' type='text'{{#requireAutorun}} value='{{requireAutorun}}'{{/requireAutorun}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_revisionNumber'>revisionNumber: </label><div class='col-sm-8'><input id='{{id}}_revisionNumber' class='form-control' type='text'{{#revisionNumber}} value='{{revisionNumber}}'{{/revisionNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Settlement'>Settlement: </label><div class='col-sm-8'><input id='{{id}}_Settlement' class='form-control' type='text'{{#Settlement}} value='{{Settlement}}_string'{{/Settlement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketInvoice'>MarketInvoice: </label><div class='col-sm-8'><input id='{{id}}_MarketInvoice' class='form-control' type='text'{{#MarketInvoice}} value='{{MarketInvoice}}_string'{{/MarketInvoice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType}}_string'{{/ChargeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Settlement'>Settlement: </label><div class='col-sm-8'><input id='{{id}}_Settlement' class='form-control' type='text'{{#Settlement}} value='{{Settlement_string}}'{{/Settlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketInvoice'>MarketInvoice: </label><div class='col-sm-8'><input id='{{id}}_MarketInvoice' class='form-control' type='text'{{#MarketInvoice}} value='{{MarketInvoice_string}}'{{/MarketInvoice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType_string}}'{{/ChargeType}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1856,10 +1856,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='{{id}}_frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chargeVersion'>chargeVersion: </label><div class='col-sm-8'><input id='{{id}}_chargeVersion' class='form-control' type='text'{{#chargeVersion}} value='{{chargeVersion}}'{{/chargeVersion}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalInterval'>totalInterval: </label><div class='col-sm-8'><input id='{{id}}_totalInterval' class='form-control' type='text'{{#totalInterval}} value='{{totalInterval}}'{{/totalInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}_string'{{/MajorChargeGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='{{id}}_ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents}}_string'{{/ChargeComponents}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroup'>ChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroup' class='form-control' type='text'{{#ChargeGroup}} value='{{ChargeGroup}}_string'{{/ChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup_string}}'{{/MajorChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='{{id}}_ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents_string}}'{{/ChargeComponents}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroup'>ChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroup' class='form-control' type='text'{{#ChargeGroup}} value='{{ChargeGroup_string}}'{{/ChargeGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1996,7 +1996,7 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerators'>RegisteredGenerators: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerators' class='form-control' type='text'{{#RegisteredGenerators}} value='{{RegisteredGenerators}}_string'{{/RegisteredGenerators}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerators'>RegisteredGenerators: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerators' class='form-control' type='text'{{#RegisteredGenerators}} value='{{RegisteredGenerators_string}}'{{/RegisteredGenerators}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2981,7 +2981,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_componentType'>componentType: </label><div class='col-sm-8'><input id='{{id}}_componentType' class='form-control' type='text'{{#componentType}} value='{{componentType}}'{{/componentType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_msgLevel'>msgLevel: </label><div class='col-sm-8'><input id='{{id}}_msgLevel' class='form-control' type='text'{{#msgLevel}} value='{{msgLevel}}'{{/msgLevel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceBid'>ResourceBid: </label><div class='col-sm-8'><input id='{{id}}_ResourceBid' class='form-control' type='text'{{#ResourceBid}} value='{{ResourceBid}}_string'{{/ResourceBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceBid'>ResourceBid: </label><div class='col-sm-8'><input id='{{id}}_ResourceBid' class='form-control' type='text'{{#ResourceBid}} value='{{ResourceBid_string}}'{{/ResourceBid}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
                     </div>
                     <fieldset>
@@ -3513,7 +3513,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampRateType'>rampRateType: </label><div class='col-sm-8'><input id='{{id}}_rampRateType' class='form-control' type='text'{{#rampRateType}} value='{{rampRateType}}'{{/rampRateType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingBid'>GeneratingBid: </label><div class='col-sm-8'><input id='{{id}}_GeneratingBid' class='form-control' type='text'{{#GeneratingBid}} value='{{GeneratingBid}}'{{/GeneratingBid}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='{{id}}_InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
                     </div>
                     <fieldset>
@@ -3893,8 +3893,7 @@ define
                     `
                     {{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
                     {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MajorChargeGroup}}&quot;);}); return false;'>{{MajorChargeGroup}}</a></div>{{/MajorChargeGroup}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MajorChargeGroup}}&quot;);}); return false;'>{{MajorChargeGroup}}</a></div>{{/MajorChargeGroup}}
                     </div>
                     <fieldset>
 
@@ -4651,7 +4650,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpsMaxDay'>startUpsMaxDay: </label><div class='col-sm-8'><input id='{{id}}_startUpsMaxDay' class='form-control' type='text'{{#startUpsMaxDay}} value='{{startUpsMaxDay}}'{{/startUpsMaxDay}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpsMaxWeek'>startUpsMaxWeek: </label><div class='col-sm-8'><input id='{{id}}_startUpsMaxWeek' class='form-control' type='text'{{#startUpsMaxWeek}} value='{{startUpsMaxWeek}}'{{/startUpsMaxWeek}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_virtual'>virtual: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_virtual' class='form-check-input' type='checkbox'{{#virtual}} checked{{/virtual}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidError'>BidError: </label><div class='col-sm-8'><input id='{{id}}_BidError' class='form-control' type='text'{{#BidError}} value='{{BidError}}_string'{{/BidError}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidError'>BidError: </label><div class='col-sm-8'><input id='{{id}}_BidError' class='form-control' type='text'{{#BidError}} value='{{BidError_string}}'{{/BidError}}></div></div>
                     </div>
                     <fieldset>
                     `

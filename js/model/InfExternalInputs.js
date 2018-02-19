@@ -95,7 +95,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceGroup'>ResourceGroup: </label><div class='col-sm-8'><input id='{{id}}_ResourceGroup' class='form-control' type='text'{{#ResourceGroup}} value='{{ResourceGroup}}'{{/ResourceGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTOs'>RTOs: </label><div class='col-sm-8'><input id='{{id}}_RTOs' class='form-control' type='text'{{#RTOs}} value='{{RTOs}}_string'{{/RTOs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTOs'>RTOs: </label><div class='col-sm-8'><input id='{{id}}_RTOs' class='form-control' type='text'{{#RTOs}} value='{{RTOs_string}}'{{/RTOs}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -308,8 +308,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#ResourceGroupReqs}}<div><b>ResourceGroupReqs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ResourceGroupReqs}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ResourceGroupReqs}}<div><b>ResourceGroupReqs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ResourceGroupReqs}}
                     {{#RegisteredResources}}<div><b>RegisteredResources</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredResources}}
                     </div>
                     <fieldset>
@@ -344,7 +343,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources}}_string'{{/RegisteredResources}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources_string}}'{{/RegisteredResources}}></div></div>
                     </div>
                     <fieldset>
                     `

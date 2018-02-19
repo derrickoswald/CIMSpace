@@ -113,7 +113,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumCapacity'>maximumCapacity: </label><div class='col-sm-8'><input id='{{id}}_maximumCapacity' class='form-control' type='text'{{#maximumCapacity}} value='{{maximumCapacity}}'{{/maximumCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumCapacity'>minimumCapacity: </label><div class='col-sm-8'><input id='{{id}}_minimumCapacity' class='form-control' type='text'{{#minimumCapacity}} value='{{minimumCapacity}}'{{/minimumCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultCapacity'>defaultCapacity: </label><div class='col-sm-8'><input id='{{id}}_defaultCapacity' class='form-control' type='text'{{#defaultCapacity}} value='{{defaultCapacity}}'{{/defaultCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -864,7 +864,7 @@ define
                     `
                     + MarketOpCommon.MktOrganisation.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceGroupReqs'>ResourceGroupReqs: </label><div class='col-sm-8'><input id='{{id}}_ResourceGroupReqs' class='form-control' type='text'{{#ResourceGroupReqs}} value='{{ResourceGroupReqs}}_string'{{/ResourceGroupReqs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceGroupReqs'>ResourceGroupReqs: </label><div class='col-sm-8'><input id='{{id}}_ResourceGroupReqs' class='form-control' type='text'{{#ResourceGroupReqs}} value='{{ResourceGroupReqs_string}}'{{/ResourceGroupReqs}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1528,7 +1528,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='{{id}}_certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><input id='{{id}}_level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketQualificationRequirements'>MarketQualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_MarketQualificationRequirements' class='form-control' type='text'{{#MarketQualificationRequirements}} value='{{MarketQualificationRequirements}}_string'{{/MarketQualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketQualificationRequirements'>MarketQualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_MarketQualificationRequirements' class='form-control' type='text'{{#MarketQualificationRequirements}} value='{{MarketQualificationRequirements_string}}'{{/MarketQualificationRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketPerson'>MarketPerson: </label><div class='col-sm-8'><input id='{{id}}_MarketPerson' class='form-control' type='text'{{#MarketPerson}} value='{{MarketPerson}}'{{/MarketPerson}}></div></div>
                     </div>
                     <fieldset>
@@ -2335,8 +2335,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_percent'>percent: </label><div class='col-sm-8'><input id='{{id}}_percent' class='form-control' type='text'{{#percent}} value='{{percent}}'{{/percent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestCategory'>MPMTestCategory: </label><div class='col-sm-8'><input id='{{id}}_MPMTestCategory' class='form-control' type='text'{{#MPMTestCategory}} value='{{MPMTestCategory}}'{{/MPMTestCategory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}_string'{{/AggregatedPnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode_string}}'{{/AggregatedPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2578,18 +2578,13 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
-                    {{#electronicAddressAlternate}}<div><b>electronicAddressAlternate</b>: {{electronicAddressAlternate}}</div>{{/electronicAddressAlternate}}
-                    {{#electronicAddressPrimary}}<div><b>electronicAddressPrimary</b>: {{electronicAddressPrimary}}</div>{{/electronicAddressPrimary}}
-                    {{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
+                    {{#electronicAddressAlternate}}<div><b>electronicAddressAlternate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddressAlternate}}&quot;);}); return false;'>{{electronicAddressAlternate}}</a></div>{{/electronicAddressAlternate}}\n                    {{#electronicAddressPrimary}}<div><b>electronicAddressPrimary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddressPrimary}}&quot;);}); return false;'>{{electronicAddressPrimary}}</a></div>{{/electronicAddressPrimary}}\n                    {{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
                     {{#governmentID}}<div><b>governmentID</b>: {{governmentID}}</div>{{/governmentID}}
-                    {{#landlinePhone}}<div><b>landlinePhone</b>: {{landlinePhone}}</div>{{/landlinePhone}}
-                    {{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
+                    {{#landlinePhone}}<div><b>landlinePhone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{landlinePhone}}&quot;);}); return false;'>{{landlinePhone}}</a></div>{{/landlinePhone}}\n                    {{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
                     {{#mName}}<div><b>mName</b>: {{mName}}</div>{{/mName}}
-                    {{#mobilePhone}}<div><b>mobilePhone</b>: {{mobilePhone}}</div>{{/mobilePhone}}
-                    {{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
+                    {{#mobilePhone}}<div><b>mobilePhone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{mobilePhone}}&quot;);}); return false;'>{{mobilePhone}}</a></div>{{/mobilePhone}}\n                    {{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
                     {{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
                     {{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
                     {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MktOrganisation}}
                     {{#MarketSkills}}<div><b>MarketSkills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MarketSkills}}
@@ -2638,7 +2633,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_suffix'>suffix: </label><div class='col-sm-8'><input id='{{id}}_suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_userID'>userID: </label><div class='col-sm-8'><input id='{{id}}_userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation_string}}'{{/MktOrganisation}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3232,8 +3227,7 @@ define
                     {{#maxStartUpsPerDay}}<div><b>maxStartUpsPerDay</b>: {{maxStartUpsPerDay}}</div>{{/maxStartUpsPerDay}}
                     {{#maxWeeklyEnergy}}<div><b>maxWeeklyEnergy</b>: {{maxWeeklyEnergy}}</div>{{/maxWeeklyEnergy}}
                     {{#maxWeeklyStarts}}<div><b>maxWeeklyStarts</b>: {{maxWeeklyStarts}}</div>{{/maxWeeklyStarts}}
-                    {{#minimumLoadFuelCost}}<div><b>minimumLoadFuelCost</b>: {{minimumLoadFuelCost}}</div>{{/minimumLoadFuelCost}}
-                    {{#minimumOperatingMW}}<div><b>minimumOperatingMW</b>: {{minimumOperatingMW}}</div>{{/minimumOperatingMW}}
+                    {{#minimumLoadFuelCost}}<div><b>minimumLoadFuelCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{minimumLoadFuelCost}}&quot;);}); return false;'>{{minimumLoadFuelCost}}</a></div>{{/minimumLoadFuelCost}}\n                    {{#minimumOperatingMW}}<div><b>minimumOperatingMW</b>: {{minimumOperatingMW}}</div>{{/minimumOperatingMW}}
                     {{#minLoadCost}}<div><b>minLoadCost</b>: {{minLoadCost}}</div>{{/minLoadCost}}
                     {{#mustOfferRA}}<div><b>mustOfferRA</b>: {{mustOfferRA}}</div>{{/mustOfferRA}}
                     {{#nameplateCapacity}}<div><b>nameplateCapacity</b>: {{nameplateCapacity}}</div>{{/nameplateCapacity}}
@@ -3393,7 +3387,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyPriceIndex'>EnergyPriceIndex: </label><div class='col-sm-8'><input id='{{id}}_EnergyPriceIndex' class='form-control' type='text'{{#EnergyPriceIndex}} value='{{EnergyPriceIndex}}'{{/EnergyPriceIndex}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRStartUpFuelCurve'>RMRStartUpFuelCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRStartUpFuelCurve' class='form-control' type='text'{{#RMRStartUpFuelCurve}} value='{{RMRStartUpFuelCurve}}'{{/RMRStartUpFuelCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktHeatRateCurve'>MktHeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_MktHeatRateCurve' class='form-control' type='text'{{#MktHeatRateCurve}} value='{{MktHeatRateCurve}}'{{/MktHeatRateCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpCostCurves'>StartUpCostCurves: </label><div class='col-sm-8'><input id='{{id}}_StartUpCostCurves' class='form-control' type='text'{{#StartUpCostCurves}} value='{{StartUpCostCurves}}_string'{{/StartUpCostCurves}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpCostCurves'>StartUpCostCurves: </label><div class='col-sm-8'><input id='{{id}}_StartUpCostCurves' class='form-control' type='text'{{#StartUpCostCurves}} value='{{StartUpCostCurves_string}}'{{/StartUpCostCurves}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LocalReliabilityArea'>LocalReliabilityArea: </label><div class='col-sm-8'><input id='{{id}}_LocalReliabilityArea' class='form-control' type='text'{{#LocalReliabilityArea}} value='{{LocalReliabilityArea}}'{{/LocalReliabilityArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRStartUpEnergyCurve'>RMRStartUpEnergyCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRStartUpEnergyCurve' class='form-control' type='text'{{#RMRStartUpEnergyCurve}} value='{{RMRStartUpEnergyCurve}}'{{/RMRStartUpEnergyCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='{{id}}_FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
@@ -3720,9 +3714,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_To_SubControlArea'>To_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_To_SubControlArea' class='form-control' type='text'{{#To_SubControlArea}} value='{{To_SubControlArea}}'{{/To_SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SecurityConstraints'>SecurityConstraints: </label><div class='col-sm-8'><input id='{{id}}_SecurityConstraints' class='form-control' type='text'{{#SecurityConstraints}} value='{{SecurityConstraints}}'{{/SecurityConstraints}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktPowerTransformer'>MktPowerTransformer: </label><div class='col-sm-8'><input id='{{id}}_MktPowerTransformer' class='form-control' type='text'{{#MktPowerTransformer}} value='{{MktPowerTransformer}}_string'{{/MktPowerTransformer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktPowerTransformer'>MktPowerTransformer: </label><div class='col-sm-8'><input id='{{id}}_MktPowerTransformer' class='form-control' type='text'{{#MktPowerTransformer}} value='{{MktPowerTransformer_string}}'{{/MktPowerTransformer}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CRR'>CRR: </label><div class='col-sm-8'><input id='{{id}}_CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktLine'>MktLine: </label><div class='col-sm-8'><input id='{{id}}_MktLine' class='form-control' type='text'{{#MktLine}} value='{{MktLine}}_string'{{/MktLine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktLine'>MktLine: </label><div class='col-sm-8'><input id='{{id}}_MktLine' class='form-control' type='text'{{#MktLine}} value='{{MktLine_string}}'{{/MktLine}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_From_SubControlArea'>From_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_From_SubControlArea' class='form-control' type='text'{{#From_SubControlArea}} value='{{From_SubControlArea}}'{{/From_SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenericConstraints'>GenericConstraints: </label><div class='col-sm-8'><input id='{{id}}_GenericConstraints' class='form-control' type='text'{{#GenericConstraints}} value='{{GenericConstraints}}'{{/GenericConstraints}}></div></div>
                     </div>
@@ -4470,7 +4464,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDynamicInterchange'>isDynamicInterchange: </label><div class='col-sm-8'><input id='{{id}}_isDynamicInterchange' class='form-control' type='text'{{#isDynamicInterchange}} value='{{isDynamicInterchange}}'{{/isDynamicInterchange}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minHourlyBlockLimit'>minHourlyBlockLimit: </label><div class='col-sm-8'><input id='{{id}}_minHourlyBlockLimit' class='form-control' type='text'{{#minHourlyBlockLimit}} value='{{minHourlyBlockLimit}}'{{/minHourlyBlockLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WheelingCounterParty'>WheelingCounterParty: </label><div class='col-sm-8'><input id='{{id}}_WheelingCounterParty' class='form-control' type='text'{{#WheelingCounterParty}} value='{{WheelingCounterParty}}_string'{{/WheelingCounterParty}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WheelingCounterParty'>WheelingCounterParty: </label><div class='col-sm-8'><input id='{{id}}_WheelingCounterParty' class='form-control' type='text'{{#WheelingCounterParty}} value='{{WheelingCounterParty_string}}'{{/WheelingCounterParty}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='{{id}}_InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
                     </div>
                     <fieldset>
@@ -4698,9 +4692,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participatingLoad'>participatingLoad: </label><div class='col-sm-8'><input id='{{id}}_participatingLoad' class='form-control' type='text'{{#participatingLoad}} value='{{participatingLoad}}'{{/participatingLoad}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='{{id}}_reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='{{id}}_resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionTimeCurve'>LoadReductionTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionTimeCurve' class='form-control' type='text'{{#LoadReductionTimeCurve}} value='{{LoadReductionTimeCurve}}_string'{{/LoadReductionTimeCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionTimeCurve'>LoadReductionTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionTimeCurve' class='form-control' type='text'{{#LoadReductionTimeCurve}} value='{{LoadReductionTimeCurve_string}}'{{/LoadReductionTimeCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktLoadArea'>MktLoadArea: </label><div class='col-sm-8'><input id='{{id}}_MktLoadArea' class='form-control' type='text'{{#MktLoadArea}} value='{{MktLoadArea}}'{{/MktLoadArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionPriceCurve'>LoadReductionPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionPriceCurve' class='form-control' type='text'{{#LoadReductionPriceCurve}} value='{{LoadReductionPriceCurve}}_string'{{/LoadReductionPriceCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionPriceCurve'>LoadReductionPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionPriceCurve' class='form-control' type='text'{{#LoadReductionPriceCurve}} value='{{LoadReductionPriceCurve_string}}'{{/LoadReductionPriceCurve}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4884,9 +4878,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualifASOrder'>qualifASOrder: </label><div class='col-sm-8'><input id='{{id}}_qualifASOrder' class='form-control' type='text'{{#qualifASOrder}} value='{{qualifASOrder}}'{{/qualifASOrder}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnode'>Pnode: </label><div class='col-sm-8'><input id='{{id}}_Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}_string'{{/Pnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnode'>Pnode: </label><div class='col-sm-8'><input id='{{id}}_Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode_string}}'{{/Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea_string}}'{{/SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
@@ -5262,7 +5256,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}_string'{{/RegisteredInterTie}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie_string}}'{{/RegisteredInterTie}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -6106,7 +6100,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
@@ -6598,11 +6592,11 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SinkCRRSegment'>SinkCRRSegment: </label><div class='col-sm-8'><input id='{{id}}_SinkCRRSegment' class='form-control' type='text'{{#SinkCRRSegment}} value='{{SinkCRRSegment}}_string'{{/SinkCRRSegment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SinkCRRSegment'>SinkCRRSegment: </label><div class='col-sm-8'><input id='{{id}}_SinkCRRSegment' class='form-control' type='text'{{#SinkCRRSegment}} value='{{SinkCRRSegment_string}}'{{/SinkCRRSegment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FTRs'>FTRs: </label><div class='col-sm-8'><input id='{{id}}_FTRs' class='form-control' type='text'{{#FTRs}} value='{{FTRs}}_string'{{/FTRs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SourceCRRSegment'>SourceCRRSegment: </label><div class='col-sm-8'><input id='{{id}}_SourceCRRSegment' class='form-control' type='text'{{#SourceCRRSegment}} value='{{SourceCRRSegment}}_string'{{/SourceCRRSegment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FTRs'>FTRs: </label><div class='col-sm-8'><input id='{{id}}_FTRs' class='form-control' type='text'{{#FTRs}} value='{{FTRs_string}}'{{/FTRs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode_string}}'{{/AggregateNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SourceCRRSegment'>SourceCRRSegment: </label><div class='col-sm-8'><input id='{{id}}_SourceCRRSegment' class='form-control' type='text'{{#SourceCRRSegment}} value='{{SourceCRRSegment_string}}'{{/SourceCRRSegment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
@@ -6866,7 +6860,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadReductionTimeCurveType'>loadReductionTimeCurveType: </label><div class='col-sm-8'><input id='{{id}}_loadReductionTimeCurveType' class='form-control' type='text'{{#loadReductionTimeCurveType}} value='{{loadReductionTimeCurveType}}'{{/loadReductionTimeCurveType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}_string'{{/RegisteredLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad_string}}'{{/RegisteredLoad}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -7437,7 +7431,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}_string'{{/AggregatedPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode_string}}'{{/AggregatedPnode}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -7931,8 +7925,8 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_attained'>attained: </label><div class='col-sm-8'><input id='{{id}}_attained' class='form-control' type='text'{{#attained}} value='{{attained}}'{{/attained}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_native'>native: </label><div class='col-sm-8'><input id='{{id}}_native' class='form-control' type='text'{{#native}} value='{{native}}'{{/native}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea_string}}'{{/SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -8985,7 +8979,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_crossTime'>crossTime: </label><div class='col-sm-8'><input id='{{id}}_crossTime' class='form-control' type='text'{{#crossTime}} value='{{crossTime}}'{{/crossTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highMW'>highMW: </label><div class='col-sm-8'><input id='{{id}}_highMW' class='form-control' type='text'{{#highMW}} value='{{highMW}}'{{/highMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowMW'>lowMW: </label><div class='col-sm-8'><input id='{{id}}_lowMW' class='form-control' type='text'{{#lowMW}} value='{{lowMW}}'{{/lowMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -9126,7 +9120,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='{{id}}_qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusType'>statusType: </label><div class='col-sm-8'><input id='{{id}}_statusType' class='form-control' type='text'{{#statusType}} value='{{statusType}}'{{/statusType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketSkills'>MarketSkills: </label><div class='col-sm-8'><input id='{{id}}_MarketSkills' class='form-control' type='text'{{#MarketSkills}} value='{{MarketSkills}}_string'{{/MarketSkills}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketSkills'>MarketSkills: </label><div class='col-sm-8'><input id='{{id}}_MarketSkills' class='form-control' type='text'{{#MarketSkills}} value='{{MarketSkills_string}}'{{/MarketSkills}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -9890,12 +9884,12 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quadraticCoefficient'>quadraticCoefficient: </label><div class='col-sm-8'><input id='{{id}}_quadraticCoefficient' class='form-control' type='text'{{#quadraticCoefficient}} value='{{quadraticCoefficient}}'{{/quadraticCoefficient}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode_string}}'{{/AggregateNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='{{id}}_AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AreaReserveSpecification'>AreaReserveSpecification: </label><div class='col-sm-8'><input id='{{id}}_AreaReserveSpecification' class='form-control' type='text'{{#AreaReserveSpecification}} value='{{AreaReserveSpecification}}'{{/AreaReserveSpecification}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlAreaDesignation'>ControlAreaDesignation: </label><div class='col-sm-8'><input id='{{id}}_ControlAreaDesignation' class='form-control' type='text'{{#ControlAreaDesignation}} value='{{ControlAreaDesignation}}_string'{{/ControlAreaDesignation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlAreaDesignation'>ControlAreaDesignation: </label><div class='col-sm-8'><input id='{{id}}_ControlAreaDesignation' class='form-control' type='text'{{#ControlAreaDesignation}} value='{{ControlAreaDesignation_string}}'{{/ControlAreaDesignation}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -10782,7 +10776,7 @@ define
                     `
                     + Pnode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CongestionArea'>CongestionArea: </label><div class='col-sm-8'><input id='{{id}}_CongestionArea' class='form-control' type='text'{{#CongestionArea}} value='{{CongestionArea}}_string'{{/CongestionArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CongestionArea'>CongestionArea: </label><div class='col-sm-8'><input id='{{id}}_CongestionArea' class='form-control' type='text'{{#CongestionArea}} value='{{CongestionArea_string}}'{{/CongestionArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='{{id}}_MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenDistributionFactor'>GenDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_GenDistributionFactor' class='form-control' type='text'{{#GenDistributionFactor}} value='{{GenDistributionFactor}}'{{/GenDistributionFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadDistributionFactor'>LoadDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_LoadDistributionFactor' class='form-control' type='text'{{#LoadDistributionFactor}} value='{{LoadDistributionFactor}}'{{/LoadDistributionFactor}}></div></div>
@@ -10950,8 +10944,8 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_apnodeType'>apnodeType: </label><div class='col-sm-8'><input id='{{id}}_apnodeType' class='form-control' type='text'{{#apnodeType}} value='{{apnodeType}}'{{/apnodeType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participationCategory'>participationCategory: </label><div class='col-sm-8'><input id='{{id}}_participationCategory' class='form-control' type='text'{{#participationCategory}} value='{{participationCategory}}'{{/participationCategory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='{{id}}_MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold}}_string'{{/MPMTestThreshold}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TACArea'>TACArea: </label><div class='col-sm-8'><input id='{{id}}_TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea}}_string'{{/TACArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='{{id}}_MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold_string}}'{{/MPMTestThreshold}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TACArea'>TACArea: </label><div class='col-sm-8'><input id='{{id}}_TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea_string}}'{{/TACArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PnodeDistributionFactor'>PnodeDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_PnodeDistributionFactor' class='form-control' type='text'{{#PnodeDistributionFactor}} value='{{PnodeDistributionFactor}}'{{/PnodeDistributionFactor}}></div></div>
                     </div>
                     <fieldset>
@@ -11080,7 +11074,7 @@ define
                     `
                     + AggregatedPnode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='{{id}}_IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}_string'{{/IndividualPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='{{id}}_IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode_string}}'{{/IndividualPnode}}></div></div>
                     </div>
                     <fieldset>
                     `

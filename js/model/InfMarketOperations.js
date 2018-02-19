@@ -388,7 +388,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><input id='{{id}}_certifiedRTM' class='form-control' type='text'{{#certifiedRTM}} value='{{certifiedRTM}}'{{/certifiedRTM}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><input id='{{id}}_certifiedRUC' class='form-control' type='text'{{#certifiedRUC}} value='{{certifiedRUC}}'{{/certifiedRUC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `

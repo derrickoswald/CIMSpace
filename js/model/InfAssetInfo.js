@@ -628,16 +628,11 @@ define
                     {{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
                     {{#kneePointCurrent}}<div><b>kneePointCurrent</b>: {{kneePointCurrent}}</div>{{/kneePointCurrent}}
                     {{#kneePointVoltage}}<div><b>kneePointVoltage</b>: {{kneePointVoltage}}</div>{{/kneePointVoltage}}
-                    {{#maxRatio}}<div><b>maxRatio</b>: {{maxRatio}}</div>{{/maxRatio}}
-                    {{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
-                    {{#primaryFlsRating}}<div><b>primaryFlsRating</b>: {{primaryFlsRating}}</div>{{/primaryFlsRating}}
-                    {{#primaryRatio}}<div><b>primaryRatio</b>: {{primaryRatio}}</div>{{/primaryRatio}}
-                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
+                    {{#maxRatio}}<div><b>maxRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{maxRatio}}&quot;);}); return false;'>{{maxRatio}}</a></div>{{/maxRatio}}\n                    {{#nominalRatio}}<div><b>nominalRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{nominalRatio}}&quot;);}); return false;'>{{nominalRatio}}</a></div>{{/nominalRatio}}\n                    {{#primaryFlsRating}}<div><b>primaryFlsRating</b>: {{primaryFlsRating}}</div>{{/primaryFlsRating}}
+                    {{#primaryRatio}}<div><b>primaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{primaryRatio}}&quot;);}); return false;'>{{primaryRatio}}</a></div>{{/primaryRatio}}\n                    {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
                     {{#secondaryFlsRating}}<div><b>secondaryFlsRating</b>: {{secondaryFlsRating}}</div>{{/secondaryFlsRating}}
-                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: {{secondaryRatio}}</div>{{/secondaryRatio}}
-                    {{#tertiaryFlsRating}}<div><b>tertiaryFlsRating</b>: {{tertiaryFlsRating}}</div>{{/tertiaryFlsRating}}
-                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: {{tertiaryRatio}}</div>{{/tertiaryRatio}}
-                    {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
+                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryRatio}}&quot;);}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}\n                    {{#tertiaryFlsRating}}<div><b>tertiaryFlsRating</b>: {{tertiaryFlsRating}}</div>{{/tertiaryFlsRating}}
+                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{tertiaryRatio}}&quot;);}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}\n                    {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
                     </div>
                     <fieldset>
 
@@ -919,8 +914,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
-                    {{#AssetModelCatalogueItems}}<div><b>AssetModelCatalogueItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AssetModelCatalogueItems}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#AssetModelCatalogueItems}}<div><b>AssetModelCatalogueItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AssetModelCatalogueItems}}
                     </div>
                     <fieldset>
 
@@ -1438,13 +1432,9 @@ define
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
                     {{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
-                    {{#nominalRatio}}<div><b>nominalRatio</b>: {{nominalRatio}}</div>{{/nominalRatio}}
-                    {{#primaryRatio}}<div><b>primaryRatio</b>: {{primaryRatio}}</div>{{/primaryRatio}}
-                    {{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
+                    {{#nominalRatio}}<div><b>nominalRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{nominalRatio}}&quot;);}); return false;'>{{nominalRatio}}</a></div>{{/nominalRatio}}\n                    {{#primaryRatio}}<div><b>primaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{primaryRatio}}&quot;);}); return false;'>{{primaryRatio}}</a></div>{{/primaryRatio}}\n                    {{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
-                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: {{secondaryRatio}}</div>{{/secondaryRatio}}
-                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: {{tertiaryRatio}}</div>{{/tertiaryRatio}}
-                    </div>
+                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryRatio}}&quot;);}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}\n                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{tertiaryRatio}}&quot;);}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}\n                    </div>
                     <fieldset>
 
                     `

@@ -263,7 +263,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sensorAccuracy'>sensorAccuracy: </label><div class='col-sm-8'><input id='{{id}}_sensorAccuracy' class='form-control' type='text'{{#sensorAccuracy}} value='{{sensorAccuracy}}'{{/sensorAccuracy}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeStamp'>timeStamp: </label><div class='col-sm-8'><input id='{{id}}_timeStamp' class='form-control' type='text'{{#timeStamp}} value='{{timeStamp}}'{{/timeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementValueSource'>MeasurementValueSource: </label><div class='col-sm-8'><input id='{{id}}_MeasurementValueSource' class='form-control' type='text'{{#MeasurementValueSource}} value='{{MeasurementValueSource}}'{{/MeasurementValueSource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='{{id}}_ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets}}_string'{{/ProcedureDataSets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='{{id}}_ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets_string}}'{{/ProcedureDataSets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementValueQuality'>MeasurementValueQuality: </label><div class='col-sm-8'><input id='{{id}}_MeasurementValueQuality' class='form-control' type='text'{{#MeasurementValueQuality}} value='{{MeasurementValueQuality}}'{{/MeasurementValueQuality}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteSource'>RemoteSource: </label><div class='col-sm-8'><input id='{{id}}_RemoteSource' class='form-control' type='text'{{#RemoteSource}} value='{{RemoteSource}}'{{/RemoteSource}}></div></div>
@@ -556,7 +556,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures}}_string'{{/Procedures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures_string}}'{{/Procedures}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -984,8 +984,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='{{id}}_unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='{{id}}_unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures}}_string'{{/Procedures}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures_string}}'{{/Procedures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
                     </div>
@@ -3057,7 +3057,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minValue'>minValue: </label><div class='col-sm-8'><input id='{{id}}_minValue' class='form-control' type='text'{{#minValue}} value='{{minValue}}'{{/minValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalValue'>normalValue: </label><div class='col-sm-8'><input id='{{id}}_normalValue' class='form-control' type='text'{{#normalValue}} value='{{normalValue}}'{{/normalValue}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_positiveFlowIn'>positiveFlowIn: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSets'>LimitSets: </label><div class='col-sm-8'><input id='{{id}}_LimitSets' class='form-control' type='text'{{#LimitSets}} value='{{LimitSets}}_string'{{/LimitSets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSets'>LimitSets: </label><div class='col-sm-8'><input id='{{id}}_LimitSets' class='form-control' type='text'{{#LimitSets}} value='{{LimitSets_string}}'{{/LimitSets}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3188,7 +3188,7 @@ define
                     + Measurement.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxValue'>maxValue: </label><div class='col-sm-8'><input id='{{id}}_maxValue' class='form-control' type='text'{{#maxValue}} value='{{maxValue}}'{{/maxValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSets'>LimitSets: </label><div class='col-sm-8'><input id='{{id}}_LimitSets' class='form-control' type='text'{{#LimitSets}} value='{{LimitSets}}_string'{{/LimitSets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSets'>LimitSets: </label><div class='col-sm-8'><input id='{{id}}_LimitSets' class='form-control' type='text'{{#LimitSets}} value='{{LimitSets_string}}'{{/LimitSets}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3425,7 +3425,7 @@ define
                     `
                     + LimitSet.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements}}_string'{{/Measurements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3548,7 +3548,7 @@ define
                     `
                     + LimitSet.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements}}_string'{{/Measurements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
                     </div>
                     <fieldset>
                     `

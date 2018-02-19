@@ -237,7 +237,7 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamSupplyRating'>steamSupplyRating: </label><div class='col-sm-8'><input id='{{id}}_steamSupplyRating' class='form-control' type='text'{{#steamSupplyRating}} value='{{steamSupplyRating}}'{{/steamSupplyRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamTurbines'>SteamTurbines: </label><div class='col-sm-8'><input id='{{id}}_SteamTurbines' class='form-control' type='text'{{#SteamTurbines}} value='{{SteamTurbines}}_string'{{/SteamTurbines}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamTurbines'>SteamTurbines: </label><div class='col-sm-8'><input id='{{id}}_SteamTurbines' class='form-control' type='text'{{#SteamTurbines}} value='{{SteamTurbines_string}}'{{/SteamTurbines}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -359,7 +359,7 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primeMoverRating'>primeMoverRating: </label><div class='col-sm-8'><input id='{{id}}_primeMoverRating' class='form-control' type='text'{{#primeMoverRating}} value='{{primeMoverRating}}'{{/primeMoverRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachines'>SynchronousMachines: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachines' class='form-control' type='text'{{#SynchronousMachines}} value='{{SynchronousMachines}}_string'{{/SynchronousMachines}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachines'>SynchronousMachines: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachines' class='form-control' type='text'{{#SynchronousMachines}} value='{{SynchronousMachines_string}}'{{/SynchronousMachines}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1735,7 +1735,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft2PowerLP1'>shaft2PowerLP1: </label><div class='col-sm-8'><input id='{{id}}_shaft2PowerLP1' class='form-control' type='text'{{#shaft2PowerLP1}} value='{{shaft2PowerLP1}}'{{/shaft2PowerLP1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft2PowerLP2'>shaft2PowerLP2: </label><div class='col-sm-8'><input id='{{id}}_shaft2PowerLP2' class='form-control' type='text'{{#shaft2PowerLP2}} value='{{shaft2PowerLP2}}'{{/shaft2PowerLP2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamChestTC'>steamChestTC: </label><div class='col-sm-8'><input id='{{id}}_steamChestTC' class='form-control' type='text'{{#steamChestTC}} value='{{steamChestTC}}'{{/steamChestTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamSupplys'>SteamSupplys: </label><div class='col-sm-8'><input id='{{id}}_SteamSupplys' class='form-control' type='text'{{#SteamSupplys}} value='{{SteamSupplys}}_string'{{/SteamSupplys}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamSupplys'>SteamSupplys: </label><div class='col-sm-8'><input id='{{id}}_SteamSupplys' class='form-control' type='text'{{#SteamSupplys}} value='{{SteamSupplys_string}}'{{/SteamSupplys}}></div></div>
                     </div>
                     <fieldset>
                     `

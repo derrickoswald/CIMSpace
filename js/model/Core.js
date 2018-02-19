@@ -2871,11 +2871,11 @@ define
                     + IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetDatasheet'>AssetDatasheet: </label><div class='col-sm-8'><input id='{{id}}_AssetDatasheet' class='form-control' type='text'{{#AssetDatasheet}} value='{{AssetDatasheet}}'{{/AssetDatasheet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Clearances'>Clearances: </label><div class='col-sm-8'><input id='{{id}}_Clearances' class='form-control' type='text'{{#Clearances}} value='{{Clearances}}_string'{{/Clearances}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Clearances'>Clearances: </label><div class='col-sm-8'><input id='{{id}}_Clearances' class='form-control' type='text'{{#Clearances}} value='{{Clearances_string}}'{{/Clearances}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Location'>Location: </label><div class='col-sm-8'><input id='{{id}}_Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReportingGroup'>ReportingGroup: </label><div class='col-sm-8'><input id='{{id}}_ReportingGroup' class='form-control' type='text'{{#ReportingGroup}} value='{{ReportingGroup}}_string'{{/ReportingGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReportingGroup'>ReportingGroup: </label><div class='col-sm-8'><input id='{{id}}_ReportingGroup' class='form-control' type='text'{{#ReportingGroup}} value='{{ReportingGroup_string}}'{{/ReportingGroup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PSRType'>PSRType: </label><div class='col-sm-8'><input id='{{id}}_PSRType' class='form-control' type='text'{{#PSRType}} value='{{PSRType}}'{{/PSRType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3239,7 +3239,7 @@ define
                     `
                     + IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}_string'{{/PowerSystemResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource_string}}'{{/PowerSystemResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReportingSuperGroup'>ReportingSuperGroup: </label><div class='col-sm-8'><input id='{{id}}_ReportingSuperGroup' class='form-control' type='text'{{#ReportingSuperGroup}} value='{{ReportingSuperGroup}}'{{/ReportingSuperGroup}}></div></div>
                     </div>
                     <fieldset>
@@ -3666,11 +3666,11 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_normallyInService'>normallyInService: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normallyInService' class='form-check-input' type='checkbox'{{#normallyInService}} checked{{/normallyInService}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_aggregate'>aggregate: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_aggregate' class='form-check-input' type='checkbox'{{#aggregate}} checked{{/aggregate}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints_string}}'{{/UsagePoints}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EquipmentContainer'>EquipmentContainer: </label><div class='col-sm-8'><input id='{{id}}_EquipmentContainer' class='form-control' type='text'{{#EquipmentContainer}} value='{{EquipmentContainer}}'{{/EquipmentContainer}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalRestrictions'>OperationalRestrictions: </label><div class='col-sm-8'><input id='{{id}}_OperationalRestrictions' class='form-control' type='text'{{#OperationalRestrictions}} value='{{OperationalRestrictions}}_string'{{/OperationalRestrictions}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outages'>Outages: </label><div class='col-sm-8'><input id='{{id}}_Outages' class='form-control' type='text'{{#Outages}} value='{{Outages}}_string'{{/Outages}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WeatherStation'>WeatherStation: </label><div class='col-sm-8'><input id='{{id}}_WeatherStation' class='form-control' type='text'{{#WeatherStation}} value='{{WeatherStation}}_string'{{/WeatherStation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalRestrictions'>OperationalRestrictions: </label><div class='col-sm-8'><input id='{{id}}_OperationalRestrictions' class='form-control' type='text'{{#OperationalRestrictions}} value='{{OperationalRestrictions_string}}'{{/OperationalRestrictions}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outages'>Outages: </label><div class='col-sm-8'><input id='{{id}}_Outages' class='form-control' type='text'{{#Outages}} value='{{Outages_string}}'{{/Outages}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WeatherStation'>WeatherStation: </label><div class='col-sm-8'><input id='{{id}}_WeatherStation' class='form-control' type='text'{{#WeatherStation}} value='{{WeatherStation_string}}'{{/WeatherStation}}></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4078,7 +4078,7 @@ define
                     `
                     + Equipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectionEquipments'>ProtectionEquipments: </label><div class='col-sm-8'><input id='{{id}}_ProtectionEquipments' class='form-control' type='text'{{#ProtectionEquipments}} value='{{ProtectionEquipments}}_string'{{/ProtectionEquipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectionEquipments'>ProtectionEquipments: </label><div class='col-sm-8'><input id='{{id}}_ProtectionEquipments' class='form-control' type='text'{{#ProtectionEquipments}} value='{{ProtectionEquipments_string}}'{{/ProtectionEquipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GroundingAction'>GroundingAction: </label><div class='col-sm-8'><input id='{{id}}_GroundingAction' class='form-control' type='text'{{#GroundingAction}} value='{{GroundingAction}}'{{/GroundingAction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BaseVoltage'>BaseVoltage: </label><div class='col-sm-8'><input id='{{id}}_BaseVoltage' class='form-control' type='text'{{#BaseVoltage}} value='{{BaseVoltage}}'{{/BaseVoltage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SvStatus'>SvStatus: </label><div class='col-sm-8'><input id='{{id}}_SvStatus' class='form-control' type='text'{{#SvStatus}} value='{{SvStatus}}'{{/SvStatus}}></div></div>

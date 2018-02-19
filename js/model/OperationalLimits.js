@@ -251,7 +251,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimitSet'>OperationalLimitSet: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimitSet' class='form-control' type='text'{{#OperationalLimitSet}} value='{{OperationalLimitSet}}'{{/OperationalLimitSet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimitType'>OperationalLimitType: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimitType' class='form-control' type='text'{{#OperationalLimitType}} value='{{OperationalLimitType}}'{{/OperationalLimitType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitDependencyModel'>LimitDependencyModel: </label><div class='col-sm-8'><input id='{{id}}_LimitDependencyModel' class='form-control' type='text'{{#LimitDependencyModel}} value='{{LimitDependencyModel}}_string'{{/LimitDependencyModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitDependencyModel'>LimitDependencyModel: </label><div class='col-sm-8'><input id='{{id}}_LimitDependencyModel' class='form-control' type='text'{{#LimitDependencyModel}} value='{{LimitDependencyModel_string}}'{{/LimitDependencyModel}}></div></div>
                     </div>
                     <fieldset>
                     `
