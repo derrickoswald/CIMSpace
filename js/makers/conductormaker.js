@@ -5,7 +5,7 @@
 
 define
 (
-    ["cim", "./powersystemresourcemaker", "model/Common", "model/Core"],
+    ["mustache", "cim", "./powersystemresourcemaker", "model/Common", "model/Core"],
     /**
      * @summary Make a CIM object at the Conductor level.
      * @description Digitizes a line and makes a Conductor element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports conductormaker
      * @version 1.0
      */
-    function (cim, PowerSystemResourceMaker, Common, Core)
+    function (mustache, cim, PowerSystemResourceMaker, Common, Core)
     {
         class ConductorMaker extends PowerSystemResourceMaker
         {
@@ -22,7 +22,7 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
-            static classes ()
+            classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -36,6 +36,52 @@ define
                 }
                 ret.sort ();
                 return (ret);
+            }
+
+            render_parameters ()
+            {
+                var ret = mustache.render (this.class_template (), { classes: this.classes () });
+                var data = this._cimmap.get_data ();
+                if (data)
+                {
+                    var template =
+                    "    <div class='form-group row'>\n" +
+                    "      <label class='col-sm-4 col-form-label' for='class_name'>Cable</label>\n" +
+                    "      <div class='col-sm-8'>\n" +
+                    "        <select id='cable_name' class='form-control custom-select'>\n" +
+                    "{{#cables}}\n" +
+                    "              <option value='{{id}}'>{{name}}</option>\n" +
+                    "{{/cables}}\n";
+                    "        </select>\n" +
+                    "      </div>\n" +
+                    "    </div>\n";
+                    var wireinfos = [];
+                    for (var name in data.WireInfo)
+                        if (data.WireInfo[name].PerLengthParameters)
+                            wireinfos.push (name);
+                    // for now we only understand the first PerLengthSequenceImpedance
+                    var cables = wireinfos.filter (name => data.PerLengthSequenceImpedance[data.WireInfo[name].PerLengthParameters[0]]);
+                    if (0 != cables.length)
+                        ret = ret + mustache.render (template, { cables: cables.map (x => data.WireInfo[x]) });
+                }
+                return (ret);
+            }
+
+            submit_parameters ()
+            {
+                var parameters = super.submit_parameters ();
+                var data = this._cimmap.get_data ();
+                if (data)
+                {
+                    var cable_name = document.getElementById ("cable_name");
+                    if (cable_name)
+                    {
+                        cable_name = cable_name.value;
+                        parameters.AssetDatasheet = cable_name; // add the cable type
+                        parameters.PerLengthImpedance = data.WireInfo[cable_name].PerLengthParameters[0]; // add the per length parameters
+                    }
+                }
+                return (parameters);
             }
 
             make_conductor (feature)
@@ -107,28 +153,25 @@ define
                 ret.push (new Core.Terminal (terminal1, this._features));
                 ret.push (new Core.Terminal (terminal2, this._features));
 
-                // add the location to the Cable object
-                line.Location = location.id;
-                var cls = cim.class_map (line);
-                this._elements[0] = new cls (line, this._features);
+                // update the Conductor object
+                line.Location = location.id; // add the location
+                document.getElementById (id + "_Location").value = line.Location;
+                this._cimedit.create_from (line);
 
                 // add the base voltage to the form
                 if (line.BaseVoltage)
                     document.getElementById (id + "_BaseVoltage").value = line.BaseVoltage;
 
-                // add the location to the form
-                document.getElementById (id + "_Location").value = location.id;
-
-                // update the display
-                this._cimedit.refresh ();
-
                 return (ret);
             }
 
-            make (obj, elements, features)
+            make (features)
             {
-                this._elements = elements;
                 this._features = features;
+                var parameters = this.submit_parameters ();
+                parameters.id = this._cimedit.uuidv4 ();
+                var obj = this._cimedit.create_from (parameters);
+                this._cimedit.refresh ();
                 var cpromise = this._digitizer.line (obj, this._features);
                 cpromise.setPromise (cpromise.promise ().then (this.make_conductor.bind (this)));
                 return (cpromise);

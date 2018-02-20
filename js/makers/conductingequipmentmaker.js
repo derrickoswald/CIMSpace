@@ -5,7 +5,7 @@
 
 define
 (
-    ["cim", "./powersystemresourcemaker", "model/Core"],
+    ["mustache", "cim", "./powersystemresourcemaker", "model/Core"],
     /**
      * @summary Make a CIM object at the ConductingEquipment level.
      * @description Digitizes a point and makes a ConductingEquipment element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports conductingequipmentmaker
      * @version 1.0
      */
-    function (cim, PowerSystemResourceMaker, Core)
+    function (mustache, cim, PowerSystemResourceMaker, Core)
     {
         class ConductingEquipmentMaker extends PowerSystemResourceMaker
         {
@@ -22,7 +22,7 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
-            static classes ()
+            classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -36,6 +36,11 @@ define
                 }
                 ret.sort ();
                 return (ret);
+            }
+
+            render_parameters ()
+            {
+                return (mustache.render (this.class_template (), { classes: this.classes () }));
             }
 
             low_voltage ()
@@ -108,10 +113,12 @@ define
                 return (ret);
             }
 
-            make (obj, elements, features)
+            make (features)
             {
-                this._elements = elements;
                 this._features = features;
+                var parameters = this.submit_parameters ();
+                parameters.id = this._cimedit.uuidv4 ();
+                var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._features);
                 cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this)));
                 return (cpromise);

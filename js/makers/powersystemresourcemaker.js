@@ -5,7 +5,7 @@
 
 define
 (
-    ["cim", "model/Common"],
+    ["mustache", "cim", "model/Common"],
     /**
      * @summary Make a CIM object at the PSR level.
      * @description Base class for CIM object makers
@@ -13,7 +13,7 @@ define
      * @exports powersystemresourcemaker
      * @version 1.0
      */
-    function (cim, Common)
+    function (mustache, cim, Common)
     {
         class PowerSystemResourceMaker
         {
@@ -24,7 +24,7 @@ define
                 this._digitizer = digitizer;
             }
 
-            static classes ()
+            classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -38,6 +38,31 @@ define
                 }
                 ret.sort ();
                 return (ret);
+            }
+
+            class_template ()
+            {
+                return (
+                    "    <div class='form-group row'>\n" +
+                    "      <label class='col-sm-4 col-form-label' for='class_name'>Class</label>\n" +
+                    "      <div class='col-sm-8'>\n" +
+                    "        <select id='psr_class' class='form-control custom-select'>\n" +
+                    "{{#classes}}\n" +
+                    "              <option value='{{.}}'>{{.}}</option>\n" +
+                    "{{/classes}}\n" +
+                    "        </select>\n" +
+                    "      </div>\n" +
+                    "    </div>\n");
+            }
+
+            render_parameters ()
+            {
+                return (mustache.render (this.class_template (), { classes: this.classes () }));
+            }
+
+            submit_parameters ()
+            {
+                return ({ cls: document.getElementById ("psr_class").value });
             }
 
             get_connectivity_for_equipment (equipment, point)
@@ -317,8 +342,7 @@ define
 
                 // add the location to the PSR object
                 psr.Location = location.id;
-                var cls = cim.class_map (psr);
-                this._elements[0] = new cls (psr, this._features);
+                this._cimedit.create_from (psr);
 
                 // set the base voltage in the form (if it's conducting equipment)
                 if (psr.BaseVoltage)
@@ -331,16 +355,15 @@ define
                 // update the form
                 document.getElementById (id + "_Location").value = location.id;
 
-                // update the display
-                this._cimedit.refresh ();
-
                 return (ret);
             }
 
-            make (obj, elements, features)
+            make (features)
             {
-                this._elements = elements;
                 this._features = features;
+                var parameters = this.submit_parameters ();
+                parameters.id = this._cimedit.uuidv4 ();
+                var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._features);
                 cpromise.setPromise (cpromise.promise ().then (this.make_psr.bind (this)));
                 return (cpromise);

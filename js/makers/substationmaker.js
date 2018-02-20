@@ -5,7 +5,7 @@
 
 define
 (
-    ["cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires", "model/StateVariables"],
+    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires", "model/StateVariables"],
     /**
      * @summary Make a collection of objects representing a Substation with internal data.
      * @description Digitizes a point and makes a Substation, PowerTransformer, BusbarSection, a number of Switch and Fuse with Connector and connectivity.
@@ -13,7 +13,7 @@ define
      * @exports substationmaker
      * @version 1.0
      */
-    function (cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires, StateVariables)
+    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires, StateVariables)
     {
         class SubstationMaker extends PowerSystemResourceMaker
         {
@@ -25,7 +25,7 @@ define
                 this._yoffset = 3.0e-5;
             }
 
-            static classes ()
+            classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -39,6 +39,11 @@ define
                 }
                 ret.sort ();
                 return (ret);
+            }
+
+            render_parameters ()
+            {
+                return (mustache.render (this.class_template (), { classes: this.classes () }));
             }
 
             distribution_box ()
@@ -274,16 +279,15 @@ define
                     x = x + this._xoffset;
                 }
 
-                // update the display
-                this._cimedit.refresh ();
-
                 return (ret);
             }
 
-            make (obj, elements, features)
+            make (features)
             {
-                this._elements = elements;
                 this._features = features;
+                var parameters = this.submit_parameters ();
+                parameters.id = this._cimedit.uuidv4 ();
+                var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._features);
                 cpromise.setPromise (cpromise.promise ().then (this.make_substation.bind (this)));
                 return (cpromise);

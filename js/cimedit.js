@@ -20,11 +20,6 @@ define
             constructor (cimmap)
             {
                 this._cimmap = cimmap;
-                this._selections =
-                "              <option value='' selected></option>\n" +
-                "{{#classes}}\n" +
-                "              <option value='{{.}}'>{{.}}</option>\n" +
-                "{{/classes}}\n";
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
@@ -33,6 +28,7 @@ define
                 "        <span aria-hidden='true'>&times;</span>\n" +
                 "      </button>\n" +
                 "    </h5>\n" +
+                "    <div id='maker_parameters'></div>\n" +
                 "    <div class='form-group row'>\n" +
                 "      <label class='col-sm-4 col-form-label' for='maker_name'>Maker</label>\n" +
                 "      <div class='col-sm-8'>\n" +
@@ -44,11 +40,14 @@ define
                 "        </select>\n" +
                 "      </div>\n" +
                 "    </div>\n" +
-                "    <div class='form-group row'>\n" +
+                "    <div id='class_chooser' class='form-group row'>\n" +
                 "      <label class='col-sm-4 col-form-label' for='class_name'>Class</label>\n" +
                 "      <div class='col-sm-8'>\n" +
                 "        <select id='class_name' class='form-control custom-select'>\n" +
-                this._selections +
+                "              <option value='' selected></option>\n" +
+                "{{#classes}}\n" +
+                "              <option value='{{.}}'>{{.}}</option>\n" +
+                "{{/classes}}\n" +
                 "        </select>\n" +
                 "      </div>\n" +
                 "    </div>\n" +
@@ -124,10 +123,22 @@ define
                 }
                 else if (event.target.id == "maker_name")
                 {
-                    var text = ("" == event.target.value) ? mustache.render (this._selections, { classes: this._classes }) :
-                        mustache.render (this._selections, { classes: this._makers.find (x => x.name == event.target.value).classes () });
-                    document.getElementById ("class_name").innerHTML = text;
-                    document.getElementById ("create").disabled = true;
+                    var maker_name = ("" != event.target.value) ? event.target.value : undefined;
+                    var maker = maker_name ? this._makers.find (x => x.name == maker_name) : undefined;
+                    if (maker)
+                    {
+                        document.getElementById ("class_chooser").style.display = "none";
+                        this._maker = new maker (this._cimmap, this, this._digitizer);
+                        document.getElementById ("maker_parameters").innerHTML = this._maker.render_parameters ();
+                        document.getElementById ("create").disabled = false;
+                    }
+                    else
+                    {
+                        delete this._maker;
+                        document.getElementById ("maker_parameters").innerHTML = "";
+                        document.getElementById ("class_chooser").style.display = "inline-block";
+                        document.getElementById ("create").disabled = "" != document.getElementById ("class_name").value;
+                    }
                 }
             }
 
@@ -215,38 +226,37 @@ define
             {
                 for (var i = 0; i < array.length; i++)
                     this.edit (array[i]);
+                this.refresh ();
             }
 
-            create_from (proto, maker)
+            create_from (proto)
             {
                 proto.EditDisposition = "new";
-                this._features = {};
                 var cls = cim.class_map (proto);
                 var obj = new cls (proto, this._features);
                 if (this._features.IdentifiedObject)
                     proto.mRID = proto.id;
                 obj = new cls (proto, this._features); // do it again, possibly with mRID set
-
                 this.edit (obj, true, true);
-
-                if (maker)
-                {
-                    var m = new maker (this._cimmap, this, this._digitizer);
-                    this._maker = m.make (obj, this._elements, this._features);
-                    this._maker.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
-                }
+                this.refresh ();
+                return (obj);
             }
 
             create ()
             {
-                var maker_name = document.getElementById ("maker_name").value;
-                var class_name = document.getElementById ("class_name").value;
-                var id = this.uuidv4 ();
-                var proto = { cls: class_name, id: id };
-                if ("" != maker_name)
-                    this.create_from (proto, this._makers.find (x => x.name == maker_name));
-                else if ("" != class_name)
+                this._features = {};
+                if (this._maker)
+                {
+                    this._maker_promise = this._maker.make (this._features);
+                    this._maker_promise.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
+                }
+                else
+                {
+                    var class_name = document.getElementById ("class_name").value;
+                    var id = this.uuidv4 ();
+                    var proto = { cls: class_name, id: id };
                     this.create_from (proto);
+                }
             }
 
             create_new ()
@@ -655,11 +665,12 @@ define
 
             del ()
             {
-                if (this._maker)
+                if (this._maker_promise)
                 {
-                    var maker = this._maker; // ensure recursion doesn't happen
+                    var maker_promise = this._maker_promise; // ensure recursion doesn't happen
+                    delete this._maker_promise;
+                    maker_promise.cancel ();
                     delete this._maker;
-                    maker.cancel ();
                 }
                 if (!this._features)
                 {
@@ -693,11 +704,12 @@ define
             {
                 if (error)
                     console.log (error);
-                if (this._maker)
+                if (this._maker_promise)
                 {
-                    var maker = this._maker; // ensure recursion doesn't happen
+                    var maker_promise = this._maker_promise; // ensure recursion doesn't happen
+                    delete this._maker_promise;
+                    maker_promise.cancel ();
                     delete this._maker;
-                    maker.cancel ();
                 }
                 delete this._elements;
                 delete this._features;

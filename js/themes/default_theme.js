@@ -44,12 +44,13 @@ define
          */
         function get_locations (data, options)
         {
+            var ret = {};
+
             var points = data.PositionPoint;
             var locations = data.Location;
             // list of locations to exclude
             var blacklist = {};
             var extents = { xmin: Number.MAX_VALUE, ymin: Number.MAX_VALUE, xmax: -Number.MAX_VALUE, ymax: -Number.MAX_VALUE };
-            var ret = {};
 
             if (!options.show_internal_features)
             {
