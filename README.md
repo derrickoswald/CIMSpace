@@ -8,7 +8,7 @@ CIMSpace allows you to read, display and analyze CIM files, which are a data int
 See [CIM users group](http://cimug.ucaiug.org/default.aspx) for additional details on the CIM format.
 
 # Online
-The program is available online [https://derrickoswald.github.io/CIMSpace/](http://derrickoswald.github.io/CIMSpace/).
+The program is available online [http://derrickoswald.github.io/CIMSpace/](http://derrickoswald.github.io/CIMSpace/).
 
 # Operation
 
