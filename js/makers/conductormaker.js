@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "model/Common", "model/Core"],
+    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Common", "model/Core"],
     /**
      * @summary Make a CIM object at the Conductor level.
      * @description Digitizes a line and makes a Conductor element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports conductormaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, Common, Core)
+    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Common, Core)
     {
         class ConductorMaker extends PowerSystemResourceMaker
         {
@@ -84,13 +84,32 @@ define
                 return (parameters);
             }
 
+            measure (lon1, lat1, lon2, lat2)
+            {
+                var rlat1 = lat1 * Math.PI / 180;
+                var rlat2 = lat2 * Math.PI / 180
+                var dlat = rlat2 - rlat1;
+                var dlon = (lon2 -lon1) * Math.PI / 180;
+                var a = Math.sin (dlat / 2.0) * Math.sin (dlat / 2.0) +
+                    Math.cos (rlat1) * Math.cos (rlat2) *
+                    Math.sin (dlon / 2.0) * Math.sin (dlon / 2.0);
+                var c = 2.0 * Math.atan2 (Math.sqrt (a), Math.sqrt (1.0 - a));
+                return (c * 6378.137e3); // earth radius in meters
+            }
+
+            distance (coordinates)
+            {
+                var ret = 0.0;
+                for (var i = 0; i < coordinates.length - 1; i++)
+                    ret += this.measure (coordinates[i][0], coordinates[i][1], coordinates[i + 1][0], coordinates[i + 1][1]);
+                return (ret);
+            }
+
             make_conductor (feature)
             {
+                var ret = [];
                 var line = this._cimedit.primary_element ();
                 var id = line.id;
-
-                var ret = this.make_location (id, "wgs84", feature);
-                var location = ret[0];
 
                 var connectivity1 = this.get_connectivity (feature.geometry.coordinates[0][0], feature.geometry.coordinates[0][1]);
                 if (null == connectivity1) // invent a new node if there are none
@@ -153,14 +172,29 @@ define
                 ret.push (new Core.Terminal (terminal1, this._features));
                 ret.push (new Core.Terminal (terminal2, this._features));
 
-                // update the Conductor object
-                line.Location = location.id; // add the location
-                document.getElementById (id + "_Location").value = line.Location;
+                var loc = this.make_location (id, "wgs84", feature);
+                ret = ret.concat (ret, loc);
+                var location = loc[0];
+                line.Location = location.id;
+                line.length = this.distance (feature.geometry.coordinates);
+                var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
+                ret = ret.concat (eqm.ensure_voltages (this._features));
+                ret = ret.concat (eqm.ensure_status (this._features));
+                line.normallyInService = true;
+                line.SvStatus = eqm.in_use ();
+                if (!line.BaseVoltage)
+                    line.BaseVoltage = eqm.low_voltage ();
+                if (line.PerLengthImpedance)
+                {
+                    // do we really want to set r+jx and r0+jx0 from length and PerLengthSequenceImpedance? Seems redundant.
+                    var plsi = this._cimmap.get_data ().PerLengthSequenceImpedance[line.PerLengthImpedance];
+                    var km = line.length / 1e3;
+                    line.r = plsi.r * km;
+                    line.x = plsi.x * km;
+                    line.r0 = plsi.r0 * km;
+                    line.x0 = plsi.x0 * km;
+                }
                 this._cimedit.create_from (line);
-
-                // add the base voltage to the form
-                if (line.BaseVoltage)
-                    document.getElementById (id + "_BaseVoltage").value = line.BaseVoltage;
 
                 return (ret);
             }

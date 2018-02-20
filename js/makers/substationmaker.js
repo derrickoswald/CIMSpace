@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires", "model/StateVariables"],
+    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
     /**
      * @summary Make a collection of objects representing a Substation with internal data.
      * @description Digitizes a point and makes a Substation, PowerTransformer, BusbarSection, a number of Switch and Fuse with Connector and connectivity.
@@ -13,7 +13,7 @@ define
      * @exports substationmaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires, StateVariables)
+    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
     {
         class SubstationMaker extends PowerSystemResourceMaker
         {
@@ -74,27 +74,6 @@ define
                 return (ret);
             }
 
-            in_use ()
-            {
-                return ("in_use");
-            }
-
-            not_in_use ()
-            {
-                return ("not_in_use");
-            }
-
-            ensure_status (features)
-            {
-                var ret = [];
-                var data = this._cimmap.get_data ();
-                if (!data || !data.SvStatus || !data.SvStatus["in_use"])
-                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use Status", description: "Status for equipment in use.", inService: true }, features));
-                if (!data || !data.SvStatus || !data.SvStatus["not_in_use"])
-                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use Status", description: "Status for equipment not in use", inService: false }, features));
-                return (ret);
-            }
-
             make_substation (feature)
             {
                 var station = this._cimedit.primary_element ();
@@ -104,8 +83,8 @@ define
                 var ret = this.make_psr (feature);
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 ret = ret.concat (eqm.ensure_voltages (this._features));
+                ret = ret.concat (eqm.ensure_status (this._features));
                 ret = ret.concat (this.ensure_stations (this._features));
-                ret = ret.concat (this.ensure_status (this._features));
 
                 var x = feature.geometry.coordinates[0];
                 var y = feature.geometry.coordinates[1];
@@ -124,7 +103,7 @@ define
                     name: "Busbar",
                     BaseVoltage: eqm.low_voltage (),
                     normallyInService: true,
-                    SvStatus: this.in_use (),
+                    SvStatus: eqm.in_use (),
                     EquipmentContainer: id,
                     Location: location[0].id
                 };
@@ -174,7 +153,7 @@ define
                             BaseVoltage: eqm.low_voltage (),
                             normallyInService: true,
                             retained: true,
-                            SvStatus: this.in_use (),
+                            SvStatus: eqm.in_use (),
                             EquipmentContainer: id,
                             Location: location[0].id
                         };
@@ -194,7 +173,7 @@ define
                             BaseVoltage: eqm.low_voltage (),
                             ratedCurrent: 125.0,
                             normallyInService: true,
-                            SvStatus: this.in_use (),
+                            SvStatus: eqm.in_use (),
                             EquipmentContainer: id,
                             Location: location[0].id
                         };
@@ -252,7 +231,7 @@ define
                         name: "C" + (i + 1),
                         BaseVoltage: eqm.low_voltage (),
                         normallyInService: true,
-                        SvStatus: this.in_use (),
+                        SvStatus: eqm.in_use (),
                         EquipmentContainer: id,
                         Location: location[0].id
                     };

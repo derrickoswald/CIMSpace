@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "model/Core"],
+    ["mustache", "cim", "./powersystemresourcemaker", "model/Core", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the ConductingEquipment level.
      * @description Digitizes a point and makes a ConductingEquipment element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports conductingequipmentmaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, Core)
+    function (mustache, cim, PowerSystemResourceMaker, Core, StateVariables)
     {
         class ConductingEquipmentMaker extends PowerSystemResourceMaker
         {
@@ -68,6 +68,27 @@ define
                     ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, features));
                 if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_400"])
                     ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, features));
+                return (ret);
+            }
+
+            in_use ()
+            {
+                return ("in_use");
+            }
+
+            not_in_use ()
+            {
+                return ("not_in_use");
+            }
+
+            ensure_status (features)
+            {
+                var ret = [];
+                var data = this._cimmap.get_data ();
+                if (!data || !data.SvStatus || !data.SvStatus["in_use"])
+                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use", description: "Status for equipment in use.", inService: true }, features));
+                if (!data || !data.SvStatus || !data.SvStatus["not_in_use"])
+                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use", description: "Status for equipment not in use", inService: false }, features));
                 return (ret);
             }
 

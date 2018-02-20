@@ -78,7 +78,9 @@ define
             {
                 var cim_data = this._cimmap.get_data ();
                 var mrid = this._cimmap.get_selected_feature ();
-                var feature = cim_data.Element[mrid]
+                var feature = cim_data.Element[mrid];
+                if (!feature)
+                    return ("");
                 var cls = cim.class_map (feature);
                 var template = cls.prototype.template ();
                 var text = mustache.render (template, feature);
