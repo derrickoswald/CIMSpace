@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "model/Core", "model/Wires"],
+    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
     /**
      * @summary Make a CIM object at the PowerTransformer level.
      * @description Digitizes a point and makes a PowerTransformer element with ends and connectivity.
@@ -13,7 +13,7 @@ define
      * @exports powertransformermaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, Core, Wires)
+    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
     {
         class PowerTransformerMaker extends PowerSystemResourceMaker
         {
@@ -49,6 +49,8 @@ define
 
                 var trafo = this._cimedit.primary_element ();
                 var id = trafo.id;
+
+                var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
 
                 // ToDo: assume it's the primary?
                 var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
@@ -111,6 +113,7 @@ define
                     description: "PowerTransformer End",
                     name: eid1,
                     endNumber: 1,
+                    BaseVoltage: eqm.medium_voltage (),
                     Terminal: terminal1.id,
                     connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.D",
                     PowerTransformer: id
@@ -125,6 +128,7 @@ define
                     description: "PowerTransformer End",
                     name: eid2,
                     endNumber: 2,
+                    BaseVoltage: eqm.low_voltage (),
                     Terminal: terminal2.id,
                     connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.Yn",
                     PowerTransformer: id
@@ -132,7 +136,13 @@ define
                 ret.push (new Wires.PowerTransformerEnd (end1, this._features));
                 ret.push (new Wires.PowerTransformerEnd (end2, this._features));
 
-                ret = ret.concat (this.make_psr (feature));
+                ret = ret.concat (eqm.ensure_voltages (this._features));
+                ret = ret.concat (eqm.ensure_status (this._features));
+                trafo.normallyInService = true;
+                trafo.SvStatus = eqm.in_use ();
+
+                ret = ret.concat (this.make_psr (feature, trafo));
+                this._cimedit.create_from (trafo);
 
                 return (ret);
             }

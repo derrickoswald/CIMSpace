@@ -332,9 +332,9 @@ define
                 return (ret);
             }
 
-            make_psr (feature)
+            make_psr (feature, power_system_resource)
             {
-                var psr = this._cimedit.primary_element ();
+                var psr = power_system_resource || this._cimedit.primary_element ();
                 var id = psr.id;
 
                 var ret = this.make_location (id, "wgs84", feature);
@@ -342,18 +342,10 @@ define
 
                 // add the location to the PSR object
                 psr.Location = location.id;
-                this._cimedit.create_from (psr);
 
-                // set the base voltage in the form (if it's conducting equipment)
-                if (psr.BaseVoltage)
-                {
-                    var bv = document.getElementById (id + "_BaseVoltage");
-                    if (bv)
-                        bv.value = psr.BaseVoltage;
-                }
-
-                // update the form
-                document.getElementById (id + "_Location").value = location.id;
+                // if we're not called as a sub-progam, update the editor
+                if (!power_system_resource)
+                    this._cimedit.create_from (psr);
 
                 return (ret);
             }

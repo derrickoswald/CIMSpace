@@ -129,7 +129,10 @@ define
                     terminal.TopologicalNode = connectivity.TopologicalNode;
                 ret.push (new Core.Terminal (terminal, this._features));
 
-                ret = ret.concat (this.make_psr (feature));
+                if (!equipment.BaseVoltage)
+                    equipment.BaseVoltage = this.low_voltage ();
+                ret = ret.concat (this.make_psr (feature, equipment));
+                this._cimedit.create_from (equipment);
 
                 return (ret);
             }

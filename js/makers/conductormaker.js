@@ -173,9 +173,9 @@ define
                 ret.push (new Core.Terminal (terminal2, this._features));
 
                 var loc = this.make_location (id, "wgs84", feature);
-                ret = ret.concat (ret, loc);
                 var location = loc[0];
                 line.Location = location.id;
+                ret = ret.concat (loc);
                 line.length = this.distance (feature.geometry.coordinates);
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 ret = ret.concat (eqm.ensure_voltages (this._features));

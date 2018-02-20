@@ -80,7 +80,9 @@ define
                 var id = station.id;
                 station.PSRType = this.transformer_station ();
 
-                var ret = this.make_psr (feature);
+                var ret = this.make_psr (feature, station);
+                this._cimedit.create_from (station);
+
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 ret = ret.concat (eqm.ensure_voltages (this._features));
                 ret = ret.concat (eqm.ensure_status (this._features));

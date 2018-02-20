@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "model/Core"],
+    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core"],
     /**
      * @summary Make a CIM object at the Switch level.
      * @description Digitizes a point and makes a Switch element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports switchmaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, Core)
+    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core)
     {
         class SwitchMaker extends PowerSystemResourceMaker
         {
@@ -49,6 +49,7 @@ define
 
                 var swtch = this._cimedit.primary_element ();
                 var id = swtch.id;
+                var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
 
                 var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
                 if (null == connectivity) // invent a new node if there are none
@@ -102,7 +103,14 @@ define
                 };
                 ret.push (new Core.Terminal (terminal2, this._features));
 
-                ret = ret.concat (this.make_psr (feature));
+                ret = ret.concat (eqm.ensure_voltages (this._features));
+                ret = ret.concat (eqm.ensure_status (this._features));
+                swtch.normallyInService = true;
+                swtch.SvStatus = eqm.in_use ();
+                if (!swtch.BaseVoltage)
+                    swtch.BaseVoltage = eqm.low_voltage ();
+                ret = ret.concat (this.make_psr (feature, swtch));
+                this._cimedit.create_from (swtch);
 
                 return (ret);
             }

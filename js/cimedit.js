@@ -465,40 +465,47 @@ define
             {
                 var cls = cim.class_map (element);
                 var data = this._cimmap.get_data ();
-                if (data)
-                {
-                    var relations = cls.prototype.relations ();
-                    for (var i = 0; i < relations.length; i++)
-                        if (relations[i][1] == "0..1")
+                var newdata = this._features;
+                var relations = cls.prototype.relations ();
+                for (var i = 0; i < relations.length; i++)
+                    if (relations[i][1] == "0..1")
+                    {
+                        var member = relations[i][0]; // object member name
+                        var ref = element[member]; // mRID of current reference or undefined
+                        var domid = element.id + "_" + member; // the HTML DOM element id
+                        var candidates = [];
+                        var selected = "";
+                        var relatable = data ? data[relations[i][3]] : undefined;
+                        if (relatable)
                         {
-                            var member = relations[i][0]; // object member name
-                            var ref = element[member]; // mRID of current reference or undefined
-                            var domid = element.id + "_" + member; // the HTML DOM element id
-                            var relatable = data[relations[i][3]];
-                            if (relatable)
-                            {
-                                var ids = [];
-                                for (var id in relatable)
-                                    ids.push (id);
-
-                                var obj = ref ? relatable[ref] : undefined;
-                                var selected = obj ? obj.id : "";
-                                // change class to alert alert-danger if object deleted or doesn't exist
-                                // if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
-                                if (!obj)
-                                    ids.push ("");
-                                ids.sort ();
-                                var options = ids.map (choice => "<option value='" + choice + "' " + (choice == selected ? " selected" : "") + ">" + (relatable[choice] && relatable[choice].name ? relatable[choice].name : choice) + "</option>");
-                                var select = document.createElement ("select");
-                                select.setAttribute ("class", "form-control custom-select");
-                                select.innerHTML = options.join ('');
-                                select.id = domid;
-                                var input = document.getElementById (domid);
-                                if (input)
-                                    input.parentNode.replaceChild (select, input);
-                            }
+                            for (var id in relatable)
+                                candidates.push (relatable[id]);
+                            var obj = ref ? relatable[ref] : undefined;
+                            selected = obj ? obj.id : selected;
                         }
-                }
+                        var relatable2 = newdata ? newdata[relations[i][3]] : undefined;
+                        if (relatable2)
+                        {
+                            for (var id in relatable2)
+                                candidates.push (relatable2[id]);
+                            var obj = ref ? relatable2[ref] : undefined;
+                            selected = obj ? obj.id : selected;
+                        }
+                        if (candidates.length > 0)
+                        {
+                            candidates.sort ((a, b) => (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0);
+                            if ("" == selected)
+                                candidates.unshift ({ id: "" });
+                            var options = candidates.map (choice => "<option value='" + choice.id + "' " + (choice.id == selected ? " selected" : "") + ">" + (choice.name ? choice.name : choice.id) + "</option>");
+                            var select = document.createElement ("select");
+                            select.setAttribute ("class", "form-control custom-select");
+                            select.innerHTML = options.join ('');
+                            select.id = domid;
+                            var input = document.getElementById (domid);
+                            if (input)
+                                input.parentNode.replaceChild (select, input);
+                        }
+                    }
             }
 
             edit (element, top_level, is_new)
