@@ -479,7 +479,11 @@ define
                         if (relatable)
                         {
                             for (var id in relatable)
-                                candidates.push (relatable[id]);
+                            {
+                                var obj = relatable[id];
+                                if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                    candidates.push (obj);
+                            }
                             var obj = ref ? relatable[ref] : undefined;
                             selected = obj ? obj.id : selected;
                         }
@@ -487,7 +491,11 @@ define
                         if (relatable2)
                         {
                             for (var id in relatable2)
-                                candidates.push (relatable2[id]);
+                            {
+                                var obj = relatable2[id];
+                                if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                    candidates.push (obj);
+                            }
                             var obj = ref ? relatable2[ref] : undefined;
                             selected = obj ? obj.id : selected;
                         }
