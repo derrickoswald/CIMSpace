@@ -356,7 +356,7 @@ define
                 var data = this._cimmap.get_data ();
                 var relations = cls.prototype.relations ();
                 for (var i = 0; i < relations.length; i++)
-                    if (relations[i][2] == "0..1")
+                    if ((relations[i][2] == "0..1") || (relations[i][2] == "0..*"))
                     {
                         var related = data[relations[i][3]];
                         if (related)

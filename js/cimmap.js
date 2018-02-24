@@ -54,7 +54,7 @@ define
         /**
          * The user specific token to access mapbox tiles.
          */
-        var TheToken = "pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw";
+        var TheToken = "pk.eyJ1IjoiZG9zd2FsZCIsImEiOiJjaXdvd213aHgwMDBsMnlvZWY3amQ4YXR0In0.e9FmfCdPkY6I9DreofObwA";
 
         /**
          * The CIM file contents after load.
@@ -888,14 +888,20 @@ define
                 {
                     var match = [];
                     for (var id in CIM_Data.Element)
-                        if (CIM_Data.Element[id].id == text)
-                            match.push (id);
-                        else if (CIM_Data.Element[id].mRID == text)
-                            match.push (id);
-                        else if (CIM_Data.Element[id].name == text)
-                            match.push (id);
-                        else if (CIM_Data.Element[id].aliasName == text)
-                            match.push (id);
+                    {
+                        var obj = CIM_Data.Element[id];
+                        if (!deleted (obj))
+                        {
+                            if (obj.id == text)
+                                match.push (id);
+                            else if (obj.mRID == text)
+                                match.push (id);
+                            else if (obj.name == text)
+                                match.push (id);
+                            else if (obj.aliasName == text)
+                                match.push (id);
+                        }
+                    }
                     if (match.length > 0)
                     {
                         match.sort ();
@@ -925,8 +931,6 @@ define
                                 }
                             );
                         }
-                        else
-                            alert ("No geometry for selected object(s)");
                         highlight ();
                     }
                     else
