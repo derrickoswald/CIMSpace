@@ -641,6 +641,11 @@ define
             return (ret);
         }
 
+        function deleted (equipment)
+        {
+            return (equipment.EditDisposition && ("delete" == equipment.EditDisposition));
+        }
+
         /**
          * Trace the currently selected object and highlight the results.
          * @description Traverse through the ConnectivityNode, Terminal and ConductingEquipment
@@ -702,11 +707,6 @@ define
                         ret = true;
 
                     return (ret);
-                }
-
-                function deleted (equipment)
-                {
-                    return (equipment.EditDisposition && ("delete" == equipment.EditDisposition));
                 }
 
                 function preload (source, terminal)
