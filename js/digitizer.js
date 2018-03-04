@@ -365,7 +365,7 @@ define
 
                 this.set_line_listeners ();
                 // pop up a prompt
-                this._popup = this.popup ("<h1>Digitize linear geometry<br>Right-click to finsh</h1>");
+                this._popup = this.popup ("<h1>Digitize linear geometry<br>Right-click to finish</h1>");
             }
 
             async digitize_line_wait (obj, features, callback_success, callback_failure)

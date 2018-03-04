@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "cimdetails", "cimcoordinates", "cimedit", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
+    ["cimnav", "cimdetails", "cimcoordinates", "cimedit", "cimconnectivity", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, CIMDetails, CIMCoordinates, CIMEdit, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
+    function (cimnav, CIMDetails, CIMCoordinates, CIMEdit, CIMConnectivity, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
     {
         /**
          * The map object.
@@ -40,6 +40,11 @@ define
          * The editor control object.
          */
         var TheEditor = null;
+
+        /**
+         * The connectivity control object.
+         */
+        var TheConnectivity = null;
 
         /**
          * The scale bar control.
@@ -199,6 +204,17 @@ define
         }
 
         /**
+         * Get the connectivity for changing connectivity.
+         * @return {Object} The object handling connectivity.
+         * @function get_connectivity
+         * @memberOf module:cimmap
+         */
+        function get_connectivity ()
+        {
+            return (TheConnectivity);
+        }
+
+        /**
          * Get the user's choice for showing internal features.
          * @returns {boolean} <code>true</code> if internal features should be shown, <code>false</code> otherwise
          * @function show_internal_features
@@ -335,6 +351,14 @@ define
                 if ((null != CIM_Data) && (null != get_selected_feature ()))
                     get_editor ().edit (CIM_Data.Element[get_selected_feature ()], true);
             }
+        }
+
+        function connectivity ()
+        {
+            if (get_connectivity ().visible ())
+                TheMap.removeControl (get_connectivity ());
+            else
+                TheMap.addControl (get_connectivity ());
         }
 
         /**
@@ -1099,7 +1123,7 @@ define
                 }
             );
             // add zoom and rotation controls to the map
-            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer, toggle_legend, edit));
+            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer, toggle_legend, edit, connectivity));
             add_listeners ();
             // set up themes
             TheThemer = new ThemeControl ();
@@ -1112,6 +1136,8 @@ define
             TheDetails = new CIMDetails (getInterface ());
             // set up editing
             TheEditor = new CIMEdit (getInterface ());
+            // set up connectivity
+            TheConnectivity = new CIMConnectivity (getInterface (), TheEditor);
             // display any existing data
             redraw ();
         }

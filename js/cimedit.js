@@ -157,13 +157,20 @@ define
                     selects.item (i).onchange = this.change.bind (this);
             }
 
+            new_features ()
+            {
+                if (!this._features)
+                    this._features = {};
+                return (this._features);
+            }
+
             refresh ()
             {
                 var options =
                     {
                         show_internal_features: this._cimmap.show_internal_features ()
                     };
-                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this._features, options);
+                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this.new_features (), options);
                 this._map.getSource ("edit points").setData (geo.points);
                 this._map.getSource ("edit lines").setData (geo.lines);
             }
@@ -233,10 +240,12 @@ define
             {
                 proto.EditDisposition = "new";
                 var cls = cim.class_map (proto);
-                var obj = new cls (proto, this._features);
-                if (this._features.IdentifiedObject)
+                var obj = new cls (proto, this.new_features ());
+                if (this.new_features ().IdentifiedObject)
                     proto.mRID = proto.id;
-                obj = new cls (proto, this._features); // do it again, possibly with mRID set
+                // do it again, possibly with mRID set
+                delete this._features;
+                obj = new cls (proto, this.new_features ());
                 this.edit (obj, true, true);
                 this.refresh ();
                 return (obj);
@@ -244,10 +253,10 @@ define
 
             create ()
             {
-                this._features = {};
+                delete this._features;
                 if (this._maker)
                 {
-                    this._maker_promise = this._maker.make (this._features);
+                    this._maker_promise = this._maker.make (this.new_features ());
                     this._maker_promise.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
                 else
