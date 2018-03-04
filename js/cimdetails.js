@@ -179,7 +179,7 @@ define
                         "  </div>\n" +
                         "</div>\n";
                     this._frame_height = document.getElementById ("view_frame").clientHeight; // frame height with no contents
-                    document.getElementById ("feature_detail_contents").innerHTML = this.detail_text ()
+                    document.getElementById ("feature_detail_contents").innerHTML = this.detail_text ();
                     this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                     this.maybe_streetview ();
                     this.on_map_resize ();
