@@ -624,7 +624,7 @@ define
 
             shutdown ()
             {
-                this._cimmap.unhighlight ();
+                this._cimmap.select (null);
                 this.render ();
             }
 

@@ -17,11 +17,10 @@ define
     {
         class CIMConnectivity
         {
-            constructor (cimmap, cimedit)
+            constructor (cimmap)
             {
                 this._onMap = false;
                 this._cimmap = cimmap;
-                this._cimedit = cimedit;
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
@@ -32,8 +31,9 @@ define
                 "    </h5>\n" +
                 "    <div id='connectivity'></div>\n" +
                 "    <div class='card-footer'>\n" +
-                "        <button id='connect' type='button' class='btn btn-primary'>Connect</button>\n" +
-                "        <button id='disconnect' type='button' class='btn btn-info'>Disconnect</button>\n" +
+                "        <button type='button' class='btn btn-primary'>Connect</button>\n" +
+                "        <button type='button' class='btn btn-info'>Disconnect</button>\n" +
+                "        <button type='button' class='btn btn-danger'>Cancel</button>\n" +
                 "    </div>\n" +
                 "  </div>\n" +
                 "</div>\n";
@@ -49,7 +49,9 @@ define
                 this._container.innerHTML = mustache.render (this._template, { });
                 this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.connect_click.bind (this);
                 this._container.getElementsByClassName ("btn btn-info")[0].onclick = this.disconnect_click.bind (this);
+                this._container.getElementsByClassName ("btn btn-danger")[0].onclick = this.cancel_click.bind (this);
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
+                this._cimmap.add_feature_listener (this);
                 this._onMap = true;
                 return (this._container);
             }
@@ -57,6 +59,7 @@ define
             onRemove ()
             {
                 this._container.parentNode.removeChild (this._container);
+                this._cimmap.remove_feature_listener (this);
                 this._map = undefined;
                 this._onMap = false;
             }
@@ -76,96 +79,6 @@ define
                 return (this._onMap);
             }
 
-//            connectivity_text ()
-//            {
-//                var mrid = this._cimmap.get_selected_feature ();
-//                if (!mrid)
-//                    return ("");
-//                var cim_data = this._cimmap.get_data ();
-//                if (!cim_data)
-//                    return ("");
-//                var feature = cim_data.Element[mrid];
-//                if (!feature)
-//                    return ("");
-//                var cls = cim.class_map (feature);
-//                var template = cls.prototype.template ();
-//                var text = mustache.render (template, feature);
-//                var conducting = cim_data.ConductingEquipment ? cim_data.ConductingEquipment[mrid] : undefined;
-//                if ("undefined" != typeof (conducting))
-//                {
-//                    var terminals = cim_data.Terminal;
-//                    var terms = [];
-//                    for (var property in terminals)
-//                        if (terminals.hasOwnProperty (property))
-//                        {
-//                            var terminal = terminals[property];
-//                            if (mrid == terminal.ConductingEquipment)
-//                                terms.push (terminal);
-//                        }
-//                    if (0 != terms.length)
-//                    {
-//                        var connected = terms.map (
-//                            function (terminal)
-//                            {
-//                                var node = terminal.ConnectivityNode;
-//                                var equipment = [];
-//                                for (var property in terminals)
-//                                    if (terminals.hasOwnProperty (property))
-//                                    {
-//                                        var term = terminals[property];
-//                                        if (term.EditDisposition && (term.EditDisposition != "delete"))
-//                                            if (node == term.ConnectivityNode)
-//                                                if (mrid != term.ConductingEquipment)
-//                                                    if (cim_data.Element[term.ConductingEquipment].EditDisposition && (cim_data.Element[term.ConductingEquipment].EditDisposition != "delete"))
-//                                                        equipment.push (term.Terminal);
-//                                    }
-//                                return ({ terminal: terminal, equipment: equipment });
-//                            }
-//                        );
-//                        if (connected.some (function (element) { return (0 != element.equipment.length); }))
-//                        {
-//                            text = text + "<div>Connected:</div>\n";
-//                            for (var i = 0; i < connected.length; i++)
-//                            {
-//                                var terminal = connected[i].terminal.mRID;
-//                                var equipment = connected[i].equipment;
-//                                if (0 != equipment.length)
-//                                {
-//                                    var links = "";
-//                                    for (var j = 0; j < equipment.length; j++)
-//                                        links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + equipment[j] + "\"); }); return false;'>" + equipment[j] + "</a>";
-//                                    text = text + "<div>" + terminal + ": " + links + "</div>\n";
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                // add links to other selected elements
-//                var mrids = this._cimmap.get_selected_features ();
-//                if (null != mrids)
-//                    if (mrids.some (function (element) { return (element != mrid); }))
-//                    {
-//                        text = text + "<div>Selected:</div>\n";
-//                        for (var i = 0; i < mrids.length; i++)
-//                        {
-//                            if (mrids[i] != mrid)
-//                                text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + mrids[i] + "\"); }); return false;'>" + mrids[i] + "</a></div>\n";
-//                        }
-//                    }
-//
-//                // add details from simulation or analysis
-//                var toHTML = this._cimmap.get_themer ().getTheme ().toHTML;
-//                if (toHTML)
-//                {
-//                    var html = toHTML.bind (this._cimmap.get_themer ().getTheme ()) (feature);
-//                    if ("" != html)
-//                        text = text + "<div>" + this._cimmap.get_themer ().getTheme ().getTitle () + ":</div>\n" + html;
-//                }
-//
-//                return (text);
-//            }
-
             popup (html, position)
             {
                 var lnglat = position || this._map.getCenter ();
@@ -174,28 +87,6 @@ define
                 popup.setHTML (html)
                 popup.addTo (this._map);
                 return (popup);
-            }
-
-            connectivity_mousedown_listener (callback_success, callback_failure, event)
-            {
-                event.originalEvent.preventDefault ();
-                event.originalEvent.stopPropagation ();
-                var lnglat = event.lngLat;
-                var buttons = event.originalEvent.buttons;
-                var leftbutton = 0 != (buttons & 1);
-                var rightbutton = 0 != (buttons & 2);
-
-                if (leftbutton)
-                {
-                    // coordinates.push ([lnglat.lng, lnglat.lat]);
-                    console.log ("" + lnglat.lng + "," + lnglat.lat);
-                }
-                else if (rightbutton)
-                {
-                    console.log ("" + lnglat.lng + "," + lnglat.lat);
-                    callback_success ("I don't know");
-                    // also callback_failure ()
-                }
             }
 
             poink (x, y)
@@ -291,32 +182,18 @@ define
                         {
                             // for PowerTransformer look for the end
                             var ends = data.PowerTransformerEnd;
-                            for (var id in ends)
-                                if (ends[id].Terminal == terminal.id)
-                                    connectivity.BaseVoltage = ends[id].BaseVoltage;
+                            for (var end in ends)
+                                if (ends[end].Terminal == terminal.id)
+                                    connectivity.BaseVoltage = ends[end].BaseVoltage;
                         }
                         ret.push (connectivity);
                     }
                 }
 
-//            [
-//                {
-//                    ConnectivityNode: nodename,
-//                    Equipment:
-//                    [
-//                        {
-//                            ConnectivityNode: nodename,
-//                            ConductingEquipment: equipment,
-//                            Terminal: terminal,
-//                            BaseVoltage: "BaseVoltage_400"
-//                        }
-//                    ]
-//                }
-//            ]
                 return (ret);
             }
 
-            get_connectivity_for_equipments (equipments, point)
+            get_connectivity_for_equipments (equipments, all, point)
             {
                 var ret = [];
                 var connectivities = Array.prototype.concat.apply ([], equipments.map (e => this.get_connectivity_for_equipment (e, point)));
@@ -330,9 +207,64 @@ define
                     else
                         list[connectivity.ConnectivityNode].push (connectivity);
                 }
+                // add equipment connected but not hovered over
+                if (all)
+                {
+                    var data = this._cimmap.get_data ();
+                    var terminals = data.Terminal;
+                    for (var id in list)
+                    {
+                        for (var term in terminals)
+                        {
+                            var terminal = terminals[term];
+                            if (terminal.ConnectivityNode == id)
+                            {
+                                if (!list[id].find (x => x.ConductingEquipment.id == terminal.ConductingEquipment))
+                                {
+                                    var equipment = data.ConductingEquipment[terminal.ConductingEquipment];
+                                    var connectivity =
+                                        {
+                                            ConnectivityNode: id,
+                                            ConductingEquipment: equipment,
+                                            Terminal: terminal,
+                                            BaseVoltage: ""
+                                        };
+                                    if (equipment.BaseVoltage)
+                                        connectivity.BaseVoltage = equipment.BaseVoltage;
+                                    else
+                                    {
+                                        // for PowerTransformer look for the end
+                                        var ends = data.PowerTransformerEnd;
+                                        for (var end in ends)
+                                            if (ends[end].Terminal == terminal.id)
+                                                connectivity.BaseVoltage = ends[end].BaseVoltage;
+                                    }
+
+                                    list[id].push (connectivity);
+                                }
+                            }
+                        }
+                    }
+                }
                 for (var id in list)
                     ret.push ({ ConnectivityNode: id, Equipment: list[id] });
 
+
+//            [
+//                {
+//                    ConnectivityNode: nodename,
+//                    Equipment:
+//                    [
+//                        {
+//                            ConnectivityNode: nodename,
+//                            ConductingEquipment: equipment,
+//                            Terminal: terminal,
+//                            BaseVoltage: "BaseVoltage_400"
+//                        },
+//                        ...
+//                    ]
+//                }
+//            ]
                 return (ret);
             }
 
@@ -473,15 +405,32 @@ define
                 return (text.join (""));
             }
 
-            marker (ll, n, crap)
+            marker (ll, n, id)
             {
                 var element = document.createElement ("span");
-                // element.setAttribute ("style", "height: 32px;");
+                element.setAttribute ("style", "height: 32px;");
+                element.className = "marker";
                 element.innerHTML = this.svg (n, this._size, "#ffffff", this._border, "#0000ff",  (n < 10) ? 24 : 18);
-                element.addEventListener ('click', function () {
-                    var item = document.getElementById (crap);
+                // freeze the selection process
+                var reset = (function ()
+                {
+                    if (this._mousemove)
+                    {
+                        this._map.off ("mousemove", this._mousemove);
+                        delete this._mousemove;
+                    }
+                }).bind (this);
+                function marker_event (event)
+                {
+                    event.preventDefault ();
+                    event.stopPropagation ();
+                    console.log ("marker event " + id);
+                    var item = document.getElementById (id);
                     item.checked = !item.checked;
-                    });
+                    reset ();
+                    return (false);
+                }
+                element.addEventListener ("click", marker_event, { capture: true });
                 var m = new mapboxgl.Marker (element, { offset: [ (n - 1) * (this._size + this._border / 2.0), 0.0] });
                 m.setLngLat (ll);
                 m.addTo (this._cimmap.get_map ());
@@ -494,8 +443,9 @@ define
                 document.getElementById ("connectivity").innerHTML = "";
                 if (this._candidates)
                 {
-                    this._candidates.map (x => x.Marker.remove ());
-                    delete this._candidates;
+                    this._candidates.filter (x => x.Marker).map (x => x.Marker.remove ());
+                    this._candidates = this._candidates.filter (x => !x.Marker);
+                    delete this._anchor;
                 }
                 if (this._popup)
                 {
@@ -509,7 +459,20 @@ define
             {
                 for (var i = 0; i < this._target.length; i++)
                     if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
+                    {
                         this._target[i].current = true;
+                        for (var j = 0; j < this._candidates.length; j++)
+                        {
+                            delete this._candidates[j].current;
+                            var other = document.getElementById ("connectivity_" + this._candidates[j].ConnectivityNode);
+                            other.checked = false;
+                            if (this._candidates[j].ConnectivityNode == this._target[i].ConnectivityNode)
+                            {
+                                this._candidates[j].current = true;
+                                other.checked = true;
+                            }
+                        }
+                    }
                     else
                         delete this._target[i].current;
             }
@@ -534,8 +497,8 @@ define
                 var template =
                     `
                     {{#equipment}}
-                      <h6>{{cls}} {{display_name}}</h6>
-                      {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                      <h6>{{display_name}} ({{cls}})</h6>
+                      {{#description}}<div>{{description}}</div>{{/description}}
                     {{/equipment}}
                     {{#target}}
                     <div class='form-check'>
@@ -543,10 +506,8 @@ define
                       <label class='form-check-label' for='target_{{ConnectivityNode}}'>
                         <h6>{{#ConnectivityNode}}{{ConnectivityNode}}{{/ConnectivityNode}}</h6>
                           {{#Equipment}}
-                            {{#BaseVoltage}}<div><b>BaseVoltage</b>: {{BaseVoltage}}</div>{{/BaseVoltage}}
                             {{#Terminal}}
-                              <h6>Terminal #{{Terminal.sequenceNumber}} {{display_name}}</h6>
-                              {{#Terminal.description}}<div><b>description</b>: {{Terminal.description}}</div>{{/Terminal.description}}
+                              <div>Terminal #{{Terminal.sequenceNumber}} {{display_name}} {{Terminal.description}} {{BaseVoltage}}</div>
                             {{/Terminal}}
                           {{/Equipment}}
                       </label>
@@ -555,18 +516,15 @@ define
                     <hr />
                     {{#candidates}}
                     <div class='form-check'>
-                      <input id='connectivity_{{ConnectivityNode}}' class='form-check-input' type='radio' name='connectivity_choice' value='{{ConnectivityNode}}'>
+                      <input id='connectivity_{{ConnectivityNode}}' class='form-check-input' type='radio' name='connectivity_choice' value='{{ConnectivityNode}}'{{#current}} checked{{/current}}>
                       <label class='form-check-label' for='connectivity_{{ConnectivityNode}}'>
-                        <h6>#{{index}} {{#ConnectivityNode}}{{ConnectivityNode}}{{/ConnectivityNode}}</h6>
+                        <h6>{{#Marker}}#{{index}} {{/Marker}}{{#ConnectivityNode}}{{ConnectivityNode}}{{/ConnectivityNode}}</h6>
                           {{#Equipment}}
                             {{#ConductingEquipment}}
-                              <h6>{{cls}} {{display_name}}</h6>
-                              {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                              <div>{{display_name}} ({{cls}}) {{description}}</div>
                             {{/ConductingEquipment}}
-                            {{#BaseVoltage}}<div><b>BaseVoltage</b>: {{BaseVoltage}}</div>{{/BaseVoltage}}
                             {{#Terminal}}
-                              <h6>Terminal #{{Terminal.sequenceNumber}} {{display_name}}</h6>
-                              {{#Terminal.description}}<div><b>description</b>: {{Terminal.description}}</div>{{/Terminal.description}}
+                              <div>&centerdot; Terminal #{{Terminal.sequenceNumber}} {{display_name}} {{Terminal.description}} {{BaseVoltage}}</div>
                             {{/Terminal}}
                           {{/Equipment}}
                       </label>
@@ -586,20 +544,20 @@ define
                         ret = this.id;
                     return (ret);
                 }
+                var equipment = this._target[0].Equipment[0].ConductingEquipment;
+                var index = 1;
                 for (var i = 0; this._candidates && i < this._candidates.length; i++)
-                {
-                    this._candidates[i].index = i + 1;
-                    this._candidates[i].display_name = display_name;
-                }
-                var text = mustache.render (template, { equipment: this._target[0].Equipment[0].ConductingEquipment, target: this._target, candidates: (this._candidates ? this._candidates : []) });
+                    if (this._candidates[i].Marker)
+                    {
+                        this._candidates[i].index = index;
+                        index++;
+                    }
+                var text = mustache.render (template, { equipment: equipment, target: this._target, candidates: (this._candidates ? this._candidates : []), display_name: display_name });
                 for (var i = 0; this._candidates && i < this._candidates.length; i++)
-                {
                     delete this._candidates[i].index;
-                    delete this._candidates[i].display_name;
-                }
 
                 document.getElementById ("connectivity").innerHTML = text;
-                // add onclick handler to change current target connectivity node
+                // add handler to change current target connectivity node
                 for (var i = 0; i < this._target.length; i++)
                     document.getElementById ("target_" + this._target[i].ConnectivityNode).onclick = this.flick.bind (this);
 
@@ -607,18 +565,16 @@ define
 
             connectivity_mousemove_listener (obj, event)
             {
-                event.originalEvent.preventDefault ();
-                event.originalEvent.stopPropagation ();
                 var selection = null;
                 // check for out of bounds
-                if (this._candidates)
+                if (this._anchor)
                 {
                     var x = event.point.x;
                     var y = event.point.y;
                     var point = this._map.project (this._anchor); // relative to map container
                     var x0 = point.x;
                     var y0 = point.y;
-                    var n = this._candidates.length;
+                    var n = this._candidates.filter (x => x.Marker).length;
                     var half = (this._size + this._border) / 2.0;
                     if ((x < x0 - half) || (y < y0 - half) || (y > y0 + half) || (x > x0 + (2 * (n - 1) + 1) * half))
                         this.reset_gui ();
@@ -640,49 +596,46 @@ define
                             delete this._popup;
                         }
                         var lnglat = event.lngLat;
-                        if (!this._candidates)
-                        {
+                        if (0 == this._candidates.filter (x => x.Marker).length)
                             this._anchor = lnglat;
-                            this._candidates = [];
-                        }
-                        var neuveax = candidates.filter (x => !this._candidates.find (y => y.Equipment.filter (z => z.ConductingEquipment.id == x)));
+                        var d = this.get_connectivity_for_equipments (candidates.map (x => data.ConductingEquipment[x]), true, [lnglat.lng, lnglat.lat]);
+                        var neuveax = d.filter (x => !this._candidates.find (y => y.ConnectivityNode == x.ConnectivityNode));
                         if (0 != neuveax.length)
                         {
-                            var d = this.get_connectivity_for_equipments (candidates.map (x => data.ConductingEquipment[x]), [lnglat.lng, lnglat.lat]);
-                            for (var i = 0; i < d.length; i++)
-                                d[i].Marker = this.marker (this._anchor, this._candidates.length + i + 1, "connectivity_" + d[i].ConnectivityNode);
-                            this._candidates = this._candidates.concat (d);
+                            var existing = this._candidates.filter (x => x.Marker).length;
+                            for (var i = 0; i < neuveax.length; i++)
+                                neuveax[i].Marker = this.marker (this._anchor, existing + i + 1, "connectivity_" + neuveax[i].ConnectivityNode);
+                            this._candidates = this._candidates.concat (neuveax);
                             this.show_connectivity ();
                         }
                     }
                 }
             }
 
-            set_listeners ()
+            set_listeners (obj)
             {
-                if (this._mousedown)
+                if (!this._mousemove)
                 {
-                    // set up our listeners
-                    this._cimmap.remove_listeners ();
-                    this._map.dragPan.disable ();
-                    this._map.dragRotate.disable ();
-                    this._map.on ("mousedown", this._mousedown);
+                    this._mousemove = this.connectivity_mousemove_listener.bind (this, obj);
                     this._map.on ("mousemove", this._mousemove);
                 }
+
+                // set up our listeners
+                this._cimmap.remove_listeners ();
+//                this._map.dragPan.disable ();
+//                this._map.dragRotate.disable ();
             }
 
             reset_listeners ()
             {
-                if (this._mousedown)
+                if (this._mousemove)
                 {
-                    this._map.dragPan.enable ();
-                    this._map.dragRotate.enable ();
-                    this._map.off ("mousedown", this._mousedown);
-                    delete this._mousedown;
                     this._map.off ("mousemove", this._mousemove);
                     delete this._mousemove;
-                    this._cimmap.add_listeners ();
                 }
+//                    this._map.dragPan.enable ();
+//                    this._map.dragRotate.enable ();
+                this._cimmap.add_listeners ();
             }
 
             do_connectivity (obj, callback_success, callback_failure)
@@ -701,12 +654,10 @@ define
                     this.reset_listeners ();
                     callback_failure ({canceled: true});
                 }
-                this._mousedown = this.connectivity_mousedown_listener.bind (this, cb_success.bind (this), cb_failure.bind (this));
-                this._mousemove = this.connectivity_mousemove_listener.bind (this, obj);
 
-                this.set_listeners ();
+                this.set_listeners (obj);
                 // pop up a prompt
-                this._popup = this.popup ("<h1>Pick connectivity<br>Right-click to finish</h1>");
+                this._popup = this.popup ("<h1>Pick connectivity<br>Right-click to cancel</h1>");
             }
 
             async do_connectivity_wait (obj, callback_success, callback_failure)
@@ -744,6 +695,8 @@ define
 
             connect_click (event)
             {
+                if (this._target)
+                    this.reset_gui ();
                 var mrid = this._cimmap.get_selected_feature ();
                 if (mrid)
                 {
@@ -755,7 +708,8 @@ define
                         {
                             this._target = this.get_connectivity_for_equipments ([feature]);
                             this._target[0].current = true;
-                            delete this._candidates;
+                            this._candidates = this.get_connectivity_for_equipments ([feature], true);
+                            this._candidates[0].current = true;
                             this.reset_gui ();
                             this._cpromise = this.connect (feature);
                             this._cpromise.setPromise (this._cpromise.promise ().then (function () { console.log ("ok") }, function () { console.log ("not ok") }));
@@ -770,6 +724,24 @@ define
             {
                 if (this._cpromise)
                     this._cpromise.cancel ();
+            }
+
+            cancel_click (event)
+            {
+                if (this._cpromise)
+                    this._cpromise.cancel ();
+                delete this._target;
+                delete this._candidates;
+                delete this._anchor;
+                document.getElementById ("connectivity").innerHTML = "";
+            }
+
+            selection_change (current_feature, current_selection)
+            {
+                if (null != current_feature)
+                    this.connect_click ();
+                else
+                    this.cancel_click ();
             }
         }
 

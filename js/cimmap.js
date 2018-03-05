@@ -77,6 +77,26 @@ define
         var CURRENT_SELECTION = null;
 
         /**
+         * Flag indicating map listeners are attached or not.
+         */
+        var Listening = false;
+
+        /**
+         * List of registered objects supporting selection_change (CURRENT_FEATURE, CURRENT_SELECTION).
+         */
+        var FeatureListeners = [
+            {
+                selection_change: function (CURRENT_FEATURE, CURRENT_SELECTION)
+                {
+                    if (null != CURRENT_FEATURE)
+                        highlight ();
+                    else
+                        unhighlight ();
+                }
+            }
+        ];
+
+        /**
          * Get the MapBox map.
          * @function get_map
          * @memberOf module:cimmap
@@ -146,6 +166,31 @@ define
         function get_selected_features ()
         {
             return (CURRENT_SELECTION);
+        }
+
+        /**
+         * Add an object that will be called when feature selections change.
+         * @function add_feature_listener
+         * @memberOf module:cimmap
+         */
+        function add_feature_listener (obj)
+        {
+            if (!FeatureListeners.includes (obj))
+                FeatureListeners.push (obj);
+        }
+
+        /**
+         * Remove an object from the list of objects that will be called when feature selections change.
+         * @function remove_feature_listener
+         * @memberOf module:cimmap
+         */
+        function remove_feature_listener (obj)
+        {
+            if (FeatureListeners.includes (obj))
+            {
+                var index = FeatureListeners.indexOf (obj);
+                FeatureListeners = FeatureListeners.filter ((x, i) => i != index);
+            }
         }
 
         /**
@@ -447,8 +492,6 @@ define
         function unhighlight ()
         {
             glow (["==", "mRID", ""]);
-            CURRENT_FEATURE = null;
-            CURRENT_SELECTION = null;
             hide_details ();
             return (false);
         }
@@ -468,11 +511,15 @@ define
                     CURRENT_FEATURE = mrid;
                     if (!CURRENT_SELECTION.includes (mrid))
                         CURRENT_SELECTION = [mrid];
-                    highlight ();
+                    FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
                 }
             }
             else
-                unhighlight ();
+            {
+                CURRENT_FEATURE = null;
+                CURRENT_SELECTION = null;
+                FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
+            }
         }
 
         /**
@@ -839,6 +886,7 @@ define
                     glow (equipment);
                     // set the current selection set and re-render the details
                     CURRENT_SELECTION = equipment.slice (2);
+                    // FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
                     get_details ().render ();
                 }
             }
@@ -955,7 +1003,7 @@ define
                                 }
                             );
                         }
-                        highlight ();
+                        FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
                     }
                     else
                         alert ("No matches found for '" + text + "'");
@@ -1036,16 +1084,25 @@ define
                     {
                         CURRENT_FEATURE = selection[0];
                         CURRENT_SELECTION = selection;
-                        highlight ();
+                        FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
                     }
                 }
                 else
-                    unhighlight ();
+                {
+                    CURRENT_FEATURE = null;
+                    CURRENT_SELECTION = null;
+                    FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
+                }
             }
             else
-                unhighlight ();
+            {
+                CURRENT_FEATURE = null;
+                CURRENT_SELECTION = null;
+                FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
+            }
         }
 
+        // handle mouse click
         function default_mousedown_listener (event)
         {
             // only do something if no key is pressed
@@ -1082,15 +1139,22 @@ define
 
         function add_listeners ()
         {
-            // handle mouse click
-            TheMap.on ("mousedown", default_mousedown_listener);
-            TheMap.on ("touchstart", default_touchstart_listener);
+            if (!Listening)
+            {
+                TheMap.on ("mousedown", default_mousedown_listener);
+                TheMap.on ("touchstart", default_touchstart_listener);
+                Listening = true;
+            }
         }
 
         function remove_listeners ()
         {
-            TheMap.off ("mousedown", default_mousedown_listener);
-            TheMap.off ("touchstart", default_touchstart_listener);
+            if (Listening)
+            {
+                TheMap.off ("mousedown", default_mousedown_listener);
+                TheMap.off ("touchstart", default_touchstart_listener);
+                Listening = false;
+            }
         }
 
         /**
@@ -1137,7 +1201,7 @@ define
             // set up editing
             TheEditor = new CIMEdit (getInterface ());
             // set up connectivity
-            TheConnectivity = new CIMConnectivity (getInterface (), TheEditor);
+            TheConnectivity = new CIMConnectivity (getInterface ());
             // display any existing data
             redraw ();
         }
@@ -1168,6 +1232,8 @@ define
                      get_data: get_data,
                      get_selected_feature: get_selected_feature,
                      get_selected_features: get_selected_features,
+                     add_feature_listener: add_feature_listener,
+                     remove_feature_listener: remove_feature_listener,
                      set_extents: set_extents,
                      get_extents: get_extents,
                      get_themer: get_themer,
@@ -1183,8 +1249,6 @@ define
                      buildings_3d: buildings_3d,
                      scale_bar: scale_bar,
                      coordinates: coordinates,
-                     highlight: highlight,
-                     unhighlight: unhighlight,
                      trace: trace,
                      search: search,
                      redraw: redraw,

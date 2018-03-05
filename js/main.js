@@ -28,7 +28,7 @@ requirejs
 
         // javascript functions
         document.getElementById ("trace").onclick = cimmap.trace;
-        document.getElementById ("unhighlight").onclick = cimmap.unhighlight;
+        document.getElementById ("unhighlight").onclick = function () { cimmap.select (null); };
         document.getElementById ("search").onsubmit = cimmap.search;
         document.getElementById ("search_button").onclick = cimmap.search;
 
