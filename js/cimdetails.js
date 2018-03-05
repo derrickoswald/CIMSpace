@@ -107,10 +107,10 @@ define
                                     if (terminals.hasOwnProperty (property))
                                     {
                                         var term = terminals[property];
-                                        if (term.EditDisposition && (term.EditDisposition != "delete"))
+                                        if (!term.EditDisposition || (term.EditDisposition != "delete"))
                                             if (node == term.ConnectivityNode)
                                                 if (mrid != term.ConductingEquipment)
-                                                    if (cim_data.Element[term.ConductingEquipment].EditDisposition && (cim_data.Element[term.ConductingEquipment].EditDisposition != "delete"))
+                                                    if (!cim_data.Element[term.ConductingEquipment].EditDisposition || (cim_data.Element[term.ConductingEquipment].EditDisposition != "delete"))
                                                         equipment.push (term.ConductingEquipment);
                                     }
                                 return ({ terminal: terminal, equipment: equipment });
