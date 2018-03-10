@@ -1238,6 +1238,7 @@ define
                      get_extents: get_extents,
                      get_themer: get_themer,
                      get_editor: get_editor,
+                     get_connectivity: get_connectivity,
                      show_internal_features: show_internal_features,
                      show_3d_buildings: show_3d_buildings,
                      show_scale_bar: show_scale_bar,

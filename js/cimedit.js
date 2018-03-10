@@ -159,9 +159,9 @@ define
 
             new_features ()
             {
-                if (!this._features)
-                    this._features = {};
-                return (this._features);
+                if (!this._data)
+                    this._data = {};
+                return (this._data);
             }
 
             refresh ()
@@ -240,11 +240,11 @@ define
             {
                 proto.EditDisposition = "new";
                 var cls = cim.class_map (proto);
-                var obj = new cls (proto, this.new_features ());
-                if (this.new_features ().IdentifiedObject)
+                var data = {};
+                var obj = new cls (proto, data);
+                if (data.IdentifiedObject)
                     proto.mRID = proto.id;
                 // do it again, possibly with mRID set
-                delete this._features;
                 obj = new cls (proto, this.new_features ());
                 this.edit (obj, true, true);
                 this.refresh ();
@@ -253,7 +253,7 @@ define
 
             create ()
             {
-                delete this._features;
+                delete this._data;
                 if (this._maker)
                 {
                     this._maker_promise = this._maker.make (this.new_features ());
@@ -474,7 +474,7 @@ define
             {
                 var cls = cim.class_map (element);
                 var data = this._cimmap.get_data ();
-                var newdata = this._features;
+                var newdata = this._data;
                 var relations = cls.prototype.relations ();
                 for (var i = 0; i < relations.length; i++)
                     if (relations[i][1] == "0..1")
@@ -639,7 +639,7 @@ define
                 if (null == this._cimmap.get_data ())
                     this._cimmap.set_data ({});
 
-                if (!this._features)
+                if (!this._data)
                 {
                     // editing an existing object
                     for (var i = 0; i < this._elements.length; i++)
@@ -678,7 +678,7 @@ define
                         new cls (element, this._cimmap.get_data ());
                     }
                     delete this._elements;
-                    delete this._features;
+                    delete this._data;
                 }
                 // remove features from edit layers
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
@@ -696,7 +696,7 @@ define
                     maker_promise.cancel ();
                     delete this._maker;
                 }
-                if (!this._features)
+                if (!this._data)
                 {
                     if (this._elements)
                     {
@@ -717,7 +717,7 @@ define
                 else
                 {
                     delete this._elements;
-                    delete this._features;
+                    delete this._data;
                     this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                     this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
                 }
@@ -736,7 +736,7 @@ define
                     delete this._maker;
                 }
                 delete this._elements;
-                delete this._features;
+                delete this._data;
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                 this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
                 this.shutdown ();

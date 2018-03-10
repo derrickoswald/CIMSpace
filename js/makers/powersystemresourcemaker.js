@@ -266,9 +266,9 @@ define
                 var ret = [];
                 var data = this._cimmap.get_data ();
                 if (!data || !data.CoordinateSystem || !data.CoordinateSystem["wgs84"])
-                    ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "wgs84", mRID: "wgs84", name: "WGS 84", description: "new World Geodetic System", crsUrn: "EPSG::4326" }, this._features));
+                    ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "wgs84", mRID: "wgs84", name: "WGS 84", description: "new World Geodetic System", crsUrn: "EPSG::4326" }, this._data));
                 if (!data || !data.CoordinateSystem || !data.CoordinateSystem["pseudo_wgs84"])
-                    ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "pseudo_wgs84", mRID: "pseudo_wgs84", name: "WGS 84", description: "schematic coordinates translated to the new World Geodetic System", crsUrn: "EPSG::4326" }, this._features));
+                    ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "pseudo_wgs84", mRID: "pseudo_wgs84", name: "WGS 84", description: "schematic coordinates translated to the new World Geodetic System", crsUrn: "EPSG::4326" }, this._data));
                 return (ret);
             }
 
@@ -287,7 +287,7 @@ define
                     CoordinateSystem: coordsys,
                     type: "geographic"
                 };
-                ret.push (new Common.Location (location, this._features));
+                ret.push (new Common.Location (location, this._data));
 
                 if (feature.geometry.type == "Point")
                 {
@@ -302,7 +302,7 @@ define
                         xPosition: feature.geometry.coordinates[0].toString (),
                         yPosition: feature.geometry.coordinates[1].toString ()
                     };
-                    ret.push (new Common.PositionPoint (pp, this._features));
+                    ret.push (new Common.PositionPoint (pp, this._data));
                 }
                 else if (feature.geometry.type == "LineString")
                 {
@@ -321,7 +321,7 @@ define
                                     xPosition: lnglat[0].toString (),
                                     yPosition: lnglat[1].toString ()
                                 },
-                                this._features
+                                this._data
                             )
                         );
                     }
@@ -332,8 +332,9 @@ define
                 return (ret);
             }
 
-            make_psr (feature, power_system_resource)
+            make_psr (data, feature, power_system_resource)
             {
+                this._data = data;
                 var psr = power_system_resource || this._cimedit.primary_element ();
                 var id = psr.id;
 
@@ -350,14 +351,13 @@ define
                 return (ret);
             }
 
-            make (features)
+            make (data)
             {
-                this._features = features;
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, this._features);
-                cpromise.setPromise (cpromise.promise ().then (this.make_psr.bind (this)));
+                var cpromise = this._digitizer.point (obj, data);
+                cpromise.setPromise (cpromise.promise ().then (this.make_psr.bind (this, data)));
                 return (cpromise);
             }
         }

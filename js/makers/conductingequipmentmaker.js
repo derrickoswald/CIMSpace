@@ -92,10 +92,11 @@ define
                 return (ret);
             }
 
-            make_equipment (feature)
+            make_equipment (data, feature)
             {
                 var ret = [];
 
+                this._data = data;
                 var equipment = this._cimedit.primary_element ();
                 var id = equipment.id;
 
@@ -103,7 +104,7 @@ define
                 if (null == connectivity) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node"));
-                    ret.push (new Core.ConnectivityNode (node, this._features));
+                    ret.push (new Core.ConnectivityNode (node, this._data));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -127,24 +128,23 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal.TopologicalNode = connectivity.TopologicalNode;
-                ret.push (new Core.Terminal (terminal, this._features));
+                ret.push (new Core.Terminal (terminal, this._data));
 
                 if (!equipment.BaseVoltage)
                     equipment.BaseVoltage = this.low_voltage ();
-                ret = ret.concat (this.make_psr (feature, equipment));
+                ret = ret.concat (this.make_psr (this._data, feature, equipment));
                 this._cimedit.create_from (equipment);
 
                 return (ret);
             }
 
-            make (features)
+            make (data)
             {
-                this._features = features;
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, this._features);
-                cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this)));
+                var cpromise = this._digitizer.point (obj, data);
+                cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this, data)));
                 return (cpromise);
             }
         }

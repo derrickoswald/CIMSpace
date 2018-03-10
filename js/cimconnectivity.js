@@ -22,21 +22,21 @@ define
                 this._onMap = false;
                 this._cimmap = cimmap;
                 this._template =
-                "<div class='card'>\n" +
-                "  <div class='card-body'>\n" +
-                "    <h5 class='card-title'>Connectivity\n" +
-                "        <button type='button' class='close' aria-label='Close'>\n" +
-                "            <span aria-hidden='true'>&times;</span>\n" +
-                "        </button>\n" +
-                "    </h5>\n" +
-                "    <div id='connectivity'></div>\n" +
-                "    <div class='card-footer'>\n" +
-                "        <button type='button' class='btn btn-primary'>Connect</button>\n" +
-                "        <button type='button' class='btn btn-info'>Disconnect</button>\n" +
-                "        <button type='button' class='btn btn-danger'>Cancel</button>\n" +
-                "    </div>\n" +
-                "  </div>\n" +
-                "</div>\n";
+                    `
+                    <div class='card'>
+                      <div class='card-body' style='min-width:200px;'>
+                        <h5 class='card-title'>Connectivity
+                            <button type='button' class='close' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </h5>
+                        <div id='connectivity'></div>
+                        <div id='connectivity_footer' class='card-footer'>
+                            <button id='connectivity_set' type='button' class='btn btn-primary' disabled>Set</button>
+                        </div>
+                      </div>
+                    </div>
+                    `;
                 this._size = 32;
                 this._border = 2;
             }
@@ -47,10 +47,8 @@ define
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
                 this._container.innerHTML = mustache.render (this._template, { });
-                this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.connect_click.bind (this);
-                this._container.getElementsByClassName ("btn btn-info")[0].onclick = this.disconnect_click.bind (this);
-                this._container.getElementsByClassName ("btn btn-danger")[0].onclick = this.cancel_click.bind (this);
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
+                this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.begin.bind (this);
                 this._cimmap.add_feature_listener (this);
                 this._onMap = true;
                 return (this._container);
@@ -71,6 +69,7 @@ define
 
             close (event)
             {
+                this.abort ();
                 this._map.removeControl (this);
             }
 
@@ -420,6 +419,7 @@ define
                         delete this._mousemove;
                     }
                 }).bind (this);
+                var set = this.set_buttons.bind (this);
                 function marker_event (event)
                 {
                     event.preventDefault ();
@@ -427,7 +427,8 @@ define
                     console.log ("marker event " + id);
                     var item = document.getElementById (id);
                     item.checked = !item.checked;
-                    reset ();
+                    reset (); // stop tracking
+                    set (); // set the buttons
                     return (false);
                 }
                 element.addEventListener ("click", marker_event, { capture: true });
@@ -438,8 +439,72 @@ define
                 return (m);
             }
 
+            set_buttons ()
+            {
+                var connected = false;
+                var target = null;
+                for (var i = 0; i < this._target.length; i++)
+                    if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
+                        target = this._target[i];
+                if (target)
+                    connected = document.getElementById ("connectivity_" + target.ConnectivityNode).checked;
+                document.getElementById ("connectivity_connect").disabled = connected;
+                document.getElementById ("connectivity_disconnect").disabled = target && !connected;
+            }
+
+            set_gui ()
+            {
+                var template =
+                `
+                    <button id='connectivity_connect' type='button' class='btn btn-primary' disabled>Connect</button>
+                    <button id='connectivity_disconnect' type='button' class='btn btn-info' disabled>Disconnect</button>
+                    <button id='connectivity_cancel' type='button' class='btn btn-danger'>Cancel</button>
+                `;
+                document.getElementById ("connectivity_footer").innerHTML = template;
+//                var do_connect = this.connect_click.bind (this, cb_success, cb_failure);
+//                var do_disconnect = this.disconnect_click.bind (this, cb_success, cb_failure);
+//                var do_cancel = this.cancel_click.bind (this, cb_success, cb_failure);
+//                document.getElementById ("connectivity_connect").addEventListener ("click", do_connect);
+//                document.getElementById ("connectivity_disconnect").addEventListener ("click", do_disconnect);
+//                document.getElementById ("connectivity_cancel").addEventListener ("click", do_cancel);
+                var target = null;
+                for (var i = 0; i < this._target.length; i++)
+                    if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
+                        target = this._target[i];
+                if (null == target)
+                {
+                    target = this._target[0];
+                    target.current = true;
+                    document.getElementById ("target_" + target.ConnectivityNode).checked = true;
+                    for (var j = 0; j < this._candidates.length; j++)
+                        if (this._candidates[j].ConnectivityNode == target.ConnectivityNode)
+                        {
+                            document.getElementById ("connectivity_" + target.ConnectivityNode).checked = true;
+                            this._candidates[j].current = true;
+                        }
+                }
+                this.set_buttons ();
+            }
+
+            reset_candidates ()
+            {
+                if (this._candidates)
+                {
+                    this._candidates.filter (x => x.Marker).map (x => x.Marker.remove ());
+                    this._candidates = this._candidates.filter (x => !x.Marker);
+                    delete this._anchor;
+                }
+                this.show_candidates ();
+            }
+
             reset_gui ()
             {
+                var template =
+                `
+                    <button id='connectivity_set' type='button' class='btn btn-primary'>Set</button>
+                `;
+                document.getElementById ("connectivity_footer").innerHTML = template;
+                document.getElementById ("connectivity_set").onclick = this.begin.bind (this);
                 document.getElementById ("connectivity").innerHTML = "";
                 if (this._candidates)
                 {
@@ -475,6 +540,70 @@ define
                     }
                     else
                         delete this._target[i].current;
+            }
+
+            // only used in mustache
+            display_name ()
+            {
+                var ret;
+                if (this.name)
+                    ret = this.name;
+                else if (this.aliasName)
+                    ret = this.aliasName;
+                else if (this.mRID)
+                    ret = this.mRID;
+                else
+                    ret = this.id;
+                return (ret);
+            }
+
+            show_candidates ()
+            {
+                var template =
+                `
+                    {{#candidates}}
+                    <div class='form-check'>
+                      <input id='connectivity_{{ConnectivityNode}}' class='form-check-input' type='radio' name='connectivity_choice' value='{{ConnectivityNode}}'{{#current}} checked{{/current}}>
+                      <label class='form-check-label' for='connectivity_{{ConnectivityNode}}'>
+                        <h6>{{#Marker}}#{{index}} {{/Marker}}{{#ConnectivityNode}}{{ConnectivityNode}}{{/ConnectivityNode}}</h6>
+                          {{#Equipment}}
+                            {{#ConductingEquipment}}
+                              <div>{{display_name}} ({{cls}}) {{description}}</div>
+                            {{/ConductingEquipment}}
+                            {{#Terminal}}
+                              <div>&centerdot; Terminal #{{Terminal.sequenceNumber}} {{display_name}} {{Terminal.description}} {{BaseVoltage}}</div>
+                            {{/Terminal}}
+                          {{/Equipment}}
+                      </label>
+                    </div>
+                    {{/candidates}}
+
+                `;
+                var index = 1;
+                for (var i = 0; this._candidates && i < this._candidates.length; i++)
+                    if (this._candidates[i].Marker)
+                        this._candidates[i].index = index++;
+                var text = mustache.render (template, { candidates: (this._candidates ? this._candidates : []), display_name: this.display_name });
+                for (var i = 0; this._candidates && i < this._candidates.length; i++)
+                    delete this._candidates[i].index;
+                document.getElementById ("connectivity_candidates").innerHTML = text;
+                function radio_event (event)
+                {
+                    var id = event.target.id;
+                    console.log ("radio event " + id);
+                    for (var i = 0; this._candidates && i < this._candidates.length; i++)
+                    {
+                        delete this._candidates[i].current;
+                        if (id == "connectivity_" + this._candidates[i].ConnectivityNode)
+                            this._candidates[i].current = true;
+                    }
+                    this.set_buttons (); // set the buttons
+                    return (false);
+                }
+                var fn = radio_event.bind (this);
+                for (var i = 0; this._candidates && i < this._candidates.length; i++)
+                    document.getElementById ("connectivity_" + this._candidates[i].ConnectivityNode).addEventListener ("change", fn);
+
             }
 
             show_connectivity ()
@@ -514,53 +643,25 @@ define
                     </div>
                     {{/target}}
                     <hr />
-                    {{#candidates}}
-                    <div class='form-check'>
-                      <input id='connectivity_{{ConnectivityNode}}' class='form-check-input' type='radio' name='connectivity_choice' value='{{ConnectivityNode}}'{{#current}} checked{{/current}}>
-                      <label class='form-check-label' for='connectivity_{{ConnectivityNode}}'>
-                        <h6>{{#Marker}}#{{index}} {{/Marker}}{{#ConnectivityNode}}{{ConnectivityNode}}{{/ConnectivityNode}}</h6>
-                          {{#Equipment}}
-                            {{#ConductingEquipment}}
-                              <div>{{display_name}} ({{cls}}) {{description}}</div>
-                            {{/ConductingEquipment}}
-                            {{#Terminal}}
-                              <div>&centerdot; Terminal #{{Terminal.sequenceNumber}} {{display_name}} {{Terminal.description}} {{BaseVoltage}}</div>
-                            {{/Terminal}}
-                          {{/Equipment}}
-                      </label>
-                    </div>
-                    {{/candidates}}
+                    <div id='connectivity_candidates'></div>
                     `;
-                function display_name ()
+                if (this._target)
                 {
-                    var ret;
-                    if (this.name)
-                        ret = this.name;
-                    else if (this.aliasName)
-                        ret = this.aliasName;
-                    else if (this.mRID)
-                        ret = this.mRID;
-                    else
-                        ret = this.id;
-                    return (ret);
+                    var equipment = this._target[0].Equipment[0].ConductingEquipment;
+                    var index = 1;
+                    for (var i = 0; this._candidates && i < this._candidates.length; i++)
+                        if (this._candidates[i].Marker)
+                            this._candidates[i].index = index++;
+                    var text = mustache.render (template, { equipment: equipment, target: this._target, display_name: this.display_name });
+                    for (var i = 0; this._candidates && i < this._candidates.length; i++)
+                        delete this._candidates[i].index;
+
+                    document.getElementById ("connectivity").innerHTML = text;
+                    // add handler to change current target connectivity node
+                    for (var i = 0; i < this._target.length; i++)
+                        document.getElementById ("target_" + this._target[i].ConnectivityNode).onclick = this.flick.bind (this);
+                    this.show_candidates ();
                 }
-                var equipment = this._target[0].Equipment[0].ConductingEquipment;
-                var index = 1;
-                for (var i = 0; this._candidates && i < this._candidates.length; i++)
-                    if (this._candidates[i].Marker)
-                    {
-                        this._candidates[i].index = index;
-                        index++;
-                    }
-                var text = mustache.render (template, { equipment: equipment, target: this._target, candidates: (this._candidates ? this._candidates : []), display_name: display_name });
-                for (var i = 0; this._candidates && i < this._candidates.length; i++)
-                    delete this._candidates[i].index;
-
-                document.getElementById ("connectivity").innerHTML = text;
-                // add handler to change current target connectivity node
-                for (var i = 0; i < this._target.length; i++)
-                    document.getElementById ("target_" + this._target[i].ConnectivityNode).onclick = this.flick.bind (this);
-
             }
 
             connectivity_mousemove_listener (obj, event)
@@ -577,7 +678,7 @@ define
                     var n = this._candidates.filter (x => x.Marker).length;
                     var half = (this._size + this._border) / 2.0;
                     if ((x < x0 - half) || (y < y0 - half) || (y > y0 + half) || (x > x0 + (2 * (n - 1) + 1) * half))
-                        this.reset_gui ();
+                        this.reset_candidates ();
                     else if ((x >= x0 - half) && (y >= y0 - half) && (y <= y0 + half) && (x <= x0 + half))
                         selection = this.poink (event.point.x, event.point.y);
                 }
@@ -606,7 +707,7 @@ define
                             for (var i = 0; i < neuveax.length; i++)
                                 neuveax[i].Marker = this.marker (this._anchor, existing + i + 1, "connectivity_" + neuveax[i].ConnectivityNode);
                             this._candidates = this._candidates.concat (neuveax);
-                            this.show_connectivity ();
+                            this.show_candidates ();
                         }
                     }
                 }
@@ -622,8 +723,6 @@ define
 
                 // set up our listeners
                 this._cimmap.remove_listeners ();
-//                this._map.dragPan.disable ();
-//                this._map.dragRotate.disable ();
             }
 
             reset_listeners ()
@@ -633,31 +732,30 @@ define
                     this._map.off ("mousemove", this._mousemove);
                     delete this._mousemove;
                 }
-//                    this._map.dragPan.enable ();
-//                    this._map.dragRotate.enable ();
                 this._cimmap.add_listeners ();
             }
 
             do_connectivity (obj, callback_success, callback_failure)
             {
-                this._mrid = obj.mRID;
-
-                function cb_success (feature)
+                var self = this;
+                function reset ()
                 {
                     this.reset_gui ();
                     this.reset_listeners ();
-                    callback_success (feature);
+                }
+                function cb_success ()
+                {
+                    callback_success (obj);
+                    reset.call (self);
                 }
                 function cb_failure ()
                 {
-                    this.reset_gui ();
-                    this.reset_listeners ();
                     callback_failure ({canceled: true});
+                    reset.call (self);
                 }
 
                 this.set_listeners (obj);
-                // pop up a prompt
-                this._popup = this.popup ("<h1>Pick connectivity<br>Right-click to cancel</h1>");
+                this._popup = this.popup ("<h1>Pick connectivity</h1>");
             }
 
             async do_connectivity_wait (obj, callback_success, callback_failure)
@@ -683,21 +781,10 @@ define
                 while (null == status);
             }
 
-            connect (obj)
-            {
-                function abort ()
-                {
-                    this.reset_gui ();
-                    this.reset_listeners ();
-                }
-                return (new CancelablePromise (new Promise (this.do_connectivity_wait.bind (this, obj)), abort.bind (this)));
-            }
-
-            connect_click (event)
+            initialize  (mrid)
             {
                 if (this._target)
                     this.reset_gui ();
-                var mrid = this._cimmap.get_selected_feature ();
                 if (mrid)
                 {
                     var cim_data = this._cimmap.get_data ();
@@ -707,12 +794,8 @@ define
                         if (feature)
                         {
                             this._target = this.get_connectivity_for_equipments ([feature]);
-                            this._target[0].current = true;
                             this._candidates = this.get_connectivity_for_equipments ([feature], true);
-                            this._candidates[0].current = true;
                             this.reset_gui ();
-                            this._cpromise = this.connect (feature);
-                            this._cpromise.setPromise (this._cpromise.promise ().then (function () { console.log ("ok") }, function () { console.log ("not ok") }));
                         }
                         else
                             console.log (mrid + " is not ConductingEquipment");
@@ -720,13 +803,47 @@ define
                 }
             }
 
-            disconnect_click (event)
+            begin ()
             {
                 if (this._cpromise)
                     this._cpromise.cancel ();
+                // start tracking
+                var obj = this._target[0].Equipment[0].ConductingEquipment;
+                this._cpromise = new CancelablePromise (new Promise (this.do_connectivity_wait.bind (this, obj)), this.abort.bind (this))
+                var self = this;
+                this._cpromise.setPromise (this._cpromise.promise ().then (function () { console.log ("begin ok"); delete self._cpromise; }, function () { console.log ("begin not ok"); delete self._cpromise; }));
+                this.set_gui ();
             }
 
-            cancel_click (event)
+            connect_click (callback_success, callback_failure, event)
+            {
+                console.log ("connected")
+                var equipment = this._target[0].Equipment[0].ConductingEquipment;
+                this.reset_gui ();
+                this.reset_listeners ();
+                delete this._target;
+                delete this._candidates;
+                delete this._anchor;
+                document.getElementById ("connectivity").innerHTML = "";
+                if (callback_success)
+                    callback_success (equipment);
+            }
+
+            disconnect_click (callback_success, callback_failure, event)
+            {
+                console.log ("disconnected")
+                var equipment = this._target[0].Equipment[0].ConductingEquipment;
+                this.reset_gui ();
+                this.reset_listeners ();
+                delete this._target;
+                delete this._candidates;
+                delete this._anchor;
+                document.getElementById ("connectivity").innerHTML = "";
+                if (callback_success)
+                    callback_success (equipment);
+            }
+
+            cancel_click (callback_success, callback_failure, event)
             {
                 if (this._cpromise)
                     this._cpromise.cancel ();
@@ -734,14 +851,44 @@ define
                 delete this._candidates;
                 delete this._anchor;
                 document.getElementById ("connectivity").innerHTML = "";
+                if (callback_failure)
+                    callback_failure ({canceled: true});
             }
 
+            abort ()
+            {
+                this.reset_gui ();
+                this.reset_listeners ();
+                delete this._target;
+                delete this._candidates;
+                delete this._anchor;
+                delete this._cpromise;
+            }
+
+            /**
+             * Connect the given object at terminal asynchronously.
+require(["cimmap"], function(cimmap) { obj = cimmap.get_data ().Element["T1"]; });
+require(["cimmap"], function(cimmap) { cimmap.get_connectivity ().connect (obj, null, function (x) { console.log ("success " + x); }, function (y) { console.log ("failure " + y); } ); });
+             */
+            connect (obj, terminal, callback_success, callback_failure)
+            {
+                this.initialize (obj.id);
+                return (new CancelablePromise (new Promise (this.do_connectivity_wait.bind (this, obj)), this.abort.bind (this)));
+            }
+
+            /**
+             * Connect the selected object at user selected terminal synchronously.
+             */
             selection_change (current_feature, current_selection)
             {
                 if (null != current_feature)
-                    this.connect_click ();
+                    this.initialize (current_feature);
                 else
+                {
                     this.cancel_click ();
+                    this.reset_gui ();
+                }
+                document.getElementById ("connectivity_set").disabled = null == current_feature;
             }
         }
 

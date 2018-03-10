@@ -105,9 +105,11 @@ define
                 return (ret);
             }
 
-            make_conductor (feature)
+            make_conductor (data, feature)
             {
                 var ret = [];
+
+                this._data = data;
                 var line = this._cimedit.primary_element ();
                 var id = line.id;
 
@@ -115,7 +117,7 @@ define
                 if (null == connectivity1) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_1"));
-                    ret.push (new Core.ConnectivityNode (node, this._features));
+                    ret.push (new Core.ConnectivityNode (node, this._data));
                     console.log ("no connectivity found at end 1, created ConnectivityNode " + node.id);
                     connectivity1 = { ConnectivityNode: node.id };
                 }
@@ -145,7 +147,7 @@ define
                 if (null == connectivity2) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_2"));
-                    ret.push (new Core.ConnectivityNode (node, this._features));
+                    ret.push (new Core.ConnectivityNode (node, this._data));
                     console.log ("no connectivity found at end 2, created ConnectivityNode " + node.id);
                     connectivity2 = { ConnectivityNode: node.id };
                 }
@@ -169,8 +171,8 @@ define
                 if (connectivity2.TopologicalNode)
                     terminal2.TopologicalNode = connectivity2.TopologicalNode;
 
-                ret.push (new Core.Terminal (terminal1, this._features));
-                ret.push (new Core.Terminal (terminal2, this._features));
+                ret.push (new Core.Terminal (terminal1, this._data));
+                ret.push (new Core.Terminal (terminal2, this._data));
 
                 var loc = this.make_location (id, "wgs84", feature);
                 var location = loc[0];
@@ -178,8 +180,8 @@ define
                 ret = ret.concat (loc);
                 line.length = this.distance (feature.geometry.coordinates);
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
-                ret = ret.concat (eqm.ensure_voltages (this._features));
-                ret = ret.concat (eqm.ensure_status (this._features));
+                ret = ret.concat (eqm.ensure_voltages (this._data));
+                ret = ret.concat (eqm.ensure_status (this._data));
                 line.normallyInService = true;
                 line.SvStatus = eqm.in_use ();
                 if (!line.BaseVoltage)
@@ -199,15 +201,14 @@ define
                 return (ret);
             }
 
-            make (features)
+            make (data)
             {
-                this._features = features;
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 this._cimedit.refresh ();
-                var cpromise = this._digitizer.line (obj, this._features);
-                cpromise.setPromise (cpromise.promise ().then (this.make_conductor.bind (this)));
+                var cpromise = this._digitizer.line (obj, data);
+                cpromise.setPromise (cpromise.promise ().then (this.make_conductor.bind (this, data)));
                 return (cpromise);
             }
         }
