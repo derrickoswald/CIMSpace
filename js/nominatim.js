@@ -140,6 +140,17 @@ define
             return ("_" + uuid);
         }
 
+        function areEqual (obj1, obj2, filter)
+        {
+            var a = JSON.stringify (obj1, filter);
+            var b = JSON.stringify (obj2, filter);
+            if (!a) a = "";
+            if (!b) b = "";
+            a = a.split ("").sort ().join ("");
+            b = b.split ("").sort ().join ("");
+            return (a == b);
+        }
+
         /**
          * Create a StreetAddress for the given coordinates, if possible.
          * @param lon the longitude of the point to get the address for
@@ -155,7 +166,7 @@ define
         {
             function fn (response)
             {
-                var ret = null;
+                var ret = [];
                 if (null != response)
                 {
                     var _data = {};
@@ -171,6 +182,8 @@ define
                         },
                         _data
                     );
+                    ret.push (status);
+
                     var street = new Common.StreetDetail (
                         {
                             cls: "StreetDetail",
@@ -178,14 +191,20 @@ define
                             addressGeneral: response.display_name,
                             buildingName: response.address.housename ? response.address.housename : response.address.building,
                             code: response.type,
-                            name: response.address.road ? response.address.road : response.address.street,
                             number: response.address.house_number,
                             suiteNumber: response.address.flats
                         },
                         _data
                     );
+                    var road = [];
+                    if (response.address.pedestrian) road.push (response.address.pedestrian);
+                    if (response.address.road)       road.push (response.address.road);
+                    if (response.address.street)     road.push (response.address.street);
+                    if (0 != road.length) street.name = road.join (", ");
                     if (response.name) street.prefix = response.name;
                     if (response.addresstype) street.suffix = response.addresstype;
+                    ret.push (street);
+
                     var town = new Common.TownDetail (
                         {
                             cls: "TownDetail",
@@ -204,6 +223,29 @@ define
                     if (response.address.county)         section.push (response.address.county);
                     if (response.address.state_district) section.push (response.address.state_district);
                     if (0 != section.length) town.section = section.join (", ");
+                    // check for an existing TownDetail with the same attributes
+                    var match = null;
+                    if (data)
+                    {
+                        var towns = data.TownDetail;
+                        if (towns)
+                        {
+                            function notid (key, value)
+                            {
+                                return (key != "id" ? (key != "EditDisposition" ? value : undefined) : undefined);
+                            }
+                            for (var id in towns)
+                            {
+                                var test = towns[id];
+                                if (areEqual (town, test, notid))
+                                    match = test;
+                            }
+                        }
+                    }
+                    if (match)
+                        town = match;
+                    else
+                        ret.push (town);
                     var address = new Common.StreetAddress (
                         {
                             cls: "StreetAddress",
@@ -214,7 +256,7 @@ define
                         },
                         _data
                     );
-                    ret = [status, street, town, address];
+                    ret.push (address);
                 }
                 callback (ret);
             }
@@ -230,9 +272,24 @@ define
     }
 );
 /*
-require (["nominatim", "cimmap"],
-   function (nominatim, map)
+require (["nominatim", "cimmap", "cim"],
+   function (nominatim, map, cim)
    {
+        function add (proto)
+        {
+            proto.EditDisposition = "new";
+            var cls = cim.class_map (proto);
+            return (new cls (proto, map.get_data ()));
+        }
+        function handler (address)
+        {
+            if (0 != address.length)
+            {
+                for (var i = 0; i < address.length; i++)
+                    address[i] = add (address[i]);
+                alert (JSON.stringify (address, null, 4));
+            }
+        }
         function mousedown_listener (event)
         {
             var key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
@@ -242,10 +299,11 @@ require (["nominatim", "cimmap"],
                 var leftbutton = 0 != (buttons & 1);
                 var rightbutton = 0 != (buttons & 2);
                 if (leftbutton)
-                    nominatim.getStreetAddress (event.lngLat.lng, event.lngLat.lat, function (address) { if (address) alert (JSON.stringify (address, null, 4));  });
+                    nominatim.getStreetAddress (event.lngLat.lng, event.lngLat.lat, handler, map.get_data ());
                 else if (rightbutton)
                     map.get_map ().off ("mousedown", mousedown_listener);
             }
+            return (false);
         }
         map.get_map ().on ("mousedown", mousedown_listener);
    });

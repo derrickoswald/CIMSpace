@@ -254,8 +254,22 @@ define
          */
         function from_datetime (date)
         {
-            return (date.toISOString ());
+            var ret;
+            if ("object" == typeof (date))
+                ret = date.toISOString ();
+            else if ("string" == typeof (date))
+                ret = date;
+            else ret = date.toString ();
+            return (ret);
         }
+
+        // ToDo:
+        // Characters that need to be escaped (to obtain a well-formed document):
+        // The < must be escaped with a &lt; entity, since it is assumed to be the beginning of a tag.
+        // The & must be escaped with a &amp; entity, since it is assumed to be the beginning a entity reference
+        // The > should be escaped with &gt; entity. It is not mandatory -- it depends on the context -- but it is strongly advised to escape it.
+        // The ' should be escaped with a &apos; entity -- mandatory in attributes defined within single quotes but it is strongly advised to always escape it.
+        // The " should be escaped with a &quot; entity -- mandatory in attributes defined within double quotes but it is strongly advised to always escape it.
 
         /**
          * Export one element.

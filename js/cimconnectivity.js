@@ -8,7 +8,7 @@ define
     ["mustache", "cim", "cancelablepromise"],
     /**
      * @summary Connectivity control.
-     * @description UI element for connectivity.
+     * @description UI element for editing connectivity.
      * @name cimconnectivity
      * @exports cimconnectivity
      * @version 1.0
@@ -46,7 +46,7 @@ define
                 this._map = map;
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
-                this._container.innerHTML = mustache.render (this._template, { });
+                this._container.innerHTML = this._template;
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                 this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.begin.bind (this);
                 this._cimmap.add_feature_listener (this);
@@ -127,17 +127,8 @@ define
             {
                 var ret = [];
 
+               // get the terminals for the device
                 var data = this._cimmap.get_data ();
-                var points = data.PositionPoint;
-                var ordered = [];
-                for (var id in points)
-                    if (points[id].Location == equipment.Location)
-                        ordered[points[id].sequenceNumber] = points[id];
-                // here we un-screw up the sequence numbers on the PositionPoint elements
-                if ("undefined" == typeof (ordered[0]))
-                    ordered = ordered.slice (1);
-
-                // get the terminals for the device
                 var device_terminals = [];
                 var terminals = data.Terminal;
                 for (var id in terminals)
@@ -149,6 +140,15 @@ define
                 // for Conductor objects (with a length attribute) keep only the nearest one
                 if (point && device_terminals.length > 1 && equipment.length)
                 {
+                    var points = data.PositionPoint;
+                    var ordered = [];
+                    for (var id in points)
+                        if (points[id].Location == equipment.Location)
+                            ordered[points[id].sequenceNumber] = points[id];
+                    // here we un-screw up the sequence numbers on the PositionPoint elements
+                    if ("undefined" == typeof (ordered[0]))
+                        ordered = ordered.slice (1);
+
                     var first = 0;
                     var last = ordered.length - 1;
                     var x = point[0];
@@ -247,8 +247,6 @@ define
                 }
                 for (var id in list)
                     ret.push ({ ConnectivityNode: id, Equipment: list[id] });
-
-
 //            [
 //                {
 //                    ConnectivityNode: nodename,
@@ -441,18 +439,23 @@ define
 
             set_buttons ()
             {
-                var connected = false;
-                var target = null;
-                for (var i = 0; i < this._target.length; i++)
-                    if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
-                        target = this._target[i];
-                if (target)
-                    connected = document.getElementById ("connectivity_" + target.ConnectivityNode).checked;
-                document.getElementById ("connectivity_connect").disabled = connected;
-                document.getElementById ("connectivity_disconnect").disabled = target && !connected;
+                var connect = document.getElementById ("connectivity_connect");
+                var disconnect = document.getElementById ("connectivity_disconnect");
+                if (connect && disconnect)
+                {
+                    var connected = false;
+                    var target = null;
+                    for (var i = 0; i < this._target.length; i++)
+                        if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
+                            target = this._target[i];
+                    if (target)
+                        connected = document.getElementById ("connectivity_" + target.ConnectivityNode).checked;
+                    connect.disabled = connected;
+                    disconnect.disabled = target && !connected;
+                }
             }
 
-            set_gui ()
+            set_gui (cb_success, cb_failure)
             {
                 var template =
                 `
@@ -461,12 +464,12 @@ define
                     <button id='connectivity_cancel' type='button' class='btn btn-danger'>Cancel</button>
                 `;
                 document.getElementById ("connectivity_footer").innerHTML = template;
-//                var do_connect = this.connect_click.bind (this, cb_success, cb_failure);
-//                var do_disconnect = this.disconnect_click.bind (this, cb_success, cb_failure);
-//                var do_cancel = this.cancel_click.bind (this, cb_success, cb_failure);
-//                document.getElementById ("connectivity_connect").addEventListener ("click", do_connect);
-//                document.getElementById ("connectivity_disconnect").addEventListener ("click", do_disconnect);
-//                document.getElementById ("connectivity_cancel").addEventListener ("click", do_cancel);
+                var do_connect = this.connect_click.bind (this, cb_success, cb_failure);
+                var do_disconnect = this.disconnect_click.bind (this, cb_success, cb_failure);
+                var do_cancel = this.cancel_click.bind (this, cb_success, cb_failure);
+                document.getElementById ("connectivity_connect").addEventListener ("click", do_connect);
+                document.getElementById ("connectivity_disconnect").addEventListener ("click", do_disconnect);
+                document.getElementById ("connectivity_cancel").addEventListener ("click", do_cancel);
                 var target = null;
                 for (var i = 0; i < this._target.length; i++)
                     if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
@@ -522,6 +525,8 @@ define
 
             flick (event)
             {
+                var id = event.target.id;
+                console.log ("radio event " + id);
                 for (var i = 0; i < this._target.length; i++)
                     if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
                     {
@@ -540,9 +545,10 @@ define
                     }
                     else
                         delete this._target[i].current;
+                this.set_buttons ();
             }
 
-            // only used in mustache
+            // only used in mustache render
             display_name ()
             {
                 var ret;
@@ -753,7 +759,7 @@ define
                     callback_failure ({canceled: true});
                     reset.call (self);
                 }
-
+                this.set_gui (cb_success, cb_failure);
                 this.set_listeners (obj);
                 this._popup = this.popup ("<h1>Pick connectivity</h1>");
             }
@@ -805,26 +811,29 @@ define
 
             begin ()
             {
-                if (this._cpromise)
-                    this._cpromise.cancel ();
                 // start tracking
                 var obj = this._target[0].Equipment[0].ConductingEquipment;
                 this._cpromise = new CancelablePromise (new Promise (this.do_connectivity_wait.bind (this, obj)), this.abort.bind (this))
                 var self = this;
-                this._cpromise.setPromise (this._cpromise.promise ().then (function () { console.log ("begin ok"); delete self._cpromise; }, function () { console.log ("begin not ok"); delete self._cpromise; }));
-                this.set_gui ();
+                function cb_success (equipment)
+                {
+                    console.log ("begin success");
+                    delete self._cpromise;
+                    self.initialize (equipment.id);
+                }
+                function cb_failure (message)
+                {
+                    console.log ("begin not ok " + message);
+                    delete self._cpromise;
+                    self.initialize (obj);
+                }
+                this._cpromise.setPromise (this._cpromise.promise ().then (cb_success, cb_failure));
             }
 
             connect_click (callback_success, callback_failure, event)
             {
                 console.log ("connected")
                 var equipment = this._target[0].Equipment[0].ConductingEquipment;
-                this.reset_gui ();
-                this.reset_listeners ();
-                delete this._target;
-                delete this._candidates;
-                delete this._anchor;
-                document.getElementById ("connectivity").innerHTML = "";
                 if (callback_success)
                     callback_success (equipment);
             }
@@ -833,36 +842,24 @@ define
             {
                 console.log ("disconnected")
                 var equipment = this._target[0].Equipment[0].ConductingEquipment;
-                this.reset_gui ();
-                this.reset_listeners ();
-                delete this._target;
-                delete this._candidates;
-                delete this._anchor;
-                document.getElementById ("connectivity").innerHTML = "";
                 if (callback_success)
                     callback_success (equipment);
             }
 
             cancel_click (callback_success, callback_failure, event)
             {
-                if (this._cpromise)
-                    this._cpromise.cancel ();
-                delete this._target;
-                delete this._candidates;
-                delete this._anchor;
-                document.getElementById ("connectivity").innerHTML = "";
                 if (callback_failure)
                     callback_failure ({canceled: true});
             }
 
             abort ()
             {
-                this.reset_gui ();
                 this.reset_listeners ();
                 delete this._target;
                 delete this._candidates;
                 delete this._anchor;
                 delete this._cpromise;
+                this.reset_gui ();
             }
 
             /**
@@ -884,10 +881,7 @@ require(["cimmap"], function(cimmap) { cimmap.get_connectivity ().connect (obj, 
                 if (null != current_feature)
                     this.initialize (current_feature);
                 else
-                {
-                    this.cancel_click ();
-                    this.reset_gui ();
-                }
+                    this.abort ();
                 document.getElementById ("connectivity_set").disabled = null == current_feature;
             }
         }
