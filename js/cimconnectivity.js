@@ -243,32 +243,33 @@ define
                         for (var term in terminals)
                         {
                             var terminal = terminals[term];
-                            if (terminal.ConnectivityNode == id)
-                            {
-                                if (!list[id].find (x => x.ConductingEquipment.id == terminal.ConductingEquipment))
+                            if (!terminal.EditDisposition || (terminal.EditDisposition != "delete"))
+                                if (terminal.ConnectivityNode == id)
                                 {
-                                    var equipment = data.ConductingEquipment[terminal.ConductingEquipment];
-                                    var connectivity =
-                                        {
-                                            ConnectivityNode: id,
-                                            ConductingEquipment: equipment,
-                                            Terminal: terminal,
-                                            BaseVoltage: ""
-                                        };
-                                    if (equipment.BaseVoltage)
-                                        connectivity.BaseVoltage = equipment.BaseVoltage;
-                                    else
+                                    if (!list[id].find (x => x.ConductingEquipment.id == terminal.ConductingEquipment))
                                     {
-                                        // for PowerTransformer look for the end
-                                        var ends = data.PowerTransformerEnd;
-                                        for (var end in ends)
-                                            if (ends[end].Terminal == terminal.id)
-                                                connectivity.BaseVoltage = ends[end].BaseVoltage;
-                                    }
+                                        var equipment = data.ConductingEquipment[terminal.ConductingEquipment];
+                                        var connectivity =
+                                            {
+                                                ConnectivityNode: id,
+                                                ConductingEquipment: equipment,
+                                                Terminal: terminal,
+                                                BaseVoltage: ""
+                                            };
+                                        if (equipment.BaseVoltage)
+                                            connectivity.BaseVoltage = equipment.BaseVoltage;
+                                        else
+                                        {
+                                            // for PowerTransformer look for the end
+                                            var ends = data.PowerTransformerEnd;
+                                            for (var end in ends)
+                                                if (ends[end].Terminal == terminal.id)
+                                                    connectivity.BaseVoltage = ends[end].BaseVoltage;
+                                        }
 
-                                    list[id].push (connectivity);
+                                        list[id].push (connectivity);
+                                    }
                                 }
-                            }
                         }
                     }
                 }
@@ -872,22 +873,11 @@ define
                     {
                         if (target.Terminal.ConnectivityNode != candidate.ConnectivityNode)
                         {
-                            var element = target.Terminal;
-                            var proto = JSON.parse (JSON.stringify (element));
-                            var id = element.id;
-                            var cls = cim.class_map (element);
-                            // delete the old object and replace it with a "deleted" version
-                            var version = this._cimedit.next_version (element);
-                            cls.prototype.remove (element, data);
-                            element.id = version;
-                            element.mRID = version;
-                            element.EditDisposition = "delete";
-                            var deleted = new cls (element, data);
-                            // insert the new element
-                            proto.EditDisposition = "edit";
+                            var terminal = target.Terminal;
+                            var proto = JSON.parse (JSON.stringify (terminal));
                             proto.ConnectivityNode = candidate.ConnectivityNode;
-                            new cls (proto, data);
-                            console.log ("connected")
+                            this._cimedit.replace (terminal, proto, data);
+                            console.log ("connected terminal " + target.Terminal.id + " to " + candidate.ConnectivityNode);
                         }
                     }
                 }
@@ -913,22 +903,11 @@ define
                     {
                         if (target.Terminal.ConnectivityNode == candidate.ConnectivityNode)
                         {
-                            var element = target.Terminal;
-                            var proto = JSON.parse (JSON.stringify (element));
-                            var id = element.id;
-                            var cls = cim.class_map (element);
-                            // delete the old object and replace it with a "deleted" version
-                            var version = this._cimedit.next_version (element);
-                            cls.prototype.remove (element, data);
-                            element.id = version;
-                            element.mRID = version;
-                            element.EditDisposition = "delete";
-                            var deleted = new cls (element, data);
-                            // insert the new element
-                            proto.EditDisposition = "edit";
+                            var terminal = target.Terminal;
+                            var proto = JSON.parse (JSON.stringify (terminal));
                             delete proto.ConnectivityNode;
-                            new cls (proto, data);
-                            console.log ("disconnected")
+                            this._cimedit.replace (terminal, proto, data);
+                            console.log ("disconnected terminal " + target.Terminal.id);
                         }
                     }
                 }

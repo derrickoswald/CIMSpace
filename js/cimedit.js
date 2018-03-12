@@ -610,11 +610,11 @@ define
                 return (version);
             }
 
-            next_version (feature)
+            next_version (feature, data)
             {
                 var version = 1;
 
-                var list = this._cimmap.get_data ()[feature.cls];
+                var list = data[feature.cls];
                 var mrid = this.mrid (feature);
                 while (null != list[version.toString () + ":" + mrid])
                     version = version + 1;
@@ -634,6 +634,29 @@ define
                 this._cimmap.make_map ();
             }
 
+            // remove the old object and replace it with a "deleted" version
+            retire (old_obj, data)
+            {
+                var cls = cim.class_map (old_obj);
+                cls.prototype.remove (old_obj, data);
+
+                old_obj.id = this.next_version (old_obj, data);
+                if (old_obj.mRID)
+                    old_obj.mRID = old_obj.id;
+                old_obj.EditDisposition = "delete";
+                new cls (old_obj, data);
+            }
+
+            // retire the old and add the new object
+            replace (old_obj, new_obj, data)
+            {
+                this.retire (old_obj, data);
+
+                var cls = cim.class_map (new_obj);
+                new_obj.EditDisposition = "edit";
+                new cls (new_obj, data);
+            }
+
             save ()
             {
                 if (null == this._cimmap.get_data ())
@@ -644,25 +667,15 @@ define
                     // editing an existing object
                     for (var i = 0; i < this._elements.length; i++)
                     {
-                        var element = this._elements[i];
-                        var id = element.id;
-                        var cls = cim.class_map (element);
-                        // delete the old object and replace it with a "deleted" version
-                        var version = this.next_version (element);
-                        cls.prototype.remove (element, this._cimmap.get_data ());
-                        element.id = version;
-                        element.mRID = version;
-                        element.EditDisposition = "delete";
-                        var deleted = new cls (element, this._cimmap.get_data ());
-                        // add a new object with a possibly changed mRID
-                        element = cls.prototype.submit (id);
-                        if (element.mRID)
-                            element.id = element.mRID;
+                        var old_obj = this._elements[i];
+                        var id = old_obj.id;
+                        var cls = cim.class_map (old_obj);
+                        var new_obj = cls.prototype.submit (id);
+                        if (new_obj.mRID)
+                            new_obj.id = new_obj.mRID;
                         else
-                            element.id = id;
-                        element.cls = deleted.cls;
-                        element.EditDisposition = "edit";
-                        new cls (element, this._cimmap.get_data ());
+                            new_obj.id = id;
+                        this.replace (old_obj, new_obj, this._cimmap.get_data ());
                     }
                 }
                 else
@@ -702,15 +715,7 @@ define
                     {
                         // delete existing features
                         for (var i = 0; i < this._elements.length; i++)
-                        {
-                            var old_obj = this._elements[i];
-                            var cls = cim.class_map (old_obj);
-                            cls.prototype.remove (old_obj, this._cimmap.get_data ());
-                            old_obj.EditDisposition = "delete";
-                            old_obj.id = this.next_version (old_obj);
-                            old_obj.mRID = old_obj.id;
-                            this._elements[i] = new cls (old_obj, this._cimmap.get_data ());
-                        }
+                            this.retire (this._elements[i], this._cimmap.get_data ());
                         delete this._elements;
                     }
                 }
