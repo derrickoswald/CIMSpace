@@ -17,10 +17,11 @@ define
     {
         class CIMConnectivity
         {
-            constructor (cimmap)
+            constructor (cimmap, cimedit)
             {
                 this._onMap = false;
                 this._cimmap = cimmap;
+                this._cimedit = cimedit;
                 this._template =
                     `
                     <div class='card'>
@@ -123,22 +124,74 @@ define
                 return (Math.sqrt (dx * dx + dy * dy));
             }
 
-            get_connectivity_for_equipment (equipment, point)
+            // get the terminals for the device
+            get_terminals_for_equipment (equipment)
             {
                 var ret = [];
-
-               // get the terminals for the device
                 var data = this._cimmap.get_data ();
-                var device_terminals = [];
                 var terminals = data.Terminal;
                 for (var id in terminals)
-                    if (terminals[id].ConductingEquipment == equipment.id)
-                        device_terminals.push (terminals[id]);
+                {
+                    var terminal = terminals[id];
+                    if (terminal.ConductingEquipment == equipment.id)
+                        if (!terminal.EditDisposition || (terminal.EditDisposition != "delete"))
+                            ret.push (terminal);
+                }
                 // sort by sequenceNumber
-                device_terminals.sort ((a, b) => a.sequenceNumber - b.sequenceNumber);
+                ret.sort ((a, b) => a.sequenceNumber - b.sequenceNumber);
+
+                return (ret);
+            }
+
+            // get the connectivity
+            get_connectivity_for_equipment_terminals (equipment, terminals)
+            {
+                var ret = [];
+                for (var i = 0; i < terminals.length; i++)
+                {
+                    var terminal = terminals[i];
+                    var connectivity =
+                    {
+                        ConductingEquipment: equipment,
+                        Terminal: terminal,
+                        BaseVoltage: ""
+                    };
+                    if (equipment.BaseVoltage)
+                        connectivity.BaseVoltage = equipment.BaseVoltage;
+                    else
+                    {
+                        // for PowerTransformer look for the end
+                        var data = this._cimmap.get_data ();
+                        var ends = data.PowerTransformerEnd;
+                        for (var end in ends)
+                            if (ends[end].Terminal == terminal.id)
+                                connectivity.BaseVoltage = ends[end].BaseVoltage;
+                    }
+                    if (terminal.ConnectivityNode)
+                        connectivity.ConnectivityNode = terminal.ConnectivityNode;
+                    ret.push (connectivity);
+                }
+
+//                [
+//                    {
+//                        ConductingEquipment: equipment,
+//                        Terminal: terminal,
+//                        BaseVoltage: ""
+//                        ConnectivityNode: terminal.ConnectivityNode,
+//                    },
+//                    :
+//                ]
+                return (ret);
+            }
+
+            get_connectivity_for_equipment (equipment, point)
+            {
+                // get the terminals for the device
+                var terminals = this.get_terminals_for_equipment (equipment);
 
                 // for Conductor objects (with a length attribute) keep only the nearest one
-                if (point && device_terminals.length > 1 && equipment.length)
+                var data = this._cimmap.get_data ();
+                if (point && terminals.length > 1 && equipment.length)
                 {
                     var points = data.PositionPoint;
                     var ordered = [];
@@ -156,38 +209,12 @@ define
                     if (this.distance (ordered[first].xPosition, ordered[first].yPosition, x, y) <
                         this.distance (ordered[last].xPosition, ordered[last].yPosition, x, y))
                         // keep the first
-                        device_terminals = device_terminals.slice (0, 1);
+                        terminals = terminals.slice (0, 1);
                     else
                         // keep the second
-                        device_terminals = device_terminals.slice (1, 2);
+                        terminals = terminals.slice (1, 2);
                 }
-
-                // get the connectivity
-                for (var i = 0; i < device_terminals.length; i++)
-                {
-                    var terminal = device_terminals[i];
-                    if (terminal.ConnectivityNode)
-                    {
-                        var connectivity =
-                        {
-                            ConnectivityNode: terminal.ConnectivityNode,
-                            ConductingEquipment: equipment,
-                            Terminal: terminal,
-                            BaseVoltage: ""
-                        };
-                        if (equipment.BaseVoltage)
-                            connectivity.BaseVoltage = equipment.BaseVoltage;
-                        else
-                        {
-                            // for PowerTransformer look for the end
-                            var ends = data.PowerTransformerEnd;
-                            for (var end in ends)
-                                if (ends[end].Terminal == terminal.id)
-                                    connectivity.BaseVoltage = ends[end].BaseVoltage;
-                        }
-                        ret.push (connectivity);
-                    }
-                }
+                var ret = this.get_connectivity_for_equipment_terminals (equipment, terminals).filter (x => x.ConnectivityNode);
 
                 return (ret);
             }
@@ -446,10 +473,10 @@ define
                     var connected = false;
                     var target = null;
                     for (var i = 0; i < this._target.length; i++)
-                        if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
+                        if (document.getElementById ("target_" + this._target[i].Terminal.id).checked)
                             target = this._target[i];
-                    if (target)
-                        connected = document.getElementById ("connectivity_" + target.ConnectivityNode).checked;
+                    if (target && target.Terminal.ConnectivityNode)
+                        connected = document.getElementById ("connectivity_" + target.Terminal.ConnectivityNode).checked;
                     connect.disabled = connected;
                     disconnect.disabled = target && !connected;
                 }
@@ -472,17 +499,17 @@ define
                 document.getElementById ("connectivity_cancel").addEventListener ("click", do_cancel);
                 var target = null;
                 for (var i = 0; i < this._target.length; i++)
-                    if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
+                    if (document.getElementById ("target_" + this._target[i].Terminal.id).checked)
                         target = this._target[i];
                 if (null == target)
                 {
                     target = this._target[0];
                     target.current = true;
-                    document.getElementById ("target_" + target.ConnectivityNode).checked = true;
+                    document.getElementById ("target_" + target.Terminal.id).checked = true;
                     for (var j = 0; j < this._candidates.length; j++)
-                        if (this._candidates[j].ConnectivityNode == target.ConnectivityNode)
+                        if (this._candidates[j].ConnectivityNode == target.Terminal.ConnectivityNode)
                         {
-                            document.getElementById ("connectivity_" + target.ConnectivityNode).checked = true;
+                            document.getElementById ("connectivity_" + this._candidates[j].ConnectivityNode).checked = true;
                             this._candidates[j].current = true;
                         }
                 }
@@ -528,7 +555,7 @@ define
                 var id = event.target.id;
                 console.log ("radio event " + id);
                 for (var i = 0; i < this._target.length; i++)
-                    if (document.getElementById ("target_" + this._target[i].ConnectivityNode).checked)
+                    if (document.getElementById ("target_" + this._target[i].Terminal.id).checked)
                     {
                         this._target[i].current = true;
                         for (var j = 0; j < this._candidates.length; j++)
@@ -536,7 +563,7 @@ define
                             delete this._candidates[j].current;
                             var other = document.getElementById ("connectivity_" + this._candidates[j].ConnectivityNode);
                             other.checked = false;
-                            if (this._candidates[j].ConnectivityNode == this._target[i].ConnectivityNode)
+                            if (this._candidates[j].ConnectivityNode == this._target[i].Terminal.ConnectivityNode)
                             {
                                 this._candidates[j].current = true;
                                 other.checked = true;
@@ -637,14 +664,12 @@ define
                     {{/equipment}}
                     {{#target}}
                     <div class='form-check'>
-                      <input id='target_{{ConnectivityNode}}' class='form-check-input' type='radio' name='target_choice' value='{{ConnectivityNode}}'{{#current}} checked{{/current}}>
-                      <label class='form-check-label' for='target_{{ConnectivityNode}}'>
-                        <h6>{{#ConnectivityNode}}{{ConnectivityNode}}{{/ConnectivityNode}}</h6>
-                          {{#Equipment}}
-                            {{#Terminal}}
-                              <div>Terminal #{{Terminal.sequenceNumber}} {{display_name}} {{Terminal.description}} {{BaseVoltage}}</div>
-                            {{/Terminal}}
-                          {{/Equipment}}
+                      <input id='target_{{Terminal.id}}' class='form-check-input' type='radio' name='target_choice' value='{{Terminal.id}}'{{#current}} checked{{/current}}>
+                      <label class='form-check-label' for='target_{{Terminal.id}}'>
+                        {{#Terminal}}
+                          <h6>Terminal #{{sequenceNumber}} {{display_name}} {{description}}</h6>
+                          <div>{{#ConnectivityNode}}{{ConnectivityNode}}{{/ConnectivityNode}} {{BaseVoltage}}</div>
+                        {{/Terminal}}
                       </label>
                     </div>
                     {{/target}}
@@ -653,7 +678,7 @@ define
                     `;
                 if (this._target)
                 {
-                    var equipment = this._target[0].Equipment[0].ConductingEquipment;
+                    var equipment = this._target[0].ConductingEquipment;
                     var index = 1;
                     for (var i = 0; this._candidates && i < this._candidates.length; i++)
                         if (this._candidates[i].Marker)
@@ -665,7 +690,7 @@ define
                     document.getElementById ("connectivity").innerHTML = text;
                     // add handler to change current target connectivity node
                     for (var i = 0; i < this._target.length; i++)
-                        document.getElementById ("target_" + this._target[i].ConnectivityNode).onclick = this.flick.bind (this);
+                        document.getElementById ("target_" + this._target[i].Terminal.id).onclick = this.flick.bind (this);
                     this.show_candidates ();
                 }
             }
@@ -796,11 +821,11 @@ define
                     var cim_data = this._cimmap.get_data ();
                     if (cim_data)
                     {
-                        var feature = cim_data.ConductingEquipment[mrid];
-                        if (feature)
+                        var equipment = cim_data.ConductingEquipment[mrid];
+                        if (equipment)
                         {
-                            this._target = this.get_connectivity_for_equipments ([feature]);
-                            this._candidates = this.get_connectivity_for_equipments ([feature], true);
+                            this._target = this.get_connectivity_for_equipment_terminals (equipment, this.get_terminals_for_equipment (equipment));
+                            this._candidates = this.get_connectivity_for_equipments ([equipment], true);
                             this.reset_gui ();
                         }
                         else
@@ -812,12 +837,12 @@ define
             begin ()
             {
                 // start tracking
-                var obj = this._target[0].Equipment[0].ConductingEquipment;
+                var obj = this._target[0].ConductingEquipment;
                 this._cpromise = new CancelablePromise (new Promise (this.do_connectivity_wait.bind (this, obj)), this.abort.bind (this))
                 var self = this;
                 function cb_success (equipment)
                 {
-                    console.log ("begin success");
+                    console.log ("begin success " + equipment.id);
                     delete self._cpromise;
                     self.initialize (equipment.id);
                 }
@@ -832,16 +857,83 @@ define
 
             connect_click (callback_success, callback_failure, event)
             {
-                console.log ("connected")
-                var equipment = this._target[0].Equipment[0].ConductingEquipment;
+                var data = this._cimmap.get_data (); // what about new items not yet committed
+                var target = null;
+                for (var i = 0; i < this._target.length; i++)
+                    if (document.getElementById ("target_" + this._target[i].Terminal.id).checked)
+                        target = this._target[i];
+                if (target)
+                {
+                    var candidate = null;
+                    for (var j = 0; j < this._candidates.length; j++)
+                        if (document.getElementById ("connectivity_" + this._candidates[j].ConnectivityNode).checked)
+                            candidate = this._candidates[j];
+                    if (candidate)
+                    {
+                        if (target.Terminal.ConnectivityNode != candidate.ConnectivityNode)
+                        {
+                            var element = target.Terminal;
+                            var proto = JSON.parse (JSON.stringify (element));
+                            var id = element.id;
+                            var cls = cim.class_map (element);
+                            // delete the old object and replace it with a "deleted" version
+                            var version = this._cimedit.next_version (element);
+                            cls.prototype.remove (element, data);
+                            element.id = version;
+                            element.mRID = version;
+                            element.EditDisposition = "delete";
+                            var deleted = new cls (element, data);
+                            // insert the new element
+                            proto.EditDisposition = "edit";
+                            proto.ConnectivityNode = candidate.ConnectivityNode;
+                            new cls (proto, data);
+                            console.log ("connected")
+                        }
+                    }
+                }
+                var equipment = this._target[0].ConductingEquipment;
                 if (callback_success)
                     callback_success (equipment);
             }
 
             disconnect_click (callback_success, callback_failure, event)
             {
-                console.log ("disconnected")
-                var equipment = this._target[0].Equipment[0].ConductingEquipment;
+                var data = this._cimmap.get_data (); // what about new items not yet committed
+                var target = null;
+                for (var i = 0; i < this._target.length; i++)
+                    if (document.getElementById ("target_" + this._target[i].Terminal.id).checked)
+                        target = this._target[i];
+                if (target)
+                {
+                    var candidate = null;
+                    for (var j = 0; j < this._candidates.length; j++)
+                        if (document.getElementById ("connectivity_" + this._candidates[j].ConnectivityNode).checked)
+                            candidate = this._candidates[j];
+                    if (candidate)
+                    {
+                        if (target.Terminal.ConnectivityNode == candidate.ConnectivityNode)
+                        {
+                            var element = target.Terminal;
+                            var proto = JSON.parse (JSON.stringify (element));
+                            var id = element.id;
+                            var cls = cim.class_map (element);
+                            // delete the old object and replace it with a "deleted" version
+                            var version = this._cimedit.next_version (element);
+                            cls.prototype.remove (element, data);
+                            element.id = version;
+                            element.mRID = version;
+                            element.EditDisposition = "delete";
+                            var deleted = new cls (element, data);
+                            // insert the new element
+                            proto.EditDisposition = "edit";
+                            delete proto.ConnectivityNode;
+                            new cls (proto, data);
+                            console.log ("disconnected")
+                        }
+                    }
+                }
+
+                var equipment = this._target[0].ConductingEquipment;
                 if (callback_success)
                     callback_success (equipment);
             }

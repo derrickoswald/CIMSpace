@@ -1201,7 +1201,7 @@ define
             // set up editing
             TheEditor = new CIMEdit (getInterface ());
             // set up connectivity
-            TheConnectivity = new CIMConnectivity (getInterface ());
+            TheConnectivity = new CIMConnectivity (getInterface (), TheEditor);
             // display any existing data
             redraw ();
         }
