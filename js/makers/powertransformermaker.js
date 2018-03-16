@@ -43,11 +43,10 @@ define
                 return (mustache.render (this.class_template (), { classes: this.classes () }));
             }
 
-            make_transformer (data, feature)
+            make_transformer (feature)
             {
                 var ret = [];
 
-                this._data = data;
                 var trafo = this._cimedit.primary_element ();
                 var id = trafo.id;
 
@@ -58,7 +57,7 @@ define
                 if (null == connectivity) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_1"));
-                    ret.push (new Core.ConnectivityNode (node, this._data));
+                    ret.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created primary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -79,12 +78,12 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal1.TopologicalNode = connectivity.TopologicalNode;
-                ret.push (new Core.Terminal (terminal1, this._data));
+                ret.push (new Core.Terminal (terminal1, this._cimedit.new_features ()));
 
                 // add a secondary connectivity node
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_2"));
-                    ret.push (new Core.ConnectivityNode (node, this._data));
+                    ret.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("created secondary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -101,7 +100,7 @@ define
                     ConductingEquipment: id,
                     ConnectivityNode: connectivity.ConnectivityNode
                 };
-                ret.push (new Core.Terminal (terminal2, this._data));
+                ret.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
 
                 // add power transformer ends
                 var eid1 = this._cimedit.generateId (id, "_end_1");
@@ -134,27 +133,27 @@ define
                     connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.Yn",
                     PowerTransformer: id
                 };
-                ret.push (new Wires.PowerTransformerEnd (end1, this._data));
-                ret.push (new Wires.PowerTransformerEnd (end2, this._data));
+                ret.push (new Wires.PowerTransformerEnd (end1, this._cimedit.new_features ()));
+                ret.push (new Wires.PowerTransformerEnd (end2, this._cimedit.new_features ()));
 
-                ret = ret.concat (eqm.ensure_voltages (this._data));
-                ret = ret.concat (eqm.ensure_status (this._data));
+                ret = ret.concat (eqm.ensure_voltages ());
+                ret = ret.concat (eqm.ensure_status ());
                 trafo.normallyInService = true;
                 trafo.SvStatus = eqm.in_use ();
 
-                ret = ret.concat (this.make_psr (data, feature, trafo));
+                ret = ret.concat (this.make_psr (feature, trafo));
                 this._cimedit.create_from (trafo);
 
                 return (ret);
             }
 
-            make (data)
+            make ()
             {
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, data);
-                cpromise.setPromise (cpromise.promise ().then (this.make_transformer.bind (this, data)));
+                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                cpromise.setPromise (cpromise.promise ().then (this.make_transformer.bind (this)));
                 return (cpromise);
             }
         }

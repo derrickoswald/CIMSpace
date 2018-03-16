@@ -61,33 +61,32 @@ define
                 return ("PSRType_Substation");
             }
 
-            ensure_stations (features)
+            ensure_stations ()
             {
                 var ret = [];
                 var data = this._cimmap.get_data ();
                 if (!data || !data.PSRType || !data.PSRType["PSRType_DistributionBox"])
-                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_DistributionBox", mRID: "PSRType_DistributionBox", name: "Distribution Box", description: "N7 level station" }, features));
+                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_DistributionBox", mRID: "PSRType_DistributionBox", name: "Distribution Box", description: "N7 level station" }, this._cimedit.new_features ()));
                 if (!data || !data.PSRType || !data.PSRType["PSRType_TransformerStation"])
-                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_TransformerStation", mRID: "PSRType_TransformerStation", name: "Transformer Station", description: "N6 transfer level station" }, features));
+                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_TransformerStation", mRID: "PSRType_TransformerStation", name: "Transformer Station", description: "N6 transfer level station" }, this._cimedit.new_features ()));
                 if (!data || !data.PSRType || !data.PSRType["PSRType_Substation"])
-                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_Substation", mRID: "PSRType_Substation", name: "Substation", description: "N4 transfer level statin" }, features));
+                    ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_Substation", mRID: "PSRType_Substation", name: "Substation", description: "N4 transfer level statin" }, this._cimedit.new_features ()));
                 return (ret);
             }
 
-            make_substation (data, feature)
+            make_substation (feature)
             {
-                this._data = data;
                 var station = this._cimedit.primary_element ();
                 var id = station.id;
                 station.PSRType = this.transformer_station ();
 
-                var ret = this.make_psr (data, feature, station);
+                var ret = this.make_psr (feature, station);
                 this._cimedit.create_from (station);
 
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
-                ret = ret.concat (eqm.ensure_voltages (this._data));
-                ret = ret.concat (eqm.ensure_status (this._data));
-                ret = ret.concat (this.ensure_stations (this._data));
+                ret = ret.concat (eqm.ensure_voltages ());
+                ret = ret.concat (eqm.ensure_status ());
+                ret = ret.concat (this.ensure_stations ());
 
                 var x = feature.geometry.coordinates[0];
                 var y = feature.geometry.coordinates[1];
@@ -110,8 +109,8 @@ define
                     EquipmentContainer: id,
                     Location: location[0].id
                 };
-                var busbar = new Wires.BusbarSection (b, this._data);
-                var node = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.generateId (bid, "_node"), id), this._data);
+                var busbar = new Wires.BusbarSection (b, this._cimedit.new_features ());
+                var node = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.generateId (bid, "_node"), id), this._cimedit.new_features ());
                 var tid = this._cimedit.generateId (bid, "_terminal");
                 var t =
                 {
@@ -126,7 +125,7 @@ define
                     ConductingEquipment: busbar.id,
                     ConnectivityNode: node.id
                 };
-                var terminal = new Core.Terminal (t, this._data);
+                var terminal = new Core.Terminal (t, this._cimedit.new_features ());
 
                 ret.push (busbar);
                 ret.push (terminal);
@@ -160,7 +159,7 @@ define
                             EquipmentContainer: id,
                             Location: location[0].id
                         };
-                        device = new Wires.Switch (s, this._data);
+                        device = new Wires.Switch (s, this._cimedit.new_features ());
                     }
                     else
                     {
@@ -180,7 +179,7 @@ define
                             EquipmentContainer: id,
                             Location: location[0].id
                         };
-                        device = new Wires.Fuse (f, this._data);
+                        device = new Wires.Fuse (f, this._cimedit.new_features ());
                     }
 
                     var tid1 = this._cimedit.generateId (did, "_terminal_1");
@@ -197,9 +196,9 @@ define
                         ConductingEquipment: device.id,
                         ConnectivityNode: node.id
                     };
-                    var terminal1 = new Core.Terminal (t1, this._data);
+                    var terminal1 = new Core.Terminal (t1, this._cimedit.new_features ());
 
-                    var n = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.generateId (did, "_node"), id), this._data);
+                    var n = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.generateId (did, "_node"), id), this._cimedit.new_features ());
                     var tid2 = this._cimedit.generateId (did, "_terminal_2");
                     var t2 =
                     {
@@ -214,7 +213,7 @@ define
                         ConductingEquipment: device.id,
                         ConnectivityNode: n.id
                     };
-                    var terminal2 = new Core.Terminal (t2, this._data);
+                    var terminal2 = new Core.Terminal (t2, this._cimedit.new_features ());
 
                     ret.push (device);
                     ret.push (terminal1);
@@ -238,7 +237,7 @@ define
                         EquipmentContainer: id,
                         Location: location[0].id
                     };
-                    var connector = new Wires.Connector (c, this._data);
+                    var connector = new Wires.Connector (c, this._cimedit.new_features ());
                     var tid3 = this._cimedit.generateId (cid, "_terminal");
                     var t3 =
                     {
@@ -253,7 +252,7 @@ define
                         ConductingEquipment: connector.id,
                         ConnectivityNode: n.id
                     };
-                    var terminal3 = new Core.Terminal (t3, this._data);
+                    var terminal3 = new Core.Terminal (t3, this._cimedit.new_features ());
                     ret.push (connector);
                     ret.push (terminal3);
                     ret = ret.concat (location);
@@ -264,13 +263,13 @@ define
                 return (ret);
             }
 
-            make (data)
+            make ()
             {
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, data);
-                cpromise.setPromise (cpromise.promise ().then (this.make_substation.bind (this, data)));
+                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                cpromise.setPromise (cpromise.promise ().then (this.make_substation.bind (this)));
                 return (cpromise);
             }
         }

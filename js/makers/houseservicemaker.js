@@ -125,15 +125,15 @@ define
                 return ([consumer, cable]);
             }
 
-            make (data)
+            make ()
             {
                 var parameters = this.submit_parameters ();
                 var consumer = parameters[0];
                 var cable = parameters[1];
                 consumer.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (consumer);
-                var cpromise = this._digitizer.point (obj, data);
-                cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this, data)));
+                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this)));
                 return (cpromise);
             }
         }

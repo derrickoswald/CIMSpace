@@ -257,7 +257,7 @@ define
                 delete this._data;
                 if (this._maker)
                 {
-                    this._maker_promise = this._maker.make (this.new_features ());
+                    this._maker_promise = this._maker.make ();
                     this._maker_promise.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
                 else

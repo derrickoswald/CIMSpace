@@ -58,16 +58,16 @@ define
                 return ("BaseVoltage_150000");
             }
 
-            ensure_voltages (features)
+            ensure_voltages ()
             {
                 var ret = [];
                 var data = this._cimmap.get_data ();
                 if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_150000"])
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_150000", mRID: "BaseVoltage_150000", name: "150kV", description: "high voltage", nominalVoltage: 150.0 }, features));
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_150000", mRID: "BaseVoltage_150000", name: "150kV", description: "high voltage", nominalVoltage: 150.0 }, this._cimedit.new_features ()));
                 if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_16000"])
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, features));
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, this._cimedit.new_features ()));
                 if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_400"])
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, features));
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, this._cimedit.new_features ()));
                 return (ret);
             }
 
@@ -81,22 +81,21 @@ define
                 return ("not_in_use");
             }
 
-            ensure_status (features)
+            ensure_status ()
             {
                 var ret = [];
                 var data = this._cimmap.get_data ();
                 if (!data || !data.SvStatus || !data.SvStatus["in_use"])
-                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use", description: "Status for equipment in use.", inService: true }, features));
+                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use", description: "Status for equipment in use.", inService: true }, this._cimedit.new_features ()));
                 if (!data || !data.SvStatus || !data.SvStatus["not_in_use"])
-                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use", description: "Status for equipment not in use", inService: false }, features));
+                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use", description: "Status for equipment not in use", inService: false }, this._cimedit.new_features ()));
                 return (ret);
             }
 
-            make_equipment (data, feature)
+            make_equipment (feature)
             {
                 var ret = [];
 
-                this._data = data;
                 var equipment = this._cimedit.primary_element ();
                 var id = equipment.id;
 
@@ -104,7 +103,7 @@ define
                 if (null == connectivity) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node"));
-                    ret.push (new Core.ConnectivityNode (node, this._data));
+                    ret.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -128,26 +127,26 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal.TopologicalNode = connectivity.TopologicalNode;
-                ret.push (new Core.Terminal (terminal, this._data));
+                ret.push (new Core.Terminal (terminal, this._cimedit.new_features ()));
 
                 if (!equipment.BaseVoltage)
                 {
-                    ret = ret.concat (this.ensure_voltages (this._data));
+                    ret = ret.concat (this.ensure_voltages (this._cimedit.new_features ()));
                     equipment.BaseVoltage = this.low_voltage ();
                 }
-                ret = ret.concat (this.make_psr (this._data, feature, equipment));
+                ret = ret.concat (this.make_psr (feature, equipment));
                 this._cimedit.create_from (equipment);
 
                 return (ret);
             }
 
-            make (data)
+            make ()
             {
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, data);
-                cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this, data)));
+                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this)));
                 return (cpromise);
             }
         }
