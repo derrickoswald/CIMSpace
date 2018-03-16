@@ -210,7 +210,7 @@ define
                             cls: "TownDetail",
                             id: uuidv4 (),
                             code: response.address.postcode, // there isn't a postal code field in the StreetDetail?, so we use this field
-                            country: response.address.country, // country_code ?
+                            country: response.address.country, // country_code ?ret
                             name: response.address.town ? response.address.town : response.address.city,
                             stateOrProvince: response.address.state
                         },

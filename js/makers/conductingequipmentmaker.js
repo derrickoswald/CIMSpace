@@ -131,7 +131,10 @@ define
                 ret.push (new Core.Terminal (terminal, this._data));
 
                 if (!equipment.BaseVoltage)
+                {
+                    ret = ret.concat (this.ensure_voltages (this._data));
                     equipment.BaseVoltage = this.low_voltage ();
+                }
                 ret = ret.concat (this.make_psr (this._data, feature, equipment));
                 this._cimedit.create_from (equipment);
 

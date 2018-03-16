@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
+    ["mustache", "cim", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "makers/houseservicemaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
     /**
      * @summary Edit control.
      * @description UI element for editing
@@ -13,7 +13,7 @@ define
      * @exports cimedit
      * @version 1.0
      */
-    function (mustache, cim, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, layers, Common, Core, Wires)
+    function (mustache, cim, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, HouseServiceMaker, layers, Common, Core, Wires)
     {
         class CIMEdit
         {
@@ -59,6 +59,7 @@ define
                 [
                     ConductingEquipmentMaker,
                     ConductorMaker,
+                    HouseServiceMaker,
                     PowerSystemResourceMaker,
                     PowerTransformerMaker,
                     SubstationMaker,

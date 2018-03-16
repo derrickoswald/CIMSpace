@@ -44,7 +44,7 @@ define
             {
                 return (
                     "    <div class='form-group row'>\n" +
-                    "      <label class='col-sm-4 col-form-label' for='class_name'>Class</label>\n" +
+                    "      <label class='col-sm-4 col-form-label' for='psr_class'>Class</label>\n" +
                     "      <div class='col-sm-8'>\n" +
                     "        <select id='psr_class' class='form-control custom-select'>\n" +
                     "{{#classes}}\n" +
@@ -344,7 +344,7 @@ define
                 // add the location to the PSR object
                 psr.Location = location.id;
 
-                // if we're not called as a sub-progam, update the editor
+                // if we're not called as a sub-program, update the editor
                 if (!power_system_resource)
                     this._cimedit.create_from (psr);
 

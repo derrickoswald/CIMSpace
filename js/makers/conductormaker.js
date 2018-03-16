@@ -46,7 +46,7 @@ define
                 {
                     var template =
                     "    <div class='form-group row'>\n" +
-                    "      <label class='col-sm-4 col-form-label' for='class_name'>Cable</label>\n" +
+                    "      <label class='col-sm-4 col-form-label' for='cable_name'>Cable</label>\n" +
                     "      <div class='col-sm-8'>\n" +
                     "        <select id='cable_name' class='form-control custom-select'>\n" +
                     "{{#cables}}\n" +
