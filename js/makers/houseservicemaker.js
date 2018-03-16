@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/StateVariables"],
+    ["mustache", "cim", "./locationmaker", "./conductingequipmentmaker", "model/Core", "model/StateVariables"],
     /**
      * @summary Make an EnergyConsumer CIM object representing a house service.
      * @description Digitizes a point and then a conductor with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports houseservicemaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, StateVariables)
+    function (mustache, cim, LocationMaker, ConductingEquipmentMaker, Core, StateVariables)
     {
         class HouseServiceMaker extends ConductingEquipmentMaker
         {
@@ -95,7 +95,7 @@ define
 
             submit_parameters ()
             {
-                var consumer = { cls: "EnergyConsumer" };
+                var consumer = { cls: "EnergyConsumer", EditDisposition: "new" };
                 var customerCount = document.getElementById ("customerCount").value;
                 if ("" != customerCount)
                     consumer.customerCount = customerCount;
@@ -109,7 +109,7 @@ define
                 if ("" != phaseConnection)
                     consumer.phaseConnection = phaseConnection;
 
-                var cable = { cls: "ACLineSegment" };
+                var cable = { cls: "ACLineSegment", EditDisposition: "new" };
                 var data = this._cimmap.get_data ();
                 if (data)
                 {
@@ -133,6 +133,8 @@ define
                 consumer.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (consumer);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this)));
                 return (cpromise);
             }

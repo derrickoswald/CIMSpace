@@ -233,7 +233,13 @@ define
             editnew (array)
             {
                 for (var i = 0; i < array.length; i++)
-                    this.edit (array[i]);
+                {
+                    var proto = array[i];
+                    proto.EditDisposition = "new";
+                    var cls = cim.class_map (proto);
+                    var obj = new cls (proto, this.new_features ());
+                    this.edit (obj, 0 == i, true);
+                }
                 this.refresh ();
             }
 

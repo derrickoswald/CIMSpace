@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
     /**
      * @summary Make a collection of objects representing a Substation with internal data.
      * @description Digitizes a point and makes a Substation, PowerTransformer, BusbarSection, a number of Switch and Fuse with Connector and connectivity.
@@ -13,7 +13,7 @@ define
      * @exports substationmaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
     {
         class SubstationMaker extends PowerSystemResourceMaker
         {
@@ -80,8 +80,9 @@ define
                 var id = station.id;
                 station.PSRType = this.transformer_station ();
 
-                var ret = this.make_psr (feature, station);
-                this._cimedit.create_from (station);
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                var ret = lm.create_location ("pseudo_wgs84", [station], feature);
+                ret = ret.concat (lm.ensure_coordinate_systems ());
 
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 ret = ret.concat (eqm.ensure_voltages ());
@@ -95,7 +96,6 @@ define
                 x = x + this._xoffset;
                 feature.geometry.coordinates[0] = x;
                 var bid = this._cimedit.generateId (id, "_busbar");
-                var location = this.make_location (bid, "pseudo_wgs84", feature);
                 var b =
                 {
                     EditDisposition: "new",
@@ -106,9 +106,9 @@ define
                     BaseVoltage: eqm.low_voltage (),
                     normallyInService: true,
                     SvStatus: eqm.in_use (),
-                    EquipmentContainer: id,
-                    Location: location[0].id
+                    EquipmentContainer: id
                 };
+                var location = lm.create_location ("pseudo_wgs84", [b], feature);
                 var busbar = new Wires.BusbarSection (b, this._cimedit.new_features ());
                 var node = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.generateId (bid, "_node"), id), this._cimedit.new_features ());
                 var tid = this._cimedit.generateId (bid, "_terminal");
@@ -144,7 +144,6 @@ define
                     if (0 == i)
                     {
                         did = this._cimedit.generateId (id, "_switch");
-                        location = this.make_location (did, "pseudo_wgs84", feature);
                         var s =
                         {
                             EditDisposition: "new",
@@ -156,15 +155,14 @@ define
                             normallyInService: true,
                             retained: true,
                             SvStatus: eqm.in_use (),
-                            EquipmentContainer: id,
-                            Location: location[0].id
+                            EquipmentContainer: id
                         };
+                        location = lm.create_location ("pseudo_wgs84", [s], feature);
                         device = new Wires.Switch (s, this._cimedit.new_features ());
                     }
                     else
                     {
                         did = this._cimedit.generateId (id, "_fuse_" + i);
-                        location = this.make_location (did, "pseudo_wgs84", feature);
                         var f =
                         {
                             EditDisposition: "new",
@@ -176,9 +174,9 @@ define
                             ratedCurrent: 125.0,
                             normallyInService: true,
                             SvStatus: eqm.in_use (),
-                            EquipmentContainer: id,
-                            Location: location[0].id
+                            EquipmentContainer: id
                         };
+                        location = lm.create_location ("pseudo_wgs84", [f], feature);
                         device = new Wires.Fuse (f, this._cimedit.new_features ());
                     }
 
@@ -223,7 +221,6 @@ define
 
                     feature.geometry.coordinates[1] = y - this._yoffset;
                     var cid = this._cimedit.generateId (id, "_connector_" + (i + 1));
-                    location = this.make_location (cid, "pseudo_wgs84", feature);
                     var c =
                     {
                         EditDisposition: "new",
@@ -234,9 +231,9 @@ define
                         BaseVoltage: eqm.low_voltage (),
                         normallyInService: true,
                         SvStatus: eqm.in_use (),
-                        EquipmentContainer: id,
-                        Location: location[0].id
+                        EquipmentContainer: id
                     };
+                    location = lm.create_location ("pseudo_wgs84", [c], feature);
                     var connector = new Wires.Connector (c, this._cimedit.new_features ());
                     var tid3 = this._cimedit.generateId (cid, "_terminal");
                     var t3 =

@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "model/Common"],
+    ["mustache", "cim", "./locationmaker"],
     /**
      * @summary Make a CIM object at the PSR level.
      * @description Base class for CIM object makers
@@ -13,7 +13,7 @@ define
      * @exports powersystemresourcemaker
      * @version 1.0
      */
-    function (mustache, cim, Common)
+    function (mustache, cim, LocationMaker)
     {
         class PowerSystemResourceMaker
         {
@@ -261,93 +261,9 @@ define
                 return (c);
             }
 
-            ensure_coordinate_systems ()
+            make_psr (array)
             {
-                var ret = [];
-                var data = this._cimmap.get_data ();
-                if (!data || !data.CoordinateSystem || !data.CoordinateSystem["wgs84"])
-                    ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "wgs84", mRID: "wgs84", name: "WGS 84", description: "new World Geodetic System", crsUrn: "EPSG::4326" }, this._cimedit.new_features ()));
-                if (!data || !data.CoordinateSystem || !data.CoordinateSystem["pseudo_wgs84"])
-                    ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "pseudo_wgs84", mRID: "pseudo_wgs84", name: "WGS 84", description: "schematic coordinates translated to the new World Geodetic System", crsUrn: "EPSG::4326" }, this._cimedit.new_features ()));
-                return (ret);
-            }
-
-            make_location (id, coordsys, feature)
-            {
-                var ret = [];
-
-                // create the location
-                var lid = this._cimedit.generateId (id, "_location");
-                var location =
-                {
-                    EditDisposition: "new",
-                    cls: "Location",
-                    id: lid,
-                    mRID: lid,
-                    CoordinateSystem: coordsys,
-                    type: "geographic"
-                };
-                ret.push (new Common.Location (location, this._cimedit.new_features ()));
-
-                if (feature.geometry.type == "Point")
-                {
-                    // set the position point
-                    var pp =
-                    {
-                        EditDisposition: "new",
-                        Location: location.id,
-                        cls: "PositionPoint",
-                        id: this._cimedit.generateId (id, "_location_p"),
-                        sequenceNumber: 1,
-                        xPosition: feature.geometry.coordinates[0].toString (),
-                        yPosition: feature.geometry.coordinates[1].toString ()
-                    };
-                    ret.push (new Common.PositionPoint (pp, this._cimedit.new_features ()));
-                }
-                else if (feature.geometry.type == "LineString")
-                {
-                    // set the position points
-                    for (var i = 0; i < feature.geometry.coordinates.length; i++)
-                    {
-                        var lnglat = feature.geometry.coordinates[i];
-                        ret.push (
-                            new Common.PositionPoint (
-                                {
-                                    EditDisposition: "new",
-                                    Location: location.id,
-                                    cls: "PositionPoint",
-                                    id: this._cimedit.generateId (id, "_location_p" + (i + 1).toString ()),
-                                    sequenceNumber: (i + 1).toString (),
-                                    xPosition: lnglat[0].toString (),
-                                    yPosition: lnglat[1].toString ()
-                                },
-                                this._cimedit.new_features ()
-                            )
-                        );
-                    }
-                }
-
-                ret = ret.concat (this.ensure_coordinate_systems ());
-
-                return (ret);
-            }
-
-            make_psr (feature, power_system_resource)
-            {
-                var psr = power_system_resource || this._cimedit.primary_element ();
-                var id = psr.id;
-
-                var ret = this.make_location (id, "wgs84", feature);
-                var location = ret[0];
-
-                // add the location to the PSR object
-                psr.Location = location.id;
-
-                // if we're not called as a sub-program, update the editor
-                if (!power_system_resource)
-                    this._cimedit.create_from (psr);
-
-                return (ret);
+                return (array);
             }
 
             make ()
@@ -356,6 +272,8 @@ define
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_psr.bind (this)));
                 return (cpromise);
             }

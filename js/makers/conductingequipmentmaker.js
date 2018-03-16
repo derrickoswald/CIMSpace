@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "model/Core", "model/StateVariables"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "model/Core", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the ConductingEquipment level.
      * @description Digitizes a point and makes a ConductingEquipment element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports conductingequipmentmaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, Core, StateVariables)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, Core, StateVariables)
     {
         class ConductingEquipmentMaker extends PowerSystemResourceMaker
         {
@@ -92,18 +92,18 @@ define
                 return (ret);
             }
 
-            make_equipment (feature)
+            make_equipment (array)
             {
-                var ret = [];
-
-                var equipment = this._cimedit.primary_element ();
+                var equipment = array[0];
                 var id = equipment.id;
 
-                var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
+                // get the position
+                var pp = array.filter (o => o.cls == "PositionPoint")[0];
+                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition));
                 if (null == connectivity) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node"));
-                    ret.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
+                    array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -127,17 +127,15 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal.TopologicalNode = connectivity.TopologicalNode;
-                ret.push (new Core.Terminal (terminal, this._cimedit.new_features ()));
+                array.push (new Core.Terminal (terminal, this._cimedit.new_features ()));
 
                 if (!equipment.BaseVoltage)
                 {
-                    ret = ret.concat (this.ensure_voltages (this._cimedit.new_features ()));
+                    array = array.concat (this.ensure_voltages (this._cimedit.new_features ()));
                     equipment.BaseVoltage = this.low_voltage ();
                 }
-                ret = ret.concat (this.make_psr (feature, equipment));
-                this._cimedit.create_from (equipment);
 
-                return (ret);
+                return (array);
             }
 
             make ()
@@ -146,6 +144,8 @@ define
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this)));
                 return (cpromise);
             }

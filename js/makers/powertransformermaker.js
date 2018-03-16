@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
     /**
      * @summary Make a CIM object at the PowerTransformer level.
      * @description Digitizes a point and makes a PowerTransformer element with ends and connectivity.
@@ -13,7 +13,7 @@ define
      * @exports powertransformermaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
     {
         class PowerTransformerMaker extends PowerSystemResourceMaker
         {
@@ -43,21 +43,22 @@ define
                 return (mustache.render (this.class_template (), { classes: this.classes () }));
             }
 
-            make_transformer (feature)
+            make_transformer (array)
             {
-                var ret = [];
-
-                var trafo = this._cimedit.primary_element ();
+                var trafo = array[0];
                 var id = trafo.id;
 
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
+                trafo.normallyInService = true;
+                trafo.SvStatus = eqm.in_use ();
 
                 // ToDo: assume it's the primary?
-                var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
+                var pp = array.filter (o => o.cls == "PositionPoint")[0];
+                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition));
                 if (null == connectivity) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_1"));
-                    ret.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
+                    array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created primary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -78,12 +79,12 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal1.TopologicalNode = connectivity.TopologicalNode;
-                ret.push (new Core.Terminal (terminal1, this._cimedit.new_features ()));
+                array.push (new Core.Terminal (terminal1, this._cimedit.new_features ()));
 
                 // add a secondary connectivity node
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_2"));
-                    ret.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
+                    array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("created secondary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -100,7 +101,7 @@ define
                     ConductingEquipment: id,
                     ConnectivityNode: connectivity.ConnectivityNode
                 };
-                ret.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
+                array.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
 
                 // add power transformer ends
                 var eid1 = this._cimedit.generateId (id, "_end_1");
@@ -133,18 +134,13 @@ define
                     connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.Yn",
                     PowerTransformer: id
                 };
-                ret.push (new Wires.PowerTransformerEnd (end1, this._cimedit.new_features ()));
-                ret.push (new Wires.PowerTransformerEnd (end2, this._cimedit.new_features ()));
+                array.push (new Wires.PowerTransformerEnd (end1, this._cimedit.new_features ()));
+                array.push (new Wires.PowerTransformerEnd (end2, this._cimedit.new_features ()));
 
-                ret = ret.concat (eqm.ensure_voltages ());
-                ret = ret.concat (eqm.ensure_status ());
-                trafo.normallyInService = true;
-                trafo.SvStatus = eqm.in_use ();
+                array = array.concat (eqm.ensure_voltages ());
+                array = array.concat (eqm.ensure_status ());
 
-                ret = ret.concat (this.make_psr (feature, trafo));
-                this._cimedit.create_from (trafo);
-
-                return (ret);
+                return (array);
             }
 
             make ()
@@ -153,6 +149,8 @@ define
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                cpromise.setPromise (lm.make (cpromise.promise (), "pseudo_wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_transformer.bind (this)));
                 return (cpromise);
             }
