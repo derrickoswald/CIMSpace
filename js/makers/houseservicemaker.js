@@ -41,7 +41,7 @@ define
                       </div>
                     </div>
                     <div class='form-group row'>
-                      <label class='col-sm-4 col-form-label' for='q'>Active power</label>
+                      <label class='col-sm-4 col-form-label' for='q'>Reactive power</label>
                       <div class='col-sm-8'>
                         <input id='q' class='form-control' type='text' name='q' aria-describedby='qHelp' value=''>
                         <small id='qHelp' class='form-text text-muted'>Reactive power of the load, (+)=flow out (VAr).</small>

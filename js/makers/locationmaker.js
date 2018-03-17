@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "model/Common"],
+    ["mustache", "cim", "model/Common", "nominatim"],
     /**
      * @summary Make a CIM location.
      * @description Digitizes a point and makes a PowerTransformer element with ends and connectivity.
@@ -13,7 +13,7 @@ define
      * @exports powertransformermaker
      * @version 1.0
      */
-    function (mustache, cim, Common)
+    function (mustache, cim, Common, Nominatim)
     {
         class LocationMaker
         {
@@ -22,6 +22,7 @@ define
                 this._cimmap = cimmap;
                 this._cimedit = cimedit;
                 this._digitizer = digitizer;
+                this._nominatim = new Nominatim (this._cimmap);
             }
 
             ensure_coordinate_systems ()
@@ -106,7 +107,7 @@ define
 
             make (promise, coordsys)
             {
-                return (promise.then (this.make_location.bind (this, coordsys)));
+                return (promise.then (this.make_location.bind (this, coordsys)).then (this._nominatim.getStreetAddress.bind (this._nominatim)));
             }
         }
 
