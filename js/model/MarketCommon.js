@@ -99,7 +99,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketRole";
                 base.parse_attribute (/<cim:MarketRole.roleType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "roleType", sub, context);
-                base.parse_element (/<cim:MarketRole.status>([\s\S]*?)<\/cim:MarketRole.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketRole.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:MarketRole.type>([\s\S]*?)<\/cim:MarketRole.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:MarketRole.MarketParticipant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketParticipant", sub, context);
                 var bucket = context.parsed.MarketRole;
@@ -115,7 +115,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MarketRole", "roleType", "roleType", fields);
-                base.export_element (obj, "MarketRole", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "MarketRole", "status", "status", fields);
                 base.export_element (obj, "MarketRole", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "MarketRole", "MarketParticipant", "MarketParticipant", fields);
                 if (full)
@@ -148,6 +148,7 @@ define
             {
                 super.condition (obj);
                 obj.MarketRoleKind = []; if (!obj.roleType) obj.MarketRoleKind.push ({ id: '', selected: true}); for (var property in MarketRoleKind) obj.MarketRoleKind.push ({ id: property, selected: obj.roleType && obj.roleType.endsWith ('.' + property)});
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.MarketParticipant) obj.MarketParticipant_string = obj.MarketParticipant.join ();
             }
 
@@ -155,6 +156,7 @@ define
             {
                 super.uncondition (obj);
                 delete obj.MarketRoleKind;
+                delete obj.Status;
                 delete obj.MarketParticipant_string;
             }
 
@@ -169,7 +171,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_roleType'>roleType: </label><div class='col-sm-8'><select id='{{id}}_roleType' class='form-control custom-select'>{{#MarketRoleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketRoleKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='{{id}}_MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant_string}}'{{/MarketParticipant}}></div></div>
                     </div>
@@ -185,7 +187,7 @@ define
                 var obj = obj || { id: id, cls: "MarketRole" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_roleType").value; if ("" != temp) { temp = MarketRoleKind[temp]; if ("undefined" != typeof (temp)) obj.roleType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketRoleKind." + temp; }
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp.split (",");
 
@@ -233,32 +235,32 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "RegisteredResource";
-                base.parse_element (/<cim:RegisteredResource.ACAFlag>([\s\S]*?)<\/cim:RegisteredResource.ACAFlag>/g, obj, "ACAFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.ASSPOptimizationFlag>([\s\S]*?)<\/cim:RegisteredResource.ASSPOptimizationFlag>/g, obj, "ASSPOptimizationFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.ACAFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ACAFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.ASSPOptimizationFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ASSPOptimizationFlag", sub, context);
                 base.parse_element (/<cim:RegisteredResource.commercialOpDate>([\s\S]*?)<\/cim:RegisteredResource.commercialOpDate>/g, obj, "commercialOpDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:RegisteredResource.contingencyAvailFlag>([\s\S]*?)<\/cim:RegisteredResource.contingencyAvailFlag>/g, obj, "contingencyAvailFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.dispatchFlag>([\s\S]*?)<\/cim:RegisteredResource.dispatchFlag>/g, obj, "dispatchFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.ECAFlag>([\s\S]*?)<\/cim:RegisteredResource.ECAFlag>/g, obj, "ECAFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.contingencyAvailFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "contingencyAvailFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.dispatchFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "dispatchFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.ECAFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ECAFlag", sub, context);
                 base.parse_element (/<cim:RegisteredResource.endEffectiveDate>([\s\S]*?)<\/cim:RegisteredResource.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:RegisteredResource.flexibleOfferFlag>([\s\S]*?)<\/cim:RegisteredResource.flexibleOfferFlag>/g, obj, "flexibleOfferFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.hourlyPredispatch>([\s\S]*?)<\/cim:RegisteredResource.hourlyPredispatch>/g, obj, "hourlyPredispatch", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.isAggregatedRes>([\s\S]*?)<\/cim:RegisteredResource.isAggregatedRes>/g, obj, "isAggregatedRes", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.flexibleOfferFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "flexibleOfferFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.hourlyPredispatch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "hourlyPredispatch", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.isAggregatedRes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "isAggregatedRes", sub, context);
                 base.parse_element (/<cim:RegisteredResource.lastModified>([\s\S]*?)<\/cim:RegisteredResource.lastModified>/g, obj, "lastModified", base.to_datetime, sub, context);
-                base.parse_element (/<cim:RegisteredResource.LMPMFlag>([\s\S]*?)<\/cim:RegisteredResource.LMPMFlag>/g, obj, "LMPMFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.marketParticipationFlag>([\s\S]*?)<\/cim:RegisteredResource.marketParticipationFlag>/g, obj, "marketParticipationFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.LMPMFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LMPMFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.marketParticipationFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketParticipationFlag", sub, context);
                 base.parse_element (/<cim:RegisteredResource.maxBaseSelfSchedQty >([\s\S]*?)<\/cim:RegisteredResource.maxBaseSelfSchedQty >/g, obj, "maxBaseSelfSchedQty ", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredResource.maxOnTime>([\s\S]*?)<\/cim:RegisteredResource.maxOnTime>/g, obj, "maxOnTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredResource.minDispatchTime>([\s\S]*?)<\/cim:RegisteredResource.minDispatchTime>/g, obj, "minDispatchTime", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredResource.minOffTime>([\s\S]*?)<\/cim:RegisteredResource.minOffTime>/g, obj, "minOffTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredResource.minOnTime>([\s\S]*?)<\/cim:RegisteredResource.minOnTime>/g, obj, "minOnTime", base.to_float, sub, context);
-                base.parse_element (/<cim:RegisteredResource.mustOfferFlag>([\s\S]*?)<\/cim:RegisteredResource.mustOfferFlag>/g, obj, "mustOfferFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.nonMarket>([\s\S]*?)<\/cim:RegisteredResource.nonMarket>/g, obj, "nonMarket", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.pointOfDeliveryFlag>([\s\S]*?)<\/cim:RegisteredResource.pointOfDeliveryFlag>/g, obj, "pointOfDeliveryFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.priceSetFlagDA>([\s\S]*?)<\/cim:RegisteredResource.priceSetFlagDA>/g, obj, "priceSetFlagDA", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.priceSetFlagRT>([\s\S]*?)<\/cim:RegisteredResource.priceSetFlagRT>/g, obj, "priceSetFlagRT", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.registrationStatus>([\s\S]*?)<\/cim:RegisteredResource.registrationStatus>/g, obj, "registrationStatus", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.resourceAdequacyFlag>([\s\S]*?)<\/cim:RegisteredResource.resourceAdequacyFlag>/g, obj, "resourceAdequacyFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredResource.SMPMFlag>([\s\S]*?)<\/cim:RegisteredResource.SMPMFlag>/g, obj, "SMPMFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.mustOfferFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mustOfferFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.nonMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "nonMarket", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.pointOfDeliveryFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "pointOfDeliveryFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.priceSetFlagDA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "priceSetFlagDA", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.priceSetFlagRT\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "priceSetFlagRT", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.registrationStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "registrationStatus", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.resourceAdequacyFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "resourceAdequacyFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredResource.SMPMFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SMPMFlag", sub, context);
                 base.parse_element (/<cim:RegisteredResource.startEffectiveDate>([\s\S]*?)<\/cim:RegisteredResource.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attributes (/<cim:RegisteredResource.ResourceDispatchResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceDispatchResults", sub, context);
                 base.parse_attribute (/<cim:RegisteredResource.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HostControlArea", sub, context);
@@ -313,32 +315,32 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RegisteredResource", "ACAFlag", "ACAFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "ASSPOptimizationFlag", "ASSPOptimizationFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredResource", "ACAFlag", "ACAFlag", fields);
+                base.export_attribute (obj, "RegisteredResource", "ASSPOptimizationFlag", "ASSPOptimizationFlag", fields);
                 base.export_element (obj, "RegisteredResource", "commercialOpDate", "commercialOpDate",  base.from_datetime, fields);
-                base.export_element (obj, "RegisteredResource", "contingencyAvailFlag", "contingencyAvailFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "dispatchFlag", "dispatchFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "ECAFlag", "ECAFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredResource", "contingencyAvailFlag", "contingencyAvailFlag", fields);
+                base.export_attribute (obj, "RegisteredResource", "dispatchFlag", "dispatchFlag", fields);
+                base.export_attribute (obj, "RegisteredResource", "ECAFlag", "ECAFlag", fields);
                 base.export_element (obj, "RegisteredResource", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "RegisteredResource", "flexibleOfferFlag", "flexibleOfferFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "hourlyPredispatch", "hourlyPredispatch",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "isAggregatedRes", "isAggregatedRes",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredResource", "flexibleOfferFlag", "flexibleOfferFlag", fields);
+                base.export_attribute (obj, "RegisteredResource", "hourlyPredispatch", "hourlyPredispatch", fields);
+                base.export_attribute (obj, "RegisteredResource", "isAggregatedRes", "isAggregatedRes", fields);
                 base.export_element (obj, "RegisteredResource", "lastModified", "lastModified",  base.from_datetime, fields);
-                base.export_element (obj, "RegisteredResource", "LMPMFlag", "LMPMFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "marketParticipationFlag", "marketParticipationFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredResource", "LMPMFlag", "LMPMFlag", fields);
+                base.export_attribute (obj, "RegisteredResource", "marketParticipationFlag", "marketParticipationFlag", fields);
                 base.export_element (obj, "RegisteredResource", "maxBaseSelfSchedQty ", "maxBaseSelfSchedQty ",  base.from_float, fields);
                 base.export_element (obj, "RegisteredResource", "maxOnTime", "maxOnTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredResource", "minDispatchTime", "minDispatchTime",  base.from_string, fields);
                 base.export_element (obj, "RegisteredResource", "minOffTime", "minOffTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredResource", "minOnTime", "minOnTime",  base.from_float, fields);
-                base.export_element (obj, "RegisteredResource", "mustOfferFlag", "mustOfferFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "nonMarket", "nonMarket",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "pointOfDeliveryFlag", "pointOfDeliveryFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "priceSetFlagDA", "priceSetFlagDA",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "priceSetFlagRT", "priceSetFlagRT",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "registrationStatus", "registrationStatus",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "resourceAdequacyFlag", "resourceAdequacyFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "SMPMFlag", "SMPMFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredResource", "mustOfferFlag", "mustOfferFlag", fields);
+                base.export_attribute (obj, "RegisteredResource", "nonMarket", "nonMarket", fields);
+                base.export_attribute (obj, "RegisteredResource", "pointOfDeliveryFlag", "pointOfDeliveryFlag", fields);
+                base.export_attribute (obj, "RegisteredResource", "priceSetFlagDA", "priceSetFlagDA", fields);
+                base.export_attribute (obj, "RegisteredResource", "priceSetFlagRT", "priceSetFlagRT", fields);
+                base.export_attribute (obj, "RegisteredResource", "registrationStatus", "registrationStatus", fields);
+                base.export_attribute (obj, "RegisteredResource", "resourceAdequacyFlag", "resourceAdequacyFlag", fields);
+                base.export_attribute (obj, "RegisteredResource", "SMPMFlag", "SMPMFlag", fields);
                 base.export_element (obj, "RegisteredResource", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
                 base.export_attributes (obj, "RegisteredResource", "ResourceDispatchResults", "ResourceDispatchResults", fields);
                 base.export_attribute (obj, "RegisteredResource", "HostControlArea", "HostControlArea", fields);
@@ -475,6 +477,24 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.ACAFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.ACAFlag && obj.ACAFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.ASSPOptimizationFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.ASSPOptimizationFlag && obj.ASSPOptimizationFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.contingencyAvailFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.contingencyAvailFlag && obj.contingencyAvailFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.dispatchFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.dispatchFlag && obj.dispatchFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.ECAFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.ECAFlag && obj.ECAFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.flexibleOfferFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.flexibleOfferFlag && obj.flexibleOfferFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.hourlyPredispatch) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.hourlyPredispatch && obj.hourlyPredispatch.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.isAggregatedRes) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.isAggregatedRes && obj.isAggregatedRes.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.LMPMFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.LMPMFlag && obj.LMPMFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.marketParticipationFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.marketParticipationFlag && obj.marketParticipationFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.mustOfferFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.mustOfferFlag && obj.mustOfferFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.nonMarket) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.nonMarket && obj.nonMarket.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.pointOfDeliveryFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.pointOfDeliveryFlag && obj.pointOfDeliveryFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.priceSetFlagDA) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.priceSetFlagDA && obj.priceSetFlagDA.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.priceSetFlagRT) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.priceSetFlagRT && obj.priceSetFlagRT.endsWith ('.' + property)});
+                obj.ResourceRegistrationStatus = []; if (!obj.registrationStatus) obj.ResourceRegistrationStatus.push ({ id: '', selected: true}); for (var property in ResourceRegistrationStatus) obj.ResourceRegistrationStatus.push ({ id: property, selected: obj.registrationStatus && obj.registrationStatus.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.resourceAdequacyFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.resourceAdequacyFlag && obj.resourceAdequacyFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.SMPMFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.SMPMFlag && obj.SMPMFlag.endsWith ('.' + property)});
                 if (obj.ResourceDispatchResults) obj.ResourceDispatchResults_string = obj.ResourceDispatchResults.join ();
                 if (obj.AllocationResultValues) obj.AllocationResultValues_string = obj.AllocationResultValues.join ();
                 if (obj.ResourceAncillaryServiceQualification) obj.ResourceAncillaryServiceQualification_string = obj.ResourceAncillaryServiceQualification.join ();
@@ -514,6 +534,24 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.ResourceRegistrationStatus;
+                delete obj.YesNo;
+                delete obj.YesNo;
                 delete obj.ResourceDispatchResults_string;
                 delete obj.AllocationResultValues_string;
                 delete obj.ResourceAncillaryServiceQualification_string;
@@ -560,32 +598,32 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACAFlag'>ACAFlag: </label><div class='col-sm-8'><input id='{{id}}_ACAFlag' class='form-control' type='text'{{#ACAFlag}} value='{{ACAFlag}}'{{/ACAFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ASSPOptimizationFlag'>ASSPOptimizationFlag: </label><div class='col-sm-8'><input id='{{id}}_ASSPOptimizationFlag' class='form-control' type='text'{{#ASSPOptimizationFlag}} value='{{ASSPOptimizationFlag}}'{{/ASSPOptimizationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACAFlag'>ACAFlag: </label><div class='col-sm-8'><select id='{{id}}_ACAFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ASSPOptimizationFlag'>ASSPOptimizationFlag: </label><div class='col-sm-8'><select id='{{id}}_ASSPOptimizationFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commercialOpDate'>commercialOpDate: </label><div class='col-sm-8'><input id='{{id}}_commercialOpDate' class='form-control' type='text'{{#commercialOpDate}} value='{{commercialOpDate}}'{{/commercialOpDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><input id='{{id}}_contingencyAvailFlag' class='form-control' type='text'{{#contingencyAvailFlag}} value='{{contingencyAvailFlag}}'{{/contingencyAvailFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchFlag'>dispatchFlag: </label><div class='col-sm-8'><input id='{{id}}_dispatchFlag' class='form-control' type='text'{{#dispatchFlag}} value='{{dispatchFlag}}'{{/dispatchFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ECAFlag'>ECAFlag: </label><div class='col-sm-8'><input id='{{id}}_ECAFlag' class='form-control' type='text'{{#ECAFlag}} value='{{ECAFlag}}'{{/ECAFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><select id='{{id}}_contingencyAvailFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchFlag'>dispatchFlag: </label><div class='col-sm-8'><select id='{{id}}_dispatchFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ECAFlag'>ECAFlag: </label><div class='col-sm-8'><select id='{{id}}_ECAFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flexibleOfferFlag'>flexibleOfferFlag: </label><div class='col-sm-8'><input id='{{id}}_flexibleOfferFlag' class='form-control' type='text'{{#flexibleOfferFlag}} value='{{flexibleOfferFlag}}'{{/flexibleOfferFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hourlyPredispatch'>hourlyPredispatch: </label><div class='col-sm-8'><input id='{{id}}_hourlyPredispatch' class='form-control' type='text'{{#hourlyPredispatch}} value='{{hourlyPredispatch}}'{{/hourlyPredispatch}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isAggregatedRes'>isAggregatedRes: </label><div class='col-sm-8'><input id='{{id}}_isAggregatedRes' class='form-control' type='text'{{#isAggregatedRes}} value='{{isAggregatedRes}}'{{/isAggregatedRes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flexibleOfferFlag'>flexibleOfferFlag: </label><div class='col-sm-8'><select id='{{id}}_flexibleOfferFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hourlyPredispatch'>hourlyPredispatch: </label><div class='col-sm-8'><select id='{{id}}_hourlyPredispatch' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isAggregatedRes'>isAggregatedRes: </label><div class='col-sm-8'><select id='{{id}}_isAggregatedRes' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastModified'>lastModified: </label><div class='col-sm-8'><input id='{{id}}_lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LMPMFlag'>LMPMFlag: </label><div class='col-sm-8'><input id='{{id}}_LMPMFlag' class='form-control' type='text'{{#LMPMFlag}} value='{{LMPMFlag}}'{{/LMPMFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketParticipationFlag'>marketParticipationFlag: </label><div class='col-sm-8'><input id='{{id}}_marketParticipationFlag' class='form-control' type='text'{{#marketParticipationFlag}} value='{{marketParticipationFlag}}'{{/marketParticipationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LMPMFlag'>LMPMFlag: </label><div class='col-sm-8'><select id='{{id}}_LMPMFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketParticipationFlag'>marketParticipationFlag: </label><div class='col-sm-8'><select id='{{id}}_marketParticipationFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxBaseSelfSchedQty '>maxBaseSelfSchedQty : </label><div class='col-sm-8'><input id='{{id}}_maxBaseSelfSchedQty ' class='form-control' type='text'{{#maxBaseSelfSchedQty }} value='{{maxBaseSelfSchedQty }}'{{/maxBaseSelfSchedQty }}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxOnTime'>maxOnTime: </label><div class='col-sm-8'><input id='{{id}}_maxOnTime' class='form-control' type='text'{{#maxOnTime}} value='{{maxOnTime}}'{{/maxOnTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minDispatchTime'>minDispatchTime: </label><div class='col-sm-8'><input id='{{id}}_minDispatchTime' class='form-control' type='text'{{#minDispatchTime}} value='{{minDispatchTime}}'{{/minDispatchTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minOffTime'>minOffTime: </label><div class='col-sm-8'><input id='{{id}}_minOffTime' class='form-control' type='text'{{#minOffTime}} value='{{minOffTime}}'{{/minOffTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minOnTime'>minOnTime: </label><div class='col-sm-8'><input id='{{id}}_minOnTime' class='form-control' type='text'{{#minOnTime}} value='{{minOnTime}}'{{/minOnTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mustOfferFlag'>mustOfferFlag: </label><div class='col-sm-8'><input id='{{id}}_mustOfferFlag' class='form-control' type='text'{{#mustOfferFlag}} value='{{mustOfferFlag}}'{{/mustOfferFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nonMarket'>nonMarket: </label><div class='col-sm-8'><input id='{{id}}_nonMarket' class='form-control' type='text'{{#nonMarket}} value='{{nonMarket}}'{{/nonMarket}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pointOfDeliveryFlag'>pointOfDeliveryFlag: </label><div class='col-sm-8'><input id='{{id}}_pointOfDeliveryFlag' class='form-control' type='text'{{#pointOfDeliveryFlag}} value='{{pointOfDeliveryFlag}}'{{/pointOfDeliveryFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSetFlagDA'>priceSetFlagDA: </label><div class='col-sm-8'><input id='{{id}}_priceSetFlagDA' class='form-control' type='text'{{#priceSetFlagDA}} value='{{priceSetFlagDA}}'{{/priceSetFlagDA}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSetFlagRT'>priceSetFlagRT: </label><div class='col-sm-8'><input id='{{id}}_priceSetFlagRT' class='form-control' type='text'{{#priceSetFlagRT}} value='{{priceSetFlagRT}}'{{/priceSetFlagRT}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_registrationStatus'>registrationStatus: </label><div class='col-sm-8'><input id='{{id}}_registrationStatus' class='form-control' type='text'{{#registrationStatus}} value='{{registrationStatus}}'{{/registrationStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceAdequacyFlag'>resourceAdequacyFlag: </label><div class='col-sm-8'><input id='{{id}}_resourceAdequacyFlag' class='form-control' type='text'{{#resourceAdequacyFlag}} value='{{resourceAdequacyFlag}}'{{/resourceAdequacyFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SMPMFlag'>SMPMFlag: </label><div class='col-sm-8'><input id='{{id}}_SMPMFlag' class='form-control' type='text'{{#SMPMFlag}} value='{{SMPMFlag}}'{{/SMPMFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mustOfferFlag'>mustOfferFlag: </label><div class='col-sm-8'><select id='{{id}}_mustOfferFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nonMarket'>nonMarket: </label><div class='col-sm-8'><select id='{{id}}_nonMarket' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pointOfDeliveryFlag'>pointOfDeliveryFlag: </label><div class='col-sm-8'><select id='{{id}}_pointOfDeliveryFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSetFlagDA'>priceSetFlagDA: </label><div class='col-sm-8'><select id='{{id}}_priceSetFlagDA' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSetFlagRT'>priceSetFlagRT: </label><div class='col-sm-8'><select id='{{id}}_priceSetFlagRT' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_registrationStatus'>registrationStatus: </label><div class='col-sm-8'><select id='{{id}}_registrationStatus' class='form-control custom-select'>{{#ResourceRegistrationStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ResourceRegistrationStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceAdequacyFlag'>resourceAdequacyFlag: </label><div class='col-sm-8'><select id='{{id}}_resourceAdequacyFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SMPMFlag'>SMPMFlag: </label><div class='col-sm-8'><select id='{{id}}_SMPMFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DefaultBid'>DefaultBid: </label><div class='col-sm-8'><input id='{{id}}_DefaultBid' class='form-control' type='text'{{#DefaultBid}} value='{{DefaultBid}}'{{/DefaultBid}}></div></div>
@@ -618,32 +656,32 @@ define
 
                 var obj = obj || { id: id, cls: "RegisteredResource" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ACAFlag").value; if ("" != temp) obj.ACAFlag = temp;
-                temp = document.getElementById (id + "_ASSPOptimizationFlag").value; if ("" != temp) obj.ASSPOptimizationFlag = temp;
+                temp = document.getElementById (id + "_ACAFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.ACAFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_ASSPOptimizationFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.ASSPOptimizationFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_commercialOpDate").value; if ("" != temp) obj.commercialOpDate = temp;
-                temp = document.getElementById (id + "_contingencyAvailFlag").value; if ("" != temp) obj.contingencyAvailFlag = temp;
-                temp = document.getElementById (id + "_dispatchFlag").value; if ("" != temp) obj.dispatchFlag = temp;
-                temp = document.getElementById (id + "_ECAFlag").value; if ("" != temp) obj.ECAFlag = temp;
+                temp = document.getElementById (id + "_contingencyAvailFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.contingencyAvailFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_dispatchFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.dispatchFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_ECAFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.ECAFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_flexibleOfferFlag").value; if ("" != temp) obj.flexibleOfferFlag = temp;
-                temp = document.getElementById (id + "_hourlyPredispatch").value; if ("" != temp) obj.hourlyPredispatch = temp;
-                temp = document.getElementById (id + "_isAggregatedRes").value; if ("" != temp) obj.isAggregatedRes = temp;
+                temp = document.getElementById (id + "_flexibleOfferFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.flexibleOfferFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_hourlyPredispatch").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.hourlyPredispatch = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_isAggregatedRes").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.isAggregatedRes = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_lastModified").value; if ("" != temp) obj.lastModified = temp;
-                temp = document.getElementById (id + "_LMPMFlag").value; if ("" != temp) obj.LMPMFlag = temp;
-                temp = document.getElementById (id + "_marketParticipationFlag").value; if ("" != temp) obj.marketParticipationFlag = temp;
+                temp = document.getElementById (id + "_LMPMFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.LMPMFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_marketParticipationFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.marketParticipationFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_maxBaseSelfSchedQty ").value; if ("" != temp) obj.maxBaseSelfSchedQty  = temp;
                 temp = document.getElementById (id + "_maxOnTime").value; if ("" != temp) obj.maxOnTime = temp;
                 temp = document.getElementById (id + "_minDispatchTime").value; if ("" != temp) obj.minDispatchTime = temp;
                 temp = document.getElementById (id + "_minOffTime").value; if ("" != temp) obj.minOffTime = temp;
                 temp = document.getElementById (id + "_minOnTime").value; if ("" != temp) obj.minOnTime = temp;
-                temp = document.getElementById (id + "_mustOfferFlag").value; if ("" != temp) obj.mustOfferFlag = temp;
-                temp = document.getElementById (id + "_nonMarket").value; if ("" != temp) obj.nonMarket = temp;
-                temp = document.getElementById (id + "_pointOfDeliveryFlag").value; if ("" != temp) obj.pointOfDeliveryFlag = temp;
-                temp = document.getElementById (id + "_priceSetFlagDA").value; if ("" != temp) obj.priceSetFlagDA = temp;
-                temp = document.getElementById (id + "_priceSetFlagRT").value; if ("" != temp) obj.priceSetFlagRT = temp;
-                temp = document.getElementById (id + "_registrationStatus").value; if ("" != temp) obj.registrationStatus = temp;
-                temp = document.getElementById (id + "_resourceAdequacyFlag").value; if ("" != temp) obj.resourceAdequacyFlag = temp;
-                temp = document.getElementById (id + "_SMPMFlag").value; if ("" != temp) obj.SMPMFlag = temp;
+                temp = document.getElementById (id + "_mustOfferFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.mustOfferFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_nonMarket").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.nonMarket = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_pointOfDeliveryFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.pointOfDeliveryFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_priceSetFlagDA").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.priceSetFlagDA = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_priceSetFlagRT").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.priceSetFlagRT = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_registrationStatus").value; if ("" != temp) { temp = ResourceRegistrationStatus[temp]; if ("undefined" != typeof (temp)) obj.registrationStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceRegistrationStatus." + temp; }
+                temp = document.getElementById (id + "_resourceAdequacyFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.resourceAdequacyFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_SMPMFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.SMPMFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
                 temp = document.getElementById (id + "_DefaultBid").value; if ("" != temp) obj.DefaultBid = temp;

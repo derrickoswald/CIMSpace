@@ -234,7 +234,7 @@ define
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "BaseWork";
                 base.parse_attribute (/<cim:BaseWork.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_element (/<cim:BaseWork.priority>([\s\S]*?)<\/cim:BaseWork.priority>/g, obj, "priority", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BaseWork.priority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "priority", sub, context);
                 base.parse_attribute (/<cim:BaseWork.statusKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "statusKind", sub, context);
                 base.parse_attribute (/<cim:BaseWork.WorkLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkLocation", sub, context);
                 base.parse_attributes (/<cim:BaseWork.TimeSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSchedules", sub, context);
@@ -251,7 +251,7 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "BaseWork", "kind", "kind", fields);
-                base.export_element (obj, "BaseWork", "priority", "priority",  base.from_string, fields);
+                base.export_attribute (obj, "BaseWork", "priority", "priority", fields);
                 base.export_attribute (obj, "BaseWork", "statusKind", "statusKind", fields);
                 base.export_attribute (obj, "BaseWork", "WorkLocation", "WorkLocation", fields);
                 base.export_attributes (obj, "BaseWork", "TimeSchedules", "TimeSchedules", fields);
@@ -286,6 +286,7 @@ define
             {
                 super.condition (obj);
                 obj.WorkKind = []; if (!obj.kind) obj.WorkKind.push ({ id: '', selected: true}); for (var property in WorkKind) obj.WorkKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.Priority = []; if (!obj.priority) obj.Priority.push ({ id: '', selected: true}); for (var property in Priority) obj.Priority.push ({ id: property, selected: obj.priority && obj.priority.endsWith ('.' + property)});
                 obj.WorkStatusKind = []; if (!obj.statusKind) obj.WorkStatusKind.push ({ id: '', selected: true}); for (var property in WorkStatusKind) obj.WorkStatusKind.push ({ id: property, selected: obj.statusKind && obj.statusKind.endsWith ('.' + property)});
                 if (obj.TimeSchedules) obj.TimeSchedules_string = obj.TimeSchedules.join ();
             }
@@ -294,6 +295,7 @@ define
             {
                 super.uncondition (obj);
                 delete obj.WorkKind;
+                delete obj.Priority;
                 delete obj.WorkStatusKind;
                 delete obj.TimeSchedules_string;
             }
@@ -309,7 +311,7 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#WorkKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><select id='{{id}}_priority' class='form-control custom-select'>{{#Priority}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Priority}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusKind'>statusKind: </label><div class='col-sm-8'><select id='{{id}}_statusKind' class='form-control custom-select'>{{#WorkStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkLocation'>WorkLocation: </label><div class='col-sm-8'><input id='{{id}}_WorkLocation' class='form-control' type='text'{{#WorkLocation}} value='{{WorkLocation}}'{{/WorkLocation}}></div></div>
                     </div>
@@ -325,7 +327,7 @@ define
                 var obj = obj || { id: id, cls: "BaseWork" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkKind." + temp; }
-                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) { temp = Priority[temp]; if ("undefined" != typeof (temp)) obj.priority = "http://iec.ch/TC57/2013/CIM-schema-cim16#Priority." + temp; }
                 temp = document.getElementById (id + "_statusKind").value; if ("" != temp) { temp = WorkStatusKind[temp]; if ("undefined" != typeof (temp)) obj.statusKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkStatusKind." + temp; }
                 temp = document.getElementById (id + "_WorkLocation").value; if ("" != temp) obj.WorkLocation = temp;
 
@@ -503,7 +505,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MaterialItem";
-                base.parse_element (/<cim:MaterialItem.quantity>([\s\S]*?)<\/cim:MaterialItem.quantity>/g, obj, "quantity", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MaterialItem.quantity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "quantity", sub, context);
                 base.parse_attribute (/<cim:MaterialItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
                 base.parse_attribute (/<cim:MaterialItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
                 var bucket = context.parsed.MaterialItem;
@@ -518,7 +520,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MaterialItem", "quantity", "quantity",  base.from_string, fields);
+                base.export_attribute (obj, "MaterialItem", "quantity", "quantity", fields);
                 base.export_attribute (obj, "MaterialItem", "TypeMaterial", "TypeMaterial", fields);
                 base.export_attribute (obj, "MaterialItem", "WorkTask", "WorkTask", fields);
                 if (full)
@@ -550,11 +552,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.IntegerQuantity = []; if (!obj.quantity) obj.IntegerQuantity.push ({ id: '', selected: true}); for (var property in IntegerQuantity) obj.IntegerQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.IntegerQuantity;
             }
 
             edit_template ()
@@ -567,7 +571,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#IntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IntegerQuantity}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
@@ -582,7 +586,7 @@ define
 
                 var obj = obj || { id: id, cls: "MaterialItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) { temp = IntegerQuantity[temp]; if ("undefined" != typeof (temp)) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; }
                 temp = document.getElementById (id + "_TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
                 temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
 

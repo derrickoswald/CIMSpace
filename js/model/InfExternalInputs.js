@@ -272,7 +272,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ResourceGroup";
                 base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, obj, "type", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceGroup.status>([\s\S]*?)<\/cim:ResourceGroup.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceGroup.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attributes (/<cim:ResourceGroup.ResourceGroupReqs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroupReqs", sub, context);
                 base.parse_attributes (/<cim:ResourceGroup.RegisteredResources\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResources", sub, context);
                 var bucket = context.parsed.ResourceGroup;
@@ -288,7 +288,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ResourceGroup", "type", "type",  base.from_string, fields);
-                base.export_element (obj, "ResourceGroup", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceGroup", "status", "status", fields);
                 base.export_attributes (obj, "ResourceGroup", "ResourceGroupReqs", "ResourceGroupReqs", fields);
                 base.export_attributes (obj, "ResourceGroup", "RegisteredResources", "RegisteredResources", fields);
                 if (full)
@@ -320,6 +320,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ResourceGroupReqs) obj.ResourceGroupReqs_string = obj.ResourceGroupReqs.join ();
                 if (obj.RegisteredResources) obj.RegisteredResources_string = obj.RegisteredResources.join ();
             }
@@ -327,6 +328,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.ResourceGroupReqs_string;
                 delete obj.RegisteredResources_string;
             }
@@ -342,7 +344,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources_string}}'{{/RegisteredResources}}></div></div>
                     </div>
                     <fieldset>
@@ -357,7 +359,7 @@ define
                 var obj = obj || { id: id, cls: "ResourceGroup" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_RegisteredResources").value; if ("" != temp) obj.RegisteredResources = temp.split (",");
 
                 return (obj);

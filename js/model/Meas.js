@@ -341,7 +341,7 @@ define
                 base.parse_element (/<cim:Quality61850.oscillatory>([\s\S]*?)<\/cim:Quality61850.oscillatory>/g, obj, "oscillatory", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Quality61850.outOfRange>([\s\S]*?)<\/cim:Quality61850.outOfRange>/g, obj, "outOfRange", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Quality61850.overFlow>([\s\S]*?)<\/cim:Quality61850.overFlow>/g, obj, "overFlow", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Quality61850.source>([\s\S]*?)<\/cim:Quality61850.source>/g, obj, "source", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Quality61850.source\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "source", sub, context);
                 base.parse_element (/<cim:Quality61850.suspect>([\s\S]*?)<\/cim:Quality61850.suspect>/g, obj, "suspect", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Quality61850.test>([\s\S]*?)<\/cim:Quality61850.test>/g, obj, "test", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:Quality61850.validity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "validity", sub, context);
@@ -365,7 +365,7 @@ define
                 base.export_element (obj, "Quality61850", "oscillatory", "oscillatory",  base.from_boolean, fields);
                 base.export_element (obj, "Quality61850", "outOfRange", "outOfRange",  base.from_boolean, fields);
                 base.export_element (obj, "Quality61850", "overFlow", "overFlow",  base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "source", "source",  base.from_string, fields);
+                base.export_attribute (obj, "Quality61850", "source", "source", fields);
                 base.export_element (obj, "Quality61850", "suspect", "suspect",  base.from_boolean, fields);
                 base.export_element (obj, "Quality61850", "test", "test",  base.from_boolean, fields);
                 base.export_attribute (obj, "Quality61850", "validity", "validity", fields);
@@ -407,12 +407,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Source = []; if (!obj.source) obj.Source.push ({ id: '', selected: true}); for (var property in Source) obj.Source.push ({ id: property, selected: obj.source && obj.source.endsWith ('.' + property)});
                 obj.Validity = []; if (!obj.validity) obj.Validity.push ({ id: '', selected: true}); for (var property in Validity) obj.Validity.push ({ id: property, selected: obj.validity && obj.validity.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Source;
                 delete obj.Validity;
             }
 
@@ -434,7 +436,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_oscillatory'>oscillatory: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_oscillatory' class='form-check-input' type='checkbox'{{#oscillatory}} checked{{/oscillatory}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_outOfRange'>outOfRange: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_outOfRange' class='form-check-input' type='checkbox'{{#outOfRange}} checked{{/outOfRange}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_overFlow'>overFlow: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_overFlow' class='form-check-input' type='checkbox'{{#overFlow}} checked{{/overFlow}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_source'>source: </label><div class='col-sm-8'><input id='{{id}}_source' class='form-control' type='text'{{#source}} value='{{source}}'{{/source}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_source'>source: </label><div class='col-sm-8'><select id='{{id}}_source' class='form-control custom-select'>{{#Source}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Source}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_suspect'>suspect: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_suspect' class='form-check-input' type='checkbox'{{#suspect}} checked{{/suspect}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_test'>test: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_test' class='form-check-input' type='checkbox'{{#test}} checked{{/test}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validity'>validity: </label><div class='col-sm-8'><select id='{{id}}_validity' class='form-control custom-select'>{{#Validity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Validity}}</select></div></div>
@@ -458,7 +460,7 @@ define
                 temp = document.getElementById (id + "_oscillatory").checked; if (temp) obj.oscillatory = true;
                 temp = document.getElementById (id + "_outOfRange").checked; if (temp) obj.outOfRange = true;
                 temp = document.getElementById (id + "_overFlow").checked; if (temp) obj.overFlow = true;
-                temp = document.getElementById (id + "_source").value; if ("" != temp) obj.source = temp;
+                temp = document.getElementById (id + "_source").value; if ("" != temp) { temp = Source[temp]; if ("undefined" != typeof (temp)) obj.source = "http://iec.ch/TC57/2013/CIM-schema-cim16#Source." + temp; }
                 temp = document.getElementById (id + "_suspect").checked; if (temp) obj.suspect = true;
                 temp = document.getElementById (id + "_test").checked; if (temp) obj.test = true;
                 temp = document.getElementById (id + "_validity").value; if ("" != temp) { temp = Validity[temp]; if ("undefined" != typeof (temp)) obj.validity = "http://iec.ch/TC57/2013/CIM-schema-cim16#Validity." + temp; }
@@ -617,8 +619,8 @@ define
                 obj.cls = "Control";
                 base.parse_element (/<cim:Control.operationInProgress>([\s\S]*?)<\/cim:Control.operationInProgress>/g, obj, "operationInProgress", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Control.timeStamp>([\s\S]*?)<\/cim:Control.timeStamp>/g, obj, "timeStamp", base.to_datetime, sub, context);
-                base.parse_element (/<cim:Control.unitMultiplier>([\s\S]*?)<\/cim:Control.unitMultiplier>/g, obj, "unitMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Control.unitSymbol>([\s\S]*?)<\/cim:Control.unitSymbol>/g, obj, "unitSymbol", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Control.unitMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unitMultiplier", sub, context);
+                base.parse_attribute (/<cim:Control.unitSymbol\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unitSymbol", sub, context);
                 base.parse_element (/<cim:Control.controlType>([\s\S]*?)<\/cim:Control.controlType>/g, obj, "controlType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Control.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context);
                 base.parse_attribute (/<cim:Control.RemoteControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteControl", sub, context);
@@ -636,8 +638,8 @@ define
 
                 base.export_element (obj, "Control", "operationInProgress", "operationInProgress",  base.from_boolean, fields);
                 base.export_element (obj, "Control", "timeStamp", "timeStamp",  base.from_datetime, fields);
-                base.export_element (obj, "Control", "unitMultiplier", "unitMultiplier",  base.from_string, fields);
-                base.export_element (obj, "Control", "unitSymbol", "unitSymbol",  base.from_string, fields);
+                base.export_attribute (obj, "Control", "unitMultiplier", "unitMultiplier", fields);
+                base.export_attribute (obj, "Control", "unitSymbol", "unitSymbol", fields);
                 base.export_element (obj, "Control", "controlType", "controlType",  base.from_string, fields);
                 base.export_attribute (obj, "Control", "PowerSystemResource", "PowerSystemResource", fields);
                 base.export_attribute (obj, "Control", "RemoteControl", "RemoteControl", fields);
@@ -674,11 +676,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.unitMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.unitMultiplier && obj.unitMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unitSymbol) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unitSymbol && obj.unitSymbol.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
             }
 
             edit_template ()
@@ -693,8 +699,8 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_operationInProgress'>operationInProgress: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_operationInProgress' class='form-check-input' type='checkbox'{{#operationInProgress}} checked{{/operationInProgress}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeStamp'>timeStamp: </label><div class='col-sm-8'><input id='{{id}}_timeStamp' class='form-control' type='text'{{#timeStamp}} value='{{timeStamp}}'{{/timeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='{{id}}_unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='{{id}}_unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_unitMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><select id='{{id}}_unitSymbol' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlType'>controlType: </label><div class='col-sm-8'><input id='{{id}}_controlType' class='form-control' type='text'{{#controlType}} value='{{controlType}}'{{/controlType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteControl'>RemoteControl: </label><div class='col-sm-8'><input id='{{id}}_RemoteControl' class='form-control' type='text'{{#RemoteControl}} value='{{RemoteControl}}'{{/RemoteControl}}></div></div>
@@ -712,8 +718,8 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_operationInProgress").checked; if (temp) obj.operationInProgress = true;
                 temp = document.getElementById (id + "_timeStamp").value; if ("" != temp) obj.timeStamp = temp;
-                temp = document.getElementById (id + "_unitMultiplier").value; if ("" != temp) obj.unitMultiplier = temp;
-                temp = document.getElementById (id + "_unitSymbol").value; if ("" != temp) obj.unitSymbol = temp;
+                temp = document.getElementById (id + "_unitMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.unitMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unitSymbol").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unitSymbol = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_controlType").value; if ("" != temp) obj.controlType = temp;
                 temp = document.getElementById (id + "_PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
                 temp = document.getElementById (id + "_RemoteControl").value; if ("" != temp) obj.RemoteControl = temp;
@@ -879,9 +885,9 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Measurement";
                 base.parse_element (/<cim:Measurement.measurementType>([\s\S]*?)<\/cim:Measurement.measurementType>/g, obj, "measurementType", base.to_string, sub, context);
-                base.parse_element (/<cim:Measurement.phases>([\s\S]*?)<\/cim:Measurement.phases>/g, obj, "phases", base.to_string, sub, context);
-                base.parse_element (/<cim:Measurement.unitMultiplier>([\s\S]*?)<\/cim:Measurement.unitMultiplier>/g, obj, "unitMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Measurement.unitSymbol>([\s\S]*?)<\/cim:Measurement.unitSymbol>/g, obj, "unitSymbol", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Measurement.phases\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phases", sub, context);
+                base.parse_attribute (/<cim:Measurement.unitMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unitMultiplier", sub, context);
+                base.parse_attribute (/<cim:Measurement.unitSymbol\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unitSymbol", sub, context);
                 base.parse_attribute (/<cim:Measurement.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
                 base.parse_attributes (/<cim:Measurement.Procedures\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Procedures", sub, context);
                 base.parse_attributes (/<cim:Measurement.Locations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Locations", sub, context);
@@ -903,9 +909,9 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Measurement", "measurementType", "measurementType",  base.from_string, fields);
-                base.export_element (obj, "Measurement", "phases", "phases",  base.from_string, fields);
-                base.export_element (obj, "Measurement", "unitMultiplier", "unitMultiplier",  base.from_string, fields);
-                base.export_element (obj, "Measurement", "unitSymbol", "unitSymbol",  base.from_string, fields);
+                base.export_attribute (obj, "Measurement", "phases", "phases", fields);
+                base.export_attribute (obj, "Measurement", "unitMultiplier", "unitMultiplier", fields);
+                base.export_attribute (obj, "Measurement", "unitSymbol", "unitSymbol", fields);
                 base.export_attribute (obj, "Measurement", "Terminal", "Terminal", fields);
                 base.export_attributes (obj, "Measurement", "Procedures", "Procedures", fields);
                 base.export_attributes (obj, "Measurement", "Locations", "Locations", fields);
@@ -952,6 +958,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.PhaseCode = []; if (!obj.phases) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.unitMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.unitMultiplier && obj.unitMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unitSymbol) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unitSymbol && obj.unitSymbol.endsWith ('.' + property)});
                 if (obj.Procedures) obj.Procedures_string = obj.Procedures.join ();
                 if (obj.Locations) obj.Locations_string = obj.Locations.join ();
                 if (obj.ProtectiveActionAdjustment) obj.ProtectiveActionAdjustment_string = obj.ProtectiveActionAdjustment.join ();
@@ -962,6 +971,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PhaseCode;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
                 delete obj.Procedures_string;
                 delete obj.Locations_string;
                 delete obj.ProtectiveActionAdjustment_string;
@@ -980,9 +992,9 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_measurementType'>measurementType: </label><div class='col-sm-8'><input id='{{id}}_measurementType' class='form-control' type='text'{{#measurementType}} value='{{measurementType}}'{{/measurementType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><input id='{{id}}_phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='{{id}}_unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='{{id}}_unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_unitMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><select id='{{id}}_unitSymbol' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures_string}}'{{/Procedures}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
@@ -1001,9 +1013,9 @@ define
                 var obj = obj || { id: id, cls: "Measurement" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_measurementType").value; if ("" != temp) obj.measurementType = temp;
-                temp = document.getElementById (id + "_phases").value; if ("" != temp) obj.phases = temp;
-                temp = document.getElementById (id + "_unitMultiplier").value; if ("" != temp) obj.unitMultiplier = temp;
-                temp = document.getElementById (id + "_unitSymbol").value; if ("" != temp) obj.unitSymbol = temp;
+                temp = document.getElementById (id + "_phases").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = document.getElementById (id + "_unitMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.unitMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unitSymbol").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unitSymbol = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
                 temp = document.getElementById (id + "_Procedures").value; if ("" != temp) obj.Procedures = temp.split (",");
                 temp = document.getElementById (id + "_Locations").value; if ("" != temp) obj.Locations = temp.split (",");

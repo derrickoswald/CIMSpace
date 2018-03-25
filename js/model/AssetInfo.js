@@ -1272,7 +1272,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "WirePosition";
-                base.parse_element (/<cim:WirePosition.phase>([\s\S]*?)<\/cim:WirePosition.phase>/g, obj, "phase", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WirePosition.phase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phase", sub, context);
                 base.parse_element (/<cim:WirePosition.xCoord>([\s\S]*?)<\/cim:WirePosition.xCoord>/g, obj, "xCoord", base.to_string, sub, context);
                 base.parse_element (/<cim:WirePosition.yCoord>([\s\S]*?)<\/cim:WirePosition.yCoord>/g, obj, "yCoord", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WirePosition.WireSpacingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WireSpacingInfo", sub, context);
@@ -1288,7 +1288,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WirePosition", "phase", "phase",  base.from_string, fields);
+                base.export_attribute (obj, "WirePosition", "phase", "phase", fields);
                 base.export_element (obj, "WirePosition", "xCoord", "xCoord",  base.from_string, fields);
                 base.export_element (obj, "WirePosition", "yCoord", "yCoord",  base.from_string, fields);
                 base.export_attribute (obj, "WirePosition", "WireSpacingInfo", "WireSpacingInfo", fields);
@@ -1322,11 +1322,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.SinglePhaseKind = []; if (!obj.phase) obj.SinglePhaseKind.push ({ id: '', selected: true}); for (var property in SinglePhaseKind) obj.SinglePhaseKind.push ({ id: property, selected: obj.phase && obj.phase.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SinglePhaseKind;
             }
 
             edit_template ()
@@ -1339,7 +1341,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><input id='{{id}}_phase' class='form-control' type='text'{{#phase}} value='{{phase}}'{{/phase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xCoord'>xCoord: </label><div class='col-sm-8'><input id='{{id}}_xCoord' class='form-control' type='text'{{#xCoord}} value='{{xCoord}}'{{/xCoord}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_yCoord'>yCoord: </label><div class='col-sm-8'><input id='{{id}}_yCoord' class='form-control' type='text'{{#yCoord}} value='{{yCoord}}'{{/yCoord}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfo'>WireSpacingInfo: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfo' class='form-control' type='text'{{#WireSpacingInfo}} value='{{WireSpacingInfo}}'{{/WireSpacingInfo}}></div></div>
@@ -1355,7 +1357,7 @@ define
 
                 var obj = obj || { id: id, cls: "WirePosition" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_phase").value; if ("" != temp) obj.phase = temp;
+                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
                 temp = document.getElementById (id + "_xCoord").value; if ("" != temp) obj.xCoord = temp;
                 temp = document.getElementById (id + "_yCoord").value; if ("" != temp) obj.yCoord = temp;
                 temp = document.getElementById (id + "_WireSpacingInfo").value; if ("" != temp) obj.WireSpacingInfo = temp;
@@ -1402,7 +1404,7 @@ define
 
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "TransformerEndInfo";
-                base.parse_element (/<cim:TransformerEndInfo.connectionKind>([\s\S]*?)<\/cim:TransformerEndInfo.connectionKind>/g, obj, "connectionKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TransformerEndInfo.connectionKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "connectionKind", sub, context);
                 base.parse_element (/<cim:TransformerEndInfo.emergencyS>([\s\S]*?)<\/cim:TransformerEndInfo.emergencyS>/g, obj, "emergencyS", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerEndInfo.endNumber>([\s\S]*?)<\/cim:TransformerEndInfo.endNumber>/g, obj, "endNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerEndInfo.insulationU>([\s\S]*?)<\/cim:TransformerEndInfo.insulationU>/g, obj, "insulationU", base.to_string, sub, context);
@@ -1433,7 +1435,7 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TransformerEndInfo", "connectionKind", "connectionKind",  base.from_string, fields);
+                base.export_attribute (obj, "TransformerEndInfo", "connectionKind", "connectionKind", fields);
                 base.export_element (obj, "TransformerEndInfo", "emergencyS", "emergencyS",  base.from_string, fields);
                 base.export_element (obj, "TransformerEndInfo", "endNumber", "endNumber",  base.from_string, fields);
                 base.export_element (obj, "TransformerEndInfo", "insulationU", "insulationU",  base.from_string, fields);
@@ -1497,6 +1499,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.WindingConnection = []; if (!obj.connectionKind) obj.WindingConnection.push ({ id: '', selected: true}); for (var property in WindingConnection) obj.WindingConnection.push ({ id: property, selected: obj.connectionKind && obj.connectionKind.endsWith ('.' + property)});
                 if (obj.EnergisedEndNoLoadTests) obj.EnergisedEndNoLoadTests_string = obj.EnergisedEndNoLoadTests.join ();
                 if (obj.ToMeshImpedances) obj.ToMeshImpedances_string = obj.ToMeshImpedances.join ();
                 if (obj.EnergisedEndShortCircuitTests) obj.EnergisedEndShortCircuitTests_string = obj.EnergisedEndShortCircuitTests.join ();
@@ -1509,6 +1512,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindingConnection;
                 delete obj.EnergisedEndNoLoadTests_string;
                 delete obj.ToMeshImpedances_string;
                 delete obj.EnergisedEndShortCircuitTests_string;
@@ -1528,7 +1532,7 @@ define
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_connectionKind'>connectionKind: </label><div class='col-sm-8'><input id='{{id}}_connectionKind' class='form-control' type='text'{{#connectionKind}} value='{{connectionKind}}'{{/connectionKind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_connectionKind'>connectionKind: </label><div class='col-sm-8'><select id='{{id}}_connectionKind' class='form-control custom-select'>{{#WindingConnection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindingConnection}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emergencyS'>emergencyS: </label><div class='col-sm-8'><input id='{{id}}_emergencyS' class='form-control' type='text'{{#emergencyS}} value='{{emergencyS}}'{{/emergencyS}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endNumber'>endNumber: </label><div class='col-sm-8'><input id='{{id}}_endNumber' class='form-control' type='text'{{#endNumber}} value='{{endNumber}}'{{/endNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationU'>insulationU: </label><div class='col-sm-8'><input id='{{id}}_insulationU' class='form-control' type='text'{{#insulationU}} value='{{insulationU}}'{{/insulationU}}></div></div>
@@ -1554,7 +1558,7 @@ define
 
                 var obj = obj || { id: id, cls: "TransformerEndInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_connectionKind").value; if ("" != temp) obj.connectionKind = temp;
+                temp = document.getElementById (id + "_connectionKind").value; if ("" != temp) { temp = WindingConnection[temp]; if ("undefined" != typeof (temp)) obj.connectionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection." + temp; }
                 temp = document.getElementById (id + "_emergencyS").value; if ("" != temp) obj.emergencyS = temp;
                 temp = document.getElementById (id + "_endNumber").value; if ("" != temp) obj.endNumber = temp;
                 temp = document.getElementById (id + "_insulationU").value; if ("" != temp) obj.insulationU = temp;

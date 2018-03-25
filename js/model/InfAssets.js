@@ -826,7 +826,7 @@ define
                 obj = Assets.AssetModel.prototype.parse.call (this, context, sub);
                 obj.cls = "GenericAssetModelOrMaterial";
                 base.parse_element (/<cim:GenericAssetModelOrMaterial.estimatedUnitCost>([\s\S]*?)<\/cim:GenericAssetModelOrMaterial.estimatedUnitCost>/g, obj, "estimatedUnitCost", base.to_string, sub, context);
-                base.parse_element (/<cim:GenericAssetModelOrMaterial.quantity>([\s\S]*?)<\/cim:GenericAssetModelOrMaterial.quantity>/g, obj, "quantity", base.to_string, sub, context);
+                base.parse_attribute (/<cim:GenericAssetModelOrMaterial.quantity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "quantity", sub, context);
                 base.parse_element (/<cim:GenericAssetModelOrMaterial.stockItem>([\s\S]*?)<\/cim:GenericAssetModelOrMaterial.stockItem>/g, obj, "stockItem", base.to_boolean, sub, context);
                 base.parse_attributes (/<cim:GenericAssetModelOrMaterial.ErpBomItemDatas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpBomItemDatas", sub, context);
                 base.parse_attribute (/<cim:GenericAssetModelOrMaterial.CUWorkEquipmentAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUWorkEquipmentAsset", sub, context);
@@ -848,7 +848,7 @@ define
                 var fields = Assets.AssetModel.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GenericAssetModelOrMaterial", "estimatedUnitCost", "estimatedUnitCost",  base.from_string, fields);
-                base.export_element (obj, "GenericAssetModelOrMaterial", "quantity", "quantity",  base.from_string, fields);
+                base.export_attribute (obj, "GenericAssetModelOrMaterial", "quantity", "quantity", fields);
                 base.export_element (obj, "GenericAssetModelOrMaterial", "stockItem", "stockItem",  base.from_boolean, fields);
                 base.export_attributes (obj, "GenericAssetModelOrMaterial", "ErpBomItemDatas", "ErpBomItemDatas", fields);
                 base.export_attribute (obj, "GenericAssetModelOrMaterial", "CUWorkEquipmentAsset", "CUWorkEquipmentAsset", fields);
@@ -893,6 +893,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.StringQuantity = []; if (!obj.quantity) obj.StringQuantity.push ({ id: '', selected: true}); for (var property in StringQuantity) obj.StringQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
                 if (obj.ErpBomItemDatas) obj.ErpBomItemDatas_string = obj.ErpBomItemDatas.join ();
                 if (obj.ErpReqLineItems) obj.ErpReqLineItems_string = obj.ErpReqLineItems.join ();
                 if (obj.ProductAssetModels) obj.ProductAssetModels_string = obj.ProductAssetModels.join ();
@@ -902,6 +903,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.StringQuantity;
                 delete obj.ErpBomItemDatas_string;
                 delete obj.ErpReqLineItems_string;
                 delete obj.ProductAssetModels_string;
@@ -919,7 +921,7 @@ define
                     + Assets.AssetModel.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedUnitCost'>estimatedUnitCost: </label><div class='col-sm-8'><input id='{{id}}_estimatedUnitCost' class='form-control' type='text'{{#estimatedUnitCost}} value='{{estimatedUnitCost}}'{{/estimatedUnitCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#StringQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StringQuantity}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_stockItem'>stockItem: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUWorkEquipmentAsset'>CUWorkEquipmentAsset: </label><div class='col-sm-8'><input id='{{id}}_CUWorkEquipmentAsset' class='form-control' type='text'{{#CUWorkEquipmentAsset}} value='{{CUWorkEquipmentAsset}}'{{/CUWorkEquipmentAsset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAssetCatalogue'>TypeAssetCatalogue: </label><div class='col-sm-8'><input id='{{id}}_TypeAssetCatalogue' class='form-control' type='text'{{#TypeAssetCatalogue}} value='{{TypeAssetCatalogue}}'{{/TypeAssetCatalogue}}></div></div>
@@ -937,7 +939,7 @@ define
                 var obj = obj || { id: id, cls: "GenericAssetModelOrMaterial" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_estimatedUnitCost").value; if ("" != temp) obj.estimatedUnitCost = temp;
-                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) { temp = StringQuantity[temp]; if ("undefined" != typeof (temp)) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#StringQuantity." + temp; }
                 temp = document.getElementById (id + "_stockItem").checked; if (temp) obj.stockItem = true;
                 temp = document.getElementById (id + "_CUWorkEquipmentAsset").value; if ("" != temp) obj.CUWorkEquipmentAsset = temp;
                 temp = document.getElementById (id + "_TypeAssetCatalogue").value; if ("" != temp) obj.TypeAssetCatalogue = temp;
@@ -1137,7 +1139,7 @@ define
                 base.parse_element (/<cim:FinancialInfo.plantTransferDateTime>([\s\S]*?)<\/cim:FinancialInfo.plantTransferDateTime>/g, obj, "plantTransferDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FinancialInfo.purchaseDateTime>([\s\S]*?)<\/cim:FinancialInfo.purchaseDateTime>/g, obj, "purchaseDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FinancialInfo.purchaseOrderNumber>([\s\S]*?)<\/cim:FinancialInfo.purchaseOrderNumber>/g, obj, "purchaseOrderNumber", base.to_string, sub, context);
-                base.parse_element (/<cim:FinancialInfo.quantity>([\s\S]*?)<\/cim:FinancialInfo.quantity>/g, obj, "quantity", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FinancialInfo.quantity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "quantity", sub, context);
                 base.parse_element (/<cim:FinancialInfo.valueDateTime>([\s\S]*?)<\/cim:FinancialInfo.valueDateTime>/g, obj, "valueDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FinancialInfo.warrantyEndDateTime>([\s\S]*?)<\/cim:FinancialInfo.warrantyEndDateTime>/g, obj, "warrantyEndDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:FinancialInfo.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
@@ -1161,7 +1163,7 @@ define
                 base.export_element (obj, "FinancialInfo", "plantTransferDateTime", "plantTransferDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "FinancialInfo", "purchaseDateTime", "purchaseDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "FinancialInfo", "purchaseOrderNumber", "purchaseOrderNumber",  base.from_string, fields);
-                base.export_element (obj, "FinancialInfo", "quantity", "quantity",  base.from_string, fields);
+                base.export_attribute (obj, "FinancialInfo", "quantity", "quantity", fields);
                 base.export_element (obj, "FinancialInfo", "valueDateTime", "valueDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "FinancialInfo", "warrantyEndDateTime", "warrantyEndDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "FinancialInfo", "Asset", "Asset", fields);
@@ -1203,11 +1205,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.IntegerQuantity = []; if (!obj.quantity) obj.IntegerQuantity.push ({ id: '', selected: true}); for (var property in IntegerQuantity) obj.IntegerQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.IntegerQuantity;
             }
 
             edit_template ()
@@ -1228,7 +1232,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plantTransferDateTime'>plantTransferDateTime: </label><div class='col-sm-8'><input id='{{id}}_plantTransferDateTime' class='form-control' type='text'{{#plantTransferDateTime}} value='{{plantTransferDateTime}}'{{/plantTransferDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseDateTime'>purchaseDateTime: </label><div class='col-sm-8'><input id='{{id}}_purchaseDateTime' class='form-control' type='text'{{#purchaseDateTime}} value='{{purchaseDateTime}}'{{/purchaseDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseOrderNumber'>purchaseOrderNumber: </label><div class='col-sm-8'><input id='{{id}}_purchaseOrderNumber' class='form-control' type='text'{{#purchaseOrderNumber}} value='{{purchaseOrderNumber}}'{{/purchaseOrderNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#IntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IntegerQuantity}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valueDateTime'>valueDateTime: </label><div class='col-sm-8'><input id='{{id}}_valueDateTime' class='form-control' type='text'{{#valueDateTime}} value='{{valueDateTime}}'{{/valueDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_warrantyEndDateTime'>warrantyEndDateTime: </label><div class='col-sm-8'><input id='{{id}}_warrantyEndDateTime' class='form-control' type='text'{{#warrantyEndDateTime}} value='{{warrantyEndDateTime}}'{{/warrantyEndDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
@@ -1252,7 +1256,7 @@ define
                 temp = document.getElementById (id + "_plantTransferDateTime").value; if ("" != temp) obj.plantTransferDateTime = temp;
                 temp = document.getElementById (id + "_purchaseDateTime").value; if ("" != temp) obj.purchaseDateTime = temp;
                 temp = document.getElementById (id + "_purchaseOrderNumber").value; if ("" != temp) obj.purchaseOrderNumber = temp;
-                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) { temp = IntegerQuantity[temp]; if ("undefined" != typeof (temp)) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; }
                 temp = document.getElementById (id + "_valueDateTime").value; if ("" != temp) obj.valueDateTime = temp;
                 temp = document.getElementById (id + "_warrantyEndDateTime").value; if ("" != temp) obj.warrantyEndDateTime = temp;
                 temp = document.getElementById (id + "_Asset").value; if ("" != temp) obj.Asset = temp;
@@ -1857,7 +1861,7 @@ define
                 base.parse_element (/<cim:WindingInsulation.insulationPFStatus>([\s\S]*?)<\/cim:WindingInsulation.insulationPFStatus>/g, obj, "insulationPFStatus", base.to_string, sub, context);
                 base.parse_element (/<cim:WindingInsulation.insulationResistance>([\s\S]*?)<\/cim:WindingInsulation.insulationResistance>/g, obj, "insulationResistance", base.to_string, sub, context);
                 base.parse_element (/<cim:WindingInsulation.leakageReactance>([\s\S]*?)<\/cim:WindingInsulation.leakageReactance>/g, obj, "leakageReactance", base.to_string, sub, context);
-                base.parse_element (/<cim:WindingInsulation.status>([\s\S]*?)<\/cim:WindingInsulation.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WindingInsulation.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:WindingInsulation.ToWinding\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ToWinding", sub, context);
                 base.parse_attribute (/<cim:WindingInsulation.FromWinding\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FromWinding", sub, context);
                 base.parse_attribute (/<cim:WindingInsulation.TransformerObservation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerObservation", sub, context);
@@ -1876,7 +1880,7 @@ define
                 base.export_element (obj, "WindingInsulation", "insulationPFStatus", "insulationPFStatus",  base.from_string, fields);
                 base.export_element (obj, "WindingInsulation", "insulationResistance", "insulationResistance",  base.from_string, fields);
                 base.export_element (obj, "WindingInsulation", "leakageReactance", "leakageReactance",  base.from_string, fields);
-                base.export_element (obj, "WindingInsulation", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "WindingInsulation", "status", "status", fields);
                 base.export_attribute (obj, "WindingInsulation", "ToWinding", "ToWinding", fields);
                 base.export_attribute (obj, "WindingInsulation", "FromWinding", "FromWinding", fields);
                 base.export_attribute (obj, "WindingInsulation", "TransformerObservation", "TransformerObservation", fields);
@@ -1912,11 +1916,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -1932,7 +1938,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationPFStatus'>insulationPFStatus: </label><div class='col-sm-8'><input id='{{id}}_insulationPFStatus' class='form-control' type='text'{{#insulationPFStatus}} value='{{insulationPFStatus}}'{{/insulationPFStatus}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationResistance'>insulationResistance: </label><div class='col-sm-8'><input id='{{id}}_insulationResistance' class='form-control' type='text'{{#insulationResistance}} value='{{insulationResistance}}'{{/insulationResistance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_leakageReactance'>leakageReactance: </label><div class='col-sm-8'><input id='{{id}}_leakageReactance' class='form-control' type='text'{{#leakageReactance}} value='{{leakageReactance}}'{{/leakageReactance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ToWinding'>ToWinding: </label><div class='col-sm-8'><input id='{{id}}_ToWinding' class='form-control' type='text'{{#ToWinding}} value='{{ToWinding}}'{{/ToWinding}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FromWinding'>FromWinding: </label><div class='col-sm-8'><input id='{{id}}_FromWinding' class='form-control' type='text'{{#FromWinding}} value='{{FromWinding}}'{{/FromWinding}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerObservation'>TransformerObservation: </label><div class='col-sm-8'><input id='{{id}}_TransformerObservation' class='form-control' type='text'{{#TransformerObservation}} value='{{TransformerObservation}}'{{/TransformerObservation}}></div></div>
@@ -1951,7 +1957,7 @@ define
                 temp = document.getElementById (id + "_insulationPFStatus").value; if ("" != temp) obj.insulationPFStatus = temp;
                 temp = document.getElementById (id + "_insulationResistance").value; if ("" != temp) obj.insulationResistance = temp;
                 temp = document.getElementById (id + "_leakageReactance").value; if ("" != temp) obj.leakageReactance = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_ToWinding").value; if ("" != temp) obj.ToWinding = temp;
                 temp = document.getElementById (id + "_FromWinding").value; if ("" != temp) obj.FromWinding = temp;
                 temp = document.getElementById (id + "_TransformerObservation").value; if ("" != temp) obj.TransformerObservation = temp;
@@ -2379,7 +2385,7 @@ define
                 base.parse_element (/<cim:TransformerObservation.oilLevel>([\s\S]*?)<\/cim:TransformerObservation.oilLevel>/g, obj, "oilLevel", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerObservation.oilNeutralizationNumber>([\s\S]*?)<\/cim:TransformerObservation.oilNeutralizationNumber>/g, obj, "oilNeutralizationNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerObservation.pumpVibration>([\s\S]*?)<\/cim:TransformerObservation.pumpVibration>/g, obj, "pumpVibration", base.to_string, sub, context);
-                base.parse_element (/<cim:TransformerObservation.status>([\s\S]*?)<\/cim:TransformerObservation.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TransformerObservation.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:TransformerObservation.topOilTemp>([\s\S]*?)<\/cim:TransformerObservation.topOilTemp>/g, obj, "topOilTemp", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerObservation.waterContent>([\s\S]*?)<\/cim:TransformerObservation.waterContent>/g, obj, "waterContent", base.to_string, sub, context);
                 base.parse_attributes (/<cim:TransformerObservation.ProcedureDataSets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProcedureDataSets", sub, context);
@@ -2410,7 +2416,7 @@ define
                 base.export_element (obj, "TransformerObservation", "oilLevel", "oilLevel",  base.from_string, fields);
                 base.export_element (obj, "TransformerObservation", "oilNeutralizationNumber", "oilNeutralizationNumber",  base.from_string, fields);
                 base.export_element (obj, "TransformerObservation", "pumpVibration", "pumpVibration",  base.from_string, fields);
-                base.export_element (obj, "TransformerObservation", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "TransformerObservation", "status", "status", fields);
                 base.export_element (obj, "TransformerObservation", "topOilTemp", "topOilTemp",  base.from_string, fields);
                 base.export_element (obj, "TransformerObservation", "waterContent", "waterContent",  base.from_string, fields);
                 base.export_attributes (obj, "TransformerObservation", "ProcedureDataSets", "ProcedureDataSets", fields);
@@ -2462,6 +2468,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ProcedureDataSets) obj.ProcedureDataSets_string = obj.ProcedureDataSets.join ();
                 if (obj.BushingInsultationPFs) obj.BushingInsultationPFs_string = obj.BushingInsultationPFs.join ();
                 if (obj.WindingInsulationPFs) obj.WindingInsulationPFs_string = obj.WindingInsulationPFs.join ();
@@ -2470,6 +2477,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.ProcedureDataSets_string;
                 delete obj.BushingInsultationPFs_string;
                 delete obj.WindingInsulationPFs_string;
@@ -2496,7 +2504,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilLevel'>oilLevel: </label><div class='col-sm-8'><input id='{{id}}_oilLevel' class='form-control' type='text'{{#oilLevel}} value='{{oilLevel}}'{{/oilLevel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilNeutralizationNumber'>oilNeutralizationNumber: </label><div class='col-sm-8'><input id='{{id}}_oilNeutralizationNumber' class='form-control' type='text'{{#oilNeutralizationNumber}} value='{{oilNeutralizationNumber}}'{{/oilNeutralizationNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpVibration'>pumpVibration: </label><div class='col-sm-8'><input id='{{id}}_pumpVibration' class='form-control' type='text'{{#pumpVibration}} value='{{pumpVibration}}'{{/pumpVibration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_topOilTemp'>topOilTemp: </label><div class='col-sm-8'><input id='{{id}}_topOilTemp' class='form-control' type='text'{{#topOilTemp}} value='{{topOilTemp}}'{{/topOilTemp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_waterContent'>waterContent: </label><div class='col-sm-8'><input id='{{id}}_waterContent' class='form-control' type='text'{{#waterContent}} value='{{waterContent}}'{{/waterContent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='{{id}}_ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets_string}}'{{/ProcedureDataSets}}></div></div>
@@ -2525,7 +2533,7 @@ define
                 temp = document.getElementById (id + "_oilLevel").value; if ("" != temp) obj.oilLevel = temp;
                 temp = document.getElementById (id + "_oilNeutralizationNumber").value; if ("" != temp) obj.oilNeutralizationNumber = temp;
                 temp = document.getElementById (id + "_pumpVibration").value; if ("" != temp) obj.pumpVibration = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_topOilTemp").value; if ("" != temp) obj.topOilTemp = temp;
                 temp = document.getElementById (id + "_waterContent").value; if ("" != temp) obj.waterContent = temp;
                 temp = document.getElementById (id + "_ProcedureDataSets").value; if ("" != temp) obj.ProcedureDataSets = temp.split (",");
@@ -3073,7 +3081,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "BushingInsulationPF";
-                base.parse_element (/<cim:BushingInsulationPF.status>([\s\S]*?)<\/cim:BushingInsulationPF.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BushingInsulationPF.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:BushingInsulationPF.testKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "testKind", sub, context);
                 base.parse_attribute (/<cim:BushingInsulationPF.Bushing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bushing", sub, context);
                 base.parse_attribute (/<cim:BushingInsulationPF.TransformerObservation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerObservation", sub, context);
@@ -3089,7 +3097,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BushingInsulationPF", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "BushingInsulationPF", "status", "status", fields);
                 base.export_attribute (obj, "BushingInsulationPF", "testKind", "testKind", fields);
                 base.export_attribute (obj, "BushingInsulationPF", "Bushing", "Bushing", fields);
                 base.export_attribute (obj, "BushingInsulationPF", "TransformerObservation", "TransformerObservation", fields);
@@ -3122,12 +3130,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 obj.BushingInsulationPfTestKind = []; if (!obj.testKind) obj.BushingInsulationPfTestKind.push ({ id: '', selected: true}); for (var property in BushingInsulationPfTestKind) obj.BushingInsulationPfTestKind.push ({ id: property, selected: obj.testKind && obj.testKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.BushingInsulationPfTestKind;
             }
 
@@ -3141,7 +3151,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testKind'>testKind: </label><div class='col-sm-8'><select id='{{id}}_testKind' class='form-control custom-select'>{{#BushingInsulationPfTestKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BushingInsulationPfTestKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bushing'>Bushing: </label><div class='col-sm-8'><input id='{{id}}_Bushing' class='form-control' type='text'{{#Bushing}} value='{{Bushing}}'{{/Bushing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerObservation'>TransformerObservation: </label><div class='col-sm-8'><input id='{{id}}_TransformerObservation' class='form-control' type='text'{{#TransformerObservation}} value='{{TransformerObservation}}'{{/TransformerObservation}}></div></div>
@@ -3157,7 +3167,7 @@ define
 
                 var obj = obj || { id: id, cls: "BushingInsulationPF" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_testKind").value; if ("" != temp) { temp = BushingInsulationPfTestKind[temp]; if ("undefined" != typeof (temp)) obj.testKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#BushingInsulationPfTestKind." + temp; }
                 temp = document.getElementById (id + "_Bushing").value; if ("" != temp) obj.Bushing = temp;
                 temp = document.getElementById (id + "_TransformerObservation").value; if ("" != temp) obj.TransformerObservation = temp;

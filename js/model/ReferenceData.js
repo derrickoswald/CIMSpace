@@ -37,7 +37,7 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ResourceCapacity";
-                base.parse_element (/<cim:ResourceCapacity.capacityType>([\s\S]*?)<\/cim:ResourceCapacity.capacityType>/g, obj, "capacityType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceCapacity.capacityType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "capacityType", sub, context);
                 base.parse_element (/<cim:ResourceCapacity.maximumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.maximumCapacity>/g, obj, "maximumCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceCapacity.minimumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.minimumCapacity>/g, obj, "minimumCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceCapacity.defaultCapacity>([\s\S]*?)<\/cim:ResourceCapacity.defaultCapacity>/g, obj, "defaultCapacity", base.to_string, sub, context);
@@ -54,7 +54,7 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResourceCapacity", "capacityType", "capacityType",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceCapacity", "capacityType", "capacityType", fields);
                 base.export_element (obj, "ResourceCapacity", "maximumCapacity", "maximumCapacity",  base.from_string, fields);
                 base.export_element (obj, "ResourceCapacity", "minimumCapacity", "minimumCapacity",  base.from_string, fields);
                 base.export_element (obj, "ResourceCapacity", "defaultCapacity", "defaultCapacity",  base.from_string, fields);
@@ -90,12 +90,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ResourceCapacityType = []; if (!obj.capacityType) obj.ResourceCapacityType.push ({ id: '', selected: true}); for (var property in ResourceCapacityType) obj.ResourceCapacityType.push ({ id: property, selected: obj.capacityType && obj.capacityType.endsWith ('.' + property)});
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ResourceCapacityType;
                 delete obj.RegisteredResource_string;
             }
 
@@ -109,7 +111,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacityType'>capacityType: </label><div class='col-sm-8'><input id='{{id}}_capacityType' class='form-control' type='text'{{#capacityType}} value='{{capacityType}}'{{/capacityType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacityType'>capacityType: </label><div class='col-sm-8'><select id='{{id}}_capacityType' class='form-control custom-select'>{{#ResourceCapacityType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ResourceCapacityType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumCapacity'>maximumCapacity: </label><div class='col-sm-8'><input id='{{id}}_maximumCapacity' class='form-control' type='text'{{#maximumCapacity}} value='{{maximumCapacity}}'{{/maximumCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumCapacity'>minimumCapacity: </label><div class='col-sm-8'><input id='{{id}}_minimumCapacity' class='form-control' type='text'{{#minimumCapacity}} value='{{minimumCapacity}}'{{/minimumCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultCapacity'>defaultCapacity: </label><div class='col-sm-8'><input id='{{id}}_defaultCapacity' class='form-control' type='text'{{#defaultCapacity}} value='{{defaultCapacity}}'{{/defaultCapacity}}></div></div>
@@ -126,7 +128,7 @@ define
 
                 var obj = obj || { id: id, cls: "ResourceCapacity" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_capacityType").value; if ("" != temp) obj.capacityType = temp;
+                temp = document.getElementById (id + "_capacityType").value; if ("" != temp) { temp = ResourceCapacityType[temp]; if ("undefined" != typeof (temp)) obj.capacityType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceCapacityType." + temp; }
                 temp = document.getElementById (id + "_maximumCapacity").value; if ("" != temp) obj.maximumCapacity = temp;
                 temp = document.getElementById (id + "_minimumCapacity").value; if ("" != temp) obj.minimumCapacity = temp;
                 temp = document.getElementById (id + "_defaultCapacity").value; if ("" != temp) obj.defaultCapacity = temp;
@@ -176,10 +178,10 @@ define
                 obj.cls = "ResourceAncillaryServiceQualification";
                 base.parse_element (/<cim:ResourceAncillaryServiceQualification.certifiedCapacity>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.certifiedCapacity>/g, obj, "certifiedCapacity", base.to_float, sub, context);
                 base.parse_element (/<cim:ResourceAncillaryServiceQualification.endEffectiveDate>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ResourceAncillaryServiceQualification.market>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.market>/g, obj, "market", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceAncillaryServiceQualification.qualificationFlag>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.qualificationFlag>/g, obj, "qualificationFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "market", sub, context);
+                base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.qualificationFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "qualificationFlag", sub, context);
                 base.parse_element (/<cim:ResourceAncillaryServiceQualification.startEffectiveDate>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ResourceAncillaryServiceQualification.type>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
                 base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 var bucket = context.parsed.ResourceAncillaryServiceQualification;
                 if (null == bucket)
@@ -195,10 +197,10 @@ define
 
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "certifiedCapacity", "certifiedCapacity",  base.from_float, fields);
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ResourceAncillaryServiceQualification", "market", "market",  base.from_string, fields);
-                base.export_element (obj, "ResourceAncillaryServiceQualification", "qualificationFlag", "qualificationFlag",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceAncillaryServiceQualification", "market", "market", fields);
+                base.export_attribute (obj, "ResourceAncillaryServiceQualification", "qualificationFlag", "qualificationFlag", fields);
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ResourceAncillaryServiceQualification", "type", "type",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceAncillaryServiceQualification", "type", "type", fields);
                 base.export_attribute (obj, "ResourceAncillaryServiceQualification", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -233,11 +235,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.MarketType = []; if (!obj.market) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.market && obj.market.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.qualificationFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.qualificationFlag && obj.qualificationFlag.endsWith ('.' + property)});
+                obj.ResourceAncillaryServiceType = []; if (!obj.type) obj.ResourceAncillaryServiceType.push ({ id: '', selected: true}); for (var property in ResourceAncillaryServiceType) obj.ResourceAncillaryServiceType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketType;
+                delete obj.YesNo;
+                delete obj.ResourceAncillaryServiceType;
             }
 
             edit_template ()
@@ -252,10 +260,10 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedCapacity'>certifiedCapacity: </label><div class='col-sm-8'><input id='{{id}}_certifiedCapacity' class='form-control' type='text'{{#certifiedCapacity}} value='{{certifiedCapacity}}'{{/certifiedCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_market'>market: </label><div class='col-sm-8'><input id='{{id}}_market' class='form-control' type='text'{{#market}} value='{{market}}'{{/market}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationFlag'>qualificationFlag: </label><div class='col-sm-8'><input id='{{id}}_qualificationFlag' class='form-control' type='text'{{#qualificationFlag}} value='{{qualificationFlag}}'{{/qualificationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_market'>market: </label><div class='col-sm-8'><select id='{{id}}_market' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationFlag'>qualificationFlag: </label><div class='col-sm-8'><select id='{{id}}_qualificationFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ResourceAncillaryServiceType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ResourceAncillaryServiceType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
@@ -271,10 +279,10 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_certifiedCapacity").value; if ("" != temp) obj.certifiedCapacity = temp;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_market").value; if ("" != temp) obj.market = temp;
-                temp = document.getElementById (id + "_qualificationFlag").value; if ("" != temp) obj.qualificationFlag = temp;
+                temp = document.getElementById (id + "_market").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.market = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
+                temp = document.getElementById (id + "_qualificationFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.qualificationFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ResourceAncillaryServiceType[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceAncillaryServiceType." + temp; }
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
@@ -588,8 +596,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "PnodeDistributionFactor";
                 base.parse_element (/<cim:PnodeDistributionFactor.factor>([\s\S]*?)<\/cim:PnodeDistributionFactor.factor>/g, obj, "factor", base.to_float, sub, context);
-                base.parse_element (/<cim:PnodeDistributionFactor.offPeak>([\s\S]*?)<\/cim:PnodeDistributionFactor.offPeak>/g, obj, "offPeak", base.to_string, sub, context);
-                base.parse_element (/<cim:PnodeDistributionFactor.onPeak>([\s\S]*?)<\/cim:PnodeDistributionFactor.onPeak>/g, obj, "onPeak", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PnodeDistributionFactor.offPeak\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "offPeak", sub, context);
+                base.parse_attribute (/<cim:PnodeDistributionFactor.onPeak\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "onPeak", sub, context);
                 base.parse_element (/<cim:PnodeDistributionFactor.podLossFactor>([\s\S]*?)<\/cim:PnodeDistributionFactor.podLossFactor>/g, obj, "podLossFactor", base.to_float, sub, context);
                 base.parse_attribute (/<cim:PnodeDistributionFactor.IndividualPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IndividualPnode", sub, context);
                 base.parse_attribute (/<cim:PnodeDistributionFactor.BidDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidDistributionFactor", sub, context);
@@ -607,8 +615,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "PnodeDistributionFactor", "factor", "factor",  base.from_float, fields);
-                base.export_element (obj, "PnodeDistributionFactor", "offPeak", "offPeak",  base.from_string, fields);
-                base.export_element (obj, "PnodeDistributionFactor", "onPeak", "onPeak",  base.from_string, fields);
+                base.export_attribute (obj, "PnodeDistributionFactor", "offPeak", "offPeak", fields);
+                base.export_attribute (obj, "PnodeDistributionFactor", "onPeak", "onPeak", fields);
                 base.export_element (obj, "PnodeDistributionFactor", "podLossFactor", "podLossFactor",  base.from_float, fields);
                 base.export_attribute (obj, "PnodeDistributionFactor", "IndividualPnode", "IndividualPnode", fields);
                 base.export_attribute (obj, "PnodeDistributionFactor", "BidDistributionFactor", "BidDistributionFactor", fields);
@@ -646,12 +654,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.offPeak) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.offPeak && obj.offPeak.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.onPeak) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.onPeak && obj.onPeak.endsWith ('.' + property)});
                 if (obj.AggregatedPnode) obj.AggregatedPnode_string = obj.AggregatedPnode.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
                 delete obj.AggregatedPnode_string;
             }
 
@@ -666,8 +678,8 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offPeak'>offPeak: </label><div class='col-sm-8'><input id='{{id}}_offPeak' class='form-control' type='text'{{#offPeak}} value='{{offPeak}}'{{/offPeak}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_onPeak'>onPeak: </label><div class='col-sm-8'><input id='{{id}}_onPeak' class='form-control' type='text'{{#onPeak}} value='{{onPeak}}'{{/onPeak}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offPeak'>offPeak: </label><div class='col-sm-8'><select id='{{id}}_offPeak' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_onPeak'>onPeak: </label><div class='col-sm-8'><select id='{{id}}_onPeak' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_podLossFactor'>podLossFactor: </label><div class='col-sm-8'><input id='{{id}}_podLossFactor' class='form-control' type='text'{{#podLossFactor}} value='{{podLossFactor}}'{{/podLossFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='{{id}}_IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}'{{/IndividualPnode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidDistributionFactor'>BidDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_BidDistributionFactor' class='form-control' type='text'{{#BidDistributionFactor}} value='{{BidDistributionFactor}}'{{/BidDistributionFactor}}></div></div>
@@ -684,8 +696,8 @@ define
                 var obj = obj || { id: id, cls: "PnodeDistributionFactor" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
-                temp = document.getElementById (id + "_offPeak").value; if ("" != temp) obj.offPeak = temp;
-                temp = document.getElementById (id + "_onPeak").value; if ("" != temp) obj.onPeak = temp;
+                temp = document.getElementById (id + "_offPeak").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.offPeak = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_onPeak").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.onPeak = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_podLossFactor").value; if ("" != temp) obj.podLossFactor = temp;
                 temp = document.getElementById (id + "_IndividualPnode").value; if ("" != temp) obj.IndividualPnode = temp;
                 temp = document.getElementById (id + "_BidDistributionFactor").value; if ("" != temp) obj.BidDistributionFactor = temp;
@@ -1057,7 +1069,7 @@ define
                 base.parse_element (/<cim:FlowgateValue.economicDispatchLimit>([\s\S]*?)<\/cim:FlowgateValue.economicDispatchLimit>/g, obj, "economicDispatchLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:FlowgateValue.effectiveDate>([\s\S]*?)<\/cim:FlowgateValue.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FlowgateValue.firmNetworkLimit>([\s\S]*?)<\/cim:FlowgateValue.firmNetworkLimit>/g, obj, "firmNetworkLimit", base.to_string, sub, context);
-                base.parse_element (/<cim:FlowgateValue.flowDirectionFlag>([\s\S]*?)<\/cim:FlowgateValue.flowDirectionFlag>/g, obj, "flowDirectionFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FlowgateValue.flowDirectionFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "flowDirectionFlag", sub, context);
                 base.parse_element (/<cim:FlowgateValue.mktFlow>([\s\S]*?)<\/cim:FlowgateValue.mktFlow>/g, obj, "mktFlow", base.to_string, sub, context);
                 base.parse_element (/<cim:FlowgateValue.netFirmNetworkLimit>([\s\S]*?)<\/cim:FlowgateValue.netFirmNetworkLimit>/g, obj, "netFirmNetworkLimit", base.to_string, sub, context);
                 base.parse_attribute (/<cim:FlowgateValue.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
@@ -1077,7 +1089,7 @@ define
                 base.export_element (obj, "FlowgateValue", "economicDispatchLimit", "economicDispatchLimit",  base.from_string, fields);
                 base.export_element (obj, "FlowgateValue", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "FlowgateValue", "firmNetworkLimit", "firmNetworkLimit",  base.from_string, fields);
-                base.export_element (obj, "FlowgateValue", "flowDirectionFlag", "flowDirectionFlag",  base.from_string, fields);
+                base.export_attribute (obj, "FlowgateValue", "flowDirectionFlag", "flowDirectionFlag", fields);
                 base.export_element (obj, "FlowgateValue", "mktFlow", "mktFlow",  base.from_string, fields);
                 base.export_element (obj, "FlowgateValue", "netFirmNetworkLimit", "netFirmNetworkLimit",  base.from_string, fields);
                 base.export_attribute (obj, "FlowgateValue", "Flowgate", "Flowgate", fields);
@@ -1116,11 +1128,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.FlowDirectionType = []; if (!obj.flowDirectionFlag) obj.FlowDirectionType.push ({ id: '', selected: true}); for (var property in FlowDirectionType) obj.FlowDirectionType.push ({ id: property, selected: obj.flowDirectionFlag && obj.flowDirectionFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.FlowDirectionType;
             }
 
             edit_template ()
@@ -1136,7 +1150,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_economicDispatchLimit'>economicDispatchLimit: </label><div class='col-sm-8'><input id='{{id}}_economicDispatchLimit' class='form-control' type='text'{{#economicDispatchLimit}} value='{{economicDispatchLimit}}'{{/economicDispatchLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_firmNetworkLimit'>firmNetworkLimit: </label><div class='col-sm-8'><input id='{{id}}_firmNetworkLimit' class='form-control' type='text'{{#firmNetworkLimit}} value='{{firmNetworkLimit}}'{{/firmNetworkLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flowDirectionFlag'>flowDirectionFlag: </label><div class='col-sm-8'><input id='{{id}}_flowDirectionFlag' class='form-control' type='text'{{#flowDirectionFlag}} value='{{flowDirectionFlag}}'{{/flowDirectionFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flowDirectionFlag'>flowDirectionFlag: </label><div class='col-sm-8'><select id='{{id}}_flowDirectionFlag' class='form-control custom-select'>{{#FlowDirectionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FlowDirectionType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mktFlow'>mktFlow: </label><div class='col-sm-8'><input id='{{id}}_mktFlow' class='form-control' type='text'{{#mktFlow}} value='{{mktFlow}}'{{/mktFlow}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_netFirmNetworkLimit'>netFirmNetworkLimit: </label><div class='col-sm-8'><input id='{{id}}_netFirmNetworkLimit' class='form-control' type='text'{{#netFirmNetworkLimit}} value='{{netFirmNetworkLimit}}'{{/netFirmNetworkLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
@@ -1156,7 +1170,7 @@ define
                 temp = document.getElementById (id + "_economicDispatchLimit").value; if ("" != temp) obj.economicDispatchLimit = temp;
                 temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
                 temp = document.getElementById (id + "_firmNetworkLimit").value; if ("" != temp) obj.firmNetworkLimit = temp;
-                temp = document.getElementById (id + "_flowDirectionFlag").value; if ("" != temp) obj.flowDirectionFlag = temp;
+                temp = document.getElementById (id + "_flowDirectionFlag").value; if ("" != temp) { temp = FlowDirectionType[temp]; if ("undefined" != typeof (temp)) obj.flowDirectionFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#FlowDirectionType." + temp; }
                 temp = document.getElementById (id + "_mktFlow").value; if ("" != temp) obj.mktFlow = temp;
                 temp = document.getElementById (id + "_netFirmNetworkLimit").value; if ("" != temp) obj.netFirmNetworkLimit = temp;
                 temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
@@ -1453,7 +1467,7 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketSkill";
-                base.parse_element (/<cim:MarketSkill.certificationPeriod>([\s\S]*?)<\/cim:MarketSkill.certificationPeriod>/g, obj, "certificationPeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketSkill.certificationPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certificationPeriod", sub, context);
                 base.parse_element (/<cim:MarketSkill.effectiveDateTime>([\s\S]*?)<\/cim:MarketSkill.effectiveDateTime>/g, obj, "effectiveDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MarketSkill.level>([\s\S]*?)<\/cim:MarketSkill.level>/g, obj, "level", base.to_string, sub, context);
                 base.parse_attributes (/<cim:MarketSkill.MarketQualificationRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketQualificationRequirements", sub, context);
@@ -1470,7 +1484,7 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MarketSkill", "certificationPeriod", "certificationPeriod",  base.from_string, fields);
+                base.export_attribute (obj, "MarketSkill", "certificationPeriod", "certificationPeriod", fields);
                 base.export_element (obj, "MarketSkill", "effectiveDateTime", "effectiveDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "MarketSkill", "level", "level",  base.from_string, fields);
                 base.export_attributes (obj, "MarketSkill", "MarketQualificationRequirements", "MarketQualificationRequirements", fields);
@@ -1506,12 +1520,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.certificationPeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.certificationPeriod && obj.certificationPeriod.endsWith ('.' + property)});
                 if (obj.MarketQualificationRequirements) obj.MarketQualificationRequirements_string = obj.MarketQualificationRequirements.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.MarketQualificationRequirements_string;
             }
 
@@ -1525,7 +1541,7 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='{{id}}_certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><select id='{{id}}_certificationPeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><input id='{{id}}_level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketQualificationRequirements'>MarketQualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_MarketQualificationRequirements' class='form-control' type='text'{{#MarketQualificationRequirements}} value='{{MarketQualificationRequirements_string}}'{{/MarketQualificationRequirements}}></div></div>
@@ -1542,7 +1558,7 @@ define
 
                 var obj = obj || { id: id, cls: "MarketSkill" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
+                temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.certificationPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
                 temp = document.getElementById (id + "_level").value; if ("" != temp) obj.level = temp;
                 temp = document.getElementById (id + "_MarketQualificationRequirements").value; if ("" != temp) obj.MarketQualificationRequirements = temp.split (",");
@@ -2093,13 +2109,13 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MSSAggregation";
-                base.parse_element (/<cim:MSSAggregation.costRecovery>([\s\S]*?)<\/cim:MSSAggregation.costRecovery>/g, obj, "costRecovery", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.costRecovery\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "costRecovery", sub, context);
                 base.parse_element (/<cim:MSSAggregation.endEffectiveDate>([\s\S]*?)<\/cim:MSSAggregation.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:MSSAggregation.grossSettlement>([\s\S]*?)<\/cim:MSSAggregation.grossSettlement>/g, obj, "grossSettlement", base.to_string, sub, context);
-                base.parse_element (/<cim:MSSAggregation.ignoreLosses>([\s\S]*?)<\/cim:MSSAggregation.ignoreLosses>/g, obj, "ignoreLosses", base.to_string, sub, context);
-                base.parse_element (/<cim:MSSAggregation.ignoreMarginalLosses>([\s\S]*?)<\/cim:MSSAggregation.ignoreMarginalLosses>/g, obj, "ignoreMarginalLosses", base.to_string, sub, context);
-                base.parse_element (/<cim:MSSAggregation.loadFollowing>([\s\S]*?)<\/cim:MSSAggregation.loadFollowing>/g, obj, "loadFollowing", base.to_string, sub, context);
-                base.parse_element (/<cim:MSSAggregation.rucProcurement>([\s\S]*?)<\/cim:MSSAggregation.rucProcurement>/g, obj, "rucProcurement", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.grossSettlement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "grossSettlement", sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.ignoreLosses\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ignoreLosses", sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.ignoreMarginalLosses\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ignoreMarginalLosses", sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.loadFollowing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "loadFollowing", sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.rucProcurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rucProcurement", sub, context);
                 base.parse_element (/<cim:MSSAggregation.startEffectiveDate>([\s\S]*?)<\/cim:MSSAggregation.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attributes (/<cim:MSSAggregation.MeteredSubSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeteredSubSystem", sub, context);
                 base.parse_attribute (/<cim:MSSAggregation.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
@@ -2115,13 +2131,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MSSAggregation", "costRecovery", "costRecovery",  base.from_string, fields);
+                base.export_attribute (obj, "MSSAggregation", "costRecovery", "costRecovery", fields);
                 base.export_element (obj, "MSSAggregation", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "MSSAggregation", "grossSettlement", "grossSettlement",  base.from_string, fields);
-                base.export_element (obj, "MSSAggregation", "ignoreLosses", "ignoreLosses",  base.from_string, fields);
-                base.export_element (obj, "MSSAggregation", "ignoreMarginalLosses", "ignoreMarginalLosses",  base.from_string, fields);
-                base.export_element (obj, "MSSAggregation", "loadFollowing", "loadFollowing",  base.from_string, fields);
-                base.export_element (obj, "MSSAggregation", "rucProcurement", "rucProcurement",  base.from_string, fields);
+                base.export_attribute (obj, "MSSAggregation", "grossSettlement", "grossSettlement", fields);
+                base.export_attribute (obj, "MSSAggregation", "ignoreLosses", "ignoreLosses", fields);
+                base.export_attribute (obj, "MSSAggregation", "ignoreMarginalLosses", "ignoreMarginalLosses", fields);
+                base.export_attribute (obj, "MSSAggregation", "loadFollowing", "loadFollowing", fields);
+                base.export_attribute (obj, "MSSAggregation", "rucProcurement", "rucProcurement", fields);
                 base.export_element (obj, "MSSAggregation", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
                 base.export_attributes (obj, "MSSAggregation", "MeteredSubSystem", "MeteredSubSystem", fields);
                 base.export_attribute (obj, "MSSAggregation", "RTO", "RTO", fields);
@@ -2161,12 +2177,24 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.costRecovery) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.costRecovery && obj.costRecovery.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.grossSettlement) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.grossSettlement && obj.grossSettlement.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.ignoreLosses) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.ignoreLosses && obj.ignoreLosses.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.ignoreMarginalLosses) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.ignoreMarginalLosses && obj.ignoreMarginalLosses.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.loadFollowing) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.loadFollowing && obj.loadFollowing.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.rucProcurement) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.rucProcurement && obj.rucProcurement.endsWith ('.' + property)});
                 if (obj.MeteredSubSystem) obj.MeteredSubSystem_string = obj.MeteredSubSystem.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
                 delete obj.MeteredSubSystem_string;
             }
 
@@ -2180,13 +2208,13 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costRecovery'>costRecovery: </label><div class='col-sm-8'><input id='{{id}}_costRecovery' class='form-control' type='text'{{#costRecovery}} value='{{costRecovery}}'{{/costRecovery}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costRecovery'>costRecovery: </label><div class='col-sm-8'><select id='{{id}}_costRecovery' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_grossSettlement'>grossSettlement: </label><div class='col-sm-8'><input id='{{id}}_grossSettlement' class='form-control' type='text'{{#grossSettlement}} value='{{grossSettlement}}'{{/grossSettlement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreLosses' class='form-control' type='text'{{#ignoreLosses}} value='{{ignoreLosses}}'{{/ignoreLosses}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreMarginalLosses'>ignoreMarginalLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreMarginalLosses' class='form-control' type='text'{{#ignoreMarginalLosses}} value='{{ignoreMarginalLosses}}'{{/ignoreMarginalLosses}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowing'>loadFollowing: </label><div class='col-sm-8'><input id='{{id}}_loadFollowing' class='form-control' type='text'{{#loadFollowing}} value='{{loadFollowing}}'{{/loadFollowing}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucProcurement'>rucProcurement: </label><div class='col-sm-8'><input id='{{id}}_rucProcurement' class='form-control' type='text'{{#rucProcurement}} value='{{rucProcurement}}'{{/rucProcurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_grossSettlement'>grossSettlement: </label><div class='col-sm-8'><select id='{{id}}_grossSettlement' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><select id='{{id}}_ignoreLosses' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreMarginalLosses'>ignoreMarginalLosses: </label><div class='col-sm-8'><select id='{{id}}_ignoreMarginalLosses' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowing'>loadFollowing: </label><div class='col-sm-8'><select id='{{id}}_loadFollowing' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucProcurement'>rucProcurement: </label><div class='col-sm-8'><select id='{{id}}_rucProcurement' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
@@ -2201,13 +2229,13 @@ define
 
                 var obj = obj || { id: id, cls: "MSSAggregation" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_costRecovery").value; if ("" != temp) obj.costRecovery = temp;
+                temp = document.getElementById (id + "_costRecovery").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.costRecovery = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_grossSettlement").value; if ("" != temp) obj.grossSettlement = temp;
-                temp = document.getElementById (id + "_ignoreLosses").value; if ("" != temp) obj.ignoreLosses = temp;
-                temp = document.getElementById (id + "_ignoreMarginalLosses").value; if ("" != temp) obj.ignoreMarginalLosses = temp;
-                temp = document.getElementById (id + "_loadFollowing").value; if ("" != temp) obj.loadFollowing = temp;
-                temp = document.getElementById (id + "_rucProcurement").value; if ("" != temp) obj.rucProcurement = temp;
+                temp = document.getElementById (id + "_grossSettlement").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.grossSettlement = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_ignoreLosses").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.ignoreLosses = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_ignoreMarginalLosses").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.ignoreMarginalLosses = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_loadFollowing").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.loadFollowing = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_rucProcurement").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.rucProcurement = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
 
@@ -2256,7 +2284,7 @@ define
                 obj.cls = "MPMTestThreshold";
                 base.parse_element (/<cim:MPMTestThreshold.price>([\s\S]*?)<\/cim:MPMTestThreshold.price>/g, obj, "price", base.to_string, sub, context);
                 base.parse_element (/<cim:MPMTestThreshold.percent>([\s\S]*?)<\/cim:MPMTestThreshold.percent>/g, obj, "percent", base.to_string, sub, context);
-                base.parse_element (/<cim:MPMTestThreshold.marketType>([\s\S]*?)<\/cim:MPMTestThreshold.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MPMTestThreshold.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_attribute (/<cim:MPMTestThreshold.MPMTestCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestCategory", sub, context);
                 base.parse_attributes (/<cim:MPMTestThreshold.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregatedPnode", sub, context);
                 base.parse_attributes (/<cim:MPMTestThreshold.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
@@ -2274,7 +2302,7 @@ define
 
                 base.export_element (obj, "MPMTestThreshold", "price", "price",  base.from_string, fields);
                 base.export_element (obj, "MPMTestThreshold", "percent", "percent",  base.from_string, fields);
-                base.export_element (obj, "MPMTestThreshold", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "MPMTestThreshold", "marketType", "marketType", fields);
                 base.export_attribute (obj, "MPMTestThreshold", "MPMTestCategory", "MPMTestCategory", fields);
                 base.export_attributes (obj, "MPMTestThreshold", "AggregatedPnode", "AggregatedPnode", fields);
                 base.export_attributes (obj, "MPMTestThreshold", "RegisteredResource", "RegisteredResource", fields);
@@ -2310,6 +2338,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.AggregatedPnode) obj.AggregatedPnode_string = obj.AggregatedPnode.join ();
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
@@ -2317,6 +2346,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketType;
                 delete obj.AggregatedPnode_string;
                 delete obj.RegisteredResource_string;
             }
@@ -2333,7 +2363,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_price'>price: </label><div class='col-sm-8'><input id='{{id}}_price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_percent'>percent: </label><div class='col-sm-8'><input id='{{id}}_percent' class='form-control' type='text'{{#percent}} value='{{percent}}'{{/percent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestCategory'>MPMTestCategory: </label><div class='col-sm-8'><input id='{{id}}_MPMTestCategory' class='form-control' type='text'{{#MPMTestCategory}} value='{{MPMTestCategory}}'{{/MPMTestCategory}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode_string}}'{{/AggregatedPnode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
@@ -2351,7 +2381,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_price").value; if ("" != temp) obj.price = temp;
                 temp = document.getElementById (id + "_percent").value; if ("" != temp) obj.percent = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
                 temp = document.getElementById (id + "_MPMTestCategory").value; if ("" != temp) obj.MPMTestCategory = temp;
                 temp = document.getElementById (id + "_AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp.split (",");
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
@@ -2518,17 +2548,17 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketPerson";
                 base.parse_element (/<cim:MarketPerson.category>([\s\S]*?)<\/cim:MarketPerson.category>/g, obj, "category", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.electronicAddressAlternate>([\s\S]*?)<\/cim:MarketPerson.electronicAddressAlternate>/g, obj, "electronicAddressAlternate", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.electronicAddressPrimary>([\s\S]*?)<\/cim:MarketPerson.electronicAddressPrimary>/g, obj, "electronicAddressPrimary", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketPerson.electronicAddressAlternate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddressAlternate", sub, context);
+                base.parse_attribute (/<cim:MarketPerson.electronicAddressPrimary\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddressPrimary", sub, context);
                 base.parse_element (/<cim:MarketPerson.firstName>([\s\S]*?)<\/cim:MarketPerson.firstName>/g, obj, "firstName", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.governmentID>([\s\S]*?)<\/cim:MarketPerson.governmentID>/g, obj, "governmentID", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.landlinePhone>([\s\S]*?)<\/cim:MarketPerson.landlinePhone>/g, obj, "landlinePhone", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketPerson.landlinePhone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "landlinePhone", sub, context);
                 base.parse_element (/<cim:MarketPerson.lastName>([\s\S]*?)<\/cim:MarketPerson.lastName>/g, obj, "lastName", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.mName>([\s\S]*?)<\/cim:MarketPerson.mName>/g, obj, "mName", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.mobilePhone>([\s\S]*?)<\/cim:MarketPerson.mobilePhone>/g, obj, "mobilePhone", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketPerson.mobilePhone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mobilePhone", sub, context);
                 base.parse_element (/<cim:MarketPerson.prefix>([\s\S]*?)<\/cim:MarketPerson.prefix>/g, obj, "prefix", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.specialNeed>([\s\S]*?)<\/cim:MarketPerson.specialNeed>/g, obj, "specialNeed", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.status>([\s\S]*?)<\/cim:MarketPerson.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketPerson.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:MarketPerson.suffix>([\s\S]*?)<\/cim:MarketPerson.suffix>/g, obj, "suffix", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.userID>([\s\S]*?)<\/cim:MarketPerson.userID>/g, obj, "userID", base.to_string, sub, context);
                 base.parse_attributes (/<cim:MarketPerson.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrganisation", sub, context);
@@ -2546,17 +2576,17 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MarketPerson", "category", "category",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "electronicAddressAlternate", "electronicAddressAlternate",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "electronicAddressPrimary", "electronicAddressPrimary",  base.from_string, fields);
+                base.export_attribute (obj, "MarketPerson", "electronicAddressAlternate", "electronicAddressAlternate", fields);
+                base.export_attribute (obj, "MarketPerson", "electronicAddressPrimary", "electronicAddressPrimary", fields);
                 base.export_element (obj, "MarketPerson", "firstName", "firstName",  base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "governmentID", "governmentID",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "landlinePhone", "landlinePhone",  base.from_string, fields);
+                base.export_attribute (obj, "MarketPerson", "landlinePhone", "landlinePhone", fields);
                 base.export_element (obj, "MarketPerson", "lastName", "lastName",  base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "mName", "mName",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "mobilePhone", "mobilePhone",  base.from_string, fields);
+                base.export_attribute (obj, "MarketPerson", "mobilePhone", "mobilePhone", fields);
                 base.export_element (obj, "MarketPerson", "prefix", "prefix",  base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "specialNeed", "specialNeed",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "MarketPerson", "status", "status", fields);
                 base.export_element (obj, "MarketPerson", "suffix", "suffix",  base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "userID", "userID",  base.from_string, fields);
                 base.export_attributes (obj, "MarketPerson", "MktOrganisation", "MktOrganisation", fields);
@@ -2598,6 +2628,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ElectronicAddress = []; if (!obj.electronicAddressAlternate) obj.ElectronicAddress.push ({ id: '', selected: true}); for (var property in ElectronicAddress) obj.ElectronicAddress.push ({ id: property, selected: obj.electronicAddressAlternate && obj.electronicAddressAlternate.endsWith ('.' + property)});
+                obj.ElectronicAddress = []; if (!obj.electronicAddressPrimary) obj.ElectronicAddress.push ({ id: '', selected: true}); for (var property in ElectronicAddress) obj.ElectronicAddress.push ({ id: property, selected: obj.electronicAddressPrimary && obj.electronicAddressPrimary.endsWith ('.' + property)});
+                obj.TelephoneNumber = []; if (!obj.landlinePhone) obj.TelephoneNumber.push ({ id: '', selected: true}); for (var property in TelephoneNumber) obj.TelephoneNumber.push ({ id: property, selected: obj.landlinePhone && obj.landlinePhone.endsWith ('.' + property)});
+                obj.TelephoneNumber = []; if (!obj.mobilePhone) obj.TelephoneNumber.push ({ id: '', selected: true}); for (var property in TelephoneNumber) obj.TelephoneNumber.push ({ id: property, selected: obj.mobilePhone && obj.mobilePhone.endsWith ('.' + property)});
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.MktOrganisation) obj.MktOrganisation_string = obj.MktOrganisation.join ();
                 if (obj.MarketSkills) obj.MarketSkills_string = obj.MarketSkills.join ();
             }
@@ -2605,6 +2640,11 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ElectronicAddress;
+                delete obj.ElectronicAddress;
+                delete obj.TelephoneNumber;
+                delete obj.TelephoneNumber;
+                delete obj.Status;
                 delete obj.MktOrganisation_string;
                 delete obj.MarketSkills_string;
             }
@@ -2620,17 +2660,17 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_category'>category: </label><div class='col-sm-8'><input id='{{id}}_category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressAlternate'>electronicAddressAlternate: </label><div class='col-sm-8'><input id='{{id}}_electronicAddressAlternate' class='form-control' type='text'{{#electronicAddressAlternate}} value='{{electronicAddressAlternate}}'{{/electronicAddressAlternate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressPrimary'>electronicAddressPrimary: </label><div class='col-sm-8'><input id='{{id}}_electronicAddressPrimary' class='form-control' type='text'{{#electronicAddressPrimary}} value='{{electronicAddressPrimary}}'{{/electronicAddressPrimary}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressAlternate'>electronicAddressAlternate: </label><div class='col-sm-8'><select id='{{id}}_electronicAddressAlternate' class='form-control custom-select'>{{#ElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ElectronicAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressPrimary'>electronicAddressPrimary: </label><div class='col-sm-8'><select id='{{id}}_electronicAddressPrimary' class='form-control custom-select'>{{#ElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ElectronicAddress}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_firstName'>firstName: </label><div class='col-sm-8'><input id='{{id}}_firstName' class='form-control' type='text'{{#firstName}} value='{{firstName}}'{{/firstName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_governmentID'>governmentID: </label><div class='col-sm-8'><input id='{{id}}_governmentID' class='form-control' type='text'{{#governmentID}} value='{{governmentID}}'{{/governmentID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_landlinePhone'>landlinePhone: </label><div class='col-sm-8'><input id='{{id}}_landlinePhone' class='form-control' type='text'{{#landlinePhone}} value='{{landlinePhone}}'{{/landlinePhone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_landlinePhone'>landlinePhone: </label><div class='col-sm-8'><select id='{{id}}_landlinePhone' class='form-control custom-select'>{{#TelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TelephoneNumber}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastName'>lastName: </label><div class='col-sm-8'><input id='{{id}}_lastName' class='form-control' type='text'{{#lastName}} value='{{lastName}}'{{/lastName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mName'>mName: </label><div class='col-sm-8'><input id='{{id}}_mName' class='form-control' type='text'{{#mName}} value='{{mName}}'{{/mName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mobilePhone'>mobilePhone: </label><div class='col-sm-8'><input id='{{id}}_mobilePhone' class='form-control' type='text'{{#mobilePhone}} value='{{mobilePhone}}'{{/mobilePhone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mobilePhone'>mobilePhone: </label><div class='col-sm-8'><select id='{{id}}_mobilePhone' class='form-control custom-select'>{{#TelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TelephoneNumber}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_prefix'>prefix: </label><div class='col-sm-8'><input id='{{id}}_prefix' class='form-control' type='text'{{#prefix}} value='{{prefix}}'{{/prefix}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='{{id}}_specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_suffix'>suffix: </label><div class='col-sm-8'><input id='{{id}}_suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_userID'>userID: </label><div class='col-sm-8'><input id='{{id}}_userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation_string}}'{{/MktOrganisation}}></div></div>
@@ -2647,17 +2687,17 @@ define
                 var obj = obj || { id: id, cls: "MarketPerson" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_category").value; if ("" != temp) obj.category = temp;
-                temp = document.getElementById (id + "_electronicAddressAlternate").value; if ("" != temp) obj.electronicAddressAlternate = temp;
-                temp = document.getElementById (id + "_electronicAddressPrimary").value; if ("" != temp) obj.electronicAddressPrimary = temp;
+                temp = document.getElementById (id + "_electronicAddressAlternate").value; if ("" != temp) { temp = ElectronicAddress[temp]; if ("undefined" != typeof (temp)) obj.electronicAddressAlternate = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; }
+                temp = document.getElementById (id + "_electronicAddressPrimary").value; if ("" != temp) { temp = ElectronicAddress[temp]; if ("undefined" != typeof (temp)) obj.electronicAddressPrimary = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; }
                 temp = document.getElementById (id + "_firstName").value; if ("" != temp) obj.firstName = temp;
                 temp = document.getElementById (id + "_governmentID").value; if ("" != temp) obj.governmentID = temp;
-                temp = document.getElementById (id + "_landlinePhone").value; if ("" != temp) obj.landlinePhone = temp;
+                temp = document.getElementById (id + "_landlinePhone").value; if ("" != temp) { temp = TelephoneNumber[temp]; if ("undefined" != typeof (temp)) obj.landlinePhone = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; }
                 temp = document.getElementById (id + "_lastName").value; if ("" != temp) obj.lastName = temp;
                 temp = document.getElementById (id + "_mName").value; if ("" != temp) obj.mName = temp;
-                temp = document.getElementById (id + "_mobilePhone").value; if ("" != temp) obj.mobilePhone = temp;
+                temp = document.getElementById (id + "_mobilePhone").value; if ("" != temp) { temp = TelephoneNumber[temp]; if ("undefined" != typeof (temp)) obj.mobilePhone = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; }
                 temp = document.getElementById (id + "_prefix").value; if ("" != temp) obj.prefix = temp;
                 temp = document.getElementById (id + "_specialNeed").value; if ("" != temp) obj.specialNeed = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_suffix").value; if ("" != temp) obj.suffix = temp;
                 temp = document.getElementById (id + "_userID").value; if ("" != temp) obj.userID = temp;
                 temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
@@ -3012,18 +3052,18 @@ define
                 base.parse_element (/<cim:RegisteredGenerator.coldStartTime>([\s\S]*?)<\/cim:RegisteredGenerator.coldStartTime>/g, obj, "coldStartTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.combinedCyclePlantName>([\s\S]*?)<\/cim:RegisteredGenerator.combinedCyclePlantName>/g, obj, "combinedCyclePlantName", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.commericialOperationDate>([\s\S]*?)<\/cim:RegisteredGenerator.commericialOperationDate>/g, obj, "commericialOperationDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.constrainedOutputFlag>([\s\S]*?)<\/cim:RegisteredGenerator.constrainedOutputFlag>/g, obj, "constrainedOutputFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.costBasis>([\s\S]*?)<\/cim:RegisteredGenerator.costBasis>/g, obj, "costBasis", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.extremeLongStart>([\s\S]*?)<\/cim:RegisteredGenerator.extremeLongStart>/g, obj, "extremeLongStart", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.fuelSource>([\s\S]*?)<\/cim:RegisteredGenerator.fuelSource>/g, obj, "fuelSource", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.constrainedOutputFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "constrainedOutputFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.costBasis\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "costBasis", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.extremeLongStart\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "extremeLongStart", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.fuelSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fuelSource", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.highControlLimit>([\s\S]*?)<\/cim:RegisteredGenerator.highControlLimit>/g, obj, "highControlLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.hotIntTime>([\s\S]*?)<\/cim:RegisteredGenerator.hotIntTime>/g, obj, "hotIntTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.hotStartTime>([\s\S]*?)<\/cim:RegisteredGenerator.hotStartTime>/g, obj, "hotStartTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.intColdTime>([\s\S]*?)<\/cim:RegisteredGenerator.intColdTime>/g, obj, "intColdTime", base.to_float, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.intendedPIRP>([\s\S]*?)<\/cim:RegisteredGenerator.intendedPIRP>/g, obj, "intendedPIRP", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.intendedPIRP\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "intendedPIRP", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.intStartTime>([\s\S]*?)<\/cim:RegisteredGenerator.intStartTime>/g, obj, "intStartTime", base.to_float, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.loadFollowingDownMSS>([\s\S]*?)<\/cim:RegisteredGenerator.loadFollowingDownMSS>/g, obj, "loadFollowingDownMSS", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.loadFollowingUpMSS>([\s\S]*?)<\/cim:RegisteredGenerator.loadFollowingUpMSS>/g, obj, "loadFollowingUpMSS", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.loadFollowingDownMSS\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "loadFollowingDownMSS", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.loadFollowingUpMSS\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "loadFollowingUpMSS", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.lowControlLImit>([\s\S]*?)<\/cim:RegisteredGenerator.lowControlLImit>/g, obj, "lowControlLImit", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.lowerControlRate>([\s\S]*?)<\/cim:RegisteredGenerator.lowerControlRate>/g, obj, "lowerControlRate", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.lowerRampRate>([\s\S]*?)<\/cim:RegisteredGenerator.lowerRampRate>/g, obj, "lowerRampRate", base.to_string, sub, context);
@@ -3037,14 +3077,14 @@ define
                 base.parse_element (/<cim:RegisteredGenerator.maxStartUpsPerDay>([\s\S]*?)<\/cim:RegisteredGenerator.maxStartUpsPerDay>/g, obj, "maxStartUpsPerDay", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.maxWeeklyEnergy>([\s\S]*?)<\/cim:RegisteredGenerator.maxWeeklyEnergy>/g, obj, "maxWeeklyEnergy", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.maxWeeklyStarts>([\s\S]*?)<\/cim:RegisteredGenerator.maxWeeklyStarts>/g, obj, "maxWeeklyStarts", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.minimumLoadFuelCost>([\s\S]*?)<\/cim:RegisteredGenerator.minimumLoadFuelCost>/g, obj, "minimumLoadFuelCost", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.minimumLoadFuelCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "minimumLoadFuelCost", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.minimumOperatingMW>([\s\S]*?)<\/cim:RegisteredGenerator.minimumOperatingMW>/g, obj, "minimumOperatingMW", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.minLoadCost>([\s\S]*?)<\/cim:RegisteredGenerator.minLoadCost>/g, obj, "minLoadCost", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.mustOfferRA>([\s\S]*?)<\/cim:RegisteredGenerator.mustOfferRA>/g, obj, "mustOfferRA", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.mustOfferRA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mustOfferRA", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.nameplateCapacity>([\s\S]*?)<\/cim:RegisteredGenerator.nameplateCapacity>/g, obj, "nameplateCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.operatingMaintenanceCost>([\s\S]*?)<\/cim:RegisteredGenerator.operatingMaintenanceCost>/g, obj, "operatingMaintenanceCost", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.operatingMode>([\s\S]*?)<\/cim:RegisteredGenerator.operatingMode>/g, obj, "operatingMode", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.proxyFlag>([\s\S]*?)<\/cim:RegisteredGenerator.proxyFlag>/g, obj, "proxyFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.proxyFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "proxyFlag", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.pumpingCost>([\s\S]*?)<\/cim:RegisteredGenerator.pumpingCost>/g, obj, "pumpingCost", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.pumpingFactor>([\s\S]*?)<\/cim:RegisteredGenerator.pumpingFactor>/g, obj, "pumpingFactor", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.pumpMinDownTime>([\s\S]*?)<\/cim:RegisteredGenerator.pumpMinDownTime>/g, obj, "pumpMinDownTime", base.to_float, sub, context);
@@ -3052,23 +3092,23 @@ define
                 base.parse_element (/<cim:RegisteredGenerator.pumpShutdownCost>([\s\S]*?)<\/cim:RegisteredGenerator.pumpShutdownCost>/g, obj, "pumpShutdownCost", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.pumpShutdownTime>([\s\S]*?)<\/cim:RegisteredGenerator.pumpShutdownTime>/g, obj, "pumpShutdownTime", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.qualifyingFacilityOwner>([\s\S]*?)<\/cim:RegisteredGenerator.qualifyingFacilityOwner>/g, obj, "qualifyingFacilityOwner", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.quickStartFlag>([\s\S]*?)<\/cim:RegisteredGenerator.quickStartFlag>/g, obj, "quickStartFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.quickStartFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "quickStartFlag", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.raiseControlRate>([\s\S]*?)<\/cim:RegisteredGenerator.raiseControlRate>/g, obj, "raiseControlRate", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.raiseRampRate>([\s\S]*?)<\/cim:RegisteredGenerator.raiseRampRate>/g, obj, "raiseRampRate", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.rampCurveType>([\s\S]*?)<\/cim:RegisteredGenerator.rampCurveType>/g, obj, "rampCurveType", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.rampMode>([\s\S]*?)<\/cim:RegisteredGenerator.rampMode>/g, obj, "rampMode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.rampCurveType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rampCurveType", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.rampMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rampMode", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.regulationFlag>([\s\S]*?)<\/cim:RegisteredGenerator.regulationFlag>/g, obj, "regulationFlag", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.regulationRampRate>([\s\S]*?)<\/cim:RegisteredGenerator.regulationRampRate>/g, obj, "regulationRampRate", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.resourceSubType>([\s\S]*?)<\/cim:RegisteredGenerator.resourceSubType>/g, obj, "resourceSubType", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.riverSystem>([\s\S]*?)<\/cim:RegisteredGenerator.riverSystem>/g, obj, "riverSystem", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.RMNRFlag>([\s\S]*?)<\/cim:RegisteredGenerator.RMNRFlag>/g, obj, "RMNRFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.RMRFlag>([\s\S]*?)<\/cim:RegisteredGenerator.RMRFlag>/g, obj, "RMRFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.RMRManualIndicator>([\s\S]*?)<\/cim:RegisteredGenerator.RMRManualIndicator>/g, obj, "RMRManualIndicator", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.RMTFlag>([\s\S]*?)<\/cim:RegisteredGenerator.RMTFlag>/g, obj, "RMTFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.RMNRFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMNRFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.RMRFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.RMRManualIndicator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRManualIndicator", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.RMTFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMTFlag", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.spinReserveRamp>([\s\S]*?)<\/cim:RegisteredGenerator.spinReserveRamp>/g, obj, "spinReserveRamp", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.syncCondCapable>([\s\S]*?)<\/cim:RegisteredGenerator.syncCondCapable>/g, obj, "syncCondCapable", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.unitType>([\s\S]*?)<\/cim:RegisteredGenerator.unitType>/g, obj, "unitType", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.useLimitFlag>([\s\S]*?)<\/cim:RegisteredGenerator.useLimitFlag>/g, obj, "useLimitFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.syncCondCapable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "syncCondCapable", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.unitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unitType", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.useLimitFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "useLimitFlag", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.RMRHeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRHeatRateCurve", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.StartUpTimeCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartUpTimeCurve", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.FuelCostCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FuelCostCurve", sub, context);
@@ -3105,18 +3145,18 @@ define
                 base.export_element (obj, "RegisteredGenerator", "coldStartTime", "coldStartTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "combinedCyclePlantName", "combinedCyclePlantName",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "commericialOperationDate", "commericialOperationDate",  base.from_datetime, fields);
-                base.export_element (obj, "RegisteredGenerator", "constrainedOutputFlag", "constrainedOutputFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "costBasis", "costBasis",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "extremeLongStart", "extremeLongStart",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "fuelSource", "fuelSource",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "constrainedOutputFlag", "constrainedOutputFlag", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "costBasis", "costBasis", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "extremeLongStart", "extremeLongStart", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "fuelSource", "fuelSource", fields);
                 base.export_element (obj, "RegisteredGenerator", "highControlLimit", "highControlLimit",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "hotIntTime", "hotIntTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "hotStartTime", "hotStartTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "intColdTime", "intColdTime",  base.from_float, fields);
-                base.export_element (obj, "RegisteredGenerator", "intendedPIRP", "intendedPIRP",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "intendedPIRP", "intendedPIRP", fields);
                 base.export_element (obj, "RegisteredGenerator", "intStartTime", "intStartTime",  base.from_float, fields);
-                base.export_element (obj, "RegisteredGenerator", "loadFollowingDownMSS", "loadFollowingDownMSS",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "loadFollowingUpMSS", "loadFollowingUpMSS",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "loadFollowingDownMSS", "loadFollowingDownMSS", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "loadFollowingUpMSS", "loadFollowingUpMSS", fields);
                 base.export_element (obj, "RegisteredGenerator", "lowControlLImit", "lowControlLImit",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "lowerControlRate", "lowerControlRate",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "lowerRampRate", "lowerRampRate",  base.from_string, fields);
@@ -3130,14 +3170,14 @@ define
                 base.export_element (obj, "RegisteredGenerator", "maxStartUpsPerDay", "maxStartUpsPerDay",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "maxWeeklyEnergy", "maxWeeklyEnergy",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "maxWeeklyStarts", "maxWeeklyStarts",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "minimumLoadFuelCost", "minimumLoadFuelCost",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "minimumLoadFuelCost", "minimumLoadFuelCost", fields);
                 base.export_element (obj, "RegisteredGenerator", "minimumOperatingMW", "minimumOperatingMW",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "minLoadCost", "minLoadCost",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "mustOfferRA", "mustOfferRA",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "mustOfferRA", "mustOfferRA", fields);
                 base.export_element (obj, "RegisteredGenerator", "nameplateCapacity", "nameplateCapacity",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "operatingMaintenanceCost", "operatingMaintenanceCost",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "operatingMode", "operatingMode",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "proxyFlag", "proxyFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "proxyFlag", "proxyFlag", fields);
                 base.export_element (obj, "RegisteredGenerator", "pumpingCost", "pumpingCost",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "pumpingFactor", "pumpingFactor",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "pumpMinDownTime", "pumpMinDownTime",  base.from_float, fields);
@@ -3145,23 +3185,23 @@ define
                 base.export_element (obj, "RegisteredGenerator", "pumpShutdownCost", "pumpShutdownCost",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "pumpShutdownTime", "pumpShutdownTime",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "qualifyingFacilityOwner", "qualifyingFacilityOwner",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "quickStartFlag", "quickStartFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "quickStartFlag", "quickStartFlag", fields);
                 base.export_element (obj, "RegisteredGenerator", "raiseControlRate", "raiseControlRate",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "raiseRampRate", "raiseRampRate",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "rampCurveType", "rampCurveType",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "rampMode", "rampMode",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "rampCurveType", "rampCurveType", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "rampMode", "rampMode", fields);
                 base.export_element (obj, "RegisteredGenerator", "regulationFlag", "regulationFlag",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "regulationRampRate", "regulationRampRate",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "resourceSubType", "resourceSubType",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "riverSystem", "riverSystem",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "RMNRFlag", "RMNRFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "RMRFlag", "RMRFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "RMRManualIndicator", "RMRManualIndicator",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "RMTFlag", "RMTFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "RMNRFlag", "RMNRFlag", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "RMRFlag", "RMRFlag", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "RMRManualIndicator", "RMRManualIndicator", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "RMTFlag", "RMTFlag", fields);
                 base.export_element (obj, "RegisteredGenerator", "spinReserveRamp", "spinReserveRamp",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "syncCondCapable", "syncCondCapable",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "unitType", "unitType",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "useLimitFlag", "useLimitFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "syncCondCapable", "syncCondCapable", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "unitType", "unitType", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "useLimitFlag", "useLimitFlag", fields);
                 base.export_attribute (obj, "RegisteredGenerator", "RMRHeatRateCurve", "RMRHeatRateCurve", fields);
                 base.export_attribute (obj, "RegisteredGenerator", "StartUpTimeCurve", "StartUpTimeCurve", fields);
                 base.export_attribute (obj, "RegisteredGenerator", "FuelCostCurve", "FuelCostCurve", fields);
@@ -3288,6 +3328,26 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.constrainedOutputFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.constrainedOutputFlag && obj.constrainedOutputFlag.endsWith ('.' + property)});
+                obj.CostBasis = []; if (!obj.costBasis) obj.CostBasis.push ({ id: '', selected: true}); for (var property in CostBasis) obj.CostBasis.push ({ id: property, selected: obj.costBasis && obj.costBasis.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.extremeLongStart) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.extremeLongStart && obj.extremeLongStart.endsWith ('.' + property)});
+                obj.FuelSource = []; if (!obj.fuelSource) obj.FuelSource.push ({ id: '', selected: true}); for (var property in FuelSource) obj.FuelSource.push ({ id: property, selected: obj.fuelSource && obj.fuelSource.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.intendedPIRP) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.intendedPIRP && obj.intendedPIRP.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.loadFollowingDownMSS) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.loadFollowingDownMSS && obj.loadFollowingDownMSS.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.loadFollowingUpMSS) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.loadFollowingUpMSS && obj.loadFollowingUpMSS.endsWith ('.' + property)});
+                obj.CostPerHeatUnit = []; if (!obj.minimumLoadFuelCost) obj.CostPerHeatUnit.push ({ id: '', selected: true}); for (var property in CostPerHeatUnit) obj.CostPerHeatUnit.push ({ id: property, selected: obj.minimumLoadFuelCost && obj.minimumLoadFuelCost.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.mustOfferRA) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.mustOfferRA && obj.mustOfferRA.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.proxyFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.proxyFlag && obj.proxyFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.quickStartFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.quickStartFlag && obj.quickStartFlag.endsWith ('.' + property)});
+                obj.RampCurveType = []; if (!obj.rampCurveType) obj.RampCurveType.push ({ id: '', selected: true}); for (var property in RampCurveType) obj.RampCurveType.push ({ id: property, selected: obj.rampCurveType && obj.rampCurveType.endsWith ('.' + property)});
+                obj.RampModeType = []; if (!obj.rampMode) obj.RampModeType.push ({ id: '', selected: true}); for (var property in RampModeType) obj.RampModeType.push ({ id: property, selected: obj.rampMode && obj.rampMode.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.RMNRFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.RMNRFlag && obj.RMNRFlag.endsWith ('.' + property)});
+                obj.FlagTypeRMR = []; if (!obj.RMRFlag) obj.FlagTypeRMR.push ({ id: '', selected: true}); for (var property in FlagTypeRMR) obj.FlagTypeRMR.push ({ id: property, selected: obj.RMRFlag && obj.RMRFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.RMRManualIndicator) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.RMRManualIndicator && obj.RMRManualIndicator.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.RMTFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.RMTFlag && obj.RMTFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.syncCondCapable) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.syncCondCapable && obj.syncCondCapable.endsWith ('.' + property)});
+                obj.UnitType = []; if (!obj.unitType) obj.UnitType.push ({ id: '', selected: true}); for (var property in UnitType) obj.UnitType.push ({ id: property, selected: obj.unitType && obj.unitType.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.useLimitFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.useLimitFlag && obj.useLimitFlag.endsWith ('.' + property)});
                 if (obj.UnitInitialConditions) obj.UnitInitialConditions_string = obj.UnitInitialConditions.join ();
                 if (obj.Trade) obj.Trade_string = obj.Trade.join ();
                 if (obj.StartUpCostCurves) obj.StartUpCostCurves_string = obj.StartUpCostCurves.join ();
@@ -3299,6 +3359,26 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.CostBasis;
+                delete obj.YesNo;
+                delete obj.FuelSource;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.CostPerHeatUnit;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.RampCurveType;
+                delete obj.RampModeType;
+                delete obj.YesNo;
+                delete obj.FlagTypeRMR;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.UnitType;
+                delete obj.YesNo;
                 delete obj.UnitInitialConditions_string;
                 delete obj.Trade_string;
                 delete obj.StartUpCostCurves_string;
@@ -3321,18 +3401,18 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldStartTime'>coldStartTime: </label><div class='col-sm-8'><input id='{{id}}_coldStartTime' class='form-control' type='text'{{#coldStartTime}} value='{{coldStartTime}}'{{/coldStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_combinedCyclePlantName'>combinedCyclePlantName: </label><div class='col-sm-8'><input id='{{id}}_combinedCyclePlantName' class='form-control' type='text'{{#combinedCyclePlantName}} value='{{combinedCyclePlantName}}'{{/combinedCyclePlantName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commericialOperationDate'>commericialOperationDate: </label><div class='col-sm-8'><input id='{{id}}_commericialOperationDate' class='form-control' type='text'{{#commericialOperationDate}} value='{{commericialOperationDate}}'{{/commericialOperationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constrainedOutputFlag'>constrainedOutputFlag: </label><div class='col-sm-8'><input id='{{id}}_constrainedOutputFlag' class='form-control' type='text'{{#constrainedOutputFlag}} value='{{constrainedOutputFlag}}'{{/constrainedOutputFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costBasis'>costBasis: </label><div class='col-sm-8'><input id='{{id}}_costBasis' class='form-control' type='text'{{#costBasis}} value='{{costBasis}}'{{/costBasis}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_extremeLongStart'>extremeLongStart: </label><div class='col-sm-8'><input id='{{id}}_extremeLongStart' class='form-control' type='text'{{#extremeLongStart}} value='{{extremeLongStart}}'{{/extremeLongStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelSource'>fuelSource: </label><div class='col-sm-8'><input id='{{id}}_fuelSource' class='form-control' type='text'{{#fuelSource}} value='{{fuelSource}}'{{/fuelSource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constrainedOutputFlag'>constrainedOutputFlag: </label><div class='col-sm-8'><select id='{{id}}_constrainedOutputFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costBasis'>costBasis: </label><div class='col-sm-8'><select id='{{id}}_costBasis' class='form-control custom-select'>{{#CostBasis}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CostBasis}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_extremeLongStart'>extremeLongStart: </label><div class='col-sm-8'><select id='{{id}}_extremeLongStart' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelSource'>fuelSource: </label><div class='col-sm-8'><select id='{{id}}_fuelSource' class='form-control custom-select'>{{#FuelSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelSource}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highControlLimit'>highControlLimit: </label><div class='col-sm-8'><input id='{{id}}_highControlLimit' class='form-control' type='text'{{#highControlLimit}} value='{{highControlLimit}}'{{/highControlLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotIntTime'>hotIntTime: </label><div class='col-sm-8'><input id='{{id}}_hotIntTime' class='form-control' type='text'{{#hotIntTime}} value='{{hotIntTime}}'{{/hotIntTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotStartTime'>hotStartTime: </label><div class='col-sm-8'><input id='{{id}}_hotStartTime' class='form-control' type='text'{{#hotStartTime}} value='{{hotStartTime}}'{{/hotStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intColdTime'>intColdTime: </label><div class='col-sm-8'><input id='{{id}}_intColdTime' class='form-control' type='text'{{#intColdTime}} value='{{intColdTime}}'{{/intColdTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intendedPIRP'>intendedPIRP: </label><div class='col-sm-8'><input id='{{id}}_intendedPIRP' class='form-control' type='text'{{#intendedPIRP}} value='{{intendedPIRP}}'{{/intendedPIRP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intendedPIRP'>intendedPIRP: </label><div class='col-sm-8'><select id='{{id}}_intendedPIRP' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intStartTime'>intStartTime: </label><div class='col-sm-8'><input id='{{id}}_intStartTime' class='form-control' type='text'{{#intStartTime}} value='{{intStartTime}}'{{/intStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingDownMSS'>loadFollowingDownMSS: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingDownMSS' class='form-control' type='text'{{#loadFollowingDownMSS}} value='{{loadFollowingDownMSS}}'{{/loadFollowingDownMSS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingUpMSS'>loadFollowingUpMSS: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingUpMSS' class='form-control' type='text'{{#loadFollowingUpMSS}} value='{{loadFollowingUpMSS}}'{{/loadFollowingUpMSS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingDownMSS'>loadFollowingDownMSS: </label><div class='col-sm-8'><select id='{{id}}_loadFollowingDownMSS' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingUpMSS'>loadFollowingUpMSS: </label><div class='col-sm-8'><select id='{{id}}_loadFollowingUpMSS' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowControlLImit'>lowControlLImit: </label><div class='col-sm-8'><input id='{{id}}_lowControlLImit' class='form-control' type='text'{{#lowControlLImit}} value='{{lowControlLImit}}'{{/lowControlLImit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerControlRate'>lowerControlRate: </label><div class='col-sm-8'><input id='{{id}}_lowerControlRate' class='form-control' type='text'{{#lowerControlRate}} value='{{lowerControlRate}}'{{/lowerControlRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerRampRate'>lowerRampRate: </label><div class='col-sm-8'><input id='{{id}}_lowerRampRate' class='form-control' type='text'{{#lowerRampRate}} value='{{lowerRampRate}}'{{/lowerRampRate}}></div></div>
@@ -3346,14 +3426,14 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxStartUpsPerDay'>maxStartUpsPerDay: </label><div class='col-sm-8'><input id='{{id}}_maxStartUpsPerDay' class='form-control' type='text'{{#maxStartUpsPerDay}} value='{{maxStartUpsPerDay}}'{{/maxStartUpsPerDay}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxWeeklyEnergy'>maxWeeklyEnergy: </label><div class='col-sm-8'><input id='{{id}}_maxWeeklyEnergy' class='form-control' type='text'{{#maxWeeklyEnergy}} value='{{maxWeeklyEnergy}}'{{/maxWeeklyEnergy}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxWeeklyStarts'>maxWeeklyStarts: </label><div class='col-sm-8'><input id='{{id}}_maxWeeklyStarts' class='form-control' type='text'{{#maxWeeklyStarts}} value='{{maxWeeklyStarts}}'{{/maxWeeklyStarts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumLoadFuelCost'>minimumLoadFuelCost: </label><div class='col-sm-8'><input id='{{id}}_minimumLoadFuelCost' class='form-control' type='text'{{#minimumLoadFuelCost}} value='{{minimumLoadFuelCost}}'{{/minimumLoadFuelCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumLoadFuelCost'>minimumLoadFuelCost: </label><div class='col-sm-8'><select id='{{id}}_minimumLoadFuelCost' class='form-control custom-select'>{{#CostPerHeatUnit}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CostPerHeatUnit}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumOperatingMW'>minimumOperatingMW: </label><div class='col-sm-8'><input id='{{id}}_minimumOperatingMW' class='form-control' type='text'{{#minimumOperatingMW}} value='{{minimumOperatingMW}}'{{/minimumOperatingMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadCost'>minLoadCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadCost' class='form-control' type='text'{{#minLoadCost}} value='{{minLoadCost}}'{{/minLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mustOfferRA'>mustOfferRA: </label><div class='col-sm-8'><input id='{{id}}_mustOfferRA' class='form-control' type='text'{{#mustOfferRA}} value='{{mustOfferRA}}'{{/mustOfferRA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mustOfferRA'>mustOfferRA: </label><div class='col-sm-8'><select id='{{id}}_mustOfferRA' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nameplateCapacity'>nameplateCapacity: </label><div class='col-sm-8'><input id='{{id}}_nameplateCapacity' class='form-control' type='text'{{#nameplateCapacity}} value='{{nameplateCapacity}}'{{/nameplateCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMaintenanceCost'>operatingMaintenanceCost: </label><div class='col-sm-8'><input id='{{id}}_operatingMaintenanceCost' class='form-control' type='text'{{#operatingMaintenanceCost}} value='{{operatingMaintenanceCost}}'{{/operatingMaintenanceCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><input id='{{id}}_operatingMode' class='form-control' type='text'{{#operatingMode}} value='{{operatingMode}}'{{/operatingMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_proxyFlag'>proxyFlag: </label><div class='col-sm-8'><input id='{{id}}_proxyFlag' class='form-control' type='text'{{#proxyFlag}} value='{{proxyFlag}}'{{/proxyFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_proxyFlag'>proxyFlag: </label><div class='col-sm-8'><select id='{{id}}_proxyFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpingCost'>pumpingCost: </label><div class='col-sm-8'><input id='{{id}}_pumpingCost' class='form-control' type='text'{{#pumpingCost}} value='{{pumpingCost}}'{{/pumpingCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpingFactor'>pumpingFactor: </label><div class='col-sm-8'><input id='{{id}}_pumpingFactor' class='form-control' type='text'{{#pumpingFactor}} value='{{pumpingFactor}}'{{/pumpingFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpMinDownTime'>pumpMinDownTime: </label><div class='col-sm-8'><input id='{{id}}_pumpMinDownTime' class='form-control' type='text'{{#pumpMinDownTime}} value='{{pumpMinDownTime}}'{{/pumpMinDownTime}}></div></div>
@@ -3361,23 +3441,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpShutdownCost'>pumpShutdownCost: </label><div class='col-sm-8'><input id='{{id}}_pumpShutdownCost' class='form-control' type='text'{{#pumpShutdownCost}} value='{{pumpShutdownCost}}'{{/pumpShutdownCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpShutdownTime'>pumpShutdownTime: </label><div class='col-sm-8'><input id='{{id}}_pumpShutdownTime' class='form-control' type='text'{{#pumpShutdownTime}} value='{{pumpShutdownTime}}'{{/pumpShutdownTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualifyingFacilityOwner'>qualifyingFacilityOwner: </label><div class='col-sm-8'><input id='{{id}}_qualifyingFacilityOwner' class='form-control' type='text'{{#qualifyingFacilityOwner}} value='{{qualifyingFacilityOwner}}'{{/qualifyingFacilityOwner}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quickStartFlag'>quickStartFlag: </label><div class='col-sm-8'><input id='{{id}}_quickStartFlag' class='form-control' type='text'{{#quickStartFlag}} value='{{quickStartFlag}}'{{/quickStartFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quickStartFlag'>quickStartFlag: </label><div class='col-sm-8'><select id='{{id}}_quickStartFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_raiseControlRate'>raiseControlRate: </label><div class='col-sm-8'><input id='{{id}}_raiseControlRate' class='form-control' type='text'{{#raiseControlRate}} value='{{raiseControlRate}}'{{/raiseControlRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_raiseRampRate'>raiseRampRate: </label><div class='col-sm-8'><input id='{{id}}_raiseRampRate' class='form-control' type='text'{{#raiseRampRate}} value='{{raiseRampRate}}'{{/raiseRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampCurveType'>rampCurveType: </label><div class='col-sm-8'><input id='{{id}}_rampCurveType' class='form-control' type='text'{{#rampCurveType}} value='{{rampCurveType}}'{{/rampCurveType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampMode'>rampMode: </label><div class='col-sm-8'><input id='{{id}}_rampMode' class='form-control' type='text'{{#rampMode}} value='{{rampMode}}'{{/rampMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampCurveType'>rampCurveType: </label><div class='col-sm-8'><select id='{{id}}_rampCurveType' class='form-control custom-select'>{{#RampCurveType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RampCurveType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampMode'>rampMode: </label><div class='col-sm-8'><select id='{{id}}_rampMode' class='form-control custom-select'>{{#RampModeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RampModeType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationFlag'>regulationFlag: </label><div class='col-sm-8'><input id='{{id}}_regulationFlag' class='form-control' type='text'{{#regulationFlag}} value='{{regulationFlag}}'{{/regulationFlag}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationRampRate'>regulationRampRate: </label><div class='col-sm-8'><input id='{{id}}_regulationRampRate' class='form-control' type='text'{{#regulationRampRate}} value='{{regulationRampRate}}'{{/regulationRampRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='{{id}}_resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_riverSystem'>riverSystem: </label><div class='col-sm-8'><input id='{{id}}_riverSystem' class='form-control' type='text'{{#riverSystem}} value='{{riverSystem}}'{{/riverSystem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMNRFlag'>RMNRFlag: </label><div class='col-sm-8'><input id='{{id}}_RMNRFlag' class='form-control' type='text'{{#RMNRFlag}} value='{{RMNRFlag}}'{{/RMNRFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRFlag'>RMRFlag: </label><div class='col-sm-8'><input id='{{id}}_RMRFlag' class='form-control' type='text'{{#RMRFlag}} value='{{RMRFlag}}'{{/RMRFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRManualIndicator'>RMRManualIndicator: </label><div class='col-sm-8'><input id='{{id}}_RMRManualIndicator' class='form-control' type='text'{{#RMRManualIndicator}} value='{{RMRManualIndicator}}'{{/RMRManualIndicator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMTFlag'>RMTFlag: </label><div class='col-sm-8'><input id='{{id}}_RMTFlag' class='form-control' type='text'{{#RMTFlag}} value='{{RMTFlag}}'{{/RMTFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMNRFlag'>RMNRFlag: </label><div class='col-sm-8'><select id='{{id}}_RMNRFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRFlag'>RMRFlag: </label><div class='col-sm-8'><select id='{{id}}_RMRFlag' class='form-control custom-select'>{{#FlagTypeRMR}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FlagTypeRMR}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRManualIndicator'>RMRManualIndicator: </label><div class='col-sm-8'><select id='{{id}}_RMRManualIndicator' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMTFlag'>RMTFlag: </label><div class='col-sm-8'><select id='{{id}}_RMTFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_spinReserveRamp'>spinReserveRamp: </label><div class='col-sm-8'><input id='{{id}}_spinReserveRamp' class='form-control' type='text'{{#spinReserveRamp}} value='{{spinReserveRamp}}'{{/spinReserveRamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_syncCondCapable'>syncCondCapable: </label><div class='col-sm-8'><input id='{{id}}_syncCondCapable' class='form-control' type='text'{{#syncCondCapable}} value='{{syncCondCapable}}'{{/syncCondCapable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitType'>unitType: </label><div class='col-sm-8'><input id='{{id}}_unitType' class='form-control' type='text'{{#unitType}} value='{{unitType}}'{{/unitType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_useLimitFlag'>useLimitFlag: </label><div class='col-sm-8'><input id='{{id}}_useLimitFlag' class='form-control' type='text'{{#useLimitFlag}} value='{{useLimitFlag}}'{{/useLimitFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_syncCondCapable'>syncCondCapable: </label><div class='col-sm-8'><select id='{{id}}_syncCondCapable' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitType'>unitType: </label><div class='col-sm-8'><select id='{{id}}_unitType' class='form-control custom-select'>{{#UnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_useLimitFlag'>useLimitFlag: </label><div class='col-sm-8'><select id='{{id}}_useLimitFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRHeatRateCurve'>RMRHeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRHeatRateCurve' class='form-control' type='text'{{#RMRHeatRateCurve}} value='{{RMRHeatRateCurve}}'{{/RMRHeatRateCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpTimeCurve'>StartUpTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_StartUpTimeCurve' class='form-control' type='text'{{#StartUpTimeCurve}} value='{{StartUpTimeCurve}}'{{/StartUpTimeCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelCostCurve'>FuelCostCurve: </label><div class='col-sm-8'><input id='{{id}}_FuelCostCurve' class='form-control' type='text'{{#FuelCostCurve}} value='{{FuelCostCurve}}'{{/FuelCostCurve}}></div></div>
@@ -3409,18 +3489,18 @@ define
                 temp = document.getElementById (id + "_coldStartTime").value; if ("" != temp) obj.coldStartTime = temp;
                 temp = document.getElementById (id + "_combinedCyclePlantName").value; if ("" != temp) obj.combinedCyclePlantName = temp;
                 temp = document.getElementById (id + "_commericialOperationDate").value; if ("" != temp) obj.commericialOperationDate = temp;
-                temp = document.getElementById (id + "_constrainedOutputFlag").value; if ("" != temp) obj.constrainedOutputFlag = temp;
-                temp = document.getElementById (id + "_costBasis").value; if ("" != temp) obj.costBasis = temp;
-                temp = document.getElementById (id + "_extremeLongStart").value; if ("" != temp) obj.extremeLongStart = temp;
-                temp = document.getElementById (id + "_fuelSource").value; if ("" != temp) obj.fuelSource = temp;
+                temp = document.getElementById (id + "_constrainedOutputFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.constrainedOutputFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_costBasis").value; if ("" != temp) { temp = CostBasis[temp]; if ("undefined" != typeof (temp)) obj.costBasis = "http://iec.ch/TC57/2013/CIM-schema-cim16#CostBasis." + temp; }
+                temp = document.getElementById (id + "_extremeLongStart").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.extremeLongStart = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_fuelSource").value; if ("" != temp) { temp = FuelSource[temp]; if ("undefined" != typeof (temp)) obj.fuelSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelSource." + temp; }
                 temp = document.getElementById (id + "_highControlLimit").value; if ("" != temp) obj.highControlLimit = temp;
                 temp = document.getElementById (id + "_hotIntTime").value; if ("" != temp) obj.hotIntTime = temp;
                 temp = document.getElementById (id + "_hotStartTime").value; if ("" != temp) obj.hotStartTime = temp;
                 temp = document.getElementById (id + "_intColdTime").value; if ("" != temp) obj.intColdTime = temp;
-                temp = document.getElementById (id + "_intendedPIRP").value; if ("" != temp) obj.intendedPIRP = temp;
+                temp = document.getElementById (id + "_intendedPIRP").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.intendedPIRP = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_intStartTime").value; if ("" != temp) obj.intStartTime = temp;
-                temp = document.getElementById (id + "_loadFollowingDownMSS").value; if ("" != temp) obj.loadFollowingDownMSS = temp;
-                temp = document.getElementById (id + "_loadFollowingUpMSS").value; if ("" != temp) obj.loadFollowingUpMSS = temp;
+                temp = document.getElementById (id + "_loadFollowingDownMSS").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.loadFollowingDownMSS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_loadFollowingUpMSS").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.loadFollowingUpMSS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_lowControlLImit").value; if ("" != temp) obj.lowControlLImit = temp;
                 temp = document.getElementById (id + "_lowerControlRate").value; if ("" != temp) obj.lowerControlRate = temp;
                 temp = document.getElementById (id + "_lowerRampRate").value; if ("" != temp) obj.lowerRampRate = temp;
@@ -3434,14 +3514,14 @@ define
                 temp = document.getElementById (id + "_maxStartUpsPerDay").value; if ("" != temp) obj.maxStartUpsPerDay = temp;
                 temp = document.getElementById (id + "_maxWeeklyEnergy").value; if ("" != temp) obj.maxWeeklyEnergy = temp;
                 temp = document.getElementById (id + "_maxWeeklyStarts").value; if ("" != temp) obj.maxWeeklyStarts = temp;
-                temp = document.getElementById (id + "_minimumLoadFuelCost").value; if ("" != temp) obj.minimumLoadFuelCost = temp;
+                temp = document.getElementById (id + "_minimumLoadFuelCost").value; if ("" != temp) { temp = CostPerHeatUnit[temp]; if ("undefined" != typeof (temp)) obj.minimumLoadFuelCost = "http://iec.ch/TC57/2013/CIM-schema-cim16#CostPerHeatUnit." + temp; }
                 temp = document.getElementById (id + "_minimumOperatingMW").value; if ("" != temp) obj.minimumOperatingMW = temp;
                 temp = document.getElementById (id + "_minLoadCost").value; if ("" != temp) obj.minLoadCost = temp;
-                temp = document.getElementById (id + "_mustOfferRA").value; if ("" != temp) obj.mustOfferRA = temp;
+                temp = document.getElementById (id + "_mustOfferRA").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.mustOfferRA = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_nameplateCapacity").value; if ("" != temp) obj.nameplateCapacity = temp;
                 temp = document.getElementById (id + "_operatingMaintenanceCost").value; if ("" != temp) obj.operatingMaintenanceCost = temp;
                 temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) obj.operatingMode = temp;
-                temp = document.getElementById (id + "_proxyFlag").value; if ("" != temp) obj.proxyFlag = temp;
+                temp = document.getElementById (id + "_proxyFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.proxyFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_pumpingCost").value; if ("" != temp) obj.pumpingCost = temp;
                 temp = document.getElementById (id + "_pumpingFactor").value; if ("" != temp) obj.pumpingFactor = temp;
                 temp = document.getElementById (id + "_pumpMinDownTime").value; if ("" != temp) obj.pumpMinDownTime = temp;
@@ -3449,23 +3529,23 @@ define
                 temp = document.getElementById (id + "_pumpShutdownCost").value; if ("" != temp) obj.pumpShutdownCost = temp;
                 temp = document.getElementById (id + "_pumpShutdownTime").value; if ("" != temp) obj.pumpShutdownTime = temp;
                 temp = document.getElementById (id + "_qualifyingFacilityOwner").value; if ("" != temp) obj.qualifyingFacilityOwner = temp;
-                temp = document.getElementById (id + "_quickStartFlag").value; if ("" != temp) obj.quickStartFlag = temp;
+                temp = document.getElementById (id + "_quickStartFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.quickStartFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_raiseControlRate").value; if ("" != temp) obj.raiseControlRate = temp;
                 temp = document.getElementById (id + "_raiseRampRate").value; if ("" != temp) obj.raiseRampRate = temp;
-                temp = document.getElementById (id + "_rampCurveType").value; if ("" != temp) obj.rampCurveType = temp;
-                temp = document.getElementById (id + "_rampMode").value; if ("" != temp) obj.rampMode = temp;
+                temp = document.getElementById (id + "_rampCurveType").value; if ("" != temp) { temp = RampCurveType[temp]; if ("undefined" != typeof (temp)) obj.rampCurveType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampCurveType." + temp; }
+                temp = document.getElementById (id + "_rampMode").value; if ("" != temp) { temp = RampModeType[temp]; if ("undefined" != typeof (temp)) obj.rampMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampModeType." + temp; }
                 temp = document.getElementById (id + "_regulationFlag").value; if ("" != temp) obj.regulationFlag = temp;
                 temp = document.getElementById (id + "_regulationRampRate").value; if ("" != temp) obj.regulationRampRate = temp;
                 temp = document.getElementById (id + "_resourceSubType").value; if ("" != temp) obj.resourceSubType = temp;
                 temp = document.getElementById (id + "_riverSystem").value; if ("" != temp) obj.riverSystem = temp;
-                temp = document.getElementById (id + "_RMNRFlag").value; if ("" != temp) obj.RMNRFlag = temp;
-                temp = document.getElementById (id + "_RMRFlag").value; if ("" != temp) obj.RMRFlag = temp;
-                temp = document.getElementById (id + "_RMRManualIndicator").value; if ("" != temp) obj.RMRManualIndicator = temp;
-                temp = document.getElementById (id + "_RMTFlag").value; if ("" != temp) obj.RMTFlag = temp;
+                temp = document.getElementById (id + "_RMNRFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.RMNRFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_RMRFlag").value; if ("" != temp) { temp = FlagTypeRMR[temp]; if ("undefined" != typeof (temp)) obj.RMRFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#FlagTypeRMR." + temp; }
+                temp = document.getElementById (id + "_RMRManualIndicator").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.RMRManualIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_RMTFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.RMTFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_spinReserveRamp").value; if ("" != temp) obj.spinReserveRamp = temp;
-                temp = document.getElementById (id + "_syncCondCapable").value; if ("" != temp) obj.syncCondCapable = temp;
-                temp = document.getElementById (id + "_unitType").value; if ("" != temp) obj.unitType = temp;
-                temp = document.getElementById (id + "_useLimitFlag").value; if ("" != temp) obj.useLimitFlag = temp;
+                temp = document.getElementById (id + "_syncCondCapable").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.syncCondCapable = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_unitType").value; if ("" != temp) { temp = UnitType[temp]; if ("undefined" != typeof (temp)) obj.unitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitType." + temp; }
+                temp = document.getElementById (id + "_useLimitFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.useLimitFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_RMRHeatRateCurve").value; if ("" != temp) obj.RMRHeatRateCurve = temp;
                 temp = document.getElementById (id + "_StartUpTimeCurve").value; if ("" != temp) obj.StartUpTimeCurve = temp;
                 temp = document.getElementById (id + "_FuelCostCurve").value; if ("" != temp) obj.FuelCostCurve = temp;
@@ -3543,7 +3623,7 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "Flowgate";
-                base.parse_element (/<cim:Flowgate.direction>([\s\S]*?)<\/cim:Flowgate.direction>/g, obj, "direction", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Flowgate.direction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "direction", sub, context);
                 base.parse_element (/<cim:Flowgate.endEffectiveDate>([\s\S]*?)<\/cim:Flowgate.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Flowgate.exportMWRating>([\s\S]*?)<\/cim:Flowgate.exportMWRating>/g, obj, "exportMWRating", base.to_string, sub, context);
                 base.parse_element (/<cim:Flowgate.importMWRating>([\s\S]*?)<\/cim:Flowgate.importMWRating>/g, obj, "importMWRating", base.to_string, sub, context);
@@ -3581,7 +3661,7 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Flowgate", "direction", "direction",  base.from_string, fields);
+                base.export_attribute (obj, "Flowgate", "direction", "direction", fields);
                 base.export_element (obj, "Flowgate", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "Flowgate", "exportMWRating", "exportMWRating",  base.from_string, fields);
                 base.export_element (obj, "Flowgate", "importMWRating", "importMWRating",  base.from_string, fields);
@@ -3659,6 +3739,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.InterTieDirection = []; if (!obj.direction) obj.InterTieDirection.push ({ id: '', selected: true}); for (var property in InterTieDirection) obj.InterTieDirection.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
                 if (obj.FlowgateValue) obj.FlowgateValue_string = obj.FlowgateValue.join ();
                 if (obj.TransmissionCapacity) obj.TransmissionCapacity_string = obj.TransmissionCapacity.join ();
                 if (obj.MktTerminal) obj.MktTerminal_string = obj.MktTerminal.join ();
@@ -3679,6 +3760,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.InterTieDirection;
                 delete obj.FlowgateValue_string;
                 delete obj.TransmissionCapacity_string;
                 delete obj.MktTerminal_string;
@@ -3706,7 +3788,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><input id='{{id}}_direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#InterTieDirection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InterTieDirection}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_exportMWRating'>exportMWRating: </label><div class='col-sm-8'><input id='{{id}}_exportMWRating' class='form-control' type='text'{{#exportMWRating}} value='{{exportMWRating}}'{{/exportMWRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_importMWRating'>importMWRating: </label><div class='col-sm-8'><input id='{{id}}_importMWRating' class='form-control' type='text'{{#importMWRating}} value='{{importMWRating}}'{{/importMWRating}}></div></div>
@@ -3731,7 +3813,7 @@ define
 
                 var obj = obj || { id: id, cls: "Flowgate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_direction").value; if ("" != temp) obj.direction = temp;
+                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = InterTieDirection[temp]; if ("undefined" != typeof (temp)) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#InterTieDirection." + temp; }
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_exportMWRating").value; if ("" != temp) obj.exportMWRating = temp;
                 temp = document.getElementById (id + "_importMWRating").value; if ("" != temp) obj.importMWRating = temp;
@@ -4367,10 +4449,10 @@ define
 
                 obj = MarketCommon.RegisteredResource.prototype.parse.call (this, context, sub);
                 obj.cls = "RegisteredInterTie";
-                base.parse_element (/<cim:RegisteredInterTie.direction>([\s\S]*?)<\/cim:RegisteredInterTie.direction>/g, obj, "direction", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredInterTie.energyProductType>([\s\S]*?)<\/cim:RegisteredInterTie.energyProductType>/g, obj, "energyProductType", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredInterTie.isDCTie>([\s\S]*?)<\/cim:RegisteredInterTie.isDCTie>/g, obj, "isDCTie", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredInterTie.isDynamicInterchange>([\s\S]*?)<\/cim:RegisteredInterTie.isDynamicInterchange>/g, obj, "isDynamicInterchange", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredInterTie.direction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "direction", sub, context);
+                base.parse_attribute (/<cim:RegisteredInterTie.energyProductType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "energyProductType", sub, context);
+                base.parse_attribute (/<cim:RegisteredInterTie.isDCTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "isDCTie", sub, context);
+                base.parse_attribute (/<cim:RegisteredInterTie.isDynamicInterchange\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "isDynamicInterchange", sub, context);
                 base.parse_element (/<cim:RegisteredInterTie.minHourlyBlockLimit>([\s\S]*?)<\/cim:RegisteredInterTie.minHourlyBlockLimit>/g, obj, "minHourlyBlockLimit", base.to_string, sub, context);
                 base.parse_attributes (/<cim:RegisteredInterTie.InterchangeSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterchangeSchedule", sub, context);
                 base.parse_attributes (/<cim:RegisteredInterTie.InterTieDispatchResponse\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieDispatchResponse", sub, context);
@@ -4389,10 +4471,10 @@ define
             {
                 var fields = MarketCommon.RegisteredResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RegisteredInterTie", "direction", "direction",  base.from_string, fields);
-                base.export_element (obj, "RegisteredInterTie", "energyProductType", "energyProductType",  base.from_string, fields);
-                base.export_element (obj, "RegisteredInterTie", "isDCTie", "isDCTie",  base.from_string, fields);
-                base.export_element (obj, "RegisteredInterTie", "isDynamicInterchange", "isDynamicInterchange",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredInterTie", "direction", "direction", fields);
+                base.export_attribute (obj, "RegisteredInterTie", "energyProductType", "energyProductType", fields);
+                base.export_attribute (obj, "RegisteredInterTie", "isDCTie", "isDCTie", fields);
+                base.export_attribute (obj, "RegisteredInterTie", "isDynamicInterchange", "isDynamicInterchange", fields);
                 base.export_element (obj, "RegisteredInterTie", "minHourlyBlockLimit", "minHourlyBlockLimit",  base.from_string, fields);
                 base.export_attributes (obj, "RegisteredInterTie", "InterchangeSchedule", "InterchangeSchedule", fields);
                 base.export_attributes (obj, "RegisteredInterTie", "InterTieDispatchResponse", "InterTieDispatchResponse", fields);
@@ -4435,6 +4517,10 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.InterTieDirection = []; if (!obj.direction) obj.InterTieDirection.push ({ id: '', selected: true}); for (var property in InterTieDirection) obj.InterTieDirection.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
+                obj.EnergyProductType = []; if (!obj.energyProductType) obj.EnergyProductType.push ({ id: '', selected: true}); for (var property in EnergyProductType) obj.EnergyProductType.push ({ id: property, selected: obj.energyProductType && obj.energyProductType.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.isDCTie) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.isDCTie && obj.isDCTie.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.isDynamicInterchange) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.isDynamicInterchange && obj.isDynamicInterchange.endsWith ('.' + property)});
                 if (obj.InterchangeSchedule) obj.InterchangeSchedule_string = obj.InterchangeSchedule.join ();
                 if (obj.InterTieDispatchResponse) obj.InterTieDispatchResponse_string = obj.InterTieDispatchResponse.join ();
                 if (obj.WheelingCounterParty) obj.WheelingCounterParty_string = obj.WheelingCounterParty.join ();
@@ -4443,6 +4529,10 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.InterTieDirection;
+                delete obj.EnergyProductType;
+                delete obj.YesNo;
+                delete obj.YesNo;
                 delete obj.InterchangeSchedule_string;
                 delete obj.InterTieDispatchResponse_string;
                 delete obj.WheelingCounterParty_string;
@@ -4458,10 +4548,10 @@ define
                     `
                     + MarketCommon.RegisteredResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><input id='{{id}}_direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyProductType'>energyProductType: </label><div class='col-sm-8'><input id='{{id}}_energyProductType' class='form-control' type='text'{{#energyProductType}} value='{{energyProductType}}'{{/energyProductType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDCTie'>isDCTie: </label><div class='col-sm-8'><input id='{{id}}_isDCTie' class='form-control' type='text'{{#isDCTie}} value='{{isDCTie}}'{{/isDCTie}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDynamicInterchange'>isDynamicInterchange: </label><div class='col-sm-8'><input id='{{id}}_isDynamicInterchange' class='form-control' type='text'{{#isDynamicInterchange}} value='{{isDynamicInterchange}}'{{/isDynamicInterchange}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#InterTieDirection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InterTieDirection}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyProductType'>energyProductType: </label><div class='col-sm-8'><select id='{{id}}_energyProductType' class='form-control custom-select'>{{#EnergyProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EnergyProductType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDCTie'>isDCTie: </label><div class='col-sm-8'><select id='{{id}}_isDCTie' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDynamicInterchange'>isDynamicInterchange: </label><div class='col-sm-8'><select id='{{id}}_isDynamicInterchange' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minHourlyBlockLimit'>minHourlyBlockLimit: </label><div class='col-sm-8'><input id='{{id}}_minHourlyBlockLimit' class='form-control' type='text'{{#minHourlyBlockLimit}} value='{{minHourlyBlockLimit}}'{{/minHourlyBlockLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WheelingCounterParty'>WheelingCounterParty: </label><div class='col-sm-8'><input id='{{id}}_WheelingCounterParty' class='form-control' type='text'{{#WheelingCounterParty}} value='{{WheelingCounterParty_string}}'{{/WheelingCounterParty}}></div></div>
@@ -4478,10 +4568,10 @@ define
 
                 var obj = obj || { id: id, cls: "RegisteredInterTie" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_direction").value; if ("" != temp) obj.direction = temp;
-                temp = document.getElementById (id + "_energyProductType").value; if ("" != temp) obj.energyProductType = temp;
-                temp = document.getElementById (id + "_isDCTie").value; if ("" != temp) obj.isDCTie = temp;
-                temp = document.getElementById (id + "_isDynamicInterchange").value; if ("" != temp) obj.isDynamicInterchange = temp;
+                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = InterTieDirection[temp]; if ("undefined" != typeof (temp)) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#InterTieDirection." + temp; }
+                temp = document.getElementById (id + "_energyProductType").value; if ("" != temp) { temp = EnergyProductType[temp]; if ("undefined" != typeof (temp)) obj.energyProductType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyProductType." + temp; }
+                temp = document.getElementById (id + "_isDCTie").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.isDCTie = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_isDynamicInterchange").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.isDynamicInterchange = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_minHourlyBlockLimit").value; if ("" != temp) obj.minHourlyBlockLimit = temp;
                 temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
                 temp = document.getElementById (id + "_WheelingCounterParty").value; if ("" != temp) obj.WheelingCounterParty = temp.split (",");
@@ -4533,10 +4623,10 @@ define
 
                 obj = MarketCommon.RegisteredResource.prototype.parse.call (this, context, sub);
                 obj.cls = "RegisteredLoad";
-                base.parse_element (/<cim:RegisteredLoad.blockLoadTransferFlag>([\s\S]*?)<\/cim:RegisteredLoad.blockLoadTransferFlag>/g, obj, "blockLoadTransferFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.dynamicallyScheduledLoadResourceFlag>([\s\S]*?)<\/cim:RegisteredLoad.dynamicallyScheduledLoadResourceFlag>/g, obj, "dynamicallyScheduledLoadResourceFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.dynamicallyScheduledQualificationFlag>([\s\S]*?)<\/cim:RegisteredLoad.dynamicallyScheduledQualificationFlag>/g, obj, "dynamicallyScheduledQualificationFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.loadRegistryMSS>([\s\S]*?)<\/cim:RegisteredLoad.loadRegistryMSS>/g, obj, "loadRegistryMSS", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.blockLoadTransferFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "blockLoadTransferFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.dynamicallyScheduledLoadResourceFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "dynamicallyScheduledLoadResourceFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.dynamicallyScheduledQualificationFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "dynamicallyScheduledQualificationFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.loadRegistryMSS\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "loadRegistryMSS", sub, context);
                 base.parse_element (/<cim:RegisteredLoad.maxBaseLoad>([\s\S]*?)<\/cim:RegisteredLoad.maxBaseLoad>/g, obj, "maxBaseLoad", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.maxDeploymentTime>([\s\S]*?)<\/cim:RegisteredLoad.maxDeploymentTime>/g, obj, "maxDeploymentTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.maxLoadRedTimesPerDay>([\s\S]*?)<\/cim:RegisteredLoad.maxLoadRedTimesPerDay>/g, obj, "maxLoadRedTimesPerDay", base.to_string, sub, context);
@@ -4548,8 +4638,8 @@ define
                 base.parse_element (/<cim:RegisteredLoad.minLoadReductionInterval>([\s\S]*?)<\/cim:RegisteredLoad.minLoadReductionInterval>/g, obj, "minLoadReductionInterval", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.minReductionTime>([\s\S]*?)<\/cim:RegisteredLoad.minReductionTime>/g, obj, "minReductionTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.minTimeBetLoadRed>([\s\S]*?)<\/cim:RegisteredLoad.minTimeBetLoadRed>/g, obj, "minTimeBetLoadRed", base.to_float, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.NPLCustomLoadAggregation>([\s\S]*?)<\/cim:RegisteredLoad.NPLCustomLoadAggregation>/g, obj, "NPLCustomLoadAggregation", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.participatingLoad>([\s\S]*?)<\/cim:RegisteredLoad.participatingLoad>/g, obj, "participatingLoad", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.NPLCustomLoadAggregation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NPLCustomLoadAggregation", sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.participatingLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "participatingLoad", sub, context);
                 base.parse_element (/<cim:RegisteredLoad.reqNoticeTime>([\s\S]*?)<\/cim:RegisteredLoad.reqNoticeTime>/g, obj, "reqNoticeTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.resourceSubType>([\s\S]*?)<\/cim:RegisteredLoad.resourceSubType>/g, obj, "resourceSubType", base.to_string, sub, context);
                 base.parse_attributes (/<cim:RegisteredLoad.AuxillaryObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryObject", sub, context);
@@ -4570,10 +4660,10 @@ define
             {
                 var fields = MarketCommon.RegisteredResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RegisteredLoad", "blockLoadTransferFlag", "blockLoadTransferFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredLoad", "dynamicallyScheduledLoadResourceFlag", "dynamicallyScheduledLoadResourceFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredLoad", "dynamicallyScheduledQualificationFlag", "dynamicallyScheduledQualificationFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredLoad", "loadRegistryMSS", "loadRegistryMSS",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredLoad", "blockLoadTransferFlag", "blockLoadTransferFlag", fields);
+                base.export_attribute (obj, "RegisteredLoad", "dynamicallyScheduledLoadResourceFlag", "dynamicallyScheduledLoadResourceFlag", fields);
+                base.export_attribute (obj, "RegisteredLoad", "dynamicallyScheduledQualificationFlag", "dynamicallyScheduledQualificationFlag", fields);
+                base.export_attribute (obj, "RegisteredLoad", "loadRegistryMSS", "loadRegistryMSS", fields);
                 base.export_element (obj, "RegisteredLoad", "maxBaseLoad", "maxBaseLoad",  base.from_string, fields);
                 base.export_element (obj, "RegisteredLoad", "maxDeploymentTime", "maxDeploymentTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "maxLoadRedTimesPerDay", "maxLoadRedTimesPerDay",  base.from_string, fields);
@@ -4585,8 +4675,8 @@ define
                 base.export_element (obj, "RegisteredLoad", "minLoadReductionInterval", "minLoadReductionInterval",  base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "minReductionTime", "minReductionTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "minTimeBetLoadRed", "minTimeBetLoadRed",  base.from_float, fields);
-                base.export_element (obj, "RegisteredLoad", "NPLCustomLoadAggregation", "NPLCustomLoadAggregation",  base.from_string, fields);
-                base.export_element (obj, "RegisteredLoad", "participatingLoad", "participatingLoad",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredLoad", "NPLCustomLoadAggregation", "NPLCustomLoadAggregation", fields);
+                base.export_attribute (obj, "RegisteredLoad", "participatingLoad", "participatingLoad", fields);
                 base.export_element (obj, "RegisteredLoad", "reqNoticeTime", "reqNoticeTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "resourceSubType", "resourceSubType",  base.from_string, fields);
                 base.export_attributes (obj, "RegisteredLoad", "AuxillaryObject", "AuxillaryObject", fields);
@@ -4646,6 +4736,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.blockLoadTransferFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.blockLoadTransferFlag && obj.blockLoadTransferFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.dynamicallyScheduledLoadResourceFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.dynamicallyScheduledLoadResourceFlag && obj.dynamicallyScheduledLoadResourceFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.dynamicallyScheduledQualificationFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.dynamicallyScheduledQualificationFlag && obj.dynamicallyScheduledQualificationFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.loadRegistryMSS) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.loadRegistryMSS && obj.loadRegistryMSS.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.NPLCustomLoadAggregation) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.NPLCustomLoadAggregation && obj.NPLCustomLoadAggregation.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.participatingLoad) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.participatingLoad && obj.participatingLoad.endsWith ('.' + property)});
                 if (obj.AuxillaryObject) obj.AuxillaryObject_string = obj.AuxillaryObject.join ();
                 if (obj.MktEnergyConsumer) obj.MktEnergyConsumer_string = obj.MktEnergyConsumer.join ();
                 if (obj.LoadReductionTimeCurve) obj.LoadReductionTimeCurve_string = obj.LoadReductionTimeCurve.join ();
@@ -4656,6 +4752,12 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
                 delete obj.AuxillaryObject_string;
                 delete obj.MktEnergyConsumer_string;
                 delete obj.LoadReductionTimeCurve_string;
@@ -4673,10 +4775,10 @@ define
                     `
                     + MarketCommon.RegisteredResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_blockLoadTransferFlag'>blockLoadTransferFlag: </label><div class='col-sm-8'><input id='{{id}}_blockLoadTransferFlag' class='form-control' type='text'{{#blockLoadTransferFlag}} value='{{blockLoadTransferFlag}}'{{/blockLoadTransferFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledLoadResourceFlag'>dynamicallyScheduledLoadResourceFlag: </label><div class='col-sm-8'><input id='{{id}}_dynamicallyScheduledLoadResourceFlag' class='form-control' type='text'{{#dynamicallyScheduledLoadResourceFlag}} value='{{dynamicallyScheduledLoadResourceFlag}}'{{/dynamicallyScheduledLoadResourceFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledQualificationFlag'>dynamicallyScheduledQualificationFlag: </label><div class='col-sm-8'><input id='{{id}}_dynamicallyScheduledQualificationFlag' class='form-control' type='text'{{#dynamicallyScheduledQualificationFlag}} value='{{dynamicallyScheduledQualificationFlag}}'{{/dynamicallyScheduledQualificationFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRegistryMSS'>loadRegistryMSS: </label><div class='col-sm-8'><input id='{{id}}_loadRegistryMSS' class='form-control' type='text'{{#loadRegistryMSS}} value='{{loadRegistryMSS}}'{{/loadRegistryMSS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_blockLoadTransferFlag'>blockLoadTransferFlag: </label><div class='col-sm-8'><select id='{{id}}_blockLoadTransferFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledLoadResourceFlag'>dynamicallyScheduledLoadResourceFlag: </label><div class='col-sm-8'><select id='{{id}}_dynamicallyScheduledLoadResourceFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledQualificationFlag'>dynamicallyScheduledQualificationFlag: </label><div class='col-sm-8'><select id='{{id}}_dynamicallyScheduledQualificationFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRegistryMSS'>loadRegistryMSS: </label><div class='col-sm-8'><select id='{{id}}_loadRegistryMSS' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxBaseLoad'>maxBaseLoad: </label><div class='col-sm-8'><input id='{{id}}_maxBaseLoad' class='form-control' type='text'{{#maxBaseLoad}} value='{{maxBaseLoad}}'{{/maxBaseLoad}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxDeploymentTime'>maxDeploymentTime: </label><div class='col-sm-8'><input id='{{id}}_maxDeploymentTime' class='form-control' type='text'{{#maxDeploymentTime}} value='{{maxDeploymentTime}}'{{/maxDeploymentTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxLoadRedTimesPerDay'>maxLoadRedTimesPerDay: </label><div class='col-sm-8'><input id='{{id}}_maxLoadRedTimesPerDay' class='form-control' type='text'{{#maxLoadRedTimesPerDay}} value='{{maxLoadRedTimesPerDay}}'{{/maxLoadRedTimesPerDay}}></div></div>
@@ -4688,8 +4790,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minReductionTime'>minReductionTime: </label><div class='col-sm-8'><input id='{{id}}_minReductionTime' class='form-control' type='text'{{#minReductionTime}} value='{{minReductionTime}}'{{/minReductionTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='{{id}}_minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NPLCustomLoadAggregation'>NPLCustomLoadAggregation: </label><div class='col-sm-8'><input id='{{id}}_NPLCustomLoadAggregation' class='form-control' type='text'{{#NPLCustomLoadAggregation}} value='{{NPLCustomLoadAggregation}}'{{/NPLCustomLoadAggregation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participatingLoad'>participatingLoad: </label><div class='col-sm-8'><input id='{{id}}_participatingLoad' class='form-control' type='text'{{#participatingLoad}} value='{{participatingLoad}}'{{/participatingLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NPLCustomLoadAggregation'>NPLCustomLoadAggregation: </label><div class='col-sm-8'><select id='{{id}}_NPLCustomLoadAggregation' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participatingLoad'>participatingLoad: </label><div class='col-sm-8'><select id='{{id}}_participatingLoad' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='{{id}}_reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='{{id}}_resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionTimeCurve'>LoadReductionTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionTimeCurve' class='form-control' type='text'{{#LoadReductionTimeCurve}} value='{{LoadReductionTimeCurve_string}}'{{/LoadReductionTimeCurve}}></div></div>
@@ -4707,10 +4809,10 @@ define
 
                 var obj = obj || { id: id, cls: "RegisteredLoad" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_blockLoadTransferFlag").value; if ("" != temp) obj.blockLoadTransferFlag = temp;
-                temp = document.getElementById (id + "_dynamicallyScheduledLoadResourceFlag").value; if ("" != temp) obj.dynamicallyScheduledLoadResourceFlag = temp;
-                temp = document.getElementById (id + "_dynamicallyScheduledQualificationFlag").value; if ("" != temp) obj.dynamicallyScheduledQualificationFlag = temp;
-                temp = document.getElementById (id + "_loadRegistryMSS").value; if ("" != temp) obj.loadRegistryMSS = temp;
+                temp = document.getElementById (id + "_blockLoadTransferFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.blockLoadTransferFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_dynamicallyScheduledLoadResourceFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.dynamicallyScheduledLoadResourceFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_dynamicallyScheduledQualificationFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.dynamicallyScheduledQualificationFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_loadRegistryMSS").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.loadRegistryMSS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_maxBaseLoad").value; if ("" != temp) obj.maxBaseLoad = temp;
                 temp = document.getElementById (id + "_maxDeploymentTime").value; if ("" != temp) obj.maxDeploymentTime = temp;
                 temp = document.getElementById (id + "_maxLoadRedTimesPerDay").value; if ("" != temp) obj.maxLoadRedTimesPerDay = temp;
@@ -4722,8 +4824,8 @@ define
                 temp = document.getElementById (id + "_minLoadReductionInterval").value; if ("" != temp) obj.minLoadReductionInterval = temp;
                 temp = document.getElementById (id + "_minReductionTime").value; if ("" != temp) obj.minReductionTime = temp;
                 temp = document.getElementById (id + "_minTimeBetLoadRed").value; if ("" != temp) obj.minTimeBetLoadRed = temp;
-                temp = document.getElementById (id + "_NPLCustomLoadAggregation").value; if ("" != temp) obj.NPLCustomLoadAggregation = temp;
-                temp = document.getElementById (id + "_participatingLoad").value; if ("" != temp) obj.participatingLoad = temp;
+                temp = document.getElementById (id + "_NPLCustomLoadAggregation").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.NPLCustomLoadAggregation = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_participatingLoad").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.participatingLoad = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_reqNoticeTime").value; if ("" != temp) obj.reqNoticeTime = temp;
                 temp = document.getElementById (id + "_resourceSubType").value; if ("" != temp) obj.resourceSubType = temp;
                 temp = document.getElementById (id + "_LoadReductionTimeCurve").value; if ("" != temp) obj.LoadReductionTimeCurve = temp.split (",");
@@ -4779,7 +4881,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "AggregateNode";
-                base.parse_element (/<cim:AggregateNode.anodeType>([\s\S]*?)<\/cim:AggregateNode.anodeType>/g, obj, "anodeType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AggregateNode.anodeType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "anodeType", sub, context);
                 base.parse_element (/<cim:AggregateNode.endEffectiveDate>([\s\S]*?)<\/cim:AggregateNode.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:AggregateNode.qualifASOrder>([\s\S]*?)<\/cim:AggregateNode.qualifASOrder>/g, obj, "qualifASOrder", base.to_string, sub, context);
                 base.parse_element (/<cim:AggregateNode.startEffectiveDate>([\s\S]*?)<\/cim:AggregateNode.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
@@ -4801,7 +4903,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AggregateNode", "anodeType", "anodeType",  base.from_string, fields);
+                base.export_attribute (obj, "AggregateNode", "anodeType", "anodeType", fields);
                 base.export_element (obj, "AggregateNode", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "AggregateNode", "qualifASOrder", "qualifASOrder",  base.from_string, fields);
                 base.export_element (obj, "AggregateNode", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
@@ -4847,6 +4949,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.AnodeType = []; if (!obj.anodeType) obj.AnodeType.push ({ id: '', selected: true}); for (var property in AnodeType) obj.AnodeType.push ({ id: property, selected: obj.anodeType && obj.anodeType.endsWith ('.' + property)});
                 if (obj.Pnode) obj.Pnode_string = obj.Pnode.join ();
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
                 if (obj.AreaLoadCurve) obj.AreaLoadCurve_string = obj.AreaLoadCurve.join ();
@@ -4857,6 +4960,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AnodeType;
                 delete obj.Pnode_string;
                 delete obj.RegisteredResource_string;
                 delete obj.AreaLoadCurve_string;
@@ -4874,7 +4978,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_anodeType'>anodeType: </label><div class='col-sm-8'><input id='{{id}}_anodeType' class='form-control' type='text'{{#anodeType}} value='{{anodeType}}'{{/anodeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_anodeType'>anodeType: </label><div class='col-sm-8'><select id='{{id}}_anodeType' class='form-control custom-select'>{{#AnodeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AnodeType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualifASOrder'>qualifASOrder: </label><div class='col-sm-8'><input id='{{id}}_qualifASOrder' class='form-control' type='text'{{#qualifASOrder}} value='{{qualifASOrder}}'{{/qualifASOrder}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
@@ -4894,7 +4998,7 @@ define
 
                 var obj = obj || { id: id, cls: "AggregateNode" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_anodeType").value; if ("" != temp) obj.anodeType = temp;
+                temp = document.getElementById (id + "_anodeType").value; if ("" != temp) { temp = AnodeType[temp]; if ("undefined" != typeof (temp)) obj.anodeType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnodeType." + temp; }
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_qualifASOrder").value; if ("" != temp) obj.qualifASOrder = temp;
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
@@ -5439,9 +5543,9 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "OrgResOwnership";
-                base.parse_element (/<cim:OrgResOwnership.asscType>([\s\S]*?)<\/cim:OrgResOwnership.asscType>/g, obj, "asscType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OrgResOwnership.asscType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "asscType", sub, context);
                 base.parse_element (/<cim:OrgResOwnership.endEffectiveDate>([\s\S]*?)<\/cim:OrgResOwnership.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:OrgResOwnership.masterSchedulingCoordinatorFlag>([\s\S]*?)<\/cim:OrgResOwnership.masterSchedulingCoordinatorFlag>/g, obj, "masterSchedulingCoordinatorFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OrgResOwnership.masterSchedulingCoordinatorFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "masterSchedulingCoordinatorFlag", sub, context);
                 base.parse_element (/<cim:OrgResOwnership.ownershipPercent>([\s\S]*?)<\/cim:OrgResOwnership.ownershipPercent>/g, obj, "ownershipPercent", base.to_string, sub, context);
                 base.parse_element (/<cim:OrgResOwnership.startEffectiveDate>([\s\S]*?)<\/cim:OrgResOwnership.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:OrgResOwnership.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
@@ -5458,9 +5562,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OrgResOwnership", "asscType", "asscType",  base.from_string, fields);
+                base.export_attribute (obj, "OrgResOwnership", "asscType", "asscType", fields);
                 base.export_element (obj, "OrgResOwnership", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "OrgResOwnership", "masterSchedulingCoordinatorFlag", "masterSchedulingCoordinatorFlag",  base.from_string, fields);
+                base.export_attribute (obj, "OrgResOwnership", "masterSchedulingCoordinatorFlag", "masterSchedulingCoordinatorFlag", fields);
                 base.export_element (obj, "OrgResOwnership", "ownershipPercent", "ownershipPercent",  base.from_string, fields);
                 base.export_element (obj, "OrgResOwnership", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
                 base.export_attribute (obj, "OrgResOwnership", "RegisteredResource", "RegisteredResource", fields);
@@ -5498,11 +5602,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ResourceAssnType = []; if (!obj.asscType) obj.ResourceAssnType.push ({ id: '', selected: true}); for (var property in ResourceAssnType) obj.ResourceAssnType.push ({ id: property, selected: obj.asscType && obj.asscType.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.masterSchedulingCoordinatorFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.masterSchedulingCoordinatorFlag && obj.masterSchedulingCoordinatorFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ResourceAssnType;
+                delete obj.YesNo;
             }
 
             edit_template ()
@@ -5515,9 +5623,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asscType'>asscType: </label><div class='col-sm-8'><input id='{{id}}_asscType' class='form-control' type='text'{{#asscType}} value='{{asscType}}'{{/asscType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asscType'>asscType: </label><div class='col-sm-8'><select id='{{id}}_asscType' class='form-control custom-select'>{{#ResourceAssnType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ResourceAssnType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_masterSchedulingCoordinatorFlag'>masterSchedulingCoordinatorFlag: </label><div class='col-sm-8'><input id='{{id}}_masterSchedulingCoordinatorFlag' class='form-control' type='text'{{#masterSchedulingCoordinatorFlag}} value='{{masterSchedulingCoordinatorFlag}}'{{/masterSchedulingCoordinatorFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_masterSchedulingCoordinatorFlag'>masterSchedulingCoordinatorFlag: </label><div class='col-sm-8'><select id='{{id}}_masterSchedulingCoordinatorFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ownershipPercent'>ownershipPercent: </label><div class='col-sm-8'><input id='{{id}}_ownershipPercent' class='form-control' type='text'{{#ownershipPercent}} value='{{ownershipPercent}}'{{/ownershipPercent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
@@ -5534,9 +5642,9 @@ define
 
                 var obj = obj || { id: id, cls: "OrgResOwnership" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_asscType").value; if ("" != temp) obj.asscType = temp;
+                temp = document.getElementById (id + "_asscType").value; if ("" != temp) { temp = ResourceAssnType[temp]; if ("undefined" != typeof (temp)) obj.asscType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceAssnType." + temp; }
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_masterSchedulingCoordinatorFlag").value; if ("" != temp) obj.masterSchedulingCoordinatorFlag = temp;
+                temp = document.getElementById (id + "_masterSchedulingCoordinatorFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.masterSchedulingCoordinatorFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_ownershipPercent").value; if ("" != temp) obj.ownershipPercent = temp;
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
@@ -5592,25 +5700,25 @@ define
                 base.parse_element (/<cim:ContractRight.contractPrice>([\s\S]*?)<\/cim:ContractRight.contractPrice>/g, obj, "contractPrice", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.contractPriority>([\s\S]*?)<\/cim:ContractRight.contractPriority>/g, obj, "contractPriority", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.contractStatus>([\s\S]*?)<\/cim:ContractRight.contractStatus>/g, obj, "contractStatus", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.contractType>([\s\S]*?)<\/cim:ContractRight.contractType>/g, obj, "contractType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.contractType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "contractType", sub, context);
                 base.parse_element (/<cim:ContractRight.endEffectiveDate>([\s\S]*?)<\/cim:ContractRight.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ContractRight.financialLocation>([\s\S]*?)<\/cim:ContractRight.financialLocation>/g, obj, "financialLocation", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.financialRightsDAM>([\s\S]*?)<\/cim:ContractRight.financialRightsDAM>/g, obj, "financialRightsDAM", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.financialRightsRTM>([\s\S]*?)<\/cim:ContractRight.financialRightsRTM>/g, obj, "financialRightsRTM", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.financialLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "financialLocation", sub, context);
+                base.parse_attribute (/<cim:ContractRight.financialRightsDAM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "financialRightsDAM", sub, context);
+                base.parse_attribute (/<cim:ContractRight.financialRightsRTM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "financialRightsRTM", sub, context);
                 base.parse_element (/<cim:ContractRight.fuelAdder>([\s\S]*?)<\/cim:ContractRight.fuelAdder>/g, obj, "fuelAdder", base.to_float, sub, context);
                 base.parse_element (/<cim:ContractRight.latestSchedMinutes>([\s\S]*?)<\/cim:ContractRight.latestSchedMinutes>/g, obj, "latestSchedMinutes", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.latestSchedMktType>([\s\S]*?)<\/cim:ContractRight.latestSchedMktType>/g, obj, "latestSchedMktType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.latestSchedMktType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "latestSchedMktType", sub, context);
                 base.parse_element (/<cim:ContractRight.maximumScheduleQuantity>([\s\S]*?)<\/cim:ContractRight.maximumScheduleQuantity>/g, obj, "maximumScheduleQuantity", base.to_float, sub, context);
                 base.parse_element (/<cim:ContractRight.maximumServiceHours>([\s\S]*?)<\/cim:ContractRight.maximumServiceHours>/g, obj, "maximumServiceHours", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.maximumStartups>([\s\S]*?)<\/cim:ContractRight.maximumStartups>/g, obj, "maximumStartups", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.maxNetDependableCapacity>([\s\S]*?)<\/cim:ContractRight.maxNetDependableCapacity>/g, obj, "maxNetDependableCapacity", base.to_float, sub, context);
                 base.parse_element (/<cim:ContractRight.minimumLoad>([\s\S]*?)<\/cim:ContractRight.minimumLoad>/g, obj, "minimumLoad", base.to_float, sub, context);
                 base.parse_element (/<cim:ContractRight.minimumScheduleQuantity>([\s\S]*?)<\/cim:ContractRight.minimumScheduleQuantity>/g, obj, "minimumScheduleQuantity", base.to_float, sub, context);
-                base.parse_element (/<cim:ContractRight.physicalRightsDAM>([\s\S]*?)<\/cim:ContractRight.physicalRightsDAM>/g, obj, "physicalRightsDAM", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.physicalRightsRTM>([\s\S]*?)<\/cim:ContractRight.physicalRightsRTM>/g, obj, "physicalRightsRTM", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.physicalRightsDAM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "physicalRightsDAM", sub, context);
+                base.parse_attribute (/<cim:ContractRight.physicalRightsRTM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "physicalRightsRTM", sub, context);
                 base.parse_element (/<cim:ContractRight.startEffectiveDate>([\s\S]*?)<\/cim:ContractRight.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ContractRight.startupLeadTime>([\s\S]*?)<\/cim:ContractRight.startupLeadTime>/g, obj, "startupLeadTime", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.TRType>([\s\S]*?)<\/cim:ContractRight.TRType>/g, obj, "TRType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.TRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TRType", sub, context);
                 base.parse_attribute (/<cim:ContractRight.SchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SchedulingCoordinator", sub, context);
                 base.parse_attributes (/<cim:ContractRight.BidSelfSched\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
                 base.parse_attributes (/<cim:ContractRight.SubstitutionResourceList\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubstitutionResourceList", sub, context);
@@ -5637,25 +5745,25 @@ define
                 base.export_element (obj, "ContractRight", "contractPrice", "contractPrice",  base.from_string, fields);
                 base.export_element (obj, "ContractRight", "contractPriority", "contractPriority",  base.from_string, fields);
                 base.export_element (obj, "ContractRight", "contractStatus", "contractStatus",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "contractType", "contractType",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "contractType", "contractType", fields);
                 base.export_element (obj, "ContractRight", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ContractRight", "financialLocation", "financialLocation",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "financialRightsDAM", "financialRightsDAM",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "financialRightsRTM", "financialRightsRTM",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "financialLocation", "financialLocation", fields);
+                base.export_attribute (obj, "ContractRight", "financialRightsDAM", "financialRightsDAM", fields);
+                base.export_attribute (obj, "ContractRight", "financialRightsRTM", "financialRightsRTM", fields);
                 base.export_element (obj, "ContractRight", "fuelAdder", "fuelAdder",  base.from_float, fields);
                 base.export_element (obj, "ContractRight", "latestSchedMinutes", "latestSchedMinutes",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "latestSchedMktType", "latestSchedMktType",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "latestSchedMktType", "latestSchedMktType", fields);
                 base.export_element (obj, "ContractRight", "maximumScheduleQuantity", "maximumScheduleQuantity",  base.from_float, fields);
                 base.export_element (obj, "ContractRight", "maximumServiceHours", "maximumServiceHours",  base.from_string, fields);
                 base.export_element (obj, "ContractRight", "maximumStartups", "maximumStartups",  base.from_string, fields);
                 base.export_element (obj, "ContractRight", "maxNetDependableCapacity", "maxNetDependableCapacity",  base.from_float, fields);
                 base.export_element (obj, "ContractRight", "minimumLoad", "minimumLoad",  base.from_float, fields);
                 base.export_element (obj, "ContractRight", "minimumScheduleQuantity", "minimumScheduleQuantity",  base.from_float, fields);
-                base.export_element (obj, "ContractRight", "physicalRightsDAM", "physicalRightsDAM",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "physicalRightsRTM", "physicalRightsRTM",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "physicalRightsDAM", "physicalRightsDAM", fields);
+                base.export_attribute (obj, "ContractRight", "physicalRightsRTM", "physicalRightsRTM", fields);
                 base.export_element (obj, "ContractRight", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "ContractRight", "startupLeadTime", "startupLeadTime",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "TRType", "TRType",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "TRType", "TRType", fields);
                 base.export_attribute (obj, "ContractRight", "SchedulingCoordinator", "SchedulingCoordinator", fields);
                 base.export_attributes (obj, "ContractRight", "BidSelfSched", "BidSelfSched", fields);
                 base.export_attributes (obj, "ContractRight", "SubstitutionResourceList", "SubstitutionResourceList", fields);
@@ -5724,6 +5832,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ContractType = []; if (!obj.contractType) obj.ContractType.push ({ id: '', selected: true}); for (var property in ContractType) obj.ContractType.push ({ id: property, selected: obj.contractType && obj.contractType.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.financialLocation) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.financialLocation && obj.financialLocation.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.financialRightsDAM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.financialRightsDAM && obj.financialRightsDAM.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.financialRightsRTM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.financialRightsRTM && obj.financialRightsRTM.endsWith ('.' + property)});
+                obj.MarketType = []; if (!obj.latestSchedMktType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.latestSchedMktType && obj.latestSchedMktType.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.physicalRightsDAM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.physicalRightsDAM && obj.physicalRightsDAM.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.physicalRightsRTM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.physicalRightsRTM && obj.physicalRightsRTM.endsWith ('.' + property)});
+                obj.TRType = []; if (!obj.TRType) obj.TRType.push ({ id: '', selected: true}); for (var property in TRType) obj.TRType.push ({ id: property, selected: obj.TRType && obj.TRType.endsWith ('.' + property)});
                 if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
                 if (obj.SubstitutionResourceList) obj.SubstitutionResourceList_string = obj.SubstitutionResourceList.join ();
                 if (obj.TransmissionInterfaceEntitlement) obj.TransmissionInterfaceEntitlement_string = obj.TransmissionInterfaceEntitlement.join ();
@@ -5734,6 +5850,14 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ContractType;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.MarketType;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.TRType;
                 delete obj.BidSelfSched_string;
                 delete obj.SubstitutionResourceList_string;
                 delete obj.TransmissionInterfaceEntitlement_string;
@@ -5756,25 +5880,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractPrice'>contractPrice: </label><div class='col-sm-8'><input id='{{id}}_contractPrice' class='form-control' type='text'{{#contractPrice}} value='{{contractPrice}}'{{/contractPrice}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractPriority'>contractPriority: </label><div class='col-sm-8'><input id='{{id}}_contractPriority' class='form-control' type='text'{{#contractPriority}} value='{{contractPriority}}'{{/contractPriority}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractStatus'>contractStatus: </label><div class='col-sm-8'><input id='{{id}}_contractStatus' class='form-control' type='text'{{#contractStatus}} value='{{contractStatus}}'{{/contractStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractType'>contractType: </label><div class='col-sm-8'><input id='{{id}}_contractType' class='form-control' type='text'{{#contractType}} value='{{contractType}}'{{/contractType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractType'>contractType: </label><div class='col-sm-8'><select id='{{id}}_contractType' class='form-control custom-select'>{{#ContractType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ContractType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialLocation'>financialLocation: </label><div class='col-sm-8'><input id='{{id}}_financialLocation' class='form-control' type='text'{{#financialLocation}} value='{{financialLocation}}'{{/financialLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsDAM'>financialRightsDAM: </label><div class='col-sm-8'><input id='{{id}}_financialRightsDAM' class='form-control' type='text'{{#financialRightsDAM}} value='{{financialRightsDAM}}'{{/financialRightsDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsRTM'>financialRightsRTM: </label><div class='col-sm-8'><input id='{{id}}_financialRightsRTM' class='form-control' type='text'{{#financialRightsRTM}} value='{{financialRightsRTM}}'{{/financialRightsRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialLocation'>financialLocation: </label><div class='col-sm-8'><select id='{{id}}_financialLocation' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsDAM'>financialRightsDAM: </label><div class='col-sm-8'><select id='{{id}}_financialRightsDAM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsRTM'>financialRightsRTM: </label><div class='col-sm-8'><select id='{{id}}_financialRightsRTM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelAdder'>fuelAdder: </label><div class='col-sm-8'><input id='{{id}}_fuelAdder' class='form-control' type='text'{{#fuelAdder}} value='{{fuelAdder}}'{{/fuelAdder}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestSchedMinutes'>latestSchedMinutes: </label><div class='col-sm-8'><input id='{{id}}_latestSchedMinutes' class='form-control' type='text'{{#latestSchedMinutes}} value='{{latestSchedMinutes}}'{{/latestSchedMinutes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestSchedMktType'>latestSchedMktType: </label><div class='col-sm-8'><input id='{{id}}_latestSchedMktType' class='form-control' type='text'{{#latestSchedMktType}} value='{{latestSchedMktType}}'{{/latestSchedMktType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestSchedMktType'>latestSchedMktType: </label><div class='col-sm-8'><select id='{{id}}_latestSchedMktType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumScheduleQuantity'>maximumScheduleQuantity: </label><div class='col-sm-8'><input id='{{id}}_maximumScheduleQuantity' class='form-control' type='text'{{#maximumScheduleQuantity}} value='{{maximumScheduleQuantity}}'{{/maximumScheduleQuantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumServiceHours'>maximumServiceHours: </label><div class='col-sm-8'><input id='{{id}}_maximumServiceHours' class='form-control' type='text'{{#maximumServiceHours}} value='{{maximumServiceHours}}'{{/maximumServiceHours}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumStartups'>maximumStartups: </label><div class='col-sm-8'><input id='{{id}}_maximumStartups' class='form-control' type='text'{{#maximumStartups}} value='{{maximumStartups}}'{{/maximumStartups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxNetDependableCapacity'>maxNetDependableCapacity: </label><div class='col-sm-8'><input id='{{id}}_maxNetDependableCapacity' class='form-control' type='text'{{#maxNetDependableCapacity}} value='{{maxNetDependableCapacity}}'{{/maxNetDependableCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumLoad'>minimumLoad: </label><div class='col-sm-8'><input id='{{id}}_minimumLoad' class='form-control' type='text'{{#minimumLoad}} value='{{minimumLoad}}'{{/minimumLoad}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumScheduleQuantity'>minimumScheduleQuantity: </label><div class='col-sm-8'><input id='{{id}}_minimumScheduleQuantity' class='form-control' type='text'{{#minimumScheduleQuantity}} value='{{minimumScheduleQuantity}}'{{/minimumScheduleQuantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsDAM'>physicalRightsDAM: </label><div class='col-sm-8'><input id='{{id}}_physicalRightsDAM' class='form-control' type='text'{{#physicalRightsDAM}} value='{{physicalRightsDAM}}'{{/physicalRightsDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsRTM'>physicalRightsRTM: </label><div class='col-sm-8'><input id='{{id}}_physicalRightsRTM' class='form-control' type='text'{{#physicalRightsRTM}} value='{{physicalRightsRTM}}'{{/physicalRightsRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsDAM'>physicalRightsDAM: </label><div class='col-sm-8'><select id='{{id}}_physicalRightsDAM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsRTM'>physicalRightsRTM: </label><div class='col-sm-8'><select id='{{id}}_physicalRightsRTM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startupLeadTime'>startupLeadTime: </label><div class='col-sm-8'><input id='{{id}}_startupLeadTime' class='form-control' type='text'{{#startupLeadTime}} value='{{startupLeadTime}}'{{/startupLeadTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TRType'>TRType: </label><div class='col-sm-8'><input id='{{id}}_TRType' class='form-control' type='text'{{#TRType}} value='{{TRType}}'{{/TRType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TRType'>TRType: </label><div class='col-sm-8'><select id='{{id}}_TRType' class='form-control custom-select'>{{#TRType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TRType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='{{id}}_SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Ind_TransmissionRightChain'>Ind_TransmissionRightChain: </label><div class='col-sm-8'><input id='{{id}}_Ind_TransmissionRightChain' class='form-control' type='text'{{#Ind_TransmissionRightChain}} value='{{Ind_TransmissionRightChain}}'{{/Ind_TransmissionRightChain}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
@@ -5796,25 +5920,25 @@ define
                 temp = document.getElementById (id + "_contractPrice").value; if ("" != temp) obj.contractPrice = temp;
                 temp = document.getElementById (id + "_contractPriority").value; if ("" != temp) obj.contractPriority = temp;
                 temp = document.getElementById (id + "_contractStatus").value; if ("" != temp) obj.contractStatus = temp;
-                temp = document.getElementById (id + "_contractType").value; if ("" != temp) obj.contractType = temp;
+                temp = document.getElementById (id + "_contractType").value; if ("" != temp) { temp = ContractType[temp]; if ("undefined" != typeof (temp)) obj.contractType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ContractType." + temp; }
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_financialLocation").value; if ("" != temp) obj.financialLocation = temp;
-                temp = document.getElementById (id + "_financialRightsDAM").value; if ("" != temp) obj.financialRightsDAM = temp;
-                temp = document.getElementById (id + "_financialRightsRTM").value; if ("" != temp) obj.financialRightsRTM = temp;
+                temp = document.getElementById (id + "_financialLocation").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.financialLocation = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_financialRightsDAM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.financialRightsDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_financialRightsRTM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.financialRightsRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_fuelAdder").value; if ("" != temp) obj.fuelAdder = temp;
                 temp = document.getElementById (id + "_latestSchedMinutes").value; if ("" != temp) obj.latestSchedMinutes = temp;
-                temp = document.getElementById (id + "_latestSchedMktType").value; if ("" != temp) obj.latestSchedMktType = temp;
+                temp = document.getElementById (id + "_latestSchedMktType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.latestSchedMktType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
                 temp = document.getElementById (id + "_maximumScheduleQuantity").value; if ("" != temp) obj.maximumScheduleQuantity = temp;
                 temp = document.getElementById (id + "_maximumServiceHours").value; if ("" != temp) obj.maximumServiceHours = temp;
                 temp = document.getElementById (id + "_maximumStartups").value; if ("" != temp) obj.maximumStartups = temp;
                 temp = document.getElementById (id + "_maxNetDependableCapacity").value; if ("" != temp) obj.maxNetDependableCapacity = temp;
                 temp = document.getElementById (id + "_minimumLoad").value; if ("" != temp) obj.minimumLoad = temp;
                 temp = document.getElementById (id + "_minimumScheduleQuantity").value; if ("" != temp) obj.minimumScheduleQuantity = temp;
-                temp = document.getElementById (id + "_physicalRightsDAM").value; if ("" != temp) obj.physicalRightsDAM = temp;
-                temp = document.getElementById (id + "_physicalRightsRTM").value; if ("" != temp) obj.physicalRightsRTM = temp;
+                temp = document.getElementById (id + "_physicalRightsDAM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.physicalRightsDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_physicalRightsRTM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.physicalRightsRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_startupLeadTime").value; if ("" != temp) obj.startupLeadTime = temp;
-                temp = document.getElementById (id + "_TRType").value; if ("" != temp) obj.TRType = temp;
+                temp = document.getElementById (id + "_TRType").value; if ("" != temp) { temp = TRType[temp]; if ("undefined" != typeof (temp)) obj.TRType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TRType." + temp; }
                 temp = document.getElementById (id + "_SchedulingCoordinator").value; if ("" != temp) obj.SchedulingCoordinator = temp;
                 temp = document.getElementById (id + "_Ind_TransmissionRightChain").value; if ("" != temp) obj.Ind_TransmissionRightChain = temp;
                 temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
@@ -7041,7 +7165,7 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "HostControlArea";
-                base.parse_element (/<cim:HostControlArea.areaControlMode>([\s\S]*?)<\/cim:HostControlArea.areaControlMode>/g, obj, "areaControlMode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:HostControlArea.areaControlMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "areaControlMode", sub, context);
                 base.parse_element (/<cim:HostControlArea.endEffectiveDate>([\s\S]*?)<\/cim:HostControlArea.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:HostControlArea.freqSetPoint>([\s\S]*?)<\/cim:HostControlArea.freqSetPoint>/g, obj, "freqSetPoint", base.to_string, sub, context);
                 base.parse_element (/<cim:HostControlArea.frequencyBiasFactor>([\s\S]*?)<\/cim:HostControlArea.frequencyBiasFactor>/g, obj, "frequencyBiasFactor", base.to_float, sub, context);
@@ -7069,7 +7193,7 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HostControlArea", "areaControlMode", "areaControlMode",  base.from_string, fields);
+                base.export_attribute (obj, "HostControlArea", "areaControlMode", "areaControlMode", fields);
                 base.export_element (obj, "HostControlArea", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "HostControlArea", "freqSetPoint", "freqSetPoint",  base.from_string, fields);
                 base.export_element (obj, "HostControlArea", "frequencyBiasFactor", "frequencyBiasFactor",  base.from_float, fields);
@@ -7127,6 +7251,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.AreaControlMode = []; if (!obj.areaControlMode) obj.AreaControlMode.push ({ id: '', selected: true}); for (var property in AreaControlMode) obj.AreaControlMode.push ({ id: property, selected: obj.areaControlMode && obj.areaControlMode.endsWith ('.' + property)});
                 if (obj.SubControlAreas) obj.SubControlAreas_string = obj.SubControlAreas.join ();
                 if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
@@ -7140,6 +7265,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AreaControlMode;
                 delete obj.SubControlAreas_string;
                 delete obj.BidSelfSched_string;
                 delete obj.RegisteredResource_string;
@@ -7160,7 +7286,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_areaControlMode'>areaControlMode: </label><div class='col-sm-8'><input id='{{id}}_areaControlMode' class='form-control' type='text'{{#areaControlMode}} value='{{areaControlMode}}'{{/areaControlMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_areaControlMode'>areaControlMode: </label><div class='col-sm-8'><select id='{{id}}_areaControlMode' class='form-control custom-select'>{{#AreaControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AreaControlMode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_freqSetPoint'>freqSetPoint: </label><div class='col-sm-8'><input id='{{id}}_freqSetPoint' class='form-control' type='text'{{#freqSetPoint}} value='{{freqSetPoint}}'{{/freqSetPoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyBiasFactor'>frequencyBiasFactor: </label><div class='col-sm-8'><input id='{{id}}_frequencyBiasFactor' class='form-control' type='text'{{#frequencyBiasFactor}} value='{{frequencyBiasFactor}}'{{/frequencyBiasFactor}}></div></div>
@@ -7180,7 +7306,7 @@ define
 
                 var obj = obj || { id: id, cls: "HostControlArea" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_areaControlMode").value; if ("" != temp) obj.areaControlMode = temp;
+                temp = document.getElementById (id + "_areaControlMode").value; if ("" != temp) { temp = AreaControlMode[temp]; if ("undefined" != typeof (temp)) obj.areaControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#AreaControlMode." + temp; }
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_freqSetPoint").value; if ("" != temp) obj.freqSetPoint = temp;
                 temp = document.getElementById (id + "_frequencyBiasFactor").value; if ("" != temp) obj.frequencyBiasFactor = temp;
@@ -7852,8 +7978,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ControlAreaDesignation";
-                base.parse_element (/<cim:ControlAreaDesignation.attained>([\s\S]*?)<\/cim:ControlAreaDesignation.attained>/g, obj, "attained", base.to_string, sub, context);
-                base.parse_element (/<cim:ControlAreaDesignation.native>([\s\S]*?)<\/cim:ControlAreaDesignation.native>/g, obj, "native", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ControlAreaDesignation.attained\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "attained", sub, context);
+                base.parse_attribute (/<cim:ControlAreaDesignation.native\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "native", sub, context);
                 base.parse_attributes (/<cim:ControlAreaDesignation.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attributes (/<cim:ControlAreaDesignation.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
                 var bucket = context.parsed.ControlAreaDesignation;
@@ -7868,8 +7994,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ControlAreaDesignation", "attained", "attained",  base.from_string, fields);
-                base.export_element (obj, "ControlAreaDesignation", "native", "native",  base.from_string, fields);
+                base.export_attribute (obj, "ControlAreaDesignation", "attained", "attained", fields);
+                base.export_attribute (obj, "ControlAreaDesignation", "native", "native", fields);
                 base.export_attributes (obj, "ControlAreaDesignation", "RegisteredResource", "RegisteredResource", fields);
                 base.export_attributes (obj, "ControlAreaDesignation", "SubControlArea", "SubControlArea", fields);
                 if (full)
@@ -7902,6 +8028,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.attained) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.attained && obj.attained.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.native) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.native && obj.native.endsWith ('.' + property)});
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
                 if (obj.SubControlArea) obj.SubControlArea_string = obj.SubControlArea.join ();
             }
@@ -7909,6 +8037,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
                 delete obj.RegisteredResource_string;
                 delete obj.SubControlArea_string;
             }
@@ -7923,8 +8053,8 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_attained'>attained: </label><div class='col-sm-8'><input id='{{id}}_attained' class='form-control' type='text'{{#attained}} value='{{attained}}'{{/attained}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_native'>native: </label><div class='col-sm-8'><input id='{{id}}_native' class='form-control' type='text'{{#native}} value='{{native}}'{{/native}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_attained'>attained: </label><div class='col-sm-8'><select id='{{id}}_attained' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_native'>native: </label><div class='col-sm-8'><select id='{{id}}_native' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea_string}}'{{/SubControlArea}}></div></div>
                     </div>
@@ -7939,8 +8069,8 @@ define
 
                 var obj = obj || { id: id, cls: "ControlAreaDesignation" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_attained").value; if ("" != temp) obj.attained = temp;
-                temp = document.getElementById (id + "_native").value; if ("" != temp) obj.native = temp;
+                temp = document.getElementById (id + "_attained").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.attained = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_native").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.native = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
                 temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
 
@@ -8233,9 +8363,9 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MPMTestCategory";
-                base.parse_element (/<cim:MPMTestCategory.testIdentifier>([\s\S]*?)<\/cim:MPMTestCategory.testIdentifier>/g, obj, "testIdentifier", base.to_string, sub, context);
-                base.parse_element (/<cim:MPMTestCategory.testMethod>([\s\S]*?)<\/cim:MPMTestCategory.testMethod>/g, obj, "testMethod", base.to_string, sub, context);
-                base.parse_element (/<cim:MPMTestCategory.purposeFlag>([\s\S]*?)<\/cim:MPMTestCategory.purposeFlag>/g, obj, "purposeFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MPMTestCategory.testIdentifier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "testIdentifier", sub, context);
+                base.parse_attribute (/<cim:MPMTestCategory.testMethod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "testMethod", sub, context);
+                base.parse_attribute (/<cim:MPMTestCategory.purposeFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "purposeFlag", sub, context);
                 base.parse_attributes (/<cim:MPMTestCategory.MPMTestThreshold\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestThreshold", sub, context);
                 base.parse_attributes (/<cim:MPMTestCategory.MPMResourceStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMResourceStatus", sub, context);
                 base.parse_attributes (/<cim:MPMTestCategory.MPMTestResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestResults", sub, context);
@@ -8251,9 +8381,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MPMTestCategory", "testIdentifier", "testIdentifier",  base.from_string, fields);
-                base.export_element (obj, "MPMTestCategory", "testMethod", "testMethod",  base.from_string, fields);
-                base.export_element (obj, "MPMTestCategory", "purposeFlag", "purposeFlag",  base.from_string, fields);
+                base.export_attribute (obj, "MPMTestCategory", "testIdentifier", "testIdentifier", fields);
+                base.export_attribute (obj, "MPMTestCategory", "testMethod", "testMethod", fields);
+                base.export_attribute (obj, "MPMTestCategory", "purposeFlag", "purposeFlag", fields);
                 base.export_attributes (obj, "MPMTestCategory", "MPMTestThreshold", "MPMTestThreshold", fields);
                 base.export_attributes (obj, "MPMTestCategory", "MPMResourceStatus", "MPMResourceStatus", fields);
                 base.export_attributes (obj, "MPMTestCategory", "MPMTestResults", "MPMTestResults", fields);
@@ -8289,6 +8419,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.MPMTestIdentifierType = []; if (!obj.testIdentifier) obj.MPMTestIdentifierType.push ({ id: '', selected: true}); for (var property in MPMTestIdentifierType) obj.MPMTestIdentifierType.push ({ id: property, selected: obj.testIdentifier && obj.testIdentifier.endsWith ('.' + property)});
+                obj.MPMTestMethodType = []; if (!obj.testMethod) obj.MPMTestMethodType.push ({ id: '', selected: true}); for (var property in MPMTestMethodType) obj.MPMTestMethodType.push ({ id: property, selected: obj.testMethod && obj.testMethod.endsWith ('.' + property)});
+                obj.PurposeFlagType = []; if (!obj.purposeFlag) obj.PurposeFlagType.push ({ id: '', selected: true}); for (var property in PurposeFlagType) obj.PurposeFlagType.push ({ id: property, selected: obj.purposeFlag && obj.purposeFlag.endsWith ('.' + property)});
                 if (obj.MPMTestThreshold) obj.MPMTestThreshold_string = obj.MPMTestThreshold.join ();
                 if (obj.MPMResourceStatus) obj.MPMResourceStatus_string = obj.MPMResourceStatus.join ();
                 if (obj.MPMTestResults) obj.MPMTestResults_string = obj.MPMTestResults.join ();
@@ -8297,6 +8430,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MPMTestIdentifierType;
+                delete obj.MPMTestMethodType;
+                delete obj.PurposeFlagType;
                 delete obj.MPMTestThreshold_string;
                 delete obj.MPMResourceStatus_string;
                 delete obj.MPMTestResults_string;
@@ -8312,9 +8448,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testIdentifier'>testIdentifier: </label><div class='col-sm-8'><input id='{{id}}_testIdentifier' class='form-control' type='text'{{#testIdentifier}} value='{{testIdentifier}}'{{/testIdentifier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testMethod'>testMethod: </label><div class='col-sm-8'><input id='{{id}}_testMethod' class='form-control' type='text'{{#testMethod}} value='{{testMethod}}'{{/testMethod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purposeFlag'>purposeFlag: </label><div class='col-sm-8'><input id='{{id}}_purposeFlag' class='form-control' type='text'{{#purposeFlag}} value='{{purposeFlag}}'{{/purposeFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testIdentifier'>testIdentifier: </label><div class='col-sm-8'><select id='{{id}}_testIdentifier' class='form-control custom-select'>{{#MPMTestIdentifierType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MPMTestIdentifierType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testMethod'>testMethod: </label><div class='col-sm-8'><select id='{{id}}_testMethod' class='form-control custom-select'>{{#MPMTestMethodType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MPMTestMethodType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purposeFlag'>purposeFlag: </label><div class='col-sm-8'><select id='{{id}}_purposeFlag' class='form-control custom-select'>{{#PurposeFlagType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PurposeFlagType}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -8327,9 +8463,9 @@ define
 
                 var obj = obj || { id: id, cls: "MPMTestCategory" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_testIdentifier").value; if ("" != temp) obj.testIdentifier = temp;
-                temp = document.getElementById (id + "_testMethod").value; if ("" != temp) obj.testMethod = temp;
-                temp = document.getElementById (id + "_purposeFlag").value; if ("" != temp) obj.purposeFlag = temp;
+                temp = document.getElementById (id + "_testIdentifier").value; if ("" != temp) { temp = MPMTestIdentifierType[temp]; if ("undefined" != typeof (temp)) obj.testIdentifier = "http://iec.ch/TC57/2013/CIM-schema-cim16#MPMTestIdentifierType." + temp; }
+                temp = document.getElementById (id + "_testMethod").value; if ("" != temp) { temp = MPMTestMethodType[temp]; if ("undefined" != typeof (temp)) obj.testMethod = "http://iec.ch/TC57/2013/CIM-schema-cim16#MPMTestMethodType." + temp; }
+                temp = document.getElementById (id + "_purposeFlag").value; if ("" != temp) { temp = PurposeFlagType[temp]; if ("undefined" != typeof (temp)) obj.purposeFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#PurposeFlagType." + temp; }
 
                 return (obj);
             }
@@ -8626,7 +8762,7 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "BidPriceCap";
-                base.parse_element (/<cim:BidPriceCap.marketType>([\s\S]*?)<\/cim:BidPriceCap.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BidPriceCap.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_element (/<cim:BidPriceCap.bidFloor>([\s\S]*?)<\/cim:BidPriceCap.bidFloor>/g, obj, "bidFloor", base.to_string, sub, context);
                 base.parse_element (/<cim:BidPriceCap.bidCeiling>([\s\S]*?)<\/cim:BidPriceCap.bidCeiling>/g, obj, "bidCeiling", base.to_string, sub, context);
                 base.parse_element (/<cim:BidPriceCap.defaultPrice>([\s\S]*?)<\/cim:BidPriceCap.defaultPrice>/g, obj, "defaultPrice", base.to_string, sub, context);
@@ -8645,7 +8781,7 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "BidPriceCap", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "BidPriceCap", "marketType", "marketType", fields);
                 base.export_element (obj, "BidPriceCap", "bidFloor", "bidFloor",  base.from_string, fields);
                 base.export_element (obj, "BidPriceCap", "bidCeiling", "bidCeiling",  base.from_string, fields);
                 base.export_element (obj, "BidPriceCap", "defaultPrice", "defaultPrice",  base.from_string, fields);
@@ -8685,11 +8821,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketType;
             }
 
             edit_template ()
@@ -8702,7 +8840,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidFloor'>bidFloor: </label><div class='col-sm-8'><input id='{{id}}_bidFloor' class='form-control' type='text'{{#bidFloor}} value='{{bidFloor}}'{{/bidFloor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidCeiling'>bidCeiling: </label><div class='col-sm-8'><input id='{{id}}_bidCeiling' class='form-control' type='text'{{#bidCeiling}} value='{{bidCeiling}}'{{/bidCeiling}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultPrice'>defaultPrice: </label><div class='col-sm-8'><input id='{{id}}_defaultPrice' class='form-control' type='text'{{#defaultPrice}} value='{{defaultPrice}}'{{/defaultPrice}}></div></div>
@@ -8721,7 +8859,7 @@ define
 
                 var obj = obj || { id: id, cls: "BidPriceCap" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
                 temp = document.getElementById (id + "_bidFloor").value; if ("" != temp) obj.bidFloor = temp;
                 temp = document.getElementById (id + "_bidCeiling").value; if ("" != temp) obj.bidCeiling = temp;
                 temp = document.getElementById (id + "_defaultPrice").value; if ("" != temp) obj.defaultPrice = temp;
@@ -9311,8 +9449,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ContractDistributionFactor";
                 base.parse_element (/<cim:ContractDistributionFactor.factor>([\s\S]*?)<\/cim:ContractDistributionFactor.factor>/g, obj, "factor", base.to_float, sub, context);
-                base.parse_element (/<cim:ContractDistributionFactor.sourceFlag>([\s\S]*?)<\/cim:ContractDistributionFactor.sourceFlag>/g, obj, "sourceFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractDistributionFactor.sinkFlag>([\s\S]*?)<\/cim:ContractDistributionFactor.sinkFlag>/g, obj, "sinkFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractDistributionFactor.sourceFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "sourceFlag", sub, context);
+                base.parse_attribute (/<cim:ContractDistributionFactor.sinkFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "sinkFlag", sub, context);
                 base.parse_attribute (/<cim:ContractDistributionFactor.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:ContractDistributionFactor.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
                 base.parse_attribute (/<cim:ContractDistributionFactor.TransmissionContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionContractRight", sub, context);
@@ -9329,8 +9467,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "ContractDistributionFactor", "factor", "factor",  base.from_float, fields);
-                base.export_element (obj, "ContractDistributionFactor", "sourceFlag", "sourceFlag",  base.from_string, fields);
-                base.export_element (obj, "ContractDistributionFactor", "sinkFlag", "sinkFlag",  base.from_string, fields);
+                base.export_attribute (obj, "ContractDistributionFactor", "sourceFlag", "sourceFlag", fields);
+                base.export_attribute (obj, "ContractDistributionFactor", "sinkFlag", "sinkFlag", fields);
                 base.export_attribute (obj, "ContractDistributionFactor", "RegisteredResource", "RegisteredResource", fields);
                 base.export_attribute (obj, "ContractDistributionFactor", "Flowgate", "Flowgate", fields);
                 base.export_attribute (obj, "ContractDistributionFactor", "TransmissionContractRight", "TransmissionContractRight", fields);
@@ -9366,11 +9504,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.sourceFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.sourceFlag && obj.sourceFlag.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.sinkFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.sinkFlag && obj.sinkFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
             }
 
             edit_template ()
@@ -9384,8 +9526,8 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sourceFlag'>sourceFlag: </label><div class='col-sm-8'><input id='{{id}}_sourceFlag' class='form-control' type='text'{{#sourceFlag}} value='{{sourceFlag}}'{{/sourceFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sinkFlag'>sinkFlag: </label><div class='col-sm-8'><input id='{{id}}_sinkFlag' class='form-control' type='text'{{#sinkFlag}} value='{{sinkFlag}}'{{/sinkFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sourceFlag'>sourceFlag: </label><div class='col-sm-8'><select id='{{id}}_sourceFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sinkFlag'>sinkFlag: </label><div class='col-sm-8'><select id='{{id}}_sinkFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='{{id}}_TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
@@ -9402,8 +9544,8 @@ define
                 var obj = obj || { id: id, cls: "ContractDistributionFactor" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
-                temp = document.getElementById (id + "_sourceFlag").value; if ("" != temp) obj.sourceFlag = temp;
-                temp = document.getElementById (id + "_sinkFlag").value; if ("" != temp) obj.sinkFlag = temp;
+                temp = document.getElementById (id + "_sourceFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.sourceFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_sinkFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.sinkFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
                 temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
                 temp = document.getElementById (id + "_TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
@@ -9684,11 +9826,11 @@ define
                 obj.cls = "SubControlArea";
                 base.parse_element (/<cim:SubControlArea.areaShortName>([\s\S]*?)<\/cim:SubControlArea.areaShortName>/g, obj, "areaShortName", base.to_string, sub, context);
                 base.parse_element (/<cim:SubControlArea.constantCoefficient>([\s\S]*?)<\/cim:SubControlArea.constantCoefficient>/g, obj, "constantCoefficient", base.to_float, sub, context);
-                base.parse_element (/<cim:SubControlArea.embeddedControlArea>([\s\S]*?)<\/cim:SubControlArea.embeddedControlArea>/g, obj, "embeddedControlArea", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SubControlArea.embeddedControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "embeddedControlArea", sub, context);
                 base.parse_element (/<cim:SubControlArea.endEffectiveDate>([\s\S]*?)<\/cim:SubControlArea.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:SubControlArea.internalCA>([\s\S]*?)<\/cim:SubControlArea.internalCA>/g, obj, "internalCA", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SubControlArea.internalCA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "internalCA", sub, context);
                 base.parse_element (/<cim:SubControlArea.linearCoefficient>([\s\S]*?)<\/cim:SubControlArea.linearCoefficient>/g, obj, "linearCoefficient", base.to_float, sub, context);
-                base.parse_element (/<cim:SubControlArea.localCA>([\s\S]*?)<\/cim:SubControlArea.localCA>/g, obj, "localCA", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SubControlArea.localCA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "localCA", sub, context);
                 base.parse_element (/<cim:SubControlArea.maxSelfSchedMW>([\s\S]*?)<\/cim:SubControlArea.maxSelfSchedMW>/g, obj, "maxSelfSchedMW", base.to_float, sub, context);
                 base.parse_element (/<cim:SubControlArea.minSelfSchedMW>([\s\S]*?)<\/cim:SubControlArea.minSelfSchedMW>/g, obj, "minSelfSchedMW", base.to_float, sub, context);
                 base.parse_element (/<cim:SubControlArea.quadraticCoefficient>([\s\S]*?)<\/cim:SubControlArea.quadraticCoefficient>/g, obj, "quadraticCoefficient", base.to_float, sub, context);
@@ -9729,11 +9871,11 @@ define
 
                 base.export_element (obj, "SubControlArea", "areaShortName", "areaShortName",  base.from_string, fields);
                 base.export_element (obj, "SubControlArea", "constantCoefficient", "constantCoefficient",  base.from_float, fields);
-                base.export_element (obj, "SubControlArea", "embeddedControlArea", "embeddedControlArea",  base.from_string, fields);
+                base.export_attribute (obj, "SubControlArea", "embeddedControlArea", "embeddedControlArea", fields);
                 base.export_element (obj, "SubControlArea", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "SubControlArea", "internalCA", "internalCA",  base.from_string, fields);
+                base.export_attribute (obj, "SubControlArea", "internalCA", "internalCA", fields);
                 base.export_element (obj, "SubControlArea", "linearCoefficient", "linearCoefficient",  base.from_float, fields);
-                base.export_element (obj, "SubControlArea", "localCA", "localCA",  base.from_string, fields);
+                base.export_attribute (obj, "SubControlArea", "localCA", "localCA", fields);
                 base.export_element (obj, "SubControlArea", "maxSelfSchedMW", "maxSelfSchedMW",  base.from_float, fields);
                 base.export_element (obj, "SubControlArea", "minSelfSchedMW", "minSelfSchedMW",  base.from_float, fields);
                 base.export_element (obj, "SubControlArea", "quadraticCoefficient", "quadraticCoefficient",  base.from_float, fields);
@@ -9819,6 +9961,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.embeddedControlArea) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.embeddedControlArea && obj.embeddedControlArea.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.internalCA) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.internalCA && obj.internalCA.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.localCA) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.localCA && obj.localCA.endsWith ('.' + property)});
                 if (obj.To_Flowgate) obj.To_Flowgate_string = obj.To_Flowgate.join ();
                 if (obj.InadvertentAccount) obj.InadvertentAccount_string = obj.InadvertentAccount.join ();
                 if (obj.AggregateNode) obj.AggregateNode_string = obj.AggregateNode.join ();
@@ -9842,6 +9987,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
                 delete obj.To_Flowgate_string;
                 delete obj.InadvertentAccount_string;
                 delete obj.AggregateNode_string;
@@ -9874,11 +10022,11 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_areaShortName'>areaShortName: </label><div class='col-sm-8'><input id='{{id}}_areaShortName' class='form-control' type='text'{{#areaShortName}} value='{{areaShortName}}'{{/areaShortName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constantCoefficient'>constantCoefficient: </label><div class='col-sm-8'><input id='{{id}}_constantCoefficient' class='form-control' type='text'{{#constantCoefficient}} value='{{constantCoefficient}}'{{/constantCoefficient}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_embeddedControlArea'>embeddedControlArea: </label><div class='col-sm-8'><input id='{{id}}_embeddedControlArea' class='form-control' type='text'{{#embeddedControlArea}} value='{{embeddedControlArea}}'{{/embeddedControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_embeddedControlArea'>embeddedControlArea: </label><div class='col-sm-8'><select id='{{id}}_embeddedControlArea' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_internalCA'>internalCA: </label><div class='col-sm-8'><input id='{{id}}_internalCA' class='form-control' type='text'{{#internalCA}} value='{{internalCA}}'{{/internalCA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_internalCA'>internalCA: </label><div class='col-sm-8'><select id='{{id}}_internalCA' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_linearCoefficient'>linearCoefficient: </label><div class='col-sm-8'><input id='{{id}}_linearCoefficient' class='form-control' type='text'{{#linearCoefficient}} value='{{linearCoefficient}}'{{/linearCoefficient}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localCA'>localCA: </label><div class='col-sm-8'><input id='{{id}}_localCA' class='form-control' type='text'{{#localCA}} value='{{localCA}}'{{/localCA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localCA'>localCA: </label><div class='col-sm-8'><select id='{{id}}_localCA' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxSelfSchedMW'>maxSelfSchedMW: </label><div class='col-sm-8'><input id='{{id}}_maxSelfSchedMW' class='form-control' type='text'{{#maxSelfSchedMW}} value='{{maxSelfSchedMW}}'{{/maxSelfSchedMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minSelfSchedMW'>minSelfSchedMW: </label><div class='col-sm-8'><input id='{{id}}_minSelfSchedMW' class='form-control' type='text'{{#minSelfSchedMW}} value='{{minSelfSchedMW}}'{{/minSelfSchedMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quadraticCoefficient'>quadraticCoefficient: </label><div class='col-sm-8'><input id='{{id}}_quadraticCoefficient' class='form-control' type='text'{{#quadraticCoefficient}} value='{{quadraticCoefficient}}'{{/quadraticCoefficient}}></div></div>
@@ -9904,11 +10052,11 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_areaShortName").value; if ("" != temp) obj.areaShortName = temp;
                 temp = document.getElementById (id + "_constantCoefficient").value; if ("" != temp) obj.constantCoefficient = temp;
-                temp = document.getElementById (id + "_embeddedControlArea").value; if ("" != temp) obj.embeddedControlArea = temp;
+                temp = document.getElementById (id + "_embeddedControlArea").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.embeddedControlArea = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_internalCA").value; if ("" != temp) obj.internalCA = temp;
+                temp = document.getElementById (id + "_internalCA").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.internalCA = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_linearCoefficient").value; if ("" != temp) obj.linearCoefficient = temp;
-                temp = document.getElementById (id + "_localCA").value; if ("" != temp) obj.localCA = temp;
+                temp = document.getElementById (id + "_localCA").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.localCA = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_maxSelfSchedMW").value; if ("" != temp) obj.maxSelfSchedMW = temp;
                 temp = document.getElementById (id + "_minSelfSchedMW").value; if ("" != temp) obj.minSelfSchedMW = temp;
                 temp = document.getElementById (id + "_quadraticCoefficient").value; if ("" != temp) obj.quadraticCoefficient = temp;
@@ -10457,9 +10605,9 @@ define
 
                 obj = AggregateNode.prototype.parse.call (this, context, sub);
                 obj.cls = "MSSZone";
-                base.parse_element (/<cim:MSSZone.ignoreLosses>([\s\S]*?)<\/cim:MSSZone.ignoreLosses>/g, obj, "ignoreLosses", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MSSZone.ignoreLosses\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ignoreLosses", sub, context);
                 base.parse_element (/<cim:MSSZone.lossFactor>([\s\S]*?)<\/cim:MSSZone.lossFactor>/g, obj, "lossFactor", base.to_float, sub, context);
-                base.parse_element (/<cim:MSSZone.rucGrossSettlement>([\s\S]*?)<\/cim:MSSZone.rucGrossSettlement>/g, obj, "rucGrossSettlement", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MSSZone.rucGrossSettlement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rucGrossSettlement", sub, context);
                 base.parse_attribute (/<cim:MSSZone.MeteredSubSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeteredSubSystem", sub, context);
                 var bucket = context.parsed.MSSZone;
                 if (null == bucket)
@@ -10473,9 +10621,9 @@ define
             {
                 var fields = AggregateNode.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MSSZone", "ignoreLosses", "ignoreLosses",  base.from_string, fields);
+                base.export_attribute (obj, "MSSZone", "ignoreLosses", "ignoreLosses", fields);
                 base.export_element (obj, "MSSZone", "lossFactor", "lossFactor",  base.from_float, fields);
-                base.export_element (obj, "MSSZone", "rucGrossSettlement", "rucGrossSettlement",  base.from_string, fields);
+                base.export_attribute (obj, "MSSZone", "rucGrossSettlement", "rucGrossSettlement", fields);
                 base.export_attribute (obj, "MSSZone", "MeteredSubSystem", "MeteredSubSystem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -10507,11 +10655,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.ignoreLosses) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.ignoreLosses && obj.ignoreLosses.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.rucGrossSettlement) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.rucGrossSettlement && obj.rucGrossSettlement.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
             }
 
             edit_template ()
@@ -10524,9 +10676,9 @@ define
                     `
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreLosses' class='form-control' type='text'{{#ignoreLosses}} value='{{ignoreLosses}}'{{/ignoreLosses}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><select id='{{id}}_ignoreLosses' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossFactor'>lossFactor: </label><div class='col-sm-8'><input id='{{id}}_lossFactor' class='form-control' type='text'{{#lossFactor}} value='{{lossFactor}}'{{/lossFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucGrossSettlement'>rucGrossSettlement: </label><div class='col-sm-8'><input id='{{id}}_rucGrossSettlement' class='form-control' type='text'{{#rucGrossSettlement}} value='{{rucGrossSettlement}}'{{/rucGrossSettlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucGrossSettlement'>rucGrossSettlement: </label><div class='col-sm-8'><select id='{{id}}_rucGrossSettlement' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeteredSubSystem'>MeteredSubSystem: </label><div class='col-sm-8'><input id='{{id}}_MeteredSubSystem' class='form-control' type='text'{{#MeteredSubSystem}} value='{{MeteredSubSystem}}'{{/MeteredSubSystem}}></div></div>
                     </div>
                     <fieldset>
@@ -10540,9 +10692,9 @@ define
 
                 var obj = obj || { id: id, cls: "MSSZone" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ignoreLosses").value; if ("" != temp) obj.ignoreLosses = temp;
+                temp = document.getElementById (id + "_ignoreLosses").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.ignoreLosses = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_lossFactor").value; if ("" != temp) obj.lossFactor = temp;
-                temp = document.getElementById (id + "_rucGrossSettlement").value; if ("" != temp) obj.rucGrossSettlement = temp;
+                temp = document.getElementById (id + "_rucGrossSettlement").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.rucGrossSettlement = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_MeteredSubSystem").value; if ("" != temp) obj.MeteredSubSystem = temp;
 
                 return (obj);
@@ -10843,8 +10995,8 @@ define
 
                 obj = Pnode.prototype.parse.call (this, context, sub);
                 obj.cls = "AggregatedPnode";
-                base.parse_element (/<cim:AggregatedPnode.apnodeType>([\s\S]*?)<\/cim:AggregatedPnode.apnodeType>/g, obj, "apnodeType", base.to_string, sub, context);
-                base.parse_element (/<cim:AggregatedPnode.participationCategory>([\s\S]*?)<\/cim:AggregatedPnode.participationCategory>/g, obj, "participationCategory", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AggregatedPnode.apnodeType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "apnodeType", sub, context);
+                base.parse_attribute (/<cim:AggregatedPnode.participationCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "participationCategory", sub, context);
                 base.parse_attributes (/<cim:AggregatedPnode.GenDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenDistributionFactor", sub, context);
                 base.parse_attributes (/<cim:AggregatedPnode.MPMTestResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestResults", sub, context);
                 base.parse_attributes (/<cim:AggregatedPnode.MPMTestThreshold\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestThreshold", sub, context);
@@ -10865,8 +11017,8 @@ define
             {
                 var fields = Pnode.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AggregatedPnode", "apnodeType", "apnodeType",  base.from_string, fields);
-                base.export_element (obj, "AggregatedPnode", "participationCategory", "participationCategory",  base.from_string, fields);
+                base.export_attribute (obj, "AggregatedPnode", "apnodeType", "apnodeType", fields);
+                base.export_attribute (obj, "AggregatedPnode", "participationCategory", "participationCategory", fields);
                 base.export_attributes (obj, "AggregatedPnode", "GenDistributionFactor", "GenDistributionFactor", fields);
                 base.export_attributes (obj, "AggregatedPnode", "MPMTestResults", "MPMTestResults", fields);
                 base.export_attributes (obj, "AggregatedPnode", "MPMTestThreshold", "MPMTestThreshold", fields);
@@ -10911,6 +11063,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ApnodeType = []; if (!obj.apnodeType) obj.ApnodeType.push ({ id: '', selected: true}); for (var property in ApnodeType) obj.ApnodeType.push ({ id: property, selected: obj.apnodeType && obj.apnodeType.endsWith ('.' + property)});
+                obj.ParticipationCategoryMPM = []; if (!obj.participationCategory) obj.ParticipationCategoryMPM.push ({ id: '', selected: true}); for (var property in ParticipationCategoryMPM) obj.ParticipationCategoryMPM.push ({ id: property, selected: obj.participationCategory && obj.participationCategory.endsWith ('.' + property)});
                 if (obj.GenDistributionFactor) obj.GenDistributionFactor_string = obj.GenDistributionFactor.join ();
                 if (obj.MPMTestResults) obj.MPMTestResults_string = obj.MPMTestResults.join ();
                 if (obj.MPMTestThreshold) obj.MPMTestThreshold_string = obj.MPMTestThreshold.join ();
@@ -10923,6 +11077,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ApnodeType;
+                delete obj.ParticipationCategoryMPM;
                 delete obj.GenDistributionFactor_string;
                 delete obj.MPMTestResults_string;
                 delete obj.MPMTestThreshold_string;
@@ -10942,8 +11098,8 @@ define
                     `
                     + Pnode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_apnodeType'>apnodeType: </label><div class='col-sm-8'><input id='{{id}}_apnodeType' class='form-control' type='text'{{#apnodeType}} value='{{apnodeType}}'{{/apnodeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participationCategory'>participationCategory: </label><div class='col-sm-8'><input id='{{id}}_participationCategory' class='form-control' type='text'{{#participationCategory}} value='{{participationCategory}}'{{/participationCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_apnodeType'>apnodeType: </label><div class='col-sm-8'><select id='{{id}}_apnodeType' class='form-control custom-select'>{{#ApnodeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ApnodeType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participationCategory'>participationCategory: </label><div class='col-sm-8'><select id='{{id}}_participationCategory' class='form-control custom-select'>{{#ParticipationCategoryMPM}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ParticipationCategoryMPM}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='{{id}}_MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold_string}}'{{/MPMTestThreshold}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TACArea'>TACArea: </label><div class='col-sm-8'><input id='{{id}}_TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea_string}}'{{/TACArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PnodeDistributionFactor'>PnodeDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_PnodeDistributionFactor' class='form-control' type='text'{{#PnodeDistributionFactor}} value='{{PnodeDistributionFactor}}'{{/PnodeDistributionFactor}}></div></div>
@@ -10959,8 +11115,8 @@ define
 
                 var obj = obj || { id: id, cls: "AggregatedPnode" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_apnodeType").value; if ("" != temp) obj.apnodeType = temp;
-                temp = document.getElementById (id + "_participationCategory").value; if ("" != temp) obj.participationCategory = temp;
+                temp = document.getElementById (id + "_apnodeType").value; if ("" != temp) { temp = ApnodeType[temp]; if ("undefined" != typeof (temp)) obj.apnodeType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ApnodeType." + temp; }
+                temp = document.getElementById (id + "_participationCategory").value; if ("" != temp) { temp = ParticipationCategoryMPM[temp]; if ("undefined" != typeof (temp)) obj.participationCategory = "http://iec.ch/TC57/2013/CIM-schema-cim16#ParticipationCategoryMPM." + temp; }
                 temp = document.getElementById (id + "_MPMTestThreshold").value; if ("" != temp) obj.MPMTestThreshold = temp.split (",");
                 temp = document.getElementById (id + "_TACArea").value; if ("" != temp) obj.TACArea = temp.split (",");
                 temp = document.getElementById (id + "_PnodeDistributionFactor").value; if ("" != temp) obj.PnodeDistributionFactor = temp;

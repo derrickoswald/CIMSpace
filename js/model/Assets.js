@@ -108,16 +108,16 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Asset";
-                base.parse_element (/<cim:Asset.acceptanceTest>([\s\S]*?)<\/cim:Asset.acceptanceTest>/g, obj, "acceptanceTest", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Asset.acceptanceTest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "acceptanceTest", sub, context);
                 base.parse_element (/<cim:Asset.critical>([\s\S]*?)<\/cim:Asset.critical>/g, obj, "critical", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Asset.electronicAddress>([\s\S]*?)<\/cim:Asset.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Asset.electronicAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddress", sub, context);
                 base.parse_element (/<cim:Asset.initialCondition>([\s\S]*?)<\/cim:Asset.initialCondition>/g, obj, "initialCondition", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.initialLossOfLife>([\s\S]*?)<\/cim:Asset.initialLossOfLife>/g, obj, "initialLossOfLife", base.to_string, sub, context);
-                base.parse_element (/<cim:Asset.lifecycle>([\s\S]*?)<\/cim:Asset.lifecycle>/g, obj, "lifecycle", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Asset.lifecycle\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "lifecycle", sub, context);
                 base.parse_element (/<cim:Asset.lotNumber>([\s\S]*?)<\/cim:Asset.lotNumber>/g, obj, "lotNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.purchasePrice>([\s\S]*?)<\/cim:Asset.purchasePrice>/g, obj, "purchasePrice", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.serialNumber>([\s\S]*?)<\/cim:Asset.serialNumber>/g, obj, "serialNumber", base.to_string, sub, context);
-                base.parse_element (/<cim:Asset.status>([\s\S]*?)<\/cim:Asset.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Asset.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Asset.type>([\s\S]*?)<\/cim:Asset.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.utcNumber>([\s\S]*?)<\/cim:Asset.utcNumber>/g, obj, "utcNumber", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Asset.OperationTags\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationTags", sub, context);
@@ -154,16 +154,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Asset", "acceptanceTest", "acceptanceTest",  base.from_string, fields);
+                base.export_attribute (obj, "Asset", "acceptanceTest", "acceptanceTest", fields);
                 base.export_element (obj, "Asset", "critical", "critical",  base.from_boolean, fields);
-                base.export_element (obj, "Asset", "electronicAddress", "electronicAddress",  base.from_string, fields);
+                base.export_attribute (obj, "Asset", "electronicAddress", "electronicAddress", fields);
                 base.export_element (obj, "Asset", "initialCondition", "initialCondition",  base.from_string, fields);
                 base.export_element (obj, "Asset", "initialLossOfLife", "initialLossOfLife",  base.from_string, fields);
-                base.export_element (obj, "Asset", "lifecycle", "lifecycle",  base.from_string, fields);
+                base.export_attribute (obj, "Asset", "lifecycle", "lifecycle", fields);
                 base.export_element (obj, "Asset", "lotNumber", "lotNumber",  base.from_string, fields);
                 base.export_element (obj, "Asset", "purchasePrice", "purchasePrice",  base.from_string, fields);
                 base.export_element (obj, "Asset", "serialNumber", "serialNumber",  base.from_string, fields);
-                base.export_element (obj, "Asset", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Asset", "status", "status", fields);
                 base.export_element (obj, "Asset", "type", "type",  base.from_string, fields);
                 base.export_element (obj, "Asset", "utcNumber", "utcNumber",  base.from_string, fields);
                 base.export_attributes (obj, "Asset", "OperationTags", "OperationTags", fields);
@@ -244,6 +244,10 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.AcceptanceTest = []; if (!obj.acceptanceTest) obj.AcceptanceTest.push ({ id: '', selected: true}); for (var property in AcceptanceTest) obj.AcceptanceTest.push ({ id: property, selected: obj.acceptanceTest && obj.acceptanceTest.endsWith ('.' + property)});
+                obj.ElectronicAddress = []; if (!obj.electronicAddress) obj.ElectronicAddress.push ({ id: '', selected: true}); for (var property in ElectronicAddress) obj.ElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
+                obj.LifecycleDate = []; if (!obj.lifecycle) obj.LifecycleDate.push ({ id: '', selected: true}); for (var property in LifecycleDate) obj.LifecycleDate.push ({ id: property, selected: obj.lifecycle && obj.lifecycle.endsWith ('.' + property)});
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.OperationTags) obj.OperationTags_string = obj.OperationTags.join ();
                 if (obj.ActivityRecords) obj.ActivityRecords_string = obj.ActivityRecords.join ();
                 if (obj.Mediums) obj.Mediums_string = obj.Mediums.join ();
@@ -265,6 +269,10 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AcceptanceTest;
+                delete obj.ElectronicAddress;
+                delete obj.LifecycleDate;
+                delete obj.Status;
                 delete obj.OperationTags_string;
                 delete obj.ActivityRecords_string;
                 delete obj.Mediums_string;
@@ -293,16 +301,16 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptanceTest'>acceptanceTest: </label><div class='col-sm-8'><input id='{{id}}_acceptanceTest' class='form-control' type='text'{{#acceptanceTest}} value='{{acceptanceTest}}'{{/acceptanceTest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptanceTest'>acceptanceTest: </label><div class='col-sm-8'><select id='{{id}}_acceptanceTest' class='form-control custom-select'>{{#AcceptanceTest}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AcceptanceTest}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_critical'>critical: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_critical' class='form-check-input' type='checkbox'{{#critical}} checked{{/critical}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#ElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ElectronicAddress}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initialCondition'>initialCondition: </label><div class='col-sm-8'><input id='{{id}}_initialCondition' class='form-control' type='text'{{#initialCondition}} value='{{initialCondition}}'{{/initialCondition}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initialLossOfLife'>initialLossOfLife: </label><div class='col-sm-8'><input id='{{id}}_initialLossOfLife' class='form-control' type='text'{{#initialLossOfLife}} value='{{initialLossOfLife}}'{{/initialLossOfLife}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lifecycle'>lifecycle: </label><div class='col-sm-8'><input id='{{id}}_lifecycle' class='form-control' type='text'{{#lifecycle}} value='{{lifecycle}}'{{/lifecycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lifecycle'>lifecycle: </label><div class='col-sm-8'><select id='{{id}}_lifecycle' class='form-control custom-select'>{{#LifecycleDate}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LifecycleDate}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lotNumber'>lotNumber: </label><div class='col-sm-8'><input id='{{id}}_lotNumber' class='form-control' type='text'{{#lotNumber}} value='{{lotNumber}}'{{/lotNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchasePrice'>purchasePrice: </label><div class='col-sm-8'><input id='{{id}}_purchasePrice' class='form-control' type='text'{{#purchasePrice}} value='{{purchasePrice}}'{{/purchasePrice}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serialNumber'>serialNumber: </label><div class='col-sm-8'><input id='{{id}}_serialNumber' class='form-control' type='text'{{#serialNumber}} value='{{serialNumber}}'{{/serialNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_utcNumber'>utcNumber: </label><div class='col-sm-8'><input id='{{id}}_utcNumber' class='form-control' type='text'{{#utcNumber}} value='{{utcNumber}}'{{/utcNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords_string}}'{{/ActivityRecords}}></div></div>
@@ -333,16 +341,16 @@ define
 
                 var obj = obj || { id: id, cls: "Asset" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_acceptanceTest").value; if ("" != temp) obj.acceptanceTest = temp;
+                temp = document.getElementById (id + "_acceptanceTest").value; if ("" != temp) { temp = AcceptanceTest[temp]; if ("undefined" != typeof (temp)) obj.acceptanceTest = "http://iec.ch/TC57/2013/CIM-schema-cim16#AcceptanceTest." + temp; }
                 temp = document.getElementById (id + "_critical").checked; if (temp) obj.critical = true;
-                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
+                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) { temp = ElectronicAddress[temp]; if ("undefined" != typeof (temp)) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; }
                 temp = document.getElementById (id + "_initialCondition").value; if ("" != temp) obj.initialCondition = temp;
                 temp = document.getElementById (id + "_initialLossOfLife").value; if ("" != temp) obj.initialLossOfLife = temp;
-                temp = document.getElementById (id + "_lifecycle").value; if ("" != temp) obj.lifecycle = temp;
+                temp = document.getElementById (id + "_lifecycle").value; if ("" != temp) { temp = LifecycleDate[temp]; if ("undefined" != typeof (temp)) obj.lifecycle = "http://iec.ch/TC57/2013/CIM-schema-cim16#LifecycleDate." + temp; }
                 temp = document.getElementById (id + "_lotNumber").value; if ("" != temp) obj.lotNumber = temp;
                 temp = document.getElementById (id + "_purchasePrice").value; if ("" != temp) obj.purchasePrice = temp;
                 temp = document.getElementById (id + "_serialNumber").value; if ("" != temp) obj.serialNumber = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_utcNumber").value; if ("" != temp) obj.utcNumber = temp;
                 temp = document.getElementById (id + "_ActivityRecords").value; if ("" != temp) obj.ActivityRecords = temp.split (",");

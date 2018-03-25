@@ -203,7 +203,7 @@ define
                 base.parse_element (/<cim:ConnectDisconnectFunction.isLocalAutoReconOp>([\s\S]*?)<\/cim:ConnectDisconnectFunction.isLocalAutoReconOp>/g, obj, "isLocalAutoReconOp", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ConnectDisconnectFunction.isRemoteAutoDisconOp>([\s\S]*?)<\/cim:ConnectDisconnectFunction.isRemoteAutoDisconOp>/g, obj, "isRemoteAutoDisconOp", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ConnectDisconnectFunction.isRemoteAutoReconOp>([\s\S]*?)<\/cim:ConnectDisconnectFunction.isRemoteAutoReconOp>/g, obj, "isRemoteAutoReconOp", base.to_boolean, sub, context);
-                base.parse_element (/<cim:ConnectDisconnectFunction.rcdInfo>([\s\S]*?)<\/cim:ConnectDisconnectFunction.rcdInfo>/g, obj, "rcdInfo", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ConnectDisconnectFunction.rcdInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rcdInfo", sub, context);
                 base.parse_attributes (/<cim:ConnectDisconnectFunction.Switches\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Switches", sub, context);
                 var bucket = context.parsed.ConnectDisconnectFunction;
                 if (null == bucket)
@@ -224,7 +224,7 @@ define
                 base.export_element (obj, "ConnectDisconnectFunction", "isLocalAutoReconOp", "isLocalAutoReconOp",  base.from_boolean, fields);
                 base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoDisconOp", "isRemoteAutoDisconOp",  base.from_boolean, fields);
                 base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoReconOp", "isRemoteAutoReconOp",  base.from_boolean, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "rcdInfo", "rcdInfo",  base.from_string, fields);
+                base.export_attribute (obj, "ConnectDisconnectFunction", "rcdInfo", "rcdInfo", fields);
                 base.export_attributes (obj, "ConnectDisconnectFunction", "Switches", "Switches", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -260,12 +260,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.RemoteConnectDisconnectInfo = []; if (!obj.rcdInfo) obj.RemoteConnectDisconnectInfo.push ({ id: '', selected: true}); for (var property in RemoteConnectDisconnectInfo) obj.RemoteConnectDisconnectInfo.push ({ id: property, selected: obj.rcdInfo && obj.rcdInfo.endsWith ('.' + property)});
                 if (obj.Switches) obj.Switches_string = obj.Switches.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RemoteConnectDisconnectInfo;
                 delete obj.Switches_string;
             }
 
@@ -286,7 +288,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isLocalAutoReconOp'>isLocalAutoReconOp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isLocalAutoReconOp' class='form-check-input' type='checkbox'{{#isLocalAutoReconOp}} checked{{/isLocalAutoReconOp}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isRemoteAutoDisconOp'>isRemoteAutoDisconOp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isRemoteAutoDisconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoDisconOp}} checked{{/isRemoteAutoDisconOp}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isRemoteAutoReconOp'>isRemoteAutoReconOp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isRemoteAutoReconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoReconOp}} checked{{/isRemoteAutoReconOp}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcdInfo'>rcdInfo: </label><div class='col-sm-8'><input id='{{id}}_rcdInfo' class='form-control' type='text'{{#rcdInfo}} value='{{rcdInfo}}'{{/rcdInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcdInfo'>rcdInfo: </label><div class='col-sm-8'><select id='{{id}}_rcdInfo' class='form-control custom-select'>{{#RemoteConnectDisconnectInfo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteConnectDisconnectInfo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switches'>Switches: </label><div class='col-sm-8'><input id='{{id}}_Switches' class='form-control' type='text'{{#Switches}} value='{{Switches_string}}'{{/Switches}}></div></div>
                     </div>
                     <fieldset>
@@ -307,7 +309,7 @@ define
                 temp = document.getElementById (id + "_isLocalAutoReconOp").checked; if (temp) obj.isLocalAutoReconOp = true;
                 temp = document.getElementById (id + "_isRemoteAutoDisconOp").checked; if (temp) obj.isRemoteAutoDisconOp = true;
                 temp = document.getElementById (id + "_isRemoteAutoReconOp").checked; if (temp) obj.isRemoteAutoReconOp = true;
-                temp = document.getElementById (id + "_rcdInfo").value; if ("" != temp) obj.rcdInfo = temp;
+                temp = document.getElementById (id + "_rcdInfo").value; if ("" != temp) { temp = RemoteConnectDisconnectInfo[temp]; if ("undefined" != typeof (temp)) obj.rcdInfo = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteConnectDisconnectInfo." + temp; }
                 temp = document.getElementById (id + "_Switches").value; if ("" != temp) obj.Switches = temp.split (",");
 
                 return (obj);

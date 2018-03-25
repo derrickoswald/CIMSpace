@@ -191,7 +191,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "DemandResponseProgram";
                 base.parse_element (/<cim:DemandResponseProgram.type>([\s\S]*?)<\/cim:DemandResponseProgram.type>/g, obj, "type", base.to_string, sub, context);
-                base.parse_element (/<cim:DemandResponseProgram.validityInterval>([\s\S]*?)<\/cim:DemandResponseProgram.validityInterval>/g, obj, "validityInterval", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DemandResponseProgram.validityInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "validityInterval", sub, context);
                 base.parse_attributes (/<cim:DemandResponseProgram.EndDeviceGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceGroups", sub, context);
                 base.parse_attributes (/<cim:DemandResponseProgram.CustomerAgreements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreements", sub, context);
                 base.parse_attributes (/<cim:DemandResponseProgram.UsagePointGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePointGroups", sub, context);
@@ -208,7 +208,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DemandResponseProgram", "type", "type",  base.from_string, fields);
-                base.export_element (obj, "DemandResponseProgram", "validityInterval", "validityInterval",  base.from_string, fields);
+                base.export_attribute (obj, "DemandResponseProgram", "validityInterval", "validityInterval", fields);
                 base.export_attributes (obj, "DemandResponseProgram", "EndDeviceGroups", "EndDeviceGroups", fields);
                 base.export_attributes (obj, "DemandResponseProgram", "CustomerAgreements", "CustomerAgreements", fields);
                 base.export_attributes (obj, "DemandResponseProgram", "UsagePointGroups", "UsagePointGroups", fields);
@@ -243,6 +243,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.validityInterval) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.validityInterval && obj.validityInterval.endsWith ('.' + property)});
                 if (obj.EndDeviceGroups) obj.EndDeviceGroups_string = obj.EndDeviceGroups.join ();
                 if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
                 if (obj.UsagePointGroups) obj.UsagePointGroups_string = obj.UsagePointGroups.join ();
@@ -251,6 +252,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.EndDeviceGroups_string;
                 delete obj.CustomerAgreements_string;
                 delete obj.UsagePointGroups_string;
@@ -267,7 +269,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><select id='{{id}}_validityInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups_string}}'{{/EndDeviceGroups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements_string}}'{{/CustomerAgreements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='{{id}}_UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups_string}}'{{/UsagePointGroups}}></div></div>
@@ -284,7 +286,7 @@ define
                 var obj = obj || { id: id, cls: "DemandResponseProgram" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) obj.validityInterval = temp;
+                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.validityInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_EndDeviceGroups").value; if ("" != temp) obj.EndDeviceGroups = temp.split (",");
                 temp = document.getElementById (id + "_CustomerAgreements").value; if ("" != temp) obj.CustomerAgreements = temp.split (",");
                 temp = document.getElementById (id + "_UsagePointGroups").value; if ("" != temp) obj.UsagePointGroups = temp.split (",");
@@ -635,7 +637,7 @@ define
                 base.parse_element (/<cim:Register.isVirtual>([\s\S]*?)<\/cim:Register.isVirtual>/g, obj, "isVirtual", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Register.leftDigitCount>([\s\S]*?)<\/cim:Register.leftDigitCount>/g, obj, "leftDigitCount", base.to_string, sub, context);
                 base.parse_element (/<cim:Register.rightDigitCount>([\s\S]*?)<\/cim:Register.rightDigitCount>/g, obj, "rightDigitCount", base.to_string, sub, context);
-                base.parse_element (/<cim:Register.touTier>([\s\S]*?)<\/cim:Register.touTier>/g, obj, "touTier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Register.touTier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "touTier", sub, context);
                 base.parse_element (/<cim:Register.touTierName>([\s\S]*?)<\/cim:Register.touTierName>/g, obj, "touTierName", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Register.EndDeviceFunction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceFunction", sub, context);
                 base.parse_attributes (/<cim:Register.Channels\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Channels", sub, context);
@@ -654,7 +656,7 @@ define
                 base.export_element (obj, "Register", "isVirtual", "isVirtual",  base.from_boolean, fields);
                 base.export_element (obj, "Register", "leftDigitCount", "leftDigitCount",  base.from_string, fields);
                 base.export_element (obj, "Register", "rightDigitCount", "rightDigitCount",  base.from_string, fields);
-                base.export_element (obj, "Register", "touTier", "touTier",  base.from_string, fields);
+                base.export_attribute (obj, "Register", "touTier", "touTier", fields);
                 base.export_element (obj, "Register", "touTierName", "touTierName",  base.from_string, fields);
                 base.export_attribute (obj, "Register", "EndDeviceFunction", "EndDeviceFunction", fields);
                 base.export_attributes (obj, "Register", "Channels", "Channels", fields);
@@ -691,12 +693,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.TimeInterval = []; if (!obj.touTier) obj.TimeInterval.push ({ id: '', selected: true}); for (var property in TimeInterval) obj.TimeInterval.push ({ id: property, selected: obj.touTier && obj.touTier.endsWith ('.' + property)});
                 if (obj.Channels) obj.Channels_string = obj.Channels.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeInterval;
                 delete obj.Channels_string;
             }
 
@@ -713,7 +717,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isVirtual'>isVirtual: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_leftDigitCount'>leftDigitCount: </label><div class='col-sm-8'><input id='{{id}}_leftDigitCount' class='form-control' type='text'{{#leftDigitCount}} value='{{leftDigitCount}}'{{/leftDigitCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rightDigitCount'>rightDigitCount: </label><div class='col-sm-8'><input id='{{id}}_rightDigitCount' class='form-control' type='text'{{#rightDigitCount}} value='{{rightDigitCount}}'{{/rightDigitCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_touTier'>touTier: </label><div class='col-sm-8'><input id='{{id}}_touTier' class='form-control' type='text'{{#touTier}} value='{{touTier}}'{{/touTier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_touTier'>touTier: </label><div class='col-sm-8'><select id='{{id}}_touTier' class='form-control custom-select'>{{#TimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_touTierName'>touTierName: </label><div class='col-sm-8'><input id='{{id}}_touTierName' class='form-control' type='text'{{#touTierName}} value='{{touTierName}}'{{/touTierName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceFunction'>EndDeviceFunction: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceFunction' class='form-control' type='text'{{#EndDeviceFunction}} value='{{EndDeviceFunction}}'{{/EndDeviceFunction}}></div></div>
                     </div>
@@ -731,7 +735,7 @@ define
                 temp = document.getElementById (id + "_isVirtual").checked; if (temp) obj.isVirtual = true;
                 temp = document.getElementById (id + "_leftDigitCount").value; if ("" != temp) obj.leftDigitCount = temp;
                 temp = document.getElementById (id + "_rightDigitCount").value; if ("" != temp) obj.rightDigitCount = temp;
-                temp = document.getElementById (id + "_touTier").value; if ("" != temp) obj.touTier = temp;
+                temp = document.getElementById (id + "_touTier").value; if ("" != temp) { temp = TimeInterval[temp]; if ("undefined" != typeof (temp)) obj.touTier = "http://iec.ch/TC57/2013/CIM-schema-cim16#TimeInterval." + temp; }
                 temp = document.getElementById (id + "_touTierName").value; if ("" != temp) obj.touTierName = temp;
                 temp = document.getElementById (id + "_EndDeviceFunction").value; if ("" != temp) obj.EndDeviceFunction = temp;
 
@@ -782,11 +786,11 @@ define
                 base.parse_element (/<cim:EndDeviceControl.drProgramMandatory>([\s\S]*?)<\/cim:EndDeviceControl.drProgramMandatory>/g, obj, "drProgramMandatory", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDeviceControl.issuerID>([\s\S]*?)<\/cim:EndDeviceControl.issuerID>/g, obj, "issuerID", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceControl.issuerTrackingID>([\s\S]*?)<\/cim:EndDeviceControl.issuerTrackingID>/g, obj, "issuerTrackingID", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceControl.priceSignal>([\s\S]*?)<\/cim:EndDeviceControl.priceSignal>/g, obj, "priceSignal", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceControl.primaryDeviceTiming>([\s\S]*?)<\/cim:EndDeviceControl.primaryDeviceTiming>/g, obj, "primaryDeviceTiming", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EndDeviceControl.priceSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "priceSignal", sub, context);
+                base.parse_attribute (/<cim:EndDeviceControl.primaryDeviceTiming\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "primaryDeviceTiming", sub, context);
                 base.parse_element (/<cim:EndDeviceControl.reason>([\s\S]*?)<\/cim:EndDeviceControl.reason>/g, obj, "reason", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceControl.scheduledInterval>([\s\S]*?)<\/cim:EndDeviceControl.scheduledInterval>/g, obj, "scheduledInterval", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceControl.secondaryDeviceTiming>([\s\S]*?)<\/cim:EndDeviceControl.secondaryDeviceTiming>/g, obj, "secondaryDeviceTiming", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EndDeviceControl.scheduledInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "scheduledInterval", sub, context);
+                base.parse_attribute (/<cim:EndDeviceControl.secondaryDeviceTiming\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "secondaryDeviceTiming", sub, context);
                 base.parse_attributes (/<cim:EndDeviceControl.EndDeviceGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceGroups", sub, context);
                 base.parse_attribute (/<cim:EndDeviceControl.EndDeviceControlType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceControlType", sub, context);
                 base.parse_attribute (/<cim:EndDeviceControl.EndDeviceAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceAction", sub, context);
@@ -809,11 +813,11 @@ define
                 base.export_element (obj, "EndDeviceControl", "drProgramMandatory", "drProgramMandatory",  base.from_boolean, fields);
                 base.export_element (obj, "EndDeviceControl", "issuerID", "issuerID",  base.from_string, fields);
                 base.export_element (obj, "EndDeviceControl", "issuerTrackingID", "issuerTrackingID",  base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "priceSignal", "priceSignal",  base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "primaryDeviceTiming", "primaryDeviceTiming",  base.from_string, fields);
+                base.export_attribute (obj, "EndDeviceControl", "priceSignal", "priceSignal", fields);
+                base.export_attribute (obj, "EndDeviceControl", "primaryDeviceTiming", "primaryDeviceTiming", fields);
                 base.export_element (obj, "EndDeviceControl", "reason", "reason",  base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "scheduledInterval", "scheduledInterval",  base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "secondaryDeviceTiming", "secondaryDeviceTiming",  base.from_string, fields);
+                base.export_attribute (obj, "EndDeviceControl", "scheduledInterval", "scheduledInterval", fields);
+                base.export_attribute (obj, "EndDeviceControl", "secondaryDeviceTiming", "secondaryDeviceTiming", fields);
                 base.export_attributes (obj, "EndDeviceControl", "EndDeviceGroups", "EndDeviceGroups", fields);
                 base.export_attribute (obj, "EndDeviceControl", "EndDeviceControlType", "EndDeviceControlType", fields);
                 base.export_attribute (obj, "EndDeviceControl", "EndDeviceAction", "EndDeviceAction", fields);
@@ -859,6 +863,10 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.FloatQuantity = []; if (!obj.priceSignal) obj.FloatQuantity.push ({ id: '', selected: true}); for (var property in FloatQuantity) obj.FloatQuantity.push ({ id: property, selected: obj.priceSignal && obj.priceSignal.endsWith ('.' + property)});
+                obj.EndDeviceTiming = []; if (!obj.primaryDeviceTiming) obj.EndDeviceTiming.push ({ id: '', selected: true}); for (var property in EndDeviceTiming) obj.EndDeviceTiming.push ({ id: property, selected: obj.primaryDeviceTiming && obj.primaryDeviceTiming.endsWith ('.' + property)});
+                obj.DateTimeInterval = []; if (!obj.scheduledInterval) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.scheduledInterval && obj.scheduledInterval.endsWith ('.' + property)});
+                obj.EndDeviceTiming = []; if (!obj.secondaryDeviceTiming) obj.EndDeviceTiming.push ({ id: '', selected: true}); for (var property in EndDeviceTiming) obj.EndDeviceTiming.push ({ id: property, selected: obj.secondaryDeviceTiming && obj.secondaryDeviceTiming.endsWith ('.' + property)});
                 if (obj.EndDeviceGroups) obj.EndDeviceGroups_string = obj.EndDeviceGroups.join ();
                 if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
                 if (obj.UsagePointGroups) obj.UsagePointGroups_string = obj.UsagePointGroups.join ();
@@ -868,6 +876,10 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.FloatQuantity;
+                delete obj.EndDeviceTiming;
+                delete obj.DateTimeInterval;
+                delete obj.EndDeviceTiming;
                 delete obj.EndDeviceGroups_string;
                 delete obj.UsagePoints_string;
                 delete obj.UsagePointGroups_string;
@@ -888,11 +900,11 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_drProgramMandatory'>drProgramMandatory: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_drProgramMandatory' class='form-check-input' type='checkbox'{{#drProgramMandatory}} checked{{/drProgramMandatory}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issuerID'>issuerID: </label><div class='col-sm-8'><input id='{{id}}_issuerID' class='form-control' type='text'{{#issuerID}} value='{{issuerID}}'{{/issuerID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issuerTrackingID'>issuerTrackingID: </label><div class='col-sm-8'><input id='{{id}}_issuerTrackingID' class='form-control' type='text'{{#issuerTrackingID}} value='{{issuerTrackingID}}'{{/issuerTrackingID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSignal'>priceSignal: </label><div class='col-sm-8'><input id='{{id}}_priceSignal' class='form-control' type='text'{{#priceSignal}} value='{{priceSignal}}'{{/priceSignal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryDeviceTiming'>primaryDeviceTiming: </label><div class='col-sm-8'><input id='{{id}}_primaryDeviceTiming' class='form-control' type='text'{{#primaryDeviceTiming}} value='{{primaryDeviceTiming}}'{{/primaryDeviceTiming}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSignal'>priceSignal: </label><div class='col-sm-8'><select id='{{id}}_priceSignal' class='form-control custom-select'>{{#FloatQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FloatQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryDeviceTiming'>primaryDeviceTiming: </label><div class='col-sm-8'><select id='{{id}}_primaryDeviceTiming' class='form-control custom-select'>{{#EndDeviceTiming}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EndDeviceTiming}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><input id='{{id}}_reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledInterval'>scheduledInterval: </label><div class='col-sm-8'><input id='{{id}}_scheduledInterval' class='form-control' type='text'{{#scheduledInterval}} value='{{scheduledInterval}}'{{/scheduledInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryDeviceTiming'>secondaryDeviceTiming: </label><div class='col-sm-8'><input id='{{id}}_secondaryDeviceTiming' class='form-control' type='text'{{#secondaryDeviceTiming}} value='{{secondaryDeviceTiming}}'{{/secondaryDeviceTiming}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledInterval'>scheduledInterval: </label><div class='col-sm-8'><select id='{{id}}_scheduledInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryDeviceTiming'>secondaryDeviceTiming: </label><div class='col-sm-8'><select id='{{id}}_secondaryDeviceTiming' class='form-control custom-select'>{{#EndDeviceTiming}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EndDeviceTiming}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups_string}}'{{/EndDeviceGroups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControlType'>EndDeviceControlType: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControlType' class='form-control' type='text'{{#EndDeviceControlType}} value='{{EndDeviceControlType}}'{{/EndDeviceControlType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceAction'>EndDeviceAction: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceAction' class='form-control' type='text'{{#EndDeviceAction}} value='{{EndDeviceAction}}'{{/EndDeviceAction}}></div></div>
@@ -915,11 +927,11 @@ define
                 temp = document.getElementById (id + "_drProgramMandatory").checked; if (temp) obj.drProgramMandatory = true;
                 temp = document.getElementById (id + "_issuerID").value; if ("" != temp) obj.issuerID = temp;
                 temp = document.getElementById (id + "_issuerTrackingID").value; if ("" != temp) obj.issuerTrackingID = temp;
-                temp = document.getElementById (id + "_priceSignal").value; if ("" != temp) obj.priceSignal = temp;
-                temp = document.getElementById (id + "_primaryDeviceTiming").value; if ("" != temp) obj.primaryDeviceTiming = temp;
+                temp = document.getElementById (id + "_priceSignal").value; if ("" != temp) { temp = FloatQuantity[temp]; if ("undefined" != typeof (temp)) obj.priceSignal = "http://iec.ch/TC57/2013/CIM-schema-cim16#FloatQuantity." + temp; }
+                temp = document.getElementById (id + "_primaryDeviceTiming").value; if ("" != temp) { temp = EndDeviceTiming[temp]; if ("undefined" != typeof (temp)) obj.primaryDeviceTiming = "http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceTiming." + temp; }
                 temp = document.getElementById (id + "_reason").value; if ("" != temp) obj.reason = temp;
-                temp = document.getElementById (id + "_scheduledInterval").value; if ("" != temp) obj.scheduledInterval = temp;
-                temp = document.getElementById (id + "_secondaryDeviceTiming").value; if ("" != temp) obj.secondaryDeviceTiming = temp;
+                temp = document.getElementById (id + "_scheduledInterval").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.scheduledInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
+                temp = document.getElementById (id + "_secondaryDeviceTiming").value; if ("" != temp) { temp = EndDeviceTiming[temp]; if ("undefined" != typeof (temp)) obj.secondaryDeviceTiming = "http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceTiming." + temp; }
                 temp = document.getElementById (id + "_EndDeviceGroups").value; if ("" != temp) obj.EndDeviceGroups = temp.split (",");
                 temp = document.getElementById (id + "_EndDeviceControlType").value; if ("" != temp) obj.EndDeviceControlType = temp;
                 temp = document.getElementById (id + "_EndDeviceAction").value; if ("" != temp) obj.EndDeviceAction = temp;
@@ -1166,7 +1178,7 @@ define
                 base.parse_element (/<cim:UsagePoint.minimalUsageExpected>([\s\S]*?)<\/cim:UsagePoint.minimalUsageExpected>/g, obj, "minimalUsageExpected", base.to_boolean, sub, context);
                 base.parse_element (/<cim:UsagePoint.nominalServiceVoltage>([\s\S]*?)<\/cim:UsagePoint.nominalServiceVoltage>/g, obj, "nominalServiceVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:UsagePoint.outageRegion>([\s\S]*?)<\/cim:UsagePoint.outageRegion>/g, obj, "outageRegion", base.to_string, sub, context);
-                base.parse_element (/<cim:UsagePoint.phaseCode>([\s\S]*?)<\/cim:UsagePoint.phaseCode>/g, obj, "phaseCode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:UsagePoint.phaseCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phaseCode", sub, context);
                 base.parse_element (/<cim:UsagePoint.ratedCurrent>([\s\S]*?)<\/cim:UsagePoint.ratedCurrent>/g, obj, "ratedCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:UsagePoint.ratedPower>([\s\S]*?)<\/cim:UsagePoint.ratedPower>/g, obj, "ratedPower", base.to_string, sub, context);
                 base.parse_element (/<cim:UsagePoint.readCycle>([\s\S]*?)<\/cim:UsagePoint.readCycle>/g, obj, "readCycle", base.to_string, sub, context);
@@ -1212,7 +1224,7 @@ define
                 base.export_element (obj, "UsagePoint", "minimalUsageExpected", "minimalUsageExpected",  base.from_boolean, fields);
                 base.export_element (obj, "UsagePoint", "nominalServiceVoltage", "nominalServiceVoltage",  base.from_string, fields);
                 base.export_element (obj, "UsagePoint", "outageRegion", "outageRegion",  base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "phaseCode", "phaseCode",  base.from_string, fields);
+                base.export_attribute (obj, "UsagePoint", "phaseCode", "phaseCode", fields);
                 base.export_element (obj, "UsagePoint", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
                 base.export_element (obj, "UsagePoint", "ratedPower", "ratedPower",  base.from_string, fields);
                 base.export_element (obj, "UsagePoint", "readCycle", "readCycle",  base.from_string, fields);
@@ -1298,6 +1310,7 @@ define
                 super.condition (obj);
                 obj.AmiBillingReadyKind = []; if (!obj.amiBillingReady) obj.AmiBillingReadyKind.push ({ id: '', selected: true}); for (var property in AmiBillingReadyKind) obj.AmiBillingReadyKind.push ({ id: property, selected: obj.amiBillingReady && obj.amiBillingReady.endsWith ('.' + property)});
                 obj.UsagePointConnectedKind = []; if (!obj.connectionState) obj.UsagePointConnectedKind.push ({ id: '', selected: true}); for (var property in UsagePointConnectedKind) obj.UsagePointConnectedKind.push ({ id: property, selected: obj.connectionState && obj.connectionState.endsWith ('.' + property)});
+                obj.PhaseCode = []; if (!obj.phaseCode) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phaseCode && obj.phaseCode.endsWith ('.' + property)});
                 if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
                 if (obj.MeterReadings) obj.MeterReadings_string = obj.MeterReadings.join ();
                 if (obj.PricingStructures) obj.PricingStructures_string = obj.PricingStructures.join ();
@@ -1317,6 +1330,7 @@ define
                 super.uncondition (obj);
                 delete obj.AmiBillingReadyKind;
                 delete obj.UsagePointConnectedKind;
+                delete obj.PhaseCode;
                 delete obj.Equipments_string;
                 delete obj.MeterReadings_string;
                 delete obj.PricingStructures_string;
@@ -1351,7 +1365,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_minimalUsageExpected'>minimalUsageExpected: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_minimalUsageExpected' class='form-check-input' type='checkbox'{{#minimalUsageExpected}} checked{{/minimalUsageExpected}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalServiceVoltage'>nominalServiceVoltage: </label><div class='col-sm-8'><input id='{{id}}_nominalServiceVoltage' class='form-control' type='text'{{#nominalServiceVoltage}} value='{{nominalServiceVoltage}}'{{/nominalServiceVoltage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outageRegion'>outageRegion: </label><div class='col-sm-8'><input id='{{id}}_outageRegion' class='form-control' type='text'{{#outageRegion}} value='{{outageRegion}}'{{/outageRegion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='{{id}}_phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><select id='{{id}}_phaseCode' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedPower'>ratedPower: </label><div class='col-sm-8'><input id='{{id}}_ratedPower' class='form-control' type='text'{{#ratedPower}} value='{{ratedPower}}'{{/ratedPower}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_readCycle'>readCycle: </label><div class='col-sm-8'><input id='{{id}}_readCycle' class='form-control' type='text'{{#readCycle}} value='{{readCycle}}'{{/readCycle}}></div></div>
@@ -1391,7 +1405,7 @@ define
                 temp = document.getElementById (id + "_minimalUsageExpected").checked; if (temp) obj.minimalUsageExpected = true;
                 temp = document.getElementById (id + "_nominalServiceVoltage").value; if ("" != temp) obj.nominalServiceVoltage = temp;
                 temp = document.getElementById (id + "_outageRegion").value; if ("" != temp) obj.outageRegion = temp;
-                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) obj.phaseCode = temp;
+                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
                 temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
                 temp = document.getElementById (id + "_ratedPower").value; if ("" != temp) obj.ratedPower = temp;
                 temp = document.getElementById (id + "_readCycle").value; if ("" != temp) obj.readCycle = temp;
@@ -1578,7 +1592,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "EndDeviceEventDetail";
                 base.parse_element (/<cim:EndDeviceEventDetail.name>([\s\S]*?)<\/cim:EndDeviceEventDetail.name>/g, obj, "name", base.to_string, sub, context);
-                base.parse_element (/<cim:EndDeviceEventDetail.value>([\s\S]*?)<\/cim:EndDeviceEventDetail.value>/g, obj, "value", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EndDeviceEventDetail.value\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "value", sub, context);
                 base.parse_attribute (/<cim:EndDeviceEventDetail.EndDeviceEvent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceEvent", sub, context);
                 var bucket = context.parsed.EndDeviceEventDetail;
                 if (null == bucket)
@@ -1593,7 +1607,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "EndDeviceEventDetail", "name", "name",  base.from_string, fields);
-                base.export_element (obj, "EndDeviceEventDetail", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "EndDeviceEventDetail", "value", "value", fields);
                 base.export_attribute (obj, "EndDeviceEventDetail", "EndDeviceEvent", "EndDeviceEvent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1624,11 +1638,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.StringQuantity = []; if (!obj.value) obj.StringQuantity.push ({ id: '', selected: true}); for (var property in StringQuantity) obj.StringQuantity.push ({ id: property, selected: obj.value && obj.value.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.StringQuantity;
             }
 
             edit_template ()
@@ -1642,7 +1658,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_name'>name: </label><div class='col-sm-8'><input id='{{id}}_name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><select id='{{id}}_value' class='form-control custom-select'>{{#StringQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StringQuantity}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceEvent'>EndDeviceEvent: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceEvent' class='form-control' type='text'{{#EndDeviceEvent}} value='{{EndDeviceEvent}}'{{/EndDeviceEvent}}></div></div>
                     </div>
                     <fieldset>
@@ -1657,7 +1673,7 @@ define
                 var obj = obj || { id: id, cls: "EndDeviceEventDetail" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_name").value; if ("" != temp) obj.name = temp;
-                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById (id + "_value").value; if ("" != temp) { temp = StringQuantity[temp]; if ("undefined" != typeof (temp)) obj.value = "http://iec.ch/TC57/2013/CIM-schema-cim16#StringQuantity." + temp; }
                 temp = document.getElementById (id + "_EndDeviceEvent").value; if ("" != temp) obj.EndDeviceEvent = temp;
 
                 return (obj);
@@ -1703,7 +1719,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MeterReading";
                 base.parse_element (/<cim:MeterReading.isCoincidentTrigger>([\s\S]*?)<\/cim:MeterReading.isCoincidentTrigger>/g, obj, "isCoincidentTrigger", base.to_boolean, sub, context);
-                base.parse_element (/<cim:MeterReading.valuesInterval>([\s\S]*?)<\/cim:MeterReading.valuesInterval>/g, obj, "valuesInterval", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MeterReading.valuesInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "valuesInterval", sub, context);
                 base.parse_attribute (/<cim:MeterReading.UsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
                 base.parse_attribute (/<cim:MeterReading.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Meter", sub, context);
                 base.parse_attributes (/<cim:MeterReading.Readings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Readings", sub, context);
@@ -1723,7 +1739,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MeterReading", "isCoincidentTrigger", "isCoincidentTrigger",  base.from_boolean, fields);
-                base.export_element (obj, "MeterReading", "valuesInterval", "valuesInterval",  base.from_string, fields);
+                base.export_attribute (obj, "MeterReading", "valuesInterval", "valuesInterval", fields);
                 base.export_attribute (obj, "MeterReading", "UsagePoint", "UsagePoint", fields);
                 base.export_attribute (obj, "MeterReading", "Meter", "Meter", fields);
                 base.export_attributes (obj, "MeterReading", "Readings", "Readings", fields);
@@ -1764,6 +1780,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.valuesInterval) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.valuesInterval && obj.valuesInterval.endsWith ('.' + property)});
                 if (obj.Readings) obj.Readings_string = obj.Readings.join ();
                 if (obj.EndDeviceEvents) obj.EndDeviceEvents_string = obj.EndDeviceEvents.join ();
                 if (obj.IntervalBlocks) obj.IntervalBlocks_string = obj.IntervalBlocks.join ();
@@ -1772,6 +1789,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.Readings_string;
                 delete obj.EndDeviceEvents_string;
                 delete obj.IntervalBlocks_string;
@@ -1788,7 +1806,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isCoincidentTrigger'>isCoincidentTrigger: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isCoincidentTrigger' class='form-check-input' type='checkbox'{{#isCoincidentTrigger}} checked{{/isCoincidentTrigger}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valuesInterval'>valuesInterval: </label><div class='col-sm-8'><input id='{{id}}_valuesInterval' class='form-control' type='text'{{#valuesInterval}} value='{{valuesInterval}}'{{/valuesInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valuesInterval'>valuesInterval: </label><div class='col-sm-8'><select id='{{id}}_valuesInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='{{id}}_UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Meter'>Meter: </label><div class='col-sm-8'><input id='{{id}}_Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Readings'>Readings: </label><div class='col-sm-8'><input id='{{id}}_Readings' class='form-control' type='text'{{#Readings}} value='{{Readings_string}}'{{/Readings}}></div></div>
@@ -1806,7 +1824,7 @@ define
                 var obj = obj || { id: id, cls: "MeterReading" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_isCoincidentTrigger").checked; if (temp) obj.isCoincidentTrigger = true;
-                temp = document.getElementById (id + "_valuesInterval").value; if ("" != temp) obj.valuesInterval = temp;
+                temp = document.getElementById (id + "_valuesInterval").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.valuesInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_UsagePoint").value; if ("" != temp) obj.UsagePoint = temp;
                 temp = document.getElementById (id + "_Meter").value; if ("" != temp) obj.Meter = temp;
                 temp = document.getElementById (id + "_Readings").value; if ("" != temp) obj.Readings = temp.split (",");
@@ -2776,13 +2794,13 @@ define
                 obj.cls = "ReadingType";
                 base.parse_element (/<cim:ReadingType.accumulation>([\s\S]*?)<\/cim:ReadingType.accumulation>/g, obj, "accumulation", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.aggregate>([\s\S]*?)<\/cim:ReadingType.aggregate>/g, obj, "aggregate", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingType.argument>([\s\S]*?)<\/cim:ReadingType.argument>/g, obj, "argument", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ReadingType.argument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "argument", sub, context);
                 base.parse_element (/<cim:ReadingType.commodity>([\s\S]*?)<\/cim:ReadingType.commodity>/g, obj, "commodity", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.consumptionTier>([\s\S]*?)<\/cim:ReadingType.consumptionTier>/g, obj, "consumptionTier", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.cpp>([\s\S]*?)<\/cim:ReadingType.cpp>/g, obj, "cpp", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.currency>([\s\S]*?)<\/cim:ReadingType.currency>/g, obj, "currency", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.flowDirection>([\s\S]*?)<\/cim:ReadingType.flowDirection>/g, obj, "flowDirection", base.to_string, sub, context);
-                base.parse_element (/<cim:ReadingType.interharmonic>([\s\S]*?)<\/cim:ReadingType.interharmonic>/g, obj, "interharmonic", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ReadingType.interharmonic\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "interharmonic", sub, context);
                 base.parse_element (/<cim:ReadingType.macroPeriod>([\s\S]*?)<\/cim:ReadingType.macroPeriod>/g, obj, "macroPeriod", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.measurementKind>([\s\S]*?)<\/cim:ReadingType.measurementKind>/g, obj, "measurementKind", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.measuringPeriod>([\s\S]*?)<\/cim:ReadingType.measuringPeriod>/g, obj, "measuringPeriod", base.to_string, sub, context);
@@ -2809,13 +2827,13 @@ define
 
                 base.export_element (obj, "ReadingType", "accumulation", "accumulation",  base.from_string, fields);
                 base.export_element (obj, "ReadingType", "aggregate", "aggregate",  base.from_string, fields);
-                base.export_element (obj, "ReadingType", "argument", "argument",  base.from_string, fields);
+                base.export_attribute (obj, "ReadingType", "argument", "argument", fields);
                 base.export_element (obj, "ReadingType", "commodity", "commodity",  base.from_string, fields);
                 base.export_element (obj, "ReadingType", "consumptionTier", "consumptionTier",  base.from_string, fields);
                 base.export_element (obj, "ReadingType", "cpp", "cpp",  base.from_string, fields);
                 base.export_element (obj, "ReadingType", "currency", "currency",  base.from_string, fields);
                 base.export_element (obj, "ReadingType", "flowDirection", "flowDirection",  base.from_string, fields);
-                base.export_element (obj, "ReadingType", "interharmonic", "interharmonic",  base.from_string, fields);
+                base.export_attribute (obj, "ReadingType", "interharmonic", "interharmonic", fields);
                 base.export_element (obj, "ReadingType", "macroPeriod", "macroPeriod",  base.from_string, fields);
                 base.export_element (obj, "ReadingType", "measurementKind", "measurementKind",  base.from_string, fields);
                 base.export_element (obj, "ReadingType", "measuringPeriod", "measuringPeriod",  base.from_string, fields);
@@ -2873,6 +2891,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.RationalNumber = []; if (!obj.argument) obj.RationalNumber.push ({ id: '', selected: true}); for (var property in RationalNumber) obj.RationalNumber.push ({ id: property, selected: obj.argument && obj.argument.endsWith ('.' + property)});
+                obj.ReadingInterharmonic = []; if (!obj.interharmonic) obj.ReadingInterharmonic.push ({ id: '', selected: true}); for (var property in ReadingInterharmonic) obj.ReadingInterharmonic.push ({ id: property, selected: obj.interharmonic && obj.interharmonic.endsWith ('.' + property)});
                 if (obj.Readings) obj.Readings_string = obj.Readings.join ();
                 if (obj.IntervalBlocks) obj.IntervalBlocks_string = obj.IntervalBlocks.join ();
                 if (obj.MetrologyRequirements) obj.MetrologyRequirements_string = obj.MetrologyRequirements.join ();
@@ -2881,6 +2901,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RationalNumber;
+                delete obj.ReadingInterharmonic;
                 delete obj.Readings_string;
                 delete obj.IntervalBlocks_string;
                 delete obj.MetrologyRequirements_string;
@@ -2898,13 +2920,13 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accumulation'>accumulation: </label><div class='col-sm-8'><input id='{{id}}_accumulation' class='form-control' type='text'{{#accumulation}} value='{{accumulation}}'{{/accumulation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aggregate'>aggregate: </label><div class='col-sm-8'><input id='{{id}}_aggregate' class='form-control' type='text'{{#aggregate}} value='{{aggregate}}'{{/aggregate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_argument'>argument: </label><div class='col-sm-8'><input id='{{id}}_argument' class='form-control' type='text'{{#argument}} value='{{argument}}'{{/argument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_argument'>argument: </label><div class='col-sm-8'><select id='{{id}}_argument' class='form-control custom-select'>{{#RationalNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RationalNumber}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commodity'>commodity: </label><div class='col-sm-8'><input id='{{id}}_commodity' class='form-control' type='text'{{#commodity}} value='{{commodity}}'{{/commodity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_consumptionTier'>consumptionTier: </label><div class='col-sm-8'><input id='{{id}}_consumptionTier' class='form-control' type='text'{{#consumptionTier}} value='{{consumptionTier}}'{{/consumptionTier}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cpp'>cpp: </label><div class='col-sm-8'><input id='{{id}}_cpp' class='form-control' type='text'{{#cpp}} value='{{cpp}}'{{/cpp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currency'>currency: </label><div class='col-sm-8'><input id='{{id}}_currency' class='form-control' type='text'{{#currency}} value='{{currency}}'{{/currency}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flowDirection'>flowDirection: </label><div class='col-sm-8'><input id='{{id}}_flowDirection' class='form-control' type='text'{{#flowDirection}} value='{{flowDirection}}'{{/flowDirection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interharmonic'>interharmonic: </label><div class='col-sm-8'><input id='{{id}}_interharmonic' class='form-control' type='text'{{#interharmonic}} value='{{interharmonic}}'{{/interharmonic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interharmonic'>interharmonic: </label><div class='col-sm-8'><select id='{{id}}_interharmonic' class='form-control custom-select'>{{#ReadingInterharmonic}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReadingInterharmonic}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_macroPeriod'>macroPeriod: </label><div class='col-sm-8'><input id='{{id}}_macroPeriod' class='form-control' type='text'{{#macroPeriod}} value='{{macroPeriod}}'{{/macroPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_measurementKind'>measurementKind: </label><div class='col-sm-8'><input id='{{id}}_measurementKind' class='form-control' type='text'{{#measurementKind}} value='{{measurementKind}}'{{/measurementKind}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_measuringPeriod'>measuringPeriod: </label><div class='col-sm-8'><input id='{{id}}_measuringPeriod' class='form-control' type='text'{{#measuringPeriod}} value='{{measuringPeriod}}'{{/measuringPeriod}}></div></div>
@@ -2929,13 +2951,13 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accumulation").value; if ("" != temp) obj.accumulation = temp;
                 temp = document.getElementById (id + "_aggregate").value; if ("" != temp) obj.aggregate = temp;
-                temp = document.getElementById (id + "_argument").value; if ("" != temp) obj.argument = temp;
+                temp = document.getElementById (id + "_argument").value; if ("" != temp) { temp = RationalNumber[temp]; if ("undefined" != typeof (temp)) obj.argument = "http://iec.ch/TC57/2013/CIM-schema-cim16#RationalNumber." + temp; }
                 temp = document.getElementById (id + "_commodity").value; if ("" != temp) obj.commodity = temp;
                 temp = document.getElementById (id + "_consumptionTier").value; if ("" != temp) obj.consumptionTier = temp;
                 temp = document.getElementById (id + "_cpp").value; if ("" != temp) obj.cpp = temp;
                 temp = document.getElementById (id + "_currency").value; if ("" != temp) obj.currency = temp;
                 temp = document.getElementById (id + "_flowDirection").value; if ("" != temp) obj.flowDirection = temp;
-                temp = document.getElementById (id + "_interharmonic").value; if ("" != temp) obj.interharmonic = temp;
+                temp = document.getElementById (id + "_interharmonic").value; if ("" != temp) { temp = ReadingInterharmonic[temp]; if ("undefined" != typeof (temp)) obj.interharmonic = "http://iec.ch/TC57/2013/CIM-schema-cim16#ReadingInterharmonic." + temp; }
                 temp = document.getElementById (id + "_macroPeriod").value; if ("" != temp) obj.macroPeriod = temp;
                 temp = document.getElementById (id + "_measurementKind").value; if ("" != temp) obj.measurementKind = temp;
                 temp = document.getElementById (id + "_measuringPeriod").value; if ("" != temp) obj.measuringPeriod = temp;
@@ -3132,7 +3154,7 @@ define
                 obj.cls = "EndDeviceTiming";
                 base.parse_element (/<cim:EndDeviceTiming.duration>([\s\S]*?)<\/cim:EndDeviceTiming.duration>/g, obj, "duration", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceTiming.durationIndefinite>([\s\S]*?)<\/cim:EndDeviceTiming.durationIndefinite>/g, obj, "durationIndefinite", base.to_boolean, sub, context);
-                base.parse_element (/<cim:EndDeviceTiming.interval>([\s\S]*?)<\/cim:EndDeviceTiming.interval>/g, obj, "interval", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EndDeviceTiming.interval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "interval", sub, context);
                 base.parse_attribute (/<cim:EndDeviceTiming.randomisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "randomisation", sub, context);
                 var bucket = context.parsed.EndDeviceTiming;
                 if (null == bucket)
@@ -3148,7 +3170,7 @@ define
 
                 base.export_element (obj, "EndDeviceTiming", "duration", "duration",  base.from_string, fields);
                 base.export_element (obj, "EndDeviceTiming", "durationIndefinite", "durationIndefinite",  base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceTiming", "interval", "interval",  base.from_string, fields);
+                base.export_attribute (obj, "EndDeviceTiming", "interval", "interval", fields);
                 base.export_attribute (obj, "EndDeviceTiming", "randomisation", "randomisation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3180,12 +3202,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.interval) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.interval && obj.interval.endsWith ('.' + property)});
                 obj.RandomisationKind = []; if (!obj.randomisation) obj.RandomisationKind.push ({ id: '', selected: true}); for (var property in RandomisationKind) obj.RandomisationKind.push ({ id: property, selected: obj.randomisation && obj.randomisation.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.RandomisationKind;
             }
 
@@ -3201,7 +3225,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_durationIndefinite'>durationIndefinite: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_durationIndefinite' class='form-check-input' type='checkbox'{{#durationIndefinite}} checked{{/durationIndefinite}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interval'>interval: </label><div class='col-sm-8'><input id='{{id}}_interval' class='form-control' type='text'{{#interval}} value='{{interval}}'{{/interval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interval'>interval: </label><div class='col-sm-8'><select id='{{id}}_interval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_randomisation'>randomisation: </label><div class='col-sm-8'><select id='{{id}}_randomisation' class='form-control custom-select'>{{#RandomisationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RandomisationKind}}</select></div></div>
                     </div>
                     <fieldset>
@@ -3217,7 +3241,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
                 temp = document.getElementById (id + "_durationIndefinite").checked; if (temp) obj.durationIndefinite = true;
-                temp = document.getElementById (id + "_interval").value; if ("" != temp) obj.interval = temp;
+                temp = document.getElementById (id + "_interval").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.interval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_randomisation").value; if ("" != temp) { temp = RandomisationKind[temp]; if ("undefined" != typeof (temp)) obj.randomisation = "http://iec.ch/TC57/2013/CIM-schema-cim16#RandomisationKind." + temp; }
 
                 return (obj);
@@ -3390,7 +3414,7 @@ define
                 obj.cls = "BaseReading";
                 base.parse_element (/<cim:BaseReading.reportedDateTime>([\s\S]*?)<\/cim:BaseReading.reportedDateTime>/g, obj, "reportedDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:BaseReading.source>([\s\S]*?)<\/cim:BaseReading.source>/g, obj, "source", base.to_string, sub, context);
-                base.parse_element (/<cim:BaseReading.timePeriod>([\s\S]*?)<\/cim:BaseReading.timePeriod>/g, obj, "timePeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BaseReading.timePeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "timePeriod", sub, context);
                 base.parse_element (/<cim:BaseReading.value>([\s\S]*?)<\/cim:BaseReading.value>/g, obj, "value", base.to_string, sub, context);
                 base.parse_attributes (/<cim:BaseReading.ReadingQualities\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingQualities", sub, context);
                 var bucket = context.parsed.BaseReading;
@@ -3407,7 +3431,7 @@ define
 
                 base.export_element (obj, "BaseReading", "reportedDateTime", "reportedDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "BaseReading", "source", "source",  base.from_string, fields);
-                base.export_element (obj, "BaseReading", "timePeriod", "timePeriod",  base.from_string, fields);
+                base.export_attribute (obj, "BaseReading", "timePeriod", "timePeriod", fields);
                 base.export_element (obj, "BaseReading", "value", "value",  base.from_string, fields);
                 base.export_attributes (obj, "BaseReading", "ReadingQualities", "ReadingQualities", fields);
                 if (full)
@@ -3441,12 +3465,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.timePeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.timePeriod && obj.timePeriod.endsWith ('.' + property)});
                 if (obj.ReadingQualities) obj.ReadingQualities_string = obj.ReadingQualities.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.ReadingQualities_string;
             }
 
@@ -3462,7 +3488,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reportedDateTime'>reportedDateTime: </label><div class='col-sm-8'><input id='{{id}}_reportedDateTime' class='form-control' type='text'{{#reportedDateTime}} value='{{reportedDateTime}}'{{/reportedDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_source'>source: </label><div class='col-sm-8'><input id='{{id}}_source' class='form-control' type='text'{{#source}} value='{{source}}'{{/source}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timePeriod'>timePeriod: </label><div class='col-sm-8'><input id='{{id}}_timePeriod' class='form-control' type='text'{{#timePeriod}} value='{{timePeriod}}'{{/timePeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timePeriod'>timePeriod: </label><div class='col-sm-8'><select id='{{id}}_timePeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
@@ -3478,7 +3504,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_reportedDateTime").value; if ("" != temp) obj.reportedDateTime = temp;
                 temp = document.getElementById (id + "_source").value; if ("" != temp) obj.source = temp;
-                temp = document.getElementById (id + "_timePeriod").value; if ("" != temp) obj.timePeriod = temp;
+                temp = document.getElementById (id + "_timePeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.timePeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -5111,7 +5137,7 @@ define
 
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "EndDeviceInfo";
-                base.parse_element (/<cim:EndDeviceInfo.capability>([\s\S]*?)<\/cim:EndDeviceInfo.capability>/g, obj, "capability", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EndDeviceInfo.capability\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "capability", sub, context);
                 base.parse_element (/<cim:EndDeviceInfo.isSolidState>([\s\S]*?)<\/cim:EndDeviceInfo.isSolidState>/g, obj, "isSolidState", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDeviceInfo.phaseCount>([\s\S]*?)<\/cim:EndDeviceInfo.phaseCount>/g, obj, "phaseCount", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceInfo.ratedCurrent>([\s\S]*?)<\/cim:EndDeviceInfo.ratedCurrent>/g, obj, "ratedCurrent", base.to_string, sub, context);
@@ -5129,7 +5155,7 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDeviceInfo", "capability", "capability",  base.from_string, fields);
+                base.export_attribute (obj, "EndDeviceInfo", "capability", "capability", fields);
                 base.export_element (obj, "EndDeviceInfo", "isSolidState", "isSolidState",  base.from_boolean, fields);
                 base.export_element (obj, "EndDeviceInfo", "phaseCount", "phaseCount",  base.from_string, fields);
                 base.export_element (obj, "EndDeviceInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
@@ -5166,12 +5192,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.EndDeviceCapability = []; if (!obj.capability) obj.EndDeviceCapability.push ({ id: '', selected: true}); for (var property in EndDeviceCapability) obj.EndDeviceCapability.push ({ id: property, selected: obj.capability && obj.capability.endsWith ('.' + property)});
                 if (obj.EndDevices) obj.EndDevices_string = obj.EndDevices.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDeviceCapability;
                 delete obj.EndDevices_string;
             }
 
@@ -5185,7 +5213,7 @@ define
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capability'>capability: </label><div class='col-sm-8'><input id='{{id}}_capability' class='form-control' type='text'{{#capability}} value='{{capability}}'{{/capability}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capability'>capability: </label><div class='col-sm-8'><select id='{{id}}_capability' class='form-control custom-select'>{{#EndDeviceCapability}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EndDeviceCapability}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isSolidState'>isSolidState: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isSolidState' class='form-check-input' type='checkbox'{{#isSolidState}} checked{{/isSolidState}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='{{id}}_phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
@@ -5202,7 +5230,7 @@ define
 
                 var obj = obj || { id: id, cls: "EndDeviceInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_capability").value; if ("" != temp) obj.capability = temp;
+                temp = document.getElementById (id + "_capability").value; if ("" != temp) { temp = EndDeviceCapability[temp]; if ("undefined" != typeof (temp)) obj.capability = "http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceCapability." + temp; }
                 temp = document.getElementById (id + "_isSolidState").checked; if (temp) obj.isSolidState = true;
                 temp = document.getElementById (id + "_phaseCount").value; if ("" != temp) obj.phaseCount = temp;
                 temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
@@ -5618,7 +5646,7 @@ define
 
                 obj = EndDeviceAction.prototype.parse.call (this, context, sub);
                 obj.cls = "PanDemandResponse";
-                base.parse_element (/<cim:PanDemandResponse.appliance>([\s\S]*?)<\/cim:PanDemandResponse.appliance>/g, obj, "appliance", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PanDemandResponse.appliance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "appliance", sub, context);
                 base.parse_element (/<cim:PanDemandResponse.avgLoadAdjustment>([\s\S]*?)<\/cim:PanDemandResponse.avgLoadAdjustment>/g, obj, "avgLoadAdjustment", base.to_string, sub, context);
                 base.parse_element (/<cim:PanDemandResponse.cancelControlMode>([\s\S]*?)<\/cim:PanDemandResponse.cancelControlMode>/g, obj, "cancelControlMode", base.to_string, sub, context);
                 base.parse_element (/<cim:PanDemandResponse.cancelDateTime>([\s\S]*?)<\/cim:PanDemandResponse.cancelDateTime>/g, obj, "cancelDateTime", base.to_datetime, sub, context);
@@ -5642,7 +5670,7 @@ define
             {
                 var fields = EndDeviceAction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PanDemandResponse", "appliance", "appliance",  base.from_string, fields);
+                base.export_attribute (obj, "PanDemandResponse", "appliance", "appliance", fields);
                 base.export_element (obj, "PanDemandResponse", "avgLoadAdjustment", "avgLoadAdjustment",  base.from_string, fields);
                 base.export_element (obj, "PanDemandResponse", "cancelControlMode", "cancelControlMode",  base.from_string, fields);
                 base.export_element (obj, "PanDemandResponse", "cancelDateTime", "cancelDateTime",  base.from_datetime, fields);
@@ -5691,11 +5719,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ControlledAppliance = []; if (!obj.appliance) obj.ControlledAppliance.push ({ id: '', selected: true}); for (var property in ControlledAppliance) obj.ControlledAppliance.push ({ id: property, selected: obj.appliance && obj.appliance.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ControlledAppliance;
             }
 
             edit_template ()
@@ -5708,7 +5738,7 @@ define
                     `
                     + EndDeviceAction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_appliance'>appliance: </label><div class='col-sm-8'><input id='{{id}}_appliance' class='form-control' type='text'{{#appliance}} value='{{appliance}}'{{/appliance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_appliance'>appliance: </label><div class='col-sm-8'><select id='{{id}}_appliance' class='form-control custom-select'>{{#ControlledAppliance}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ControlledAppliance}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_avgLoadAdjustment'>avgLoadAdjustment: </label><div class='col-sm-8'><input id='{{id}}_avgLoadAdjustment' class='form-control' type='text'{{#avgLoadAdjustment}} value='{{avgLoadAdjustment}}'{{/avgLoadAdjustment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelControlMode'>cancelControlMode: </label><div class='col-sm-8'><input id='{{id}}_cancelControlMode' class='form-control' type='text'{{#cancelControlMode}} value='{{cancelControlMode}}'{{/cancelControlMode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelDateTime'>cancelDateTime: </label><div class='col-sm-8'><input id='{{id}}_cancelDateTime' class='form-control' type='text'{{#cancelDateTime}} value='{{cancelDateTime}}'{{/cancelDateTime}}></div></div>
@@ -5732,7 +5762,7 @@ define
 
                 var obj = obj || { id: id, cls: "PanDemandResponse" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_appliance").value; if ("" != temp) obj.appliance = temp;
+                temp = document.getElementById (id + "_appliance").value; if ("" != temp) { temp = ControlledAppliance[temp]; if ("undefined" != typeof (temp)) obj.appliance = "http://iec.ch/TC57/2013/CIM-schema-cim16#ControlledAppliance." + temp; }
                 temp = document.getElementById (id + "_avgLoadAdjustment").value; if ("" != temp) obj.avgLoadAdjustment = temp;
                 temp = document.getElementById (id + "_cancelControlMode").value; if ("" != temp) obj.cancelControlMode = temp;
                 temp = document.getElementById (id + "_cancelDateTime").value; if ("" != temp) obj.cancelDateTime = temp;

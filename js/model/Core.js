@@ -1168,14 +1168,14 @@ define
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Curve";
                 base.parse_attribute (/<cim:Curve.curveStyle\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "curveStyle", sub, context);
-                base.parse_element (/<cim:Curve.xMultiplier>([\s\S]*?)<\/cim:Curve.xMultiplier>/g, obj, "xMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Curve.xUnit>([\s\S]*?)<\/cim:Curve.xUnit>/g, obj, "xUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:Curve.y1Multiplier>([\s\S]*?)<\/cim:Curve.y1Multiplier>/g, obj, "y1Multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Curve.y1Unit>([\s\S]*?)<\/cim:Curve.y1Unit>/g, obj, "y1Unit", base.to_string, sub, context);
-                base.parse_element (/<cim:Curve.y2Multiplier>([\s\S]*?)<\/cim:Curve.y2Multiplier>/g, obj, "y2Multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Curve.y2Unit>([\s\S]*?)<\/cim:Curve.y2Unit>/g, obj, "y2Unit", base.to_string, sub, context);
-                base.parse_element (/<cim:Curve.y3Multiplier>([\s\S]*?)<\/cim:Curve.y3Multiplier>/g, obj, "y3Multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Curve.y3Unit>([\s\S]*?)<\/cim:Curve.y3Unit>/g, obj, "y3Unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Curve.xMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "xMultiplier", sub, context);
+                base.parse_attribute (/<cim:Curve.xUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "xUnit", sub, context);
+                base.parse_attribute (/<cim:Curve.y1Multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "y1Multiplier", sub, context);
+                base.parse_attribute (/<cim:Curve.y1Unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "y1Unit", sub, context);
+                base.parse_attribute (/<cim:Curve.y2Multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "y2Multiplier", sub, context);
+                base.parse_attribute (/<cim:Curve.y2Unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "y2Unit", sub, context);
+                base.parse_attribute (/<cim:Curve.y3Multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "y3Multiplier", sub, context);
+                base.parse_attribute (/<cim:Curve.y3Unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "y3Unit", sub, context);
                 base.parse_attributes (/<cim:Curve.CurveDatas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CurveDatas", sub, context);
                 var bucket = context.parsed.Curve;
                 if (null == bucket)
@@ -1190,14 +1190,14 @@ define
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "Curve", "curveStyle", "curveStyle", fields);
-                base.export_element (obj, "Curve", "xMultiplier", "xMultiplier",  base.from_string, fields);
-                base.export_element (obj, "Curve", "xUnit", "xUnit",  base.from_string, fields);
-                base.export_element (obj, "Curve", "y1Multiplier", "y1Multiplier",  base.from_string, fields);
-                base.export_element (obj, "Curve", "y1Unit", "y1Unit",  base.from_string, fields);
-                base.export_element (obj, "Curve", "y2Multiplier", "y2Multiplier",  base.from_string, fields);
-                base.export_element (obj, "Curve", "y2Unit", "y2Unit",  base.from_string, fields);
-                base.export_element (obj, "Curve", "y3Multiplier", "y3Multiplier",  base.from_string, fields);
-                base.export_element (obj, "Curve", "y3Unit", "y3Unit",  base.from_string, fields);
+                base.export_attribute (obj, "Curve", "xMultiplier", "xMultiplier", fields);
+                base.export_attribute (obj, "Curve", "xUnit", "xUnit", fields);
+                base.export_attribute (obj, "Curve", "y1Multiplier", "y1Multiplier", fields);
+                base.export_attribute (obj, "Curve", "y1Unit", "y1Unit", fields);
+                base.export_attribute (obj, "Curve", "y2Multiplier", "y2Multiplier", fields);
+                base.export_attribute (obj, "Curve", "y2Unit", "y2Unit", fields);
+                base.export_attribute (obj, "Curve", "y3Multiplier", "y3Multiplier", fields);
+                base.export_attribute (obj, "Curve", "y3Unit", "y3Unit", fields);
                 base.export_attributes (obj, "Curve", "CurveDatas", "CurveDatas", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1236,6 +1236,14 @@ define
             {
                 super.condition (obj);
                 obj.CurveStyle = []; if (!obj.curveStyle) obj.CurveStyle.push ({ id: '', selected: true}); for (var property in CurveStyle) obj.CurveStyle.push ({ id: property, selected: obj.curveStyle && obj.curveStyle.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.xMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.xMultiplier && obj.xMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.xUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.xUnit && obj.xUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.y1Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.y1Multiplier && obj.y1Multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.y1Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.y1Unit && obj.y1Unit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.y2Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.y2Multiplier && obj.y2Multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.y2Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.y2Unit && obj.y2Unit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.y3Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.y3Multiplier && obj.y3Multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.y3Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.y3Unit && obj.y3Unit.endsWith ('.' + property)});
                 if (obj.CurveDatas) obj.CurveDatas_string = obj.CurveDatas.join ();
             }
 
@@ -1243,6 +1251,14 @@ define
             {
                 super.uncondition (obj);
                 delete obj.CurveStyle;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
                 delete obj.CurveDatas_string;
             }
 
@@ -1257,14 +1273,14 @@ define
                     + IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curveStyle'>curveStyle: </label><div class='col-sm-8'><select id='{{id}}_curveStyle' class='form-control custom-select'>{{#CurveStyle}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CurveStyle}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xMultiplier'>xMultiplier: </label><div class='col-sm-8'><input id='{{id}}_xMultiplier' class='form-control' type='text'{{#xMultiplier}} value='{{xMultiplier}}'{{/xMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xUnit'>xUnit: </label><div class='col-sm-8'><input id='{{id}}_xUnit' class='form-control' type='text'{{#xUnit}} value='{{xUnit}}'{{/xUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1Multiplier'>y1Multiplier: </label><div class='col-sm-8'><input id='{{id}}_y1Multiplier' class='form-control' type='text'{{#y1Multiplier}} value='{{y1Multiplier}}'{{/y1Multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1Unit'>y1Unit: </label><div class='col-sm-8'><input id='{{id}}_y1Unit' class='form-control' type='text'{{#y1Unit}} value='{{y1Unit}}'{{/y1Unit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2Multiplier'>y2Multiplier: </label><div class='col-sm-8'><input id='{{id}}_y2Multiplier' class='form-control' type='text'{{#y2Multiplier}} value='{{y2Multiplier}}'{{/y2Multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2Unit'>y2Unit: </label><div class='col-sm-8'><input id='{{id}}_y2Unit' class='form-control' type='text'{{#y2Unit}} value='{{y2Unit}}'{{/y2Unit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y3Multiplier'>y3Multiplier: </label><div class='col-sm-8'><input id='{{id}}_y3Multiplier' class='form-control' type='text'{{#y3Multiplier}} value='{{y3Multiplier}}'{{/y3Multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y3Unit'>y3Unit: </label><div class='col-sm-8'><input id='{{id}}_y3Unit' class='form-control' type='text'{{#y3Unit}} value='{{y3Unit}}'{{/y3Unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xMultiplier'>xMultiplier: </label><div class='col-sm-8'><select id='{{id}}_xMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xUnit'>xUnit: </label><div class='col-sm-8'><select id='{{id}}_xUnit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1Multiplier'>y1Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y1Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1Unit'>y1Unit: </label><div class='col-sm-8'><select id='{{id}}_y1Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2Multiplier'>y2Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y2Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2Unit'>y2Unit: </label><div class='col-sm-8'><select id='{{id}}_y2Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y3Multiplier'>y3Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y3Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y3Unit'>y3Unit: </label><div class='col-sm-8'><select id='{{id}}_y3Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1278,14 +1294,14 @@ define
                 var obj = obj || { id: id, cls: "Curve" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_curveStyle").value; if ("" != temp) { temp = CurveStyle[temp]; if ("undefined" != typeof (temp)) obj.curveStyle = "http://iec.ch/TC57/2013/CIM-schema-cim16#CurveStyle." + temp; }
-                temp = document.getElementById (id + "_xMultiplier").value; if ("" != temp) obj.xMultiplier = temp;
-                temp = document.getElementById (id + "_xUnit").value; if ("" != temp) obj.xUnit = temp;
-                temp = document.getElementById (id + "_y1Multiplier").value; if ("" != temp) obj.y1Multiplier = temp;
-                temp = document.getElementById (id + "_y1Unit").value; if ("" != temp) obj.y1Unit = temp;
-                temp = document.getElementById (id + "_y2Multiplier").value; if ("" != temp) obj.y2Multiplier = temp;
-                temp = document.getElementById (id + "_y2Unit").value; if ("" != temp) obj.y2Unit = temp;
-                temp = document.getElementById (id + "_y3Multiplier").value; if ("" != temp) obj.y3Multiplier = temp;
-                temp = document.getElementById (id + "_y3Unit").value; if ("" != temp) obj.y3Unit = temp;
+                temp = document.getElementById (id + "_xMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.xMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_xUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.xUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_y1Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.y1Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_y1Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.y1Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_y2Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.y2Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_y2Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.y2Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_y3Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.y3Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_y3Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.y3Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
 
                 return (obj);
             }
@@ -1823,10 +1839,10 @@ define
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "BasicIntervalSchedule";
                 base.parse_element (/<cim:BasicIntervalSchedule.startTime>([\s\S]*?)<\/cim:BasicIntervalSchedule.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:BasicIntervalSchedule.value1Multiplier>([\s\S]*?)<\/cim:BasicIntervalSchedule.value1Multiplier>/g, obj, "value1Multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:BasicIntervalSchedule.value1Unit>([\s\S]*?)<\/cim:BasicIntervalSchedule.value1Unit>/g, obj, "value1Unit", base.to_string, sub, context);
-                base.parse_element (/<cim:BasicIntervalSchedule.value2Multiplier>([\s\S]*?)<\/cim:BasicIntervalSchedule.value2Multiplier>/g, obj, "value2Multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:BasicIntervalSchedule.value2Unit>([\s\S]*?)<\/cim:BasicIntervalSchedule.value2Unit>/g, obj, "value2Unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BasicIntervalSchedule.value1Multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "value1Multiplier", sub, context);
+                base.parse_attribute (/<cim:BasicIntervalSchedule.value1Unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "value1Unit", sub, context);
+                base.parse_attribute (/<cim:BasicIntervalSchedule.value2Multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "value2Multiplier", sub, context);
+                base.parse_attribute (/<cim:BasicIntervalSchedule.value2Unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "value2Unit", sub, context);
                 var bucket = context.parsed.BasicIntervalSchedule;
                 if (null == bucket)
                    context.parsed.BasicIntervalSchedule = bucket = {};
@@ -1840,10 +1856,10 @@ define
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BasicIntervalSchedule", "startTime", "startTime",  base.from_datetime, fields);
-                base.export_element (obj, "BasicIntervalSchedule", "value1Multiplier", "value1Multiplier",  base.from_string, fields);
-                base.export_element (obj, "BasicIntervalSchedule", "value1Unit", "value1Unit",  base.from_string, fields);
-                base.export_element (obj, "BasicIntervalSchedule", "value2Multiplier", "value2Multiplier",  base.from_string, fields);
-                base.export_element (obj, "BasicIntervalSchedule", "value2Unit", "value2Unit",  base.from_string, fields);
+                base.export_attribute (obj, "BasicIntervalSchedule", "value1Multiplier", "value1Multiplier", fields);
+                base.export_attribute (obj, "BasicIntervalSchedule", "value1Unit", "value1Unit", fields);
+                base.export_attribute (obj, "BasicIntervalSchedule", "value2Multiplier", "value2Multiplier", fields);
+                base.export_attribute (obj, "BasicIntervalSchedule", "value2Unit", "value2Unit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1875,11 +1891,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.value1Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.value1Multiplier && obj.value1Multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.value1Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.value1Unit && obj.value1Unit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.value2Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.value2Multiplier && obj.value2Multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.value2Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.value2Unit && obj.value2Unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
             }
 
             edit_template ()
@@ -1893,10 +1917,10 @@ define
                     + IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value1Multiplier'>value1Multiplier: </label><div class='col-sm-8'><input id='{{id}}_value1Multiplier' class='form-control' type='text'{{#value1Multiplier}} value='{{value1Multiplier}}'{{/value1Multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value1Unit'>value1Unit: </label><div class='col-sm-8'><input id='{{id}}_value1Unit' class='form-control' type='text'{{#value1Unit}} value='{{value1Unit}}'{{/value1Unit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value2Multiplier'>value2Multiplier: </label><div class='col-sm-8'><input id='{{id}}_value2Multiplier' class='form-control' type='text'{{#value2Multiplier}} value='{{value2Multiplier}}'{{/value2Multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value2Unit'>value2Unit: </label><div class='col-sm-8'><input id='{{id}}_value2Unit' class='form-control' type='text'{{#value2Unit}} value='{{value2Unit}}'{{/value2Unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value1Multiplier'>value1Multiplier: </label><div class='col-sm-8'><select id='{{id}}_value1Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value1Unit'>value1Unit: </label><div class='col-sm-8'><select id='{{id}}_value1Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value2Multiplier'>value2Multiplier: </label><div class='col-sm-8'><select id='{{id}}_value2Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value2Unit'>value2Unit: </label><div class='col-sm-8'><select id='{{id}}_value2Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1910,10 +1934,10 @@ define
                 var obj = obj || { id: id, cls: "BasicIntervalSchedule" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById (id + "_value1Multiplier").value; if ("" != temp) obj.value1Multiplier = temp;
-                temp = document.getElementById (id + "_value1Unit").value; if ("" != temp) obj.value1Unit = temp;
-                temp = document.getElementById (id + "_value2Multiplier").value; if ("" != temp) obj.value2Multiplier = temp;
-                temp = document.getElementById (id + "_value2Unit").value; if ("" != temp) obj.value2Unit = temp;
+                temp = document.getElementById (id + "_value1Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.value1Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_value1Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.value1Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_value2Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.value2Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_value2Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.value2Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
 
                 return (obj);
             }

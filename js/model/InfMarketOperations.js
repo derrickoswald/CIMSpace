@@ -276,19 +276,19 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ResourceCertification";
-                base.parse_element (/<cim:ResourceCertification.certifiedDAM>([\s\S]*?)<\/cim:ResourceCertification.certifiedDAM>/g, obj, "certifiedDAM", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceCertification.certifiedNonspinDAM>([\s\S]*?)<\/cim:ResourceCertification.certifiedNonspinDAM>/g, obj, "certifiedNonspinDAM", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedDAM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedDAM", sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedNonspinDAM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedNonspinDAM", sub, context);
                 base.parse_element (/<cim:ResourceCertification.certifiedNonspinDAMMw>([\s\S]*?)<\/cim:ResourceCertification.certifiedNonspinDAMMw>/g, obj, "certifiedNonspinDAMMw", base.to_float, sub, context);
-                base.parse_element (/<cim:ResourceCertification.certifiedNonspinRTM>([\s\S]*?)<\/cim:ResourceCertification.certifiedNonspinRTM>/g, obj, "certifiedNonspinRTM", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedNonspinRTM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedNonspinRTM", sub, context);
                 base.parse_element (/<cim:ResourceCertification.certifiedNonspinRTMMw>([\s\S]*?)<\/cim:ResourceCertification.certifiedNonspinRTMMw>/g, obj, "certifiedNonspinRTMMw", base.to_float, sub, context);
-                base.parse_element (/<cim:ResourceCertification.certifiedPIRP>([\s\S]*?)<\/cim:ResourceCertification.certifiedPIRP>/g, obj, "certifiedPIRP", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceCertification.certifiedRegulation>([\s\S]*?)<\/cim:ResourceCertification.certifiedRegulation>/g, obj, "certifiedRegulation", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedPIRP\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedPIRP", sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedRegulation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedRegulation", sub, context);
                 base.parse_element (/<cim:ResourceCertification.certifiedRegulationMw>([\s\S]*?)<\/cim:ResourceCertification.certifiedRegulationMw>/g, obj, "certifiedRegulationMw", base.to_float, sub, context);
-                base.parse_element (/<cim:ResourceCertification.certifiedReplaceAS>([\s\S]*?)<\/cim:ResourceCertification.certifiedReplaceAS>/g, obj, "certifiedReplaceAS", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceCertification.certifiedSpin>([\s\S]*?)<\/cim:ResourceCertification.certifiedSpin>/g, obj, "certifiedSpin", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedReplaceAS\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedReplaceAS", sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedSpin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedSpin", sub, context);
                 base.parse_element (/<cim:ResourceCertification.certifiedSpinMw>([\s\S]*?)<\/cim:ResourceCertification.certifiedSpinMw>/g, obj, "certifiedSpinMw", base.to_float, sub, context);
-                base.parse_element (/<cim:ResourceCertification.certifiedRTM>([\s\S]*?)<\/cim:ResourceCertification.certifiedRTM>/g, obj, "certifiedRTM", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceCertification.certifiedRUC>([\s\S]*?)<\/cim:ResourceCertification.certifiedRUC>/g, obj, "certifiedRUC", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedRTM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedRTM", sub, context);
+                base.parse_attribute (/<cim:ResourceCertification.certifiedRUC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certifiedRUC", sub, context);
                 base.parse_attributes (/<cim:ResourceCertification.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 var bucket = context.parsed.ResourceCertification;
                 if (null == bucket)
@@ -302,19 +302,19 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResourceCertification", "certifiedDAM", "certifiedDAM",  base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedNonspinDAM", "certifiedNonspinDAM",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedDAM", "certifiedDAM", fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedNonspinDAM", "certifiedNonspinDAM", fields);
                 base.export_element (obj, "ResourceCertification", "certifiedNonspinDAMMw", "certifiedNonspinDAMMw",  base.from_float, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedNonspinRTM", "certifiedNonspinRTM",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedNonspinRTM", "certifiedNonspinRTM", fields);
                 base.export_element (obj, "ResourceCertification", "certifiedNonspinRTMMw", "certifiedNonspinRTMMw",  base.from_float, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedPIRP", "certifiedPIRP",  base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedRegulation", "certifiedRegulation",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedPIRP", "certifiedPIRP", fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedRegulation", "certifiedRegulation", fields);
                 base.export_element (obj, "ResourceCertification", "certifiedRegulationMw", "certifiedRegulationMw",  base.from_float, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedReplaceAS", "certifiedReplaceAS",  base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedSpin", "certifiedSpin",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedReplaceAS", "certifiedReplaceAS", fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedSpin", "certifiedSpin", fields);
                 base.export_element (obj, "ResourceCertification", "certifiedSpinMw", "certifiedSpinMw",  base.from_float, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedRTM", "certifiedRTM",  base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedRUC", "certifiedRUC",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedRTM", "certifiedRTM", fields);
+                base.export_attribute (obj, "ResourceCertification", "certifiedRUC", "certifiedRUC", fields);
                 base.export_attributes (obj, "ResourceCertification", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -356,12 +356,30 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.certifiedDAM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedDAM && obj.certifiedDAM.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.certifiedNonspinDAM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedNonspinDAM && obj.certifiedNonspinDAM.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.certifiedNonspinRTM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedNonspinRTM && obj.certifiedNonspinRTM.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.certifiedPIRP) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedPIRP && obj.certifiedPIRP.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.certifiedRegulation) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedRegulation && obj.certifiedRegulation.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.certifiedReplaceAS) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedReplaceAS && obj.certifiedReplaceAS.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.certifiedSpin) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedSpin && obj.certifiedSpin.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.certifiedRTM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedRTM && obj.certifiedRTM.endsWith ('.' + property)});
+                obj.YesNo = []; if (!obj.certifiedRUC) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedRUC && obj.certifiedRUC.endsWith ('.' + property)});
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
+                delete obj.YesNo;
                 delete obj.RegisteredResource_string;
             }
 
@@ -375,19 +393,19 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedDAM'>certifiedDAM: </label><div class='col-sm-8'><input id='{{id}}_certifiedDAM' class='form-control' type='text'{{#certifiedDAM}} value='{{certifiedDAM}}'{{/certifiedDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinDAM'>certifiedNonspinDAM: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinDAM' class='form-control' type='text'{{#certifiedNonspinDAM}} value='{{certifiedNonspinDAM}}'{{/certifiedNonspinDAM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedDAM'>certifiedDAM: </label><div class='col-sm-8'><select id='{{id}}_certifiedDAM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinDAM'>certifiedNonspinDAM: </label><div class='col-sm-8'><select id='{{id}}_certifiedNonspinDAM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinDAMMw'>certifiedNonspinDAMMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinDAMMw' class='form-control' type='text'{{#certifiedNonspinDAMMw}} value='{{certifiedNonspinDAMMw}}'{{/certifiedNonspinDAMMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinRTM'>certifiedNonspinRTM: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinRTM' class='form-control' type='text'{{#certifiedNonspinRTM}} value='{{certifiedNonspinRTM}}'{{/certifiedNonspinRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinRTM'>certifiedNonspinRTM: </label><div class='col-sm-8'><select id='{{id}}_certifiedNonspinRTM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinRTMMw'>certifiedNonspinRTMMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinRTMMw' class='form-control' type='text'{{#certifiedNonspinRTMMw}} value='{{certifiedNonspinRTMMw}}'{{/certifiedNonspinRTMMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedPIRP'>certifiedPIRP: </label><div class='col-sm-8'><input id='{{id}}_certifiedPIRP' class='form-control' type='text'{{#certifiedPIRP}} value='{{certifiedPIRP}}'{{/certifiedPIRP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulation'>certifiedRegulation: </label><div class='col-sm-8'><input id='{{id}}_certifiedRegulation' class='form-control' type='text'{{#certifiedRegulation}} value='{{certifiedRegulation}}'{{/certifiedRegulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedPIRP'>certifiedPIRP: </label><div class='col-sm-8'><select id='{{id}}_certifiedPIRP' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulation'>certifiedRegulation: </label><div class='col-sm-8'><select id='{{id}}_certifiedRegulation' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulationMw'>certifiedRegulationMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedRegulationMw' class='form-control' type='text'{{#certifiedRegulationMw}} value='{{certifiedRegulationMw}}'{{/certifiedRegulationMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedReplaceAS'>certifiedReplaceAS: </label><div class='col-sm-8'><input id='{{id}}_certifiedReplaceAS' class='form-control' type='text'{{#certifiedReplaceAS}} value='{{certifiedReplaceAS}}'{{/certifiedReplaceAS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><input id='{{id}}_certifiedSpin' class='form-control' type='text'{{#certifiedSpin}} value='{{certifiedSpin}}'{{/certifiedSpin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedReplaceAS'>certifiedReplaceAS: </label><div class='col-sm-8'><select id='{{id}}_certifiedReplaceAS' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><select id='{{id}}_certifiedSpin' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><input id='{{id}}_certifiedRTM' class='form-control' type='text'{{#certifiedRTM}} value='{{certifiedRTM}}'{{/certifiedRTM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><input id='{{id}}_certifiedRUC' class='form-control' type='text'{{#certifiedRUC}} value='{{certifiedRUC}}'{{/certifiedRUC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><select id='{{id}}_certifiedRTM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><select id='{{id}}_certifiedRUC' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
@@ -401,19 +419,19 @@ define
 
                 var obj = obj || { id: id, cls: "ResourceCertification" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_certifiedDAM").value; if ("" != temp) obj.certifiedDAM = temp;
-                temp = document.getElementById (id + "_certifiedNonspinDAM").value; if ("" != temp) obj.certifiedNonspinDAM = temp;
+                temp = document.getElementById (id + "_certifiedDAM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_certifiedNonspinDAM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedNonspinDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_certifiedNonspinDAMMw").value; if ("" != temp) obj.certifiedNonspinDAMMw = temp;
-                temp = document.getElementById (id + "_certifiedNonspinRTM").value; if ("" != temp) obj.certifiedNonspinRTM = temp;
+                temp = document.getElementById (id + "_certifiedNonspinRTM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedNonspinRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_certifiedNonspinRTMMw").value; if ("" != temp) obj.certifiedNonspinRTMMw = temp;
-                temp = document.getElementById (id + "_certifiedPIRP").value; if ("" != temp) obj.certifiedPIRP = temp;
-                temp = document.getElementById (id + "_certifiedRegulation").value; if ("" != temp) obj.certifiedRegulation = temp;
+                temp = document.getElementById (id + "_certifiedPIRP").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedPIRP = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_certifiedRegulation").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedRegulation = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_certifiedRegulationMw").value; if ("" != temp) obj.certifiedRegulationMw = temp;
-                temp = document.getElementById (id + "_certifiedReplaceAS").value; if ("" != temp) obj.certifiedReplaceAS = temp;
-                temp = document.getElementById (id + "_certifiedSpin").value; if ("" != temp) obj.certifiedSpin = temp;
+                temp = document.getElementById (id + "_certifiedReplaceAS").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedReplaceAS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_certifiedSpin").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedSpin = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_certifiedSpinMw").value; if ("" != temp) obj.certifiedSpinMw = temp;
-                temp = document.getElementById (id + "_certifiedRTM").value; if ("" != temp) obj.certifiedRTM = temp;
-                temp = document.getElementById (id + "_certifiedRUC").value; if ("" != temp) obj.certifiedRUC = temp;
+                temp = document.getElementById (id + "_certifiedRTM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = document.getElementById (id + "_certifiedRUC").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedRUC = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
 
                 return (obj);

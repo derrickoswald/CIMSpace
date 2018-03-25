@@ -568,15 +568,15 @@ define
                 base.parse_element (/<cim:CurrentTransformerInfo.ctClass>([\s\S]*?)<\/cim:CurrentTransformerInfo.ctClass>/g, obj, "ctClass", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.kneePointCurrent>([\s\S]*?)<\/cim:CurrentTransformerInfo.kneePointCurrent>/g, obj, "kneePointCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.kneePointVoltage>([\s\S]*?)<\/cim:CurrentTransformerInfo.kneePointVoltage>/g, obj, "kneePointVoltage", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.maxRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.maxRatio>/g, obj, "maxRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.nominalRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.nominalRatio>/g, obj, "nominalRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.maxRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "maxRatio", sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.nominalRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "nominalRatio", sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.primaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.primaryFlsRating>/g, obj, "primaryFlsRating", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.primaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.primaryRatio>/g, obj, "primaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.primaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "primaryRatio", sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.ratedCurrent>([\s\S]*?)<\/cim:CurrentTransformerInfo.ratedCurrent>/g, obj, "ratedCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.secondaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.secondaryFlsRating>/g, obj, "secondaryFlsRating", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.secondaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.secondaryRatio>/g, obj, "secondaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.secondaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "secondaryRatio", sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.tertiaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.tertiaryFlsRating>/g, obj, "tertiaryFlsRating", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.tertiaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.tertiaryRatio>/g, obj, "tertiaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.tertiaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "tertiaryRatio", sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.usage>([\s\S]*?)<\/cim:CurrentTransformerInfo.usage>/g, obj, "usage", base.to_string, sub, context);
                 var bucket = context.parsed.CurrentTransformerInfo;
                 if (null == bucket)
@@ -596,15 +596,15 @@ define
                 base.export_element (obj, "CurrentTransformerInfo", "ctClass", "ctClass",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformerInfo", "kneePointCurrent", "kneePointCurrent",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformerInfo", "kneePointVoltage", "kneePointVoltage",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "maxRatio", "maxRatio",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "nominalRatio", "nominalRatio",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "maxRatio", "maxRatio", fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "nominalRatio", "nominalRatio", fields);
                 base.export_element (obj, "CurrentTransformerInfo", "primaryFlsRating", "primaryFlsRating",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "primaryRatio", "primaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "primaryRatio", "primaryRatio", fields);
                 base.export_element (obj, "CurrentTransformerInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformerInfo", "secondaryFlsRating", "secondaryFlsRating",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "secondaryRatio", "secondaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "secondaryRatio", "secondaryRatio", fields);
                 base.export_element (obj, "CurrentTransformerInfo", "tertiaryFlsRating", "tertiaryFlsRating",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "tertiaryRatio", "tertiaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "tertiaryRatio", "tertiaryRatio", fields);
                 base.export_element (obj, "CurrentTransformerInfo", "usage", "usage",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -643,11 +643,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Ratio = []; if (!obj.maxRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.maxRatio && obj.maxRatio.endsWith ('.' + property)});
+                obj.Ratio = []; if (!obj.nominalRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.nominalRatio && obj.nominalRatio.endsWith ('.' + property)});
+                obj.Ratio = []; if (!obj.primaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.primaryRatio && obj.primaryRatio.endsWith ('.' + property)});
+                obj.Ratio = []; if (!obj.secondaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.secondaryRatio && obj.secondaryRatio.endsWith ('.' + property)});
+                obj.Ratio = []; if (!obj.tertiaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.tertiaryRatio && obj.tertiaryRatio.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Ratio;
+                delete obj.Ratio;
+                delete obj.Ratio;
+                delete obj.Ratio;
+                delete obj.Ratio;
             }
 
             edit_template ()
@@ -666,15 +676,15 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ctClass'>ctClass: </label><div class='col-sm-8'><input id='{{id}}_ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kneePointCurrent'>kneePointCurrent: </label><div class='col-sm-8'><input id='{{id}}_kneePointCurrent' class='form-control' type='text'{{#kneePointCurrent}} value='{{kneePointCurrent}}'{{/kneePointCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kneePointVoltage'>kneePointVoltage: </label><div class='col-sm-8'><input id='{{id}}_kneePointVoltage' class='form-control' type='text'{{#kneePointVoltage}} value='{{kneePointVoltage}}'{{/kneePointVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxRatio'>maxRatio: </label><div class='col-sm-8'><input id='{{id}}_maxRatio' class='form-control' type='text'{{#maxRatio}} value='{{maxRatio}}'{{/maxRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='{{id}}_nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxRatio'>maxRatio: </label><div class='col-sm-8'><select id='{{id}}_maxRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><select id='{{id}}_nominalRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryFlsRating'>primaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_primaryFlsRating' class='form-control' type='text'{{#primaryFlsRating}} value='{{primaryFlsRating}}'{{/primaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='{{id}}_primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><select id='{{id}}_primaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryFlsRating'>secondaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_secondaryFlsRating' class='form-control' type='text'{{#secondaryFlsRating}} value='{{secondaryFlsRating}}'{{/secondaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='{{id}}_secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryFlsRating'>tertiaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_tertiaryFlsRating' class='form-control' type='text'{{#tertiaryFlsRating}} value='{{tertiaryFlsRating}}'{{/tertiaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='{{id}}_tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
                     </div>
                     <fieldset>
@@ -694,15 +704,15 @@ define
                 temp = document.getElementById (id + "_ctClass").value; if ("" != temp) obj.ctClass = temp;
                 temp = document.getElementById (id + "_kneePointCurrent").value; if ("" != temp) obj.kneePointCurrent = temp;
                 temp = document.getElementById (id + "_kneePointVoltage").value; if ("" != temp) obj.kneePointVoltage = temp;
-                temp = document.getElementById (id + "_maxRatio").value; if ("" != temp) obj.maxRatio = temp;
-                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
+                temp = document.getElementById (id + "_maxRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.maxRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.nominalRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
                 temp = document.getElementById (id + "_primaryFlsRating").value; if ("" != temp) obj.primaryFlsRating = temp;
-                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) obj.primaryRatio = temp;
+                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.primaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
                 temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
                 temp = document.getElementById (id + "_secondaryFlsRating").value; if ("" != temp) obj.secondaryFlsRating = temp;
-                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) obj.secondaryRatio = temp;
+                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.secondaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
                 temp = document.getElementById (id + "_tertiaryFlsRating").value; if ("" != temp) obj.tertiaryFlsRating = temp;
-                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) obj.tertiaryRatio = temp;
+                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.tertiaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
                 temp = document.getElementById (id + "_usage").value; if ("" != temp) obj.usage = temp;
 
                 return (obj);
@@ -882,7 +892,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetModelCatalogue";
-                base.parse_element (/<cim:AssetModelCatalogue.status>([\s\S]*?)<\/cim:AssetModelCatalogue.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AssetModelCatalogue.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attributes (/<cim:AssetModelCatalogue.AssetModelCatalogueItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogueItems", sub, context);
                 var bucket = context.parsed.AssetModelCatalogue;
                 if (null == bucket)
@@ -896,7 +906,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AssetModelCatalogue", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "AssetModelCatalogue", "status", "status", fields);
                 base.export_attributes (obj, "AssetModelCatalogue", "AssetModelCatalogueItems", "AssetModelCatalogueItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -925,12 +935,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.AssetModelCatalogueItems) obj.AssetModelCatalogueItems_string = obj.AssetModelCatalogueItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.AssetModelCatalogueItems_string;
             }
 
@@ -944,7 +956,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -957,7 +969,7 @@ define
 
                 var obj = obj || { id: id, cls: "AssetModelCatalogue" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
 
                 return (obj);
             }
@@ -1247,7 +1259,7 @@ define
                 base.parse_element (/<cim:CompositeSwitchInfo.initOpMode>([\s\S]*?)<\/cim:CompositeSwitchInfo.initOpMode>/g, obj, "initOpMode", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.interruptingRating>([\s\S]*?)<\/cim:CompositeSwitchInfo.interruptingRating>/g, obj, "interruptingRating", base.to_string, sub, context);
                 base.parse_attribute (/<cim:CompositeSwitchInfo.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_element (/<cim:CompositeSwitchInfo.phaseCode>([\s\S]*?)<\/cim:CompositeSwitchInfo.phaseCode>/g, obj, "phaseCode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CompositeSwitchInfo.phaseCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phaseCode", sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.phaseCount>([\s\S]*?)<\/cim:CompositeSwitchInfo.phaseCount>/g, obj, "phaseCount", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.ratedVoltage>([\s\S]*?)<\/cim:CompositeSwitchInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.remote>([\s\S]*?)<\/cim:CompositeSwitchInfo.remote>/g, obj, "remote", base.to_boolean, sub, context);
@@ -1268,7 +1280,7 @@ define
                 base.export_element (obj, "CompositeSwitchInfo", "initOpMode", "initOpMode",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "interruptingRating", "interruptingRating",  base.from_string, fields);
                 base.export_attribute (obj, "CompositeSwitchInfo", "kind", "kind", fields);
-                base.export_element (obj, "CompositeSwitchInfo", "phaseCode", "phaseCode",  base.from_string, fields);
+                base.export_attribute (obj, "CompositeSwitchInfo", "phaseCode", "phaseCode", fields);
                 base.export_element (obj, "CompositeSwitchInfo", "phaseCount", "phaseCount",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "remote", "remote",  base.from_boolean, fields);
@@ -1309,12 +1321,14 @@ define
             {
                 super.condition (obj);
                 obj.CompositeSwitchKind = []; if (!obj.kind) obj.CompositeSwitchKind.push ({ id: '', selected: true}); for (var property in CompositeSwitchKind) obj.CompositeSwitchKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.PhaseCode = []; if (!obj.phaseCode) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phaseCode && obj.phaseCode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.CompositeSwitchKind;
+                delete obj.PhaseCode;
             }
 
             edit_template ()
@@ -1331,7 +1345,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initOpMode'>initOpMode: </label><div class='col-sm-8'><input id='{{id}}_initOpMode' class='form-control' type='text'{{#initOpMode}} value='{{initOpMode}}'{{/initOpMode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interruptingRating'>interruptingRating: </label><div class='col-sm-8'><input id='{{id}}_interruptingRating' class='form-control' type='text'{{#interruptingRating}} value='{{interruptingRating}}'{{/interruptingRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#CompositeSwitchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CompositeSwitchKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='{{id}}_phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><select id='{{id}}_phaseCode' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='{{id}}_phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_remote'>remote: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div></div>
@@ -1352,7 +1366,7 @@ define
                 temp = document.getElementById (id + "_initOpMode").value; if ("" != temp) obj.initOpMode = temp;
                 temp = document.getElementById (id + "_interruptingRating").value; if ("" != temp) obj.interruptingRating = temp;
                 temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CompositeSwitchKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; }
-                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) obj.phaseCode = temp;
+                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
                 temp = document.getElementById (id + "_phaseCount").value; if ("" != temp) obj.phaseCount = temp;
                 temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
                 temp = document.getElementById (id + "_remote").checked; if (temp) obj.remote = true;
@@ -1390,12 +1404,12 @@ define
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "PotentialTransformerInfo";
                 base.parse_element (/<cim:PotentialTransformerInfo.accuracyClass>([\s\S]*?)<\/cim:PotentialTransformerInfo.accuracyClass>/g, obj, "accuracyClass", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerInfo.nominalRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.nominalRatio>/g, obj, "nominalRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerInfo.primaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.primaryRatio>/g, obj, "primaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PotentialTransformerInfo.nominalRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "nominalRatio", sub, context);
+                base.parse_attribute (/<cim:PotentialTransformerInfo.primaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "primaryRatio", sub, context);
                 base.parse_element (/<cim:PotentialTransformerInfo.ptClass>([\s\S]*?)<\/cim:PotentialTransformerInfo.ptClass>/g, obj, "ptClass", base.to_string, sub, context);
                 base.parse_element (/<cim:PotentialTransformerInfo.ratedVoltage>([\s\S]*?)<\/cim:PotentialTransformerInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerInfo.secondaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.secondaryRatio>/g, obj, "secondaryRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerInfo.tertiaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.tertiaryRatio>/g, obj, "tertiaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PotentialTransformerInfo.secondaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "secondaryRatio", sub, context);
+                base.parse_attribute (/<cim:PotentialTransformerInfo.tertiaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "tertiaryRatio", sub, context);
                 var bucket = context.parsed.PotentialTransformerInfo;
                 if (null == bucket)
                    context.parsed.PotentialTransformerInfo = bucket = {};
@@ -1409,12 +1423,12 @@ define
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PotentialTransformerInfo", "accuracyClass", "accuracyClass",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerInfo", "nominalRatio", "nominalRatio",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerInfo", "primaryRatio", "primaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "PotentialTransformerInfo", "nominalRatio", "nominalRatio", fields);
+                base.export_attribute (obj, "PotentialTransformerInfo", "primaryRatio", "primaryRatio", fields);
                 base.export_element (obj, "PotentialTransformerInfo", "ptClass", "ptClass",  base.from_string, fields);
                 base.export_element (obj, "PotentialTransformerInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerInfo", "secondaryRatio", "secondaryRatio",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerInfo", "tertiaryRatio", "tertiaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "PotentialTransformerInfo", "secondaryRatio", "secondaryRatio", fields);
+                base.export_attribute (obj, "PotentialTransformerInfo", "tertiaryRatio", "tertiaryRatio", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1444,11 +1458,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Ratio = []; if (!obj.nominalRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.nominalRatio && obj.nominalRatio.endsWith ('.' + property)});
+                obj.Ratio = []; if (!obj.primaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.primaryRatio && obj.primaryRatio.endsWith ('.' + property)});
+                obj.Ratio = []; if (!obj.secondaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.secondaryRatio && obj.secondaryRatio.endsWith ('.' + property)});
+                obj.Ratio = []; if (!obj.tertiaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.tertiaryRatio && obj.tertiaryRatio.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Ratio;
+                delete obj.Ratio;
+                delete obj.Ratio;
+                delete obj.Ratio;
             }
 
             edit_template ()
@@ -1462,12 +1484,12 @@ define
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='{{id}}_nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='{{id}}_primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><select id='{{id}}_nominalRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><select id='{{id}}_primaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ptClass'>ptClass: </label><div class='col-sm-8'><input id='{{id}}_ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='{{id}}_secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='{{id}}_tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1481,12 +1503,12 @@ define
                 var obj = obj || { id: id, cls: "PotentialTransformerInfo" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
-                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
-                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) obj.primaryRatio = temp;
+                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.nominalRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.primaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
                 temp = document.getElementById (id + "_ptClass").value; if ("" != temp) obj.ptClass = temp;
                 temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) obj.secondaryRatio = temp;
-                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) obj.tertiaryRatio = temp;
+                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.secondaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.tertiaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
 
                 return (obj);
             }

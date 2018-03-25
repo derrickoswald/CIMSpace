@@ -520,10 +520,10 @@ define
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "Outage";
                 base.parse_element (/<cim:Outage.cause>([\s\S]*?)<\/cim:Outage.cause>/g, obj, "cause", base.to_string, sub, context);
-                base.parse_element (/<cim:Outage.estimatedPeriod>([\s\S]*?)<\/cim:Outage.estimatedPeriod>/g, obj, "estimatedPeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Outage.estimatedPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "estimatedPeriod", sub, context);
                 base.parse_element (/<cim:Outage.isPlanned>([\s\S]*?)<\/cim:Outage.isPlanned>/g, obj, "isPlanned", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Outage.actualPeriod>([\s\S]*?)<\/cim:Outage.actualPeriod>/g, obj, "actualPeriod", base.to_string, sub, context);
-                base.parse_element (/<cim:Outage.summary>([\s\S]*?)<\/cim:Outage.summary>/g, obj, "summary", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Outage.actualPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "actualPeriod", sub, context);
+                base.parse_attribute (/<cim:Outage.summary\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "summary", sub, context);
                 base.parse_element (/<cim:Outage.cancelledDateTime>([\s\S]*?)<\/cim:Outage.cancelledDateTime>/g, obj, "cancelledDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:Outage.OutageSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OutageSchedule", sub, context);
                 base.parse_attributes (/<cim:Outage.PlannedSwitchActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedSwitchActions", sub, context);
@@ -547,10 +547,10 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Outage", "cause", "cause",  base.from_string, fields);
-                base.export_element (obj, "Outage", "estimatedPeriod", "estimatedPeriod",  base.from_string, fields);
+                base.export_attribute (obj, "Outage", "estimatedPeriod", "estimatedPeriod", fields);
                 base.export_element (obj, "Outage", "isPlanned", "isPlanned",  base.from_boolean, fields);
-                base.export_element (obj, "Outage", "actualPeriod", "actualPeriod",  base.from_string, fields);
-                base.export_element (obj, "Outage", "summary", "summary",  base.from_string, fields);
+                base.export_attribute (obj, "Outage", "actualPeriod", "actualPeriod", fields);
+                base.export_attribute (obj, "Outage", "summary", "summary", fields);
                 base.export_element (obj, "Outage", "cancelledDateTime", "cancelledDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "Outage", "OutageSchedule", "OutageSchedule", fields);
                 base.export_attributes (obj, "Outage", "PlannedSwitchActions", "PlannedSwitchActions", fields);
@@ -601,6 +601,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.estimatedPeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.estimatedPeriod && obj.estimatedPeriod.endsWith ('.' + property)});
+                obj.DateTimeInterval = []; if (!obj.actualPeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.actualPeriod && obj.actualPeriod.endsWith ('.' + property)});
+                obj.ServicePointOutageSummary = []; if (!obj.summary) obj.ServicePointOutageSummary.push ({ id: '', selected: true}); for (var property in ServicePointOutageSummary) obj.ServicePointOutageSummary.push ({ id: property, selected: obj.summary && obj.summary.endsWith ('.' + property)});
                 if (obj.PlannedSwitchActions) obj.PlannedSwitchActions_string = obj.PlannedSwitchActions.join ();
                 if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
                 if (obj.OpenedSwitches) obj.OpenedSwitches_string = obj.OpenedSwitches.join ();
@@ -613,6 +616,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
+                delete obj.DateTimeInterval;
+                delete obj.ServicePointOutageSummary;
                 delete obj.PlannedSwitchActions_string;
                 delete obj.Equipments_string;
                 delete obj.OpenedSwitches_string;
@@ -633,10 +639,10 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cause'>cause: </label><div class='col-sm-8'><input id='{{id}}_cause' class='form-control' type='text'{{#cause}} value='{{cause}}'{{/cause}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedPeriod'>estimatedPeriod: </label><div class='col-sm-8'><input id='{{id}}_estimatedPeriod' class='form-control' type='text'{{#estimatedPeriod}} value='{{estimatedPeriod}}'{{/estimatedPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedPeriod'>estimatedPeriod: </label><div class='col-sm-8'><select id='{{id}}_estimatedPeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isPlanned'>isPlanned: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isPlanned' class='form-check-input' type='checkbox'{{#isPlanned}} checked{{/isPlanned}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualPeriod'>actualPeriod: </label><div class='col-sm-8'><input id='{{id}}_actualPeriod' class='form-control' type='text'{{#actualPeriod}} value='{{actualPeriod}}'{{/actualPeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_summary'>summary: </label><div class='col-sm-8'><input id='{{id}}_summary' class='form-control' type='text'{{#summary}} value='{{summary}}'{{/summary}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualPeriod'>actualPeriod: </label><div class='col-sm-8'><select id='{{id}}_actualPeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_summary'>summary: </label><div class='col-sm-8'><select id='{{id}}_summary' class='form-control custom-select'>{{#ServicePointOutageSummary}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ServicePointOutageSummary}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelledDateTime'>cancelledDateTime: </label><div class='col-sm-8'><input id='{{id}}_cancelledDateTime' class='form-control' type='text'{{#cancelledDateTime}} value='{{cancelledDateTime}}'{{/cancelledDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OutageSchedule'>OutageSchedule: </label><div class='col-sm-8'><input id='{{id}}_OutageSchedule' class='form-control' type='text'{{#OutageSchedule}} value='{{OutageSchedule}}'{{/OutageSchedule}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments_string}}'{{/Equipments}}></div></div>
@@ -655,10 +661,10 @@ define
                 var obj = obj || { id: id, cls: "Outage" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_cause").value; if ("" != temp) obj.cause = temp;
-                temp = document.getElementById (id + "_estimatedPeriod").value; if ("" != temp) obj.estimatedPeriod = temp;
+                temp = document.getElementById (id + "_estimatedPeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.estimatedPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_isPlanned").checked; if (temp) obj.isPlanned = true;
-                temp = document.getElementById (id + "_actualPeriod").value; if ("" != temp) obj.actualPeriod = temp;
-                temp = document.getElementById (id + "_summary").value; if ("" != temp) obj.summary = temp;
+                temp = document.getElementById (id + "_actualPeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.actualPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
+                temp = document.getElementById (id + "_summary").value; if ("" != temp) { temp = ServicePointOutageSummary[temp]; if ("undefined" != typeof (temp)) obj.summary = "http://iec.ch/TC57/2013/CIM-schema-cim16#ServicePointOutageSummary." + temp; }
                 temp = document.getElementById (id + "_cancelledDateTime").value; if ("" != temp) obj.cancelledDateTime = temp;
                 temp = document.getElementById (id + "_OutageSchedule").value; if ("" != temp) obj.OutageSchedule = temp;
                 temp = document.getElementById (id + "_Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
@@ -871,8 +877,8 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "OperationalRestriction";
-                base.parse_element (/<cim:OperationalRestriction.activePeriod>([\s\S]*?)<\/cim:OperationalRestriction.activePeriod>/g, obj, "activePeriod", base.to_string, sub, context);
-                base.parse_element (/<cim:OperationalRestriction.restrictedValue>([\s\S]*?)<\/cim:OperationalRestriction.restrictedValue>/g, obj, "restrictedValue", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OperationalRestriction.activePeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "activePeriod", sub, context);
+                base.parse_attribute (/<cim:OperationalRestriction.restrictedValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "restrictedValue", sub, context);
                 base.parse_attributes (/<cim:OperationalRestriction.Equipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipments", sub, context);
                 base.parse_attribute (/<cim:OperationalRestriction.ProductAssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProductAssetModel", sub, context);
                 var bucket = context.parsed.OperationalRestriction;
@@ -887,8 +893,8 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OperationalRestriction", "activePeriod", "activePeriod",  base.from_string, fields);
-                base.export_element (obj, "OperationalRestriction", "restrictedValue", "restrictedValue",  base.from_string, fields);
+                base.export_attribute (obj, "OperationalRestriction", "activePeriod", "activePeriod", fields);
+                base.export_attribute (obj, "OperationalRestriction", "restrictedValue", "restrictedValue", fields);
                 base.export_attributes (obj, "OperationalRestriction", "Equipments", "Equipments", fields);
                 base.export_attribute (obj, "OperationalRestriction", "ProductAssetModel", "ProductAssetModel", fields);
                 if (full)
@@ -921,12 +927,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.activePeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.activePeriod && obj.activePeriod.endsWith ('.' + property)});
+                obj.FloatQuantity = []; if (!obj.restrictedValue) obj.FloatQuantity.push ({ id: '', selected: true}); for (var property in FloatQuantity) obj.FloatQuantity.push ({ id: property, selected: obj.restrictedValue && obj.restrictedValue.endsWith ('.' + property)});
                 if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
+                delete obj.FloatQuantity;
                 delete obj.Equipments_string;
             }
 
@@ -940,8 +950,8 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activePeriod'>activePeriod: </label><div class='col-sm-8'><input id='{{id}}_activePeriod' class='form-control' type='text'{{#activePeriod}} value='{{activePeriod}}'{{/activePeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_restrictedValue'>restrictedValue: </label><div class='col-sm-8'><input id='{{id}}_restrictedValue' class='form-control' type='text'{{#restrictedValue}} value='{{restrictedValue}}'{{/restrictedValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activePeriod'>activePeriod: </label><div class='col-sm-8'><select id='{{id}}_activePeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_restrictedValue'>restrictedValue: </label><div class='col-sm-8'><select id='{{id}}_restrictedValue' class='form-control custom-select'>{{#FloatQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FloatQuantity}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments_string}}'{{/Equipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductAssetModel'>ProductAssetModel: </label><div class='col-sm-8'><input id='{{id}}_ProductAssetModel' class='form-control' type='text'{{#ProductAssetModel}} value='{{ProductAssetModel}}'{{/ProductAssetModel}}></div></div>
                     </div>
@@ -956,8 +966,8 @@ define
 
                 var obj = obj || { id: id, cls: "OperationalRestriction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_activePeriod").value; if ("" != temp) obj.activePeriod = temp;
-                temp = document.getElementById (id + "_restrictedValue").value; if ("" != temp) obj.restrictedValue = temp;
+                temp = document.getElementById (id + "_activePeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.activePeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
+                temp = document.getElementById (id + "_restrictedValue").value; if ("" != temp) { temp = FloatQuantity[temp]; if ("undefined" != typeof (temp)) obj.restrictedValue = "http://iec.ch/TC57/2013/CIM-schema-cim16#FloatQuantity." + temp; }
                 temp = document.getElementById (id + "_Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
                 temp = document.getElementById (id + "_ProductAssetModel").value; if ("" != temp) obj.ProductAssetModel = temp;
 

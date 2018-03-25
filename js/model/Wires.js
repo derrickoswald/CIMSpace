@@ -4012,10 +4012,10 @@ define
                 obj.cls = "RegulatingControl";
                 base.parse_element (/<cim:RegulatingControl.discrete>([\s\S]*?)<\/cim:RegulatingControl.discrete>/g, obj, "discrete", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:RegulatingControl.mode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mode", sub, context);
-                base.parse_element (/<cim:RegulatingControl.monitoredPhase>([\s\S]*?)<\/cim:RegulatingControl.monitoredPhase>/g, obj, "monitoredPhase", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegulatingControl.monitoredPhase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "monitoredPhase", sub, context);
                 base.parse_element (/<cim:RegulatingControl.targetDeadband>([\s\S]*?)<\/cim:RegulatingControl.targetDeadband>/g, obj, "targetDeadband", base.to_float, sub, context);
                 base.parse_element (/<cim:RegulatingControl.targetValue>([\s\S]*?)<\/cim:RegulatingControl.targetValue>/g, obj, "targetValue", base.to_float, sub, context);
-                base.parse_element (/<cim:RegulatingControl.targetValueUnitMultiplier>([\s\S]*?)<\/cim:RegulatingControl.targetValueUnitMultiplier>/g, obj, "targetValueUnitMultiplier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegulatingControl.targetValueUnitMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "targetValueUnitMultiplier", sub, context);
                 base.parse_element (/<cim:RegulatingControl.enabled>([\s\S]*?)<\/cim:RegulatingControl.enabled>/g, obj, "enabled", base.to_boolean, sub, context);
                 base.parse_attributes (/<cim:RegulatingControl.ProtectiveActionRegulation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionRegulation", sub, context);
                 base.parse_attributes (/<cim:RegulatingControl.RegulationSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegulationSchedule", sub, context);
@@ -4035,10 +4035,10 @@ define
 
                 base.export_element (obj, "RegulatingControl", "discrete", "discrete",  base.from_boolean, fields);
                 base.export_attribute (obj, "RegulatingControl", "mode", "mode", fields);
-                base.export_element (obj, "RegulatingControl", "monitoredPhase", "monitoredPhase",  base.from_string, fields);
+                base.export_attribute (obj, "RegulatingControl", "monitoredPhase", "monitoredPhase", fields);
                 base.export_element (obj, "RegulatingControl", "targetDeadband", "targetDeadband",  base.from_float, fields);
                 base.export_element (obj, "RegulatingControl", "targetValue", "targetValue",  base.from_float, fields);
-                base.export_element (obj, "RegulatingControl", "targetValueUnitMultiplier", "targetValueUnitMultiplier",  base.from_string, fields);
+                base.export_attribute (obj, "RegulatingControl", "targetValueUnitMultiplier", "targetValueUnitMultiplier", fields);
                 base.export_element (obj, "RegulatingControl", "enabled", "enabled",  base.from_boolean, fields);
                 base.export_attributes (obj, "RegulatingControl", "ProtectiveActionRegulation", "ProtectiveActionRegulation", fields);
                 base.export_attributes (obj, "RegulatingControl", "RegulationSchedule", "RegulationSchedule", fields);
@@ -4082,6 +4082,8 @@ define
             {
                 super.condition (obj);
                 obj.RegulatingControlModeKind = []; if (!obj.mode) obj.RegulatingControlModeKind.push ({ id: '', selected: true}); for (var property in RegulatingControlModeKind) obj.RegulatingControlModeKind.push ({ id: property, selected: obj.mode && obj.mode.endsWith ('.' + property)});
+                obj.PhaseCode = []; if (!obj.monitoredPhase) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.monitoredPhase && obj.monitoredPhase.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.targetValueUnitMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.targetValueUnitMultiplier && obj.targetValueUnitMultiplier.endsWith ('.' + property)});
                 if (obj.ProtectiveActionRegulation) obj.ProtectiveActionRegulation_string = obj.ProtectiveActionRegulation.join ();
                 if (obj.RegulationSchedule) obj.RegulationSchedule_string = obj.RegulationSchedule.join ();
                 if (obj.RegulatingCondEq) obj.RegulatingCondEq_string = obj.RegulatingCondEq.join ();
@@ -4091,6 +4093,8 @@ define
             {
                 super.uncondition (obj);
                 delete obj.RegulatingControlModeKind;
+                delete obj.PhaseCode;
+                delete obj.UnitMultiplier;
                 delete obj.ProtectiveActionRegulation_string;
                 delete obj.RegulationSchedule_string;
                 delete obj.RegulatingCondEq_string;
@@ -4108,10 +4112,10 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_discrete'>discrete: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_discrete' class='form-check-input' type='checkbox'{{#discrete}} checked{{/discrete}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mode'>mode: </label><div class='col-sm-8'><select id='{{id}}_mode' class='form-control custom-select'>{{#RegulatingControlModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RegulatingControlModeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_monitoredPhase'>monitoredPhase: </label><div class='col-sm-8'><input id='{{id}}_monitoredPhase' class='form-control' type='text'{{#monitoredPhase}} value='{{monitoredPhase}}'{{/monitoredPhase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_monitoredPhase'>monitoredPhase: </label><div class='col-sm-8'><select id='{{id}}_monitoredPhase' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetDeadband'>targetDeadband: </label><div class='col-sm-8'><input id='{{id}}_targetDeadband' class='form-control' type='text'{{#targetDeadband}} value='{{targetDeadband}}'{{/targetDeadband}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValue'>targetValue: </label><div class='col-sm-8'><input id='{{id}}_targetValue' class='form-control' type='text'{{#targetValue}} value='{{targetValue}}'{{/targetValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValueUnitMultiplier'>targetValueUnitMultiplier: </label><div class='col-sm-8'><input id='{{id}}_targetValueUnitMultiplier' class='form-control' type='text'{{#targetValueUnitMultiplier}} value='{{targetValueUnitMultiplier}}'{{/targetValueUnitMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValueUnitMultiplier'>targetValueUnitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_targetValueUnitMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
@@ -4128,10 +4132,10 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_discrete").checked; if (temp) obj.discrete = true;
                 temp = document.getElementById (id + "_mode").value; if ("" != temp) { temp = RegulatingControlModeKind[temp]; if ("undefined" != typeof (temp)) obj.mode = "http://iec.ch/TC57/2013/CIM-schema-cim16#RegulatingControlModeKind." + temp; }
-                temp = document.getElementById (id + "_monitoredPhase").value; if ("" != temp) obj.monitoredPhase = temp;
+                temp = document.getElementById (id + "_monitoredPhase").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.monitoredPhase = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
                 temp = document.getElementById (id + "_targetDeadband").value; if ("" != temp) obj.targetDeadband = temp;
                 temp = document.getElementById (id + "_targetValue").value; if ("" != temp) obj.targetValue = temp;
-                temp = document.getElementById (id + "_targetValueUnitMultiplier").value; if ("" != temp) obj.targetValueUnitMultiplier = temp;
+                temp = document.getElementById (id + "_targetValueUnitMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.targetValueUnitMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
                 temp = document.getElementById (id + "_enabled").checked; if (temp) obj.enabled = true;
                 temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
@@ -7682,7 +7686,7 @@ define
 
                 obj = TransformerEnd.prototype.parse.call (this, context, sub);
                 obj.cls = "TransformerTankEnd";
-                base.parse_element (/<cim:TransformerTankEnd.phases>([\s\S]*?)<\/cim:TransformerTankEnd.phases>/g, obj, "phases", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TransformerTankEnd.phases\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phases", sub, context);
                 base.parse_attribute (/<cim:TransformerTankEnd.TransformerTank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerTank", sub, context);
                 var bucket = context.parsed.TransformerTankEnd;
                 if (null == bucket)
@@ -7696,7 +7700,7 @@ define
             {
                 var fields = TransformerEnd.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TransformerTankEnd", "phases", "phases",  base.from_string, fields);
+                base.export_attribute (obj, "TransformerTankEnd", "phases", "phases", fields);
                 base.export_attribute (obj, "TransformerTankEnd", "TransformerTank", "TransformerTank", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -7726,11 +7730,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.PhaseCode = []; if (!obj.phases) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PhaseCode;
             }
 
             edit_template ()
@@ -7743,7 +7749,7 @@ define
                     `
                     + TransformerEnd.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><input id='{{id}}_phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerTank'>TransformerTank: </label><div class='col-sm-8'><input id='{{id}}_TransformerTank' class='form-control' type='text'{{#TransformerTank}} value='{{TransformerTank}}'{{/TransformerTank}}></div></div>
                     </div>
                     <fieldset>
@@ -7757,7 +7763,7 @@ define
 
                 var obj = obj || { id: id, cls: "TransformerTankEnd" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_phases").value; if ("" != temp) obj.phases = temp;
+                temp = document.getElementById (id + "_phases").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
                 temp = document.getElementById (id + "_TransformerTank").value; if ("" != temp) obj.TransformerTank = temp;
 
                 return (obj);

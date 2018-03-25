@@ -1660,7 +1660,7 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "DefaultBidCurve";
                 base.parse_element (/<cim:DefaultBidCurve.curveType>([\s\S]*?)<\/cim:DefaultBidCurve.curveType>/g, obj, "curveType", base.to_string, sub, context);
-                base.parse_element (/<cim:DefaultBidCurve.debAdderFlag>([\s\S]*?)<\/cim:DefaultBidCurve.debAdderFlag>/g, obj, "debAdderFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DefaultBidCurve.debAdderFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "debAdderFlag", sub, context);
                 base.parse_attribute (/<cim:DefaultBidCurve.DefaultBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DefaultBid", sub, context);
                 var bucket = context.parsed.DefaultBidCurve;
                 if (null == bucket)
@@ -1675,7 +1675,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DefaultBidCurve", "curveType", "curveType",  base.from_string, fields);
-                base.export_element (obj, "DefaultBidCurve", "debAdderFlag", "debAdderFlag",  base.from_string, fields);
+                base.export_attribute (obj, "DefaultBidCurve", "debAdderFlag", "debAdderFlag", fields);
                 base.export_attribute (obj, "DefaultBidCurve", "DefaultBid", "DefaultBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1706,11 +1706,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.YesNo = []; if (!obj.debAdderFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.debAdderFlag && obj.debAdderFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.YesNo;
             }
 
             edit_template ()
@@ -1724,7 +1726,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curveType'>curveType: </label><div class='col-sm-8'><input id='{{id}}_curveType' class='form-control' type='text'{{#curveType}} value='{{curveType}}'{{/curveType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_debAdderFlag'>debAdderFlag: </label><div class='col-sm-8'><input id='{{id}}_debAdderFlag' class='form-control' type='text'{{#debAdderFlag}} value='{{debAdderFlag}}'{{/debAdderFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_debAdderFlag'>debAdderFlag: </label><div class='col-sm-8'><select id='{{id}}_debAdderFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DefaultBid'>DefaultBid: </label><div class='col-sm-8'><input id='{{id}}_DefaultBid' class='form-control' type='text'{{#DefaultBid}} value='{{DefaultBid}}'{{/DefaultBid}}></div></div>
                     </div>
                     <fieldset>
@@ -1739,7 +1741,7 @@ define
                 var obj = obj || { id: id, cls: "DefaultBidCurve" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_curveType").value; if ("" != temp) obj.curveType = temp;
-                temp = document.getElementById (id + "_debAdderFlag").value; if ("" != temp) obj.debAdderFlag = temp;
+                temp = document.getElementById (id + "_debAdderFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.debAdderFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
                 temp = document.getElementById (id + "_DefaultBid").value; if ("" != temp) obj.DefaultBid = temp;
 
                 return (obj);
@@ -2350,7 +2352,7 @@ define
                 obj = Meas.AnalogLimit.prototype.parse.call (this, context, sub);
                 obj.cls = "MktAnalogLimit";
                 base.parse_element (/<cim:MktAnalogLimit.exceededLimit>([\s\S]*?)<\/cim:MktAnalogLimit.exceededLimit>/g, obj, "exceededLimit", base.to_boolean, sub, context);
-                base.parse_element (/<cim:MktAnalogLimit.limitType>([\s\S]*?)<\/cim:MktAnalogLimit.limitType>/g, obj, "limitType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MktAnalogLimit.limitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "limitType", sub, context);
                 var bucket = context.parsed.MktAnalogLimit;
                 if (null == bucket)
                    context.parsed.MktAnalogLimit = bucket = {};
@@ -2364,7 +2366,7 @@ define
                 var fields = Meas.AnalogLimit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MktAnalogLimit", "exceededLimit", "exceededLimit",  base.from_boolean, fields);
-                base.export_element (obj, "MktAnalogLimit", "limitType", "limitType",  base.from_string, fields);
+                base.export_attribute (obj, "MktAnalogLimit", "limitType", "limitType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2393,11 +2395,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.AnalogLimitType = []; if (!obj.limitType) obj.AnalogLimitType.push ({ id: '', selected: true}); for (var property in AnalogLimitType) obj.AnalogLimitType.push ({ id: property, selected: obj.limitType && obj.limitType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AnalogLimitType;
             }
 
             edit_template ()
@@ -2411,7 +2415,7 @@ define
                     + Meas.AnalogLimit.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_exceededLimit'>exceededLimit: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exceededLimit' class='form-check-input' type='checkbox'{{#exceededLimit}} checked{{/exceededLimit}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitType'>limitType: </label><div class='col-sm-8'><input id='{{id}}_limitType' class='form-control' type='text'{{#limitType}} value='{{limitType}}'{{/limitType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitType'>limitType: </label><div class='col-sm-8'><select id='{{id}}_limitType' class='form-control custom-select'>{{#AnalogLimitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AnalogLimitType}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -2425,7 +2429,7 @@ define
                 var obj = obj || { id: id, cls: "MktAnalogLimit" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_exceededLimit").checked; if (temp) obj.exceededLimit = true;
-                temp = document.getElementById (id + "_limitType").value; if ("" != temp) obj.limitType = temp;
+                temp = document.getElementById (id + "_limitType").value; if ("" != temp) { temp = AnalogLimitType[temp]; if ("undefined" != typeof (temp)) obj.limitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogLimitType." + temp; }
 
                 return (obj);
             }
@@ -3399,7 +3403,7 @@ define
                 base.parse_element (/<cim:EnergyTransaction.payCongestion>([\s\S]*?)<\/cim:EnergyTransaction.payCongestion>/g, obj, "payCongestion", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EnergyTransaction.reason>([\s\S]*?)<\/cim:EnergyTransaction.reason>/g, obj, "reason", base.to_string, sub, context);
                 base.parse_element (/<cim:EnergyTransaction.receiptPointP>([\s\S]*?)<\/cim:EnergyTransaction.receiptPointP>/g, obj, "receiptPointP", base.to_string, sub, context);
-                base.parse_element (/<cim:EnergyTransaction.state>([\s\S]*?)<\/cim:EnergyTransaction.state>/g, obj, "state", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EnergyTransaction.state\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "state", sub, context);
                 base.parse_attribute (/<cim:EnergyTransaction.EnergyProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyProduct", sub, context);
                 base.parse_attributes (/<cim:EnergyTransaction.EnergyPriceCurves\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyPriceCurves", sub, context);
                 base.parse_attributes (/<cim:EnergyTransaction.EnergyProfiles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyProfiles", sub, context);
@@ -3429,7 +3433,7 @@ define
                 base.export_element (obj, "EnergyTransaction", "payCongestion", "payCongestion",  base.from_boolean, fields);
                 base.export_element (obj, "EnergyTransaction", "reason", "reason",  base.from_string, fields);
                 base.export_element (obj, "EnergyTransaction", "receiptPointP", "receiptPointP",  base.from_string, fields);
-                base.export_element (obj, "EnergyTransaction", "state", "state",  base.from_string, fields);
+                base.export_attribute (obj, "EnergyTransaction", "state", "state", fields);
                 base.export_attribute (obj, "EnergyTransaction", "EnergyProduct", "EnergyProduct", fields);
                 base.export_attributes (obj, "EnergyTransaction", "EnergyPriceCurves", "EnergyPriceCurves", fields);
                 base.export_attributes (obj, "EnergyTransaction", "EnergyProfiles", "EnergyProfiles", fields);
@@ -3483,6 +3487,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.EnergyTransactionType = []; if (!obj.state) obj.EnergyTransactionType.push ({ id: '', selected: true}); for (var property in EnergyTransactionType) obj.EnergyTransactionType.push ({ id: property, selected: obj.state && obj.state.endsWith ('.' + property)});
                 if (obj.EnergyPriceCurves) obj.EnergyPriceCurves_string = obj.EnergyPriceCurves.join ();
                 if (obj.EnergyProfiles) obj.EnergyProfiles_string = obj.EnergyProfiles.join ();
                 if (obj.TieLines) obj.TieLines_string = obj.TieLines.join ();
@@ -3493,6 +3498,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyTransactionType;
                 delete obj.EnergyPriceCurves_string;
                 delete obj.EnergyProfiles_string;
                 delete obj.TieLines_string;
@@ -3518,7 +3524,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_payCongestion'>payCongestion: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><input id='{{id}}_reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiptPointP'>receiptPointP: </label><div class='col-sm-8'><input id='{{id}}_receiptPointP' class='form-control' type='text'{{#receiptPointP}} value='{{receiptPointP}}'{{/receiptPointP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_state'>state: </label><div class='col-sm-8'><input id='{{id}}_state' class='form-control' type='text'{{#state}} value='{{state}}'{{/state}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_state'>state: </label><div class='col-sm-8'><select id='{{id}}_state' class='form-control custom-select'>{{#EnergyTransactionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EnergyTransactionType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyProduct'>EnergyProduct: </label><div class='col-sm-8'><input id='{{id}}_EnergyProduct' class='form-control' type='text'{{#EnergyProduct}} value='{{EnergyProduct}}'{{/EnergyProduct}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyPriceCurves'>EnergyPriceCurves: </label><div class='col-sm-8'><input id='{{id}}_EnergyPriceCurves' class='form-control' type='text'{{#EnergyPriceCurves}} value='{{EnergyPriceCurves_string}}'{{/EnergyPriceCurves}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionReservation'>TransmissionReservation: </label><div class='col-sm-8'><input id='{{id}}_TransmissionReservation' class='form-control' type='text'{{#TransmissionReservation}} value='{{TransmissionReservation}}'{{/TransmissionReservation}}></div></div>
@@ -3544,7 +3550,7 @@ define
                 temp = document.getElementById (id + "_payCongestion").checked; if (temp) obj.payCongestion = true;
                 temp = document.getElementById (id + "_reason").value; if ("" != temp) obj.reason = temp;
                 temp = document.getElementById (id + "_receiptPointP").value; if ("" != temp) obj.receiptPointP = temp;
-                temp = document.getElementById (id + "_state").value; if ("" != temp) obj.state = temp;
+                temp = document.getElementById (id + "_state").value; if ("" != temp) { temp = EnergyTransactionType[temp]; if ("undefined" != typeof (temp)) obj.state = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyTransactionType." + temp; }
                 temp = document.getElementById (id + "_EnergyProduct").value; if ("" != temp) obj.EnergyProduct = temp;
                 temp = document.getElementById (id + "_EnergyPriceCurves").value; if ("" != temp) obj.EnergyPriceCurves = temp.split (",");
                 temp = document.getElementById (id + "_TransmissionReservation").value; if ("" != temp) obj.TransmissionReservation = temp;
@@ -4126,7 +4132,7 @@ define
 
                 obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "AreaLoadCurve";
-                base.parse_element (/<cim:AreaLoadCurve.forecastType>([\s\S]*?)<\/cim:AreaLoadCurve.forecastType>/g, obj, "forecastType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AreaLoadCurve.forecastType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "forecastType", sub, context);
                 base.parse_attribute (/<cim:AreaLoadCurve.AggregateNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregateNode", sub, context);
                 base.parse_attribute (/<cim:AreaLoadCurve.TACArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TACArea", sub, context);
                 base.parse_attribute (/<cim:AreaLoadCurve.MktLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktLoadArea", sub, context);
@@ -4142,7 +4148,7 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AreaLoadCurve", "forecastType", "forecastType",  base.from_string, fields);
+                base.export_attribute (obj, "AreaLoadCurve", "forecastType", "forecastType", fields);
                 base.export_attribute (obj, "AreaLoadCurve", "AggregateNode", "AggregateNode", fields);
                 base.export_attribute (obj, "AreaLoadCurve", "TACArea", "TACArea", fields);
                 base.export_attribute (obj, "AreaLoadCurve", "MktLoadArea", "MktLoadArea", fields);
@@ -4176,11 +4182,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.LoadForecastType = []; if (!obj.forecastType) obj.LoadForecastType.push ({ id: '', selected: true}); for (var property in LoadForecastType) obj.LoadForecastType.push ({ id: property, selected: obj.forecastType && obj.forecastType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.LoadForecastType;
             }
 
             edit_template ()
@@ -4193,7 +4201,7 @@ define
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_forecastType'>forecastType: </label><div class='col-sm-8'><input id='{{id}}_forecastType' class='form-control' type='text'{{#forecastType}} value='{{forecastType}}'{{/forecastType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_forecastType'>forecastType: </label><div class='col-sm-8'><select id='{{id}}_forecastType' class='form-control custom-select'>{{#LoadForecastType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LoadForecastType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}'{{/AggregateNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TACArea'>TACArea: </label><div class='col-sm-8'><input id='{{id}}_TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea}}'{{/TACArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktLoadArea'>MktLoadArea: </label><div class='col-sm-8'><input id='{{id}}_MktLoadArea' class='form-control' type='text'{{#MktLoadArea}} value='{{MktLoadArea}}'{{/MktLoadArea}}></div></div>
@@ -4209,7 +4217,7 @@ define
 
                 var obj = obj || { id: id, cls: "AreaLoadCurve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_forecastType").value; if ("" != temp) obj.forecastType = temp;
+                temp = document.getElementById (id + "_forecastType").value; if ("" != temp) { temp = LoadForecastType[temp]; if ("undefined" != typeof (temp)) obj.forecastType = "http://iec.ch/TC57/2013/CIM-schema-cim16#LoadForecastType." + temp; }
                 temp = document.getElementById (id + "_AggregateNode").value; if ("" != temp) obj.AggregateNode = temp;
                 temp = document.getElementById (id + "_TACArea").value; if ("" != temp) obj.TACArea = temp;
                 temp = document.getElementById (id + "_MktLoadArea").value; if ("" != temp) obj.MktLoadArea = temp;
@@ -4261,7 +4269,7 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "ReserveDemandCurve";
                 base.parse_element (/<cim:ReserveDemandCurve.reqMaxMW>([\s\S]*?)<\/cim:ReserveDemandCurve.reqMaxMW>/g, obj, "reqMaxMW", base.to_float, sub, context);
-                base.parse_element (/<cim:ReserveDemandCurve.reserveRequirementType>([\s\S]*?)<\/cim:ReserveDemandCurve.reserveRequirementType>/g, obj, "reserveRequirementType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ReserveDemandCurve.reserveRequirementType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reserveRequirementType", sub, context);
                 base.parse_attribute (/<cim:ReserveDemandCurve.ASRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ASRequirements", sub, context);
                 base.parse_attribute (/<cim:ReserveDemandCurve.MarketRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRegion", sub, context);
                 var bucket = context.parsed.ReserveDemandCurve;
@@ -4277,7 +4285,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ReserveDemandCurve", "reqMaxMW", "reqMaxMW",  base.from_float, fields);
-                base.export_element (obj, "ReserveDemandCurve", "reserveRequirementType", "reserveRequirementType",  base.from_string, fields);
+                base.export_attribute (obj, "ReserveDemandCurve", "reserveRequirementType", "reserveRequirementType", fields);
                 base.export_attribute (obj, "ReserveDemandCurve", "ASRequirements", "ASRequirements", fields);
                 base.export_attribute (obj, "ReserveDemandCurve", "MarketRegion", "MarketRegion", fields);
                 if (full)
@@ -4310,11 +4318,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ReserveRequirementType = []; if (!obj.reserveRequirementType) obj.ReserveRequirementType.push ({ id: '', selected: true}); for (var property in ReserveRequirementType) obj.ReserveRequirementType.push ({ id: property, selected: obj.reserveRequirementType && obj.reserveRequirementType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ReserveRequirementType;
             }
 
             edit_template ()
@@ -4328,7 +4338,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqMaxMW'>reqMaxMW: </label><div class='col-sm-8'><input id='{{id}}_reqMaxMW' class='form-control' type='text'{{#reqMaxMW}} value='{{reqMaxMW}}'{{/reqMaxMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reserveRequirementType'>reserveRequirementType: </label><div class='col-sm-8'><input id='{{id}}_reserveRequirementType' class='form-control' type='text'{{#reserveRequirementType}} value='{{reserveRequirementType}}'{{/reserveRequirementType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reserveRequirementType'>reserveRequirementType: </label><div class='col-sm-8'><select id='{{id}}_reserveRequirementType' class='form-control custom-select'>{{#ReserveRequirementType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReserveRequirementType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ASRequirements'>ASRequirements: </label><div class='col-sm-8'><input id='{{id}}_ASRequirements' class='form-control' type='text'{{#ASRequirements}} value='{{ASRequirements}}'{{/ASRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketRegion'>MarketRegion: </label><div class='col-sm-8'><input id='{{id}}_MarketRegion' class='form-control' type='text'{{#MarketRegion}} value='{{MarketRegion}}'{{/MarketRegion}}></div></div>
                     </div>
@@ -4344,7 +4354,7 @@ define
                 var obj = obj || { id: id, cls: "ReserveDemandCurve" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_reqMaxMW").value; if ("" != temp) obj.reqMaxMW = temp;
-                temp = document.getElementById (id + "_reserveRequirementType").value; if ("" != temp) obj.reserveRequirementType = temp;
+                temp = document.getElementById (id + "_reserveRequirementType").value; if ("" != temp) { temp = ReserveRequirementType[temp]; if ("undefined" != typeof (temp)) obj.reserveRequirementType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ReserveRequirementType." + temp; }
                 temp = document.getElementById (id + "_ASRequirements").value; if ("" != temp) obj.ASRequirements = temp;
                 temp = document.getElementById (id + "_MarketRegion").value; if ("" != temp) obj.MarketRegion = temp;
 
@@ -4495,7 +4505,7 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "SwitchStatus";
-                base.parse_element (/<cim:SwitchStatus.switchStatus>([\s\S]*?)<\/cim:SwitchStatus.switchStatus>/g, obj, "switchStatus", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SwitchStatus.switchStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "switchStatus", sub, context);
                 base.parse_attribute (/<cim:SwitchStatus.MktSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktSwitch", sub, context);
                 var bucket = context.parsed.SwitchStatus;
                 if (null == bucket)
@@ -4509,7 +4519,7 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "SwitchStatus", "switchStatus", "switchStatus",  base.from_string, fields);
+                base.export_attribute (obj, "SwitchStatus", "switchStatus", "switchStatus", fields);
                 base.export_attribute (obj, "SwitchStatus", "MktSwitch", "MktSwitch", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4539,11 +4549,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.SwitchStatusType = []; if (!obj.switchStatus) obj.SwitchStatusType.push ({ id: '', selected: true}); for (var property in SwitchStatusType) obj.SwitchStatusType.push ({ id: property, selected: obj.switchStatus && obj.switchStatus.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SwitchStatusType;
             }
 
             edit_template ()
@@ -4556,7 +4568,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchStatus'>switchStatus: </label><div class='col-sm-8'><input id='{{id}}_switchStatus' class='form-control' type='text'{{#switchStatus}} value='{{switchStatus}}'{{/switchStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchStatus'>switchStatus: </label><div class='col-sm-8'><select id='{{id}}_switchStatus' class='form-control custom-select'>{{#SwitchStatusType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SwitchStatusType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktSwitch'>MktSwitch: </label><div class='col-sm-8'><input id='{{id}}_MktSwitch' class='form-control' type='text'{{#MktSwitch}} value='{{MktSwitch}}'{{/MktSwitch}}></div></div>
                     </div>
                     <fieldset>
@@ -4570,7 +4582,7 @@ define
 
                 var obj = obj || { id: id, cls: "SwitchStatus" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_switchStatus").value; if ("" != temp) obj.switchStatus = temp;
+                temp = document.getElementById (id + "_switchStatus").value; if ("" != temp) { temp = SwitchStatusType[temp]; if ("undefined" != typeof (temp)) obj.switchStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#SwitchStatusType." + temp; }
                 temp = document.getElementById (id + "_MktSwitch").value; if ("" != temp) obj.MktSwitch = temp;
 
                 return (obj);
@@ -4767,7 +4779,7 @@ define
 
                 obj = Core.CurveData.prototype.parse.call (this, context, sub);
                 obj.cls = "DefaultBidCurveData";
-                base.parse_element (/<cim:DefaultBidCurveData.bidSegmentCalcType>([\s\S]*?)<\/cim:DefaultBidCurveData.bidSegmentCalcType>/g, obj, "bidSegmentCalcType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DefaultBidCurveData.bidSegmentCalcType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "bidSegmentCalcType", sub, context);
                 var bucket = context.parsed.DefaultBidCurveData;
                 if (null == bucket)
                    context.parsed.DefaultBidCurveData = bucket = {};
@@ -4780,7 +4792,7 @@ define
             {
                 var fields = Core.CurveData.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DefaultBidCurveData", "bidSegmentCalcType", "bidSegmentCalcType",  base.from_string, fields);
+                base.export_attribute (obj, "DefaultBidCurveData", "bidSegmentCalcType", "bidSegmentCalcType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4808,11 +4820,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.BidCalculationBasis = []; if (!obj.bidSegmentCalcType) obj.BidCalculationBasis.push ({ id: '', selected: true}); for (var property in BidCalculationBasis) obj.BidCalculationBasis.push ({ id: property, selected: obj.bidSegmentCalcType && obj.bidSegmentCalcType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.BidCalculationBasis;
             }
 
             edit_template ()
@@ -4825,7 +4839,7 @@ define
                     `
                     + Core.CurveData.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidSegmentCalcType'>bidSegmentCalcType: </label><div class='col-sm-8'><input id='{{id}}_bidSegmentCalcType' class='form-control' type='text'{{#bidSegmentCalcType}} value='{{bidSegmentCalcType}}'{{/bidSegmentCalcType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidSegmentCalcType'>bidSegmentCalcType: </label><div class='col-sm-8'><select id='{{id}}_bidSegmentCalcType' class='form-control custom-select'>{{#BidCalculationBasis}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BidCalculationBasis}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4838,7 +4852,7 @@ define
 
                 var obj = obj || { id: id, cls: "DefaultBidCurveData" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_bidSegmentCalcType").value; if ("" != temp) obj.bidSegmentCalcType = temp;
+                temp = document.getElementById (id + "_bidSegmentCalcType").value; if ("" != temp) { temp = BidCalculationBasis[temp]; if ("undefined" != typeof (temp)) obj.bidSegmentCalcType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidCalculationBasis." + temp; }
 
                 return (obj);
             }
@@ -5344,9 +5358,9 @@ define
 
                 obj = ParticipantInterfaces.Bid.prototype.parse.call (this, context, sub);
                 obj.cls = "DefaultBid";
-                base.parse_element (/<cim:DefaultBid.bidType>([\s\S]*?)<\/cim:DefaultBid.bidType>/g, obj, "bidType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DefaultBid.bidType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "bidType", sub, context);
                 base.parse_element (/<cim:DefaultBid.minLoadCost>([\s\S]*?)<\/cim:DefaultBid.minLoadCost>/g, obj, "minLoadCost", base.to_string, sub, context);
-                base.parse_element (/<cim:DefaultBid.peakFlag>([\s\S]*?)<\/cim:DefaultBid.peakFlag>/g, obj, "peakFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DefaultBid.peakFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "peakFlag", sub, context);
                 base.parse_attribute (/<cim:DefaultBid.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:DefaultBid.DefaultBidCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DefaultBidCurve", sub, context);
                 var bucket = context.parsed.DefaultBid;
@@ -5361,9 +5375,9 @@ define
             {
                 var fields = ParticipantInterfaces.Bid.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DefaultBid", "bidType", "bidType",  base.from_string, fields);
+                base.export_attribute (obj, "DefaultBid", "bidType", "bidType", fields);
                 base.export_element (obj, "DefaultBid", "minLoadCost", "minLoadCost",  base.from_string, fields);
-                base.export_element (obj, "DefaultBid", "peakFlag", "peakFlag",  base.from_string, fields);
+                base.export_attribute (obj, "DefaultBid", "peakFlag", "peakFlag", fields);
                 base.export_attribute (obj, "DefaultBid", "RegisteredResource", "RegisteredResource", fields);
                 base.export_attribute (obj, "DefaultBid", "DefaultBidCurve", "DefaultBidCurve", fields);
                 if (full)
@@ -5397,11 +5411,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.BidType = []; if (!obj.bidType) obj.BidType.push ({ id: '', selected: true}); for (var property in BidType) obj.BidType.push ({ id: property, selected: obj.bidType && obj.bidType.endsWith ('.' + property)});
+                obj.OnOff = []; if (!obj.peakFlag) obj.OnOff.push ({ id: '', selected: true}); for (var property in OnOff) obj.OnOff.push ({ id: property, selected: obj.peakFlag && obj.peakFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.BidType;
+                delete obj.OnOff;
             }
 
             edit_template ()
@@ -5414,9 +5432,9 @@ define
                     `
                     + ParticipantInterfaces.Bid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><input id='{{id}}_bidType' class='form-control' type='text'{{#bidType}} value='{{bidType}}'{{/bidType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#BidType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BidType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadCost'>minLoadCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadCost' class='form-control' type='text'{{#minLoadCost}} value='{{minLoadCost}}'{{/minLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_peakFlag'>peakFlag: </label><div class='col-sm-8'><input id='{{id}}_peakFlag' class='form-control' type='text'{{#peakFlag}} value='{{peakFlag}}'{{/peakFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_peakFlag'>peakFlag: </label><div class='col-sm-8'><select id='{{id}}_peakFlag' class='form-control custom-select'>{{#OnOff}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OnOff}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DefaultBidCurve'>DefaultBidCurve: </label><div class='col-sm-8'><input id='{{id}}_DefaultBidCurve' class='form-control' type='text'{{#DefaultBidCurve}} value='{{DefaultBidCurve}}'{{/DefaultBidCurve}}></div></div>
                     </div>
@@ -5431,9 +5449,9 @@ define
 
                 var obj = obj || { id: id, cls: "DefaultBid" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_bidType").value; if ("" != temp) obj.bidType = temp;
+                temp = document.getElementById (id + "_bidType").value; if ("" != temp) { temp = BidType[temp]; if ("undefined" != typeof (temp)) obj.bidType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidType." + temp; }
                 temp = document.getElementById (id + "_minLoadCost").value; if ("" != temp) obj.minLoadCost = temp;
-                temp = document.getElementById (id + "_peakFlag").value; if ("" != temp) obj.peakFlag = temp;
+                temp = document.getElementById (id + "_peakFlag").value; if ("" != temp) { temp = OnOff[temp]; if ("undefined" != typeof (temp)) obj.peakFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#OnOff." + temp; }
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
                 temp = document.getElementById (id + "_DefaultBidCurve").value; if ("" != temp) obj.DefaultBidCurve = temp;
 
@@ -5845,7 +5863,7 @@ define
                 obj.cls = "DistributionFactorSet";
                 base.parse_element (/<cim:DistributionFactorSet.intervalStartTime>([\s\S]*?)<\/cim:DistributionFactorSet.intervalStartTime>/g, obj, "intervalStartTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:DistributionFactorSet.intervalEndTime>([\s\S]*?)<\/cim:DistributionFactorSet.intervalEndTime>/g, obj, "intervalEndTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:DistributionFactorSet.marketType>([\s\S]*?)<\/cim:DistributionFactorSet.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DistributionFactorSet.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_attributes (/<cim:DistributionFactorSet.SysLoadDistribuFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SysLoadDistribuFactor", sub, context);
                 base.parse_attributes (/<cim:DistributionFactorSet.GenDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenDistributionFactor", sub, context);
                 base.parse_attributes (/<cim:DistributionFactorSet.LoadDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadDistributionFactor", sub, context);
@@ -5863,7 +5881,7 @@ define
 
                 base.export_element (obj, "DistributionFactorSet", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
                 base.export_element (obj, "DistributionFactorSet", "intervalEndTime", "intervalEndTime",  base.from_datetime, fields);
-                base.export_element (obj, "DistributionFactorSet", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "DistributionFactorSet", "marketType", "marketType", fields);
                 base.export_attributes (obj, "DistributionFactorSet", "SysLoadDistribuFactor", "SysLoadDistribuFactor", fields);
                 base.export_attributes (obj, "DistributionFactorSet", "GenDistributionFactor", "GenDistributionFactor", fields);
                 base.export_attributes (obj, "DistributionFactorSet", "LoadDistributionFactor", "LoadDistributionFactor", fields);
@@ -5899,6 +5917,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.SysLoadDistribuFactor) obj.SysLoadDistribuFactor_string = obj.SysLoadDistribuFactor.join ();
                 if (obj.GenDistributionFactor) obj.GenDistributionFactor_string = obj.GenDistributionFactor.join ();
                 if (obj.LoadDistributionFactor) obj.LoadDistributionFactor_string = obj.LoadDistributionFactor.join ();
@@ -5907,6 +5926,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketType;
                 delete obj.SysLoadDistribuFactor_string;
                 delete obj.GenDistributionFactor_string;
                 delete obj.LoadDistributionFactor_string;
@@ -5924,7 +5944,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='{{id}}_intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SysLoadDistribuFactor'>SysLoadDistribuFactor: </label><div class='col-sm-8'><input id='{{id}}_SysLoadDistribuFactor' class='form-control' type='text'{{#SysLoadDistribuFactor}} value='{{SysLoadDistribuFactor_string}}'{{/SysLoadDistribuFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenDistributionFactor'>GenDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_GenDistributionFactor' class='form-control' type='text'{{#GenDistributionFactor}} value='{{GenDistributionFactor_string}}'{{/GenDistributionFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadDistributionFactor'>LoadDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_LoadDistributionFactor' class='form-control' type='text'{{#LoadDistributionFactor}} value='{{LoadDistributionFactor_string}}'{{/LoadDistributionFactor}}></div></div>
@@ -5942,7 +5962,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
                 temp = document.getElementById (id + "_intervalEndTime").value; if ("" != temp) obj.intervalEndTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
                 temp = document.getElementById (id + "_SysLoadDistribuFactor").value; if ("" != temp) obj.SysLoadDistribuFactor = temp.split (",");
                 temp = document.getElementById (id + "_GenDistributionFactor").value; if ("" != temp) obj.GenDistributionFactor = temp.split (",");
                 temp = document.getElementById (id + "_LoadDistributionFactor").value; if ("" != temp) obj.LoadDistributionFactor = temp.split (",");
@@ -6523,14 +6543,14 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "InterchangeSchedule";
-                base.parse_element (/<cim:InterchangeSchedule.checkOutType>([\s\S]*?)<\/cim:InterchangeSchedule.checkOutType>/g, obj, "checkOutType", base.to_string, sub, context);
-                base.parse_element (/<cim:InterchangeSchedule.directionType>([\s\S]*?)<\/cim:InterchangeSchedule.directionType>/g, obj, "directionType", base.to_string, sub, context);
-                base.parse_element (/<cim:InterchangeSchedule.energyType>([\s\S]*?)<\/cim:InterchangeSchedule.energyType>/g, obj, "energyType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:InterchangeSchedule.checkOutType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "checkOutType", sub, context);
+                base.parse_attribute (/<cim:InterchangeSchedule.directionType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "directionType", sub, context);
+                base.parse_attribute (/<cim:InterchangeSchedule.energyType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "energyType", sub, context);
                 base.parse_element (/<cim:InterchangeSchedule.intervalLength>([\s\S]*?)<\/cim:InterchangeSchedule.intervalLength>/g, obj, "intervalLength", base.to_string, sub, context);
-                base.parse_element (/<cim:InterchangeSchedule.marketType>([\s\S]*?)<\/cim:InterchangeSchedule.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:InterchangeSchedule.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_element (/<cim:InterchangeSchedule.operatingDate>([\s\S]*?)<\/cim:InterchangeSchedule.operatingDate>/g, obj, "operatingDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:InterchangeSchedule.outOfMarketType>([\s\S]*?)<\/cim:InterchangeSchedule.outOfMarketType>/g, obj, "outOfMarketType", base.to_boolean, sub, context);
-                base.parse_element (/<cim:InterchangeSchedule.scheduleType>([\s\S]*?)<\/cim:InterchangeSchedule.scheduleType>/g, obj, "scheduleType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:InterchangeSchedule.scheduleType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "scheduleType", sub, context);
                 base.parse_element (/<cim:InterchangeSchedule.wcrID>([\s\S]*?)<\/cim:InterchangeSchedule.wcrID>/g, obj, "wcrID", base.to_string, sub, context);
                 base.parse_attribute (/<cim:InterchangeSchedule.RegisteredInterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredInterTie", sub, context);
                 base.parse_attribute (/<cim:InterchangeSchedule.InterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTie", sub, context);
@@ -6547,14 +6567,14 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "InterchangeSchedule", "checkOutType", "checkOutType",  base.from_string, fields);
-                base.export_element (obj, "InterchangeSchedule", "directionType", "directionType",  base.from_string, fields);
-                base.export_element (obj, "InterchangeSchedule", "energyType", "energyType",  base.from_string, fields);
+                base.export_attribute (obj, "InterchangeSchedule", "checkOutType", "checkOutType", fields);
+                base.export_attribute (obj, "InterchangeSchedule", "directionType", "directionType", fields);
+                base.export_attribute (obj, "InterchangeSchedule", "energyType", "energyType", fields);
                 base.export_element (obj, "InterchangeSchedule", "intervalLength", "intervalLength",  base.from_string, fields);
-                base.export_element (obj, "InterchangeSchedule", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "InterchangeSchedule", "marketType", "marketType", fields);
                 base.export_element (obj, "InterchangeSchedule", "operatingDate", "operatingDate",  base.from_datetime, fields);
                 base.export_element (obj, "InterchangeSchedule", "outOfMarketType", "outOfMarketType",  base.from_boolean, fields);
-                base.export_element (obj, "InterchangeSchedule", "scheduleType", "scheduleType",  base.from_string, fields);
+                base.export_attribute (obj, "InterchangeSchedule", "scheduleType", "scheduleType", fields);
                 base.export_element (obj, "InterchangeSchedule", "wcrID", "wcrID",  base.from_string, fields);
                 base.export_attribute (obj, "InterchangeSchedule", "RegisteredInterTie", "RegisteredInterTie", fields);
                 base.export_attribute (obj, "InterchangeSchedule", "InterTie", "InterTie", fields);
@@ -6597,12 +6617,22 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.CheckOutType = []; if (!obj.checkOutType) obj.CheckOutType.push ({ id: '', selected: true}); for (var property in CheckOutType) obj.CheckOutType.push ({ id: property, selected: obj.checkOutType && obj.checkOutType.endsWith ('.' + property)});
+                obj.InterTieDirection = []; if (!obj.directionType) obj.InterTieDirection.push ({ id: '', selected: true}); for (var property in InterTieDirection) obj.InterTieDirection.push ({ id: property, selected: obj.directionType && obj.directionType.endsWith ('.' + property)});
+                obj.MarketProductType = []; if (!obj.energyType) obj.MarketProductType.push ({ id: '', selected: true}); for (var property in MarketProductType) obj.MarketProductType.push ({ id: property, selected: obj.energyType && obj.energyType.endsWith ('.' + property)});
+                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
+                obj.EnergyProductType = []; if (!obj.scheduleType) obj.EnergyProductType.push ({ id: '', selected: true}); for (var property in EnergyProductType) obj.EnergyProductType.push ({ id: property, selected: obj.scheduleType && obj.scheduleType.endsWith ('.' + property)});
                 if (obj.InterchangeETCData) obj.InterchangeETCData_string = obj.InterchangeETCData.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CheckOutType;
+                delete obj.InterTieDirection;
+                delete obj.MarketProductType;
+                delete obj.MarketType;
+                delete obj.EnergyProductType;
                 delete obj.InterchangeETCData_string;
             }
 
@@ -6616,14 +6646,14 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_checkOutType'>checkOutType: </label><div class='col-sm-8'><input id='{{id}}_checkOutType' class='form-control' type='text'{{#checkOutType}} value='{{checkOutType}}'{{/checkOutType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_directionType'>directionType: </label><div class='col-sm-8'><input id='{{id}}_directionType' class='form-control' type='text'{{#directionType}} value='{{directionType}}'{{/directionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyType'>energyType: </label><div class='col-sm-8'><input id='{{id}}_energyType' class='form-control' type='text'{{#energyType}} value='{{energyType}}'{{/energyType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_checkOutType'>checkOutType: </label><div class='col-sm-8'><select id='{{id}}_checkOutType' class='form-control custom-select'>{{#CheckOutType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CheckOutType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_directionType'>directionType: </label><div class='col-sm-8'><select id='{{id}}_directionType' class='form-control custom-select'>{{#InterTieDirection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InterTieDirection}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyType'>energyType: </label><div class='col-sm-8'><select id='{{id}}_energyType' class='form-control custom-select'>{{#MarketProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketProductType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalLength'>intervalLength: </label><div class='col-sm-8'><input id='{{id}}_intervalLength' class='form-control' type='text'{{#intervalLength}} value='{{intervalLength}}'{{/intervalLength}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingDate'>operatingDate: </label><div class='col-sm-8'><input id='{{id}}_operatingDate' class='form-control' type='text'{{#operatingDate}} value='{{operatingDate}}'{{/operatingDate}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_outOfMarketType'>outOfMarketType: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_outOfMarketType' class='form-check-input' type='checkbox'{{#outOfMarketType}} checked{{/outOfMarketType}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduleType'>scheduleType: </label><div class='col-sm-8'><input id='{{id}}_scheduleType' class='form-control' type='text'{{#scheduleType}} value='{{scheduleType}}'{{/scheduleType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduleType'>scheduleType: </label><div class='col-sm-8'><select id='{{id}}_scheduleType' class='form-control custom-select'>{{#EnergyProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EnergyProductType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wcrID'>wcrID: </label><div class='col-sm-8'><input id='{{id}}_wcrID' class='form-control' type='text'{{#wcrID}} value='{{wcrID}}'{{/wcrID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTie'>InterTie: </label><div class='col-sm-8'><input id='{{id}}_InterTie' class='form-control' type='text'{{#InterTie}} value='{{InterTie}}'{{/InterTie}}></div></div>
@@ -6639,14 +6669,14 @@ define
 
                 var obj = obj || { id: id, cls: "InterchangeSchedule" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_checkOutType").value; if ("" != temp) obj.checkOutType = temp;
-                temp = document.getElementById (id + "_directionType").value; if ("" != temp) obj.directionType = temp;
-                temp = document.getElementById (id + "_energyType").value; if ("" != temp) obj.energyType = temp;
+                temp = document.getElementById (id + "_checkOutType").value; if ("" != temp) { temp = CheckOutType[temp]; if ("undefined" != typeof (temp)) obj.checkOutType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CheckOutType." + temp; }
+                temp = document.getElementById (id + "_directionType").value; if ("" != temp) { temp = InterTieDirection[temp]; if ("undefined" != typeof (temp)) obj.directionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InterTieDirection." + temp; }
+                temp = document.getElementById (id + "_energyType").value; if ("" != temp) { temp = MarketProductType[temp]; if ("undefined" != typeof (temp)) obj.energyType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductType." + temp; }
                 temp = document.getElementById (id + "_intervalLength").value; if ("" != temp) obj.intervalLength = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
                 temp = document.getElementById (id + "_operatingDate").value; if ("" != temp) obj.operatingDate = temp;
                 temp = document.getElementById (id + "_outOfMarketType").checked; if (temp) obj.outOfMarketType = true;
-                temp = document.getElementById (id + "_scheduleType").value; if ("" != temp) obj.scheduleType = temp;
+                temp = document.getElementById (id + "_scheduleType").value; if ("" != temp) { temp = EnergyProductType[temp]; if ("undefined" != typeof (temp)) obj.scheduleType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyProductType." + temp; }
                 temp = document.getElementById (id + "_wcrID").value; if ("" != temp) obj.wcrID = temp;
                 temp = document.getElementById (id + "_RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp;
                 temp = document.getElementById (id + "_InterTie").value; if ("" != temp) obj.InterTie = temp;
@@ -6701,7 +6731,7 @@ define
                 base.parse_element (/<cim:EnergyPriceIndex.startEffectiveDate>([\s\S]*?)<\/cim:EnergyPriceIndex.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:EnergyPriceIndex.endEffectiveDate>([\s\S]*?)<\/cim:EnergyPriceIndex.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:EnergyPriceIndex.energyPriceIndex>([\s\S]*?)<\/cim:EnergyPriceIndex.energyPriceIndex>/g, obj, "energyPriceIndex", base.to_float, sub, context);
-                base.parse_element (/<cim:EnergyPriceIndex.energyPriceIndexType>([\s\S]*?)<\/cim:EnergyPriceIndex.energyPriceIndexType>/g, obj, "energyPriceIndexType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EnergyPriceIndex.energyPriceIndexType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "energyPriceIndexType", sub, context);
                 base.parse_attribute (/<cim:EnergyPriceIndex.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
                 var bucket = context.parsed.EnergyPriceIndex;
                 if (null == bucket)
@@ -6719,7 +6749,7 @@ define
                 base.export_element (obj, "EnergyPriceIndex", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "EnergyPriceIndex", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "EnergyPriceIndex", "energyPriceIndex", "energyPriceIndex",  base.from_float, fields);
-                base.export_element (obj, "EnergyPriceIndex", "energyPriceIndexType", "energyPriceIndexType",  base.from_string, fields);
+                base.export_attribute (obj, "EnergyPriceIndex", "energyPriceIndexType", "energyPriceIndexType", fields);
                 base.export_attribute (obj, "EnergyPriceIndex", "RegisteredGenerator", "RegisteredGenerator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -6753,11 +6783,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.EnergyPriceIndexType = []; if (!obj.energyPriceIndexType) obj.EnergyPriceIndexType.push ({ id: '', selected: true}); for (var property in EnergyPriceIndexType) obj.EnergyPriceIndexType.push ({ id: property, selected: obj.energyPriceIndexType && obj.energyPriceIndexType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyPriceIndexType;
             }
 
             edit_template ()
@@ -6774,7 +6806,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyPriceIndex'>energyPriceIndex: </label><div class='col-sm-8'><input id='{{id}}_energyPriceIndex' class='form-control' type='text'{{#energyPriceIndex}} value='{{energyPriceIndex}}'{{/energyPriceIndex}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyPriceIndexType'>energyPriceIndexType: </label><div class='col-sm-8'><input id='{{id}}_energyPriceIndexType' class='form-control' type='text'{{#energyPriceIndexType}} value='{{energyPriceIndexType}}'{{/energyPriceIndexType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyPriceIndexType'>energyPriceIndexType: </label><div class='col-sm-8'><select id='{{id}}_energyPriceIndexType' class='form-control custom-select'>{{#EnergyPriceIndexType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EnergyPriceIndexType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
@@ -6792,7 +6824,7 @@ define
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_energyPriceIndex").value; if ("" != temp) obj.energyPriceIndex = temp;
-                temp = document.getElementById (id + "_energyPriceIndexType").value; if ("" != temp) obj.energyPriceIndexType = temp;
+                temp = document.getElementById (id + "_energyPriceIndexType").value; if ("" != temp) { temp = EnergyPriceIndexType[temp]; if ("undefined" != typeof (temp)) obj.energyPriceIndexType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyPriceIndexType." + temp; }
                 temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);

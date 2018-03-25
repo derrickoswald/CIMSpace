@@ -136,10 +136,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Emission";
-                base.parse_element (/<cim:Emission.denominatorMultiplier>([\s\S]*?)<\/cim:Emission.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Emission.denominatorUnit>([\s\S]*?)<\/cim:Emission.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:Emission.multiplier>([\s\S]*?)<\/cim:Emission.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Emission.unit>([\s\S]*?)<\/cim:Emission.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Emission.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:Emission.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:Emission.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Emission.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Emission.value>([\s\S]*?)<\/cim:Emission.value>/g, obj, "value", base.to_float, sub, context);
                 var bucket = context.parsed.Emission;
                 if (null == bucket)
@@ -153,10 +153,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Emission", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "Emission", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "Emission", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Emission", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Emission", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "Emission", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "Emission", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Emission", "unit", "unit", fields);
                 base.export_element (obj, "Emission", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -189,11 +189,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
             }
 
             edit_template ()
@@ -206,10 +214,10 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='{{id}}_denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='{{id}}_denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='{{id}}_denominatorUnit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
@@ -223,10 +231,10 @@ define
 
                 var obj = obj || { id: id, cls: "Emission" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1004,8 +1012,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Classification";
-                base.parse_element (/<cim:Classification.multiplier>([\s\S]*?)<\/cim:Classification.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Classification.unit>([\s\S]*?)<\/cim:Classification.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Classification.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Classification.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Classification.value>([\s\S]*?)<\/cim:Classification.value>/g, obj, "value", base.to_string, sub, context);
                 var bucket = context.parsed.Classification;
                 if (null == bucket)
@@ -1019,8 +1027,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Classification", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Classification", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Classification", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Classification", "unit", "unit", fields);
                 base.export_element (obj, "Classification", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1051,11 +1059,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
             }
 
             edit_template ()
@@ -1068,8 +1080,8 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
@@ -1083,8 +1095,8 @@ define
 
                 var obj = obj || { id: id, cls: "Classification" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1600,10 +1612,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "HeatRate";
-                base.parse_element (/<cim:HeatRate.denominatorMultiplier>([\s\S]*?)<\/cim:HeatRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:HeatRate.denominatorUnit>([\s\S]*?)<\/cim:HeatRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:HeatRate.multiplier>([\s\S]*?)<\/cim:HeatRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:HeatRate.unit>([\s\S]*?)<\/cim:HeatRate.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:HeatRate.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:HeatRate.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:HeatRate.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:HeatRate.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:HeatRate.value>([\s\S]*?)<\/cim:HeatRate.value>/g, obj, "value", base.to_float, sub, context);
                 var bucket = context.parsed.HeatRate;
                 if (null == bucket)
@@ -1617,10 +1629,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "HeatRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "HeatRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "HeatRate", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "HeatRate", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "HeatRate", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "HeatRate", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "HeatRate", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "HeatRate", "unit", "unit", fields);
                 base.export_element (obj, "HeatRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1653,11 +1665,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
             }
 
             edit_template ()
@@ -1670,10 +1690,10 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='{{id}}_denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='{{id}}_denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='{{id}}_denominatorUnit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
@@ -1687,10 +1707,10 @@ define
 
                 var obj = obj || { id: id, cls: "HeatRate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2715,7 +2735,7 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "EmissionCurve";
-                base.parse_element (/<cim:EmissionCurve.emissionContent>([\s\S]*?)<\/cim:EmissionCurve.emissionContent>/g, obj, "emissionContent", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EmissionCurve.emissionContent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "emissionContent", sub, context);
                 base.parse_attribute (/<cim:EmissionCurve.emissionType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "emissionType", sub, context);
                 base.parse_element (/<cim:EmissionCurve.isNetGrossP>([\s\S]*?)<\/cim:EmissionCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:EmissionCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
@@ -2731,7 +2751,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EmissionCurve", "emissionContent", "emissionContent",  base.from_string, fields);
+                base.export_attribute (obj, "EmissionCurve", "emissionContent", "emissionContent", fields);
                 base.export_attribute (obj, "EmissionCurve", "emissionType", "emissionType", fields);
                 base.export_element (obj, "EmissionCurve", "isNetGrossP", "isNetGrossP",  base.from_boolean, fields);
                 base.export_attribute (obj, "EmissionCurve", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
@@ -2764,12 +2784,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Emission = []; if (!obj.emissionContent) obj.Emission.push ({ id: '', selected: true}); for (var property in Emission) obj.Emission.push ({ id: property, selected: obj.emissionContent && obj.emissionContent.endsWith ('.' + property)});
                 obj.EmissionType = []; if (!obj.emissionType) obj.EmissionType.push ({ id: '', selected: true}); for (var property in EmissionType) obj.EmissionType.push ({ id: property, selected: obj.emissionType && obj.emissionType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Emission;
                 delete obj.EmissionType;
             }
 
@@ -2783,7 +2805,7 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionContent'>emissionContent: </label><div class='col-sm-8'><input id='{{id}}_emissionContent' class='form-control' type='text'{{#emissionContent}} value='{{emissionContent}}'{{/emissionContent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionContent'>emissionContent: </label><div class='col-sm-8'><select id='{{id}}_emissionContent' class='form-control custom-select'>{{#Emission}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Emission}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionType'>emissionType: </label><div class='col-sm-8'><select id='{{id}}_emissionType' class='form-control custom-select'>{{#EmissionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EmissionType}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetGrossP'>isNetGrossP: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
@@ -2799,7 +2821,7 @@ define
 
                 var obj = obj || { id: id, cls: "EmissionCurve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_emissionContent").value; if ("" != temp) obj.emissionContent = temp;
+                temp = document.getElementById (id + "_emissionContent").value; if ("" != temp) { temp = Emission[temp]; if ("undefined" != typeof (temp)) obj.emissionContent = "http://iec.ch/TC57/2013/CIM-schema-cim16#Emission." + temp; }
                 temp = document.getElementById (id + "_emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
                 temp = document.getElementById (id + "_isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
                 temp = document.getElementById (id + "_ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
@@ -3091,10 +3113,10 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "FossilFuel";
                 base.parse_attribute (/<cim:FossilFuel.fossilFuelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fossilFuelType", sub, context);
-                base.parse_element (/<cim:FossilFuel.fuelCost>([\s\S]*?)<\/cim:FossilFuel.fuelCost>/g, obj, "fuelCost", base.to_string, sub, context);
-                base.parse_element (/<cim:FossilFuel.fuelDispatchCost>([\s\S]*?)<\/cim:FossilFuel.fuelDispatchCost>/g, obj, "fuelDispatchCost", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FossilFuel.fuelCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fuelCost", sub, context);
+                base.parse_attribute (/<cim:FossilFuel.fuelDispatchCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fuelDispatchCost", sub, context);
                 base.parse_element (/<cim:FossilFuel.fuelEffFactor>([\s\S]*?)<\/cim:FossilFuel.fuelEffFactor>/g, obj, "fuelEffFactor", base.to_string, sub, context);
-                base.parse_element (/<cim:FossilFuel.fuelHandlingCost>([\s\S]*?)<\/cim:FossilFuel.fuelHandlingCost>/g, obj, "fuelHandlingCost", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FossilFuel.fuelHandlingCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fuelHandlingCost", sub, context);
                 base.parse_element (/<cim:FossilFuel.fuelHeatContent>([\s\S]*?)<\/cim:FossilFuel.fuelHeatContent>/g, obj, "fuelHeatContent", base.to_float, sub, context);
                 base.parse_element (/<cim:FossilFuel.fuelMixture>([\s\S]*?)<\/cim:FossilFuel.fuelMixture>/g, obj, "fuelMixture", base.to_string, sub, context);
                 base.parse_element (/<cim:FossilFuel.fuelSulfur>([\s\S]*?)<\/cim:FossilFuel.fuelSulfur>/g, obj, "fuelSulfur", base.to_string, sub, context);
@@ -3115,10 +3137,10 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "FossilFuel", "fossilFuelType", "fossilFuelType", fields);
-                base.export_element (obj, "FossilFuel", "fuelCost", "fuelCost",  base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "fuelDispatchCost", "fuelDispatchCost",  base.from_string, fields);
+                base.export_attribute (obj, "FossilFuel", "fuelCost", "fuelCost", fields);
+                base.export_attribute (obj, "FossilFuel", "fuelDispatchCost", "fuelDispatchCost", fields);
                 base.export_element (obj, "FossilFuel", "fuelEffFactor", "fuelEffFactor",  base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "fuelHandlingCost", "fuelHandlingCost",  base.from_string, fields);
+                base.export_attribute (obj, "FossilFuel", "fuelHandlingCost", "fuelHandlingCost", fields);
                 base.export_element (obj, "FossilFuel", "fuelHeatContent", "fuelHeatContent",  base.from_float, fields);
                 base.export_element (obj, "FossilFuel", "fuelMixture", "fuelMixture",  base.from_string, fields);
                 base.export_element (obj, "FossilFuel", "fuelSulfur", "fuelSulfur",  base.from_string, fields);
@@ -3162,6 +3184,9 @@ define
             {
                 super.condition (obj);
                 obj.FuelType = []; if (!obj.fossilFuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.fossilFuelType && obj.fossilFuelType.endsWith ('.' + property)});
+                obj.CostPerHeatUnit = []; if (!obj.fuelCost) obj.CostPerHeatUnit.push ({ id: '', selected: true}); for (var property in CostPerHeatUnit) obj.CostPerHeatUnit.push ({ id: property, selected: obj.fuelCost && obj.fuelCost.endsWith ('.' + property)});
+                obj.CostPerHeatUnit = []; if (!obj.fuelDispatchCost) obj.CostPerHeatUnit.push ({ id: '', selected: true}); for (var property in CostPerHeatUnit) obj.CostPerHeatUnit.push ({ id: property, selected: obj.fuelDispatchCost && obj.fuelDispatchCost.endsWith ('.' + property)});
+                obj.CostPerHeatUnit = []; if (!obj.fuelHandlingCost) obj.CostPerHeatUnit.push ({ id: '', selected: true}); for (var property in CostPerHeatUnit) obj.CostPerHeatUnit.push ({ id: property, selected: obj.fuelHandlingCost && obj.fuelHandlingCost.endsWith ('.' + property)});
                 if (obj.FuelAllocationSchedules) obj.FuelAllocationSchedules_string = obj.FuelAllocationSchedules.join ();
             }
 
@@ -3169,6 +3194,9 @@ define
             {
                 super.uncondition (obj);
                 delete obj.FuelType;
+                delete obj.CostPerHeatUnit;
+                delete obj.CostPerHeatUnit;
+                delete obj.CostPerHeatUnit;
                 delete obj.FuelAllocationSchedules_string;
             }
 
@@ -3183,10 +3211,10 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fossilFuelType'>fossilFuelType: </label><div class='col-sm-8'><select id='{{id}}_fossilFuelType' class='form-control custom-select'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelCost'>fuelCost: </label><div class='col-sm-8'><input id='{{id}}_fuelCost' class='form-control' type='text'{{#fuelCost}} value='{{fuelCost}}'{{/fuelCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelDispatchCost'>fuelDispatchCost: </label><div class='col-sm-8'><input id='{{id}}_fuelDispatchCost' class='form-control' type='text'{{#fuelDispatchCost}} value='{{fuelDispatchCost}}'{{/fuelDispatchCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelCost'>fuelCost: </label><div class='col-sm-8'><select id='{{id}}_fuelCost' class='form-control custom-select'>{{#CostPerHeatUnit}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CostPerHeatUnit}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelDispatchCost'>fuelDispatchCost: </label><div class='col-sm-8'><select id='{{id}}_fuelDispatchCost' class='form-control custom-select'>{{#CostPerHeatUnit}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CostPerHeatUnit}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelEffFactor'>fuelEffFactor: </label><div class='col-sm-8'><input id='{{id}}_fuelEffFactor' class='form-control' type='text'{{#fuelEffFactor}} value='{{fuelEffFactor}}'{{/fuelEffFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelHandlingCost'>fuelHandlingCost: </label><div class='col-sm-8'><input id='{{id}}_fuelHandlingCost' class='form-control' type='text'{{#fuelHandlingCost}} value='{{fuelHandlingCost}}'{{/fuelHandlingCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelHandlingCost'>fuelHandlingCost: </label><div class='col-sm-8'><select id='{{id}}_fuelHandlingCost' class='form-control custom-select'>{{#CostPerHeatUnit}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CostPerHeatUnit}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelHeatContent'>fuelHeatContent: </label><div class='col-sm-8'><input id='{{id}}_fuelHeatContent' class='form-control' type='text'{{#fuelHeatContent}} value='{{fuelHeatContent}}'{{/fuelHeatContent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelMixture'>fuelMixture: </label><div class='col-sm-8'><input id='{{id}}_fuelMixture' class='form-control' type='text'{{#fuelMixture}} value='{{fuelMixture}}'{{/fuelMixture}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelSulfur'>fuelSulfur: </label><div class='col-sm-8'><input id='{{id}}_fuelSulfur' class='form-control' type='text'{{#fuelSulfur}} value='{{fuelSulfur}}'{{/fuelSulfur}}></div></div>
@@ -3206,10 +3234,10 @@ define
                 var obj = obj || { id: id, cls: "FossilFuel" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_fossilFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fossilFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
-                temp = document.getElementById (id + "_fuelCost").value; if ("" != temp) obj.fuelCost = temp;
-                temp = document.getElementById (id + "_fuelDispatchCost").value; if ("" != temp) obj.fuelDispatchCost = temp;
+                temp = document.getElementById (id + "_fuelCost").value; if ("" != temp) { temp = CostPerHeatUnit[temp]; if ("undefined" != typeof (temp)) obj.fuelCost = "http://iec.ch/TC57/2013/CIM-schema-cim16#CostPerHeatUnit." + temp; }
+                temp = document.getElementById (id + "_fuelDispatchCost").value; if ("" != temp) { temp = CostPerHeatUnit[temp]; if ("undefined" != typeof (temp)) obj.fuelDispatchCost = "http://iec.ch/TC57/2013/CIM-schema-cim16#CostPerHeatUnit." + temp; }
                 temp = document.getElementById (id + "_fuelEffFactor").value; if ("" != temp) obj.fuelEffFactor = temp;
-                temp = document.getElementById (id + "_fuelHandlingCost").value; if ("" != temp) obj.fuelHandlingCost = temp;
+                temp = document.getElementById (id + "_fuelHandlingCost").value; if ("" != temp) { temp = CostPerHeatUnit[temp]; if ("undefined" != typeof (temp)) obj.fuelHandlingCost = "http://iec.ch/TC57/2013/CIM-schema-cim16#CostPerHeatUnit." + temp; }
                 temp = document.getElementById (id + "_fuelHeatContent").value; if ("" != temp) obj.fuelHeatContent = temp;
                 temp = document.getElementById (id + "_fuelMixture").value; if ("" != temp) obj.fuelMixture = temp;
                 temp = document.getElementById (id + "_fuelSulfur").value; if ("" != temp) obj.fuelSulfur = temp;
@@ -3285,7 +3313,7 @@ define
                 base.parse_element (/<cim:GeneratingUnit.minEconomicP>([\s\S]*?)<\/cim:GeneratingUnit.minEconomicP>/g, obj, "minEconomicP", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.minimumOffTime>([\s\S]*?)<\/cim:GeneratingUnit.minimumOffTime>/g, obj, "minimumOffTime", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.minOperatingP>([\s\S]*?)<\/cim:GeneratingUnit.minOperatingP>/g, obj, "minOperatingP", base.to_string, sub, context);
-                base.parse_element (/<cim:GeneratingUnit.modelDetail>([\s\S]*?)<\/cim:GeneratingUnit.modelDetail>/g, obj, "modelDetail", base.to_string, sub, context);
+                base.parse_attribute (/<cim:GeneratingUnit.modelDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "modelDetail", sub, context);
                 base.parse_element (/<cim:GeneratingUnit.nominalP>([\s\S]*?)<\/cim:GeneratingUnit.nominalP>/g, obj, "nominalP", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.normalPF>([\s\S]*?)<\/cim:GeneratingUnit.normalPF>/g, obj, "normalPF", base.to_float, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.penaltyFactor>([\s\S]*?)<\/cim:GeneratingUnit.penaltyFactor>/g, obj, "penaltyFactor", base.to_float, sub, context);
@@ -3339,7 +3367,7 @@ define
                 base.export_element (obj, "GeneratingUnit", "minEconomicP", "minEconomicP",  base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "minimumOffTime", "minimumOffTime",  base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "minOperatingP", "minOperatingP",  base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "modelDetail", "modelDetail",  base.from_string, fields);
+                base.export_attribute (obj, "GeneratingUnit", "modelDetail", "modelDetail", fields);
                 base.export_element (obj, "GeneratingUnit", "nominalP", "nominalP",  base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "normalPF", "normalPF",  base.from_float, fields);
                 base.export_element (obj, "GeneratingUnit", "penaltyFactor", "penaltyFactor",  base.from_float, fields);
@@ -3427,6 +3455,7 @@ define
                 super.condition (obj);
                 obj.GeneratorControlMode = []; if (!obj.genControlMode) obj.GeneratorControlMode.push ({ id: '', selected: true}); for (var property in GeneratorControlMode) obj.GeneratorControlMode.push ({ id: property, selected: obj.genControlMode && obj.genControlMode.endsWith ('.' + property)});
                 obj.GeneratorControlSource = []; if (!obj.genControlSource) obj.GeneratorControlSource.push ({ id: '', selected: true}); for (var property in GeneratorControlSource) obj.GeneratorControlSource.push ({ id: property, selected: obj.genControlSource && obj.genControlSource.endsWith ('.' + property)});
+                obj.Classification = []; if (!obj.modelDetail) obj.Classification.push ({ id: '', selected: true}); for (var property in Classification) obj.Classification.push ({ id: property, selected: obj.modelDetail && obj.modelDetail.endsWith ('.' + property)});
                 if (obj.RotatingMachine) obj.RotatingMachine_string = obj.RotatingMachine.join ();
                 if (obj.GenUnitOpCostCurves) obj.GenUnitOpCostCurves_string = obj.GenUnitOpCostCurves.join ();
                 if (obj.ControlAreaGeneratingUnit) obj.ControlAreaGeneratingUnit_string = obj.ControlAreaGeneratingUnit.join ();
@@ -3438,6 +3467,7 @@ define
                 super.uncondition (obj);
                 delete obj.GeneratorControlMode;
                 delete obj.GeneratorControlSource;
+                delete obj.Classification;
                 delete obj.RotatingMachine_string;
                 delete obj.GenUnitOpCostCurves_string;
                 delete obj.ControlAreaGeneratingUnit_string;
@@ -3477,7 +3507,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minEconomicP'>minEconomicP: </label><div class='col-sm-8'><input id='{{id}}_minEconomicP' class='form-control' type='text'{{#minEconomicP}} value='{{minEconomicP}}'{{/minEconomicP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumOffTime'>minimumOffTime: </label><div class='col-sm-8'><input id='{{id}}_minimumOffTime' class='form-control' type='text'{{#minimumOffTime}} value='{{minimumOffTime}}'{{/minimumOffTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minOperatingP'>minOperatingP: </label><div class='col-sm-8'><input id='{{id}}_minOperatingP' class='form-control' type='text'{{#minOperatingP}} value='{{minOperatingP}}'{{/minOperatingP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelDetail'>modelDetail: </label><div class='col-sm-8'><input id='{{id}}_modelDetail' class='form-control' type='text'{{#modelDetail}} value='{{modelDetail}}'{{/modelDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelDetail'>modelDetail: </label><div class='col-sm-8'><select id='{{id}}_modelDetail' class='form-control custom-select'>{{#Classification}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Classification}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalP'>nominalP: </label><div class='col-sm-8'><input id='{{id}}_nominalP' class='form-control' type='text'{{#nominalP}} value='{{nominalP}}'{{/nominalP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalPF'>normalPF: </label><div class='col-sm-8'><input id='{{id}}_normalPF' class='form-control' type='text'{{#normalPF}} value='{{normalPF}}'{{/normalPF}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_penaltyFactor'>penaltyFactor: </label><div class='col-sm-8'><input id='{{id}}_penaltyFactor' class='form-control' type='text'{{#penaltyFactor}} value='{{penaltyFactor}}'{{/penaltyFactor}}></div></div>
@@ -3527,7 +3557,7 @@ define
                 temp = document.getElementById (id + "_minEconomicP").value; if ("" != temp) obj.minEconomicP = temp;
                 temp = document.getElementById (id + "_minimumOffTime").value; if ("" != temp) obj.minimumOffTime = temp;
                 temp = document.getElementById (id + "_minOperatingP").value; if ("" != temp) obj.minOperatingP = temp;
-                temp = document.getElementById (id + "_modelDetail").value; if ("" != temp) obj.modelDetail = temp;
+                temp = document.getElementById (id + "_modelDetail").value; if ("" != temp) { temp = Classification[temp]; if ("undefined" != typeof (temp)) obj.modelDetail = "http://iec.ch/TC57/2013/CIM-schema-cim16#Classification." + temp; }
                 temp = document.getElementById (id + "_nominalP").value; if ("" != temp) obj.nominalP = temp;
                 temp = document.getElementById (id + "_normalPF").value; if ("" != temp) obj.normalPF = temp;
                 temp = document.getElementById (id + "_penaltyFactor").value; if ("" != temp) obj.penaltyFactor = temp;
@@ -4149,7 +4179,7 @@ define
                 base.parse_element (/<cim:HeatInputCurve.auxPowerMult>([\s\S]*?)<\/cim:HeatInputCurve.auxPowerMult>/g, obj, "auxPowerMult", base.to_string, sub, context);
                 base.parse_element (/<cim:HeatInputCurve.auxPowerOffset>([\s\S]*?)<\/cim:HeatInputCurve.auxPowerOffset>/g, obj, "auxPowerOffset", base.to_string, sub, context);
                 base.parse_element (/<cim:HeatInputCurve.heatInputEff>([\s\S]*?)<\/cim:HeatInputCurve.heatInputEff>/g, obj, "heatInputEff", base.to_string, sub, context);
-                base.parse_element (/<cim:HeatInputCurve.heatInputOffset>([\s\S]*?)<\/cim:HeatInputCurve.heatInputOffset>/g, obj, "heatInputOffset", base.to_string, sub, context);
+                base.parse_attribute (/<cim:HeatInputCurve.heatInputOffset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "heatInputOffset", sub, context);
                 base.parse_element (/<cim:HeatInputCurve.isNetGrossP>([\s\S]*?)<\/cim:HeatInputCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:HeatInputCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
                 var bucket = context.parsed.HeatInputCurve;
@@ -4167,7 +4197,7 @@ define
                 base.export_element (obj, "HeatInputCurve", "auxPowerMult", "auxPowerMult",  base.from_string, fields);
                 base.export_element (obj, "HeatInputCurve", "auxPowerOffset", "auxPowerOffset",  base.from_string, fields);
                 base.export_element (obj, "HeatInputCurve", "heatInputEff", "heatInputEff",  base.from_string, fields);
-                base.export_element (obj, "HeatInputCurve", "heatInputOffset", "heatInputOffset",  base.from_string, fields);
+                base.export_attribute (obj, "HeatInputCurve", "heatInputOffset", "heatInputOffset", fields);
                 base.export_element (obj, "HeatInputCurve", "isNetGrossP", "isNetGrossP",  base.from_boolean, fields);
                 base.export_attribute (obj, "HeatInputCurve", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
@@ -4201,11 +4231,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.HeatRate = []; if (!obj.heatInputOffset) obj.HeatRate.push ({ id: '', selected: true}); for (var property in HeatRate) obj.HeatRate.push ({ id: property, selected: obj.heatInputOffset && obj.heatInputOffset.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.HeatRate;
             }
 
             edit_template ()
@@ -4221,7 +4253,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerMult'>auxPowerMult: </label><div class='col-sm-8'><input id='{{id}}_auxPowerMult' class='form-control' type='text'{{#auxPowerMult}} value='{{auxPowerMult}}'{{/auxPowerMult}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerOffset'>auxPowerOffset: </label><div class='col-sm-8'><input id='{{id}}_auxPowerOffset' class='form-control' type='text'{{#auxPowerOffset}} value='{{auxPowerOffset}}'{{/auxPowerOffset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_heatInputEff'>heatInputEff: </label><div class='col-sm-8'><input id='{{id}}_heatInputEff' class='form-control' type='text'{{#heatInputEff}} value='{{heatInputEff}}'{{/heatInputEff}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_heatInputOffset'>heatInputOffset: </label><div class='col-sm-8'><input id='{{id}}_heatInputOffset' class='form-control' type='text'{{#heatInputOffset}} value='{{heatInputOffset}}'{{/heatInputOffset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_heatInputOffset'>heatInputOffset: </label><div class='col-sm-8'><select id='{{id}}_heatInputOffset' class='form-control custom-select'>{{#HeatRate}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/HeatRate}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetGrossP'>isNetGrossP: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
@@ -4239,7 +4271,7 @@ define
                 temp = document.getElementById (id + "_auxPowerMult").value; if ("" != temp) obj.auxPowerMult = temp;
                 temp = document.getElementById (id + "_auxPowerOffset").value; if ("" != temp) obj.auxPowerOffset = temp;
                 temp = document.getElementById (id + "_heatInputEff").value; if ("" != temp) obj.heatInputEff = temp;
-                temp = document.getElementById (id + "_heatInputOffset").value; if ("" != temp) obj.heatInputOffset = temp;
+                temp = document.getElementById (id + "_heatInputOffset").value; if ("" != temp) { temp = HeatRate[temp]; if ("undefined" != typeof (temp)) obj.heatInputOffset = "http://iec.ch/TC57/2013/CIM-schema-cim16#HeatRate." + temp; }
                 temp = document.getElementById (id + "_isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
                 temp = document.getElementById (id + "_ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
 
@@ -4286,7 +4318,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "StartupModel";
                 base.parse_element (/<cim:StartupModel.fixedMaintCost>([\s\S]*?)<\/cim:StartupModel.fixedMaintCost>/g, obj, "fixedMaintCost", base.to_string, sub, context);
-                base.parse_element (/<cim:StartupModel.hotStandbyHeat>([\s\S]*?)<\/cim:StartupModel.hotStandbyHeat>/g, obj, "hotStandbyHeat", base.to_string, sub, context);
+                base.parse_attribute (/<cim:StartupModel.hotStandbyHeat\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "hotStandbyHeat", sub, context);
                 base.parse_element (/<cim:StartupModel.incrementalMaintCost>([\s\S]*?)<\/cim:StartupModel.incrementalMaintCost>/g, obj, "incrementalMaintCost", base.to_string, sub, context);
                 base.parse_element (/<cim:StartupModel.minimumDownTime>([\s\S]*?)<\/cim:StartupModel.minimumDownTime>/g, obj, "minimumDownTime", base.to_string, sub, context);
                 base.parse_element (/<cim:StartupModel.minimumRunTime>([\s\S]*?)<\/cim:StartupModel.minimumRunTime>/g, obj, "minimumRunTime", base.to_string, sub, context);
@@ -4312,7 +4344,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StartupModel", "fixedMaintCost", "fixedMaintCost",  base.from_string, fields);
-                base.export_element (obj, "StartupModel", "hotStandbyHeat", "hotStandbyHeat",  base.from_string, fields);
+                base.export_attribute (obj, "StartupModel", "hotStandbyHeat", "hotStandbyHeat", fields);
                 base.export_element (obj, "StartupModel", "incrementalMaintCost", "incrementalMaintCost",  base.from_string, fields);
                 base.export_element (obj, "StartupModel", "minimumDownTime", "minimumDownTime",  base.from_string, fields);
                 base.export_element (obj, "StartupModel", "minimumRunTime", "minimumRunTime",  base.from_string, fields);
@@ -4364,11 +4396,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.HeatRate = []; if (!obj.hotStandbyHeat) obj.HeatRate.push ({ id: '', selected: true}); for (var property in HeatRate) obj.HeatRate.push ({ id: property, selected: obj.hotStandbyHeat && obj.hotStandbyHeat.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.HeatRate;
             }
 
             edit_template ()
@@ -4382,7 +4416,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fixedMaintCost'>fixedMaintCost: </label><div class='col-sm-8'><input id='{{id}}_fixedMaintCost' class='form-control' type='text'{{#fixedMaintCost}} value='{{fixedMaintCost}}'{{/fixedMaintCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotStandbyHeat'>hotStandbyHeat: </label><div class='col-sm-8'><input id='{{id}}_hotStandbyHeat' class='form-control' type='text'{{#hotStandbyHeat}} value='{{hotStandbyHeat}}'{{/hotStandbyHeat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotStandbyHeat'>hotStandbyHeat: </label><div class='col-sm-8'><select id='{{id}}_hotStandbyHeat' class='form-control custom-select'>{{#HeatRate}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/HeatRate}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_incrementalMaintCost'>incrementalMaintCost: </label><div class='col-sm-8'><input id='{{id}}_incrementalMaintCost' class='form-control' type='text'{{#incrementalMaintCost}} value='{{incrementalMaintCost}}'{{/incrementalMaintCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumDownTime'>minimumDownTime: </label><div class='col-sm-8'><input id='{{id}}_minimumDownTime' class='form-control' type='text'{{#minimumDownTime}} value='{{minimumDownTime}}'{{/minimumDownTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumRunTime'>minimumRunTime: </label><div class='col-sm-8'><input id='{{id}}_minimumRunTime' class='form-control' type='text'{{#minimumRunTime}} value='{{minimumRunTime}}'{{/minimumRunTime}}></div></div>
@@ -4408,7 +4442,7 @@ define
                 var obj = obj || { id: id, cls: "StartupModel" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_fixedMaintCost").value; if ("" != temp) obj.fixedMaintCost = temp;
-                temp = document.getElementById (id + "_hotStandbyHeat").value; if ("" != temp) obj.hotStandbyHeat = temp;
+                temp = document.getElementById (id + "_hotStandbyHeat").value; if ("" != temp) { temp = HeatRate[temp]; if ("undefined" != typeof (temp)) obj.hotStandbyHeat = "http://iec.ch/TC57/2013/CIM-schema-cim16#HeatRate." + temp; }
                 temp = document.getElementById (id + "_incrementalMaintCost").value; if ("" != temp) obj.incrementalMaintCost = temp;
                 temp = document.getElementById (id + "_minimumDownTime").value; if ("" != temp) obj.minimumDownTime = temp;
                 temp = document.getElementById (id + "_minimumRunTime").value; if ("" != temp) obj.minimumRunTime = temp;
@@ -4467,10 +4501,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "CostPerHeatUnit";
-                base.parse_element (/<cim:CostPerHeatUnit.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerHeatUnit.denominatorUnit>([\s\S]*?)<\/cim:CostPerHeatUnit.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerHeatUnit.multiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerHeatUnit.unit>([\s\S]*?)<\/cim:CostPerHeatUnit.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CostPerHeatUnit.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:CostPerHeatUnit.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:CostPerHeatUnit.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:CostPerHeatUnit.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:CostPerHeatUnit.value>([\s\S]*?)<\/cim:CostPerHeatUnit.value>/g, obj, "value", base.to_float, sub, context);
                 var bucket = context.parsed.CostPerHeatUnit;
                 if (null == bucket)
@@ -4484,10 +4518,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CostPerHeatUnit", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "CostPerHeatUnit", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "CostPerHeatUnit", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "CostPerHeatUnit", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "CostPerHeatUnit", "unit", "unit", fields);
                 base.export_element (obj, "CostPerHeatUnit", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4520,11 +4554,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.denominatorMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.denominatorUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.Currency = []; if (!obj.unit) obj.Currency.push ({ id: '', selected: true}); for (var property in Currency) obj.Currency.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
+                delete obj.Currency;
             }
 
             edit_template ()
@@ -4537,10 +4579,10 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='{{id}}_denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='{{id}}_denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='{{id}}_denominatorUnit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
@@ -4554,10 +4596,10 @@ define
 
                 var obj = obj || { id: id, cls: "CostPerHeatUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4955,7 +4997,7 @@ define
 
                 obj = GeneratingUnit.prototype.parse.call (this, context, sub);
                 obj.cls = "ThermalGeneratingUnit";
-                base.parse_element (/<cim:ThermalGeneratingUnit.oMCost>([\s\S]*?)<\/cim:ThermalGeneratingUnit.oMCost>/g, obj, "oMCost", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ThermalGeneratingUnit.oMCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "oMCost", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.ShutdownCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ShutdownCurve", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.CogenerationPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CogenerationPlant", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.HeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HeatRateCurve", sub, context);
@@ -4980,7 +5022,7 @@ define
             {
                 var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ThermalGeneratingUnit", "oMCost", "oMCost",  base.from_string, fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "oMCost", "oMCost", fields);
                 base.export_attribute (obj, "ThermalGeneratingUnit", "ShutdownCurve", "ShutdownCurve", fields);
                 base.export_attribute (obj, "ThermalGeneratingUnit", "CogenerationPlant", "CogenerationPlant", fields);
                 base.export_attribute (obj, "ThermalGeneratingUnit", "HeatRateCurve", "HeatRateCurve", fields);
@@ -5031,6 +5073,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.CostPerHeatUnit = []; if (!obj.oMCost) obj.CostPerHeatUnit.push ({ id: '', selected: true}); for (var property in CostPerHeatUnit) obj.CostPerHeatUnit.push ({ id: property, selected: obj.oMCost && obj.oMCost.endsWith ('.' + property)});
                 if (obj.EmissionCurves) obj.EmissionCurves_string = obj.EmissionCurves.join ();
                 if (obj.EmmissionAccounts) obj.EmmissionAccounts_string = obj.EmmissionAccounts.join ();
                 if (obj.FuelAllocationSchedules) obj.FuelAllocationSchedules_string = obj.FuelAllocationSchedules.join ();
@@ -5040,6 +5083,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CostPerHeatUnit;
                 delete obj.EmissionCurves_string;
                 delete obj.EmmissionAccounts_string;
                 delete obj.FuelAllocationSchedules_string;
@@ -5056,7 +5100,7 @@ define
                     `
                     + GeneratingUnit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oMCost'>oMCost: </label><div class='col-sm-8'><input id='{{id}}_oMCost' class='form-control' type='text'{{#oMCost}} value='{{oMCost}}'{{/oMCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oMCost'>oMCost: </label><div class='col-sm-8'><select id='{{id}}_oMCost' class='form-control custom-select'>{{#CostPerHeatUnit}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CostPerHeatUnit}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShutdownCurve'>ShutdownCurve: </label><div class='col-sm-8'><input id='{{id}}_ShutdownCurve' class='form-control' type='text'{{#ShutdownCurve}} value='{{ShutdownCurve}}'{{/ShutdownCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CogenerationPlant'>CogenerationPlant: </label><div class='col-sm-8'><input id='{{id}}_CogenerationPlant' class='form-control' type='text'{{#CogenerationPlant}} value='{{CogenerationPlant}}'{{/CogenerationPlant}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HeatRateCurve'>HeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_HeatRateCurve' class='form-control' type='text'{{#HeatRateCurve}} value='{{HeatRateCurve}}'{{/HeatRateCurve}}></div></div>
@@ -5077,7 +5121,7 @@ define
 
                 var obj = obj || { id: id, cls: "ThermalGeneratingUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_oMCost").value; if ("" != temp) obj.oMCost = temp;
+                temp = document.getElementById (id + "_oMCost").value; if ("" != temp) { temp = CostPerHeatUnit[temp]; if ("undefined" != typeof (temp)) obj.oMCost = "http://iec.ch/TC57/2013/CIM-schema-cim16#CostPerHeatUnit." + temp; }
                 temp = document.getElementById (id + "_ShutdownCurve").value; if ("" != temp) obj.ShutdownCurve = temp;
                 temp = document.getElementById (id + "_CogenerationPlant").value; if ("" != temp) obj.CogenerationPlant = temp;
                 temp = document.getElementById (id + "_HeatRateCurve").value; if ("" != temp) obj.HeatRateCurve = temp;

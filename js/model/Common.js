@@ -39,11 +39,11 @@ define
                 obj.cls = "Document";
                 base.parse_element (/<cim:Document.authorName>([\s\S]*?)<\/cim:Document.authorName>/g, obj, "authorName", base.to_string, sub, context);
                 base.parse_element (/<cim:Document.createdDateTime>([\s\S]*?)<\/cim:Document.createdDateTime>/g, obj, "createdDateTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:Document.docStatus>([\s\S]*?)<\/cim:Document.docStatus>/g, obj, "docStatus", base.to_string, sub, context);
-                base.parse_element (/<cim:Document.electronicAddress>([\s\S]*?)<\/cim:Document.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Document.docStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "docStatus", sub, context);
+                base.parse_attribute (/<cim:Document.electronicAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddress", sub, context);
                 base.parse_element (/<cim:Document.lastModifiedDateTime>([\s\S]*?)<\/cim:Document.lastModifiedDateTime>/g, obj, "lastModifiedDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Document.revisionNumber>([\s\S]*?)<\/cim:Document.revisionNumber>/g, obj, "revisionNumber", base.to_string, sub, context);
-                base.parse_element (/<cim:Document.status>([\s\S]*?)<\/cim:Document.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Document.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Document.subject>([\s\S]*?)<\/cim:Document.subject>/g, obj, "subject", base.to_string, sub, context);
                 base.parse_element (/<cim:Document.title>([\s\S]*?)<\/cim:Document.title>/g, obj, "title", base.to_string, sub, context);
                 base.parse_element (/<cim:Document.type>([\s\S]*?)<\/cim:Document.type>/g, obj, "type", base.to_string, sub, context);
@@ -63,11 +63,11 @@ define
 
                 base.export_element (obj, "Document", "authorName", "authorName",  base.from_string, fields);
                 base.export_element (obj, "Document", "createdDateTime", "createdDateTime",  base.from_datetime, fields);
-                base.export_element (obj, "Document", "docStatus", "docStatus",  base.from_string, fields);
-                base.export_element (obj, "Document", "electronicAddress", "electronicAddress",  base.from_string, fields);
+                base.export_attribute (obj, "Document", "docStatus", "docStatus", fields);
+                base.export_attribute (obj, "Document", "electronicAddress", "electronicAddress", fields);
                 base.export_element (obj, "Document", "lastModifiedDateTime", "lastModifiedDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "Document", "revisionNumber", "revisionNumber",  base.from_string, fields);
-                base.export_element (obj, "Document", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Document", "status", "status", fields);
                 base.export_element (obj, "Document", "subject", "subject",  base.from_string, fields);
                 base.export_element (obj, "Document", "title", "title",  base.from_string, fields);
                 base.export_element (obj, "Document", "type", "type",  base.from_string, fields);
@@ -108,12 +108,18 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.docStatus) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.docStatus && obj.docStatus.endsWith ('.' + property)});
+                obj.ElectronicAddress = []; if (!obj.electronicAddress) obj.ElectronicAddress.push ({ id: '', selected: true}); for (var property in ElectronicAddress) obj.ElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ConfigurationEvents) obj.ConfigurationEvents_string = obj.ConfigurationEvents.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
+                delete obj.ElectronicAddress;
+                delete obj.Status;
                 delete obj.ConfigurationEvents_string;
             }
 
@@ -129,11 +135,11 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_authorName'>authorName: </label><div class='col-sm-8'><input id='{{id}}_authorName' class='form-control' type='text'{{#authorName}} value='{{authorName}}'{{/authorName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_createdDateTime'>createdDateTime: </label><div class='col-sm-8'><input id='{{id}}_createdDateTime' class='form-control' type='text'{{#createdDateTime}} value='{{createdDateTime}}'{{/createdDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_docStatus'>docStatus: </label><div class='col-sm-8'><input id='{{id}}_docStatus' class='form-control' type='text'{{#docStatus}} value='{{docStatus}}'{{/docStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_docStatus'>docStatus: </label><div class='col-sm-8'><select id='{{id}}_docStatus' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#ElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ElectronicAddress}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastModifiedDateTime'>lastModifiedDateTime: </label><div class='col-sm-8'><input id='{{id}}_lastModifiedDateTime' class='form-control' type='text'{{#lastModifiedDateTime}} value='{{lastModifiedDateTime}}'{{/lastModifiedDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_revisionNumber'>revisionNumber: </label><div class='col-sm-8'><input id='{{id}}_revisionNumber' class='form-control' type='text'{{#revisionNumber}} value='{{revisionNumber}}'{{/revisionNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subject'>subject: </label><div class='col-sm-8'><input id='{{id}}_subject' class='form-control' type='text'{{#subject}} value='{{subject}}'{{/subject}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_title'>title: </label><div class='col-sm-8'><input id='{{id}}_title' class='form-control' type='text'{{#title}} value='{{title}}'{{/title}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
@@ -152,11 +158,11 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_authorName").value; if ("" != temp) obj.authorName = temp;
                 temp = document.getElementById (id + "_createdDateTime").value; if ("" != temp) obj.createdDateTime = temp;
-                temp = document.getElementById (id + "_docStatus").value; if ("" != temp) obj.docStatus = temp;
-                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
+                temp = document.getElementById (id + "_docStatus").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.docStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) { temp = ElectronicAddress[temp]; if ("undefined" != typeof (temp)) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; }
                 temp = document.getElementById (id + "_lastModifiedDateTime").value; if ("" != temp) obj.lastModifiedDateTime = temp;
                 temp = document.getElementById (id + "_revisionNumber").value; if ("" != temp) obj.revisionNumber = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_subject").value; if ("" != temp) obj.subject = temp;
                 temp = document.getElementById (id + "_title").value; if ("" != temp) obj.title = temp;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
@@ -204,9 +210,9 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "StreetAddress";
-                base.parse_element (/<cim:StreetAddress.status>([\s\S]*?)<\/cim:StreetAddress.status>/g, obj, "status", base.to_string, sub, context);
-                base.parse_element (/<cim:StreetAddress.streetDetail>([\s\S]*?)<\/cim:StreetAddress.streetDetail>/g, obj, "streetDetail", base.to_string, sub, context);
-                base.parse_element (/<cim:StreetAddress.townDetail>([\s\S]*?)<\/cim:StreetAddress.townDetail>/g, obj, "townDetail", base.to_string, sub, context);
+                base.parse_attribute (/<cim:StreetAddress.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_attribute (/<cim:StreetAddress.streetDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "streetDetail", sub, context);
+                base.parse_attribute (/<cim:StreetAddress.townDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "townDetail", sub, context);
                 var bucket = context.parsed.StreetAddress;
                 if (null == bucket)
                    context.parsed.StreetAddress = bucket = {};
@@ -219,9 +225,9 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "StreetAddress", "status", "status",  base.from_string, fields);
-                base.export_element (obj, "StreetAddress", "streetDetail", "streetDetail",  base.from_string, fields);
-                base.export_element (obj, "StreetAddress", "townDetail", "townDetail",  base.from_string, fields);
+                base.export_attribute (obj, "StreetAddress", "status", "status", fields);
+                base.export_attribute (obj, "StreetAddress", "streetDetail", "streetDetail", fields);
+                base.export_attribute (obj, "StreetAddress", "townDetail", "townDetail", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -248,11 +254,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.StreetDetail = []; if (!obj.streetDetail) obj.StreetDetail.push ({ id: '', selected: true}); for (var property in StreetDetail) obj.StreetDetail.push ({ id: property, selected: obj.streetDetail && obj.streetDetail.endsWith ('.' + property)});
+                obj.TownDetail = []; if (!obj.townDetail) obj.TownDetail.push ({ id: '', selected: true}); for (var property in TownDetail) obj.TownDetail.push ({ id: property, selected: obj.townDetail && obj.townDetail.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
+                delete obj.StreetDetail;
+                delete obj.TownDetail;
             }
 
             edit_template ()
@@ -265,9 +277,9 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetDetail'>streetDetail: </label><div class='col-sm-8'><input id='{{id}}_streetDetail' class='form-control' type='text'{{#streetDetail}} value='{{streetDetail}}'{{/streetDetail}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_townDetail'>townDetail: </label><div class='col-sm-8'><input id='{{id}}_townDetail' class='form-control' type='text'{{#townDetail}} value='{{townDetail}}'{{/townDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetDetail'>streetDetail: </label><div class='col-sm-8'><select id='{{id}}_streetDetail' class='form-control custom-select'>{{#StreetDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StreetDetail}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_townDetail'>townDetail: </label><div class='col-sm-8'><select id='{{id}}_townDetail' class='form-control custom-select'>{{#TownDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TownDetail}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -280,9 +292,9 @@ define
 
                 var obj = obj || { id: id, cls: "StreetAddress" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById (id + "_streetDetail").value; if ("" != temp) obj.streetDetail = temp;
-                temp = document.getElementById (id + "_townDetail").value; if ("" != temp) obj.townDetail = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = document.getElementById (id + "_streetDetail").value; if ("" != temp) { temp = StreetDetail[temp]; if ("undefined" != typeof (temp)) obj.streetDetail = "http://iec.ch/TC57/2013/CIM-schema-cim16#StreetDetail." + temp; }
+                temp = document.getElementById (id + "_townDetail").value; if ("" != temp) { temp = TownDetail[temp]; if ("undefined" != typeof (temp)) obj.townDetail = "http://iec.ch/TC57/2013/CIM-schema-cim16#TownDetail." + temp; }
 
                 return (obj);
             }
@@ -575,7 +587,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Crew";
-                base.parse_element (/<cim:Crew.status>([\s\S]*?)<\/cim:Crew.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Crew.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attributes (/<cim:Crew.CrewMembers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CrewMembers", sub, context);
                 base.parse_attributes (/<cim:Crew.WorkAssets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkAssets", sub, context);
                 base.parse_attributes (/<cim:Crew.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
@@ -592,7 +604,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Crew", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Crew", "status", "status", fields);
                 base.export_attributes (obj, "Crew", "CrewMembers", "CrewMembers", fields);
                 base.export_attributes (obj, "Crew", "WorkAssets", "WorkAssets", fields);
                 base.export_attributes (obj, "Crew", "WorkTasks", "WorkTasks", fields);
@@ -627,6 +639,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.CrewMembers) obj.CrewMembers_string = obj.CrewMembers.join ();
                 if (obj.WorkAssets) obj.WorkAssets_string = obj.WorkAssets.join ();
                 if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
@@ -635,6 +648,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.CrewMembers_string;
                 delete obj.WorkAssets_string;
                 delete obj.WorkTasks_string;
@@ -650,7 +664,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks_string}}'{{/WorkTasks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CrewType'>CrewType: </label><div class='col-sm-8'><input id='{{id}}_CrewType' class='form-control' type='text'{{#CrewType}} value='{{CrewType}}'{{/CrewType}}></div></div>
                     </div>
@@ -665,7 +679,7 @@ define
 
                 var obj = obj || { id: id, cls: "Crew" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
                 temp = document.getElementById (id + "_CrewType").value; if ("" != temp) obj.CrewType = temp;
 
@@ -715,7 +729,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ScheduledEvent";
                 base.parse_element (/<cim:ScheduledEvent.duration>([\s\S]*?)<\/cim:ScheduledEvent.duration>/g, obj, "duration", base.to_string, sub, context);
-                base.parse_element (/<cim:ScheduledEvent.status>([\s\S]*?)<\/cim:ScheduledEvent.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ScheduledEvent.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:ScheduledEvent.type>([\s\S]*?)<\/cim:ScheduledEvent.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:ScheduledEvent.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
                 base.parse_attribute (/<cim:ScheduledEvent.ScheduledEventData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ScheduledEventData", sub, context);
@@ -732,7 +746,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ScheduledEvent", "duration", "duration",  base.from_string, fields);
-                base.export_element (obj, "ScheduledEvent", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ScheduledEvent", "status", "status", fields);
                 base.export_element (obj, "ScheduledEvent", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "ScheduledEvent", "Assets", "Assets", fields);
                 base.export_attribute (obj, "ScheduledEvent", "ScheduledEventData", "ScheduledEventData", fields);
@@ -766,12 +780,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Assets) obj.Assets_string = obj.Assets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.Assets_string;
             }
 
@@ -786,7 +802,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ScheduledEventData'>ScheduledEventData: </label><div class='col-sm-8'><input id='{{id}}_ScheduledEventData' class='form-control' type='text'{{#ScheduledEventData}} value='{{ScheduledEventData}}'{{/ScheduledEventData}}></div></div>
@@ -803,7 +819,7 @@ define
                 var obj = obj || { id: id, cls: "ScheduledEvent" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_Assets").value; if ("" != temp) obj.Assets = temp.split (",");
                 temp = document.getElementById (id + "_ScheduledEventData").value; if ("" != temp) obj.ScheduledEventData = temp;
@@ -968,8 +984,8 @@ define
                 base.parse_element (/<cim:TimePoint.dateTime>([\s\S]*?)<\/cim:TimePoint.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:TimePoint.relativeTimeInterval>([\s\S]*?)<\/cim:TimePoint.relativeTimeInterval>/g, obj, "relativeTimeInterval", base.to_string, sub, context);
                 base.parse_element (/<cim:TimePoint.sequenceNumber>([\s\S]*?)<\/cim:TimePoint.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
-                base.parse_element (/<cim:TimePoint.status>([\s\S]*?)<\/cim:TimePoint.status>/g, obj, "status", base.to_string, sub, context);
-                base.parse_element (/<cim:TimePoint.window>([\s\S]*?)<\/cim:TimePoint.window>/g, obj, "window", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TimePoint.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_attribute (/<cim:TimePoint.window\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "window", sub, context);
                 base.parse_attribute (/<cim:TimePoint.TimeSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSchedule", sub, context);
                 var bucket = context.parsed.TimePoint;
                 if (null == bucket)
@@ -986,8 +1002,8 @@ define
                 base.export_element (obj, "TimePoint", "dateTime", "dateTime",  base.from_datetime, fields);
                 base.export_element (obj, "TimePoint", "relativeTimeInterval", "relativeTimeInterval",  base.from_string, fields);
                 base.export_element (obj, "TimePoint", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
-                base.export_element (obj, "TimePoint", "status", "status",  base.from_string, fields);
-                base.export_element (obj, "TimePoint", "window", "window",  base.from_string, fields);
+                base.export_attribute (obj, "TimePoint", "status", "status", fields);
+                base.export_attribute (obj, "TimePoint", "window", "window", fields);
                 base.export_attribute (obj, "TimePoint", "TimeSchedule", "TimeSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1020,11 +1036,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.DateTimeInterval = []; if (!obj.window) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.window && obj.window.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
+                delete obj.DateTimeInterval;
             }
 
             edit_template ()
@@ -1040,8 +1060,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dateTime'>dateTime: </label><div class='col-sm-8'><input id='{{id}}_dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_relativeTimeInterval'>relativeTimeInterval: </label><div class='col-sm-8'><input id='{{id}}_relativeTimeInterval' class='form-control' type='text'{{#relativeTimeInterval}} value='{{relativeTimeInterval}}'{{/relativeTimeInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_window'>window: </label><div class='col-sm-8'><input id='{{id}}_window' class='form-control' type='text'{{#window}} value='{{window}}'{{/window}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_window'>window: </label><div class='col-sm-8'><select id='{{id}}_window' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSchedule'>TimeSchedule: </label><div class='col-sm-8'><input id='{{id}}_TimeSchedule' class='form-control' type='text'{{#TimeSchedule}} value='{{TimeSchedule}}'{{/TimeSchedule}}></div></div>
                     </div>
                     <fieldset>
@@ -1058,8 +1078,8 @@ define
                 temp = document.getElementById (id + "_dateTime").value; if ("" != temp) obj.dateTime = temp;
                 temp = document.getElementById (id + "_relativeTimeInterval").value; if ("" != temp) obj.relativeTimeInterval = temp;
                 temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById (id + "_window").value; if ("" != temp) obj.window = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = document.getElementById (id + "_window").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.window = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_TimeSchedule").value; if ("" != temp) obj.TimeSchedule = temp;
 
                 return (obj);
@@ -1107,7 +1127,7 @@ define
                 base.parse_element (/<cim:ActivityRecord.createdDateTime>([\s\S]*?)<\/cim:ActivityRecord.createdDateTime>/g, obj, "createdDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ActivityRecord.reason>([\s\S]*?)<\/cim:ActivityRecord.reason>/g, obj, "reason", base.to_string, sub, context);
                 base.parse_element (/<cim:ActivityRecord.severity>([\s\S]*?)<\/cim:ActivityRecord.severity>/g, obj, "severity", base.to_string, sub, context);
-                base.parse_element (/<cim:ActivityRecord.status>([\s\S]*?)<\/cim:ActivityRecord.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ActivityRecord.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:ActivityRecord.type>([\s\S]*?)<\/cim:ActivityRecord.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:ActivityRecord.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
                 base.parse_attributes (/<cim:ActivityRecord.Organisations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Organisations", sub, context);
@@ -1126,7 +1146,7 @@ define
                 base.export_element (obj, "ActivityRecord", "createdDateTime", "createdDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "ActivityRecord", "reason", "reason",  base.from_string, fields);
                 base.export_element (obj, "ActivityRecord", "severity", "severity",  base.from_string, fields);
-                base.export_element (obj, "ActivityRecord", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ActivityRecord", "status", "status", fields);
                 base.export_element (obj, "ActivityRecord", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "ActivityRecord", "Assets", "Assets", fields);
                 base.export_attributes (obj, "ActivityRecord", "Organisations", "Organisations", fields);
@@ -1162,6 +1182,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Assets) obj.Assets_string = obj.Assets.join ();
                 if (obj.Organisations) obj.Organisations_string = obj.Organisations.join ();
             }
@@ -1169,6 +1190,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.Assets_string;
                 delete obj.Organisations_string;
             }
@@ -1186,7 +1208,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_createdDateTime'>createdDateTime: </label><div class='col-sm-8'><input id='{{id}}_createdDateTime' class='form-control' type='text'{{#createdDateTime}} value='{{createdDateTime}}'{{/createdDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><input id='{{id}}_reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_severity'>severity: </label><div class='col-sm-8'><input id='{{id}}_severity' class='form-control' type='text'{{#severity}} value='{{severity}}'{{/severity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Organisations'>Organisations: </label><div class='col-sm-8'><input id='{{id}}_Organisations' class='form-control' type='text'{{#Organisations}} value='{{Organisations_string}}'{{/Organisations}}></div></div>
@@ -1205,7 +1227,7 @@ define
                 temp = document.getElementById (id + "_createdDateTime").value; if ("" != temp) obj.createdDateTime = temp;
                 temp = document.getElementById (id + "_reason").value; if ("" != temp) obj.reason = temp;
                 temp = document.getElementById (id + "_severity").value; if ("" != temp) obj.severity = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_Assets").value; if ("" != temp) obj.Assets = temp.split (",");
                 temp = document.getElementById (id + "_Organisations").value; if ("" != temp) obj.Organisations = temp.split (",");
@@ -1255,8 +1277,8 @@ define
                 obj.cls = "PostalAddress";
                 base.parse_element (/<cim:PostalAddress.poBox>([\s\S]*?)<\/cim:PostalAddress.poBox>/g, obj, "poBox", base.to_string, sub, context);
                 base.parse_element (/<cim:PostalAddress.postalCode>([\s\S]*?)<\/cim:PostalAddress.postalCode>/g, obj, "postalCode", base.to_string, sub, context);
-                base.parse_element (/<cim:PostalAddress.streetDetail>([\s\S]*?)<\/cim:PostalAddress.streetDetail>/g, obj, "streetDetail", base.to_string, sub, context);
-                base.parse_element (/<cim:PostalAddress.townDetail>([\s\S]*?)<\/cim:PostalAddress.townDetail>/g, obj, "townDetail", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PostalAddress.streetDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "streetDetail", sub, context);
+                base.parse_attribute (/<cim:PostalAddress.townDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "townDetail", sub, context);
                 var bucket = context.parsed.PostalAddress;
                 if (null == bucket)
                    context.parsed.PostalAddress = bucket = {};
@@ -1271,8 +1293,8 @@ define
 
                 base.export_element (obj, "PostalAddress", "poBox", "poBox",  base.from_string, fields);
                 base.export_element (obj, "PostalAddress", "postalCode", "postalCode",  base.from_string, fields);
-                base.export_element (obj, "PostalAddress", "streetDetail", "streetDetail",  base.from_string, fields);
-                base.export_element (obj, "PostalAddress", "townDetail", "townDetail",  base.from_string, fields);
+                base.export_attribute (obj, "PostalAddress", "streetDetail", "streetDetail", fields);
+                base.export_attribute (obj, "PostalAddress", "townDetail", "townDetail", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1301,11 +1323,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.StreetDetail = []; if (!obj.streetDetail) obj.StreetDetail.push ({ id: '', selected: true}); for (var property in StreetDetail) obj.StreetDetail.push ({ id: property, selected: obj.streetDetail && obj.streetDetail.endsWith ('.' + property)});
+                obj.TownDetail = []; if (!obj.townDetail) obj.TownDetail.push ({ id: '', selected: true}); for (var property in TownDetail) obj.TownDetail.push ({ id: property, selected: obj.townDetail && obj.townDetail.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.StreetDetail;
+                delete obj.TownDetail;
             }
 
             edit_template ()
@@ -1320,8 +1346,8 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_poBox'>poBox: </label><div class='col-sm-8'><input id='{{id}}_poBox' class='form-control' type='text'{{#poBox}} value='{{poBox}}'{{/poBox}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postalCode'>postalCode: </label><div class='col-sm-8'><input id='{{id}}_postalCode' class='form-control' type='text'{{#postalCode}} value='{{postalCode}}'{{/postalCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetDetail'>streetDetail: </label><div class='col-sm-8'><input id='{{id}}_streetDetail' class='form-control' type='text'{{#streetDetail}} value='{{streetDetail}}'{{/streetDetail}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_townDetail'>townDetail: </label><div class='col-sm-8'><input id='{{id}}_townDetail' class='form-control' type='text'{{#townDetail}} value='{{townDetail}}'{{/townDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetDetail'>streetDetail: </label><div class='col-sm-8'><select id='{{id}}_streetDetail' class='form-control custom-select'>{{#StreetDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StreetDetail}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_townDetail'>townDetail: </label><div class='col-sm-8'><select id='{{id}}_townDetail' class='form-control custom-select'>{{#TownDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TownDetail}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -1336,8 +1362,8 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_poBox").value; if ("" != temp) obj.poBox = temp;
                 temp = document.getElementById (id + "_postalCode").value; if ("" != temp) obj.postalCode = temp;
-                temp = document.getElementById (id + "_streetDetail").value; if ("" != temp) obj.streetDetail = temp;
-                temp = document.getElementById (id + "_townDetail").value; if ("" != temp) obj.townDetail = temp;
+                temp = document.getElementById (id + "_streetDetail").value; if ("" != temp) { temp = StreetDetail[temp]; if ("undefined" != typeof (temp)) obj.streetDetail = "http://iec.ch/TC57/2013/CIM-schema-cim16#StreetDetail." + temp; }
+                temp = document.getElementById (id + "_townDetail").value; if ("" != temp) { temp = TownDetail[temp]; if ("undefined" != typeof (temp)) obj.townDetail = "http://iec.ch/TC57/2013/CIM-schema-cim16#TownDetail." + temp; }
 
                 return (obj);
             }
@@ -1615,7 +1641,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Hazard";
-                base.parse_element (/<cim:Hazard.status>([\s\S]*?)<\/cim:Hazard.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Hazard.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Hazard.type>([\s\S]*?)<\/cim:Hazard.type>/g, obj, "type", base.to_string, sub, context);
                 var bucket = context.parsed.Hazard;
                 if (null == bucket)
@@ -1629,7 +1655,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Hazard", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Hazard", "status", "status", fields);
                 base.export_element (obj, "Hazard", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1658,11 +1684,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -1675,7 +1703,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
                     <fieldset>
@@ -1689,7 +1717,7 @@ define
 
                 var obj = obj || { id: id, cls: "Hazard" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
 
                 return (obj);
@@ -1847,11 +1875,11 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Organisation";
-                base.parse_element (/<cim:Organisation.electronicAddress>([\s\S]*?)<\/cim:Organisation.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
-                base.parse_element (/<cim:Organisation.phone1>([\s\S]*?)<\/cim:Organisation.phone1>/g, obj, "phone1", base.to_string, sub, context);
-                base.parse_element (/<cim:Organisation.phone2>([\s\S]*?)<\/cim:Organisation.phone2>/g, obj, "phone2", base.to_string, sub, context);
-                base.parse_element (/<cim:Organisation.postalAddress>([\s\S]*?)<\/cim:Organisation.postalAddress>/g, obj, "postalAddress", base.to_string, sub, context);
-                base.parse_element (/<cim:Organisation.streetAddress>([\s\S]*?)<\/cim:Organisation.streetAddress>/g, obj, "streetAddress", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Organisation.electronicAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddress", sub, context);
+                base.parse_attribute (/<cim:Organisation.phone1\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phone1", sub, context);
+                base.parse_attribute (/<cim:Organisation.phone2\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phone2", sub, context);
+                base.parse_attribute (/<cim:Organisation.postalAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "postalAddress", sub, context);
+                base.parse_attribute (/<cim:Organisation.streetAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "streetAddress", sub, context);
                 base.parse_attributes (/<cim:Organisation.Crews\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crews", sub, context);
                 base.parse_attributes (/<cim:Organisation.ActivityRecords\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ActivityRecords", sub, context);
                 base.parse_attributes (/<cim:Organisation.Roles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Roles", sub, context);
@@ -1867,11 +1895,11 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Organisation", "electronicAddress", "electronicAddress",  base.from_string, fields);
-                base.export_element (obj, "Organisation", "phone1", "phone1",  base.from_string, fields);
-                base.export_element (obj, "Organisation", "phone2", "phone2",  base.from_string, fields);
-                base.export_element (obj, "Organisation", "postalAddress", "postalAddress",  base.from_string, fields);
-                base.export_element (obj, "Organisation", "streetAddress", "streetAddress",  base.from_string, fields);
+                base.export_attribute (obj, "Organisation", "electronicAddress", "electronicAddress", fields);
+                base.export_attribute (obj, "Organisation", "phone1", "phone1", fields);
+                base.export_attribute (obj, "Organisation", "phone2", "phone2", fields);
+                base.export_attribute (obj, "Organisation", "postalAddress", "postalAddress", fields);
+                base.export_attribute (obj, "Organisation", "streetAddress", "streetAddress", fields);
                 base.export_attributes (obj, "Organisation", "Crews", "Crews", fields);
                 base.export_attributes (obj, "Organisation", "ActivityRecords", "ActivityRecords", fields);
                 base.export_attributes (obj, "Organisation", "Roles", "Roles", fields);
@@ -1904,6 +1932,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ElectronicAddress = []; if (!obj.electronicAddress) obj.ElectronicAddress.push ({ id: '', selected: true}); for (var property in ElectronicAddress) obj.ElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
+                obj.TelephoneNumber = []; if (!obj.phone1) obj.TelephoneNumber.push ({ id: '', selected: true}); for (var property in TelephoneNumber) obj.TelephoneNumber.push ({ id: property, selected: obj.phone1 && obj.phone1.endsWith ('.' + property)});
+                obj.TelephoneNumber = []; if (!obj.phone2) obj.TelephoneNumber.push ({ id: '', selected: true}); for (var property in TelephoneNumber) obj.TelephoneNumber.push ({ id: property, selected: obj.phone2 && obj.phone2.endsWith ('.' + property)});
+                obj.PostalAddress = []; if (!obj.postalAddress) obj.PostalAddress.push ({ id: '', selected: true}); for (var property in PostalAddress) obj.PostalAddress.push ({ id: property, selected: obj.postalAddress && obj.postalAddress.endsWith ('.' + property)});
+                obj.StreetAddress = []; if (!obj.streetAddress) obj.StreetAddress.push ({ id: '', selected: true}); for (var property in StreetAddress) obj.StreetAddress.push ({ id: property, selected: obj.streetAddress && obj.streetAddress.endsWith ('.' + property)});
                 if (obj.Crews) obj.Crews_string = obj.Crews.join ();
                 if (obj.ActivityRecords) obj.ActivityRecords_string = obj.ActivityRecords.join ();
                 if (obj.Roles) obj.Roles_string = obj.Roles.join ();
@@ -1912,6 +1945,11 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ElectronicAddress;
+                delete obj.TelephoneNumber;
+                delete obj.TelephoneNumber;
+                delete obj.PostalAddress;
+                delete obj.StreetAddress;
                 delete obj.Crews_string;
                 delete obj.ActivityRecords_string;
                 delete obj.Roles_string;
@@ -1927,11 +1965,11 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone1'>phone1: </label><div class='col-sm-8'><input id='{{id}}_phone1' class='form-control' type='text'{{#phone1}} value='{{phone1}}'{{/phone1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone2'>phone2: </label><div class='col-sm-8'><input id='{{id}}_phone2' class='form-control' type='text'{{#phone2}} value='{{phone2}}'{{/phone2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postalAddress'>postalAddress: </label><div class='col-sm-8'><input id='{{id}}_postalAddress' class='form-control' type='text'{{#postalAddress}} value='{{postalAddress}}'{{/postalAddress}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetAddress'>streetAddress: </label><div class='col-sm-8'><input id='{{id}}_streetAddress' class='form-control' type='text'{{#streetAddress}} value='{{streetAddress}}'{{/streetAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#ElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ElectronicAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone1'>phone1: </label><div class='col-sm-8'><select id='{{id}}_phone1' class='form-control custom-select'>{{#TelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TelephoneNumber}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone2'>phone2: </label><div class='col-sm-8'><select id='{{id}}_phone2' class='form-control custom-select'>{{#TelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TelephoneNumber}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postalAddress'>postalAddress: </label><div class='col-sm-8'><select id='{{id}}_postalAddress' class='form-control custom-select'>{{#PostalAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PostalAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetAddress'>streetAddress: </label><div class='col-sm-8'><select id='{{id}}_streetAddress' class='form-control custom-select'>{{#StreetAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StreetAddress}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords_string}}'{{/ActivityRecords}}></div></div>
                     </div>
@@ -1946,11 +1984,11 @@ define
 
                 var obj = obj || { id: id, cls: "Organisation" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
-                temp = document.getElementById (id + "_phone1").value; if ("" != temp) obj.phone1 = temp;
-                temp = document.getElementById (id + "_phone2").value; if ("" != temp) obj.phone2 = temp;
-                temp = document.getElementById (id + "_postalAddress").value; if ("" != temp) obj.postalAddress = temp;
-                temp = document.getElementById (id + "_streetAddress").value; if ("" != temp) obj.streetAddress = temp;
+                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) { temp = ElectronicAddress[temp]; if ("undefined" != typeof (temp)) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; }
+                temp = document.getElementById (id + "_phone1").value; if ("" != temp) { temp = TelephoneNumber[temp]; if ("undefined" != typeof (temp)) obj.phone1 = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; }
+                temp = document.getElementById (id + "_phone2").value; if ("" != temp) { temp = TelephoneNumber[temp]; if ("undefined" != typeof (temp)) obj.phone2 = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; }
+                temp = document.getElementById (id + "_postalAddress").value; if ("" != temp) { temp = PostalAddress[temp]; if ("undefined" != typeof (temp)) obj.postalAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#PostalAddress." + temp; }
+                temp = document.getElementById (id + "_streetAddress").value; if ("" != temp) { temp = StreetAddress[temp]; if ("undefined" != typeof (temp)) obj.streetAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#StreetAddress." + temp; }
                 temp = document.getElementById (id + "_Crews").value; if ("" != temp) obj.Crews = temp.split (",");
                 temp = document.getElementById (id + "_ActivityRecords").value; if ("" != temp) obj.ActivityRecords = temp.split (",");
 
@@ -2116,13 +2154,13 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Location";
                 base.parse_element (/<cim:Location.direction>([\s\S]*?)<\/cim:Location.direction>/g, obj, "direction", base.to_string, sub, context);
-                base.parse_element (/<cim:Location.electronicAddress>([\s\S]*?)<\/cim:Location.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Location.electronicAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddress", sub, context);
                 base.parse_element (/<cim:Location.geoInfoReference>([\s\S]*?)<\/cim:Location.geoInfoReference>/g, obj, "geoInfoReference", base.to_string, sub, context);
-                base.parse_element (/<cim:Location.mainAddress>([\s\S]*?)<\/cim:Location.mainAddress>/g, obj, "mainAddress", base.to_string, sub, context);
-                base.parse_element (/<cim:Location.phone1>([\s\S]*?)<\/cim:Location.phone1>/g, obj, "phone1", base.to_string, sub, context);
-                base.parse_element (/<cim:Location.phone2>([\s\S]*?)<\/cim:Location.phone2>/g, obj, "phone2", base.to_string, sub, context);
-                base.parse_element (/<cim:Location.secondaryAddress>([\s\S]*?)<\/cim:Location.secondaryAddress>/g, obj, "secondaryAddress", base.to_string, sub, context);
-                base.parse_element (/<cim:Location.status>([\s\S]*?)<\/cim:Location.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Location.mainAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mainAddress", sub, context);
+                base.parse_attribute (/<cim:Location.phone1\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phone1", sub, context);
+                base.parse_attribute (/<cim:Location.phone2\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phone2", sub, context);
+                base.parse_attribute (/<cim:Location.secondaryAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "secondaryAddress", sub, context);
+                base.parse_attribute (/<cim:Location.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Location.type>([\s\S]*?)<\/cim:Location.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Location.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
                 base.parse_attributes (/<cim:Location.PowerSystemResources\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResources", sub, context);
@@ -2147,13 +2185,13 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Location", "direction", "direction",  base.from_string, fields);
-                base.export_element (obj, "Location", "electronicAddress", "electronicAddress",  base.from_string, fields);
+                base.export_attribute (obj, "Location", "electronicAddress", "electronicAddress", fields);
                 base.export_element (obj, "Location", "geoInfoReference", "geoInfoReference",  base.from_string, fields);
-                base.export_element (obj, "Location", "mainAddress", "mainAddress",  base.from_string, fields);
-                base.export_element (obj, "Location", "phone1", "phone1",  base.from_string, fields);
-                base.export_element (obj, "Location", "phone2", "phone2",  base.from_string, fields);
-                base.export_element (obj, "Location", "secondaryAddress", "secondaryAddress",  base.from_string, fields);
-                base.export_element (obj, "Location", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Location", "mainAddress", "mainAddress", fields);
+                base.export_attribute (obj, "Location", "phone1", "phone1", fields);
+                base.export_attribute (obj, "Location", "phone2", "phone2", fields);
+                base.export_attribute (obj, "Location", "secondaryAddress", "secondaryAddress", fields);
+                base.export_attribute (obj, "Location", "status", "status", fields);
                 base.export_element (obj, "Location", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "Location", "Assets", "Assets", fields);
                 base.export_attributes (obj, "Location", "PowerSystemResources", "PowerSystemResources", fields);
@@ -2204,6 +2242,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ElectronicAddress = []; if (!obj.electronicAddress) obj.ElectronicAddress.push ({ id: '', selected: true}); for (var property in ElectronicAddress) obj.ElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
+                obj.StreetAddress = []; if (!obj.mainAddress) obj.StreetAddress.push ({ id: '', selected: true}); for (var property in StreetAddress) obj.StreetAddress.push ({ id: property, selected: obj.mainAddress && obj.mainAddress.endsWith ('.' + property)});
+                obj.TelephoneNumber = []; if (!obj.phone1) obj.TelephoneNumber.push ({ id: '', selected: true}); for (var property in TelephoneNumber) obj.TelephoneNumber.push ({ id: property, selected: obj.phone1 && obj.phone1.endsWith ('.' + property)});
+                obj.TelephoneNumber = []; if (!obj.phone2) obj.TelephoneNumber.push ({ id: '', selected: true}); for (var property in TelephoneNumber) obj.TelephoneNumber.push ({ id: property, selected: obj.phone2 && obj.phone2.endsWith ('.' + property)});
+                obj.StreetAddress = []; if (!obj.secondaryAddress) obj.StreetAddress.push ({ id: '', selected: true}); for (var property in StreetAddress) obj.StreetAddress.push ({ id: property, selected: obj.secondaryAddress && obj.secondaryAddress.endsWith ('.' + property)});
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Assets) obj.Assets_string = obj.Assets.join ();
                 if (obj.PowerSystemResources) obj.PowerSystemResources_string = obj.PowerSystemResources.join ();
                 if (obj.Measurements) obj.Measurements_string = obj.Measurements.join ();
@@ -2218,6 +2262,12 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ElectronicAddress;
+                delete obj.StreetAddress;
+                delete obj.TelephoneNumber;
+                delete obj.TelephoneNumber;
+                delete obj.StreetAddress;
+                delete obj.Status;
                 delete obj.Assets_string;
                 delete obj.PowerSystemResources_string;
                 delete obj.Measurements_string;
@@ -2240,13 +2290,13 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><input id='{{id}}_direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#ElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ElectronicAddress}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_geoInfoReference'>geoInfoReference: </label><div class='col-sm-8'><input id='{{id}}_geoInfoReference' class='form-control' type='text'{{#geoInfoReference}} value='{{geoInfoReference}}'{{/geoInfoReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mainAddress'>mainAddress: </label><div class='col-sm-8'><input id='{{id}}_mainAddress' class='form-control' type='text'{{#mainAddress}} value='{{mainAddress}}'{{/mainAddress}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone1'>phone1: </label><div class='col-sm-8'><input id='{{id}}_phone1' class='form-control' type='text'{{#phone1}} value='{{phone1}}'{{/phone1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone2'>phone2: </label><div class='col-sm-8'><input id='{{id}}_phone2' class='form-control' type='text'{{#phone2}} value='{{phone2}}'{{/phone2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryAddress'>secondaryAddress: </label><div class='col-sm-8'><input id='{{id}}_secondaryAddress' class='form-control' type='text'{{#secondaryAddress}} value='{{secondaryAddress}}'{{/secondaryAddress}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mainAddress'>mainAddress: </label><div class='col-sm-8'><select id='{{id}}_mainAddress' class='form-control custom-select'>{{#StreetAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StreetAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone1'>phone1: </label><div class='col-sm-8'><select id='{{id}}_phone1' class='form-control custom-select'>{{#TelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TelephoneNumber}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phone2'>phone2: </label><div class='col-sm-8'><select id='{{id}}_phone2' class='form-control custom-select'>{{#TelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TelephoneNumber}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryAddress'>secondaryAddress: </label><div class='col-sm-8'><select id='{{id}}_secondaryAddress' class='form-control custom-select'>{{#StreetAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StreetAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Hazards'>Hazards: </label><div class='col-sm-8'><input id='{{id}}_Hazards' class='form-control' type='text'{{#Hazards}} value='{{Hazards_string}}'{{/Hazards}}></div></div>
@@ -2267,13 +2317,13 @@ define
                 var obj = obj || { id: id, cls: "Location" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_direction").value; if ("" != temp) obj.direction = temp;
-                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
+                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) { temp = ElectronicAddress[temp]; if ("undefined" != typeof (temp)) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; }
                 temp = document.getElementById (id + "_geoInfoReference").value; if ("" != temp) obj.geoInfoReference = temp;
-                temp = document.getElementById (id + "_mainAddress").value; if ("" != temp) obj.mainAddress = temp;
-                temp = document.getElementById (id + "_phone1").value; if ("" != temp) obj.phone1 = temp;
-                temp = document.getElementById (id + "_phone2").value; if ("" != temp) obj.phone2 = temp;
-                temp = document.getElementById (id + "_secondaryAddress").value; if ("" != temp) obj.secondaryAddress = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_mainAddress").value; if ("" != temp) { temp = StreetAddress[temp]; if ("undefined" != typeof (temp)) obj.mainAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#StreetAddress." + temp; }
+                temp = document.getElementById (id + "_phone1").value; if ("" != temp) { temp = TelephoneNumber[temp]; if ("undefined" != typeof (temp)) obj.phone1 = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; }
+                temp = document.getElementById (id + "_phone2").value; if ("" != temp) { temp = TelephoneNumber[temp]; if ("undefined" != typeof (temp)) obj.phone2 = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; }
+                temp = document.getElementById (id + "_secondaryAddress").value; if ("" != temp) { temp = StreetAddress[temp]; if ("undefined" != typeof (temp)) obj.secondaryAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#StreetAddress." + temp; }
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_Measurements").value; if ("" != temp) obj.Measurements = temp.split (",");
                 temp = document.getElementById (id + "_Hazards").value; if ("" != temp) obj.Hazards = temp.split (",");
@@ -2722,7 +2772,7 @@ define
                 obj.cls = "UserAttribute";
                 base.parse_element (/<cim:UserAttribute.name>([\s\S]*?)<\/cim:UserAttribute.name>/g, obj, "name", base.to_string, sub, context);
                 base.parse_element (/<cim:UserAttribute.sequenceNumber>([\s\S]*?)<\/cim:UserAttribute.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
-                base.parse_element (/<cim:UserAttribute.value>([\s\S]*?)<\/cim:UserAttribute.value>/g, obj, "value", base.to_string, sub, context);
+                base.parse_attribute (/<cim:UserAttribute.value\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "value", sub, context);
                 base.parse_attributes (/<cim:UserAttribute.ErpInvoiceLineItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItems", sub, context);
                 base.parse_attribute (/<cim:UserAttribute.Transaction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Transaction", sub, context);
                 base.parse_attribute (/<cim:UserAttribute.RatingSpecification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RatingSpecification", sub, context);
@@ -2743,7 +2793,7 @@ define
 
                 base.export_element (obj, "UserAttribute", "name", "name",  base.from_string, fields);
                 base.export_element (obj, "UserAttribute", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
-                base.export_element (obj, "UserAttribute", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "UserAttribute", "value", "value", fields);
                 base.export_attributes (obj, "UserAttribute", "ErpInvoiceLineItems", "ErpInvoiceLineItems", fields);
                 base.export_attribute (obj, "UserAttribute", "Transaction", "Transaction", fields);
                 base.export_attribute (obj, "UserAttribute", "RatingSpecification", "RatingSpecification", fields);
@@ -2785,6 +2835,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.StringQuantity = []; if (!obj.value) obj.StringQuantity.push ({ id: '', selected: true}); for (var property in StringQuantity) obj.StringQuantity.push ({ id: property, selected: obj.value && obj.value.endsWith ('.' + property)});
                 if (obj.ErpInvoiceLineItems) obj.ErpInvoiceLineItems_string = obj.ErpInvoiceLineItems.join ();
                 if (obj.ProcedureDataSets) obj.ProcedureDataSets_string = obj.ProcedureDataSets.join ();
                 if (obj.ErpLedgerEntries) obj.ErpLedgerEntries_string = obj.ErpLedgerEntries.join ();
@@ -2793,6 +2844,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.StringQuantity;
                 delete obj.ErpInvoiceLineItems_string;
                 delete obj.ProcedureDataSets_string;
                 delete obj.ErpLedgerEntries_string;
@@ -2810,7 +2862,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_name'>name: </label><div class='col-sm-8'><input id='{{id}}_name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><select id='{{id}}_value' class='form-control custom-select'>{{#StringQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StringQuantity}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems_string}}'{{/ErpInvoiceLineItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Transaction'>Transaction: </label><div class='col-sm-8'><input id='{{id}}_Transaction' class='form-control' type='text'{{#Transaction}} value='{{Transaction}}'{{/Transaction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RatingSpecification'>RatingSpecification: </label><div class='col-sm-8'><input id='{{id}}_RatingSpecification' class='form-control' type='text'{{#RatingSpecification}} value='{{RatingSpecification}}'{{/RatingSpecification}}></div></div>
@@ -2831,7 +2883,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_name").value; if ("" != temp) obj.name = temp;
                 temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById (id + "_value").value; if ("" != temp) { temp = StringQuantity[temp]; if ("undefined" != typeof (temp)) obj.value = "http://iec.ch/TC57/2013/CIM-schema-cim16#StringQuantity." + temp; }
                 temp = document.getElementById (id + "_ErpInvoiceLineItems").value; if ("" != temp) obj.ErpInvoiceLineItems = temp.split (",");
                 temp = document.getElementById (id + "_Transaction").value; if ("" != temp) obj.Transaction = temp;
                 temp = document.getElementById (id + "_RatingSpecification").value; if ("" != temp) obj.RatingSpecification = temp;
@@ -2886,9 +2938,9 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ScheduledEventData";
-                base.parse_element (/<cim:ScheduledEventData.estimatedWindow>([\s\S]*?)<\/cim:ScheduledEventData.estimatedWindow>/g, obj, "estimatedWindow", base.to_string, sub, context);
-                base.parse_element (/<cim:ScheduledEventData.requestedWindow>([\s\S]*?)<\/cim:ScheduledEventData.requestedWindow>/g, obj, "requestedWindow", base.to_string, sub, context);
-                base.parse_element (/<cim:ScheduledEventData.status>([\s\S]*?)<\/cim:ScheduledEventData.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ScheduledEventData.estimatedWindow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "estimatedWindow", sub, context);
+                base.parse_attribute (/<cim:ScheduledEventData.requestedWindow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "requestedWindow", sub, context);
+                base.parse_attribute (/<cim:ScheduledEventData.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ScheduledEventData.InspectionDataSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InspectionDataSet", sub, context);
                 base.parse_attributes (/<cim:ScheduledEventData.ScheduledEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ScheduledEvents", sub, context);
                 var bucket = context.parsed.ScheduledEventData;
@@ -2903,9 +2955,9 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ScheduledEventData", "estimatedWindow", "estimatedWindow",  base.from_string, fields);
-                base.export_element (obj, "ScheduledEventData", "requestedWindow", "requestedWindow",  base.from_string, fields);
-                base.export_element (obj, "ScheduledEventData", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ScheduledEventData", "estimatedWindow", "estimatedWindow", fields);
+                base.export_attribute (obj, "ScheduledEventData", "requestedWindow", "requestedWindow", fields);
+                base.export_attribute (obj, "ScheduledEventData", "status", "status", fields);
                 base.export_attribute (obj, "ScheduledEventData", "InspectionDataSet", "InspectionDataSet", fields);
                 base.export_attributes (obj, "ScheduledEventData", "ScheduledEvents", "ScheduledEvents", fields);
                 if (full)
@@ -2938,12 +2990,18 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.estimatedWindow) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.estimatedWindow && obj.estimatedWindow.endsWith ('.' + property)});
+                obj.DateTimeInterval = []; if (!obj.requestedWindow) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.requestedWindow && obj.requestedWindow.endsWith ('.' + property)});
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ScheduledEvents) obj.ScheduledEvents_string = obj.ScheduledEvents.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
+                delete obj.DateTimeInterval;
+                delete obj.Status;
                 delete obj.ScheduledEvents_string;
             }
 
@@ -2957,9 +3015,9 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedWindow'>estimatedWindow: </label><div class='col-sm-8'><input id='{{id}}_estimatedWindow' class='form-control' type='text'{{#estimatedWindow}} value='{{estimatedWindow}}'{{/estimatedWindow}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_requestedWindow'>requestedWindow: </label><div class='col-sm-8'><input id='{{id}}_requestedWindow' class='form-control' type='text'{{#requestedWindow}} value='{{requestedWindow}}'{{/requestedWindow}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedWindow'>estimatedWindow: </label><div class='col-sm-8'><select id='{{id}}_estimatedWindow' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_requestedWindow'>requestedWindow: </label><div class='col-sm-8'><select id='{{id}}_requestedWindow' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InspectionDataSet'>InspectionDataSet: </label><div class='col-sm-8'><input id='{{id}}_InspectionDataSet' class='form-control' type='text'{{#InspectionDataSet}} value='{{InspectionDataSet}}'{{/InspectionDataSet}}></div></div>
                     </div>
                     <fieldset>
@@ -2973,9 +3031,9 @@ define
 
                 var obj = obj || { id: id, cls: "ScheduledEventData" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_estimatedWindow").value; if ("" != temp) obj.estimatedWindow = temp;
-                temp = document.getElementById (id + "_requestedWindow").value; if ("" != temp) obj.requestedWindow = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_estimatedWindow").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.estimatedWindow = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
+                temp = document.getElementById (id + "_requestedWindow").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.requestedWindow = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_InspectionDataSet").value; if ("" != temp) obj.InspectionDataSet = temp;
 
                 return (obj);
@@ -3140,12 +3198,12 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Person";
-                base.parse_element (/<cim:Person.electronicAddress>([\s\S]*?)<\/cim:Person.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Person.electronicAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddress", sub, context);
                 base.parse_element (/<cim:Person.firstName>([\s\S]*?)<\/cim:Person.firstName>/g, obj, "firstName", base.to_string, sub, context);
-                base.parse_element (/<cim:Person.landlinePhone>([\s\S]*?)<\/cim:Person.landlinePhone>/g, obj, "landlinePhone", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Person.landlinePhone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "landlinePhone", sub, context);
                 base.parse_element (/<cim:Person.lastName>([\s\S]*?)<\/cim:Person.lastName>/g, obj, "lastName", base.to_string, sub, context);
                 base.parse_element (/<cim:Person.mName>([\s\S]*?)<\/cim:Person.mName>/g, obj, "mName", base.to_string, sub, context);
-                base.parse_element (/<cim:Person.mobilePhone>([\s\S]*?)<\/cim:Person.mobilePhone>/g, obj, "mobilePhone", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Person.mobilePhone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mobilePhone", sub, context);
                 base.parse_element (/<cim:Person.prefix>([\s\S]*?)<\/cim:Person.prefix>/g, obj, "prefix", base.to_string, sub, context);
                 base.parse_element (/<cim:Person.specialNeed>([\s\S]*?)<\/cim:Person.specialNeed>/g, obj, "specialNeed", base.to_string, sub, context);
                 base.parse_element (/<cim:Person.suffix>([\s\S]*?)<\/cim:Person.suffix>/g, obj, "suffix", base.to_string, sub, context);
@@ -3162,12 +3220,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Person", "electronicAddress", "electronicAddress",  base.from_string, fields);
+                base.export_attribute (obj, "Person", "electronicAddress", "electronicAddress", fields);
                 base.export_element (obj, "Person", "firstName", "firstName",  base.from_string, fields);
-                base.export_element (obj, "Person", "landlinePhone", "landlinePhone",  base.from_string, fields);
+                base.export_attribute (obj, "Person", "landlinePhone", "landlinePhone", fields);
                 base.export_element (obj, "Person", "lastName", "lastName",  base.from_string, fields);
                 base.export_element (obj, "Person", "mName", "mName",  base.from_string, fields);
-                base.export_element (obj, "Person", "mobilePhone", "mobilePhone",  base.from_string, fields);
+                base.export_attribute (obj, "Person", "mobilePhone", "mobilePhone", fields);
                 base.export_element (obj, "Person", "prefix", "prefix",  base.from_string, fields);
                 base.export_element (obj, "Person", "specialNeed", "specialNeed",  base.from_string, fields);
                 base.export_element (obj, "Person", "suffix", "suffix",  base.from_string, fields);
@@ -3205,12 +3263,18 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ElectronicAddress = []; if (!obj.electronicAddress) obj.ElectronicAddress.push ({ id: '', selected: true}); for (var property in ElectronicAddress) obj.ElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
+                obj.TelephoneNumber = []; if (!obj.landlinePhone) obj.TelephoneNumber.push ({ id: '', selected: true}); for (var property in TelephoneNumber) obj.TelephoneNumber.push ({ id: property, selected: obj.landlinePhone && obj.landlinePhone.endsWith ('.' + property)});
+                obj.TelephoneNumber = []; if (!obj.mobilePhone) obj.TelephoneNumber.push ({ id: '', selected: true}); for (var property in TelephoneNumber) obj.TelephoneNumber.push ({ id: property, selected: obj.mobilePhone && obj.mobilePhone.endsWith ('.' + property)});
                 if (obj.Roles) obj.Roles_string = obj.Roles.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ElectronicAddress;
+                delete obj.TelephoneNumber;
+                delete obj.TelephoneNumber;
                 delete obj.Roles_string;
             }
 
@@ -3224,12 +3288,12 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#ElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ElectronicAddress}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_firstName'>firstName: </label><div class='col-sm-8'><input id='{{id}}_firstName' class='form-control' type='text'{{#firstName}} value='{{firstName}}'{{/firstName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_landlinePhone'>landlinePhone: </label><div class='col-sm-8'><input id='{{id}}_landlinePhone' class='form-control' type='text'{{#landlinePhone}} value='{{landlinePhone}}'{{/landlinePhone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_landlinePhone'>landlinePhone: </label><div class='col-sm-8'><select id='{{id}}_landlinePhone' class='form-control custom-select'>{{#TelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TelephoneNumber}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastName'>lastName: </label><div class='col-sm-8'><input id='{{id}}_lastName' class='form-control' type='text'{{#lastName}} value='{{lastName}}'{{/lastName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mName'>mName: </label><div class='col-sm-8'><input id='{{id}}_mName' class='form-control' type='text'{{#mName}} value='{{mName}}'{{/mName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mobilePhone'>mobilePhone: </label><div class='col-sm-8'><input id='{{id}}_mobilePhone' class='form-control' type='text'{{#mobilePhone}} value='{{mobilePhone}}'{{/mobilePhone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mobilePhone'>mobilePhone: </label><div class='col-sm-8'><select id='{{id}}_mobilePhone' class='form-control custom-select'>{{#TelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TelephoneNumber}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_prefix'>prefix: </label><div class='col-sm-8'><input id='{{id}}_prefix' class='form-control' type='text'{{#prefix}} value='{{prefix}}'{{/prefix}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='{{id}}_specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_suffix'>suffix: </label><div class='col-sm-8'><input id='{{id}}_suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
@@ -3245,12 +3309,12 @@ define
 
                 var obj = obj || { id: id, cls: "Person" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
+                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) { temp = ElectronicAddress[temp]; if ("undefined" != typeof (temp)) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; }
                 temp = document.getElementById (id + "_firstName").value; if ("" != temp) obj.firstName = temp;
-                temp = document.getElementById (id + "_landlinePhone").value; if ("" != temp) obj.landlinePhone = temp;
+                temp = document.getElementById (id + "_landlinePhone").value; if ("" != temp) { temp = TelephoneNumber[temp]; if ("undefined" != typeof (temp)) obj.landlinePhone = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; }
                 temp = document.getElementById (id + "_lastName").value; if ("" != temp) obj.lastName = temp;
                 temp = document.getElementById (id + "_mName").value; if ("" != temp) obj.mName = temp;
-                temp = document.getElementById (id + "_mobilePhone").value; if ("" != temp) obj.mobilePhone = temp;
+                temp = document.getElementById (id + "_mobilePhone").value; if ("" != temp) { temp = TelephoneNumber[temp]; if ("undefined" != typeof (temp)) obj.mobilePhone = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; }
                 temp = document.getElementById (id + "_prefix").value; if ("" != temp) obj.prefix = temp;
                 temp = document.getElementById (id + "_specialNeed").value; if ("" != temp) obj.specialNeed = temp;
                 temp = document.getElementById (id + "_suffix").value; if ("" != temp) obj.suffix = temp;
@@ -3298,7 +3362,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Appointment";
                 base.parse_element (/<cim:Appointment.callAhead>([\s\S]*?)<\/cim:Appointment.callAhead>/g, obj, "callAhead", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Appointment.meetingInterval>([\s\S]*?)<\/cim:Appointment.meetingInterval>/g, obj, "meetingInterval", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Appointment.meetingInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "meetingInterval", sub, context);
                 base.parse_attributes (/<cim:Appointment.Works\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Works", sub, context);
                 base.parse_attributes (/<cim:Appointment.Persons\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Persons", sub, context);
                 var bucket = context.parsed.Appointment;
@@ -3314,7 +3378,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Appointment", "callAhead", "callAhead",  base.from_boolean, fields);
-                base.export_element (obj, "Appointment", "meetingInterval", "meetingInterval",  base.from_string, fields);
+                base.export_attribute (obj, "Appointment", "meetingInterval", "meetingInterval", fields);
                 base.export_attributes (obj, "Appointment", "Works", "Works", fields);
                 base.export_attributes (obj, "Appointment", "Persons", "Persons", fields);
                 if (full)
@@ -3347,6 +3411,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.meetingInterval) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.meetingInterval && obj.meetingInterval.endsWith ('.' + property)});
                 if (obj.Works) obj.Works_string = obj.Works.join ();
                 if (obj.Persons) obj.Persons_string = obj.Persons.join ();
             }
@@ -3354,6 +3419,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.Works_string;
                 delete obj.Persons_string;
             }
@@ -3369,7 +3435,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_callAhead'>callAhead: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_callAhead' class='form-check-input' type='checkbox'{{#callAhead}} checked{{/callAhead}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_meetingInterval'>meetingInterval: </label><div class='col-sm-8'><input id='{{id}}_meetingInterval' class='form-control' type='text'{{#meetingInterval}} value='{{meetingInterval}}'{{/meetingInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_meetingInterval'>meetingInterval: </label><div class='col-sm-8'><select id='{{id}}_meetingInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Persons'>Persons: </label><div class='col-sm-8'><input id='{{id}}_Persons' class='form-control' type='text'{{#Persons}} value='{{Persons_string}}'{{/Persons}}></div></div>
                     </div>
@@ -3385,7 +3451,7 @@ define
                 var obj = obj || { id: id, cls: "Appointment" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_callAhead").checked; if (temp) obj.callAhead = true;
-                temp = document.getElementById (id + "_meetingInterval").value; if ("" != temp) obj.meetingInterval = temp;
+                temp = document.getElementById (id + "_meetingInterval").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.meetingInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_Works").value; if ("" != temp) obj.Works = temp.split (",");
                 temp = document.getElementById (id + "_Persons").value; if ("" != temp) obj.Persons = temp.split (",");
 
@@ -3587,7 +3653,7 @@ define
                 base.parse_element (/<cim:TimeSchedule.offset>([\s\S]*?)<\/cim:TimeSchedule.offset>/g, obj, "offset", base.to_string, sub, context);
                 base.parse_element (/<cim:TimeSchedule.recurrencePattern>([\s\S]*?)<\/cim:TimeSchedule.recurrencePattern>/g, obj, "recurrencePattern", base.to_string, sub, context);
                 base.parse_element (/<cim:TimeSchedule.recurrencePeriod>([\s\S]*?)<\/cim:TimeSchedule.recurrencePeriod>/g, obj, "recurrencePeriod", base.to_string, sub, context);
-                base.parse_element (/<cim:TimeSchedule.scheduleInterval>([\s\S]*?)<\/cim:TimeSchedule.scheduleInterval>/g, obj, "scheduleInterval", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TimeSchedule.scheduleInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "scheduleInterval", sub, context);
                 base.parse_attributes (/<cim:TimeSchedule.TimePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimePoints", sub, context);
                 var bucket = context.parsed.TimeSchedule;
                 if (null == bucket)
@@ -3605,7 +3671,7 @@ define
                 base.export_element (obj, "TimeSchedule", "offset", "offset",  base.from_string, fields);
                 base.export_element (obj, "TimeSchedule", "recurrencePattern", "recurrencePattern",  base.from_string, fields);
                 base.export_element (obj, "TimeSchedule", "recurrencePeriod", "recurrencePeriod",  base.from_string, fields);
-                base.export_element (obj, "TimeSchedule", "scheduleInterval", "scheduleInterval",  base.from_string, fields);
+                base.export_attribute (obj, "TimeSchedule", "scheduleInterval", "scheduleInterval", fields);
                 base.export_attributes (obj, "TimeSchedule", "TimePoints", "TimePoints", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3639,12 +3705,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.scheduleInterval) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.scheduleInterval && obj.scheduleInterval.endsWith ('.' + property)});
                 if (obj.TimePoints) obj.TimePoints_string = obj.TimePoints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.TimePoints_string;
             }
 
@@ -3662,7 +3730,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offset'>offset: </label><div class='col-sm-8'><input id='{{id}}_offset' class='form-control' type='text'{{#offset}} value='{{offset}}'{{/offset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recurrencePattern'>recurrencePattern: </label><div class='col-sm-8'><input id='{{id}}_recurrencePattern' class='form-control' type='text'{{#recurrencePattern}} value='{{recurrencePattern}}'{{/recurrencePattern}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recurrencePeriod'>recurrencePeriod: </label><div class='col-sm-8'><input id='{{id}}_recurrencePeriod' class='form-control' type='text'{{#recurrencePeriod}} value='{{recurrencePeriod}}'{{/recurrencePeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduleInterval'>scheduleInterval: </label><div class='col-sm-8'><input id='{{id}}_scheduleInterval' class='form-control' type='text'{{#scheduleInterval}} value='{{scheduleInterval}}'{{/scheduleInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduleInterval'>scheduleInterval: </label><div class='col-sm-8'><select id='{{id}}_scheduleInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3679,7 +3747,7 @@ define
                 temp = document.getElementById (id + "_offset").value; if ("" != temp) obj.offset = temp;
                 temp = document.getElementById (id + "_recurrencePattern").value; if ("" != temp) obj.recurrencePattern = temp;
                 temp = document.getElementById (id + "_recurrencePeriod").value; if ("" != temp) obj.recurrencePeriod = temp;
-                temp = document.getElementById (id + "_scheduleInterval").value; if ("" != temp) obj.scheduleInterval = temp;
+                temp = document.getElementById (id + "_scheduleInterval").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.scheduleInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
 
                 return (obj);
             }
@@ -3726,7 +3794,7 @@ define
                 obj = Document.prototype.parse.call (this, context, sub);
                 obj.cls = "Agreement";
                 base.parse_element (/<cim:Agreement.signDate>([\s\S]*?)<\/cim:Agreement.signDate>/g, obj, "signDate", base.to_string, sub, context);
-                base.parse_element (/<cim:Agreement.validityInterval>([\s\S]*?)<\/cim:Agreement.validityInterval>/g, obj, "validityInterval", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Agreement.validityInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "validityInterval", sub, context);
                 var bucket = context.parsed.Agreement;
                 if (null == bucket)
                    context.parsed.Agreement = bucket = {};
@@ -3740,7 +3808,7 @@ define
                 var fields = Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Agreement", "signDate", "signDate",  base.from_string, fields);
-                base.export_element (obj, "Agreement", "validityInterval", "validityInterval",  base.from_string, fields);
+                base.export_attribute (obj, "Agreement", "validityInterval", "validityInterval", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3769,11 +3837,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.validityInterval) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.validityInterval && obj.validityInterval.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
             }
 
             edit_template ()
@@ -3787,7 +3857,7 @@ define
                     + Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_signDate'>signDate: </label><div class='col-sm-8'><input id='{{id}}_signDate' class='form-control' type='text'{{#signDate}} value='{{signDate}}'{{/signDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><select id='{{id}}_validityInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -3801,7 +3871,7 @@ define
                 var obj = obj || { id: id, cls: "Agreement" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_signDate").value; if ("" != temp) obj.signDate = temp;
-                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) obj.validityInterval = temp;
+                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.validityInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
 
                 return (obj);
             }

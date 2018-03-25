@@ -593,9 +593,9 @@ define
                 base.parse_attribute (/<cim:Customer.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Customer.pucNumber>([\s\S]*?)<\/cim:Customer.pucNumber>/g, obj, "pucNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:Customer.specialNeed>([\s\S]*?)<\/cim:Customer.specialNeed>/g, obj, "specialNeed", base.to_string, sub, context);
-                base.parse_element (/<cim:Customer.status>([\s\S]*?)<\/cim:Customer.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Customer.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Customer.vip>([\s\S]*?)<\/cim:Customer.vip>/g, obj, "vip", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Customer.priority>([\s\S]*?)<\/cim:Customer.priority>/g, obj, "priority", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Customer.priority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "priority", sub, context);
                 base.parse_element (/<cim:Customer.locale>([\s\S]*?)<\/cim:Customer.locale>/g, obj, "locale", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Customer.Works\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Works", sub, context);
                 base.parse_attributes (/<cim:Customer.ErpPersons\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersons", sub, context);
@@ -619,9 +619,9 @@ define
                 base.export_attribute (obj, "Customer", "kind", "kind", fields);
                 base.export_element (obj, "Customer", "pucNumber", "pucNumber",  base.from_string, fields);
                 base.export_element (obj, "Customer", "specialNeed", "specialNeed",  base.from_string, fields);
-                base.export_element (obj, "Customer", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Customer", "status", "status", fields);
                 base.export_element (obj, "Customer", "vip", "vip",  base.from_boolean, fields);
-                base.export_element (obj, "Customer", "priority", "priority",  base.from_string, fields);
+                base.export_attribute (obj, "Customer", "priority", "priority", fields);
                 base.export_element (obj, "Customer", "locale", "locale",  base.from_string, fields);
                 base.export_attributes (obj, "Customer", "Works", "Works", fields);
                 base.export_attributes (obj, "Customer", "ErpPersons", "ErpPersons", fields);
@@ -669,6 +669,8 @@ define
             {
                 super.condition (obj);
                 obj.CustomerKind = []; if (!obj.kind) obj.CustomerKind.push ({ id: '', selected: true}); for (var property in CustomerKind) obj.CustomerKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.Priority = []; if (!obj.priority) obj.Priority.push ({ id: '', selected: true}); for (var property in Priority) obj.Priority.push ({ id: property, selected: obj.priority && obj.priority.endsWith ('.' + property)});
                 if (obj.Works) obj.Works_string = obj.Works.join ();
                 if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
                 if (obj.Notifications) obj.Notifications_string = obj.Notifications.join ();
@@ -682,6 +684,8 @@ define
             {
                 super.uncondition (obj);
                 delete obj.CustomerKind;
+                delete obj.Status;
+                delete obj.Priority;
                 delete obj.Works_string;
                 delete obj.ErpPersons_string;
                 delete obj.Notifications_string;
@@ -704,9 +708,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#CustomerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CustomerKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pucNumber'>pucNumber: </label><div class='col-sm-8'><input id='{{id}}_pucNumber' class='form-control' type='text'{{#pucNumber}} value='{{pucNumber}}'{{/pucNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='{{id}}_specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_vip'>vip: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vip' class='form-check-input' type='checkbox'{{#vip}} checked{{/vip}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><select id='{{id}}_priority' class='form-control custom-select'>{{#Priority}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Priority}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_locale'>locale: </label><div class='col-sm-8'><input id='{{id}}_locale' class='form-control' type='text'{{#locale}} value='{{locale}}'{{/locale}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
                     </div>
@@ -724,9 +728,9 @@ define
                 temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerKind." + temp; }
                 temp = document.getElementById (id + "_pucNumber").value; if ("" != temp) obj.pucNumber = temp;
                 temp = document.getElementById (id + "_specialNeed").value; if ("" != temp) obj.specialNeed = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_vip").checked; if (temp) obj.vip = true;
-                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) { temp = Priority[temp]; if ("undefined" != typeof (temp)) obj.priority = "http://iec.ch/TC57/2013/CIM-schema-cim16#Priority." + temp; }
                 temp = document.getElementById (id + "_locale").value; if ("" != temp) obj.locale = temp;
                 temp = document.getElementById (id + "_Works").value; if ("" != temp) obj.Works = temp.split (",");
 

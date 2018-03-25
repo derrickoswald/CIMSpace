@@ -57,7 +57,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "IPAccessPoint";
                 base.parse_element (/<cim:IPAccessPoint.address>([\s\S]*?)<\/cim:IPAccessPoint.address>/g, obj, "address", base.to_string, sub, context);
-                base.parse_element (/<cim:IPAccessPoint.addressType>([\s\S]*?)<\/cim:IPAccessPoint.addressType>/g, obj, "addressType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:IPAccessPoint.addressType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "addressType", sub, context);
                 base.parse_element (/<cim:IPAccessPoint.gateway>([\s\S]*?)<\/cim:IPAccessPoint.gateway>/g, obj, "gateway", base.to_string, sub, context);
                 base.parse_element (/<cim:IPAccessPoint.subnet>([\s\S]*?)<\/cim:IPAccessPoint.subnet>/g, obj, "subnet", base.to_string, sub, context);
                 var bucket = context.parsed.IPAccessPoint;
@@ -73,7 +73,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "IPAccessPoint", "address", "address",  base.from_string, fields);
-                base.export_element (obj, "IPAccessPoint", "addressType", "addressType",  base.from_string, fields);
+                base.export_attribute (obj, "IPAccessPoint", "addressType", "addressType", fields);
                 base.export_element (obj, "IPAccessPoint", "gateway", "gateway",  base.from_string, fields);
                 base.export_element (obj, "IPAccessPoint", "subnet", "subnet",  base.from_string, fields);
                 if (full)
@@ -105,11 +105,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.IPAddressType = []; if (!obj.addressType) obj.IPAddressType.push ({ id: '', selected: true}); for (var property in IPAddressType) obj.IPAddressType.push ({ id: property, selected: obj.addressType && obj.addressType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.IPAddressType;
             }
 
             edit_template ()
@@ -123,7 +125,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_address'>address: </label><div class='col-sm-8'><input id='{{id}}_address' class='form-control' type='text'{{#address}} value='{{address}}'{{/address}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_addressType'>addressType: </label><div class='col-sm-8'><input id='{{id}}_addressType' class='form-control' type='text'{{#addressType}} value='{{addressType}}'{{/addressType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_addressType'>addressType: </label><div class='col-sm-8'><select id='{{id}}_addressType' class='form-control custom-select'>{{#IPAddressType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IPAddressType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gateway'>gateway: </label><div class='col-sm-8'><input id='{{id}}_gateway' class='form-control' type='text'{{#gateway}} value='{{gateway}}'{{/gateway}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subnet'>subnet: </label><div class='col-sm-8'><input id='{{id}}_subnet' class='form-control' type='text'{{#subnet}} value='{{subnet}}'{{/subnet}}></div></div>
                     </div>
@@ -139,7 +141,7 @@ define
                 var obj = obj || { id: id, cls: "IPAccessPoint" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_address").value; if ("" != temp) obj.address = temp;
-                temp = document.getElementById (id + "_addressType").value; if ("" != temp) obj.addressType = temp;
+                temp = document.getElementById (id + "_addressType").value; if ("" != temp) { temp = IPAddressType[temp]; if ("undefined" != typeof (temp)) obj.addressType = "http://iec.ch/TC57/2013/CIM-schema-cim16#IPAddressType." + temp; }
                 temp = document.getElementById (id + "_gateway").value; if ("" != temp) obj.gateway = temp;
                 temp = document.getElementById (id + "_subnet").value; if ("" != temp) obj.subnet = temp;
 
@@ -171,8 +173,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "IPAddressType";
                 base.parse_element (/<cim:IPAddressType.value>([\s\S]*?)<\/cim:IPAddressType.value>/g, obj, "value", base.to_string, sub, context);
-                base.parse_element (/<cim:IPAddressType.multiplier>([\s\S]*?)<\/cim:IPAddressType.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:IPAddressType.unit>([\s\S]*?)<\/cim:IPAddressType.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:IPAddressType.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:IPAddressType.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 var bucket = context.parsed.IPAddressType;
                 if (null == bucket)
                    context.parsed.IPAddressType = bucket = {};
@@ -186,8 +188,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "IPAddressType", "value", "value",  base.from_string, fields);
-                base.export_element (obj, "IPAddressType", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "IPAddressType", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "IPAddressType", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "IPAddressType", "unit", "unit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -217,11 +219,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
             }
 
             edit_template ()
@@ -235,8 +241,8 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -250,8 +256,8 @@ define
                 var obj = obj || { id: id, cls: "IPAddressType" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
 
                 return (obj);
             }
@@ -623,8 +629,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ISOAPAddressing";
                 base.parse_element (/<cim:ISOAPAddressing.value>([\s\S]*?)<\/cim:ISOAPAddressing.value>/g, obj, "value", base.to_string, sub, context);
-                base.parse_element (/<cim:ISOAPAddressing.unit>([\s\S]*?)<\/cim:ISOAPAddressing.unit>/g, obj, "unit", base.to_string, sub, context);
-                base.parse_element (/<cim:ISOAPAddressing.multiplier>([\s\S]*?)<\/cim:ISOAPAddressing.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ISOAPAddressing.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
+                base.parse_attribute (/<cim:ISOAPAddressing.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 var bucket = context.parsed.ISOAPAddressing;
                 if (null == bucket)
                    context.parsed.ISOAPAddressing = bucket = {};
@@ -638,8 +644,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "ISOAPAddressing", "value", "value",  base.from_string, fields);
-                base.export_element (obj, "ISOAPAddressing", "unit", "unit",  base.from_string, fields);
-                base.export_element (obj, "ISOAPAddressing", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_attribute (obj, "ISOAPAddressing", "unit", "unit", fields);
+                base.export_attribute (obj, "ISOAPAddressing", "multiplier", "multiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -669,11 +675,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitSymbol;
+                delete obj.UnitMultiplier;
             }
 
             edit_template ()
@@ -687,8 +697,8 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -702,8 +712,8 @@ define
                 var obj = obj || { id: id, cls: "ISOAPAddressing" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
 
                 return (obj);
             }
@@ -837,7 +847,7 @@ define
 
                 obj = TCPAcessPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ISOUpperLayer";
-                base.parse_element (/<cim:ISOUpperLayer.ap>([\s\S]*?)<\/cim:ISOUpperLayer.ap>/g, obj, "ap", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ISOUpperLayer.ap\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ap", sub, context);
                 base.parse_element (/<cim:ISOUpperLayer.osiPsel>([\s\S]*?)<\/cim:ISOUpperLayer.osiPsel>/g, obj, "osiPsel", base.to_string, sub, context);
                 base.parse_element (/<cim:ISOUpperLayer.osiSsel>([\s\S]*?)<\/cim:ISOUpperLayer.osiSsel>/g, obj, "osiSsel", base.to_string, sub, context);
                 base.parse_element (/<cim:ISOUpperLayer.osiTsel>([\s\S]*?)<\/cim:ISOUpperLayer.osiTsel>/g, obj, "osiTsel", base.to_string, sub, context);
@@ -853,7 +863,7 @@ define
             {
                 var fields = TCPAcessPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ISOUpperLayer", "ap", "ap",  base.from_string, fields);
+                base.export_attribute (obj, "ISOUpperLayer", "ap", "ap", fields);
                 base.export_element (obj, "ISOUpperLayer", "osiPsel", "osiPsel",  base.from_string, fields);
                 base.export_element (obj, "ISOUpperLayer", "osiSsel", "osiSsel",  base.from_string, fields);
                 base.export_element (obj, "ISOUpperLayer", "osiTsel", "osiTsel",  base.from_string, fields);
@@ -886,11 +896,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ISOAPAddressing = []; if (!obj.ap) obj.ISOAPAddressing.push ({ id: '', selected: true}); for (var property in ISOAPAddressing) obj.ISOAPAddressing.push ({ id: property, selected: obj.ap && obj.ap.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ISOAPAddressing;
             }
 
             edit_template ()
@@ -903,7 +915,7 @@ define
                     `
                     + TCPAcessPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ap'>ap: </label><div class='col-sm-8'><input id='{{id}}_ap' class='form-control' type='text'{{#ap}} value='{{ap}}'{{/ap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ap'>ap: </label><div class='col-sm-8'><select id='{{id}}_ap' class='form-control custom-select'>{{#ISOAPAddressing}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ISOAPAddressing}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiPsel'>osiPsel: </label><div class='col-sm-8'><input id='{{id}}_osiPsel' class='form-control' type='text'{{#osiPsel}} value='{{osiPsel}}'{{/osiPsel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiSsel'>osiSsel: </label><div class='col-sm-8'><input id='{{id}}_osiSsel' class='form-control' type='text'{{#osiSsel}} value='{{osiSsel}}'{{/osiSsel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiTsel'>osiTsel: </label><div class='col-sm-8'><input id='{{id}}_osiTsel' class='form-control' type='text'{{#osiTsel}} value='{{osiTsel}}'{{/osiTsel}}></div></div>
@@ -919,7 +931,7 @@ define
 
                 var obj = obj || { id: id, cls: "ISOUpperLayer" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ap").value; if ("" != temp) obj.ap = temp;
+                temp = document.getElementById (id + "_ap").value; if ("" != temp) { temp = ISOAPAddressing[temp]; if ("undefined" != typeof (temp)) obj.ap = "http://iec.ch/TC57/2013/CIM-schema-cim16#ISOAPAddressing." + temp; }
                 temp = document.getElementById (id + "_osiPsel").value; if ("" != temp) obj.osiPsel = temp;
                 temp = document.getElementById (id + "_osiSsel").value; if ("" != temp) obj.osiSsel = temp;
                 temp = document.getElementById (id + "_osiTsel").value; if ("" != temp) obj.osiTsel = temp;

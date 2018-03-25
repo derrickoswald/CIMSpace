@@ -1879,7 +1879,7 @@ define
 
                 obj = ErpDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpInvoiceLineItem";
-                base.parse_element (/<cim:ErpInvoiceLineItem.billPeriod>([\s\S]*?)<\/cim:ErpInvoiceLineItem.billPeriod>/g, obj, "billPeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInvoiceLineItem.billPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "billPeriod", sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.glAccount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.glAccount>/g, obj, "glAccount", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.glDateTime>([\s\S]*?)<\/cim:ErpInvoiceLineItem.glDateTime>/g, obj, "glDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ErpInvoiceLineItem.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
@@ -1912,7 +1912,7 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInvoiceLineItem", "billPeriod", "billPeriod",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "billPeriod", "billPeriod", fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "glAccount", "glAccount",  base.from_string, fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "glDateTime", "glDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "ErpInvoiceLineItem", "kind", "kind", fields);
@@ -1980,6 +1980,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.billPeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.billPeriod && obj.billPeriod.endsWith ('.' + property)});
                 obj.ErpInvoiceLineItemKind = []; if (!obj.kind) obj.ErpInvoiceLineItemKind.push ({ id: '', selected: true}); for (var property in ErpInvoiceLineItemKind) obj.ErpInvoiceLineItemKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.ComponentErpInvoiceLineItems) obj.ComponentErpInvoiceLineItems_string = obj.ComponentErpInvoiceLineItems.join ();
                 if (obj.CustomerBillingInfos) obj.CustomerBillingInfos_string = obj.CustomerBillingInfos.join ();
@@ -1992,6 +1993,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.ErpInvoiceLineItemKind;
                 delete obj.ComponentErpInvoiceLineItems_string;
                 delete obj.CustomerBillingInfos_string;
@@ -2011,7 +2013,7 @@ define
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billPeriod'>billPeriod: </label><div class='col-sm-8'><input id='{{id}}_billPeriod' class='form-control' type='text'{{#billPeriod}} value='{{billPeriod}}'{{/billPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billPeriod'>billPeriod: </label><div class='col-sm-8'><select id='{{id}}_billPeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_glAccount'>glAccount: </label><div class='col-sm-8'><input id='{{id}}_glAccount' class='form-control' type='text'{{#glAccount}} value='{{glAccount}}'{{/glAccount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_glDateTime'>glDateTime: </label><div class='col-sm-8'><input id='{{id}}_glDateTime' class='form-control' type='text'{{#glDateTime}} value='{{glDateTime}}'{{/glDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ErpInvoiceLineItemKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceLineItemKind}}</select></div></div>
@@ -2042,7 +2044,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpInvoiceLineItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_billPeriod").value; if ("" != temp) obj.billPeriod = temp;
+                temp = document.getElementById (id + "_billPeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.billPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_glAccount").value; if ("" != temp) obj.glAccount = temp;
                 temp = document.getElementById (id + "_glDateTime").value; if ("" != temp) obj.glDateTime = temp;
                 temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceLineItemKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceLineItemKind." + temp; }
@@ -2781,7 +2783,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpLedBudLineItem";
-                base.parse_element (/<cim:ErpLedBudLineItem.status>([\s\S]*?)<\/cim:ErpLedBudLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpLedBudLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedgerBudget\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerBudget", sub, context);
                 base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedBudLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedBudLineItem", sub, context);
                 var bucket = context.parsed.ErpLedBudLineItem;
@@ -2796,7 +2798,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpLedBudLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpLedBudLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedgerBudget", "ErpLedgerBudget", fields);
                 base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedBudLineItem", "ErpLedBudLineItem", fields);
                 if (full)
@@ -2827,11 +2829,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -2844,7 +2848,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerBudget'>ErpLedgerBudget: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerBudget' class='form-control' type='text'{{#ErpLedgerBudget}} value='{{ErpLedgerBudget}}'{{/ErpLedgerBudget}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedBudLineItem'>ErpLedBudLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpLedBudLineItem' class='form-control' type='text'{{#ErpLedBudLineItem}} value='{{ErpLedBudLineItem}}'{{/ErpLedBudLineItem}}></div></div>
                     </div>
@@ -2859,7 +2863,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpLedBudLineItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_ErpLedgerBudget").value; if ("" != temp) obj.ErpLedgerBudget = temp;
                 temp = document.getElementById (id + "_ErpLedBudLineItem").value; if ("" != temp) obj.ErpLedBudLineItem = temp;
 
@@ -2908,7 +2912,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpInventoryCount";
-                base.parse_element (/<cim:ErpInventoryCount.status>([\s\S]*?)<\/cim:ErpInventoryCount.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInventoryCount.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpInventoryCount.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModel", sub, context);
                 var bucket = context.parsed.ErpInventoryCount;
                 if (null == bucket)
@@ -2922,7 +2926,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInventoryCount", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInventoryCount", "status", "status", fields);
                 base.export_attribute (obj, "ErpInventoryCount", "AssetModel", "AssetModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2951,11 +2955,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -2968,7 +2974,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='{{id}}_AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
                     </div>
                     <fieldset>
@@ -2982,7 +2988,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpInventoryCount" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_AssetModel").value; if ("" != temp) obj.AssetModel = temp;
 
                 return (obj);
@@ -3027,7 +3033,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpTimeEntry";
-                base.parse_element (/<cim:ErpTimeEntry.status>([\s\S]*?)<\/cim:ErpTimeEntry.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpTimeEntry.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpTimeEntry.ErpTimeSheet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpTimeSheet", sub, context);
                 base.parse_attribute (/<cim:ErpTimeEntry.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context);
                 var bucket = context.parsed.ErpTimeEntry;
@@ -3042,7 +3048,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpTimeEntry", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpTimeEntry", "status", "status", fields);
                 base.export_attribute (obj, "ErpTimeEntry", "ErpTimeSheet", "ErpTimeSheet", fields);
                 base.export_attribute (obj, "ErpTimeEntry", "ErpProjectAccounting", "ErpProjectAccounting", fields);
                 if (full)
@@ -3073,11 +3079,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -3090,7 +3098,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpTimeSheet'>ErpTimeSheet: </label><div class='col-sm-8'><input id='{{id}}_ErpTimeSheet' class='form-control' type='text'{{#ErpTimeSheet}} value='{{ErpTimeSheet}}'{{/ErpTimeSheet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
                     </div>
@@ -3105,7 +3113,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpTimeEntry" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_ErpTimeSheet").value; if ("" != temp) obj.ErpTimeSheet = temp;
                 temp = document.getElementById (id + "_ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
 
@@ -3152,7 +3160,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpQuoteLineItem";
-                base.parse_element (/<cim:ErpQuoteLineItem.status>([\s\S]*?)<\/cim:ErpQuoteLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpQuoteLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpQuoteLineItem.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Design", sub, context);
                 base.parse_attribute (/<cim:ErpQuoteLineItem.ErpQuote\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuote", sub, context);
                 base.parse_attribute (/<cim:ErpQuoteLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
@@ -3170,7 +3178,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpQuoteLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpQuoteLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpQuoteLineItem", "Design", "Design", fields);
                 base.export_attribute (obj, "ErpQuoteLineItem", "ErpQuote", "ErpQuote", fields);
                 base.export_attribute (obj, "ErpQuoteLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
@@ -3207,11 +3215,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -3224,7 +3234,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Design'>Design: </label><div class='col-sm-8'><input id='{{id}}_Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuote'>ErpQuote: </label><div class='col-sm-8'><input id='{{id}}_ErpQuote' class='form-control' type='text'{{#ErpQuote}} value='{{ErpQuote}}'{{/ErpQuote}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
@@ -3242,7 +3252,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpQuoteLineItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_Design").value; if ("" != temp) obj.Design = temp;
                 temp = document.getElementById (id + "_ErpQuote").value; if ("" != temp) obj.ErpQuote = temp;
                 temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
@@ -3299,7 +3309,7 @@ define
                 base.parse_attribute (/<cim:ErpLedgerEntry.accountKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "accountKind", sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.amount>([\s\S]*?)<\/cim:ErpLedgerEntry.amount>/g, obj, "amount", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.postedDateTime>([\s\S]*?)<\/cim:ErpLedgerEntry.postedDateTime>/g, obj, "postedDateTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ErpLedgerEntry.status>([\s\S]*?)<\/cim:ErpLedgerEntry.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpLedgerEntry.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.transactionDateTime>([\s\S]*?)<\/cim:ErpLedgerEntry.transactionDateTime>/g, obj, "transactionDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ErpLedgerEntry.ErpJounalEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJounalEntry", sub, context);
                 base.parse_attribute (/<cim:ErpLedgerEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerEntry", sub, context);
@@ -3321,7 +3331,7 @@ define
                 base.export_attribute (obj, "ErpLedgerEntry", "accountKind", "accountKind", fields);
                 base.export_element (obj, "ErpLedgerEntry", "amount", "amount",  base.from_string, fields);
                 base.export_element (obj, "ErpLedgerEntry", "postedDateTime", "postedDateTime",  base.from_datetime, fields);
-                base.export_element (obj, "ErpLedgerEntry", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpLedgerEntry", "status", "status", fields);
                 base.export_element (obj, "ErpLedgerEntry", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "ErpLedgerEntry", "ErpJounalEntry", "ErpJounalEntry", fields);
                 base.export_attribute (obj, "ErpLedgerEntry", "ErpLedgerEntry", "ErpLedgerEntry", fields);
@@ -3363,6 +3373,7 @@ define
             {
                 super.condition (obj);
                 obj.ErpAccountKind = []; if (!obj.accountKind) obj.ErpAccountKind.push ({ id: '', selected: true}); for (var property in ErpAccountKind) obj.ErpAccountKind.push ({ id: property, selected: obj.accountKind && obj.accountKind.endsWith ('.' + property)});
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.UserAttributes) obj.UserAttributes_string = obj.UserAttributes.join ();
             }
 
@@ -3370,6 +3381,7 @@ define
             {
                 super.uncondition (obj);
                 delete obj.ErpAccountKind;
+                delete obj.Status;
                 delete obj.UserAttributes_string;
             }
 
@@ -3387,7 +3399,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountKind'>accountKind: </label><div class='col-sm-8'><select id='{{id}}_accountKind' class='form-control custom-select'>{{#ErpAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpAccountKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postedDateTime'>postedDateTime: </label><div class='col-sm-8'><input id='{{id}}_postedDateTime' class='form-control' type='text'{{#postedDateTime}} value='{{postedDateTime}}'{{/postedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJounalEntry'>ErpJounalEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpJounalEntry' class='form-control' type='text'{{#ErpJounalEntry}} value='{{ErpJounalEntry}}'{{/ErpJounalEntry}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
@@ -3409,7 +3421,7 @@ define
                 temp = document.getElementById (id + "_accountKind").value; if ("" != temp) { temp = ErpAccountKind[temp]; if ("undefined" != typeof (temp)) obj.accountKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpAccountKind." + temp; }
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
                 temp = document.getElementById (id + "_postedDateTime").value; if ("" != temp) obj.postedDateTime = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
                 temp = document.getElementById (id + "_ErpJounalEntry").value; if ("" != temp) obj.ErpJounalEntry = temp;
                 temp = document.getElementById (id + "_ErpLedgerEntry").value; if ("" != temp) obj.ErpLedgerEntry = temp;
@@ -3463,7 +3475,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpItemMaster";
-                base.parse_element (/<cim:ErpItemMaster.status>([\s\S]*?)<\/cim:ErpItemMaster.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpItemMaster.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpItemMaster.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
                 var bucket = context.parsed.ErpItemMaster;
                 if (null == bucket)
@@ -3477,7 +3489,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpItemMaster", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpItemMaster", "status", "status", fields);
                 base.export_attribute (obj, "ErpItemMaster", "Asset", "Asset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3506,11 +3518,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -3523,7 +3537,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     </div>
                     <fieldset>
@@ -3537,7 +3551,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpItemMaster" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_Asset").value; if ("" != temp) obj.Asset = temp;
 
                 return (obj);
@@ -3582,7 +3596,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpPayableLineItem";
-                base.parse_element (/<cim:ErpPayableLineItem.status>([\s\S]*?)<\/cim:ErpPayableLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpPayableLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attributes (/<cim:ErpPayableLineItem.ErpPayments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayments", sub, context);
                 base.parse_attribute (/<cim:ErpPayableLineItem.ErpPayable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayable", sub, context);
                 base.parse_attribute (/<cim:ErpPayableLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
@@ -3599,7 +3613,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpPayableLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpPayableLineItem", "status", "status", fields);
                 base.export_attributes (obj, "ErpPayableLineItem", "ErpPayments", "ErpPayments", fields);
                 base.export_attribute (obj, "ErpPayableLineItem", "ErpPayable", "ErpPayable", fields);
                 base.export_attribute (obj, "ErpPayableLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
@@ -3634,6 +3648,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ErpPayments) obj.ErpPayments_string = obj.ErpPayments.join ();
                 if (obj.ErpJournalEntries) obj.ErpJournalEntries_string = obj.ErpJournalEntries.join ();
             }
@@ -3641,6 +3656,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.ErpPayments_string;
                 delete obj.ErpJournalEntries_string;
             }
@@ -3655,7 +3671,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments_string}}'{{/ErpPayments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayable'>ErpPayable: </label><div class='col-sm-8'><input id='{{id}}_ErpPayable' class='form-control' type='text'{{#ErpPayable}} value='{{ErpPayable}}'{{/ErpPayable}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
@@ -3672,7 +3688,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpPayableLineItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
                 temp = document.getElementById (id + "_ErpPayable").value; if ("" != temp) obj.ErpPayable = temp;
                 temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
@@ -3723,7 +3739,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpRecLineItem";
-                base.parse_element (/<cim:ErpRecLineItem.status>([\s\S]*?)<\/cim:ErpRecLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpRecLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpRecLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
                 base.parse_attributes (/<cim:ErpRecLineItem.ErpPayments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayments", sub, context);
                 base.parse_attributes (/<cim:ErpRecLineItem.ErpJournalEntries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJournalEntries", sub, context);
@@ -3740,7 +3756,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpRecLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpRecLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpRecLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
                 base.export_attributes (obj, "ErpRecLineItem", "ErpPayments", "ErpPayments", fields);
                 base.export_attributes (obj, "ErpRecLineItem", "ErpJournalEntries", "ErpJournalEntries", fields);
@@ -3775,6 +3791,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ErpPayments) obj.ErpPayments_string = obj.ErpPayments.join ();
                 if (obj.ErpJournalEntries) obj.ErpJournalEntries_string = obj.ErpJournalEntries.join ();
             }
@@ -3782,6 +3799,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.ErpPayments_string;
                 delete obj.ErpJournalEntries_string;
             }
@@ -3796,7 +3814,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments_string}}'{{/ErpPayments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries_string}}'{{/ErpJournalEntries}}></div></div>
@@ -3813,7 +3831,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpRecLineItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
                 temp = document.getElementById (id + "_ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
                 temp = document.getElementById (id + "_ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
@@ -3864,7 +3882,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpIssueInventory";
-                base.parse_element (/<cim:ErpIssueInventory.status>([\s\S]*?)<\/cim:ErpIssueInventory.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpIssueInventory.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpIssueInventory.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
                 base.parse_attribute (/<cim:ErpIssueInventory.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context);
                 var bucket = context.parsed.ErpIssueInventory;
@@ -3879,7 +3897,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpIssueInventory", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpIssueInventory", "status", "status", fields);
                 base.export_attribute (obj, "ErpIssueInventory", "TypeMaterial", "TypeMaterial", fields);
                 base.export_attribute (obj, "ErpIssueInventory", "TypeAsset", "TypeAsset", fields);
                 if (full)
@@ -3910,11 +3928,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -3927,7 +3947,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
@@ -3942,7 +3962,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpIssueInventory" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
                 temp = document.getElementById (id + "_TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
 
@@ -3991,7 +4011,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpInventory";
-                base.parse_element (/<cim:ErpInventory.status>([\s\S]*?)<\/cim:ErpInventory.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInventory.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpInventory.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
                 var bucket = context.parsed.ErpInventory;
                 if (null == bucket)
@@ -4005,7 +4025,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInventory", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInventory", "status", "status", fields);
                 base.export_attribute (obj, "ErpInventory", "Asset", "Asset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4034,11 +4054,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -4051,7 +4073,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     </div>
                     <fieldset>
@@ -4065,7 +4087,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpInventory" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_Asset").value; if ("" != temp) obj.Asset = temp;
 
                 return (obj);
@@ -4114,7 +4136,7 @@ define
                 base.parse_element (/<cim:ErpReqLineItem.cost>([\s\S]*?)<\/cim:ErpReqLineItem.cost>/g, obj, "cost", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpReqLineItem.deliveryDate>([\s\S]*?)<\/cim:ErpReqLineItem.deliveryDate>/g, obj, "deliveryDate", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpReqLineItem.quantity>([\s\S]*?)<\/cim:ErpReqLineItem.quantity>/g, obj, "quantity", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpReqLineItem.status>([\s\S]*?)<\/cim:ErpReqLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpReqLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpReqLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItem", sub, context);
                 base.parse_attribute (/<cim:ErpReqLineItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
                 base.parse_attribute (/<cim:ErpReqLineItem.ErpRequisition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRequisition", sub, context);
@@ -4136,7 +4158,7 @@ define
                 base.export_element (obj, "ErpReqLineItem", "cost", "cost",  base.from_string, fields);
                 base.export_element (obj, "ErpReqLineItem", "deliveryDate", "deliveryDate",  base.from_string, fields);
                 base.export_element (obj, "ErpReqLineItem", "quantity", "quantity",  base.from_string, fields);
-                base.export_element (obj, "ErpReqLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpReqLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpReqLineItem", "ErpPOLineItem", "ErpPOLineItem", fields);
                 base.export_attribute (obj, "ErpReqLineItem", "TypeMaterial", "TypeMaterial", fields);
                 base.export_attribute (obj, "ErpReqLineItem", "ErpRequisition", "ErpRequisition", fields);
@@ -4177,11 +4199,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -4198,7 +4222,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deliveryDate'>deliveryDate: </label><div class='col-sm-8'><input id='{{id}}_deliveryDate' class='form-control' type='text'{{#deliveryDate}} value='{{deliveryDate}}'{{/deliveryDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRequisition'>ErpRequisition: </label><div class='col-sm-8'><input id='{{id}}_ErpRequisition' class='form-control' type='text'{{#ErpRequisition}} value='{{ErpRequisition}}'{{/ErpRequisition}}></div></div>
@@ -4220,7 +4244,7 @@ define
                 temp = document.getElementById (id + "_cost").value; if ("" != temp) obj.cost = temp;
                 temp = document.getElementById (id + "_deliveryDate").value; if ("" != temp) obj.deliveryDate = temp;
                 temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_ErpPOLineItem").value; if ("" != temp) obj.ErpPOLineItem = temp;
                 temp = document.getElementById (id + "_TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
                 temp = document.getElementById (id + "_ErpRequisition").value; if ("" != temp) obj.ErpRequisition = temp;
@@ -4273,7 +4297,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpPersonnel";
-                base.parse_element (/<cim:ErpPersonnel.status>([\s\S]*?)<\/cim:ErpPersonnel.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpPersonnel.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attributes (/<cim:ErpPersonnel.ErpPersons\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersons", sub, context);
                 var bucket = context.parsed.ErpPersonnel;
                 if (null == bucket)
@@ -4287,7 +4311,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpPersonnel", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpPersonnel", "status", "status", fields);
                 base.export_attributes (obj, "ErpPersonnel", "ErpPersons", "ErpPersons", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4316,12 +4340,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.ErpPersons_string;
             }
 
@@ -4335,7 +4361,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     </div>
                     <fieldset>
                     `
@@ -4348,7 +4374,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpPersonnel" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
 
                 return (obj);
             }
@@ -4396,7 +4422,7 @@ define
                 base.parse_element (/<cim:ErpJournalEntry.amount>([\s\S]*?)<\/cim:ErpJournalEntry.amount>/g, obj, "amount", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpJournalEntry.postingDateTime>([\s\S]*?)<\/cim:ErpJournalEntry.postingDateTime>/g, obj, "postingDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ErpJournalEntry.sourceID>([\s\S]*?)<\/cim:ErpJournalEntry.sourceID>/g, obj, "sourceID", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpJournalEntry.status>([\s\S]*?)<\/cim:ErpJournalEntry.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpJournalEntry.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:ErpJournalEntry.transactionDateTime>([\s\S]*?)<\/cim:ErpJournalEntry.transactionDateTime>/g, obj, "transactionDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ErpJournalEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerEntry", sub, context);
                 base.parse_attributes (/<cim:ErpJournalEntry.ErpPayableLineItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayableLineItems", sub, context);
@@ -4420,7 +4446,7 @@ define
                 base.export_element (obj, "ErpJournalEntry", "amount", "amount",  base.from_string, fields);
                 base.export_element (obj, "ErpJournalEntry", "postingDateTime", "postingDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "ErpJournalEntry", "sourceID", "sourceID",  base.from_string, fields);
-                base.export_element (obj, "ErpJournalEntry", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpJournalEntry", "status", "status", fields);
                 base.export_element (obj, "ErpJournalEntry", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "ErpJournalEntry", "ErpLedgerEntry", "ErpLedgerEntry", fields);
                 base.export_attributes (obj, "ErpJournalEntry", "ErpPayableLineItems", "ErpPayableLineItems", fields);
@@ -4465,6 +4491,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ErpPayableLineItems) obj.ErpPayableLineItems_string = obj.ErpPayableLineItems.join ();
                 if (obj.ErpRecLineItems) obj.ErpRecLineItems_string = obj.ErpRecLineItems.join ();
                 if (obj.CostTypes) obj.CostTypes_string = obj.CostTypes.join ();
@@ -4473,6 +4500,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.ErpPayableLineItems_string;
                 delete obj.ErpRecLineItems_string;
                 delete obj.CostTypes_string;
@@ -4492,7 +4520,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postingDateTime'>postingDateTime: </label><div class='col-sm-8'><input id='{{id}}_postingDateTime' class='form-control' type='text'{{#postingDateTime}} value='{{postingDateTime}}'{{/postingDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sourceID'>sourceID: </label><div class='col-sm-8'><input id='{{id}}_sourceID' class='form-control' type='text'{{#sourceID}} value='{{sourceID}}'{{/sourceID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems_string}}'{{/ErpPayableLineItems}}></div></div>
@@ -4516,7 +4544,7 @@ define
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
                 temp = document.getElementById (id + "_postingDateTime").value; if ("" != temp) obj.postingDateTime = temp;
                 temp = document.getElementById (id + "_sourceID").value; if ("" != temp) obj.sourceID = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
                 temp = document.getElementById (id + "_ErpLedgerEntry").value; if ("" != temp) obj.ErpLedgerEntry = temp;
                 temp = document.getElementById (id + "_ErpPayableLineItems").value; if ("" != temp) obj.ErpPayableLineItems = temp.split (",");
@@ -4701,7 +4729,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpSiteLevelData";
-                base.parse_element (/<cim:ErpSiteLevelData.status>([\s\S]*?)<\/cim:ErpSiteLevelData.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpSiteLevelData.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpSiteLevelData.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LandProperty", sub, context);
                 var bucket = context.parsed.ErpSiteLevelData;
                 if (null == bucket)
@@ -4715,7 +4743,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpSiteLevelData", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpSiteLevelData", "status", "status", fields);
                 base.export_attribute (obj, "ErpSiteLevelData", "LandProperty", "LandProperty", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4744,11 +4772,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -4761,7 +4791,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='{{id}}_LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
                     </div>
                     <fieldset>
@@ -4775,7 +4805,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpSiteLevelData" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_LandProperty").value; if ("" != temp) obj.LandProperty = temp;
 
                 return (obj);
@@ -4822,7 +4852,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpRecDelvLineItem";
-                base.parse_element (/<cim:ErpRecDelvLineItem.status>([\s\S]*?)<\/cim:ErpRecDelvLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpRecDelvLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItem", sub, context);
                 base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
                 base.parse_attributes (/<cim:ErpRecDelvLineItem.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
@@ -4839,7 +4869,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpRecDelvLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpRecDelvLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpRecDelvLineItem", "ErpPOLineItem", "ErpPOLineItem", fields);
                 base.export_attribute (obj, "ErpRecDelvLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
                 base.export_attributes (obj, "ErpRecDelvLineItem", "Assets", "Assets", fields);
@@ -4874,12 +4904,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Assets) obj.Assets_string = obj.Assets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.Assets_string;
             }
 
@@ -4893,7 +4925,7 @@ define
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
@@ -4910,7 +4942,7 @@ define
 
                 var obj = obj || { id: id, cls: "ErpRecDelvLineItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_ErpPOLineItem").value; if ("" != temp) obj.ErpPOLineItem = temp;
                 temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
                 temp = document.getElementById (id + "_Assets").value; if ("" != temp) obj.Assets = temp.split (",");

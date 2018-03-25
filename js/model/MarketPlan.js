@@ -37,7 +37,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketProduct";
-                base.parse_element (/<cim:MarketProduct.marketProductType>([\s\S]*?)<\/cim:MarketProduct.marketProductType>/g, obj, "marketProductType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketProduct.marketProductType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketProductType", sub, context);
                 base.parse_element (/<cim:MarketProduct.rampInterval>([\s\S]*?)<\/cim:MarketProduct.rampInterval>/g, obj, "rampInterval", base.to_float, sub, context);
                 base.parse_attribute (/<cim:MarketProduct.MarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRegionResults", sub, context);
                 base.parse_attributes (/<cim:MarketProduct.ResourceAwardInstruction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceAwardInstruction", sub, context);
@@ -58,7 +58,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MarketProduct", "marketProductType", "marketProductType",  base.from_string, fields);
+                base.export_attribute (obj, "MarketProduct", "marketProductType", "marketProductType", fields);
                 base.export_element (obj, "MarketProduct", "rampInterval", "rampInterval",  base.from_float, fields);
                 base.export_attribute (obj, "MarketProduct", "MarketRegionResults", "MarketRegionResults", fields);
                 base.export_attributes (obj, "MarketProduct", "ResourceAwardInstruction", "ResourceAwardInstruction", fields);
@@ -102,6 +102,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.MarketProductType = []; if (!obj.marketProductType) obj.MarketProductType.push ({ id: '', selected: true}); for (var property in MarketProductType) obj.MarketProductType.push ({ id: property, selected: obj.marketProductType && obj.marketProductType.endsWith ('.' + property)});
                 if (obj.ResourceAwardInstruction) obj.ResourceAwardInstruction_string = obj.ResourceAwardInstruction.join ();
                 if (obj.BidPriceCap) obj.BidPriceCap_string = obj.BidPriceCap.join ();
                 if (obj.ReserveReqs) obj.ReserveReqs_string = obj.ReserveReqs.join ();
@@ -112,6 +113,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketProductType;
                 delete obj.ResourceAwardInstruction_string;
                 delete obj.BidPriceCap_string;
                 delete obj.ReserveReqs_string;
@@ -129,7 +131,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketProductType'>marketProductType: </label><div class='col-sm-8'><input id='{{id}}_marketProductType' class='form-control' type='text'{{#marketProductType}} value='{{marketProductType}}'{{/marketProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketProductType'>marketProductType: </label><div class='col-sm-8'><select id='{{id}}_marketProductType' class='form-control custom-select'>{{#MarketProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketProductType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampInterval'>rampInterval: </label><div class='col-sm-8'><input id='{{id}}_rampInterval' class='form-control' type='text'{{#rampInterval}} value='{{rampInterval}}'{{/rampInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketRegionResults'>MarketRegionResults: </label><div class='col-sm-8'><input id='{{id}}_MarketRegionResults' class='form-control' type='text'{{#MarketRegionResults}} value='{{MarketRegionResults}}'{{/MarketRegionResults}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Market'>Market: </label><div class='col-sm-8'><input id='{{id}}_Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
@@ -145,7 +147,7 @@ define
 
                 var obj = obj || { id: id, cls: "MarketProduct" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_marketProductType").value; if ("" != temp) obj.marketProductType = temp;
+                temp = document.getElementById (id + "_marketProductType").value; if ("" != temp) { temp = MarketProductType[temp]; if ("undefined" != typeof (temp)) obj.marketProductType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductType." + temp; }
                 temp = document.getElementById (id + "_rampInterval").value; if ("" != temp) obj.rampInterval = temp;
                 temp = document.getElementById (id + "_MarketRegionResults").value; if ("" != temp) obj.MarketRegionResults = temp;
                 temp = document.getElementById (id + "_Market").value; if ("" != temp) obj.Market = temp;
@@ -933,7 +935,7 @@ define
                 base.parse_element (/<cim:PlannedMarket.marketEndTime>([\s\S]*?)<\/cim:PlannedMarket.marketEndTime>/g, obj, "marketEndTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:PlannedMarket.marketID>([\s\S]*?)<\/cim:PlannedMarket.marketID>/g, obj, "marketID", base.to_string, sub, context);
                 base.parse_element (/<cim:PlannedMarket.marketStartTime>([\s\S]*?)<\/cim:PlannedMarket.marketStartTime>/g, obj, "marketStartTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:PlannedMarket.marketType>([\s\S]*?)<\/cim:PlannedMarket.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PlannedMarket.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_attributes (/<cim:PlannedMarket.PlannedMarketEvent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedMarketEvent", sub, context);
                 base.parse_attributes (/<cim:PlannedMarket.MarketRun\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRun", sub, context);
                 base.parse_attribute (/<cim:PlannedMarket.MarketPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketPlan", sub, context);
@@ -952,7 +954,7 @@ define
                 base.export_element (obj, "PlannedMarket", "marketEndTime", "marketEndTime",  base.from_datetime, fields);
                 base.export_element (obj, "PlannedMarket", "marketID", "marketID",  base.from_string, fields);
                 base.export_element (obj, "PlannedMarket", "marketStartTime", "marketStartTime",  base.from_datetime, fields);
-                base.export_element (obj, "PlannedMarket", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "PlannedMarket", "marketType", "marketType", fields);
                 base.export_attributes (obj, "PlannedMarket", "PlannedMarketEvent", "PlannedMarketEvent", fields);
                 base.export_attributes (obj, "PlannedMarket", "MarketRun", "MarketRun", fields);
                 base.export_attribute (obj, "PlannedMarket", "MarketPlan", "MarketPlan", fields);
@@ -989,6 +991,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.PlannedMarketEvent) obj.PlannedMarketEvent_string = obj.PlannedMarketEvent.join ();
                 if (obj.MarketRun) obj.MarketRun_string = obj.MarketRun.join ();
             }
@@ -996,6 +999,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketType;
                 delete obj.PlannedMarketEvent_string;
                 delete obj.MarketRun_string;
             }
@@ -1013,7 +1017,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='{{id}}_marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketID'>marketID: </label><div class='col-sm-8'><input id='{{id}}_marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='{{id}}_marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarketEvent'>PlannedMarketEvent: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarketEvent' class='form-control' type='text'{{#PlannedMarketEvent}} value='{{PlannedMarketEvent_string}}'{{/PlannedMarketEvent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketPlan'>MarketPlan: </label><div class='col-sm-8'><input id='{{id}}_MarketPlan' class='form-control' type='text'{{#MarketPlan}} value='{{MarketPlan}}'{{/MarketPlan}}></div></div>
                     </div>
@@ -1031,7 +1035,7 @@ define
                 temp = document.getElementById (id + "_marketEndTime").value; if ("" != temp) obj.marketEndTime = temp;
                 temp = document.getElementById (id + "_marketID").value; if ("" != temp) obj.marketID = temp;
                 temp = document.getElementById (id + "_marketStartTime").value; if ("" != temp) obj.marketStartTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
                 temp = document.getElementById (id + "_PlannedMarketEvent").value; if ("" != temp) obj.PlannedMarketEvent = temp.split (",");
                 temp = document.getElementById (id + "_MarketPlan").value; if ("" != temp) obj.MarketPlan = temp;
 
@@ -1081,14 +1085,14 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketRun";
-                base.parse_element (/<cim:MarketRun.executionType>([\s\S]*?)<\/cim:MarketRun.executionType>/g, obj, "executionType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketRun.executionType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "executionType", sub, context);
                 base.parse_element (/<cim:MarketRun.marketApprovalTime>([\s\S]*?)<\/cim:MarketRun.marketApprovalTime>/g, obj, "marketApprovalTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MarketRun.marketApprovedStatus>([\s\S]*?)<\/cim:MarketRun.marketApprovedStatus>/g, obj, "marketApprovedStatus", base.to_boolean, sub, context);
                 base.parse_element (/<cim:MarketRun.marketEndTime>([\s\S]*?)<\/cim:MarketRun.marketEndTime>/g, obj, "marketEndTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MarketRun.marketID>([\s\S]*?)<\/cim:MarketRun.marketID>/g, obj, "marketID", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketRun.marketRunID>([\s\S]*?)<\/cim:MarketRun.marketRunID>/g, obj, "marketRunID", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketRun.marketStartTime>([\s\S]*?)<\/cim:MarketRun.marketStartTime>/g, obj, "marketStartTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:MarketRun.marketType>([\s\S]*?)<\/cim:MarketRun.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketRun.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_element (/<cim:MarketRun.reportedState>([\s\S]*?)<\/cim:MarketRun.reportedState>/g, obj, "reportedState", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketRun.runState>([\s\S]*?)<\/cim:MarketRun.runState>/g, obj, "runState", base.to_string, sub, context);
                 base.parse_attribute (/<cim:MarketRun.PlannedMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedMarket", sub, context);
@@ -1106,14 +1110,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MarketRun", "executionType", "executionType",  base.from_string, fields);
+                base.export_attribute (obj, "MarketRun", "executionType", "executionType", fields);
                 base.export_element (obj, "MarketRun", "marketApprovalTime", "marketApprovalTime",  base.from_datetime, fields);
                 base.export_element (obj, "MarketRun", "marketApprovedStatus", "marketApprovedStatus",  base.from_boolean, fields);
                 base.export_element (obj, "MarketRun", "marketEndTime", "marketEndTime",  base.from_datetime, fields);
                 base.export_element (obj, "MarketRun", "marketID", "marketID",  base.from_string, fields);
                 base.export_element (obj, "MarketRun", "marketRunID", "marketRunID",  base.from_string, fields);
                 base.export_element (obj, "MarketRun", "marketStartTime", "marketStartTime",  base.from_datetime, fields);
-                base.export_element (obj, "MarketRun", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "MarketRun", "marketType", "marketType", fields);
                 base.export_element (obj, "MarketRun", "reportedState", "reportedState",  base.from_string, fields);
                 base.export_element (obj, "MarketRun", "runState", "runState",  base.from_string, fields);
                 base.export_attribute (obj, "MarketRun", "PlannedMarket", "PlannedMarket", fields);
@@ -1158,12 +1162,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ExecutionType = []; if (!obj.executionType) obj.ExecutionType.push ({ id: '', selected: true}); for (var property in ExecutionType) obj.ExecutionType.push ({ id: property, selected: obj.executionType && obj.executionType.endsWith ('.' + property)});
+                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.MarketActualEvent) obj.MarketActualEvent_string = obj.MarketActualEvent.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ExecutionType;
+                delete obj.MarketType;
                 delete obj.MarketActualEvent_string;
             }
 
@@ -1177,14 +1185,14 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_executionType'>executionType: </label><div class='col-sm-8'><input id='{{id}}_executionType' class='form-control' type='text'{{#executionType}} value='{{executionType}}'{{/executionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_executionType'>executionType: </label><div class='col-sm-8'><select id='{{id}}_executionType' class='form-control custom-select'>{{#ExecutionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExecutionType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketApprovalTime'>marketApprovalTime: </label><div class='col-sm-8'><input id='{{id}}_marketApprovalTime' class='form-control' type='text'{{#marketApprovalTime}} value='{{marketApprovalTime}}'{{/marketApprovalTime}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_marketApprovedStatus'>marketApprovedStatus: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_marketApprovedStatus' class='form-check-input' type='checkbox'{{#marketApprovedStatus}} checked{{/marketApprovedStatus}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='{{id}}_marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketID'>marketID: </label><div class='col-sm-8'><input id='{{id}}_marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketRunID'>marketRunID: </label><div class='col-sm-8'><input id='{{id}}_marketRunID' class='form-control' type='text'{{#marketRunID}} value='{{marketRunID}}'{{/marketRunID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='{{id}}_marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reportedState'>reportedState: </label><div class='col-sm-8'><input id='{{id}}_reportedState' class='form-control' type='text'{{#reportedState}} value='{{reportedState}}'{{/reportedState}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runState'>runState: </label><div class='col-sm-8'><input id='{{id}}_runState' class='form-control' type='text'{{#runState}} value='{{runState}}'{{/runState}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarket'>PlannedMarket: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarket' class='form-control' type='text'{{#PlannedMarket}} value='{{PlannedMarket}}'{{/PlannedMarket}}></div></div>
@@ -1201,14 +1209,14 @@ define
 
                 var obj = obj || { id: id, cls: "MarketRun" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_executionType").value; if ("" != temp) obj.executionType = temp;
+                temp = document.getElementById (id + "_executionType").value; if ("" != temp) { temp = ExecutionType[temp]; if ("undefined" != typeof (temp)) obj.executionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExecutionType." + temp; }
                 temp = document.getElementById (id + "_marketApprovalTime").value; if ("" != temp) obj.marketApprovalTime = temp;
                 temp = document.getElementById (id + "_marketApprovedStatus").checked; if (temp) obj.marketApprovedStatus = true;
                 temp = document.getElementById (id + "_marketEndTime").value; if ("" != temp) obj.marketEndTime = temp;
                 temp = document.getElementById (id + "_marketID").value; if ("" != temp) obj.marketID = temp;
                 temp = document.getElementById (id + "_marketRunID").value; if ("" != temp) obj.marketRunID = temp;
                 temp = document.getElementById (id + "_marketStartTime").value; if ("" != temp) obj.marketStartTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
                 temp = document.getElementById (id + "_reportedState").value; if ("" != temp) obj.reportedState = temp;
                 temp = document.getElementById (id + "_runState").value; if ("" != temp) obj.runState = temp;
                 temp = document.getElementById (id + "_PlannedMarket").value; if ("" != temp) obj.PlannedMarket = temp;

@@ -168,8 +168,8 @@ define
                 base.parse_element (/<cim:ProtectionEquipment.lowLimit>([\s\S]*?)<\/cim:ProtectionEquipment.lowLimit>/g, obj, "lowLimit", base.to_float, sub, context);
                 base.parse_element (/<cim:ProtectionEquipment.powerDirectionFlag>([\s\S]*?)<\/cim:ProtectionEquipment.powerDirectionFlag>/g, obj, "powerDirectionFlag", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ProtectionEquipment.relayDelayTime>([\s\S]*?)<\/cim:ProtectionEquipment.relayDelayTime>/g, obj, "relayDelayTime", base.to_string, sub, context);
-                base.parse_element (/<cim:ProtectionEquipment.unitMultiplier>([\s\S]*?)<\/cim:ProtectionEquipment.unitMultiplier>/g, obj, "unitMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:ProtectionEquipment.unitSymbol>([\s\S]*?)<\/cim:ProtectionEquipment.unitSymbol>/g, obj, "unitSymbol", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ProtectionEquipment.unitMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unitMultiplier", sub, context);
+                base.parse_attribute (/<cim:ProtectionEquipment.unitSymbol\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unitSymbol", sub, context);
                 base.parse_attributes (/<cim:ProtectionEquipment.ProtectiveAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveAction", sub, context);
                 base.parse_attributes (/<cim:ProtectionEquipment.ConductingEquipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipments", sub, context);
                 base.parse_attributes (/<cim:ProtectionEquipment.ProtectedSwitches\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectedSwitches", sub, context);
@@ -189,8 +189,8 @@ define
                 base.export_element (obj, "ProtectionEquipment", "lowLimit", "lowLimit",  base.from_float, fields);
                 base.export_element (obj, "ProtectionEquipment", "powerDirectionFlag", "powerDirectionFlag",  base.from_boolean, fields);
                 base.export_element (obj, "ProtectionEquipment", "relayDelayTime", "relayDelayTime",  base.from_string, fields);
-                base.export_element (obj, "ProtectionEquipment", "unitMultiplier", "unitMultiplier",  base.from_string, fields);
-                base.export_element (obj, "ProtectionEquipment", "unitSymbol", "unitSymbol",  base.from_string, fields);
+                base.export_attribute (obj, "ProtectionEquipment", "unitMultiplier", "unitMultiplier", fields);
+                base.export_attribute (obj, "ProtectionEquipment", "unitSymbol", "unitSymbol", fields);
                 base.export_attributes (obj, "ProtectionEquipment", "ProtectiveAction", "ProtectiveAction", fields);
                 base.export_attributes (obj, "ProtectionEquipment", "ConductingEquipments", "ConductingEquipments", fields);
                 base.export_attributes (obj, "ProtectionEquipment", "ProtectedSwitches", "ProtectedSwitches", fields);
@@ -229,6 +229,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.UnitMultiplier = []; if (!obj.unitMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.unitMultiplier && obj.unitMultiplier.endsWith ('.' + property)});
+                obj.UnitSymbol = []; if (!obj.unitSymbol) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unitSymbol && obj.unitSymbol.endsWith ('.' + property)});
                 if (obj.ProtectiveAction) obj.ProtectiveAction_string = obj.ProtectiveAction.join ();
                 if (obj.ConductingEquipments) obj.ConductingEquipments_string = obj.ConductingEquipments.join ();
                 if (obj.ProtectedSwitches) obj.ProtectedSwitches_string = obj.ProtectedSwitches.join ();
@@ -237,6 +239,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitMultiplier;
+                delete obj.UnitSymbol;
                 delete obj.ProtectiveAction_string;
                 delete obj.ConductingEquipments_string;
                 delete obj.ProtectedSwitches_string;
@@ -256,8 +260,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowLimit'>lowLimit: </label><div class='col-sm-8'><input id='{{id}}_lowLimit' class='form-control' type='text'{{#lowLimit}} value='{{lowLimit}}'{{/lowLimit}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_powerDirectionFlag'>powerDirectionFlag: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_powerDirectionFlag' class='form-check-input' type='checkbox'{{#powerDirectionFlag}} checked{{/powerDirectionFlag}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_relayDelayTime'>relayDelayTime: </label><div class='col-sm-8'><input id='{{id}}_relayDelayTime' class='form-control' type='text'{{#relayDelayTime}} value='{{relayDelayTime}}'{{/relayDelayTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='{{id}}_unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='{{id}}_unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_unitMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><select id='{{id}}_unitSymbol' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConductingEquipments'>ConductingEquipments: </label><div class='col-sm-8'><input id='{{id}}_ConductingEquipments' class='form-control' type='text'{{#ConductingEquipments}} value='{{ConductingEquipments_string}}'{{/ConductingEquipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectedSwitches'>ProtectedSwitches: </label><div class='col-sm-8'><input id='{{id}}_ProtectedSwitches' class='form-control' type='text'{{#ProtectedSwitches}} value='{{ProtectedSwitches_string}}'{{/ProtectedSwitches}}></div></div>
                     </div>
@@ -276,8 +280,8 @@ define
                 temp = document.getElementById (id + "_lowLimit").value; if ("" != temp) obj.lowLimit = temp;
                 temp = document.getElementById (id + "_powerDirectionFlag").checked; if (temp) obj.powerDirectionFlag = true;
                 temp = document.getElementById (id + "_relayDelayTime").value; if ("" != temp) obj.relayDelayTime = temp;
-                temp = document.getElementById (id + "_unitMultiplier").value; if ("" != temp) obj.unitMultiplier = temp;
-                temp = document.getElementById (id + "_unitSymbol").value; if ("" != temp) obj.unitSymbol = temp;
+                temp = document.getElementById (id + "_unitMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.unitMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unitSymbol").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unitSymbol = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_ConductingEquipments").value; if ("" != temp) obj.ConductingEquipments = temp.split (",");
                 temp = document.getElementById (id + "_ProtectedSwitches").value; if ("" != temp) obj.ProtectedSwitches = temp.split (",");
 

@@ -1300,7 +1300,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Period";
                 base.parse_element (/<cim:Period.resolution>([\s\S]*?)<\/cim:Period.resolution>/g, obj, "resolution", base.to_string, sub, context);
-                base.parse_element (/<cim:Period.timeInterval>([\s\S]*?)<\/cim:Period.timeInterval>/g, obj, "timeInterval", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Period.timeInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "timeInterval", sub, context);
                 base.parse_attributes (/<cim:Period.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
                 base.parse_attributes (/<cim:Period.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
                 base.parse_attributes (/<cim:Period.Reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reason", sub, context);
@@ -1318,7 +1318,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "Period", "resolution", "resolution",  base.from_string, fields);
-                base.export_element (obj, "Period", "timeInterval", "timeInterval",  base.from_string, fields);
+                base.export_attribute (obj, "Period", "timeInterval", "timeInterval", fields);
                 base.export_attributes (obj, "Period", "TimeSeries", "TimeSeries", fields);
                 base.export_attributes (obj, "Period", "MarketDocument", "MarketDocument", fields);
                 base.export_attributes (obj, "Period", "Reason", "Reason", fields);
@@ -1355,6 +1355,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.timeInterval) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.timeInterval && obj.timeInterval.endsWith ('.' + property)});
                 if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
                 if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
                 if (obj.Reason) obj.Reason_string = obj.Reason.join ();
@@ -1364,6 +1365,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.TimeSeries_string;
                 delete obj.MarketDocument_string;
                 delete obj.Reason_string;
@@ -1381,7 +1383,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resolution'>resolution: </label><div class='col-sm-8'><input id='{{id}}_resolution' class='form-control' type='text'{{#resolution}} value='{{resolution}}'{{/resolution}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeInterval'>timeInterval: </label><div class='col-sm-8'><input id='{{id}}_timeInterval' class='form-control' type='text'{{#timeInterval}} value='{{timeInterval}}'{{/timeInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeInterval'>timeInterval: </label><div class='col-sm-8'><select id='{{id}}_timeInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='{{id}}_TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries_string}}'{{/TimeSeries}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='{{id}}_MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument_string}}'{{/MarketDocument}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reason'>Reason: </label><div class='col-sm-8'><input id='{{id}}_Reason' class='form-control' type='text'{{#Reason}} value='{{Reason_string}}'{{/Reason}}></div></div>
@@ -1398,7 +1400,7 @@ define
                 var obj = obj || { id: id, cls: "Period" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_resolution").value; if ("" != temp) obj.resolution = temp;
-                temp = document.getElementById (id + "_timeInterval").value; if ("" != temp) obj.timeInterval = temp;
+                temp = document.getElementById (id + "_timeInterval").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.timeInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
                 temp = document.getElementById (id + "_MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
                 temp = document.getElementById (id + "_Reason").value; if ("" != temp) obj.Reason = temp.split (",");

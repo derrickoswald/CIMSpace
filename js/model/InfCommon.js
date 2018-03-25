@@ -175,7 +175,7 @@ define
 
                 obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "BusinessRole";
-                base.parse_element (/<cim:BusinessRole.status>([\s\S]*?)<\/cim:BusinessRole.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BusinessRole.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:BusinessRole.type>([\s\S]*?)<\/cim:BusinessRole.type>/g, obj, "type", base.to_string, sub, context);
                 var bucket = context.parsed.BusinessRole;
                 if (null == bucket)
@@ -189,7 +189,7 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BusinessRole", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "BusinessRole", "status", "status", fields);
                 base.export_element (obj, "BusinessRole", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -218,11 +218,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -235,7 +237,7 @@ define
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
                     <fieldset>
@@ -249,7 +251,7 @@ define
 
                 var obj = obj || { id: id, cls: "BusinessRole" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
 
                 return (obj);
@@ -660,7 +662,7 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "Skill";
-                base.parse_element (/<cim:Skill.certificationPeriod>([\s\S]*?)<\/cim:Skill.certificationPeriod>/g, obj, "certificationPeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Skill.certificationPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certificationPeriod", sub, context);
                 base.parse_element (/<cim:Skill.effectiveDateTime>([\s\S]*?)<\/cim:Skill.effectiveDateTime>/g, obj, "effectiveDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:Skill.level\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "level", sub, context);
                 base.parse_attribute (/<cim:Skill.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context);
@@ -678,7 +680,7 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Skill", "certificationPeriod", "certificationPeriod",  base.from_string, fields);
+                base.export_attribute (obj, "Skill", "certificationPeriod", "certificationPeriod", fields);
                 base.export_element (obj, "Skill", "effectiveDateTime", "effectiveDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "Skill", "level", "level", fields);
                 base.export_attribute (obj, "Skill", "ErpPerson", "ErpPerson", fields);
@@ -716,6 +718,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.DateTimeInterval = []; if (!obj.certificationPeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.certificationPeriod && obj.certificationPeriod.endsWith ('.' + property)});
                 obj.SkillLevelKind = []; if (!obj.level) obj.SkillLevelKind.push ({ id: '', selected: true}); for (var property in SkillLevelKind) obj.SkillLevelKind.push ({ id: property, selected: obj.level && obj.level.endsWith ('.' + property)});
                 if (obj.Crafts) obj.Crafts_string = obj.Crafts.join ();
                 if (obj.QualificationRequirements) obj.QualificationRequirements_string = obj.QualificationRequirements.join ();
@@ -724,6 +727,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DateTimeInterval;
                 delete obj.SkillLevelKind;
                 delete obj.Crafts_string;
                 delete obj.QualificationRequirements_string;
@@ -739,7 +743,7 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='{{id}}_certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><select id='{{id}}_certificationPeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><select id='{{id}}_level' class='form-control custom-select'>{{#SkillLevelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SkillLevelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
@@ -757,7 +761,7 @@ define
 
                 var obj = obj || { id: id, cls: "Skill" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
+                temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.certificationPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
                 temp = document.getElementById (id + "_effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
                 temp = document.getElementById (id + "_level").value; if ("" != temp) { temp = SkillLevelKind[temp]; if ("undefined" != typeof (temp)) obj.level = "http://iec.ch/TC57/2013/CIM-schema-cim16#SkillLevelKind." + temp; }
                 temp = document.getElementById (id + "_ErpPerson").value; if ("" != temp) obj.ErpPerson = temp;
@@ -907,7 +911,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Role";
-                base.parse_element (/<cim:Role.status>([\s\S]*?)<\/cim:Role.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Role.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Role.type>([\s\S]*?)<\/cim:Role.type>/g, obj, "type", base.to_string, sub, context);
                 var bucket = context.parsed.Role;
                 if (null == bucket)
@@ -921,7 +925,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Role", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Role", "status", "status", fields);
                 base.export_element (obj, "Role", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -950,11 +954,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
             }
 
             edit_template ()
@@ -967,7 +973,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
                     <fieldset>
@@ -981,7 +987,7 @@ define
 
                 var obj = obj || { id: id, cls: "Role" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
 
                 return (obj);
@@ -1223,7 +1229,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Craft";
-                base.parse_element (/<cim:Craft.status>([\s\S]*?)<\/cim:Craft.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Craft.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Craft.type>([\s\S]*?)<\/cim:Craft.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Craft.Capabilities\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Capabilities", sub, context);
                 base.parse_attributes (/<cim:Craft.Skills\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Skills", sub, context);
@@ -1240,7 +1246,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Craft", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Craft", "status", "status", fields);
                 base.export_element (obj, "Craft", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "Craft", "Capabilities", "Capabilities", fields);
                 base.export_attributes (obj, "Craft", "Skills", "Skills", fields);
@@ -1275,6 +1281,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Capabilities) obj.Capabilities_string = obj.Capabilities.join ();
                 if (obj.Skills) obj.Skills_string = obj.Skills.join ();
                 if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
@@ -1283,6 +1290,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.Capabilities_string;
                 delete obj.Skills_string;
                 delete obj.ErpPersons_string;
@@ -1298,7 +1306,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='{{id}}_Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities_string}}'{{/Capabilities}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills_string}}'{{/Skills}}></div></div>
@@ -1315,7 +1323,7 @@ define
 
                 var obj = obj || { id: id, cls: "Craft" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_Capabilities").value; if ("" != temp) obj.Capabilities = temp.split (",");
                 temp = document.getElementById (id + "_Skills").value; if ("" != temp) obj.Skills = temp.split (",");
@@ -1365,7 +1373,7 @@ define
 
                 obj = Common.Person.prototype.parse.call (this, context, sub);
                 obj.cls = "OldPerson";
-                base.parse_element (/<cim:OldPerson.status>([\s\S]*?)<\/cim:OldPerson.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OldPerson.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:OldPerson.type>([\s\S]*?)<\/cim:OldPerson.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:OldPerson.Skills\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Skills", sub, context);
                 base.parse_attribute (/<cim:OldPerson.CustomerData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerData", sub, context);
@@ -1389,7 +1397,7 @@ define
             {
                 var fields = Common.Person.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OldPerson", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "OldPerson", "status", "status", fields);
                 base.export_element (obj, "OldPerson", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "OldPerson", "Skills", "Skills", fields);
                 base.export_attribute (obj, "OldPerson", "CustomerData", "CustomerData", fields);
@@ -1438,6 +1446,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Skills) obj.Skills_string = obj.Skills.join ();
                 if (obj.DocumentRoles) obj.DocumentRoles_string = obj.DocumentRoles.join ();
                 if (obj.MeasurementValues) obj.MeasurementValues_string = obj.MeasurementValues.join ();
@@ -1450,6 +1459,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Status;
                 delete obj.Skills_string;
                 delete obj.DocumentRoles_string;
                 delete obj.MeasurementValues_string;
@@ -1469,7 +1479,7 @@ define
                     `
                     + Common.Person.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerData'>CustomerData: </label><div class='col-sm-8'><input id='{{id}}_CustomerData' class='form-control' type='text'{{#CustomerData}} value='{{CustomerData}}'{{/CustomerData}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersonnel'>ErpPersonnel: </label><div class='col-sm-8'><input id='{{id}}_ErpPersonnel' class='form-control' type='text'{{#ErpPersonnel}} value='{{ErpPersonnel}}'{{/ErpPersonnel}}></div></div>
@@ -1488,7 +1498,7 @@ define
 
                 var obj = obj || { id: id, cls: "OldPerson" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_CustomerData").value; if ("" != temp) obj.CustomerData = temp;
                 temp = document.getElementById (id + "_ErpPersonnel").value; if ("" != temp) obj.ErpPersonnel = temp;

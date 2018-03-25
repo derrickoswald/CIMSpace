@@ -308,7 +308,10 @@ define
         {
             var value = obj[attribute];
             if ("undefined" != typeof (value))
-                fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"#" + value.toString () + "\"/>");
+            {
+                var s = value.toString ();
+                fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"" + (s.includes ("#") ? "" : "#") + s + "\"/>");
+            }
         }
 
         /**
@@ -328,7 +331,10 @@ define
             var value = obj[attribute];
             if ("undefined" != typeof (value))
                 for (var i = 0; i < value.length; i++)
-                    fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"#" + value[i].toString () + "\"/>");
+                {
+                    var s = value.toString ();
+                    fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"" + (s.includes ("#") ? "" : "#") + s + "\"/>");
+                }
         }
 
         class Element
