@@ -66,7 +66,7 @@ define
                     {{#ResourceGroup}}<div><b>ResourceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceGroup}}&quot;);}); return false;'>{{ResourceGroup}}</a></div>{{/ResourceGroup}}
                     {{#RTOs}}<div><b>RTOs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RTOs}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -97,7 +97,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceGroup'>ResourceGroup: </label><div class='col-sm-8'><input id='{{id}}_ResourceGroup' class='form-control' type='text'{{#ResourceGroup}} value='{{ResourceGroup}}'{{/ResourceGroup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTOs'>RTOs: </label><div class='col-sm-8'><input id='{{id}}_RTOs' class='form-control' type='text'{{#RTOs}} value='{{RTOs_string}}'{{/RTOs}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -188,7 +188,7 @@ define
                     `
                     {{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReq}}&quot;);}); return false;'>{{ReserveReq}}</a></div>{{/ReserveReq}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -216,7 +216,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='{{id}}_ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -311,7 +311,7 @@ define
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ResourceGroupReqs}}<div><b>ResourceGroupReqs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ResourceGroupReqs}}
                     {{#RegisteredResources}}<div><b>RegisteredResources</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredResources}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -347,7 +347,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources_string}}'{{/RegisteredResources}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -439,7 +439,7 @@ define
                     `
                     {{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReq}}&quot;);}); return false;'>{{ReserveReq}}</a></div>{{/ReserveReq}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -467,7 +467,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='{{id}}_ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -560,7 +560,7 @@ define
                     {{#SensitivityPriceCurve}}<div><b>SensitivityPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SensitivityPriceCurve}}&quot;);}); return false;'>{{SensitivityPriceCurve}}</a></div>{{/SensitivityPriceCurve}}
                     {{#ReserveReqCurve}}<div><b>ReserveReqCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReserveReqCurve}}&quot;);}); return false;'>{{ReserveReqCurve}}</a></div>{{/ReserveReqCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -590,7 +590,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SensitivityPriceCurve'>SensitivityPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_SensitivityPriceCurve' class='form-control' type='text'{{#SensitivityPriceCurve}} value='{{SensitivityPriceCurve}}'{{/SensitivityPriceCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReserveReqCurve'>ReserveReqCurve: </label><div class='col-sm-8'><input id='{{id}}_ReserveReqCurve' class='form-control' type='text'{{#ReserveReqCurve}} value='{{ReserveReqCurve}}'{{/ReserveReqCurve}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

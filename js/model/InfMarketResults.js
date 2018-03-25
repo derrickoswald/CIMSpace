@@ -69,7 +69,7 @@ define
                     {{#mwFlow}}<div><b>mwFlow</b>: {{mwFlow}}</div>{{/mwFlow}}
                     {{#shadowPrice}}<div><b>shadowPrice</b>: {{shadowPrice}}</div>{{/shadowPrice}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -99,7 +99,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwFlow'>mwFlow: </label><div class='col-sm-8'><input id='{{id}}_mwFlow' class='form-control' type='text'{{#mwFlow}} value='{{mwFlow}}'{{/mwFlow}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shadowPrice'>shadowPrice: </label><div class='col-sm-8'><input id='{{id}}_shadowPrice' class='form-control' type='text'{{#shadowPrice}} value='{{shadowPrice}}'{{/shadowPrice}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -186,7 +186,7 @@ define
                     {{#modifiedDate}}<div><b>modifiedDate</b>: {{modifiedDate}}</div>{{/modifiedDate}}
                     {{#MarketProductClearing}}<div><b>MarketProductClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MarketProductClearing}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -218,7 +218,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postedDate'>postedDate: </label><div class='col-sm-8'><input id='{{id}}_postedDate' class='form-control' type='text'{{#postedDate}} value='{{postedDate}}'{{/postedDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modifiedDate'>modifiedDate: </label><div class='col-sm-8'><input id='{{id}}_modifiedDate' class='form-control' type='text'{{#modifiedDate}} value='{{modifiedDate}}'{{/modifiedDate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -309,7 +309,7 @@ define
                     `
                     {{#InterTieResults}}<div><b>InterTieResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/InterTieResults}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -338,7 +338,7 @@ define
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -433,7 +433,7 @@ define
                     {{#InterTieClearing}}<div><b>InterTieClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTieClearing}}&quot;);}); return false;'>{{InterTieClearing}}</a></div>{{/InterTieClearing}}
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -464,7 +464,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieClearing'>InterTieClearing: </label><div class='col-sm-8'><input id='{{id}}_InterTieClearing' class='form-control' type='text'{{#InterTieClearing}} value='{{InterTieClearing}}'{{/InterTieClearing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

@@ -79,7 +79,7 @@ define
                     `
                     {{#Faults}}<div><b>Faults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Faults}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -109,7 +109,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Faults'>Faults: </label><div class='col-sm-8'><input id='{{id}}_Faults' class='form-control' type='text'{{#Faults}} value='{{Faults_string}}'{{/Faults}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -205,7 +205,7 @@ define
                     {{#xGround}}<div><b>xGround</b>: {{xGround}}</div>{{/xGround}}
                     {{#xLineToLine}}<div><b>xLineToLine</b>: {{xLineToLine}}</div>{{/xLineToLine}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -236,7 +236,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xGround'>xGround: </label><div class='col-sm-8'><input id='{{id}}_xGround' class='form-control' type='text'{{#xGround}} value='{{xGround}}'{{/xGround}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xLineToLine'>xLineToLine: </label><div class='col-sm-8'><input id='{{id}}_xLineToLine' class='form-control' type='text'{{#xLineToLine}} value='{{xLineToLine}}'{{/xLineToLine}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -329,7 +329,7 @@ define
                     {{#FaultCauseTypes}}<div><b>FaultCauseTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FaultCauseTypes}}
                     {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);}); return false;'>{{Outage}}</a></div>{{/Outage}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -370,7 +370,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultCauseTypes'>FaultCauseTypes: </label><div class='col-sm-8'><input id='{{id}}_FaultCauseTypes' class='form-control' type='text'{{#FaultCauseTypes}} value='{{FaultCauseTypes_string}}'{{/FaultCauseTypes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -467,7 +467,7 @@ define
                     {{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
                     {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -496,7 +496,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lengthFromTerminal1'>lengthFromTerminal1: </label><div class='col-sm-8'><input id='{{id}}_lengthFromTerminal1' class='form-control' type='text'{{#lengthFromTerminal1}} value='{{lengthFromTerminal1}}'{{/lengthFromTerminal1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACLineSegment'>ACLineSegment: </label><div class='col-sm-8'><input id='{{id}}_ACLineSegment' class='form-control' type='text'{{#ACLineSegment}} value='{{ACLineSegment}}'{{/ACLineSegment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -586,7 +586,7 @@ define
                     `
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -614,7 +614,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

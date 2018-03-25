@@ -830,7 +830,8 @@ define
                             this.reset_gui ();
                         }
                         else
-                            console.log (mrid + " is not ConductingEquipment");
+                            // not ConductingEquipment
+                            this.abort ();
                     }
                 }
             }

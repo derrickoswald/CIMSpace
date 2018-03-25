@@ -69,7 +69,7 @@ define
                     {{#conditionBefore}}<div><b>conditionBefore</b>: {{conditionBefore}}</div>{{/conditionBefore}}
                     {{#maintCode}}<div><b>maintCode</b>: {{maintCode}}</div>{{/maintCode}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -99,7 +99,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_conditionBefore'>conditionBefore: </label><div class='col-sm-8'><input id='{{id}}_conditionBefore' class='form-control' type='text'{{#conditionBefore}} value='{{conditionBefore}}'{{/conditionBefore}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maintCode'>maintCode: </label><div class='col-sm-8'><input id='{{id}}_maintCode' class='form-control' type='text'{{#maintCode}} value='{{maintCode}}'{{/maintCode}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -180,7 +180,7 @@ define
                     {{#locationCondition}}<div><b>locationCondition</b>: {{locationCondition}}</div>{{/locationCondition}}
                     {{#AccordingToSchedules}}<div><b>AccordingToSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AccordingToSchedules}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -210,7 +210,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_locationCondition'>locationCondition: </label><div class='col-sm-8'><input id='{{id}}_locationCondition' class='form-control' type='text'{{#locationCondition}} value='{{locationCondition}}'{{/locationCondition}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -333,7 +333,7 @@ define
                     {{#rootOrigin}}<div><b>rootOrigin</b>: {{rootOrigin}}</div>{{/rootOrigin}}
                     {{#rootRemark}}<div><b>rootRemark</b>: {{rootRemark}}</div>{{/rootRemark}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -375,7 +375,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rootOrigin'>rootOrigin: </label><div class='col-sm-8'><input id='{{id}}_rootOrigin' class='form-control' type='text'{{#rootOrigin}} value='{{rootOrigin}}'{{/rootOrigin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rootRemark'>rootRemark: </label><div class='col-sm-8'><input id='{{id}}_rootRemark' class='form-control' type='text'{{#rootRemark}} value='{{rootRemark}}'{{/rootRemark}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -469,7 +469,7 @@ define
                     {{#specimenID}}<div><b>specimenID</b>: {{specimenID}}</div>{{/specimenID}}
                     {{#specimenToLabDateTime}}<div><b>specimenToLabDateTime</b>: {{specimenToLabDateTime}}</div>{{/specimenToLabDateTime}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -499,7 +499,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specimenID'>specimenID: </label><div class='col-sm-8'><input id='{{id}}_specimenID' class='form-control' type='text'{{#specimenID}} value='{{specimenID}}'{{/specimenID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specimenToLabDateTime'>specimenToLabDateTime: </label><div class='col-sm-8'><input id='{{id}}_specimenToLabDateTime' class='form-control' type='text'{{#specimenToLabDateTime}} value='{{specimenToLabDateTime}}'{{/specimenToLabDateTime}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

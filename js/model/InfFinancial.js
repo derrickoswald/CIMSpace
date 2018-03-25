@@ -74,7 +74,7 @@ define
                     {{#ControlledBy}}<div><b>ControlledBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlledBy}}&quot;);}); return false;'>{{ControlledBy}}</a></div>{{/ControlledBy}}
                     {{#CAChildOf}}<div><b>CAChildOf</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CAChildOf}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -105,7 +105,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlledBy'>ControlledBy: </label><div class='col-sm-8'><input id='{{id}}_ControlledBy' class='form-control' type='text'{{#ControlledBy}} value='{{ControlledBy}}'{{/ControlledBy}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CAChildOf'>CAChildOf: </label><div class='col-sm-8'><input id='{{id}}_CAChildOf' class='form-control' type='text'{{#CAChildOf}} value='{{CAChildOf_string}}'{{/CAChildOf}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -191,7 +191,7 @@ define
                     + Common.Agreement.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -218,7 +218,7 @@ define
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -293,7 +293,7 @@ define
                     {{#LocationFor}}<div><b>LocationFor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LocationFor}}
                     {{#TransmissionProvider}}<div><b>TransmissionProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionProvider}}&quot;);}); return false;'>{{TransmissionProvider}}</a></div>{{/TransmissionProvider}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -325,7 +325,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LocationFor'>LocationFor: </label><div class='col-sm-8'><input id='{{id}}_LocationFor' class='form-control' type='text'{{#LocationFor}} value='{{LocationFor_string}}'{{/LocationFor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionProvider'>TransmissionProvider: </label><div class='col-sm-8'><input id='{{id}}_TransmissionProvider' class='form-control' type='text'{{#TransmissionProvider}} value='{{TransmissionProvider}}'{{/TransmissionProvider}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -418,7 +418,7 @@ define
                     {{#defaultIntegrationMethod}}<div><b>defaultIntegrationMethod</b>: {{defaultIntegrationMethod}}</div>{{/defaultIntegrationMethod}}
                     {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MktOrganisation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -449,7 +449,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultIntegrationMethod'>defaultIntegrationMethod: </label><div class='col-sm-8'><input id='{{id}}_defaultIntegrationMethod' class='form-control' type='text'{{#defaultIntegrationMethod}} value='{{defaultIntegrationMethod}}'{{/defaultIntegrationMethod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation_string}}'{{/MktOrganisation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -537,7 +537,7 @@ define
                     `
                     {{#CustChildOf}}<div><b>CustChildOf</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CustChildOf}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -566,7 +566,7 @@ define
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -655,7 +655,7 @@ define
                     {{#For}}<div><b>For</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/For}}
                     {{#TransmissionProducts}}<div><b>TransmissionProducts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransmissionProducts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -686,7 +686,7 @@ define
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -774,7 +774,7 @@ define
                     {{#Resells_EnergyProduct}}<div><b>Resells_EnergyProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Resells_EnergyProduct}}
                     {{#HoldsTitleTo_EnergyProducts}}<div><b>HoldsTitleTo_EnergyProducts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/HoldsTitleTo_EnergyProducts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -806,7 +806,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Resells_EnergyProduct'>Resells_EnergyProduct: </label><div class='col-sm-8'><input id='{{id}}_Resells_EnergyProduct' class='form-control' type='text'{{#Resells_EnergyProduct}} value='{{Resells_EnergyProduct_string}}'{{/Resells_EnergyProduct}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -894,7 +894,7 @@ define
                     `
                     {{#ProvidedBy}}<div><b>ProvidedBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProvidedBy}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -923,7 +923,7 @@ define
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

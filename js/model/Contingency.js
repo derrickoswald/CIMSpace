@@ -81,7 +81,7 @@ define
                     {{#mustStudy}}<div><b>mustStudy</b>: {{mustStudy}}</div>{{/mustStudy}}
                     {{#ContingencyElement}}<div><b>ContingencyElement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ContingencyElement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -111,7 +111,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_mustStudy'>mustStudy: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mustStudy' class='form-check-input' type='checkbox'{{#mustStudy}} checked{{/mustStudy}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -198,7 +198,7 @@ define
                     `
                     {{#Contingency}}<div><b>Contingency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Contingency}}&quot;);}); return false;'>{{Contingency}}</a></div>{{/Contingency}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -226,7 +226,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Contingency'>Contingency: </label><div class='col-sm-8'><input id='{{id}}_Contingency' class='form-control' type='text'{{#Contingency}} value='{{Contingency}}'{{/Contingency}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -316,7 +316,7 @@ define
                     {{#contingentStatus}}<div><b>contingentStatus</b>: {{contingentStatus}}</div>{{/contingentStatus}}
                     {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -347,7 +347,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingentStatus'>contingentStatus: </label><div class='col-sm-8'><select id='{{id}}_contingentStatus' class='form-control custom-select'>{{#ContingencyEquipmentStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ContingencyEquipmentStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

@@ -214,7 +214,7 @@ define
                     `
                     {{#resetKind}}<div><b>resetKind</b>: {{resetKind}}</div>{{/resetKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -244,7 +244,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resetKind'>resetKind: </label><div class='col-sm-8'><select id='{{id}}_resetKind' class='form-control custom-select'>{{#FaultIndicatorResetKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FaultIndicatorResetKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -334,7 +334,7 @@ define
                     {{#ErpQuoteLineItems}}<div><b>ErpQuoteLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpQuoteLineItems}}
                     {{#AssetModelCatalogue}}<div><b>AssetModelCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogue}}&quot;);}); return false;'>{{AssetModelCatalogue}}</a></div>{{/AssetModelCatalogue}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -368,7 +368,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='{{id}}_AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModelCatalogue'>AssetModelCatalogue: </label><div class='col-sm-8'><input id='{{id}}_AssetModelCatalogue' class='form-control' type='text'{{#AssetModelCatalogue}} value='{{AssetModelCatalogue}}'{{/AssetModelCatalogue}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -478,7 +478,7 @@ define
                     {{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
                     {{#withstandCurrent}}<div><b>withstandCurrent</b>: {{withstandCurrent}}</div>{{/withstandCurrent}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -512,7 +512,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_remote'>remote: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_withstandCurrent'>withstandCurrent: </label><div class='col-sm-8'><input id='{{id}}_withstandCurrent' class='form-control' type='text'{{#withstandCurrent}} value='{{withstandCurrent}}'{{/withstandCurrent}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -634,7 +634,7 @@ define
                     {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryRatio}}&quot;);}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}\n                    {{#tertiaryFlsRating}}<div><b>tertiaryFlsRating</b>: {{tertiaryFlsRating}}</div>{{/tertiaryFlsRating}}
                     {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{tertiaryRatio}}&quot;);}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}\n                    {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -687,7 +687,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -802,7 +802,7 @@ define
                     {{#steepFrontDischargeVoltage}}<div><b>steepFrontDischargeVoltage</b>: {{steepFrontDischargeVoltage}}</div>{{/steepFrontDischargeVoltage}}
                     {{#switchingImpulseDischargeVoltage}}<div><b>switchingImpulseDischargeVoltage</b>: {{switchingImpulseDischargeVoltage}}</div>{{/switchingImpulseDischargeVoltage}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -838,7 +838,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steepFrontDischargeVoltage'>steepFrontDischargeVoltage: </label><div class='col-sm-8'><input id='{{id}}_steepFrontDischargeVoltage' class='form-control' type='text'{{#steepFrontDischargeVoltage}} value='{{steepFrontDischargeVoltage}}'{{/steepFrontDischargeVoltage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchingImpulseDischargeVoltage'>switchingImpulseDischargeVoltage: </label><div class='col-sm-8'><input id='{{id}}_switchingImpulseDischargeVoltage' class='form-control' type='text'{{#switchingImpulseDischargeVoltage}} value='{{switchingImpulseDischargeVoltage}}'{{/switchingImpulseDischargeVoltage}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -926,7 +926,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#AssetModelCatalogueItems}}<div><b>AssetModelCatalogueItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AssetModelCatalogueItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -958,7 +958,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1048,7 +1048,7 @@ define
                     {{#groundTrip}}<div><b>groundTrip</b>: {{groundTrip}}</div>{{/groundTrip}}
                     {{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1077,7 +1077,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_groundTrip'>groundTrip: </label><div class='col-sm-8'><input id='{{id}}_groundTrip' class='form-control' type='text'{{#groundTrip}} value='{{groundTrip}}'{{/groundTrip}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='{{id}}_phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1165,7 +1165,7 @@ define
                     {{#neutralBIL}}<div><b>neutralBIL</b>: {{neutralBIL}}</div>{{/neutralBIL}}
                     {{#oilPreservationKind}}<div><b>oilPreservationKind</b>: {{oilPreservationKind}}</div>{{/oilPreservationKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1206,7 +1206,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralBIL'>neutralBIL: </label><div class='col-sm-8'><input id='{{id}}_neutralBIL' class='form-control' type='text'{{#neutralBIL}} value='{{neutralBIL}}'{{/neutralBIL}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPreservationKind'>oilPreservationKind: </label><div class='col-sm-8'><select id='{{id}}_oilPreservationKind' class='form-control custom-select'>{{#OilPreservationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OilPreservationKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1311,7 +1311,7 @@ define
                     {{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
                     {{#switchStateCount}}<div><b>switchStateCount</b>: {{switchStateCount}}</div>{{/switchStateCount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1351,7 +1351,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_remote'>remote: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchStateCount'>switchStateCount: </label><div class='col-sm-8'><input id='{{id}}_switchStateCount' class='form-control' type='text'{{#switchStateCount}} value='{{switchStateCount}}'{{/switchStateCount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1449,7 +1449,7 @@ define
                     {{#nominalRatio}}<div><b>nominalRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{nominalRatio}}&quot;);}); return false;'>{{nominalRatio}}</a></div>{{/nominalRatio}}\n                    {{#primaryRatio}}<div><b>primaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{primaryRatio}}&quot;);}); return false;'>{{primaryRatio}}</a></div>{{/primaryRatio}}\n                    {{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
                     {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryRatio}}&quot;);}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}\n                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{tertiaryRatio}}&quot;);}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}\n                    </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1491,7 +1491,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1578,7 +1578,7 @@ define
                     {{#solidInsulationWeight}}<div><b>solidInsulationWeight</b>: {{solidInsulationWeight}}</div>{{/solidInsulationWeight}}
                     {{#windingInsulationKind}}<div><b>windingInsulationKind</b>: {{windingInsulationKind}}</div>{{/windingInsulationKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1611,7 +1611,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidInsulationWeight'>solidInsulationWeight: </label><div class='col-sm-8'><input id='{{id}}_solidInsulationWeight' class='form-control' type='text'{{#solidInsulationWeight}} value='{{solidInsulationWeight}}'{{/solidInsulationWeight}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windingInsulationKind'>windingInsulationKind: </label><div class='col-sm-8'><select id='{{id}}_windingInsulationKind' class='form-control custom-select'>{{#WindingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindingInsulationKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1702,7 +1702,7 @@ define
                     {{#phaseTripRating}}<div><b>phaseTripRating</b>: {{phaseTripRating}}</div>{{/phaseTripRating}}
                     {{#recloseLockoutCount}}<div><b>recloseLockoutCount</b>: {{recloseLockoutCount}}</div>{{/recloseLockoutCount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1734,7 +1734,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTripRating'>phaseTripRating: </label><div class='col-sm-8'><input id='{{id}}_phaseTripRating' class='form-control' type='text'{{#phaseTripRating}} value='{{phaseTripRating}}'{{/phaseTripRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recloseLockoutCount'>recloseLockoutCount: </label><div class='col-sm-8'><input id='{{id}}_recloseLockoutCount' class='form-control' type='text'{{#recloseLockoutCount}} value='{{recloseLockoutCount}}'{{/recloseLockoutCount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1814,7 +1814,7 @@ define
                     `
                     {{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1842,7 +1842,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='{{id}}_phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

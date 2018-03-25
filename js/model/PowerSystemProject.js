@@ -101,7 +101,7 @@ define
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -138,7 +138,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepType'>stepType: </label><div class='col-sm-8'><select id='{{id}}_stepType' class='form-control custom-select'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -243,7 +243,7 @@ define
                     {{#Collection}}<div><b>Collection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Collection}}
                     {{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);}); return false;'>{{Project}}</a></div>{{/Project}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -283,7 +283,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Project'>Project: </label><div class='col-sm-8'><input id='{{id}}_Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -393,7 +393,7 @@ define
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -430,7 +430,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepType'>stepType: </label><div class='col-sm-8'><select id='{{id}}_stepType' class='form-control custom-select'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -511,7 +511,7 @@ define
                     `
                     {{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);}); return false;'>{{Project}}</a></div>{{/Project}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -539,7 +539,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Project'>Project: </label><div class='col-sm-8'><input id='{{id}}_Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

@@ -311,7 +311,7 @@ define
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -341,7 +341,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#FACTSDeviceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FACTSDeviceKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -437,7 +437,7 @@ define
                     {{#DimensionsInfos}}<div><b>DimensionsInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DimensionsInfos}}
                     {{#AssetProperites}}<div><b>AssetProperites</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AssetProperites}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -480,7 +480,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements_string}}'{{/QualificationRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DimensionsInfos'>DimensionsInfos: </label><div class='col-sm-8'><input id='{{id}}_DimensionsInfos' class='form-control' type='text'{{#DimensionsInfos}} value='{{DimensionsInfos_string}}'{{/DimensionsInfos}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -583,7 +583,7 @@ define
                     {{#faultLocatingMethod}}<div><b>faultLocatingMethod</b>: {{faultLocatingMethod}}</div>{{/faultLocatingMethod}}
                     {{#location}}<div><b>location</b>: {{location}}</div>{{/location}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -616,7 +616,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_faultLocatingMethod'>faultLocatingMethod: </label><div class='col-sm-8'><input id='{{id}}_faultLocatingMethod' class='form-control' type='text'{{#faultLocatingMethod}} value='{{faultLocatingMethod}}'{{/faultLocatingMethod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_location'>location: </label><div class='col-sm-8'><input id='{{id}}_location' class='form-control' type='text'{{#location}} value='{{location}}'{{/location}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -721,7 +721,7 @@ define
                     {{#WireSpacingInfos}}<div><b>WireSpacingInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WireSpacingInfos}}
                     {{#StructureSupports}}<div><b>StructureSupports</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StructureSupports}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -762,7 +762,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_weedRemovedDate'>weedRemovedDate: </label><div class='col-sm-8'><input id='{{id}}_weedRemovedDate' class='form-control' type='text'{{#weedRemovedDate}} value='{{weedRemovedDate}}'{{/weedRemovedDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfos'>WireSpacingInfos: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfos' class='form-control' type='text'{{#WireSpacingInfos}} value='{{WireSpacingInfos_string}}'{{/WireSpacingInfos}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -884,7 +884,7 @@ define
                     {{#TypeAssetCatalogue}}<div><b>TypeAssetCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAssetCatalogue}}&quot;);}); return false;'>{{TypeAssetCatalogue}}</a></div>{{/TypeAssetCatalogue}}
                     {{#CUAsset}}<div><b>CUAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUAsset}}&quot;);}); return false;'>{{CUAsset}}</a></div>{{/CUAsset}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -927,7 +927,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAssetCatalogue'>TypeAssetCatalogue: </label><div class='col-sm-8'><input id='{{id}}_TypeAssetCatalogue' class='form-control' type='text'{{#TypeAssetCatalogue}} value='{{TypeAssetCatalogue}}'{{/TypeAssetCatalogue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUAsset'>CUAsset: </label><div class='col-sm-8'><input id='{{id}}_CUAsset' class='form-control' type='text'{{#CUAsset}} value='{{CUAsset}}'{{/CUAsset}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1036,7 +1036,7 @@ define
                     {{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
                     {{#Reconditionings}}<div><b>Reconditionings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Reconditionings}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1071,7 +1071,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stage'>stage: </label><div class='col-sm-8'><input id='{{id}}_stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reconditionings'>Reconditionings: </label><div class='col-sm-8'><input id='{{id}}_Reconditionings' class='form-control' type='text'{{#Reconditionings}} value='{{Reconditionings_string}}'{{/Reconditionings}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1196,7 +1196,7 @@ define
                     {{#warrantyEndDateTime}}<div><b>warrantyEndDateTime</b>: {{warrantyEndDateTime}}</div>{{/warrantyEndDateTime}}
                     {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1237,7 +1237,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_warrantyEndDateTime'>warrantyEndDateTime: </label><div class='col-sm-8'><input id='{{id}}_warrantyEndDateTime' class='form-control' type='text'{{#warrantyEndDateTime}} value='{{warrantyEndDateTime}}'{{/warrantyEndDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1356,7 +1356,7 @@ define
                     {{#size}}<div><b>size</b>: {{size}}</div>{{/size}}
                     {{#SecuredStructure}}<div><b>SecuredStructure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecuredStructure}}&quot;);}); return false;'>{{SecuredStructure}}</a></div>{{/SecuredStructure}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1395,7 +1395,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_size'>size: </label><div class='col-sm-8'><input id='{{id}}_size' class='form-control' type='text'{{#size}} value='{{size}}'{{/size}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SecuredStructure'>SecuredStructure: </label><div class='col-sm-8'><input id='{{id}}_SecuredStructure' class='form-control' type='text'{{#SecuredStructure}} value='{{SecuredStructure}}'{{/SecuredStructure}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1492,7 +1492,7 @@ define
                     {{#circuitCount}}<div><b>circuitCount</b>: {{circuitCount}}</div>{{/circuitCount}}
                     {{#WireSpacingInfos}}<div><b>WireSpacingInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WireSpacingInfos}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1522,7 +1522,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_circuitCount'>circuitCount: </label><div class='col-sm-8'><input id='{{id}}_circuitCount' class='form-control' type='text'{{#circuitCount}} value='{{circuitCount}}'{{/circuitCount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1627,7 +1627,7 @@ define
                     {{#BushingInsulationPFs}}<div><b>BushingInsulationPFs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BushingInsulationPFs}}
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1664,7 +1664,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationKind'>insulationKind: </label><div class='col-sm-8'><select id='{{id}}_insulationKind' class='form-control custom-select'>{{#BushingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BushingInsulationKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1766,7 +1766,7 @@ define
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);}); return false;'>{{Specification}}</a></div>{{/Specification}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1799,7 +1799,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specification'>Specification: </label><div class='col-sm-8'><input id='{{id}}_Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1907,7 +1907,7 @@ define
                     {{#FromWinding}}<div><b>FromWinding</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromWinding}}&quot;);}); return false;'>{{FromWinding}}</a></div>{{/FromWinding}}
                     {{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);}); return false;'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1943,7 +1943,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FromWinding'>FromWinding: </label><div class='col-sm-8'><input id='{{id}}_FromWinding' class='form-control' type='text'{{#FromWinding}} value='{{FromWinding}}'{{/FromWinding}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerObservation'>TransformerObservation: </label><div class='col-sm-8'><input id='{{id}}_TransformerObservation' class='form-control' type='text'{{#TransformerObservation}} value='{{TransformerObservation}}'{{/TransformerObservation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2035,7 +2035,7 @@ define
                     + Assets.AssetContainer.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2062,7 +2062,7 @@ define
                     + Assets.AssetContainer.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2140,7 +2140,7 @@ define
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);}); return false;'>{{Specification}}</a></div>{{/Specification}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2171,7 +2171,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specification'>Specification: </label><div class='col-sm-8'><input id='{{id}}_Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2277,7 +2277,7 @@ define
                     {{#sizeWidth}}<div><b>sizeWidth</b>: {{sizeWidth}}</div>{{/sizeWidth}}
                     {{#Specifications}}<div><b>Specifications</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Specifications}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2312,7 +2312,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sizeWidth'>sizeWidth: </label><div class='col-sm-8'><input id='{{id}}_sizeWidth' class='form-control' type='text'{{#sizeWidth}} value='{{sizeWidth}}'{{/sizeWidth}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specifications'>Specifications: </label><div class='col-sm-8'><input id='{{id}}_Specifications' class='form-control' type='text'{{#Specifications}} value='{{Specifications_string}}'{{/Specifications}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2459,7 +2459,7 @@ define
                     {{#BushingInsultationPFs}}<div><b>BushingInsultationPFs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BushingInsultationPFs}}
                     {{#WindingInsulationPFs}}<div><b>WindingInsulationPFs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindingInsulationPFs}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2511,7 +2511,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reconditioning'>Reconditioning: </label><div class='col-sm-8'><input id='{{id}}_Reconditioning' class='form-control' type='text'{{#Reconditioning}} value='{{Reconditioning}}'{{/Reconditioning}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Transformer'>Transformer: </label><div class='col-sm-8'><input id='{{id}}_Transformer' class='form-control' type='text'{{#Transformer}} value='{{Transformer}}'{{/Transformer}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2626,7 +2626,7 @@ define
                     {{#fillKind}}<div><b>fillKind</b>: {{fillKind}}</div>{{/fillKind}}
                     {{#insulation}}<div><b>insulation</b>: {{insulation}}</div>{{/insulation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2660,7 +2660,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fillKind'>fillKind: </label><div class='col-sm-8'><select id='{{id}}_fillKind' class='form-control custom-select'>{{#JointFillKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/JointFillKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulation'>insulation: </label><div class='col-sm-8'><input id='{{id}}_insulation' class='form-control' type='text'{{#insulation}} value='{{insulation}}'{{/insulation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2747,7 +2747,7 @@ define
                     {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
                     {{#PowerRatings}}<div><b>PowerRatings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PowerRatings}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2781,7 +2781,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerRatings'>PowerRatings: </label><div class='col-sm-8'><input id='{{id}}_PowerRatings' class='form-control' type='text'{{#PowerRatings}} value='{{PowerRatings_string}}'{{/PowerRatings}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2881,7 +2881,7 @@ define
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#Specification}}<div><b>Specification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Specification}}&quot;);}); return false;'>{{Specification}}</a></div>{{/Specification}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2916,7 +2916,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specification'>Specification: </label><div class='col-sm-8'><input id='{{id}}_Specification' class='form-control' type='text'{{#Specification}} value='{{Specification}}'{{/Specification}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3007,7 +3007,7 @@ define
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3035,7 +3035,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><input id='{{id}}_kind' class='form-control' type='text'{{#kind}} value='{{kind}}'{{/kind}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3121,7 +3121,7 @@ define
                     {{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);}); return false;'>{{Bushing}}</a></div>{{/Bushing}}
                     {{#TransformerObservation}}<div><b>TransformerObservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerObservation}}&quot;);}); return false;'>{{TransformerObservation}}</a></div>{{/TransformerObservation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3156,7 +3156,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bushing'>Bushing: </label><div class='col-sm-8'><input id='{{id}}_Bushing' class='form-control' type='text'{{#Bushing}} value='{{Bushing}}'{{/Bushing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerObservation'>TransformerObservation: </label><div class='col-sm-8'><input id='{{id}}_TransformerObservation' class='form-control' type='text'{{#TransformerObservation}} value='{{TransformerObservation}}'{{/TransformerObservation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3256,7 +3256,7 @@ define
                     {{#lightRating}}<div><b>lightRating</b>: {{lightRating}}</div>{{/lightRating}}
                     {{#Pole}}<div><b>Pole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pole}}&quot;);}); return false;'>{{Pole}}</a></div>{{/Pole}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3289,7 +3289,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lightRating'>lightRating: </label><div class='col-sm-8'><input id='{{id}}_lightRating' class='form-control' type='text'{{#lightRating}} value='{{lightRating}}'{{/lightRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pole'>Pole: </label><div class='col-sm-8'><input id='{{id}}_Pole' class='form-control' type='text'{{#Pole}} value='{{Pole}}'{{/Pole}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3412,7 +3412,7 @@ define
                     {{#treatmentKind}}<div><b>treatmentKind</b>: {{treatmentKind}}</div>{{/treatmentKind}}
                     {{#Streetlights}}<div><b>Streetlights</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Streetlights}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3458,7 +3458,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_treatedDateTime'>treatedDateTime: </label><div class='col-sm-8'><input id='{{id}}_treatedDateTime' class='form-control' type='text'{{#treatedDateTime}} value='{{treatedDateTime}}'{{/treatedDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_treatmentKind'>treatmentKind: </label><div class='col-sm-8'><select id='{{id}}_treatmentKind' class='form-control custom-select'>{{#PoleTreatmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PoleTreatmentKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3557,7 +3557,7 @@ define
                     `
                     {{#constructionKind}}<div><b>constructionKind</b>: {{constructionKind}}</div>{{/constructionKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3587,7 +3587,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control custom-select'>{{#TowerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TowerConstructionKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3672,7 +3672,7 @@ define
                     {{#material}}<div><b>material</b>: {{material}}</div>{{/material}}
                     {{#sealingWarrantyExpiresDate}}<div><b>sealingWarrantyExpiresDate</b>: {{sealingWarrantyExpiresDate}}</div>{{/sealingWarrantyExpiresDate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3705,7 +3705,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_material'>material: </label><div class='col-sm-8'><input id='{{id}}_material' class='form-control' type='text'{{#material}} value='{{material}}'{{/material}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sealingWarrantyExpiresDate'>sealingWarrantyExpiresDate: </label><div class='col-sm-8'><input id='{{id}}_sealingWarrantyExpiresDate' class='form-control' type='text'{{#sealingWarrantyExpiresDate}} value='{{sealingWarrantyExpiresDate}}'{{/sealingWarrantyExpiresDate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

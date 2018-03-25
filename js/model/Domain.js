@@ -162,7 +162,7 @@ define
                     {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
                     {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -202,7 +202,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='{{id}}_denominatorUnit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -294,7 +294,7 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -334,7 +334,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -413,7 +413,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -440,7 +440,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -519,7 +519,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -553,7 +553,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -634,7 +634,7 @@ define
                     {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
                     {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -663,7 +663,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_end'>end: </label><div class='col-sm-8'><input id='{{id}}_end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_start'>start: </label><div class='col-sm-8'><input id='{{id}}_start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -746,7 +746,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -780,7 +780,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -870,7 +870,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -910,7 +910,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -996,7 +996,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1030,7 +1030,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1114,7 +1114,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1148,7 +1148,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1238,7 +1238,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1278,7 +1278,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1366,7 +1366,7 @@ define
                     {{#demoninatorUnit}}<div><b>demoninatorUnit</b>: {{demoninatorUnit}}</div>{{/demoninatorUnit}}
                     {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1406,7 +1406,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_demoninatorUnit'>demoninatorUnit: </label><div class='col-sm-8'><select id='{{id}}_demoninatorUnit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1498,7 +1498,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1538,7 +1538,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1624,7 +1624,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1658,7 +1658,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1735,7 +1735,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1762,7 +1762,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1841,7 +1841,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1875,7 +1875,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1965,7 +1965,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2005,7 +2005,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2097,7 +2097,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2137,7 +2137,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2216,7 +2216,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2243,7 +2243,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2315,7 +2315,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2342,7 +2342,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2429,7 +2429,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2469,7 +2469,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2557,7 +2557,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2591,7 +2591,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2675,7 +2675,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2709,7 +2709,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2793,7 +2793,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2827,7 +2827,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2913,7 +2913,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2947,7 +2947,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3037,7 +3037,7 @@ define
                     {{#denominatorUnit}}<div><b>denominatorUnit</b>: {{denominatorUnit}}</div>{{/denominatorUnit}}
                     {{#denominatorMultiplier}}<div><b>denominatorMultiplier</b>: {{denominatorMultiplier}}</div>{{/denominatorMultiplier}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3077,7 +3077,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='{{id}}_denominatorUnit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3169,7 +3169,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3209,7 +3209,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3288,7 +3288,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3315,7 +3315,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3385,7 +3385,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3412,7 +3412,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3493,7 +3493,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3527,7 +3527,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3611,7 +3611,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3645,7 +3645,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3729,7 +3729,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3763,7 +3763,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3849,7 +3849,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3883,7 +3883,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3967,7 +3967,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4001,7 +4001,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4091,7 +4091,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4131,7 +4131,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4217,7 +4217,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4251,7 +4251,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4332,7 +4332,7 @@ define
                     {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
                     {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4361,7 +4361,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_end'>end: </label><div class='col-sm-8'><input id='{{id}}_end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_start'>start: </label><div class='col-sm-8'><input id='{{id}}_start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4444,7 +4444,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4478,7 +4478,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4562,7 +4562,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4596,7 +4596,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4680,7 +4680,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4714,7 +4714,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4791,7 +4791,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4818,7 +4818,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4896,7 +4896,7 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#currency}}<div><b>currency</b>: {{currency}}</div>{{/currency}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4933,7 +4933,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currency'>currency: </label><div class='col-sm-8'><select id='{{id}}_currency' class='form-control custom-select'>{{#Currency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Currency}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5018,7 +5018,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5052,7 +5052,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5127,7 +5127,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5154,7 +5154,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5235,7 +5235,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5269,7 +5269,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5353,7 +5353,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5387,7 +5387,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5471,7 +5471,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5505,7 +5505,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5589,7 +5589,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5623,7 +5623,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5707,7 +5707,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5741,7 +5741,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5825,7 +5825,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5859,7 +5859,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5943,7 +5943,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5977,7 +5977,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6058,7 +6058,7 @@ define
                     {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
                     {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6087,7 +6087,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_end'>end: </label><div class='col-sm-8'><input id='{{id}}_end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_start'>start: </label><div class='col-sm-8'><input id='{{id}}_start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6176,7 +6176,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6216,7 +6216,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6302,7 +6302,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6336,7 +6336,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6426,7 +6426,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6466,7 +6466,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6552,7 +6552,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6586,7 +6586,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6663,7 +6663,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6690,7 +6690,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6775,7 +6775,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6815,7 +6815,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6901,7 +6901,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6935,7 +6935,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7019,7 +7019,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7053,7 +7053,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7137,7 +7137,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7171,7 +7171,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7261,7 +7261,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7301,7 +7301,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7378,7 +7378,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7405,7 +7405,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7490,7 +7490,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7530,7 +7530,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7616,7 +7616,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7650,7 +7650,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7734,7 +7734,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7768,7 +7768,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7849,7 +7849,7 @@ define
                     {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
                     {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7878,7 +7878,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_end'>end: </label><div class='col-sm-8'><input id='{{id}}_end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_start'>start: </label><div class='col-sm-8'><input id='{{id}}_start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7961,7 +7961,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7995,7 +7995,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

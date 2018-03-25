@@ -75,7 +75,7 @@ define
                     {{#recloseStep}}<div><b>recloseStep</b>: {{recloseStep}}</div>{{/recloseStep}}
                     {{#ProtectedSwitch}}<div><b>ProtectedSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectedSwitch}}&quot;);}); return false;'>{{ProtectedSwitch}}</a></div>{{/ProtectedSwitch}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -105,7 +105,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recloseStep'>recloseStep: </label><div class='col-sm-8'><input id='{{id}}_recloseStep' class='form-control' type='text'{{#recloseStep}} value='{{recloseStep}}'{{/recloseStep}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectedSwitch'>ProtectedSwitch: </label><div class='col-sm-8'><input id='{{id}}_ProtectedSwitch' class='form-control' type='text'{{#ProtectedSwitch}} value='{{ProtectedSwitch}}'{{/ProtectedSwitch}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -220,7 +220,7 @@ define
                     {{#ConductingEquipments}}<div><b>ConductingEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConductingEquipments}}
                     {{#ProtectedSwitches}}<div><b>ProtectedSwitches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProtectedSwitches}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -265,7 +265,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConductingEquipments'>ConductingEquipments: </label><div class='col-sm-8'><input id='{{id}}_ConductingEquipments' class='form-control' type='text'{{#ConductingEquipments}} value='{{ConductingEquipments_string}}'{{/ConductingEquipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectedSwitches'>ProtectedSwitches: </label><div class='col-sm-8'><input id='{{id}}_ProtectedSwitches' class='form-control' type='text'{{#ProtectedSwitches}} value='{{ProtectedSwitches_string}}'{{/ProtectedSwitches}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -379,7 +379,7 @@ define
                     {{#timeDelay2}}<div><b>timeDelay2</b>: {{timeDelay2}}</div>{{/timeDelay2}}
                     {{#timeDelay3}}<div><b>timeDelay3</b>: {{timeDelay3}}</div>{{/timeDelay3}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -413,7 +413,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeDelay2'>timeDelay2: </label><div class='col-sm-8'><input id='{{id}}_timeDelay2' class='form-control' type='text'{{#timeDelay2}} value='{{timeDelay2}}'{{/timeDelay2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeDelay3'>timeDelay3: </label><div class='col-sm-8'><input id='{{id}}_timeDelay3' class='form-control' type='text'{{#timeDelay3}} value='{{timeDelay3}}'{{/timeDelay3}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -503,7 +503,7 @@ define
                     {{#maxFreqDiff}}<div><b>maxFreqDiff</b>: {{maxFreqDiff}}</div>{{/maxFreqDiff}}
                     {{#maxVoltDiff}}<div><b>maxVoltDiff</b>: {{maxVoltDiff}}</div>{{/maxVoltDiff}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -533,7 +533,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxFreqDiff'>maxFreqDiff: </label><div class='col-sm-8'><input id='{{id}}_maxFreqDiff' class='form-control' type='text'{{#maxFreqDiff}} value='{{maxFreqDiff}}'{{/maxFreqDiff}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxVoltDiff'>maxVoltDiff: </label><div class='col-sm-8'><input id='{{id}}_maxVoltDiff' class='form-control' type='text'{{#maxVoltDiff}} value='{{maxVoltDiff}}'{{/maxVoltDiff}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

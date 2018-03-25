@@ -110,7 +110,7 @@ define
                     {{#xQuadSync}}<div><b>xQuadSync</b>: {{xQuadSync}}</div>{{/xQuadSync}}
                     {{#xQuadTrans}}<div><b>xQuadTrans</b>: {{xQuadTrans}}</div>{{/xQuadTrans}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -153,7 +153,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadSync'>xQuadSync: </label><div class='col-sm-8'><input id='{{id}}_xQuadSync' class='form-control' type='text'{{#xQuadSync}} value='{{xQuadSync}}'{{/xQuadSync}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadTrans'>xQuadTrans: </label><div class='col-sm-8'><input id='{{id}}_xQuadTrans' class='form-control' type='text'{{#xQuadTrans}} value='{{xQuadTrans}}'{{/xQuadTrans}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -248,7 +248,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#TypeAssets}}<div><b>TypeAssets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TypeAssets}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -280,7 +280,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

@@ -105,7 +105,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -135,7 +135,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -213,7 +213,7 @@ define
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -243,7 +243,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ZoneKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ZoneKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -324,7 +324,7 @@ define
                     {{#propertyData}}<div><b>propertyData</b>: {{propertyData}}</div>{{/propertyData}}
                     {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);}); return false;'>{{LandProperty}}</a></div>{{/LandProperty}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -353,7 +353,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyData'>propertyData: </label><div class='col-sm-8'><input id='{{id}}_propertyData' class='form-control' type='text'{{#propertyData}} value='{{propertyData}}'{{/propertyData}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='{{id}}_LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -449,7 +449,7 @@ define
                     {{#Locations}}<div><b>Locations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Locations}}
                     {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crews}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -485,7 +485,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -606,7 +606,7 @@ define
                     {{#ErpSiteLevelDatas}}<div><b>ErpSiteLevelDatas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpSiteLevelDatas}}
                     {{#ErpPersonRoles}}<div><b>ErpPersonRoles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersonRoles}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -660,7 +660,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetContainers'>AssetContainers: </label><div class='col-sm-8'><input id='{{id}}_AssetContainers' class='form-control' type='text'{{#AssetContainers}} value='{{AssetContainers_string}}'{{/AssetContainers}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -764,7 +764,7 @@ define
                     {{#propertyData}}<div><b>propertyData</b>: {{propertyData}}</div>{{/propertyData}}
                     {{#LandProperties}}<div><b>LandProperties</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LandProperties}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -795,7 +795,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyData'>propertyData: </label><div class='col-sm-8'><input id='{{id}}_propertyData' class='form-control' type='text'{{#propertyData}} value='{{propertyData}}'{{/propertyData}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties_string}}'{{/LandProperties}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

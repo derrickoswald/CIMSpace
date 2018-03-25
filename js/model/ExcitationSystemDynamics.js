@@ -153,7 +153,7 @@ define
                     {{#OverexcitationLimiterDynamics}}<div><b>OverexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterDynamics}}&quot;);}); return false;'>{{OverexcitationLimiterDynamics}}</a></div>{{/OverexcitationLimiterDynamics}}
                     {{#PFVArControllerType2Dynamics}}<div><b>PFVArControllerType2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType2Dynamics}}&quot;);}); return false;'>{{PFVArControllerType2Dynamics}}</a></div>{{/PFVArControllerType2Dynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -188,7 +188,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OverexcitationLimiterDynamics'>OverexcitationLimiterDynamics: </label><div class='col-sm-8'><input id='{{id}}_OverexcitationLimiterDynamics' class='form-control' type='text'{{#OverexcitationLimiterDynamics}} value='{{OverexcitationLimiterDynamics}}'{{/OverexcitationLimiterDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType2Dynamics'>PFVArControllerType2Dynamics: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType2Dynamics' class='form-control' type='text'{{#PFVArControllerType2Dynamics}} value='{{PFVArControllerType2Dynamics}}'{{/PFVArControllerType2Dynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -336,7 +336,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -379,7 +379,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -491,7 +491,7 @@ define
                     {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
                     {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -526,7 +526,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb'>tb: </label><div class='col-sm-8'><input id='{{id}}_tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -665,7 +665,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -711,7 +711,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -867,7 +867,7 @@ define
                     {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
                     {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -915,7 +915,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vemin'>vemin: </label><div class='col-sm-8'><input id='{{id}}_vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vfemax'>vfemax: </label><div class='col-sm-8'><input id='{{id}}_vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1019,7 +1019,7 @@ define
                     {{#rex}}<div><b>rex</b>: {{rex}}</div>{{/rex}}
                     {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1049,7 +1049,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rex'>rex: </label><div class='col-sm-8'><input id='{{id}}_rex' class='form-control' type='text'{{#rex}} value='{{rex}}'{{/rex}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1169,7 +1169,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1211,7 +1211,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1381,7 +1381,7 @@ define
                     {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
                     {{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1435,7 +1435,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve2'>ve2: </label><div class='col-sm-8'><input id='{{id}}_ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xp'>xp: </label><div class='col-sm-8'><input id='{{id}}_xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1569,7 +1569,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1607,7 +1607,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1755,7 +1755,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1803,7 +1803,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1962,7 +1962,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2011,7 +2011,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2135,7 +2135,7 @@ define
                     {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
                     {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2172,7 +2172,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2295,7 +2295,7 @@ define
                     {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
                     {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2335,7 +2335,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmn'>vrmn: </label><div class='col-sm-8'><input id='{{id}}_vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmx'>vrmx: </label><div class='col-sm-8'><input id='{{id}}_vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2470,7 +2470,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2513,7 +2513,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2670,7 +2670,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2722,7 +2722,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xc'>xc: </label><div class='col-sm-8'><input id='{{id}}_xc' class='form-control' type='text'{{#xc}} value='{{xc}}'{{/xc}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2888,7 +2888,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2938,7 +2938,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3063,7 +3063,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3100,7 +3100,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3263,7 +3263,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#vtmult}}<div><b>vtmult</b>: {{vtmult}}</div>{{/vtmult}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3317,7 +3317,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_vtmult'>vtmult: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vtmult' class='form-check-input' type='checkbox'{{#vtmult}} checked{{/vtmult}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3460,7 +3460,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3501,7 +3501,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3628,7 +3628,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3668,7 +3668,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3806,7 +3806,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3850,7 +3850,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3966,7 +3966,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4002,7 +4002,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4139,7 +4139,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4184,7 +4184,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4372,7 +4372,7 @@ define
                     {{#vtmin}}<div><b>vtmin</b>: {{vtmin}}</div>{{/vtmin}}
                     {{#yp}}<div><b>yp</b>: {{yp}}</div>{{/yp}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4431,7 +4431,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vtmin'>vtmin: </label><div class='col-sm-8'><input id='{{id}}_vtmin' class='form-control' type='text'{{#vtmin}} value='{{vtmin}}'{{/vtmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_yp'>yp: </label><div class='col-sm-8'><input id='{{id}}_yp' class='form-control' type='text'{{#yp}} value='{{yp}}'{{/yp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4645,7 +4645,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#xc}}<div><b>xc</b>: {{xc}}</div>{{/xc}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4710,7 +4710,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xc'>xc: </label><div class='col-sm-8'><input id='{{id}}_xc' class='form-control' type='text'{{#xc}} value='{{xc}}'{{/xc}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4862,7 +4862,7 @@ define
                     {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
                     {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4903,7 +4903,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmn'>vrmn: </label><div class='col-sm-8'><input id='{{id}}_vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmx'>vrmx: </label><div class='col-sm-8'><input id='{{id}}_vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5069,7 +5069,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5122,7 +5122,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5270,7 +5270,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5313,7 +5313,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xl'>xl: </label><div class='col-sm-8'><input id='{{id}}_xl' class='form-control' type='text'{{#xl}} value='{{xl}}'{{/xl}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5449,7 +5449,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5496,7 +5496,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5638,7 +5638,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5683,7 +5683,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5833,7 +5833,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5880,7 +5880,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xl'>xl: </label><div class='col-sm-8'><input id='{{id}}_xl' class='form-control' type='text'{{#xl}} value='{{xl}}'{{/xl}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6028,7 +6028,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6073,7 +6073,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6217,7 +6217,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6262,7 +6262,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6388,7 +6388,7 @@ define
                     {{#ti}}<div><b>ti</b>: {{ti}}</div>{{/ti}}
                     {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6427,7 +6427,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti'>ti: </label><div class='col-sm-8'><input id='{{id}}_ti' class='form-control' type='text'{{#ti}} value='{{ti}}'{{/ti}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tr'>tr: </label><div class='col-sm-8'><input id='{{id}}_tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6574,7 +6574,7 @@ define
                     {{#vmin3}}<div><b>vmin3</b>: {{vmin3}}</div>{{/vmin3}}
                     {{#vmin5}}<div><b>vmin5</b>: {{vmin5}}</div>{{/vmin5}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6622,7 +6622,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin3'>vmin3: </label><div class='col-sm-8'><input id='{{id}}_vmin3' class='form-control' type='text'{{#vmin3}} value='{{vmin3}}'{{/vmin3}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin5'>vmin5: </label><div class='col-sm-8'><input id='{{id}}_vmin5' class='form-control' type='text'{{#vmin5}} value='{{vmin5}}'{{/vmin5}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6762,7 +6762,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6808,7 +6808,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6945,7 +6945,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6988,7 +6988,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7114,7 +7114,7 @@ define
                     {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
                     {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7153,7 +7153,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmn'>vrmn: </label><div class='col-sm-8'><input id='{{id}}_vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmx'>vrmx: </label><div class='col-sm-8'><input id='{{id}}_vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7266,7 +7266,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7302,7 +7302,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7467,7 +7467,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7522,7 +7522,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7664,7 +7664,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7705,7 +7705,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7850,7 +7850,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7898,7 +7898,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8024,7 +8024,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8062,7 +8062,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xe'>xe: </label><div class='col-sm-8'><input id='{{id}}_xe' class='form-control' type='text'{{#xe}} value='{{xe}}'{{/xe}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8202,7 +8202,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8248,7 +8248,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xl'>xl: </label><div class='col-sm-8'><input id='{{id}}_xl' class='form-control' type='text'{{#xl}} value='{{xl}}'{{/xl}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8408,7 +8408,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8458,7 +8458,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8610,7 +8610,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8656,7 +8656,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8825,7 +8825,7 @@ define
                     {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
                     {{#vlv}}<div><b>vlv</b>: {{vlv}}</div>{{/vlv}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8878,7 +8878,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vfemax'>vfemax: </label><div class='col-sm-8'><input id='{{id}}_vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vlv'>vlv: </label><div class='col-sm-8'><input id='{{id}}_vlv' class='form-control' type='text'{{#vlv}} value='{{vlv}}'{{/vlv}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9044,7 +9044,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9093,7 +9093,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9241,7 +9241,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9286,7 +9286,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xe'>xe: </label><div class='col-sm-8'><input id='{{id}}_xe' class='form-control' type='text'{{#xe}} value='{{xe}}'{{/xe}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9423,7 +9423,7 @@ define
                     {{#vpu}}<div><b>vpu</b>: {{vpu}}</div>{{/vpu}}
                     {{#xe}}<div><b>xe</b>: {{xe}}</div>{{/xe}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9465,7 +9465,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpu'>vpu: </label><div class='col-sm-8'><input id='{{id}}_vpu' class='form-control' type='text'{{#vpu}} value='{{vpu}}'{{/vpu}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xe'>xe: </label><div class='col-sm-8'><input id='{{id}}_xe' class='form-control' type='text'{{#xe}} value='{{xe}}'{{/xe}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9596,7 +9596,7 @@ define
                     {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
                     {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9637,7 +9637,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmn'>vrmn: </label><div class='col-sm-8'><input id='{{id}}_vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmx'>vrmx: </label><div class='col-sm-8'><input id='{{id}}_vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9785,7 +9785,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#xl}}<div><b>xl</b>: {{xl}}</div>{{/xl}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9832,7 +9832,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xl'>xl: </label><div class='col-sm-8'><input id='{{id}}_xl' class='form-control' type='text'{{#xl}} value='{{xl}}'{{/xl}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9980,7 +9980,7 @@ define
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     {{#vtlim}}<div><b>vtlim</b>: {{vtlim}}</div>{{/vtlim}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10025,7 +10025,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_vtlim'>vtlim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vtlim' class='form-check-input' type='checkbox'{{#vtlim}} checked{{/vtlim}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10153,7 +10153,7 @@ define
                     {{#vrmn}}<div><b>vrmn</b>: {{vrmn}}</div>{{/vrmn}}
                     {{#vrmx}}<div><b>vrmx</b>: {{vrmx}}</div>{{/vrmx}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10192,7 +10192,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmn'>vrmn: </label><div class='col-sm-8'><input id='{{id}}_vrmn' class='form-control' type='text'{{#vrmn}} value='{{vrmn}}'{{/vrmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmx'>vrmx: </label><div class='col-sm-8'><input id='{{id}}_vrmx' class='form-control' type='text'{{#vrmx}} value='{{vrmx}}'{{/vrmx}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10320,7 +10320,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10363,7 +10363,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

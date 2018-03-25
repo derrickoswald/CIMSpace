@@ -114,7 +114,7 @@ define
                     {{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);}); return false;'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
                     {{#DiscontinuousExcitationControlDynamics}}<div><b>DiscontinuousExcitationControlDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlDynamics}}&quot;);}); return false;'>{{DiscontinuousExcitationControlDynamics}}</a></div>{{/DiscontinuousExcitationControlDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -153,7 +153,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiscontinuousExcitationControlDynamics'>DiscontinuousExcitationControlDynamics: </label><div class='col-sm-8'><input id='{{id}}_DiscontinuousExcitationControlDynamics' class='form-control' type='text'{{#DiscontinuousExcitationControlDynamics}} value='{{DiscontinuousExcitationControlDynamics}}'{{/DiscontinuousExcitationControlDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

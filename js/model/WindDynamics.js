@@ -165,7 +165,7 @@ define
                     {{#ttheta}}<div><b>ttheta</b>: {{ttheta}}</div>{{/ttheta}}
                     {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);}); return false;'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -203,7 +203,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ttheta'>ttheta: </label><div class='col-sm-8'><input id='{{id}}_ttheta' class='form-control' type='text'{{#ttheta}} value='{{ttheta}}'{{/ttheta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -329,7 +329,7 @@ define
                     {{#WindGenTurbineType1bIEC}}<div><b>WindGenTurbineType1bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType1bIEC}}&quot;);}); return false;'>{{WindGenTurbineType1bIEC}}</a></div>{{/WindGenTurbineType1bIEC}}
                     {{#WindGenTurbineType2IEC}}<div><b>WindGenTurbineType2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType2IEC}}&quot;);}); return false;'>{{WindGenTurbineType2IEC}}</a></div>{{/WindGenTurbineType2IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -367,7 +367,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenTurbineType1bIEC'>WindGenTurbineType1bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenTurbineType1bIEC' class='form-control' type='text'{{#WindGenTurbineType1bIEC}} value='{{WindGenTurbineType1bIEC}}'{{/WindGenTurbineType1bIEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenTurbineType2IEC'>WindGenTurbineType2IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenTurbineType2IEC' class='form-control' type='text'{{#WindGenTurbineType2IEC}} value='{{WindGenTurbineType2IEC}}'{{/WindGenTurbineType2IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -481,7 +481,7 @@ define
                     {{#WindTurbineType4aIEC}}<div><b>WindTurbineType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4aIEC}}&quot;);}); return false;'>{{WindTurbineType4aIEC}}</a></div>{{/WindTurbineType4aIEC}}
                     {{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);}); return false;'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -514,7 +514,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4aIEC'>WindTurbineType4aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4aIEC' class='form-control' type='text'{{#WindTurbineType4aIEC}} value='{{WindTurbineType4aIEC}}'{{/WindTurbineType4aIEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -666,7 +666,7 @@ define
                     {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     {{#WindPlantIEC}}<div><b>WindPlantIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantIEC}}&quot;);}); return false;'>{{WindPlantIEC}}</a></div>{{/WindPlantIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -716,7 +716,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xrefmin'>xrefmin: </label><div class='col-sm-8'><input id='{{id}}_xrefmin' class='form-control' type='text'{{#xrefmin}} value='{{xrefmin}}'{{/xrefmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -896,7 +896,7 @@ define
                     {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);}); return false;'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
                     {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -949,7 +949,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zeta'>zeta: </label><div class='col-sm-8'><input id='{{id}}_zeta' class='form-control' type='text'{{#zeta}} value='{{zeta}}'{{/zeta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1131,7 +1131,7 @@ define
                     {{#xdroop}}<div><b>xdroop</b>: {{xdroop}}</div>{{/xdroop}}
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);}); return false;'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1186,7 +1186,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xdroop'>xdroop: </label><div class='col-sm-8'><input id='{{id}}_xdroop' class='form-control' type='text'{{#xdroop}} value='{{xdroop}}'{{/xdroop}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1298,7 +1298,7 @@ define
                     `
                     {{#WindGenTurbineType1aIEC}}<div><b>WindGenTurbineType1aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType1aIEC}}&quot;);}); return false;'>{{WindGenTurbineType1aIEC}}</a></div>{{/WindGenTurbineType1aIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1326,7 +1326,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenTurbineType1aIEC'>WindGenTurbineType1aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenTurbineType1aIEC' class='form-control' type='text'{{#WindGenTurbineType1aIEC}} value='{{WindGenTurbineType1aIEC}}'{{/WindGenTurbineType1aIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1419,7 +1419,7 @@ define
                     {{#WindPlantDynamics}}<div><b>WindPlantDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantDynamics}}&quot;);}); return false;'>{{WindPlantDynamics}}</a></div>{{/WindPlantDynamics}}
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1449,7 +1449,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantDynamics'>WindPlantDynamics: </label><div class='col-sm-8'><input id='{{id}}_WindPlantDynamics' class='form-control' type='text'{{#WindPlantDynamics}} value='{{WindPlantDynamics}}'{{/WindPlantDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1551,7 +1551,7 @@ define
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);}); return false;'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
                     {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1583,7 +1583,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltql'>tufiltql: </label><div class='col-sm-8'><input id='{{id}}_tufiltql' class='form-control' type='text'{{#tufiltql}} value='{{tufiltql}}'{{/tufiltql}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1693,7 +1693,7 @@ define
                     {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);}); return false;'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
                     {{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);}); return false;'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1727,7 +1727,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1845,7 +1845,7 @@ define
                     {{#thetazero}}<div><b>thetazero</b>: {{thetazero}}</div>{{/thetazero}}
                     {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);}); return false;'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1880,7 +1880,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetazero'>thetazero: </label><div class='col-sm-8'><input id='{{id}}_thetazero' class='form-control' type='text'{{#thetazero}} value='{{thetazero}}'{{/thetazero}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1982,7 +1982,7 @@ define
                     {{#qmin}}<div><b>qmin</b>: {{qmin}}</div>{{/qmin}}
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);}); return false;'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2012,7 +2012,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qmin'>qmin: </label><div class='col-sm-8'><input id='{{id}}_qmin' class='form-control' type='text'{{#qmin}} value='{{qmin}}'{{/qmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2110,7 +2110,7 @@ define
                     {{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
                     {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);}); return false;'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2141,7 +2141,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xs'>xs: </label><div class='col-sm-8'><input id='{{id}}_xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2260,7 +2260,7 @@ define
                     {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);}); return false;'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2298,7 +2298,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType1or2IEC'>WindTurbineType1or2IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType1or2IEC' class='form-control' type='text'{{#WindTurbineType1or2IEC}} value='{{WindTurbineType1or2IEC}}'{{/WindTurbineType1or2IEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2424,7 +2424,7 @@ define
                     {{#WindGenTurbineType2IEC}}<div><b>WindGenTurbineType2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType2IEC}}&quot;);}); return false;'>{{WindGenTurbineType2IEC}}</a></div>{{/WindGenTurbineType2IEC}}
                     {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2462,7 +2462,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpfiltrr'>tpfiltrr: </label><div class='col-sm-8'><input id='{{id}}_tpfiltrr' class='form-control' type='text'{{#tpfiltrr}} value='{{tpfiltrr}}'{{/tpfiltrr}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenTurbineType2IEC'>WindGenTurbineType2IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenTurbineType2IEC' class='form-control' type='text'{{#WindGenTurbineType2IEC}} value='{{WindGenTurbineType2IEC}}'{{/WindGenTurbineType2IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2572,7 +2572,7 @@ define
                     {{#tufiltp4b}}<div><b>tufiltp4b</b>: {{tufiltp4b}}</div>{{/tufiltp4b}}
                     {{#WindTurbineType4bIEC}}<div><b>WindTurbineType4bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4bIEC}}&quot;);}); return false;'>{{WindTurbineType4bIEC}}</a></div>{{/WindTurbineType4bIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2604,7 +2604,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltp4b'>tufiltp4b: </label><div class='col-sm-8'><input id='{{id}}_tufiltp4b' class='form-control' type='text'{{#tufiltp4b}} value='{{tufiltp4b}}'{{/tufiltp4b}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2706,7 +2706,7 @@ define
                     {{#upll2}}<div><b>upll2</b>: {{upll2}}</div>{{/upll2}}
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);}); return false;'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2737,7 +2737,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upll2'>upll2: </label><div class='col-sm-8'><input id='{{id}}_upll2' class='form-control' type='text'{{#upll2}} value='{{upll2}}'{{/upll2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2863,7 +2863,7 @@ define
                     {{#WindContCurrLimIEC}}<div><b>WindContCurrLimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContCurrLimIEC}}&quot;);}); return false;'>{{WindContCurrLimIEC}}</a></div>{{/WindContCurrLimIEC}}
                     {{#WindContRotorRIEC}}<div><b>WindContRotorRIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContRotorRIEC}}&quot;);}); return false;'>{{WindContRotorRIEC}}</a></div>{{/WindContRotorRIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2905,7 +2905,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContCurrLimIEC'>WindContCurrLimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContCurrLimIEC' class='form-control' type='text'{{#WindContCurrLimIEC}} value='{{WindContCurrLimIEC}}'{{/WindContCurrLimIEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContRotorRIEC'>WindContRotorRIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContRotorRIEC' class='form-control' type='text'{{#WindContRotorRIEC}} value='{{WindContRotorRIEC}}'{{/WindContRotorRIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3015,7 +3015,7 @@ define
                     {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);}); return false;'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3044,7 +3044,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3183,7 +3183,7 @@ define
                     {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     {{#WindPlantIEC}}<div><b>WindPlantIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantIEC}}&quot;);}); return false;'>{{WindPlantIEC}}</a></div>{{/WindPlantIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3228,7 +3228,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_twppfiltp'>twppfiltp: </label><div class='col-sm-8'><input id='{{id}}_twppfiltp' class='form-control' type='text'{{#twppfiltp}} value='{{twppfiltp}}'{{/twppfiltp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3342,7 +3342,7 @@ define
                     {{#tufiltp4a}}<div><b>tufiltp4a</b>: {{tufiltp4a}}</div>{{/tufiltp4a}}
                     {{#WindTurbineType4aIEC}}<div><b>WindTurbineType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4aIEC}}&quot;);}); return false;'>{{WindTurbineType4aIEC}}</a></div>{{/WindTurbineType4aIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3373,7 +3373,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltp4a'>tufiltp4a: </label><div class='col-sm-8'><input id='{{id}}_tufiltp4a' class='form-control' type='text'{{#tufiltp4a}} value='{{tufiltp4a}}'{{/tufiltp4a}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4aIEC'>WindTurbineType4aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4aIEC' class='form-control' type='text'{{#WindTurbineType4aIEC}} value='{{WindTurbineType4aIEC}}'{{/WindTurbineType4aIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3489,7 +3489,7 @@ define
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);}); return false;'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
                     {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3526,7 +3526,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upqumax'>upqumax: </label><div class='col-sm-8'><input id='{{id}}_upqumax' class='form-control' type='text'{{#upqumax}} value='{{upqumax}}'{{/upqumax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3629,7 +3629,7 @@ define
                     {{#thetaomega}}<div><b>thetaomega</b>: {{thetaomega}}</div>{{/thetaomega}}
                     {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);}); return false;'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3659,7 +3659,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetaomega'>thetaomega: </label><div class='col-sm-8'><input id='{{id}}_thetaomega' class='form-control' type='text'{{#thetaomega}} value='{{thetaomega}}'{{/thetaomega}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3751,7 +3751,7 @@ define
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
                     {{#WindTurbineType3or4Dynamics}}<div><b>WindTurbineType3or4Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindTurbineType3or4Dynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3781,7 +3781,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3884,7 +3884,7 @@ define
                     {{#WindContQLimIEC}}<div><b>WindContQLimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContQLimIEC}}&quot;);}); return false;'>{{WindContQLimIEC}}</a></div>{{/WindContQLimIEC}}
                     {{#WindProtectionIEC}}<div><b>WindProtectionIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindProtectionIEC}}&quot;);}); return false;'>{{WindProtectionIEC}}</a></div>{{/WindProtectionIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3917,7 +3917,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContQLimIEC'>WindContQLimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContQLimIEC' class='form-control' type='text'{{#WindContQLimIEC}} value='{{WindContQLimIEC}}'{{/WindContQLimIEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='{{id}}_WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4014,7 +4014,7 @@ define
                     `
                     {{#WindGenType3aIEC}}<div><b>WindGenType3aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType3aIEC}}&quot;);}); return false;'>{{WindGenType3aIEC}}</a></div>{{/WindGenType3aIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4042,7 +4042,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenType3aIEC'>WindGenType3aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenType3aIEC' class='form-control' type='text'{{#WindGenType3aIEC}} value='{{WindGenType3aIEC}}'{{/WindGenType3aIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4144,7 +4144,7 @@ define
                     {{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);}); return false;'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
                     {{#WindAeroOneDimIEC}}<div><b>WindAeroOneDimIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindAeroOneDimIEC}}&quot;);}); return false;'>{{WindAeroOneDimIEC}}</a></div>{{/WindAeroOneDimIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4177,7 +4177,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='{{id}}_WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindAeroOneDimIEC'>WindAeroOneDimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindAeroOneDimIEC' class='form-control' type='text'{{#WindAeroOneDimIEC}} value='{{WindAeroOneDimIEC}}'{{/WindAeroOneDimIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4279,7 +4279,7 @@ define
                     {{#WindGenType4IEC}}<div><b>WindGenType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType4IEC}}&quot;);}); return false;'>{{WindGenType4IEC}}</a></div>{{/WindGenType4IEC}}
                     {{#WindContPType4aIEC}}<div><b>WindContPType4aIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContPType4aIEC}}&quot;);}); return false;'>{{WindContPType4aIEC}}</a></div>{{/WindContPType4aIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4308,7 +4308,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenType4IEC'>WindGenType4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenType4IEC' class='form-control' type='text'{{#WindGenType4IEC}} value='{{WindGenType4IEC}}'{{/WindGenType4IEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContPType4aIEC'>WindContPType4aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContPType4aIEC' class='form-control' type='text'{{#WindContPType4aIEC}} value='{{WindContPType4aIEC}}'{{/WindContPType4aIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4405,7 +4405,7 @@ define
                     {{#WindGenType4IEC}}<div><b>WindGenType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenType4IEC}}&quot;);}); return false;'>{{WindGenType4IEC}}</a></div>{{/WindGenType4IEC}}
                     {{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);}); return false;'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4435,7 +4435,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenType4IEC'>WindGenType4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenType4IEC' class='form-control' type='text'{{#WindGenType4IEC}} value='{{WindGenType4IEC}}'{{/WindGenType4IEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='{{id}}_WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4534,7 +4534,7 @@ define
                     {{#tic}}<div><b>tic</b>: {{tic}}</div>{{/tic}}
                     {{#WindTurbineType4IEC}}<div><b>WindTurbineType4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType4IEC}}&quot;);}); return false;'>{{WindTurbineType4IEC}}</a></div>{{/WindTurbineType4IEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4564,7 +4564,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tic'>tic: </label><div class='col-sm-8'><input id='{{id}}_tic' class='form-control' type='text'{{#tic}} value='{{tic}}'{{/tic}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4IEC'>WindTurbineType4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4IEC' class='form-control' type='text'{{#WindTurbineType4IEC}} value='{{WindTurbineType4IEC}}'{{/WindTurbineType4IEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4664,7 +4664,7 @@ define
                     {{#two}}<div><b>two</b>: {{two}}</div>{{/two}}
                     {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4696,7 +4696,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tg'>tg: </label><div class='col-sm-8'><input id='{{id}}_tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_two'>two: </label><div class='col-sm-8'><input id='{{id}}_two' class='form-control' type='text'{{#two}} value='{{two}}'{{/two}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4790,7 +4790,7 @@ define
                     {{#WindProtectionIEC}}<div><b>WindProtectionIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindProtectionIEC}}&quot;);}); return false;'>{{WindProtectionIEC}}</a></div>{{/WindProtectionIEC}}
                     {{#WindMechIEC}}<div><b>WindMechIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindMechIEC}}&quot;);}); return false;'>{{WindMechIEC}}</a></div>{{/WindMechIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4819,7 +4819,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='{{id}}_WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='{{id}}_WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4910,7 +4910,7 @@ define
                     `
                     {{#WindPitchContPowerIEC}}<div><b>WindPitchContPowerIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPitchContPowerIEC}}&quot;);}); return false;'>{{WindPitchContPowerIEC}}</a></div>{{/WindPitchContPowerIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4938,7 +4938,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5027,7 +5027,7 @@ define
                     `
                     {{#WindAeroConstIEC}}<div><b>WindAeroConstIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindAeroConstIEC}}&quot;);}); return false;'>{{WindAeroConstIEC}}</a></div>{{/WindAeroConstIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5055,7 +5055,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindAeroConstIEC'>WindAeroConstIEC: </label><div class='col-sm-8'><input id='{{id}}_WindAeroConstIEC' class='form-control' type='text'{{#WindAeroConstIEC}} value='{{WindAeroConstIEC}}'{{/WindAeroConstIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5147,7 +5147,7 @@ define
                     {{#WindContRotorRIEC}}<div><b>WindContRotorRIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindContRotorRIEC}}&quot;);}); return false;'>{{WindContRotorRIEC}}</a></div>{{/WindContRotorRIEC}}
                     {{#WindPitchContPowerIEC}}<div><b>WindPitchContPowerIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPitchContPowerIEC}}&quot;);}); return false;'>{{WindPitchContPowerIEC}}</a></div>{{/WindPitchContPowerIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5176,7 +5176,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContRotorRIEC'>WindContRotorRIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContRotorRIEC' class='form-control' type='text'{{#WindContRotorRIEC}} value='{{WindContRotorRIEC}}'{{/WindContRotorRIEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5270,7 +5270,7 @@ define
                     {{#WindPlantReactiveControlIEC}}<div><b>WindPlantReactiveControlIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantReactiveControlIEC}}&quot;);}); return false;'>{{WindPlantReactiveControlIEC}}</a></div>{{/WindPlantReactiveControlIEC}}
                     {{#WindPlantFreqPcontrolIEC}}<div><b>WindPlantFreqPcontrolIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantFreqPcontrolIEC}}&quot;);}); return false;'>{{WindPlantFreqPcontrolIEC}}</a></div>{{/WindPlantFreqPcontrolIEC}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5299,7 +5299,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantReactiveControlIEC'>WindPlantReactiveControlIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantReactiveControlIEC' class='form-control' type='text'{{#WindPlantReactiveControlIEC}} value='{{WindPlantReactiveControlIEC}}'{{/WindPlantReactiveControlIEC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantFreqPcontrolIEC'>WindPlantFreqPcontrolIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantFreqPcontrolIEC' class='form-control' type='text'{{#WindPlantFreqPcontrolIEC}} value='{{WindPlantFreqPcontrolIEC}}'{{/WindPlantFreqPcontrolIEC}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

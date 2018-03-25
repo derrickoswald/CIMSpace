@@ -99,7 +99,7 @@ define
                     {{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
                     {{#ConfigurationEvents}}<div><b>ConfigurationEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConfigurationEvents}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -145,7 +145,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_comment'>comment: </label><div class='col-sm-8'><input id='{{id}}_comment' class='form-control' type='text'{{#comment}} value='{{comment}}'{{/comment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -245,7 +245,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#streetDetail}}<div><b>streetDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{streetDetail}}&quot;);}); return false;'>{{streetDetail}}</a></div>{{/streetDetail}}\n                    {{#townDetail}}<div><b>townDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{townDetail}}&quot;);}); return false;'>{{townDetail}}</a></div>{{/townDetail}}\n                    </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -281,7 +281,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetDetail'>streetDetail: </label><div class='col-sm-8'><select id='{{id}}_streetDetail' class='form-control custom-select'>{{#StreetDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StreetDetail}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_townDetail'>townDetail: </label><div class='col-sm-8'><select id='{{id}}_townDetail' class='form-control custom-select'>{{#TownDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TownDetail}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -362,7 +362,7 @@ define
                     {{#ConfigurationEvents}}<div><b>ConfigurationEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConfigurationEvents}}
                     {{#Organisation}}<div><b>Organisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Organisation}}&quot;);}); return false;'>{{Organisation}}</a></div>{{/Organisation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -392,7 +392,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Organisation'>Organisation: </label><div class='col-sm-8'><input id='{{id}}_Organisation' class='form-control' type='text'{{#Organisation}} value='{{Organisation}}'{{/Organisation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -501,7 +501,7 @@ define
                     {{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
                     {{#web}}<div><b>web</b>: {{web}}</div>{{/web}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -536,7 +536,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_userID'>userID: </label><div class='col-sm-8'><input id='{{id}}_userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_web'>web: </label><div class='col-sm-8'><input id='{{id}}_web' class='form-control' type='text'{{#web}} value='{{web}}'{{/web}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -630,7 +630,7 @@ define
                     {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkTasks}}
                     {{#CrewType}}<div><b>CrewType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CrewType}}&quot;);}); return false;'>{{CrewType}}</a></div>{{/CrewType}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -668,7 +668,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks_string}}'{{/WorkTasks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CrewType'>CrewType: </label><div class='col-sm-8'><input id='{{id}}_CrewType' class='form-control' type='text'{{#CrewType}} value='{{CrewType}}'{{/CrewType}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -771,7 +771,7 @@ define
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#ScheduledEventData}}<div><b>ScheduledEventData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledEventData}}&quot;);}); return false;'>{{ScheduledEventData}}</a></div>{{/ScheduledEventData}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -807,7 +807,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ScheduledEventData'>ScheduledEventData: </label><div class='col-sm-8'><input id='{{id}}_ScheduledEventData' class='form-control' type='text'{{#ScheduledEventData}} value='{{ScheduledEventData}}'{{/ScheduledEventData}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -905,7 +905,7 @@ define
                     {{#rank}}<div><b>rank</b>: {{rank}}</div>{{/rank}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -935,7 +935,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rank'>rank: </label><div class='col-sm-8'><input id='{{id}}_rank' class='form-control' type='text'{{#rank}} value='{{rank}}'{{/rank}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1027,7 +1027,7 @@ define
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#window}}<div><b>window</b>: {{window}}</div>{{/window}}
                     {{#TimeSchedule}}<div><b>TimeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TimeSchedule}}&quot;);}); return false;'>{{TimeSchedule}}</a></div>{{/TimeSchedule}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1064,7 +1064,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_window'>window: </label><div class='col-sm-8'><select id='{{id}}_window' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSchedule'>TimeSchedule: </label><div class='col-sm-8'><input id='{{id}}_TimeSchedule' class='form-control' type='text'{{#TimeSchedule}} value='{{TimeSchedule}}'{{/TimeSchedule}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1173,7 +1173,7 @@ define
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#Organisations}}<div><b>Organisations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Organisations}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1213,7 +1213,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Organisations'>Organisations: </label><div class='col-sm-8'><input id='{{id}}_Organisations' class='form-control' type='text'{{#Organisations}} value='{{Organisations_string}}'{{/Organisations}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1314,7 +1314,7 @@ define
                     {{#poBox}}<div><b>poBox</b>: {{poBox}}</div>{{/poBox}}
                     {{#postalCode}}<div><b>postalCode</b>: {{postalCode}}</div>{{/postalCode}}
                     {{#streetDetail}}<div><b>streetDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{streetDetail}}&quot;);}); return false;'>{{streetDetail}}</a></div>{{/streetDetail}}\n                    {{#townDetail}}<div><b>townDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{townDetail}}&quot;);}); return false;'>{{townDetail}}</a></div>{{/townDetail}}\n                    </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1349,7 +1349,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_streetDetail'>streetDetail: </label><div class='col-sm-8'><select id='{{id}}_streetDetail' class='form-control custom-select'>{{#StreetDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StreetDetail}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_townDetail'>townDetail: </label><div class='col-sm-8'><select id='{{id}}_townDetail' class='form-control custom-select'>{{#TownDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TownDetail}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1430,7 +1430,7 @@ define
                     {{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);}); return false;'>{{Person}}</a></div>{{/Person}}
                     {{#Appointments}}<div><b>Appointments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Appointments}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1463,7 +1463,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Person'>Person: </label><div class='col-sm-8'><input id='{{id}}_Person' class='form-control' type='text'{{#Person}} value='{{Person}}'{{/Person}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Appointments'>Appointments: </label><div class='col-sm-8'><input id='{{id}}_Appointments' class='form-control' type='text'{{#Appointments}} value='{{Appointments_string}}'{{/Appointments}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1556,7 +1556,7 @@ define
                     {{#crsUrn}}<div><b>crsUrn</b>: {{crsUrn}}</div>{{/crsUrn}}
                     {{#Locations}}<div><b>Locations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Locations}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1586,7 +1586,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_crsUrn'>crsUrn: </label><div class='col-sm-8'><input id='{{id}}_crsUrn' class='form-control' type='text'{{#crsUrn}} value='{{crsUrn}}'{{/crsUrn}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1675,7 +1675,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1706,7 +1706,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1795,7 +1795,7 @@ define
                     {{#section}}<div><b>section</b>: {{section}}</div>{{/section}}
                     {{#stateOrProvince}}<div><b>stateOrProvince</b>: {{stateOrProvince}}</div>{{/stateOrProvince}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1827,7 +1827,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_section'>section: </label><div class='col-sm-8'><input id='{{id}}_section' class='form-control' type='text'{{#section}} value='{{section}}'{{/section}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stateOrProvince'>stateOrProvince: </label><div class='col-sm-8'><input id='{{id}}_stateOrProvince' class='form-control' type='text'{{#stateOrProvince}} value='{{stateOrProvince}}'{{/stateOrProvince}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1923,7 +1923,7 @@ define
                     {{#ActivityRecords}}<div><b>ActivityRecords</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ActivityRecords}}
                     {{#Roles}}<div><b>Roles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Roles}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1973,7 +1973,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords_string}}'{{/ActivityRecords}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2070,7 +2070,7 @@ define
                     `
                     {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crews}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2099,7 +2099,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2233,7 +2233,7 @@ define
                     {{#Routes}}<div><b>Routes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Routes}}
                     {{#CoordinateSystem}}<div><b>CoordinateSystem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoordinateSystem}}&quot;);}); return false;'>{{CoordinateSystem}}</a></div>{{/CoordinateSystem}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2305,7 +2305,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Routes'>Routes: </label><div class='col-sm-8'><input id='{{id}}_Routes' class='form-control' type='text'{{#Routes}} value='{{Routes_string}}'{{/Routes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CoordinateSystem'>CoordinateSystem: </label><div class='col-sm-8'><input id='{{id}}_CoordinateSystem' class='form-control' type='text'{{#CoordinateSystem}} value='{{CoordinateSystem}}'{{/CoordinateSystem}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2421,7 +2421,7 @@ define
                     {{#AssetOwner}}<div><b>AssetOwner</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetOwner}}&quot;);}); return false;'>{{AssetOwner}}</a></div>{{/AssetOwner}}
                     {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2451,7 +2451,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetOwner'>AssetOwner: </label><div class='col-sm-8'><input id='{{id}}_AssetOwner' class='form-control' type='text'{{#AssetOwner}} value='{{AssetOwner}}'{{/AssetOwner}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2553,7 +2553,7 @@ define
                     {{#extension}}<div><b>extension</b>: {{extension}}</div>{{/extension}}
                     {{#localNumber}}<div><b>localNumber</b>: {{localNumber}}</div>{{/localNumber}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2585,7 +2585,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_extension'>extension: </label><div class='col-sm-8'><input id='{{id}}_extension' class='form-control' type='text'{{#extension}} value='{{extension}}'{{/extension}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localNumber'>localNumber: </label><div class='col-sm-8'><input id='{{id}}_localNumber' class='form-control' type='text'{{#localNumber}} value='{{localNumber}}'{{/localNumber}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2679,7 +2679,7 @@ define
                     {{#zPosition}}<div><b>zPosition</b>: {{zPosition}}</div>{{/zPosition}}
                     {{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);}); return false;'>{{Location}}</a></div>{{/Location}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2711,7 +2711,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zPosition'>zPosition: </label><div class='col-sm-8'><input id='{{id}}_zPosition' class='form-control' type='text'{{#zPosition}} value='{{zPosition}}'{{/zPosition}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Location'>Location: </label><div class='col-sm-8'><input id='{{id}}_Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2826,7 +2826,7 @@ define
                     {{#ErpLedgerEntries}}<div><b>ErpLedgerEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpLedgerEntries}}
                     {{#PropertySpecification}}<div><b>PropertySpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertySpecification}}&quot;);}); return false;'>{{PropertySpecification}}</a></div>{{/PropertySpecification}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2870,7 +2870,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntries'>ErpLedgerEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntries' class='form-control' type='text'{{#ErpLedgerEntries}} value='{{ErpLedgerEntries_string}}'{{/ErpLedgerEntries}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertySpecification'>PropertySpecification: </label><div class='col-sm-8'><input id='{{id}}_PropertySpecification' class='form-control' type='text'{{#PropertySpecification}} value='{{PropertySpecification}}'{{/PropertySpecification}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2981,7 +2981,7 @@ define
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#InspectionDataSet}}<div><b>InspectionDataSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InspectionDataSet}}&quot;);}); return false;'>{{InspectionDataSet}}</a></div>{{/InspectionDataSet}}
                     {{#ScheduledEvents}}<div><b>ScheduledEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ScheduledEvents}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3020,7 +3020,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InspectionDataSet'>InspectionDataSet: </label><div class='col-sm-8'><input id='{{id}}_InspectionDataSet' class='form-control' type='text'{{#InspectionDataSet}} value='{{InspectionDataSet}}'{{/InspectionDataSet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3120,7 +3120,7 @@ define
                     {{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3151,7 +3151,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remark'>remark: </label><div class='col-sm-8'><input id='{{id}}_remark' class='form-control' type='text'{{#remark}} value='{{remark}}'{{/remark}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3254,7 +3254,7 @@ define
                     {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
                     {{#Roles}}<div><b>Roles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Roles}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3298,7 +3298,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='{{id}}_specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_suffix'>suffix: </label><div class='col-sm-8'><input id='{{id}}_suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3402,7 +3402,7 @@ define
                     {{#Works}}<div><b>Works</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Works}}
                     {{#Persons}}<div><b>Persons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Persons}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3439,7 +3439,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Persons'>Persons: </label><div class='col-sm-8'><input id='{{id}}_Persons' class='form-control' type='text'{{#Persons}} value='{{Persons_string}}'{{/Persons}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3557,7 +3557,7 @@ define
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#withinTownLimits}}<div><b>withinTownLimits</b>: {{withinTownLimits}}</div>{{/withinTownLimits}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3594,7 +3594,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_withinTownLimits'>withinTownLimits: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_withinTownLimits' class='form-check-input' type='checkbox'{{#withinTownLimits}} checked{{/withinTownLimits}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3696,7 +3696,7 @@ define
                     {{#scheduleInterval}}<div><b>scheduleInterval</b>: {{scheduleInterval}}</div>{{/scheduleInterval}}
                     {{#TimePoints}}<div><b>TimePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TimePoints}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3732,7 +3732,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recurrencePeriod'>recurrencePeriod: </label><div class='col-sm-8'><input id='{{id}}_recurrencePeriod' class='form-control' type='text'{{#recurrencePeriod}} value='{{recurrencePeriod}}'{{/recurrencePeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduleInterval'>scheduleInterval: </label><div class='col-sm-8'><select id='{{id}}_scheduleInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3828,7 +3828,7 @@ define
                     {{#signDate}}<div><b>signDate</b>: {{signDate}}</div>{{/signDate}}
                     {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3859,7 +3859,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_signDate'>signDate: </label><div class='col-sm-8'><input id='{{id}}_signDate' class='form-control' type='text'{{#signDate}} value='{{signDate}}'{{/signDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><select id='{{id}}_validityInterval' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3963,7 +3963,7 @@ define
                     {{#ChangedUsagePoint}}<div><b>ChangedUsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedUsagePoint}}&quot;);}); return false;'>{{ChangedUsagePoint}}</a></div>{{/ChangedUsagePoint}}
                     {{#ChangedDocument}}<div><b>ChangedDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangedDocument}}&quot;);}); return false;'>{{ChangedDocument}}</a></div>{{/ChangedDocument}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4000,7 +4000,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChangedUsagePoint'>ChangedUsagePoint: </label><div class='col-sm-8'><input id='{{id}}_ChangedUsagePoint' class='form-control' type='text'{{#ChangedUsagePoint}} value='{{ChangedUsagePoint}}'{{/ChangedUsagePoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChangedDocument'>ChangedDocument: </label><div class='col-sm-8'><input id='{{id}}_ChangedDocument' class='form-control' type='text'{{#ChangedDocument}} value='{{ChangedDocument}}'{{/ChangedDocument}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4099,7 +4099,7 @@ define
                     + PersonRole.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4126,7 +4126,7 @@ define
                     + PersonRole.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4202,7 +4202,7 @@ define
                     {{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);}); return false;'>{{Crew}}</a></div>{{/Crew}}
                     {{#SwitchingSteps}}<div><b>SwitchingSteps</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SwitchingSteps}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4232,7 +4232,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crew'>Crew: </label><div class='col-sm-8'><input id='{{id}}_Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4323,7 +4323,7 @@ define
                     {{#Incidents}}<div><b>Incidents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Incidents}}
                     {{#SwitchingSteps}}<div><b>SwitchingSteps</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SwitchingSteps}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4354,7 +4354,7 @@ define
                     + OperationPersonRole.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

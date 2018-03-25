@@ -130,7 +130,7 @@ define
                     {{#GenICompensationForGenJ}}<div><b>GenICompensationForGenJ</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GenICompensationForGenJ}}
                     {{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TurbineGovernorDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -165,7 +165,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachine'>SynchronousMachine: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachine' class='form-control' type='text'{{#SynchronousMachine}} value='{{SynchronousMachine}}'{{/SynchronousMachine}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='{{id}}_TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics_string}}'{{/TurbineGovernorDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -270,7 +270,7 @@ define
                     {{#saturationFactor120QAxis}}<div><b>saturationFactor120QAxis</b>: {{saturationFactor120QAxis}}</div>{{/saturationFactor120QAxis}}
                     {{#saturationFactorQAxis}}<div><b>saturationFactorQAxis</b>: {{saturationFactorQAxis}}</div>{{/saturationFactorQAxis}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -303,7 +303,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_saturationFactor120QAxis'>saturationFactor120QAxis: </label><div class='col-sm-8'><input id='{{id}}_saturationFactor120QAxis' class='form-control' type='text'{{#saturationFactor120QAxis}} value='{{saturationFactor120QAxis}}'{{/saturationFactor120QAxis}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_saturationFactorQAxis'>saturationFactorQAxis: </label><div class='col-sm-8'><input id='{{id}}_saturationFactorQAxis' class='form-control' type='text'{{#saturationFactorQAxis}} value='{{saturationFactorQAxis}}'{{/saturationFactorQAxis}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -438,7 +438,7 @@ define
                     {{#xf1d}}<div><b>xf1d</b>: {{xf1d}}</div>{{/xf1d}}
                     {{#xfd}}<div><b>xfd</b>: {{xfd}}</div>{{/xfd}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -476,7 +476,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xf1d'>xf1d: </label><div class='col-sm-8'><input id='{{id}}_xf1d' class='form-control' type='text'{{#xf1d}} value='{{xf1d}}'{{/xf1d}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xfd'>xfd: </label><div class='col-sm-8'><input id='{{id}}_xfd' class='form-control' type='text'{{#xfd}} value='{{xfd}}'{{/xfd}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -561,7 +561,7 @@ define
                     + SynchronousMachineDynamics.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -588,7 +588,7 @@ define
                     + SynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -734,7 +734,7 @@ define
                     {{#xQuadSync}}<div><b>xQuadSync</b>: {{xQuadSync}}</div>{{/xQuadSync}}
                     {{#xQuadTrans}}<div><b>xQuadTrans</b>: {{xQuadTrans}}</div>{{/xQuadTrans}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -779,7 +779,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadSync'>xQuadSync: </label><div class='col-sm-8'><input id='{{id}}_xQuadSync' class='form-control' type='text'{{#xQuadSync}} value='{{xQuadSync}}'{{/xQuadSync}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadTrans'>xQuadTrans: </label><div class='col-sm-8'><input id='{{id}}_xQuadTrans' class='form-control' type='text'{{#xQuadTrans}} value='{{xQuadTrans}}'{{/xQuadTrans}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

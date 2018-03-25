@@ -196,7 +196,7 @@ define
                     {{#Structures}}<div><b>Structures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Structures}}
                     {{#PerLengthParameters}}<div><b>PerLengthParameters</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PerLengthParameters}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -237,7 +237,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DuctBank'>DuctBank: </label><div class='col-sm-8'><input id='{{id}}_DuctBank' class='form-control' type='text'{{#DuctBank}} value='{{DuctBank}}'{{/DuctBank}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Structures'>Structures: </label><div class='col-sm-8'><input id='{{id}}_Structures' class='form-control' type='text'{{#Structures}} value='{{Structures_string}}'{{/Structures}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -374,7 +374,7 @@ define
                     {{#stepPhaseIncrement}}<div><b>stepPhaseIncrement</b>: {{stepPhaseIncrement}}</div>{{/stepPhaseIncrement}}
                     {{#stepVoltageIncrement}}<div><b>stepVoltageIncrement</b>: {{stepVoltageIncrement}}</div>{{/stepVoltageIncrement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -416,7 +416,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepPhaseIncrement'>stepPhaseIncrement: </label><div class='col-sm-8'><input id='{{id}}_stepPhaseIncrement' class='form-control' type='text'{{#stepPhaseIncrement}} value='{{stepPhaseIncrement}}'{{/stepPhaseIncrement}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepVoltageIncrement'>stepVoltageIncrement: </label><div class='col-sm-8'><input id='{{id}}_stepVoltageIncrement' class='form-control' type='text'{{#stepVoltageIncrement}} value='{{stepVoltageIncrement}}'{{/stepVoltageIncrement}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -509,7 +509,7 @@ define
                     {{#PowerTransformerInfo}}<div><b>PowerTransformerInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformerInfo}}&quot;);}); return false;'>{{PowerTransformerInfo}}</a></div>{{/PowerTransformerInfo}}
                     {{#TransformerEndInfos}}<div><b>TransformerEndInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerEndInfos}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -539,7 +539,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerTransformerInfo'>PowerTransformerInfo: </label><div class='col-sm-8'><input id='{{id}}_PowerTransformerInfo' class='form-control' type='text'{{#PowerTransformerInfo}} value='{{PowerTransformerInfo}}'{{/PowerTransformerInfo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -630,7 +630,7 @@ define
                     {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -659,7 +659,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -736,7 +736,7 @@ define
                     `
                     {{#TransformerTankInfos}}<div><b>TransformerTankInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerTankInfos}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -765,7 +765,7 @@ define
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -894,7 +894,7 @@ define
                     {{#strandCount}}<div><b>strandCount</b>: {{strandCount}}</div>{{/strandCount}}
                     {{#PerLengthParameters}}<div><b>PerLengthParameters</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PerLengthParameters}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -943,7 +943,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_strandCount'>strandCount: </label><div class='col-sm-8'><input id='{{id}}_strandCount' class='form-control' type='text'{{#strandCount}} value='{{strandCount}}'{{/strandCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PerLengthParameters'>PerLengthParameters: </label><div class='col-sm-8'><input id='{{id}}_PerLengthParameters' class='form-control' type='text'{{#PerLengthParameters}} value='{{PerLengthParameters_string}}'{{/PerLengthParameters}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1057,7 +1057,7 @@ define
                     {{#ratedReactivePower}}<div><b>ratedReactivePower</b>: {{ratedReactivePower}}</div>{{/ratedReactivePower}}
                     {{#ShuntCompensatorControl}}<div><b>ShuntCompensatorControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorControl}}&quot;);}); return false;'>{{ShuntCompensatorControl}}</a></div>{{/ShuntCompensatorControl}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1089,7 +1089,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedReactivePower'>ratedReactivePower: </label><div class='col-sm-8'><input id='{{id}}_ratedReactivePower' class='form-control' type='text'{{#ratedReactivePower}} value='{{ratedReactivePower}}'{{/ratedReactivePower}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensatorControl'>ShuntCompensatorControl: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensatorControl' class='form-control' type='text'{{#ShuntCompensatorControl}} value='{{ShuntCompensatorControl}}'{{/ShuntCompensatorControl}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1192,7 +1192,7 @@ define
                     {{#isSinglePhase}}<div><b>isSinglePhase</b>: {{isSinglePhase}}</div>{{/isSinglePhase}}
                     {{#isUnganged}}<div><b>isUnganged</b>: {{isUnganged}}</div>{{/isUnganged}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1224,7 +1224,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isSinglePhase'>isSinglePhase: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isSinglePhase' class='form-check-input' type='checkbox'{{#isSinglePhase}} checked{{/isSinglePhase}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isUnganged'>isUnganged: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isUnganged' class='form-check-input' type='checkbox'{{#isUnganged}} checked{{/isUnganged}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1313,7 +1313,7 @@ define
                     {{#yCoord}}<div><b>yCoord</b>: {{yCoord}}</div>{{/yCoord}}
                     {{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireSpacingInfo}}&quot;);}); return false;'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1346,7 +1346,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_yCoord'>yCoord: </label><div class='col-sm-8'><input id='{{id}}_yCoord' class='form-control' type='text'{{#yCoord}} value='{{yCoord}}'{{/yCoord}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfo'>WireSpacingInfo: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfo' class='form-control' type='text'{{#WireSpacingInfo}} value='{{WireSpacingInfo}}'{{/WireSpacingInfo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1490,7 +1490,7 @@ define
                     {{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);}); return false;'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
                     {{#EnergisedEndOpenCircuitTests}}<div><b>EnergisedEndOpenCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergisedEndOpenCircuitTests}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1547,7 +1547,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerTankInfo'>TransformerTankInfo: </label><div class='col-sm-8'><input id='{{id}}_TransformerTankInfo' class='form-control' type='text'{{#TransformerTankInfo}} value='{{TransformerTankInfo}}'{{/TransformerTankInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CoreAdmittance'>CoreAdmittance: </label><div class='col-sm-8'><input id='{{id}}_CoreAdmittance' class='form-control' type='text'{{#CoreAdmittance}} value='{{CoreAdmittance}}'{{/CoreAdmittance}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1659,7 +1659,7 @@ define
                     {{#basePower}}<div><b>basePower</b>: {{basePower}}</div>{{/basePower}}
                     {{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1688,7 +1688,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_basePower'>basePower: </label><div class='col-sm-8'><input id='{{id}}_basePower' class='form-control' type='text'{{#basePower}} value='{{basePower}}'{{/basePower}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_temperature'>temperature: </label><div class='col-sm-8'><input id='{{id}}_temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1792,7 +1792,7 @@ define
                     {{#sheathAsNeutral}}<div><b>sheathAsNeutral</b>: {{sheathAsNeutral}}</div>{{/sheathAsNeutral}}
                     {{#shieldMaterial}}<div><b>shieldMaterial</b>: {{shieldMaterial}}</div>{{/shieldMaterial}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1835,7 +1835,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_sheathAsNeutral'>sheathAsNeutral: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_sheathAsNeutral' class='form-check-input' type='checkbox'{{#sheathAsNeutral}} checked{{/sheathAsNeutral}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shieldMaterial'>shieldMaterial: </label><div class='col-sm-8'><select id='{{id}}_shieldMaterial' class='form-control custom-select'>{{#CableShieldMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableShieldMaterialKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1932,7 +1932,7 @@ define
                     {{#neutralStrandRadius}}<div><b>neutralStrandRadius</b>: {{neutralStrandRadius}}</div>{{/neutralStrandRadius}}
                     {{#neutralStrandRDC20}}<div><b>neutralStrandRDC20</b>: {{neutralStrandRDC20}}</div>{{/neutralStrandRDC20}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1964,7 +1964,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStrandRadius'>neutralStrandRadius: </label><div class='col-sm-8'><input id='{{id}}_neutralStrandRadius' class='form-control' type='text'{{#neutralStrandRadius}} value='{{neutralStrandRadius}}'{{/neutralStrandRadius}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStrandRDC20'>neutralStrandRDC20: </label><div class='col-sm-8'><input id='{{id}}_neutralStrandRDC20' class='form-control' type='text'{{#neutralStrandRDC20}} value='{{neutralStrandRDC20}}'{{/neutralStrandRDC20}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2041,7 +2041,7 @@ define
                     + WireInfo.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2068,7 +2068,7 @@ define
                     + WireInfo.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2144,7 +2144,7 @@ define
                     {{#tapeLap}}<div><b>tapeLap</b>: {{tapeLap}}</div>{{/tapeLap}}
                     {{#tapeThickness}}<div><b>tapeThickness</b>: {{tapeThickness}}</div>{{/tapeThickness}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2173,7 +2173,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tapeLap'>tapeLap: </label><div class='col-sm-8'><input id='{{id}}_tapeLap' class='form-control' type='text'{{#tapeLap}} value='{{tapeLap}}'{{/tapeLap}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tapeThickness'>tapeThickness: </label><div class='col-sm-8'><input id='{{id}}_tapeThickness' class='form-control' type='text'{{#tapeThickness}} value='{{tapeThickness}}'{{/tapeThickness}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2273,7 +2273,7 @@ define
                     {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
                     {{#GroundedEnds}}<div><b>GroundedEnds</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GroundedEnds}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2310,7 +2310,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GroundedEnds'>GroundedEnds: </label><div class='col-sm-8'><input id='{{id}}_GroundedEnds' class='form-control' type='text'{{#GroundedEnds}} value='{{GroundedEnds_string}}'{{/GroundedEnds}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2422,7 +2422,7 @@ define
                     {{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
                     {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2455,7 +2455,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossZero'>lossZero: </label><div class='col-sm-8'><input id='{{id}}_lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2567,7 +2567,7 @@ define
                     {{#OpenEnd}}<div><b>OpenEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OpenEnd}}&quot;);}); return false;'>{{OpenEnd}}</a></div>{{/OpenEnd}}
                     {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2601,7 +2601,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OpenEnd'>OpenEnd: </label><div class='col-sm-8'><input id='{{id}}_OpenEnd' class='form-control' type='text'{{#OpenEnd}} value='{{OpenEnd}}'{{/OpenEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

@@ -84,7 +84,7 @@ define
                     {{#curtailTimeMax}}<div><b>curtailTimeMax</b>: {{curtailTimeMax}}</div>{{/curtailTimeMax}}
                     {{#totalTranChargeMax}}<div><b>totalTranChargeMax</b>: {{totalTranChargeMax}}</div>{{/totalTranChargeMax}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -119,7 +119,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curtailTimeMax'>curtailTimeMax: </label><div class='col-sm-8'><input id='{{id}}_curtailTimeMax' class='form-control' type='text'{{#curtailTimeMax}} value='{{curtailTimeMax}}'{{/curtailTimeMax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalTranChargeMax'>totalTranChargeMax: </label><div class='col-sm-8'><input id='{{id}}_totalTranChargeMax' class='form-control' type='text'{{#totalTranChargeMax}} value='{{totalTranChargeMax}}'{{/totalTranChargeMax}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -202,7 +202,7 @@ define
                     `
                     {{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -230,7 +230,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -347,7 +347,7 @@ define
                     {{#certifiedRUC}}<div><b>certifiedRUC</b>: {{certifiedRUC}}</div>{{/certifiedRUC}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -408,7 +408,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><select id='{{id}}_certifiedRUC' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

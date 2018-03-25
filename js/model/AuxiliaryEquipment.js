@@ -82,7 +82,7 @@ define
                     `
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -110,7 +110,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -194,7 +194,7 @@ define
                     + AuxiliaryEquipment.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -221,7 +221,7 @@ define
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -291,7 +291,7 @@ define
                     + AuxiliaryEquipment.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -318,7 +318,7 @@ define
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -402,7 +402,7 @@ define
                     {{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -435,7 +435,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ptClass'>ptClass: </label><div class='col-sm-8'><input id='{{id}}_ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#PotentialTransformerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PotentialTransformerKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -513,7 +513,7 @@ define
                     + AuxiliaryEquipment.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -540,7 +540,7 @@ define
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -627,7 +627,7 @@ define
                     {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
                     {{#coreBurden}}<div><b>coreBurden</b>: {{coreBurden}}</div>{{/coreBurden}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -659,7 +659,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreBurden'>coreBurden: </label><div class='col-sm-8'><input id='{{id}}_coreBurden' class='form-control' type='text'{{#coreBurden}} value='{{coreBurden}}'{{/coreBurden}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -736,7 +736,7 @@ define
                     + Sensor.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -763,7 +763,7 @@ define
                     + Sensor.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -833,7 +833,7 @@ define
                     + AuxiliaryEquipment.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -860,7 +860,7 @@ define
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

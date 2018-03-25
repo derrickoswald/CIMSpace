@@ -75,7 +75,7 @@ define
                     {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -105,7 +105,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -213,7 +213,7 @@ define
                     {{#vvtmax}}<div><b>vvtmax</b>: {{vvtmax}}</div>{{/vvtmax}}
                     {{#vvtmin}}<div><b>vvtmin</b>: {{vvtmin}}</div>{{/vvtmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -246,7 +246,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvtmax'>vvtmax: </label><div class='col-sm-8'><input id='{{id}}_vvtmax' class='form-control' type='text'{{#vvtmax}} value='{{vvtmax}}'{{/vvtmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvtmin'>vvtmin: </label><div class='col-sm-8'><input id='{{id}}_vvtmin' class='form-control' type='text'{{#vvtmin}} value='{{vvtmin}}'{{/vvtmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -350,7 +350,7 @@ define
                     {{#vvtmax}}<div><b>vvtmax</b>: {{vvtmax}}</div>{{/vvtmax}}
                     {{#vvtmin}}<div><b>vvtmin</b>: {{vvtmin}}</div>{{/vvtmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -385,7 +385,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvtmax'>vvtmax: </label><div class='col-sm-8'><input id='{{id}}_vvtmax' class='form-control' type='text'{{#vvtmax}} value='{{vvtmax}}'{{/vvtmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvtmin'>vvtmin: </label><div class='col-sm-8'><input id='{{id}}_vvtmin' class='form-control' type='text'{{#vvtmin}} value='{{vvtmin}}'{{/vvtmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

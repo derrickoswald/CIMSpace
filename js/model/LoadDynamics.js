@@ -134,7 +134,7 @@ define
                     {{#vt}}<div><b>vt</b>: {{vt}}</div>{{/vt}}
                     {{#LoadAggregate}}<div><b>LoadAggregate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadAggregate}}&quot;);}); return false;'>{{LoadAggregate}}</a></div>{{/LoadAggregate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -175,7 +175,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vt'>vt: </label><div class='col-sm-8'><input id='{{id}}_vt' class='form-control' type='text'{{#vt}} value='{{vt}}'{{/vt}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadAggregate'>LoadAggregate: </label><div class='col-sm-8'><input id='{{id}}_LoadAggregate' class='form-control' type='text'{{#LoadAggregate}} value='{{LoadAggregate}}'{{/LoadAggregate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -279,7 +279,7 @@ define
                     `
                     {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumer}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -308,7 +308,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -443,7 +443,7 @@ define
                     {{#staticLoadModelType}}<div><b>staticLoadModelType</b>: {{staticLoadModelType}}</div>{{/staticLoadModelType}}
                     {{#LoadAggregate}}<div><b>LoadAggregate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadAggregate}}&quot;);}); return false;'>{{LoadAggregate}}</a></div>{{/LoadAggregate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -490,7 +490,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_staticLoadModelType'>staticLoadModelType: </label><div class='col-sm-8'><select id='{{id}}_staticLoadModelType' class='form-control custom-select'>{{#StaticLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StaticLoadModelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadAggregate'>LoadAggregate: </label><div class='col-sm-8'><input id='{{id}}_LoadAggregate' class='form-control' type='text'{{#LoadAggregate}} value='{{LoadAggregate}}'{{/LoadAggregate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -626,7 +626,7 @@ define
                     {{#lfrac}}<div><b>lfrac</b>: {{lfrac}}</div>{{/lfrac}}
                     {{#pfrac}}<div><b>pfrac</b>: {{pfrac}}</div>{{/pfrac}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -664,7 +664,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lfrac'>lfrac: </label><div class='col-sm-8'><input id='{{id}}_lfrac' class='form-control' type='text'{{#lfrac}} value='{{lfrac}}'{{/lfrac}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfrac'>pfrac: </label><div class='col-sm-8'><input id='{{id}}_pfrac' class='form-control' type='text'{{#pfrac}} value='{{pfrac}}'{{/pfrac}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -774,7 +774,7 @@ define
                     {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
                     {{#tq}}<div><b>tq</b>: {{tq}}</div>{{/tq}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -812,7 +812,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tq'>tq: </label><div class='col-sm-8'><input id='{{id}}_tq' class='form-control' type='text'{{#tq}} value='{{tq}}'{{/tq}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -901,7 +901,7 @@ define
                     {{#LoadMotor}}<div><b>LoadMotor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadMotor}}&quot;);}); return false;'>{{LoadMotor}}</a></div>{{/LoadMotor}}
                     {{#LoadStatic}}<div><b>LoadStatic</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadStatic}}&quot;);}); return false;'>{{LoadStatic}}</a></div>{{/LoadStatic}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -930,7 +930,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadMotor'>LoadMotor: </label><div class='col-sm-8'><input id='{{id}}_LoadMotor' class='form-control' type='text'{{#LoadMotor}} value='{{LoadMotor}}'{{/LoadMotor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadStatic'>LoadStatic: </label><div class='col-sm-8'><input id='{{id}}_LoadStatic' class='form-control' type='text'{{#LoadStatic}} value='{{LoadStatic}}'{{/LoadStatic}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

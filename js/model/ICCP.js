@@ -96,7 +96,7 @@ define
                     {{#addressType}}<div><b>addressType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{addressType}}&quot;);}); return false;'>{{addressType}}</a></div>{{/addressType}}\n                    {{#gateway}}<div><b>gateway</b>: {{gateway}}</div>{{/gateway}}
                     {{#subnet}}<div><b>subnet</b>: {{subnet}}</div>{{/subnet}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -129,7 +129,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gateway'>gateway: </label><div class='col-sm-8'><input id='{{id}}_gateway' class='form-control' type='text'{{#gateway}} value='{{gateway}}'{{/gateway}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subnet'>subnet: </label><div class='col-sm-8'><input id='{{id}}_subnet' class='form-control' type='text'{{#subnet}} value='{{subnet}}'{{/subnet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -210,7 +210,7 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -244,7 +244,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -327,7 +327,7 @@ define
                     {{#localReference}}<div><b>localReference</b>: {{localReference}}</div>{{/localReference}}
                     {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -358,7 +358,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localReference'>localReference: </label><div class='col-sm-8'><input id='{{id}}_localReference' class='form-control' type='text'{{#localReference}} value='{{localReference}}'{{/localReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -437,7 +437,7 @@ define
                     `
                     {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -467,7 +467,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -554,7 +554,7 @@ define
                     {{#nameOfICC}}<div><b>nameOfICC</b>: {{nameOfICC}}</div>{{/nameOfICC}}
                     {{#tase2version}}<div><b>tase2version</b>: {{tase2version}}</div>{{/tase2version}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -585,7 +585,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nameOfICC'>nameOfICC: </label><div class='col-sm-8'><input id='{{id}}_nameOfICC' class='form-control' type='text'{{#nameOfICC}} value='{{nameOfICC}}'{{/nameOfICC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tase2version'>tase2version: </label><div class='col-sm-8'><input id='{{id}}_tase2version' class='form-control' type='text'{{#tase2version}} value='{{tase2version}}'{{/tase2version}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -666,7 +666,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -700,7 +700,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -777,7 +777,7 @@ define
                     {{#keepAliveTime}}<div><b>keepAliveTime</b>: {{keepAliveTime}}</div>{{/keepAliveTime}}
                     {{#port}}<div><b>port</b>: {{port}}</div>{{/port}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -806,7 +806,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_keepAliveTime'>keepAliveTime: </label><div class='col-sm-8'><input id='{{id}}_keepAliveTime' class='form-control' type='text'{{#keepAliveTime}} value='{{keepAliveTime}}'{{/keepAliveTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_port'>port: </label><div class='col-sm-8'><input id='{{id}}_port' class='form-control' type='text'{{#port}} value='{{port}}'{{/port}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -887,7 +887,7 @@ define
                     {{#osiSsel}}<div><b>osiSsel</b>: {{osiSsel}}</div>{{/osiSsel}}
                     {{#osiTsel}}<div><b>osiTsel</b>: {{osiTsel}}</div>{{/osiTsel}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -920,7 +920,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiSsel'>osiSsel: </label><div class='col-sm-8'><input id='{{id}}_osiSsel' class='form-control' type='text'{{#osiSsel}} value='{{osiSsel}}'{{/osiSsel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiTsel'>osiTsel: </label><div class='col-sm-8'><input id='{{id}}_osiTsel' class='form-control' type='text'{{#osiTsel}} value='{{osiTsel}}'{{/osiTsel}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -995,7 +995,7 @@ define
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1025,7 +1025,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPIndicationPointType}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1097,7 +1097,7 @@ define
                     `
                     {{#deviceClass}}<div><b>deviceClass</b>: {{deviceClass}}</div>{{/deviceClass}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1127,7 +1127,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='{{id}}_deviceClass' class='form-control custom-select'>{{#ICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPControlPointDeviceClass}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1196,7 +1196,7 @@ define
                     + ICCPControlPoint.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1223,7 +1223,7 @@ define
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1292,7 +1292,7 @@ define
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1322,7 +1322,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPSetPointType}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

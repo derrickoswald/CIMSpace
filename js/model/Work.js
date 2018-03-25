@@ -146,7 +146,7 @@ define
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#BaseWork}}<div><b>BaseWork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseWork}}&quot;);}); return false;'>{{BaseWork}}</a></div>{{/BaseWork}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -177,7 +177,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#WorkTimeScheduleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkTimeScheduleKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BaseWork'>BaseWork: </label><div class='col-sm-8'><input id='{{id}}_BaseWork' class='form-control' type='text'{{#BaseWork}} value='{{BaseWork}}'{{/BaseWork}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -276,7 +276,7 @@ define
                     {{#WorkLocation}}<div><b>WorkLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkLocation}}&quot;);}); return false;'>{{WorkLocation}}</a></div>{{/WorkLocation}}
                     {{#TimeSchedules}}<div><b>TimeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TimeSchedules}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -315,7 +315,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusKind'>statusKind: </label><div class='col-sm-8'><select id='{{id}}_statusKind' class='form-control custom-select'>{{#WorkStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkLocation'>WorkLocation: </label><div class='col-sm-8'><input id='{{id}}_WorkLocation' class='form-control' type='text'{{#WorkLocation}} value='{{WorkLocation}}'{{/WorkLocation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -412,7 +412,7 @@ define
                     {{#BaseWorks}}<div><b>BaseWorks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BaseWorks}}
                     {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DesignLocations}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -445,7 +445,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OneCallRequest'>OneCallRequest: </label><div class='col-sm-8'><input id='{{id}}_OneCallRequest' class='form-control' type='text'{{#OneCallRequest}} value='{{OneCallRequest}}'{{/OneCallRequest}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations_string}}'{{/DesignLocations}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -543,7 +543,7 @@ define
                     {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
                     {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -575,7 +575,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -665,7 +665,7 @@ define
                     `
                     {{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);}); return false;'>{{Crew}}</a></div>{{/Crew}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -693,7 +693,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crew'>Crew: </label><div class='col-sm-8'><input id='{{id}}_Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -803,7 +803,7 @@ define
                     {{#OldAsset}}<div><b>OldAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldAsset}}&quot;);}); return false;'>{{OldAsset}}</a></div>{{/OldAsset}}
                     {{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingPlan}}&quot;);}); return false;'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -847,7 +847,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OldAsset'>OldAsset: </label><div class='col-sm-8'><input id='{{id}}_OldAsset' class='form-control' type='text'{{#OldAsset}} value='{{OldAsset}}'{{/OldAsset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingPlan'>SwitchingPlan: </label><div class='col-sm-8'><input id='{{id}}_SwitchingPlan' class='form-control' type='text'{{#SwitchingPlan}} value='{{SwitchingPlan}}'{{/SwitchingPlan}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -980,7 +980,7 @@ define
                     {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
                     {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);}); return false;'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1030,7 +1030,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails_string}}'{{/WorkCostDetails}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1144,7 +1144,7 @@ define
                     {{#nearestIntersection}}<div><b>nearestIntersection</b>: {{nearestIntersection}}</div>{{/nearestIntersection}}
                     {{#subdivision}}<div><b>subdivision</b>: {{subdivision}}</div>{{/subdivision}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1175,7 +1175,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nearestIntersection'>nearestIntersection: </label><div class='col-sm-8'><input id='{{id}}_nearestIntersection' class='form-control' type='text'{{#nearestIntersection}} value='{{nearestIntersection}}'{{/nearestIntersection}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subdivision'>subdivision: </label><div class='col-sm-8'><input id='{{id}}_subdivision' class='form-control' type='text'{{#subdivision}} value='{{subdivision}}'{{/subdivision}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1260,7 +1260,7 @@ define
                     {{#odometerReading}}<div><b>odometerReading</b>: {{odometerReading}}</div>{{/odometerReading}}
                     {{#usageKind}}<div><b>usageKind</b>: {{usageKind}}</div>{{/usageKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1292,7 +1292,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_odometerReading'>odometerReading: </label><div class='col-sm-8'><input id='{{id}}_odometerReading' class='form-control' type='text'{{#odometerReading}} value='{{odometerReading}}'{{/odometerReading}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#VehicleUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VehicleUsageKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1370,7 +1370,7 @@ define
                     `
                     {{#lastCalibrationDate}}<div><b>lastCalibrationDate</b>: {{lastCalibrationDate}}</div>{{/lastCalibrationDate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1398,7 +1398,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastCalibrationDate'>lastCalibrationDate: </label><div class='col-sm-8'><input id='{{id}}_lastCalibrationDate' class='form-control' type='text'{{#lastCalibrationDate}} value='{{lastCalibrationDate}}'{{/lastCalibrationDate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

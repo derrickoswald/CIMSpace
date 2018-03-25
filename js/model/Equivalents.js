@@ -69,7 +69,7 @@ define
                     `
                     {{#EquivalentEquipments}}<div><b>EquivalentEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EquivalentEquipments}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -98,7 +98,7 @@ define
                     + Core.ConnectivityNodeContainer.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -184,7 +184,7 @@ define
                     `
                     {{#EquivalentNetwork}}<div><b>EquivalentNetwork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquivalentNetwork}}&quot;);}); return false;'>{{EquivalentNetwork}}</a></div>{{/EquivalentNetwork}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -212,7 +212,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EquivalentNetwork'>EquivalentNetwork: </label><div class='col-sm-8'><input id='{{id}}_EquivalentNetwork' class='form-control' type='text'{{#EquivalentNetwork}} value='{{EquivalentNetwork}}'{{/EquivalentNetwork}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -302,7 +302,7 @@ define
                     {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
                     {{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -331,7 +331,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b'>b: </label><div class='col-sm-8'><input id='{{id}}_b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g'>g: </label><div class='col-sm-8'><input id='{{id}}_g' class='form-control' type='text'{{#g}} value='{{g}}'{{/g}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -453,7 +453,7 @@ define
                     {{#zeroX12}}<div><b>zeroX12</b>: {{zeroX12}}</div>{{/zeroX12}}
                     {{#zeroX21}}<div><b>zeroX21</b>: {{zeroX21}}</div>{{/zeroX21}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -496,7 +496,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zeroX12'>zeroX12: </label><div class='col-sm-8'><input id='{{id}}_zeroX12' class='form-control' type='text'{{#zeroX12}} value='{{zeroX12}}'{{/zeroX12}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zeroX21'>zeroX21: </label><div class='col-sm-8'><input id='{{id}}_zeroX21' class='form-control' type='text'{{#zeroX21}} value='{{zeroX21}}'{{/zeroX21}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -634,7 +634,7 @@ define
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
                     {{#ReactiveCapabilityCurve}}<div><b>ReactiveCapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReactiveCapabilityCurve}}&quot;);}); return false;'>{{ReactiveCapabilityCurve}}</a></div>{{/ReactiveCapabilityCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -677,7 +677,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q'>q: </label><div class='col-sm-8'><input id='{{id}}_q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReactiveCapabilityCurve'>ReactiveCapabilityCurve: </label><div class='col-sm-8'><input id='{{id}}_ReactiveCapabilityCurve' class='form-control' type='text'{{#ReactiveCapabilityCurve}} value='{{ReactiveCapabilityCurve}}'{{/ReactiveCapabilityCurve}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

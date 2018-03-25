@@ -90,7 +90,7 @@ define
                     {{#Discretes}}<div><b>Discretes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Discretes}}
                     {{#Values}}<div><b>Values</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Values}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -125,7 +125,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -232,7 +232,7 @@ define
                     {{#MeasurementValueQuality}}<div><b>MeasurementValueQuality</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValueQuality}}&quot;);}); return false;'>{{MeasurementValueQuality}}</a></div>{{/MeasurementValueQuality}}
                     {{#RemoteSource}}<div><b>RemoteSource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteSource}}&quot;);}); return false;'>{{RemoteSource}}</a></div>{{/RemoteSource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -268,7 +268,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementValueQuality'>MeasurementValueQuality: </label><div class='col-sm-8'><input id='{{id}}_MeasurementValueQuality' class='form-control' type='text'{{#MeasurementValueQuality}} value='{{MeasurementValueQuality}}'{{/MeasurementValueQuality}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteSource'>RemoteSource: </label><div class='col-sm-8'><input id='{{id}}_RemoteSource' class='form-control' type='text'{{#RemoteSource}} value='{{RemoteSource}}'{{/RemoteSource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -398,7 +398,7 @@ define
                     {{#test}}<div><b>test</b>: {{test}}</div>{{/test}}
                     {{#validity}}<div><b>validity</b>: {{validity}}</div>{{/validity}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -441,7 +441,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_test'>test: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_test' class='form-check-input' type='checkbox'{{#test}} checked{{/test}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validity'>validity: </label><div class='col-sm-8'><select id='{{id}}_validity' class='form-control custom-select'>{{#Validity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Validity}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -530,7 +530,7 @@ define
                     `
                     {{#Procedures}}<div><b>Procedures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Procedures}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -560,7 +560,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures_string}}'{{/Procedures}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -667,7 +667,7 @@ define
                     {{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);}); return false;'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
                     {{#RemoteControl}}<div><b>RemoteControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteControl}}&quot;);}); return false;'>{{RemoteControl}}</a></div>{{/RemoteControl}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -705,7 +705,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteControl'>RemoteControl: </label><div class='col-sm-8'><input id='{{id}}_RemoteControl' class='form-control' type='text'{{#RemoteControl}} value='{{RemoteControl}}'{{/RemoteControl}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -801,7 +801,7 @@ define
                     `
                     {{#MeasurementValues}}<div><b>MeasurementValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeasurementValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -830,7 +830,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -949,7 +949,7 @@ define
                     {{#PinMeasurement}}<div><b>PinMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PinMeasurement}}
                     {{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemResource}}&quot;);}); return false;'>{{PowerSystemResource}}</a></div>{{/PowerSystemResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1001,7 +1001,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1105,7 +1105,7 @@ define
                     `
                     {{#isPercentageLimits}}<div><b>isPercentageLimits</b>: {{isPercentageLimits}}</div>{{/isPercentageLimits}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1133,7 +1133,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isPercentageLimits'>isPercentageLimits: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isPercentageLimits' class='form-check-input' type='checkbox'{{#isPercentageLimits}} checked{{/isPercentageLimits}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1212,7 +1212,7 @@ define
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);}); return false;'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1241,7 +1241,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ValueAliasSet'>ValueAliasSet: </label><div class='col-sm-8'><input id='{{id}}_ValueAliasSet' class='form-control' type='text'{{#ValueAliasSet}} value='{{ValueAliasSet}}'{{/ValueAliasSet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1335,7 +1335,7 @@ define
                     {{#Command}}<div><b>Command</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Command}}&quot;);}); return false;'>{{Command}}</a></div>{{/Command}}
                     {{#Discrete}}<div><b>Discrete</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Discrete}}&quot;);}); return false;'>{{Discrete}}</a></div>{{/Discrete}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1365,7 +1365,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Command'>Command: </label><div class='col-sm-8'><input id='{{id}}_Command' class='form-control' type='text'{{#Command}} value='{{Command}}'{{/Command}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Discrete'>Discrete: </label><div class='col-sm-8'><input id='{{id}}_Discrete' class='form-control' type='text'{{#Discrete}} value='{{Discrete}}'{{/Discrete}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1458,7 +1458,7 @@ define
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     {{#StringMeasurement}}<div><b>StringMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StringMeasurement}}&quot;);}); return false;'>{{StringMeasurement}}</a></div>{{/StringMeasurement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1487,7 +1487,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StringMeasurement'>StringMeasurement: </label><div class='col-sm-8'><input id='{{id}}_StringMeasurement' class='form-control' type='text'{{#StringMeasurement}} value='{{StringMeasurement}}'{{/StringMeasurement}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1581,7 +1581,7 @@ define
                     {{#Accumulator}}<div><b>Accumulator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Accumulator}}&quot;);}); return false;'>{{Accumulator}}</a></div>{{/Accumulator}}
                     {{#AccumulatorReset}}<div><b>AccumulatorReset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AccumulatorReset}}&quot;);}); return false;'>{{AccumulatorReset}}</a></div>{{/AccumulatorReset}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1611,7 +1611,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Accumulator'>Accumulator: </label><div class='col-sm-8'><input id='{{id}}_Accumulator' class='form-control' type='text'{{#Accumulator}} value='{{Accumulator}}'{{/Accumulator}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AccumulatorReset'>AccumulatorReset: </label><div class='col-sm-8'><input id='{{id}}_AccumulatorReset' class='form-control' type='text'{{#AccumulatorReset}} value='{{AccumulatorReset}}'{{/AccumulatorReset}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1713,7 +1713,7 @@ define
                     {{#AnalogControl}}<div><b>AnalogControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogControl}}&quot;);}); return false;'>{{AnalogControl}}</a></div>{{/AnalogControl}}
                     {{#AltGeneratingUnit}}<div><b>AltGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AltGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1747,7 +1747,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Analog'>Analog: </label><div class='col-sm-8'><input id='{{id}}_Analog' class='form-control' type='text'{{#Analog}} value='{{Analog}}'{{/Analog}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AnalogControl'>AnalogControl: </label><div class='col-sm-8'><input id='{{id}}_AnalogControl' class='form-control' type='text'{{#AnalogControl}} value='{{AnalogControl}}'{{/AnalogControl}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1841,7 +1841,7 @@ define
                     `
                     {{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);}); return false;'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1869,7 +1869,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementValue'>MeasurementValue: </label><div class='col-sm-8'><input id='{{id}}_MeasurementValue' class='form-control' type='text'{{#MeasurementValue}} value='{{MeasurementValue}}'{{/MeasurementValue}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1959,7 +1959,7 @@ define
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     {{#LimitSet}}<div><b>LimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LimitSet}}&quot;);}); return false;'>{{LimitSet}}</a></div>{{/LimitSet}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1988,7 +1988,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSet'>LimitSet: </label><div class='col-sm-8'><input id='{{id}}_LimitSet' class='form-control' type='text'{{#LimitSet}} value='{{LimitSet}}'{{/LimitSet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2079,7 +2079,7 @@ define
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     {{#LimitSet}}<div><b>LimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LimitSet}}&quot;);}); return false;'>{{LimitSet}}</a></div>{{/LimitSet}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2108,7 +2108,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSet'>LimitSet: </label><div class='col-sm-8'><input id='{{id}}_LimitSet' class='form-control' type='text'{{#LimitSet}} value='{{LimitSet}}'{{/LimitSet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2196,7 +2196,7 @@ define
                     `
                     {{#AccumulatorValue}}<div><b>AccumulatorValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AccumulatorValue}}&quot;);}); return false;'>{{AccumulatorValue}}</a></div>{{/AccumulatorValue}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2224,7 +2224,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AccumulatorValue'>AccumulatorValue: </label><div class='col-sm-8'><input id='{{id}}_AccumulatorValue' class='form-control' type='text'{{#AccumulatorValue}} value='{{AccumulatorValue}}'{{/AccumulatorValue}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2317,7 +2317,7 @@ define
                     {{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
                     {{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);}); return false;'>{{AnalogValue}}</a></div>{{/AnalogValue}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2347,7 +2347,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minValue'>minValue: </label><div class='col-sm-8'><input id='{{id}}_minValue' class='form-control' type='text'{{#minValue}} value='{{minValue}}'{{/minValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AnalogValue'>AnalogValue: </label><div class='col-sm-8'><input id='{{id}}_AnalogValue' class='form-control' type='text'{{#AnalogValue}} value='{{AnalogValue}}'{{/AnalogValue}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2445,7 +2445,7 @@ define
                     {{#DiscreteValue}}<div><b>DiscreteValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscreteValue}}&quot;);}); return false;'>{{DiscreteValue}}</a></div>{{/DiscreteValue}}
                     {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);}); return false;'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2476,7 +2476,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiscreteValue'>DiscreteValue: </label><div class='col-sm-8'><input id='{{id}}_DiscreteValue' class='form-control' type='text'{{#DiscreteValue}} value='{{DiscreteValue}}'{{/DiscreteValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ValueAliasSet'>ValueAliasSet: </label><div class='col-sm-8'><input id='{{id}}_ValueAliasSet' class='form-control' type='text'{{#ValueAliasSet}} value='{{ValueAliasSet}}'{{/ValueAliasSet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2560,7 +2560,7 @@ define
                     + Command.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2587,7 +2587,7 @@ define
                     + Command.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2660,7 +2660,7 @@ define
                     `
                     {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);}); return false;'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2688,7 +2688,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ValueAliasSet'>ValueAliasSet: </label><div class='col-sm-8'><input id='{{id}}_ValueAliasSet' class='form-control' type='text'{{#ValueAliasSet}} value='{{ValueAliasSet}}'{{/ValueAliasSet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2778,7 +2778,7 @@ define
                     {{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2807,7 +2807,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalValue'>normalValue: </label><div class='col-sm-8'><input id='{{id}}_normalValue' class='form-control' type='text'{{#normalValue}} value='{{normalValue}}'{{/normalValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2896,7 +2896,7 @@ define
                     {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);}); return false;'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
                     {{#DiscreteValues}}<div><b>DiscreteValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DiscreteValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2929,7 +2929,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalValue'>normalValue: </label><div class='col-sm-8'><input id='{{id}}_normalValue' class='form-control' type='text'{{#normalValue}} value='{{normalValue}}'{{/normalValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ValueAliasSet'>ValueAliasSet: </label><div class='col-sm-8'><input id='{{id}}_ValueAliasSet' class='form-control' type='text'{{#ValueAliasSet}} value='{{ValueAliasSet}}'{{/ValueAliasSet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3035,7 +3035,7 @@ define
                     {{#AnalogValues}}<div><b>AnalogValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AnalogValues}}
                     {{#LimitSets}}<div><b>LimitSets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LimitSets}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3071,7 +3071,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_positiveFlowIn'>positiveFlowIn: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSets'>LimitSets: </label><div class='col-sm-8'><input id='{{id}}_LimitSets' class='form-control' type='text'{{#LimitSets}} value='{{LimitSets_string}}'{{/LimitSets}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3169,7 +3169,7 @@ define
                     {{#AccumulatorValues}}<div><b>AccumulatorValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AccumulatorValues}}
                     {{#LimitSets}}<div><b>LimitSets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LimitSets}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3202,7 +3202,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxValue'>maxValue: </label><div class='col-sm-8'><input id='{{id}}_maxValue' class='form-control' type='text'{{#maxValue}} value='{{maxValue}}'{{/maxValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitSets'>LimitSets: </label><div class='col-sm-8'><input id='{{id}}_LimitSets' class='form-control' type='text'{{#LimitSets}} value='{{LimitSets_string}}'{{/LimitSets}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3291,7 +3291,7 @@ define
                     `
                     {{#StringMeasurementValues}}<div><b>StringMeasurementValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StringMeasurementValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3320,7 +3320,7 @@ define
                     + Measurement.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3407,7 +3407,7 @@ define
                     {{#Limits}}<div><b>Limits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Limits}}
                     {{#Measurements}}<div><b>Measurements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Measurements}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3439,7 +3439,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3530,7 +3530,7 @@ define
                     {{#Measurements}}<div><b>Measurements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Measurements}}
                     {{#Limits}}<div><b>Limits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Limits}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3562,7 +3562,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

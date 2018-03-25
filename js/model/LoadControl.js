@@ -102,7 +102,7 @@ define
                     {{#powerLimit}}<div><b>powerLimit</b>: {{powerLimit}}</div>{{/powerLimit}}
                     {{#usePushbutton}}<div><b>usePushbutton</b>: {{usePushbutton}}</div>{{/usePushbutton}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -141,7 +141,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_powerLimit'>powerLimit: </label><div class='col-sm-8'><input id='{{id}}_powerLimit' class='form-control' type='text'{{#powerLimit}} value='{{powerLimit}}'{{/powerLimit}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_usePushbutton'>usePushbutton: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_usePushbutton' class='form-check-input' type='checkbox'{{#usePushbutton}} checked{{/usePushbutton}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -251,7 +251,7 @@ define
                     {{#isRemoteAutoReconOp}}<div><b>isRemoteAutoReconOp</b>: {{isRemoteAutoReconOp}}</div>{{/isRemoteAutoReconOp}}
                     {{#rcdInfo}}<div><b>rcdInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{rcdInfo}}&quot;);}); return false;'>{{rcdInfo}}</a></div>{{/rcdInfo}}\n                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Switches}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -291,7 +291,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcdInfo'>rcdInfo: </label><div class='col-sm-8'><select id='{{id}}_rcdInfo' class='form-control custom-select'>{{#RemoteConnectDisconnectInfo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteConnectDisconnectInfo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switches'>Switches: </label><div class='col-sm-8'><input id='{{id}}_Switches' class='form-control' type='text'{{#Switches}} value='{{Switches_string}}'{{/Switches}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

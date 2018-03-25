@@ -84,7 +84,7 @@ define
                     {{#WindTurbineType1or2Dynamics}}<div><b>WindTurbineType1or2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2Dynamics}}&quot;);}); return false;'>{{WindTurbineType1or2Dynamics}}</a></div>{{/WindTurbineType1or2Dynamics}}
                     {{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);}); return false;'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -115,7 +115,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType1or2Dynamics'>WindTurbineType1or2Dynamics: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType1or2Dynamics' class='form-control' type='text'{{#WindTurbineType1or2Dynamics}} value='{{WindTurbineType1or2Dynamics}}'{{/WindTurbineType1or2Dynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MechanicalLoadDynamics'>MechanicalLoadDynamics: </label><div class='col-sm-8'><input id='{{id}}_MechanicalLoadDynamics' class='form-control' type='text'{{#MechanicalLoadDynamics}} value='{{MechanicalLoadDynamics}}'{{/MechanicalLoadDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -235,7 +235,7 @@ define
                     {{#xlr2}}<div><b>xlr2</b>: {{xlr2}}</div>{{/xlr2}}
                     {{#xm}}<div><b>xm</b>: {{xm}}</div>{{/xm}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -267,7 +267,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xlr2'>xlr2: </label><div class='col-sm-8'><input id='{{id}}_xlr2' class='form-control' type='text'{{#xlr2}} value='{{xlr2}}'{{/xlr2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xm'>xm: </label><div class='col-sm-8'><input id='{{id}}_xm' class='form-control' type='text'{{#xm}} value='{{xm}}'{{/xm}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -380,7 +380,7 @@ define
                     {{#xpp}}<div><b>xpp</b>: {{xpp}}</div>{{/xpp}}
                     {{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -412,7 +412,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xpp'>xpp: </label><div class='col-sm-8'><input id='{{id}}_xpp' class='form-control' type='text'{{#xpp}} value='{{xpp}}'{{/xpp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xs'>xs: </label><div class='col-sm-8'><input id='{{id}}_xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

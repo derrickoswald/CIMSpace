@@ -69,7 +69,7 @@ define
                     `
                     {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -97,7 +97,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -188,7 +188,7 @@ define
                     {{#statorLeakageReactance}}<div><b>statorLeakageReactance</b>: {{statorLeakageReactance}}</div>{{/statorLeakageReactance}}
                     {{#statorResistance}}<div><b>statorResistance</b>: {{statorResistance}}</div>{{/statorResistance}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -221,7 +221,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statorLeakageReactance'>statorLeakageReactance: </label><div class='col-sm-8'><input id='{{id}}_statorLeakageReactance' class='form-control' type='text'{{#statorLeakageReactance}} value='{{statorLeakageReactance}}'{{/statorLeakageReactance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statorResistance'>statorResistance: </label><div class='col-sm-8'><input id='{{id}}_statorResistance' class='form-control' type='text'{{#statorResistance}} value='{{statorResistance}}'{{/statorResistance}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

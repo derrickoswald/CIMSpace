@@ -75,7 +75,7 @@ define
                     {{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
                     {{#TemperatureDependentLimitTable}}<div><b>TemperatureDependentLimitTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TemperatureDependentLimitTable}}&quot;);}); return false;'>{{TemperatureDependentLimitTable}}</a></div>{{/TemperatureDependentLimitTable}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -105,7 +105,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_temperature'>temperature: </label><div class='col-sm-8'><input id='{{id}}_temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TemperatureDependentLimitTable'>TemperatureDependentLimitTable: </label><div class='col-sm-8'><input id='{{id}}_TemperatureDependentLimitTable' class='form-control' type='text'{{#TemperatureDependentLimitTable}} value='{{TemperatureDependentLimitTable}}'{{/TemperatureDependentLimitTable}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -202,7 +202,7 @@ define
                     {{#SourceOperationalLimitType}}<div><b>SourceOperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimitType}}&quot;);}); return false;'>{{SourceOperationalLimitType}}</a></div>{{/SourceOperationalLimitType}}
                     {{#TargetOperationalLimit}}<div><b>TargetOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimit}}&quot;);}); return false;'>{{TargetOperationalLimit}}</a></div>{{/TargetOperationalLimit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -232,7 +232,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SourceOperationalLimitType'>SourceOperationalLimitType: </label><div class='col-sm-8'><input id='{{id}}_SourceOperationalLimitType' class='form-control' type='text'{{#SourceOperationalLimitType}} value='{{SourceOperationalLimitType}}'{{/SourceOperationalLimitType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TargetOperationalLimit'>TargetOperationalLimit: </label><div class='col-sm-8'><input id='{{id}}_TargetOperationalLimit' class='form-control' type='text'{{#TargetOperationalLimit}} value='{{TargetOperationalLimit}}'{{/TargetOperationalLimit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -325,7 +325,7 @@ define
                     {{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);}); return false;'>{{Season}}</a></div>{{/Season}}
                     {{#ScheduledLimitDependency}}<div><b>ScheduledLimitDependency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledLimitDependency}}&quot;);}); return false;'>{{ScheduledLimitDependency}}</a></div>{{/ScheduledLimitDependency}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -354,7 +354,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Season'>Season: </label><div class='col-sm-8'><input id='{{id}}_Season' class='form-control' type='text'{{#Season}} value='{{Season}}'{{/Season}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ScheduledLimitDependency'>ScheduledLimitDependency: </label><div class='col-sm-8'><input id='{{id}}_ScheduledLimitDependency' class='form-control' type='text'{{#ScheduledLimitDependency}} value='{{ScheduledLimitDependency}}'{{/ScheduledLimitDependency}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -443,7 +443,7 @@ define
                     `
                     {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Equipment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -473,7 +473,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment_string}}'{{/Equipment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -565,7 +565,7 @@ define
                     {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
                     {{#OperationalLimit}}<div><b>OperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperationalLimit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -596,7 +596,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimit'>OperationalLimit: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimit' class='form-control' type='text'{{#OperationalLimit}} value='{{OperationalLimit_string}}'{{/OperationalLimit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -688,7 +688,7 @@ define
                     {{#SeriesEquipmentDependentLimit}}<div><b>SeriesEquipmentDependentLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SeriesEquipmentDependentLimit}}&quot;);}); return false;'>{{SeriesEquipmentDependentLimit}}</a></div>{{/SeriesEquipmentDependentLimit}}
                     {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -717,7 +717,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SeriesEquipmentDependentLimit'>SeriesEquipmentDependentLimit: </label><div class='col-sm-8'><input id='{{id}}_SeriesEquipmentDependentLimit' class='form-control' type='text'{{#SeriesEquipmentDependentLimit}} value='{{SeriesEquipmentDependentLimit}}'{{/SeriesEquipmentDependentLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -806,7 +806,7 @@ define
                     `
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -834,7 +834,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -910,7 +910,7 @@ define
                     `
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -938,7 +938,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1010,7 +1010,7 @@ define
                     `
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1038,7 +1038,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1114,7 +1114,7 @@ define
                     `
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1142,7 +1142,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1221,7 +1221,7 @@ define
                     {{#limitScalingPercent}}<div><b>limitScalingPercent</b>: {{limitScalingPercent}}</div>{{/limitScalingPercent}}
                     {{#SourceOperationalLimit}}<div><b>SourceOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimit}}&quot;);}); return false;'>{{SourceOperationalLimit}}</a></div>{{/SourceOperationalLimit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1250,7 +1250,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitScalingPercent'>limitScalingPercent: </label><div class='col-sm-8'><input id='{{id}}_limitScalingPercent' class='form-control' type='text'{{#limitScalingPercent}} value='{{limitScalingPercent}}'{{/limitScalingPercent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SourceOperationalLimit'>SourceOperationalLimit: </label><div class='col-sm-8'><input id='{{id}}_SourceOperationalLimit' class='form-control' type='text'{{#SourceOperationalLimit}} value='{{SourceOperationalLimit}}'{{/SourceOperationalLimit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1335,7 +1335,7 @@ define
                     + LimitDependency.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1362,7 +1362,7 @@ define
                     + LimitDependency.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1431,7 +1431,7 @@ define
                     `
                     {{#ScheduledLimitValues}}<div><b>ScheduledLimitValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ScheduledLimitValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1460,7 +1460,7 @@ define
                     + LimitDependency.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1546,7 +1546,7 @@ define
                     `
                     {{#EquipmentLimitSeriesComponent}}<div><b>EquipmentLimitSeriesComponent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EquipmentLimitSeriesComponent}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1575,7 +1575,7 @@ define
                     + LimitDependency.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1671,7 +1671,7 @@ define
                     {{#coefficient3}}<div><b>coefficient3</b>: {{coefficient3}}</div>{{/coefficient3}}
                     {{#coefficient4}}<div><b>coefficient4</b>: {{coefficient4}}</div>{{/coefficient4}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1703,7 +1703,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coefficient3'>coefficient3: </label><div class='col-sm-8'><input id='{{id}}_coefficient3' class='form-control' type='text'{{#coefficient3}} value='{{coefficient3}}'{{/coefficient3}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coefficient4'>coefficient4: </label><div class='col-sm-8'><input id='{{id}}_coefficient4' class='form-control' type='text'{{#coefficient4}} value='{{coefficient4}}'{{/coefficient4}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1783,7 +1783,7 @@ define
                     `
                     {{#TemperatureLimitTablePoint}}<div><b>TemperatureLimitTablePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TemperatureLimitTablePoint}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1812,7 +1812,7 @@ define
                     + EnvironmentalDependentLimit.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

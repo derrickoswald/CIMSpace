@@ -93,7 +93,7 @@ define
                     {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RemoteInputSignal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -123,7 +123,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -241,7 +241,7 @@ define
                     {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
                     {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -279,7 +279,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -445,7 +445,7 @@ define
                     {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
                     {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -503,7 +503,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -656,7 +656,7 @@ define
                     {{#vcl}}<div><b>vcl</b>: {{vcl}}</div>{{/vcl}}
                     {{#vcu}}<div><b>vcu</b>: {{vcu}}</div>{{/vcu}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -705,7 +705,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcl'>vcl: </label><div class='col-sm-8'><input id='{{id}}_vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcu'>vcu: </label><div class='col-sm-8'><input id='{{id}}_vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -840,7 +840,7 @@ define
                     {{#vsmn}}<div><b>vsmn</b>: {{vsmn}}</div>{{/vsmn}}
                     {{#vsmx}}<div><b>vsmx</b>: {{vsmx}}</div>{{/vsmx}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -882,7 +882,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmn'>vsmn: </label><div class='col-sm-8'><input id='{{id}}_vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmx'>vsmx: </label><div class='col-sm-8'><input id='{{id}}_vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1008,7 +1008,7 @@ define
                     {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
                     {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1048,7 +1048,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1201,7 +1201,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1252,7 +1252,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1379,7 +1379,7 @@ define
                     {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
                     {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1417,7 +1417,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1538,7 +1538,7 @@ define
                     {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
                     {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1579,7 +1579,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1765,7 +1765,7 @@ define
                     {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
                     {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1826,7 +1826,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2135,7 +2135,7 @@ define
                     {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
                     {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2229,7 +2229,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2419,7 +2419,7 @@ define
                     {{#vsmn}}<div><b>vsmn</b>: {{vsmn}}</div>{{/vsmn}}
                     {{#vsmx}}<div><b>vsmx</b>: {{vsmx}}</div>{{/vsmx}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2463,7 +2463,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmn'>vsmn: </label><div class='col-sm-8'><input id='{{id}}_vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmx'>vsmx: </label><div class='col-sm-8'><input id='{{id}}_vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2585,7 +2585,7 @@ define
                     {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
                     {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2623,7 +2623,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2765,7 +2765,7 @@ define
                     {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
                     {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2815,7 +2815,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2939,7 +2939,7 @@ define
                     {{#ts5}}<div><b>ts5</b>: {{ts5}}</div>{{/ts5}}
                     {{#ts6}}<div><b>ts6</b>: {{ts6}}</div>{{/ts6}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2977,7 +2977,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts5'>ts5: </label><div class='col-sm-8'><input id='{{id}}_ts5' class='form-control' type='text'{{#ts5}} value='{{ts5}}'{{/ts5}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts6'>ts6: </label><div class='col-sm-8'><input id='{{id}}_ts6' class='form-control' type='text'{{#ts6}} value='{{ts6}}'{{/ts6}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3155,7 +3155,7 @@ define
                     {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
                     {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3217,7 +3217,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3374,7 +3374,7 @@ define
                     {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
                     {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3423,7 +3423,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

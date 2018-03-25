@@ -96,7 +96,7 @@ define
                     `
                     {{#RemoteUnit}}<div><b>RemoteUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteUnit}}&quot;);}); return false;'>{{RemoteUnit}}</a></div>{{/RemoteUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -124,7 +124,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteUnit'>RemoteUnit: </label><div class='col-sm-8'><input id='{{id}}_RemoteUnit' class='form-control' type='text'{{#RemoteUnit}} value='{{RemoteUnit}}'{{/RemoteUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -219,7 +219,7 @@ define
                     {{#CommunicationLinks}}<div><b>CommunicationLinks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CommunicationLinks}}
                     {{#RemotePoints}}<div><b>RemotePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RemotePoints}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -254,7 +254,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteUnitType'>remoteUnitType: </label><div class='col-sm-8'><select id='{{id}}_remoteUnitType' class='form-control custom-select'>{{#RemoteUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteUnitType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CommunicationLinks'>CommunicationLinks: </label><div class='col-sm-8'><input id='{{id}}_CommunicationLinks' class='form-control' type='text'{{#CommunicationLinks}} value='{{CommunicationLinks_string}}'{{/CommunicationLinks}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -345,7 +345,7 @@ define
                     `
                     {{#RemoteUnits}}<div><b>RemoteUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RemoteUnits}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -375,7 +375,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteUnits'>RemoteUnits: </label><div class='col-sm-8'><input id='{{id}}_RemoteUnits' class='form-control' type='text'{{#RemoteUnits}} value='{{RemoteUnits_string}}'{{/RemoteUnits}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -474,7 +474,7 @@ define
                     {{#sensorMinimum}}<div><b>sensorMinimum</b>: {{sensorMinimum}}</div>{{/sensorMinimum}}
                     {{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);}); return false;'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -506,7 +506,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sensorMinimum'>sensorMinimum: </label><div class='col-sm-8'><input id='{{id}}_sensorMinimum' class='form-control' type='text'{{#sensorMinimum}} value='{{sensorMinimum}}'{{/sensorMinimum}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementValue'>MeasurementValue: </label><div class='col-sm-8'><input id='{{id}}_MeasurementValue' class='form-control' type='text'{{#MeasurementValue}} value='{{MeasurementValue}}'{{/MeasurementValue}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -606,7 +606,7 @@ define
                     {{#remoteControlled}}<div><b>remoteControlled</b>: {{remoteControlled}}</div>{{/remoteControlled}}
                     {{#Control}}<div><b>Control</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Control}}&quot;);}); return false;'>{{Control}}</a></div>{{/Control}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -637,7 +637,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_remoteControlled'>remoteControlled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remoteControlled' class='form-check-input' type='checkbox'{{#remoteControlled}} checked{{/remoteControlled}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Control'>Control: </label><div class='col-sm-8'><input id='{{id}}_Control' class='form-control' type='text'{{#Control}} value='{{Control}}'{{/Control}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

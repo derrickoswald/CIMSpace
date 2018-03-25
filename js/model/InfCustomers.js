@@ -85,7 +85,7 @@ define
                     {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
                     {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CustomerAgreements}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -115,7 +115,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -213,7 +213,7 @@ define
                     {{#payAmount}}<div><b>payAmount</b>: {{payAmount}}</div>{{/payAmount}}
                     {{#serviceRequirement}}<div><b>serviceRequirement</b>: {{serviceRequirement}}</div>{{/serviceRequirement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -246,7 +246,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_payAmount'>payAmount: </label><div class='col-sm-8'><input id='{{id}}_payAmount' class='form-control' type='text'{{#payAmount}} value='{{payAmount}}'{{/payAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceRequirement'>serviceRequirement: </label><div class='col-sm-8'><input id='{{id}}_serviceRequirement' class='form-control' type='text'{{#serviceRequirement}} value='{{serviceRequirement}}'{{/serviceRequirement}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -327,7 +327,7 @@ define
                     `
                     {{#deadline}}<div><b>deadline</b>: {{deadline}}</div>{{/deadline}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -355,7 +355,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deadline'>deadline: </label><div class='col-sm-8'><input id='{{id}}_deadline' class='form-control' type='text'{{#deadline}} value='{{deadline}}'{{/deadline}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -460,7 +460,7 @@ define
                     {{#ErpLineItems}}<div><b>ErpLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpLineItems}}
                     {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);}); return false;'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -500,7 +500,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLineItems'>ErpLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpLineItems' class='form-control' type='text'{{#ErpLineItems}} value='{{ErpLineItems_string}}'{{/ErpLineItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -596,7 +596,7 @@ define
                     + Common.Agreement.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -623,7 +623,7 @@ define
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -720,7 +720,7 @@ define
                     {{#voltImbalanceViolCost}}<div><b>voltImbalanceViolCost</b>: {{voltImbalanceViolCost}}</div>{{/voltImbalanceViolCost}}
                     {{#voltLimitViolCost}}<div><b>voltLimitViolCost</b>: {{voltLimitViolCost}}</div>{{/voltLimitViolCost}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -756,7 +756,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltImbalanceViolCost'>voltImbalanceViolCost: </label><div class='col-sm-8'><input id='{{id}}_voltImbalanceViolCost' class='form-control' type='text'{{#voltImbalanceViolCost}} value='{{voltImbalanceViolCost}}'{{/voltImbalanceViolCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltLimitViolCost'>voltLimitViolCost: </label><div class='col-sm-8'><input id='{{id}}_voltLimitViolCost' class='form-control' type='text'{{#voltLimitViolCost}} value='{{voltLimitViolCost}}'{{/voltLimitViolCost}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -837,7 +837,7 @@ define
                     + Core.Curve.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -864,7 +864,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -966,7 +966,7 @@ define
                     {{#ErpInvoiceLineItems}}<div><b>ErpInvoiceLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpInvoiceLineItems}}
                     {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);}); return false;'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1007,7 +1007,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems_string}}'{{/ErpInvoiceLineItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

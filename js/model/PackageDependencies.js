@@ -72,7 +72,7 @@ define
                     {{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
                     {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -101,7 +101,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_date'>date: </label><div class='col-sm-8'><input id='{{id}}_date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

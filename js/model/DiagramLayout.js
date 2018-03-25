@@ -97,7 +97,7 @@ define
                     {{#DiagramObject}}<div><b>DiagramObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObject}}&quot;);}); return false;'>{{DiagramObject}}</a></div>{{/DiagramObject}}
                     {{#DiagramObjectGluePoint}}<div><b>DiagramObjectGluePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObjectGluePoint}}&quot;);}); return false;'>{{DiagramObjectGluePoint}}</a></div>{{/DiagramObjectGluePoint}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -130,7 +130,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiagramObject'>DiagramObject: </label><div class='col-sm-8'><input id='{{id}}_DiagramObject' class='form-control' type='text'{{#DiagramObject}} value='{{DiagramObject}}'{{/DiagramObject}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiagramObjectGluePoint'>DiagramObjectGluePoint: </label><div class='col-sm-8'><input id='{{id}}_DiagramObjectGluePoint' class='form-control' type='text'{{#DiagramObjectGluePoint}} value='{{DiagramObjectGluePoint}}'{{/DiagramObjectGluePoint}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -225,7 +225,7 @@ define
                     `
                     {{#StyledObjects}}<div><b>StyledObjects</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StyledObjects}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -254,7 +254,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -338,7 +338,7 @@ define
                     `
                     {{#DiagramObjectPoints}}<div><b>DiagramObjectPoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DiagramObjectPoints}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -367,7 +367,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -471,7 +471,7 @@ define
                     {{#DiagramElements}}<div><b>DiagramElements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DiagramElements}}
                     {{#DiagramStyle}}<div><b>DiagramStyle</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramStyle}}&quot;);}); return false;'>{{DiagramStyle}}</a></div>{{/DiagramStyle}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -508,7 +508,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2InitialView'>y2InitialView: </label><div class='col-sm-8'><input id='{{id}}_y2InitialView' class='form-control' type='text'{{#y2InitialView}} value='{{y2InitialView}}'{{/y2InitialView}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiagramStyle'>DiagramStyle: </label><div class='col-sm-8'><input id='{{id}}_DiagramStyle' class='form-control' type='text'{{#DiagramStyle}} value='{{DiagramStyle}}'{{/DiagramStyle}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -606,7 +606,7 @@ define
                     {{#drawingOrder}}<div><b>drawingOrder</b>: {{drawingOrder}}</div>{{/drawingOrder}}
                     {{#VisibleObjects}}<div><b>VisibleObjects</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VisibleObjects}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -637,7 +637,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='{{id}}_drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VisibleObjects'>VisibleObjects: </label><div class='col-sm-8'><input id='{{id}}_VisibleObjects' class='form-control' type='text'{{#VisibleObjects}} value='{{VisibleObjects_string}}'{{/VisibleObjects}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -754,7 +754,7 @@ define
                     {{#IdentifiedObject}}<div><b>IdentifiedObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IdentifiedObject}}&quot;);}); return false;'>{{IdentifiedObject}}</a></div>{{/IdentifiedObject}}
                     {{#VisibilityLayers}}<div><b>VisibilityLayers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VisibilityLayers}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -794,7 +794,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IdentifiedObject'>IdentifiedObject: </label><div class='col-sm-8'><input id='{{id}}_IdentifiedObject' class='form-control' type='text'{{#IdentifiedObject}} value='{{IdentifiedObject}}'{{/IdentifiedObject}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VisibilityLayers'>VisibilityLayers: </label><div class='col-sm-8'><input id='{{id}}_VisibilityLayers' class='form-control' type='text'{{#VisibilityLayers}} value='{{VisibilityLayers_string}}'{{/VisibilityLayers}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -895,7 +895,7 @@ define
                     `
                     {{#Diagram}}<div><b>Diagram</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Diagram}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -924,7 +924,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1008,7 +1008,7 @@ define
                     `
                     {{#text}}<div><b>text</b>: {{text}}</div>{{/text}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1036,7 +1036,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_text'>text: </label><div class='col-sm-8'><input id='{{id}}_text' class='form-control' type='text'{{#text}} value='{{text}}'{{/text}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

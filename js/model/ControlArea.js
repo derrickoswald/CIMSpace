@@ -90,7 +90,7 @@ define
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     {{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);}); return false;'>{{ControlArea}}</a></div>{{/ControlArea}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -122,7 +122,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='{{id}}_ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -221,7 +221,7 @@ define
                     {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);}); return false;'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
                     {{#AltGeneratingUnitMeas}}<div><b>AltGeneratingUnitMeas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AltGeneratingUnitMeas}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -252,7 +252,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='{{id}}_ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -348,7 +348,7 @@ define
                     {{#TieFlow}}<div><b>TieFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TieFlow}}&quot;);}); return false;'>{{TieFlow}}</a></div>{{/TieFlow}}
                     {{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);}); return false;'>{{AnalogValue}}</a></div>{{/AnalogValue}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -378,7 +378,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TieFlow'>TieFlow: </label><div class='col-sm-8'><input id='{{id}}_TieFlow' class='form-control' type='text'{{#TieFlow}} value='{{TieFlow}}'{{/TieFlow}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AnalogValue'>AnalogValue: </label><div class='col-sm-8'><input id='{{id}}_AnalogValue' class='form-control' type='text'{{#AnalogValue}} value='{{AnalogValue}}'{{/AnalogValue}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -474,7 +474,7 @@ define
                     {{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);}); return false;'>{{AnalogValue}}</a></div>{{/AnalogValue}}
                     {{#ControlAreaGeneratingUnit}}<div><b>ControlAreaGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlAreaGeneratingUnit}}&quot;);}); return false;'>{{ControlAreaGeneratingUnit}}</a></div>{{/ControlAreaGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -504,7 +504,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AnalogValue'>AnalogValue: </label><div class='col-sm-8'><input id='{{id}}_AnalogValue' class='form-control' type='text'{{#AnalogValue}} value='{{AnalogValue}}'{{/AnalogValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlAreaGeneratingUnit'>ControlAreaGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ControlAreaGeneratingUnit' class='form-control' type='text'{{#ControlAreaGeneratingUnit}} value='{{ControlAreaGeneratingUnit}}'{{/ControlAreaGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -611,7 +611,7 @@ define
                     {{#TieFlow}}<div><b>TieFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TieFlow}}
                     {{#EnergyArea}}<div><b>EnergyArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyArea}}&quot;);}); return false;'>{{EnergyArea}}</a></div>{{/EnergyArea}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -648,7 +648,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ControlAreaTypeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ControlAreaTypeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyArea'>EnergyArea: </label><div class='col-sm-8'><input id='{{id}}_EnergyArea' class='form-control' type='text'{{#EnergyArea}} value='{{EnergyArea}}'{{/EnergyArea}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

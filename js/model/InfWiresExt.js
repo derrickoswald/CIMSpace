@@ -66,7 +66,7 @@ define
                     {{#capacitiveRating}}<div><b>capacitiveRating</b>: {{capacitiveRating}}</div>{{/capacitiveRating}}
                     {{#inductiveRating}}<div><b>inductiveRating</b>: {{inductiveRating}}</div>{{/inductiveRating}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -95,7 +95,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacitiveRating'>capacitiveRating: </label><div class='col-sm-8'><input id='{{id}}_capacitiveRating' class='form-control' type='text'{{#capacitiveRating}} value='{{capacitiveRating}}'{{/capacitiveRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductiveRating'>inductiveRating: </label><div class='col-sm-8'><input id='{{id}}_inductiveRating' class='form-control' type='text'{{#inductiveRating}} value='{{inductiveRating}}'{{/inductiveRating}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -223,7 +223,7 @@ define
                     {{#vRegLineLine}}<div><b>vRegLineLine</b>: {{vRegLineLine}}</div>{{/vRegLineLine}}
                     {{#ShuntCompensatorInfo}}<div><b>ShuntCompensatorInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorInfo}}&quot;);}); return false;'>{{ShuntCompensatorInfo}}</a></div>{{/ShuntCompensatorInfo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -276,7 +276,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_vRegLineLine'>vRegLineLine: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vRegLineLine' class='form-check-input' type='checkbox'{{#vRegLineLine}} checked{{/vRegLineLine}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensatorInfo'>ShuntCompensatorInfo: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensatorInfo' class='form-control' type='text'{{#ShuntCompensatorInfo}} value='{{ShuntCompensatorInfo}}'{{/ShuntCompensatorInfo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

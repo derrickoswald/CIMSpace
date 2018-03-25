@@ -74,7 +74,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -104,7 +104,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -194,7 +194,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -224,7 +224,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -314,7 +314,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -344,7 +344,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -434,7 +434,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -464,7 +464,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -554,7 +554,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -584,7 +584,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -674,7 +674,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -704,7 +704,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -794,7 +794,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -824,7 +824,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -914,7 +914,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -944,7 +944,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1034,7 +1034,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1064,7 +1064,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1154,7 +1154,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1184,7 +1184,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1274,7 +1274,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1304,7 +1304,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1394,7 +1394,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1424,7 +1424,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1514,7 +1514,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1544,7 +1544,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1634,7 +1634,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1664,7 +1664,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1754,7 +1754,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1784,7 +1784,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1874,7 +1874,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1904,7 +1904,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2056,7 +2056,7 @@ define
                     {{#UnderexcitationLimiterUserDefined}}<div><b>UnderexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterUserDefined}}&quot;);}); return false;'>{{UnderexcitationLimiterUserDefined}}</a></div>{{/UnderexcitationLimiterUserDefined}}
                     {{#OverexcitationLimiterUserDefined}}<div><b>OverexcitationLimiterUserDefined</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverexcitationLimiterUserDefined}}&quot;);}); return false;'>{{OverexcitationLimiterUserDefined}}</a></div>{{/OverexcitationLimiterUserDefined}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2105,7 +2105,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UnderexcitationLimiterUserDefined'>UnderexcitationLimiterUserDefined: </label><div class='col-sm-8'><input id='{{id}}_UnderexcitationLimiterUserDefined' class='form-control' type='text'{{#UnderexcitationLimiterUserDefined}} value='{{UnderexcitationLimiterUserDefined}}'{{/UnderexcitationLimiterUserDefined}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OverexcitationLimiterUserDefined'>OverexcitationLimiterUserDefined: </label><div class='col-sm-8'><input id='{{id}}_OverexcitationLimiterUserDefined' class='form-control' type='text'{{#OverexcitationLimiterUserDefined}} value='{{OverexcitationLimiterUserDefined}}'{{/OverexcitationLimiterUserDefined}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2233,7 +2233,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2263,7 +2263,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2353,7 +2353,7 @@ define
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
                     {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2383,7 +2383,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proprietary'>proprietary: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

@@ -20,6 +20,21 @@ define
             constructor (cimmap)
             {
                 this._cimmap = cimmap;
+                this._template =
+                    "<div id='view_frame' class='card'>\n" +
+                    "  <div class='card-body'>\n" +
+                    "    <h5 class='card-title'>\n" +
+                    "      <span id='info_title'>Info</span>\n" +
+                    "      <button type='button' class='close' aria-label='Close'>\n" +
+                    "        <span aria-hidden='true'>&times;</span>\n" +
+                    "      </button>\n" +
+                    "    </h5>\n" +
+                    "    <h6 id='streetviewlink' class='card-subtitle mb-2'></h6>\n" +
+                    "    <div id='view_contents' class='card-text'>\n" +
+                    "      <div id='feature_detail_contents'></div>\n" +
+                    "    </div>\n" +
+                    "  </div>\n" +
+                    "</div>\n";
             }
 
             onAdd (map)
@@ -27,8 +42,11 @@ define
                 this._map = map;
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
+                this._container.innerHTML = this._template;
+                this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                 this._resizer = this.on_map_resize.bind (this);
                 this._map.on ("resize", this._resizer);
+                this._cimmap.add_feature_listener (this);
                 return (this._container);
             }
 
@@ -42,6 +60,7 @@ define
                 }
                 // destroy the container
                 this._container.parentNode.removeChild (this._container);
+                this._cimmap.remove_feature_listener (this);
                 this._container = null;
                 this._map = undefined;
             }
@@ -66,7 +85,7 @@ define
 
             close (event)
             {
-                this._cimmap.select (null);
+                this._map.removeControl (this);
             }
 
             visible ()
@@ -164,25 +183,18 @@ define
             {
                 if (this.visible ())
                 {
-                    this._container.innerHTML =
-                        "<div id='view_frame' class='card'>\n" +
-                        "  <div class='card-body'>\n" +
-                        "    <h5 class='card-title'>" + this._cimmap.get_selected_feature () + "\n" +
-                        "      <button type='button' class='close' aria-label='Close'>\n" +
-                        "        <span aria-hidden='true'>&times;</span>\n" +
-                        "      </button>\n" +
-                        "    </h5>\n" +
-                        "    <h6 id='streetviewlink' class='card-subtitle mb-2'></h6>\n" +
-                        "    <div id='view_contents' class='card-text'>\n" +
-                        "      <div id='feature_detail_contents'></div>\n" +
-                        "    </div>\n" +
-                        "  </div>\n" +
-                        "</div>\n";
-                    this._frame_height = document.getElementById ("view_frame").clientHeight; // frame height with no contents
-                    document.getElementById ("feature_detail_contents").innerHTML = this.detail_text ();
-                    this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
-                    this.maybe_streetview ();
-                    this.on_map_resize ();
+                    document.getElementById ("info_title").innerHTML = "Info";
+                    document.getElementById ("feature_detail_contents").innerHTML = "";
+                    document.getElementById ("streetviewlink").innerHTML = "";
+                    var mrid = this._cimmap.get_selected_feature ();
+                    if (mrid)
+                    {
+                        document.getElementById ("info_title").innerHTML = mrid;
+                        this._frame_height = document.getElementById ("view_frame").clientHeight; // frame height with no contents
+                        document.getElementById ("feature_detail_contents").innerHTML = this.detail_text ();
+                        this.maybe_streetview ();
+                        this.on_map_resize ();
+                    }
                 }
             }
 
@@ -229,6 +241,14 @@ define
                 }
             }
 
+
+            /**
+             * Connect the selected object at user selected terminal synchronously.
+             */
+            selection_change (current_feature, current_selection)
+            {
+                this.render ();
+            }
         }
 
         return (CIMDetails);
