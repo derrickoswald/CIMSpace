@@ -228,7 +228,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.RemoteUnitType = []; if (!obj.remoteUnitType) obj.RemoteUnitType.push ({ id: '', selected: true}); for (var property in RemoteUnitType) obj.RemoteUnitType.push ({ id: property, selected: obj.remoteUnitType && obj.remoteUnitType.endsWith ('.' + property)});
+                obj.remoteUnitTypeRemoteUnitType = [{ id: '', selected: (!obj.remoteUnitType)}]; for (var property in RemoteUnitType) obj.remoteUnitTypeRemoteUnitType.push ({ id: property, selected: obj.remoteUnitType && obj.remoteUnitType.endsWith ('.' + property)});
                 if (obj.CommunicationLinks) obj.CommunicationLinks_string = obj.CommunicationLinks.join ();
                 if (obj.RemotePoints) obj.RemotePoints_string = obj.RemotePoints.join ();
             }
@@ -236,7 +236,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.RemoteUnitType;
+                delete obj.remoteUnitTypeRemoteUnitType;
                 delete obj.CommunicationLinks_string;
                 delete obj.RemotePoints_string;
             }
@@ -251,7 +251,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteUnitType'>remoteUnitType: </label><div class='col-sm-8'><select id='{{id}}_remoteUnitType' class='form-control custom-select'>{{#RemoteUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteUnitType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteUnitType'>remoteUnitType: </label><div class='col-sm-8'><select id='{{id}}_remoteUnitType' class='form-control custom-select'>{{#remoteUnitTypeRemoteUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/remoteUnitTypeRemoteUnitType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CommunicationLinks'>CommunicationLinks: </label><div class='col-sm-8'><input id='{{id}}_CommunicationLinks' class='form-control' type='text'{{#CommunicationLinks}} value='{{CommunicationLinks_string}}'{{/CommunicationLinks}}></div></div>
                     </div>
                     </fieldset>
@@ -265,7 +265,7 @@ define
 
                 var obj = obj || { id: id, cls: "RemoteUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_remoteUnitType").value; if ("" != temp) { temp = RemoteUnitType[temp]; if ("undefined" != typeof (temp)) obj.remoteUnitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteUnitType." + temp; }
+                temp = RemoteUnitType[document.getElementById (id + "_remoteUnitType").value]; if (temp) obj.remoteUnitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteUnitType." + temp; else delete obj.remoteUnitType;
                 temp = document.getElementById (id + "_CommunicationLinks").value; if ("" != temp) obj.CommunicationLinks = temp.split (",");
 
                 return (obj);
@@ -674,7 +674,9 @@ define
                 RemoteSource: RemoteSource,
                 RemoteUnit: RemoteUnit,
                 RemotePoint: RemotePoint,
-                RemoteControl: RemoteControl
+                RemoteControl: RemoteControl,
+                Source: Source,
+                RemoteUnitType: RemoteUnitType
             }
         );
     }

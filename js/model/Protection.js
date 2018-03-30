@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Core"],
+    ["model/base", "model/Core", "model/Domain"],
     /**
      * An extension to the Core and Wires packages that models information for protection equipment such as relays.
      *
      * These entities are used within training simulators and distribution network fault location applications.
      *
      */
-    function (base, Core)
+    function (base, Core, Domain)
     {
 
         /**
@@ -229,8 +229,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.UnitMultiplier = []; if (!obj.unitMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.unitMultiplier && obj.unitMultiplier.endsWith ('.' + property)});
-                obj.UnitSymbol = []; if (!obj.unitSymbol) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unitSymbol && obj.unitSymbol.endsWith ('.' + property)});
+                obj.unitMultiplierUnitMultiplier = [{ id: '', selected: (!obj.unitMultiplier)}]; for (var property in Domain.UnitMultiplier) obj.unitMultiplierUnitMultiplier.push ({ id: property, selected: obj.unitMultiplier && obj.unitMultiplier.endsWith ('.' + property)});
+                obj.unitSymbolUnitSymbol = [{ id: '', selected: (!obj.unitSymbol)}]; for (var property in Domain.UnitSymbol) obj.unitSymbolUnitSymbol.push ({ id: property, selected: obj.unitSymbol && obj.unitSymbol.endsWith ('.' + property)});
                 if (obj.ProtectiveAction) obj.ProtectiveAction_string = obj.ProtectiveAction.join ();
                 if (obj.ConductingEquipments) obj.ConductingEquipments_string = obj.ConductingEquipments.join ();
                 if (obj.ProtectedSwitches) obj.ProtectedSwitches_string = obj.ProtectedSwitches.join ();
@@ -239,8 +239,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.UnitMultiplier;
-                delete obj.UnitSymbol;
+                delete obj.unitMultiplierUnitMultiplier;
+                delete obj.unitSymbolUnitSymbol;
                 delete obj.ProtectiveAction_string;
                 delete obj.ConductingEquipments_string;
                 delete obj.ProtectedSwitches_string;
@@ -260,8 +260,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowLimit'>lowLimit: </label><div class='col-sm-8'><input id='{{id}}_lowLimit' class='form-control' type='text'{{#lowLimit}} value='{{lowLimit}}'{{/lowLimit}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_powerDirectionFlag'>powerDirectionFlag: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_powerDirectionFlag' class='form-check-input' type='checkbox'{{#powerDirectionFlag}} checked{{/powerDirectionFlag}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_relayDelayTime'>relayDelayTime: </label><div class='col-sm-8'><input id='{{id}}_relayDelayTime' class='form-control' type='text'{{#relayDelayTime}} value='{{relayDelayTime}}'{{/relayDelayTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_unitMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><select id='{{id}}_unitSymbol' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_unitMultiplier' class='form-control custom-select'>{{#unitMultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitMultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><select id='{{id}}_unitSymbol' class='form-control custom-select'>{{#unitSymbolUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitSymbolUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConductingEquipments'>ConductingEquipments: </label><div class='col-sm-8'><input id='{{id}}_ConductingEquipments' class='form-control' type='text'{{#ConductingEquipments}} value='{{ConductingEquipments_string}}'{{/ConductingEquipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectedSwitches'>ProtectedSwitches: </label><div class='col-sm-8'><input id='{{id}}_ProtectedSwitches' class='form-control' type='text'{{#ProtectedSwitches}} value='{{ProtectedSwitches_string}}'{{/ProtectedSwitches}}></div></div>
                     </div>
@@ -280,8 +280,8 @@ define
                 temp = document.getElementById (id + "_lowLimit").value; if ("" != temp) obj.lowLimit = temp;
                 temp = document.getElementById (id + "_powerDirectionFlag").checked; if (temp) obj.powerDirectionFlag = true;
                 temp = document.getElementById (id + "_relayDelayTime").value; if ("" != temp) obj.relayDelayTime = temp;
-                temp = document.getElementById (id + "_unitMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.unitMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unitSymbol").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unitSymbol = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_unitMultiplier").value]; if (temp) obj.unitMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.unitMultiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj.unitSymbol = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.unitSymbol;
                 temp = document.getElementById (id + "_ConductingEquipments").value; if ("" != temp) obj.ConductingEquipments = temp.split (",");
                 temp = document.getElementById (id + "_ProtectedSwitches").value; if ("" != temp) obj.ProtectedSwitches = temp.split (",");
 

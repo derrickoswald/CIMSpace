@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/Core"],
-    function (base, Core)
+    ["model/base", "model/Core", "model/MktDomain"],
+    function (base, Core, MktDomain)
     {
 
         /**
@@ -356,30 +356,30 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.certifiedDAM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedDAM && obj.certifiedDAM.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.certifiedNonspinDAM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedNonspinDAM && obj.certifiedNonspinDAM.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.certifiedNonspinRTM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedNonspinRTM && obj.certifiedNonspinRTM.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.certifiedPIRP) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedPIRP && obj.certifiedPIRP.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.certifiedRegulation) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedRegulation && obj.certifiedRegulation.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.certifiedReplaceAS) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedReplaceAS && obj.certifiedReplaceAS.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.certifiedSpin) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedSpin && obj.certifiedSpin.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.certifiedRTM) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedRTM && obj.certifiedRTM.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.certifiedRUC) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.certifiedRUC && obj.certifiedRUC.endsWith ('.' + property)});
+                obj.certifiedDAMYesNo = [{ id: '', selected: (!obj.certifiedDAM)}]; for (var property in MktDomain.YesNo) obj.certifiedDAMYesNo.push ({ id: property, selected: obj.certifiedDAM && obj.certifiedDAM.endsWith ('.' + property)});
+                obj.certifiedNonspinDAMYesNo = [{ id: '', selected: (!obj.certifiedNonspinDAM)}]; for (var property in MktDomain.YesNo) obj.certifiedNonspinDAMYesNo.push ({ id: property, selected: obj.certifiedNonspinDAM && obj.certifiedNonspinDAM.endsWith ('.' + property)});
+                obj.certifiedNonspinRTMYesNo = [{ id: '', selected: (!obj.certifiedNonspinRTM)}]; for (var property in MktDomain.YesNo) obj.certifiedNonspinRTMYesNo.push ({ id: property, selected: obj.certifiedNonspinRTM && obj.certifiedNonspinRTM.endsWith ('.' + property)});
+                obj.certifiedPIRPYesNo = [{ id: '', selected: (!obj.certifiedPIRP)}]; for (var property in MktDomain.YesNo) obj.certifiedPIRPYesNo.push ({ id: property, selected: obj.certifiedPIRP && obj.certifiedPIRP.endsWith ('.' + property)});
+                obj.certifiedRegulationYesNo = [{ id: '', selected: (!obj.certifiedRegulation)}]; for (var property in MktDomain.YesNo) obj.certifiedRegulationYesNo.push ({ id: property, selected: obj.certifiedRegulation && obj.certifiedRegulation.endsWith ('.' + property)});
+                obj.certifiedReplaceASYesNo = [{ id: '', selected: (!obj.certifiedReplaceAS)}]; for (var property in MktDomain.YesNo) obj.certifiedReplaceASYesNo.push ({ id: property, selected: obj.certifiedReplaceAS && obj.certifiedReplaceAS.endsWith ('.' + property)});
+                obj.certifiedSpinYesNo = [{ id: '', selected: (!obj.certifiedSpin)}]; for (var property in MktDomain.YesNo) obj.certifiedSpinYesNo.push ({ id: property, selected: obj.certifiedSpin && obj.certifiedSpin.endsWith ('.' + property)});
+                obj.certifiedRTMYesNo = [{ id: '', selected: (!obj.certifiedRTM)}]; for (var property in MktDomain.YesNo) obj.certifiedRTMYesNo.push ({ id: property, selected: obj.certifiedRTM && obj.certifiedRTM.endsWith ('.' + property)});
+                obj.certifiedRUCYesNo = [{ id: '', selected: (!obj.certifiedRUC)}]; for (var property in MktDomain.YesNo) obj.certifiedRUCYesNo.push ({ id: property, selected: obj.certifiedRUC && obj.certifiedRUC.endsWith ('.' + property)});
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.YesNo;
+                delete obj.certifiedDAMYesNo;
+                delete obj.certifiedNonspinDAMYesNo;
+                delete obj.certifiedNonspinRTMYesNo;
+                delete obj.certifiedPIRPYesNo;
+                delete obj.certifiedRegulationYesNo;
+                delete obj.certifiedReplaceASYesNo;
+                delete obj.certifiedSpinYesNo;
+                delete obj.certifiedRTMYesNo;
+                delete obj.certifiedRUCYesNo;
                 delete obj.RegisteredResource_string;
             }
 
@@ -393,19 +393,19 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedDAM'>certifiedDAM: </label><div class='col-sm-8'><select id='{{id}}_certifiedDAM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinDAM'>certifiedNonspinDAM: </label><div class='col-sm-8'><select id='{{id}}_certifiedNonspinDAM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedDAM'>certifiedDAM: </label><div class='col-sm-8'><select id='{{id}}_certifiedDAM' class='form-control custom-select'>{{#certifiedDAMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedDAMYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinDAM'>certifiedNonspinDAM: </label><div class='col-sm-8'><select id='{{id}}_certifiedNonspinDAM' class='form-control custom-select'>{{#certifiedNonspinDAMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedNonspinDAMYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinDAMMw'>certifiedNonspinDAMMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinDAMMw' class='form-control' type='text'{{#certifiedNonspinDAMMw}} value='{{certifiedNonspinDAMMw}}'{{/certifiedNonspinDAMMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinRTM'>certifiedNonspinRTM: </label><div class='col-sm-8'><select id='{{id}}_certifiedNonspinRTM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinRTM'>certifiedNonspinRTM: </label><div class='col-sm-8'><select id='{{id}}_certifiedNonspinRTM' class='form-control custom-select'>{{#certifiedNonspinRTMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedNonspinRTMYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinRTMMw'>certifiedNonspinRTMMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinRTMMw' class='form-control' type='text'{{#certifiedNonspinRTMMw}} value='{{certifiedNonspinRTMMw}}'{{/certifiedNonspinRTMMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedPIRP'>certifiedPIRP: </label><div class='col-sm-8'><select id='{{id}}_certifiedPIRP' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulation'>certifiedRegulation: </label><div class='col-sm-8'><select id='{{id}}_certifiedRegulation' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedPIRP'>certifiedPIRP: </label><div class='col-sm-8'><select id='{{id}}_certifiedPIRP' class='form-control custom-select'>{{#certifiedPIRPYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedPIRPYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulation'>certifiedRegulation: </label><div class='col-sm-8'><select id='{{id}}_certifiedRegulation' class='form-control custom-select'>{{#certifiedRegulationYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedRegulationYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulationMw'>certifiedRegulationMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedRegulationMw' class='form-control' type='text'{{#certifiedRegulationMw}} value='{{certifiedRegulationMw}}'{{/certifiedRegulationMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedReplaceAS'>certifiedReplaceAS: </label><div class='col-sm-8'><select id='{{id}}_certifiedReplaceAS' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><select id='{{id}}_certifiedSpin' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedReplaceAS'>certifiedReplaceAS: </label><div class='col-sm-8'><select id='{{id}}_certifiedReplaceAS' class='form-control custom-select'>{{#certifiedReplaceASYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedReplaceASYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><select id='{{id}}_certifiedSpin' class='form-control custom-select'>{{#certifiedSpinYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedSpinYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><select id='{{id}}_certifiedRTM' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><select id='{{id}}_certifiedRUC' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><select id='{{id}}_certifiedRTM' class='form-control custom-select'>{{#certifiedRTMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedRTMYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><select id='{{id}}_certifiedRUC' class='form-control custom-select'>{{#certifiedRUCYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedRUCYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
                     </fieldset>
@@ -419,19 +419,19 @@ define
 
                 var obj = obj || { id: id, cls: "ResourceCertification" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_certifiedDAM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_certifiedNonspinDAM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedNonspinDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedDAM").value]; if (temp) obj.certifiedDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedDAM;
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedNonspinDAM").value]; if (temp) obj.certifiedNonspinDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedNonspinDAM;
                 temp = document.getElementById (id + "_certifiedNonspinDAMMw").value; if ("" != temp) obj.certifiedNonspinDAMMw = temp;
-                temp = document.getElementById (id + "_certifiedNonspinRTM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedNonspinRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedNonspinRTM").value]; if (temp) obj.certifiedNonspinRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedNonspinRTM;
                 temp = document.getElementById (id + "_certifiedNonspinRTMMw").value; if ("" != temp) obj.certifiedNonspinRTMMw = temp;
-                temp = document.getElementById (id + "_certifiedPIRP").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedPIRP = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_certifiedRegulation").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedRegulation = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedPIRP").value]; if (temp) obj.certifiedPIRP = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedPIRP;
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRegulation").value]; if (temp) obj.certifiedRegulation = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedRegulation;
                 temp = document.getElementById (id + "_certifiedRegulationMw").value; if ("" != temp) obj.certifiedRegulationMw = temp;
-                temp = document.getElementById (id + "_certifiedReplaceAS").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedReplaceAS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_certifiedSpin").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedSpin = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedReplaceAS").value]; if (temp) obj.certifiedReplaceAS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedReplaceAS;
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedSpin").value]; if (temp) obj.certifiedSpin = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedSpin;
                 temp = document.getElementById (id + "_certifiedSpinMw").value; if ("" != temp) obj.certifiedSpinMw = temp;
-                temp = document.getElementById (id + "_certifiedRTM").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_certifiedRUC").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.certifiedRUC = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRTM").value]; if (temp) obj.certifiedRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedRTM;
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRUC").value]; if (temp) obj.certifiedRUC = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.certifiedRUC;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
 
                 return (obj);
@@ -451,8 +451,8 @@ define
 
         return (
             {
-                ResourceCertification: ResourceCertification,
                 Participation: Participation,
+                ResourceCertification: ResourceCertification,
                 BilateralTransaction: BilateralTransaction
             }
         );

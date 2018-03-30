@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Core", "model/LoadModel", "model/Meas", "model/Production", "model/Wires"],
+    ["model/base", "model/Common", "model/Core", "model/Domain", "model/LoadModel", "model/Meas", "model/MktDomain", "model/Production", "model/Wires"],
     /**
      * This package contains the common objects shared by MarketOperations packages.
      *
      */
-    function (base, Common, Core, LoadModel, Meas, Production, Wires)
+    function (base, Common, Core, Domain, LoadModel, Meas, MktDomain, Production, Wires)
     {
 
         /**
@@ -1148,8 +1148,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MktBillMediaKind = []; if (!obj.billMediaKind) obj.MktBillMediaKind.push ({ id: '', selected: true}); for (var property in MktBillMediaKind) obj.MktBillMediaKind.push ({ id: property, selected: obj.billMediaKind && obj.billMediaKind.endsWith ('.' + property)});
-                obj.MktAccountKind = []; if (!obj.kind) obj.MktAccountKind.push ({ id: '', selected: true}); for (var property in MktAccountKind) obj.MktAccountKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.billMediaKindMktBillMediaKind = [{ id: '', selected: (!obj.billMediaKind)}]; for (var property in MktDomain.MktBillMediaKind) obj.billMediaKindMktBillMediaKind.push ({ id: property, selected: obj.billMediaKind && obj.billMediaKind.endsWith ('.' + property)});
+                obj.kindMktAccountKind = [{ id: '', selected: (!obj.kind)}]; for (var property in MktDomain.MktAccountKind) obj.kindMktAccountKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.MarketInvoiceLineItems) obj.MarketInvoiceLineItems_string = obj.MarketInvoiceLineItems.join ();
                 if (obj.MajorChargeGroup) obj.MajorChargeGroup_string = obj.MajorChargeGroup.join ();
             }
@@ -1157,8 +1157,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MktBillMediaKind;
-                delete obj.MktAccountKind;
+                delete obj.billMediaKindMktBillMediaKind;
+                delete obj.kindMktAccountKind;
                 delete obj.MarketInvoiceLineItems_string;
                 delete obj.MajorChargeGroup_string;
             }
@@ -1174,9 +1174,9 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billMediaKind'>billMediaKind: </label><div class='col-sm-8'><select id='{{id}}_billMediaKind' class='form-control custom-select'>{{#MktBillMediaKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MktBillMediaKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billMediaKind'>billMediaKind: </label><div class='col-sm-8'><select id='{{id}}_billMediaKind' class='form-control custom-select'>{{#billMediaKindMktBillMediaKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/billMediaKindMktBillMediaKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dueDate'>dueDate: </label><div class='col-sm-8'><input id='{{id}}_dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#MktAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MktAccountKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindMktAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindMktAccountKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mailedDate'>mailedDate: </label><div class='col-sm-8'><input id='{{id}}_mailedDate' class='form-control' type='text'{{#mailedDate}} value='{{mailedDate}}'{{/mailedDate}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proForma'>proForma: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proForma' class='form-check-input' type='checkbox'{{#proForma}} checked{{/proForma}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='{{id}}_referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
@@ -1196,9 +1196,9 @@ define
                 var obj = obj || { id: id, cls: "MarketInvoice" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById (id + "_billMediaKind").value; if ("" != temp) { temp = MktBillMediaKind[temp]; if ("undefined" != typeof (temp)) obj.billMediaKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MktBillMediaKind." + temp; }
+                temp = MktDomain.MktBillMediaKind[document.getElementById (id + "_billMediaKind").value]; if (temp) obj.billMediaKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MktBillMediaKind." + temp; else delete obj.billMediaKind;
                 temp = document.getElementById (id + "_dueDate").value; if ("" != temp) obj.dueDate = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = MktAccountKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MktAccountKind." + temp; }
+                temp = MktDomain.MktAccountKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MktAccountKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_mailedDate").value; if ("" != temp) obj.mailedDate = temp;
                 temp = document.getElementById (id + "_proForma").checked; if (temp) obj.proForma = true;
                 temp = document.getElementById (id + "_referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
@@ -1310,16 +1310,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MktAccountKind = []; if (!obj.accountKind) obj.MktAccountKind.push ({ id: '', selected: true}); for (var property in MktAccountKind) obj.MktAccountKind.push ({ id: property, selected: obj.accountKind && obj.accountKind.endsWith ('.' + property)});
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.accountKindMktAccountKind = [{ id: '', selected: (!obj.accountKind)}]; for (var property in MktDomain.MktAccountKind) obj.accountKindMktAccountKind.push ({ id: property, selected: obj.accountKind && obj.accountKind.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Settlement) obj.Settlement_string = obj.Settlement.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MktAccountKind;
-                delete obj.Status;
+                delete obj.accountKindMktAccountKind;
+                delete obj.statusStatus;
                 delete obj.Settlement_string;
             }
 
@@ -1334,10 +1334,10 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountID'>accountID: </label><div class='col-sm-8'><input id='{{id}}_accountID' class='form-control' type='text'{{#accountID}} value='{{accountID}}'{{/accountID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountKind'>accountKind: </label><div class='col-sm-8'><select id='{{id}}_accountKind' class='form-control custom-select'>{{#MktAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MktAccountKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountKind'>accountKind: </label><div class='col-sm-8'><select id='{{id}}_accountKind' class='form-control custom-select'>{{#accountKindMktAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/accountKindMktAccountKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postedDateTime'>postedDateTime: </label><div class='col-sm-8'><input id='{{id}}_postedDateTime' class='form-control' type='text'{{#postedDateTime}} value='{{postedDateTime}}'{{/postedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Settlement'>Settlement: </label><div class='col-sm-8'><input id='{{id}}_Settlement' class='form-control' type='text'{{#Settlement}} value='{{Settlement_string}}'{{/Settlement}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketLedger'>MarketLedger: </label><div class='col-sm-8'><input id='{{id}}_MarketLedger' class='form-control' type='text'{{#MarketLedger}} value='{{MarketLedger}}'{{/MarketLedger}}></div></div>
@@ -1354,10 +1354,10 @@ define
                 var obj = obj || { id: id, cls: "MarketLedgerEntry" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accountID").value; if ("" != temp) obj.accountID = temp;
-                temp = document.getElementById (id + "_accountKind").value; if ("" != temp) { temp = MktAccountKind[temp]; if ("undefined" != typeof (temp)) obj.accountKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MktAccountKind." + temp; }
+                temp = MktDomain.MktAccountKind[document.getElementById (id + "_accountKind").value]; if (temp) obj.accountKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MktAccountKind." + temp; else delete obj.accountKind;
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
                 temp = document.getElementById (id + "_postedDateTime").value; if ("" != temp) obj.postedDateTime = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
                 temp = document.getElementById (id + "_transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
                 temp = document.getElementById (id + "_Settlement").value; if ("" != temp) obj.Settlement = temp.split (",");
                 temp = document.getElementById (id + "_MarketLedger").value; if ("" != temp) obj.MarketLedger = temp;
@@ -1482,8 +1482,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DateTimeInterval = []; if (!obj.billPeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.billPeriod && obj.billPeriod.endsWith ('.' + property)});
-                obj.MktInvoiceLineItemKind = []; if (!obj.kind) obj.MktInvoiceLineItemKind.push ({ id: '', selected: true}); for (var property in MktInvoiceLineItemKind) obj.MktInvoiceLineItemKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.billPeriodDateTimeInterval = [{ id: '', selected: (!obj.billPeriod)}]; for (var property in Domain.DateTimeInterval) obj.billPeriodDateTimeInterval.push ({ id: property, selected: obj.billPeriod && obj.billPeriod.endsWith ('.' + property)});
+                obj.kindMktInvoiceLineItemKind = [{ id: '', selected: (!obj.kind)}]; for (var property in MktDomain.MktInvoiceLineItemKind) obj.kindMktInvoiceLineItemKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.ComponentMarketInvoiceLineItems) obj.ComponentMarketInvoiceLineItems_string = obj.ComponentMarketInvoiceLineItems.join ();
                 if (obj.Settlement) obj.Settlement_string = obj.Settlement.join ();
             }
@@ -1491,8 +1491,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DateTimeInterval;
-                delete obj.MktInvoiceLineItemKind;
+                delete obj.billPeriodDateTimeInterval;
+                delete obj.kindMktInvoiceLineItemKind;
                 delete obj.ComponentMarketInvoiceLineItems_string;
                 delete obj.Settlement_string;
             }
@@ -1507,10 +1507,10 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billPeriod'>billPeriod: </label><div class='col-sm-8'><select id='{{id}}_billPeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billPeriod'>billPeriod: </label><div class='col-sm-8'><select id='{{id}}_billPeriod' class='form-control custom-select'>{{#billPeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/billPeriodDateTimeInterval}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_glAccount'>glAccount: </label><div class='col-sm-8'><input id='{{id}}_glAccount' class='form-control' type='text'{{#glAccount}} value='{{glAccount}}'{{/glAccount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_glDateTime'>glDateTime: </label><div class='col-sm-8'><input id='{{id}}_glDateTime' class='form-control' type='text'{{#glDateTime}} value='{{glDateTime}}'{{/glDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#MktInvoiceLineItemKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MktInvoiceLineItemKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindMktInvoiceLineItemKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindMktInvoiceLineItemKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineAmount'>lineAmount: </label><div class='col-sm-8'><input id='{{id}}_lineAmount' class='form-control' type='text'{{#lineAmount}} value='{{lineAmount}}'{{/lineAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineNumber'>lineNumber: </label><div class='col-sm-8'><input id='{{id}}_lineNumber' class='form-control' type='text'{{#lineNumber}} value='{{lineNumber}}'{{/lineNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineVersion'>lineVersion: </label><div class='col-sm-8'><input id='{{id}}_lineVersion' class='form-control' type='text'{{#lineVersion}} value='{{lineVersion}}'{{/lineVersion}}></div></div>
@@ -1531,10 +1531,10 @@ define
 
                 var obj = obj || { id: id, cls: "MarketInvoiceLineItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_billPeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.billPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
+                temp = Domain.DateTimeInterval[document.getElementById (id + "_billPeriod").value]; if (temp) obj.billPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.billPeriod;
                 temp = document.getElementById (id + "_glAccount").value; if ("" != temp) obj.glAccount = temp;
                 temp = document.getElementById (id + "_glDateTime").value; if ("" != temp) obj.glDateTime = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = MktInvoiceLineItemKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MktInvoiceLineItemKind." + temp; }
+                temp = MktDomain.MktInvoiceLineItemKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MktInvoiceLineItemKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_lineAmount").value; if ("" != temp) obj.lineAmount = temp;
                 temp = document.getElementById (id + "_lineNumber").value; if ("" != temp) obj.lineNumber = temp;
                 temp = document.getElementById (id + "_lineVersion").value; if ("" != temp) obj.lineVersion = temp;
@@ -1803,7 +1803,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.creditFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.creditFlag && obj.creditFlag.endsWith ('.' + property)});
+                obj.creditFlagYesNo = [{ id: '', selected: (!obj.creditFlag)}]; for (var property in MktDomain.YesNo) obj.creditFlagYesNo.push ({ id: property, selected: obj.creditFlag && obj.creditFlag.endsWith ('.' + property)});
                 if (obj.IntSchedAgreement) obj.IntSchedAgreement_string = obj.IntSchedAgreement.join ();
                 if (obj.MarketPerson) obj.MarketPerson_string = obj.MarketPerson.join ();
                 if (obj.ViolationLimit) obj.ViolationLimit_string = obj.ViolationLimit.join ();
@@ -1817,7 +1817,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
+                delete obj.creditFlagYesNo;
                 delete obj.IntSchedAgreement_string;
                 delete obj.MarketPerson_string;
                 delete obj.ViolationLimit_string;
@@ -1838,7 +1838,7 @@ define
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_creditFlag'>creditFlag: </label><div class='col-sm-8'><select id='{{id}}_creditFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_creditFlag'>creditFlag: </label><div class='col-sm-8'><select id='{{id}}_creditFlag' class='form-control custom-select'>{{#creditFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/creditFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_creditStartEffectiveDate'>creditStartEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_creditStartEffectiveDate' class='form-control' type='text'{{#creditStartEffectiveDate}} value='{{creditStartEffectiveDate}}'{{/creditStartEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastModified'>lastModified: </label><div class='col-sm-8'><input id='{{id}}_lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
@@ -1860,7 +1860,7 @@ define
 
                 var obj = obj || { id: id, cls: "MktOrganisation" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_creditFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.creditFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_creditFlag").value]; if (temp) obj.creditFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.creditFlag;
                 temp = document.getElementById (id + "_creditStartEffectiveDate").value; if ("" != temp) obj.creditStartEffectiveDate = temp;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_lastModified").value; if ("" != temp) obj.lastModified = temp;
@@ -2161,9 +2161,9 @@ define
                 MarketLedgerEntry: MarketLedgerEntry,
                 MktMeasurement: MktMeasurement,
                 MktGeneratingUnit: MktGeneratingUnit,
-                MktEnergyConsumer: MktEnergyConsumer,
-                MktLoadArea: MktLoadArea,
                 MktTerminal: MktTerminal,
+                MktLoadArea: MktLoadArea,
+                MktEnergyConsumer: MktEnergyConsumer,
                 MktPowerTransformer: MktPowerTransformer,
                 MktLine: MktLine,
                 MktConnectivityNode: MktConnectivityNode,

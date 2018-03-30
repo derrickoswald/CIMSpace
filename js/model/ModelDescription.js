@@ -443,8 +443,8 @@ define
                 base.parse_element (/<cim:Model.created>([\s\S]*?)<\/cim:Model.created>/g, obj, "created", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Model.scenarioTime>([\s\S]*?)<\/cim:Model.scenarioTime>/g, obj, "scenarioTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Model.description>([\s\S]*?)<\/cim:Model.description>/g, obj, "description", base.to_string, sub, context);
-                base.parse_attribute (/<cim:Model.modelingAuthoritySet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "modelingAuthoritySet", sub, context);
-                base.parse_attribute (/<cim:Model.profile\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "profile", sub, context);
+                base.parse_element (/<cim:Model.modelingAuthoritySet>([\s\S]*?)<\/cim:Model.modelingAuthoritySet>/g, obj, "modelingAuthoritySet", base.to_string, sub, context);
+                base.parse_element (/<cim:Model.profile>([\s\S]*?)<\/cim:Model.profile>/g, obj, "profile", base.to_string, sub, context);
                 base.parse_element (/<cim:Model.version>([\s\S]*?)<\/cim:Model.version>/g, obj, "version", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Model.Supersedes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Supersedes", sub, context);
                 base.parse_attributes (/<cim:Model.SupersededBy\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SupersededBy", sub, context);
@@ -465,8 +465,8 @@ define
                 base.export_element (obj, "Model", "created", "created",  base.from_datetime, fields);
                 base.export_element (obj, "Model", "scenarioTime", "scenarioTime",  base.from_datetime, fields);
                 base.export_element (obj, "Model", "description", "description",  base.from_string, fields);
-                base.export_attribute (obj, "Model", "modelingAuthoritySet", "modelingAuthoritySet", fields);
-                base.export_attribute (obj, "Model", "profile", "profile", fields);
+                base.export_element (obj, "Model", "modelingAuthoritySet", "modelingAuthoritySet",  base.from_string, fields);
+                base.export_element (obj, "Model", "profile", "profile",  base.from_string, fields);
                 base.export_element (obj, "Model", "version", "version",  base.from_string, fields);
                 base.export_attributes (obj, "Model", "Supersedes", "Supersedes", fields);
                 base.export_attributes (obj, "Model", "SupersededBy", "SupersededBy", fields);
@@ -506,8 +506,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.URI = []; if (!obj.modelingAuthoritySet) obj.URI.push ({ id: '', selected: true}); for (var property in URI) obj.URI.push ({ id: property, selected: obj.modelingAuthoritySet && obj.modelingAuthoritySet.endsWith ('.' + property)});
-                obj.URI = []; if (!obj.profile) obj.URI.push ({ id: '', selected: true}); for (var property in URI) obj.URI.push ({ id: property, selected: obj.profile && obj.profile.endsWith ('.' + property)});
                 if (obj.Supersedes) obj.Supersedes_string = obj.Supersedes.join ();
                 if (obj.SupersededBy) obj.SupersededBy_string = obj.SupersededBy.join ();
                 if (obj.DependentOn) obj.DependentOn_string = obj.DependentOn.join ();
@@ -517,8 +515,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.URI;
-                delete obj.URI;
                 delete obj.Supersedes_string;
                 delete obj.SupersededBy_string;
                 delete obj.DependentOn_string;
@@ -538,8 +534,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_created'>created: </label><div class='col-sm-8'><input id='{{id}}_created' class='form-control' type='text'{{#created}} value='{{created}}'{{/created}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scenarioTime'>scenarioTime: </label><div class='col-sm-8'><input id='{{id}}_scenarioTime' class='form-control' type='text'{{#scenarioTime}} value='{{scenarioTime}}'{{/scenarioTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelingAuthoritySet'>modelingAuthoritySet: </label><div class='col-sm-8'><select id='{{id}}_modelingAuthoritySet' class='form-control custom-select'>{{#URI}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/URI}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_profile'>profile: </label><div class='col-sm-8'><select id='{{id}}_profile' class='form-control custom-select'>{{#URI}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/URI}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelingAuthoritySet'>modelingAuthoritySet: </label><div class='col-sm-8'><input id='{{id}}_modelingAuthoritySet' class='form-control' type='text'{{#modelingAuthoritySet}} value='{{modelingAuthoritySet}}'{{/modelingAuthoritySet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_profile'>profile: </label><div class='col-sm-8'><input id='{{id}}_profile' class='form-control' type='text'{{#profile}} value='{{profile}}'{{/profile}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Supersedes'>Supersedes: </label><div class='col-sm-8'><input id='{{id}}_Supersedes' class='form-control' type='text'{{#Supersedes}} value='{{Supersedes_string}}'{{/Supersedes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SupersededBy'>SupersededBy: </label><div class='col-sm-8'><input id='{{id}}_SupersededBy' class='form-control' type='text'{{#SupersededBy}} value='{{SupersededBy_string}}'{{/SupersededBy}}></div></div>
@@ -560,8 +556,8 @@ define
                 temp = document.getElementById (id + "_created").value; if ("" != temp) obj.created = temp;
                 temp = document.getElementById (id + "_scenarioTime").value; if ("" != temp) obj.scenarioTime = temp;
                 temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
-                temp = document.getElementById (id + "_modelingAuthoritySet").value; if ("" != temp) { temp = URI[temp]; if ("undefined" != typeof (temp)) obj.modelingAuthoritySet = "http://iec.ch/TC57/2013/CIM-schema-cim16#URI." + temp; }
-                temp = document.getElementById (id + "_profile").value; if ("" != temp) { temp = URI[temp]; if ("undefined" != typeof (temp)) obj.profile = "http://iec.ch/TC57/2013/CIM-schema-cim16#URI." + temp; }
+                temp = document.getElementById (id + "_modelingAuthoritySet").value; if ("" != temp) obj.modelingAuthoritySet = temp;
+                temp = document.getElementById (id + "_profile").value; if ("" != temp) obj.profile = temp;
                 temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
                 temp = document.getElementById (id + "_Supersedes").value; if ("" != temp) obj.Supersedes = temp.split (",");
                 temp = document.getElementById (id + "_SupersededBy").value; if ("" != temp) obj.SupersededBy = temp.split (",");

@@ -645,7 +645,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.OperationalLimitDirectionKind = []; if (!obj.direction) obj.OperationalLimitDirectionKind.push ({ id: '', selected: true}); for (var property in OperationalLimitDirectionKind) obj.OperationalLimitDirectionKind.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
+                obj.directionOperationalLimitDirectionKind = [{ id: '', selected: (!obj.direction)}]; for (var property in OperationalLimitDirectionKind) obj.directionOperationalLimitDirectionKind.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
                 if (obj.OperationalLimit) obj.OperationalLimit_string = obj.OperationalLimit.join ();
                 if (obj.SourceOperationalLimitTypeScaling) obj.SourceOperationalLimitTypeScaling_string = obj.SourceOperationalLimitTypeScaling.join ();
             }
@@ -653,7 +653,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.OperationalLimitDirectionKind;
+                delete obj.directionOperationalLimitDirectionKind;
                 delete obj.OperationalLimit_string;
                 delete obj.SourceOperationalLimitTypeScaling_string;
             }
@@ -669,7 +669,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptableDuration'>acceptableDuration: </label><div class='col-sm-8'><input id='{{id}}_acceptableDuration' class='form-control' type='text'{{#acceptableDuration}} value='{{acceptableDuration}}'{{/acceptableDuration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#OperationalLimitDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OperationalLimitDirectionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#directionOperationalLimitDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/directionOperationalLimitDirectionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TargetOperationalLimitmTypeScaling'>TargetOperationalLimitmTypeScaling: </label><div class='col-sm-8'><input id='{{id}}_TargetOperationalLimitmTypeScaling' class='form-control' type='text'{{#TargetOperationalLimitmTypeScaling}} value='{{TargetOperationalLimitmTypeScaling}}'{{/TargetOperationalLimitmTypeScaling}}></div></div>
                     </div>
                     </fieldset>
@@ -684,7 +684,7 @@ define
                 var obj = obj || { id: id, cls: "OperationalLimitType" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_acceptableDuration").value; if ("" != temp) obj.acceptableDuration = temp;
-                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = OperationalLimitDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; }
+                temp = OperationalLimitDirectionKind[document.getElementById (id + "_direction").value]; if (temp) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; else delete obj.direction;
                 temp = document.getElementById (id + "_TargetOperationalLimitmTypeScaling").value; if ("" != temp) obj.TargetOperationalLimitmTypeScaling = temp;
 
                 return (obj);
@@ -1126,6 +1126,7 @@ define
                 BranchGroup: BranchGroup,
                 OperationalLimitType: OperationalLimitType,
                 ActivePowerLimit: ActivePowerLimit,
+                OperationalLimitDirectionKind: OperationalLimitDirectionKind,
                 OperationalLimitSet: OperationalLimitSet,
                 BranchGroupTerminal: BranchGroupTerminal,
                 ApparentPowerLimit: ApparentPowerLimit,

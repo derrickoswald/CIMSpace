@@ -1,13 +1,13 @@
 define
 (
-    ["model/base"],
+    ["model/base", "model/Domain"],
     /**
      * Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities.
      *
      * Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
      *
      */
-    function (base)
+    function (base, Domain)
     {
 
         /**
@@ -1235,30 +1235,30 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CurveStyle = []; if (!obj.curveStyle) obj.CurveStyle.push ({ id: '', selected: true}); for (var property in CurveStyle) obj.CurveStyle.push ({ id: property, selected: obj.curveStyle && obj.curveStyle.endsWith ('.' + property)});
-                obj.UnitMultiplier = []; if (!obj.xMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.xMultiplier && obj.xMultiplier.endsWith ('.' + property)});
-                obj.UnitSymbol = []; if (!obj.xUnit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.xUnit && obj.xUnit.endsWith ('.' + property)});
-                obj.UnitMultiplier = []; if (!obj.y1Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.y1Multiplier && obj.y1Multiplier.endsWith ('.' + property)});
-                obj.UnitSymbol = []; if (!obj.y1Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.y1Unit && obj.y1Unit.endsWith ('.' + property)});
-                obj.UnitMultiplier = []; if (!obj.y2Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.y2Multiplier && obj.y2Multiplier.endsWith ('.' + property)});
-                obj.UnitSymbol = []; if (!obj.y2Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.y2Unit && obj.y2Unit.endsWith ('.' + property)});
-                obj.UnitMultiplier = []; if (!obj.y3Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.y3Multiplier && obj.y3Multiplier.endsWith ('.' + property)});
-                obj.UnitSymbol = []; if (!obj.y3Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.y3Unit && obj.y3Unit.endsWith ('.' + property)});
+                obj.curveStyleCurveStyle = [{ id: '', selected: (!obj.curveStyle)}]; for (var property in CurveStyle) obj.curveStyleCurveStyle.push ({ id: property, selected: obj.curveStyle && obj.curveStyle.endsWith ('.' + property)});
+                obj.xMultiplierUnitMultiplier = [{ id: '', selected: (!obj.xMultiplier)}]; for (var property in Domain.UnitMultiplier) obj.xMultiplierUnitMultiplier.push ({ id: property, selected: obj.xMultiplier && obj.xMultiplier.endsWith ('.' + property)});
+                obj.xUnitUnitSymbol = [{ id: '', selected: (!obj.xUnit)}]; for (var property in Domain.UnitSymbol) obj.xUnitUnitSymbol.push ({ id: property, selected: obj.xUnit && obj.xUnit.endsWith ('.' + property)});
+                obj.y1MultiplierUnitMultiplier = [{ id: '', selected: (!obj.y1Multiplier)}]; for (var property in Domain.UnitMultiplier) obj.y1MultiplierUnitMultiplier.push ({ id: property, selected: obj.y1Multiplier && obj.y1Multiplier.endsWith ('.' + property)});
+                obj.y1UnitUnitSymbol = [{ id: '', selected: (!obj.y1Unit)}]; for (var property in Domain.UnitSymbol) obj.y1UnitUnitSymbol.push ({ id: property, selected: obj.y1Unit && obj.y1Unit.endsWith ('.' + property)});
+                obj.y2MultiplierUnitMultiplier = [{ id: '', selected: (!obj.y2Multiplier)}]; for (var property in Domain.UnitMultiplier) obj.y2MultiplierUnitMultiplier.push ({ id: property, selected: obj.y2Multiplier && obj.y2Multiplier.endsWith ('.' + property)});
+                obj.y2UnitUnitSymbol = [{ id: '', selected: (!obj.y2Unit)}]; for (var property in Domain.UnitSymbol) obj.y2UnitUnitSymbol.push ({ id: property, selected: obj.y2Unit && obj.y2Unit.endsWith ('.' + property)});
+                obj.y3MultiplierUnitMultiplier = [{ id: '', selected: (!obj.y3Multiplier)}]; for (var property in Domain.UnitMultiplier) obj.y3MultiplierUnitMultiplier.push ({ id: property, selected: obj.y3Multiplier && obj.y3Multiplier.endsWith ('.' + property)});
+                obj.y3UnitUnitSymbol = [{ id: '', selected: (!obj.y3Unit)}]; for (var property in Domain.UnitSymbol) obj.y3UnitUnitSymbol.push ({ id: property, selected: obj.y3Unit && obj.y3Unit.endsWith ('.' + property)});
                 if (obj.CurveDatas) obj.CurveDatas_string = obj.CurveDatas.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CurveStyle;
-                delete obj.UnitMultiplier;
-                delete obj.UnitSymbol;
-                delete obj.UnitMultiplier;
-                delete obj.UnitSymbol;
-                delete obj.UnitMultiplier;
-                delete obj.UnitSymbol;
-                delete obj.UnitMultiplier;
-                delete obj.UnitSymbol;
+                delete obj.curveStyleCurveStyle;
+                delete obj.xMultiplierUnitMultiplier;
+                delete obj.xUnitUnitSymbol;
+                delete obj.y1MultiplierUnitMultiplier;
+                delete obj.y1UnitUnitSymbol;
+                delete obj.y2MultiplierUnitMultiplier;
+                delete obj.y2UnitUnitSymbol;
+                delete obj.y3MultiplierUnitMultiplier;
+                delete obj.y3UnitUnitSymbol;
                 delete obj.CurveDatas_string;
             }
 
@@ -1272,15 +1272,15 @@ define
                     `
                     + IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curveStyle'>curveStyle: </label><div class='col-sm-8'><select id='{{id}}_curveStyle' class='form-control custom-select'>{{#CurveStyle}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CurveStyle}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xMultiplier'>xMultiplier: </label><div class='col-sm-8'><select id='{{id}}_xMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xUnit'>xUnit: </label><div class='col-sm-8'><select id='{{id}}_xUnit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1Multiplier'>y1Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y1Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1Unit'>y1Unit: </label><div class='col-sm-8'><select id='{{id}}_y1Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2Multiplier'>y2Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y2Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2Unit'>y2Unit: </label><div class='col-sm-8'><select id='{{id}}_y2Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y3Multiplier'>y3Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y3Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y3Unit'>y3Unit: </label><div class='col-sm-8'><select id='{{id}}_y3Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curveStyle'>curveStyle: </label><div class='col-sm-8'><select id='{{id}}_curveStyle' class='form-control custom-select'>{{#curveStyleCurveStyle}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/curveStyleCurveStyle}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xMultiplier'>xMultiplier: </label><div class='col-sm-8'><select id='{{id}}_xMultiplier' class='form-control custom-select'>{{#xMultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/xMultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xUnit'>xUnit: </label><div class='col-sm-8'><select id='{{id}}_xUnit' class='form-control custom-select'>{{#xUnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/xUnitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1Multiplier'>y1Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y1Multiplier' class='form-control custom-select'>{{#y1MultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/y1MultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1Unit'>y1Unit: </label><div class='col-sm-8'><select id='{{id}}_y1Unit' class='form-control custom-select'>{{#y1UnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/y1UnitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2Multiplier'>y2Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y2Multiplier' class='form-control custom-select'>{{#y2MultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/y2MultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2Unit'>y2Unit: </label><div class='col-sm-8'><select id='{{id}}_y2Unit' class='form-control custom-select'>{{#y2UnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/y2UnitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y3Multiplier'>y3Multiplier: </label><div class='col-sm-8'><select id='{{id}}_y3Multiplier' class='form-control custom-select'>{{#y3MultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/y3MultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y3Unit'>y3Unit: </label><div class='col-sm-8'><select id='{{id}}_y3Unit' class='form-control custom-select'>{{#y3UnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/y3UnitUnitSymbol}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1293,15 +1293,15 @@ define
 
                 var obj = obj || { id: id, cls: "Curve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_curveStyle").value; if ("" != temp) { temp = CurveStyle[temp]; if ("undefined" != typeof (temp)) obj.curveStyle = "http://iec.ch/TC57/2013/CIM-schema-cim16#CurveStyle." + temp; }
-                temp = document.getElementById (id + "_xMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.xMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_xUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.xUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_y1Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.y1Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_y1Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.y1Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_y2Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.y2Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_y2Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.y2Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_y3Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.y3Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_y3Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.y3Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = CurveStyle[document.getElementById (id + "_curveStyle").value]; if (temp) obj.curveStyle = "http://iec.ch/TC57/2013/CIM-schema-cim16#CurveStyle." + temp; else delete obj.curveStyle;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_xMultiplier").value]; if (temp) obj.xMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.xMultiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_xUnit").value]; if (temp) obj.xUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.xUnit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_y1Multiplier").value]; if (temp) obj.y1Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.y1Multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_y1Unit").value]; if (temp) obj.y1Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.y1Unit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_y2Multiplier").value]; if (temp) obj.y2Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.y2Multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_y2Unit").value]; if (temp) obj.y2Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.y2Unit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_y3Multiplier").value]; if (temp) obj.y3Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.y3Multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_y3Unit").value]; if (temp) obj.y3Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.y3Unit;
 
                 return (obj);
             }
@@ -1891,19 +1891,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.UnitMultiplier = []; if (!obj.value1Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.value1Multiplier && obj.value1Multiplier.endsWith ('.' + property)});
-                obj.UnitSymbol = []; if (!obj.value1Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.value1Unit && obj.value1Unit.endsWith ('.' + property)});
-                obj.UnitMultiplier = []; if (!obj.value2Multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.value2Multiplier && obj.value2Multiplier.endsWith ('.' + property)});
-                obj.UnitSymbol = []; if (!obj.value2Unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.value2Unit && obj.value2Unit.endsWith ('.' + property)});
+                obj.value1MultiplierUnitMultiplier = [{ id: '', selected: (!obj.value1Multiplier)}]; for (var property in Domain.UnitMultiplier) obj.value1MultiplierUnitMultiplier.push ({ id: property, selected: obj.value1Multiplier && obj.value1Multiplier.endsWith ('.' + property)});
+                obj.value1UnitUnitSymbol = [{ id: '', selected: (!obj.value1Unit)}]; for (var property in Domain.UnitSymbol) obj.value1UnitUnitSymbol.push ({ id: property, selected: obj.value1Unit && obj.value1Unit.endsWith ('.' + property)});
+                obj.value2MultiplierUnitMultiplier = [{ id: '', selected: (!obj.value2Multiplier)}]; for (var property in Domain.UnitMultiplier) obj.value2MultiplierUnitMultiplier.push ({ id: property, selected: obj.value2Multiplier && obj.value2Multiplier.endsWith ('.' + property)});
+                obj.value2UnitUnitSymbol = [{ id: '', selected: (!obj.value2Unit)}]; for (var property in Domain.UnitSymbol) obj.value2UnitUnitSymbol.push ({ id: property, selected: obj.value2Unit && obj.value2Unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.UnitMultiplier;
-                delete obj.UnitSymbol;
-                delete obj.UnitMultiplier;
-                delete obj.UnitSymbol;
+                delete obj.value1MultiplierUnitMultiplier;
+                delete obj.value1UnitUnitSymbol;
+                delete obj.value2MultiplierUnitMultiplier;
+                delete obj.value2UnitUnitSymbol;
             }
 
             edit_template ()
@@ -1917,10 +1917,10 @@ define
                     + IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value1Multiplier'>value1Multiplier: </label><div class='col-sm-8'><select id='{{id}}_value1Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value1Unit'>value1Unit: </label><div class='col-sm-8'><select id='{{id}}_value1Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value2Multiplier'>value2Multiplier: </label><div class='col-sm-8'><select id='{{id}}_value2Multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value2Unit'>value2Unit: </label><div class='col-sm-8'><select id='{{id}}_value2Unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value1Multiplier'>value1Multiplier: </label><div class='col-sm-8'><select id='{{id}}_value1Multiplier' class='form-control custom-select'>{{#value1MultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/value1MultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value1Unit'>value1Unit: </label><div class='col-sm-8'><select id='{{id}}_value1Unit' class='form-control custom-select'>{{#value1UnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/value1UnitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value2Multiplier'>value2Multiplier: </label><div class='col-sm-8'><select id='{{id}}_value2Multiplier' class='form-control custom-select'>{{#value2MultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/value2MultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value2Unit'>value2Unit: </label><div class='col-sm-8'><select id='{{id}}_value2Unit' class='form-control custom-select'>{{#value2UnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/value2UnitUnitSymbol}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1934,10 +1934,10 @@ define
                 var obj = obj || { id: id, cls: "BasicIntervalSchedule" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById (id + "_value1Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.value1Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_value1Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.value1Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_value2Multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.value2Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_value2Unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.value2Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_value1Multiplier").value]; if (temp) obj.value1Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.value1Multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_value1Unit").value]; if (temp) obj.value1Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.value1Unit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_value2Multiplier").value]; if (temp) obj.value2Multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.value2Multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_value2Unit").value]; if (temp) obj.value2Unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.value2Unit;
 
                 return (obj);
             }
@@ -2532,7 +2532,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PhaseCode = []; if (!obj.phases) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
+                obj.phasesPhaseCode = [{ id: '', selected: (!obj.phases)}]; for (var property in PhaseCode) obj.phasesPhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
                 if (obj.RemoteInputSignal) obj.RemoteInputSignal_string = obj.RemoteInputSignal.join ();
                 if (obj.TieFlow) obj.TieFlow_string = obj.TieFlow.join ();
                 if (obj.HasSecondMutualCoupling) obj.HasSecondMutualCoupling_string = obj.HasSecondMutualCoupling.join ();
@@ -2549,7 +2549,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PhaseCode;
+                delete obj.phasesPhaseCode;
                 delete obj.RemoteInputSignal_string;
                 delete obj.TieFlow_string;
                 delete obj.HasSecondMutualCoupling_string;
@@ -2573,7 +2573,7 @@ define
                     `
                     + ACDCTerminal.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#phasesPhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phasesPhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='{{id}}_TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SvPowerFlow'>SvPowerFlow: </label><div class='col-sm-8'><input id='{{id}}_SvPowerFlow' class='form-control' type='text'{{#SvPowerFlow}} value='{{SvPowerFlow}}'{{/SvPowerFlow}}></div></div>
@@ -2591,7 +2591,7 @@ define
 
                 var obj = obj || { id: id, cls: "Terminal" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_phases").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.phases;
                 temp = document.getElementById (id + "_TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
                 temp = document.getElementById (id + "_ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
                 temp = document.getElementById (id + "_SvPowerFlow").value; if ("" != temp) obj.SvPowerFlow = temp;
@@ -4364,15 +4364,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.BreakerConfiguration = []; if (!obj.breakerConfiguration) obj.BreakerConfiguration.push ({ id: '', selected: true}); for (var property in BreakerConfiguration) obj.BreakerConfiguration.push ({ id: property, selected: obj.breakerConfiguration && obj.breakerConfiguration.endsWith ('.' + property)});
-                obj.BusbarConfiguration = []; if (!obj.busBarConfiguration) obj.BusbarConfiguration.push ({ id: '', selected: true}); for (var property in BusbarConfiguration) obj.BusbarConfiguration.push ({ id: property, selected: obj.busBarConfiguration && obj.busBarConfiguration.endsWith ('.' + property)});
+                obj.breakerConfigurationBreakerConfiguration = [{ id: '', selected: (!obj.breakerConfiguration)}]; for (var property in BreakerConfiguration) obj.breakerConfigurationBreakerConfiguration.push ({ id: property, selected: obj.breakerConfiguration && obj.breakerConfiguration.endsWith ('.' + property)});
+                obj.busBarConfigurationBusbarConfiguration = [{ id: '', selected: (!obj.busBarConfiguration)}]; for (var property in BusbarConfiguration) obj.busBarConfigurationBusbarConfiguration.push ({ id: property, selected: obj.busBarConfiguration && obj.busBarConfiguration.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.BreakerConfiguration;
-                delete obj.BusbarConfiguration;
+                delete obj.breakerConfigurationBreakerConfiguration;
+                delete obj.busBarConfigurationBusbarConfiguration;
             }
 
             edit_template ()
@@ -4387,8 +4387,8 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_bayEnergyMeasFlag'>bayEnergyMeasFlag: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_bayEnergyMeasFlag' class='form-check-input' type='checkbox'{{#bayEnergyMeasFlag}} checked{{/bayEnergyMeasFlag}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_bayPowerMeasFlag'>bayPowerMeasFlag: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_bayPowerMeasFlag' class='form-check-input' type='checkbox'{{#bayPowerMeasFlag}} checked{{/bayPowerMeasFlag}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_breakerConfiguration'>breakerConfiguration: </label><div class='col-sm-8'><select id='{{id}}_breakerConfiguration' class='form-control custom-select'>{{#BreakerConfiguration}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BreakerConfiguration}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_busBarConfiguration'>busBarConfiguration: </label><div class='col-sm-8'><select id='{{id}}_busBarConfiguration' class='form-control custom-select'>{{#BusbarConfiguration}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BusbarConfiguration}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_breakerConfiguration'>breakerConfiguration: </label><div class='col-sm-8'><select id='{{id}}_breakerConfiguration' class='form-control custom-select'>{{#breakerConfigurationBreakerConfiguration}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/breakerConfigurationBreakerConfiguration}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_busBarConfiguration'>busBarConfiguration: </label><div class='col-sm-8'><select id='{{id}}_busBarConfiguration' class='form-control custom-select'>{{#busBarConfigurationBusbarConfiguration}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/busBarConfigurationBusbarConfiguration}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Substation'>Substation: </label><div class='col-sm-8'><input id='{{id}}_Substation' class='form-control' type='text'{{#Substation}} value='{{Substation}}'{{/Substation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageLevel'>VoltageLevel: </label><div class='col-sm-8'><input id='{{id}}_VoltageLevel' class='form-control' type='text'{{#VoltageLevel}} value='{{VoltageLevel}}'{{/VoltageLevel}}></div></div>
                     </div>
@@ -4405,8 +4405,8 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_bayEnergyMeasFlag").checked; if (temp) obj.bayEnergyMeasFlag = true;
                 temp = document.getElementById (id + "_bayPowerMeasFlag").checked; if (temp) obj.bayPowerMeasFlag = true;
-                temp = document.getElementById (id + "_breakerConfiguration").value; if ("" != temp) { temp = BreakerConfiguration[temp]; if ("undefined" != typeof (temp)) obj.breakerConfiguration = "http://iec.ch/TC57/2013/CIM-schema-cim16#BreakerConfiguration." + temp; }
-                temp = document.getElementById (id + "_busBarConfiguration").value; if ("" != temp) { temp = BusbarConfiguration[temp]; if ("undefined" != typeof (temp)) obj.busBarConfiguration = "http://iec.ch/TC57/2013/CIM-schema-cim16#BusbarConfiguration." + temp; }
+                temp = BreakerConfiguration[document.getElementById (id + "_breakerConfiguration").value]; if (temp) obj.breakerConfiguration = "http://iec.ch/TC57/2013/CIM-schema-cim16#BreakerConfiguration." + temp; else delete obj.breakerConfiguration;
+                temp = BusbarConfiguration[document.getElementById (id + "_busBarConfiguration").value]; if (temp) obj.busBarConfiguration = "http://iec.ch/TC57/2013/CIM-schema-cim16#BusbarConfiguration." + temp; else delete obj.busBarConfiguration;
                 temp = document.getElementById (id + "_Substation").value; if ("" != temp) obj.Substation = temp;
                 temp = document.getElementById (id + "_VoltageLevel").value; if ("" != temp) obj.VoltageLevel = temp;
 
@@ -4435,11 +4435,13 @@ define
                 EquipmentContainer: EquipmentContainer,
                 ReportingGroup: ReportingGroup,
                 Terminal: Terminal,
-                ConductingEquipment: ConductingEquipment,
                 Substation: Substation,
+                ConductingEquipment: ConductingEquipment,
+                CurveStyle: CurveStyle,
                 RegularIntervalSchedule: RegularIntervalSchedule,
                 PSRType: PSRType,
                 BaseVoltage: BaseVoltage,
+                BusbarConfiguration: BusbarConfiguration,
                 ACDCTerminal: ACDCTerminal,
                 Curve: Curve,
                 OperatingShare: OperatingShare,
@@ -4448,18 +4450,20 @@ define
                 BasePower: BasePower,
                 ConnectivityNodeContainer: ConnectivityNodeContainer,
                 ConnectivityNode: ConnectivityNode,
+                PhaseCode: PhaseCode,
+                BreakerConfiguration: BreakerConfiguration,
                 NameType: NameType,
                 PowerSystemResource: PowerSystemResource,
-                Bay: Bay,
-                ReportingSuperGroup: ReportingSuperGroup,
                 NameTypeAuthority: NameTypeAuthority,
+                ReportingSuperGroup: ReportingSuperGroup,
+                Bay: Bay,
                 VoltageLevel: VoltageLevel,
-                RegularTimePoint: RegularTimePoint,
                 IrregularTimePoint: IrregularTimePoint,
+                RegularTimePoint: RegularTimePoint,
                 IdentifiedObject: IdentifiedObject,
                 CurveData: CurveData,
-                Name: Name,
-                SubGeographicalRegion: SubGeographicalRegion
+                SubGeographicalRegion: SubGeographicalRegion,
+                Name: Name
             }
         );
     }

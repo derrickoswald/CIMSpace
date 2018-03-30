@@ -480,14 +480,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.OrientationKind = []; if (!obj.orientation) obj.OrientationKind.push ({ id: '', selected: true}); for (var property in OrientationKind) obj.OrientationKind.push ({ id: property, selected: obj.orientation && obj.orientation.endsWith ('.' + property)});
+                obj.orientationOrientationKind = [{ id: '', selected: (!obj.orientation)}]; for (var property in OrientationKind) obj.orientationOrientationKind.push ({ id: property, selected: obj.orientation && obj.orientation.endsWith ('.' + property)});
                 if (obj.DiagramElements) obj.DiagramElements_string = obj.DiagramElements.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.OrientationKind;
+                delete obj.orientationOrientationKind;
                 delete obj.DiagramElements_string;
             }
 
@@ -501,7 +501,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_orientation'>orientation: </label><div class='col-sm-8'><select id='{{id}}_orientation' class='form-control custom-select'>{{#OrientationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OrientationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_orientation'>orientation: </label><div class='col-sm-8'><select id='{{id}}_orientation' class='form-control custom-select'>{{#orientationOrientationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/orientationOrientationKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x1InitialView'>x1InitialView: </label><div class='col-sm-8'><input id='{{id}}_x1InitialView' class='form-control' type='text'{{#x1InitialView}} value='{{x1InitialView}}'{{/x1InitialView}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x2InitialView'>x2InitialView: </label><div class='col-sm-8'><input id='{{id}}_x2InitialView' class='form-control' type='text'{{#x2InitialView}} value='{{x2InitialView}}'{{/x2InitialView}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1InitialView'>y1InitialView: </label><div class='col-sm-8'><input id='{{id}}_y1InitialView' class='form-control' type='text'{{#y1InitialView}} value='{{y1InitialView}}'{{/y1InitialView}}></div></div>
@@ -519,7 +519,7 @@ define
 
                 var obj = obj || { id: id, cls: "Diagram" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_orientation").value; if ("" != temp) { temp = OrientationKind[temp]; if ("undefined" != typeof (temp)) obj.orientation = "http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind." + temp; }
+                temp = OrientationKind[document.getElementById (id + "_orientation").value]; if (temp) obj.orientation = "http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind." + temp; else delete obj.orientation;
                 temp = document.getElementById (id + "_x1InitialView").value; if ("" != temp) obj.x1InitialView = temp;
                 temp = document.getElementById (id + "_x2InitialView").value; if ("" != temp) obj.x2InitialView = temp;
                 temp = document.getElementById (id + "_y1InitialView").value; if ("" != temp) obj.y1InitialView = temp;
@@ -1062,6 +1062,7 @@ define
                 DiagramStyle: DiagramStyle,
                 DiagramObject: DiagramObject,
                 DiagramObjectGluePoint: DiagramObjectGluePoint,
+                OrientationKind: OrientationKind,
                 DiagramObjectPoint: DiagramObjectPoint
             }
         );

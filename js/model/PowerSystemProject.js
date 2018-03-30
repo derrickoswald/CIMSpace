@@ -110,15 +110,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ProjectStepStatusKind = []; if (!obj.status) obj.ProjectStepStatusKind.push ({ id: '', selected: true}); for (var property in ProjectStepStatusKind) obj.ProjectStepStatusKind.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
-                obj.StepKind = []; if (!obj.stepType) obj.StepKind.push ({ id: '', selected: true}); for (var property in StepKind) obj.StepKind.push ({ id: property, selected: obj.stepType && obj.stepType.endsWith ('.' + property)});
+                obj.statusProjectStepStatusKind = [{ id: '', selected: (!obj.status)}]; for (var property in ProjectStepStatusKind) obj.statusProjectStepStatusKind.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.stepTypeStepKind = [{ id: '', selected: (!obj.stepType)}]; for (var property in StepKind) obj.stepTypeStepKind.push ({ id: property, selected: obj.stepType && obj.stepType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ProjectStepStatusKind;
-                delete obj.StepKind;
+                delete obj.statusProjectStepStatusKind;
+                delete obj.stepTypeStepKind;
             }
 
             edit_template ()
@@ -135,8 +135,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualStart'>actualStart: </label><div class='col-sm-8'><input id='{{id}}_actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledEnd'>scheduledEnd: </label><div class='col-sm-8'><input id='{{id}}_scheduledEnd' class='form-control' type='text'{{#scheduledEnd}} value='{{scheduledEnd}}'{{/scheduledEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='{{id}}_scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepType'>stepType: </label><div class='col-sm-8'><select id='{{id}}_stepType' class='form-control custom-select'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusProjectStepStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepType'>stepType: </label><div class='col-sm-8'><select id='{{id}}_stepType' class='form-control custom-select'>{{#stepTypeStepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/stepTypeStepKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -153,8 +153,8 @@ define
                 temp = document.getElementById (id + "_actualStart").value; if ("" != temp) obj.actualStart = temp;
                 temp = document.getElementById (id + "_scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
                 temp = document.getElementById (id + "_scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
-                temp = document.getElementById (id + "_stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                temp = ProjectStepStatusKind[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; else delete obj.status;
+                temp = StepKind[document.getElementById (id + "_stepType").value]; if (temp) obj.stepType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; else delete obj.stepType;
 
                 return (obj);
             }
@@ -252,7 +252,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.StepKind = []; if (!obj.state) obj.StepKind.push ({ id: '', selected: true}); for (var property in StepKind) obj.StepKind.push ({ id: property, selected: obj.state && obj.state.endsWith ('.' + property)});
+                obj.stateStepKind = [{ id: '', selected: (!obj.state)}]; for (var property in StepKind) obj.stateStepKind.push ({ id: property, selected: obj.state && obj.state.endsWith ('.' + property)});
                 if (obj.Collection) obj.Collection_string = obj.Collection.join ();
                 if (obj.Collection) obj.Collection_string = obj.Collection.join ();
             }
@@ -260,7 +260,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.StepKind;
+                delete obj.stateStepKind;
                 delete obj.Collection_string;
                 delete obj.Collection_string;
             }
@@ -277,7 +277,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_name'>name: </label><div class='col-sm-8'><input id='{{id}}_name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_state'>state: </label><div class='col-sm-8'><select id='{{id}}_state' class='form-control custom-select'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_state'>state: </label><div class='col-sm-8'><select id='{{id}}_state' class='form-control custom-select'>{{#stateStepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/stateStepKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
@@ -296,7 +296,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_name").value; if ("" != temp) obj.name = temp;
                 temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById (id + "_state").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.state = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                temp = StepKind[document.getElementById (id + "_state").value]; if (temp) obj.state = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; else delete obj.state;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
                 temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
@@ -402,15 +402,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ProjectStepStatusKind = []; if (!obj.status) obj.ProjectStepStatusKind.push ({ id: '', selected: true}); for (var property in ProjectStepStatusKind) obj.ProjectStepStatusKind.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
-                obj.StepKind = []; if (!obj.stepType) obj.StepKind.push ({ id: '', selected: true}); for (var property in StepKind) obj.StepKind.push ({ id: property, selected: obj.stepType && obj.stepType.endsWith ('.' + property)});
+                obj.statusProjectStepStatusKind = [{ id: '', selected: (!obj.status)}]; for (var property in ProjectStepStatusKind) obj.statusProjectStepStatusKind.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.stepTypeStepKind = [{ id: '', selected: (!obj.stepType)}]; for (var property in StepKind) obj.stepTypeStepKind.push ({ id: property, selected: obj.stepType && obj.stepType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ProjectStepStatusKind;
-                delete obj.StepKind;
+                delete obj.statusProjectStepStatusKind;
+                delete obj.stepTypeStepKind;
             }
 
             edit_template ()
@@ -427,8 +427,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualStart'>actualStart: </label><div class='col-sm-8'><input id='{{id}}_actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledEnd'>scheduledEnd: </label><div class='col-sm-8'><input id='{{id}}_scheduledEnd' class='form-control' type='text'{{#scheduledEnd}} value='{{scheduledEnd}}'{{/scheduledEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='{{id}}_scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepType'>stepType: </label><div class='col-sm-8'><select id='{{id}}_stepType' class='form-control custom-select'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusProjectStepStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepType'>stepType: </label><div class='col-sm-8'><select id='{{id}}_stepType' class='form-control custom-select'>{{#stepTypeStepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/stepTypeStepKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -445,8 +445,8 @@ define
                 temp = document.getElementById (id + "_actualStart").value; if ("" != temp) obj.actualStart = temp;
                 temp = document.getElementById (id + "_scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
                 temp = document.getElementById (id + "_scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
-                temp = document.getElementById (id + "_stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                temp = ProjectStepStatusKind[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; else delete obj.status;
+                temp = StepKind[document.getElementById (id + "_stepType").value]; if (temp) obj.stepType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; else delete obj.stepType;
 
                 return (obj);
             }
@@ -570,7 +570,9 @@ define
         return (
             {
                 PowerSystemProjectSchedule: PowerSystemProjectSchedule,
+                StepKind: StepKind,
                 PowerSystemProject: PowerSystemProject,
+                ProjectStepStatusKind: ProjectStepStatusKind,
                 ProjectStep: ProjectStep,
                 PowerSystemSubProject: PowerSystemSubProject
             }

@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/Assets"],
-    function (base, Assets)
+    ["model/base", "model/Assets", "model/Core"],
+    function (base, Assets, Core)
     {
 
         /**
@@ -342,13 +342,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PhaseCode = []; if (!obj.phaseCode) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phaseCode && obj.phaseCode.endsWith ('.' + property)});
+                obj.phaseCodePhaseCode = [{ id: '', selected: (!obj.phaseCode)}]; for (var property in Core.PhaseCode) obj.phaseCodePhaseCode.push ({ id: property, selected: obj.phaseCode && obj.phaseCode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PhaseCode;
+                delete obj.phaseCodePhaseCode;
             }
 
             edit_template ()
@@ -367,7 +367,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalCode'>finalCode: </label><div class='col-sm-8'><input id='{{id}}_finalCode' class='form-control' type='text'{{#finalCode}} value='{{finalCode}}'{{/finalCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalOrigin'>finalOrigin: </label><div class='col-sm-8'><input id='{{id}}_finalOrigin' class='form-control' type='text'{{#finalOrigin}} value='{{finalOrigin}}'{{/finalOrigin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalRemark'>finalRemark: </label><div class='col-sm-8'><input id='{{id}}_finalRemark' class='form-control' type='text'{{#finalRemark}} value='{{finalRemark}}'{{/finalRemark}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><select id='{{id}}_phaseCode' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><select id='{{id}}_phaseCode' class='form-control custom-select'>{{#phaseCodePhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseCodePhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryCode'>preliminaryCode: </label><div class='col-sm-8'><input id='{{id}}_preliminaryCode' class='form-control' type='text'{{#preliminaryCode}} value='{{preliminaryCode}}'{{/preliminaryCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryDateTime'>preliminaryDateTime: </label><div class='col-sm-8'><input id='{{id}}_preliminaryDateTime' class='form-control' type='text'{{#preliminaryDateTime}} value='{{preliminaryDateTime}}'{{/preliminaryDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryRemark'>preliminaryRemark: </label><div class='col-sm-8'><input id='{{id}}_preliminaryRemark' class='form-control' type='text'{{#preliminaryRemark}} value='{{preliminaryRemark}}'{{/preliminaryRemark}}></div></div>
@@ -392,7 +392,7 @@ define
                 temp = document.getElementById (id + "_finalCode").value; if ("" != temp) obj.finalCode = temp;
                 temp = document.getElementById (id + "_finalOrigin").value; if ("" != temp) obj.finalOrigin = temp;
                 temp = document.getElementById (id + "_finalRemark").value; if ("" != temp) obj.finalRemark = temp;
-                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = Core.PhaseCode[document.getElementById (id + "_phaseCode").value]; if (temp) obj.phaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.phaseCode;
                 temp = document.getElementById (id + "_preliminaryCode").value; if ("" != temp) obj.preliminaryCode = temp;
                 temp = document.getElementById (id + "_preliminaryDateTime").value; if ("" != temp) obj.preliminaryDateTime = temp;
                 temp = document.getElementById (id + "_preliminaryRemark").value; if ("" != temp) obj.preliminaryRemark = temp;

@@ -620,7 +620,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ControlAreaTypeKind = []; if (!obj.type) obj.ControlAreaTypeKind.push ({ id: '', selected: true}); for (var property in ControlAreaTypeKind) obj.ControlAreaTypeKind.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+                obj.typeControlAreaTypeKind = [{ id: '', selected: (!obj.type)}]; for (var property in ControlAreaTypeKind) obj.typeControlAreaTypeKind.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
                 if (obj.ControlAreaGeneratingUnit) obj.ControlAreaGeneratingUnit_string = obj.ControlAreaGeneratingUnit.join ();
                 if (obj.TieFlow) obj.TieFlow_string = obj.TieFlow.join ();
             }
@@ -628,7 +628,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ControlAreaTypeKind;
+                delete obj.typeControlAreaTypeKind;
                 delete obj.ControlAreaGeneratingUnit_string;
                 delete obj.TieFlow_string;
             }
@@ -645,7 +645,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_netInterchange'>netInterchange: </label><div class='col-sm-8'><input id='{{id}}_netInterchange' class='form-control' type='text'{{#netInterchange}} value='{{netInterchange}}'{{/netInterchange}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pTolerance'>pTolerance: </label><div class='col-sm-8'><input id='{{id}}_pTolerance' class='form-control' type='text'{{#pTolerance}} value='{{pTolerance}}'{{/pTolerance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ControlAreaTypeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ControlAreaTypeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#typeControlAreaTypeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/typeControlAreaTypeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyArea'>EnergyArea: </label><div class='col-sm-8'><input id='{{id}}_EnergyArea' class='form-control' type='text'{{#EnergyArea}} value='{{EnergyArea}}'{{/EnergyArea}}></div></div>
                     </div>
                     </fieldset>
@@ -661,7 +661,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_netInterchange").value; if ("" != temp) obj.netInterchange = temp;
                 temp = document.getElementById (id + "_pTolerance").value; if ("" != temp) obj.pTolerance = temp;
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ControlAreaTypeKind[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ControlAreaTypeKind." + temp; }
+                temp = ControlAreaTypeKind[document.getElementById (id + "_type").value]; if (temp) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ControlAreaTypeKind." + temp; else delete obj.type;
                 temp = document.getElementById (id + "_EnergyArea").value; if ("" != temp) obj.EnergyArea = temp;
 
                 return (obj);
@@ -685,6 +685,7 @@ define
             {
                 ControlAreaGeneratingUnit: ControlAreaGeneratingUnit,
                 ControlArea: ControlArea,
+                ControlAreaTypeKind: ControlAreaTypeKind,
                 AltGeneratingUnitMeas: AltGeneratingUnitMeas,
                 TieFlow: TieFlow,
                 AltTieMeas: AltTieMeas

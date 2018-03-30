@@ -737,13 +737,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.BoilerControlMode = []; if (!obj.boilerControlMode) obj.BoilerControlMode.push ({ id: '', selected: true}); for (var property in BoilerControlMode) obj.BoilerControlMode.push ({ id: property, selected: obj.boilerControlMode && obj.boilerControlMode.endsWith ('.' + property)});
+                obj.boilerControlModeBoilerControlMode = [{ id: '', selected: (!obj.boilerControlMode)}]; for (var property in BoilerControlMode) obj.boilerControlModeBoilerControlMode.push ({ id: property, selected: obj.boilerControlMode && obj.boilerControlMode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.BoilerControlMode;
+                delete obj.boilerControlModeBoilerControlMode;
             }
 
             edit_template ()
@@ -758,7 +758,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerVersusFrequency'>auxPowerVersusFrequency: </label><div class='col-sm-8'><input id='{{id}}_auxPowerVersusFrequency' class='form-control' type='text'{{#auxPowerVersusFrequency}} value='{{auxPowerVersusFrequency}}'{{/auxPowerVersusFrequency}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerVersusVoltage'>auxPowerVersusVoltage: </label><div class='col-sm-8'><input id='{{id}}_auxPowerVersusVoltage' class='form-control' type='text'{{#auxPowerVersusVoltage}} value='{{auxPowerVersusVoltage}}'{{/auxPowerVersusVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_boilerControlMode'>boilerControlMode: </label><div class='col-sm-8'><select id='{{id}}_boilerControlMode' class='form-control custom-select'>{{#BoilerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BoilerControlMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_boilerControlMode'>boilerControlMode: </label><div class='col-sm-8'><select id='{{id}}_boilerControlMode' class='form-control custom-select'>{{#boilerControlModeBoilerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/boilerControlModeBoilerControlMode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlErrorBiasP'>controlErrorBiasP: </label><div class='col-sm-8'><input id='{{id}}_controlErrorBiasP' class='form-control' type='text'{{#controlErrorBiasP}} value='{{controlErrorBiasP}}'{{/controlErrorBiasP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlIC'>controlIC: </label><div class='col-sm-8'><input id='{{id}}_controlIC' class='form-control' type='text'{{#controlIC}} value='{{controlIC}}'{{/controlIC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlPC'>controlPC: </label><div class='col-sm-8'><input id='{{id}}_controlPC' class='form-control' type='text'{{#controlPC}} value='{{controlPC}}'{{/controlPC}}></div></div>
@@ -796,7 +796,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
                 temp = document.getElementById (id + "_auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
-                temp = document.getElementById (id + "_boilerControlMode").value; if ("" != temp) { temp = BoilerControlMode[temp]; if ("undefined" != typeof (temp)) obj.boilerControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; }
+                temp = BoilerControlMode[document.getElementById (id + "_boilerControlMode").value]; if (temp) obj.boilerControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; else delete obj.boilerControlMode;
                 temp = document.getElementById (id + "_controlErrorBiasP").value; if ("" != temp) obj.controlErrorBiasP = temp;
                 temp = document.getElementById (id + "_controlIC").value; if ("" != temp) obj.controlIC = temp;
                 temp = document.getElementById (id + "_controlPC").value; if ("" != temp) obj.controlPC = temp;
@@ -1542,13 +1542,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TurbineType = []; if (!obj.turbineType) obj.TurbineType.push ({ id: '', selected: true}); for (var property in TurbineType) obj.TurbineType.push ({ id: property, selected: obj.turbineType && obj.turbineType.endsWith ('.' + property)});
+                obj.turbineTypeTurbineType = [{ id: '', selected: (!obj.turbineType)}]; for (var property in TurbineType) obj.turbineTypeTurbineType.push ({ id: property, selected: obj.turbineType && obj.turbineType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TurbineType;
+                delete obj.turbineTypeTurbineType;
             }
 
             edit_template ()
@@ -1570,7 +1570,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transientDroopTime'>transientDroopTime: </label><div class='col-sm-8'><input id='{{id}}_transientDroopTime' class='form-control' type='text'{{#transientDroopTime}} value='{{transientDroopTime}}'{{/transientDroopTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transientRegulation'>transientRegulation: </label><div class='col-sm-8'><input id='{{id}}_transientRegulation' class='form-control' type='text'{{#transientRegulation}} value='{{transientRegulation}}'{{/transientRegulation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_turbineRating'>turbineRating: </label><div class='col-sm-8'><input id='{{id}}_turbineRating' class='form-control' type='text'{{#turbineRating}} value='{{turbineRating}}'{{/turbineRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_turbineType'>turbineType: </label><div class='col-sm-8'><select id='{{id}}_turbineType' class='form-control custom-select'>{{#TurbineType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TurbineType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_turbineType'>turbineType: </label><div class='col-sm-8'><select id='{{id}}_turbineType' class='form-control custom-select'>{{#turbineTypeTurbineType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/turbineTypeTurbineType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_waterStartingTime'>waterStartingTime: </label><div class='col-sm-8'><input id='{{id}}_waterStartingTime' class='form-control' type='text'{{#waterStartingTime}} value='{{waterStartingTime}}'{{/waterStartingTime}}></div></div>
                     </div>
                     </fieldset>
@@ -1593,7 +1593,7 @@ define
                 temp = document.getElementById (id + "_transientDroopTime").value; if ("" != temp) obj.transientDroopTime = temp;
                 temp = document.getElementById (id + "_transientRegulation").value; if ("" != temp) obj.transientRegulation = temp;
                 temp = document.getElementById (id + "_turbineRating").value; if ("" != temp) obj.turbineRating = temp;
-                temp = document.getElementById (id + "_turbineType").value; if ("" != temp) { temp = TurbineType[temp]; if ("undefined" != typeof (temp)) obj.turbineType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; }
+                temp = TurbineType[document.getElementById (id + "_turbineType").value]; if (temp) obj.turbineType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; else delete obj.turbineType;
                 temp = document.getElementById (id + "_waterStartingTime").value; if ("" != temp) obj.waterStartingTime = temp;
 
                 return (obj);
@@ -1946,19 +1946,21 @@ define
 
         return (
             {
-                FossilSteamSupply: FossilSteamSupply,
                 BWRSteamSupply: BWRSteamSupply,
                 HeatRecoveryBoiler: HeatRecoveryBoiler,
-                PWRSteamSupply: PWRSteamSupply,
+                BoilerControlMode: BoilerControlMode,
                 CTTempActivePowerCurve: CTTempActivePowerCurve,
                 PrimeMover: PrimeMover,
-                CombustionTurbine: CombustionTurbine,
-                HydroTurbine: HydroTurbine,
                 Subcritical: Subcritical,
                 SteamSupply: SteamSupply,
                 Supercritical: Supercritical,
-                DrumBoiler: DrumBoiler,
-                SteamTurbine: SteamTurbine
+                TurbineType: TurbineType,
+                SteamTurbine: SteamTurbine,
+                FossilSteamSupply: FossilSteamSupply,
+                PWRSteamSupply: PWRSteamSupply,
+                CombustionTurbine: CombustionTurbine,
+                HydroTurbine: HydroTurbine,
+                DrumBoiler: DrumBoiler
             }
         );
     }

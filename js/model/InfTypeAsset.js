@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/Core", "model/InfAssets"],
-    function (base, Core, InfAssets)
+    ["model/base", "model/Common", "model/Core", "model/InfAssets"],
+    function (base, Common, Core, InfAssets)
     {
 
         /**
@@ -257,14 +257,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.TypeAssets) obj.TypeAssets_string = obj.TypeAssets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.Status;
+                delete obj.statusStatus;
                 delete obj.TypeAssets_string;
             }
 
@@ -278,7 +278,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -291,7 +291,7 @@ define
 
                 var obj = obj || { id: id, cls: "TypeAssetCatalogue" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
 
                 return (obj);
             }

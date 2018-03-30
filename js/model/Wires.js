@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Core", "model/LoadModel"],
+    ["model/base", "model/Core", "model/Domain", "model/LoadModel"],
     /**
      * An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks.
      *
      * This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
      *
      */
-    function (base, Core, LoadModel)
+    function (base, Core, Domain, LoadModel)
     {
 
         /**
@@ -581,14 +581,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PhaseShuntConnectionKind = []; if (!obj.phaseConnection) obj.PhaseShuntConnectionKind.push ({ id: '', selected: true}); for (var property in PhaseShuntConnectionKind) obj.PhaseShuntConnectionKind.push ({ id: property, selected: obj.phaseConnection && obj.phaseConnection.endsWith ('.' + property)});
+                obj.phaseConnectionPhaseShuntConnectionKind = [{ id: '', selected: (!obj.phaseConnection)}]; for (var property in PhaseShuntConnectionKind) obj.phaseConnectionPhaseShuntConnectionKind.push ({ id: property, selected: obj.phaseConnection && obj.phaseConnection.endsWith ('.' + property)});
                 if (obj.EnergyConsumerPhase) obj.EnergyConsumerPhase_string = obj.EnergyConsumerPhase.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PhaseShuntConnectionKind;
+                delete obj.phaseConnectionPhaseShuntConnectionKind;
                 delete obj.EnergyConsumerPhase_string;
             }
 
@@ -606,7 +606,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_grounded'>grounded: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_grounded' class='form-check-input' type='checkbox'{{#grounded}} checked{{/grounded}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfixed'>pfixed: </label><div class='col-sm-8'><input id='{{id}}_pfixed' class='form-control' type='text'{{#pfixed}} value='{{pfixed}}'{{/pfixed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfixedPct'>pfixedPct: </label><div class='col-sm-8'><input id='{{id}}_pfixedPct' class='form-control' type='text'{{#pfixedPct}} value='{{pfixedPct}}'{{/pfixedPct}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseConnection'>phaseConnection: </label><div class='col-sm-8'><select id='{{id}}_phaseConnection' class='form-control custom-select'>{{#PhaseShuntConnectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseShuntConnectionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseConnection'>phaseConnection: </label><div class='col-sm-8'><select id='{{id}}_phaseConnection' class='form-control custom-select'>{{#phaseConnectionPhaseShuntConnectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseConnectionPhaseShuntConnectionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qfixed'>qfixed: </label><div class='col-sm-8'><input id='{{id}}_qfixed' class='form-control' type='text'{{#qfixed}} value='{{qfixed}}'{{/qfixed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qfixedPct'>qfixedPct: </label><div class='col-sm-8'><input id='{{id}}_qfixedPct' class='form-control' type='text'{{#qfixedPct}} value='{{qfixedPct}}'{{/qfixedPct}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p'>p: </label><div class='col-sm-8'><input id='{{id}}_p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
@@ -630,7 +630,7 @@ define
                 temp = document.getElementById (id + "_grounded").checked; if (temp) obj.grounded = true;
                 temp = document.getElementById (id + "_pfixed").value; if ("" != temp) obj.pfixed = temp;
                 temp = document.getElementById (id + "_pfixedPct").value; if ("" != temp) obj.pfixedPct = temp;
-                temp = document.getElementById (id + "_phaseConnection").value; if ("" != temp) { temp = PhaseShuntConnectionKind[temp]; if ("undefined" != typeof (temp)) obj.phaseConnection = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; }
+                temp = PhaseShuntConnectionKind[document.getElementById (id + "_phaseConnection").value]; if (temp) obj.phaseConnection = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; else delete obj.phaseConnection;
                 temp = document.getElementById (id + "_qfixed").value; if ("" != temp) obj.qfixed = temp;
                 temp = document.getElementById (id + "_qfixedPct").value; if ("" != temp) obj.qfixedPct = temp;
                 temp = document.getElementById (id + "_p").value; if ("" != temp) obj.p = temp;
@@ -2390,13 +2390,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SinglePhaseKind = []; if (!obj.phase) obj.SinglePhaseKind.push ({ id: '', selected: true}); for (var property in SinglePhaseKind) obj.SinglePhaseKind.push ({ id: property, selected: obj.phase && obj.phase.endsWith ('.' + property)});
+                obj.phaseSinglePhaseKind = [{ id: '', selected: (!obj.phase)}]; for (var property in SinglePhaseKind) obj.phaseSinglePhaseKind.push ({ id: property, selected: obj.phase && obj.phase.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SinglePhaseKind;
+                delete obj.phaseSinglePhaseKind;
             }
 
             edit_template ()
@@ -2411,7 +2411,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfixed'>pfixed: </label><div class='col-sm-8'><input id='{{id}}_pfixed' class='form-control' type='text'{{#pfixed}} value='{{pfixed}}'{{/pfixed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfixedPct'>pfixedPct: </label><div class='col-sm-8'><input id='{{id}}_pfixedPct' class='form-control' type='text'{{#pfixedPct}} value='{{pfixedPct}}'{{/pfixedPct}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SinglePhaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#phaseSinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qfixed'>qfixed: </label><div class='col-sm-8'><input id='{{id}}_qfixed' class='form-control' type='text'{{#qfixed}} value='{{qfixed}}'{{/qfixed}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qfixedPct'>qfixedPct: </label><div class='col-sm-8'><input id='{{id}}_qfixedPct' class='form-control' type='text'{{#qfixedPct}} value='{{qfixedPct}}'{{/qfixedPct}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyConsumer'>EnergyConsumer: </label><div class='col-sm-8'><input id='{{id}}_EnergyConsumer' class='form-control' type='text'{{#EnergyConsumer}} value='{{EnergyConsumer}}'{{/EnergyConsumer}}></div></div>
@@ -2429,7 +2429,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_pfixed").value; if ("" != temp) obj.pfixed = temp;
                 temp = document.getElementById (id + "_pfixedPct").value; if ("" != temp) obj.pfixedPct = temp;
-                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj.phase;
                 temp = document.getElementById (id + "_qfixed").value; if ("" != temp) obj.qfixed = temp;
                 temp = document.getElementById (id + "_qfixedPct").value; if ("" != temp) obj.qfixedPct = temp;
                 temp = document.getElementById (id + "_EnergyConsumer").value; if ("" != temp) obj.EnergyConsumer = temp;
@@ -3605,13 +3605,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SinglePhaseKind = []; if (!obj.phase) obj.SinglePhaseKind.push ({ id: '', selected: true}); for (var property in SinglePhaseKind) obj.SinglePhaseKind.push ({ id: property, selected: obj.phase && obj.phase.endsWith ('.' + property)});
+                obj.phaseSinglePhaseKind = [{ id: '', selected: (!obj.phase)}]; for (var property in SinglePhaseKind) obj.phaseSinglePhaseKind.push ({ id: property, selected: obj.phase && obj.phase.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SinglePhaseKind;
+                delete obj.phaseSinglePhaseKind;
             }
 
             edit_template ()
@@ -3624,7 +3624,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SinglePhaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#phaseSinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACLineSegment'>ACLineSegment: </label><div class='col-sm-8'><input id='{{id}}_ACLineSegment' class='form-control' type='text'{{#ACLineSegment}} value='{{ACLineSegment}}'{{/ACLineSegment}}></div></div>
                     </div>
                     </fieldset>
@@ -3638,7 +3638,7 @@ define
 
                 var obj = obj || { id: id, cls: "ACLineSegmentPhase" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj.phase;
                 temp = document.getElementById (id + "_ACLineSegment").value; if ("" != temp) obj.ACLineSegment = temp;
 
                 return (obj);
@@ -4081,9 +4081,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.RegulatingControlModeKind = []; if (!obj.mode) obj.RegulatingControlModeKind.push ({ id: '', selected: true}); for (var property in RegulatingControlModeKind) obj.RegulatingControlModeKind.push ({ id: property, selected: obj.mode && obj.mode.endsWith ('.' + property)});
-                obj.PhaseCode = []; if (!obj.monitoredPhase) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.monitoredPhase && obj.monitoredPhase.endsWith ('.' + property)});
-                obj.UnitMultiplier = []; if (!obj.targetValueUnitMultiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.targetValueUnitMultiplier && obj.targetValueUnitMultiplier.endsWith ('.' + property)});
+                obj.modeRegulatingControlModeKind = [{ id: '', selected: (!obj.mode)}]; for (var property in RegulatingControlModeKind) obj.modeRegulatingControlModeKind.push ({ id: property, selected: obj.mode && obj.mode.endsWith ('.' + property)});
+                obj.monitoredPhasePhaseCode = [{ id: '', selected: (!obj.monitoredPhase)}]; for (var property in Core.PhaseCode) obj.monitoredPhasePhaseCode.push ({ id: property, selected: obj.monitoredPhase && obj.monitoredPhase.endsWith ('.' + property)});
+                obj.targetValueUnitMultiplierUnitMultiplier = [{ id: '', selected: (!obj.targetValueUnitMultiplier)}]; for (var property in Domain.UnitMultiplier) obj.targetValueUnitMultiplierUnitMultiplier.push ({ id: property, selected: obj.targetValueUnitMultiplier && obj.targetValueUnitMultiplier.endsWith ('.' + property)});
                 if (obj.ProtectiveActionRegulation) obj.ProtectiveActionRegulation_string = obj.ProtectiveActionRegulation.join ();
                 if (obj.RegulationSchedule) obj.RegulationSchedule_string = obj.RegulationSchedule.join ();
                 if (obj.RegulatingCondEq) obj.RegulatingCondEq_string = obj.RegulatingCondEq.join ();
@@ -4092,9 +4092,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.RegulatingControlModeKind;
-                delete obj.PhaseCode;
-                delete obj.UnitMultiplier;
+                delete obj.modeRegulatingControlModeKind;
+                delete obj.monitoredPhasePhaseCode;
+                delete obj.targetValueUnitMultiplierUnitMultiplier;
                 delete obj.ProtectiveActionRegulation_string;
                 delete obj.RegulationSchedule_string;
                 delete obj.RegulatingCondEq_string;
@@ -4111,11 +4111,11 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_discrete'>discrete: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_discrete' class='form-check-input' type='checkbox'{{#discrete}} checked{{/discrete}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mode'>mode: </label><div class='col-sm-8'><select id='{{id}}_mode' class='form-control custom-select'>{{#RegulatingControlModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RegulatingControlModeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_monitoredPhase'>monitoredPhase: </label><div class='col-sm-8'><select id='{{id}}_monitoredPhase' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mode'>mode: </label><div class='col-sm-8'><select id='{{id}}_mode' class='form-control custom-select'>{{#modeRegulatingControlModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/modeRegulatingControlModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_monitoredPhase'>monitoredPhase: </label><div class='col-sm-8'><select id='{{id}}_monitoredPhase' class='form-control custom-select'>{{#monitoredPhasePhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/monitoredPhasePhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetDeadband'>targetDeadband: </label><div class='col-sm-8'><input id='{{id}}_targetDeadband' class='form-control' type='text'{{#targetDeadband}} value='{{targetDeadband}}'{{/targetDeadband}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValue'>targetValue: </label><div class='col-sm-8'><input id='{{id}}_targetValue' class='form-control' type='text'{{#targetValue}} value='{{targetValue}}'{{/targetValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValueUnitMultiplier'>targetValueUnitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_targetValueUnitMultiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValueUnitMultiplier'>targetValueUnitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_targetValueUnitMultiplier' class='form-control custom-select'>{{#targetValueUnitMultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/targetValueUnitMultiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
@@ -4131,11 +4131,11 @@ define
                 var obj = obj || { id: id, cls: "RegulatingControl" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_discrete").checked; if (temp) obj.discrete = true;
-                temp = document.getElementById (id + "_mode").value; if ("" != temp) { temp = RegulatingControlModeKind[temp]; if ("undefined" != typeof (temp)) obj.mode = "http://iec.ch/TC57/2013/CIM-schema-cim16#RegulatingControlModeKind." + temp; }
-                temp = document.getElementById (id + "_monitoredPhase").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.monitoredPhase = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = RegulatingControlModeKind[document.getElementById (id + "_mode").value]; if (temp) obj.mode = "http://iec.ch/TC57/2013/CIM-schema-cim16#RegulatingControlModeKind." + temp; else delete obj.mode;
+                temp = Core.PhaseCode[document.getElementById (id + "_monitoredPhase").value]; if (temp) obj.monitoredPhase = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.monitoredPhase;
                 temp = document.getElementById (id + "_targetDeadband").value; if ("" != temp) obj.targetDeadband = temp;
                 temp = document.getElementById (id + "_targetValue").value; if ("" != temp) obj.targetValue = temp;
-                temp = document.getElementById (id + "_targetValueUnitMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.targetValueUnitMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_targetValueUnitMultiplier").value]; if (temp) obj.targetValueUnitMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.targetValueUnitMultiplier;
                 temp = document.getElementById (id + "_enabled").checked; if (temp) obj.enabled = true;
                 temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
@@ -4593,13 +4593,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SinglePhaseKind = []; if (!obj.phase) obj.SinglePhaseKind.push ({ id: '', selected: true}); for (var property in SinglePhaseKind) obj.SinglePhaseKind.push ({ id: property, selected: obj.phase && obj.phase.endsWith ('.' + property)});
+                obj.phaseSinglePhaseKind = [{ id: '', selected: (!obj.phase)}]; for (var property in SinglePhaseKind) obj.phaseSinglePhaseKind.push ({ id: property, selected: obj.phase && obj.phase.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SinglePhaseKind;
+                delete obj.phaseSinglePhaseKind;
             }
 
             edit_template ()
@@ -4614,7 +4614,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumSections'>maximumSections: </label><div class='col-sm-8'><input id='{{id}}_maximumSections' class='form-control' type='text'{{#maximumSections}} value='{{maximumSections}}'{{/maximumSections}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalSections'>normalSections: </label><div class='col-sm-8'><input id='{{id}}_normalSections' class='form-control' type='text'{{#normalSections}} value='{{normalSections}}'{{/normalSections}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SinglePhaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#phaseSinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensator'>ShuntCompensator: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensator' class='form-control' type='text'{{#ShuntCompensator}} value='{{ShuntCompensator}}'{{/ShuntCompensator}}></div></div>
                     </div>
                     </fieldset>
@@ -4630,7 +4630,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_maximumSections").value; if ("" != temp) obj.maximumSections = temp;
                 temp = document.getElementById (id + "_normalSections").value; if ("" != temp) obj.normalSections = temp;
-                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj.phase;
                 temp = document.getElementById (id + "_ShuntCompensator").value; if ("" != temp) obj.ShuntCompensator = temp;
 
                 return (obj);
@@ -4728,15 +4728,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SinglePhaseKind = []; if (!obj.phaseSide1) obj.SinglePhaseKind.push ({ id: '', selected: true}); for (var property in SinglePhaseKind) obj.SinglePhaseKind.push ({ id: property, selected: obj.phaseSide1 && obj.phaseSide1.endsWith ('.' + property)});
-                obj.SinglePhaseKind = []; if (!obj.phaseSide2) obj.SinglePhaseKind.push ({ id: '', selected: true}); for (var property in SinglePhaseKind) obj.SinglePhaseKind.push ({ id: property, selected: obj.phaseSide2 && obj.phaseSide2.endsWith ('.' + property)});
+                obj.phaseSide1SinglePhaseKind = [{ id: '', selected: (!obj.phaseSide1)}]; for (var property in SinglePhaseKind) obj.phaseSide1SinglePhaseKind.push ({ id: property, selected: obj.phaseSide1 && obj.phaseSide1.endsWith ('.' + property)});
+                obj.phaseSide2SinglePhaseKind = [{ id: '', selected: (!obj.phaseSide2)}]; for (var property in SinglePhaseKind) obj.phaseSide2SinglePhaseKind.push ({ id: property, selected: obj.phaseSide2 && obj.phaseSide2.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SinglePhaseKind;
-                delete obj.SinglePhaseKind;
+                delete obj.phaseSide1SinglePhaseKind;
+                delete obj.phaseSide2SinglePhaseKind;
             }
 
             edit_template ()
@@ -4750,8 +4750,8 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalOpen'>normalOpen: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseSide1'>phaseSide1: </label><div class='col-sm-8'><select id='{{id}}_phaseSide1' class='form-control custom-select'>{{#SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SinglePhaseKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseSide2'>phaseSide2: </label><div class='col-sm-8'><select id='{{id}}_phaseSide2' class='form-control custom-select'>{{#SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SinglePhaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseSide1'>phaseSide1: </label><div class='col-sm-8'><select id='{{id}}_phaseSide1' class='form-control custom-select'>{{#phaseSide1SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSide1SinglePhaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseSide2'>phaseSide2: </label><div class='col-sm-8'><select id='{{id}}_phaseSide2' class='form-control custom-select'>{{#phaseSide2SinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSide2SinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_closed'>closed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_closed' class='form-check-input' type='checkbox'{{#closed}} checked{{/closed}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switch'>Switch: </label><div class='col-sm-8'><input id='{{id}}_Switch' class='form-control' type='text'{{#Switch}} value='{{Switch}}'{{/Switch}}></div></div>
                     </div>
@@ -4767,8 +4767,8 @@ define
                 var obj = obj || { id: id, cls: "SwitchPhase" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_normalOpen").checked; if (temp) obj.normalOpen = true;
-                temp = document.getElementById (id + "_phaseSide1").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phaseSide1 = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
-                temp = document.getElementById (id + "_phaseSide2").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phaseSide2 = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = SinglePhaseKind[document.getElementById (id + "_phaseSide1").value]; if (temp) obj.phaseSide1 = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj.phaseSide1;
+                temp = SinglePhaseKind[document.getElementById (id + "_phaseSide2").value]; if (temp) obj.phaseSide2 = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj.phaseSide2;
                 temp = document.getElementById (id + "_closed").checked; if (temp) obj.closed = true;
                 temp = document.getElementById (id + "_Switch").value; if ("" != temp) obj.Switch = temp;
 
@@ -7326,13 +7326,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PetersenCoilModeKind = []; if (!obj.mode) obj.PetersenCoilModeKind.push ({ id: '', selected: true}); for (var property in PetersenCoilModeKind) obj.PetersenCoilModeKind.push ({ id: property, selected: obj.mode && obj.mode.endsWith ('.' + property)});
+                obj.modePetersenCoilModeKind = [{ id: '', selected: (!obj.mode)}]; for (var property in PetersenCoilModeKind) obj.modePetersenCoilModeKind.push ({ id: property, selected: obj.mode && obj.mode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PetersenCoilModeKind;
+                delete obj.modePetersenCoilModeKind;
             }
 
             edit_template ()
@@ -7345,7 +7345,7 @@ define
                     `
                     + EarthFaultCompensator.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mode'>mode: </label><div class='col-sm-8'><select id='{{id}}_mode' class='form-control custom-select'>{{#PetersenCoilModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PetersenCoilModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mode'>mode: </label><div class='col-sm-8'><select id='{{id}}_mode' class='form-control custom-select'>{{#modePetersenCoilModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/modePetersenCoilModeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalU'>nominalU: </label><div class='col-sm-8'><input id='{{id}}_nominalU' class='form-control' type='text'{{#nominalU}} value='{{nominalU}}'{{/nominalU}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offsetCurrent'>offsetCurrent: </label><div class='col-sm-8'><input id='{{id}}_offsetCurrent' class='form-control' type='text'{{#offsetCurrent}} value='{{offsetCurrent}}'{{/offsetCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_positionCurrent'>positionCurrent: </label><div class='col-sm-8'><input id='{{id}}_positionCurrent' class='form-control' type='text'{{#positionCurrent}} value='{{positionCurrent}}'{{/positionCurrent}}></div></div>
@@ -7364,7 +7364,7 @@ define
 
                 var obj = obj || { id: id, cls: "PetersenCoil" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_mode").value; if ("" != temp) { temp = PetersenCoilModeKind[temp]; if ("undefined" != typeof (temp)) obj.mode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PetersenCoilModeKind." + temp; }
+                temp = PetersenCoilModeKind[document.getElementById (id + "_mode").value]; if (temp) obj.mode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PetersenCoilModeKind." + temp; else delete obj.mode;
                 temp = document.getElementById (id + "_nominalU").value; if ("" != temp) obj.nominalU = temp;
                 temp = document.getElementById (id + "_offsetCurrent").value; if ("" != temp) obj.offsetCurrent = temp;
                 temp = document.getElementById (id + "_positionCurrent").value; if ("" != temp) obj.positionCurrent = temp;
@@ -7586,13 +7586,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WindingConnection = []; if (!obj.connectionKind) obj.WindingConnection.push ({ id: '', selected: true}); for (var property in WindingConnection) obj.WindingConnection.push ({ id: property, selected: obj.connectionKind && obj.connectionKind.endsWith ('.' + property)});
+                obj.connectionKindWindingConnection = [{ id: '', selected: (!obj.connectionKind)}]; for (var property in WindingConnection) obj.connectionKindWindingConnection.push ({ id: property, selected: obj.connectionKind && obj.connectionKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WindingConnection;
+                delete obj.connectionKindWindingConnection;
             }
 
             edit_template ()
@@ -7607,7 +7607,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b'>b: </label><div class='col-sm-8'><input id='{{id}}_b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b0'>b0: </label><div class='col-sm-8'><input id='{{id}}_b0' class='form-control' type='text'{{#b0}} value='{{b0}}'{{/b0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_connectionKind'>connectionKind: </label><div class='col-sm-8'><select id='{{id}}_connectionKind' class='form-control custom-select'>{{#WindingConnection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindingConnection}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_connectionKind'>connectionKind: </label><div class='col-sm-8'><select id='{{id}}_connectionKind' class='form-control custom-select'>{{#connectionKindWindingConnection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/connectionKindWindingConnection}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g'>g: </label><div class='col-sm-8'><input id='{{id}}_g' class='form-control' type='text'{{#g}} value='{{g}}'{{/g}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g0'>g0: </label><div class='col-sm-8'><input id='{{id}}_g0' class='form-control' type='text'{{#g0}} value='{{g0}}'{{/g0}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseAngleClock'>phaseAngleClock: </label><div class='col-sm-8'><input id='{{id}}_phaseAngleClock' class='form-control' type='text'{{#phaseAngleClock}} value='{{phaseAngleClock}}'{{/phaseAngleClock}}></div></div>
@@ -7632,7 +7632,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_b").value; if ("" != temp) obj.b = temp;
                 temp = document.getElementById (id + "_b0").value; if ("" != temp) obj.b0 = temp;
-                temp = document.getElementById (id + "_connectionKind").value; if ("" != temp) { temp = WindingConnection[temp]; if ("undefined" != typeof (temp)) obj.connectionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection." + temp; }
+                temp = WindingConnection[document.getElementById (id + "_connectionKind").value]; if (temp) obj.connectionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection." + temp; else delete obj.connectionKind;
                 temp = document.getElementById (id + "_g").value; if ("" != temp) obj.g = temp;
                 temp = document.getElementById (id + "_g0").value; if ("" != temp) obj.g0 = temp;
                 temp = document.getElementById (id + "_phaseAngleClock").value; if ("" != temp) obj.phaseAngleClock = temp;
@@ -7730,13 +7730,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PhaseCode = []; if (!obj.phases) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
+                obj.phasesPhaseCode = [{ id: '', selected: (!obj.phases)}]; for (var property in Core.PhaseCode) obj.phasesPhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PhaseCode;
+                delete obj.phasesPhaseCode;
             }
 
             edit_template ()
@@ -7749,7 +7749,7 @@ define
                     `
                     + TransformerEnd.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#phasesPhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phasesPhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerTank'>TransformerTank: </label><div class='col-sm-8'><input id='{{id}}_TransformerTank' class='form-control' type='text'{{#TransformerTank}} value='{{TransformerTank}}'{{/TransformerTank}}></div></div>
                     </div>
                     </fieldset>
@@ -7763,7 +7763,7 @@ define
 
                 var obj = obj || { id: id, cls: "TransformerTankEnd" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_phases").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.phases;
                 temp = document.getElementById (id + "_TransformerTank").value; if ("" != temp) obj.TransformerTank = temp;
 
                 return (obj);
@@ -8236,13 +8236,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TransformerControlMode = []; if (!obj.tculControlMode) obj.TransformerControlMode.push ({ id: '', selected: true}); for (var property in TransformerControlMode) obj.TransformerControlMode.push ({ id: property, selected: obj.tculControlMode && obj.tculControlMode.endsWith ('.' + property)});
+                obj.tculControlModeTransformerControlMode = [{ id: '', selected: (!obj.tculControlMode)}]; for (var property in TransformerControlMode) obj.tculControlModeTransformerControlMode.push ({ id: property, selected: obj.tculControlMode && obj.tculControlMode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TransformerControlMode;
+                delete obj.tculControlModeTransformerControlMode;
             }
 
             edit_template ()
@@ -8256,7 +8256,7 @@ define
                     + TapChanger.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepVoltageIncrement'>stepVoltageIncrement: </label><div class='col-sm-8'><input id='{{id}}_stepVoltageIncrement' class='form-control' type='text'{{#stepVoltageIncrement}} value='{{stepVoltageIncrement}}'{{/stepVoltageIncrement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tculControlMode'>tculControlMode: </label><div class='col-sm-8'><select id='{{id}}_tculControlMode' class='form-control custom-select'>{{#TransformerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerControlMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tculControlMode'>tculControlMode: </label><div class='col-sm-8'><select id='{{id}}_tculControlMode' class='form-control custom-select'>{{#tculControlModeTransformerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/tculControlModeTransformerControlMode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RatioTapChangerTable'>RatioTapChangerTable: </label><div class='col-sm-8'><input id='{{id}}_RatioTapChangerTable' class='form-control' type='text'{{#RatioTapChangerTable}} value='{{RatioTapChangerTable}}'{{/RatioTapChangerTable}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerEnd'>TransformerEnd: </label><div class='col-sm-8'><input id='{{id}}_TransformerEnd' class='form-control' type='text'{{#TransformerEnd}} value='{{TransformerEnd}}'{{/TransformerEnd}}></div></div>
                     </div>
@@ -8272,7 +8272,7 @@ define
                 var obj = obj || { id: id, cls: "RatioTapChanger" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_stepVoltageIncrement").value; if ("" != temp) obj.stepVoltageIncrement = temp;
-                temp = document.getElementById (id + "_tculControlMode").value; if ("" != temp) { temp = TransformerControlMode[temp]; if ("undefined" != typeof (temp)) obj.tculControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerControlMode." + temp; }
+                temp = TransformerControlMode[document.getElementById (id + "_tculControlMode").value]; if (temp) obj.tculControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerControlMode." + temp; else delete obj.tculControlMode;
                 temp = document.getElementById (id + "_RatioTapChangerTable").value; if ("" != temp) obj.RatioTapChangerTable = temp;
                 temp = document.getElementById (id + "_TransformerEnd").value; if ("" != temp) obj.TransformerEnd = temp;
 
@@ -9049,14 +9049,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PhaseShuntConnectionKind = []; if (!obj.phaseConnection) obj.PhaseShuntConnectionKind.push ({ id: '', selected: true}); for (var property in PhaseShuntConnectionKind) obj.PhaseShuntConnectionKind.push ({ id: property, selected: obj.phaseConnection && obj.phaseConnection.endsWith ('.' + property)});
+                obj.phaseConnectionPhaseShuntConnectionKind = [{ id: '', selected: (!obj.phaseConnection)}]; for (var property in PhaseShuntConnectionKind) obj.phaseConnectionPhaseShuntConnectionKind.push ({ id: property, selected: obj.phaseConnection && obj.phaseConnection.endsWith ('.' + property)});
                 if (obj.ShuntCompensatorPhase) obj.ShuntCompensatorPhase_string = obj.ShuntCompensatorPhase.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PhaseShuntConnectionKind;
+                delete obj.phaseConnectionPhaseShuntConnectionKind;
                 delete obj.ShuntCompensatorPhase_string;
             }
 
@@ -9075,7 +9075,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumSections'>maximumSections: </label><div class='col-sm-8'><input id='{{id}}_maximumSections' class='form-control' type='text'{{#maximumSections}} value='{{maximumSections}}'{{/maximumSections}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nomU'>nomU: </label><div class='col-sm-8'><input id='{{id}}_nomU' class='form-control' type='text'{{#nomU}} value='{{nomU}}'{{/nomU}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalSections'>normalSections: </label><div class='col-sm-8'><input id='{{id}}_normalSections' class='form-control' type='text'{{#normalSections}} value='{{normalSections}}'{{/normalSections}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseConnection'>phaseConnection: </label><div class='col-sm-8'><select id='{{id}}_phaseConnection' class='form-control custom-select'>{{#PhaseShuntConnectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseShuntConnectionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseConnection'>phaseConnection: </label><div class='col-sm-8'><select id='{{id}}_phaseConnection' class='form-control custom-select'>{{#phaseConnectionPhaseShuntConnectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseConnectionPhaseShuntConnectionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOnCount'>switchOnCount: </label><div class='col-sm-8'><input id='{{id}}_switchOnCount' class='form-control' type='text'{{#switchOnCount}} value='{{switchOnCount}}'{{/switchOnCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOnDate'>switchOnDate: </label><div class='col-sm-8'><input id='{{id}}_switchOnDate' class='form-control' type='text'{{#switchOnDate}} value='{{switchOnDate}}'{{/switchOnDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltageSensitivity'>voltageSensitivity: </label><div class='col-sm-8'><input id='{{id}}_voltageSensitivity' class='form-control' type='text'{{#voltageSensitivity}} value='{{voltageSensitivity}}'{{/voltageSensitivity}}></div></div>
@@ -9098,7 +9098,7 @@ define
                 temp = document.getElementById (id + "_maximumSections").value; if ("" != temp) obj.maximumSections = temp;
                 temp = document.getElementById (id + "_nomU").value; if ("" != temp) obj.nomU = temp;
                 temp = document.getElementById (id + "_normalSections").value; if ("" != temp) obj.normalSections = temp;
-                temp = document.getElementById (id + "_phaseConnection").value; if ("" != temp) { temp = PhaseShuntConnectionKind[temp]; if ("undefined" != typeof (temp)) obj.phaseConnection = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; }
+                temp = PhaseShuntConnectionKind[document.getElementById (id + "_phaseConnection").value]; if (temp) obj.phaseConnection = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; else delete obj.phaseConnection;
                 temp = document.getElementById (id + "_switchOnCount").value; if ("" != temp) obj.switchOnCount = temp;
                 temp = document.getElementById (id + "_switchOnDate").value; if ("" != temp) obj.switchOnDate = temp;
                 temp = document.getElementById (id + "_voltageSensitivity").value; if ("" != temp) obj.voltageSensitivity = temp;
@@ -9562,10 +9562,10 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CoolantType = []; if (!obj.coolantType) obj.CoolantType.push ({ id: '', selected: true}); for (var property in CoolantType) obj.CoolantType.push ({ id: property, selected: obj.coolantType && obj.coolantType.endsWith ('.' + property)});
-                obj.SynchronousMachineOperatingMode = []; if (!obj.operatingMode) obj.SynchronousMachineOperatingMode.push ({ id: '', selected: true}); for (var property in SynchronousMachineOperatingMode) obj.SynchronousMachineOperatingMode.push ({ id: property, selected: obj.operatingMode && obj.operatingMode.endsWith ('.' + property)});
-                obj.ShortCircuitRotorKind = []; if (!obj.shortCircuitRotorType) obj.ShortCircuitRotorKind.push ({ id: '', selected: true}); for (var property in ShortCircuitRotorKind) obj.ShortCircuitRotorKind.push ({ id: property, selected: obj.shortCircuitRotorType && obj.shortCircuitRotorType.endsWith ('.' + property)});
-                obj.SynchronousMachineKind = []; if (!obj.type) obj.SynchronousMachineKind.push ({ id: '', selected: true}); for (var property in SynchronousMachineKind) obj.SynchronousMachineKind.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+                obj.coolantTypeCoolantType = [{ id: '', selected: (!obj.coolantType)}]; for (var property in CoolantType) obj.coolantTypeCoolantType.push ({ id: property, selected: obj.coolantType && obj.coolantType.endsWith ('.' + property)});
+                obj.operatingModeSynchronousMachineOperatingMode = [{ id: '', selected: (!obj.operatingMode)}]; for (var property in SynchronousMachineOperatingMode) obj.operatingModeSynchronousMachineOperatingMode.push ({ id: property, selected: obj.operatingMode && obj.operatingMode.endsWith ('.' + property)});
+                obj.shortCircuitRotorTypeShortCircuitRotorKind = [{ id: '', selected: (!obj.shortCircuitRotorType)}]; for (var property in ShortCircuitRotorKind) obj.shortCircuitRotorTypeShortCircuitRotorKind.push ({ id: property, selected: obj.shortCircuitRotorType && obj.shortCircuitRotorType.endsWith ('.' + property)});
+                obj.typeSynchronousMachineKind = [{ id: '', selected: (!obj.type)}]; for (var property in SynchronousMachineKind) obj.typeSynchronousMachineKind.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
                 if (obj.PrimeMovers) obj.PrimeMovers_string = obj.PrimeMovers.join ();
                 if (obj.ReactiveCapabilityCurves) obj.ReactiveCapabilityCurves_string = obj.ReactiveCapabilityCurves.join ();
             }
@@ -9573,10 +9573,10 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CoolantType;
-                delete obj.SynchronousMachineOperatingMode;
-                delete obj.ShortCircuitRotorKind;
-                delete obj.SynchronousMachineKind;
+                delete obj.coolantTypeCoolantType;
+                delete obj.operatingModeSynchronousMachineOperatingMode;
+                delete obj.shortCircuitRotorTypeShortCircuitRotorKind;
+                delete obj.typeSynchronousMachineKind;
                 delete obj.PrimeMovers_string;
                 delete obj.ReactiveCapabilityCurves_string;
             }
@@ -9596,7 +9596,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_baseQ'>baseQ: </label><div class='col-sm-8'><input id='{{id}}_baseQ' class='form-control' type='text'{{#baseQ}} value='{{baseQ}}'{{/baseQ}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condenserP'>condenserP: </label><div class='col-sm-8'><input id='{{id}}_condenserP' class='form-control' type='text'{{#condenserP}} value='{{condenserP}}'{{/condenserP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coolantCondition'>coolantCondition: </label><div class='col-sm-8'><input id='{{id}}_coolantCondition' class='form-control' type='text'{{#coolantCondition}} value='{{coolantCondition}}'{{/coolantCondition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coolantType'>coolantType: </label><div class='col-sm-8'><select id='{{id}}_coolantType' class='form-control custom-select'>{{#CoolantType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CoolantType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coolantType'>coolantType: </label><div class='col-sm-8'><select id='{{id}}_coolantType' class='form-control custom-select'>{{#coolantTypeCoolantType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/coolantTypeCoolantType}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_earthing'>earthing: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_earthing' class='form-check-input' type='checkbox'{{#earthing}} checked{{/earthing}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_earthingStarPointR'>earthingStarPointR: </label><div class='col-sm-8'><input id='{{id}}_earthingStarPointR' class='form-control' type='text'{{#earthingStarPointR}} value='{{earthingStarPointR}}'{{/earthingStarPointR}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_earthingStarPointX'>earthingStarPointX: </label><div class='col-sm-8'><input id='{{id}}_earthingStarPointX' class='form-control' type='text'{{#earthingStarPointX}} value='{{earthingStarPointX}}'{{/earthingStarPointX}}></div></div>
@@ -9607,7 +9607,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minQ'>minQ: </label><div class='col-sm-8'><input id='{{id}}_minQ' class='form-control' type='text'{{#minQ}} value='{{minQ}}'{{/minQ}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minU'>minU: </label><div class='col-sm-8'><input id='{{id}}_minU' class='form-control' type='text'{{#minU}} value='{{minU}}'{{/minU}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mu'>mu: </label><div class='col-sm-8'><input id='{{id}}_mu' class='form-control' type='text'{{#mu}} value='{{mu}}'{{/mu}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><select id='{{id}}_operatingMode' class='form-control custom-select'>{{#SynchronousMachineOperatingMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SynchronousMachineOperatingMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><select id='{{id}}_operatingMode' class='form-control custom-select'>{{#operatingModeSynchronousMachineOperatingMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/operatingModeSynchronousMachineOperatingMode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qPercent'>qPercent: </label><div class='col-sm-8'><input id='{{id}}_qPercent' class='form-control' type='text'{{#qPercent}} value='{{qPercent}}'{{/qPercent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r0'>r0: </label><div class='col-sm-8'><input id='{{id}}_r0' class='form-control' type='text'{{#r0}} value='{{r0}}'{{/r0}}></div></div>
@@ -9616,8 +9616,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_satDirectSubtransX'>satDirectSubtransX: </label><div class='col-sm-8'><input id='{{id}}_satDirectSubtransX' class='form-control' type='text'{{#satDirectSubtransX}} value='{{satDirectSubtransX}}'{{/satDirectSubtransX}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_satDirectSyncX'>satDirectSyncX: </label><div class='col-sm-8'><input id='{{id}}_satDirectSyncX' class='form-control' type='text'{{#satDirectSyncX}} value='{{satDirectSyncX}}'{{/satDirectSyncX}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_satDirectTransX'>satDirectTransX: </label><div class='col-sm-8'><input id='{{id}}_satDirectTransX' class='form-control' type='text'{{#satDirectTransX}} value='{{satDirectTransX}}'{{/satDirectTransX}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shortCircuitRotorType'>shortCircuitRotorType: </label><div class='col-sm-8'><select id='{{id}}_shortCircuitRotorType' class='form-control custom-select'>{{#ShortCircuitRotorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ShortCircuitRotorKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#SynchronousMachineKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SynchronousMachineKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shortCircuitRotorType'>shortCircuitRotorType: </label><div class='col-sm-8'><select id='{{id}}_shortCircuitRotorType' class='form-control custom-select'>{{#shortCircuitRotorTypeShortCircuitRotorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/shortCircuitRotorTypeShortCircuitRotorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#typeSynchronousMachineKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/typeSynchronousMachineKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltageRegulationRange'>voltageRegulationRange: </label><div class='col-sm-8'><input id='{{id}}_voltageRegulationRange' class='form-control' type='text'{{#voltageRegulationRange}} value='{{voltageRegulationRange}}'{{/voltageRegulationRange}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x0'>x0: </label><div class='col-sm-8'><input id='{{id}}_x0' class='form-control' type='text'{{#x0}} value='{{x0}}'{{/x0}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x2'>x2: </label><div class='col-sm-8'><input id='{{id}}_x2' class='form-control' type='text'{{#x2}} value='{{x2}}'{{/x2}}></div></div>
@@ -9642,7 +9642,7 @@ define
                 temp = document.getElementById (id + "_baseQ").value; if ("" != temp) obj.baseQ = temp;
                 temp = document.getElementById (id + "_condenserP").value; if ("" != temp) obj.condenserP = temp;
                 temp = document.getElementById (id + "_coolantCondition").value; if ("" != temp) obj.coolantCondition = temp;
-                temp = document.getElementById (id + "_coolantType").value; if ("" != temp) { temp = CoolantType[temp]; if ("undefined" != typeof (temp)) obj.coolantType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CoolantType." + temp; }
+                temp = CoolantType[document.getElementById (id + "_coolantType").value]; if (temp) obj.coolantType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CoolantType." + temp; else delete obj.coolantType;
                 temp = document.getElementById (id + "_earthing").checked; if (temp) obj.earthing = true;
                 temp = document.getElementById (id + "_earthingStarPointR").value; if ("" != temp) obj.earthingStarPointR = temp;
                 temp = document.getElementById (id + "_earthingStarPointX").value; if ("" != temp) obj.earthingStarPointX = temp;
@@ -9653,7 +9653,7 @@ define
                 temp = document.getElementById (id + "_minQ").value; if ("" != temp) obj.minQ = temp;
                 temp = document.getElementById (id + "_minU").value; if ("" != temp) obj.minU = temp;
                 temp = document.getElementById (id + "_mu").value; if ("" != temp) obj.mu = temp;
-                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) { temp = SynchronousMachineOperatingMode[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineOperatingMode." + temp; }
+                temp = SynchronousMachineOperatingMode[document.getElementById (id + "_operatingMode").value]; if (temp) obj.operatingMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineOperatingMode." + temp; else delete obj.operatingMode;
                 temp = document.getElementById (id + "_qPercent").value; if ("" != temp) obj.qPercent = temp;
                 temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
                 temp = document.getElementById (id + "_r0").value; if ("" != temp) obj.r0 = temp;
@@ -9662,8 +9662,8 @@ define
                 temp = document.getElementById (id + "_satDirectSubtransX").value; if ("" != temp) obj.satDirectSubtransX = temp;
                 temp = document.getElementById (id + "_satDirectSyncX").value; if ("" != temp) obj.satDirectSyncX = temp;
                 temp = document.getElementById (id + "_satDirectTransX").value; if ("" != temp) obj.satDirectTransX = temp;
-                temp = document.getElementById (id + "_shortCircuitRotorType").value; if ("" != temp) { temp = ShortCircuitRotorKind[temp]; if ("undefined" != typeof (temp)) obj.shortCircuitRotorType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ShortCircuitRotorKind." + temp; }
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = SynchronousMachineKind[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineKind." + temp; }
+                temp = ShortCircuitRotorKind[document.getElementById (id + "_shortCircuitRotorType").value]; if (temp) obj.shortCircuitRotorType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ShortCircuitRotorKind." + temp; else delete obj.shortCircuitRotorType;
+                temp = SynchronousMachineKind[document.getElementById (id + "_type").value]; if (temp) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineKind." + temp; else delete obj.type;
                 temp = document.getElementById (id + "_voltageRegulationRange").value; if ("" != temp) obj.voltageRegulationRange = temp;
                 temp = document.getElementById (id + "_x0").value; if ("" != temp) obj.x0 = temp;
                 temp = document.getElementById (id + "_x2").value; if ("" != temp) obj.x2 = temp;
@@ -9775,13 +9775,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SVCControlMode = []; if (!obj.sVCControlMode) obj.SVCControlMode.push ({ id: '', selected: true}); for (var property in SVCControlMode) obj.SVCControlMode.push ({ id: property, selected: obj.sVCControlMode && obj.sVCControlMode.endsWith ('.' + property)});
+                obj.sVCControlModeSVCControlMode = [{ id: '', selected: (!obj.sVCControlMode)}]; for (var property in SVCControlMode) obj.sVCControlModeSVCControlMode.push ({ id: property, selected: obj.sVCControlMode && obj.sVCControlMode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SVCControlMode;
+                delete obj.sVCControlModeSVCControlMode;
             }
 
             edit_template ()
@@ -9797,7 +9797,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacitiveRating'>capacitiveRating: </label><div class='col-sm-8'><input id='{{id}}_capacitiveRating' class='form-control' type='text'{{#capacitiveRating}} value='{{capacitiveRating}}'{{/capacitiveRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductiveRating'>inductiveRating: </label><div class='col-sm-8'><input id='{{id}}_inductiveRating' class='form-control' type='text'{{#inductiveRating}} value='{{inductiveRating}}'{{/inductiveRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_slope'>slope: </label><div class='col-sm-8'><input id='{{id}}_slope' class='form-control' type='text'{{#slope}} value='{{slope}}'{{/slope}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sVCControlMode'>sVCControlMode: </label><div class='col-sm-8'><select id='{{id}}_sVCControlMode' class='form-control custom-select'>{{#SVCControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SVCControlMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sVCControlMode'>sVCControlMode: </label><div class='col-sm-8'><select id='{{id}}_sVCControlMode' class='form-control custom-select'>{{#sVCControlModeSVCControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/sVCControlModeSVCControlMode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltageSetPoint'>voltageSetPoint: </label><div class='col-sm-8'><input id='{{id}}_voltageSetPoint' class='form-control' type='text'{{#voltageSetPoint}} value='{{voltageSetPoint}}'{{/voltageSetPoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q'>q: </label><div class='col-sm-8'><input id='{{id}}_q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
                     </div>
@@ -9815,7 +9815,7 @@ define
                 temp = document.getElementById (id + "_capacitiveRating").value; if ("" != temp) obj.capacitiveRating = temp;
                 temp = document.getElementById (id + "_inductiveRating").value; if ("" != temp) obj.inductiveRating = temp;
                 temp = document.getElementById (id + "_slope").value; if ("" != temp) obj.slope = temp;
-                temp = document.getElementById (id + "_sVCControlMode").value; if ("" != temp) { temp = SVCControlMode[temp]; if ("undefined" != typeof (temp)) obj.sVCControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#SVCControlMode." + temp; }
+                temp = SVCControlMode[document.getElementById (id + "_sVCControlMode").value]; if (temp) obj.sVCControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#SVCControlMode." + temp; else delete obj.sVCControlMode;
                 temp = document.getElementById (id + "_voltageSetPoint").value; if ("" != temp) obj.voltageSetPoint = temp;
                 temp = document.getElementById (id + "_q").value; if ("" != temp) obj.q = temp;
 
@@ -10374,13 +10374,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.AsynchronousMachineKind = []; if (!obj.asynchronousMachineType) obj.AsynchronousMachineKind.push ({ id: '', selected: true}); for (var property in AsynchronousMachineKind) obj.AsynchronousMachineKind.push ({ id: property, selected: obj.asynchronousMachineType && obj.asynchronousMachineType.endsWith ('.' + property)});
+                obj.asynchronousMachineTypeAsynchronousMachineKind = [{ id: '', selected: (!obj.asynchronousMachineType)}]; for (var property in AsynchronousMachineKind) obj.asynchronousMachineTypeAsynchronousMachineKind.push ({ id: property, selected: obj.asynchronousMachineType && obj.asynchronousMachineType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.AsynchronousMachineKind;
+                delete obj.asynchronousMachineTypeAsynchronousMachineKind;
             }
 
             edit_template ()
@@ -10412,7 +10412,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xp'>xp: </label><div class='col-sm-8'><input id='{{id}}_xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xpp'>xpp: </label><div class='col-sm-8'><input id='{{id}}_xpp' class='form-control' type='text'{{#xpp}} value='{{xpp}}'{{/xpp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xs'>xs: </label><div class='col-sm-8'><input id='{{id}}_xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asynchronousMachineType'>asynchronousMachineType: </label><div class='col-sm-8'><select id='{{id}}_asynchronousMachineType' class='form-control custom-select'>{{#AsynchronousMachineKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AsynchronousMachineKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asynchronousMachineType'>asynchronousMachineType: </label><div class='col-sm-8'><select id='{{id}}_asynchronousMachineType' class='form-control custom-select'>{{#asynchronousMachineTypeAsynchronousMachineKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/asynchronousMachineTypeAsynchronousMachineKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
                     </div>
                     </fieldset>
@@ -10445,7 +10445,7 @@ define
                 temp = document.getElementById (id + "_xp").value; if ("" != temp) obj.xp = temp;
                 temp = document.getElementById (id + "_xpp").value; if ("" != temp) obj.xpp = temp;
                 temp = document.getElementById (id + "_xs").value; if ("" != temp) obj.xs = temp;
-                temp = document.getElementById (id + "_asynchronousMachineType").value; if ("" != temp) { temp = AsynchronousMachineKind[temp]; if ("undefined" != typeof (temp)) obj.asynchronousMachineType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AsynchronousMachineKind." + temp; }
+                temp = AsynchronousMachineKind[document.getElementById (id + "_asynchronousMachineType").value]; if (temp) obj.asynchronousMachineType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AsynchronousMachineKind." + temp; else delete obj.asynchronousMachineType;
                 temp = document.getElementById (id + "_AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
 
                 return (obj);
@@ -10667,6 +10667,7 @@ define
                 ShuntCompensatorPhase: ShuntCompensatorPhase,
                 ACLineSegment: ACLineSegment,
                 RatioTapChangerTablePoint: RatioTapChangerTablePoint,
+                ShortCircuitRotorKind: ShortCircuitRotorKind,
                 ProtectedSwitch: ProtectedSwitch,
                 BusbarSection: BusbarSection,
                 NonlinearShuntCompensator: NonlinearShuntCompensator,
@@ -10679,13 +10680,17 @@ define
                 Switch: Switch,
                 Breaker: Breaker,
                 TransformerTankEnd: TransformerTankEnd,
+                WindingConnection: WindingConnection,
+                PhaseShuntConnectionKind: PhaseShuntConnectionKind,
                 Conductor: Conductor,
+                SynchronousMachineOperatingMode: SynchronousMachineOperatingMode,
+                CoolantType: CoolantType,
                 RegulationSchedule: RegulationSchedule,
                 PhaseTapChangerTablePoint: PhaseTapChangerTablePoint,
                 SwitchPhase: SwitchPhase,
                 Jumper: Jumper,
-                PowerTransformerEnd: PowerTransformerEnd,
                 GroundDisconnector: GroundDisconnector,
+                PowerTransformerEnd: PowerTransformerEnd,
                 EnergyConsumerPhase: EnergyConsumerPhase,
                 TransformerEnd: TransformerEnd,
                 PowerTransformer: PowerTransformer,
@@ -10701,19 +10706,24 @@ define
                 PerLengthPhaseImpedance: PerLengthPhaseImpedance,
                 RotatingMachine: RotatingMachine,
                 TapChanger: TapChanger,
-                Clamp: Clamp,
                 Ground: Ground,
+                Clamp: Clamp,
                 SeriesCompensator: SeriesCompensator,
+                PetersenCoilModeKind: PetersenCoilModeKind,
                 Disconnector: Disconnector,
-                PhaseTapChangerAsymmetrical: PhaseTapChangerAsymmetrical,
-                AsynchronousMachine: AsynchronousMachine,
                 ReactiveCapabilityCurve: ReactiveCapabilityCurve,
-                MutualCoupling: MutualCoupling,
+                AsynchronousMachine: AsynchronousMachine,
+                PhaseTapChangerAsymmetrical: PhaseTapChangerAsymmetrical,
                 PhaseImpedanceData: PhaseImpedanceData,
+                MutualCoupling: MutualCoupling,
+                SinglePhaseKind: SinglePhaseKind,
                 ExternalNetworkInjection: ExternalNetworkInjection,
                 Recloser: Recloser,
+                RegulatingControlModeKind: RegulatingControlModeKind,
                 SwitchSchedule: SwitchSchedule,
+                SynchronousMachineKind: SynchronousMachineKind,
                 TransformerCoreAdmittance: TransformerCoreAdmittance,
+                SVCControlMode: SVCControlMode,
                 RatioTapChangerTable: RatioTapChangerTable,
                 TransformerTank: TransformerTank,
                 TapSchedule: TapSchedule,
@@ -10721,8 +10731,9 @@ define
                 PhaseTapChangerTabular: PhaseTapChangerTabular,
                 PerLengthLineParameter: PerLengthLineParameter,
                 GroundingImpedance: GroundingImpedance,
-                RegulatingControl: RegulatingControl,
                 FrequencyConverter: FrequencyConverter,
+                RegulatingControl: RegulatingControl,
+                AsynchronousMachineKind: AsynchronousMachineKind,
                 PetersenCoil: PetersenCoil,
                 ShuntCompensator: ShuntCompensator,
                 NonlinearShuntCompensatorPhase: NonlinearShuntCompensatorPhase,
@@ -10730,14 +10741,15 @@ define
                 TapChangerTablePoint: TapChangerTablePoint,
                 PhaseTapChangerSymmetrical: PhaseTapChangerSymmetrical,
                 PhaseTapChangerNonLinear: PhaseTapChangerNonLinear,
+                CompositeSwitch: CompositeSwitch,
                 PhaseTapChangerTable: PhaseTapChangerTable,
                 EarthFaultCompensator: EarthFaultCompensator,
-                Connector: Connector,
                 StaticVarCompensator: StaticVarCompensator,
                 TransformerStarImpedance: TransformerStarImpedance,
-                CompositeSwitch: CompositeSwitch,
+                Connector: Connector,
                 EnergyConsumer: EnergyConsumer,
                 EnergySource: EnergySource,
+                TransformerControlMode: TransformerControlMode,
                 Sectionaliser: Sectionaliser,
                 SynchronousMachine: SynchronousMachine,
                 LoadBreakSwitch: LoadBreakSwitch,

@@ -338,18 +338,18 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PhaseConnectedFaultKind = []; if (!obj.kind) obj.PhaseConnectedFaultKind.push ({ id: '', selected: true}); for (var property in PhaseConnectedFaultKind) obj.PhaseConnectedFaultKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.PhaseCode = []; if (!obj.phases) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
-                obj.FaultImpedance = []; if (!obj.impedance) obj.FaultImpedance.push ({ id: '', selected: true}); for (var property in FaultImpedance) obj.FaultImpedance.push ({ id: property, selected: obj.impedance && obj.impedance.endsWith ('.' + property)});
+                obj.kindPhaseConnectedFaultKind = [{ id: '', selected: (!obj.kind)}]; for (var property in PhaseConnectedFaultKind) obj.kindPhaseConnectedFaultKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.phasesPhaseCode = [{ id: '', selected: (!obj.phases)}]; for (var property in Core.PhaseCode) obj.phasesPhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
+                obj.impedanceFaultImpedance = [{ id: '', selected: (!obj.impedance)}]; for (var property in FaultImpedance) obj.impedanceFaultImpedance.push ({ id: property, selected: obj.impedance && obj.impedance.endsWith ('.' + property)});
                 if (obj.FaultCauseTypes) obj.FaultCauseTypes_string = obj.FaultCauseTypes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PhaseConnectedFaultKind;
-                delete obj.PhaseCode;
-                delete obj.FaultImpedance;
+                delete obj.kindPhaseConnectedFaultKind;
+                delete obj.phasesPhaseCode;
+                delete obj.impedanceFaultImpedance;
                 delete obj.FaultCauseTypes_string;
             }
 
@@ -363,9 +363,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#PhaseConnectedFaultKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseConnectedFaultKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_impedance'>impedance: </label><div class='col-sm-8'><select id='{{id}}_impedance' class='form-control custom-select'>{{#FaultImpedance}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FaultImpedance}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPhaseConnectedFaultKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPhaseConnectedFaultKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#phasesPhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phasesPhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_impedance'>impedance: </label><div class='col-sm-8'><select id='{{id}}_impedance' class='form-control custom-select'>{{#impedanceFaultImpedance}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/impedanceFaultImpedance}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultyEquipment'>FaultyEquipment: </label><div class='col-sm-8'><input id='{{id}}_FaultyEquipment' class='form-control' type='text'{{#FaultyEquipment}} value='{{FaultyEquipment}}'{{/FaultyEquipment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultCauseTypes'>FaultCauseTypes: </label><div class='col-sm-8'><input id='{{id}}_FaultCauseTypes' class='form-control' type='text'{{#FaultCauseTypes}} value='{{FaultCauseTypes_string}}'{{/FaultCauseTypes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
@@ -381,9 +381,9 @@ define
 
                 var obj = obj || { id: id, cls: "Fault" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PhaseConnectedFaultKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; }
-                temp = document.getElementById (id + "_phases").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
-                temp = document.getElementById (id + "_impedance").value; if ("" != temp) { temp = FaultImpedance[temp]; if ("undefined" != typeof (temp)) obj.impedance = "http://iec.ch/TC57/2013/CIM-schema-cim16#FaultImpedance." + temp; }
+                temp = PhaseConnectedFaultKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; else delete obj.kind;
+                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.phases;
+                temp = FaultImpedance[document.getElementById (id + "_impedance").value]; if (temp) obj.impedance = "http://iec.ch/TC57/2013/CIM-schema-cim16#FaultImpedance." + temp; else delete obj.impedance;
                 temp = document.getElementById (id + "_FaultyEquipment").value; if ("" != temp) obj.FaultyEquipment = temp;
                 temp = document.getElementById (id + "_FaultCauseTypes").value; if ("" != temp) obj.FaultCauseTypes = temp.split (",");
                 temp = document.getElementById (id + "_Outage").value; if ("" != temp) obj.Outage = temp;
@@ -647,6 +647,7 @@ define
                 LineFault: LineFault,
                 FaultCauseType: FaultCauseType,
                 Fault: Fault,
+                PhaseConnectedFaultKind: PhaseConnectedFaultKind,
                 FaultImpedance: FaultImpedance,
                 EquipmentFault: EquipmentFault
             }

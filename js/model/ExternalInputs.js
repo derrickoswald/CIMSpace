@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/ControlArea", "model/Core", "model/MarketPlan", "model/Meas", "model/ParticipantInterfaces", "model/Wires"],
+    ["model/base", "model/Common", "model/ControlArea", "model/Core", "model/MarketPlan", "model/Meas", "model/MktDomain", "model/ParticipantInterfaces", "model/Wires"],
     /**
      * Inputs to the market system from external sources.
      *
      */
-    function (base, Common, ControlArea, Core, MarketPlan, Meas, ParticipantInterfaces, Wires)
+    function (base, Common, ControlArea, Core, MarketPlan, Meas, MktDomain, ParticipantInterfaces, Wires)
     {
 
         /**
@@ -1706,13 +1706,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.debAdderFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.debAdderFlag && obj.debAdderFlag.endsWith ('.' + property)});
+                obj.debAdderFlagYesNo = [{ id: '', selected: (!obj.debAdderFlag)}]; for (var property in MktDomain.YesNo) obj.debAdderFlagYesNo.push ({ id: property, selected: obj.debAdderFlag && obj.debAdderFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
+                delete obj.debAdderFlagYesNo;
             }
 
             edit_template ()
@@ -1726,7 +1726,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curveType'>curveType: </label><div class='col-sm-8'><input id='{{id}}_curveType' class='form-control' type='text'{{#curveType}} value='{{curveType}}'{{/curveType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_debAdderFlag'>debAdderFlag: </label><div class='col-sm-8'><select id='{{id}}_debAdderFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_debAdderFlag'>debAdderFlag: </label><div class='col-sm-8'><select id='{{id}}_debAdderFlag' class='form-control custom-select'>{{#debAdderFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/debAdderFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DefaultBid'>DefaultBid: </label><div class='col-sm-8'><input id='{{id}}_DefaultBid' class='form-control' type='text'{{#DefaultBid}} value='{{DefaultBid}}'{{/DefaultBid}}></div></div>
                     </div>
                     </fieldset>
@@ -1741,7 +1741,7 @@ define
                 var obj = obj || { id: id, cls: "DefaultBidCurve" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_curveType").value; if ("" != temp) obj.curveType = temp;
-                temp = document.getElementById (id + "_debAdderFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.debAdderFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_debAdderFlag").value]; if (temp) obj.debAdderFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.debAdderFlag;
                 temp = document.getElementById (id + "_DefaultBid").value; if ("" != temp) obj.DefaultBid = temp;
 
                 return (obj);
@@ -2395,13 +2395,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.AnalogLimitType = []; if (!obj.limitType) obj.AnalogLimitType.push ({ id: '', selected: true}); for (var property in AnalogLimitType) obj.AnalogLimitType.push ({ id: property, selected: obj.limitType && obj.limitType.endsWith ('.' + property)});
+                obj.limitTypeAnalogLimitType = [{ id: '', selected: (!obj.limitType)}]; for (var property in MktDomain.AnalogLimitType) obj.limitTypeAnalogLimitType.push ({ id: property, selected: obj.limitType && obj.limitType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.AnalogLimitType;
+                delete obj.limitTypeAnalogLimitType;
             }
 
             edit_template ()
@@ -2415,7 +2415,7 @@ define
                     + Meas.AnalogLimit.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_exceededLimit'>exceededLimit: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_exceededLimit' class='form-check-input' type='checkbox'{{#exceededLimit}} checked{{/exceededLimit}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitType'>limitType: </label><div class='col-sm-8'><select id='{{id}}_limitType' class='form-control custom-select'>{{#AnalogLimitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AnalogLimitType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitType'>limitType: </label><div class='col-sm-8'><select id='{{id}}_limitType' class='form-control custom-select'>{{#limitTypeAnalogLimitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/limitTypeAnalogLimitType}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -2429,7 +2429,7 @@ define
                 var obj = obj || { id: id, cls: "MktAnalogLimit" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_exceededLimit").checked; if (temp) obj.exceededLimit = true;
-                temp = document.getElementById (id + "_limitType").value; if ("" != temp) { temp = AnalogLimitType[temp]; if ("undefined" != typeof (temp)) obj.limitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogLimitType." + temp; }
+                temp = MktDomain.AnalogLimitType[document.getElementById (id + "_limitType").value]; if (temp) obj.limitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogLimitType." + temp; else delete obj.limitType;
 
                 return (obj);
             }
@@ -3487,7 +3487,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.EnergyTransactionType = []; if (!obj.state) obj.EnergyTransactionType.push ({ id: '', selected: true}); for (var property in EnergyTransactionType) obj.EnergyTransactionType.push ({ id: property, selected: obj.state && obj.state.endsWith ('.' + property)});
+                obj.stateEnergyTransactionType = [{ id: '', selected: (!obj.state)}]; for (var property in MktDomain.EnergyTransactionType) obj.stateEnergyTransactionType.push ({ id: property, selected: obj.state && obj.state.endsWith ('.' + property)});
                 if (obj.EnergyPriceCurves) obj.EnergyPriceCurves_string = obj.EnergyPriceCurves.join ();
                 if (obj.EnergyProfiles) obj.EnergyProfiles_string = obj.EnergyProfiles.join ();
                 if (obj.TieLines) obj.TieLines_string = obj.TieLines.join ();
@@ -3498,7 +3498,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.EnergyTransactionType;
+                delete obj.stateEnergyTransactionType;
                 delete obj.EnergyPriceCurves_string;
                 delete obj.EnergyProfiles_string;
                 delete obj.TieLines_string;
@@ -3524,7 +3524,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_payCongestion'>payCongestion: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><input id='{{id}}_reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiptPointP'>receiptPointP: </label><div class='col-sm-8'><input id='{{id}}_receiptPointP' class='form-control' type='text'{{#receiptPointP}} value='{{receiptPointP}}'{{/receiptPointP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_state'>state: </label><div class='col-sm-8'><select id='{{id}}_state' class='form-control custom-select'>{{#EnergyTransactionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EnergyTransactionType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_state'>state: </label><div class='col-sm-8'><select id='{{id}}_state' class='form-control custom-select'>{{#stateEnergyTransactionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/stateEnergyTransactionType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyProduct'>EnergyProduct: </label><div class='col-sm-8'><input id='{{id}}_EnergyProduct' class='form-control' type='text'{{#EnergyProduct}} value='{{EnergyProduct}}'{{/EnergyProduct}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyPriceCurves'>EnergyPriceCurves: </label><div class='col-sm-8'><input id='{{id}}_EnergyPriceCurves' class='form-control' type='text'{{#EnergyPriceCurves}} value='{{EnergyPriceCurves_string}}'{{/EnergyPriceCurves}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionReservation'>TransmissionReservation: </label><div class='col-sm-8'><input id='{{id}}_TransmissionReservation' class='form-control' type='text'{{#TransmissionReservation}} value='{{TransmissionReservation}}'{{/TransmissionReservation}}></div></div>
@@ -3550,7 +3550,7 @@ define
                 temp = document.getElementById (id + "_payCongestion").checked; if (temp) obj.payCongestion = true;
                 temp = document.getElementById (id + "_reason").value; if ("" != temp) obj.reason = temp;
                 temp = document.getElementById (id + "_receiptPointP").value; if ("" != temp) obj.receiptPointP = temp;
-                temp = document.getElementById (id + "_state").value; if ("" != temp) { temp = EnergyTransactionType[temp]; if ("undefined" != typeof (temp)) obj.state = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyTransactionType." + temp; }
+                temp = MktDomain.EnergyTransactionType[document.getElementById (id + "_state").value]; if (temp) obj.state = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyTransactionType." + temp; else delete obj.state;
                 temp = document.getElementById (id + "_EnergyProduct").value; if ("" != temp) obj.EnergyProduct = temp;
                 temp = document.getElementById (id + "_EnergyPriceCurves").value; if ("" != temp) obj.EnergyPriceCurves = temp.split (",");
                 temp = document.getElementById (id + "_TransmissionReservation").value; if ("" != temp) obj.TransmissionReservation = temp;
@@ -4182,13 +4182,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.LoadForecastType = []; if (!obj.forecastType) obj.LoadForecastType.push ({ id: '', selected: true}); for (var property in LoadForecastType) obj.LoadForecastType.push ({ id: property, selected: obj.forecastType && obj.forecastType.endsWith ('.' + property)});
+                obj.forecastTypeLoadForecastType = [{ id: '', selected: (!obj.forecastType)}]; for (var property in MktDomain.LoadForecastType) obj.forecastTypeLoadForecastType.push ({ id: property, selected: obj.forecastType && obj.forecastType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.LoadForecastType;
+                delete obj.forecastTypeLoadForecastType;
             }
 
             edit_template ()
@@ -4201,7 +4201,7 @@ define
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_forecastType'>forecastType: </label><div class='col-sm-8'><select id='{{id}}_forecastType' class='form-control custom-select'>{{#LoadForecastType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LoadForecastType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_forecastType'>forecastType: </label><div class='col-sm-8'><select id='{{id}}_forecastType' class='form-control custom-select'>{{#forecastTypeLoadForecastType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/forecastTypeLoadForecastType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}'{{/AggregateNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TACArea'>TACArea: </label><div class='col-sm-8'><input id='{{id}}_TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea}}'{{/TACArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktLoadArea'>MktLoadArea: </label><div class='col-sm-8'><input id='{{id}}_MktLoadArea' class='form-control' type='text'{{#MktLoadArea}} value='{{MktLoadArea}}'{{/MktLoadArea}}></div></div>
@@ -4217,7 +4217,7 @@ define
 
                 var obj = obj || { id: id, cls: "AreaLoadCurve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_forecastType").value; if ("" != temp) { temp = LoadForecastType[temp]; if ("undefined" != typeof (temp)) obj.forecastType = "http://iec.ch/TC57/2013/CIM-schema-cim16#LoadForecastType." + temp; }
+                temp = MktDomain.LoadForecastType[document.getElementById (id + "_forecastType").value]; if (temp) obj.forecastType = "http://iec.ch/TC57/2013/CIM-schema-cim16#LoadForecastType." + temp; else delete obj.forecastType;
                 temp = document.getElementById (id + "_AggregateNode").value; if ("" != temp) obj.AggregateNode = temp;
                 temp = document.getElementById (id + "_TACArea").value; if ("" != temp) obj.TACArea = temp;
                 temp = document.getElementById (id + "_MktLoadArea").value; if ("" != temp) obj.MktLoadArea = temp;
@@ -4318,13 +4318,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ReserveRequirementType = []; if (!obj.reserveRequirementType) obj.ReserveRequirementType.push ({ id: '', selected: true}); for (var property in ReserveRequirementType) obj.ReserveRequirementType.push ({ id: property, selected: obj.reserveRequirementType && obj.reserveRequirementType.endsWith ('.' + property)});
+                obj.reserveRequirementTypeReserveRequirementType = [{ id: '', selected: (!obj.reserveRequirementType)}]; for (var property in MktDomain.ReserveRequirementType) obj.reserveRequirementTypeReserveRequirementType.push ({ id: property, selected: obj.reserveRequirementType && obj.reserveRequirementType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ReserveRequirementType;
+                delete obj.reserveRequirementTypeReserveRequirementType;
             }
 
             edit_template ()
@@ -4338,7 +4338,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqMaxMW'>reqMaxMW: </label><div class='col-sm-8'><input id='{{id}}_reqMaxMW' class='form-control' type='text'{{#reqMaxMW}} value='{{reqMaxMW}}'{{/reqMaxMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reserveRequirementType'>reserveRequirementType: </label><div class='col-sm-8'><select id='{{id}}_reserveRequirementType' class='form-control custom-select'>{{#ReserveRequirementType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReserveRequirementType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reserveRequirementType'>reserveRequirementType: </label><div class='col-sm-8'><select id='{{id}}_reserveRequirementType' class='form-control custom-select'>{{#reserveRequirementTypeReserveRequirementType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/reserveRequirementTypeReserveRequirementType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ASRequirements'>ASRequirements: </label><div class='col-sm-8'><input id='{{id}}_ASRequirements' class='form-control' type='text'{{#ASRequirements}} value='{{ASRequirements}}'{{/ASRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketRegion'>MarketRegion: </label><div class='col-sm-8'><input id='{{id}}_MarketRegion' class='form-control' type='text'{{#MarketRegion}} value='{{MarketRegion}}'{{/MarketRegion}}></div></div>
                     </div>
@@ -4354,7 +4354,7 @@ define
                 var obj = obj || { id: id, cls: "ReserveDemandCurve" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_reqMaxMW").value; if ("" != temp) obj.reqMaxMW = temp;
-                temp = document.getElementById (id + "_reserveRequirementType").value; if ("" != temp) { temp = ReserveRequirementType[temp]; if ("undefined" != typeof (temp)) obj.reserveRequirementType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ReserveRequirementType." + temp; }
+                temp = MktDomain.ReserveRequirementType[document.getElementById (id + "_reserveRequirementType").value]; if (temp) obj.reserveRequirementType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ReserveRequirementType." + temp; else delete obj.reserveRequirementType;
                 temp = document.getElementById (id + "_ASRequirements").value; if ("" != temp) obj.ASRequirements = temp;
                 temp = document.getElementById (id + "_MarketRegion").value; if ("" != temp) obj.MarketRegion = temp;
 
@@ -4549,13 +4549,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SwitchStatusType = []; if (!obj.switchStatus) obj.SwitchStatusType.push ({ id: '', selected: true}); for (var property in SwitchStatusType) obj.SwitchStatusType.push ({ id: property, selected: obj.switchStatus && obj.switchStatus.endsWith ('.' + property)});
+                obj.switchStatusSwitchStatusType = [{ id: '', selected: (!obj.switchStatus)}]; for (var property in MktDomain.SwitchStatusType) obj.switchStatusSwitchStatusType.push ({ id: property, selected: obj.switchStatus && obj.switchStatus.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SwitchStatusType;
+                delete obj.switchStatusSwitchStatusType;
             }
 
             edit_template ()
@@ -4568,7 +4568,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchStatus'>switchStatus: </label><div class='col-sm-8'><select id='{{id}}_switchStatus' class='form-control custom-select'>{{#SwitchStatusType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SwitchStatusType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchStatus'>switchStatus: </label><div class='col-sm-8'><select id='{{id}}_switchStatus' class='form-control custom-select'>{{#switchStatusSwitchStatusType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/switchStatusSwitchStatusType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktSwitch'>MktSwitch: </label><div class='col-sm-8'><input id='{{id}}_MktSwitch' class='form-control' type='text'{{#MktSwitch}} value='{{MktSwitch}}'{{/MktSwitch}}></div></div>
                     </div>
                     </fieldset>
@@ -4582,7 +4582,7 @@ define
 
                 var obj = obj || { id: id, cls: "SwitchStatus" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_switchStatus").value; if ("" != temp) { temp = SwitchStatusType[temp]; if ("undefined" != typeof (temp)) obj.switchStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#SwitchStatusType." + temp; }
+                temp = MktDomain.SwitchStatusType[document.getElementById (id + "_switchStatus").value]; if (temp) obj.switchStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#SwitchStatusType." + temp; else delete obj.switchStatus;
                 temp = document.getElementById (id + "_MktSwitch").value; if ("" != temp) obj.MktSwitch = temp;
 
                 return (obj);
@@ -4820,13 +4820,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.BidCalculationBasis = []; if (!obj.bidSegmentCalcType) obj.BidCalculationBasis.push ({ id: '', selected: true}); for (var property in BidCalculationBasis) obj.BidCalculationBasis.push ({ id: property, selected: obj.bidSegmentCalcType && obj.bidSegmentCalcType.endsWith ('.' + property)});
+                obj.bidSegmentCalcTypeBidCalculationBasis = [{ id: '', selected: (!obj.bidSegmentCalcType)}]; for (var property in MktDomain.BidCalculationBasis) obj.bidSegmentCalcTypeBidCalculationBasis.push ({ id: property, selected: obj.bidSegmentCalcType && obj.bidSegmentCalcType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.BidCalculationBasis;
+                delete obj.bidSegmentCalcTypeBidCalculationBasis;
             }
 
             edit_template ()
@@ -4839,7 +4839,7 @@ define
                     `
                     + Core.CurveData.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidSegmentCalcType'>bidSegmentCalcType: </label><div class='col-sm-8'><select id='{{id}}_bidSegmentCalcType' class='form-control custom-select'>{{#BidCalculationBasis}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BidCalculationBasis}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidSegmentCalcType'>bidSegmentCalcType: </label><div class='col-sm-8'><select id='{{id}}_bidSegmentCalcType' class='form-control custom-select'>{{#bidSegmentCalcTypeBidCalculationBasis}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/bidSegmentCalcTypeBidCalculationBasis}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -4852,7 +4852,7 @@ define
 
                 var obj = obj || { id: id, cls: "DefaultBidCurveData" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_bidSegmentCalcType").value; if ("" != temp) { temp = BidCalculationBasis[temp]; if ("undefined" != typeof (temp)) obj.bidSegmentCalcType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidCalculationBasis." + temp; }
+                temp = MktDomain.BidCalculationBasis[document.getElementById (id + "_bidSegmentCalcType").value]; if (temp) obj.bidSegmentCalcType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidCalculationBasis." + temp; else delete obj.bidSegmentCalcType;
 
                 return (obj);
             }
@@ -5411,15 +5411,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.BidType = []; if (!obj.bidType) obj.BidType.push ({ id: '', selected: true}); for (var property in BidType) obj.BidType.push ({ id: property, selected: obj.bidType && obj.bidType.endsWith ('.' + property)});
-                obj.OnOff = []; if (!obj.peakFlag) obj.OnOff.push ({ id: '', selected: true}); for (var property in OnOff) obj.OnOff.push ({ id: property, selected: obj.peakFlag && obj.peakFlag.endsWith ('.' + property)});
+                obj.bidTypeBidType = [{ id: '', selected: (!obj.bidType)}]; for (var property in MktDomain.BidType) obj.bidTypeBidType.push ({ id: property, selected: obj.bidType && obj.bidType.endsWith ('.' + property)});
+                obj.peakFlagOnOff = [{ id: '', selected: (!obj.peakFlag)}]; for (var property in MktDomain.OnOff) obj.peakFlagOnOff.push ({ id: property, selected: obj.peakFlag && obj.peakFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.BidType;
-                delete obj.OnOff;
+                delete obj.bidTypeBidType;
+                delete obj.peakFlagOnOff;
             }
 
             edit_template ()
@@ -5432,9 +5432,9 @@ define
                     `
                     + ParticipantInterfaces.Bid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#BidType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BidType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#bidTypeBidType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/bidTypeBidType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadCost'>minLoadCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadCost' class='form-control' type='text'{{#minLoadCost}} value='{{minLoadCost}}'{{/minLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_peakFlag'>peakFlag: </label><div class='col-sm-8'><select id='{{id}}_peakFlag' class='form-control custom-select'>{{#OnOff}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OnOff}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_peakFlag'>peakFlag: </label><div class='col-sm-8'><select id='{{id}}_peakFlag' class='form-control custom-select'>{{#peakFlagOnOff}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/peakFlagOnOff}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DefaultBidCurve'>DefaultBidCurve: </label><div class='col-sm-8'><input id='{{id}}_DefaultBidCurve' class='form-control' type='text'{{#DefaultBidCurve}} value='{{DefaultBidCurve}}'{{/DefaultBidCurve}}></div></div>
                     </div>
@@ -5449,9 +5449,9 @@ define
 
                 var obj = obj || { id: id, cls: "DefaultBid" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_bidType").value; if ("" != temp) { temp = BidType[temp]; if ("undefined" != typeof (temp)) obj.bidType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidType." + temp; }
+                temp = MktDomain.BidType[document.getElementById (id + "_bidType").value]; if (temp) obj.bidType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidType." + temp; else delete obj.bidType;
                 temp = document.getElementById (id + "_minLoadCost").value; if ("" != temp) obj.minLoadCost = temp;
-                temp = document.getElementById (id + "_peakFlag").value; if ("" != temp) { temp = OnOff[temp]; if ("undefined" != typeof (temp)) obj.peakFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#OnOff." + temp; }
+                temp = MktDomain.OnOff[document.getElementById (id + "_peakFlag").value]; if (temp) obj.peakFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#OnOff." + temp; else delete obj.peakFlag;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
                 temp = document.getElementById (id + "_DefaultBidCurve").value; if ("" != temp) obj.DefaultBidCurve = temp;
 
@@ -5917,7 +5917,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.SysLoadDistribuFactor) obj.SysLoadDistribuFactor_string = obj.SysLoadDistribuFactor.join ();
                 if (obj.GenDistributionFactor) obj.GenDistributionFactor_string = obj.GenDistributionFactor.join ();
                 if (obj.LoadDistributionFactor) obj.LoadDistributionFactor_string = obj.LoadDistributionFactor.join ();
@@ -5926,7 +5926,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MarketType;
+                delete obj.marketTypeMarketType;
                 delete obj.SysLoadDistribuFactor_string;
                 delete obj.GenDistributionFactor_string;
                 delete obj.LoadDistributionFactor_string;
@@ -5944,7 +5944,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='{{id}}_intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SysLoadDistribuFactor'>SysLoadDistribuFactor: </label><div class='col-sm-8'><input id='{{id}}_SysLoadDistribuFactor' class='form-control' type='text'{{#SysLoadDistribuFactor}} value='{{SysLoadDistribuFactor_string}}'{{/SysLoadDistribuFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenDistributionFactor'>GenDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_GenDistributionFactor' class='form-control' type='text'{{#GenDistributionFactor}} value='{{GenDistributionFactor_string}}'{{/GenDistributionFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadDistributionFactor'>LoadDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_LoadDistributionFactor' class='form-control' type='text'{{#LoadDistributionFactor}} value='{{LoadDistributionFactor_string}}'{{/LoadDistributionFactor}}></div></div>
@@ -5962,7 +5962,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
                 temp = document.getElementById (id + "_intervalEndTime").value; if ("" != temp) obj.intervalEndTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_SysLoadDistribuFactor").value; if ("" != temp) obj.SysLoadDistribuFactor = temp.split (",");
                 temp = document.getElementById (id + "_GenDistributionFactor").value; if ("" != temp) obj.GenDistributionFactor = temp.split (",");
                 temp = document.getElementById (id + "_LoadDistributionFactor").value; if ("" != temp) obj.LoadDistributionFactor = temp.split (",");
@@ -6617,22 +6617,22 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CheckOutType = []; if (!obj.checkOutType) obj.CheckOutType.push ({ id: '', selected: true}); for (var property in CheckOutType) obj.CheckOutType.push ({ id: property, selected: obj.checkOutType && obj.checkOutType.endsWith ('.' + property)});
-                obj.InterTieDirection = []; if (!obj.directionType) obj.InterTieDirection.push ({ id: '', selected: true}); for (var property in InterTieDirection) obj.InterTieDirection.push ({ id: property, selected: obj.directionType && obj.directionType.endsWith ('.' + property)});
-                obj.MarketProductType = []; if (!obj.energyType) obj.MarketProductType.push ({ id: '', selected: true}); for (var property in MarketProductType) obj.MarketProductType.push ({ id: property, selected: obj.energyType && obj.energyType.endsWith ('.' + property)});
-                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
-                obj.EnergyProductType = []; if (!obj.scheduleType) obj.EnergyProductType.push ({ id: '', selected: true}); for (var property in EnergyProductType) obj.EnergyProductType.push ({ id: property, selected: obj.scheduleType && obj.scheduleType.endsWith ('.' + property)});
+                obj.checkOutTypeCheckOutType = [{ id: '', selected: (!obj.checkOutType)}]; for (var property in MktDomain.CheckOutType) obj.checkOutTypeCheckOutType.push ({ id: property, selected: obj.checkOutType && obj.checkOutType.endsWith ('.' + property)});
+                obj.directionTypeInterTieDirection = [{ id: '', selected: (!obj.directionType)}]; for (var property in MktDomain.InterTieDirection) obj.directionTypeInterTieDirection.push ({ id: property, selected: obj.directionType && obj.directionType.endsWith ('.' + property)});
+                obj.energyTypeMarketProductType = [{ id: '', selected: (!obj.energyType)}]; for (var property in MktDomain.MarketProductType) obj.energyTypeMarketProductType.push ({ id: property, selected: obj.energyType && obj.energyType.endsWith ('.' + property)});
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
+                obj.scheduleTypeEnergyProductType = [{ id: '', selected: (!obj.scheduleType)}]; for (var property in MktDomain.EnergyProductType) obj.scheduleTypeEnergyProductType.push ({ id: property, selected: obj.scheduleType && obj.scheduleType.endsWith ('.' + property)});
                 if (obj.InterchangeETCData) obj.InterchangeETCData_string = obj.InterchangeETCData.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CheckOutType;
-                delete obj.InterTieDirection;
-                delete obj.MarketProductType;
-                delete obj.MarketType;
-                delete obj.EnergyProductType;
+                delete obj.checkOutTypeCheckOutType;
+                delete obj.directionTypeInterTieDirection;
+                delete obj.energyTypeMarketProductType;
+                delete obj.marketTypeMarketType;
+                delete obj.scheduleTypeEnergyProductType;
                 delete obj.InterchangeETCData_string;
             }
 
@@ -6646,14 +6646,14 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_checkOutType'>checkOutType: </label><div class='col-sm-8'><select id='{{id}}_checkOutType' class='form-control custom-select'>{{#CheckOutType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CheckOutType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_directionType'>directionType: </label><div class='col-sm-8'><select id='{{id}}_directionType' class='form-control custom-select'>{{#InterTieDirection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InterTieDirection}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyType'>energyType: </label><div class='col-sm-8'><select id='{{id}}_energyType' class='form-control custom-select'>{{#MarketProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketProductType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_checkOutType'>checkOutType: </label><div class='col-sm-8'><select id='{{id}}_checkOutType' class='form-control custom-select'>{{#checkOutTypeCheckOutType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/checkOutTypeCheckOutType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_directionType'>directionType: </label><div class='col-sm-8'><select id='{{id}}_directionType' class='form-control custom-select'>{{#directionTypeInterTieDirection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/directionTypeInterTieDirection}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyType'>energyType: </label><div class='col-sm-8'><select id='{{id}}_energyType' class='form-control custom-select'>{{#energyTypeMarketProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/energyTypeMarketProductType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalLength'>intervalLength: </label><div class='col-sm-8'><input id='{{id}}_intervalLength' class='form-control' type='text'{{#intervalLength}} value='{{intervalLength}}'{{/intervalLength}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingDate'>operatingDate: </label><div class='col-sm-8'><input id='{{id}}_operatingDate' class='form-control' type='text'{{#operatingDate}} value='{{operatingDate}}'{{/operatingDate}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_outOfMarketType'>outOfMarketType: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_outOfMarketType' class='form-check-input' type='checkbox'{{#outOfMarketType}} checked{{/outOfMarketType}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduleType'>scheduleType: </label><div class='col-sm-8'><select id='{{id}}_scheduleType' class='form-control custom-select'>{{#EnergyProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EnergyProductType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduleType'>scheduleType: </label><div class='col-sm-8'><select id='{{id}}_scheduleType' class='form-control custom-select'>{{#scheduleTypeEnergyProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/scheduleTypeEnergyProductType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wcrID'>wcrID: </label><div class='col-sm-8'><input id='{{id}}_wcrID' class='form-control' type='text'{{#wcrID}} value='{{wcrID}}'{{/wcrID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTie'>InterTie: </label><div class='col-sm-8'><input id='{{id}}_InterTie' class='form-control' type='text'{{#InterTie}} value='{{InterTie}}'{{/InterTie}}></div></div>
@@ -6669,14 +6669,14 @@ define
 
                 var obj = obj || { id: id, cls: "InterchangeSchedule" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_checkOutType").value; if ("" != temp) { temp = CheckOutType[temp]; if ("undefined" != typeof (temp)) obj.checkOutType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CheckOutType." + temp; }
-                temp = document.getElementById (id + "_directionType").value; if ("" != temp) { temp = InterTieDirection[temp]; if ("undefined" != typeof (temp)) obj.directionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InterTieDirection." + temp; }
-                temp = document.getElementById (id + "_energyType").value; if ("" != temp) { temp = MarketProductType[temp]; if ("undefined" != typeof (temp)) obj.energyType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductType." + temp; }
+                temp = MktDomain.CheckOutType[document.getElementById (id + "_checkOutType").value]; if (temp) obj.checkOutType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CheckOutType." + temp; else delete obj.checkOutType;
+                temp = MktDomain.InterTieDirection[document.getElementById (id + "_directionType").value]; if (temp) obj.directionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InterTieDirection." + temp; else delete obj.directionType;
+                temp = MktDomain.MarketProductType[document.getElementById (id + "_energyType").value]; if (temp) obj.energyType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductType." + temp; else delete obj.energyType;
                 temp = document.getElementById (id + "_intervalLength").value; if ("" != temp) obj.intervalLength = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_operatingDate").value; if ("" != temp) obj.operatingDate = temp;
                 temp = document.getElementById (id + "_outOfMarketType").checked; if (temp) obj.outOfMarketType = true;
-                temp = document.getElementById (id + "_scheduleType").value; if ("" != temp) { temp = EnergyProductType[temp]; if ("undefined" != typeof (temp)) obj.scheduleType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyProductType." + temp; }
+                temp = MktDomain.EnergyProductType[document.getElementById (id + "_scheduleType").value]; if (temp) obj.scheduleType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyProductType." + temp; else delete obj.scheduleType;
                 temp = document.getElementById (id + "_wcrID").value; if ("" != temp) obj.wcrID = temp;
                 temp = document.getElementById (id + "_RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp;
                 temp = document.getElementById (id + "_InterTie").value; if ("" != temp) obj.InterTie = temp;
@@ -6783,13 +6783,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.EnergyPriceIndexType = []; if (!obj.energyPriceIndexType) obj.EnergyPriceIndexType.push ({ id: '', selected: true}); for (var property in EnergyPriceIndexType) obj.EnergyPriceIndexType.push ({ id: property, selected: obj.energyPriceIndexType && obj.energyPriceIndexType.endsWith ('.' + property)});
+                obj.energyPriceIndexTypeEnergyPriceIndexType = [{ id: '', selected: (!obj.energyPriceIndexType)}]; for (var property in MktDomain.EnergyPriceIndexType) obj.energyPriceIndexTypeEnergyPriceIndexType.push ({ id: property, selected: obj.energyPriceIndexType && obj.energyPriceIndexType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.EnergyPriceIndexType;
+                delete obj.energyPriceIndexTypeEnergyPriceIndexType;
             }
 
             edit_template ()
@@ -6806,7 +6806,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyPriceIndex'>energyPriceIndex: </label><div class='col-sm-8'><input id='{{id}}_energyPriceIndex' class='form-control' type='text'{{#energyPriceIndex}} value='{{energyPriceIndex}}'{{/energyPriceIndex}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyPriceIndexType'>energyPriceIndexType: </label><div class='col-sm-8'><select id='{{id}}_energyPriceIndexType' class='form-control custom-select'>{{#EnergyPriceIndexType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EnergyPriceIndexType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyPriceIndexType'>energyPriceIndexType: </label><div class='col-sm-8'><select id='{{id}}_energyPriceIndexType' class='form-control custom-select'>{{#energyPriceIndexTypeEnergyPriceIndexType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/energyPriceIndexTypeEnergyPriceIndexType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     </fieldset>
@@ -6824,7 +6824,7 @@ define
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_energyPriceIndex").value; if ("" != temp) obj.energyPriceIndex = temp;
-                temp = document.getElementById (id + "_energyPriceIndexType").value; if ("" != temp) { temp = EnergyPriceIndexType[temp]; if ("undefined" != typeof (temp)) obj.energyPriceIndexType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyPriceIndexType." + temp; }
+                temp = MktDomain.EnergyPriceIndexType[document.getElementById (id + "_energyPriceIndexType").value]; if (temp) obj.energyPriceIndexType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyPriceIndexType." + temp; else delete obj.energyPriceIndexType;
                 temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
@@ -7672,9 +7672,9 @@ define
                 UnitInitialConditions: UnitInitialConditions,
                 MktControlArea: MktControlArea,
                 TransmissionInterfaceRightEntitlement: TransmissionInterfaceRightEntitlement,
-                BranchEndFlow: BranchEndFlow,
-                DefaultBidCurve: DefaultBidCurve,
                 Profile: Profile,
+                DefaultBidCurve: DefaultBidCurve,
+                BranchEndFlow: BranchEndFlow,
                 MktSeriesCompensator: MktSeriesCompensator,
                 BaseCaseConstraintLimit: BaseCaseConstraintLimit,
                 TransferInterface: TransferInterface,
@@ -7690,16 +7690,16 @@ define
                 AnalogMeasurementValueQuality: AnalogMeasurementValueQuality,
                 MktAnalogLimit: MktAnalogLimit,
                 TREntitlement: TREntitlement,
-                LoadDistributionFactor: LoadDistributionFactor,
                 EnergyPriceIndex: EnergyPriceIndex,
+                LoadDistributionFactor: LoadDistributionFactor,
                 TransmissionReservation: TransmissionReservation,
                 IntermittentResourceEligibility: IntermittentResourceEligibility,
                 InterchangeETCData: InterchangeETCData,
                 MktAnalogValue: MktAnalogValue,
                 MWLimitSchedule: MWLimitSchedule,
+                GenDistributionFactor: GenDistributionFactor,
                 TransmissionCapacity: TransmissionCapacity,
                 MktTapChanger: MktTapChanger,
-                GenDistributionFactor: GenDistributionFactor,
                 ContingencyConstraintLimit: ContingencyConstraintLimit,
                 GeneratingUnitDynamicValues: GeneratingUnitDynamicValues,
                 GenericConstraints: GenericConstraints,
@@ -7715,9 +7715,9 @@ define
                 ConstraintTerm: ConstraintTerm,
                 NodeConstraintTerm: NodeConstraintTerm,
                 ServicePoint: ServicePoint,
-                MktSwitch: MktSwitch,
                 AreaLoadCurve: AreaLoadCurve,
                 EnergyTransaction: EnergyTransaction,
+                MktSwitch: MktSwitch,
                 MktAnalogLimitSet: MktAnalogLimitSet,
                 ControlAreaSolutionData: ControlAreaSolutionData,
                 DefaultBidCurveData: DefaultBidCurveData,

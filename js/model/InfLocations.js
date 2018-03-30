@@ -114,13 +114,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.Status;
+                delete obj.statusStatus;
             }
 
             edit_template ()
@@ -133,7 +133,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -146,7 +146,7 @@ define
 
                 var obj = obj || { id: id, cls: "RedLine" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
 
                 return (obj);
             }
@@ -222,13 +222,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ZoneKind = []; if (!obj.kind) obj.ZoneKind.push ({ id: '', selected: true}); for (var property in ZoneKind) obj.ZoneKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindZoneKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ZoneKind) obj.kindZoneKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ZoneKind;
+                delete obj.kindZoneKind;
             }
 
             edit_template ()
@@ -241,7 +241,7 @@ define
                     `
                     + Common.Location.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ZoneKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ZoneKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindZoneKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindZoneKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -254,7 +254,7 @@ define
 
                 var obj = obj || { id: id, cls: "Zone" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ZoneKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ZoneKind." + temp; }
+                temp = ZoneKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ZoneKind." + temp; else delete obj.kind;
 
                 return (obj);
             }
@@ -458,7 +458,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Locations) obj.Locations_string = obj.Locations.join ();
                 if (obj.Crews) obj.Crews_string = obj.Crews.join ();
             }
@@ -466,7 +466,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.Status;
+                delete obj.statusStatus;
                 delete obj.Locations_string;
                 delete obj.Crews_string;
             }
@@ -481,7 +481,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     </div>
@@ -496,7 +496,7 @@ define
 
                 var obj = obj || { id: id, cls: "Route" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_Locations").value; if ("" != temp) obj.Locations = temp.split (",");
 
@@ -615,9 +615,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DemographicKind = []; if (!obj.demographicKind) obj.DemographicKind.push ({ id: '', selected: true}); for (var property in DemographicKind) obj.DemographicKind.push ({ id: property, selected: obj.demographicKind && obj.demographicKind.endsWith ('.' + property)});
-                obj.LandPropertyKind = []; if (!obj.kind) obj.LandPropertyKind.push ({ id: '', selected: true}); for (var property in LandPropertyKind) obj.LandPropertyKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.demographicKindDemographicKind = [{ id: '', selected: (!obj.demographicKind)}]; for (var property in DemographicKind) obj.demographicKindDemographicKind.push ({ id: property, selected: obj.demographicKind && obj.demographicKind.endsWith ('.' + property)});
+                obj.kindLandPropertyKind = [{ id: '', selected: (!obj.kind)}]; for (var property in LandPropertyKind) obj.kindLandPropertyKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ErpOrganisationRoles) obj.ErpOrganisationRoles_string = obj.ErpOrganisationRoles.join ();
                 if (obj.LocationGrants) obj.LocationGrants_string = obj.LocationGrants.join ();
                 if (obj.RightOfWays) obj.RightOfWays_string = obj.RightOfWays.join ();
@@ -630,9 +630,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DemographicKind;
-                delete obj.LandPropertyKind;
-                delete obj.Status;
+                delete obj.demographicKindDemographicKind;
+                delete obj.kindLandPropertyKind;
+                delete obj.statusStatus;
                 delete obj.ErpOrganisationRoles_string;
                 delete obj.LocationGrants_string;
                 delete obj.RightOfWays_string;
@@ -652,10 +652,10 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_demographicKind'>demographicKind: </label><div class='col-sm-8'><select id='{{id}}_demographicKind' class='form-control custom-select'>{{#DemographicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DemographicKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_demographicKind'>demographicKind: </label><div class='col-sm-8'><select id='{{id}}_demographicKind' class='form-control custom-select'>{{#demographicKindDemographicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/demographicKindDemographicKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_externalRecordReference'>externalRecordReference: </label><div class='col-sm-8'><input id='{{id}}_externalRecordReference' class='form-control' type='text'{{#externalRecordReference}} value='{{externalRecordReference}}'{{/externalRecordReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#LandPropertyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LandPropertyKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindLandPropertyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindLandPropertyKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RightOfWays'>RightOfWays: </label><div class='col-sm-8'><input id='{{id}}_RightOfWays' class='form-control' type='text'{{#RightOfWays}} value='{{RightOfWays_string}}'{{/RightOfWays}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetContainers'>AssetContainers: </label><div class='col-sm-8'><input id='{{id}}_AssetContainers' class='form-control' type='text'{{#AssetContainers}} value='{{AssetContainers_string}}'{{/AssetContainers}}></div></div>
@@ -671,10 +671,10 @@ define
 
                 var obj = obj || { id: id, cls: "LandProperty" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_demographicKind").value; if ("" != temp) { temp = DemographicKind[temp]; if ("undefined" != typeof (temp)) obj.demographicKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#DemographicKind." + temp; }
+                temp = DemographicKind[document.getElementById (id + "_demographicKind").value]; if (temp) obj.demographicKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#DemographicKind." + temp; else delete obj.demographicKind;
                 temp = document.getElementById (id + "_externalRecordReference").value; if ("" != temp) obj.externalRecordReference = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = LandPropertyKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#LandPropertyKind." + temp; }
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = LandPropertyKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#LandPropertyKind." + temp; else delete obj.kind;
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
                 temp = document.getElementById (id + "_RightOfWays").value; if ("" != temp) obj.RightOfWays = temp.split (",");
                 temp = document.getElementById (id + "_Locations").value; if ("" != temp) obj.Locations = temp.split (",");
                 temp = document.getElementById (id + "_AssetContainers").value; if ("" != temp) obj.AssetContainers = temp.split (",");
@@ -827,8 +827,11 @@ define
         return (
             {
                 RightOfWay: RightOfWay,
+                DemographicKind: DemographicKind,
+                ZoneKind: ZoneKind,
                 Zone: Zone,
                 LandProperty: LandProperty,
+                LandPropertyKind: LandPropertyKind,
                 RedLine: RedLine,
                 LocationGrant: LocationGrant,
                 Route: Route

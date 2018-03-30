@@ -182,14 +182,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.NotificationTriggerKind = []; if (!obj.trigger) obj.NotificationTriggerKind.push ({ id: '', selected: true}); for (var property in NotificationTriggerKind) obj.NotificationTriggerKind.push ({ id: property, selected: obj.trigger && obj.trigger.endsWith ('.' + property)});
+                obj.triggerNotificationTriggerKind = [{ id: '', selected: (!obj.trigger)}]; for (var property in NotificationTriggerKind) obj.triggerNotificationTriggerKind.push ({ id: property, selected: obj.trigger && obj.trigger.endsWith ('.' + property)});
                 if (obj.TroubleTickets) obj.TroubleTickets_string = obj.TroubleTickets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.NotificationTriggerKind;
+                delete obj.triggerNotificationTriggerKind;
                 delete obj.TroubleTickets_string;
             }
 
@@ -203,7 +203,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_trigger'>trigger: </label><div class='col-sm-8'><select id='{{id}}_trigger' class='form-control custom-select'>{{#NotificationTriggerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/NotificationTriggerKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_trigger'>trigger: </label><div class='col-sm-8'><select id='{{id}}_trigger' class='form-control custom-select'>{{#triggerNotificationTriggerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/triggerNotificationTriggerKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_earliestDateTimeToCall'>earliestDateTimeToCall: </label><div class='col-sm-8'><input id='{{id}}_earliestDateTimeToCall' class='form-control' type='text'{{#earliestDateTimeToCall}} value='{{earliestDateTimeToCall}}'{{/earliestDateTimeToCall}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestDateTimeToCall'>latestDateTimeToCall: </label><div class='col-sm-8'><input id='{{id}}_latestDateTimeToCall' class='form-control' type='text'{{#latestDateTimeToCall}} value='{{latestDateTimeToCall}}'{{/latestDateTimeToCall}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contactType'>contactType: </label><div class='col-sm-8'><input id='{{id}}_contactType' class='form-control' type='text'{{#contactType}} value='{{contactType}}'{{/contactType}}></div></div>
@@ -222,7 +222,7 @@ define
 
                 var obj = obj || { id: id, cls: "CustomerNotification" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_trigger").value; if ("" != temp) { temp = NotificationTriggerKind[temp]; if ("undefined" != typeof (temp)) obj.trigger = "http://iec.ch/TC57/2013/CIM-schema-cim16#NotificationTriggerKind." + temp; }
+                temp = NotificationTriggerKind[document.getElementById (id + "_trigger").value]; if (temp) obj.trigger = "http://iec.ch/TC57/2013/CIM-schema-cim16#NotificationTriggerKind." + temp; else delete obj.trigger;
                 temp = document.getElementById (id + "_earliestDateTimeToCall").value; if ("" != temp) obj.earliestDateTimeToCall = temp;
                 temp = document.getElementById (id + "_latestDateTimeToCall").value; if ("" != temp) obj.latestDateTimeToCall = temp;
                 temp = document.getElementById (id + "_contactType").value; if ("" != temp) obj.contactType = temp;
@@ -347,7 +347,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.RevenueKind = []; if (!obj.revenueKind) obj.RevenueKind.push ({ id: '', selected: true}); for (var property in RevenueKind) obj.RevenueKind.push ({ id: property, selected: obj.revenueKind && obj.revenueKind.endsWith ('.' + property)});
+                obj.revenueKindRevenueKind = [{ id: '', selected: (!obj.revenueKind)}]; for (var property in RevenueKind) obj.revenueKindRevenueKind.push ({ id: property, selected: obj.revenueKind && obj.revenueKind.endsWith ('.' + property)});
                 if (obj.Tariffs) obj.Tariffs_string = obj.Tariffs.join ();
                 if (obj.Transactions) obj.Transactions_string = obj.Transactions.join ();
                 if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
@@ -357,7 +357,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.RevenueKind;
+                delete obj.revenueKindRevenueKind;
                 delete obj.Tariffs_string;
                 delete obj.Transactions_string;
                 delete obj.UsagePoints_string;
@@ -378,7 +378,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dailyCeilingUsage'>dailyCeilingUsage: </label><div class='col-sm-8'><input id='{{id}}_dailyCeilingUsage' class='form-control' type='text'{{#dailyCeilingUsage}} value='{{dailyCeilingUsage}}'{{/dailyCeilingUsage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dailyEstimatedUsage'>dailyEstimatedUsage: </label><div class='col-sm-8'><input id='{{id}}_dailyEstimatedUsage' class='form-control' type='text'{{#dailyEstimatedUsage}} value='{{dailyEstimatedUsage}}'{{/dailyEstimatedUsage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dailyFloorUsage'>dailyFloorUsage: </label><div class='col-sm-8'><input id='{{id}}_dailyFloorUsage' class='form-control' type='text'{{#dailyFloorUsage}} value='{{dailyFloorUsage}}'{{/dailyFloorUsage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_revenueKind'>revenueKind: </label><div class='col-sm-8'><select id='{{id}}_revenueKind' class='form-control custom-select'>{{#RevenueKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RevenueKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_revenueKind'>revenueKind: </label><div class='col-sm-8'><select id='{{id}}_revenueKind' class='form-control custom-select'>{{#revenueKindRevenueKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/revenueKindRevenueKind}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_taxExemption'>taxExemption: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_taxExemption' class='form-check-input' type='checkbox'{{#taxExemption}} checked{{/taxExemption}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='{{id}}_Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs_string}}'{{/Tariffs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='{{id}}_ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
@@ -400,7 +400,7 @@ define
                 temp = document.getElementById (id + "_dailyCeilingUsage").value; if ("" != temp) obj.dailyCeilingUsage = temp;
                 temp = document.getElementById (id + "_dailyEstimatedUsage").value; if ("" != temp) obj.dailyEstimatedUsage = temp;
                 temp = document.getElementById (id + "_dailyFloorUsage").value; if ("" != temp) obj.dailyFloorUsage = temp;
-                temp = document.getElementById (id + "_revenueKind").value; if ("" != temp) { temp = RevenueKind[temp]; if ("undefined" != typeof (temp)) obj.revenueKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RevenueKind." + temp; }
+                temp = RevenueKind[document.getElementById (id + "_revenueKind").value]; if (temp) obj.revenueKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RevenueKind." + temp; else delete obj.revenueKind;
                 temp = document.getElementById (id + "_taxExemption").checked; if (temp) obj.taxExemption = true;
                 temp = document.getElementById (id + "_Tariffs").value; if ("" != temp) obj.Tariffs = temp.split (",");
                 temp = document.getElementById (id + "_ServiceCategory").value; if ("" != temp) obj.ServiceCategory = temp;
@@ -668,9 +668,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CustomerKind = []; if (!obj.kind) obj.CustomerKind.push ({ id: '', selected: true}); for (var property in CustomerKind) obj.CustomerKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
-                obj.Priority = []; if (!obj.priority) obj.Priority.push ({ id: '', selected: true}); for (var property in Priority) obj.Priority.push ({ id: property, selected: obj.priority && obj.priority.endsWith ('.' + property)});
+                obj.kindCustomerKind = [{ id: '', selected: (!obj.kind)}]; for (var property in CustomerKind) obj.kindCustomerKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.priorityPriority = [{ id: '', selected: (!obj.priority)}]; for (var property in Common.Priority) obj.priorityPriority.push ({ id: property, selected: obj.priority && obj.priority.endsWith ('.' + property)});
                 if (obj.Works) obj.Works_string = obj.Works.join ();
                 if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
                 if (obj.Notifications) obj.Notifications_string = obj.Notifications.join ();
@@ -683,9 +683,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CustomerKind;
-                delete obj.Status;
-                delete obj.Priority;
+                delete obj.kindCustomerKind;
+                delete obj.statusStatus;
+                delete obj.priorityPriority;
                 delete obj.Works_string;
                 delete obj.ErpPersons_string;
                 delete obj.Notifications_string;
@@ -705,12 +705,12 @@ define
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#CustomerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CustomerKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCustomerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCustomerKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pucNumber'>pucNumber: </label><div class='col-sm-8'><input id='{{id}}_pucNumber' class='form-control' type='text'{{#pucNumber}} value='{{pucNumber}}'{{/pucNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='{{id}}_specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_vip'>vip: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vip' class='form-check-input' type='checkbox'{{#vip}} checked{{/vip}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><select id='{{id}}_priority' class='form-control custom-select'>{{#Priority}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Priority}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><select id='{{id}}_priority' class='form-control custom-select'>{{#priorityPriority}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/priorityPriority}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_locale'>locale: </label><div class='col-sm-8'><input id='{{id}}_locale' class='form-control' type='text'{{#locale}} value='{{locale}}'{{/locale}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
                     </div>
@@ -725,12 +725,12 @@ define
 
                 var obj = obj || { id: id, cls: "Customer" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerKind." + temp; }
+                temp = CustomerKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_pucNumber").value; if ("" != temp) obj.pucNumber = temp;
                 temp = document.getElementById (id + "_specialNeed").value; if ("" != temp) obj.specialNeed = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
                 temp = document.getElementById (id + "_vip").checked; if (temp) obj.vip = true;
-                temp = document.getElementById (id + "_priority").value; if ("" != temp) { temp = Priority[temp]; if ("undefined" != typeof (temp)) obj.priority = "http://iec.ch/TC57/2013/CIM-schema-cim16#Priority." + temp; }
+                temp = Common.Priority[document.getElementById (id + "_priority").value]; if (temp) obj.priority = "http://iec.ch/TC57/2013/CIM-schema-cim16#Priority." + temp; else delete obj.priority;
                 temp = document.getElementById (id + "_locale").value; if ("" != temp) obj.locale = temp;
                 temp = document.getElementById (id + "_Works").value; if ("" != temp) obj.Works = temp.split (",");
 
@@ -1290,7 +1290,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ServiceKind = []; if (!obj.kind) obj.ServiceKind.push ({ id: '', selected: true}); for (var property in ServiceKind) obj.ServiceKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindServiceKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ServiceKind) obj.kindServiceKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
                 if (obj.PricingStructures) obj.PricingStructures_string = obj.PricingStructures.join ();
                 if (obj.ConfigurationEvents) obj.ConfigurationEvents_string = obj.ConfigurationEvents.join ();
@@ -1300,7 +1300,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ServiceKind;
+                delete obj.kindServiceKind;
                 delete obj.CustomerAgreements_string;
                 delete obj.PricingStructures_string;
                 delete obj.ConfigurationEvents_string;
@@ -1317,7 +1317,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ServiceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ServiceKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindServiceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindServiceKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1330,7 +1330,7 @@ define
 
                 var obj = obj || { id: id, cls: "ServiceCategory" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ServiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ServiceKind." + temp; }
+                temp = ServiceKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ServiceKind." + temp; else delete obj.kind;
 
                 return (obj);
             }
@@ -1438,14 +1438,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TroubleReportingKind = []; if (!obj.reportingKind) obj.TroubleReportingKind.push ({ id: '', selected: true}); for (var property in TroubleReportingKind) obj.TroubleReportingKind.push ({ id: property, selected: obj.reportingKind && obj.reportingKind.endsWith ('.' + property)});
+                obj.reportingKindTroubleReportingKind = [{ id: '', selected: (!obj.reportingKind)}]; for (var property in TroubleReportingKind) obj.reportingKindTroubleReportingKind.push ({ id: property, selected: obj.reportingKind && obj.reportingKind.endsWith ('.' + property)});
                 if (obj.Hazards) obj.Hazards_string = obj.Hazards.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TroubleReportingKind;
+                delete obj.reportingKindTroubleReportingKind;
                 delete obj.Hazards_string;
             }
 
@@ -1461,7 +1461,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dateTimeOfReport'>dateTimeOfReport: </label><div class='col-sm-8'><input id='{{id}}_dateTimeOfReport' class='form-control' type='text'{{#dateTimeOfReport}} value='{{dateTimeOfReport}}'{{/dateTimeOfReport}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_troubleCode'>troubleCode: </label><div class='col-sm-8'><input id='{{id}}_troubleCode' class='form-control' type='text'{{#troubleCode}} value='{{troubleCode}}'{{/troubleCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reportingKind'>reportingKind: </label><div class='col-sm-8'><select id='{{id}}_reportingKind' class='form-control custom-select'>{{#TroubleReportingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TroubleReportingKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reportingKind'>reportingKind: </label><div class='col-sm-8'><select id='{{id}}_reportingKind' class='form-control custom-select'>{{#reportingKindTroubleReportingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/reportingKindTroubleReportingKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resolvedDateTime'>resolvedDateTime: </label><div class='col-sm-8'><input id='{{id}}_resolvedDateTime' class='form-control' type='text'{{#resolvedDateTime}} value='{{resolvedDateTime}}'{{/resolvedDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_firstResponder'>firstResponder: </label><div class='col-sm-8'><input id='{{id}}_firstResponder' class='form-control' type='text'{{#firstResponder}} value='{{firstResponder}}'{{/firstResponder}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Notification'>Notification: </label><div class='col-sm-8'><input id='{{id}}_Notification' class='form-control' type='text'{{#Notification}} value='{{Notification}}'{{/Notification}}></div></div>
@@ -1481,7 +1481,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_dateTimeOfReport").value; if ("" != temp) obj.dateTimeOfReport = temp;
                 temp = document.getElementById (id + "_troubleCode").value; if ("" != temp) obj.troubleCode = temp;
-                temp = document.getElementById (id + "_reportingKind").value; if ("" != temp) { temp = TroubleReportingKind[temp]; if ("undefined" != typeof (temp)) obj.reportingKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TroubleReportingKind." + temp; }
+                temp = TroubleReportingKind[document.getElementById (id + "_reportingKind").value]; if (temp) obj.reportingKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TroubleReportingKind." + temp; else delete obj.reportingKind;
                 temp = document.getElementById (id + "_resolvedDateTime").value; if ("" != temp) obj.resolvedDateTime = temp;
                 temp = document.getElementById (id + "_firstResponder").value; if ("" != temp) obj.firstResponder = temp;
                 temp = document.getElementById (id + "_Notification").value; if ("" != temp) obj.Notification = temp;
@@ -1665,16 +1665,21 @@ define
 
         return (
             {
-                Customer: Customer,
-                Tariff: Tariff,
-                IncidentHazard: IncidentHazard,
-                ServiceCategory: ServiceCategory,
+                RevenueKind: RevenueKind,
+                CustomerKind: CustomerKind,
                 CustomerAccount: CustomerAccount,
-                ServiceLocation: ServiceLocation,
                 PricingStructure: PricingStructure,
                 TroubleTicket: TroubleTicket,
-                CustomerAgreement: CustomerAgreement,
-                CustomerNotification: CustomerNotification
+                CustomerNotification: CustomerNotification,
+                ServiceKind: ServiceKind,
+                Customer: Customer,
+                TroubleReportingKind: TroubleReportingKind,
+                IncidentHazard: IncidentHazard,
+                Tariff: Tariff,
+                ServiceCategory: ServiceCategory,
+                ServiceLocation: ServiceLocation,
+                NotificationTriggerKind: NotificationTriggerKind,
+                CustomerAgreement: CustomerAgreement
             }
         );
     }

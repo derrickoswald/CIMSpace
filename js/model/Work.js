@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Assets", "model/Common", "model/Core"],
+    ["model/base", "model/Assets", "model/Common", "model/Core", "model/Domain"],
     /**
      * This package contains the core information classes that support work management and network extension planning applications.
      *
      */
-    function (base, Assets, Common, Core)
+    function (base, Assets, Common, Core, Domain)
     {
 
         /**
@@ -155,13 +155,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WorkTimeScheduleKind = []; if (!obj.kind) obj.WorkTimeScheduleKind.push ({ id: '', selected: true}); for (var property in WorkTimeScheduleKind) obj.WorkTimeScheduleKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindWorkTimeScheduleKind = [{ id: '', selected: (!obj.kind)}]; for (var property in WorkTimeScheduleKind) obj.kindWorkTimeScheduleKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WorkTimeScheduleKind;
+                delete obj.kindWorkTimeScheduleKind;
             }
 
             edit_template ()
@@ -174,7 +174,7 @@ define
                     `
                     + Common.TimeSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#WorkTimeScheduleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkTimeScheduleKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindWorkTimeScheduleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindWorkTimeScheduleKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BaseWork'>BaseWork: </label><div class='col-sm-8'><input id='{{id}}_BaseWork' class='form-control' type='text'{{#BaseWork}} value='{{BaseWork}}'{{/BaseWork}}></div></div>
                     </div>
                     </fieldset>
@@ -188,7 +188,7 @@ define
 
                 var obj = obj || { id: id, cls: "WorkTimeSchedule" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkTimeScheduleKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTimeScheduleKind." + temp; }
+                temp = WorkTimeScheduleKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTimeScheduleKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_BaseWork").value; if ("" != temp) obj.BaseWork = temp;
 
                 return (obj);
@@ -285,18 +285,18 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WorkKind = []; if (!obj.kind) obj.WorkKind.push ({ id: '', selected: true}); for (var property in WorkKind) obj.WorkKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.Priority = []; if (!obj.priority) obj.Priority.push ({ id: '', selected: true}); for (var property in Priority) obj.Priority.push ({ id: property, selected: obj.priority && obj.priority.endsWith ('.' + property)});
-                obj.WorkStatusKind = []; if (!obj.statusKind) obj.WorkStatusKind.push ({ id: '', selected: true}); for (var property in WorkStatusKind) obj.WorkStatusKind.push ({ id: property, selected: obj.statusKind && obj.statusKind.endsWith ('.' + property)});
+                obj.kindWorkKind = [{ id: '', selected: (!obj.kind)}]; for (var property in WorkKind) obj.kindWorkKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.priorityPriority = [{ id: '', selected: (!obj.priority)}]; for (var property in Common.Priority) obj.priorityPriority.push ({ id: property, selected: obj.priority && obj.priority.endsWith ('.' + property)});
+                obj.statusKindWorkStatusKind = [{ id: '', selected: (!obj.statusKind)}]; for (var property in WorkStatusKind) obj.statusKindWorkStatusKind.push ({ id: property, selected: obj.statusKind && obj.statusKind.endsWith ('.' + property)});
                 if (obj.TimeSchedules) obj.TimeSchedules_string = obj.TimeSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WorkKind;
-                delete obj.Priority;
-                delete obj.WorkStatusKind;
+                delete obj.kindWorkKind;
+                delete obj.priorityPriority;
+                delete obj.statusKindWorkStatusKind;
                 delete obj.TimeSchedules_string;
             }
 
@@ -310,9 +310,9 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#WorkKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><select id='{{id}}_priority' class='form-control custom-select'>{{#Priority}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Priority}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusKind'>statusKind: </label><div class='col-sm-8'><select id='{{id}}_statusKind' class='form-control custom-select'>{{#WorkStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindWorkKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindWorkKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><select id='{{id}}_priority' class='form-control custom-select'>{{#priorityPriority}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/priorityPriority}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusKind'>statusKind: </label><div class='col-sm-8'><select id='{{id}}_statusKind' class='form-control custom-select'>{{#statusKindWorkStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusKindWorkStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkLocation'>WorkLocation: </label><div class='col-sm-8'><input id='{{id}}_WorkLocation' class='form-control' type='text'{{#WorkLocation}} value='{{WorkLocation}}'{{/WorkLocation}}></div></div>
                     </div>
                     </fieldset>
@@ -326,9 +326,9 @@ define
 
                 var obj = obj || { id: id, cls: "BaseWork" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkKind." + temp; }
-                temp = document.getElementById (id + "_priority").value; if ("" != temp) { temp = Priority[temp]; if ("undefined" != typeof (temp)) obj.priority = "http://iec.ch/TC57/2013/CIM-schema-cim16#Priority." + temp; }
-                temp = document.getElementById (id + "_statusKind").value; if ("" != temp) { temp = WorkStatusKind[temp]; if ("undefined" != typeof (temp)) obj.statusKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkStatusKind." + temp; }
+                temp = WorkKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkKind." + temp; else delete obj.kind;
+                temp = Common.Priority[document.getElementById (id + "_priority").value]; if (temp) obj.priority = "http://iec.ch/TC57/2013/CIM-schema-cim16#Priority." + temp; else delete obj.priority;
+                temp = WorkStatusKind[document.getElementById (id + "_statusKind").value]; if (temp) obj.statusKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkStatusKind." + temp; else delete obj.statusKind;
                 temp = document.getElementById (id + "_WorkLocation").value; if ("" != temp) obj.WorkLocation = temp;
 
                 return (obj);
@@ -552,13 +552,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.IntegerQuantity = []; if (!obj.quantity) obj.IntegerQuantity.push ({ id: '', selected: true}); for (var property in IntegerQuantity) obj.IntegerQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
+                obj.quantityIntegerQuantity = [{ id: '', selected: (!obj.quantity)}]; for (var property in Domain.IntegerQuantity) obj.quantityIntegerQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.IntegerQuantity;
+                delete obj.quantityIntegerQuantity;
             }
 
             edit_template ()
@@ -571,7 +571,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#IntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IntegerQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#quantityIntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quantityIntegerQuantity}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
@@ -586,7 +586,7 @@ define
 
                 var obj = obj || { id: id, cls: "MaterialItem" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_quantity").value; if ("" != temp) { temp = IntegerQuantity[temp]; if ("undefined" != typeof (temp)) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; }
+                temp = Domain.IntegerQuantity[document.getElementById (id + "_quantity").value]; if (temp) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; else delete obj.quantity;
                 temp = document.getElementById (id + "_TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
                 temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
 
@@ -812,7 +812,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WorkTaskKind = []; if (!obj.taskKind) obj.WorkTaskKind.push ({ id: '', selected: true}); for (var property in WorkTaskKind) obj.WorkTaskKind.push ({ id: property, selected: obj.taskKind && obj.taskKind.endsWith ('.' + property)});
+                obj.taskKindWorkTaskKind = [{ id: '', selected: (!obj.taskKind)}]; for (var property in WorkTaskKind) obj.taskKindWorkTaskKind.push ({ id: property, selected: obj.taskKind && obj.taskKind.endsWith ('.' + property)});
                 if (obj.Crews) obj.Crews_string = obj.Crews.join ();
                 if (obj.Assets) obj.Assets_string = obj.Assets.join ();
                 if (obj.MaterialItems) obj.MaterialItems_string = obj.MaterialItems.join ();
@@ -821,7 +821,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WorkTaskKind;
+                delete obj.taskKindWorkTaskKind;
                 delete obj.Crews_string;
                 delete obj.Assets_string;
                 delete obj.MaterialItems_string;
@@ -839,7 +839,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instruction'>instruction: </label><div class='col-sm-8'><input id='{{id}}_instruction' class='form-control' type='text'{{#instruction}} value='{{instruction}}'{{/instruction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_schedOverride'>schedOverride: </label><div class='col-sm-8'><input id='{{id}}_schedOverride' class='form-control' type='text'{{#schedOverride}} value='{{schedOverride}}'{{/schedOverride}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_taskKind'>taskKind: </label><div class='col-sm-8'><select id='{{id}}_taskKind' class='form-control custom-select'>{{#WorkTaskKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkTaskKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_taskKind'>taskKind: </label><div class='col-sm-8'><select id='{{id}}_taskKind' class='form-control custom-select'>{{#taskKindWorkTaskKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/taskKindWorkTaskKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_crewETA'>crewETA: </label><div class='col-sm-8'><input id='{{id}}_crewETA' class='form-control' type='text'{{#crewETA}} value='{{crewETA}}'{{/crewETA}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
@@ -860,7 +860,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_instruction").value; if ("" != temp) obj.instruction = temp;
                 temp = document.getElementById (id + "_schedOverride").value; if ("" != temp) obj.schedOverride = temp;
-                temp = document.getElementById (id + "_taskKind").value; if ("" != temp) { temp = WorkTaskKind[temp]; if ("undefined" != typeof (temp)) obj.taskKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTaskKind." + temp; }
+                temp = WorkTaskKind[document.getElementById (id + "_taskKind").value]; if (temp) obj.taskKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTaskKind." + temp; else delete obj.taskKind;
                 temp = document.getElementById (id + "_crewETA").value; if ("" != temp) obj.crewETA = temp;
                 temp = document.getElementById (id + "_Crews").value; if ("" != temp) obj.Crews = temp.split (",");
                 temp = document.getElementById (id + "_Assets").value; if ("" != temp) obj.Assets = temp.split (",");
@@ -1269,13 +1269,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.VehicleUsageKind = []; if (!obj.usageKind) obj.VehicleUsageKind.push ({ id: '', selected: true}); for (var property in VehicleUsageKind) obj.VehicleUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
+                obj.usageKindVehicleUsageKind = [{ id: '', selected: (!obj.usageKind)}]; for (var property in VehicleUsageKind) obj.usageKindVehicleUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.VehicleUsageKind;
+                delete obj.usageKindVehicleUsageKind;
             }
 
             edit_template ()
@@ -1290,7 +1290,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_odometerReadDateTime'>odometerReadDateTime: </label><div class='col-sm-8'><input id='{{id}}_odometerReadDateTime' class='form-control' type='text'{{#odometerReadDateTime}} value='{{odometerReadDateTime}}'{{/odometerReadDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_odometerReading'>odometerReading: </label><div class='col-sm-8'><input id='{{id}}_odometerReading' class='form-control' type='text'{{#odometerReading}} value='{{odometerReading}}'{{/odometerReading}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#VehicleUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VehicleUsageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#usageKindVehicleUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/usageKindVehicleUsageKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1305,7 +1305,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_odometerReadDateTime").value; if ("" != temp) obj.odometerReadDateTime = temp;
                 temp = document.getElementById (id + "_odometerReading").value; if ("" != temp) obj.odometerReading = temp;
-                temp = document.getElementById (id + "_usageKind").value; if ("" != temp) { temp = VehicleUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#VehicleUsageKind." + temp; }
+                temp = VehicleUsageKind[document.getElementById (id + "_usageKind").value]; if (temp) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#VehicleUsageKind." + temp; else delete obj.usageKind;
 
                 return (obj);
             }
@@ -1418,15 +1418,20 @@ define
         return (
             {
                 Tool: Tool,
-                Work: Work,
                 Vehicle: Vehicle,
                 WorkAsset: WorkAsset,
+                MaterialItem: MaterialItem,
+                WorkTask: WorkTask,
+                VehicleUsageKind: VehicleUsageKind,
+                BaseWork: BaseWork,
+                WorkTimeScheduleKind: WorkTimeScheduleKind,
+                WorkStatusKind: WorkStatusKind,
+                Work: Work,
+                WorkKind: WorkKind,
                 WorkTimeSchedule: WorkTimeSchedule,
                 MaintenanceLocation: MaintenanceLocation,
                 WorkLocation: WorkLocation,
-                MaterialItem: MaterialItem,
-                WorkTask: WorkTask,
-                BaseWork: BaseWork
+                WorkTaskKind: WorkTaskKind
             }
         );
     }

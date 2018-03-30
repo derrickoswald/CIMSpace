@@ -561,9 +561,9 @@ define
 
         return (
             {
-                DiscExcContIEEEDEC1A: DiscExcContIEEEDEC1A,
                 DiscExcContIEEEDEC2A: DiscExcContIEEEDEC2A,
                 DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics,
+                DiscExcContIEEEDEC1A: DiscExcContIEEEDEC1A,
                 DiscExcContIEEEDEC3A: DiscExcContIEEEDEC3A
             }
         );

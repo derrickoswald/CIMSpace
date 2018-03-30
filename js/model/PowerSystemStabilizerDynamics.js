@@ -454,15 +454,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
-                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+                obj.inputSignal1TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal1Type)}]; for (var property in InputSignalKind) obj.inputSignal1TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.inputSignal2TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal2Type)}]; for (var property in InputSignalKind) obj.inputSignal2TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.InputSignalKind;
-                delete obj.InputSignalKind;
+                delete obj.inputSignal1TypeInputSignalKind;
+                delete obj.inputSignal2TypeInputSignalKind;
             }
 
             edit_template ()
@@ -475,8 +475,8 @@ define
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#inputSignal1TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal1TypeInputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#inputSignal2TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal2TypeInputSignalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks1'>ks1: </label><div class='col-sm-8'><input id='{{id}}_ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks2'>ks2: </label><div class='col-sm-8'><input id='{{id}}_ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks3'>ks3: </label><div class='col-sm-8'><input id='{{id}}_ks3' class='form-control' type='text'{{#ks3}} value='{{ks3}}'{{/ks3}}></div></div>
@@ -514,8 +514,8 @@ define
 
                 var obj = obj || { id: id, cls: "PssIEEE2B" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal1Type;
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal2Type;
                 temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
                 temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
                 temp = document.getElementById (id + "_ks3").value; if ("" != temp) obj.ks3 = temp;
@@ -665,15 +665,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
-                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+                obj.inputSignal1TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal1Type)}]; for (var property in InputSignalKind) obj.inputSignal1TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.inputSignal2TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal2Type)}]; for (var property in InputSignalKind) obj.inputSignal2TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.InputSignalKind;
-                delete obj.InputSignalKind;
+                delete obj.inputSignal1TypeInputSignalKind;
+                delete obj.inputSignal2TypeInputSignalKind;
             }
 
             edit_template ()
@@ -686,8 +686,8 @@ define
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#inputSignal1TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal1TypeInputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#inputSignal2TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal2TypeInputSignalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lsmax'>lsmax: </label><div class='col-sm-8'><input id='{{id}}_lsmax' class='form-control' type='text'{{#lsmax}} value='{{lsmax}}'{{/lsmax}}></div></div>
@@ -716,8 +716,8 @@ define
 
                 var obj = obj || { id: id, cls: "Pss2ST" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal1Type;
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal2Type;
                 temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
                 temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
                 temp = document.getElementById (id + "_lsmax").value; if ("" != temp) obj.lsmax = temp;
@@ -1210,13 +1210,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.InputSignalKind = []; if (!obj.inputSignalType) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignalType && obj.inputSignalType.endsWith ('.' + property)});
+                obj.inputSignalTypeInputSignalKind = [{ id: '', selected: (!obj.inputSignalType)}]; for (var property in InputSignalKind) obj.inputSignalTypeInputSignalKind.push ({ id: property, selected: obj.inputSignalType && obj.inputSignalType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.InputSignalKind;
+                delete obj.inputSignalTypeInputSignalKind;
             }
 
             edit_template ()
@@ -1237,7 +1237,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a6'>a6: </label><div class='col-sm-8'><input id='{{id}}_a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a7'>a7: </label><div class='col-sm-8'><input id='{{id}}_a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a8'>a8: </label><div class='col-sm-8'><input id='{{id}}_a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='{{id}}_inputSignalType' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='{{id}}_inputSignalType' class='form-control custom-select'>{{#inputSignalTypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignalTypeInputSignalKind}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_kd'>kd: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_kd' class='form-check-input' type='checkbox'{{#kd}} checked{{/kd}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
@@ -1271,7 +1271,7 @@ define
                 temp = document.getElementById (id + "_a6").value; if ("" != temp) obj.a6 = temp;
                 temp = document.getElementById (id + "_a7").value; if ("" != temp) obj.a7 = temp;
                 temp = document.getElementById (id + "_a8").value; if ("" != temp) obj.a8 = temp;
-                temp = document.getElementById (id + "_inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = InputSignalKind[document.getElementById (id + "_inputSignalType").value]; if (temp) obj.inputSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignalType;
                 temp = document.getElementById (id + "_kd").checked; if (temp) obj.kd = true;
                 temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
@@ -1547,13 +1547,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.InputSignalKind = []; if (!obj.inputSignalType) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignalType && obj.inputSignalType.endsWith ('.' + property)});
+                obj.inputSignalTypeInputSignalKind = [{ id: '', selected: (!obj.inputSignalType)}]; for (var property in InputSignalKind) obj.inputSignalTypeInputSignalKind.push ({ id: property, selected: obj.inputSignalType && obj.inputSignalType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.InputSignalKind;
+                delete obj.inputSignalTypeInputSignalKind;
             }
 
             edit_template ()
@@ -1568,7 +1568,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a1'>a1: </label><div class='col-sm-8'><input id='{{id}}_a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a2'>a2: </label><div class='col-sm-8'><input id='{{id}}_a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='{{id}}_inputSignalType' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='{{id}}_inputSignalType' class='form-control custom-select'>{{#inputSignalTypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignalTypeInputSignalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
@@ -1592,7 +1592,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_a1").value; if ("" != temp) obj.a1 = temp;
                 temp = document.getElementById (id + "_a2").value; if ("" != temp) obj.a2 = temp;
-                temp = document.getElementById (id + "_inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = InputSignalKind[document.getElementById (id + "_inputSignalType").value]; if (temp) obj.inputSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignalType;
                 temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
                 temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
@@ -2774,15 +2774,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
-                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+                obj.inputSignal1TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal1Type)}]; for (var property in InputSignalKind) obj.inputSignal1TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.inputSignal2TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal2Type)}]; for (var property in InputSignalKind) obj.inputSignal2TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.InputSignalKind;
-                delete obj.InputSignalKind;
+                delete obj.inputSignal1TypeInputSignalKind;
+                delete obj.inputSignal2TypeInputSignalKind;
             }
 
             edit_template ()
@@ -2803,8 +2803,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a6'>a6: </label><div class='col-sm-8'><input id='{{id}}_a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a7'>a7: </label><div class='col-sm-8'><input id='{{id}}_a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a8'>a8: </label><div class='col-sm-8'><input id='{{id}}_a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#inputSignal1TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal1TypeInputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#inputSignal2TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal2TypeInputSignalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks1'>ks1: </label><div class='col-sm-8'><input id='{{id}}_ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks2'>ks2: </label><div class='col-sm-8'><input id='{{id}}_ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
@@ -2834,8 +2834,8 @@ define
                 temp = document.getElementById (id + "_a6").value; if ("" != temp) obj.a6 = temp;
                 temp = document.getElementById (id + "_a7").value; if ("" != temp) obj.a7 = temp;
                 temp = document.getElementById (id + "_a8").value; if ("" != temp) obj.a8 = temp;
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal1Type;
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal2Type;
                 temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
                 temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
@@ -3164,15 +3164,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
-                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+                obj.inputSignal1TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal1Type)}]; for (var property in InputSignalKind) obj.inputSignal1TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.inputSignal2TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal2Type)}]; for (var property in InputSignalKind) obj.inputSignal2TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.InputSignalKind;
-                delete obj.InputSignalKind;
+                delete obj.inputSignal1TypeInputSignalKind;
+                delete obj.inputSignal2TypeInputSignalKind;
             }
 
             edit_template ()
@@ -3186,8 +3186,8 @@ define
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a'>a: </label><div class='col-sm-8'><input id='{{id}}_a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#inputSignal1TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal1TypeInputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#inputSignal2TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal2TypeInputSignalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks1'>ks1: </label><div class='col-sm-8'><input id='{{id}}_ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks2'>ks2: </label><div class='col-sm-8'><input id='{{id}}_ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks3'>ks3: </label><div class='col-sm-8'><input id='{{id}}_ks3' class='form-control' type='text'{{#ks3}} value='{{ks3}}'{{/ks3}}></div></div>
@@ -3229,8 +3229,8 @@ define
                 var obj = obj || { id: id, cls: "Pss2B" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_a").value; if ("" != temp) obj.a = temp;
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal1Type;
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal2Type;
                 temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
                 temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
                 temp = document.getElementById (id + "_ks3").value; if ("" != temp) obj.ks3 = temp;
@@ -3383,15 +3383,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.InputSignalKind = []; if (!obj.inputSignal1Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
-                obj.InputSignalKind = []; if (!obj.inputSignal2Type) obj.InputSignalKind.push ({ id: '', selected: true}); for (var property in InputSignalKind) obj.InputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
+                obj.inputSignal1TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal1Type)}]; for (var property in InputSignalKind) obj.inputSignal1TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal1Type && obj.inputSignal1Type.endsWith ('.' + property)});
+                obj.inputSignal2TypeInputSignalKind = [{ id: '', selected: (!obj.inputSignal2Type)}]; for (var property in InputSignalKind) obj.inputSignal2TypeInputSignalKind.push ({ id: property, selected: obj.inputSignal2Type && obj.inputSignal2Type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.InputSignalKind;
-                delete obj.InputSignalKind;
+                delete obj.inputSignal1TypeInputSignalKind;
+                delete obj.inputSignal2TypeInputSignalKind;
             }
 
             edit_template ()
@@ -3404,8 +3404,8 @@ define
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control custom-select'>{{#inputSignal1TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal1TypeInputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control custom-select'>{{#inputSignal2TypeInputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/inputSignal2TypeInputSignalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
@@ -3434,8 +3434,8 @@ define
 
                 var obj = obj || { id: id, cls: "PssWECC" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal1Type;
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj.inputSignal2Type;
                 temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
                 temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
@@ -3463,11 +3463,12 @@ define
                 PssELIN2: PssELIN2,
                 PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics,
                 PssSK: PssSK,
-                PssSB4: PssSB4,
-                PssSH: PssSH,
                 PssIEEE1A: PssIEEE1A,
+                PssSH: PssSH,
                 PssIEEE4B: PssIEEE4B,
+                PssSB4: PssSB4,
                 Pss1A: Pss1A,
+                InputSignalKind: InputSignalKind,
                 PssIEEE3B: PssIEEE3B,
                 PssPTIST1: PssPTIST1,
                 Pss1: Pss1,

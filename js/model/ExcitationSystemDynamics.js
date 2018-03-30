@@ -2679,13 +2679,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ExcST6BOELselectorKind = []; if (!obj.oelin) obj.ExcST6BOELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST6BOELselectorKind) obj.ExcST6BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
+                obj.oelinExcST6BOELselectorKind = [{ id: '', selected: (!obj.oelin)}]; for (var property in ExcST6BOELselectorKind) obj.oelinExcST6BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ExcST6BOELselectorKind;
+                delete obj.oelinExcST6BOELselectorKind;
             }
 
             edit_template ()
@@ -2708,7 +2708,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_km'>km: </label><div class='col-sm-8'><input id='{{id}}_km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpa'>kpa: </label><div class='col-sm-8'><input id='{{id}}_kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kvd'>kvd: </label><div class='col-sm-8'><input id='{{id}}_kvd' class='form-control' type='text'{{#kvd}} value='{{kvd}}'{{/kvd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><select id='{{id}}_oelin' class='form-control custom-select'>{{#ExcST6BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST6BOELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><select id='{{id}}_oelin' class='form-control custom-select'>{{#oelinExcST6BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/oelinExcST6BOELselectorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tg'>tg: </label><div class='col-sm-8'><input id='{{id}}_tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts'>ts: </label><div class='col-sm-8'><input id='{{id}}_ts' class='form-control' type='text'{{#ts}} value='{{ts}}'{{/ts}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tvd'>tvd: </label><div class='col-sm-8'><input id='{{id}}_tvd' class='form-control' type='text'{{#tvd}} value='{{tvd}}'{{/tvd}}></div></div>
@@ -2743,7 +2743,7 @@ define
                 temp = document.getElementById (id + "_km").value; if ("" != temp) obj.km = temp;
                 temp = document.getElementById (id + "_kpa").value; if ("" != temp) obj.kpa = temp;
                 temp = document.getElementById (id + "_kvd").value; if ("" != temp) obj.kvd = temp;
-                temp = document.getElementById (id + "_oelin").value; if ("" != temp) { temp = ExcST6BOELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.oelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST6BOELselectorKind." + temp; }
+                temp = ExcST6BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj.oelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST6BOELselectorKind." + temp; else delete obj.oelin;
                 temp = document.getElementById (id + "_tg").value; if ("" != temp) obj.tg = temp;
                 temp = document.getElementById (id + "_ts").value; if ("" != temp) obj.ts = temp;
                 temp = document.getElementById (id + "_tvd").value; if ("" != temp) obj.tvd = temp;
@@ -4654,13 +4654,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ExcREXSFeedbackSignalKind = []; if (!obj.fbf) obj.ExcREXSFeedbackSignalKind.push ({ id: '', selected: true}); for (var property in ExcREXSFeedbackSignalKind) obj.ExcREXSFeedbackSignalKind.push ({ id: property, selected: obj.fbf && obj.fbf.endsWith ('.' + property)});
+                obj.fbfExcREXSFeedbackSignalKind = [{ id: '', selected: (!obj.fbf)}]; for (var property in ExcREXSFeedbackSignalKind) obj.fbfExcREXSFeedbackSignalKind.push ({ id: property, selected: obj.fbf && obj.fbf.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ExcREXSFeedbackSignalKind;
+                delete obj.fbfExcREXSFeedbackSignalKind;
             }
 
             edit_template ()
@@ -4675,7 +4675,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_e1'>e1: </label><div class='col-sm-8'><input id='{{id}}_e1' class='form-control' type='text'{{#e1}} value='{{e1}}'{{/e1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_e2'>e2: </label><div class='col-sm-8'><input id='{{id}}_e2' class='form-control' type='text'{{#e2}} value='{{e2}}'{{/e2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fbf'>fbf: </label><div class='col-sm-8'><select id='{{id}}_fbf' class='form-control custom-select'>{{#ExcREXSFeedbackSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcREXSFeedbackSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fbf'>fbf: </label><div class='col-sm-8'><select id='{{id}}_fbf' class='form-control custom-select'>{{#fbfExcREXSFeedbackSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/fbfExcREXSFeedbackSignalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flimf'>flimf: </label><div class='col-sm-8'><input id='{{id}}_flimf' class='form-control' type='text'{{#flimf}} value='{{flimf}}'{{/flimf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kc'>kc: </label><div class='col-sm-8'><input id='{{id}}_kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kd'>kd: </label><div class='col-sm-8'><input id='{{id}}_kd' class='form-control' type='text'{{#kd}} value='{{kd}}'{{/kd}}></div></div>
@@ -4723,7 +4723,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_e1").value; if ("" != temp) obj.e1 = temp;
                 temp = document.getElementById (id + "_e2").value; if ("" != temp) obj.e2 = temp;
-                temp = document.getElementById (id + "_fbf").value; if ("" != temp) { temp = ExcREXSFeedbackSignalKind[temp]; if ("undefined" != typeof (temp)) obj.fbf = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcREXSFeedbackSignalKind." + temp; }
+                temp = ExcREXSFeedbackSignalKind[document.getElementById (id + "_fbf").value]; if (temp) obj.fbf = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcREXSFeedbackSignalKind." + temp; else delete obj.fbf;
                 temp = document.getElementById (id + "_flimf").value; if ("" != temp) obj.flimf = temp;
                 temp = document.getElementById (id + "_kc").value; if ("" != temp) obj.kc = temp;
                 temp = document.getElementById (id + "_kd").value; if ("" != temp) obj.kd = temp;
@@ -5458,15 +5458,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ExcST7BOELselectorKind = []; if (!obj.oelin) obj.ExcST7BOELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST7BOELselectorKind) obj.ExcST7BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
-                obj.ExcST7BUELselectorKind = []; if (!obj.uelin) obj.ExcST7BUELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST7BUELselectorKind) obj.ExcST7BUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
+                obj.oelinExcST7BOELselectorKind = [{ id: '', selected: (!obj.oelin)}]; for (var property in ExcST7BOELselectorKind) obj.oelinExcST7BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
+                obj.uelinExcST7BUELselectorKind = [{ id: '', selected: (!obj.uelin)}]; for (var property in ExcST7BUELselectorKind) obj.uelinExcST7BUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ExcST7BOELselectorKind;
-                delete obj.ExcST7BUELselectorKind;
+                delete obj.oelinExcST7BOELselectorKind;
+                delete obj.uelinExcST7BUELselectorKind;
             }
 
             edit_template ()
@@ -5483,14 +5483,14 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kia'>kia: </label><div class='col-sm-8'><input id='{{id}}_kia' class='form-control' type='text'{{#kia}} value='{{kia}}'{{/kia}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl'>kl: </label><div class='col-sm-8'><input id='{{id}}_kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpa'>kpa: </label><div class='col-sm-8'><input id='{{id}}_kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><select id='{{id}}_oelin' class='form-control custom-select'>{{#ExcST7BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST7BOELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><select id='{{id}}_oelin' class='form-control custom-select'>{{#oelinExcST7BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/oelinExcST7BOELselectorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb'>tb: </label><div class='col-sm-8'><input id='{{id}}_tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tg'>tg: </label><div class='col-sm-8'><input id='{{id}}_tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tia'>tia: </label><div class='col-sm-8'><input id='{{id}}_tia' class='form-control' type='text'{{#tia}} value='{{tia}}'{{/tia}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts'>ts: </label><div class='col-sm-8'><input id='{{id}}_ts' class='form-control' type='text'{{#ts}} value='{{ts}}'{{/ts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><select id='{{id}}_uelin' class='form-control custom-select'>{{#ExcST7BUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST7BUELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><select id='{{id}}_uelin' class='form-control custom-select'>{{#uelinExcST7BUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/uelinExcST7BUELselectorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmax'>vmax: </label><div class='col-sm-8'><input id='{{id}}_vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin'>vmin: </label><div class='col-sm-8'><input id='{{id}}_vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
@@ -5511,14 +5511,14 @@ define
                 temp = document.getElementById (id + "_kia").value; if ("" != temp) obj.kia = temp;
                 temp = document.getElementById (id + "_kl").value; if ("" != temp) obj.kl = temp;
                 temp = document.getElementById (id + "_kpa").value; if ("" != temp) obj.kpa = temp;
-                temp = document.getElementById (id + "_oelin").value; if ("" != temp) { temp = ExcST7BOELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.oelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BOELselectorKind." + temp; }
+                temp = ExcST7BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj.oelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BOELselectorKind." + temp; else delete obj.oelin;
                 temp = document.getElementById (id + "_tb").value; if ("" != temp) obj.tb = temp;
                 temp = document.getElementById (id + "_tc").value; if ("" != temp) obj.tc = temp;
                 temp = document.getElementById (id + "_tf").value; if ("" != temp) obj.tf = temp;
                 temp = document.getElementById (id + "_tg").value; if ("" != temp) obj.tg = temp;
                 temp = document.getElementById (id + "_tia").value; if ("" != temp) obj.tia = temp;
                 temp = document.getElementById (id + "_ts").value; if ("" != temp) obj.ts = temp;
-                temp = document.getElementById (id + "_uelin").value; if ("" != temp) { temp = ExcST7BUELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.uelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BUELselectorKind." + temp; }
+                temp = ExcST7BUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj.uelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BUELselectorKind." + temp; else delete obj.uelin;
                 temp = document.getElementById (id + "_vmax").value; if ("" != temp) obj.vmax = temp;
                 temp = document.getElementById (id + "_vmin").value; if ("" != temp) obj.vmin = temp;
                 temp = document.getElementById (id + "_vrmax").value; if ("" != temp) obj.vrmax = temp;
@@ -6771,15 +6771,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ExcST7BOELselectorKind = []; if (!obj.oelin) obj.ExcST7BOELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST7BOELselectorKind) obj.ExcST7BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
-                obj.ExcST7BUELselectorKind = []; if (!obj.uelin) obj.ExcST7BUELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST7BUELselectorKind) obj.ExcST7BUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
+                obj.oelinExcST7BOELselectorKind = [{ id: '', selected: (!obj.oelin)}]; for (var property in ExcST7BOELselectorKind) obj.oelinExcST7BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
+                obj.uelinExcST7BUELselectorKind = [{ id: '', selected: (!obj.uelin)}]; for (var property in ExcST7BUELselectorKind) obj.uelinExcST7BUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ExcST7BOELselectorKind;
-                delete obj.ExcST7BUELselectorKind;
+                delete obj.oelinExcST7BOELselectorKind;
+                delete obj.uelinExcST7BUELselectorKind;
             }
 
             edit_template ()
@@ -6796,13 +6796,13 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kia'>kia: </label><div class='col-sm-8'><input id='{{id}}_kia' class='form-control' type='text'{{#kia}} value='{{kia}}'{{/kia}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl'>kl: </label><div class='col-sm-8'><input id='{{id}}_kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpa'>kpa: </label><div class='col-sm-8'><input id='{{id}}_kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><select id='{{id}}_oelin' class='form-control custom-select'>{{#ExcST7BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST7BOELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><select id='{{id}}_oelin' class='form-control custom-select'>{{#oelinExcST7BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/oelinExcST7BOELselectorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb'>tb: </label><div class='col-sm-8'><input id='{{id}}_tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tg'>tg: </label><div class='col-sm-8'><input id='{{id}}_tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tia'>tia: </label><div class='col-sm-8'><input id='{{id}}_tia' class='form-control' type='text'{{#tia}} value='{{tia}}'{{/tia}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><select id='{{id}}_uelin' class='form-control custom-select'>{{#ExcST7BUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST7BUELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><select id='{{id}}_uelin' class='form-control custom-select'>{{#uelinExcST7BUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/uelinExcST7BUELselectorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmax'>vmax: </label><div class='col-sm-8'><input id='{{id}}_vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin'>vmin: </label><div class='col-sm-8'><input id='{{id}}_vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
@@ -6823,13 +6823,13 @@ define
                 temp = document.getElementById (id + "_kia").value; if ("" != temp) obj.kia = temp;
                 temp = document.getElementById (id + "_kl").value; if ("" != temp) obj.kl = temp;
                 temp = document.getElementById (id + "_kpa").value; if ("" != temp) obj.kpa = temp;
-                temp = document.getElementById (id + "_oelin").value; if ("" != temp) { temp = ExcST7BOELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.oelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BOELselectorKind." + temp; }
+                temp = ExcST7BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj.oelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BOELselectorKind." + temp; else delete obj.oelin;
                 temp = document.getElementById (id + "_tb").value; if ("" != temp) obj.tb = temp;
                 temp = document.getElementById (id + "_tc").value; if ("" != temp) obj.tc = temp;
                 temp = document.getElementById (id + "_tf").value; if ("" != temp) obj.tf = temp;
                 temp = document.getElementById (id + "_tg").value; if ("" != temp) obj.tg = temp;
                 temp = document.getElementById (id + "_tia").value; if ("" != temp) obj.tia = temp;
-                temp = document.getElementById (id + "_uelin").value; if ("" != temp) { temp = ExcST7BUELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.uelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BUELselectorKind." + temp; }
+                temp = ExcST7BUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj.uelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BUELselectorKind." + temp; else delete obj.uelin;
                 temp = document.getElementById (id + "_vmax").value; if ("" != temp) obj.vmax = temp;
                 temp = document.getElementById (id + "_vmin").value; if ("" != temp) obj.vmin = temp;
                 temp = document.getElementById (id + "_vrmax").value; if ("" != temp) obj.vrmax = temp;
@@ -7859,13 +7859,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ExcIEEEST1AUELselectorKind = []; if (!obj.uelin) obj.ExcIEEEST1AUELselectorKind.push ({ id: '', selected: true}); for (var property in ExcIEEEST1AUELselectorKind) obj.ExcIEEEST1AUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
+                obj.uelinExcIEEEST1AUELselectorKind = [{ id: '', selected: (!obj.uelin)}]; for (var property in ExcIEEEST1AUELselectorKind) obj.uelinExcIEEEST1AUELselectorKind.push ({ id: property, selected: obj.uelin && obj.uelin.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ExcIEEEST1AUELselectorKind;
+                delete obj.uelinExcIEEEST1AUELselectorKind;
             }
 
             edit_template ()
@@ -7890,7 +7890,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc1'>tc1: </label><div class='col-sm-8'><input id='{{id}}_tc1' class='form-control' type='text'{{#tc1}} value='{{tc1}}'{{/tc1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><select id='{{id}}_uelin' class='form-control custom-select'>{{#ExcIEEEST1AUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcIEEEST1AUELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uelin'>uelin: </label><div class='col-sm-8'><select id='{{id}}_uelin' class='form-control custom-select'>{{#uelinExcIEEEST1AUELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/uelinExcIEEEST1AUELselectorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamax'>vamax: </label><div class='col-sm-8'><input id='{{id}}_vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamin'>vamin: </label><div class='col-sm-8'><input id='{{id}}_vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vimax'>vimax: </label><div class='col-sm-8'><input id='{{id}}_vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
@@ -7921,7 +7921,7 @@ define
                 temp = document.getElementById (id + "_tc").value; if ("" != temp) obj.tc = temp;
                 temp = document.getElementById (id + "_tc1").value; if ("" != temp) obj.tc1 = temp;
                 temp = document.getElementById (id + "_tf").value; if ("" != temp) obj.tf = temp;
-                temp = document.getElementById (id + "_uelin").value; if ("" != temp) { temp = ExcIEEEST1AUELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.uelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcIEEEST1AUELselectorKind." + temp; }
+                temp = ExcIEEEST1AUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj.uelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcIEEEST1AUELselectorKind." + temp; else delete obj.uelin;
                 temp = document.getElementById (id + "_vamax").value; if ("" != temp) obj.vamax = temp;
                 temp = document.getElementById (id + "_vamin").value; if ("" != temp) obj.vamin = temp;
                 temp = document.getElementById (id + "_vimax").value; if ("" != temp) obj.vimax = temp;
@@ -10329,13 +10329,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ExcST6BOELselectorKind = []; if (!obj.oelin) obj.ExcST6BOELselectorKind.push ({ id: '', selected: true}); for (var property in ExcST6BOELselectorKind) obj.ExcST6BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
+                obj.oelinExcST6BOELselectorKind = [{ id: '', selected: (!obj.oelin)}]; for (var property in ExcST6BOELselectorKind) obj.oelinExcST6BOELselectorKind.push ({ id: property, selected: obj.oelin && obj.oelin.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ExcST6BOELselectorKind;
+                delete obj.oelinExcST6BOELselectorKind;
             }
 
             edit_template ()
@@ -10356,7 +10356,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_klr'>klr: </label><div class='col-sm-8'><input id='{{id}}_klr' class='form-control' type='text'{{#klr}} value='{{klr}}'{{/klr}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_km'>km: </label><div class='col-sm-8'><input id='{{id}}_km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpa'>kpa: </label><div class='col-sm-8'><input id='{{id}}_kpa' class='form-control' type='text'{{#kpa}} value='{{kpa}}'{{/kpa}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><select id='{{id}}_oelin' class='form-control custom-select'>{{#ExcST6BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ExcST6BOELselectorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oelin'>oelin: </label><div class='col-sm-8'><select id='{{id}}_oelin' class='form-control custom-select'>{{#oelinExcST6BOELselectorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/oelinExcST6BOELselectorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tg'>tg: </label><div class='col-sm-8'><input id='{{id}}_tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamax'>vamax: </label><div class='col-sm-8'><input id='{{id}}_vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamin'>vamin: </label><div class='col-sm-8'><input id='{{id}}_vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
@@ -10382,7 +10382,7 @@ define
                 temp = document.getElementById (id + "_klr").value; if ("" != temp) obj.klr = temp;
                 temp = document.getElementById (id + "_km").value; if ("" != temp) obj.km = temp;
                 temp = document.getElementById (id + "_kpa").value; if ("" != temp) obj.kpa = temp;
-                temp = document.getElementById (id + "_oelin").value; if ("" != temp) { temp = ExcST6BOELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.oelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST6BOELselectorKind." + temp; }
+                temp = ExcST6BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj.oelin = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST6BOELselectorKind." + temp; else delete obj.oelin;
                 temp = document.getElementById (id + "_tg").value; if ("" != temp) obj.tg = temp;
                 temp = document.getElementById (id + "_vamax").value; if ("" != temp) obj.vamax = temp;
                 temp = document.getElementById (id + "_vamin").value; if ("" != temp) obj.vamin = temp;
@@ -10395,13 +10395,7 @@ define
 
         return (
             {
-                ExcAVR3: ExcAVR3,
-                ExcAVR7: ExcAVR7,
                 ExcAVR1: ExcAVR1,
-                ExcST4B: ExcST4B,
-                ExcIEEEDC1A: ExcIEEEDC1A,
-                ExcIEEEAC4A: ExcIEEEAC4A,
-                ExcPIC: ExcPIC,
                 ExcST2A: ExcST2A,
                 ExcAC4A: ExcAC4A,
                 ExcIEEEST4B: ExcIEEEST4B,
@@ -10409,47 +10403,58 @@ define
                 ExcIEEEST7B: ExcIEEEST7B,
                 ExcAVR4: ExcAVR4,
                 ExcST7B: ExcST7B,
-                ExcIEEEAC7B: ExcIEEEAC7B,
-                ExcIEEEAC5A: ExcIEEEAC5A,
                 ExcIEEEAC2A: ExcIEEEAC2A,
-                ExcAVR2: ExcAVR2,
-                ExcBBC: ExcBBC,
-                ExcST1A: ExcST1A,
-                ExcIEEEDC2A: ExcIEEEDC2A,
+                ExcIEEEAC5A: ExcIEEEAC5A,
+                ExcIEEEAC7B: ExcIEEEAC7B,
                 ExcIEEEDC4B: ExcIEEEDC4B,
+                ExcIEEEDC2A: ExcIEEEDC2A,
+                ExcST1A: ExcST1A,
                 ExcAC3A: ExcAC3A,
-                ExcCZ: ExcCZ,
                 ExcSCRX: ExcSCRX,
-                ExcDC2A: ExcDC2A,
                 ExcST6B: ExcST6B,
+                ExcREXSFeedbackSignalKind: ExcREXSFeedbackSignalKind,
+                ExcAC2A: ExcAC2A,
+                ExcitationSystemDynamics: ExcitationSystemDynamics,
+                ExcAC1A: ExcAC1A,
+                ExcDC3A: ExcDC3A,
+                ExcELIN1: ExcELIN1,
+                ExcDC3A1: ExcDC3A1,
+                ExcIEEEST1A: ExcIEEEST1A,
+                ExcIEEEST6B: ExcIEEEST6B,
+                ExcAC8B: ExcAC8B,
+                ExcIEEEAC1A: ExcIEEEAC1A,
+                ExcST4B: ExcST4B,
+                ExcIEEEAC4A: ExcIEEEAC4A,
+                ExcSEXS: ExcSEXS,
+                ExcAVR3: ExcAVR3,
+                ExcAVR7: ExcAVR7,
+                ExcIEEEDC1A: ExcIEEEDC1A,
+                ExcPIC: ExcPIC,
+                ExcIEEEST1AUELselectorKind: ExcIEEEST1AUELselectorKind,
+                ExcAVR2: ExcAVR2,
+                ExcST6BOELselectorKind: ExcST6BOELselectorKind,
+                ExcBBC: ExcBBC,
+                ExcCZ: ExcCZ,
+                ExcDC2A: ExcDC2A,
                 ExcIEEEST5B: ExcIEEEST5B,
                 ExcIEEEST3A: ExcIEEEST3A,
-                ExcAC2A: ExcAC2A,
-                ExcIEEEAC8B: ExcIEEEAC8B,
                 ExcIEEEAC3A: ExcIEEEAC3A,
                 ExcIEEEAC6A: ExcIEEEAC6A,
+                ExcIEEEAC8B: ExcIEEEAC8B,
                 ExcELIN2: ExcELIN2,
                 ExcIEEEDC3A: ExcIEEEDC3A,
                 ExcAC6A: ExcAC6A,
                 ExcDC1A: ExcDC1A,
                 ExcOEX3T: ExcOEX3T,
-                ExcitationSystemDynamics: ExcitationSystemDynamics,
-                ExcAC1A: ExcAC1A,
-                ExcDC3A: ExcDC3A,
+                ExcST7BUELselectorKind: ExcST7BUELselectorKind,
+                ExcST7BOELselectorKind: ExcST7BOELselectorKind,
                 ExcHU: ExcHU,
-                ExcELIN1: ExcELIN1,
                 ExcREXS: ExcREXS,
                 ExcST3A: ExcST3A,
                 ExcSK: ExcSK,
-                ExcDC3A1: ExcDC3A1,
-                ExcIEEEST6B: ExcIEEEST6B,
-                ExcIEEEST1A: ExcIEEEST1A,
                 ExcAC5A: ExcAC5A,
-                ExcAC8B: ExcAC8B,
-                ExcIEEEAC1A: ExcIEEEAC1A,
                 ExcANS: ExcANS,
-                ExcAVR5: ExcAVR5,
-                ExcSEXS: ExcSEXS
+                ExcAVR5: ExcAVR5
             }
         );
     }

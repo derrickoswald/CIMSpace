@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/Core"],
-    function (base, Core)
+    ["model/base", "model/Core", "model/Domain"],
+    function (base, Core, Domain)
     {
 
         var ICCPControlPointDeviceClass =
@@ -57,7 +57,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "IPAccessPoint";
                 base.parse_element (/<cim:IPAccessPoint.address>([\s\S]*?)<\/cim:IPAccessPoint.address>/g, obj, "address", base.to_string, sub, context);
-                base.parse_attribute (/<cim:IPAccessPoint.addressType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "addressType", sub, context);
+                base.parse_element (/<cim:IPAccessPoint.addressType>([\s\S]*?)<\/cim:IPAccessPoint.addressType>/g, obj, "addressType", base.to_string, sub, context);
                 base.parse_element (/<cim:IPAccessPoint.gateway>([\s\S]*?)<\/cim:IPAccessPoint.gateway>/g, obj, "gateway", base.to_string, sub, context);
                 base.parse_element (/<cim:IPAccessPoint.subnet>([\s\S]*?)<\/cim:IPAccessPoint.subnet>/g, obj, "subnet", base.to_string, sub, context);
                 var bucket = context.parsed.IPAccessPoint;
@@ -73,7 +73,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "IPAccessPoint", "address", "address",  base.from_string, fields);
-                base.export_attribute (obj, "IPAccessPoint", "addressType", "addressType", fields);
+                base.export_element (obj, "IPAccessPoint", "addressType", "addressType",  base.from_string, fields);
                 base.export_element (obj, "IPAccessPoint", "gateway", "gateway",  base.from_string, fields);
                 base.export_element (obj, "IPAccessPoint", "subnet", "subnet",  base.from_string, fields);
                 if (full)
@@ -105,13 +105,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.IPAddressType = []; if (!obj.addressType) obj.IPAddressType.push ({ id: '', selected: true}); for (var property in IPAddressType) obj.IPAddressType.push ({ id: property, selected: obj.addressType && obj.addressType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.IPAddressType;
             }
 
             edit_template ()
@@ -125,7 +123,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_address'>address: </label><div class='col-sm-8'><input id='{{id}}_address' class='form-control' type='text'{{#address}} value='{{address}}'{{/address}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_addressType'>addressType: </label><div class='col-sm-8'><select id='{{id}}_addressType' class='form-control custom-select'>{{#IPAddressType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IPAddressType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_addressType'>addressType: </label><div class='col-sm-8'><input id='{{id}}_addressType' class='form-control' type='text'{{#addressType}} value='{{addressType}}'{{/addressType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gateway'>gateway: </label><div class='col-sm-8'><input id='{{id}}_gateway' class='form-control' type='text'{{#gateway}} value='{{gateway}}'{{/gateway}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subnet'>subnet: </label><div class='col-sm-8'><input id='{{id}}_subnet' class='form-control' type='text'{{#subnet}} value='{{subnet}}'{{/subnet}}></div></div>
                     </div>
@@ -141,7 +139,7 @@ define
                 var obj = obj || { id: id, cls: "IPAccessPoint" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_address").value; if ("" != temp) obj.address = temp;
-                temp = document.getElementById (id + "_addressType").value; if ("" != temp) { temp = IPAddressType[temp]; if ("undefined" != typeof (temp)) obj.addressType = "http://iec.ch/TC57/2013/CIM-schema-cim16#IPAddressType." + temp; }
+                temp = document.getElementById (id + "_addressType").value; if ("" != temp) obj.addressType = temp;
                 temp = document.getElementById (id + "_gateway").value; if ("" != temp) obj.gateway = temp;
                 temp = document.getElementById (id + "_subnet").value; if ("" != temp) obj.subnet = temp;
 
@@ -219,15 +217,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
-                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.unitUnitSymbol = [{ id: '', selected: (!obj.unit)}]; for (var property in Domain.UnitSymbol) obj.unitUnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.UnitMultiplier;
-                delete obj.UnitSymbol;
+                delete obj.multiplierUnitMultiplier;
+                delete obj.unitUnitSymbol;
             }
 
             edit_template ()
@@ -241,8 +239,8 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -256,8 +254,8 @@ define
                 var obj = obj || { id: id, cls: "IPAddressType" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.unit;
 
                 return (obj);
             }
@@ -336,13 +334,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPPScope = []; if (!obj.scope) obj.ICCPPScope.push ({ id: '', selected: true}); for (var property in ICCPPScope) obj.ICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
+                obj.scopeICCPPScope = [{ id: '', selected: (!obj.scope)}]; for (var property in ICCPPScope) obj.scopeICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPPScope;
+                delete obj.scopeICCPPScope;
             }
 
             edit_template ()
@@ -356,7 +354,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localReference'>localReference: </label><div class='col-sm-8'><input id='{{id}}_localReference' class='form-control' type='text'{{#localReference}} value='{{localReference}}'{{/localReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#scopeICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/scopeICCPPScope}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -370,7 +368,7 @@ define
                 var obj = obj || { id: id, cls: "ICCPInformationMessage" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_localReference").value; if ("" != temp) obj.localReference = temp;
-                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+                temp = ICCPPScope[document.getElementById (id + "_scope").value]; if (temp) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; else delete obj.scope;
 
                 return (obj);
             }
@@ -446,13 +444,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPPScope = []; if (!obj.scope) obj.ICCPPScope.push ({ id: '', selected: true}); for (var property in ICCPPScope) obj.ICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
+                obj.scopeICCPPScope = [{ id: '', selected: (!obj.scope)}]; for (var property in ICCPPScope) obj.scopeICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPPScope;
+                delete obj.scopeICCPPScope;
             }
 
             edit_template ()
@@ -465,7 +463,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#scopeICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/scopeICCPPScope}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -478,7 +476,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+                temp = ICCPPScope[document.getElementById (id + "_scope").value]; if (temp) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; else delete obj.scope;
 
                 return (obj);
             }
@@ -675,15 +673,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.UnitSymbol = []; if (!obj.unit) obj.UnitSymbol.push ({ id: '', selected: true}); for (var property in UnitSymbol) obj.UnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
-                obj.UnitMultiplier = []; if (!obj.multiplier) obj.UnitMultiplier.push ({ id: '', selected: true}); for (var property in UnitMultiplier) obj.UnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.unitUnitSymbol = [{ id: '', selected: (!obj.unit)}]; for (var property in Domain.UnitSymbol) obj.unitUnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.UnitSymbol;
-                delete obj.UnitMultiplier;
+                delete obj.unitUnitSymbol;
+                delete obj.multiplierUnitMultiplier;
             }
 
             edit_template ()
@@ -697,8 +695,8 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#UnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitSymbol}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#UnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/UnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -712,8 +710,8 @@ define
                 var obj = obj || { id: id, cls: "ISOAPAddressing" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.unit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
 
                 return (obj);
             }
@@ -847,7 +845,7 @@ define
 
                 obj = TCPAcessPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ISOUpperLayer";
-                base.parse_attribute (/<cim:ISOUpperLayer.ap\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ap", sub, context);
+                base.parse_element (/<cim:ISOUpperLayer.ap>([\s\S]*?)<\/cim:ISOUpperLayer.ap>/g, obj, "ap", base.to_string, sub, context);
                 base.parse_element (/<cim:ISOUpperLayer.osiPsel>([\s\S]*?)<\/cim:ISOUpperLayer.osiPsel>/g, obj, "osiPsel", base.to_string, sub, context);
                 base.parse_element (/<cim:ISOUpperLayer.osiSsel>([\s\S]*?)<\/cim:ISOUpperLayer.osiSsel>/g, obj, "osiSsel", base.to_string, sub, context);
                 base.parse_element (/<cim:ISOUpperLayer.osiTsel>([\s\S]*?)<\/cim:ISOUpperLayer.osiTsel>/g, obj, "osiTsel", base.to_string, sub, context);
@@ -863,7 +861,7 @@ define
             {
                 var fields = TCPAcessPoint.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ISOUpperLayer", "ap", "ap", fields);
+                base.export_element (obj, "ISOUpperLayer", "ap", "ap",  base.from_string, fields);
                 base.export_element (obj, "ISOUpperLayer", "osiPsel", "osiPsel",  base.from_string, fields);
                 base.export_element (obj, "ISOUpperLayer", "osiSsel", "osiSsel",  base.from_string, fields);
                 base.export_element (obj, "ISOUpperLayer", "osiTsel", "osiTsel",  base.from_string, fields);
@@ -896,13 +894,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ISOAPAddressing = []; if (!obj.ap) obj.ISOAPAddressing.push ({ id: '', selected: true}); for (var property in ISOAPAddressing) obj.ISOAPAddressing.push ({ id: property, selected: obj.ap && obj.ap.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ISOAPAddressing;
             }
 
             edit_template ()
@@ -915,7 +911,7 @@ define
                     `
                     + TCPAcessPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ap'>ap: </label><div class='col-sm-8'><select id='{{id}}_ap' class='form-control custom-select'>{{#ISOAPAddressing}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ISOAPAddressing}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ap'>ap: </label><div class='col-sm-8'><input id='{{id}}_ap' class='form-control' type='text'{{#ap}} value='{{ap}}'{{/ap}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiPsel'>osiPsel: </label><div class='col-sm-8'><input id='{{id}}_osiPsel' class='form-control' type='text'{{#osiPsel}} value='{{osiPsel}}'{{/osiPsel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiSsel'>osiSsel: </label><div class='col-sm-8'><input id='{{id}}_osiSsel' class='form-control' type='text'{{#osiSsel}} value='{{osiSsel}}'{{/osiSsel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiTsel'>osiTsel: </label><div class='col-sm-8'><input id='{{id}}_osiTsel' class='form-control' type='text'{{#osiTsel}} value='{{osiTsel}}'{{/osiTsel}}></div></div>
@@ -931,7 +927,7 @@ define
 
                 var obj = obj || { id: id, cls: "ISOUpperLayer" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ap").value; if ("" != temp) { temp = ISOAPAddressing[temp]; if ("undefined" != typeof (temp)) obj.ap = "http://iec.ch/TC57/2013/CIM-schema-cim16#ISOAPAddressing." + temp; }
+                temp = document.getElementById (id + "_ap").value; if ("" != temp) obj.ap = temp;
                 temp = document.getElementById (id + "_osiPsel").value; if ("" != temp) obj.osiPsel = temp;
                 temp = document.getElementById (id + "_osiSsel").value; if ("" != temp) obj.osiSsel = temp;
                 temp = document.getElementById (id + "_osiTsel").value; if ("" != temp) obj.osiTsel = temp;
@@ -1004,13 +1000,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPIndicationPointType = []; if (!obj.type) obj.ICCPIndicationPointType.push ({ id: '', selected: true}); for (var property in ICCPIndicationPointType) obj.ICCPIndicationPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+                obj.typeICCPIndicationPointType = [{ id: '', selected: (!obj.type)}]; for (var property in ICCPIndicationPointType) obj.typeICCPIndicationPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPIndicationPointType;
+                delete obj.typeICCPIndicationPointType;
             }
 
             edit_template ()
@@ -1023,7 +1019,7 @@ define
                     `
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPIndicationPointType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#typeICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/typeICCPIndicationPointType}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1036,7 +1032,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPIndicationPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPIndicationPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; }
+                temp = ICCPIndicationPointType[document.getElementById (id + "_type").value]; if (temp) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; else delete obj.type;
 
                 return (obj);
             }
@@ -1106,13 +1102,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPControlPointDeviceClass = []; if (!obj.deviceClass) obj.ICCPControlPointDeviceClass.push ({ id: '', selected: true}); for (var property in ICCPControlPointDeviceClass) obj.ICCPControlPointDeviceClass.push ({ id: property, selected: obj.deviceClass && obj.deviceClass.endsWith ('.' + property)});
+                obj.deviceClassICCPControlPointDeviceClass = [{ id: '', selected: (!obj.deviceClass)}]; for (var property in ICCPControlPointDeviceClass) obj.deviceClassICCPControlPointDeviceClass.push ({ id: property, selected: obj.deviceClass && obj.deviceClass.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPControlPointDeviceClass;
+                delete obj.deviceClassICCPControlPointDeviceClass;
             }
 
             edit_template ()
@@ -1125,7 +1121,7 @@ define
                     `
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='{{id}}_deviceClass' class='form-control custom-select'>{{#ICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPControlPointDeviceClass}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='{{id}}_deviceClass' class='form-control custom-select'>{{#deviceClassICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/deviceClassICCPControlPointDeviceClass}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1138,7 +1134,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPControlPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_deviceClass").value; if ("" != temp) { temp = ICCPControlPointDeviceClass[temp]; if ("undefined" != typeof (temp)) obj.deviceClass = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; }
+                temp = ICCPControlPointDeviceClass[document.getElementById (id + "_deviceClass").value]; if (temp) obj.deviceClass = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; else delete obj.deviceClass;
 
                 return (obj);
             }
@@ -1301,13 +1297,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPSetPointType = []; if (!obj.type) obj.ICCPSetPointType.push ({ id: '', selected: true}); for (var property in ICCPSetPointType) obj.ICCPSetPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+                obj.typeICCPSetPointType = [{ id: '', selected: (!obj.type)}]; for (var property in ICCPSetPointType) obj.typeICCPSetPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPSetPointType;
+                delete obj.typeICCPSetPointType;
             }
 
             edit_template ()
@@ -1320,7 +1316,7 @@ define
                     `
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPSetPointType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#typeICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/typeICCPSetPointType}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1333,7 +1329,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPSetPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPSetPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; }
+                temp = ICCPSetPointType[document.getElementById (id + "_type").value]; if (temp) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; else delete obj.type;
 
                 return (obj);
             }
@@ -1342,17 +1338,21 @@ define
         return (
             {
                 IPAccessPoint: IPAccessPoint,
+                ICCPPScope: ICCPPScope,
+                TCPAcessPoint: TCPAcessPoint,
+                ISOUpperLayer: ISOUpperLayer,
+                ICCPIndicationPoint: ICCPIndicationPoint,
+                ICCPSetPointType: ICCPSetPointType,
                 ICCPInformationMessage: ICCPInformationMessage,
                 ICCPControlPoint: ICCPControlPoint,
-                ISOUpperLayer: ISOUpperLayer,
-                TCPAcessPoint: TCPAcessPoint,
                 IPAddressType: IPAddressType,
+                ICCPIndicationPointType: ICCPIndicationPointType,
                 ICCPSetPoint: ICCPSetPoint,
                 TASE2BilateralTable: TASE2BilateralTable,
+                ISOAPAddressing: ISOAPAddressing,
                 ICCPPoint: ICCPPoint,
                 ICCPCommandPoint: ICCPCommandPoint,
-                ISOAPAddressing: ISOAPAddressing,
-                ICCPIndicationPoint: ICCPIndicationPoint
+                ICCPControlPointDeviceClass: ICCPControlPointDeviceClass
             }
         );
     }

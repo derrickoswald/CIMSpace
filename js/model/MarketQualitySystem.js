@@ -1,13 +1,13 @@
 define
 (
-    ["model/base"],
+    ["model/base", "model/MktDomain"],
     /**
      * Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes.
      *
      * Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
      *
      */
-    function (base)
+    function (base, MktDomain)
     {
 
         /**
@@ -90,14 +90,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.AuxillaryValues) obj.AuxillaryValues_string = obj.AuxillaryValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MarketType;
+                delete obj.marketTypeMarketType;
                 delete obj.AuxillaryValues_string;
             }
 
@@ -112,7 +112,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     </div>
@@ -128,7 +128,7 @@ define
                 var obj = obj || { id: id, cls: "AuxiliaryCost" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
 
@@ -605,14 +605,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.TradingHubValues) obj.TradingHubValues_string = obj.TradingHubValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MarketType;
+                delete obj.marketTypeMarketType;
                 delete obj.TradingHubValues_string;
             }
 
@@ -627,7 +627,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
@@ -643,7 +643,7 @@ define
                 var obj = obj || { id: id, cls: "TradingHubPrice" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
 
@@ -1428,15 +1428,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.startUpCostEligibilityFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.startUpCostEligibilityFlag && obj.startUpCostEligibilityFlag.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.noLoadCostEligibilityFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.noLoadCostEligibilityFlag && obj.noLoadCostEligibilityFlag.endsWith ('.' + property)});
+                obj.startUpCostEligibilityFlagYesNo = [{ id: '', selected: (!obj.startUpCostEligibilityFlag)}]; for (var property in MktDomain.YesNo) obj.startUpCostEligibilityFlagYesNo.push ({ id: property, selected: obj.startUpCostEligibilityFlag && obj.startUpCostEligibilityFlag.endsWith ('.' + property)});
+                obj.noLoadCostEligibilityFlagYesNo = [{ id: '', selected: (!obj.noLoadCostEligibilityFlag)}]; for (var property in MktDomain.YesNo) obj.noLoadCostEligibilityFlagYesNo.push ({ id: property, selected: obj.noLoadCostEligibilityFlag && obj.noLoadCostEligibilityFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.YesNo;
+                delete obj.startUpCostEligibilityFlagYesNo;
+                delete obj.noLoadCostEligibilityFlagYesNo;
             }
 
             edit_template ()
@@ -1454,9 +1454,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_availUndispatchedQ'>availUndispatchedQ: </label><div class='col-sm-8'><input id='{{id}}_availUndispatchedQ' class='form-control' type='text'{{#availUndispatchedQ}} value='{{availUndispatchedQ}}'{{/availUndispatchedQ}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_incrementalORAvail'>incrementalORAvail: </label><div class='col-sm-8'><input id='{{id}}_incrementalORAvail' class='form-control' type='text'{{#incrementalORAvail}} value='{{incrementalORAvail}}'{{/incrementalORAvail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCost'>startUpCost: </label><div class='col-sm-8'><input id='{{id}}_startUpCost' class='form-control' type='text'{{#startUpCost}} value='{{startUpCost}}'{{/startUpCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCostEligibilityFlag'>startUpCostEligibilityFlag: </label><div class='col-sm-8'><select id='{{id}}_startUpCostEligibilityFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCostEligibilityFlag'>startUpCostEligibilityFlag: </label><div class='col-sm-8'><select id='{{id}}_startUpCostEligibilityFlag' class='form-control custom-select'>{{#startUpCostEligibilityFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/startUpCostEligibilityFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='{{id}}_noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCostEligibilityFlag'>noLoadCostEligibilityFlag: </label><div class='col-sm-8'><select id='{{id}}_noLoadCostEligibilityFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCostEligibilityFlag'>noLoadCostEligibilityFlag: </label><div class='col-sm-8'><select id='{{id}}_noLoadCostEligibilityFlag' class='form-control custom-select'>{{#noLoadCostEligibilityFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/noLoadCostEligibilityFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxillaryCost'>AuxillaryCost: </label><div class='col-sm-8'><input id='{{id}}_AuxillaryCost' class='form-control' type='text'{{#AuxillaryCost}} value='{{AuxillaryCost}}'{{/AuxillaryCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FiveMinAuxillaryData'>FiveMinAuxillaryData: </label><div class='col-sm-8'><input id='{{id}}_FiveMinAuxillaryData' class='form-control' type='text'{{#FiveMinAuxillaryData}} value='{{FiveMinAuxillaryData}}'{{/FiveMinAuxillaryData}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TenMinAuxillaryData'>TenMinAuxillaryData: </label><div class='col-sm-8'><input id='{{id}}_TenMinAuxillaryData' class='form-control' type='text'{{#TenMinAuxillaryData}} value='{{TenMinAuxillaryData}}'{{/TenMinAuxillaryData}}></div></div>
@@ -1477,9 +1477,9 @@ define
                 temp = document.getElementById (id + "_availUndispatchedQ").value; if ("" != temp) obj.availUndispatchedQ = temp;
                 temp = document.getElementById (id + "_incrementalORAvail").value; if ("" != temp) obj.incrementalORAvail = temp;
                 temp = document.getElementById (id + "_startUpCost").value; if ("" != temp) obj.startUpCost = temp;
-                temp = document.getElementById (id + "_startUpCostEligibilityFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.startUpCostEligibilityFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_startUpCostEligibilityFlag").value]; if (temp) obj.startUpCostEligibilityFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.startUpCostEligibilityFlag;
                 temp = document.getElementById (id + "_noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
-                temp = document.getElementById (id + "_noLoadCostEligibilityFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.noLoadCostEligibilityFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_noLoadCostEligibilityFlag").value]; if (temp) obj.noLoadCostEligibilityFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.noLoadCostEligibilityFlag;
                 temp = document.getElementById (id + "_AuxillaryCost").value; if ("" != temp) obj.AuxillaryCost = temp;
                 temp = document.getElementById (id + "_FiveMinAuxillaryData").value; if ("" != temp) obj.FiveMinAuxillaryData = temp;
                 temp = document.getElementById (id + "_TenMinAuxillaryData").value; if ("" != temp) obj.TenMinAuxillaryData = temp;
@@ -1503,14 +1503,14 @@ define
 
         return (
             {
+                TenMinAuxiliaryData: TenMinAuxiliaryData,
                 AuxiliaryCost: AuxiliaryCost,
                 AllocationResult: AllocationResult,
-                TenMinAuxiliaryData: TenMinAuxiliaryData,
                 AllocationResultValues: AllocationResultValues,
                 ExpectedEnergyValues: ExpectedEnergyValues,
                 AuxiliaryValues: AuxiliaryValues,
-                ExpectedEnergy: ExpectedEnergy,
                 FiveMinAuxiliaryData: FiveMinAuxiliaryData,
+                ExpectedEnergy: ExpectedEnergy,
                 TradingHubValues: TradingHubValues,
                 TradingHubPrice: TradingHubPrice,
                 AuxiliaryObject: AuxiliaryObject

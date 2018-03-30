@@ -411,13 +411,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PotentialTransformerKind = []; if (!obj.type) obj.PotentialTransformerKind.push ({ id: '', selected: true}); for (var property in PotentialTransformerKind) obj.PotentialTransformerKind.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+                obj.typePotentialTransformerKind = [{ id: '', selected: (!obj.type)}]; for (var property in PotentialTransformerKind) obj.typePotentialTransformerKind.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PotentialTransformerKind;
+                delete obj.typePotentialTransformerKind;
             }
 
             edit_template ()
@@ -433,7 +433,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='{{id}}_nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ptClass'>ptClass: </label><div class='col-sm-8'><input id='{{id}}_ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#PotentialTransformerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PotentialTransformerKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#typePotentialTransformerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/typePotentialTransformerKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -449,7 +449,7 @@ define
                 temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
                 temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
                 temp = document.getElementById (id + "_ptClass").value; if ("" != temp) obj.ptClass = temp;
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = PotentialTransformerKind[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#PotentialTransformerKind." + temp; }
+                temp = PotentialTransformerKind[document.getElementById (id + "_type").value]; if (temp) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#PotentialTransformerKind." + temp; else delete obj.type;
 
                 return (obj);
             }
@@ -878,6 +878,7 @@ define
             {
                 WaveTrap: WaveTrap,
                 CurrentTransformer: CurrentTransformer,
+                PotentialTransformerKind: PotentialTransformerKind,
                 Sensor: Sensor,
                 SurgeArrester: SurgeArrester,
                 PostLineSensor: PostLineSensor,

@@ -244,10 +244,10 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.AcceptanceTest = []; if (!obj.acceptanceTest) obj.AcceptanceTest.push ({ id: '', selected: true}); for (var property in AcceptanceTest) obj.AcceptanceTest.push ({ id: property, selected: obj.acceptanceTest && obj.acceptanceTest.endsWith ('.' + property)});
-                obj.ElectronicAddress = []; if (!obj.electronicAddress) obj.ElectronicAddress.push ({ id: '', selected: true}); for (var property in ElectronicAddress) obj.ElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
-                obj.LifecycleDate = []; if (!obj.lifecycle) obj.LifecycleDate.push ({ id: '', selected: true}); for (var property in LifecycleDate) obj.LifecycleDate.push ({ id: property, selected: obj.lifecycle && obj.lifecycle.endsWith ('.' + property)});
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.acceptanceTestAcceptanceTest = [{ id: '', selected: (!obj.acceptanceTest)}]; for (var property in AcceptanceTest) obj.acceptanceTestAcceptanceTest.push ({ id: property, selected: obj.acceptanceTest && obj.acceptanceTest.endsWith ('.' + property)});
+                obj.electronicAddressElectronicAddress = [{ id: '', selected: (!obj.electronicAddress)}]; for (var property in Common.ElectronicAddress) obj.electronicAddressElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
+                obj.lifecycleLifecycleDate = [{ id: '', selected: (!obj.lifecycle)}]; for (var property in LifecycleDate) obj.lifecycleLifecycleDate.push ({ id: property, selected: obj.lifecycle && obj.lifecycle.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.OperationTags) obj.OperationTags_string = obj.OperationTags.join ();
                 if (obj.ActivityRecords) obj.ActivityRecords_string = obj.ActivityRecords.join ();
                 if (obj.Mediums) obj.Mediums_string = obj.Mediums.join ();
@@ -269,10 +269,10 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.AcceptanceTest;
-                delete obj.ElectronicAddress;
-                delete obj.LifecycleDate;
-                delete obj.Status;
+                delete obj.acceptanceTestAcceptanceTest;
+                delete obj.electronicAddressElectronicAddress;
+                delete obj.lifecycleLifecycleDate;
+                delete obj.statusStatus;
                 delete obj.OperationTags_string;
                 delete obj.ActivityRecords_string;
                 delete obj.Mediums_string;
@@ -301,16 +301,16 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptanceTest'>acceptanceTest: </label><div class='col-sm-8'><select id='{{id}}_acceptanceTest' class='form-control custom-select'>{{#AcceptanceTest}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AcceptanceTest}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptanceTest'>acceptanceTest: </label><div class='col-sm-8'><select id='{{id}}_acceptanceTest' class='form-control custom-select'>{{#acceptanceTestAcceptanceTest}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/acceptanceTestAcceptanceTest}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_critical'>critical: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_critical' class='form-check-input' type='checkbox'{{#critical}} checked{{/critical}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#ElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ElectronicAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#electronicAddressElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/electronicAddressElectronicAddress}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initialCondition'>initialCondition: </label><div class='col-sm-8'><input id='{{id}}_initialCondition' class='form-control' type='text'{{#initialCondition}} value='{{initialCondition}}'{{/initialCondition}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initialLossOfLife'>initialLossOfLife: </label><div class='col-sm-8'><input id='{{id}}_initialLossOfLife' class='form-control' type='text'{{#initialLossOfLife}} value='{{initialLossOfLife}}'{{/initialLossOfLife}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lifecycle'>lifecycle: </label><div class='col-sm-8'><select id='{{id}}_lifecycle' class='form-control custom-select'>{{#LifecycleDate}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LifecycleDate}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lifecycle'>lifecycle: </label><div class='col-sm-8'><select id='{{id}}_lifecycle' class='form-control custom-select'>{{#lifecycleLifecycleDate}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/lifecycleLifecycleDate}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lotNumber'>lotNumber: </label><div class='col-sm-8'><input id='{{id}}_lotNumber' class='form-control' type='text'{{#lotNumber}} value='{{lotNumber}}'{{/lotNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchasePrice'>purchasePrice: </label><div class='col-sm-8'><input id='{{id}}_purchasePrice' class='form-control' type='text'{{#purchasePrice}} value='{{purchasePrice}}'{{/purchasePrice}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serialNumber'>serialNumber: </label><div class='col-sm-8'><input id='{{id}}_serialNumber' class='form-control' type='text'{{#serialNumber}} value='{{serialNumber}}'{{/serialNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_utcNumber'>utcNumber: </label><div class='col-sm-8'><input id='{{id}}_utcNumber' class='form-control' type='text'{{#utcNumber}} value='{{utcNumber}}'{{/utcNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords_string}}'{{/ActivityRecords}}></div></div>
@@ -341,16 +341,16 @@ define
 
                 var obj = obj || { id: id, cls: "Asset" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_acceptanceTest").value; if ("" != temp) { temp = AcceptanceTest[temp]; if ("undefined" != typeof (temp)) obj.acceptanceTest = "http://iec.ch/TC57/2013/CIM-schema-cim16#AcceptanceTest." + temp; }
+                temp = AcceptanceTest[document.getElementById (id + "_acceptanceTest").value]; if (temp) obj.acceptanceTest = "http://iec.ch/TC57/2013/CIM-schema-cim16#AcceptanceTest." + temp; else delete obj.acceptanceTest;
                 temp = document.getElementById (id + "_critical").checked; if (temp) obj.critical = true;
-                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) { temp = ElectronicAddress[temp]; if ("undefined" != typeof (temp)) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; }
+                temp = Common.ElectronicAddress[document.getElementById (id + "_electronicAddress").value]; if (temp) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; else delete obj.electronicAddress;
                 temp = document.getElementById (id + "_initialCondition").value; if ("" != temp) obj.initialCondition = temp;
                 temp = document.getElementById (id + "_initialLossOfLife").value; if ("" != temp) obj.initialLossOfLife = temp;
-                temp = document.getElementById (id + "_lifecycle").value; if ("" != temp) { temp = LifecycleDate[temp]; if ("undefined" != typeof (temp)) obj.lifecycle = "http://iec.ch/TC57/2013/CIM-schema-cim16#LifecycleDate." + temp; }
+                temp = LifecycleDate[document.getElementById (id + "_lifecycle").value]; if (temp) obj.lifecycle = "http://iec.ch/TC57/2013/CIM-schema-cim16#LifecycleDate." + temp; else delete obj.lifecycle;
                 temp = document.getElementById (id + "_lotNumber").value; if ("" != temp) obj.lotNumber = temp;
                 temp = document.getElementById (id + "_purchasePrice").value; if ("" != temp) obj.purchasePrice = temp;
                 temp = document.getElementById (id + "_serialNumber").value; if ("" != temp) obj.serialNumber = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_utcNumber").value; if ("" != temp) obj.utcNumber = temp;
                 temp = document.getElementById (id + "_ActivityRecords").value; if ("" != temp) obj.ActivityRecords = temp.split (",");
@@ -1231,15 +1231,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SealConditionKind = []; if (!obj.condition) obj.SealConditionKind.push ({ id: '', selected: true}); for (var property in SealConditionKind) obj.SealConditionKind.push ({ id: property, selected: obj.condition && obj.condition.endsWith ('.' + property)});
-                obj.SealKind = []; if (!obj.kind) obj.SealKind.push ({ id: '', selected: true}); for (var property in SealKind) obj.SealKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.conditionSealConditionKind = [{ id: '', selected: (!obj.condition)}]; for (var property in SealConditionKind) obj.conditionSealConditionKind.push ({ id: property, selected: obj.condition && obj.condition.endsWith ('.' + property)});
+                obj.kindSealKind = [{ id: '', selected: (!obj.kind)}]; for (var property in SealKind) obj.kindSealKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SealConditionKind;
-                delete obj.SealKind;
+                delete obj.conditionSealConditionKind;
+                delete obj.kindSealKind;
             }
 
             edit_template ()
@@ -1253,8 +1253,8 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_appliedDateTime'>appliedDateTime: </label><div class='col-sm-8'><input id='{{id}}_appliedDateTime' class='form-control' type='text'{{#appliedDateTime}} value='{{appliedDateTime}}'{{/appliedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><select id='{{id}}_condition' class='form-control custom-select'>{{#SealConditionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SealConditionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#SealKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SealKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><select id='{{id}}_condition' class='form-control custom-select'>{{#conditionSealConditionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/conditionSealConditionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindSealKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindSealKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sealNumber'>sealNumber: </label><div class='col-sm-8'><input id='{{id}}_sealNumber' class='form-control' type='text'{{#sealNumber}} value='{{sealNumber}}'{{/sealNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetContainer'>AssetContainer: </label><div class='col-sm-8'><input id='{{id}}_AssetContainer' class='form-control' type='text'{{#AssetContainer}} value='{{AssetContainer}}'{{/AssetContainer}}></div></div>
                     </div>
@@ -1270,8 +1270,8 @@ define
                 var obj = obj || { id: id, cls: "Seal" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_appliedDateTime").value; if ("" != temp) obj.appliedDateTime = temp;
-                temp = document.getElementById (id + "_condition").value; if ("" != temp) { temp = SealConditionKind[temp]; if ("undefined" != typeof (temp)) obj.condition = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealConditionKind." + temp; }
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SealKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealKind." + temp; }
+                temp = SealConditionKind[document.getElementById (id + "_condition").value]; if (temp) obj.condition = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealConditionKind." + temp; else delete obj.condition;
+                temp = SealKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_sealNumber").value; if ("" != temp) obj.sealNumber = temp;
                 temp = document.getElementById (id + "_AssetContainer").value; if ("" != temp) obj.AssetContainer = temp;
 
@@ -1750,7 +1750,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ProcedureKind = []; if (!obj.kind) obj.ProcedureKind.push ({ id: '', selected: true}); for (var property in ProcedureKind) obj.ProcedureKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindProcedureKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ProcedureKind) obj.kindProcedureKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.Measurements) obj.Measurements_string = obj.Measurements.join ();
                 if (obj.Limits) obj.Limits_string = obj.Limits.join ();
                 if (obj.Assets) obj.Assets_string = obj.Assets.join ();
@@ -1761,7 +1761,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ProcedureKind;
+                delete obj.kindProcedureKind;
                 delete obj.Measurements_string;
                 delete obj.Limits_string;
                 delete obj.Assets_string;
@@ -1780,7 +1780,7 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instruction'>instruction: </label><div class='col-sm-8'><input id='{{id}}_instruction' class='form-control' type='text'{{#instruction}} value='{{instruction}}'{{/instruction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ProcedureKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProcedureKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindProcedureKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindProcedureKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Limits'>Limits: </label><div class='col-sm-8'><input id='{{id}}_Limits' class='form-control' type='text'{{#Limits}} value='{{Limits_string}}'{{/Limits}}></div></div>
@@ -1799,7 +1799,7 @@ define
                 var obj = obj || { id: id, cls: "Procedure" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_instruction").value; if ("" != temp) obj.instruction = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ProcedureKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProcedureKind." + temp; }
+                temp = ProcedureKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProcedureKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
                 temp = document.getElementById (id + "_Measurements").value; if ("" != temp) obj.Measurements = temp.split (",");
                 temp = document.getElementById (id + "_Limits").value; if ("" != temp) obj.Limits = temp.split (",");
@@ -2450,8 +2450,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CorporateStandardKind = []; if (!obj.corporateStandardKind) obj.CorporateStandardKind.push ({ id: '', selected: true}); for (var property in CorporateStandardKind) obj.CorporateStandardKind.push ({ id: property, selected: obj.corporateStandardKind && obj.corporateStandardKind.endsWith ('.' + property)});
-                obj.AssetModelUsageKind = []; if (!obj.usageKind) obj.AssetModelUsageKind.push ({ id: '', selected: true}); for (var property in AssetModelUsageKind) obj.AssetModelUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
+                obj.corporateStandardKindCorporateStandardKind = [{ id: '', selected: (!obj.corporateStandardKind)}]; for (var property in CorporateStandardKind) obj.corporateStandardKindCorporateStandardKind.push ({ id: property, selected: obj.corporateStandardKind && obj.corporateStandardKind.endsWith ('.' + property)});
+                obj.usageKindAssetModelUsageKind = [{ id: '', selected: (!obj.usageKind)}]; for (var property in AssetModelUsageKind) obj.usageKindAssetModelUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
                 if (obj.AssetModelCatalogueItems) obj.AssetModelCatalogueItems_string = obj.AssetModelCatalogueItems.join ();
                 if (obj.OperationalRestrictions) obj.OperationalRestrictions_string = obj.OperationalRestrictions.join ();
             }
@@ -2459,8 +2459,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CorporateStandardKind;
-                delete obj.AssetModelUsageKind;
+                delete obj.corporateStandardKindCorporateStandardKind;
+                delete obj.usageKindAssetModelUsageKind;
                 delete obj.AssetModelCatalogueItems_string;
                 delete obj.OperationalRestrictions_string;
             }
@@ -2475,10 +2475,10 @@ define
                     `
                     + AssetModel.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_corporateStandardKind'>corporateStandardKind: </label><div class='col-sm-8'><select id='{{id}}_corporateStandardKind' class='form-control custom-select'>{{#CorporateStandardKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CorporateStandardKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_corporateStandardKind'>corporateStandardKind: </label><div class='col-sm-8'><select id='{{id}}_corporateStandardKind' class='form-control custom-select'>{{#corporateStandardKindCorporateStandardKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/corporateStandardKindCorporateStandardKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelNumber'>modelNumber: </label><div class='col-sm-8'><input id='{{id}}_modelNumber' class='form-control' type='text'{{#modelNumber}} value='{{modelNumber}}'{{/modelNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelVersion'>modelVersion: </label><div class='col-sm-8'><input id='{{id}}_modelVersion' class='form-control' type='text'{{#modelVersion}} value='{{modelVersion}}'{{/modelVersion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#AssetModelUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AssetModelUsageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#usageKindAssetModelUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/usageKindAssetModelUsageKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_weightTotal'>weightTotal: </label><div class='col-sm-8'><input id='{{id}}_weightTotal' class='form-control' type='text'{{#weightTotal}} value='{{weightTotal}}'{{/weightTotal}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenericAssetModelOrMaterial'>GenericAssetModelOrMaterial: </label><div class='col-sm-8'><input id='{{id}}_GenericAssetModelOrMaterial' class='form-control' type='text'{{#GenericAssetModelOrMaterial}} value='{{GenericAssetModelOrMaterial}}'{{/GenericAssetModelOrMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Manufacturer'>Manufacturer: </label><div class='col-sm-8'><input id='{{id}}_Manufacturer' class='form-control' type='text'{{#Manufacturer}} value='{{Manufacturer}}'{{/Manufacturer}}></div></div>
@@ -2494,10 +2494,10 @@ define
 
                 var obj = obj || { id: id, cls: "ProductAssetModel" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_corporateStandardKind").value; if ("" != temp) { temp = CorporateStandardKind[temp]; if ("undefined" != typeof (temp)) obj.corporateStandardKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CorporateStandardKind." + temp; }
+                temp = CorporateStandardKind[document.getElementById (id + "_corporateStandardKind").value]; if (temp) obj.corporateStandardKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CorporateStandardKind." + temp; else delete obj.corporateStandardKind;
                 temp = document.getElementById (id + "_modelNumber").value; if ("" != temp) obj.modelNumber = temp;
                 temp = document.getElementById (id + "_modelVersion").value; if ("" != temp) obj.modelVersion = temp;
-                temp = document.getElementById (id + "_usageKind").value; if ("" != temp) { temp = AssetModelUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AssetModelUsageKind." + temp; }
+                temp = AssetModelUsageKind[document.getElementById (id + "_usageKind").value]; if (temp) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AssetModelUsageKind." + temp; else delete obj.usageKind;
                 temp = document.getElementById (id + "_weightTotal").value; if ("" != temp) obj.weightTotal = temp;
                 temp = document.getElementById (id + "_GenericAssetModelOrMaterial").value; if ("" != temp) obj.GenericAssetModelOrMaterial = temp;
                 temp = document.getElementById (id + "_Manufacturer").value; if ("" != temp) obj.Manufacturer = temp;
@@ -2523,11 +2523,13 @@ define
         return (
             {
                 Maintainer: Maintainer,
+                ProcedureKind: ProcedureKind,
                 AssetOwner: AssetOwner,
                 LifecycleDate: LifecycleDate,
                 Asset: Asset,
-                ProductAssetModel: ProductAssetModel,
                 AssetModel: AssetModel,
+                ProductAssetModel: ProductAssetModel,
+                SealKind: SealKind,
                 ProcedureDataSet: ProcedureDataSet,
                 AssetOrganisationRole: AssetOrganisationRole,
                 AssetFunction: AssetFunction,
@@ -2535,7 +2537,10 @@ define
                 AcceptanceTest: AcceptanceTest,
                 AssetInfo: AssetInfo,
                 AssetUser: AssetUser,
+                AssetModelUsageKind: AssetModelUsageKind,
                 AssetContainer: AssetContainer,
+                SealConditionKind: SealConditionKind,
+                CorporateStandardKind: CorporateStandardKind,
                 AssetLocationHazard: AssetLocationHazard,
                 ComMedia: ComMedia,
                 Manufacturer: Manufacturer,

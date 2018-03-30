@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/AssetInfo", "model/Assets", "model/Common", "model/Core"],
-    function (base, AssetInfo, Assets, Common, Core)
+    ["model/base", "model/AssetInfo", "model/Assets", "model/Common", "model/Core", "model/InfCommon"],
+    function (base, AssetInfo, Assets, Common, Core, InfCommon)
     {
 
         /**
@@ -223,13 +223,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.FaultIndicatorResetKind = []; if (!obj.resetKind) obj.FaultIndicatorResetKind.push ({ id: '', selected: true}); for (var property in FaultIndicatorResetKind) obj.FaultIndicatorResetKind.push ({ id: property, selected: obj.resetKind && obj.resetKind.endsWith ('.' + property)});
+                obj.resetKindFaultIndicatorResetKind = [{ id: '', selected: (!obj.resetKind)}]; for (var property in FaultIndicatorResetKind) obj.resetKindFaultIndicatorResetKind.push ({ id: property, selected: obj.resetKind && obj.resetKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.FaultIndicatorResetKind;
+                delete obj.resetKindFaultIndicatorResetKind;
             }
 
             edit_template ()
@@ -242,7 +242,7 @@ define
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resetKind'>resetKind: </label><div class='col-sm-8'><select id='{{id}}_resetKind' class='form-control custom-select'>{{#FaultIndicatorResetKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FaultIndicatorResetKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resetKind'>resetKind: </label><div class='col-sm-8'><select id='{{id}}_resetKind' class='form-control custom-select'>{{#resetKindFaultIndicatorResetKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/resetKindFaultIndicatorResetKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -255,7 +255,7 @@ define
 
                 var obj = obj || { id: id, cls: "FaultIndicatorInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_resetKind").value; if ("" != temp) { temp = FaultIndicatorResetKind[temp]; if ("undefined" != typeof (temp)) obj.resetKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#FaultIndicatorResetKind." + temp; }
+                temp = FaultIndicatorResetKind[document.getElementById (id + "_resetKind").value]; if (temp) obj.resetKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#FaultIndicatorResetKind." + temp; else delete obj.resetKind;
 
                 return (obj);
             }
@@ -643,21 +643,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.Ratio = []; if (!obj.maxRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.maxRatio && obj.maxRatio.endsWith ('.' + property)});
-                obj.Ratio = []; if (!obj.nominalRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.nominalRatio && obj.nominalRatio.endsWith ('.' + property)});
-                obj.Ratio = []; if (!obj.primaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.primaryRatio && obj.primaryRatio.endsWith ('.' + property)});
-                obj.Ratio = []; if (!obj.secondaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.secondaryRatio && obj.secondaryRatio.endsWith ('.' + property)});
-                obj.Ratio = []; if (!obj.tertiaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.tertiaryRatio && obj.tertiaryRatio.endsWith ('.' + property)});
+                obj.maxRatioRatio = [{ id: '', selected: (!obj.maxRatio)}]; for (var property in InfCommon.Ratio) obj.maxRatioRatio.push ({ id: property, selected: obj.maxRatio && obj.maxRatio.endsWith ('.' + property)});
+                obj.nominalRatioRatio = [{ id: '', selected: (!obj.nominalRatio)}]; for (var property in InfCommon.Ratio) obj.nominalRatioRatio.push ({ id: property, selected: obj.nominalRatio && obj.nominalRatio.endsWith ('.' + property)});
+                obj.primaryRatioRatio = [{ id: '', selected: (!obj.primaryRatio)}]; for (var property in InfCommon.Ratio) obj.primaryRatioRatio.push ({ id: property, selected: obj.primaryRatio && obj.primaryRatio.endsWith ('.' + property)});
+                obj.secondaryRatioRatio = [{ id: '', selected: (!obj.secondaryRatio)}]; for (var property in InfCommon.Ratio) obj.secondaryRatioRatio.push ({ id: property, selected: obj.secondaryRatio && obj.secondaryRatio.endsWith ('.' + property)});
+                obj.tertiaryRatioRatio = [{ id: '', selected: (!obj.tertiaryRatio)}]; for (var property in InfCommon.Ratio) obj.tertiaryRatioRatio.push ({ id: property, selected: obj.tertiaryRatio && obj.tertiaryRatio.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.Ratio;
-                delete obj.Ratio;
-                delete obj.Ratio;
-                delete obj.Ratio;
-                delete obj.Ratio;
+                delete obj.maxRatioRatio;
+                delete obj.nominalRatioRatio;
+                delete obj.primaryRatioRatio;
+                delete obj.secondaryRatioRatio;
+                delete obj.tertiaryRatioRatio;
             }
 
             edit_template ()
@@ -676,15 +676,15 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ctClass'>ctClass: </label><div class='col-sm-8'><input id='{{id}}_ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kneePointCurrent'>kneePointCurrent: </label><div class='col-sm-8'><input id='{{id}}_kneePointCurrent' class='form-control' type='text'{{#kneePointCurrent}} value='{{kneePointCurrent}}'{{/kneePointCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kneePointVoltage'>kneePointVoltage: </label><div class='col-sm-8'><input id='{{id}}_kneePointVoltage' class='form-control' type='text'{{#kneePointVoltage}} value='{{kneePointVoltage}}'{{/kneePointVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxRatio'>maxRatio: </label><div class='col-sm-8'><select id='{{id}}_maxRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><select id='{{id}}_nominalRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxRatio'>maxRatio: </label><div class='col-sm-8'><select id='{{id}}_maxRatio' class='form-control custom-select'>{{#maxRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/maxRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><select id='{{id}}_nominalRatio' class='form-control custom-select'>{{#nominalRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/nominalRatioRatio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryFlsRating'>primaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_primaryFlsRating' class='form-control' type='text'{{#primaryFlsRating}} value='{{primaryFlsRating}}'{{/primaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><select id='{{id}}_primaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><select id='{{id}}_primaryRatio' class='form-control custom-select'>{{#primaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/primaryRatioRatio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryFlsRating'>secondaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_secondaryFlsRating' class='form-control' type='text'{{#secondaryFlsRating}} value='{{secondaryFlsRating}}'{{/secondaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#secondaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/secondaryRatioRatio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryFlsRating'>tertiaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_tertiaryFlsRating' class='form-control' type='text'{{#tertiaryFlsRating}} value='{{tertiaryFlsRating}}'{{/tertiaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#tertiaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/tertiaryRatioRatio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
                     </div>
                     </fieldset>
@@ -704,15 +704,15 @@ define
                 temp = document.getElementById (id + "_ctClass").value; if ("" != temp) obj.ctClass = temp;
                 temp = document.getElementById (id + "_kneePointCurrent").value; if ("" != temp) obj.kneePointCurrent = temp;
                 temp = document.getElementById (id + "_kneePointVoltage").value; if ("" != temp) obj.kneePointVoltage = temp;
-                temp = document.getElementById (id + "_maxRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.maxRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
-                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.nominalRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = InfCommon.Ratio[document.getElementById (id + "_maxRatio").value]; if (temp) obj.maxRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.maxRatio;
+                temp = InfCommon.Ratio[document.getElementById (id + "_nominalRatio").value]; if (temp) obj.nominalRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.nominalRatio;
                 temp = document.getElementById (id + "_primaryFlsRating").value; if ("" != temp) obj.primaryFlsRating = temp;
-                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.primaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = InfCommon.Ratio[document.getElementById (id + "_primaryRatio").value]; if (temp) obj.primaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.primaryRatio;
                 temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
                 temp = document.getElementById (id + "_secondaryFlsRating").value; if ("" != temp) obj.secondaryFlsRating = temp;
-                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.secondaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = InfCommon.Ratio[document.getElementById (id + "_secondaryRatio").value]; if (temp) obj.secondaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.secondaryRatio;
                 temp = document.getElementById (id + "_tertiaryFlsRating").value; if ("" != temp) obj.tertiaryFlsRating = temp;
-                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.tertiaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = InfCommon.Ratio[document.getElementById (id + "_tertiaryRatio").value]; if (temp) obj.tertiaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.tertiaryRatio;
                 temp = document.getElementById (id + "_usage").value; if ("" != temp) obj.usage = temp;
 
                 return (obj);
@@ -935,14 +935,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.AssetModelCatalogueItems) obj.AssetModelCatalogueItems_string = obj.AssetModelCatalogueItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.Status;
+                delete obj.statusStatus;
                 delete obj.AssetModelCatalogueItems_string;
             }
 
@@ -956,7 +956,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -969,7 +969,7 @@ define
 
                 var obj = obj || { id: id, cls: "AssetModelCatalogue" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
 
                 return (obj);
             }
@@ -1174,19 +1174,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TransformerConstructionKind = []; if (!obj.constructionKind) obj.TransformerConstructionKind.push ({ id: '', selected: true}); for (var property in TransformerConstructionKind) obj.TransformerConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
-                obj.TransformerCoreKind = []; if (!obj.coreKind) obj.TransformerCoreKind.push ({ id: '', selected: true}); for (var property in TransformerCoreKind) obj.TransformerCoreKind.push ({ id: property, selected: obj.coreKind && obj.coreKind.endsWith ('.' + property)});
-                obj.TransformerFunctionKind = []; if (!obj.function) obj.TransformerFunctionKind.push ({ id: '', selected: true}); for (var property in TransformerFunctionKind) obj.TransformerFunctionKind.push ({ id: property, selected: obj.function && obj.function.endsWith ('.' + property)});
-                obj.OilPreservationKind = []; if (!obj.oilPreservationKind) obj.OilPreservationKind.push ({ id: '', selected: true}); for (var property in OilPreservationKind) obj.OilPreservationKind.push ({ id: property, selected: obj.oilPreservationKind && obj.oilPreservationKind.endsWith ('.' + property)});
+                obj.constructionKindTransformerConstructionKind = [{ id: '', selected: (!obj.constructionKind)}]; for (var property in TransformerConstructionKind) obj.constructionKindTransformerConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
+                obj.coreKindTransformerCoreKind = [{ id: '', selected: (!obj.coreKind)}]; for (var property in TransformerCoreKind) obj.coreKindTransformerCoreKind.push ({ id: property, selected: obj.coreKind && obj.coreKind.endsWith ('.' + property)});
+                obj.functionTransformerFunctionKind = [{ id: '', selected: (!obj.function)}]; for (var property in TransformerFunctionKind) obj.functionTransformerFunctionKind.push ({ id: property, selected: obj.function && obj.function.endsWith ('.' + property)});
+                obj.oilPreservationKindOilPreservationKind = [{ id: '', selected: (!obj.oilPreservationKind)}]; for (var property in OilPreservationKind) obj.oilPreservationKindOilPreservationKind.push ({ id: property, selected: obj.oilPreservationKind && obj.oilPreservationKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TransformerConstructionKind;
-                delete obj.TransformerCoreKind;
-                delete obj.TransformerFunctionKind;
-                delete obj.OilPreservationKind;
+                delete obj.constructionKindTransformerConstructionKind;
+                delete obj.coreKindTransformerCoreKind;
+                delete obj.functionTransformerFunctionKind;
+                delete obj.oilPreservationKindOilPreservationKind;
             }
 
             edit_template ()
@@ -1199,12 +1199,12 @@ define
                     `
                     + AssetInfo.TransformerTankInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control custom-select'>{{#TransformerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerConstructionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control custom-select'>{{#constructionKindTransformerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/constructionKindTransformerConstructionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreCoilsWeight'>coreCoilsWeight: </label><div class='col-sm-8'><input id='{{id}}_coreCoilsWeight' class='form-control' type='text'{{#coreCoilsWeight}} value='{{coreCoilsWeight}}'{{/coreCoilsWeight}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreKind'>coreKind: </label><div class='col-sm-8'><select id='{{id}}_coreKind' class='form-control custom-select'>{{#TransformerCoreKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerCoreKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_function'>function: </label><div class='col-sm-8'><select id='{{id}}_function' class='form-control custom-select'>{{#TransformerFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerFunctionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreKind'>coreKind: </label><div class='col-sm-8'><select id='{{id}}_coreKind' class='form-control custom-select'>{{#coreKindTransformerCoreKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/coreKindTransformerCoreKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_function'>function: </label><div class='col-sm-8'><select id='{{id}}_function' class='form-control custom-select'>{{#functionTransformerFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/functionTransformerFunctionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralBIL'>neutralBIL: </label><div class='col-sm-8'><input id='{{id}}_neutralBIL' class='form-control' type='text'{{#neutralBIL}} value='{{neutralBIL}}'{{/neutralBIL}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPreservationKind'>oilPreservationKind: </label><div class='col-sm-8'><select id='{{id}}_oilPreservationKind' class='form-control custom-select'>{{#OilPreservationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OilPreservationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPreservationKind'>oilPreservationKind: </label><div class='col-sm-8'><select id='{{id}}_oilPreservationKind' class='form-control custom-select'>{{#oilPreservationKindOilPreservationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/oilPreservationKindOilPreservationKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1217,12 +1217,12 @@ define
 
                 var obj = obj || { id: id, cls: "OldTransformerTankInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = TransformerConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerConstructionKind." + temp; }
+                temp = TransformerConstructionKind[document.getElementById (id + "_constructionKind").value]; if (temp) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerConstructionKind." + temp; else delete obj.constructionKind;
                 temp = document.getElementById (id + "_coreCoilsWeight").value; if ("" != temp) obj.coreCoilsWeight = temp;
-                temp = document.getElementById (id + "_coreKind").value; if ("" != temp) { temp = TransformerCoreKind[temp]; if ("undefined" != typeof (temp)) obj.coreKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerCoreKind." + temp; }
-                temp = document.getElementById (id + "_function").value; if ("" != temp) { temp = TransformerFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.function = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerFunctionKind." + temp; }
+                temp = TransformerCoreKind[document.getElementById (id + "_coreKind").value]; if (temp) obj.coreKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerCoreKind." + temp; else delete obj.coreKind;
+                temp = TransformerFunctionKind[document.getElementById (id + "_function").value]; if (temp) obj.function = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerFunctionKind." + temp; else delete obj.function;
                 temp = document.getElementById (id + "_neutralBIL").value; if ("" != temp) obj.neutralBIL = temp;
-                temp = document.getElementById (id + "_oilPreservationKind").value; if ("" != temp) { temp = OilPreservationKind[temp]; if ("undefined" != typeof (temp)) obj.oilPreservationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#OilPreservationKind." + temp; }
+                temp = OilPreservationKind[document.getElementById (id + "_oilPreservationKind").value]; if (temp) obj.oilPreservationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#OilPreservationKind." + temp; else delete obj.oilPreservationKind;
 
                 return (obj);
             }
@@ -1320,15 +1320,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CompositeSwitchKind = []; if (!obj.kind) obj.CompositeSwitchKind.push ({ id: '', selected: true}); for (var property in CompositeSwitchKind) obj.CompositeSwitchKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.PhaseCode = []; if (!obj.phaseCode) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phaseCode && obj.phaseCode.endsWith ('.' + property)});
+                obj.kindCompositeSwitchKind = [{ id: '', selected: (!obj.kind)}]; for (var property in CompositeSwitchKind) obj.kindCompositeSwitchKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.phaseCodePhaseCode = [{ id: '', selected: (!obj.phaseCode)}]; for (var property in Core.PhaseCode) obj.phaseCodePhaseCode.push ({ id: property, selected: obj.phaseCode && obj.phaseCode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CompositeSwitchKind;
-                delete obj.PhaseCode;
+                delete obj.kindCompositeSwitchKind;
+                delete obj.phaseCodePhaseCode;
             }
 
             edit_template ()
@@ -1344,8 +1344,8 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_ganged'>ganged: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_ganged' class='form-check-input' type='checkbox'{{#ganged}} checked{{/ganged}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initOpMode'>initOpMode: </label><div class='col-sm-8'><input id='{{id}}_initOpMode' class='form-control' type='text'{{#initOpMode}} value='{{initOpMode}}'{{/initOpMode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interruptingRating'>interruptingRating: </label><div class='col-sm-8'><input id='{{id}}_interruptingRating' class='form-control' type='text'{{#interruptingRating}} value='{{interruptingRating}}'{{/interruptingRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#CompositeSwitchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CompositeSwitchKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><select id='{{id}}_phaseCode' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCompositeSwitchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCompositeSwitchKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><select id='{{id}}_phaseCode' class='form-control custom-select'>{{#phaseCodePhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseCodePhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='{{id}}_phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_remote'>remote: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div></div>
@@ -1365,8 +1365,8 @@ define
                 temp = document.getElementById (id + "_ganged").checked; if (temp) obj.ganged = true;
                 temp = document.getElementById (id + "_initOpMode").value; if ("" != temp) obj.initOpMode = temp;
                 temp = document.getElementById (id + "_interruptingRating").value; if ("" != temp) obj.interruptingRating = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CompositeSwitchKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; }
-                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = CompositeSwitchKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; else delete obj.kind;
+                temp = Core.PhaseCode[document.getElementById (id + "_phaseCode").value]; if (temp) obj.phaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.phaseCode;
                 temp = document.getElementById (id + "_phaseCount").value; if ("" != temp) obj.phaseCount = temp;
                 temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
                 temp = document.getElementById (id + "_remote").checked; if (temp) obj.remote = true;
@@ -1458,19 +1458,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.Ratio = []; if (!obj.nominalRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.nominalRatio && obj.nominalRatio.endsWith ('.' + property)});
-                obj.Ratio = []; if (!obj.primaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.primaryRatio && obj.primaryRatio.endsWith ('.' + property)});
-                obj.Ratio = []; if (!obj.secondaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.secondaryRatio && obj.secondaryRatio.endsWith ('.' + property)});
-                obj.Ratio = []; if (!obj.tertiaryRatio) obj.Ratio.push ({ id: '', selected: true}); for (var property in Ratio) obj.Ratio.push ({ id: property, selected: obj.tertiaryRatio && obj.tertiaryRatio.endsWith ('.' + property)});
+                obj.nominalRatioRatio = [{ id: '', selected: (!obj.nominalRatio)}]; for (var property in InfCommon.Ratio) obj.nominalRatioRatio.push ({ id: property, selected: obj.nominalRatio && obj.nominalRatio.endsWith ('.' + property)});
+                obj.primaryRatioRatio = [{ id: '', selected: (!obj.primaryRatio)}]; for (var property in InfCommon.Ratio) obj.primaryRatioRatio.push ({ id: property, selected: obj.primaryRatio && obj.primaryRatio.endsWith ('.' + property)});
+                obj.secondaryRatioRatio = [{ id: '', selected: (!obj.secondaryRatio)}]; for (var property in InfCommon.Ratio) obj.secondaryRatioRatio.push ({ id: property, selected: obj.secondaryRatio && obj.secondaryRatio.endsWith ('.' + property)});
+                obj.tertiaryRatioRatio = [{ id: '', selected: (!obj.tertiaryRatio)}]; for (var property in InfCommon.Ratio) obj.tertiaryRatioRatio.push ({ id: property, selected: obj.tertiaryRatio && obj.tertiaryRatio.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.Ratio;
-                delete obj.Ratio;
-                delete obj.Ratio;
-                delete obj.Ratio;
+                delete obj.nominalRatioRatio;
+                delete obj.primaryRatioRatio;
+                delete obj.secondaryRatioRatio;
+                delete obj.tertiaryRatioRatio;
             }
 
             edit_template ()
@@ -1484,12 +1484,12 @@ define
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><select id='{{id}}_nominalRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><select id='{{id}}_primaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><select id='{{id}}_nominalRatio' class='form-control custom-select'>{{#nominalRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/nominalRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><select id='{{id}}_primaryRatio' class='form-control custom-select'>{{#primaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/primaryRatioRatio}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ptClass'>ptClass: </label><div class='col-sm-8'><input id='{{id}}_ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#Ratio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Ratio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#secondaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/secondaryRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#tertiaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/tertiaryRatioRatio}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1503,12 +1503,12 @@ define
                 var obj = obj || { id: id, cls: "PotentialTransformerInfo" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
-                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.nominalRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
-                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.primaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = InfCommon.Ratio[document.getElementById (id + "_nominalRatio").value]; if (temp) obj.nominalRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.nominalRatio;
+                temp = InfCommon.Ratio[document.getElementById (id + "_primaryRatio").value]; if (temp) obj.primaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.primaryRatio;
                 temp = document.getElementById (id + "_ptClass").value; if ("" != temp) obj.ptClass = temp;
                 temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.secondaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
-                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) { temp = Ratio[temp]; if ("undefined" != typeof (temp)) obj.tertiaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; }
+                temp = InfCommon.Ratio[document.getElementById (id + "_secondaryRatio").value]; if (temp) obj.secondaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.secondaryRatio;
+                temp = InfCommon.Ratio[document.getElementById (id + "_tertiaryRatio").value]; if (temp) obj.tertiaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.tertiaryRatio;
 
                 return (obj);
             }
@@ -1587,13 +1587,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WindingInsulationKind = []; if (!obj.windingInsulationKind) obj.WindingInsulationKind.push ({ id: '', selected: true}); for (var property in WindingInsulationKind) obj.WindingInsulationKind.push ({ id: property, selected: obj.windingInsulationKind && obj.windingInsulationKind.endsWith ('.' + property)});
+                obj.windingInsulationKindWindingInsulationKind = [{ id: '', selected: (!obj.windingInsulationKind)}]; for (var property in WindingInsulationKind) obj.windingInsulationKindWindingInsulationKind.push ({ id: property, selected: obj.windingInsulationKind && obj.windingInsulationKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WindingInsulationKind;
+                delete obj.windingInsulationKindWindingInsulationKind;
             }
 
             edit_template ()
@@ -1609,7 +1609,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dayOverLoadRating'>dayOverLoadRating: </label><div class='col-sm-8'><input id='{{id}}_dayOverLoadRating' class='form-control' type='text'{{#dayOverLoadRating}} value='{{dayOverLoadRating}}'{{/dayOverLoadRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hourOverLoadRating'>hourOverLoadRating: </label><div class='col-sm-8'><input id='{{id}}_hourOverLoadRating' class='form-control' type='text'{{#hourOverLoadRating}} value='{{hourOverLoadRating}}'{{/hourOverLoadRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidInsulationWeight'>solidInsulationWeight: </label><div class='col-sm-8'><input id='{{id}}_solidInsulationWeight' class='form-control' type='text'{{#solidInsulationWeight}} value='{{solidInsulationWeight}}'{{/solidInsulationWeight}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windingInsulationKind'>windingInsulationKind: </label><div class='col-sm-8'><select id='{{id}}_windingInsulationKind' class='form-control custom-select'>{{#WindingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindingInsulationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windingInsulationKind'>windingInsulationKind: </label><div class='col-sm-8'><select id='{{id}}_windingInsulationKind' class='form-control custom-select'>{{#windingInsulationKindWindingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/windingInsulationKindWindingInsulationKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1625,7 +1625,7 @@ define
                 temp = document.getElementById (id + "_dayOverLoadRating").value; if ("" != temp) obj.dayOverLoadRating = temp;
                 temp = document.getElementById (id + "_hourOverLoadRating").value; if ("" != temp) obj.hourOverLoadRating = temp;
                 temp = document.getElementById (id + "_solidInsulationWeight").value; if ("" != temp) obj.solidInsulationWeight = temp;
-                temp = document.getElementById (id + "_windingInsulationKind").value; if ("" != temp) { temp = WindingInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.windingInsulationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingInsulationKind." + temp; }
+                temp = WindingInsulationKind[document.getElementById (id + "_windingInsulationKind").value]; if (temp) obj.windingInsulationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingInsulationKind." + temp; else delete obj.windingInsulationKind;
 
                 return (obj);
             }
@@ -1864,15 +1864,25 @@ define
                 OldTransformerTankInfo: OldTransformerTankInfo,
                 PotentialTransformerInfo: PotentialTransformerInfo,
                 OldSwitchInfo: OldSwitchInfo,
-                AssetModelCatalogue: AssetModelCatalogue,
                 FaultIndicatorInfo: FaultIndicatorInfo,
-                AssetModelCatalogueItem: AssetModelCatalogueItem,
+                AssetModelCatalogue: AssetModelCatalogue,
                 ProtectionEquipmentInfo: ProtectionEquipmentInfo,
-                SurgeArresterInfo: SurgeArresterInfo,
+                TransformerCoreKind: TransformerCoreKind,
+                CompositeSwitchKind: CompositeSwitchKind,
+                TransformerFunctionKind: TransformerFunctionKind,
                 CurrentTransformerInfo: CurrentTransformerInfo,
+                ShuntImpedanceControlKind: ShuntImpedanceControlKind,
+                ShuntImpedanceLocalControlKind: ShuntImpedanceLocalControlKind,
+                OldTransformerEndInfo: OldTransformerEndInfo,
+                OilPreservationKind: OilPreservationKind,
+                TransformerConstructionKind: TransformerConstructionKind,
+                WindingInsulationKind: WindingInsulationKind,
+                AssetModelCatalogueItem: AssetModelCatalogueItem,
+                RegulationBranchKind: RegulationBranchKind,
+                SurgeArresterInfo: SurgeArresterInfo,
                 BreakerInfo: BreakerInfo,
                 CompositeSwitchInfo: CompositeSwitchInfo,
-                OldTransformerEndInfo: OldTransformerEndInfo,
+                FaultIndicatorResetKind: FaultIndicatorResetKind,
                 RecloserInfo: RecloserInfo
             }
         );

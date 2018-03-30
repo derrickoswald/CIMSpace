@@ -1612,12 +1612,12 @@ define
 
         return (
             {
-                NonConformLoadGroup: NonConformLoadGroup,
                 ConformLoadSchedule: ConformLoadSchedule,
                 NonConformLoadSchedule: NonConformLoadSchedule,
-                ConformLoadGroup: ConformLoadGroup,
-                EnergyArea: EnergyArea,
+                NonConformLoadGroup: NonConformLoadGroup,
                 SeasonDayTypeSchedule: SeasonDayTypeSchedule,
+                EnergyArea: EnergyArea,
+                ConformLoadGroup: ConformLoadGroup,
                 DayType: DayType,
                 Season: Season,
                 LoadResponseCharacteristic: LoadResponseCharacteristic,

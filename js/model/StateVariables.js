@@ -851,8 +851,8 @@ define
                 StateVariable: StateVariable,
                 SvInjection: SvInjection,
                 SvTapStep: SvTapStep,
-                SvPowerFlow: SvPowerFlow,
                 SvShuntCompensatorSections: SvShuntCompensatorSections,
+                SvPowerFlow: SvPowerFlow,
                 SvStatus: SvStatus,
                 SvVoltage: SvVoltage
             }

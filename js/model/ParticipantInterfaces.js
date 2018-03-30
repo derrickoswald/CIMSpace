@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Core"],
+    ["model/base", "model/Common", "model/Core", "model/MktDomain"],
     /**
      * Market participant interfaces for bids and trades.
      *
      */
-    function (base, Common, Core)
+    function (base, Common, Core, MktDomain)
     {
 
         /**
@@ -1168,23 +1168,23 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.balancingFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.balancingFlag && obj.balancingFlag.endsWith ('.' + property)});
-                obj.BidTypeRMR = []; if (!obj.bidType) obj.BidTypeRMR.push ({ id: '', selected: true}); for (var property in BidTypeRMR) obj.BidTypeRMR.push ({ id: property, selected: obj.bidType && obj.bidType.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.priorityFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.priorityFlag && obj.priorityFlag.endsWith ('.' + property)});
-                obj.SelfSchedReferenceType = []; if (!obj.referenceType) obj.SelfSchedReferenceType.push ({ id: '', selected: true}); for (var property in SelfSchedReferenceType) obj.SelfSchedReferenceType.push ({ id: property, selected: obj.referenceType && obj.referenceType.endsWith ('.' + property)});
-                obj.MarketProductSelfSchedType = []; if (!obj.selfSchedType) obj.MarketProductSelfSchedType.push ({ id: '', selected: true}); for (var property in MarketProductSelfSchedType) obj.MarketProductSelfSchedType.push ({ id: property, selected: obj.selfSchedType && obj.selfSchedType.endsWith ('.' + property)});
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.balancingFlagYesNo = [{ id: '', selected: (!obj.balancingFlag)}]; for (var property in MktDomain.YesNo) obj.balancingFlagYesNo.push ({ id: property, selected: obj.balancingFlag && obj.balancingFlag.endsWith ('.' + property)});
+                obj.bidTypeBidTypeRMR = [{ id: '', selected: (!obj.bidType)}]; for (var property in MktDomain.BidTypeRMR) obj.bidTypeBidTypeRMR.push ({ id: property, selected: obj.bidType && obj.bidType.endsWith ('.' + property)});
+                obj.priorityFlagYesNo = [{ id: '', selected: (!obj.priorityFlag)}]; for (var property in MktDomain.YesNo) obj.priorityFlagYesNo.push ({ id: property, selected: obj.priorityFlag && obj.priorityFlag.endsWith ('.' + property)});
+                obj.referenceTypeSelfSchedReferenceType = [{ id: '', selected: (!obj.referenceType)}]; for (var property in MktDomain.SelfSchedReferenceType) obj.referenceTypeSelfSchedReferenceType.push ({ id: property, selected: obj.referenceType && obj.referenceType.endsWith ('.' + property)});
+                obj.selfSchedTypeMarketProductSelfSchedType = [{ id: '', selected: (!obj.selfSchedType)}]; for (var property in MktDomain.MarketProductSelfSchedType) obj.selfSchedTypeMarketProductSelfSchedType.push ({ id: property, selected: obj.selfSchedType && obj.selfSchedType.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.BidTypeRMR;
-                delete obj.YesNo;
-                delete obj.SelfSchedReferenceType;
-                delete obj.MarketProductSelfSchedType;
-                delete obj.MQSCHGType;
+                delete obj.balancingFlagYesNo;
+                delete obj.bidTypeBidTypeRMR;
+                delete obj.priorityFlagYesNo;
+                delete obj.referenceTypeSelfSchedReferenceType;
+                delete obj.selfSchedTypeMarketProductSelfSchedType;
+                delete obj.updateTypeMQSCHGType;
             }
 
             edit_template ()
@@ -1197,15 +1197,15 @@ define
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_balancingFlag'>balancingFlag: </label><div class='col-sm-8'><select id='{{id}}_balancingFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#BidTypeRMR}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BidTypeRMR}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priorityFlag'>priorityFlag: </label><div class='col-sm-8'><select id='{{id}}_priorityFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_balancingFlag'>balancingFlag: </label><div class='col-sm-8'><select id='{{id}}_balancingFlag' class='form-control custom-select'>{{#balancingFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/balancingFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#bidTypeBidTypeRMR}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/bidTypeBidTypeRMR}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priorityFlag'>priorityFlag: </label><div class='col-sm-8'><select id='{{id}}_priorityFlag' class='form-control custom-select'>{{#priorityFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/priorityFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpSelfSchedMw'>pumpSelfSchedMw: </label><div class='col-sm-8'><input id='{{id}}_pumpSelfSchedMw' class='form-control' type='text'{{#pumpSelfSchedMw}} value='{{pumpSelfSchedMw}}'{{/pumpSelfSchedMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceType'>referenceType: </label><div class='col-sm-8'><select id='{{id}}_referenceType' class='form-control custom-select'>{{#SelfSchedReferenceType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SelfSchedReferenceType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceType'>referenceType: </label><div class='col-sm-8'><select id='{{id}}_referenceType' class='form-control custom-select'>{{#referenceTypeSelfSchedReferenceType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/referenceTypeSelfSchedReferenceType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedMw'>selfSchedMw: </label><div class='col-sm-8'><input id='{{id}}_selfSchedMw' class='form-control' type='text'{{#selfSchedMw}} value='{{selfSchedMw}}'{{/selfSchedMw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedSptResource'>selfSchedSptResource: </label><div class='col-sm-8'><input id='{{id}}_selfSchedSptResource' class='form-control' type='text'{{#selfSchedSptResource}} value='{{selfSchedSptResource}}'{{/selfSchedSptResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedType'>selfSchedType: </label><div class='col-sm-8'><select id='{{id}}_selfSchedType' class='form-control custom-select'>{{#MarketProductSelfSchedType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketProductSelfSchedType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedType'>selfSchedType: </label><div class='col-sm-8'><select id='{{id}}_selfSchedType' class='form-control custom-select'>{{#selfSchedTypeMarketProductSelfSchedType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/selfSchedTypeMarketProductSelfSchedType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wheelingTransactionReference'>wheelingTransactionReference: </label><div class='col-sm-8'><input id='{{id}}_wheelingTransactionReference' class='form-control' type='text'{{#wheelingTransactionReference}} value='{{wheelingTransactionReference}}'{{/wheelingTransactionReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='{{id}}_TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
@@ -1224,15 +1224,15 @@ define
 
                 var obj = obj || { id: id, cls: "BidSelfSched" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_balancingFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.balancingFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_bidType").value; if ("" != temp) { temp = BidTypeRMR[temp]; if ("undefined" != typeof (temp)) obj.bidType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidTypeRMR." + temp; }
-                temp = document.getElementById (id + "_priorityFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.priorityFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_balancingFlag").value]; if (temp) obj.balancingFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.balancingFlag;
+                temp = MktDomain.BidTypeRMR[document.getElementById (id + "_bidType").value]; if (temp) obj.bidType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidTypeRMR." + temp; else delete obj.bidType;
+                temp = MktDomain.YesNo[document.getElementById (id + "_priorityFlag").value]; if (temp) obj.priorityFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.priorityFlag;
                 temp = document.getElementById (id + "_pumpSelfSchedMw").value; if ("" != temp) obj.pumpSelfSchedMw = temp;
-                temp = document.getElementById (id + "_referenceType").value; if ("" != temp) { temp = SelfSchedReferenceType[temp]; if ("undefined" != typeof (temp)) obj.referenceType = "http://iec.ch/TC57/2013/CIM-schema-cim16#SelfSchedReferenceType." + temp; }
+                temp = MktDomain.SelfSchedReferenceType[document.getElementById (id + "_referenceType").value]; if (temp) obj.referenceType = "http://iec.ch/TC57/2013/CIM-schema-cim16#SelfSchedReferenceType." + temp; else delete obj.referenceType;
                 temp = document.getElementById (id + "_selfSchedMw").value; if ("" != temp) obj.selfSchedMw = temp;
                 temp = document.getElementById (id + "_selfSchedSptResource").value; if ("" != temp) obj.selfSchedSptResource = temp;
-                temp = document.getElementById (id + "_selfSchedType").value; if ("" != temp) { temp = MarketProductSelfSchedType[temp]; if ("undefined" != typeof (temp)) obj.selfSchedType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductSelfSchedType." + temp; }
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MarketProductSelfSchedType[document.getElementById (id + "_selfSchedType").value]; if (temp) obj.selfSchedType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductSelfSchedType." + temp; else delete obj.selfSchedType;
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_wheelingTransactionReference").value; if ("" != temp) obj.wheelingTransactionReference = temp;
                 temp = document.getElementById (id + "_ProductBid").value; if ("" != temp) obj.ProductBid = temp;
                 temp = document.getElementById (id + "_TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
@@ -1336,15 +1336,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.BidMitigationType = []; if (!obj.bidType) obj.BidMitigationType.push ({ id: '', selected: true}); for (var property in BidMitigationType) obj.BidMitigationType.push ({ id: property, selected: obj.bidType && obj.bidType.endsWith ('.' + property)});
-                obj.BidMitigationStatus = []; if (!obj.mitigationStatus) obj.BidMitigationStatus.push ({ id: '', selected: true}); for (var property in BidMitigationStatus) obj.BidMitigationStatus.push ({ id: property, selected: obj.mitigationStatus && obj.mitigationStatus.endsWith ('.' + property)});
+                obj.bidTypeBidMitigationType = [{ id: '', selected: (!obj.bidType)}]; for (var property in MktDomain.BidMitigationType) obj.bidTypeBidMitigationType.push ({ id: property, selected: obj.bidType && obj.bidType.endsWith ('.' + property)});
+                obj.mitigationStatusBidMitigationStatus = [{ id: '', selected: (!obj.mitigationStatus)}]; for (var property in MktDomain.BidMitigationStatus) obj.mitigationStatusBidMitigationStatus.push ({ id: property, selected: obj.mitigationStatus && obj.mitigationStatus.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.BidMitigationType;
-                delete obj.BidMitigationStatus;
+                delete obj.bidTypeBidMitigationType;
+                delete obj.mitigationStatusBidMitigationStatus;
             }
 
             edit_template ()
@@ -1357,8 +1357,8 @@ define
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#BidMitigationType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BidMitigationType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mitigationStatus'>mitigationStatus: </label><div class='col-sm-8'><select id='{{id}}_mitigationStatus' class='form-control custom-select'>{{#BidMitigationStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BidMitigationStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#bidTypeBidMitigationType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/bidTypeBidMitigationType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mitigationStatus'>mitigationStatus: </label><div class='col-sm-8'><select id='{{id}}_mitigationStatus' class='form-control custom-select'>{{#mitigationStatusBidMitigationStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/mitigationStatusBidMitigationStatus}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidPriceCurve'>BidPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_BidPriceCurve' class='form-control' type='text'{{#BidPriceCurve}} value='{{BidPriceCurve}}'{{/BidPriceCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
                     </div>
@@ -1373,8 +1373,8 @@ define
 
                 var obj = obj || { id: id, cls: "BidPriceSchedule" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_bidType").value; if ("" != temp) { temp = BidMitigationType[temp]; if ("undefined" != typeof (temp)) obj.bidType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidMitigationType." + temp; }
-                temp = document.getElementById (id + "_mitigationStatus").value; if ("" != temp) { temp = BidMitigationStatus[temp]; if ("undefined" != typeof (temp)) obj.mitigationStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidMitigationStatus." + temp; }
+                temp = MktDomain.BidMitigationType[document.getElementById (id + "_bidType").value]; if (temp) obj.bidType = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidMitigationType." + temp; else delete obj.bidType;
+                temp = MktDomain.BidMitigationStatus[document.getElementById (id + "_mitigationStatus").value]; if (temp) obj.mitigationStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidMitigationStatus." + temp; else delete obj.mitigationStatus;
                 temp = document.getElementById (id + "_BidPriceCurve").value; if ("" != temp) obj.BidPriceCurve = temp;
                 temp = document.getElementById (id + "_ProductBid").value; if ("" != temp) obj.ProductBid = temp;
 
@@ -2257,14 +2257,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TradeType = []; if (!obj.tradeType) obj.TradeType.push ({ id: '', selected: true}); for (var property in TradeType) obj.TradeType.push ({ id: property, selected: obj.tradeType && obj.tradeType.endsWith ('.' + property)});
+                obj.tradeTypeTradeType = [{ id: '', selected: (!obj.tradeType)}]; for (var property in MktDomain.TradeType) obj.tradeTypeTradeType.push ({ id: property, selected: obj.tradeType && obj.tradeType.endsWith ('.' + property)});
                 if (obj.Trade) obj.Trade_string = obj.Trade.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TradeType;
+                delete obj.tradeTypeTradeType;
                 delete obj.Trade_string;
             }
 
@@ -2278,7 +2278,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeType'>tradeType: </label><div class='col-sm-8'><select id='{{id}}_tradeType' class='form-control custom-select'>{{#TradeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TradeType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeType'>tradeType: </label><div class='col-sm-8'><select id='{{id}}_tradeType' class='form-control custom-select'>{{#tradeTypeTradeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/tradeTypeTradeType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeProductType'>tradeProductType: </label><div class='col-sm-8'><input id='{{id}}_tradeProductType' class='form-control' type='text'{{#tradeProductType}} value='{{tradeProductType}}'{{/tradeProductType}}></div></div>
                     </div>
                     </fieldset>
@@ -2292,7 +2292,7 @@ define
 
                 var obj = obj || { id: id, cls: "TradeProduct" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_tradeType").value; if ("" != temp) { temp = TradeType[temp]; if ("undefined" != typeof (temp)) obj.tradeType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TradeType." + temp; }
+                temp = MktDomain.TradeType[document.getElementById (id + "_tradeType").value]; if (temp) obj.tradeType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TradeType." + temp; else delete obj.tradeType;
                 temp = document.getElementById (id + "_tradeProductType").value; if ("" != temp) obj.tradeProductType = temp;
 
                 return (obj);
@@ -2559,7 +2559,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.BidHourlySchedule) obj.BidHourlySchedule_string = obj.BidHourlySchedule.join ();
                 if (obj.RMRDetermination) obj.RMRDetermination_string = obj.RMRDetermination.join ();
                 if (obj.ProductBids) obj.ProductBids_string = obj.ProductBids.join ();
@@ -2571,7 +2571,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MarketType;
+                delete obj.marketTypeMarketType;
                 delete obj.BidHourlySchedule_string;
                 delete obj.RMRDetermination_string;
                 delete obj.ProductBids_string;
@@ -2592,7 +2592,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stopTime'>stopTime: </label><div class='col-sm-8'><input id='{{id}}_stopTime' class='form-control' type='text'{{#stopTime}} value='{{stopTime}}'{{/stopTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActionRequest'>ActionRequest: </label><div class='col-sm-8'><input id='{{id}}_ActionRequest' class='form-control' type='text'{{#ActionRequest}} value='{{ActionRequest}}'{{/ActionRequest}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='{{id}}_MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}'{{/MarketParticipant}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyMarket'>EnergyMarket: </label><div class='col-sm-8'><input id='{{id}}_EnergyMarket' class='form-control' type='text'{{#EnergyMarket}} value='{{EnergyMarket}}'{{/EnergyMarket}}></div></div>
@@ -2611,7 +2611,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
                 temp = document.getElementById (id + "_stopTime").value; if ("" != temp) obj.stopTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_ActionRequest").value; if ("" != temp) obj.ActionRequest = temp;
                 temp = document.getElementById (id + "_MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp;
                 temp = document.getElementById (id + "_EnergyMarket").value; if ("" != temp) obj.EnergyMarket = temp;
@@ -2778,14 +2778,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MarketType = []; if (!obj.marketType) obj.MarketType.push ({ id: '', selected: true}); for (var property in MarketType) obj.MarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.TradeError) obj.TradeError_string = obj.TradeError.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MarketType;
+                delete obj.marketTypeMarketType;
                 delete obj.TradeError_string;
             }
 
@@ -2803,7 +2803,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_counterTradeQuantity'>counterTradeQuantity: </label><div class='col-sm-8'><input id='{{id}}_counterTradeQuantity' class='form-control' type='text'{{#counterTradeQuantity}} value='{{counterTradeQuantity}}'{{/counterTradeQuantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dependOnTradeName'>dependOnTradeName: </label><div class='col-sm-8'><input id='{{id}}_dependOnTradeName' class='form-control' type='text'{{#dependOnTradeName}} value='{{dependOnTradeName}}'{{/dependOnTradeName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastModified'>lastModified: </label><div class='col-sm-8'><input id='{{id}}_lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#MarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stopTime'>stopTime: </label><div class='col-sm-8'><input id='{{id}}_stopTime' class='form-control' type='text'{{#stopTime}} value='{{stopTime}}'{{/stopTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_submitFromTimeStamp'>submitFromTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_submitFromTimeStamp' class='form-control' type='text'{{#submitFromTimeStamp}} value='{{submitFromTimeStamp}}'{{/submitFromTimeStamp}}></div></div>
@@ -2838,7 +2838,7 @@ define
                 temp = document.getElementById (id + "_counterTradeQuantity").value; if ("" != temp) obj.counterTradeQuantity = temp;
                 temp = document.getElementById (id + "_dependOnTradeName").value; if ("" != temp) obj.dependOnTradeName = temp;
                 temp = document.getElementById (id + "_lastModified").value; if ("" != temp) obj.lastModified = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) { temp = MarketType[temp]; if ("undefined" != typeof (temp)) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; }
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
                 temp = document.getElementById (id + "_stopTime").value; if ("" != temp) obj.stopTime = temp;
                 temp = document.getElementById (id + "_submitFromTimeStamp").value; if ("" != temp) obj.submitFromTimeStamp = temp;
@@ -3118,7 +3118,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ActionType = []; if (!obj.actionName) obj.ActionType.push ({ id: '', selected: true}); for (var property in ActionType) obj.ActionType.push ({ id: property, selected: obj.actionName && obj.actionName.endsWith ('.' + property)});
+                obj.actionNameActionType = [{ id: '', selected: (!obj.actionName)}]; for (var property in MktDomain.ActionType) obj.actionNameActionType.push ({ id: property, selected: obj.actionName && obj.actionName.endsWith ('.' + property)});
                 if (obj.Bid) obj.Bid_string = obj.Bid.join ();
                 if (obj.Trade) obj.Trade_string = obj.Trade.join ();
             }
@@ -3126,7 +3126,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ActionType;
+                delete obj.actionNameActionType;
                 delete obj.Bid_string;
                 delete obj.Trade_string;
             }
@@ -3141,7 +3141,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actionName'>actionName: </label><div class='col-sm-8'><select id='{{id}}_actionName' class='form-control custom-select'>{{#ActionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ActionType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actionName'>actionName: </label><div class='col-sm-8'><select id='{{id}}_actionName' class='form-control custom-select'>{{#actionNameActionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/actionNameActionType}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -3154,7 +3154,7 @@ define
 
                 var obj = obj || { id: id, cls: "ActionRequest" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_actionName").value; if ("" != temp) { temp = ActionType[temp]; if ("undefined" != typeof (temp)) obj.actionName = "http://iec.ch/TC57/2013/CIM-schema-cim16#ActionType." + temp; }
+                temp = MktDomain.ActionType[document.getElementById (id + "_actionName").value]; if (temp) obj.actionName = "http://iec.ch/TC57/2013/CIM-schema-cim16#ActionType." + temp; else delete obj.actionName;
 
                 return (obj);
             }
@@ -3255,15 +3255,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DispatchResponseType = []; if (!obj.acceptStatus) obj.DispatchResponseType.push ({ id: '', selected: true}); for (var property in DispatchResponseType) obj.DispatchResponseType.push ({ id: property, selected: obj.acceptStatus && obj.acceptStatus.endsWith ('.' + property)});
-                obj.PassIndicatorType = []; if (!obj.passIndicator) obj.PassIndicatorType.push ({ id: '', selected: true}); for (var property in PassIndicatorType) obj.PassIndicatorType.push ({ id: property, selected: obj.passIndicator && obj.passIndicator.endsWith ('.' + property)});
+                obj.acceptStatusDispatchResponseType = [{ id: '', selected: (!obj.acceptStatus)}]; for (var property in MktDomain.DispatchResponseType) obj.acceptStatusDispatchResponseType.push ({ id: property, selected: obj.acceptStatus && obj.acceptStatus.endsWith ('.' + property)});
+                obj.passIndicatorPassIndicatorType = [{ id: '', selected: (!obj.passIndicator)}]; for (var property in MktDomain.PassIndicatorType) obj.passIndicatorPassIndicatorType.push ({ id: property, selected: obj.passIndicator && obj.passIndicator.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DispatchResponseType;
-                delete obj.PassIndicatorType;
+                delete obj.acceptStatusDispatchResponseType;
+                delete obj.passIndicatorPassIndicatorType;
             }
 
             edit_template ()
@@ -3276,11 +3276,11 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><select id='{{id}}_acceptStatus' class='form-control custom-select'>{{#DispatchResponseType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DispatchResponseType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><select id='{{id}}_acceptStatus' class='form-control custom-select'>{{#acceptStatusDispatchResponseType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/acceptStatusDispatchResponseType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='{{id}}_acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='{{id}}_clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><select id='{{id}}_passIndicator' class='form-control custom-select'>{{#PassIndicatorType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PassIndicatorType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><select id='{{id}}_passIndicator' class='form-control custom-select'>{{#passIndicatorPassIndicatorType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/passIndicatorPassIndicatorType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
                     </div>
                     </fieldset>
@@ -3294,11 +3294,11 @@ define
 
                 var obj = obj || { id: id, cls: "InterTieDispatchResponse" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_acceptStatus").value; if ("" != temp) { temp = DispatchResponseType[temp]; if ("undefined" != typeof (temp)) obj.acceptStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#DispatchResponseType." + temp; }
+                temp = MktDomain.DispatchResponseType[document.getElementById (id + "_acceptStatus").value]; if (temp) obj.acceptStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#DispatchResponseType." + temp; else delete obj.acceptStatus;
                 temp = document.getElementById (id + "_acceptMW").value; if ("" != temp) obj.acceptMW = temp;
                 temp = document.getElementById (id + "_clearedMW").value; if ("" != temp) obj.clearedMW = temp;
                 temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById (id + "_passIndicator").value; if ("" != temp) { temp = PassIndicatorType[temp]; if ("undefined" != typeof (temp)) obj.passIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#PassIndicatorType." + temp; }
+                temp = MktDomain.PassIndicatorType[document.getElementById (id + "_passIndicator").value]; if (temp) obj.passIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#PassIndicatorType." + temp; else delete obj.passIndicator;
                 temp = document.getElementById (id + "_RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp;
 
                 return (obj);
@@ -3517,18 +3517,18 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.RampRateCondition = []; if (!obj.condition) obj.RampRateCondition.push ({ id: '', selected: true}); for (var property in RampRateCondition) obj.RampRateCondition.push ({ id: property, selected: obj.condition && obj.condition.endsWith ('.' + property)});
-                obj.ConstraintRampType = []; if (!obj.constraintRampType) obj.ConstraintRampType.push ({ id: '', selected: true}); for (var property in ConstraintRampType) obj.ConstraintRampType.push ({ id: property, selected: obj.constraintRampType && obj.constraintRampType.endsWith ('.' + property)});
-                obj.RampRateType = []; if (!obj.rampRateType) obj.RampRateType.push ({ id: '', selected: true}); for (var property in RampRateType) obj.RampRateType.push ({ id: property, selected: obj.rampRateType && obj.rampRateType.endsWith ('.' + property)});
+                obj.conditionRampRateCondition = [{ id: '', selected: (!obj.condition)}]; for (var property in MktDomain.RampRateCondition) obj.conditionRampRateCondition.push ({ id: property, selected: obj.condition && obj.condition.endsWith ('.' + property)});
+                obj.constraintRampTypeConstraintRampType = [{ id: '', selected: (!obj.constraintRampType)}]; for (var property in MktDomain.ConstraintRampType) obj.constraintRampTypeConstraintRampType.push ({ id: property, selected: obj.constraintRampType && obj.constraintRampType.endsWith ('.' + property)});
+                obj.rampRateTypeRampRateType = [{ id: '', selected: (!obj.rampRateType)}]; for (var property in MktDomain.RampRateType) obj.rampRateTypeRampRateType.push ({ id: property, selected: obj.rampRateType && obj.rampRateType.endsWith ('.' + property)});
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.RampRateCondition;
-                delete obj.ConstraintRampType;
-                delete obj.RampRateType;
+                delete obj.conditionRampRateCondition;
+                delete obj.constraintRampTypeConstraintRampType;
+                delete obj.rampRateTypeRampRateType;
                 delete obj.RegisteredResource_string;
             }
 
@@ -3542,9 +3542,9 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><select id='{{id}}_condition' class='form-control custom-select'>{{#RampRateCondition}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RampRateCondition}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constraintRampType'>constraintRampType: </label><div class='col-sm-8'><select id='{{id}}_constraintRampType' class='form-control custom-select'>{{#ConstraintRampType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ConstraintRampType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampRateType'>rampRateType: </label><div class='col-sm-8'><select id='{{id}}_rampRateType' class='form-control custom-select'>{{#RampRateType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RampRateType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><select id='{{id}}_condition' class='form-control custom-select'>{{#conditionRampRateCondition}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/conditionRampRateCondition}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constraintRampType'>constraintRampType: </label><div class='col-sm-8'><select id='{{id}}_constraintRampType' class='form-control custom-select'>{{#constraintRampTypeConstraintRampType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/constraintRampTypeConstraintRampType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampRateType'>rampRateType: </label><div class='col-sm-8'><select id='{{id}}_rampRateType' class='form-control custom-select'>{{#rampRateTypeRampRateType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rampRateTypeRampRateType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingBid'>GeneratingBid: </label><div class='col-sm-8'><input id='{{id}}_GeneratingBid' class='form-control' type='text'{{#GeneratingBid}} value='{{GeneratingBid}}'{{/GeneratingBid}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
@@ -3561,9 +3561,9 @@ define
 
                 var obj = obj || { id: id, cls: "RampRateCurve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_condition").value; if ("" != temp) { temp = RampRateCondition[temp]; if ("undefined" != typeof (temp)) obj.condition = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampRateCondition." + temp; }
-                temp = document.getElementById (id + "_constraintRampType").value; if ("" != temp) { temp = ConstraintRampType[temp]; if ("undefined" != typeof (temp)) obj.constraintRampType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ConstraintRampType." + temp; }
-                temp = document.getElementById (id + "_rampRateType").value; if ("" != temp) { temp = RampRateType[temp]; if ("undefined" != typeof (temp)) obj.rampRateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampRateType." + temp; }
+                temp = MktDomain.RampRateCondition[document.getElementById (id + "_condition").value]; if (temp) obj.condition = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampRateCondition." + temp; else delete obj.condition;
+                temp = MktDomain.ConstraintRampType[document.getElementById (id + "_constraintRampType").value]; if (temp) obj.constraintRampType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ConstraintRampType." + temp; else delete obj.constraintRampType;
+                temp = MktDomain.RampRateType[document.getElementById (id + "_rampRateType").value]; if (temp) obj.rampRateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampRateType." + temp; else delete obj.rampRateType;
                 temp = document.getElementById (id + "_GeneratingBid").value; if ("" != temp) obj.GeneratingBid = temp;
                 temp = document.getElementById (id + "_LoadBid").value; if ("" != temp) obj.LoadBid = temp;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
@@ -3682,15 +3682,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DispatchResponseType = []; if (!obj.acceptStatus) obj.DispatchResponseType.push ({ id: '', selected: true}); for (var property in DispatchResponseType) obj.DispatchResponseType.push ({ id: property, selected: obj.acceptStatus && obj.acceptStatus.endsWith ('.' + property)});
-                obj.PassIndicatorType = []; if (!obj.passIndicator) obj.PassIndicatorType.push ({ id: '', selected: true}); for (var property in PassIndicatorType) obj.PassIndicatorType.push ({ id: property, selected: obj.passIndicator && obj.passIndicator.endsWith ('.' + property)});
+                obj.acceptStatusDispatchResponseType = [{ id: '', selected: (!obj.acceptStatus)}]; for (var property in MktDomain.DispatchResponseType) obj.acceptStatusDispatchResponseType.push ({ id: property, selected: obj.acceptStatus && obj.acceptStatus.endsWith ('.' + property)});
+                obj.passIndicatorPassIndicatorType = [{ id: '', selected: (!obj.passIndicator)}]; for (var property in MktDomain.PassIndicatorType) obj.passIndicatorPassIndicatorType.push ({ id: property, selected: obj.passIndicator && obj.passIndicator.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DispatchResponseType;
-                delete obj.PassIndicatorType;
+                delete obj.acceptStatusDispatchResponseType;
+                delete obj.passIndicatorPassIndicatorType;
             }
 
             edit_template ()
@@ -3704,12 +3704,12 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='{{id}}_acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><select id='{{id}}_acceptStatus' class='form-control custom-select'>{{#DispatchResponseType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DispatchResponseType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><select id='{{id}}_acceptStatus' class='form-control custom-select'>{{#acceptStatusDispatchResponseType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/acceptStatusDispatchResponseType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationName'>certificationName: </label><div class='col-sm-8'><input id='{{id}}_certificationName' class='form-control' type='text'{{#certificationName}} value='{{certificationName}}'{{/certificationName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='{{id}}_clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionTime'>instructionTime: </label><div class='col-sm-8'><input id='{{id}}_instructionTime' class='form-control' type='text'{{#instructionTime}} value='{{instructionTime}}'{{/instructionTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionType'>instructionType: </label><div class='col-sm-8'><input id='{{id}}_instructionType' class='form-control' type='text'{{#instructionType}} value='{{instructionType}}'{{/instructionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><select id='{{id}}_passIndicator' class='form-control custom-select'>{{#PassIndicatorType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PassIndicatorType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><select id='{{id}}_passIndicator' class='form-control custom-select'>{{#passIndicatorPassIndicatorType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/passIndicatorPassIndicatorType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receivedTime'>receivedTime: </label><div class='col-sm-8'><input id='{{id}}_receivedTime' class='form-control' type='text'{{#receivedTime}} value='{{receivedTime}}'{{/receivedTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
@@ -3726,12 +3726,12 @@ define
                 var obj = obj || { id: id, cls: "DispatchInstReply" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_acceptMW").value; if ("" != temp) obj.acceptMW = temp;
-                temp = document.getElementById (id + "_acceptStatus").value; if ("" != temp) { temp = DispatchResponseType[temp]; if ("undefined" != typeof (temp)) obj.acceptStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#DispatchResponseType." + temp; }
+                temp = MktDomain.DispatchResponseType[document.getElementById (id + "_acceptStatus").value]; if (temp) obj.acceptStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#DispatchResponseType." + temp; else delete obj.acceptStatus;
                 temp = document.getElementById (id + "_certificationName").value; if ("" != temp) obj.certificationName = temp;
                 temp = document.getElementById (id + "_clearedMW").value; if ("" != temp) obj.clearedMW = temp;
                 temp = document.getElementById (id + "_instructionTime").value; if ("" != temp) obj.instructionTime = temp;
                 temp = document.getElementById (id + "_instructionType").value; if ("" != temp) obj.instructionType = temp;
-                temp = document.getElementById (id + "_passIndicator").value; if ("" != temp) { temp = PassIndicatorType[temp]; if ("undefined" != typeof (temp)) obj.passIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#PassIndicatorType." + temp; }
+                temp = MktDomain.PassIndicatorType[document.getElementById (id + "_passIndicator").value]; if (temp) obj.passIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#PassIndicatorType." + temp; else delete obj.passIndicator;
                 temp = document.getElementById (id + "_receivedTime").value; if ("" != temp) obj.receivedTime = temp;
                 temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
@@ -3942,13 +3942,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.Status = []; if (!obj.status) obj.Status.push ({ id: '', selected: true}); for (var property in Status) obj.Status.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.Status;
+                delete obj.statusStatus;
             }
 
             edit_template ()
@@ -3963,7 +3963,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_category'>category: </label><div class='col-sm-8'><input id='{{id}}_category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#Status}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/Status}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}'{{/MajorChargeGroup}}></div></div>
                     </div>
                     </fieldset>
@@ -3979,7 +3979,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_category").value; if ("" != temp) obj.category = temp;
                 temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = Status[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; }
+                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
                 temp = document.getElementById (id + "_MajorChargeGroup").value; if ("" != temp) obj.MajorChargeGroup = temp;
 
                 return (obj);
@@ -4656,16 +4656,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.contingencyAvailFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.contingencyAvailFlag && obj.contingencyAvailFlag.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.createdISO) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.createdISO && obj.createdISO.endsWith ('.' + property)});
+                obj.contingencyAvailFlagYesNo = [{ id: '', selected: (!obj.contingencyAvailFlag)}]; for (var property in MktDomain.YesNo) obj.contingencyAvailFlagYesNo.push ({ id: property, selected: obj.contingencyAvailFlag && obj.contingencyAvailFlag.endsWith ('.' + property)});
+                obj.createdISOYesNo = [{ id: '', selected: (!obj.createdISO)}]; for (var property in MktDomain.YesNo) obj.createdISOYesNo.push ({ id: property, selected: obj.createdISO && obj.createdISO.endsWith ('.' + property)});
                 if (obj.BidError) obj.BidError_string = obj.BidError.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.YesNo;
+                delete obj.contingencyAvailFlagYesNo;
+                delete obj.createdISOYesNo;
                 delete obj.BidError_string;
             }
 
@@ -4682,8 +4682,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aggregationFlag'>aggregationFlag: </label><div class='col-sm-8'><input id='{{id}}_aggregationFlag' class='form-control' type='text'{{#aggregationFlag}} value='{{aggregationFlag}}'{{/aggregationFlag}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidStatus'>bidStatus: </label><div class='col-sm-8'><input id='{{id}}_bidStatus' class='form-control' type='text'{{#bidStatus}} value='{{bidStatus}}'{{/bidStatus}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commodityType'>commodityType: </label><div class='col-sm-8'><input id='{{id}}_commodityType' class='form-control' type='text'{{#commodityType}} value='{{commodityType}}'{{/commodityType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><select id='{{id}}_contingencyAvailFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_createdISO'>createdISO: </label><div class='col-sm-8'><select id='{{id}}_createdISO' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><select id='{{id}}_contingencyAvailFlag' class='form-control custom-select'>{{#contingencyAvailFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/contingencyAvailFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_createdISO'>createdISO: </label><div class='col-sm-8'><select id='{{id}}_createdISO' class='form-control custom-select'>{{#createdISOYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/createdISOYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyMaxDay'>energyMaxDay: </label><div class='col-sm-8'><input id='{{id}}_energyMaxDay' class='form-control' type='text'{{#energyMaxDay}} value='{{energyMaxDay}}'{{/energyMaxDay}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyMinDay'>energyMinDay: </label><div class='col-sm-8'><input id='{{id}}_energyMinDay' class='form-control' type='text'{{#energyMinDay}} value='{{energyMinDay}}'{{/energyMinDay}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketSepFlag'>marketSepFlag: </label><div class='col-sm-8'><input id='{{id}}_marketSepFlag' class='form-control' type='text'{{#marketSepFlag}} value='{{marketSepFlag}}'{{/marketSepFlag}}></div></div>
@@ -4710,8 +4710,8 @@ define
                 temp = document.getElementById (id + "_aggregationFlag").value; if ("" != temp) obj.aggregationFlag = temp;
                 temp = document.getElementById (id + "_bidStatus").value; if ("" != temp) obj.bidStatus = temp;
                 temp = document.getElementById (id + "_commodityType").value; if ("" != temp) obj.commodityType = temp;
-                temp = document.getElementById (id + "_contingencyAvailFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.contingencyAvailFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_createdISO").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.createdISO = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_contingencyAvailFlag").value]; if (temp) obj.contingencyAvailFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.contingencyAvailFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_createdISO").value]; if (temp) obj.createdISO = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.createdISO;
                 temp = document.getElementById (id + "_energyMaxDay").value; if ("" != temp) obj.energyMaxDay = temp;
                 temp = document.getElementById (id + "_energyMinDay").value; if ("" != temp) obj.energyMinDay = temp;
                 temp = document.getElementById (id + "_marketSepFlag").value; if ("" != temp) obj.marketSepFlag = temp;
@@ -5795,13 +5795,13 @@ define
         return (
             {
                 BidHourlySchedule: BidHourlySchedule,
-                ChargeComponent: ChargeComponent,
                 BidSet: BidSet,
+                ChargeComponent: ChargeComponent,
                 MarketScheduledEvent: MarketScheduledEvent,
                 LoadBid: LoadBid,
                 OpenTieSchedule: OpenTieSchedule,
-                BidError: BidError,
                 PumpingShutDownCostSchedule: PumpingShutDownCostSchedule,
+                BidError: BidError,
                 BidHourlyProductSchedule: BidHourlyProductSchedule,
                 HourlyPreDispatchSchedule: HourlyPreDispatchSchedule,
                 InterTieDispatchResponse: InterTieDispatchResponse,
@@ -5818,19 +5818,19 @@ define
                 BidPriceCurve: BidPriceCurve,
                 ResourceBid: ResourceBid,
                 Bid: Bid,
-                RampRateCurve: RampRateCurve,
                 NotificationTimeCurve: NotificationTimeCurve,
+                RampRateCurve: RampRateCurve,
                 BidSelfSched: BidSelfSched,
                 ActionRequest: ActionRequest,
-                MajorChargeGroup: MajorChargeGroup,
-                PumpingCostSchedule: PumpingCostSchedule,
                 GeneratingBid: GeneratingBid,
+                PumpingCostSchedule: PumpingCostSchedule,
+                MajorChargeGroup: MajorChargeGroup,
                 TransactionBid: TransactionBid,
                 ChargeGroup: ChargeGroup,
                 TradeProduct: TradeProduct,
                 StartUpTimeCurve: StartUpTimeCurve,
-                Trade: Trade,
                 InterTieBid: InterTieBid,
+                Trade: Trade,
                 AttributeProperty: AttributeProperty,
                 ChargeType: ChargeType,
                 TradeError: TradeError

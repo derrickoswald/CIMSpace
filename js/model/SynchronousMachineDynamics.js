@@ -279,13 +279,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.IfdBaseKind = []; if (!obj.ifdBaseType) obj.IfdBaseKind.push ({ id: '', selected: true}); for (var property in IfdBaseKind) obj.IfdBaseKind.push ({ id: property, selected: obj.ifdBaseType && obj.ifdBaseType.endsWith ('.' + property)});
+                obj.ifdBaseTypeIfdBaseKind = [{ id: '', selected: (!obj.ifdBaseType)}]; for (var property in IfdBaseKind) obj.ifdBaseTypeIfdBaseKind.push ({ id: property, selected: obj.ifdBaseType && obj.ifdBaseType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.IfdBaseKind;
+                delete obj.ifdBaseTypeIfdBaseKind;
             }
 
             edit_template ()
@@ -299,7 +299,7 @@ define
                     + SynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdBaseRatio'>efdBaseRatio: </label><div class='col-sm-8'><input id='{{id}}_efdBaseRatio' class='form-control' type='text'{{#efdBaseRatio}} value='{{efdBaseRatio}}'{{/efdBaseRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ifdBaseType'>ifdBaseType: </label><div class='col-sm-8'><select id='{{id}}_ifdBaseType' class='form-control custom-select'>{{#IfdBaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IfdBaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ifdBaseType'>ifdBaseType: </label><div class='col-sm-8'><select id='{{id}}_ifdBaseType' class='form-control custom-select'>{{#ifdBaseTypeIfdBaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ifdBaseTypeIfdBaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_saturationFactor120QAxis'>saturationFactor120QAxis: </label><div class='col-sm-8'><input id='{{id}}_saturationFactor120QAxis' class='form-control' type='text'{{#saturationFactor120QAxis}} value='{{saturationFactor120QAxis}}'{{/saturationFactor120QAxis}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_saturationFactorQAxis'>saturationFactorQAxis: </label><div class='col-sm-8'><input id='{{id}}_saturationFactorQAxis' class='form-control' type='text'{{#saturationFactorQAxis}} value='{{saturationFactorQAxis}}'{{/saturationFactorQAxis}}></div></div>
                     </div>
@@ -315,7 +315,7 @@ define
                 var obj = obj || { id: id, cls: "SynchronousMachineDetailed" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_efdBaseRatio").value; if ("" != temp) obj.efdBaseRatio = temp;
-                temp = document.getElementById (id + "_ifdBaseType").value; if ("" != temp) { temp = IfdBaseKind[temp]; if ("undefined" != typeof (temp)) obj.ifdBaseType = "http://iec.ch/TC57/2013/CIM-schema-cim16#IfdBaseKind." + temp; }
+                temp = IfdBaseKind[document.getElementById (id + "_ifdBaseType").value]; if (temp) obj.ifdBaseType = "http://iec.ch/TC57/2013/CIM-schema-cim16#IfdBaseKind." + temp; else delete obj.ifdBaseType;
                 temp = document.getElementById (id + "_saturationFactor120QAxis").value; if ("" != temp) obj.saturationFactor120QAxis = temp;
                 temp = document.getElementById (id + "_saturationFactorQAxis").value; if ("" != temp) obj.saturationFactorQAxis = temp;
 
@@ -743,15 +743,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SynchronousMachineModelKind = []; if (!obj.modelType) obj.SynchronousMachineModelKind.push ({ id: '', selected: true}); for (var property in SynchronousMachineModelKind) obj.SynchronousMachineModelKind.push ({ id: property, selected: obj.modelType && obj.modelType.endsWith ('.' + property)});
-                obj.RotorKind = []; if (!obj.rotorType) obj.RotorKind.push ({ id: '', selected: true}); for (var property in RotorKind) obj.RotorKind.push ({ id: property, selected: obj.rotorType && obj.rotorType.endsWith ('.' + property)});
+                obj.modelTypeSynchronousMachineModelKind = [{ id: '', selected: (!obj.modelType)}]; for (var property in SynchronousMachineModelKind) obj.modelTypeSynchronousMachineModelKind.push ({ id: property, selected: obj.modelType && obj.modelType.endsWith ('.' + property)});
+                obj.rotorTypeRotorKind = [{ id: '', selected: (!obj.rotorType)}]; for (var property in RotorKind) obj.rotorTypeRotorKind.push ({ id: property, selected: obj.rotorType && obj.rotorType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SynchronousMachineModelKind;
-                delete obj.RotorKind;
+                delete obj.modelTypeSynchronousMachineModelKind;
+                delete obj.rotorTypeRotorKind;
             }
 
             edit_template ()
@@ -765,8 +765,8 @@ define
                     + SynchronousMachineDetailed.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelType'>modelType: </label><div class='col-sm-8'><select id='{{id}}_modelType' class='form-control custom-select'>{{#SynchronousMachineModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SynchronousMachineModelKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rotorType'>rotorType: </label><div class='col-sm-8'><select id='{{id}}_rotorType' class='form-control custom-select'>{{#RotorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RotorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelType'>modelType: </label><div class='col-sm-8'><select id='{{id}}_modelType' class='form-control custom-select'>{{#modelTypeSynchronousMachineModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/modelTypeSynchronousMachineModelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rotorType'>rotorType: </label><div class='col-sm-8'><select id='{{id}}_rotorType' class='form-control custom-select'>{{#rotorTypeRotorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rotorTypeRotorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpdo'>tpdo: </label><div class='col-sm-8'><input id='{{id}}_tpdo' class='form-control' type='text'{{#tpdo}} value='{{tpdo}}'{{/tpdo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tppdo'>tppdo: </label><div class='col-sm-8'><input id='{{id}}_tppdo' class='form-control' type='text'{{#tppdo}} value='{{tppdo}}'{{/tppdo}}></div></div>
@@ -791,8 +791,8 @@ define
                 var obj = obj || { id: id, cls: "SynchronousMachineTimeConstantReactance" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
-                temp = document.getElementById (id + "_modelType").value; if ("" != temp) { temp = SynchronousMachineModelKind[temp]; if ("undefined" != typeof (temp)) obj.modelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineModelKind." + temp; }
-                temp = document.getElementById (id + "_rotorType").value; if ("" != temp) { temp = RotorKind[temp]; if ("undefined" != typeof (temp)) obj.rotorType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RotorKind." + temp; }
+                temp = SynchronousMachineModelKind[document.getElementById (id + "_modelType").value]; if (temp) obj.modelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineModelKind." + temp; else delete obj.modelType;
+                temp = RotorKind[document.getElementById (id + "_rotorType").value]; if (temp) obj.rotorType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RotorKind." + temp; else delete obj.rotorType;
                 temp = document.getElementById (id + "_tc").value; if ("" != temp) obj.tc = temp;
                 temp = document.getElementById (id + "_tpdo").value; if ("" != temp) obj.tpdo = temp;
                 temp = document.getElementById (id + "_tppdo").value; if ("" != temp) obj.tppdo = temp;
@@ -811,8 +811,11 @@ define
 
         return (
             {
+                SynchronousMachineModelKind: SynchronousMachineModelKind,
                 SynchronousMachineDynamics: SynchronousMachineDynamics,
                 SynchronousMachineSimplified: SynchronousMachineSimplified,
+                RotorKind: RotorKind,
+                IfdBaseKind: IfdBaseKind,
                 SynchronousMachineDetailed: SynchronousMachineDetailed,
                 SynchronousMachineTimeConstantReactance: SynchronousMachineTimeConstantReactance,
                 SynchronousMachineEquivalentCircuit: SynchronousMachineEquivalentCircuit

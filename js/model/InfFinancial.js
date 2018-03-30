@@ -953,8 +953,8 @@ define
                 GenerationProvider: GenerationProvider,
                 OpenAccessProduct: OpenAccessProduct,
                 TransmissionProvider: TransmissionProvider,
-                IntSchedAgreement: IntSchedAgreement,
                 ControlAreaOperator: ControlAreaOperator,
+                IntSchedAgreement: IntSchedAgreement,
                 CustomerConsumer: CustomerConsumer,
                 Marketer: Marketer,
                 TransmissionProduct: TransmissionProduct

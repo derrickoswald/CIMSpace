@@ -1541,8 +1541,8 @@ define
 
         return (
             {
-                TransmissionCorridor: TransmissionCorridor,
                 AreaReserveSpec: AreaReserveSpec,
+                TransmissionCorridor: TransmissionCorridor,
                 DynamicSchedule: DynamicSchedule,
                 LossProfile: LossProfile,
                 CurtailmentProfile: CurtailmentProfile,

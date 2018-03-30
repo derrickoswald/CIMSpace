@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Core", "model/ExternalInputs", "model/MarketPlan"],
+    ["model/base", "model/Common", "model/Core", "model/Domain", "model/ExternalInputs", "model/MarketPlan", "model/MktDomain"],
     /**
      * Results from the execution of a market.
      *
      */
-    function (base, Common, Core, ExternalInputs, MarketPlan)
+    function (base, Common, Core, Domain, ExternalInputs, MarketPlan, MktDomain)
     {
 
         /**
@@ -220,13 +220,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.contingentOperatingResAvail) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.contingentOperatingResAvail && obj.contingentOperatingResAvail.endsWith ('.' + property)});
+                obj.contingentOperatingResAvailYesNo = [{ id: '', selected: (!obj.contingentOperatingResAvail)}]; for (var property in MktDomain.YesNo) obj.contingentOperatingResAvailYesNo.push ({ id: property, selected: obj.contingentOperatingResAvail && obj.contingentOperatingResAvail.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
+                delete obj.contingentOperatingResAvailYesNo;
             }
 
             edit_template ()
@@ -241,7 +241,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCost'>startUpCost: </label><div class='col-sm-8'><input id='{{id}}_startUpCost' class='form-control' type='text'{{#startUpCost}} value='{{startUpCost}}'{{/startUpCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumLoadCost'>minimumLoadCost: </label><div class='col-sm-8'><input id='{{id}}_minimumLoadCost' class='form-control' type='text'{{#minimumLoadCost}} value='{{minimumLoadCost}}'{{/minimumLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingentOperatingResAvail'>contingentOperatingResAvail: </label><div class='col-sm-8'><select id='{{id}}_contingentOperatingResAvail' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingentOperatingResAvail'>contingentOperatingResAvail: </label><div class='col-sm-8'><select id='{{id}}_contingentOperatingResAvail' class='form-control custom-select'>{{#contingentOperatingResAvailYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/contingentOperatingResAvailYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyCost'>energyCost: </label><div class='col-sm-8'><input id='{{id}}_energyCost' class='form-control' type='text'{{#energyCost}} value='{{energyCost}}'{{/energyCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalCost'>totalCost: </label><div class='col-sm-8'><input id='{{id}}_totalCost' class='form-control' type='text'{{#totalCost}} value='{{totalCost}}'{{/totalCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ancillarySvcCost'>ancillarySvcCost: </label><div class='col-sm-8'><input id='{{id}}_ancillarySvcCost' class='form-control' type='text'{{#ancillarySvcCost}} value='{{ancillarySvcCost}}'{{/ancillarySvcCost}}></div></div>
@@ -261,7 +261,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_startUpCost").value; if ("" != temp) obj.startUpCost = temp;
                 temp = document.getElementById (id + "_minimumLoadCost").value; if ("" != temp) obj.minimumLoadCost = temp;
-                temp = document.getElementById (id + "_contingentOperatingResAvail").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.contingentOperatingResAvail = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_contingentOperatingResAvail").value]; if (temp) obj.contingentOperatingResAvail = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.contingentOperatingResAvail;
                 temp = document.getElementById (id + "_energyCost").value; if ("" != temp) obj.energyCost = temp;
                 temp = document.getElementById (id + "_totalCost").value; if ("" != temp) obj.totalCost = temp;
                 temp = document.getElementById (id + "_ancillarySvcCost").value; if ("" != temp) obj.ancillarySvcCost = temp;
@@ -380,13 +380,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MQSCHGType;
+                delete obj.updateTypeMQSCHGType;
             }
 
             edit_template ()
@@ -406,7 +406,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledMW'>scheduledMW: </label><div class='col-sm-8'><input id='{{id}}_scheduledMW' class='form-control' type='text'{{#scheduledMW}} value='{{scheduledMW}}'{{/scheduledMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnode'>Pnode: </label><div class='col-sm-8'><input id='{{id}}_Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PnodeClearing'>PnodeClearing: </label><div class='col-sm-8'><input id='{{id}}_PnodeClearing' class='form-control' type='text'{{#PnodeClearing}} value='{{PnodeClearing}}'{{/PnodeClearing}}></div></div>
                     </div>
@@ -428,7 +428,7 @@ define
                 temp = document.getElementById (id + "_scheduledMW").value; if ("" != temp) obj.scheduledMW = temp;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_Pnode").value; if ("" != temp) obj.Pnode = temp;
                 temp = document.getElementById (id + "_PnodeClearing").value; if ("" != temp) obj.PnodeClearing = temp;
 
@@ -756,13 +756,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SelfScheduleBreakdownType = []; if (!obj.selfSchedType) obj.SelfScheduleBreakdownType.push ({ id: '', selected: true}); for (var property in SelfScheduleBreakdownType) obj.SelfScheduleBreakdownType.push ({ id: property, selected: obj.selfSchedType && obj.selfSchedType.endsWith ('.' + property)});
+                obj.selfSchedTypeSelfScheduleBreakdownType = [{ id: '', selected: (!obj.selfSchedType)}]; for (var property in MktDomain.SelfScheduleBreakdownType) obj.selfSchedTypeSelfScheduleBreakdownType.push ({ id: property, selected: obj.selfSchedType && obj.selfSchedType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SelfScheduleBreakdownType;
+                delete obj.selfSchedTypeSelfScheduleBreakdownType;
             }
 
             edit_template ()
@@ -776,7 +776,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedMW'>selfSchedMW: </label><div class='col-sm-8'><input id='{{id}}_selfSchedMW' class='form-control' type='text'{{#selfSchedMW}} value='{{selfSchedMW}}'{{/selfSchedMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedType'>selfSchedType: </label><div class='col-sm-8'><select id='{{id}}_selfSchedType' class='form-control custom-select'>{{#SelfScheduleBreakdownType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SelfScheduleBreakdownType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedType'>selfSchedType: </label><div class='col-sm-8'><select id='{{id}}_selfSchedType' class='form-control custom-select'>{{#selfSchedTypeSelfScheduleBreakdownType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/selfSchedTypeSelfScheduleBreakdownType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceAwardInstruction'>ResourceAwardInstruction: </label><div class='col-sm-8'><input id='{{id}}_ResourceAwardInstruction' class='form-control' type='text'{{#ResourceAwardInstruction}} value='{{ResourceAwardInstruction}}'{{/ResourceAwardInstruction}}></div></div>
                     </div>
                     </fieldset>
@@ -791,7 +791,7 @@ define
                 var obj = obj || { id: id, cls: "SelfScheduleBreakdown" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_selfSchedMW").value; if ("" != temp) obj.selfSchedMW = temp;
-                temp = document.getElementById (id + "_selfSchedType").value; if ("" != temp) { temp = SelfScheduleBreakdownType[temp]; if ("undefined" != typeof (temp)) obj.selfSchedType = "http://iec.ch/TC57/2013/CIM-schema-cim16#SelfScheduleBreakdownType." + temp; }
+                temp = MktDomain.SelfScheduleBreakdownType[document.getElementById (id + "_selfSchedType").value]; if (temp) obj.selfSchedType = "http://iec.ch/TC57/2013/CIM-schema-cim16#SelfScheduleBreakdownType." + temp; else delete obj.selfSchedType;
                 temp = document.getElementById (id + "_ResourceAwardInstruction").value; if ("" != temp) obj.ResourceAwardInstruction = temp;
 
                 return (obj);
@@ -1066,17 +1066,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.contingencyFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.contingencyFlag && obj.contingencyFlag.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.penaltyDispatchIndicator) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.penaltyDispatchIndicator && obj.penaltyDispatchIndicator.endsWith ('.' + property)});
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.contingencyFlagYesNo = [{ id: '', selected: (!obj.contingencyFlag)}]; for (var property in MktDomain.YesNo) obj.contingencyFlagYesNo.push ({ id: property, selected: obj.contingencyFlag && obj.contingencyFlag.endsWith ('.' + property)});
+                obj.penaltyDispatchIndicatorYesNo = [{ id: '', selected: (!obj.penaltyDispatchIndicator)}]; for (var property in MktDomain.YesNo) obj.penaltyDispatchIndicatorYesNo.push ({ id: property, selected: obj.penaltyDispatchIndicator && obj.penaltyDispatchIndicator.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.MQSCHGType;
+                delete obj.contingencyFlagYesNo;
+                delete obj.penaltyDispatchIndicatorYesNo;
+                delete obj.updateTypeMQSCHGType;
             }
 
             edit_template ()
@@ -1091,19 +1091,19 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_blockedDispatch'>blockedDispatch: </label><div class='col-sm-8'><input id='{{id}}_blockedDispatch' class='form-control' type='text'{{#blockedDispatch}} value='{{blockedDispatch}}'{{/blockedDispatch}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_blockedPublishDOP'>blockedPublishDOP: </label><div class='col-sm-8'><input id='{{id}}_blockedPublishDOP' class='form-control' type='text'{{#blockedPublishDOP}} value='{{blockedPublishDOP}}'{{/blockedPublishDOP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyFlag'>contingencyFlag: </label><div class='col-sm-8'><select id='{{id}}_contingencyFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyFlag'>contingencyFlag: </label><div class='col-sm-8'><select id='{{id}}_contingencyFlag' class='form-control custom-select'>{{#contingencyFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/contingencyFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitIndicator'>limitIndicator: </label><div class='col-sm-8'><input id='{{id}}_limitIndicator' class='form-control' type='text'{{#limitIndicator}} value='{{limitIndicator}}'{{/limitIndicator}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerLimit'>lowerLimit: </label><div class='col-sm-8'><input id='{{id}}_lowerLimit' class='form-control' type='text'{{#lowerLimit}} value='{{lowerLimit}}'{{/lowerLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxRampRate'>maxRampRate: </label><div class='col-sm-8'><input id='{{id}}_maxRampRate' class='form-control' type='text'{{#maxRampRate}} value='{{maxRampRate}}'{{/maxRampRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingLimitHigh'>operatingLimitHigh: </label><div class='col-sm-8'><input id='{{id}}_operatingLimitHigh' class='form-control' type='text'{{#operatingLimitHigh}} value='{{operatingLimitHigh}}'{{/operatingLimitHigh}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingLimitLow'>operatingLimitLow: </label><div class='col-sm-8'><input id='{{id}}_operatingLimitLow' class='form-control' type='text'{{#operatingLimitLow}} value='{{operatingLimitLow}}'{{/operatingLimitLow}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_penaltyDispatchIndicator'>penaltyDispatchIndicator: </label><div class='col-sm-8'><select id='{{id}}_penaltyDispatchIndicator' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_penaltyDispatchIndicator'>penaltyDispatchIndicator: </label><div class='col-sm-8'><select id='{{id}}_penaltyDispatchIndicator' class='form-control custom-select'>{{#penaltyDispatchIndicatorYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/penaltyDispatchIndicatorYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulatingLimitHigh'>regulatingLimitHigh: </label><div class='col-sm-8'><input id='{{id}}_regulatingLimitHigh' class='form-control' type='text'{{#regulatingLimitHigh}} value='{{regulatingLimitHigh}}'{{/regulatingLimitHigh}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulatingLimitLow'>regulatingLimitLow: </label><div class='col-sm-8'><input id='{{id}}_regulatingLimitLow' class='form-control' type='text'{{#regulatingLimitLow}} value='{{regulatingLimitLow}}'{{/regulatingLimitLow}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceStatus'>resourceStatus: </label><div class='col-sm-8'><input id='{{id}}_resourceStatus' class='form-control' type='text'{{#resourceStatus}} value='{{resourceStatus}}'{{/resourceStatus}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalSchedule'>totalSchedule: </label><div class='col-sm-8'><input id='{{id}}_totalSchedule' class='form-control' type='text'{{#totalSchedule}} value='{{totalSchedule}}'{{/totalSchedule}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upperLimit'>upperLimit: </label><div class='col-sm-8'><input id='{{id}}_upperLimit' class='form-control' type='text'{{#upperLimit}} value='{{upperLimit}}'{{/upperLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
@@ -1122,19 +1122,19 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_blockedDispatch").value; if ("" != temp) obj.blockedDispatch = temp;
                 temp = document.getElementById (id + "_blockedPublishDOP").value; if ("" != temp) obj.blockedPublishDOP = temp;
-                temp = document.getElementById (id + "_contingencyFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.contingencyFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_contingencyFlag").value]; if (temp) obj.contingencyFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.contingencyFlag;
                 temp = document.getElementById (id + "_limitIndicator").value; if ("" != temp) obj.limitIndicator = temp;
                 temp = document.getElementById (id + "_lowerLimit").value; if ("" != temp) obj.lowerLimit = temp;
                 temp = document.getElementById (id + "_maxRampRate").value; if ("" != temp) obj.maxRampRate = temp;
                 temp = document.getElementById (id + "_operatingLimitHigh").value; if ("" != temp) obj.operatingLimitHigh = temp;
                 temp = document.getElementById (id + "_operatingLimitLow").value; if ("" != temp) obj.operatingLimitLow = temp;
-                temp = document.getElementById (id + "_penaltyDispatchIndicator").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.penaltyDispatchIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_penaltyDispatchIndicator").value]; if (temp) obj.penaltyDispatchIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.penaltyDispatchIndicator;
                 temp = document.getElementById (id + "_regulatingLimitHigh").value; if ("" != temp) obj.regulatingLimitHigh = temp;
                 temp = document.getElementById (id + "_regulatingLimitLow").value; if ("" != temp) obj.regulatingLimitLow = temp;
                 temp = document.getElementById (id + "_resourceStatus").value; if ("" != temp) obj.resourceStatus = temp;
                 temp = document.getElementById (id + "_totalSchedule").value; if ("" != temp) obj.totalSchedule = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_upperLimit").value; if ("" != temp) obj.upperLimit = temp;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
@@ -1289,16 +1289,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.compliantIndicator) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.compliantIndicator && obj.compliantIndicator.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.regulationStatus) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.regulationStatus && obj.regulationStatus.endsWith ('.' + property)});
+                obj.compliantIndicatorYesNo = [{ id: '', selected: (!obj.compliantIndicator)}]; for (var property in MktDomain.YesNo) obj.compliantIndicatorYesNo.push ({ id: property, selected: obj.compliantIndicator && obj.compliantIndicator.endsWith ('.' + property)});
+                obj.regulationStatusYesNo = [{ id: '', selected: (!obj.regulationStatus)}]; for (var property in MktDomain.YesNo) obj.regulationStatusYesNo.push ({ id: property, selected: obj.regulationStatus && obj.regulationStatus.endsWith ('.' + property)});
                 if (obj.InstructionClearingDOT) obj.InstructionClearingDOT_string = obj.InstructionClearingDOT.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.YesNo;
+                delete obj.compliantIndicatorYesNo;
+                delete obj.regulationStatusYesNo;
                 delete obj.InstructionClearingDOT_string;
             }
 
@@ -1313,7 +1313,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualRampRate'>actualRampRate: </label><div class='col-sm-8'><input id='{{id}}_actualRampRate' class='form-control' type='text'{{#actualRampRate}} value='{{actualRampRate}}'{{/actualRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_compliantIndicator'>compliantIndicator: </label><div class='col-sm-8'><select id='{{id}}_compliantIndicator' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_compliantIndicator'>compliantIndicator: </label><div class='col-sm-8'><select id='{{id}}_compliantIndicator' class='form-control custom-select'>{{#compliantIndicatorYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/compliantIndicatorYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DOT'>DOT: </label><div class='col-sm-8'><input id='{{id}}_DOT' class='form-control' type='text'{{#DOT}} value='{{DOT}}'{{/DOT}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_economicMaxOverride'>economicMaxOverride: </label><div class='col-sm-8'><input id='{{id}}_economicMaxOverride' class='form-control' type='text'{{#economicMaxOverride}} value='{{economicMaxOverride}}'{{/economicMaxOverride}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_expectedEnergy'>expectedEnergy: </label><div class='col-sm-8'><input id='{{id}}_expectedEnergy' class='form-control' type='text'{{#expectedEnergy}} value='{{expectedEnergy}}'{{/expectedEnergy}}></div></div>
@@ -1327,7 +1327,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nonSpinReserve'>nonSpinReserve: </label><div class='col-sm-8'><input id='{{id}}_nonSpinReserve' class='form-control' type='text'{{#nonSpinReserve}} value='{{nonSpinReserve}}'{{/nonSpinReserve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_previousDOTTimeStamp'>previousDOTTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_previousDOTTimeStamp' class='form-control' type='text'{{#previousDOTTimeStamp}} value='{{previousDOTTimeStamp}}'{{/previousDOTTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampRateLimit'>rampRateLimit: </label><div class='col-sm-8'><input id='{{id}}_rampRateLimit' class='form-control' type='text'{{#rampRateLimit}} value='{{rampRateLimit}}'{{/rampRateLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationStatus'>regulationStatus: </label><div class='col-sm-8'><select id='{{id}}_regulationStatus' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationStatus'>regulationStatus: </label><div class='col-sm-8'><select id='{{id}}_regulationStatus' class='form-control custom-select'>{{#regulationStatusYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/regulationStatusYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_spinReserve'>spinReserve: </label><div class='col-sm-8'><input id='{{id}}_spinReserve' class='form-control' type='text'{{#spinReserve}} value='{{spinReserve}}'{{/spinReserve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_standardRampEnergy'>standardRampEnergy: </label><div class='col-sm-8'><input id='{{id}}_standardRampEnergy' class='form-control' type='text'{{#standardRampEnergy}} value='{{standardRampEnergy}}'{{/standardRampEnergy}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_supplementalEnergy'>supplementalEnergy: </label><div class='col-sm-8'><input id='{{id}}_supplementalEnergy' class='form-control' type='text'{{#supplementalEnergy}} value='{{supplementalEnergy}}'{{/supplementalEnergy}}></div></div>
@@ -1347,7 +1347,7 @@ define
                 var obj = obj || { id: id, cls: "DotInstruction" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_actualRampRate").value; if ("" != temp) obj.actualRampRate = temp;
-                temp = document.getElementById (id + "_compliantIndicator").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.compliantIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_compliantIndicator").value]; if (temp) obj.compliantIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.compliantIndicator;
                 temp = document.getElementById (id + "_DOT").value; if ("" != temp) obj.DOT = temp;
                 temp = document.getElementById (id + "_economicMaxOverride").value; if ("" != temp) obj.economicMaxOverride = temp;
                 temp = document.getElementById (id + "_expectedEnergy").value; if ("" != temp) obj.expectedEnergy = temp;
@@ -1361,7 +1361,7 @@ define
                 temp = document.getElementById (id + "_nonSpinReserve").value; if ("" != temp) obj.nonSpinReserve = temp;
                 temp = document.getElementById (id + "_previousDOTTimeStamp").value; if ("" != temp) obj.previousDOTTimeStamp = temp;
                 temp = document.getElementById (id + "_rampRateLimit").value; if ("" != temp) obj.rampRateLimit = temp;
-                temp = document.getElementById (id + "_regulationStatus").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.regulationStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_regulationStatus").value]; if (temp) obj.regulationStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.regulationStatus;
                 temp = document.getElementById (id + "_spinReserve").value; if ("" != temp) obj.spinReserve = temp;
                 temp = document.getElementById (id + "_standardRampEnergy").value; if ("" != temp) obj.standardRampEnergy = temp;
                 temp = document.getElementById (id + "_supplementalEnergy").value; if ("" != temp) obj.supplementalEnergy = temp;
@@ -1467,13 +1467,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MPMTestOutcome = []; if (!obj.outcome) obj.MPMTestOutcome.push ({ id: '', selected: true}); for (var property in MPMTestOutcome) obj.MPMTestOutcome.push ({ id: property, selected: obj.outcome && obj.outcome.endsWith ('.' + property)});
+                obj.outcomeMPMTestOutcome = [{ id: '', selected: (!obj.outcome)}]; for (var property in MktDomain.MPMTestOutcome) obj.outcomeMPMTestOutcome.push ({ id: property, selected: obj.outcome && obj.outcome.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MPMTestOutcome;
+                delete obj.outcomeMPMTestOutcome;
             }
 
             edit_template ()
@@ -1486,7 +1486,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outcome'>outcome: </label><div class='col-sm-8'><select id='{{id}}_outcome' class='form-control custom-select'>{{#MPMTestOutcome}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MPMTestOutcome}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outcome'>outcome: </label><div class='col-sm-8'><select id='{{id}}_outcome' class='form-control custom-select'>{{#outcomeMPMTestOutcome}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/outcomeMPMTestOutcome}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marginPercent'>marginPercent: </label><div class='col-sm-8'><input id='{{id}}_marginPercent' class='form-control' type='text'{{#marginPercent}} value='{{marginPercent}}'{{/marginPercent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMClearing'>MPMClearing: </label><div class='col-sm-8'><input id='{{id}}_MPMClearing' class='form-control' type='text'{{#MPMClearing}} value='{{MPMClearing}}'{{/MPMClearing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
@@ -1503,7 +1503,7 @@ define
 
                 var obj = obj || { id: id, cls: "MPMTestResults" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_outcome").value; if ("" != temp) { temp = MPMTestOutcome[temp]; if ("undefined" != typeof (temp)) obj.outcome = "http://iec.ch/TC57/2013/CIM-schema-cim16#MPMTestOutcome." + temp; }
+                temp = MktDomain.MPMTestOutcome[document.getElementById (id + "_outcome").value]; if (temp) obj.outcome = "http://iec.ch/TC57/2013/CIM-schema-cim16#MPMTestOutcome." + temp; else delete obj.outcome;
                 temp = document.getElementById (id + "_marginPercent").value; if ("" != temp) obj.marginPercent = temp;
                 temp = document.getElementById (id + "_MPMClearing").value; if ("" != temp) obj.MPMClearing = temp;
                 temp = document.getElementById (id + "_AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp;
@@ -1606,13 +1606,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MQSCHGType;
+                delete obj.updateTypeMQSCHGType;
             }
 
             edit_template ()
@@ -1628,7 +1628,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_manuallySchedRMRMw'>manuallySchedRMRMw: </label><div class='col-sm-8'><input id='{{id}}_manuallySchedRMRMw' class='form-control' type='text'{{#manuallySchedRMRMw}} value='{{manuallySchedRMRMw}}'{{/manuallySchedRMRMw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     </fieldset>
@@ -1645,7 +1645,7 @@ define
                 temp = document.getElementById (id + "_manuallySchedRMRMw").value; if ("" != temp) obj.manuallySchedRMRMw = temp;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
@@ -1826,9 +1826,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.manuallyBlocked) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.manuallyBlocked && obj.manuallyBlocked.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.marginalResourceIndicator) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.marginalResourceIndicator && obj.marginalResourceIndicator.endsWith ('.' + property)});
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.manuallyBlockedYesNo = [{ id: '', selected: (!obj.manuallyBlocked)}]; for (var property in MktDomain.YesNo) obj.manuallyBlockedYesNo.push ({ id: property, selected: obj.manuallyBlocked && obj.manuallyBlocked.endsWith ('.' + property)});
+                obj.marginalResourceIndicatorYesNo = [{ id: '', selected: (!obj.marginalResourceIndicator)}]; for (var property in MktDomain.YesNo) obj.marginalResourceIndicatorYesNo.push ({ id: property, selected: obj.marginalResourceIndicator && obj.marginalResourceIndicator.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
                 if (obj.ClearingResourceAward) obj.ClearingResourceAward_string = obj.ClearingResourceAward.join ();
                 if (obj.SelfScheduleBreakdown) obj.SelfScheduleBreakdown_string = obj.SelfScheduleBreakdown.join ();
             }
@@ -1836,9 +1836,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.MQSCHGType;
+                delete obj.manuallyBlockedYesNo;
+                delete obj.marginalResourceIndicatorYesNo;
+                delete obj.updateTypeMQSCHGType;
                 delete obj.ClearingResourceAward_string;
                 delete obj.SelfScheduleBreakdown_string;
             }
@@ -1865,8 +1865,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effRegulationUpLimit'>effRegulationUpLimit: </label><div class='col-sm-8'><input id='{{id}}_effRegulationUpLimit' class='form-control' type='text'{{#effRegulationUpLimit}} value='{{effRegulationUpLimit}}'{{/effRegulationUpLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lmp'>lmp: </label><div class='col-sm-8'><input id='{{id}}_lmp' class='form-control' type='text'{{#lmp}} value='{{lmp}}'{{/lmp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossLMP'>lossLMP: </label><div class='col-sm-8'><input id='{{id}}_lossLMP' class='form-control' type='text'{{#lossLMP}} value='{{lossLMP}}'{{/lossLMP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_manuallyBlocked'>manuallyBlocked: </label><div class='col-sm-8'><select id='{{id}}_manuallyBlocked' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marginalResourceIndicator'>marginalResourceIndicator: </label><div class='col-sm-8'><select id='{{id}}_marginalResourceIndicator' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_manuallyBlocked'>manuallyBlocked: </label><div class='col-sm-8'><select id='{{id}}_manuallyBlocked' class='form-control custom-select'>{{#manuallyBlockedYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/manuallyBlockedYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marginalResourceIndicator'>marginalResourceIndicator: </label><div class='col-sm-8'><select id='{{id}}_marginalResourceIndicator' class='form-control custom-select'>{{#marginalResourceIndicatorYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marginalResourceIndicatorYesNo}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_mustRunInd'>mustRunInd: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mustRunInd' class='form-check-input' type='checkbox'{{#mustRunInd}} checked{{/mustRunInd}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='{{id}}_noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_optimalBidCost'>optimalBidCost: </label><div class='col-sm-8'><input id='{{id}}_optimalBidCost' class='form-control' type='text'{{#optimalBidCost}} value='{{optimalBidCost}}'{{/optimalBidCost}}></div></div>
@@ -1879,7 +1879,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalRevenue'>totalRevenue: </label><div class='col-sm-8'><input id='{{id}}_totalRevenue' class='form-control' type='text'{{#totalRevenue}} value='{{totalRevenue}}'{{/totalRevenue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
@@ -1908,8 +1908,8 @@ define
                 temp = document.getElementById (id + "_effRegulationUpLimit").value; if ("" != temp) obj.effRegulationUpLimit = temp;
                 temp = document.getElementById (id + "_lmp").value; if ("" != temp) obj.lmp = temp;
                 temp = document.getElementById (id + "_lossLMP").value; if ("" != temp) obj.lossLMP = temp;
-                temp = document.getElementById (id + "_manuallyBlocked").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.manuallyBlocked = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_marginalResourceIndicator").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.marginalResourceIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_manuallyBlocked").value]; if (temp) obj.manuallyBlocked = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.manuallyBlocked;
+                temp = MktDomain.YesNo[document.getElementById (id + "_marginalResourceIndicator").value]; if (temp) obj.marginalResourceIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.marginalResourceIndicator;
                 temp = document.getElementById (id + "_mustRunInd").checked; if (temp) obj.mustRunInd = true;
                 temp = document.getElementById (id + "_noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
                 temp = document.getElementById (id + "_optimalBidCost").value; if ("" != temp) obj.optimalBidCost = temp;
@@ -1922,7 +1922,7 @@ define
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_totalRevenue").value; if ("" != temp) obj.totalRevenue = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
                 temp = document.getElementById (id + "_MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
@@ -2034,13 +2034,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MQSCHGType;
+                delete obj.updateTypeMQSCHGType;
             }
 
             edit_template ()
@@ -2058,7 +2058,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tempLoadFollowingDownManualCap'>tempLoadFollowingDownManualCap: </label><div class='col-sm-8'><input id='{{id}}_tempLoadFollowingDownManualCap' class='form-control' type='text'{{#tempLoadFollowingDownManualCap}} value='{{tempLoadFollowingDownManualCap}}'{{/tempLoadFollowingDownManualCap}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     </fieldset>
@@ -2077,7 +2077,7 @@ define
                 temp = document.getElementById (id + "_tempLoadFollowingDownManualCap").value; if ("" != temp) obj.tempLoadFollowingDownManualCap = temp;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
@@ -2843,16 +2843,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.contingencyActive) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.contingencyActive && obj.contingencyActive.endsWith ('.' + property)});
-                obj.AutomaticDispatchMode = []; if (!obj.dispatchMode) obj.AutomaticDispatchMode.push ({ id: '', selected: true}); for (var property in AutomaticDispatchMode) obj.AutomaticDispatchMode.push ({ id: property, selected: obj.dispatchMode && obj.dispatchMode.endsWith ('.' + property)});
+                obj.contingencyActiveYesNo = [{ id: '', selected: (!obj.contingencyActive)}]; for (var property in MktDomain.YesNo) obj.contingencyActiveYesNo.push ({ id: property, selected: obj.contingencyActive && obj.contingencyActive.endsWith ('.' + property)});
+                obj.dispatchModeAutomaticDispatchMode = [{ id: '', selected: (!obj.dispatchMode)}]; for (var property in MktDomain.AutomaticDispatchMode) obj.dispatchModeAutomaticDispatchMode.push ({ id: property, selected: obj.dispatchMode && obj.dispatchMode.endsWith ('.' + property)});
                 if (obj.DotInstruction) obj.DotInstruction_string = obj.DotInstruction.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.AutomaticDispatchMode;
+                delete obj.contingencyActiveYesNo;
+                delete obj.dispatchModeAutomaticDispatchMode;
                 delete obj.DotInstruction_string;
             }
 
@@ -2866,8 +2866,8 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyActive'>contingencyActive: </label><div class='col-sm-8'><select id='{{id}}_contingencyActive' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchMode'>dispatchMode: </label><div class='col-sm-8'><select id='{{id}}_dispatchMode' class='form-control custom-select'>{{#AutomaticDispatchMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AutomaticDispatchMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyActive'>contingencyActive: </label><div class='col-sm-8'><select id='{{id}}_contingencyActive' class='form-control custom-select'>{{#contingencyActiveYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/contingencyActiveYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchMode'>dispatchMode: </label><div class='col-sm-8'><select id='{{id}}_dispatchMode' class='form-control custom-select'>{{#dispatchModeAutomaticDispatchMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/dispatchModeAutomaticDispatchMode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DotInstruction'>DotInstruction: </label><div class='col-sm-8'><input id='{{id}}_DotInstruction' class='form-control' type='text'{{#DotInstruction}} value='{{DotInstruction_string}}'{{/DotInstruction}}></div></div>
                     </div>
                     </fieldset>
@@ -2881,8 +2881,8 @@ define
 
                 var obj = obj || { id: id, cls: "InstructionClearingDOT" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_contingencyActive").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.contingencyActive = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_dispatchMode").value; if ("" != temp) { temp = AutomaticDispatchMode[temp]; if ("undefined" != typeof (temp)) obj.dispatchMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#AutomaticDispatchMode." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_contingencyActive").value]; if (temp) obj.contingencyActive = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.contingencyActive;
+                temp = MktDomain.AutomaticDispatchMode[document.getElementById (id + "_dispatchMode").value]; if (temp) obj.dispatchMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#AutomaticDispatchMode." + temp; else delete obj.dispatchMode;
                 temp = document.getElementById (id + "_DotInstruction").value; if ("" != temp) obj.DotInstruction = temp.split (",");
 
                 return (obj);
@@ -3133,16 +3133,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.MarketProductType = []; if (!obj.marketProductType) obj.MarketProductType.push ({ id: '', selected: true}); for (var property in MarketProductType) obj.MarketProductType.push ({ id: property, selected: obj.marketProductType && obj.marketProductType.endsWith ('.' + property)});
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.marketProductTypeMarketProductType = [{ id: '', selected: (!obj.marketProductType)}]; for (var property in MktDomain.MarketProductType) obj.marketProductTypeMarketProductType.push ({ id: property, selected: obj.marketProductType && obj.marketProductType.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
                 if (obj.ClearingResourceAward) obj.ClearingResourceAward_string = obj.ClearingResourceAward.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.MarketProductType;
-                delete obj.MQSCHGType;
+                delete obj.marketProductTypeMarketProductType;
+                delete obj.updateTypeMQSCHGType;
                 delete obj.ClearingResourceAward_string;
             }
 
@@ -3157,12 +3157,12 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedPrice'>clearedPrice: </label><div class='col-sm-8'><input id='{{id}}_clearedPrice' class='form-control' type='text'{{#clearedPrice}} value='{{clearedPrice}}'{{/clearedPrice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketProductType'>marketProductType: </label><div class='col-sm-8'><select id='{{id}}_marketProductType' class='form-control custom-select'>{{#MarketProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketProductType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketProductType'>marketProductType: </label><div class='col-sm-8'><select id='{{id}}_marketProductType' class='form-control custom-select'>{{#marketProductTypeMarketProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketProductTypeMarketProductType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RUCAward'>RUCAward: </label><div class='col-sm-8'><input id='{{id}}_RUCAward' class='form-control' type='text'{{#RUCAward}} value='{{RUCAward}}'{{/RUCAward}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RUCCapacity'>RUCCapacity: </label><div class='col-sm-8'><input id='{{id}}_RUCCapacity' class='form-control' type='text'{{#RUCCapacity}} value='{{RUCCapacity}}'{{/RUCCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RUCSchedule'>RUCSchedule: </label><div class='col-sm-8'><input id='{{id}}_RUCSchedule' class='form-control' type='text'{{#RUCSchedule}} value='{{RUCSchedule}}'{{/RUCSchedule}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ClearingResourceAward'>ClearingResourceAward: </label><div class='col-sm-8'><input id='{{id}}_ClearingResourceAward' class='form-control' type='text'{{#ClearingResourceAward}} value='{{ClearingResourceAward_string}}'{{/ClearingResourceAward}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
@@ -3179,12 +3179,12 @@ define
                 var obj = obj || { id: id, cls: "RUCAwardInstruction" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_clearedPrice").value; if ("" != temp) obj.clearedPrice = temp;
-                temp = document.getElementById (id + "_marketProductType").value; if ("" != temp) { temp = MarketProductType[temp]; if ("undefined" != typeof (temp)) obj.marketProductType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductType." + temp; }
+                temp = MktDomain.MarketProductType[document.getElementById (id + "_marketProductType").value]; if (temp) obj.marketProductType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductType." + temp; else delete obj.marketProductType;
                 temp = document.getElementById (id + "_RUCAward").value; if ("" != temp) obj.RUCAward = temp;
                 temp = document.getElementById (id + "_RUCCapacity").value; if ("" != temp) obj.RUCCapacity = temp;
                 temp = document.getElementById (id + "_RUCSchedule").value; if ("" != temp) obj.RUCSchedule = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_ClearingResourceAward").value; if ("" != temp) obj.ClearingResourceAward = temp.split (",");
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
@@ -3284,18 +3284,18 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.LMPMFinalFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.LMPMFinalFlag && obj.LMPMFinalFlag.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.SMPMFinalFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.SMPMFinalFlag && obj.SMPMFinalFlag.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.mitigationOccuredFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.mitigationOccuredFlag && obj.mitigationOccuredFlag.endsWith ('.' + property)});
+                obj.LMPMFinalFlagYesNo = [{ id: '', selected: (!obj.LMPMFinalFlag)}]; for (var property in MktDomain.YesNo) obj.LMPMFinalFlagYesNo.push ({ id: property, selected: obj.LMPMFinalFlag && obj.LMPMFinalFlag.endsWith ('.' + property)});
+                obj.SMPMFinalFlagYesNo = [{ id: '', selected: (!obj.SMPMFinalFlag)}]; for (var property in MktDomain.YesNo) obj.SMPMFinalFlagYesNo.push ({ id: property, selected: obj.SMPMFinalFlag && obj.SMPMFinalFlag.endsWith ('.' + property)});
+                obj.mitigationOccuredFlagYesNo = [{ id: '', selected: (!obj.mitigationOccuredFlag)}]; for (var property in MktDomain.YesNo) obj.mitigationOccuredFlagYesNo.push ({ id: property, selected: obj.mitigationOccuredFlag && obj.mitigationOccuredFlag.endsWith ('.' + property)});
                 if (obj.MPMTestResults) obj.MPMTestResults_string = obj.MPMTestResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.YesNo;
-                delete obj.YesNo;
+                delete obj.LMPMFinalFlagYesNo;
+                delete obj.SMPMFinalFlagYesNo;
+                delete obj.mitigationOccuredFlagYesNo;
                 delete obj.MPMTestResults_string;
             }
 
@@ -3309,9 +3309,9 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LMPMFinalFlag'>LMPMFinalFlag: </label><div class='col-sm-8'><select id='{{id}}_LMPMFinalFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SMPMFinalFlag'>SMPMFinalFlag: </label><div class='col-sm-8'><select id='{{id}}_SMPMFinalFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mitigationOccuredFlag'>mitigationOccuredFlag: </label><div class='col-sm-8'><select id='{{id}}_mitigationOccuredFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LMPMFinalFlag'>LMPMFinalFlag: </label><div class='col-sm-8'><select id='{{id}}_LMPMFinalFlag' class='form-control custom-select'>{{#LMPMFinalFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LMPMFinalFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SMPMFinalFlag'>SMPMFinalFlag: </label><div class='col-sm-8'><select id='{{id}}_SMPMFinalFlag' class='form-control custom-select'>{{#SMPMFinalFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SMPMFinalFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mitigationOccuredFlag'>mitigationOccuredFlag: </label><div class='col-sm-8'><select id='{{id}}_mitigationOccuredFlag' class='form-control custom-select'>{{#mitigationOccuredFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/mitigationOccuredFlagYesNo}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -3324,9 +3324,9 @@ define
 
                 var obj = obj || { id: id, cls: "MPMClearing" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_LMPMFinalFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.LMPMFinalFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_SMPMFinalFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.SMPMFinalFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_mitigationOccuredFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.mitigationOccuredFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_LMPMFinalFlag").value]; if (temp) obj.LMPMFinalFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.LMPMFinalFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_SMPMFinalFlag").value]; if (temp) obj.SMPMFinalFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.SMPMFinalFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_mitigationOccuredFlag").value]; if (temp) obj.mitigationOccuredFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.mitigationOccuredFlag;
 
                 return (obj);
             }
@@ -4176,18 +4176,18 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CommitmentType = []; if (!obj.commitmentType) obj.CommitmentType.push ({ id: '', selected: true}); for (var property in CommitmentType) obj.CommitmentType.push ({ id: property, selected: obj.commitmentType && obj.commitmentType.endsWith ('.' + property)});
-                obj.AutomaticDispInstTypeCommitment = []; if (!obj.instructionType) obj.AutomaticDispInstTypeCommitment.push ({ id: '', selected: true}); for (var property in AutomaticDispInstTypeCommitment) obj.AutomaticDispInstTypeCommitment.push ({ id: property, selected: obj.instructionType && obj.instructionType.endsWith ('.' + property)});
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.commitmentTypeCommitmentType = [{ id: '', selected: (!obj.commitmentType)}]; for (var property in MktDomain.CommitmentType) obj.commitmentTypeCommitmentType.push ({ id: property, selected: obj.commitmentType && obj.commitmentType.endsWith ('.' + property)});
+                obj.instructionTypeAutomaticDispInstTypeCommitment = [{ id: '', selected: (!obj.instructionType)}]; for (var property in MktDomain.AutomaticDispInstTypeCommitment) obj.instructionTypeAutomaticDispInstTypeCommitment.push ({ id: property, selected: obj.instructionType && obj.instructionType.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
                 if (obj.CommitmentClearing) obj.CommitmentClearing_string = obj.CommitmentClearing.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CommitmentType;
-                delete obj.AutomaticDispInstTypeCommitment;
-                delete obj.MQSCHGType;
+                delete obj.commitmentTypeCommitmentType;
+                delete obj.instructionTypeAutomaticDispInstTypeCommitment;
+                delete obj.updateTypeMQSCHGType;
                 delete obj.CommitmentClearing_string;
             }
 
@@ -4201,15 +4201,15 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commitmentType'>commitmentType: </label><div class='col-sm-8'><select id='{{id}}_commitmentType' class='form-control custom-select'>{{#CommitmentType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CommitmentType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commitmentType'>commitmentType: </label><div class='col-sm-8'><select id='{{id}}_commitmentType' class='form-control custom-select'>{{#commitmentTypeCommitmentType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/commitmentTypeCommitmentType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionCost'>instructionCost: </label><div class='col-sm-8'><input id='{{id}}_instructionCost' class='form-control' type='text'{{#instructionCost}} value='{{instructionCost}}'{{/instructionCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionType'>instructionType: </label><div class='col-sm-8'><select id='{{id}}_instructionType' class='form-control custom-select'>{{#AutomaticDispInstTypeCommitment}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AutomaticDispInstTypeCommitment}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionType'>instructionType: </label><div class='col-sm-8'><select id='{{id}}_instructionType' class='form-control custom-select'>{{#instructionTypeAutomaticDispInstTypeCommitment}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/instructionTypeAutomaticDispInstTypeCommitment}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='{{id}}_intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minStatusChangeTime'>minStatusChangeTime: </label><div class='col-sm-8'><input id='{{id}}_minStatusChangeTime' class='form-control' type='text'{{#minStatusChangeTime}} value='{{minStatusChangeTime}}'{{/minStatusChangeTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='{{id}}_noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CommitmentClearing'>CommitmentClearing: </label><div class='col-sm-8'><input id='{{id}}_CommitmentClearing' class='form-control' type='text'{{#CommitmentClearing}} value='{{CommitmentClearing_string}}'{{/CommitmentClearing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
@@ -4225,15 +4225,15 @@ define
 
                 var obj = obj || { id: id, cls: "Commitments" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_commitmentType").value; if ("" != temp) { temp = CommitmentType[temp]; if ("undefined" != typeof (temp)) obj.commitmentType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CommitmentType." + temp; }
+                temp = MktDomain.CommitmentType[document.getElementById (id + "_commitmentType").value]; if (temp) obj.commitmentType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CommitmentType." + temp; else delete obj.commitmentType;
                 temp = document.getElementById (id + "_instructionCost").value; if ("" != temp) obj.instructionCost = temp;
-                temp = document.getElementById (id + "_instructionType").value; if ("" != temp) { temp = AutomaticDispInstTypeCommitment[temp]; if ("undefined" != typeof (temp)) obj.instructionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AutomaticDispInstTypeCommitment." + temp; }
+                temp = MktDomain.AutomaticDispInstTypeCommitment[document.getElementById (id + "_instructionType").value]; if (temp) obj.instructionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AutomaticDispInstTypeCommitment." + temp; else delete obj.instructionType;
                 temp = document.getElementById (id + "_intervalEndTime").value; if ("" != temp) obj.intervalEndTime = temp;
                 temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
                 temp = document.getElementById (id + "_minStatusChangeTime").value; if ("" != temp) obj.minStatusChangeTime = temp;
                 temp = document.getElementById (id + "_noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_CommitmentClearing").value; if ("" != temp) obj.CommitmentClearing = temp.split (",");
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
@@ -4755,7 +4755,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.FloatQuantity = []; if (!obj.quantity) obj.FloatQuantity.push ({ id: '', selected: true}); for (var property in FloatQuantity) obj.FloatQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
+                obj.quantityFloatQuantity = [{ id: '', selected: (!obj.quantity)}]; for (var property in Domain.FloatQuantity) obj.quantityFloatQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
                 if (obj.MktUserAttribute) obj.MktUserAttribute_string = obj.MktUserAttribute.join ();
                 if (obj.ChargeProfiles) obj.ChargeProfiles_string = obj.ChargeProfiles.join ();
             }
@@ -4763,7 +4763,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.FloatQuantity;
+                delete obj.quantityFloatQuantity;
                 delete obj.MktUserAttribute_string;
                 delete obj.ChargeProfiles_string;
             }
@@ -4793,7 +4793,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_price'>price: </label><div class='col-sm-8'><input id='{{id}}_price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_productCode'>productCode: </label><div class='col-sm-8'><input id='{{id}}_productCode' class='form-control' type='text'{{#productCode}} value='{{productCode}}'{{/productCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_providedBy'>providedBy: </label><div class='col-sm-8'><input id='{{id}}_providedBy' class='form-control' type='text'{{#providedBy}} value='{{providedBy}}'{{/providedBy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#FloatQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FloatQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#quantityFloatQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quantityFloatQuantity}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceEnd'>serviceEnd: </label><div class='col-sm-8'><input id='{{id}}_serviceEnd' class='form-control' type='text'{{#serviceEnd}} value='{{serviceEnd}}'{{/serviceEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceStart'>serviceStart: </label><div class='col-sm-8'><input id='{{id}}_serviceStart' class='form-control' type='text'{{#serviceStart}} value='{{serviceStart}}'{{/serviceStart}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_soldTo'>soldTo: </label><div class='col-sm-8'><input id='{{id}}_soldTo' class='form-control' type='text'{{#soldTo}} value='{{soldTo}}'{{/soldTo}}></div></div>
@@ -4831,7 +4831,7 @@ define
                 temp = document.getElementById (id + "_price").value; if ("" != temp) obj.price = temp;
                 temp = document.getElementById (id + "_productCode").value; if ("" != temp) obj.productCode = temp;
                 temp = document.getElementById (id + "_providedBy").value; if ("" != temp) obj.providedBy = temp;
-                temp = document.getElementById (id + "_quantity").value; if ("" != temp) { temp = FloatQuantity[temp]; if ("undefined" != typeof (temp)) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#FloatQuantity." + temp; }
+                temp = Domain.FloatQuantity[document.getElementById (id + "_quantity").value]; if (temp) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#FloatQuantity." + temp; else delete obj.quantity;
                 temp = document.getElementById (id + "_serviceEnd").value; if ("" != temp) obj.serviceEnd = temp;
                 temp = document.getElementById (id + "_serviceStart").value; if ("" != temp) obj.serviceStart = temp;
                 temp = document.getElementById (id + "_soldTo").value; if ("" != temp) obj.soldTo = temp;
@@ -4960,13 +4960,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.EquipmentStatusType = []; if (!obj.status) obj.EquipmentStatusType.push ({ id: '', selected: true}); for (var property in EquipmentStatusType) obj.EquipmentStatusType.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
+                obj.statusEquipmentStatusType = [{ id: '', selected: (!obj.status)}]; for (var property in MktDomain.EquipmentStatusType) obj.statusEquipmentStatusType.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.EquipmentStatusType;
+                delete obj.statusEquipmentStatusType;
             }
 
             edit_template ()
@@ -4987,7 +4987,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxEconomicMW'>maxEconomicMW: </label><div class='col-sm-8'><input id='{{id}}_maxEconomicMW' class='form-control' type='text'{{#maxEconomicMW}} value='{{maxEconomicMW}}'{{/maxEconomicMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minEconomicMW'>minEconomicMW: </label><div class='col-sm-8'><input id='{{id}}_minEconomicMW' class='form-control' type='text'{{#minEconomicMW}} value='{{minEconomicMW}}'{{/minEconomicMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceMW'>resourceMW: </label><div class='col-sm-8'><input id='{{id}}_resourceMW' class='form-control' type='text'{{#resourceMW}} value='{{resourceMW}}'{{/resourceMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#EquipmentStatusType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EquipmentStatusType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusEquipmentStatusType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusEquipmentStatusType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExPostResource'>ExPostResource: </label><div class='col-sm-8'><input id='{{id}}_ExPostResource' class='form-control' type='text'{{#ExPostResource}} value='{{ExPostResource}}'{{/ExPostResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
@@ -5010,7 +5010,7 @@ define
                 temp = document.getElementById (id + "_maxEconomicMW").value; if ("" != temp) obj.maxEconomicMW = temp;
                 temp = document.getElementById (id + "_minEconomicMW").value; if ("" != temp) obj.minEconomicMW = temp;
                 temp = document.getElementById (id + "_resourceMW").value; if ("" != temp) obj.resourceMW = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = EquipmentStatusType[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#EquipmentStatusType." + temp; }
+                temp = MktDomain.EquipmentStatusType[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#EquipmentStatusType." + temp; else delete obj.status;
                 temp = document.getElementById (id + "_ExPostResource").value; if ("" != temp) obj.ExPostResource = temp;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
@@ -5533,22 +5533,22 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.bindingInstruction) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.bindingInstruction && obj.bindingInstruction.endsWith ('.' + property)});
-                obj.MQSInstructionSource = []; if (!obj.instructionSource) obj.MQSInstructionSource.push ({ id: '', selected: true}); for (var property in MQSInstructionSource) obj.MQSInstructionSource.push ({ id: property, selected: obj.instructionSource && obj.instructionSource.endsWith ('.' + property)});
-                obj.AutomaticDispInstTypeCommitment = []; if (!obj.instructionType) obj.AutomaticDispInstTypeCommitment.push ({ id: '', selected: true}); for (var property in AutomaticDispInstTypeCommitment) obj.AutomaticDispInstTypeCommitment.push ({ id: property, selected: obj.instructionType && obj.instructionType.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.manuallyBlocked) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.manuallyBlocked && obj.manuallyBlocked.endsWith ('.' + property)});
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.bindingInstructionYesNo = [{ id: '', selected: (!obj.bindingInstruction)}]; for (var property in MktDomain.YesNo) obj.bindingInstructionYesNo.push ({ id: property, selected: obj.bindingInstruction && obj.bindingInstruction.endsWith ('.' + property)});
+                obj.instructionSourceMQSInstructionSource = [{ id: '', selected: (!obj.instructionSource)}]; for (var property in MktDomain.MQSInstructionSource) obj.instructionSourceMQSInstructionSource.push ({ id: property, selected: obj.instructionSource && obj.instructionSource.endsWith ('.' + property)});
+                obj.instructionTypeAutomaticDispInstTypeCommitment = [{ id: '', selected: (!obj.instructionType)}]; for (var property in MktDomain.AutomaticDispInstTypeCommitment) obj.instructionTypeAutomaticDispInstTypeCommitment.push ({ id: property, selected: obj.instructionType && obj.instructionType.endsWith ('.' + property)});
+                obj.manuallyBlockedYesNo = [{ id: '', selected: (!obj.manuallyBlocked)}]; for (var property in MktDomain.YesNo) obj.manuallyBlockedYesNo.push ({ id: property, selected: obj.manuallyBlocked && obj.manuallyBlocked.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
                 if (obj.InstructionClearing) obj.InstructionClearing_string = obj.InstructionClearing.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.MQSInstructionSource;
-                delete obj.AutomaticDispInstTypeCommitment;
-                delete obj.YesNo;
-                delete obj.MQSCHGType;
+                delete obj.bindingInstructionYesNo;
+                delete obj.instructionSourceMQSInstructionSource;
+                delete obj.instructionTypeAutomaticDispInstTypeCommitment;
+                delete obj.manuallyBlockedYesNo;
+                delete obj.updateTypeMQSCHGType;
                 delete obj.InstructionClearing_string;
             }
 
@@ -5563,15 +5563,15 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bindingDOT'>bindingDOT: </label><div class='col-sm-8'><input id='{{id}}_bindingDOT' class='form-control' type='text'{{#bindingDOT}} value='{{bindingDOT}}'{{/bindingDOT}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bindingInstruction'>bindingInstruction: </label><div class='col-sm-8'><select id='{{id}}_bindingInstruction' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bindingInstruction'>bindingInstruction: </label><div class='col-sm-8'><select id='{{id}}_bindingInstruction' class='form-control custom-select'>{{#bindingInstructionYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/bindingInstructionYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionCost'>instructionCost: </label><div class='col-sm-8'><input id='{{id}}_instructionCost' class='form-control' type='text'{{#instructionCost}} value='{{instructionCost}}'{{/instructionCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionSource'>instructionSource: </label><div class='col-sm-8'><select id='{{id}}_instructionSource' class='form-control custom-select'>{{#MQSInstructionSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSInstructionSource}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionSource'>instructionSource: </label><div class='col-sm-8'><select id='{{id}}_instructionSource' class='form-control custom-select'>{{#instructionSourceMQSInstructionSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/instructionSourceMQSInstructionSource}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionStartTime'>instructionStartTime: </label><div class='col-sm-8'><input id='{{id}}_instructionStartTime' class='form-control' type='text'{{#instructionStartTime}} value='{{instructionStartTime}}'{{/instructionStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionType'>instructionType: </label><div class='col-sm-8'><select id='{{id}}_instructionType' class='form-control custom-select'>{{#AutomaticDispInstTypeCommitment}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AutomaticDispInstTypeCommitment}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_manuallyBlocked'>manuallyBlocked: </label><div class='col-sm-8'><select id='{{id}}_manuallyBlocked' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionType'>instructionType: </label><div class='col-sm-8'><select id='{{id}}_instructionType' class='form-control custom-select'>{{#instructionTypeAutomaticDispInstTypeCommitment}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/instructionTypeAutomaticDispInstTypeCommitment}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_manuallyBlocked'>manuallyBlocked: </label><div class='col-sm-8'><select id='{{id}}_manuallyBlocked' class='form-control custom-select'>{{#manuallyBlockedYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/manuallyBlockedYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minStatusChangeTime'>minStatusChangeTime: </label><div class='col-sm-8'><input id='{{id}}_minStatusChangeTime' class='form-control' type='text'{{#minStatusChangeTime}} value='{{minStatusChangeTime}}'{{/minStatusChangeTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InstructionClearing'>InstructionClearing: </label><div class='col-sm-8'><input id='{{id}}_InstructionClearing' class='form-control' type='text'{{#InstructionClearing}} value='{{InstructionClearing_string}}'{{/InstructionClearing}}></div></div>
@@ -5588,15 +5588,15 @@ define
                 var obj = obj || { id: id, cls: "Instructions" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_bindingDOT").value; if ("" != temp) obj.bindingDOT = temp;
-                temp = document.getElementById (id + "_bindingInstruction").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.bindingInstruction = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_bindingInstruction").value]; if (temp) obj.bindingInstruction = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.bindingInstruction;
                 temp = document.getElementById (id + "_instructionCost").value; if ("" != temp) obj.instructionCost = temp;
-                temp = document.getElementById (id + "_instructionSource").value; if ("" != temp) { temp = MQSInstructionSource[temp]; if ("undefined" != typeof (temp)) obj.instructionSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSInstructionSource." + temp; }
+                temp = MktDomain.MQSInstructionSource[document.getElementById (id + "_instructionSource").value]; if (temp) obj.instructionSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSInstructionSource." + temp; else delete obj.instructionSource;
                 temp = document.getElementById (id + "_instructionStartTime").value; if ("" != temp) obj.instructionStartTime = temp;
-                temp = document.getElementById (id + "_instructionType").value; if ("" != temp) { temp = AutomaticDispInstTypeCommitment[temp]; if ("undefined" != typeof (temp)) obj.instructionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AutomaticDispInstTypeCommitment." + temp; }
-                temp = document.getElementById (id + "_manuallyBlocked").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.manuallyBlocked = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.AutomaticDispInstTypeCommitment[document.getElementById (id + "_instructionType").value]; if (temp) obj.instructionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AutomaticDispInstTypeCommitment." + temp; else delete obj.instructionType;
+                temp = MktDomain.YesNo[document.getElementById (id + "_manuallyBlocked").value]; if (temp) obj.manuallyBlocked = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.manuallyBlocked;
                 temp = document.getElementById (id + "_minStatusChangeTime").value; if ("" != temp) obj.minStatusChangeTime = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
                 temp = document.getElementById (id + "_InstructionClearing").value; if ("" != temp) obj.InstructionClearing = temp.split (",");
@@ -5696,8 +5696,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.AutomaticDispatchMode = []; if (!obj.dispatchMode) obj.AutomaticDispatchMode.push ({ id: '', selected: true}); for (var property in AutomaticDispatchMode) obj.AutomaticDispatchMode.push ({ id: property, selected: obj.dispatchMode && obj.dispatchMode.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.contingencyActive) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.contingencyActive && obj.contingencyActive.endsWith ('.' + property)});
+                obj.dispatchModeAutomaticDispatchMode = [{ id: '', selected: (!obj.dispatchMode)}]; for (var property in MktDomain.AutomaticDispatchMode) obj.dispatchModeAutomaticDispatchMode.push ({ id: property, selected: obj.dispatchMode && obj.dispatchMode.endsWith ('.' + property)});
+                obj.contingencyActiveYesNo = [{ id: '', selected: (!obj.contingencyActive)}]; for (var property in MktDomain.YesNo) obj.contingencyActiveYesNo.push ({ id: property, selected: obj.contingencyActive && obj.contingencyActive.endsWith ('.' + property)});
                 if (obj.RUCAwardInstruction) obj.RUCAwardInstruction_string = obj.RUCAwardInstruction.join ();
                 if (obj.ResourceAwardInstruction) obj.ResourceAwardInstruction_string = obj.ResourceAwardInstruction.join ();
             }
@@ -5705,8 +5705,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.AutomaticDispatchMode;
-                delete obj.YesNo;
+                delete obj.dispatchModeAutomaticDispatchMode;
+                delete obj.contingencyActiveYesNo;
                 delete obj.RUCAwardInstruction_string;
                 delete obj.ResourceAwardInstruction_string;
             }
@@ -5721,8 +5721,8 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchMode'>dispatchMode: </label><div class='col-sm-8'><select id='{{id}}_dispatchMode' class='form-control custom-select'>{{#AutomaticDispatchMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AutomaticDispatchMode}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyActive'>contingencyActive: </label><div class='col-sm-8'><select id='{{id}}_contingencyActive' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchMode'>dispatchMode: </label><div class='col-sm-8'><select id='{{id}}_dispatchMode' class='form-control custom-select'>{{#dispatchModeAutomaticDispatchMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/dispatchModeAutomaticDispatchMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyActive'>contingencyActive: </label><div class='col-sm-8'><select id='{{id}}_contingencyActive' class='form-control custom-select'>{{#contingencyActiveYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/contingencyActiveYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RUCAwardInstruction'>RUCAwardInstruction: </label><div class='col-sm-8'><input id='{{id}}_RUCAwardInstruction' class='form-control' type='text'{{#RUCAwardInstruction}} value='{{RUCAwardInstruction_string}}'{{/RUCAwardInstruction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceAwardInstruction'>ResourceAwardInstruction: </label><div class='col-sm-8'><input id='{{id}}_ResourceAwardInstruction' class='form-control' type='text'{{#ResourceAwardInstruction}} value='{{ResourceAwardInstruction_string}}'{{/ResourceAwardInstruction}}></div></div>
                     </div>
@@ -5737,8 +5737,8 @@ define
 
                 var obj = obj || { id: id, cls: "ResourceAwardClearing" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_dispatchMode").value; if ("" != temp) { temp = AutomaticDispatchMode[temp]; if ("undefined" != typeof (temp)) obj.dispatchMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#AutomaticDispatchMode." + temp; }
-                temp = document.getElementById (id + "_contingencyActive").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.contingencyActive = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.AutomaticDispatchMode[document.getElementById (id + "_dispatchMode").value]; if (temp) obj.dispatchMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#AutomaticDispatchMode." + temp; else delete obj.dispatchMode;
+                temp = MktDomain.YesNo[document.getElementById (id + "_contingencyActive").value]; if (temp) obj.contingencyActive = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.contingencyActive;
                 temp = document.getElementById (id + "_RUCAwardInstruction").value; if ("" != temp) obj.RUCAwardInstruction = temp.split (",");
                 temp = document.getElementById (id + "_ResourceAwardInstruction").value; if ("" != temp) obj.ResourceAwardInstruction = temp.split (",");
 
@@ -6630,21 +6630,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.competitivePathConstraint) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.competitivePathConstraint && obj.competitivePathConstraint.endsWith ('.' + property)});
-                obj.ResultsConstraintType = []; if (!obj.constraintType) obj.ResultsConstraintType.push ({ id: '', selected: true}); for (var property in ResultsConstraintType) obj.ResultsConstraintType.push ({ id: property, selected: obj.constraintType && obj.constraintType.endsWith ('.' + property)});
-                obj.ConstraintLimitType = []; if (!obj.limitFlag) obj.ConstraintLimitType.push ({ id: '', selected: true}); for (var property in ConstraintLimitType) obj.ConstraintLimitType.push ({ id: property, selected: obj.limitFlag && obj.limitFlag.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.optimizationFlag) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.optimizationFlag && obj.optimizationFlag.endsWith ('.' + property)});
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.competitivePathConstraintYesNo = [{ id: '', selected: (!obj.competitivePathConstraint)}]; for (var property in MktDomain.YesNo) obj.competitivePathConstraintYesNo.push ({ id: property, selected: obj.competitivePathConstraint && obj.competitivePathConstraint.endsWith ('.' + property)});
+                obj.constraintTypeResultsConstraintType = [{ id: '', selected: (!obj.constraintType)}]; for (var property in MktDomain.ResultsConstraintType) obj.constraintTypeResultsConstraintType.push ({ id: property, selected: obj.constraintType && obj.constraintType.endsWith ('.' + property)});
+                obj.limitFlagConstraintLimitType = [{ id: '', selected: (!obj.limitFlag)}]; for (var property in MktDomain.ConstraintLimitType) obj.limitFlagConstraintLimitType.push ({ id: property, selected: obj.limitFlag && obj.limitFlag.endsWith ('.' + property)});
+                obj.optimizationFlagYesNo = [{ id: '', selected: (!obj.optimizationFlag)}]; for (var property in MktDomain.YesNo) obj.optimizationFlagYesNo.push ({ id: property, selected: obj.optimizationFlag && obj.optimizationFlag.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.ResultsConstraintType;
-                delete obj.ConstraintLimitType;
-                delete obj.YesNo;
-                delete obj.MQSCHGType;
+                delete obj.competitivePathConstraintYesNo;
+                delete obj.constraintTypeResultsConstraintType;
+                delete obj.limitFlagConstraintLimitType;
+                delete obj.optimizationFlagYesNo;
+                delete obj.updateTypeMQSCHGType;
             }
 
             edit_template ()
@@ -6662,15 +6662,15 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BGTRResCap'>BGTRResCap: </label><div class='col-sm-8'><input id='{{id}}_BGTRResCap' class='form-control' type='text'{{#BGTRResCap}} value='{{BGTRResCap}}'{{/BGTRResCap}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bindingLimit'>bindingLimit: </label><div class='col-sm-8'><input id='{{id}}_bindingLimit' class='form-control' type='text'{{#bindingLimit}} value='{{bindingLimit}}'{{/bindingLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedValue'>clearedValue: </label><div class='col-sm-8'><input id='{{id}}_clearedValue' class='form-control' type='text'{{#clearedValue}} value='{{clearedValue}}'{{/clearedValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_competitivePathConstraint'>competitivePathConstraint: </label><div class='col-sm-8'><select id='{{id}}_competitivePathConstraint' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constraintType'>constraintType: </label><div class='col-sm-8'><select id='{{id}}_constraintType' class='form-control custom-select'>{{#ResultsConstraintType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ResultsConstraintType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitFlag'>limitFlag: </label><div class='col-sm-8'><select id='{{id}}_limitFlag' class='form-control custom-select'>{{#ConstraintLimitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ConstraintLimitType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_optimizationFlag'>optimizationFlag: </label><div class='col-sm-8'><select id='{{id}}_optimizationFlag' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_competitivePathConstraint'>competitivePathConstraint: </label><div class='col-sm-8'><select id='{{id}}_competitivePathConstraint' class='form-control custom-select'>{{#competitivePathConstraintYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/competitivePathConstraintYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constraintType'>constraintType: </label><div class='col-sm-8'><select id='{{id}}_constraintType' class='form-control custom-select'>{{#constraintTypeResultsConstraintType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/constraintTypeResultsConstraintType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitFlag'>limitFlag: </label><div class='col-sm-8'><select id='{{id}}_limitFlag' class='form-control custom-select'>{{#limitFlagConstraintLimitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/limitFlagConstraintLimitType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_optimizationFlag'>optimizationFlag: </label><div class='col-sm-8'><select id='{{id}}_optimizationFlag' class='form-control custom-select'>{{#optimizationFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/optimizationFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_overloadMW'>overloadMW: </label><div class='col-sm-8'><input id='{{id}}_overloadMW' class='form-control' type='text'{{#overloadMW}} value='{{overloadMW}}'{{/overloadMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_percentMW'>percentMW: </label><div class='col-sm-8'><input id='{{id}}_percentMW' class='form-control' type='text'{{#percentMW}} value='{{percentMW}}'{{/percentMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shadowPrice'>shadowPrice: </label><div class='col-sm-8'><input id='{{id}}_shadowPrice' class='form-control' type='text'{{#shadowPrice}} value='{{shadowPrice}}'{{/shadowPrice}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktContingency'>MktContingency: </label><div class='col-sm-8'><input id='{{id}}_MktContingency' class='form-control' type='text'{{#MktContingency}} value='{{MktContingency}}'{{/MktContingency}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConstraintClearing'>ConstraintClearing: </label><div class='col-sm-8'><input id='{{id}}_ConstraintClearing' class='form-control' type='text'{{#ConstraintClearing}} value='{{ConstraintClearing}}'{{/ConstraintClearing}}></div></div>
@@ -6692,15 +6692,15 @@ define
                 temp = document.getElementById (id + "_BGTRResCap").value; if ("" != temp) obj.BGTRResCap = temp;
                 temp = document.getElementById (id + "_bindingLimit").value; if ("" != temp) obj.bindingLimit = temp;
                 temp = document.getElementById (id + "_clearedValue").value; if ("" != temp) obj.clearedValue = temp;
-                temp = document.getElementById (id + "_competitivePathConstraint").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.competitivePathConstraint = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
-                temp = document.getElementById (id + "_constraintType").value; if ("" != temp) { temp = ResultsConstraintType[temp]; if ("undefined" != typeof (temp)) obj.constraintType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResultsConstraintType." + temp; }
-                temp = document.getElementById (id + "_limitFlag").value; if ("" != temp) { temp = ConstraintLimitType[temp]; if ("undefined" != typeof (temp)) obj.limitFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#ConstraintLimitType." + temp; }
-                temp = document.getElementById (id + "_optimizationFlag").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.optimizationFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_competitivePathConstraint").value]; if (temp) obj.competitivePathConstraint = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.competitivePathConstraint;
+                temp = MktDomain.ResultsConstraintType[document.getElementById (id + "_constraintType").value]; if (temp) obj.constraintType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResultsConstraintType." + temp; else delete obj.constraintType;
+                temp = MktDomain.ConstraintLimitType[document.getElementById (id + "_limitFlag").value]; if (temp) obj.limitFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#ConstraintLimitType." + temp; else delete obj.limitFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_optimizationFlag").value]; if (temp) obj.optimizationFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.optimizationFlag;
                 temp = document.getElementById (id + "_overloadMW").value; if ("" != temp) obj.overloadMW = temp;
                 temp = document.getElementById (id + "_percentMW").value; if ("" != temp) obj.percentMW = temp;
                 temp = document.getElementById (id + "_shadowPrice").value; if ("" != temp) obj.shadowPrice = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_MktContingency").value; if ("" != temp) obj.MktContingency = temp;
                 temp = document.getElementById (id + "_ConstraintClearing").value; if ("" != temp) obj.ConstraintClearing = temp;
@@ -6841,15 +6841,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ResourceLimitIndicator = []; if (!obj.limitFlag) obj.ResourceLimitIndicator.push ({ id: '', selected: true}); for (var property in ResourceLimitIndicator) obj.ResourceLimitIndicator.push ({ id: property, selected: obj.limitFlag && obj.limitFlag.endsWith ('.' + property)});
-                obj.YesNo = []; if (!obj.lumpyIndicator) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.lumpyIndicator && obj.lumpyIndicator.endsWith ('.' + property)});
+                obj.limitFlagResourceLimitIndicator = [{ id: '', selected: (!obj.limitFlag)}]; for (var property in MktDomain.ResourceLimitIndicator) obj.limitFlagResourceLimitIndicator.push ({ id: property, selected: obj.limitFlag && obj.limitFlag.endsWith ('.' + property)});
+                obj.lumpyIndicatorYesNo = [{ id: '', selected: (!obj.lumpyIndicator)}]; for (var property in MktDomain.YesNo) obj.lumpyIndicatorYesNo.push ({ id: property, selected: obj.lumpyIndicator && obj.lumpyIndicator.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ResourceLimitIndicator;
-                delete obj.YesNo;
+                delete obj.limitFlagResourceLimitIndicator;
+                delete obj.lumpyIndicatorYesNo;
             }
 
             edit_template ()
@@ -6869,8 +6869,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchRate'>dispatchRate: </label><div class='col-sm-8'><input id='{{id}}_dispatchRate' class='form-control' type='text'{{#dispatchRate}} value='{{dispatchRate}}'{{/dispatchRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchSteamMW'>dispatchSteamMW: </label><div class='col-sm-8'><input id='{{id}}_dispatchSteamMW' class='form-control' type='text'{{#dispatchSteamMW}} value='{{dispatchSteamMW}}'{{/dispatchSteamMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_imbalanceEnergyBias'>imbalanceEnergyBias: </label><div class='col-sm-8'><input id='{{id}}_imbalanceEnergyBias' class='form-control' type='text'{{#imbalanceEnergyBias}} value='{{imbalanceEnergyBias}}'{{/imbalanceEnergyBias}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitFlag'>limitFlag: </label><div class='col-sm-8'><select id='{{id}}_limitFlag' class='form-control custom-select'>{{#ResourceLimitIndicator}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ResourceLimitIndicator}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lumpyIndicator'>lumpyIndicator: </label><div class='col-sm-8'><select id='{{id}}_lumpyIndicator' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitFlag'>limitFlag: </label><div class='col-sm-8'><select id='{{id}}_limitFlag' class='form-control custom-select'>{{#limitFlagResourceLimitIndicator}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/limitFlagResourceLimitIndicator}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lumpyIndicator'>lumpyIndicator: </label><div class='col-sm-8'><select id='{{id}}_lumpyIndicator' class='form-control custom-select'>{{#lumpyIndicatorYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/lumpyIndicatorYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxSufficiencyIndex'>maxSufficiencyIndex: </label><div class='col-sm-8'><input id='{{id}}_maxSufficiencyIndex' class='form-control' type='text'{{#maxSufficiencyIndex}} value='{{maxSufficiencyIndex}}'{{/maxSufficiencyIndex}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minSufficiencyIndex'>minSufficiencyIndex: </label><div class='col-sm-8'><input id='{{id}}_minSufficiencyIndex' class='form-control' type='text'{{#minSufficiencyIndex}} value='{{minSufficiencyIndex}}'{{/minSufficiencyIndex}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqMaxMW'>reqMaxMW: </label><div class='col-sm-8'><input id='{{id}}_reqMaxMW' class='form-control' type='text'{{#reqMaxMW}} value='{{reqMaxMW}}'{{/reqMaxMW}}></div></div>
@@ -6898,8 +6898,8 @@ define
                 temp = document.getElementById (id + "_dispatchRate").value; if ("" != temp) obj.dispatchRate = temp;
                 temp = document.getElementById (id + "_dispatchSteamMW").value; if ("" != temp) obj.dispatchSteamMW = temp;
                 temp = document.getElementById (id + "_imbalanceEnergyBias").value; if ("" != temp) obj.imbalanceEnergyBias = temp;
-                temp = document.getElementById (id + "_limitFlag").value; if ("" != temp) { temp = ResourceLimitIndicator[temp]; if ("undefined" != typeof (temp)) obj.limitFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceLimitIndicator." + temp; }
-                temp = document.getElementById (id + "_lumpyIndicator").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.lumpyIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.ResourceLimitIndicator[document.getElementById (id + "_limitFlag").value]; if (temp) obj.limitFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceLimitIndicator." + temp; else delete obj.limitFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_lumpyIndicator").value]; if (temp) obj.lumpyIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.lumpyIndicator;
                 temp = document.getElementById (id + "_maxSufficiencyIndex").value; if ("" != temp) obj.maxSufficiencyIndex = temp;
                 temp = document.getElementById (id + "_minSufficiencyIndex").value; if ("" != temp) obj.minSufficiencyIndex = temp;
                 temp = document.getElementById (id + "_reqMaxMW").value; if ("" != temp) obj.reqMaxMW = temp;
@@ -7020,16 +7020,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.YesNo = []; if (!obj.runIndicatorDOP) obj.YesNo.push ({ id: '', selected: true}); for (var property in YesNo) obj.YesNo.push ({ id: property, selected: obj.runIndicatorDOP && obj.runIndicatorDOP.endsWith ('.' + property)});
-                obj.MQSCHGType = []; if (!obj.updateType) obj.MQSCHGType.push ({ id: '', selected: true}); for (var property in MQSCHGType) obj.MQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
+                obj.runIndicatorDOPYesNo = [{ id: '', selected: (!obj.runIndicatorDOP)}]; for (var property in MktDomain.YesNo) obj.runIndicatorDOPYesNo.push ({ id: property, selected: obj.runIndicatorDOP && obj.runIndicatorDOP.endsWith ('.' + property)});
+                obj.updateTypeMQSCHGType = [{ id: '', selected: (!obj.updateType)}]; for (var property in MktDomain.MQSCHGType) obj.updateTypeMQSCHGType.push ({ id: property, selected: obj.updateType && obj.updateType.endsWith ('.' + property)});
                 if (obj.InstructionClearingDOP) obj.InstructionClearingDOP_string = obj.InstructionClearingDOP.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.YesNo;
-                delete obj.MQSCHGType;
+                delete obj.runIndicatorDOPYesNo;
+                delete obj.updateTypeMQSCHGType;
                 delete obj.InstructionClearingDOP_string;
             }
 
@@ -7046,10 +7046,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwDOP'>mwDOP: </label><div class='col-sm-8'><input id='{{id}}_mwDOP' class='form-control' type='text'{{#mwDOP}} value='{{mwDOP}}'{{/mwDOP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timestampDOP'>timestampDOP: </label><div class='col-sm-8'><input id='{{id}}_timestampDOP' class='form-control' type='text'{{#timestampDOP}} value='{{timestampDOP}}'{{/timestampDOP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plotPriority'>plotPriority: </label><div class='col-sm-8'><input id='{{id}}_plotPriority' class='form-control' type='text'{{#plotPriority}} value='{{plotPriority}}'{{/plotPriority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runIndicatorDOP'>runIndicatorDOP: </label><div class='col-sm-8'><select id='{{id}}_runIndicatorDOP' class='form-control custom-select'>{{#YesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/YesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runIndicatorDOP'>runIndicatorDOP: </label><div class='col-sm-8'><select id='{{id}}_runIndicatorDOP' class='form-control custom-select'>{{#runIndicatorDOPYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/runIndicatorDOPYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#MQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MQSCHGType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><select id='{{id}}_updateType' class='form-control custom-select'>{{#updateTypeMQSCHGType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/updateTypeMQSCHGType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InstructionClearingDOP'>InstructionClearingDOP: </label><div class='col-sm-8'><input id='{{id}}_InstructionClearingDOP' class='form-control' type='text'{{#InstructionClearingDOP}} value='{{InstructionClearingDOP_string}}'{{/InstructionClearingDOP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResouce'>RegisteredResouce: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResouce' class='form-control' type='text'{{#RegisteredResouce}} value='{{RegisteredResouce}}'{{/RegisteredResouce}}></div></div>
                     </div>
@@ -7067,10 +7067,10 @@ define
                 temp = document.getElementById (id + "_mwDOP").value; if ("" != temp) obj.mwDOP = temp;
                 temp = document.getElementById (id + "_timestampDOP").value; if ("" != temp) obj.timestampDOP = temp;
                 temp = document.getElementById (id + "_plotPriority").value; if ("" != temp) obj.plotPriority = temp;
-                temp = document.getElementById (id + "_runIndicatorDOP").value; if ("" != temp) { temp = YesNo[temp]; if ("undefined" != typeof (temp)) obj.runIndicatorDOP = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; }
+                temp = MktDomain.YesNo[document.getElementById (id + "_runIndicatorDOP").value]; if (temp) obj.runIndicatorDOP = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.runIndicatorDOP;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById (id + "_updateType").value; if ("" != temp) { temp = MQSCHGType[temp]; if ("undefined" != typeof (temp)) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; }
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj.updateType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj.updateType;
                 temp = document.getElementById (id + "_InstructionClearingDOP").value; if ("" != temp) obj.InstructionClearingDOP = temp.split (",");
                 temp = document.getElementById (id + "_RegisteredResouce").value; if ("" != temp) obj.RegisteredResouce = temp;
 
@@ -7843,29 +7843,29 @@ define
                 ExPostResourceResults: ExPostResourceResults,
                 InstructionClearingDOP: InstructionClearingDOP,
                 ConstraintClearing: ConstraintClearing,
-                Settlement: Settlement,
+                RUCAwardInstruction: RUCAwardInstruction,
                 SelfScheduleBreakdown: SelfScheduleBreakdown,
                 MPMClearing: MPMClearing,
-                ResourceDispatchResults: ResourceDispatchResults,
-                PassThroughBill: PassThroughBill,
-                MarketResults: MarketResults,
-                GeneralClearing: GeneralClearing,
+                Settlement: Settlement,
                 ResourceAwardClearing: ResourceAwardClearing,
-                RUCAwardInstruction: RUCAwardInstruction,
+                GeneralClearing: GeneralClearing,
+                MarketResults: MarketResults,
+                PassThroughBill: PassThroughBill,
+                ResourceDispatchResults: ResourceDispatchResults,
                 ExPostLoss: ExPostLoss,
                 ExPostMarketRegion: ExPostMarketRegion,
                 LoadFollowingOperatorInput: LoadFollowingOperatorInput,
-                ChargeProfile: ChargeProfile,
                 ExPostResource: ExPostResource,
+                ChargeProfile: ChargeProfile,
                 ChargeProfileData: ChargeProfileData,
                 RMRDetermination: RMRDetermination,
                 DopInstruction: DopInstruction,
                 PnodeResults: PnodeResults,
                 MarketStatement: MarketStatement,
                 ResourceAwardInstruction: ResourceAwardInstruction,
-                RMROperatorInput: RMROperatorInput,
                 ResourceClearing: ResourceClearing,
                 MPMTestResults: MPMTestResults,
+                RMROperatorInput: RMROperatorInput,
                 Commitments: Commitments,
                 ExPostPricing: ExPostPricing,
                 ConstraintResults: ConstraintResults,

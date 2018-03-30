@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/Wires"],
-    function (base, Wires)
+    ["model/base", "model/Core", "model/InfAssetInfo", "model/Wires"],
+    function (base, Core, InfAssetInfo, Wires)
     {
 
         /**
@@ -232,19 +232,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ShuntImpedanceControlKind = []; if (!obj.controlKind) obj.ShuntImpedanceControlKind.push ({ id: '', selected: true}); for (var property in ShuntImpedanceControlKind) obj.ShuntImpedanceControlKind.push ({ id: property, selected: obj.controlKind && obj.controlKind.endsWith ('.' + property)});
-                obj.ShuntImpedanceLocalControlKind = []; if (!obj.localControlKind) obj.ShuntImpedanceLocalControlKind.push ({ id: '', selected: true}); for (var property in ShuntImpedanceLocalControlKind) obj.ShuntImpedanceLocalControlKind.push ({ id: property, selected: obj.localControlKind && obj.localControlKind.endsWith ('.' + property)});
-                obj.RegulationBranchKind = []; if (!obj.regBranchKind) obj.RegulationBranchKind.push ({ id: '', selected: true}); for (var property in RegulationBranchKind) obj.RegulationBranchKind.push ({ id: property, selected: obj.regBranchKind && obj.regBranchKind.endsWith ('.' + property)});
-                obj.PhaseCode = []; if (!obj.sensingPhaseCode) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.sensingPhaseCode && obj.sensingPhaseCode.endsWith ('.' + property)});
+                obj.controlKindShuntImpedanceControlKind = [{ id: '', selected: (!obj.controlKind)}]; for (var property in InfAssetInfo.ShuntImpedanceControlKind) obj.controlKindShuntImpedanceControlKind.push ({ id: property, selected: obj.controlKind && obj.controlKind.endsWith ('.' + property)});
+                obj.localControlKindShuntImpedanceLocalControlKind = [{ id: '', selected: (!obj.localControlKind)}]; for (var property in InfAssetInfo.ShuntImpedanceLocalControlKind) obj.localControlKindShuntImpedanceLocalControlKind.push ({ id: property, selected: obj.localControlKind && obj.localControlKind.endsWith ('.' + property)});
+                obj.regBranchKindRegulationBranchKind = [{ id: '', selected: (!obj.regBranchKind)}]; for (var property in InfAssetInfo.RegulationBranchKind) obj.regBranchKindRegulationBranchKind.push ({ id: property, selected: obj.regBranchKind && obj.regBranchKind.endsWith ('.' + property)});
+                obj.sensingPhaseCodePhaseCode = [{ id: '', selected: (!obj.sensingPhaseCode)}]; for (var property in Core.PhaseCode) obj.sensingPhaseCodePhaseCode.push ({ id: property, selected: obj.sensingPhaseCode && obj.sensingPhaseCode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ShuntImpedanceControlKind;
-                delete obj.ShuntImpedanceLocalControlKind;
-                delete obj.RegulationBranchKind;
-                delete obj.PhaseCode;
+                delete obj.controlKindShuntImpedanceControlKind;
+                delete obj.localControlKindShuntImpedanceLocalControlKind;
+                delete obj.regBranchKindRegulationBranchKind;
+                delete obj.sensingPhaseCodePhaseCode;
             }
 
             edit_template ()
@@ -259,9 +259,9 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_branchDirect'>branchDirect: </label><div class='col-sm-8'><input id='{{id}}_branchDirect' class='form-control' type='text'{{#branchDirect}} value='{{branchDirect}}'{{/branchDirect}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cellSize'>cellSize: </label><div class='col-sm-8'><input id='{{id}}_cellSize' class='form-control' type='text'{{#cellSize}} value='{{cellSize}}'{{/cellSize}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlKind'>controlKind: </label><div class='col-sm-8'><select id='{{id}}_controlKind' class='form-control custom-select'>{{#ShuntImpedanceControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ShuntImpedanceControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlKind'>controlKind: </label><div class='col-sm-8'><select id='{{id}}_controlKind' class='form-control custom-select'>{{#controlKindShuntImpedanceControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/controlKindShuntImpedanceControlKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highVoltageOverride'>highVoltageOverride: </label><div class='col-sm-8'><input id='{{id}}_highVoltageOverride' class='form-control' type='text'{{#highVoltageOverride}} value='{{highVoltageOverride}}'{{/highVoltageOverride}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localControlKind'>localControlKind: </label><div class='col-sm-8'><select id='{{id}}_localControlKind' class='form-control custom-select'>{{#ShuntImpedanceLocalControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ShuntImpedanceLocalControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localControlKind'>localControlKind: </label><div class='col-sm-8'><select id='{{id}}_localControlKind' class='form-control custom-select'>{{#localControlKindShuntImpedanceLocalControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/localControlKindShuntImpedanceLocalControlKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localOffLevel'>localOffLevel: </label><div class='col-sm-8'><input id='{{id}}_localOffLevel' class='form-control' type='text'{{#localOffLevel}} value='{{localOffLevel}}'{{/localOffLevel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localOnLevel'>localOnLevel: </label><div class='col-sm-8'><input id='{{id}}_localOnLevel' class='form-control' type='text'{{#localOnLevel}} value='{{localOnLevel}}'{{/localOnLevel}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_localOverride'>localOverride: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_localOverride' class='form-check-input' type='checkbox'{{#localOverride}} checked{{/localOverride}}></div></div></div>
@@ -270,8 +270,8 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalOpen'>normalOpen: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranch'>regBranch: </label><div class='col-sm-8'><input id='{{id}}_regBranch' class='form-control' type='text'{{#regBranch}} value='{{regBranch}}'{{/regBranch}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranchEnd'>regBranchEnd: </label><div class='col-sm-8'><input id='{{id}}_regBranchEnd' class='form-control' type='text'{{#regBranchEnd}} value='{{regBranchEnd}}'{{/regBranchEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranchKind'>regBranchKind: </label><div class='col-sm-8'><select id='{{id}}_regBranchKind' class='form-control custom-select'>{{#RegulationBranchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RegulationBranchKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sensingPhaseCode'>sensingPhaseCode: </label><div class='col-sm-8'><select id='{{id}}_sensingPhaseCode' class='form-control custom-select'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranchKind'>regBranchKind: </label><div class='col-sm-8'><select id='{{id}}_regBranchKind' class='form-control custom-select'>{{#regBranchKindRegulationBranchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/regBranchKindRegulationBranchKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sensingPhaseCode'>sensingPhaseCode: </label><div class='col-sm-8'><select id='{{id}}_sensingPhaseCode' class='form-control custom-select'>{{#sensingPhaseCodePhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/sensingPhaseCodePhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOperationCycle'>switchOperationCycle: </label><div class='col-sm-8'><input id='{{id}}_switchOperationCycle' class='form-control' type='text'{{#switchOperationCycle}} value='{{switchOperationCycle}}'{{/switchOperationCycle}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_vRegLineLine'>vRegLineLine: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vRegLineLine' class='form-check-input' type='checkbox'{{#vRegLineLine}} checked{{/vRegLineLine}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensatorInfo'>ShuntCompensatorInfo: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensatorInfo' class='form-control' type='text'{{#ShuntCompensatorInfo}} value='{{ShuntCompensatorInfo}}'{{/ShuntCompensatorInfo}}></div></div>
@@ -289,9 +289,9 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_branchDirect").value; if ("" != temp) obj.branchDirect = temp;
                 temp = document.getElementById (id + "_cellSize").value; if ("" != temp) obj.cellSize = temp;
-                temp = document.getElementById (id + "_controlKind").value; if ("" != temp) { temp = ShuntImpedanceControlKind[temp]; if ("undefined" != typeof (temp)) obj.controlKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ShuntImpedanceControlKind." + temp; }
+                temp = InfAssetInfo.ShuntImpedanceControlKind[document.getElementById (id + "_controlKind").value]; if (temp) obj.controlKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ShuntImpedanceControlKind." + temp; else delete obj.controlKind;
                 temp = document.getElementById (id + "_highVoltageOverride").value; if ("" != temp) obj.highVoltageOverride = temp;
-                temp = document.getElementById (id + "_localControlKind").value; if ("" != temp) { temp = ShuntImpedanceLocalControlKind[temp]; if ("undefined" != typeof (temp)) obj.localControlKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ShuntImpedanceLocalControlKind." + temp; }
+                temp = InfAssetInfo.ShuntImpedanceLocalControlKind[document.getElementById (id + "_localControlKind").value]; if (temp) obj.localControlKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ShuntImpedanceLocalControlKind." + temp; else delete obj.localControlKind;
                 temp = document.getElementById (id + "_localOffLevel").value; if ("" != temp) obj.localOffLevel = temp;
                 temp = document.getElementById (id + "_localOnLevel").value; if ("" != temp) obj.localOnLevel = temp;
                 temp = document.getElementById (id + "_localOverride").checked; if (temp) obj.localOverride = true;
@@ -300,8 +300,8 @@ define
                 temp = document.getElementById (id + "_normalOpen").checked; if (temp) obj.normalOpen = true;
                 temp = document.getElementById (id + "_regBranch").value; if ("" != temp) obj.regBranch = temp;
                 temp = document.getElementById (id + "_regBranchEnd").value; if ("" != temp) obj.regBranchEnd = temp;
-                temp = document.getElementById (id + "_regBranchKind").value; if ("" != temp) { temp = RegulationBranchKind[temp]; if ("undefined" != typeof (temp)) obj.regBranchKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RegulationBranchKind." + temp; }
-                temp = document.getElementById (id + "_sensingPhaseCode").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.sensingPhaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = InfAssetInfo.RegulationBranchKind[document.getElementById (id + "_regBranchKind").value]; if (temp) obj.regBranchKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RegulationBranchKind." + temp; else delete obj.regBranchKind;
+                temp = Core.PhaseCode[document.getElementById (id + "_sensingPhaseCode").value]; if (temp) obj.sensingPhaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.sensingPhaseCode;
                 temp = document.getElementById (id + "_switchOperationCycle").value; if ("" != temp) obj.switchOperationCycle = temp;
                 temp = document.getElementById (id + "_vRegLineLine").checked; if (temp) obj.vRegLineLine = true;
                 temp = document.getElementById (id + "_ShuntCompensatorInfo").value; if ("" != temp) obj.ShuntCompensatorInfo = temp;

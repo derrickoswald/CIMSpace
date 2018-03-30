@@ -675,14 +675,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WindPlantQcontrolModeKind = []; if (!obj.windPlantQcontrolModesType) obj.WindPlantQcontrolModeKind.push ({ id: '', selected: true}); for (var property in WindPlantQcontrolModeKind) obj.WindPlantQcontrolModeKind.push ({ id: property, selected: obj.windPlantQcontrolModesType && obj.windPlantQcontrolModesType.endsWith ('.' + property)});
+                obj.windPlantQcontrolModesTypeWindPlantQcontrolModeKind = [{ id: '', selected: (!obj.windPlantQcontrolModesType)}]; for (var property in WindPlantQcontrolModeKind) obj.windPlantQcontrolModesTypeWindPlantQcontrolModeKind.push ({ id: property, selected: obj.windPlantQcontrolModesType && obj.windPlantQcontrolModesType.endsWith ('.' + property)});
                 if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WindPlantQcontrolModeKind;
+                delete obj.windPlantQcontrolModesTypeWindPlantQcontrolModeKind;
                 delete obj.WindDynamicsLookupTable_string;
             }
 
@@ -711,7 +711,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_txft'>txft: </label><div class='col-sm-8'><input id='{{id}}_txft' class='form-control' type='text'{{#txft}} value='{{txft}}'{{/txft}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_txfv'>txfv: </label><div class='col-sm-8'><input id='{{id}}_txfv' class='form-control' type='text'{{#txfv}} value='{{txfv}}'{{/txfv}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uwpqdip'>uwpqdip: </label><div class='col-sm-8'><input id='{{id}}_uwpqdip' class='form-control' type='text'{{#uwpqdip}} value='{{uwpqdip}}'{{/uwpqdip}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windPlantQcontrolModesType'>windPlantQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windPlantQcontrolModesType' class='form-control custom-select'>{{#WindPlantQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindPlantQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windPlantQcontrolModesType'>windPlantQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windPlantQcontrolModesType' class='form-control custom-select'>{{#windPlantQcontrolModesTypeWindPlantQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/windPlantQcontrolModesTypeWindPlantQcontrolModeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xrefmax'>xrefmax: </label><div class='col-sm-8'><input id='{{id}}_xrefmax' class='form-control' type='text'{{#xrefmax}} value='{{xrefmax}}'{{/xrefmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xrefmin'>xrefmin: </label><div class='col-sm-8'><input id='{{id}}_xrefmin' class='form-control' type='text'{{#xrefmin}} value='{{xrefmin}}'{{/xrefmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
@@ -742,7 +742,7 @@ define
                 temp = document.getElementById (id + "_txft").value; if ("" != temp) obj.txft = temp;
                 temp = document.getElementById (id + "_txfv").value; if ("" != temp) obj.txfv = temp;
                 temp = document.getElementById (id + "_uwpqdip").value; if ("" != temp) obj.uwpqdip = temp;
-                temp = document.getElementById (id + "_windPlantQcontrolModesType").value; if ("" != temp) { temp = WindPlantQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windPlantQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindPlantQcontrolModeKind." + temp; }
+                temp = WindPlantQcontrolModeKind[document.getElementById (id + "_windPlantQcontrolModesType").value]; if (temp) obj.windPlantQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindPlantQcontrolModeKind." + temp; else delete obj.windPlantQcontrolModesType;
                 temp = document.getElementById (id + "_xrefmax").value; if ("" != temp) obj.xrefmax = temp;
                 temp = document.getElementById (id + "_xrefmin").value; if ("" != temp) obj.xrefmin = temp;
                 temp = document.getElementById (id + "_WindPlantIEC").value; if ("" != temp) obj.WindPlantIEC = temp;
@@ -1140,15 +1140,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WindQcontrolModeKind = []; if (!obj.windQcontrolModesType) obj.WindQcontrolModeKind.push ({ id: '', selected: true}); for (var property in WindQcontrolModeKind) obj.WindQcontrolModeKind.push ({ id: property, selected: obj.windQcontrolModesType && obj.windQcontrolModesType.endsWith ('.' + property)});
-                obj.WindUVRTQcontrolModeKind = []; if (!obj.windUVRTQcontrolModesType) obj.WindUVRTQcontrolModeKind.push ({ id: '', selected: true}); for (var property in WindUVRTQcontrolModeKind) obj.WindUVRTQcontrolModeKind.push ({ id: property, selected: obj.windUVRTQcontrolModesType && obj.windUVRTQcontrolModesType.endsWith ('.' + property)});
+                obj.windQcontrolModesTypeWindQcontrolModeKind = [{ id: '', selected: (!obj.windQcontrolModesType)}]; for (var property in WindQcontrolModeKind) obj.windQcontrolModesTypeWindQcontrolModeKind.push ({ id: property, selected: obj.windQcontrolModesType && obj.windQcontrolModesType.endsWith ('.' + property)});
+                obj.windUVRTQcontrolModesTypeWindUVRTQcontrolModeKind = [{ id: '', selected: (!obj.windUVRTQcontrolModesType)}]; for (var property in WindUVRTQcontrolModeKind) obj.windUVRTQcontrolModesTypeWindUVRTQcontrolModeKind.push ({ id: property, selected: obj.windUVRTQcontrolModesType && obj.windUVRTQcontrolModesType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WindQcontrolModeKind;
-                delete obj.WindUVRTQcontrolModeKind;
+                delete obj.windQcontrolModesTypeWindQcontrolModeKind;
+                delete obj.windUVRTQcontrolModesTypeWindUVRTQcontrolModeKind;
             }
 
             edit_template ()
@@ -1181,8 +1181,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_umin'>umin: </label><div class='col-sm-8'><input id='{{id}}_umin' class='form-control' type='text'{{#umin}} value='{{umin}}'{{/umin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uqdip'>uqdip: </label><div class='col-sm-8'><input id='{{id}}_uqdip' class='form-control' type='text'{{#uqdip}} value='{{uqdip}}'{{/uqdip}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uref0'>uref0: </label><div class='col-sm-8'><input id='{{id}}_uref0' class='form-control' type='text'{{#uref0}} value='{{uref0}}'{{/uref0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windQcontrolModesType'>windQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windQcontrolModesType' class='form-control custom-select'>{{#WindQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindQcontrolModeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windUVRTQcontrolModesType'>windUVRTQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windUVRTQcontrolModesType' class='form-control custom-select'>{{#WindUVRTQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindUVRTQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windQcontrolModesType'>windQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windQcontrolModesType' class='form-control custom-select'>{{#windQcontrolModesTypeWindQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/windQcontrolModesTypeWindQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windUVRTQcontrolModesType'>windUVRTQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windUVRTQcontrolModesType' class='form-control custom-select'>{{#windUVRTQcontrolModesTypeWindUVRTQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/windUVRTQcontrolModesTypeWindUVRTQcontrolModeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xdroop'>xdroop: </label><div class='col-sm-8'><input id='{{id}}_xdroop' class='form-control' type='text'{{#xdroop}} value='{{xdroop}}'{{/xdroop}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
@@ -1217,8 +1217,8 @@ define
                 temp = document.getElementById (id + "_umin").value; if ("" != temp) obj.umin = temp;
                 temp = document.getElementById (id + "_uqdip").value; if ("" != temp) obj.uqdip = temp;
                 temp = document.getElementById (id + "_uref0").value; if ("" != temp) obj.uref0 = temp;
-                temp = document.getElementById (id + "_windQcontrolModesType").value; if ("" != temp) { temp = WindQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindQcontrolModeKind." + temp; }
-                temp = document.getElementById (id + "_windUVRTQcontrolModesType").value; if ("" != temp) { temp = WindUVRTQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windUVRTQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindUVRTQcontrolModeKind." + temp; }
+                temp = WindQcontrolModeKind[document.getElementById (id + "_windQcontrolModesType").value]; if (temp) obj.windQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindQcontrolModeKind." + temp; else delete obj.windQcontrolModesType;
+                temp = WindUVRTQcontrolModeKind[document.getElementById (id + "_windUVRTQcontrolModesType").value]; if (temp) obj.windUVRTQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindUVRTQcontrolModeKind." + temp; else delete obj.windUVRTQcontrolModesType;
                 temp = document.getElementById (id + "_xdroop").value; if ("" != temp) obj.xdroop = temp;
                 temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
 
@@ -2872,13 +2872,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WindLookupTableFunctionKind = []; if (!obj.lookupTableFunctionType) obj.WindLookupTableFunctionKind.push ({ id: '', selected: true}); for (var property in WindLookupTableFunctionKind) obj.WindLookupTableFunctionKind.push ({ id: property, selected: obj.lookupTableFunctionType && obj.lookupTableFunctionType.endsWith ('.' + property)});
+                obj.lookupTableFunctionTypeWindLookupTableFunctionKind = [{ id: '', selected: (!obj.lookupTableFunctionType)}]; for (var property in WindLookupTableFunctionKind) obj.lookupTableFunctionTypeWindLookupTableFunctionKind.push ({ id: property, selected: obj.lookupTableFunctionType && obj.lookupTableFunctionType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WindLookupTableFunctionKind;
+                delete obj.lookupTableFunctionTypeWindLookupTableFunctionKind;
             }
 
             edit_template ()
@@ -2892,7 +2892,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_input'>input: </label><div class='col-sm-8'><input id='{{id}}_input' class='form-control' type='text'{{#input}} value='{{input}}'{{/input}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lookupTableFunctionType'>lookupTableFunctionType: </label><div class='col-sm-8'><select id='{{id}}_lookupTableFunctionType' class='form-control custom-select'>{{#WindLookupTableFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindLookupTableFunctionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lookupTableFunctionType'>lookupTableFunctionType: </label><div class='col-sm-8'><select id='{{id}}_lookupTableFunctionType' class='form-control custom-select'>{{#lookupTableFunctionTypeWindLookupTableFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/lookupTableFunctionTypeWindLookupTableFunctionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_output'>output: </label><div class='col-sm-8'><input id='{{id}}_output' class='form-control' type='text'{{#output}} value='{{output}}'{{/output}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequence'>sequence: </label><div class='col-sm-8'><input id='{{id}}_sequence' class='form-control' type='text'{{#sequence}} value='{{sequence}}'{{/sequence}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
@@ -2917,7 +2917,7 @@ define
                 var obj = obj || { id: id, cls: "WindDynamicsLookupTable" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_input").value; if ("" != temp) obj.input = temp;
-                temp = document.getElementById (id + "_lookupTableFunctionType").value; if ("" != temp) { temp = WindLookupTableFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.lookupTableFunctionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindLookupTableFunctionKind." + temp; }
+                temp = WindLookupTableFunctionKind[document.getElementById (id + "_lookupTableFunctionType").value]; if (temp) obj.lookupTableFunctionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindLookupTableFunctionKind." + temp; else delete obj.lookupTableFunctionType;
                 temp = document.getElementById (id + "_output").value; if ("" != temp) obj.output = temp;
                 temp = document.getElementById (id + "_sequence").value; if ("" != temp) obj.sequence = temp;
                 temp = document.getElementById (id + "_WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
@@ -5351,6 +5351,7 @@ define
                 WindGenType3aIEC: WindGenType3aIEC,
                 WindPlantReactiveControlIEC: WindPlantReactiveControlIEC,
                 WindPlantDynamics: WindPlantDynamics,
+                WindQcontrolModeKind: WindQcontrolModeKind,
                 WindMechIEC: WindMechIEC,
                 WindGenType3bIEC: WindGenType3bIEC,
                 WindContPType4bIEC: WindContPType4bIEC,
@@ -5358,12 +5359,15 @@ define
                 WindContQPQULimIEC: WindContQPQULimIEC,
                 WindContPitchAngleIEC: WindContPitchAngleIEC,
                 WindRefFrameRotIEC: WindRefFrameRotIEC,
-                WindContPType4aIEC: WindContPType4aIEC,
+                WindLookupTableFunctionKind: WindLookupTableFunctionKind,
                 WindAeroOneDimIEC: WindAeroOneDimIEC,
+                WindContPType4aIEC: WindContPType4aIEC,
+                WindPlantQcontrolModeKind: WindPlantQcontrolModeKind,
                 WindPitchContPowerIEC: WindPitchContPowerIEC,
-                WindProtectionIEC: WindProtectionIEC,
                 WindDynamicsLookupTable: WindDynamicsLookupTable,
+                WindProtectionIEC: WindProtectionIEC,
                 WindTurbineType3or4IEC: WindTurbineType3or4IEC,
+                WindUVRTQcontrolModeKind: WindUVRTQcontrolModeKind,
                 WindAeroTwoDimIEC: WindAeroTwoDimIEC,
                 WindPlantFreqPcontrolIEC: WindPlantFreqPcontrolIEC,
                 WindGenType3IEC: WindGenType3IEC

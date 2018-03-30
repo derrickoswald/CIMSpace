@@ -724,8 +724,8 @@ define
             {
                 EquivalentEquipment: EquivalentEquipment,
                 EquivalentBranch: EquivalentBranch,
-                EquivalentNetwork: EquivalentNetwork,
                 EquivalentShunt: EquivalentShunt,
+                EquivalentNetwork: EquivalentNetwork,
                 EquivalentInjection: EquivalentInjection
             }
         );

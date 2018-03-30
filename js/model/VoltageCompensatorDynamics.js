@@ -503,8 +503,8 @@ define
         return (
             {
                 VCompIEEEType1: VCompIEEEType1,
-                GenICompensationForGenJ: GenICompensationForGenJ,
                 VoltageCompensatorDynamics: VoltageCompensatorDynamics,
+                GenICompensationForGenJ: GenICompensationForGenJ,
                 VCompIEEEType2: VCompIEEEType2
             }
         );

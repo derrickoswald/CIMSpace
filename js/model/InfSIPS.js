@@ -206,13 +206,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.AnalogToDigitalLogicKind = []; if (!obj.aDLogicKind) obj.AnalogToDigitalLogicKind.push ({ id: '', selected: true}); for (var property in AnalogToDigitalLogicKind) obj.AnalogToDigitalLogicKind.push ({ id: property, selected: obj.aDLogicKind && obj.aDLogicKind.endsWith ('.' + property)});
+                obj.aDLogicKindAnalogToDigitalLogicKind = [{ id: '', selected: (!obj.aDLogicKind)}]; for (var property in AnalogToDigitalLogicKind) obj.aDLogicKindAnalogToDigitalLogicKind.push ({ id: property, selected: obj.aDLogicKind && obj.aDLogicKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.AnalogToDigitalLogicKind;
+                delete obj.aDLogicKindAnalogToDigitalLogicKind;
             }
 
             edit_template ()
@@ -226,7 +226,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_absoluteValue'>absoluteValue: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_absoluteValue' class='form-check-input' type='checkbox'{{#absoluteValue}} checked{{/absoluteValue}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aDLogicKind'>aDLogicKind: </label><div class='col-sm-8'><select id='{{id}}_aDLogicKind' class='form-control custom-select'>{{#AnalogToDigitalLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AnalogToDigitalLogicKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aDLogicKind'>aDLogicKind: </label><div class='col-sm-8'><select id='{{id}}_aDLogicKind' class='form-control custom-select'>{{#aDLogicKindAnalogToDigitalLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/aDLogicKindAnalogToDigitalLogicKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_negate'>negate: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_negate' class='form-check-input' type='checkbox'{{#negate}} checked{{/negate}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thresholdPercentage'>thresholdPercentage: </label><div class='col-sm-8'><input id='{{id}}_thresholdPercentage' class='form-control' type='text'{{#thresholdPercentage}} value='{{thresholdPercentage}}'{{/thresholdPercentage}}></div></div>
@@ -245,7 +245,7 @@ define
                 var obj = obj || { id: id, cls: "GateInputPin" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj.absoluteValue = true;
-                temp = document.getElementById (id + "_aDLogicKind").value; if ("" != temp) { temp = AnalogToDigitalLogicKind[temp]; if ("undefined" != typeof (temp)) obj.aDLogicKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; }
+                temp = AnalogToDigitalLogicKind[document.getElementById (id + "_aDLogicKind").value]; if (temp) obj.aDLogicKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; else delete obj.aDLogicKind;
                 temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
                 temp = document.getElementById (id + "_negate").checked; if (temp) obj.negate = true;
                 temp = document.getElementById (id + "_thresholdPercentage").value; if ("" != temp) obj.thresholdPercentage = temp;
@@ -350,7 +350,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.RemedialActionSchemeKind = []; if (!obj.kind) obj.RemedialActionSchemeKind.push ({ id: '', selected: true}); for (var property in RemedialActionSchemeKind) obj.RemedialActionSchemeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindRemedialActionSchemeKind = [{ id: '', selected: (!obj.kind)}]; for (var property in RemedialActionSchemeKind) obj.kindRemedialActionSchemeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.TriggerCondition) obj.TriggerCondition_string = obj.TriggerCondition.join ();
                 if (obj.Stage) obj.Stage_string = obj.Stage.join ();
             }
@@ -358,7 +358,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.RemedialActionSchemeKind;
+                delete obj.kindRemedialActionSchemeKind;
                 delete obj.TriggerCondition_string;
                 delete obj.Stage_string;
             }
@@ -374,7 +374,7 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_armed'>armed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#RemedialActionSchemeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemedialActionSchemeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindRemedialActionSchemeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindRemedialActionSchemeKind}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalArmed'>normalArmed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='{{id}}_GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
                     </div>
@@ -390,7 +390,7 @@ define
                 var obj = obj || { id: id, cls: "RemedialActionScheme" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_armed").checked; if (temp) obj.armed = true;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = RemedialActionSchemeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; }
+                temp = RemedialActionSchemeKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj.normalArmed = true;
                 temp = document.getElementById (id + "_GateArmed").value; if ("" != temp) obj.GateArmed = temp;
 
@@ -936,7 +936,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.GateLogicKind = []; if (!obj.kind) obj.GateLogicKind.push ({ id: '', selected: true}); for (var property in GateLogicKind) obj.GateLogicKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindGateLogicKind = [{ id: '', selected: (!obj.kind)}]; for (var property in GateLogicKind) obj.kindGateLogicKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.GateInputPin) obj.GateInputPin_string = obj.GateInputPin.join ();
                 if (obj.RemedialActionScheme) obj.RemedialActionScheme_string = obj.RemedialActionScheme.join ();
                 if (obj.ProtectiveActionCom) obj.ProtectiveActionCom_string = obj.ProtectiveActionCom.join ();
@@ -951,7 +951,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.GateLogicKind;
+                delete obj.kindGateLogicKind;
                 delete obj.GateInputPin_string;
                 delete obj.RemedialActionScheme_string;
                 delete obj.ProtectiveActionCom_string;
@@ -973,7 +973,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#GateLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GateLogicKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindGateLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindGateLogicKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -986,7 +986,7 @@ define
 
                 var obj = obj || { id: id, cls: "Gate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = GateLogicKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; }
+                temp = GateLogicKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; else delete obj.kind;
 
                 return (obj);
             }
@@ -1211,7 +1211,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CalculationKind = []; if (!obj.kind) obj.CalculationKind.push ({ id: '', selected: true}); for (var property in CalculationKind) obj.CalculationKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindCalculationKind = [{ id: '', selected: (!obj.kind)}]; for (var property in CalculationKind) obj.kindCalculationKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.MeasurementCalculatorInput) obj.MeasurementCalculatorInput_string = obj.MeasurementCalculatorInput.join ();
                 if (obj.PinMeasurement) obj.PinMeasurement_string = obj.PinMeasurement.join ();
             }
@@ -1219,7 +1219,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CalculationKind;
+                delete obj.kindCalculationKind;
                 delete obj.MeasurementCalculatorInput_string;
                 delete obj.PinMeasurement_string;
             }
@@ -1234,7 +1234,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#CalculationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CalculationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCalculationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCalculationKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1247,7 +1247,7 @@ define
 
                 var obj = obj || { id: id, cls: "MeasurementCalculator" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CalculationKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; }
+                temp = CalculationKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; else delete obj.kind;
 
                 return (obj);
             }
@@ -1576,13 +1576,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PinEquipmentKind = []; if (!obj.kind) obj.PinEquipmentKind.push ({ id: '', selected: true}); for (var property in PinEquipmentKind) obj.PinEquipmentKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindPinEquipmentKind = [{ id: '', selected: (!obj.kind)}]; for (var property in PinEquipmentKind) obj.kindPinEquipmentKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PinEquipmentKind;
+                delete obj.kindPinEquipmentKind;
             }
 
             edit_template ()
@@ -1595,7 +1595,7 @@ define
                     `
                     + GateInputPin.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#PinEquipmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinEquipmentKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPinEquipmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPinEquipmentKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
                     </fieldset>
@@ -1609,7 +1609,7 @@ define
 
                 var obj = obj || { id: id, cls: "PinEquipment" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinEquipmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; }
+                temp = PinEquipmentKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);
@@ -1813,13 +1813,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PinTerminalKind = []; if (!obj.kind) obj.PinTerminalKind.push ({ id: '', selected: true}); for (var property in PinTerminalKind) obj.PinTerminalKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindPinTerminalKind = [{ id: '', selected: (!obj.kind)}]; for (var property in PinTerminalKind) obj.kindPinTerminalKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PinTerminalKind;
+                delete obj.kindPinTerminalKind;
             }
 
             edit_template ()
@@ -1832,7 +1832,7 @@ define
                     `
                     + GateInputPin.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#PinTerminalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinTerminalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPinTerminalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPinTerminalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
                     </fieldset>
@@ -1846,7 +1846,7 @@ define
 
                 var obj = obj || { id: id, cls: "PinTerminal" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinTerminalKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; }
+                temp = PinTerminalKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
                 return (obj);
@@ -1935,13 +1935,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PinBranchGroupKind = []; if (!obj.kind) obj.PinBranchGroupKind.push ({ id: '', selected: true}); for (var property in PinBranchGroupKind) obj.PinBranchGroupKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindPinBranchGroupKind = [{ id: '', selected: (!obj.kind)}]; for (var property in PinBranchGroupKind) obj.kindPinBranchGroupKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PinBranchGroupKind;
+                delete obj.kindPinBranchGroupKind;
             }
 
             edit_template ()
@@ -1954,7 +1954,7 @@ define
                     `
                     + GateInputPin.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#PinBranchGroupKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinBranchGroupKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPinBranchGroupKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPinBranchGroupKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BranchGroup'>BranchGroup: </label><div class='col-sm-8'><input id='{{id}}_BranchGroup' class='form-control' type='text'{{#BranchGroup}} value='{{BranchGroup}}'{{/BranchGroup}}></div></div>
                     </div>
                     </fieldset>
@@ -1968,7 +1968,7 @@ define
 
                 var obj = obj || { id: id, cls: "PinBranchGroup" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinBranchGroupKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; }
+                temp = PinBranchGroupKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
 
                 return (obj);
@@ -2323,13 +2323,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ProtectiveActionAdjustmentKind = []; if (!obj.kind) obj.ProtectiveActionAdjustmentKind.push ({ id: '', selected: true}); for (var property in ProtectiveActionAdjustmentKind) obj.ProtectiveActionAdjustmentKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindProtectiveActionAdjustmentKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ProtectiveActionAdjustmentKind) obj.kindProtectiveActionAdjustmentKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ProtectiveActionAdjustmentKind;
+                delete obj.kindProtectiveActionAdjustmentKind;
             }
 
             edit_template ()
@@ -2344,7 +2344,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_byPercentage'>byPercentage: </label><div class='col-sm-8'><input id='{{id}}_byPercentage' class='form-control' type='text'{{#byPercentage}} value='{{byPercentage}}'{{/byPercentage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_byValue'>byValue: </label><div class='col-sm-8'><input id='{{id}}_byValue' class='form-control' type='text'{{#byValue}} value='{{byValue}}'{{/byValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ProtectiveActionAdjustmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProtectiveActionAdjustmentKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindProtectiveActionAdjustmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindProtectiveActionAdjustmentKind}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_reduce'>reduce: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_reduce' class='form-check-input' type='checkbox'{{#reduce}} checked{{/reduce}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_setValue'>setValue: </label><div class='col-sm-8'><input id='{{id}}_setValue' class='form-control' type='text'{{#setValue}} value='{{setValue}}'{{/setValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurement'>Measurement: </label><div class='col-sm-8'><input id='{{id}}_Measurement' class='form-control' type='text'{{#Measurement}} value='{{Measurement}}'{{/Measurement}}></div></div>
@@ -2364,7 +2364,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_byPercentage").value; if ("" != temp) obj.byPercentage = temp;
                 temp = document.getElementById (id + "_byValue").value; if ("" != temp) obj.byValue = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ProtectiveActionAdjustmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; }
+                temp = ProtectiveActionAdjustmentKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_reduce").checked; if (temp) obj.reduce = true;
                 temp = document.getElementById (id + "_setValue").value; if ("" != temp) obj.setValue = temp;
                 temp = document.getElementById (id + "_Measurement").value; if ("" != temp) obj.Measurement = temp;
@@ -2510,24 +2510,32 @@ define
 
         return (
             {
+                CalculationKind: CalculationKind,
                 PinMeasurement: PinMeasurement,
                 Stage: Stage,
                 PinBranchGroup: PinBranchGroup,
+                AnalogToDigitalLogicKind: AnalogToDigitalLogicKind,
                 ProtectiveActionRegulation: ProtectiveActionRegulation,
                 TriggerCondition: TriggerCondition,
+                GateLogicKind: GateLogicKind,
                 ProtectiveActionCollection: ProtectiveActionCollection,
+                PinBranchGroupKind: PinBranchGroupKind,
                 ProtectiveActionAdjustment: ProtectiveActionAdjustment,
                 PinEquipment: PinEquipment,
                 Gate: Gate,
                 GateInputPin: GateInputPin,
+                PinEquipmentKind: PinEquipmentKind,
                 MeasurementCalculator: MeasurementCalculator,
-                PinTerminal: PinTerminal,
                 StageTrigger: StageTrigger,
+                PinTerminal: PinTerminal,
                 PinGate: PinGate,
+                RemedialActionSchemeKind: RemedialActionSchemeKind,
+                ProtectiveActionAdjustmentKind: ProtectiveActionAdjustmentKind,
                 MeasurementCalculatorInput: MeasurementCalculatorInput,
                 ProtectiveAction: ProtectiveAction,
                 ProtectiveActionEquipment: ProtectiveActionEquipment,
-                RemedialActionScheme: RemedialActionScheme
+                RemedialActionScheme: RemedialActionScheme,
+                PinTerminalKind: PinTerminalKind
             }
         );
     }

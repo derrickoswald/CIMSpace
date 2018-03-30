@@ -452,13 +452,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.StaticLoadModelKind = []; if (!obj.staticLoadModelType) obj.StaticLoadModelKind.push ({ id: '', selected: true}); for (var property in StaticLoadModelKind) obj.StaticLoadModelKind.push ({ id: property, selected: obj.staticLoadModelType && obj.staticLoadModelType.endsWith ('.' + property)});
+                obj.staticLoadModelTypeStaticLoadModelKind = [{ id: '', selected: (!obj.staticLoadModelType)}]; for (var property in StaticLoadModelKind) obj.staticLoadModelTypeStaticLoadModelKind.push ({ id: property, selected: obj.staticLoadModelType && obj.staticLoadModelType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.StaticLoadModelKind;
+                delete obj.staticLoadModelTypeStaticLoadModelKind;
             }
 
             edit_template ()
@@ -487,7 +487,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kq3'>kq3: </label><div class='col-sm-8'><input id='{{id}}_kq3' class='form-control' type='text'{{#kq3}} value='{{kq3}}'{{/kq3}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kq4'>kq4: </label><div class='col-sm-8'><input id='{{id}}_kq4' class='form-control' type='text'{{#kq4}} value='{{kq4}}'{{/kq4}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kqf'>kqf: </label><div class='col-sm-8'><input id='{{id}}_kqf' class='form-control' type='text'{{#kqf}} value='{{kqf}}'{{/kqf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_staticLoadModelType'>staticLoadModelType: </label><div class='col-sm-8'><select id='{{id}}_staticLoadModelType' class='form-control custom-select'>{{#StaticLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StaticLoadModelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_staticLoadModelType'>staticLoadModelType: </label><div class='col-sm-8'><select id='{{id}}_staticLoadModelType' class='form-control custom-select'>{{#staticLoadModelTypeStaticLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/staticLoadModelTypeStaticLoadModelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadAggregate'>LoadAggregate: </label><div class='col-sm-8'><input id='{{id}}_LoadAggregate' class='form-control' type='text'{{#LoadAggregate}} value='{{LoadAggregate}}'{{/LoadAggregate}}></div></div>
                     </div>
                     </fieldset>
@@ -517,7 +517,7 @@ define
                 temp = document.getElementById (id + "_kq3").value; if ("" != temp) obj.kq3 = temp;
                 temp = document.getElementById (id + "_kq4").value; if ("" != temp) obj.kq4 = temp;
                 temp = document.getElementById (id + "_kqf").value; if ("" != temp) obj.kqf = temp;
-                temp = document.getElementById (id + "_staticLoadModelType").value; if ("" != temp) { temp = StaticLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.staticLoadModelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; }
+                temp = StaticLoadModelKind[document.getElementById (id + "_staticLoadModelType").value]; if (temp) obj.staticLoadModelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; else delete obj.staticLoadModelType;
                 temp = document.getElementById (id + "_LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
 
                 return (obj);
@@ -783,13 +783,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.GenericNonLinearLoadModelKind = []; if (!obj.genericNonLinearLoadModelType) obj.GenericNonLinearLoadModelKind.push ({ id: '', selected: true}); for (var property in GenericNonLinearLoadModelKind) obj.GenericNonLinearLoadModelKind.push ({ id: property, selected: obj.genericNonLinearLoadModelType && obj.genericNonLinearLoadModelType.endsWith ('.' + property)});
+                obj.genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind = [{ id: '', selected: (!obj.genericNonLinearLoadModelType)}]; for (var property in GenericNonLinearLoadModelKind) obj.genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind.push ({ id: property, selected: obj.genericNonLinearLoadModelType && obj.genericNonLinearLoadModelType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.GenericNonLinearLoadModelKind;
+                delete obj.genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind;
             }
 
             edit_template ()
@@ -804,7 +804,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bs'>bs: </label><div class='col-sm-8'><input id='{{id}}_bs' class='form-control' type='text'{{#bs}} value='{{bs}}'{{/bs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bt'>bt: </label><div class='col-sm-8'><input id='{{id}}_bt' class='form-control' type='text'{{#bt}} value='{{bt}}'{{/bt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genericNonLinearLoadModelType'>genericNonLinearLoadModelType: </label><div class='col-sm-8'><select id='{{id}}_genericNonLinearLoadModelType' class='form-control custom-select'>{{#GenericNonLinearLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GenericNonLinearLoadModelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genericNonLinearLoadModelType'>genericNonLinearLoadModelType: </label><div class='col-sm-8'><select id='{{id}}_genericNonLinearLoadModelType' class='form-control custom-select'>{{#genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ls'>ls: </label><div class='col-sm-8'><input id='{{id}}_ls' class='form-control' type='text'{{#ls}} value='{{ls}}'{{/ls}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lt'>lt: </label><div class='col-sm-8'><input id='{{id}}_lt' class='form-control' type='text'{{#lt}} value='{{lt}}'{{/lt}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pt'>pt: </label><div class='col-sm-8'><input id='{{id}}_pt' class='form-control' type='text'{{#pt}} value='{{pt}}'{{/pt}}></div></div>
@@ -825,7 +825,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_bs").value; if ("" != temp) obj.bs = temp;
                 temp = document.getElementById (id + "_bt").value; if ("" != temp) obj.bt = temp;
-                temp = document.getElementById (id + "_genericNonLinearLoadModelType").value; if ("" != temp) { temp = GenericNonLinearLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.genericNonLinearLoadModelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; }
+                temp = GenericNonLinearLoadModelKind[document.getElementById (id + "_genericNonLinearLoadModelType").value]; if (temp) obj.genericNonLinearLoadModelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; else delete obj.genericNonLinearLoadModelType;
                 temp = document.getElementById (id + "_ls").value; if ("" != temp) obj.ls = temp;
                 temp = document.getElementById (id + "_lt").value; if ("" != temp) obj.lt = temp;
                 temp = document.getElementById (id + "_pt").value; if ("" != temp) obj.pt = temp;
@@ -962,6 +962,8 @@ define
 
         return (
             {
+                GenericNonLinearLoadModelKind: GenericNonLinearLoadModelKind,
+                StaticLoadModelKind: StaticLoadModelKind,
                 LoadGenericNonLinear: LoadGenericNonLinear,
                 LoadStatic: LoadStatic,
                 LoadMotor: LoadMotor,

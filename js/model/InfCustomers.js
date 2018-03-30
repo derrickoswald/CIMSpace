@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Core"],
+    ["model/base", "model/Common", "model/Core", "model/Domain"],
     /**
      * The package is used to define detailed customer models.
      *
      */
-    function (base, Common, Core)
+    function (base, Common, Core, Domain)
     {
 
         /**
@@ -222,13 +222,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DateTimeInterval = []; if (!obj.applicationPeriod) obj.DateTimeInterval.push ({ id: '', selected: true}); for (var property in DateTimeInterval) obj.DateTimeInterval.push ({ id: property, selected: obj.applicationPeriod && obj.applicationPeriod.endsWith ('.' + property)});
+                obj.applicationPeriodDateTimeInterval = [{ id: '', selected: (!obj.applicationPeriod)}]; for (var property in Domain.DateTimeInterval) obj.applicationPeriodDateTimeInterval.push ({ id: property, selected: obj.applicationPeriod && obj.applicationPeriod.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DateTimeInterval;
+                delete obj.applicationPeriodDateTimeInterval;
             }
 
             edit_template ()
@@ -241,7 +241,7 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_applicationPeriod'>applicationPeriod: </label><div class='col-sm-8'><select id='{{id}}_applicationPeriod' class='form-control custom-select'>{{#DateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_applicationPeriod'>applicationPeriod: </label><div class='col-sm-8'><select id='{{id}}_applicationPeriod' class='form-control custom-select'>{{#applicationPeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/applicationPeriodDateTimeInterval}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_automaticPay'>automaticPay: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_automaticPay' class='form-check-input' type='checkbox'{{#automaticPay}} checked{{/automaticPay}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_payAmount'>payAmount: </label><div class='col-sm-8'><input id='{{id}}_payAmount' class='form-control' type='text'{{#payAmount}} value='{{payAmount}}'{{/payAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceRequirement'>serviceRequirement: </label><div class='col-sm-8'><input id='{{id}}_serviceRequirement' class='form-control' type='text'{{#serviceRequirement}} value='{{serviceRequirement}}'{{/serviceRequirement}}></div></div>
@@ -257,7 +257,7 @@ define
 
                 var obj = obj || { id: id, cls: "ServiceGuarantee" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_applicationPeriod").value; if ("" != temp) { temp = DateTimeInterval[temp]; if ("undefined" != typeof (temp)) obj.applicationPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; }
+                temp = Domain.DateTimeInterval[document.getElementById (id + "_applicationPeriod").value]; if (temp) obj.applicationPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.applicationPeriod;
                 temp = document.getElementById (id + "_automaticPay").checked; if (temp) obj.automaticPay = true;
                 temp = document.getElementById (id + "_payAmount").value; if ("" != temp) obj.payAmount = temp;
                 temp = document.getElementById (id + "_serviceRequirement").value; if ("" != temp) obj.serviceRequirement = temp;
@@ -975,14 +975,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CustomerBillingKind = []; if (!obj.kind) obj.CustomerBillingKind.push ({ id: '', selected: true}); for (var property in CustomerBillingKind) obj.CustomerBillingKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindCustomerBillingKind = [{ id: '', selected: (!obj.kind)}]; for (var property in CustomerBillingKind) obj.kindCustomerBillingKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.ErpInvoiceLineItems) obj.ErpInvoiceLineItems_string = obj.ErpInvoiceLineItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CustomerBillingKind;
+                delete obj.kindCustomerBillingKind;
                 delete obj.ErpInvoiceLineItems_string;
             }
 
@@ -998,7 +998,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billingDate'>billingDate: </label><div class='col-sm-8'><input id='{{id}}_billingDate' class='form-control' type='text'{{#billingDate}} value='{{billingDate}}'{{/billingDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dueDate'>dueDate: </label><div class='col-sm-8'><input id='{{id}}_dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#CustomerBillingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CustomerBillingKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCustomerBillingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCustomerBillingKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastPaymentAmt'>lastPaymentAmt: </label><div class='col-sm-8'><input id='{{id}}_lastPaymentAmt' class='form-control' type='text'{{#lastPaymentAmt}} value='{{lastPaymentAmt}}'{{/lastPaymentAmt}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastPaymentDate'>lastPaymentDate: </label><div class='col-sm-8'><input id='{{id}}_lastPaymentDate' class='form-control' type='text'{{#lastPaymentDate}} value='{{lastPaymentDate}}'{{/lastPaymentDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outBalance'>outBalance: </label><div class='col-sm-8'><input id='{{id}}_outBalance' class='form-control' type='text'{{#outBalance}} value='{{outBalance}}'{{/outBalance}}></div></div>
@@ -1020,7 +1020,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_billingDate").value; if ("" != temp) obj.billingDate = temp;
                 temp = document.getElementById (id + "_dueDate").value; if ("" != temp) obj.dueDate = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerBillingKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; }
+                temp = CustomerBillingKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_lastPaymentAmt").value; if ("" != temp) obj.lastPaymentAmt = temp;
                 temp = document.getElementById (id + "_lastPaymentDate").value; if ("" != temp) obj.lastPaymentDate = temp;
                 temp = document.getElementById (id + "_outBalance").value; if ("" != temp) obj.outBalance = temp;
@@ -1050,8 +1050,9 @@ define
                 ExternalCustomerAgreement: ExternalCustomerAgreement,
                 SubscribePowerCurve: SubscribePowerCurve,
                 ComplianceEvent: ComplianceEvent,
-                StandardIndustryCode: StandardIndustryCode,
+                CustomerBillingKind: CustomerBillingKind,
                 PowerQualityPricing: PowerQualityPricing,
+                StandardIndustryCode: StandardIndustryCode,
                 WorkBillingInfo: WorkBillingInfo,
                 CustomerBillingInfo: CustomerBillingInfo,
                 ServiceGuarantee: ServiceGuarantee
