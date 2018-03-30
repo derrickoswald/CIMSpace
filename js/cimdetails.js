@@ -95,26 +95,18 @@ define
 
             detail_text ()
             {
-                var cim_data = this._cimmap.get_data ();
-                var mrid = this._cimmap.get_selected_feature ();
-                var feature = cim_data.Element[mrid];
+                var cimmap = this._cimmap;
+                var mrid = cimmap.get_selected_feature ();
+                var feature = cimmap.get ("Element", mrid);
                 if (!feature)
                     return ("");
                 var cls = cim.class_map (feature);
                 var template = cls.prototype.template ();
                 var text = mustache.render (template, feature);
-                var conducting = cim_data.ConductingEquipment ? cim_data.ConductingEquipment[mrid] : undefined;
-                if ("undefined" != typeof (conducting))
+                var conducting = cimmap.get ("ConductingEquipment", mrid);
+                if (conducting)
                 {
-                    var terminals = cim_data.Terminal;
-                    var terms = [];
-                    for (var property in terminals)
-                        if (terminals.hasOwnProperty (property))
-                        {
-                            var terminal = terminals[property];
-                            if (mrid == terminal.ConductingEquipment)
-                                terms.push (terminal);
-                        }
+                    var terms = cimmap.fetch ("Terminal", terminal => mrid == terminal.ConductingEquipment);
                     if (0 != terms.length)
                     {
                         var connected = terms.map (
@@ -122,20 +114,19 @@ define
                             {
                                 var node = terminal.ConnectivityNode;
                                 var equipment = [];
-                                for (var property in terminals)
-                                    if (terminals.hasOwnProperty (property))
+                                cimmap.forAll ("Terminal",
+                                    terminal =>
                                     {
-                                        var term = terminals[property];
-                                        if (!term.EditDisposition || (term.EditDisposition != "delete"))
-                                            if (node == term.ConnectivityNode)
-                                                if (mrid != term.ConductingEquipment)
-                                                    if (!cim_data.Element[term.ConductingEquipment].EditDisposition || (cim_data.Element[term.ConductingEquipment].EditDisposition != "delete"))
-                                                        equipment.push (term.ConductingEquipment);
+                                        if (node == terminal.ConnectivityNode) // same node
+                                            if (mrid != terminal.ConductingEquipment) // not the same equipment
+                                                if (cimmap.get ("ConductingEquipment", terminal.ConductingEquipment)) // and not deleted
+                                                    equipment.push (terminal.ConductingEquipment);
                                     }
+                                );
                                 return ({ terminal: terminal, equipment: equipment });
                             }
                         );
-                        if (connected.some (function (element) { return (0 != element.equipment.length); }))
+                        if (connected.some (obj => 0 != obj.equipment.length))
                         {
                             text = text + "<div>Connected:</div>\n";
                             for (var i = 0; i < connected.length; i++)
@@ -155,9 +146,9 @@ define
                 }
 
                 // add links to other selected elements
-                var mrids = this._cimmap.get_selected_features ();
+                var mrids = cimmap.get_selected_features ();
                 if (null != mrids)
-                    if (mrids.some (function (element) { return (element != mrid); }))
+                    if (mrids.some (id => id != mrid))
                     {
                         text = text + "<div>Selected:</div>\n";
                         for (var i = 0; i < mrids.length; i++)
@@ -168,12 +159,12 @@ define
                     }
 
                 // add details from simulation or analysis
-                var toHTML = this._cimmap.get_themer ().getTheme ().toHTML;
+                var toHTML = cimmap.get_themer ().getTheme ().toHTML;
                 if (toHTML)
                 {
-                    var html = toHTML.bind (this._cimmap.get_themer ().getTheme ()) (feature);
+                    var html = toHTML.bind (cimmap.get_themer ().getTheme ()) (feature);
                     if ("" != html)
-                        text = text + "<div>" + this._cimmap.get_themer ().getTheme ().getTitle () + ":</div>\n" + html;
+                        text = text + "<div>" + cimmap.get_themer ().getTheme ().getTitle () + ":</div>\n" + html;
                 }
 
                 return (text);
@@ -202,25 +193,22 @@ define
             {
                 if (this._cimmap.show_streetview ())
                 {
-                    var cim_data = this._cimmap.get_data ();
                     var mrid = this._cimmap.get_selected_feature ();
-                    var feature = cim_data.Element[mrid]
+                    var feature = this._cimmap.get ("Element", mrid);
                     if (feature.Location)
                     {
-                        var cim_data = this._cimmap.get_data ();
-                        var location = cim_data.Location[feature.Location];
+                        var location = this._cimmap.get ("Location", feature.Location);
                         if (location.CoordinateSystem == "wgs84")
                         {
                             var id = location.id;
                             var coordinates = [];
-                            var points = cim_data.PositionPoint;
-                            for (var property in points)
-                                if (points.hasOwnProperty (property))
+                            this._cimmap.forAll ("PositionPoint",
+                                point =>
                                 {
-                                    var point = points[property];
                                     if (point.Location == id)
                                         coordinates[Number (point.sequenceNumber)] = [point.xPosition, point.yPosition];
                                 }
+                            );
                             if (0 != coordinates.length)
                             {
                                 if ("undefined" == typeof (coordinates[0]))

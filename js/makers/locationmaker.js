@@ -28,10 +28,9 @@ define
             ensure_coordinate_systems ()
             {
                 var ret = [];
-                var data = this._cimmap.get_data ();
-                if (!data || !data.CoordinateSystem || !data.CoordinateSystem["wgs84"])
+                if (!this._cimmap.get ("CoordinateSystem", "wgs84"))
                     ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "wgs84", mRID: "wgs84", name: "WGS 84", description: "new World Geodetic System", crsUrn: "EPSG::4326" }, this._cimedit.new_features ()));
-                if (!data || !data.CoordinateSystem || !data.CoordinateSystem["pseudo_wgs84"])
+                if (!this._cimmap.get ("CoordinateSystem", "pseudo_wgs84"))
                     ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "pseudo_wgs84", mRID: "pseudo_wgs84", name: "WGS 84", description: "schematic coordinates translated to the new World Geodetic System", crsUrn: "EPSG::4326" }, this._cimedit.new_features ()));
                 return (ret);
             }

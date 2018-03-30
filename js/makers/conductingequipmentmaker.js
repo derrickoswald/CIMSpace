@@ -61,12 +61,11 @@ define
             ensure_voltages ()
             {
                 var ret = [];
-                var data = this._cimmap.get_data ();
-                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_150000"])
+                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_150000"))
                     ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_150000", mRID: "BaseVoltage_150000", name: "150kV", description: "high voltage", nominalVoltage: 150.0 }, this._cimedit.new_features ()));
-                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_16000"])
+                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_16000"))
                     ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, this._cimedit.new_features ()));
-                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_400"])
+                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_400"))
                     ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, this._cimedit.new_features ()));
                 return (ret);
             }
@@ -84,10 +83,9 @@ define
             ensure_status ()
             {
                 var ret = [];
-                var data = this._cimmap.get_data ();
-                if (!data || !data.SvStatus || !data.SvStatus["in_use"])
+                if (!this._cimmap.get ("SvStatus", "in_use"))
                     ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use", description: "Status for equipment in use.", inService: true }, this._cimedit.new_features ()));
-                if (!data || !data.SvStatus || !data.SvStatus["not_in_use"])
+                if (!this._cimmap.get ("SvStatus", "not_in_use"))
                     ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use", description: "Status for equipment not in use", inService: false }, this._cimedit.new_features ()));
                 return (ret);
             }

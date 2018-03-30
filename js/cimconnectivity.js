@@ -127,16 +127,7 @@ define
             // get the terminals for the device
             get_terminals_for_equipment (equipment)
             {
-                var ret = [];
-                var data = this._cimmap.get_data ();
-                var terminals = data.Terminal;
-                for (var id in terminals)
-                {
-                    var terminal = terminals[id];
-                    if (terminal.ConductingEquipment == equipment.id)
-                        if (!terminal.EditDisposition || (terminal.EditDisposition != "delete"))
-                            ret.push (terminal);
-                }
+                var ret = this._cimmap.fetch ("Terminal", terminal => terminal.ConductingEquipment == equipment.id);
                 // sort by sequenceNumber
                 ret.sort ((a, b) => a.sequenceNumber - b.sequenceNumber);
 
@@ -159,14 +150,8 @@ define
                     if (equipment.BaseVoltage)
                         connectivity.BaseVoltage = equipment.BaseVoltage;
                     else
-                    {
                         // for PowerTransformer look for the end
-                        var data = this._cimmap.get_data ();
-                        var ends = data.PowerTransformerEnd;
-                        for (var end in ends)
-                            if (ends[end].Terminal == terminal.id)
-                                connectivity.BaseVoltage = ends[end].BaseVoltage;
-                    }
+                        this._cimmap.forAll ("PowerTransformerEnd", end => { if (end.Terminal == terminal.id) connectivity.BaseVoltage = end.BaseVoltage; });
                     if (terminal.ConnectivityNode)
                         connectivity.ConnectivityNode = terminal.ConnectivityNode;
                     ret.push (connectivity);
@@ -190,14 +175,10 @@ define
                 var terminals = this.get_terminals_for_equipment (equipment);
 
                 // for Conductor objects (with a length attribute) keep only the nearest one
-                var data = this._cimmap.get_data ();
                 if (point && terminals.length > 1 && equipment.length)
                 {
-                    var points = data.PositionPoint;
                     var ordered = [];
-                    for (var id in points)
-                        if (points[id].Location == equipment.Location)
-                            ordered[points[id].sequenceNumber] = points[id];
+                    this._cimmap.forAll ("PositionPoint", point => { if (point.Location == equipment.Location) ordered[point.sequenceNumber] = point; });
                     // here we un-screw up the sequence numbers on the PositionPoint elements
                     if ("undefined" == typeof (ordered[0]))
                         ordered = ordered.slice (1);
@@ -222,6 +203,7 @@ define
             get_connectivity_for_equipments (equipments, all, point)
             {
                 var ret = [];
+                var cimmap = this._cimmap;
                 var connectivities = Array.prototype.concat.apply ([], equipments.map (e => this.get_connectivity_for_equipment (e, point)));
                 // combine equivalent ConnectivityNode
                 var list = {};
@@ -235,20 +217,14 @@ define
                 }
                 // add equipment connected but not hovered over
                 if (all)
-                {
-                    var data = this._cimmap.get_data ();
-                    var terminals = data.Terminal;
                     for (var id in list)
-                    {
-                        for (var term in terminals)
-                        {
-                            var terminal = terminals[term];
-                            if (!terminal.EditDisposition || (terminal.EditDisposition != "delete"))
+                        cimmap.forAll ("Terminal",
+                            terminal =>
+                            {
                                 if (terminal.ConnectivityNode == id)
-                                {
                                     if (!list[id].find (x => x.ConductingEquipment.id == terminal.ConductingEquipment))
                                     {
-                                        var equipment = data.ConductingEquipment[terminal.ConductingEquipment];
+                                        var equipment = cimmap.get ("ConductingEquipment", terminal.ConductingEquipment);
                                         var connectivity =
                                             {
                                                 ConnectivityNode: id,
@@ -259,20 +235,11 @@ define
                                         if (equipment.BaseVoltage)
                                             connectivity.BaseVoltage = equipment.BaseVoltage;
                                         else
-                                        {
-                                            // for PowerTransformer look for the end
-                                            var ends = data.PowerTransformerEnd;
-                                            for (var end in ends)
-                                                if (ends[end].Terminal == terminal.id)
-                                                    connectivity.BaseVoltage = ends[end].BaseVoltage;
-                                        }
-
+                                            this._cimmap.forAll ("PowerTransformerEnd", end => { if (end.Terminal == terminal.id) connectivity.BaseVoltage = end.BaseVoltage; });
                                         list[id].push (connectivity);
                                     }
-                                }
-                        }
-                    }
-                }
+                            }
+                        );
                 for (var id in list)
                     ret.push ({ ConnectivityNode: id, Equipment: list[id] });
 //            [
@@ -699,6 +666,7 @@ define
             connectivity_mousemove_listener (obj, event)
             {
                 var selection = null;
+                var cimmap = this._cimmap;
                 // check for out of bounds
                 if (this._anchor)
                 {
@@ -719,8 +687,7 @@ define
                 if (selection)
                 {
                     // keep only other conducting equipment
-                    var data = this._cimmap.get_data ();
-                    var candidates = selection.filter (mrid => mrid != obj.id && data.ConductingEquipment[mrid]);
+                    var candidates = selection.filter (mrid => mrid != obj.id && this._cimmap.get ("ConductingEquipment", mrid));
                     if (candidates.length > 0)
                     {
                         if (this._popup)
@@ -731,7 +698,7 @@ define
                         var lnglat = event.lngLat;
                         if (0 == this._candidates.filter (x => x.Marker).length)
                             this._anchor = lnglat;
-                        var d = this.get_connectivity_for_equipments (candidates.map (x => data.ConductingEquipment[x]), true, [lnglat.lng, lnglat.lat]);
+                        var d = this.get_connectivity_for_equipments (candidates.map (x => cimmap.get ("ConductingEquipment", x)), true, [lnglat.lng, lnglat.lat]);
                         var neuveax = d.filter (x => !this._candidates.find (y => y.ConnectivityNode == x.ConnectivityNode));
                         if (0 != neuveax.length)
                         {
@@ -819,20 +786,16 @@ define
                     this.reset_gui ();
                 if (mrid)
                 {
-                    var cim_data = this._cimmap.get_data ();
-                    if (cim_data)
+                    var equipment = this._cimmap.get ("ConductingEquipment", mrid);
+                    if (equipment)
                     {
-                        var equipment = cim_data.ConductingEquipment[mrid];
-                        if (equipment)
-                        {
-                            this._target = this.get_connectivity_for_equipment_terminals (equipment, this.get_terminals_for_equipment (equipment));
-                            this._candidates = this.get_connectivity_for_equipments ([equipment], true);
-                            this.reset_gui ();
-                        }
-                        else
-                            // not ConductingEquipment
-                            this.abort ();
+                        this._target = this.get_connectivity_for_equipment_terminals (equipment, this.get_terminals_for_equipment (equipment));
+                        this._candidates = this.get_connectivity_for_equipments ([equipment], true);
+                        this.reset_gui ();
                     }
+                    else
+                        // not ConductingEquipment
+                        this.abort ();
                 }
             }
 

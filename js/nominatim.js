@@ -191,34 +191,21 @@ define
                 var match = null;
                 if (this._cimmap)
                 {
-                    var data = this._cimmap.get_data ();
-                    if (data)
+                    function areEqual (obj1, obj2, filter)
                     {
-                        var towns = data.TownDetail;
-                        if (towns)
-                        {
-                            function areEqual (obj1, obj2, filter)
-                            {
-                                var a = JSON.stringify (obj1, filter);
-                                var b = JSON.stringify (obj2, filter);
-                                if (!a) a = "";
-                                if (!b) b = "";
-                                a = a.split ("").sort ().join ("");
-                                b = b.split ("").sort ().join ("");
-                                return (a == b);
-                            }
-                            function notid (key, value)
-                            {
-                                return (key != "id" ? (key != "EditDisposition" ? value : undefined) : undefined);
-                            }
-                            for (var id in towns)
-                            {
-                                var test = towns[id];
-                                if (areEqual (town, test, notid))
-                                    match = test;
-                            }
-                        }
+                        var a = JSON.stringify (obj1, filter);
+                        var b = JSON.stringify (obj2, filter);
+                        if (!a) a = "";
+                        if (!b) b = "";
+                        a = a.split ("").sort ().join ("");
+                        b = b.split ("").sort ().join ("");
+                        return (a == b);
                     }
+                    function notid (key, value)
+                    {
+                        return (key != "id" ? (key != "EditDisposition" ? value : undefined) : undefined);
+                    }
+                    this._cimmap.forAll ("TownDetail", test => { if (areEqual (town, test, notid)) match = test; });
                 }
                 return (match);
             }

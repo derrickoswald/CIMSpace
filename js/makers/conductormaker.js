@@ -41,45 +41,35 @@ define
             render_parameters ()
             {
                 var ret = mustache.render (this.class_template (), { classes: this.classes () });
-                var data = this._cimmap.get_data ();
-                if (data)
-                {
-                    var template =
-                    "    <div class='form-group row'>\n" +
-                    "      <label class='col-sm-4 col-form-label' for='cable_name'>Cable</label>\n" +
-                    "      <div class='col-sm-8'>\n" +
-                    "        <select id='cable_name' class='form-control custom-select'>\n" +
-                    "{{#cables}}\n" +
-                    "              <option value='{{id}}'>{{name}}</option>\n" +
-                    "{{/cables}}\n";
-                    "        </select>\n" +
-                    "      </div>\n" +
-                    "    </div>\n";
-                    var wireinfos = [];
-                    for (var name in data.WireInfo)
-                        if (data.WireInfo[name].PerLengthParameters)
-                            wireinfos.push (name);
-                    // for now we only understand the first PerLengthSequenceImpedance
-                    var cables = wireinfos.filter (name => data.PerLengthSequenceImpedance[data.WireInfo[name].PerLengthParameters[0]]);
-                    if (0 != cables.length)
-                        ret = ret + mustache.render (template, { cables: cables.map (x => data.WireInfo[x]) });
-                }
+                var template =
+                "    <div class='form-group row'>\n" +
+                "      <label class='col-sm-4 col-form-label' for='cable_name'>Cable</label>\n" +
+                "      <div class='col-sm-8'>\n" +
+                "        <select id='cable_name' class='form-control custom-select'>\n" +
+                "{{#cables}}\n" +
+                "              <option value='{{id}}'>{{name}}</option>\n" +
+                "{{/cables}}\n";
+                "        </select>\n" +
+                "      </div>\n" +
+                "    </div>\n";
+                var cimmap = this._cimmap;
+                var wireinfos = cimmap.fetch ("WireInfo", info => info.PerLengthParameters);
+                // for now we only understand the first PerLengthSequenceImpedance
+                var cables = wireinfos.filter (info => cimmap.get ("PerLengthSequenceImpedance", info.PerLengthParameters[0]));
+                if (0 != cables.length)
+                    ret = ret + mustache.render (template, { cables: cables });
                 return (ret);
             }
 
             submit_parameters ()
             {
                 var parameters = super.submit_parameters ();
-                var data = this._cimmap.get_data ();
-                if (data)
+                var cable_name = document.getElementById ("cable_name");
+                if (cable_name)
                 {
-                    var cable_name = document.getElementById ("cable_name");
-                    if (cable_name)
-                    {
-                        cable_name = cable_name.value;
-                        parameters.AssetDatasheet = cable_name; // add the cable type
-                        parameters.PerLengthImpedance = data.WireInfo[cable_name].PerLengthParameters[0]; // add the per length parameters
-                    }
+                    cable_name = cable_name.value;
+                    parameters.AssetDatasheet = cable_name; // add the cable type
+                    parameters.PerLengthImpedance = this._cimmap.get ("WireInfo", cable_name).PerLengthParameters[0]; // add the per length parameters
                 }
                 return (parameters);
             }
@@ -184,7 +174,7 @@ define
                 if (line.PerLengthImpedance)
                 {
                     // do we really want to set r+jx and r0+jx0 from length and PerLengthSequenceImpedance? Seems redundant.
-                    var plsi = this._cimmap.get_data ().PerLengthSequenceImpedance[line.PerLengthImpedance];
+                    var plsi = this._cimmap.get ("PerLengthSequenceImpedance", line.PerLengthImpedance);
                     var km = line.length / 1e3;
                     line.r = plsi.r * km;
                     line.x = plsi.x * km;

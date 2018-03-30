@@ -158,6 +158,11 @@ define
                     selects.item (i).onchange = this.change.bind (this);
             }
 
+            has_new_features ()
+            {
+                return ("undefined" != typeof (this._data));
+            }
+
             new_features ()
             {
                 if (!this._data)
@@ -368,22 +373,15 @@ define
             // true if obj is only referenced by element and no other
             only_related (obj, element)
             {
+                var ret = true;
+
                 var cls = cim.class_map (obj);
-                var data = this._cimmap.get_data ();
                 var relations = cls.prototype.relations ();
                 for (var i = 0; i < relations.length; i++)
                     if ((relations[i][2] == "0..1") || (relations[i][2] == "0..*"))
-                    {
-                        var related = data[relations[i][3]];
-                        if (related)
-                            for (var id in related)
-                            {
-                                var child = related[id];
-                                if (child[relations[i][4]] == obj.id && child.id != element.id)
-                                    return (false);
-                            }
-                    }
-                return (true);
+                        this._cimmap.forAll (relations[i][3], child => { if (child[relations[i][4]] == obj.id && child.id != element.id) ret = false; });
+
+                return (ret);
             }
 
             get_related (element)
@@ -395,75 +393,41 @@ define
                         ret.push (e);
                 }
                 var cls = cim.class_map (element);
-                var data = this._cimmap.get_data ();
-                if (data)
+                var relations = cls.prototype.relations ();
+                for (var i = 0; i < relations.length; i++)
+                    if (relations[i][1] == "0..1")
+                    {
+                        var ref = element[relations[i][0]];
+                        if (ref)
+                        {
+                            var obj = this._cimmap.get (relations[i][3], ref);
+                            if (obj && this.only_related (obj, element))
+                                add (obj);
+                        }
+                    }
+                    else
+                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
+                            this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] == element.id) add (obj); });
+                // get ConnectivityNode and PositionPoint
+                // ToDo: should it/can it be made fully recursive
+                for (var j = 0; j < ret.length; j++)
                 {
+                    var cls = cim.class_map (ret[j]);
                     var relations = cls.prototype.relations ();
                     for (var i = 0; i < relations.length; i++)
                         if (relations[i][1] == "0..1")
                         {
-                            var ref = element[relations[i][0]];
+                            var ref = ret[j][relations[i][0]];
                             if (ref)
                             {
-                                var related = data[relations[i][3]];
-                                if (related)
-                                {
-                                    var obj = related[ref];
-                                    if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
-                                        if (this.only_related (obj, element))
-                                            add (obj)
-                                }
+                                var obj = this._cimmap.get (relations[i][3], ref);
+                                if (obj && this.only_related (obj, ret[j]))
+                                    add (obj);
                             }
                         }
                         else
-                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
-                        {
-                            var related = data[relations[i][3]];
-                            if (related)
-                                for (var id in related)
-                                {
-                                    var obj = related[id];
-                                    if (obj[relations[i][4]] == element.id)
-                                        if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                            add (obj)
-                                }
-                        }
-                    // get ConnectivityNode and PositionPoint
-                    // ToDo: should it/can it be made fully recursive
-                    for (var j = 0; j < ret.length; j++)
-                    {
-                        var cls = cim.class_map (ret[j]);
-                        var relations = cls.prototype.relations ();
-                        for (var i = 0; i < relations.length; i++)
-                            if (relations[i][1] == "0..1")
-                            {
-                                var ref = ret[j][relations[i][0]];
-                                if (ref)
-                                {
-                                    var related = data[relations[i][3]];
-                                    if (related)
-                                    {
-                                        var obj = related[ref];
-                                        if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
-                                            if (this.only_related (obj, ret[j]))
-                                                add (obj)
-                                    }
-                                }
-                            }
-                        else
-                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
-                        {
-                            var related = data[relations[i][3]];
-                            if (related)
-                                for (var id in related)
-                                {
-                                    var obj = related[id];
-                                    if (obj[relations[i][4]] == ret[j].id)
-                                        if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                            add (obj)
-                                }
-                        }
-                    }
+                            if (relations[i][2] == "0..1" || relations[i][2] == "1")
+                                this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] == ret[j].id) add (obj); });
                 }
 
                 return (ret);

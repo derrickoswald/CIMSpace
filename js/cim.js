@@ -24,7 +24,7 @@ define
 
         /**
          * Convert a string into UTF-8 encoded (all high order bytes are zero) string.
-         * @see {http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html}
+         * @see {@link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html}
          * @param {String} str - the string to encode
          * @returns {String} UTF-8 encoded string
          * @function encode_utf8

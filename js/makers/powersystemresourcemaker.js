@@ -69,15 +69,9 @@ define
             {
                 var ret = {};
 
-                // here we un-screw up the sequence numbers on the PositionPoint elements
-                var data = this._cimmap.get_data ();
-                var points = data.PositionPoint;
                 var ordered = [];
-                for (var id in points)
-                {
-                    if (points[id].Location == equipment.Location)
-                        ordered[points[id].sequenceNumber] = points[id];
-                }
+                this._cimmap.forAll ("PositionPoint", point => { if (point.Location == equipment.Location) ordered[point.sequenceNumber] = point; });
+                // here we un-screw up the sequence numbers on the PositionPoint elements
                 if ("undefined" == typeof (ordered[0]))
                     ordered = ordered.slice (1);
 
@@ -158,18 +152,19 @@ define
             get_connectivity_for_point (point)
             {
                 var ret = {};
-                var data = this._cimmap.get_data ();
-                var location = data.Location[point.Location];
-                var equipment = data.ConductingEquipment;
+                var location = this._cimmap.get ("Location", point.Location);
                 var matches = [];
-                for (var id in equipment)
-                {
-                    if (equipment[id].Location == location.id)
-                    {
-                        matches.push (equipment[id]);
-                        console.log ("connectivity found to " + equipment[id].cls + ":" + equipment[id].id);
-                    }
-                }
+                if (location)
+                    this._cimmap.forAll ("ConductingEquipment",
+                        equipment =>
+                        {
+                            if (equipment.Location == location.id)
+                            {
+                                matches.push (equipment[id]);
+                                console.log ("connectivity found to " + equipment[id].cls + ":" + equipment[id].id);
+                            }
+                        }
+                    );
                 // if there are none, we have a problem Houston
                 // if there is only one, use the best terminal
                 if (1 == matches.length)
@@ -216,33 +211,30 @@ define
                 var ret = null;
 
                 // get PositionPoint with matching coordinates
-                var data = this._cimmap.get_data ();
-                if (null != data)
-                {
-                    var points = data.PositionPoint;
-                    if (null != points)
+                var matches = [];
+                this._cimmap.forAll ("PositionPoint",
+                    point =>
                     {
-                        var matches = [];
-                        for (var id in points)
+                        if (point.EditDisposition != "new") // don't find our own object
                         {
-                            var x = points[id].xPosition;
-                            var y = points[id].yPosition;
+                            var x = point.xPosition;
+                            var y = point.yPosition;
                             var dx = lng - x;
                             var dy = lat - y;
                             if (dx * dx + dy * dy < 1e-12) // ToDo: a parameter somehow?
                             {
-                                matches.push (points[id]);
-                                console.log ("match point d = " + (dx * dx + dy * dy).toString () + " " + id + " [" + points[id].xPosition + "," + points[id].yPosition + "]");
+                                matches.push (point);
+                                console.log ("match point d = " + (dx * dx + dy * dy).toString () + " " + point.id + " [" + point.xPosition + "," + point.yPosition + "]");
                             }
                         }
-                        // if there are no matches, bail out
-                        // if there is only one, use that one
-                        if (1 == matches.length)
-                            ret = this.get_connectivity_for_point (matches[0]);
-                        else if (1 < matches.length)
-                            ret = this.get_best_connectivity_for_points (matches);
                     }
-                }
+                );
+                // if there are no matches, bail out
+                // if there is only one, use that one
+                if (1 == matches.length)
+                    ret = this.get_connectivity_for_point (matches[0]);
+                else if (1 < matches.length)
+                    ret = this.get_best_connectivity_for_points (matches);
 
                 return (ret);
             }

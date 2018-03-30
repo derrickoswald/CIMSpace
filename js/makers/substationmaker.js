@@ -64,12 +64,11 @@ define
             ensure_stations ()
             {
                 var ret = [];
-                var data = this._cimmap.get_data ();
-                if (!data || !data.PSRType || !data.PSRType["PSRType_DistributionBox"])
+                if (!this._cimmap.get ("PSRType", "PSRType_DistributionBox"))
                     ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_DistributionBox", mRID: "PSRType_DistributionBox", name: "Distribution Box", description: "N7 level station" }, this._cimedit.new_features ()));
-                if (!data || !data.PSRType || !data.PSRType["PSRType_TransformerStation"])
+                if (!this._cimmap.get ("PSRType", "PSRType_TransformerStation"))
                     ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_TransformerStation", mRID: "PSRType_TransformerStation", name: "Transformer Station", description: "N6 transfer level station" }, this._cimedit.new_features ()));
-                if (!data || !data.PSRType || !data.PSRType["PSRType_Substation"])
+                if (!this._cimmap.get ("PSRType", "PSRType_Substation"))
                     ret.push (new Core.PSRType ({ EditDisposition: "new", cls: "PSRType", id: "PSRType_Substation", mRID: "PSRType_Substation", name: "Substation", description: "N4 transfer level statin" }, this._cimedit.new_features ()));
                 return (ret);
             }

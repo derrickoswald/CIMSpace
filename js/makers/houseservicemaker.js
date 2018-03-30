@@ -74,34 +74,28 @@ define
                       </div>
                     </div>
                 `;
-                var data = this._cimmap.get_data ();
                 var view = { mRID: this._cimedit.uuidv4 ()};
-                if (data)
+                var cimmap = this._cimmap;
+                var wireinfos = cimmap.fetch ("WireInfo", info => info.PerLengthParameters);
+                // for now we only understand the first PerLengthSequenceImpedance
+                var cables = wireinfos.filter (info => cimmap.get ("PerLengthSequenceImpedance", info.PerLengthParameters[0]));
+                if (0 != cables.length)
                 {
-                    var wireinfos = [];
-                    for (var name in data.WireInfo)
-                        if (data.WireInfo[name].PerLengthParameters)
-                            wireinfos.push (name);
-                    // for now we only understand the first PerLengthSequenceImpedance
-                    var cables = wireinfos.filter (name => data.PerLengthSequenceImpedance[data.WireInfo[name].PerLengthParameters[0]]);
-                    if (0 != cables.length)
-                    {
-                        view.cables = cables.map (x => data.WireInfo[x]);
-                        template = template +
-                        `
-                            <div class='form-group row'>
-                              <label class='col-sm-4 col-form-label' for='cable_name'>Cable</label>
-                              <div class='col-sm-8'>
-                                <select id='cable_name' class='form-control custom-select' name='cable_name' aria-describedby='cable_nameHelp'>
-                                  {{#cables}}
-                                    <option value='{{id}}'>{{name}}</option>
-                                  {{/cables}}
-                                </select>
-                                <small id='cable_nameHelp' class='form-text text-muted'>The type of cable for this service.</small>
-                              </div>
-                            </div>
-                        `;
-                    }
+                    view.cables = cables;
+                    template = template +
+                    `
+                        <div class='form-group row'>
+                          <label class='col-sm-4 col-form-label' for='cable_name'>Cable</label>
+                          <div class='col-sm-8'>
+                            <select id='cable_name' class='form-control custom-select' name='cable_name' aria-describedby='cable_nameHelp'>
+                              {{#cables}}
+                                <option value='{{id}}'>{{name}}</option>
+                              {{/cables}}
+                            </select>
+                            <small id='cable_nameHelp' class='form-text text-muted'>The type of cable for this service.</small>
+                          </div>
+                        </div>
+                    `;
                 }
                 var ret = mustache.render (template, view);
                 return (ret);
@@ -127,16 +121,12 @@ define
                     consumer.phaseConnection = phaseConnection;
 
                 var cable = { cls: "ACLineSegment", EditDisposition: "new" };
-                var data = this._cimmap.get_data ();
-                if (data)
+                var cable_name = document.getElementById ("cable_name");
+                if (cable_name)
                 {
-                    var cable_name = document.getElementById ("cable_name");
-                    if (cable_name)
-                    {
-                        cable_name = cable_name.value;
-                        cable.AssetDatasheet = cable_name; // add the cable type
-                        cable.PerLengthImpedance = data.WireInfo[cable_name].PerLengthParameters[0]; // add the per length parameters
-                    }
+                    cable_name = cable_name.value;
+                    cable.AssetDatasheet = cable_name; // add the cable type
+                    cable.PerLengthImpedance = this._cimmap.get ("WireInfo", cable_name).PerLengthParameters[0]; // add the per length parameters
                 }
 
                 return ([consumer, cable]);

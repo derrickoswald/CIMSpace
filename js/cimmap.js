@@ -415,6 +415,80 @@ define
                 TheMap.addControl (get_connectivity ());
         }
 
+        function get (classname, id)
+        {
+            var ret = undefined;
+            if (classname && id)
+            {
+                var data = get_data ();
+                if (data)
+                {
+                    var objects = data[classname];
+                    if (objects)
+                        ret = objects[id];
+                }
+                if (get_editor ().has_new_features ())
+                {
+                    data = get_editor ().new_features ();
+                    var objects = data[classname];
+                    if (objects)
+                        ret = objects[id];
+                }
+            }
+            return ((ret && ret.EditDisposition && ret.EditDisposition == "delete") ? undefined : ret);
+        }
+
+        function forAll (classname, fn)
+        {
+            function iterateOver (objects, fn)
+            {
+                if (objects)
+                    for (var property in objects)
+                        if (objects.hasOwnProperty (property))
+                        {
+                            var obj = objects[property];
+                            if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                fn (obj);
+                        }
+            }
+            var data = get_data ();
+            if (data)
+                iterateOver (data[classname], fn);
+            if (get_editor ().has_new_features ())
+            {
+                data = get_editor ().new_features ();
+                if (data)
+                    iterateOver (data[classname], fn);
+            }
+        }
+
+        function fetch (classname, fn)
+        {
+            var ret = [];
+            function iterateOver (objects, fn)
+            {
+                if (objects)
+                    for (var property in objects)
+                        if (objects.hasOwnProperty (property))
+                        {
+                            var obj = objects[property];
+                            if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                if (fn (obj))
+                                    ret.push (obj);
+                        }
+            }
+            var data = get_data ();
+            if (data)
+                iterateOver (data[classname], fn);
+            if (get_editor ().has_new_features ())
+            {
+                data = get_editor ().new_features ();
+                if (data)
+                    iterateOver (data[classname], fn);
+            }
+            return (ret);
+        }
+
         /**
          * @summary Change the filter for the glow layers.
          * @description Applies the given filter to the highlight layers.
@@ -1219,6 +1293,9 @@ define
                      show_streetview: show_streetview,
                      make_map, make_map,
                      zoom_extents: zoom_extents,
+                     get: get,
+                     forAll: forAll,
+                     fetch: fetch,
                      select: select,
                      buildings_3d: buildings_3d,
                      scale_bar: scale_bar,
