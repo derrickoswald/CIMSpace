@@ -116,6 +116,14 @@ define
                 this._map.removeControl (this);
             }
 
+            start_maker (maker, proto)
+            {
+                document.getElementById ("class_chooser").style.display = "none";
+                this._maker = new maker (this._cimmap, this, this._digitizer);
+                document.getElementById ("maker_parameters").innerHTML = this._maker.render_parameters (proto);
+                document.getElementById ("create").disabled = false;
+            }
+
             change (event)
             {
                 if (event.target.id == "class_name")
@@ -127,12 +135,7 @@ define
                     var maker_name = ("" != event.target.value) ? event.target.value : undefined;
                     var maker = maker_name ? this._makers.find (x => x.name == maker_name) : undefined;
                     if (maker)
-                    {
-                        document.getElementById ("class_chooser").style.display = "none";
-                        this._maker = new maker (this._cimmap, this, this._digitizer);
-                        document.getElementById ("maker_parameters").innerHTML = this._maker.render_parameters ();
-                        document.getElementById ("create").disabled = false;
-                    }
+                        this.start_maker (maker);
                     else
                     {
                         delete this._maker;
@@ -284,7 +287,23 @@ define
             {
                 var proto = JSON.parse (JSON.stringify (this._elements[0]));
                 proto.id = this.uuidv4 ();
-                this.create_from (proto);
+                // find a maker for this class
+                var maker = this._makers.find (maker => maker.classes ().includes (proto.cls));
+                if (maker)
+                {
+                    this.render ();
+                    var maker_name = document.getElementById ("maker_name");
+                    for (var i = 0; i < maker_name.length; i++)
+                        if (maker_name.options[i].value == maker.name)
+                        {
+                            maker_name.options.selectedIndex = i;
+                            break;
+                        }
+                    maker_name.options[maker_name.options.selectedIndex].selected = true;
+                    this.start_maker (maker, proto);
+                }
+                else
+                    this.create_from (proto);
             }
 
             add_layers ()

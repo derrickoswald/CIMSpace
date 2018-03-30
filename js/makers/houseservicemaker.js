@@ -22,7 +22,7 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
-            render_parameters ()
+            render_parameters (proto)
             {
                 var template =
                 `
@@ -36,28 +36,28 @@ define
                     <div class='form-group row'>
                       <label class='col-sm-4 col-form-label' for='mRID'>mRID</label>
                       <div class='col-sm-8'>
-                        <input id='mRID' class='form-control' type='text' name='mRID' aria-describedby='mRIDHelp' value='{{mRID}}'>
+                        <input id='mRID' class='form-control' type='text' name='mRID' aria-describedby='mRIDHelp' value='{{proto.mRID}}'>
                         <small id='mRIDHelp' class='form-text text-muted'>Unique identifier (or initial identifier) for house services.</small>
                       </div>
                     </div>
                     <div class='form-group row'>
                       <label class='col-sm-4 col-form-label' for='customerCount'>Customer count</label>
                       <div class='col-sm-8'>
-                        <input id='customerCount' class='form-control' type='text' name='customerCount' aria-describedby='customerCountHelp' value='1'>
+                        <input id='customerCount' class='form-control' type='text' name='customerCount' aria-describedby='customerCountHelp' value='{{proto.customerCount}}'>
                         <small id='customerCountHelp' class='form-text text-muted'>Number of individual customers represented by this demand.</small>
                       </div>
                     </div>
                     <div class='form-group row'>
                       <label class='col-sm-4 col-form-label' for='p'>Active power</label>
                       <div class='col-sm-8'>
-                        <input id='p' class='form-control' type='text' name='p' aria-describedby='pHelp' value=''>
+                        <input id='p' class='form-control' type='text' name='p' aria-describedby='pHelp' value='{{proto.p}}'>
                         <small id='pHelp' class='form-text text-muted'>Active power of the load, (+)=flow out (VA).</small>
                       </div>
                     </div>
                     <div class='form-group row'>
                       <label class='col-sm-4 col-form-label' for='q'>Reactive power</label>
                       <div class='col-sm-8'>
-                        <input id='q' class='form-control' type='text' name='q' aria-describedby='qHelp' value=''>
+                        <input id='q' class='form-control' type='text' name='q' aria-describedby='qHelp' value='{{proto.q}}'>
                         <small id='qHelp' class='form-text text-muted'>Reactive power of the load, (+)=flow out (VAr).</small>
                       </div>
                     </div>
@@ -65,38 +65,24 @@ define
                       <label class='col-sm-4 col-form-label' for='phaseConnection'>Phase connection</label>
                       <div class='col-sm-8'>
                         <select id='phaseConnection' class='form-control custom-select' name='phaseConnection' aria-describedby='phaseConnectionHelp'>
-                          <option value='http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.D'>Delta</option>
-                          <option value='http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.I'>Independent</option>
-                          <option value='http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.Y'>Wye</option>
-                          <option value='http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.Yn' selected>Wye with neutral</option>
+                        {{#phaseConnections}}
+                          <option value='{{value}}'{{#isSelected}} selected{{/isSelected}}>{{description}}</option>
+                        {{/phaseConnections}}
                         </select>
                         <small id='phaseConnectionHelp' class='form-text text-muted'>The type of phase connection, such as wye or delta.</small>
                       </div>
                     </div>
                 `;
-                var view = { mRID: this._cimedit.uuidv4 ()};
-                var cimmap = this._cimmap;
-                var wireinfos = cimmap.fetch ("WireInfo", info => info.PerLengthParameters);
-                // for now we only understand the first PerLengthSequenceImpedance
-                var cables = wireinfos.filter (info => cimmap.get ("PerLengthSequenceImpedance", info.PerLengthParameters[0]));
-                if (0 != cables.length)
-                {
-                    view.cables = cables;
-                    template = template +
-                    `
-                        <div class='form-group row'>
-                          <label class='col-sm-4 col-form-label' for='cable_name'>Cable</label>
-                          <div class='col-sm-8'>
-                            <select id='cable_name' class='form-control custom-select' name='cable_name' aria-describedby='cable_nameHelp'>
-                              {{#cables}}
-                                <option value='{{id}}'>{{name}}</option>
-                              {{/cables}}
-                            </select>
-                            <small id='cable_nameHelp' class='form-text text-muted'>The type of cable for this service.</small>
-                          </div>
-                        </div>
-                    `;
-                }
+                var phaseConnections =
+                [
+                    { value: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.D", description: "Delta" },
+                    { value: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.I", description: "Independent" },
+                    { value: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.Y", description: "Wye" },
+                    { value: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.Yn", description: "Wye with neutral" }
+                ];
+                if (!proto)
+                    proto = { mRID: this._cimedit.uuidv4 (), customerCount: 1, phaseConnection: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.Yn" };
+                var view = { proto: proto, phaseConnections: phaseConnections, isSelected: function () { return (proto.phaseConnection == this.value); } };
                 var ret = mustache.render (template, view);
                 return (ret);
             }

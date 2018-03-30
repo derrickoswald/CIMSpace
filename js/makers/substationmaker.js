@@ -25,7 +25,7 @@ define
                 this._yoffset = 3.0e-5;
             }
 
-            classes ()
+            static classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -41,9 +41,10 @@ define
                 return (ret);
             }
 
-            render_parameters ()
+            render_parameters (proto)
             {
-                return (mustache.render (this.class_template (), { classes: this.classes () }));
+                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                return (mustache.render (this.class_template (), view));
             }
 
             distribution_box ()

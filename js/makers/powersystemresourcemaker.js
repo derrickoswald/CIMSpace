@@ -24,7 +24,7 @@ define
                 this._digitizer = digitizer;
             }
 
-            classes ()
+            static classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -48,16 +48,17 @@ define
                     "      <div class='col-sm-8'>\n" +
                     "        <select id='psr_class' class='form-control custom-select'>\n" +
                     "{{#classes}}\n" +
-                    "              <option value='{{.}}'>{{.}}</option>\n" +
+                    "              <option value='{{.}}'{{#isSelected}} selected{{/isSelected}}>{{.}}</option>\n" +
                     "{{/classes}}\n" +
                     "        </select>\n" +
                     "      </div>\n" +
                     "    </div>\n");
             }
 
-            render_parameters ()
+            render_parameters (proto)
             {
-                return (mustache.render (this.class_template (), { classes: this.classes () }));
+                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                return (mustache.render (this.class_template (), view));
             }
 
             submit_parameters ()

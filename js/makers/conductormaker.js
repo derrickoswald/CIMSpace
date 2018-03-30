@@ -22,7 +22,7 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
-            classes ()
+            static classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -38,16 +38,17 @@ define
                 return (ret);
             }
 
-            render_parameters ()
+            render_parameters (proto)
             {
-                var ret = mustache.render (this.class_template (), { classes: this.classes () });
+                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                var ret = mustache.render (this.class_template (), view);
                 var template =
                 "    <div class='form-group row'>\n" +
                 "      <label class='col-sm-4 col-form-label' for='cable_name'>Cable</label>\n" +
                 "      <div class='col-sm-8'>\n" +
                 "        <select id='cable_name' class='form-control custom-select'>\n" +
                 "{{#cables}}\n" +
-                "              <option value='{{id}}'>{{name}}</option>\n" +
+                "              <option value='{{id}}'{{#isSelected}} selected{{/isSelected}}>{{name}}</option>\n" +
                 "{{/cables}}\n";
                 "        </select>\n" +
                 "      </div>\n" +
@@ -56,8 +57,15 @@ define
                 var wireinfos = cimmap.fetch ("WireInfo", info => info.PerLengthParameters);
                 // for now we only understand the first PerLengthSequenceImpedance
                 var cables = wireinfos.filter (info => cimmap.get ("PerLengthSequenceImpedance", info.PerLengthParameters[0]));
+                function fn ()
+                {
+                    return (proto && (proto.AssetDatasheet == this.id));
+                }
                 if (0 != cables.length)
-                    ret = ret + mustache.render (template, { cables: cables });
+                {
+                    view = { cables: cables, isSelected: fn };
+                    ret = ret + mustache.render (template, view);
+                }
                 return (ret);
             }
 
