@@ -23,7 +23,7 @@ define
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
-                "    <h5 class='card-title'>Edit <span id='edit_id'></span>\n" +
+                "    <h5 class='card-title'>Edit\n" +
                 "      <button type='button' class='close' aria-label='Close'>\n" +
                 "        <span aria-hidden='true'>&times;</span>\n" +
                 "      </button>\n" +
@@ -85,11 +85,13 @@ define
                 this._resizer = this.on_map_resize.bind (this);
                 this._map.on ("resize", this._resizer);
                 this._digitizer = new Digitizer (this._map, this._cimmap);
+                this._cimmap.add_feature_listener (this);
                 return (this._container);
             }
 
             onRemove ()
             {
+                this._cimmap.remove_feature_listener (this);
                 // remove features from edit layers
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                 this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
@@ -101,8 +103,8 @@ define
                 }
                 // destroy the container
                 this._container.parentNode.removeChild (this._container);
-                this._container = null;
-                this._map = undefined;
+                delete this._container;
+                delete this._map;
             }
 
             getDefaultPosition ()
@@ -148,7 +150,7 @@ define
 
             visible ()
             {
-                return (null != this._container);
+                return ("undefined" != typeof (this._container));
             }
 
             render ()
@@ -521,9 +523,9 @@ define
                 if (top_level)
                 {
                     var frame =
-                        "<div id='edit_frame' class='card'>\n" +
+                        "<div class='card'>\n" +
                         "  <div class='card-body'>\n" +
-                        "    <h5 id='view_title' class='card-title'>Edit <span id='edit_id'></span></h5>\n" +
+                        "    <h5 id='view_title' class='card-title'>Edit <span class='edit_id'></span></h5>\n" +
                         "    <div id='edit_contents' class='card-text'></div>\n" +
                         "    <div class='card-footer'>\n" +
                         "      <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
@@ -535,18 +537,23 @@ define
                         "</div>\n";
                     this._container.innerHTML = frame;
                     // for non-IdentifiedObject elements, display the id
-                    document.getElementById ("edit_id").innerHTML = element.id;
-                    this._frame_height = document.getElementById ("edit_frame").clientHeight; // frame height with no edit template contents
+                    this._container.getElementsByClassName ("edit_id")[0].innerHTML = element.id;
+                    this._frame_height = this._container.getElementsByClassName ("card")[0].clientHeight; // frame height with no edit template contents
 
                     this._elements = [];
                     var text = this.build (element);
 
-                    // get related elements
-                    var relatives = this.get_related (element)
-                    for (var j = 0; j < relatives.length; j++)
-                        text = text + this.build (relatives[j]);
-
-                    document.getElementById ("edit_contents").innerHTML = text;
+                    // get related only for existing objects
+                    var relatives = [];
+                    if (!is_new)
+                    {
+                        // get related elements
+                        relatives = this.get_related (element)
+                        for (var j = 0; j < relatives.length; j++)
+                            text = text + this.build (relatives[j]);
+                    }
+                    var guts = this._container.getElementsByClassName ("card-text")[0];
+                    guts.innerHTML = text;
                     this.process_related (element);
                     for (var j = 0; j < relatives.length; j++)
                         this.process_related (relatives[j]);
@@ -554,7 +561,8 @@ define
                 else
                 {
                     var text = this.build (element);
-                    document.getElementById ("edit_contents").innerHTML = document.getElementById ("edit_contents").innerHTML + text;
+                    var guts = this._container.getElementsByClassName ("card-text")[0];
+                    guts.innerHTML = guts.innerHTML + text;
                     this.process_related (element);
                 }
                 this.on_map_resize ();
@@ -612,15 +620,9 @@ define
                 return (version.toString () + ":" + mrid);
             }
 
-            shutdown ()
-            {
-                this._cimmap.select (null);
-                this.render ();
-            }
-
             regen ()
             {
-                this.shutdown ();
+                this.render ();
                 this._cimmap.make_map ();
             }
 
@@ -734,7 +736,18 @@ define
                 delete this._data;
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                 this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
-                this.shutdown ();
+                this.render ();
+            }
+
+            /**
+             * Edit the selected object.
+             */
+            selection_change (current_feature, current_selection)
+            {
+                if (null != current_feature)
+                    this.edit (this._cimmap.get ("Element", current_feature), true);
+                else
+                    this.cancel ();
             }
         }
 

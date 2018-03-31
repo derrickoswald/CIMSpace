@@ -669,8 +669,6 @@ define
             {
                 super.condition (obj);
                 obj.kindCustomerKind = [{ id: '', selected: (!obj.kind)}]; for (var property in CustomerKind) obj.kindCustomerKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
-                obj.priorityPriority = [{ id: '', selected: (!obj.priority)}]; for (var property in Common.Priority) obj.priorityPriority.push ({ id: property, selected: obj.priority && obj.priority.endsWith ('.' + property)});
                 if (obj.Works) obj.Works_string = obj.Works.join ();
                 if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
                 if (obj.Notifications) obj.Notifications_string = obj.Notifications.join ();
@@ -684,8 +682,6 @@ define
             {
                 super.uncondition (obj);
                 delete obj.kindCustomerKind;
-                delete obj.statusStatus;
-                delete obj.priorityPriority;
                 delete obj.Works_string;
                 delete obj.ErpPersons_string;
                 delete obj.Notifications_string;
@@ -708,9 +704,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCustomerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCustomerKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pucNumber'>pucNumber: </label><div class='col-sm-8'><input id='{{id}}_pucNumber' class='form-control' type='text'{{#pucNumber}} value='{{pucNumber}}'{{/pucNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='{{id}}_specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_vip'>vip: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vip' class='form-check-input' type='checkbox'{{#vip}} checked{{/vip}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><select id='{{id}}_priority' class='form-control custom-select'>{{#priorityPriority}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/priorityPriority}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_locale'>locale: </label><div class='col-sm-8'><input id='{{id}}_locale' class='form-control' type='text'{{#locale}} value='{{locale}}'{{/locale}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works_string}}'{{/Works}}></div></div>
                     </div>
@@ -728,9 +724,9 @@ define
                 temp = CustomerKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_pucNumber").value; if ("" != temp) obj.pucNumber = temp;
                 temp = document.getElementById (id + "_specialNeed").value; if ("" != temp) obj.specialNeed = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_vip").checked; if (temp) obj.vip = true;
-                temp = Common.Priority[document.getElementById (id + "_priority").value]; if (temp) obj.priority = "http://iec.ch/TC57/2013/CIM-schema-cim16#Priority." + temp; else delete obj.priority;
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
                 temp = document.getElementById (id + "_locale").value; if ("" != temp) obj.locale = temp;
                 temp = document.getElementById (id + "_Works").value; if ("" != temp) obj.Works = temp.split (",");
 

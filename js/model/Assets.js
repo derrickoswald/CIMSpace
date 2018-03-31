@@ -244,10 +244,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.acceptanceTestAcceptanceTest = [{ id: '', selected: (!obj.acceptanceTest)}]; for (var property in AcceptanceTest) obj.acceptanceTestAcceptanceTest.push ({ id: property, selected: obj.acceptanceTest && obj.acceptanceTest.endsWith ('.' + property)});
-                obj.electronicAddressElectronicAddress = [{ id: '', selected: (!obj.electronicAddress)}]; for (var property in Common.ElectronicAddress) obj.electronicAddressElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
-                obj.lifecycleLifecycleDate = [{ id: '', selected: (!obj.lifecycle)}]; for (var property in LifecycleDate) obj.lifecycleLifecycleDate.push ({ id: property, selected: obj.lifecycle && obj.lifecycle.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.OperationTags) obj.OperationTags_string = obj.OperationTags.join ();
                 if (obj.ActivityRecords) obj.ActivityRecords_string = obj.ActivityRecords.join ();
                 if (obj.Mediums) obj.Mediums_string = obj.Mediums.join ();
@@ -269,10 +265,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.acceptanceTestAcceptanceTest;
-                delete obj.electronicAddressElectronicAddress;
-                delete obj.lifecycleLifecycleDate;
-                delete obj.statusStatus;
                 delete obj.OperationTags_string;
                 delete obj.ActivityRecords_string;
                 delete obj.Mediums_string;
@@ -301,16 +293,16 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptanceTest'>acceptanceTest: </label><div class='col-sm-8'><select id='{{id}}_acceptanceTest' class='form-control custom-select'>{{#acceptanceTestAcceptanceTest}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/acceptanceTestAcceptanceTest}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptanceTest'>acceptanceTest: </label><div class='col-sm-8'><input id='{{id}}_acceptanceTest' class='form-control' type='text'{{#acceptanceTest}} value='{{acceptanceTest}}'{{/acceptanceTest}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_critical'>critical: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_critical' class='form-check-input' type='checkbox'{{#critical}} checked{{/critical}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#electronicAddressElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/electronicAddressElectronicAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initialCondition'>initialCondition: </label><div class='col-sm-8'><input id='{{id}}_initialCondition' class='form-control' type='text'{{#initialCondition}} value='{{initialCondition}}'{{/initialCondition}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initialLossOfLife'>initialLossOfLife: </label><div class='col-sm-8'><input id='{{id}}_initialLossOfLife' class='form-control' type='text'{{#initialLossOfLife}} value='{{initialLossOfLife}}'{{/initialLossOfLife}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lifecycle'>lifecycle: </label><div class='col-sm-8'><select id='{{id}}_lifecycle' class='form-control custom-select'>{{#lifecycleLifecycleDate}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/lifecycleLifecycleDate}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lifecycle'>lifecycle: </label><div class='col-sm-8'><input id='{{id}}_lifecycle' class='form-control' type='text'{{#lifecycle}} value='{{lifecycle}}'{{/lifecycle}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lotNumber'>lotNumber: </label><div class='col-sm-8'><input id='{{id}}_lotNumber' class='form-control' type='text'{{#lotNumber}} value='{{lotNumber}}'{{/lotNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchasePrice'>purchasePrice: </label><div class='col-sm-8'><input id='{{id}}_purchasePrice' class='form-control' type='text'{{#purchasePrice}} value='{{purchasePrice}}'{{/purchasePrice}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serialNumber'>serialNumber: </label><div class='col-sm-8'><input id='{{id}}_serialNumber' class='form-control' type='text'{{#serialNumber}} value='{{serialNumber}}'{{/serialNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_utcNumber'>utcNumber: </label><div class='col-sm-8'><input id='{{id}}_utcNumber' class='form-control' type='text'{{#utcNumber}} value='{{utcNumber}}'{{/utcNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='{{id}}_ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords_string}}'{{/ActivityRecords}}></div></div>
@@ -341,16 +333,16 @@ define
 
                 var obj = obj || { id: id, cls: "Asset" };
                 super.submit (id, obj);
-                temp = AcceptanceTest[document.getElementById (id + "_acceptanceTest").value]; if (temp) obj.acceptanceTest = "http://iec.ch/TC57/2013/CIM-schema-cim16#AcceptanceTest." + temp; else delete obj.acceptanceTest;
+                temp = document.getElementById (id + "_acceptanceTest").value; if ("" != temp) obj.acceptanceTest = temp;
                 temp = document.getElementById (id + "_critical").checked; if (temp) obj.critical = true;
-                temp = Common.ElectronicAddress[document.getElementById (id + "_electronicAddress").value]; if (temp) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; else delete obj.electronicAddress;
+                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
                 temp = document.getElementById (id + "_initialCondition").value; if ("" != temp) obj.initialCondition = temp;
                 temp = document.getElementById (id + "_initialLossOfLife").value; if ("" != temp) obj.initialLossOfLife = temp;
-                temp = LifecycleDate[document.getElementById (id + "_lifecycle").value]; if (temp) obj.lifecycle = "http://iec.ch/TC57/2013/CIM-schema-cim16#LifecycleDate." + temp; else delete obj.lifecycle;
+                temp = document.getElementById (id + "_lifecycle").value; if ("" != temp) obj.lifecycle = temp;
                 temp = document.getElementById (id + "_lotNumber").value; if ("" != temp) obj.lotNumber = temp;
                 temp = document.getElementById (id + "_purchasePrice").value; if ("" != temp) obj.purchasePrice = temp;
                 temp = document.getElementById (id + "_serialNumber").value; if ("" != temp) obj.serialNumber = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_utcNumber").value; if ("" != temp) obj.utcNumber = temp;
                 temp = document.getElementById (id + "_ActivityRecords").value; if ("" != temp) obj.ActivityRecords = temp.split (",");

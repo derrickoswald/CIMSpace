@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Core", "model/Domain"],
+    ["model/base", "model/Common", "model/Core"],
     /**
      * This package contains all core CIM Market Extensions required for market management systems.
      *
      */
-    function (base, Common, Core, Domain)
+    function (base, Common, Core)
     {
 
         /**
@@ -1355,7 +1355,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.timeIntervalDateTimeInterval = [{ id: '', selected: (!obj.timeInterval)}]; for (var property in Domain.DateTimeInterval) obj.timeIntervalDateTimeInterval.push ({ id: property, selected: obj.timeInterval && obj.timeInterval.endsWith ('.' + property)});
                 if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
                 if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
                 if (obj.Reason) obj.Reason_string = obj.Reason.join ();
@@ -1365,7 +1364,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.timeIntervalDateTimeInterval;
                 delete obj.TimeSeries_string;
                 delete obj.MarketDocument_string;
                 delete obj.Reason_string;
@@ -1383,7 +1381,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resolution'>resolution: </label><div class='col-sm-8'><input id='{{id}}_resolution' class='form-control' type='text'{{#resolution}} value='{{resolution}}'{{/resolution}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeInterval'>timeInterval: </label><div class='col-sm-8'><select id='{{id}}_timeInterval' class='form-control custom-select'>{{#timeIntervalDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/timeIntervalDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeInterval'>timeInterval: </label><div class='col-sm-8'><input id='{{id}}_timeInterval' class='form-control' type='text'{{#timeInterval}} value='{{timeInterval}}'{{/timeInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='{{id}}_TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries_string}}'{{/TimeSeries}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='{{id}}_MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument_string}}'{{/MarketDocument}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reason'>Reason: </label><div class='col-sm-8'><input id='{{id}}_Reason' class='form-control' type='text'{{#Reason}} value='{{Reason_string}}'{{/Reason}}></div></div>
@@ -1400,7 +1398,7 @@ define
                 var obj = obj || { id: id, cls: "Period" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_resolution").value; if ("" != temp) obj.resolution = temp;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_timeInterval").value]; if (temp) obj.timeInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.timeInterval;
+                temp = document.getElementById (id + "_timeInterval").value; if ("" != temp) obj.timeInterval = temp;
                 temp = document.getElementById (id + "_TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
                 temp = document.getElementById (id + "_MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
                 temp = document.getElementById (id + "_Reason").value; if ("" != temp) obj.Reason = temp.split (",");

@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Core", "model/Domain"],
+    ["model/base", "model/Common", "model/Core"],
     /**
      * This package contains functions common for distribution management.
      *
      */
-    function (base, Common, Core, Domain)
+    function (base, Common, Core)
     {
 
         /**
@@ -218,13 +218,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
             }
 
             edit_template ()
@@ -237,7 +235,7 @@ define
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
                     </fieldset>
@@ -251,7 +249,7 @@ define
 
                 var obj = obj || { id: id, cls: "BusinessRole" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
 
                 return (obj);
@@ -718,7 +716,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.certificationPeriodDateTimeInterval = [{ id: '', selected: (!obj.certificationPeriod)}]; for (var property in Domain.DateTimeInterval) obj.certificationPeriodDateTimeInterval.push ({ id: property, selected: obj.certificationPeriod && obj.certificationPeriod.endsWith ('.' + property)});
                 obj.levelSkillLevelKind = [{ id: '', selected: (!obj.level)}]; for (var property in SkillLevelKind) obj.levelSkillLevelKind.push ({ id: property, selected: obj.level && obj.level.endsWith ('.' + property)});
                 if (obj.Crafts) obj.Crafts_string = obj.Crafts.join ();
                 if (obj.QualificationRequirements) obj.QualificationRequirements_string = obj.QualificationRequirements.join ();
@@ -727,7 +724,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.certificationPeriodDateTimeInterval;
                 delete obj.levelSkillLevelKind;
                 delete obj.Crafts_string;
                 delete obj.QualificationRequirements_string;
@@ -743,7 +739,7 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><select id='{{id}}_certificationPeriod' class='form-control custom-select'>{{#certificationPeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certificationPeriodDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='{{id}}_certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><select id='{{id}}_level' class='form-control custom-select'>{{#levelSkillLevelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/levelSkillLevelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
@@ -761,7 +757,7 @@ define
 
                 var obj = obj || { id: id, cls: "Skill" };
                 super.submit (id, obj);
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_certificationPeriod").value]; if (temp) obj.certificationPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.certificationPeriod;
+                temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
                 temp = document.getElementById (id + "_effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
                 temp = SkillLevelKind[document.getElementById (id + "_level").value]; if (temp) obj.level = "http://iec.ch/TC57/2013/CIM-schema-cim16#SkillLevelKind." + temp; else delete obj.level;
                 temp = document.getElementById (id + "_ErpPerson").value; if ("" != temp) obj.ErpPerson = temp;
@@ -954,13 +950,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
             }
 
             edit_template ()
@@ -973,7 +967,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
                     </fieldset>
@@ -987,7 +981,7 @@ define
 
                 var obj = obj || { id: id, cls: "Role" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
 
                 return (obj);
@@ -1281,7 +1275,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Capabilities) obj.Capabilities_string = obj.Capabilities.join ();
                 if (obj.Skills) obj.Skills_string = obj.Skills.join ();
                 if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
@@ -1290,7 +1283,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.Capabilities_string;
                 delete obj.Skills_string;
                 delete obj.ErpPersons_string;
@@ -1306,7 +1298,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='{{id}}_Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities_string}}'{{/Capabilities}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills_string}}'{{/Skills}}></div></div>
@@ -1323,7 +1315,7 @@ define
 
                 var obj = obj || { id: id, cls: "Craft" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_Capabilities").value; if ("" != temp) obj.Capabilities = temp.split (",");
                 temp = document.getElementById (id + "_Skills").value; if ("" != temp) obj.Skills = temp.split (",");
@@ -1446,7 +1438,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.Skills) obj.Skills_string = obj.Skills.join ();
                 if (obj.DocumentRoles) obj.DocumentRoles_string = obj.DocumentRoles.join ();
                 if (obj.MeasurementValues) obj.MeasurementValues_string = obj.MeasurementValues.join ();
@@ -1459,7 +1450,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.Skills_string;
                 delete obj.DocumentRoles_string;
                 delete obj.MeasurementValues_string;
@@ -1479,7 +1469,7 @@ define
                     `
                     + Common.Person.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerData'>CustomerData: </label><div class='col-sm-8'><input id='{{id}}_CustomerData' class='form-control' type='text'{{#CustomerData}} value='{{CustomerData}}'{{/CustomerData}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersonnel'>ErpPersonnel: </label><div class='col-sm-8'><input id='{{id}}_ErpPersonnel' class='form-control' type='text'{{#ErpPersonnel}} value='{{ErpPersonnel}}'{{/ErpPersonnel}}></div></div>
@@ -1498,7 +1488,7 @@ define
 
                 var obj = obj || { id: id, cls: "OldPerson" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_CustomerData").value; if ("" != temp) obj.CustomerData = temp;
                 temp = document.getElementById (id + "_ErpPersonnel").value; if ("" != temp) obj.ErpPersonnel = temp;

@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Assets", "model/Common", "model/Core", "model/Domain"],
+    ["model/base", "model/Assets", "model/Common", "model/Core"],
     /**
      * The package is used to define asset-level models for objects.
      *
      * Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
      *
      */
-    function (base, Assets, Common, Core, Domain)
+    function (base, Assets, Common, Core)
     {
 
         /**
@@ -893,7 +893,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.quantityStringQuantity = [{ id: '', selected: (!obj.quantity)}]; for (var property in Domain.StringQuantity) obj.quantityStringQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
                 if (obj.ErpBomItemDatas) obj.ErpBomItemDatas_string = obj.ErpBomItemDatas.join ();
                 if (obj.ErpReqLineItems) obj.ErpReqLineItems_string = obj.ErpReqLineItems.join ();
                 if (obj.ProductAssetModels) obj.ProductAssetModels_string = obj.ProductAssetModels.join ();
@@ -903,7 +902,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.quantityStringQuantity;
                 delete obj.ErpBomItemDatas_string;
                 delete obj.ErpReqLineItems_string;
                 delete obj.ProductAssetModels_string;
@@ -921,7 +919,7 @@ define
                     + Assets.AssetModel.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedUnitCost'>estimatedUnitCost: </label><div class='col-sm-8'><input id='{{id}}_estimatedUnitCost' class='form-control' type='text'{{#estimatedUnitCost}} value='{{estimatedUnitCost}}'{{/estimatedUnitCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#quantityStringQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quantityStringQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_stockItem'>stockItem: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUWorkEquipmentAsset'>CUWorkEquipmentAsset: </label><div class='col-sm-8'><input id='{{id}}_CUWorkEquipmentAsset' class='form-control' type='text'{{#CUWorkEquipmentAsset}} value='{{CUWorkEquipmentAsset}}'{{/CUWorkEquipmentAsset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAssetCatalogue'>TypeAssetCatalogue: </label><div class='col-sm-8'><input id='{{id}}_TypeAssetCatalogue' class='form-control' type='text'{{#TypeAssetCatalogue}} value='{{TypeAssetCatalogue}}'{{/TypeAssetCatalogue}}></div></div>
@@ -939,7 +937,7 @@ define
                 var obj = obj || { id: id, cls: "GenericAssetModelOrMaterial" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_estimatedUnitCost").value; if ("" != temp) obj.estimatedUnitCost = temp;
-                temp = Domain.StringQuantity[document.getElementById (id + "_quantity").value]; if (temp) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#StringQuantity." + temp; else delete obj.quantity;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
                 temp = document.getElementById (id + "_stockItem").checked; if (temp) obj.stockItem = true;
                 temp = document.getElementById (id + "_CUWorkEquipmentAsset").value; if ("" != temp) obj.CUWorkEquipmentAsset = temp;
                 temp = document.getElementById (id + "_TypeAssetCatalogue").value; if ("" != temp) obj.TypeAssetCatalogue = temp;
@@ -1205,13 +1203,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.quantityIntegerQuantity = [{ id: '', selected: (!obj.quantity)}]; for (var property in Domain.IntegerQuantity) obj.quantityIntegerQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.quantityIntegerQuantity;
             }
 
             edit_template ()
@@ -1232,7 +1228,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plantTransferDateTime'>plantTransferDateTime: </label><div class='col-sm-8'><input id='{{id}}_plantTransferDateTime' class='form-control' type='text'{{#plantTransferDateTime}} value='{{plantTransferDateTime}}'{{/plantTransferDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseDateTime'>purchaseDateTime: </label><div class='col-sm-8'><input id='{{id}}_purchaseDateTime' class='form-control' type='text'{{#purchaseDateTime}} value='{{purchaseDateTime}}'{{/purchaseDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseOrderNumber'>purchaseOrderNumber: </label><div class='col-sm-8'><input id='{{id}}_purchaseOrderNumber' class='form-control' type='text'{{#purchaseOrderNumber}} value='{{purchaseOrderNumber}}'{{/purchaseOrderNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#quantityIntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quantityIntegerQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valueDateTime'>valueDateTime: </label><div class='col-sm-8'><input id='{{id}}_valueDateTime' class='form-control' type='text'{{#valueDateTime}} value='{{valueDateTime}}'{{/valueDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_warrantyEndDateTime'>warrantyEndDateTime: </label><div class='col-sm-8'><input id='{{id}}_warrantyEndDateTime' class='form-control' type='text'{{#warrantyEndDateTime}} value='{{warrantyEndDateTime}}'{{/warrantyEndDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
@@ -1256,7 +1252,7 @@ define
                 temp = document.getElementById (id + "_plantTransferDateTime").value; if ("" != temp) obj.plantTransferDateTime = temp;
                 temp = document.getElementById (id + "_purchaseDateTime").value; if ("" != temp) obj.purchaseDateTime = temp;
                 temp = document.getElementById (id + "_purchaseOrderNumber").value; if ("" != temp) obj.purchaseOrderNumber = temp;
-                temp = Domain.IntegerQuantity[document.getElementById (id + "_quantity").value]; if (temp) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; else delete obj.quantity;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
                 temp = document.getElementById (id + "_valueDateTime").value; if ("" != temp) obj.valueDateTime = temp;
                 temp = document.getElementById (id + "_warrantyEndDateTime").value; if ("" != temp) obj.warrantyEndDateTime = temp;
                 temp = document.getElementById (id + "_Asset").value; if ("" != temp) obj.Asset = temp;
@@ -1916,13 +1912,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
             }
 
             edit_template ()
@@ -1938,7 +1932,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationPFStatus'>insulationPFStatus: </label><div class='col-sm-8'><input id='{{id}}_insulationPFStatus' class='form-control' type='text'{{#insulationPFStatus}} value='{{insulationPFStatus}}'{{/insulationPFStatus}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationResistance'>insulationResistance: </label><div class='col-sm-8'><input id='{{id}}_insulationResistance' class='form-control' type='text'{{#insulationResistance}} value='{{insulationResistance}}'{{/insulationResistance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_leakageReactance'>leakageReactance: </label><div class='col-sm-8'><input id='{{id}}_leakageReactance' class='form-control' type='text'{{#leakageReactance}} value='{{leakageReactance}}'{{/leakageReactance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ToWinding'>ToWinding: </label><div class='col-sm-8'><input id='{{id}}_ToWinding' class='form-control' type='text'{{#ToWinding}} value='{{ToWinding}}'{{/ToWinding}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FromWinding'>FromWinding: </label><div class='col-sm-8'><input id='{{id}}_FromWinding' class='form-control' type='text'{{#FromWinding}} value='{{FromWinding}}'{{/FromWinding}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerObservation'>TransformerObservation: </label><div class='col-sm-8'><input id='{{id}}_TransformerObservation' class='form-control' type='text'{{#TransformerObservation}} value='{{TransformerObservation}}'{{/TransformerObservation}}></div></div>
@@ -1957,7 +1951,7 @@ define
                 temp = document.getElementById (id + "_insulationPFStatus").value; if ("" != temp) obj.insulationPFStatus = temp;
                 temp = document.getElementById (id + "_insulationResistance").value; if ("" != temp) obj.insulationResistance = temp;
                 temp = document.getElementById (id + "_leakageReactance").value; if ("" != temp) obj.leakageReactance = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_ToWinding").value; if ("" != temp) obj.ToWinding = temp;
                 temp = document.getElementById (id + "_FromWinding").value; if ("" != temp) obj.FromWinding = temp;
                 temp = document.getElementById (id + "_TransformerObservation").value; if ("" != temp) obj.TransformerObservation = temp;
@@ -2468,7 +2462,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ProcedureDataSets) obj.ProcedureDataSets_string = obj.ProcedureDataSets.join ();
                 if (obj.BushingInsultationPFs) obj.BushingInsultationPFs_string = obj.BushingInsultationPFs.join ();
                 if (obj.WindingInsulationPFs) obj.WindingInsulationPFs_string = obj.WindingInsulationPFs.join ();
@@ -2477,7 +2470,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.ProcedureDataSets_string;
                 delete obj.BushingInsultationPFs_string;
                 delete obj.WindingInsulationPFs_string;
@@ -2504,7 +2496,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilLevel'>oilLevel: </label><div class='col-sm-8'><input id='{{id}}_oilLevel' class='form-control' type='text'{{#oilLevel}} value='{{oilLevel}}'{{/oilLevel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilNeutralizationNumber'>oilNeutralizationNumber: </label><div class='col-sm-8'><input id='{{id}}_oilNeutralizationNumber' class='form-control' type='text'{{#oilNeutralizationNumber}} value='{{oilNeutralizationNumber}}'{{/oilNeutralizationNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpVibration'>pumpVibration: </label><div class='col-sm-8'><input id='{{id}}_pumpVibration' class='form-control' type='text'{{#pumpVibration}} value='{{pumpVibration}}'{{/pumpVibration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_topOilTemp'>topOilTemp: </label><div class='col-sm-8'><input id='{{id}}_topOilTemp' class='form-control' type='text'{{#topOilTemp}} value='{{topOilTemp}}'{{/topOilTemp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_waterContent'>waterContent: </label><div class='col-sm-8'><input id='{{id}}_waterContent' class='form-control' type='text'{{#waterContent}} value='{{waterContent}}'{{/waterContent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='{{id}}_ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets_string}}'{{/ProcedureDataSets}}></div></div>
@@ -2533,7 +2525,7 @@ define
                 temp = document.getElementById (id + "_oilLevel").value; if ("" != temp) obj.oilLevel = temp;
                 temp = document.getElementById (id + "_oilNeutralizationNumber").value; if ("" != temp) obj.oilNeutralizationNumber = temp;
                 temp = document.getElementById (id + "_pumpVibration").value; if ("" != temp) obj.pumpVibration = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_topOilTemp").value; if ("" != temp) obj.topOilTemp = temp;
                 temp = document.getElementById (id + "_waterContent").value; if ("" != temp) obj.waterContent = temp;
                 temp = document.getElementById (id + "_ProcedureDataSets").value; if ("" != temp) obj.ProcedureDataSets = temp.split (",");
@@ -3130,14 +3122,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 obj.testKindBushingInsulationPfTestKind = [{ id: '', selected: (!obj.testKind)}]; for (var property in BushingInsulationPfTestKind) obj.testKindBushingInsulationPfTestKind.push ({ id: property, selected: obj.testKind && obj.testKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.testKindBushingInsulationPfTestKind;
             }
 
@@ -3151,7 +3141,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testKind'>testKind: </label><div class='col-sm-8'><select id='{{id}}_testKind' class='form-control custom-select'>{{#testKindBushingInsulationPfTestKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/testKindBushingInsulationPfTestKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bushing'>Bushing: </label><div class='col-sm-8'><input id='{{id}}_Bushing' class='form-control' type='text'{{#Bushing}} value='{{Bushing}}'{{/Bushing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerObservation'>TransformerObservation: </label><div class='col-sm-8'><input id='{{id}}_TransformerObservation' class='form-control' type='text'{{#TransformerObservation}} value='{{TransformerObservation}}'{{/TransformerObservation}}></div></div>
@@ -3167,7 +3157,7 @@ define
 
                 var obj = obj || { id: id, cls: "BushingInsulationPF" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = BushingInsulationPfTestKind[document.getElementById (id + "_testKind").value]; if (temp) obj.testKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#BushingInsulationPfTestKind." + temp; else delete obj.testKind;
                 temp = document.getElementById (id + "_Bushing").value; if ("" != temp) obj.Bushing = temp;
                 temp = document.getElementById (id + "_TransformerObservation").value; if ("" != temp) obj.TransformerObservation = temp;

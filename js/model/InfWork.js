@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Common", "model/Core", "model/Domain", "model/Work"],
+    ["model/base", "model/Common", "model/Core", "model/Work"],
     /**
      * The package covers all types of work, including inspection, maintenance, repair, restoration, and construction.
      *
      * It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
      *
      */
-    function (base, Common, Core, Domain, Work)
+    function (base, Common, Core, Work)
     {
 
         /**
@@ -837,14 +837,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.effectivePeriodDateTimeInterval = [{ id: '', selected: (!obj.effectivePeriod)}]; for (var property in Domain.DateTimeInterval) obj.effectivePeriodDateTimeInterval.push ({ id: property, selected: obj.effectivePeriod && obj.effectivePeriod.endsWith ('.' + property)});
                 if (obj.Crews) obj.Crews_string = obj.Crews.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.effectivePeriodDateTimeInterval;
                 delete obj.Crews_string;
             }
 
@@ -858,7 +856,7 @@ define
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectivePeriod'>effectivePeriod: </label><div class='col-sm-8'><select id='{{id}}_effectivePeriod' class='form-control custom-select'>{{#effectivePeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/effectivePeriodDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectivePeriod'>effectivePeriod: </label><div class='col-sm-8'><input id='{{id}}_effectivePeriod' class='form-control' type='text'{{#effectivePeriod}} value='{{effectivePeriod}}'{{/effectivePeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
                     </div>
                     </fieldset>
@@ -872,7 +870,7 @@ define
 
                 var obj = obj || { id: id, cls: "Assignment" };
                 super.submit (id, obj);
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_effectivePeriod").value]; if (temp) obj.effectivePeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.effectivePeriod;
+                temp = document.getElementById (id + "_effectivePeriod").value; if ("" != temp) obj.effectivePeriod = temp;
                 temp = document.getElementById (id + "_Crews").value; if ("" != temp) obj.Crews = temp.split (",");
 
                 return (obj);
@@ -2467,14 +2465,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.ErpPersons_string;
             }
 
@@ -2492,7 +2488,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='{{id}}_laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborRate'>laborRate: </label><div class='col-sm-8'><input id='{{id}}_laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='{{id}}_ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons_string}}'{{/ErpPersons}}></div></div>
@@ -2512,7 +2508,7 @@ define
                 temp = document.getElementById (id + "_cost").value; if ("" != temp) obj.cost = temp;
                 temp = document.getElementById (id + "_laborDuration").value; if ("" != temp) obj.laborDuration = temp;
                 temp = document.getElementById (id + "_laborRate").value; if ("" != temp) obj.laborRate = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
                 temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
                 temp = document.getElementById (id + "_ErpPersons").value; if ("" != temp) obj.ErpPersons = temp.split (",");
@@ -2617,7 +2613,6 @@ define
             {
                 super.condition (obj);
                 obj.kindConditionFactorKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ConditionFactorKind) obj.kindConditionFactorKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.DesignLocations) obj.DesignLocations_string = obj.DesignLocations.join ();
                 if (obj.Designs) obj.Designs_string = obj.Designs.join ();
                 if (obj.DesignLocationCUs) obj.DesignLocationCUs_string = obj.DesignLocationCUs.join ();
@@ -2627,7 +2622,6 @@ define
             {
                 super.uncondition (obj);
                 delete obj.kindConditionFactorKind;
-                delete obj.statusStatus;
                 delete obj.DesignLocations_string;
                 delete obj.Designs_string;
                 delete obj.DesignLocationCUs_string;
@@ -2645,7 +2639,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cfValue'>cfValue: </label><div class='col-sm-8'><input id='{{id}}_cfValue' class='form-control' type='text'{{#cfValue}} value='{{cfValue}}'{{/cfValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindConditionFactorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindConditionFactorKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations_string}}'{{/DesignLocations}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs_string}}'{{/Designs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs_string}}'{{/DesignLocationCUs}}></div></div>
@@ -2663,7 +2657,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_cfValue").value; if ("" != temp) obj.cfValue = temp;
                 temp = ConditionFactorKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ConditionFactorKind." + temp; else delete obj.kind;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_DesignLocations").value; if ("" != temp) obj.DesignLocations = temp.split (",");
                 temp = document.getElementById (id + "_Designs").value; if ("" != temp) obj.Designs = temp.split (",");
                 temp = document.getElementById (id + "_DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
@@ -2757,13 +2751,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
             }
 
             edit_template ()
@@ -2776,7 +2768,7 @@ define
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
                     </fieldset>
@@ -2790,7 +2782,7 @@ define
 
                 var obj = obj || { id: id, cls: "Usage" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
 
                 return (obj);
@@ -2904,7 +2896,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
                 if (obj.ChildCostTypes) obj.ChildCostTypes_string = obj.ChildCostTypes.join ();
                 if (obj.ErpJournalEntries) obj.ErpJournalEntries_string = obj.ErpJournalEntries.join ();
@@ -2914,7 +2905,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.WorkCostDetails_string;
                 delete obj.ChildCostTypes_string;
                 delete obj.ErpJournalEntries_string;
@@ -2935,7 +2925,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><input id='{{id}}_level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stage'>stage: </label><div class='col-sm-8'><input id='{{id}}_stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCostType'>ParentCostType: </label><div class='col-sm-8'><input id='{{id}}_ParentCostType' class='form-control' type='text'{{#ParentCostType}} value='{{ParentCostType}}'{{/ParentCostType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries_string}}'{{/ErpJournalEntries}}></div></div>
                     </div>
@@ -2954,7 +2944,7 @@ define
                 temp = document.getElementById (id + "_code").value; if ("" != temp) obj.code = temp;
                 temp = document.getElementById (id + "_level").value; if ("" != temp) obj.level = temp;
                 temp = document.getElementById (id + "_stage").value; if ("" != temp) obj.stage = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_ParentCostType").value; if ("" != temp) obj.ParentCostType = temp;
                 temp = document.getElementById (id + "_ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
 
@@ -3050,14 +3040,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.CULaborItems) obj.CULaborItems_string = obj.CULaborItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.CULaborItems_string;
             }
 
@@ -3072,7 +3060,7 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -3086,7 +3074,7 @@ define
                 var obj = obj || { id: id, cls: "CULaborCode" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_code").value; if ("" != temp) obj.code = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -3193,7 +3181,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ConditionFactors) obj.ConditionFactors_string = obj.ConditionFactors.join ();
                 if (obj.DesignLocationCUs) obj.DesignLocationCUs_string = obj.DesignLocationCUs.join ();
                 if (obj.MiscCostItems) obj.MiscCostItems_string = obj.MiscCostItems.join ();
@@ -3205,7 +3192,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.ConditionFactors_string;
                 delete obj.DesignLocationCUs_string;
                 delete obj.MiscCostItems_string;
@@ -3225,7 +3211,7 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_spanLength'>spanLength: </label><div class='col-sm-8'><input id='{{id}}_spanLength' class='form-control' type='text'{{#spanLength}} value='{{spanLength}}'{{/spanLength}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors_string}}'{{/ConditionFactors}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkLocations'>WorkLocations: </label><div class='col-sm-8'><input id='{{id}}_WorkLocations' class='form-control' type='text'{{#WorkLocations}} value='{{WorkLocations_string}}'{{/WorkLocations}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs_string}}'{{/Designs}}></div></div>
@@ -3242,7 +3228,7 @@ define
                 var obj = obj || { id: id, cls: "DesignLocation" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_spanLength").value; if ("" != temp) obj.spanLength = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_ConditionFactors").value; if ("" != temp) obj.ConditionFactors = temp.split (",");
                 temp = document.getElementById (id + "_WorkLocations").value; if ("" != temp) obj.WorkLocations = temp.split (",");
                 temp = document.getElementById (id + "_Designs").value; if ("" != temp) obj.Designs = temp.split (",");
@@ -3346,14 +3332,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.CompatibleUnits_string;
             }
 
@@ -3369,7 +3353,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_equipCode'>equipCode: </label><div class='col-sm-8'><input id='{{id}}_equipCode' class='form-control' type='text'{{#equipCode}} value='{{equipCode}}'{{/equipCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rate'>rate: </label><div class='col-sm-8'><input id='{{id}}_rate' class='form-control' type='text'{{#rate}} value='{{rate}}'{{/rate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
@@ -3386,7 +3370,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_equipCode").value; if ("" != temp) obj.equipCode = temp;
                 temp = document.getElementById (id + "_rate").value; if ("" != temp) obj.rate = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
                 temp = document.getElementById (id + "_TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
 
@@ -3490,8 +3474,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.quantityIntegerQuantity = [{ id: '', selected: (!obj.quantity)}]; for (var property in Domain.IntegerQuantity) obj.quantityIntegerQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.PropertyUnits) obj.PropertyUnits_string = obj.PropertyUnits.join ();
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
@@ -3499,8 +3481,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.quantityIntegerQuantity;
-                delete obj.statusStatus;
                 delete obj.PropertyUnits_string;
                 delete obj.CompatibleUnits_string;
             }
@@ -3516,8 +3496,8 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_corporateCode'>corporateCode: </label><div class='col-sm-8'><input id='{{id}}_corporateCode' class='form-control' type='text'{{#corporateCode}} value='{{corporateCode}}'{{/corporateCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#quantityIntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quantityIntegerQuantity}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits_string}}'{{/PropertyUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
@@ -3534,8 +3514,8 @@ define
                 var obj = obj || { id: id, cls: "CUMaterialItem" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_corporateCode").value; if ("" != temp) obj.corporateCode = temp;
-                temp = Domain.IntegerQuantity[document.getElementById (id + "_quantity").value]; if (temp) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; else delete obj.quantity;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
                 temp = document.getElementById (id + "_PropertyUnits").value; if ("" != temp) obj.PropertyUnits = temp.split (",");
                 temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
@@ -3636,7 +3616,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
                 if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
             }
@@ -3644,7 +3623,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.WorkCostDetails_string;
                 delete obj.WorkTasks_string;
             }
@@ -3661,7 +3639,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -3676,7 +3654,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_code").value; if ("" != temp) obj.code = temp;
                 temp = document.getElementById (id + "_cost").value; if ("" != temp) obj.cost = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -3770,14 +3748,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.WorkTasks_string;
             }
 
@@ -3792,7 +3768,7 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Work'>Work: </label><div class='col-sm-8'><input id='{{id}}_Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
                     </div>
                     </fieldset>
@@ -3807,7 +3783,7 @@ define
                 var obj = obj || { id: id, cls: "WorkFlowStep" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_Work").value; if ("" != temp) obj.Work = temp;
 
                 return (obj);
@@ -3896,14 +3872,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.CompatibleUnits_string;
             }
 
@@ -3917,7 +3891,7 @@ define
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -3930,7 +3904,7 @@ define
 
                 var obj = obj || { id: id, cls: "CUAllowableAction" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -4178,14 +4152,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ErpPayables) obj.ErpPayables_string = obj.ErpPayables.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.ErpPayables_string;
             }
 
@@ -4202,7 +4174,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><input id='{{id}}_activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='{{id}}_bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayables'>ErpPayables: </label><div class='col-sm-8'><input id='{{id}}_ErpPayables' class='form-control' type='text'{{#ErpPayables}} value='{{ErpPayables_string}}'{{/ErpPayables}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
@@ -4221,7 +4193,7 @@ define
                 temp = document.getElementById (id + "_activityCode").value; if ("" != temp) obj.activityCode = temp;
                 temp = document.getElementById (id + "_bidAmount").value; if ("" != temp) obj.bidAmount = temp;
                 temp = document.getElementById (id + "_cost").value; if ("" != temp) obj.cost = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_ErpPayables").value; if ("" != temp) obj.ErpPayables = temp.split (",");
                 temp = document.getElementById (id + "_WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
                 temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
@@ -4322,7 +4294,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.ChildCUGroups) obj.ChildCUGroups_string = obj.ChildCUGroups.join ();
                 if (obj.ParentCUGroups) obj.ParentCUGroups_string = obj.ParentCUGroups.join ();
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
@@ -4332,7 +4303,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.ChildCUGroups_string;
                 delete obj.ParentCUGroups_string;
                 delete obj.CompatibleUnits_string;
@@ -4349,7 +4319,7 @@ define
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChildCUGroups'>ChildCUGroups: </label><div class='col-sm-8'><input id='{{id}}_ChildCUGroups' class='form-control' type='text'{{#ChildCUGroups}} value='{{ChildCUGroups_string}}'{{/ChildCUGroups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCUGroups'>ParentCUGroups: </label><div class='col-sm-8'><input id='{{id}}_ParentCUGroups' class='form-control' type='text'{{#ParentCUGroups}} value='{{ParentCUGroups_string}}'{{/ParentCUGroups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs_string}}'{{/DesignLocationCUs}}></div></div>
@@ -4365,7 +4335,7 @@ define
 
                 var obj = obj || { id: id, cls: "CUGroup" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_ChildCUGroups").value; if ("" != temp) obj.ChildCUGroups = temp.split (",");
                 temp = document.getElementById (id + "_ParentCUGroups").value; if ("" != temp) obj.ParentCUGroups = temp.split (",");
                 temp = document.getElementById (id + "_DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
@@ -4467,16 +4437,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
-                obj.validityIntervalDateTimeInterval = [{ id: '', selected: (!obj.validityInterval)}]; for (var property in Domain.DateTimeInterval) obj.validityIntervalDateTimeInterval.push ({ id: property, selected: obj.validityInterval && obj.validityInterval.endsWith ('.' + property)});
                 if (obj.Crews) obj.Crews_string = obj.Crews.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
-                delete obj.validityIntervalDateTimeInterval;
                 delete obj.Crews_string;
             }
 
@@ -4492,8 +4458,8 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_assignmentType'>assignmentType: </label><div class='col-sm-8'><input id='{{id}}_assignmentType' class='form-control' type='text'{{#assignmentType}} value='{{assignmentType}}'{{/assignmentType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cycleCount'>cycleCount: </label><div class='col-sm-8'><input id='{{id}}_cycleCount' class='form-control' type='text'{{#cycleCount}} value='{{cycleCount}}'{{/cycleCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><select id='{{id}}_validityInterval' class='form-control custom-select'>{{#validityIntervalDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/validityIntervalDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
                     </div>
                     </fieldset>
@@ -4509,8 +4475,8 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_assignmentType").value; if ("" != temp) obj.assignmentType = temp;
                 temp = document.getElementById (id + "_cycleCount").value; if ("" != temp) obj.cycleCount = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_validityInterval").value]; if (temp) obj.validityInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.validityInterval;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) obj.validityInterval = temp;
                 temp = document.getElementById (id + "_Crews").value; if ("" != temp) obj.Crews = temp.split (",");
 
                 return (obj);
@@ -4613,7 +4579,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.QualificationRequirements) obj.QualificationRequirements_string = obj.QualificationRequirements.join ();
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
@@ -4621,7 +4586,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.QualificationRequirements_string;
                 delete obj.CompatibleUnits_string;
             }
@@ -4639,7 +4603,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><input id='{{id}}_activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='{{id}}_laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborRate'>laborRate: </label><div class='col-sm-8'><input id='{{id}}_laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements_string}}'{{/QualificationRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborCode'>CULaborCode: </label><div class='col-sm-8'><input id='{{id}}_CULaborCode' class='form-control' type='text'{{#CULaborCode}} value='{{CULaborCode}}'{{/CULaborCode}}></div></div>
@@ -4658,7 +4622,7 @@ define
                 temp = document.getElementById (id + "_activityCode").value; if ("" != temp) obj.activityCode = temp;
                 temp = document.getElementById (id + "_laborDuration").value; if ("" != temp) obj.laborDuration = temp;
                 temp = document.getElementById (id + "_laborRate").value; if ("" != temp) obj.laborRate = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_QualificationRequirements").value; if ("" != temp) obj.QualificationRequirements = temp.split (",");
                 temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
                 temp = document.getElementById (id + "_CULaborCode").value; if ("" != temp) obj.CULaborCode = temp;
@@ -4766,7 +4730,6 @@ define
             {
                 super.condition (obj);
                 obj.activityCodeWorkActionKind = [{ id: '', selected: (!obj.activityCode)}]; for (var property in WorkActionKind) obj.activityCodeWorkActionKind.push ({ id: property, selected: obj.activityCode && obj.activityCode.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.CUMaterialItems) obj.CUMaterialItems_string = obj.CUMaterialItems.join ();
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
                 if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
@@ -4776,7 +4739,6 @@ define
             {
                 super.uncondition (obj);
                 delete obj.activityCodeWorkActionKind;
-                delete obj.statusStatus;
                 delete obj.CUMaterialItems_string;
                 delete obj.CompatibleUnits_string;
                 delete obj.WorkCostDetails_string;
@@ -4795,7 +4757,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountingUsage'>accountingUsage: </label><div class='col-sm-8'><input id='{{id}}_accountingUsage' class='form-control' type='text'{{#accountingUsage}} value='{{accountingUsage}}'{{/accountingUsage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><select id='{{id}}_activityCode' class='form-control custom-select'>{{#activityCodeWorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/activityCodeWorkActionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyAccount'>propertyAccount: </label><div class='col-sm-8'><input id='{{id}}_propertyAccount' class='form-control' type='text'{{#propertyAccount}} value='{{propertyAccount}}'{{/propertyAccount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='{{id}}_CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems_string}}'{{/CUMaterialItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails_string}}'{{/WorkCostDetails}}></div></div>
                     </div>
@@ -4813,7 +4775,7 @@ define
                 temp = document.getElementById (id + "_accountingUsage").value; if ("" != temp) obj.accountingUsage = temp;
                 temp = WorkActionKind[document.getElementById (id + "_activityCode").value]; if (temp) obj.activityCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; else delete obj.activityCode;
                 temp = document.getElementById (id + "_propertyAccount").value; if ("" != temp) obj.propertyAccount = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_CUMaterialItems").value; if ("" != temp) obj.CUMaterialItems = temp.split (",");
                 temp = document.getElementById (id + "_WorkCostDetails").value; if ("" != temp) obj.WorkCostDetails = temp.split (",");
 
@@ -4919,8 +4881,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
-                obj.validityIntervalDateTimeInterval = [{ id: '', selected: (!obj.validityInterval)}]; for (var property in Domain.DateTimeInterval) obj.validityIntervalDateTimeInterval.push ({ id: property, selected: obj.validityInterval && obj.validityInterval.endsWith ('.' + property)});
                 if (obj.Crafts) obj.Crafts_string = obj.Crafts.join ();
                 if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
             }
@@ -4928,8 +4888,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
-                delete obj.validityIntervalDateTimeInterval;
                 delete obj.Crafts_string;
                 delete obj.WorkTasks_string;
             }
@@ -4945,9 +4903,9 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_performanceFactor'>performanceFactor: </label><div class='col-sm-8'><input id='{{id}}_performanceFactor' class='form-control' type='text'{{#performanceFactor}} value='{{performanceFactor}}'{{/performanceFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><select id='{{id}}_validityInterval' class='form-control custom-select'>{{#validityIntervalDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/validityIntervalDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks_string}}'{{/WorkTasks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crew'>Crew: </label><div class='col-sm-8'><input id='{{id}}_Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
@@ -4964,9 +4922,9 @@ define
                 var obj = obj || { id: id, cls: "Capability" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_performanceFactor").value; if ("" != temp) obj.performanceFactor = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_validityInterval").value]; if (temp) obj.validityInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.validityInterval;
+                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) obj.validityInterval = temp;
                 temp = document.getElementById (id + "_Crafts").value; if ("" != temp) obj.Crafts = temp.split (",");
                 temp = document.getElementById (id + "_WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
                 temp = document.getElementById (id + "_Crew").value; if ("" != temp) obj.Crew = temp;
@@ -5092,8 +5050,6 @@ define
             {
                 super.condition (obj);
                 obj.cuActionWorkActionKind = [{ id: '', selected: (!obj.cuAction)}]; for (var property in WorkActionKind) obj.cuActionWorkActionKind.push ({ id: property, selected: obj.cuAction && obj.cuAction.endsWith ('.' + property)});
-                obj.cuQuantityIntegerQuantity = [{ id: '', selected: (!obj.cuQuantity)}]; for (var property in Domain.IntegerQuantity) obj.cuQuantityIntegerQuantity.push ({ id: property, selected: obj.cuQuantity && obj.cuQuantity.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
                 if (obj.CUGroups) obj.CUGroups_string = obj.CUGroups.join ();
                 if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
@@ -5105,8 +5061,6 @@ define
             {
                 super.uncondition (obj);
                 delete obj.cuActionWorkActionKind;
-                delete obj.cuQuantityIntegerQuantity;
-                delete obj.statusStatus;
                 delete obj.CompatibleUnits_string;
                 delete obj.CUGroups_string;
                 delete obj.WorkTasks_string;
@@ -5126,10 +5080,10 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuAccount'>cuAccount: </label><div class='col-sm-8'><input id='{{id}}_cuAccount' class='form-control' type='text'{{#cuAccount}} value='{{cuAccount}}'{{/cuAccount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuAction'>cuAction: </label><div class='col-sm-8'><select id='{{id}}_cuAction' class='form-control custom-select'>{{#cuActionWorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/cuActionWorkActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuQuantity'>cuQuantity: </label><div class='col-sm-8'><select id='{{id}}_cuQuantity' class='form-control custom-select'>{{#cuQuantityIntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/cuQuantityIntegerQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuQuantity'>cuQuantity: </label><div class='col-sm-8'><input id='{{id}}_cuQuantity' class='form-control' type='text'{{#cuQuantity}} value='{{cuQuantity}}'{{/cuQuantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuUsage'>cuUsage: </label><div class='col-sm-8'><input id='{{id}}_cuUsage' class='form-control' type='text'{{#cuUsage}} value='{{cuUsage}}'{{/cuUsage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_removalDate'>removalDate: </label><div class='col-sm-8'><input id='{{id}}_removalDate' class='form-control' type='text'{{#removalDate}} value='{{removalDate}}'{{/removalDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_toBeEnergised'>toBeEnergised: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_toBeEnergised' class='form-check-input' type='checkbox'{{#toBeEnergised}} checked{{/toBeEnergised}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='{{id}}_DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
@@ -5151,10 +5105,10 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_cuAccount").value; if ("" != temp) obj.cuAccount = temp;
                 temp = WorkActionKind[document.getElementById (id + "_cuAction").value]; if (temp) obj.cuAction = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; else delete obj.cuAction;
-                temp = Domain.IntegerQuantity[document.getElementById (id + "_cuQuantity").value]; if (temp) obj.cuQuantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; else delete obj.cuQuantity;
+                temp = document.getElementById (id + "_cuQuantity").value; if ("" != temp) obj.cuQuantity = temp;
                 temp = document.getElementById (id + "_cuUsage").value; if ("" != temp) obj.cuUsage = temp;
                 temp = document.getElementById (id + "_removalDate").value; if ("" != temp) obj.removalDate = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_toBeEnergised").checked; if (temp) obj.toBeEnergised = true;
                 temp = document.getElementById (id + "_DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
                 temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
@@ -5276,15 +5230,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.quantityIntegerQuantity = [{ id: '', selected: (!obj.quantity)}]; for (var property in Domain.IntegerQuantity) obj.quantityIntegerQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.quantityIntegerQuantity;
-                delete obj.statusStatus;
             }
 
             edit_template ()
@@ -5301,8 +5251,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costPerUnit'>costPerUnit: </label><div class='col-sm-8'><input id='{{id}}_costPerUnit' class='form-control' type='text'{{#costPerUnit}} value='{{costPerUnit}}'{{/costPerUnit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costType'>costType: </label><div class='col-sm-8'><input id='{{id}}_costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_externalRefID'>externalRefID: </label><div class='col-sm-8'><input id='{{id}}_externalRefID' class='form-control' type='text'{{#externalRefID}} value='{{externalRefID}}'{{/externalRefID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#quantityIntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quantityIntegerQuantity}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='{{id}}_DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
@@ -5322,8 +5272,8 @@ define
                 temp = document.getElementById (id + "_costPerUnit").value; if ("" != temp) obj.costPerUnit = temp;
                 temp = document.getElementById (id + "_costType").value; if ("" != temp) obj.costType = temp;
                 temp = document.getElementById (id + "_externalRefID").value; if ("" != temp) obj.externalRefID = temp;
-                temp = Domain.IntegerQuantity[document.getElementById (id + "_quantity").value]; if (temp) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; else delete obj.quantity;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
                 temp = document.getElementById (id + "_DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
                 temp = document.getElementById (id + "_WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
@@ -5421,14 +5371,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.CompatibleUnits_string;
             }
 
@@ -5444,7 +5392,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><input id='{{id}}_activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='{{id}}_bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     </div>
                     </fieldset>
@@ -5460,7 +5408,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_activityCode").value; if ("" != temp) obj.activityCode = temp;
                 temp = document.getElementById (id + "_bidAmount").value; if ("" != temp) obj.bidAmount = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
 
                 return (obj);
@@ -5557,16 +5505,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.quantityIntegerQuantity = [{ id: '', selected: (!obj.quantity)}]; for (var property in Domain.IntegerQuantity) obj.quantityIntegerQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.quantityIntegerQuantity;
-                delete obj.statusStatus;
                 delete obj.CompatibleUnits_string;
             }
 
@@ -5580,8 +5524,8 @@ define
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#quantityIntegerQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quantityIntegerQuantity}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_typeAssetCode'>typeAssetCode: </label><div class='col-sm-8'><input id='{{id}}_typeAssetCode' class='form-control' type='text'{{#typeAssetCode}} value='{{typeAssetCode}}'{{/typeAssetCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
@@ -5597,8 +5541,8 @@ define
 
                 var obj = obj || { id: id, cls: "CUAsset" };
                 super.submit (id, obj);
-                temp = Domain.IntegerQuantity[document.getElementById (id + "_quantity").value]; if (temp) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#IntegerQuantity." + temp; else delete obj.quantity;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_typeAssetCode").value; if ("" != temp) obj.typeAssetCode = temp;
                 temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
                 temp = document.getElementById (id + "_TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;

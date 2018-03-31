@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/AssetInfo", "model/Assets", "model/Common", "model/Core", "model/InfCommon"],
-    function (base, AssetInfo, Assets, Common, Core, InfCommon)
+    ["model/base", "model/AssetInfo", "model/Assets", "model/Common", "model/Core"],
+    function (base, AssetInfo, Assets, Common, Core)
     {
 
         /**
@@ -643,21 +643,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.maxRatioRatio = [{ id: '', selected: (!obj.maxRatio)}]; for (var property in InfCommon.Ratio) obj.maxRatioRatio.push ({ id: property, selected: obj.maxRatio && obj.maxRatio.endsWith ('.' + property)});
-                obj.nominalRatioRatio = [{ id: '', selected: (!obj.nominalRatio)}]; for (var property in InfCommon.Ratio) obj.nominalRatioRatio.push ({ id: property, selected: obj.nominalRatio && obj.nominalRatio.endsWith ('.' + property)});
-                obj.primaryRatioRatio = [{ id: '', selected: (!obj.primaryRatio)}]; for (var property in InfCommon.Ratio) obj.primaryRatioRatio.push ({ id: property, selected: obj.primaryRatio && obj.primaryRatio.endsWith ('.' + property)});
-                obj.secondaryRatioRatio = [{ id: '', selected: (!obj.secondaryRatio)}]; for (var property in InfCommon.Ratio) obj.secondaryRatioRatio.push ({ id: property, selected: obj.secondaryRatio && obj.secondaryRatio.endsWith ('.' + property)});
-                obj.tertiaryRatioRatio = [{ id: '', selected: (!obj.tertiaryRatio)}]; for (var property in InfCommon.Ratio) obj.tertiaryRatioRatio.push ({ id: property, selected: obj.tertiaryRatio && obj.tertiaryRatio.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.maxRatioRatio;
-                delete obj.nominalRatioRatio;
-                delete obj.primaryRatioRatio;
-                delete obj.secondaryRatioRatio;
-                delete obj.tertiaryRatioRatio;
             }
 
             edit_template ()
@@ -676,15 +666,15 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ctClass'>ctClass: </label><div class='col-sm-8'><input id='{{id}}_ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kneePointCurrent'>kneePointCurrent: </label><div class='col-sm-8'><input id='{{id}}_kneePointCurrent' class='form-control' type='text'{{#kneePointCurrent}} value='{{kneePointCurrent}}'{{/kneePointCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kneePointVoltage'>kneePointVoltage: </label><div class='col-sm-8'><input id='{{id}}_kneePointVoltage' class='form-control' type='text'{{#kneePointVoltage}} value='{{kneePointVoltage}}'{{/kneePointVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxRatio'>maxRatio: </label><div class='col-sm-8'><select id='{{id}}_maxRatio' class='form-control custom-select'>{{#maxRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/maxRatioRatio}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><select id='{{id}}_nominalRatio' class='form-control custom-select'>{{#nominalRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/nominalRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxRatio'>maxRatio: </label><div class='col-sm-8'><input id='{{id}}_maxRatio' class='form-control' type='text'{{#maxRatio}} value='{{maxRatio}}'{{/maxRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='{{id}}_nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryFlsRating'>primaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_primaryFlsRating' class='form-control' type='text'{{#primaryFlsRating}} value='{{primaryFlsRating}}'{{/primaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><select id='{{id}}_primaryRatio' class='form-control custom-select'>{{#primaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/primaryRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='{{id}}_primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryFlsRating'>secondaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_secondaryFlsRating' class='form-control' type='text'{{#secondaryFlsRating}} value='{{secondaryFlsRating}}'{{/secondaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#secondaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/secondaryRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='{{id}}_secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryFlsRating'>tertiaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_tertiaryFlsRating' class='form-control' type='text'{{#tertiaryFlsRating}} value='{{tertiaryFlsRating}}'{{/tertiaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#tertiaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/tertiaryRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='{{id}}_tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
                     </div>
                     </fieldset>
@@ -704,15 +694,15 @@ define
                 temp = document.getElementById (id + "_ctClass").value; if ("" != temp) obj.ctClass = temp;
                 temp = document.getElementById (id + "_kneePointCurrent").value; if ("" != temp) obj.kneePointCurrent = temp;
                 temp = document.getElementById (id + "_kneePointVoltage").value; if ("" != temp) obj.kneePointVoltage = temp;
-                temp = InfCommon.Ratio[document.getElementById (id + "_maxRatio").value]; if (temp) obj.maxRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.maxRatio;
-                temp = InfCommon.Ratio[document.getElementById (id + "_nominalRatio").value]; if (temp) obj.nominalRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.nominalRatio;
+                temp = document.getElementById (id + "_maxRatio").value; if ("" != temp) obj.maxRatio = temp;
+                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
                 temp = document.getElementById (id + "_primaryFlsRating").value; if ("" != temp) obj.primaryFlsRating = temp;
-                temp = InfCommon.Ratio[document.getElementById (id + "_primaryRatio").value]; if (temp) obj.primaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.primaryRatio;
+                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) obj.primaryRatio = temp;
                 temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
                 temp = document.getElementById (id + "_secondaryFlsRating").value; if ("" != temp) obj.secondaryFlsRating = temp;
-                temp = InfCommon.Ratio[document.getElementById (id + "_secondaryRatio").value]; if (temp) obj.secondaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.secondaryRatio;
+                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) obj.secondaryRatio = temp;
                 temp = document.getElementById (id + "_tertiaryFlsRating").value; if ("" != temp) obj.tertiaryFlsRating = temp;
-                temp = InfCommon.Ratio[document.getElementById (id + "_tertiaryRatio").value]; if (temp) obj.tertiaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.tertiaryRatio;
+                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) obj.tertiaryRatio = temp;
                 temp = document.getElementById (id + "_usage").value; if ("" != temp) obj.usage = temp;
 
                 return (obj);
@@ -935,14 +925,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.AssetModelCatalogueItems) obj.AssetModelCatalogueItems_string = obj.AssetModelCatalogueItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.statusStatus;
                 delete obj.AssetModelCatalogueItems_string;
             }
 
@@ -956,7 +944,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -969,7 +957,7 @@ define
 
                 var obj = obj || { id: id, cls: "AssetModelCatalogue" };
                 super.submit (id, obj);
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -1458,19 +1446,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.nominalRatioRatio = [{ id: '', selected: (!obj.nominalRatio)}]; for (var property in InfCommon.Ratio) obj.nominalRatioRatio.push ({ id: property, selected: obj.nominalRatio && obj.nominalRatio.endsWith ('.' + property)});
-                obj.primaryRatioRatio = [{ id: '', selected: (!obj.primaryRatio)}]; for (var property in InfCommon.Ratio) obj.primaryRatioRatio.push ({ id: property, selected: obj.primaryRatio && obj.primaryRatio.endsWith ('.' + property)});
-                obj.secondaryRatioRatio = [{ id: '', selected: (!obj.secondaryRatio)}]; for (var property in InfCommon.Ratio) obj.secondaryRatioRatio.push ({ id: property, selected: obj.secondaryRatio && obj.secondaryRatio.endsWith ('.' + property)});
-                obj.tertiaryRatioRatio = [{ id: '', selected: (!obj.tertiaryRatio)}]; for (var property in InfCommon.Ratio) obj.tertiaryRatioRatio.push ({ id: property, selected: obj.tertiaryRatio && obj.tertiaryRatio.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.nominalRatioRatio;
-                delete obj.primaryRatioRatio;
-                delete obj.secondaryRatioRatio;
-                delete obj.tertiaryRatioRatio;
             }
 
             edit_template ()
@@ -1484,12 +1464,12 @@ define
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><select id='{{id}}_nominalRatio' class='form-control custom-select'>{{#nominalRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/nominalRatioRatio}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><select id='{{id}}_primaryRatio' class='form-control custom-select'>{{#primaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/primaryRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='{{id}}_nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='{{id}}_primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ptClass'>ptClass: </label><div class='col-sm-8'><input id='{{id}}_ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><select id='{{id}}_secondaryRatio' class='form-control custom-select'>{{#secondaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/secondaryRatioRatio}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><select id='{{id}}_tertiaryRatio' class='form-control custom-select'>{{#tertiaryRatioRatio}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/tertiaryRatioRatio}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='{{id}}_secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='{{id}}_tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1503,12 +1483,12 @@ define
                 var obj = obj || { id: id, cls: "PotentialTransformerInfo" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
-                temp = InfCommon.Ratio[document.getElementById (id + "_nominalRatio").value]; if (temp) obj.nominalRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.nominalRatio;
-                temp = InfCommon.Ratio[document.getElementById (id + "_primaryRatio").value]; if (temp) obj.primaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.primaryRatio;
+                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
+                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) obj.primaryRatio = temp;
                 temp = document.getElementById (id + "_ptClass").value; if ("" != temp) obj.ptClass = temp;
                 temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = InfCommon.Ratio[document.getElementById (id + "_secondaryRatio").value]; if (temp) obj.secondaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.secondaryRatio;
-                temp = InfCommon.Ratio[document.getElementById (id + "_tertiaryRatio").value]; if (temp) obj.tertiaryRatio = "http://iec.ch/TC57/2013/CIM-schema-cim16#Ratio." + temp; else delete obj.tertiaryRatio;
+                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) obj.secondaryRatio = temp;
+                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) obj.tertiaryRatio = temp;
 
                 return (obj);
             }

@@ -19,21 +19,19 @@ define
         {
             constructor (cimmap, cimedit)
             {
-                this._onMap = false;
                 this._cimmap = cimmap;
                 this._cimedit = cimedit;
                 this._template =
                     `
-                    <div class='card'>
-                      <div class='card-body' style='min-width:200px;'>
-                        <h5 class='card-title'>Connectivity
-                            <button type='button' class='close' aria-label='Close'>
-                                <span aria-hidden='true'>&times;</span>
+                    <div class="card">
+                      <div class="card-body" style="min-width:200px;">
+                        <h5 class="card-title">Connectivity
+                            <button class="close" type="button" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </h5>
-                        <div id='connectivity'></div>
-                        <div id='connectivity_footer' class='card-footer'>
-                            <button id='connectivity_set' type='button' class='btn btn-primary' disabled>Set</button>
+                        <div class="card-text"></div>
+                        <div id="connectivity_footer" class="card-footer" style="display: none;">
                         </div>
                       </div>
                     </div>
@@ -49,9 +47,7 @@ define
                 this._container.className = "mapboxgl-ctrl";
                 this._container.innerHTML = this._template;
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
-                this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.begin.bind (this);
                 this._cimmap.add_feature_listener (this);
-                this._onMap = true;
                 return (this._container);
             }
 
@@ -59,8 +55,7 @@ define
             {
                 this._container.parentNode.removeChild (this._container);
                 this._cimmap.remove_feature_listener (this);
-                this._map = undefined;
-                this._onMap = false;
+                delete this._map;
             }
 
             getDefaultPosition ()
@@ -76,7 +71,7 @@ define
 
             visible ()
             {
-                return (this._onMap);
+                return ("undefined" != typeof (this._container));
             }
 
             popup (html, position)
@@ -235,7 +230,7 @@ define
                                         if (equipment.BaseVoltage)
                                             connectivity.BaseVoltage = equipment.BaseVoltage;
                                         else
-                                            this._cimmap.forAll ("PowerTransformerEnd", end => { if (end.Terminal == terminal.id) connectivity.BaseVoltage = end.BaseVoltage; });
+                                            cimmap.forAll ("PowerTransformerEnd", end => { if (end.Terminal == terminal.id) connectivity.BaseVoltage = end.BaseVoltage; });
                                         list[id].push (connectivity);
                                     }
                             }
@@ -458,7 +453,9 @@ define
                     <button id='connectivity_disconnect' type='button' class='btn btn-info' disabled>Disconnect</button>
                     <button id='connectivity_cancel' type='button' class='btn btn-danger'>Cancel</button>
                 `;
-                document.getElementById ("connectivity_footer").innerHTML = template;
+                var footer = document.getElementById ("connectivity_footer");
+                footer.innerHTML = template;
+                footer.style.display = "block";
                 var do_connect = this.connect_click.bind (this, cb_success, cb_failure);
                 var do_disconnect = this.disconnect_click.bind (this, cb_success, cb_failure);
                 var do_cancel = this.cancel_click.bind (this, cb_success, cb_failure);
@@ -497,13 +494,24 @@ define
 
             reset_gui ()
             {
-                var template =
-                `
-                    <button id='connectivity_set' type='button' class='btn btn-primary'>Set</button>
-                `;
-                document.getElementById ("connectivity_footer").innerHTML = template;
-                document.getElementById ("connectivity_set").onclick = this.begin.bind (this);
-                document.getElementById ("connectivity").innerHTML = "";
+                this._container.getElementsByClassName ("card-text")[0].innerHTML = "";
+                var footer = this._container.getElementsByClassName ("card-footer")[0];
+                if (this._target)
+                {
+                    var template =
+                        `
+                            <button id="connectivity_set" type="button" class="btn btn-primary">Set</button>
+                        `;
+                    footer.innerHTML = template;
+                    footer.style.display = "block";
+                    footer.getElementsByClassName ("btn btn-primary")[0].onclick = this.begin.bind (this);
+                }
+                else
+                {
+                    footer.innerHTML = "";
+                    footer.style.display = "none";
+                }
+
                 if (this._candidates)
                 {
                     this._candidates.filter (x => x.Marker).map (x => x.Marker.remove ());
@@ -587,7 +595,8 @@ define
                 var text = mustache.render (template, { candidates: (this._candidates ? this._candidates : []), display_name: this.display_name });
                 for (var i = 0; this._candidates && i < this._candidates.length; i++)
                     delete this._candidates[i].index;
-                document.getElementById ("connectivity_candidates").innerHTML = text;
+                var guts = this._container.getElementsByClassName ("connectivity_candidates")[0];
+                guts.innerHTML = text;
                 function radio_event (event)
                 {
                     var id = event.target.id;
@@ -602,9 +611,9 @@ define
                     return (false);
                 }
                 var fn = radio_event.bind (this);
-                for (var i = 0; this._candidates && i < this._candidates.length; i++)
-                    document.getElementById ("connectivity_" + this._candidates[i].ConnectivityNode).addEventListener ("change", fn);
-
+                var radios = guts.getElementsByClassName ("form-check-input");
+                for (var i = 0; i < radios.length; i++)
+                    radios[i].addEventListener ("change", fn);
             }
 
             show_connectivity ()
@@ -631,9 +640,9 @@ define
                       {{#description}}<div>{{description}}</div>{{/description}}
                     {{/equipment}}
                     {{#target}}
-                    <div class='form-check'>
-                      <input id='target_{{Terminal.id}}' class='form-check-input' type='radio' name='target_choice' value='{{Terminal.id}}'{{#current}} checked{{/current}}>
-                      <label class='form-check-label' for='target_{{Terminal.id}}'>
+                    <div class="form-check">
+                      <input id="target_{{Terminal.id}}" class="form-check-input" type="radio" name="target_choice" value="{{Terminal.id}}"{{#current}} checked{{/current}}>
+                      <label class="form-check-label" for="target_{{Terminal.id}}">
                         {{#Terminal}}
                           <h6>Terminal #{{sequenceNumber}} {{display_name}} {{description}}</h6>
                           <div>{{#ConnectivityNode}}{{ConnectivityNode}}{{/ConnectivityNode}} {{BaseVoltage}}</div>
@@ -642,7 +651,7 @@ define
                     </div>
                     {{/target}}
                     <hr />
-                    <div id='connectivity_candidates'></div>
+                    <div class="connectivity_candidates"></div>
                     `;
                 if (this._target)
                 {
@@ -655,10 +664,12 @@ define
                     for (var i = 0; this._candidates && i < this._candidates.length; i++)
                         delete this._candidates[i].index;
 
-                    document.getElementById ("connectivity").innerHTML = text;
+                    var guts = this._container.getElementsByClassName ("card-text")[0];
+                    guts.innerHTML = text;
                     // add handler to change current target connectivity node
-                    for (var i = 0; i < this._target.length; i++)
-                        document.getElementById ("target_" + this._target[i].Terminal.id).onclick = this.flick.bind (this);
+                    var radios = guts.getElementsByClassName ("form-check-input");
+                    for (var i = 0; i < radios.length; i++)
+                        radios[i].onclick = this.flick.bind (this);
                     this.show_candidates ();
                 }
             }
@@ -890,8 +901,6 @@ define
             abort ()
             {
                 this.reset_listeners ();
-                delete this._target;
-                delete this._candidates;
                 delete this._anchor;
                 delete this._cpromise;
                 this.reset_gui ();
@@ -916,8 +925,12 @@ require(["cimmap"], function(cimmap) { cimmap.get_connectivity ().connect (obj, 
                 if (null != current_feature)
                     this.initialize (current_feature);
                 else
+                {
                     this.abort ();
-                document.getElementById ("connectivity_set").disabled = null == current_feature;
+                    delete this._target;
+                    delete this._candidates;
+                    this.reset_gui ();
+                }
             }
         }
 

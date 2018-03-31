@@ -260,14 +260,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.rcdInfoRemoteConnectDisconnectInfo = [{ id: '', selected: (!obj.rcdInfo)}]; for (var property in RemoteConnectDisconnectInfo) obj.rcdInfoRemoteConnectDisconnectInfo.push ({ id: property, selected: obj.rcdInfo && obj.rcdInfo.endsWith ('.' + property)});
                 if (obj.Switches) obj.Switches_string = obj.Switches.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.rcdInfoRemoteConnectDisconnectInfo;
                 delete obj.Switches_string;
             }
 
@@ -288,7 +286,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isLocalAutoReconOp'>isLocalAutoReconOp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isLocalAutoReconOp' class='form-check-input' type='checkbox'{{#isLocalAutoReconOp}} checked{{/isLocalAutoReconOp}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isRemoteAutoDisconOp'>isRemoteAutoDisconOp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isRemoteAutoDisconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoDisconOp}} checked{{/isRemoteAutoDisconOp}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isRemoteAutoReconOp'>isRemoteAutoReconOp: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isRemoteAutoReconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoReconOp}} checked{{/isRemoteAutoReconOp}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcdInfo'>rcdInfo: </label><div class='col-sm-8'><select id='{{id}}_rcdInfo' class='form-control custom-select'>{{#rcdInfoRemoteConnectDisconnectInfo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rcdInfoRemoteConnectDisconnectInfo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcdInfo'>rcdInfo: </label><div class='col-sm-8'><input id='{{id}}_rcdInfo' class='form-control' type='text'{{#rcdInfo}} value='{{rcdInfo}}'{{/rcdInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switches'>Switches: </label><div class='col-sm-8'><input id='{{id}}_Switches' class='form-control' type='text'{{#Switches}} value='{{Switches_string}}'{{/Switches}}></div></div>
                     </div>
                     </fieldset>
@@ -309,7 +307,7 @@ define
                 temp = document.getElementById (id + "_isLocalAutoReconOp").checked; if (temp) obj.isLocalAutoReconOp = true;
                 temp = document.getElementById (id + "_isRemoteAutoDisconOp").checked; if (temp) obj.isRemoteAutoDisconOp = true;
                 temp = document.getElementById (id + "_isRemoteAutoReconOp").checked; if (temp) obj.isRemoteAutoReconOp = true;
-                temp = RemoteConnectDisconnectInfo[document.getElementById (id + "_rcdInfo").value]; if (temp) obj.rcdInfo = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteConnectDisconnectInfo." + temp; else delete obj.rcdInfo;
+                temp = document.getElementById (id + "_rcdInfo").value; if ("" != temp) obj.rcdInfo = temp;
                 temp = document.getElementById (id + "_Switches").value; if ("" != temp) obj.Switches = temp.split (",");
 
                 return (obj);

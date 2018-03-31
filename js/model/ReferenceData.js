@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Contingency", "model/Core", "model/Domain", "model/MarketCommon", "model/MarketOpCommon", "model/MktDomain", "model/Production"],
+    ["model/base", "model/Common", "model/Contingency", "model/Core", "model/MarketCommon", "model/MarketOpCommon", "model/MktDomain", "model/Production"],
     /**
      * Market static reference data.
      *
      */
-    function (base, Common, Contingency, Core, Domain, MarketCommon, MarketOpCommon, MktDomain, Production)
+    function (base, Common, Contingency, Core, MarketCommon, MarketOpCommon, MktDomain, Production)
     {
 
         /**
@@ -1520,14 +1520,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.certificationPeriodDateTimeInterval = [{ id: '', selected: (!obj.certificationPeriod)}]; for (var property in Domain.DateTimeInterval) obj.certificationPeriodDateTimeInterval.push ({ id: property, selected: obj.certificationPeriod && obj.certificationPeriod.endsWith ('.' + property)});
                 if (obj.MarketQualificationRequirements) obj.MarketQualificationRequirements_string = obj.MarketQualificationRequirements.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.certificationPeriodDateTimeInterval;
                 delete obj.MarketQualificationRequirements_string;
             }
 
@@ -1541,7 +1539,7 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><select id='{{id}}_certificationPeriod' class='form-control custom-select'>{{#certificationPeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certificationPeriodDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='{{id}}_certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><input id='{{id}}_level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketQualificationRequirements'>MarketQualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_MarketQualificationRequirements' class='form-control' type='text'{{#MarketQualificationRequirements}} value='{{MarketQualificationRequirements_string}}'{{/MarketQualificationRequirements}}></div></div>
@@ -1558,7 +1556,7 @@ define
 
                 var obj = obj || { id: id, cls: "MarketSkill" };
                 super.submit (id, obj);
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_certificationPeriod").value]; if (temp) obj.certificationPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.certificationPeriod;
+                temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
                 temp = document.getElementById (id + "_effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
                 temp = document.getElementById (id + "_level").value; if ("" != temp) obj.level = temp;
                 temp = document.getElementById (id + "_MarketQualificationRequirements").value; if ("" != temp) obj.MarketQualificationRequirements = temp.split (",");
@@ -2628,11 +2626,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.electronicAddressAlternateElectronicAddress = [{ id: '', selected: (!obj.electronicAddressAlternate)}]; for (var property in Common.ElectronicAddress) obj.electronicAddressAlternateElectronicAddress.push ({ id: property, selected: obj.electronicAddressAlternate && obj.electronicAddressAlternate.endsWith ('.' + property)});
-                obj.electronicAddressPrimaryElectronicAddress = [{ id: '', selected: (!obj.electronicAddressPrimary)}]; for (var property in Common.ElectronicAddress) obj.electronicAddressPrimaryElectronicAddress.push ({ id: property, selected: obj.electronicAddressPrimary && obj.electronicAddressPrimary.endsWith ('.' + property)});
-                obj.landlinePhoneTelephoneNumber = [{ id: '', selected: (!obj.landlinePhone)}]; for (var property in Common.TelephoneNumber) obj.landlinePhoneTelephoneNumber.push ({ id: property, selected: obj.landlinePhone && obj.landlinePhone.endsWith ('.' + property)});
-                obj.mobilePhoneTelephoneNumber = [{ id: '', selected: (!obj.mobilePhone)}]; for (var property in Common.TelephoneNumber) obj.mobilePhoneTelephoneNumber.push ({ id: property, selected: obj.mobilePhone && obj.mobilePhone.endsWith ('.' + property)});
-                obj.statusStatus = [{ id: '', selected: (!obj.status)}]; for (var property in Common.Status) obj.statusStatus.push ({ id: property, selected: obj.status && obj.status.endsWith ('.' + property)});
                 if (obj.MktOrganisation) obj.MktOrganisation_string = obj.MktOrganisation.join ();
                 if (obj.MarketSkills) obj.MarketSkills_string = obj.MarketSkills.join ();
             }
@@ -2640,11 +2633,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.electronicAddressAlternateElectronicAddress;
-                delete obj.electronicAddressPrimaryElectronicAddress;
-                delete obj.landlinePhoneTelephoneNumber;
-                delete obj.mobilePhoneTelephoneNumber;
-                delete obj.statusStatus;
                 delete obj.MktOrganisation_string;
                 delete obj.MarketSkills_string;
             }
@@ -2660,17 +2648,17 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_category'>category: </label><div class='col-sm-8'><input id='{{id}}_category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressAlternate'>electronicAddressAlternate: </label><div class='col-sm-8'><select id='{{id}}_electronicAddressAlternate' class='form-control custom-select'>{{#electronicAddressAlternateElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/electronicAddressAlternateElectronicAddress}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressPrimary'>electronicAddressPrimary: </label><div class='col-sm-8'><select id='{{id}}_electronicAddressPrimary' class='form-control custom-select'>{{#electronicAddressPrimaryElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/electronicAddressPrimaryElectronicAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressAlternate'>electronicAddressAlternate: </label><div class='col-sm-8'><input id='{{id}}_electronicAddressAlternate' class='form-control' type='text'{{#electronicAddressAlternate}} value='{{electronicAddressAlternate}}'{{/electronicAddressAlternate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressPrimary'>electronicAddressPrimary: </label><div class='col-sm-8'><input id='{{id}}_electronicAddressPrimary' class='form-control' type='text'{{#electronicAddressPrimary}} value='{{electronicAddressPrimary}}'{{/electronicAddressPrimary}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_firstName'>firstName: </label><div class='col-sm-8'><input id='{{id}}_firstName' class='form-control' type='text'{{#firstName}} value='{{firstName}}'{{/firstName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_governmentID'>governmentID: </label><div class='col-sm-8'><input id='{{id}}_governmentID' class='form-control' type='text'{{#governmentID}} value='{{governmentID}}'{{/governmentID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_landlinePhone'>landlinePhone: </label><div class='col-sm-8'><select id='{{id}}_landlinePhone' class='form-control custom-select'>{{#landlinePhoneTelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/landlinePhoneTelephoneNumber}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_landlinePhone'>landlinePhone: </label><div class='col-sm-8'><input id='{{id}}_landlinePhone' class='form-control' type='text'{{#landlinePhone}} value='{{landlinePhone}}'{{/landlinePhone}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastName'>lastName: </label><div class='col-sm-8'><input id='{{id}}_lastName' class='form-control' type='text'{{#lastName}} value='{{lastName}}'{{/lastName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mName'>mName: </label><div class='col-sm-8'><input id='{{id}}_mName' class='form-control' type='text'{{#mName}} value='{{mName}}'{{/mName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mobilePhone'>mobilePhone: </label><div class='col-sm-8'><select id='{{id}}_mobilePhone' class='form-control custom-select'>{{#mobilePhoneTelephoneNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/mobilePhoneTelephoneNumber}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mobilePhone'>mobilePhone: </label><div class='col-sm-8'><input id='{{id}}_mobilePhone' class='form-control' type='text'{{#mobilePhone}} value='{{mobilePhone}}'{{/mobilePhone}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_prefix'>prefix: </label><div class='col-sm-8'><input id='{{id}}_prefix' class='form-control' type='text'{{#prefix}} value='{{prefix}}'{{/prefix}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='{{id}}_specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control custom-select'>{{#statusStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_suffix'>suffix: </label><div class='col-sm-8'><input id='{{id}}_suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_userID'>userID: </label><div class='col-sm-8'><input id='{{id}}_userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation_string}}'{{/MktOrganisation}}></div></div>
@@ -2687,17 +2675,17 @@ define
                 var obj = obj || { id: id, cls: "MarketPerson" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_category").value; if ("" != temp) obj.category = temp;
-                temp = Common.ElectronicAddress[document.getElementById (id + "_electronicAddressAlternate").value]; if (temp) obj.electronicAddressAlternate = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; else delete obj.electronicAddressAlternate;
-                temp = Common.ElectronicAddress[document.getElementById (id + "_electronicAddressPrimary").value]; if (temp) obj.electronicAddressPrimary = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; else delete obj.electronicAddressPrimary;
+                temp = document.getElementById (id + "_electronicAddressAlternate").value; if ("" != temp) obj.electronicAddressAlternate = temp;
+                temp = document.getElementById (id + "_electronicAddressPrimary").value; if ("" != temp) obj.electronicAddressPrimary = temp;
                 temp = document.getElementById (id + "_firstName").value; if ("" != temp) obj.firstName = temp;
                 temp = document.getElementById (id + "_governmentID").value; if ("" != temp) obj.governmentID = temp;
-                temp = Common.TelephoneNumber[document.getElementById (id + "_landlinePhone").value]; if (temp) obj.landlinePhone = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; else delete obj.landlinePhone;
+                temp = document.getElementById (id + "_landlinePhone").value; if ("" != temp) obj.landlinePhone = temp;
                 temp = document.getElementById (id + "_lastName").value; if ("" != temp) obj.lastName = temp;
                 temp = document.getElementById (id + "_mName").value; if ("" != temp) obj.mName = temp;
-                temp = Common.TelephoneNumber[document.getElementById (id + "_mobilePhone").value]; if (temp) obj.mobilePhone = "http://iec.ch/TC57/2013/CIM-schema-cim16#TelephoneNumber." + temp; else delete obj.mobilePhone;
+                temp = document.getElementById (id + "_mobilePhone").value; if ("" != temp) obj.mobilePhone = temp;
                 temp = document.getElementById (id + "_prefix").value; if ("" != temp) obj.prefix = temp;
                 temp = document.getElementById (id + "_specialNeed").value; if ("" != temp) obj.specialNeed = temp;
-                temp = Common.Status[document.getElementById (id + "_status").value]; if (temp) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#Status." + temp; else delete obj.status;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_suffix").value; if ("" != temp) obj.suffix = temp;
                 temp = document.getElementById (id + "_userID").value; if ("" != temp) obj.userID = temp;
                 temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");

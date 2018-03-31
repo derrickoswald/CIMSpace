@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Core", "model/Domain"],
+    ["model/base", "model/Common", "model/Core"],
     /**
      * The package is used to define detailed customer models.
      *
      */
-    function (base, Common, Core, Domain)
+    function (base, Common, Core)
     {
 
         /**
@@ -222,13 +222,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.applicationPeriodDateTimeInterval = [{ id: '', selected: (!obj.applicationPeriod)}]; for (var property in Domain.DateTimeInterval) obj.applicationPeriodDateTimeInterval.push ({ id: property, selected: obj.applicationPeriod && obj.applicationPeriod.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.applicationPeriodDateTimeInterval;
             }
 
             edit_template ()
@@ -241,7 +239,7 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_applicationPeriod'>applicationPeriod: </label><div class='col-sm-8'><select id='{{id}}_applicationPeriod' class='form-control custom-select'>{{#applicationPeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/applicationPeriodDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_applicationPeriod'>applicationPeriod: </label><div class='col-sm-8'><input id='{{id}}_applicationPeriod' class='form-control' type='text'{{#applicationPeriod}} value='{{applicationPeriod}}'{{/applicationPeriod}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_automaticPay'>automaticPay: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_automaticPay' class='form-check-input' type='checkbox'{{#automaticPay}} checked{{/automaticPay}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_payAmount'>payAmount: </label><div class='col-sm-8'><input id='{{id}}_payAmount' class='form-control' type='text'{{#payAmount}} value='{{payAmount}}'{{/payAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceRequirement'>serviceRequirement: </label><div class='col-sm-8'><input id='{{id}}_serviceRequirement' class='form-control' type='text'{{#serviceRequirement}} value='{{serviceRequirement}}'{{/serviceRequirement}}></div></div>
@@ -257,7 +255,7 @@ define
 
                 var obj = obj || { id: id, cls: "ServiceGuarantee" };
                 super.submit (id, obj);
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_applicationPeriod").value]; if (temp) obj.applicationPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.applicationPeriod;
+                temp = document.getElementById (id + "_applicationPeriod").value; if ("" != temp) obj.applicationPeriod = temp;
                 temp = document.getElementById (id + "_automaticPay").checked; if (temp) obj.automaticPay = true;
                 temp = document.getElementById (id + "_payAmount").value; if ("" != temp) obj.payAmount = temp;
                 temp = document.getElementById (id + "_serviceRequirement").value; if ("" != temp) obj.serviceRequirement = temp;

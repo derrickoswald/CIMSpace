@@ -21,20 +21,21 @@ define
             {
                 this._cimmap = cimmap;
                 this._template =
-                    "<div id='view_frame' class='card'>\n" +
-                    "  <div class='card-body'>\n" +
-                    "    <h5 class='card-title'>\n" +
-                    "      <span id='info_title'>Info</span>\n" +
-                    "      <button type='button' class='close' aria-label='Close'>\n" +
-                    "        <span aria-hidden='true'>&times;</span>\n" +
-                    "      </button>\n" +
-                    "    </h5>\n" +
-                    "    <h6 id='streetviewlink' class='card-subtitle mb-2'></h6>\n" +
-                    "    <div id='view_contents' class='card-text'>\n" +
-                    "      <div id='feature_detail_contents'></div>\n" +
-                    "    </div>\n" +
-                    "  </div>\n" +
-                    "</div>\n";
+                    `
+                    <div class="card">
+                      <div class="card-body" style="min-width:200px;">
+                        <h5 class="card-title">
+                          <span class="info_title">Info</span>
+                          <button class="close" type="button" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </h5>
+                        <h6 class="card-subtitle mb-2"></h6>
+                        <div class="card-text">
+                        </div>
+                      </div>
+                    </div>
+                    `;
             }
 
             onAdd (map)
@@ -52,17 +53,17 @@ define
 
             onRemove ()
             {
+                this._cimmap.remove_feature_listener (this);
                 // turn off the resize listener
                 if (this._resizer)
                 {
                     this._map.off ("resize", this._resizer);
-                    this._resizer = null;
+                    delete this._resizer;
                 }
                 // destroy the container
                 this._container.parentNode.removeChild (this._container);
-                this._cimmap.remove_feature_listener (this);
-                this._container = null;
-                this._map = undefined;
+                delete this._container;
+                delete this._map;
             }
 
             getDefaultPosition ()
@@ -78,7 +79,7 @@ define
                 var logo_height = 18;
                 var max_height = map_height - bottom_margin - well_padding - logo_height;
                 this._container.style.maxHeight = max_height.toString () + "px";
-                var guts = document.getElementById ("feature_detail_contents");
+                var guts = this._container.getElementsByClassName ("card-text")[0];
                 if (guts)
                     guts.style.maxHeight = (max_height - this._frame_height).toString () + "px";
             }
@@ -90,7 +91,7 @@ define
 
             visible ()
             {
-                return (null != this._container);
+                return ("undefined" != typeof (this._container));
             }
 
             detail_text ()
@@ -174,15 +175,15 @@ define
             {
                 if (this.visible ())
                 {
-                    document.getElementById ("info_title").innerHTML = "Info";
-                    document.getElementById ("feature_detail_contents").innerHTML = "";
-                    document.getElementById ("streetviewlink").innerHTML = "";
+                    this._container.getElementsByClassName ("info_title")[0].innerHTML = "Info";
+                    this._container.getElementsByClassName ("card-text")[0].innerHTML = "";
+                    this._container.getElementsByClassName ("card-subtitle")[0].innerHTML = "";
                     var mrid = this._cimmap.get_selected_feature ();
                     if (mrid)
                     {
-                        document.getElementById ("info_title").innerHTML = mrid;
-                        this._frame_height = document.getElementById ("view_frame").clientHeight; // frame height with no contents
-                        document.getElementById ("feature_detail_contents").innerHTML = this.detail_text ();
+                        this._container.getElementsByClassName ("info_title")[0].innerHTML = mrid;
+                        this._frame_height = this._container.getElementsByClassName ("card")[0].clientHeight; // frame height with no contents
+                        this._container.getElementsByClassName ("card-text")[0].innerHTML = this.detail_text ();
                         this.maybe_streetview ();
                         this.on_map_resize ();
                     }
@@ -219,7 +220,7 @@ define
                                         if (-1 != url.indexOf ("pano"))
                                         {
                                             var link = "<a href='" + url + "' target='_blank'>StreetView</a>";
-                                            document.getElementById ("streetviewlink").innerHTML = link;
+                                            this._container.getElementsByClassName ("card-subtitle")[0].innerHTML = link;
                                         }
                                     }
                                 );

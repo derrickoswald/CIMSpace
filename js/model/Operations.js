@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Domain"],
+    ["model/base", "model/Common"],
     /**
      * This package contains the core information classes that support operations and outage management applications.
      *
      */
-    function (base, Common, Domain)
+    function (base, Common)
     {
 
         /**
@@ -601,9 +601,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.estimatedPeriodDateTimeInterval = [{ id: '', selected: (!obj.estimatedPeriod)}]; for (var property in Domain.DateTimeInterval) obj.estimatedPeriodDateTimeInterval.push ({ id: property, selected: obj.estimatedPeriod && obj.estimatedPeriod.endsWith ('.' + property)});
-                obj.actualPeriodDateTimeInterval = [{ id: '', selected: (!obj.actualPeriod)}]; for (var property in Domain.DateTimeInterval) obj.actualPeriodDateTimeInterval.push ({ id: property, selected: obj.actualPeriod && obj.actualPeriod.endsWith ('.' + property)});
-                obj.summaryServicePointOutageSummary = [{ id: '', selected: (!obj.summary)}]; for (var property in ServicePointOutageSummary) obj.summaryServicePointOutageSummary.push ({ id: property, selected: obj.summary && obj.summary.endsWith ('.' + property)});
                 if (obj.PlannedSwitchActions) obj.PlannedSwitchActions_string = obj.PlannedSwitchActions.join ();
                 if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
                 if (obj.OpenedSwitches) obj.OpenedSwitches_string = obj.OpenedSwitches.join ();
@@ -616,9 +613,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.estimatedPeriodDateTimeInterval;
-                delete obj.actualPeriodDateTimeInterval;
-                delete obj.summaryServicePointOutageSummary;
                 delete obj.PlannedSwitchActions_string;
                 delete obj.Equipments_string;
                 delete obj.OpenedSwitches_string;
@@ -639,10 +633,10 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cause'>cause: </label><div class='col-sm-8'><input id='{{id}}_cause' class='form-control' type='text'{{#cause}} value='{{cause}}'{{/cause}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedPeriod'>estimatedPeriod: </label><div class='col-sm-8'><select id='{{id}}_estimatedPeriod' class='form-control custom-select'>{{#estimatedPeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/estimatedPeriodDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedPeriod'>estimatedPeriod: </label><div class='col-sm-8'><input id='{{id}}_estimatedPeriod' class='form-control' type='text'{{#estimatedPeriod}} value='{{estimatedPeriod}}'{{/estimatedPeriod}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isPlanned'>isPlanned: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isPlanned' class='form-check-input' type='checkbox'{{#isPlanned}} checked{{/isPlanned}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualPeriod'>actualPeriod: </label><div class='col-sm-8'><select id='{{id}}_actualPeriod' class='form-control custom-select'>{{#actualPeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/actualPeriodDateTimeInterval}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_summary'>summary: </label><div class='col-sm-8'><select id='{{id}}_summary' class='form-control custom-select'>{{#summaryServicePointOutageSummary}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/summaryServicePointOutageSummary}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualPeriod'>actualPeriod: </label><div class='col-sm-8'><input id='{{id}}_actualPeriod' class='form-control' type='text'{{#actualPeriod}} value='{{actualPeriod}}'{{/actualPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_summary'>summary: </label><div class='col-sm-8'><input id='{{id}}_summary' class='form-control' type='text'{{#summary}} value='{{summary}}'{{/summary}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelledDateTime'>cancelledDateTime: </label><div class='col-sm-8'><input id='{{id}}_cancelledDateTime' class='form-control' type='text'{{#cancelledDateTime}} value='{{cancelledDateTime}}'{{/cancelledDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OutageSchedule'>OutageSchedule: </label><div class='col-sm-8'><input id='{{id}}_OutageSchedule' class='form-control' type='text'{{#OutageSchedule}} value='{{OutageSchedule}}'{{/OutageSchedule}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments_string}}'{{/Equipments}}></div></div>
@@ -661,10 +655,10 @@ define
                 var obj = obj || { id: id, cls: "Outage" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_cause").value; if ("" != temp) obj.cause = temp;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_estimatedPeriod").value]; if (temp) obj.estimatedPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.estimatedPeriod;
+                temp = document.getElementById (id + "_estimatedPeriod").value; if ("" != temp) obj.estimatedPeriod = temp;
                 temp = document.getElementById (id + "_isPlanned").checked; if (temp) obj.isPlanned = true;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_actualPeriod").value]; if (temp) obj.actualPeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.actualPeriod;
-                temp = ServicePointOutageSummary[document.getElementById (id + "_summary").value]; if (temp) obj.summary = "http://iec.ch/TC57/2013/CIM-schema-cim16#ServicePointOutageSummary." + temp; else delete obj.summary;
+                temp = document.getElementById (id + "_actualPeriod").value; if ("" != temp) obj.actualPeriod = temp;
+                temp = document.getElementById (id + "_summary").value; if ("" != temp) obj.summary = temp;
                 temp = document.getElementById (id + "_cancelledDateTime").value; if ("" != temp) obj.cancelledDateTime = temp;
                 temp = document.getElementById (id + "_OutageSchedule").value; if ("" != temp) obj.OutageSchedule = temp;
                 temp = document.getElementById (id + "_Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
@@ -927,16 +921,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.activePeriodDateTimeInterval = [{ id: '', selected: (!obj.activePeriod)}]; for (var property in Domain.DateTimeInterval) obj.activePeriodDateTimeInterval.push ({ id: property, selected: obj.activePeriod && obj.activePeriod.endsWith ('.' + property)});
-                obj.restrictedValueFloatQuantity = [{ id: '', selected: (!obj.restrictedValue)}]; for (var property in Domain.FloatQuantity) obj.restrictedValueFloatQuantity.push ({ id: property, selected: obj.restrictedValue && obj.restrictedValue.endsWith ('.' + property)});
                 if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.activePeriodDateTimeInterval;
-                delete obj.restrictedValueFloatQuantity;
                 delete obj.Equipments_string;
             }
 
@@ -950,8 +940,8 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activePeriod'>activePeriod: </label><div class='col-sm-8'><select id='{{id}}_activePeriod' class='form-control custom-select'>{{#activePeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/activePeriodDateTimeInterval}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_restrictedValue'>restrictedValue: </label><div class='col-sm-8'><select id='{{id}}_restrictedValue' class='form-control custom-select'>{{#restrictedValueFloatQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/restrictedValueFloatQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activePeriod'>activePeriod: </label><div class='col-sm-8'><input id='{{id}}_activePeriod' class='form-control' type='text'{{#activePeriod}} value='{{activePeriod}}'{{/activePeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_restrictedValue'>restrictedValue: </label><div class='col-sm-8'><input id='{{id}}_restrictedValue' class='form-control' type='text'{{#restrictedValue}} value='{{restrictedValue}}'{{/restrictedValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments_string}}'{{/Equipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductAssetModel'>ProductAssetModel: </label><div class='col-sm-8'><input id='{{id}}_ProductAssetModel' class='form-control' type='text'{{#ProductAssetModel}} value='{{ProductAssetModel}}'{{/ProductAssetModel}}></div></div>
                     </div>
@@ -966,8 +956,8 @@ define
 
                 var obj = obj || { id: id, cls: "OperationalRestriction" };
                 super.submit (id, obj);
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_activePeriod").value]; if (temp) obj.activePeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.activePeriod;
-                temp = Domain.FloatQuantity[document.getElementById (id + "_restrictedValue").value]; if (temp) obj.restrictedValue = "http://iec.ch/TC57/2013/CIM-schema-cim16#FloatQuantity." + temp; else delete obj.restrictedValue;
+                temp = document.getElementById (id + "_activePeriod").value; if ("" != temp) obj.activePeriod = temp;
+                temp = document.getElementById (id + "_restrictedValue").value; if ("" != temp) obj.restrictedValue = temp;
                 temp = document.getElementById (id + "_Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
                 temp = document.getElementById (id + "_ProductAssetModel").value; if ("" != temp) obj.ProductAssetModel = temp;
 

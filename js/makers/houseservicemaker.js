@@ -29,7 +29,7 @@ define
                     <div class='form-group row'>
                       <label class='col-sm-4 col-form-label' for='iterations'>Iterations</label>
                       <div class='col-sm-8'>
-                        <input id='iterations' class='form-control' type='text' name='iterations' aria-describedby='iterationsHelp' value='3'>
+                        <input id='iterations' class='form-control' type='text' name='iterations' aria-describedby='iterationsHelp' value='1'>
                         <small id='iterationsHelp' class='form-text text-muted'>Number of house services to create.</small>
                       </div>
                     </div>

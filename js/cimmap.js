@@ -176,7 +176,11 @@ define
         function add_feature_listener (obj)
         {
             if (!FeatureListeners.includes (obj))
+            {
                 FeatureListeners.push (obj);
+                if (get_selected_feature ())
+                    obj.selection_change (get_selected_feature (), get_selected_features ());
+            }
         }
 
         /**
@@ -391,20 +395,12 @@ define
                 TheMap.addControl (TheThemer.getTheme ().getLegend ());
         }
 
-        function edit ()
+        function toggle_edit ()
         {
             if (get_editor ().visible ())
                 TheMap.removeControl (get_editor ());
             else
-            {
-                if (TheThemer.getTheme ().getLegend ().visible ())
-                    TheMap.removeControl (TheThemer.getTheme ().getLegend ());
-                // ToDo: should edit and info be mutually exclusive somehow
-                // hide_details ();
                 TheMap.addControl (get_editor ());
-                if ((null != CIM_Data) && (null != get_selected_feature ()))
-                    get_editor ().edit (CIM_Data.Element[get_selected_feature ()], true);
-            }
         }
 
         function connectivity ()
@@ -529,18 +525,7 @@ define
         {
             var feature;
             if ((null != CIM_Data) && (null != get_selected_feature ()))
-                if (null != (feature = CIM_Data.Element[get_selected_feature ()]))
-                {
-                    if (get_editor ().visible ())
-                        get_editor ().edit (feature, true);
-                    else
-                    {
-                        // ToDo: automatically show up
-                        // show_details ();
-                        get_details ().render ();
-                    }
-                    glow (["in", "mRID", get_selected_feature ()]);
-                }
+                glow (["in", "mRID", get_selected_feature ()]);
         }
 
         /**
@@ -555,11 +540,6 @@ define
             return (false);
         }
 
-        function lists_equal (list1, list2)
-        {
-            return (list1.sort ().join (",") == list2.sort ().join (","))
-        }
-
         /**
          * @summary Handler for a current feature link click.
          * @description Sets the current feature and redisplay the highlighting appropriately and notify listeners.
@@ -570,6 +550,11 @@ define
         {
             if (null != mrid)
             {
+                // cheap check for array equality
+                function lists_equal (list1, list2)
+                {
+                    return (list1.sort ().join (",") == list2.sort ().join (","))
+                }
                 if (mrid != get_selected_feature () || !lists_equal (get_selected_features (), list))
                 {
                     if (!list || !list.includes (mrid))
@@ -946,10 +931,12 @@ define
                     }
                     // sort the list to make it easy to find an element
                     equipment.sort ();
+                    // notify listeners
+                    select (get_selected_feature (), equipment);
                     // highlight the elements on screen
-                    equipment.unshift ("in", "mRID");
-                    glow (equipment);
-                    select (get_selected_feature (), equipment.slice (2));
+                    var hl = equipment.slice (0);
+                    hl.unshift ("in", "mRID");
+                    glow (hl);
                 }
             }
 
@@ -1234,7 +1221,7 @@ define
                 }
             );
             // add zoom and rotation controls to the map
-            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_info, toggle_themer, toggle_legend, edit, connectivity));
+            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_info, toggle_themer, toggle_legend, toggle_edit, connectivity));
             add_listeners ();
             // set up themes
             TheThemer = new ThemeControl ();

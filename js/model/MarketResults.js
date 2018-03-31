@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Core", "model/Domain", "model/ExternalInputs", "model/MarketPlan", "model/MktDomain"],
+    ["model/base", "model/Common", "model/Core", "model/ExternalInputs", "model/MarketPlan", "model/MktDomain"],
     /**
      * Results from the execution of a market.
      *
      */
-    function (base, Common, Core, Domain, ExternalInputs, MarketPlan, MktDomain)
+    function (base, Common, Core, ExternalInputs, MarketPlan, MktDomain)
     {
 
         /**
@@ -4755,7 +4755,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.quantityFloatQuantity = [{ id: '', selected: (!obj.quantity)}]; for (var property in Domain.FloatQuantity) obj.quantityFloatQuantity.push ({ id: property, selected: obj.quantity && obj.quantity.endsWith ('.' + property)});
                 if (obj.MktUserAttribute) obj.MktUserAttribute_string = obj.MktUserAttribute.join ();
                 if (obj.ChargeProfiles) obj.ChargeProfiles_string = obj.ChargeProfiles.join ();
             }
@@ -4763,7 +4762,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.quantityFloatQuantity;
                 delete obj.MktUserAttribute_string;
                 delete obj.ChargeProfiles_string;
             }
@@ -4793,7 +4791,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_price'>price: </label><div class='col-sm-8'><input id='{{id}}_price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_productCode'>productCode: </label><div class='col-sm-8'><input id='{{id}}_productCode' class='form-control' type='text'{{#productCode}} value='{{productCode}}'{{/productCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_providedBy'>providedBy: </label><div class='col-sm-8'><input id='{{id}}_providedBy' class='form-control' type='text'{{#providedBy}} value='{{providedBy}}'{{/providedBy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><select id='{{id}}_quantity' class='form-control custom-select'>{{#quantityFloatQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quantityFloatQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceEnd'>serviceEnd: </label><div class='col-sm-8'><input id='{{id}}_serviceEnd' class='form-control' type='text'{{#serviceEnd}} value='{{serviceEnd}}'{{/serviceEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceStart'>serviceStart: </label><div class='col-sm-8'><input id='{{id}}_serviceStart' class='form-control' type='text'{{#serviceStart}} value='{{serviceStart}}'{{/serviceStart}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_soldTo'>soldTo: </label><div class='col-sm-8'><input id='{{id}}_soldTo' class='form-control' type='text'{{#soldTo}} value='{{soldTo}}'{{/soldTo}}></div></div>
@@ -4831,7 +4829,7 @@ define
                 temp = document.getElementById (id + "_price").value; if ("" != temp) obj.price = temp;
                 temp = document.getElementById (id + "_productCode").value; if ("" != temp) obj.productCode = temp;
                 temp = document.getElementById (id + "_providedBy").value; if ("" != temp) obj.providedBy = temp;
-                temp = Domain.FloatQuantity[document.getElementById (id + "_quantity").value]; if (temp) obj.quantity = "http://iec.ch/TC57/2013/CIM-schema-cim16#FloatQuantity." + temp; else delete obj.quantity;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
                 temp = document.getElementById (id + "_serviceEnd").value; if ("" != temp) obj.serviceEnd = temp;
                 temp = document.getElementById (id + "_serviceStart").value; if ("" != temp) obj.serviceStart = temp;
                 temp = document.getElementById (id + "_soldTo").value; if ("" != temp) obj.soldTo = temp;

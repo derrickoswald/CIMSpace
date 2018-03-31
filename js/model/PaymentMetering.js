@@ -166,7 +166,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.lineLineDetail = [{ id: '', selected: (!obj.line)}]; for (var property in LineDetail) obj.lineLineDetail.push ({ id: property, selected: obj.line && obj.line.endsWith ('.' + property)});
                 if (obj.Transactions) obj.Transactions_string = obj.Transactions.join ();
                 if (obj.Tenders) obj.Tenders_string = obj.Tenders.join ();
             }
@@ -174,7 +173,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.lineLineDetail;
                 delete obj.Transactions_string;
                 delete obj.Tenders_string;
             }
@@ -190,7 +188,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isBankable'>isBankable: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isBankable' class='form-check-input' type='checkbox'{{#isBankable}} checked{{/isBankable}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_line'>line: </label><div class='col-sm-8'><select id='{{id}}_line' class='form-control custom-select'>{{#lineLineDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/lineLineDetail}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_line'>line: </label><div class='col-sm-8'><input id='{{id}}_line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VendorShift'>VendorShift: </label><div class='col-sm-8'><input id='{{id}}_VendorShift' class='form-control' type='text'{{#VendorShift}} value='{{VendorShift}}'{{/VendorShift}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CashierShift'>CashierShift: </label><div class='col-sm-8'><input id='{{id}}_CashierShift' class='form-control' type='text'{{#CashierShift}} value='{{CashierShift}}'{{/CashierShift}}></div></div>
                     </div>
@@ -206,7 +204,7 @@ define
                 var obj = obj || { id: id, cls: "Receipt" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_isBankable").checked; if (temp) obj.isBankable = true;
-                temp = LineDetail[document.getElementById (id + "_line").value]; if (temp) obj.line = "http://iec.ch/TC57/2013/CIM-schema-cim16#LineDetail." + temp; else delete obj.line;
+                temp = document.getElementById (id + "_line").value; if ("" != temp) obj.line = temp;
                 temp = document.getElementById (id + "_VendorShift").value; if ("" != temp) obj.VendorShift = temp;
                 temp = document.getElementById (id + "_CashierShift").value; if ("" != temp) obj.CashierShift = temp;
 
@@ -577,7 +575,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.fixedPortionAccountingUnit = [{ id: '', selected: (!obj.fixedPortion)}]; for (var property in AccountingUnit) obj.fixedPortionAccountingUnit.push ({ id: property, selected: obj.fixedPortion && obj.fixedPortion.endsWith ('.' + property)});
                 obj.kindChargeKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ChargeKind) obj.kindChargeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.AuxiliaryAccounts) obj.AuxiliaryAccounts_string = obj.AuxiliaryAccounts.join ();
                 if (obj.ConsumptionTariffIntervals) obj.ConsumptionTariffIntervals_string = obj.ConsumptionTariffIntervals.join ();
@@ -588,7 +585,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.fixedPortionAccountingUnit;
                 delete obj.kindChargeKind;
                 delete obj.AuxiliaryAccounts_string;
                 delete obj.ConsumptionTariffIntervals_string;
@@ -606,7 +602,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fixedPortion'>fixedPortion: </label><div class='col-sm-8'><select id='{{id}}_fixedPortion' class='form-control custom-select'>{{#fixedPortionAccountingUnit}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/fixedPortionAccountingUnit}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fixedPortion'>fixedPortion: </label><div class='col-sm-8'><input id='{{id}}_fixedPortion' class='form-control' type='text'{{#fixedPortion}} value='{{fixedPortion}}'{{/fixedPortion}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindChargeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindChargeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_variablePortion'>variablePortion: </label><div class='col-sm-8'><input id='{{id}}_variablePortion' class='form-control' type='text'{{#variablePortion}} value='{{variablePortion}}'{{/variablePortion}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAccounts'>AuxiliaryAccounts: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAccounts' class='form-control' type='text'{{#AuxiliaryAccounts}} value='{{AuxiliaryAccounts_string}}'{{/AuxiliaryAccounts}}></div></div>
@@ -625,7 +621,7 @@ define
 
                 var obj = obj || { id: id, cls: "Charge" };
                 super.submit (id, obj);
-                temp = AccountingUnit[document.getElementById (id + "_fixedPortion").value]; if (temp) obj.fixedPortion = "http://iec.ch/TC57/2013/CIM-schema-cim16#AccountingUnit." + temp; else delete obj.fixedPortion;
+                temp = document.getElementById (id + "_fixedPortion").value; if ("" != temp) obj.fixedPortion = temp;
                 temp = ChargeKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ChargeKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_variablePortion").value; if ("" != temp) obj.variablePortion = temp;
                 temp = document.getElementById (id + "_AuxiliaryAccounts").value; if ("" != temp) obj.AuxiliaryAccounts = temp.split (",");
@@ -1808,13 +1804,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.activityIntervalDateTimeInterval = [{ id: '', selected: (!obj.activityInterval)}]; for (var property in Domain.DateTimeInterval) obj.activityIntervalDateTimeInterval.push ({ id: property, selected: obj.activityInterval && obj.activityInterval.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.activityIntervalDateTimeInterval;
             }
 
             edit_template ()
@@ -1827,7 +1821,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityInterval'>activityInterval: </label><div class='col-sm-8'><select id='{{id}}_activityInterval' class='form-control custom-select'>{{#activityIntervalDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/activityIntervalDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityInterval'>activityInterval: </label><div class='col-sm-8'><input id='{{id}}_activityInterval' class='form-control' type='text'{{#activityInterval}} value='{{activityInterval}}'{{/activityInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiptsGrandTotalBankable'>receiptsGrandTotalBankable: </label><div class='col-sm-8'><input id='{{id}}_receiptsGrandTotalBankable' class='form-control' type='text'{{#receiptsGrandTotalBankable}} value='{{receiptsGrandTotalBankable}}'{{/receiptsGrandTotalBankable}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiptsGrandTotalNonBankable'>receiptsGrandTotalNonBankable: </label><div class='col-sm-8'><input id='{{id}}_receiptsGrandTotalNonBankable' class='form-control' type='text'{{#receiptsGrandTotalNonBankable}} value='{{receiptsGrandTotalNonBankable}}'{{/receiptsGrandTotalNonBankable}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiptsGrandTotalRounding'>receiptsGrandTotalRounding: </label><div class='col-sm-8'><input id='{{id}}_receiptsGrandTotalRounding' class='form-control' type='text'{{#receiptsGrandTotalRounding}} value='{{receiptsGrandTotalRounding}}'{{/receiptsGrandTotalRounding}}></div></div>
@@ -1845,7 +1839,7 @@ define
 
                 var obj = obj || { id: id, cls: "Shift" };
                 super.submit (id, obj);
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_activityInterval").value]; if (temp) obj.activityInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.activityInterval;
+                temp = document.getElementById (id + "_activityInterval").value; if ("" != temp) obj.activityInterval = temp;
                 temp = document.getElementById (id + "_receiptsGrandTotalBankable").value; if ("" != temp) obj.receiptsGrandTotalBankable = temp;
                 temp = document.getElementById (id + "_receiptsGrandTotalNonBankable").value; if ("" != temp) obj.receiptsGrandTotalNonBankable = temp;
                 temp = document.getElementById (id + "_receiptsGrandTotalRounding").value; if ("" != temp) obj.receiptsGrandTotalRounding = temp;
@@ -2047,14 +2041,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.electronicAddressElectronicAddress = [{ id: '', selected: (!obj.electronicAddress)}]; for (var property in Common.ElectronicAddress) obj.electronicAddressElectronicAddress.push ({ id: property, selected: obj.electronicAddress && obj.electronicAddress.endsWith ('.' + property)});
                 if (obj.CashierShifts) obj.CashierShifts_string = obj.CashierShifts.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.electronicAddressElectronicAddress;
                 delete obj.CashierShifts_string;
             }
 
@@ -2068,7 +2060,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><select id='{{id}}_electronicAddress' class='form-control custom-select'>{{#electronicAddressElectronicAddress}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/electronicAddressElectronicAddress}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -2081,7 +2073,7 @@ define
 
                 var obj = obj || { id: id, cls: "Cashier" };
                 super.submit (id, obj);
-                temp = Common.ElectronicAddress[document.getElementById (id + "_electronicAddress").value]; if (temp) obj.electronicAddress = "http://iec.ch/TC57/2013/CIM-schema-cim16#ElectronicAddress." + temp; else delete obj.electronicAddress;
+                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
 
                 return (obj);
             }
@@ -2319,14 +2311,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.bankAccountDetailBankAccountDetail = [{ id: '', selected: (!obj.bankAccountDetail)}]; for (var property in BankAccountDetail) obj.bankAccountDetailBankAccountDetail.push ({ id: property, selected: obj.bankAccountDetail && obj.bankAccountDetail.endsWith ('.' + property)});
                 obj.kindChequeKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ChequeKind) obj.kindChequeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.bankAccountDetailBankAccountDetail;
                 delete obj.kindChequeKind;
             }
 
@@ -2340,7 +2330,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bankAccountDetail'>bankAccountDetail: </label><div class='col-sm-8'><select id='{{id}}_bankAccountDetail' class='form-control custom-select'>{{#bankAccountDetailBankAccountDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/bankAccountDetailBankAccountDetail}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bankAccountDetail'>bankAccountDetail: </label><div class='col-sm-8'><input id='{{id}}_bankAccountDetail' class='form-control' type='text'{{#bankAccountDetail}} value='{{bankAccountDetail}}'{{/bankAccountDetail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chequeNumber'>chequeNumber: </label><div class='col-sm-8'><input id='{{id}}_chequeNumber' class='form-control' type='text'{{#chequeNumber}} value='{{chequeNumber}}'{{/chequeNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_date'>date: </label><div class='col-sm-8'><input id='{{id}}_date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindChequeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindChequeKind}}</select></div></div>
@@ -2358,7 +2348,7 @@ define
 
                 var obj = obj || { id: id, cls: "Cheque" };
                 super.submit (id, obj);
-                temp = BankAccountDetail[document.getElementById (id + "_bankAccountDetail").value]; if (temp) obj.bankAccountDetail = "http://iec.ch/TC57/2013/CIM-schema-cim16#BankAccountDetail." + temp; else delete obj.bankAccountDetail;
+                temp = document.getElementById (id + "_bankAccountDetail").value; if ("" != temp) obj.bankAccountDetail = temp;
                 temp = document.getElementById (id + "_chequeNumber").value; if ("" != temp) obj.chequeNumber = temp;
                 temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
                 temp = ChequeKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ChequeKind." + temp; else delete obj.kind;
@@ -2729,9 +2719,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.dueDue = [{ id: '', selected: (!obj.due)}]; for (var property in Due) obj.dueDue.push ({ id: property, selected: obj.due && obj.due.endsWith ('.' + property)});
-                obj.lastCreditAccountMovement = [{ id: '', selected: (!obj.lastCredit)}]; for (var property in AccountMovement) obj.lastCreditAccountMovement.push ({ id: property, selected: obj.lastCredit && obj.lastCredit.endsWith ('.' + property)});
-                obj.lastDebitAccountMovement = [{ id: '', selected: (!obj.lastDebit)}]; for (var property in AccountMovement) obj.lastDebitAccountMovement.push ({ id: property, selected: obj.lastDebit && obj.lastDebit.endsWith ('.' + property)});
                 if (obj.PaymentTransactions) obj.PaymentTransactions_string = obj.PaymentTransactions.join ();
                 if (obj.Charges) obj.Charges_string = obj.Charges.join ();
             }
@@ -2739,9 +2726,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.dueDue;
-                delete obj.lastCreditAccountMovement;
-                delete obj.lastDebitAccountMovement;
                 delete obj.PaymentTransactions_string;
                 delete obj.Charges_string;
             }
@@ -2757,9 +2741,9 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_balance'>balance: </label><div class='col-sm-8'><input id='{{id}}_balance' class='form-control' type='text'{{#balance}} value='{{balance}}'{{/balance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_due'>due: </label><div class='col-sm-8'><select id='{{id}}_due' class='form-control custom-select'>{{#dueDue}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/dueDue}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastCredit'>lastCredit: </label><div class='col-sm-8'><select id='{{id}}_lastCredit' class='form-control custom-select'>{{#lastCreditAccountMovement}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/lastCreditAccountMovement}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastDebit'>lastDebit: </label><div class='col-sm-8'><select id='{{id}}_lastDebit' class='form-control custom-select'>{{#lastDebitAccountMovement}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/lastDebitAccountMovement}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_due'>due: </label><div class='col-sm-8'><input id='{{id}}_due' class='form-control' type='text'{{#due}} value='{{due}}'{{/due}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastCredit'>lastCredit: </label><div class='col-sm-8'><input id='{{id}}_lastCredit' class='form-control' type='text'{{#lastCredit}} value='{{lastCredit}}'{{/lastCredit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastDebit'>lastDebit: </label><div class='col-sm-8'><input id='{{id}}_lastDebit' class='form-control' type='text'{{#lastDebit}} value='{{lastDebit}}'{{/lastDebit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_principleAmount'>principleAmount: </label><div class='col-sm-8'><input id='{{id}}_principleAmount' class='form-control' type='text'{{#principleAmount}} value='{{principleAmount}}'{{/principleAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges_string}}'{{/Charges}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAgreement'>AuxiliaryAgreement: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAgreement' class='form-control' type='text'{{#AuxiliaryAgreement}} value='{{AuxiliaryAgreement}}'{{/AuxiliaryAgreement}}></div></div>
@@ -2776,9 +2760,9 @@ define
                 var obj = obj || { id: id, cls: "AuxiliaryAccount" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_balance").value; if ("" != temp) obj.balance = temp;
-                temp = Due[document.getElementById (id + "_due").value]; if (temp) obj.due = "http://iec.ch/TC57/2013/CIM-schema-cim16#Due." + temp; else delete obj.due;
-                temp = AccountMovement[document.getElementById (id + "_lastCredit").value]; if (temp) obj.lastCredit = "http://iec.ch/TC57/2013/CIM-schema-cim16#AccountMovement." + temp; else delete obj.lastCredit;
-                temp = AccountMovement[document.getElementById (id + "_lastDebit").value]; if (temp) obj.lastDebit = "http://iec.ch/TC57/2013/CIM-schema-cim16#AccountMovement." + temp; else delete obj.lastDebit;
+                temp = document.getElementById (id + "_due").value; if ("" != temp) obj.due = temp;
+                temp = document.getElementById (id + "_lastCredit").value; if ("" != temp) obj.lastCredit = temp;
+                temp = document.getElementById (id + "_lastDebit").value; if ("" != temp) obj.lastDebit = temp;
                 temp = document.getElementById (id + "_principleAmount").value; if ("" != temp) obj.principleAmount = temp;
                 temp = document.getElementById (id + "_Charges").value; if ("" != temp) obj.Charges = temp.split (",");
                 temp = document.getElementById (id + "_AuxiliaryAgreement").value; if ("" != temp) obj.AuxiliaryAgreement = temp;
@@ -3151,7 +3135,6 @@ define
             {
                 super.condition (obj);
                 obj.kindTransactionKind = [{ id: '', selected: (!obj.kind)}]; for (var property in TransactionKind) obj.kindTransactionKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.lineLineDetail = [{ id: '', selected: (!obj.line)}]; for (var property in LineDetail) obj.lineLineDetail.push ({ id: property, selected: obj.line && obj.line.endsWith ('.' + property)});
                 if (obj.UserAttributes) obj.UserAttributes_string = obj.UserAttributes.join ();
             }
 
@@ -3159,7 +3142,6 @@ define
             {
                 super.uncondition (obj);
                 delete obj.kindTransactionKind;
-                delete obj.lineLineDetail;
                 delete obj.UserAttributes_string;
             }
 
@@ -3176,7 +3158,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diverseReference'>diverseReference: </label><div class='col-sm-8'><input id='{{id}}_diverseReference' class='form-control' type='text'{{#diverseReference}} value='{{diverseReference}}'{{/diverseReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_donorReference'>donorReference: </label><div class='col-sm-8'><input id='{{id}}_donorReference' class='form-control' type='text'{{#donorReference}} value='{{donorReference}}'{{/donorReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindTransactionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindTransactionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_line'>line: </label><div class='col-sm-8'><select id='{{id}}_line' class='form-control custom-select'>{{#lineLineDetail}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/lineLineDetail}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_line'>line: </label><div class='col-sm-8'><input id='{{id}}_line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiverReference'>receiverReference: </label><div class='col-sm-8'><input id='{{id}}_receiverReference' class='form-control' type='text'{{#receiverReference}} value='{{receiverReference}}'{{/receiverReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reversedId'>reversedId: </label><div class='col-sm-8'><input id='{{id}}_reversedId' class='form-control' type='text'{{#reversedId}} value='{{reversedId}}'{{/reversedId}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceUnitsEnergy'>serviceUnitsEnergy: </label><div class='col-sm-8'><input id='{{id}}_serviceUnitsEnergy' class='form-control' type='text'{{#serviceUnitsEnergy}} value='{{serviceUnitsEnergy}}'{{/serviceUnitsEnergy}}></div></div>
@@ -3203,7 +3185,7 @@ define
                 temp = document.getElementById (id + "_diverseReference").value; if ("" != temp) obj.diverseReference = temp;
                 temp = document.getElementById (id + "_donorReference").value; if ("" != temp) obj.donorReference = temp;
                 temp = TransactionKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransactionKind." + temp; else delete obj.kind;
-                temp = LineDetail[document.getElementById (id + "_line").value]; if (temp) obj.line = "http://iec.ch/TC57/2013/CIM-schema-cim16#LineDetail." + temp; else delete obj.line;
+                temp = document.getElementById (id + "_line").value; if ("" != temp) obj.line = temp;
                 temp = document.getElementById (id + "_receiverReference").value; if ("" != temp) obj.receiverReference = temp;
                 temp = document.getElementById (id + "_reversedId").value; if ("" != temp) obj.reversedId = temp;
                 temp = document.getElementById (id + "_serviceUnitsEnergy").value; if ("" != temp) obj.serviceUnitsEnergy = temp;

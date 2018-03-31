@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Assets", "model/Common", "model/Core", "model/Domain", "model/Meas", "model/Work"],
+    ["model/base", "model/Assets", "model/Common", "model/Core", "model/Meas", "model/Work"],
     /**
      * This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions.
      *
      * These classes are generally associated with the point where a service is delivered to the customer.
      *
      */
-    function (base, Assets, Common, Core, Domain, Meas, Work)
+    function (base, Assets, Common, Core, Meas, Work)
     {
 
         /**
@@ -243,7 +243,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.validityIntervalDateTimeInterval = [{ id: '', selected: (!obj.validityInterval)}]; for (var property in Domain.DateTimeInterval) obj.validityIntervalDateTimeInterval.push ({ id: property, selected: obj.validityInterval && obj.validityInterval.endsWith ('.' + property)});
                 if (obj.EndDeviceGroups) obj.EndDeviceGroups_string = obj.EndDeviceGroups.join ();
                 if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
                 if (obj.UsagePointGroups) obj.UsagePointGroups_string = obj.UsagePointGroups.join ();
@@ -252,7 +251,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.validityIntervalDateTimeInterval;
                 delete obj.EndDeviceGroups_string;
                 delete obj.CustomerAgreements_string;
                 delete obj.UsagePointGroups_string;
@@ -269,7 +267,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><select id='{{id}}_validityInterval' class='form-control custom-select'>{{#validityIntervalDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/validityIntervalDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups_string}}'{{/EndDeviceGroups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements_string}}'{{/CustomerAgreements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='{{id}}_UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups_string}}'{{/UsagePointGroups}}></div></div>
@@ -286,7 +284,7 @@ define
                 var obj = obj || { id: id, cls: "DemandResponseProgram" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_validityInterval").value]; if (temp) obj.validityInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.validityInterval;
+                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) obj.validityInterval = temp;
                 temp = document.getElementById (id + "_EndDeviceGroups").value; if ("" != temp) obj.EndDeviceGroups = temp.split (",");
                 temp = document.getElementById (id + "_CustomerAgreements").value; if ("" != temp) obj.CustomerAgreements = temp.split (",");
                 temp = document.getElementById (id + "_UsagePointGroups").value; if ("" != temp) obj.UsagePointGroups = temp.split (",");
@@ -693,14 +691,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.touTierTimeInterval = [{ id: '', selected: (!obj.touTier)}]; for (var property in Domain.TimeInterval) obj.touTierTimeInterval.push ({ id: property, selected: obj.touTier && obj.touTier.endsWith ('.' + property)});
                 if (obj.Channels) obj.Channels_string = obj.Channels.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.touTierTimeInterval;
                 delete obj.Channels_string;
             }
 
@@ -717,7 +713,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isVirtual'>isVirtual: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isVirtual' class='form-check-input' type='checkbox'{{#isVirtual}} checked{{/isVirtual}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_leftDigitCount'>leftDigitCount: </label><div class='col-sm-8'><input id='{{id}}_leftDigitCount' class='form-control' type='text'{{#leftDigitCount}} value='{{leftDigitCount}}'{{/leftDigitCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rightDigitCount'>rightDigitCount: </label><div class='col-sm-8'><input id='{{id}}_rightDigitCount' class='form-control' type='text'{{#rightDigitCount}} value='{{rightDigitCount}}'{{/rightDigitCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_touTier'>touTier: </label><div class='col-sm-8'><select id='{{id}}_touTier' class='form-control custom-select'>{{#touTierTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/touTierTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_touTier'>touTier: </label><div class='col-sm-8'><input id='{{id}}_touTier' class='form-control' type='text'{{#touTier}} value='{{touTier}}'{{/touTier}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_touTierName'>touTierName: </label><div class='col-sm-8'><input id='{{id}}_touTierName' class='form-control' type='text'{{#touTierName}} value='{{touTierName}}'{{/touTierName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceFunction'>EndDeviceFunction: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceFunction' class='form-control' type='text'{{#EndDeviceFunction}} value='{{EndDeviceFunction}}'{{/EndDeviceFunction}}></div></div>
                     </div>
@@ -735,7 +731,7 @@ define
                 temp = document.getElementById (id + "_isVirtual").checked; if (temp) obj.isVirtual = true;
                 temp = document.getElementById (id + "_leftDigitCount").value; if ("" != temp) obj.leftDigitCount = temp;
                 temp = document.getElementById (id + "_rightDigitCount").value; if ("" != temp) obj.rightDigitCount = temp;
-                temp = Domain.TimeInterval[document.getElementById (id + "_touTier").value]; if (temp) obj.touTier = "http://iec.ch/TC57/2013/CIM-schema-cim16#TimeInterval." + temp; else delete obj.touTier;
+                temp = document.getElementById (id + "_touTier").value; if ("" != temp) obj.touTier = temp;
                 temp = document.getElementById (id + "_touTierName").value; if ("" != temp) obj.touTierName = temp;
                 temp = document.getElementById (id + "_EndDeviceFunction").value; if ("" != temp) obj.EndDeviceFunction = temp;
 
@@ -863,10 +859,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.priceSignalFloatQuantity = [{ id: '', selected: (!obj.priceSignal)}]; for (var property in Domain.FloatQuantity) obj.priceSignalFloatQuantity.push ({ id: property, selected: obj.priceSignal && obj.priceSignal.endsWith ('.' + property)});
-                obj.primaryDeviceTimingEndDeviceTiming = [{ id: '', selected: (!obj.primaryDeviceTiming)}]; for (var property in EndDeviceTiming) obj.primaryDeviceTimingEndDeviceTiming.push ({ id: property, selected: obj.primaryDeviceTiming && obj.primaryDeviceTiming.endsWith ('.' + property)});
-                obj.scheduledIntervalDateTimeInterval = [{ id: '', selected: (!obj.scheduledInterval)}]; for (var property in Domain.DateTimeInterval) obj.scheduledIntervalDateTimeInterval.push ({ id: property, selected: obj.scheduledInterval && obj.scheduledInterval.endsWith ('.' + property)});
-                obj.secondaryDeviceTimingEndDeviceTiming = [{ id: '', selected: (!obj.secondaryDeviceTiming)}]; for (var property in EndDeviceTiming) obj.secondaryDeviceTimingEndDeviceTiming.push ({ id: property, selected: obj.secondaryDeviceTiming && obj.secondaryDeviceTiming.endsWith ('.' + property)});
                 if (obj.EndDeviceGroups) obj.EndDeviceGroups_string = obj.EndDeviceGroups.join ();
                 if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
                 if (obj.UsagePointGroups) obj.UsagePointGroups_string = obj.UsagePointGroups.join ();
@@ -876,10 +868,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.priceSignalFloatQuantity;
-                delete obj.primaryDeviceTimingEndDeviceTiming;
-                delete obj.scheduledIntervalDateTimeInterval;
-                delete obj.secondaryDeviceTimingEndDeviceTiming;
                 delete obj.EndDeviceGroups_string;
                 delete obj.UsagePoints_string;
                 delete obj.UsagePointGroups_string;
@@ -900,11 +888,11 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_drProgramMandatory'>drProgramMandatory: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_drProgramMandatory' class='form-check-input' type='checkbox'{{#drProgramMandatory}} checked{{/drProgramMandatory}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issuerID'>issuerID: </label><div class='col-sm-8'><input id='{{id}}_issuerID' class='form-control' type='text'{{#issuerID}} value='{{issuerID}}'{{/issuerID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issuerTrackingID'>issuerTrackingID: </label><div class='col-sm-8'><input id='{{id}}_issuerTrackingID' class='form-control' type='text'{{#issuerTrackingID}} value='{{issuerTrackingID}}'{{/issuerTrackingID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSignal'>priceSignal: </label><div class='col-sm-8'><select id='{{id}}_priceSignal' class='form-control custom-select'>{{#priceSignalFloatQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/priceSignalFloatQuantity}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryDeviceTiming'>primaryDeviceTiming: </label><div class='col-sm-8'><select id='{{id}}_primaryDeviceTiming' class='form-control custom-select'>{{#primaryDeviceTimingEndDeviceTiming}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/primaryDeviceTimingEndDeviceTiming}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSignal'>priceSignal: </label><div class='col-sm-8'><input id='{{id}}_priceSignal' class='form-control' type='text'{{#priceSignal}} value='{{priceSignal}}'{{/priceSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryDeviceTiming'>primaryDeviceTiming: </label><div class='col-sm-8'><input id='{{id}}_primaryDeviceTiming' class='form-control' type='text'{{#primaryDeviceTiming}} value='{{primaryDeviceTiming}}'{{/primaryDeviceTiming}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><input id='{{id}}_reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledInterval'>scheduledInterval: </label><div class='col-sm-8'><select id='{{id}}_scheduledInterval' class='form-control custom-select'>{{#scheduledIntervalDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/scheduledIntervalDateTimeInterval}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryDeviceTiming'>secondaryDeviceTiming: </label><div class='col-sm-8'><select id='{{id}}_secondaryDeviceTiming' class='form-control custom-select'>{{#secondaryDeviceTimingEndDeviceTiming}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/secondaryDeviceTimingEndDeviceTiming}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledInterval'>scheduledInterval: </label><div class='col-sm-8'><input id='{{id}}_scheduledInterval' class='form-control' type='text'{{#scheduledInterval}} value='{{scheduledInterval}}'{{/scheduledInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryDeviceTiming'>secondaryDeviceTiming: </label><div class='col-sm-8'><input id='{{id}}_secondaryDeviceTiming' class='form-control' type='text'{{#secondaryDeviceTiming}} value='{{secondaryDeviceTiming}}'{{/secondaryDeviceTiming}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups_string}}'{{/EndDeviceGroups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceControlType'>EndDeviceControlType: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceControlType' class='form-control' type='text'{{#EndDeviceControlType}} value='{{EndDeviceControlType}}'{{/EndDeviceControlType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceAction'>EndDeviceAction: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceAction' class='form-control' type='text'{{#EndDeviceAction}} value='{{EndDeviceAction}}'{{/EndDeviceAction}}></div></div>
@@ -927,11 +915,11 @@ define
                 temp = document.getElementById (id + "_drProgramMandatory").checked; if (temp) obj.drProgramMandatory = true;
                 temp = document.getElementById (id + "_issuerID").value; if ("" != temp) obj.issuerID = temp;
                 temp = document.getElementById (id + "_issuerTrackingID").value; if ("" != temp) obj.issuerTrackingID = temp;
-                temp = Domain.FloatQuantity[document.getElementById (id + "_priceSignal").value]; if (temp) obj.priceSignal = "http://iec.ch/TC57/2013/CIM-schema-cim16#FloatQuantity." + temp; else delete obj.priceSignal;
-                temp = EndDeviceTiming[document.getElementById (id + "_primaryDeviceTiming").value]; if (temp) obj.primaryDeviceTiming = "http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceTiming." + temp; else delete obj.primaryDeviceTiming;
+                temp = document.getElementById (id + "_priceSignal").value; if ("" != temp) obj.priceSignal = temp;
+                temp = document.getElementById (id + "_primaryDeviceTiming").value; if ("" != temp) obj.primaryDeviceTiming = temp;
                 temp = document.getElementById (id + "_reason").value; if ("" != temp) obj.reason = temp;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_scheduledInterval").value]; if (temp) obj.scheduledInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.scheduledInterval;
-                temp = EndDeviceTiming[document.getElementById (id + "_secondaryDeviceTiming").value]; if (temp) obj.secondaryDeviceTiming = "http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceTiming." + temp; else delete obj.secondaryDeviceTiming;
+                temp = document.getElementById (id + "_scheduledInterval").value; if ("" != temp) obj.scheduledInterval = temp;
+                temp = document.getElementById (id + "_secondaryDeviceTiming").value; if ("" != temp) obj.secondaryDeviceTiming = temp;
                 temp = document.getElementById (id + "_EndDeviceGroups").value; if ("" != temp) obj.EndDeviceGroups = temp.split (",");
                 temp = document.getElementById (id + "_EndDeviceControlType").value; if ("" != temp) obj.EndDeviceControlType = temp;
                 temp = document.getElementById (id + "_EndDeviceAction").value; if ("" != temp) obj.EndDeviceAction = temp;
@@ -1638,13 +1626,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.valueStringQuantity = [{ id: '', selected: (!obj.value)}]; for (var property in Domain.StringQuantity) obj.valueStringQuantity.push ({ id: property, selected: obj.value && obj.value.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.valueStringQuantity;
             }
 
             edit_template ()
@@ -1658,7 +1644,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_name'>name: </label><div class='col-sm-8'><input id='{{id}}_name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><select id='{{id}}_value' class='form-control custom-select'>{{#valueStringQuantity}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/valueStringQuantity}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EndDeviceEvent'>EndDeviceEvent: </label><div class='col-sm-8'><input id='{{id}}_EndDeviceEvent' class='form-control' type='text'{{#EndDeviceEvent}} value='{{EndDeviceEvent}}'{{/EndDeviceEvent}}></div></div>
                     </div>
                     </fieldset>
@@ -1673,7 +1659,7 @@ define
                 var obj = obj || { id: id, cls: "EndDeviceEventDetail" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_name").value; if ("" != temp) obj.name = temp;
-                temp = Domain.StringQuantity[document.getElementById (id + "_value").value]; if (temp) obj.value = "http://iec.ch/TC57/2013/CIM-schema-cim16#StringQuantity." + temp; else delete obj.value;
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
                 temp = document.getElementById (id + "_EndDeviceEvent").value; if ("" != temp) obj.EndDeviceEvent = temp;
 
                 return (obj);
@@ -1780,7 +1766,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.valuesIntervalDateTimeInterval = [{ id: '', selected: (!obj.valuesInterval)}]; for (var property in Domain.DateTimeInterval) obj.valuesIntervalDateTimeInterval.push ({ id: property, selected: obj.valuesInterval && obj.valuesInterval.endsWith ('.' + property)});
                 if (obj.Readings) obj.Readings_string = obj.Readings.join ();
                 if (obj.EndDeviceEvents) obj.EndDeviceEvents_string = obj.EndDeviceEvents.join ();
                 if (obj.IntervalBlocks) obj.IntervalBlocks_string = obj.IntervalBlocks.join ();
@@ -1789,7 +1774,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.valuesIntervalDateTimeInterval;
                 delete obj.Readings_string;
                 delete obj.EndDeviceEvents_string;
                 delete obj.IntervalBlocks_string;
@@ -1806,7 +1790,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isCoincidentTrigger'>isCoincidentTrigger: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isCoincidentTrigger' class='form-check-input' type='checkbox'{{#isCoincidentTrigger}} checked{{/isCoincidentTrigger}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valuesInterval'>valuesInterval: </label><div class='col-sm-8'><select id='{{id}}_valuesInterval' class='form-control custom-select'>{{#valuesIntervalDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/valuesIntervalDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valuesInterval'>valuesInterval: </label><div class='col-sm-8'><input id='{{id}}_valuesInterval' class='form-control' type='text'{{#valuesInterval}} value='{{valuesInterval}}'{{/valuesInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='{{id}}_UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Meter'>Meter: </label><div class='col-sm-8'><input id='{{id}}_Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Readings'>Readings: </label><div class='col-sm-8'><input id='{{id}}_Readings' class='form-control' type='text'{{#Readings}} value='{{Readings_string}}'{{/Readings}}></div></div>
@@ -1824,7 +1808,7 @@ define
                 var obj = obj || { id: id, cls: "MeterReading" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_isCoincidentTrigger").checked; if (temp) obj.isCoincidentTrigger = true;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_valuesInterval").value]; if (temp) obj.valuesInterval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.valuesInterval;
+                temp = document.getElementById (id + "_valuesInterval").value; if ("" != temp) obj.valuesInterval = temp;
                 temp = document.getElementById (id + "_UsagePoint").value; if ("" != temp) obj.UsagePoint = temp;
                 temp = document.getElementById (id + "_Meter").value; if ("" != temp) obj.Meter = temp;
                 temp = document.getElementById (id + "_Readings").value; if ("" != temp) obj.Readings = temp.split (",");
@@ -2891,8 +2875,6 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.argumentRationalNumber = [{ id: '', selected: (!obj.argument)}]; for (var property in RationalNumber) obj.argumentRationalNumber.push ({ id: property, selected: obj.argument && obj.argument.endsWith ('.' + property)});
-                obj.interharmonicReadingInterharmonic = [{ id: '', selected: (!obj.interharmonic)}]; for (var property in ReadingInterharmonic) obj.interharmonicReadingInterharmonic.push ({ id: property, selected: obj.interharmonic && obj.interharmonic.endsWith ('.' + property)});
                 if (obj.Readings) obj.Readings_string = obj.Readings.join ();
                 if (obj.IntervalBlocks) obj.IntervalBlocks_string = obj.IntervalBlocks.join ();
                 if (obj.MetrologyRequirements) obj.MetrologyRequirements_string = obj.MetrologyRequirements.join ();
@@ -2901,8 +2883,6 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.argumentRationalNumber;
-                delete obj.interharmonicReadingInterharmonic;
                 delete obj.Readings_string;
                 delete obj.IntervalBlocks_string;
                 delete obj.MetrologyRequirements_string;
@@ -2920,13 +2900,13 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accumulation'>accumulation: </label><div class='col-sm-8'><input id='{{id}}_accumulation' class='form-control' type='text'{{#accumulation}} value='{{accumulation}}'{{/accumulation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aggregate'>aggregate: </label><div class='col-sm-8'><input id='{{id}}_aggregate' class='form-control' type='text'{{#aggregate}} value='{{aggregate}}'{{/aggregate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_argument'>argument: </label><div class='col-sm-8'><select id='{{id}}_argument' class='form-control custom-select'>{{#argumentRationalNumber}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/argumentRationalNumber}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_argument'>argument: </label><div class='col-sm-8'><input id='{{id}}_argument' class='form-control' type='text'{{#argument}} value='{{argument}}'{{/argument}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commodity'>commodity: </label><div class='col-sm-8'><input id='{{id}}_commodity' class='form-control' type='text'{{#commodity}} value='{{commodity}}'{{/commodity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_consumptionTier'>consumptionTier: </label><div class='col-sm-8'><input id='{{id}}_consumptionTier' class='form-control' type='text'{{#consumptionTier}} value='{{consumptionTier}}'{{/consumptionTier}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cpp'>cpp: </label><div class='col-sm-8'><input id='{{id}}_cpp' class='form-control' type='text'{{#cpp}} value='{{cpp}}'{{/cpp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currency'>currency: </label><div class='col-sm-8'><input id='{{id}}_currency' class='form-control' type='text'{{#currency}} value='{{currency}}'{{/currency}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flowDirection'>flowDirection: </label><div class='col-sm-8'><input id='{{id}}_flowDirection' class='form-control' type='text'{{#flowDirection}} value='{{flowDirection}}'{{/flowDirection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interharmonic'>interharmonic: </label><div class='col-sm-8'><select id='{{id}}_interharmonic' class='form-control custom-select'>{{#interharmonicReadingInterharmonic}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/interharmonicReadingInterharmonic}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interharmonic'>interharmonic: </label><div class='col-sm-8'><input id='{{id}}_interharmonic' class='form-control' type='text'{{#interharmonic}} value='{{interharmonic}}'{{/interharmonic}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_macroPeriod'>macroPeriod: </label><div class='col-sm-8'><input id='{{id}}_macroPeriod' class='form-control' type='text'{{#macroPeriod}} value='{{macroPeriod}}'{{/macroPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_measurementKind'>measurementKind: </label><div class='col-sm-8'><input id='{{id}}_measurementKind' class='form-control' type='text'{{#measurementKind}} value='{{measurementKind}}'{{/measurementKind}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_measuringPeriod'>measuringPeriod: </label><div class='col-sm-8'><input id='{{id}}_measuringPeriod' class='form-control' type='text'{{#measuringPeriod}} value='{{measuringPeriod}}'{{/measuringPeriod}}></div></div>
@@ -2951,13 +2931,13 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accumulation").value; if ("" != temp) obj.accumulation = temp;
                 temp = document.getElementById (id + "_aggregate").value; if ("" != temp) obj.aggregate = temp;
-                temp = RationalNumber[document.getElementById (id + "_argument").value]; if (temp) obj.argument = "http://iec.ch/TC57/2013/CIM-schema-cim16#RationalNumber." + temp; else delete obj.argument;
+                temp = document.getElementById (id + "_argument").value; if ("" != temp) obj.argument = temp;
                 temp = document.getElementById (id + "_commodity").value; if ("" != temp) obj.commodity = temp;
                 temp = document.getElementById (id + "_consumptionTier").value; if ("" != temp) obj.consumptionTier = temp;
                 temp = document.getElementById (id + "_cpp").value; if ("" != temp) obj.cpp = temp;
                 temp = document.getElementById (id + "_currency").value; if ("" != temp) obj.currency = temp;
                 temp = document.getElementById (id + "_flowDirection").value; if ("" != temp) obj.flowDirection = temp;
-                temp = ReadingInterharmonic[document.getElementById (id + "_interharmonic").value]; if (temp) obj.interharmonic = "http://iec.ch/TC57/2013/CIM-schema-cim16#ReadingInterharmonic." + temp; else delete obj.interharmonic;
+                temp = document.getElementById (id + "_interharmonic").value; if ("" != temp) obj.interharmonic = temp;
                 temp = document.getElementById (id + "_macroPeriod").value; if ("" != temp) obj.macroPeriod = temp;
                 temp = document.getElementById (id + "_measurementKind").value; if ("" != temp) obj.measurementKind = temp;
                 temp = document.getElementById (id + "_measuringPeriod").value; if ("" != temp) obj.measuringPeriod = temp;
@@ -3202,14 +3182,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.intervalDateTimeInterval = [{ id: '', selected: (!obj.interval)}]; for (var property in Domain.DateTimeInterval) obj.intervalDateTimeInterval.push ({ id: property, selected: obj.interval && obj.interval.endsWith ('.' + property)});
                 obj.randomisationRandomisationKind = [{ id: '', selected: (!obj.randomisation)}]; for (var property in RandomisationKind) obj.randomisationRandomisationKind.push ({ id: property, selected: obj.randomisation && obj.randomisation.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.intervalDateTimeInterval;
                 delete obj.randomisationRandomisationKind;
             }
 
@@ -3225,7 +3203,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_durationIndefinite'>durationIndefinite: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_durationIndefinite' class='form-check-input' type='checkbox'{{#durationIndefinite}} checked{{/durationIndefinite}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interval'>interval: </label><div class='col-sm-8'><select id='{{id}}_interval' class='form-control custom-select'>{{#intervalDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/intervalDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interval'>interval: </label><div class='col-sm-8'><input id='{{id}}_interval' class='form-control' type='text'{{#interval}} value='{{interval}}'{{/interval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_randomisation'>randomisation: </label><div class='col-sm-8'><select id='{{id}}_randomisation' class='form-control custom-select'>{{#randomisationRandomisationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/randomisationRandomisationKind}}</select></div></div>
                     </div>
                     </fieldset>
@@ -3241,7 +3219,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
                 temp = document.getElementById (id + "_durationIndefinite").checked; if (temp) obj.durationIndefinite = true;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_interval").value]; if (temp) obj.interval = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.interval;
+                temp = document.getElementById (id + "_interval").value; if ("" != temp) obj.interval = temp;
                 temp = RandomisationKind[document.getElementById (id + "_randomisation").value]; if (temp) obj.randomisation = "http://iec.ch/TC57/2013/CIM-schema-cim16#RandomisationKind." + temp; else delete obj.randomisation;
 
                 return (obj);
@@ -3465,14 +3443,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.timePeriodDateTimeInterval = [{ id: '', selected: (!obj.timePeriod)}]; for (var property in Domain.DateTimeInterval) obj.timePeriodDateTimeInterval.push ({ id: property, selected: obj.timePeriod && obj.timePeriod.endsWith ('.' + property)});
                 if (obj.ReadingQualities) obj.ReadingQualities_string = obj.ReadingQualities.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.timePeriodDateTimeInterval;
                 delete obj.ReadingQualities_string;
             }
 
@@ -3488,7 +3464,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reportedDateTime'>reportedDateTime: </label><div class='col-sm-8'><input id='{{id}}_reportedDateTime' class='form-control' type='text'{{#reportedDateTime}} value='{{reportedDateTime}}'{{/reportedDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_source'>source: </label><div class='col-sm-8'><input id='{{id}}_source' class='form-control' type='text'{{#source}} value='{{source}}'{{/source}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timePeriod'>timePeriod: </label><div class='col-sm-8'><select id='{{id}}_timePeriod' class='form-control custom-select'>{{#timePeriodDateTimeInterval}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/timePeriodDateTimeInterval}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timePeriod'>timePeriod: </label><div class='col-sm-8'><input id='{{id}}_timePeriod' class='form-control' type='text'{{#timePeriod}} value='{{timePeriod}}'{{/timePeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     </fieldset>
@@ -3504,7 +3480,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_reportedDateTime").value; if ("" != temp) obj.reportedDateTime = temp;
                 temp = document.getElementById (id + "_source").value; if ("" != temp) obj.source = temp;
-                temp = Domain.DateTimeInterval[document.getElementById (id + "_timePeriod").value]; if (temp) obj.timePeriod = "http://iec.ch/TC57/2013/CIM-schema-cim16#DateTimeInterval." + temp; else delete obj.timePeriod;
+                temp = document.getElementById (id + "_timePeriod").value; if ("" != temp) obj.timePeriod = temp;
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -5192,14 +5168,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.capabilityEndDeviceCapability = [{ id: '', selected: (!obj.capability)}]; for (var property in EndDeviceCapability) obj.capabilityEndDeviceCapability.push ({ id: property, selected: obj.capability && obj.capability.endsWith ('.' + property)});
                 if (obj.EndDevices) obj.EndDevices_string = obj.EndDevices.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.capabilityEndDeviceCapability;
                 delete obj.EndDevices_string;
             }
 
@@ -5213,7 +5187,7 @@ define
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capability'>capability: </label><div class='col-sm-8'><select id='{{id}}_capability' class='form-control custom-select'>{{#capabilityEndDeviceCapability}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/capabilityEndDeviceCapability}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capability'>capability: </label><div class='col-sm-8'><input id='{{id}}_capability' class='form-control' type='text'{{#capability}} value='{{capability}}'{{/capability}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isSolidState'>isSolidState: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isSolidState' class='form-check-input' type='checkbox'{{#isSolidState}} checked{{/isSolidState}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='{{id}}_phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
@@ -5230,7 +5204,7 @@ define
 
                 var obj = obj || { id: id, cls: "EndDeviceInfo" };
                 super.submit (id, obj);
-                temp = EndDeviceCapability[document.getElementById (id + "_capability").value]; if (temp) obj.capability = "http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceCapability." + temp; else delete obj.capability;
+                temp = document.getElementById (id + "_capability").value; if ("" != temp) obj.capability = temp;
                 temp = document.getElementById (id + "_isSolidState").checked; if (temp) obj.isSolidState = true;
                 temp = document.getElementById (id + "_phaseCount").value; if ("" != temp) obj.phaseCount = temp;
                 temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
@@ -5719,13 +5693,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.applianceControlledAppliance = [{ id: '', selected: (!obj.appliance)}]; for (var property in ControlledAppliance) obj.applianceControlledAppliance.push ({ id: property, selected: obj.appliance && obj.appliance.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.applianceControlledAppliance;
             }
 
             edit_template ()
@@ -5738,7 +5710,7 @@ define
                     `
                     + EndDeviceAction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_appliance'>appliance: </label><div class='col-sm-8'><select id='{{id}}_appliance' class='form-control custom-select'>{{#applianceControlledAppliance}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/applianceControlledAppliance}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_appliance'>appliance: </label><div class='col-sm-8'><input id='{{id}}_appliance' class='form-control' type='text'{{#appliance}} value='{{appliance}}'{{/appliance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_avgLoadAdjustment'>avgLoadAdjustment: </label><div class='col-sm-8'><input id='{{id}}_avgLoadAdjustment' class='form-control' type='text'{{#avgLoadAdjustment}} value='{{avgLoadAdjustment}}'{{/avgLoadAdjustment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelControlMode'>cancelControlMode: </label><div class='col-sm-8'><input id='{{id}}_cancelControlMode' class='form-control' type='text'{{#cancelControlMode}} value='{{cancelControlMode}}'{{/cancelControlMode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelDateTime'>cancelDateTime: </label><div class='col-sm-8'><input id='{{id}}_cancelDateTime' class='form-control' type='text'{{#cancelDateTime}} value='{{cancelDateTime}}'{{/cancelDateTime}}></div></div>
@@ -5762,7 +5734,7 @@ define
 
                 var obj = obj || { id: id, cls: "PanDemandResponse" };
                 super.submit (id, obj);
-                temp = ControlledAppliance[document.getElementById (id + "_appliance").value]; if (temp) obj.appliance = "http://iec.ch/TC57/2013/CIM-schema-cim16#ControlledAppliance." + temp; else delete obj.appliance;
+                temp = document.getElementById (id + "_appliance").value; if ("" != temp) obj.appliance = temp;
                 temp = document.getElementById (id + "_avgLoadAdjustment").value; if ("" != temp) obj.avgLoadAdjustment = temp;
                 temp = document.getElementById (id + "_cancelControlMode").value; if ("" != temp) obj.cancelControlMode = temp;
                 temp = document.getElementById (id + "_cancelDateTime").value; if ("" != temp) obj.cancelDateTime = temp;
