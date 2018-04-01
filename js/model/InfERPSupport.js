@@ -116,7 +116,7 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -143,7 +143,7 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -215,7 +215,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -242,7 +242,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -317,7 +317,7 @@ define
                     `
                     {{#bankABA}}<div><b>bankABA</b>: {{bankABA}}</div>{{/bankABA}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -345,7 +345,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bankABA'>bankABA: </label><div class='col-sm-8'><input id='{{id}}_bankABA' class='form-control' type='text'{{#bankABA}} value='{{bankABA}}'{{/bankABA}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -420,7 +420,7 @@ define
                     + ErpDocument.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -447,7 +447,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -522,7 +522,7 @@ define
                     `
                     {{#ErpTimeEntries}}<div><b>ErpTimeEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpTimeEntries}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -551,7 +551,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -644,7 +644,7 @@ define
                     {{#AssetModelCatalogueItem}}<div><b>AssetModelCatalogueItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogueItem}}&quot;);}); return false;'>{{AssetModelCatalogueItem}}</a></div>{{/AssetModelCatalogueItem}}
                     {{#ErpPurchaseOrder}}<div><b>ErpPurchaseOrder</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPurchaseOrder}}&quot;);}); return false;'>{{ErpPurchaseOrder}}</a></div>{{/ErpPurchaseOrder}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -675,7 +675,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModelCatalogueItem'>AssetModelCatalogueItem: </label><div class='col-sm-8'><input id='{{id}}_AssetModelCatalogueItem' class='form-control' type='text'{{#AssetModelCatalogueItem}} value='{{AssetModelCatalogueItem}}'{{/AssetModelCatalogueItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPurchaseOrder'>ErpPurchaseOrder: </label><div class='col-sm-8'><input id='{{id}}_ErpPurchaseOrder' class='form-control' type='text'{{#ErpPurchaseOrder}} value='{{ErpPurchaseOrder}}'{{/ErpPurchaseOrder}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -770,7 +770,7 @@ define
                     `
                     {{#ErpRecDelvLineItems}}<div><b>ErpRecDelvLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpRecDelvLineItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -799,7 +799,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -894,7 +894,7 @@ define
                     {{#ErpRecLineItems}}<div><b>ErpRecLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpRecLineItems}}
                     {{#ErpInvoiceLineItems}}<div><b>ErpInvoiceLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpInvoiceLineItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -931,7 +931,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems_string}}'{{/ErpRecLineItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems_string}}'{{/ErpInvoiceLineItems}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1025,7 +1025,7 @@ define
                     `
                     {{#ErpJournalEntries}}<div><b>ErpJournalEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpJournalEntries}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1054,7 +1054,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1170,7 +1170,7 @@ define
                     {{#ErpInvoiceLineItems}}<div><b>ErpInvoiceLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpInvoiceLineItems}}
                     {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);}); return false;'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1179,16 +1179,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.BillMediaKind = []; if (!obj.billMediaKind) obj.BillMediaKind.push ({ id: '', selected: true}); for (var property in BillMediaKind) obj.BillMediaKind.push ({ id: property, selected: obj.billMediaKind && obj.billMediaKind.endsWith ('.' + property)});
-                obj.ErpInvoiceKind = []; if (!obj.kind) obj.ErpInvoiceKind.push ({ id: '', selected: true}); for (var property in ErpInvoiceKind) obj.ErpInvoiceKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.billMediaKindBillMediaKind = [{ id: '', selected: (!obj.billMediaKind)}]; for (var property in BillMediaKind) obj.billMediaKindBillMediaKind.push ({ id: property, selected: obj.billMediaKind && obj.billMediaKind.endsWith ('.' + property)});
+                obj.kindErpInvoiceKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ErpInvoiceKind) obj.kindErpInvoiceKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.ErpInvoiceLineItems) obj.ErpInvoiceLineItems_string = obj.ErpInvoiceLineItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.BillMediaKind;
-                delete obj.ErpInvoiceKind;
+                delete obj.billMediaKindBillMediaKind;
+                delete obj.kindErpInvoiceKind;
                 delete obj.ErpInvoiceLineItems_string;
             }
 
@@ -1203,9 +1203,9 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billMediaKind'>billMediaKind: </label><div class='col-sm-8'><select id='{{id}}_billMediaKind' class='form-control custom-select'>{{#BillMediaKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BillMediaKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billMediaKind'>billMediaKind: </label><div class='col-sm-8'><select id='{{id}}_billMediaKind' class='form-control custom-select'>{{#billMediaKindBillMediaKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/billMediaKindBillMediaKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dueDate'>dueDate: </label><div class='col-sm-8'><input id='{{id}}_dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ErpInvoiceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindErpInvoiceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindErpInvoiceKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mailedDate'>mailedDate: </label><div class='col-sm-8'><input id='{{id}}_mailedDate' class='form-control' type='text'{{#mailedDate}} value='{{mailedDate}}'{{/mailedDate}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_proForma'>proForma: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_proForma' class='form-check-input' type='checkbox'{{#proForma}} checked{{/proForma}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='{{id}}_referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
@@ -1213,7 +1213,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transferType'>transferType: </label><div class='col-sm-8'><input id='{{id}}_transferType' class='form-control' type='text'{{#transferType}} value='{{transferType}}'{{/transferType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1225,9 +1225,9 @@ define
                 var obj = obj || { id: id, cls: "ErpInvoice" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById (id + "_billMediaKind").value; if ("" != temp) { temp = BillMediaKind[temp]; if ("undefined" != typeof (temp)) obj.billMediaKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#BillMediaKind." + temp; }
+                temp = BillMediaKind[document.getElementById (id + "_billMediaKind").value]; if (temp) obj.billMediaKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#BillMediaKind." + temp; else delete obj.billMediaKind;
                 temp = document.getElementById (id + "_dueDate").value; if ("" != temp) obj.dueDate = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceKind." + temp; }
+                temp = ErpInvoiceKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_mailedDate").value; if ("" != temp) obj.mailedDate = temp;
                 temp = document.getElementById (id + "_proForma").checked; if (temp) obj.proForma = true;
                 temp = document.getElementById (id + "_referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
@@ -1312,7 +1312,7 @@ define
                     `
                     {{#ErpPOLineItems}}<div><b>ErpPOLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPOLineItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1341,7 +1341,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1427,7 +1427,7 @@ define
                     `
                     {{#ErpLedgerEntries}}<div><b>ErpLedgerEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpLedgerEntries}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1456,7 +1456,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1542,7 +1542,7 @@ define
                     `
                     {{#ErpReqLineItems}}<div><b>ErpReqLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpReqLineItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1571,7 +1571,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1660,7 +1660,7 @@ define
                     {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);}); return false;'>{{Design}}</a></div>{{/Design}}
                     {{#ErpBomItemDatas}}<div><b>ErpBomItemDatas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpBomItemDatas}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1690,7 +1690,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Design'>Design: </label><div class='col-sm-8'><input id='{{id}}_Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1789,7 +1789,7 @@ define
                     {{#Projects}}<div><b>Projects</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Projects}}
                     {{#Works}}<div><b>Works</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Works}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1824,7 +1824,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1879,7 +1879,7 @@ define
 
                 obj = ErpDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpInvoiceLineItem";
-                base.parse_element (/<cim:ErpInvoiceLineItem.billPeriod>([\s\S]*?)<\/cim:ErpInvoiceLineItem.billPeriod>/g, obj, "billPeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInvoiceLineItem.billPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "billPeriod", sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.glAccount>([\s\S]*?)<\/cim:ErpInvoiceLineItem.glAccount>/g, obj, "glAccount", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpInvoiceLineItem.glDateTime>([\s\S]*?)<\/cim:ErpInvoiceLineItem.glDateTime>/g, obj, "glDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ErpInvoiceLineItem.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
@@ -1912,7 +1912,7 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInvoiceLineItem", "billPeriod", "billPeriod",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "billPeriod", "billPeriod", fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "glAccount", "glAccount",  base.from_string, fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "glDateTime", "glDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "ErpInvoiceLineItem", "kind", "kind", fields);
@@ -1971,7 +1971,7 @@ define
                     {{#WorkBillingInfos}}<div><b>WorkBillingInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkBillingInfos}}
                     {{#ErpJournalEntries}}<div><b>ErpJournalEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpJournalEntries}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1980,7 +1980,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ErpInvoiceLineItemKind = []; if (!obj.kind) obj.ErpInvoiceLineItemKind.push ({ id: '', selected: true}); for (var property in ErpInvoiceLineItemKind) obj.ErpInvoiceLineItemKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindErpInvoiceLineItemKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ErpInvoiceLineItemKind) obj.kindErpInvoiceLineItemKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.ComponentErpInvoiceLineItems) obj.ComponentErpInvoiceLineItems_string = obj.ComponentErpInvoiceLineItems.join ();
                 if (obj.CustomerBillingInfos) obj.CustomerBillingInfos_string = obj.CustomerBillingInfos.join ();
                 if (obj.UserAttributes) obj.UserAttributes_string = obj.UserAttributes.join ();
@@ -1992,7 +1992,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ErpInvoiceLineItemKind;
+                delete obj.kindErpInvoiceLineItemKind;
                 delete obj.ComponentErpInvoiceLineItems_string;
                 delete obj.CustomerBillingInfos_string;
                 delete obj.UserAttributes_string;
@@ -2014,7 +2014,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billPeriod'>billPeriod: </label><div class='col-sm-8'><input id='{{id}}_billPeriod' class='form-control' type='text'{{#billPeriod}} value='{{billPeriod}}'{{/billPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_glAccount'>glAccount: </label><div class='col-sm-8'><input id='{{id}}_glAccount' class='form-control' type='text'{{#glAccount}} value='{{glAccount}}'{{/glAccount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_glDateTime'>glDateTime: </label><div class='col-sm-8'><input id='{{id}}_glDateTime' class='form-control' type='text'{{#glDateTime}} value='{{glDateTime}}'{{/glDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ErpInvoiceLineItemKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceLineItemKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindErpInvoiceLineItemKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindErpInvoiceLineItemKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineAmount'>lineAmount: </label><div class='col-sm-8'><input id='{{id}}_lineAmount' class='form-control' type='text'{{#lineAmount}} value='{{lineAmount}}'{{/lineAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineNumber'>lineNumber: </label><div class='col-sm-8'><input id='{{id}}_lineNumber' class='form-control' type='text'{{#lineNumber}} value='{{lineNumber}}'{{/lineNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineVersion'>lineVersion: </label><div class='col-sm-8'><input id='{{id}}_lineVersion' class='form-control' type='text'{{#lineVersion}} value='{{lineVersion}}'{{/lineVersion}}></div></div>
@@ -2031,7 +2031,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkBillingInfos'>WorkBillingInfos: </label><div class='col-sm-8'><input id='{{id}}_WorkBillingInfos' class='form-control' type='text'{{#WorkBillingInfos}} value='{{WorkBillingInfos_string}}'{{/WorkBillingInfos}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2045,7 +2045,7 @@ define
                 temp = document.getElementById (id + "_billPeriod").value; if ("" != temp) obj.billPeriod = temp;
                 temp = document.getElementById (id + "_glAccount").value; if ("" != temp) obj.glAccount = temp;
                 temp = document.getElementById (id + "_glDateTime").value; if ("" != temp) obj.glDateTime = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceLineItemKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceLineItemKind." + temp; }
+                temp = ErpInvoiceLineItemKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceLineItemKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_lineAmount").value; if ("" != temp) obj.lineAmount = temp;
                 temp = document.getElementById (id + "_lineNumber").value; if ("" != temp) obj.lineNumber = temp;
                 temp = document.getElementById (id + "_lineVersion").value; if ("" != temp) obj.lineVersion = temp;
@@ -2146,7 +2146,7 @@ define
                     + ErpDocument.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2173,7 +2173,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2248,7 +2248,7 @@ define
                     `
                     {{#ErpRecLineItems}}<div><b>ErpRecLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpRecLineItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2277,7 +2277,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2358,7 +2358,7 @@ define
                     + ErpDocument.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2385,7 +2385,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2463,7 +2463,7 @@ define
                     {{#ErpPayableLineItems}}<div><b>ErpPayableLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPayableLineItems}}
                     {{#ContractorItems}}<div><b>ContractorItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ContractorItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2495,7 +2495,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ContractorItems'>ContractorItems: </label><div class='col-sm-8'><input id='{{id}}_ContractorItems' class='form-control' type='text'{{#ContractorItems}} value='{{ContractorItems_string}}'{{/ContractorItems}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2585,7 +2585,7 @@ define
                     `
                     {{#ErpLedBudLineItems}}<div><b>ErpLedBudLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpLedBudLineItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2614,7 +2614,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2700,7 +2700,7 @@ define
                     `
                     {{#ErpQuoteLineItems}}<div><b>ErpQuoteLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpQuoteLineItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2729,7 +2729,7 @@ define
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2781,7 +2781,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpLedBudLineItem";
-                base.parse_element (/<cim:ErpLedBudLineItem.status>([\s\S]*?)<\/cim:ErpLedBudLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpLedBudLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedgerBudget\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerBudget", sub, context);
                 base.parse_attribute (/<cim:ErpLedBudLineItem.ErpLedBudLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedBudLineItem", sub, context);
                 var bucket = context.parsed.ErpLedBudLineItem;
@@ -2796,7 +2796,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpLedBudLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpLedBudLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedgerBudget", "ErpLedgerBudget", fields);
                 base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedBudLineItem", "ErpLedBudLineItem", fields);
                 if (full)
@@ -2818,7 +2818,7 @@ define
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpLedgerBudget}}<div><b>ErpLedgerBudget</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedgerBudget}}&quot;);}); return false;'>{{ErpLedgerBudget}}</a></div>{{/ErpLedgerBudget}}
                     {{#ErpLedBudLineItem}}<div><b>ErpLedBudLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedBudLineItem}}&quot;);}); return false;'>{{ErpLedBudLineItem}}</a></div>{{/ErpLedBudLineItem}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2848,7 +2848,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerBudget'>ErpLedgerBudget: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerBudget' class='form-control' type='text'{{#ErpLedgerBudget}} value='{{ErpLedgerBudget}}'{{/ErpLedgerBudget}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedBudLineItem'>ErpLedBudLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpLedBudLineItem' class='form-control' type='text'{{#ErpLedBudLineItem}} value='{{ErpLedBudLineItem}}'{{/ErpLedBudLineItem}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2908,7 +2908,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpInventoryCount";
-                base.parse_element (/<cim:ErpInventoryCount.status>([\s\S]*?)<\/cim:ErpInventoryCount.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInventoryCount.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpInventoryCount.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModel", sub, context);
                 var bucket = context.parsed.ErpInventoryCount;
                 if (null == bucket)
@@ -2922,7 +2922,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInventoryCount", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInventoryCount", "status", "status", fields);
                 base.export_attribute (obj, "ErpInventoryCount", "AssetModel", "AssetModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2942,7 +2942,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);}); return false;'>{{AssetModel}}</a></div>{{/AssetModel}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2971,7 +2971,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='{{id}}_AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3027,7 +3027,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpTimeEntry";
-                base.parse_element (/<cim:ErpTimeEntry.status>([\s\S]*?)<\/cim:ErpTimeEntry.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpTimeEntry.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpTimeEntry.ErpTimeSheet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpTimeSheet", sub, context);
                 base.parse_attribute (/<cim:ErpTimeEntry.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context);
                 var bucket = context.parsed.ErpTimeEntry;
@@ -3042,7 +3042,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpTimeEntry", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpTimeEntry", "status", "status", fields);
                 base.export_attribute (obj, "ErpTimeEntry", "ErpTimeSheet", "ErpTimeSheet", fields);
                 base.export_attribute (obj, "ErpTimeEntry", "ErpProjectAccounting", "ErpProjectAccounting", fields);
                 if (full)
@@ -3064,7 +3064,7 @@ define
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpTimeSheet}}<div><b>ErpTimeSheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpTimeSheet}}&quot;);}); return false;'>{{ErpTimeSheet}}</a></div>{{/ErpTimeSheet}}
                     {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);}); return false;'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3094,7 +3094,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpTimeSheet'>ErpTimeSheet: </label><div class='col-sm-8'><input id='{{id}}_ErpTimeSheet' class='form-control' type='text'{{#ErpTimeSheet}} value='{{ErpTimeSheet}}'{{/ErpTimeSheet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3152,7 +3152,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpQuoteLineItem";
-                base.parse_element (/<cim:ErpQuoteLineItem.status>([\s\S]*?)<\/cim:ErpQuoteLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpQuoteLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpQuoteLineItem.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Design", sub, context);
                 base.parse_attribute (/<cim:ErpQuoteLineItem.ErpQuote\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuote", sub, context);
                 base.parse_attribute (/<cim:ErpQuoteLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
@@ -3170,7 +3170,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpQuoteLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpQuoteLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpQuoteLineItem", "Design", "Design", fields);
                 base.export_attribute (obj, "ErpQuoteLineItem", "ErpQuote", "ErpQuote", fields);
                 base.export_attribute (obj, "ErpQuoteLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
@@ -3198,7 +3198,7 @@ define
                     {{#ErpReqLineItem}}<div><b>ErpReqLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReqLineItem}}&quot;);}); return false;'>{{ErpReqLineItem}}</a></div>{{/ErpReqLineItem}}
                     {{#AssetModelCatalogueItem}}<div><b>AssetModelCatalogueItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogueItem}}&quot;);}); return false;'>{{AssetModelCatalogueItem}}</a></div>{{/AssetModelCatalogueItem}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3231,7 +3231,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReqLineItem'>ErpReqLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpReqLineItem' class='form-control' type='text'{{#ErpReqLineItem}} value='{{ErpReqLineItem}}'{{/ErpReqLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModelCatalogueItem'>AssetModelCatalogueItem: </label><div class='col-sm-8'><input id='{{id}}_AssetModelCatalogueItem' class='form-control' type='text'{{#AssetModelCatalogueItem}} value='{{AssetModelCatalogueItem}}'{{/AssetModelCatalogueItem}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3299,7 +3299,7 @@ define
                 base.parse_attribute (/<cim:ErpLedgerEntry.accountKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "accountKind", sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.amount>([\s\S]*?)<\/cim:ErpLedgerEntry.amount>/g, obj, "amount", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.postedDateTime>([\s\S]*?)<\/cim:ErpLedgerEntry.postedDateTime>/g, obj, "postedDateTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ErpLedgerEntry.status>([\s\S]*?)<\/cim:ErpLedgerEntry.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpLedgerEntry.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:ErpLedgerEntry.transactionDateTime>([\s\S]*?)<\/cim:ErpLedgerEntry.transactionDateTime>/g, obj, "transactionDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ErpLedgerEntry.ErpJounalEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJounalEntry", sub, context);
                 base.parse_attribute (/<cim:ErpLedgerEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerEntry", sub, context);
@@ -3321,7 +3321,7 @@ define
                 base.export_attribute (obj, "ErpLedgerEntry", "accountKind", "accountKind", fields);
                 base.export_element (obj, "ErpLedgerEntry", "amount", "amount",  base.from_string, fields);
                 base.export_element (obj, "ErpLedgerEntry", "postedDateTime", "postedDateTime",  base.from_datetime, fields);
-                base.export_element (obj, "ErpLedgerEntry", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpLedgerEntry", "status", "status", fields);
                 base.export_element (obj, "ErpLedgerEntry", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "ErpLedgerEntry", "ErpJounalEntry", "ErpJounalEntry", fields);
                 base.export_attribute (obj, "ErpLedgerEntry", "ErpLedgerEntry", "ErpLedgerEntry", fields);
@@ -3353,7 +3353,7 @@ define
                     {{#UserAttributes}}<div><b>UserAttributes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UserAttributes}}
                     {{#ErpLedger}}<div><b>ErpLedger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpLedger}}&quot;);}); return false;'>{{ErpLedger}}</a></div>{{/ErpLedger}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3362,14 +3362,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ErpAccountKind = []; if (!obj.accountKind) obj.ErpAccountKind.push ({ id: '', selected: true}); for (var property in ErpAccountKind) obj.ErpAccountKind.push ({ id: property, selected: obj.accountKind && obj.accountKind.endsWith ('.' + property)});
+                obj.accountKindErpAccountKind = [{ id: '', selected: (!obj.accountKind)}]; for (var property in ErpAccountKind) obj.accountKindErpAccountKind.push ({ id: property, selected: obj.accountKind && obj.accountKind.endsWith ('.' + property)});
                 if (obj.UserAttributes) obj.UserAttributes_string = obj.UserAttributes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ErpAccountKind;
+                delete obj.accountKindErpAccountKind;
                 delete obj.UserAttributes_string;
             }
 
@@ -3384,7 +3384,7 @@ define
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountID'>accountID: </label><div class='col-sm-8'><input id='{{id}}_accountID' class='form-control' type='text'{{#accountID}} value='{{accountID}}'{{/accountID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountKind'>accountKind: </label><div class='col-sm-8'><select id='{{id}}_accountKind' class='form-control custom-select'>{{#ErpAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpAccountKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountKind'>accountKind: </label><div class='col-sm-8'><select id='{{id}}_accountKind' class='form-control custom-select'>{{#accountKindErpAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/accountKindErpAccountKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postedDateTime'>postedDateTime: </label><div class='col-sm-8'><input id='{{id}}_postedDateTime' class='form-control' type='text'{{#postedDateTime}} value='{{postedDateTime}}'{{/postedDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
@@ -3394,7 +3394,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='{{id}}_UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes_string}}'{{/UserAttributes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedger'>ErpLedger: </label><div class='col-sm-8'><input id='{{id}}_ErpLedger' class='form-control' type='text'{{#ErpLedger}} value='{{ErpLedger}}'{{/ErpLedger}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3406,7 +3406,7 @@ define
                 var obj = obj || { id: id, cls: "ErpLedgerEntry" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accountID").value; if ("" != temp) obj.accountID = temp;
-                temp = document.getElementById (id + "_accountKind").value; if ("" != temp) { temp = ErpAccountKind[temp]; if ("undefined" != typeof (temp)) obj.accountKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpAccountKind." + temp; }
+                temp = ErpAccountKind[document.getElementById (id + "_accountKind").value]; if (temp) obj.accountKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpAccountKind." + temp; else delete obj.accountKind;
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
                 temp = document.getElementById (id + "_postedDateTime").value; if ("" != temp) obj.postedDateTime = temp;
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
@@ -3463,7 +3463,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpItemMaster";
-                base.parse_element (/<cim:ErpItemMaster.status>([\s\S]*?)<\/cim:ErpItemMaster.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpItemMaster.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpItemMaster.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
                 var bucket = context.parsed.ErpItemMaster;
                 if (null == bucket)
@@ -3477,7 +3477,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpItemMaster", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpItemMaster", "status", "status", fields);
                 base.export_attribute (obj, "ErpItemMaster", "Asset", "Asset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3497,7 +3497,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3526,7 +3526,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3582,7 +3582,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpPayableLineItem";
-                base.parse_element (/<cim:ErpPayableLineItem.status>([\s\S]*?)<\/cim:ErpPayableLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpPayableLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attributes (/<cim:ErpPayableLineItem.ErpPayments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayments", sub, context);
                 base.parse_attribute (/<cim:ErpPayableLineItem.ErpPayable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayable", sub, context);
                 base.parse_attribute (/<cim:ErpPayableLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
@@ -3599,7 +3599,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpPayableLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpPayableLineItem", "status", "status", fields);
                 base.export_attributes (obj, "ErpPayableLineItem", "ErpPayments", "ErpPayments", fields);
                 base.export_attribute (obj, "ErpPayableLineItem", "ErpPayable", "ErpPayable", fields);
                 base.export_attribute (obj, "ErpPayableLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
@@ -3625,7 +3625,7 @@ define
                     {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);}); return false;'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
                     {{#ErpJournalEntries}}<div><b>ErpJournalEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpJournalEntries}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3661,7 +3661,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries_string}}'{{/ErpJournalEntries}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3723,7 +3723,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpRecLineItem";
-                base.parse_element (/<cim:ErpRecLineItem.status>([\s\S]*?)<\/cim:ErpRecLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpRecLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpRecLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
                 base.parse_attributes (/<cim:ErpRecLineItem.ErpPayments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayments", sub, context);
                 base.parse_attributes (/<cim:ErpRecLineItem.ErpJournalEntries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJournalEntries", sub, context);
@@ -3740,7 +3740,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpRecLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpRecLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpRecLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
                 base.export_attributes (obj, "ErpRecLineItem", "ErpPayments", "ErpPayments", fields);
                 base.export_attributes (obj, "ErpRecLineItem", "ErpJournalEntries", "ErpJournalEntries", fields);
@@ -3766,7 +3766,7 @@ define
                     {{#ErpJournalEntries}}<div><b>ErpJournalEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpJournalEntries}}
                     {{#ErpReceivable}}<div><b>ErpReceivable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceivable}}&quot;);}); return false;'>{{ErpReceivable}}</a></div>{{/ErpReceivable}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3802,7 +3802,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries_string}}'{{/ErpJournalEntries}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReceivable'>ErpReceivable: </label><div class='col-sm-8'><input id='{{id}}_ErpReceivable' class='form-control' type='text'{{#ErpReceivable}} value='{{ErpReceivable}}'{{/ErpReceivable}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3864,7 +3864,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpIssueInventory";
-                base.parse_element (/<cim:ErpIssueInventory.status>([\s\S]*?)<\/cim:ErpIssueInventory.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpIssueInventory.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpIssueInventory.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
                 base.parse_attribute (/<cim:ErpIssueInventory.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context);
                 var bucket = context.parsed.ErpIssueInventory;
@@ -3879,7 +3879,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpIssueInventory", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpIssueInventory", "status", "status", fields);
                 base.export_attribute (obj, "ErpIssueInventory", "TypeMaterial", "TypeMaterial", fields);
                 base.export_attribute (obj, "ErpIssueInventory", "TypeAsset", "TypeAsset", fields);
                 if (full)
@@ -3901,7 +3901,7 @@ define
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
                     {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);}); return false;'>{{TypeAsset}}</a></div>{{/TypeAsset}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3931,7 +3931,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3991,7 +3991,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpInventory";
-                base.parse_element (/<cim:ErpInventory.status>([\s\S]*?)<\/cim:ErpInventory.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpInventory.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpInventory.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
                 var bucket = context.parsed.ErpInventory;
                 if (null == bucket)
@@ -4005,7 +4005,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInventory", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInventory", "status", "status", fields);
                 base.export_attribute (obj, "ErpInventory", "Asset", "Asset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4025,7 +4025,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#Asset}}<div><b>Asset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Asset}}&quot;);}); return false;'>{{Asset}}</a></div>{{/Asset}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4054,7 +4054,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4114,7 +4114,7 @@ define
                 base.parse_element (/<cim:ErpReqLineItem.cost>([\s\S]*?)<\/cim:ErpReqLineItem.cost>/g, obj, "cost", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpReqLineItem.deliveryDate>([\s\S]*?)<\/cim:ErpReqLineItem.deliveryDate>/g, obj, "deliveryDate", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpReqLineItem.quantity>([\s\S]*?)<\/cim:ErpReqLineItem.quantity>/g, obj, "quantity", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpReqLineItem.status>([\s\S]*?)<\/cim:ErpReqLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpReqLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpReqLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItem", sub, context);
                 base.parse_attribute (/<cim:ErpReqLineItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
                 base.parse_attribute (/<cim:ErpReqLineItem.ErpRequisition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRequisition", sub, context);
@@ -4136,7 +4136,7 @@ define
                 base.export_element (obj, "ErpReqLineItem", "cost", "cost",  base.from_string, fields);
                 base.export_element (obj, "ErpReqLineItem", "deliveryDate", "deliveryDate",  base.from_string, fields);
                 base.export_element (obj, "ErpReqLineItem", "quantity", "quantity",  base.from_string, fields);
-                base.export_element (obj, "ErpReqLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpReqLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpReqLineItem", "ErpPOLineItem", "ErpPOLineItem", fields);
                 base.export_attribute (obj, "ErpReqLineItem", "TypeMaterial", "TypeMaterial", fields);
                 base.export_attribute (obj, "ErpReqLineItem", "ErpRequisition", "ErpRequisition", fields);
@@ -4168,7 +4168,7 @@ define
                     {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);}); return false;'>{{TypeAsset}}</a></div>{{/TypeAsset}}
                     {{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);}); return false;'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4205,7 +4205,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4273,7 +4273,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpPersonnel";
-                base.parse_element (/<cim:ErpPersonnel.status>([\s\S]*?)<\/cim:ErpPersonnel.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpPersonnel.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attributes (/<cim:ErpPersonnel.ErpPersons\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersons", sub, context);
                 var bucket = context.parsed.ErpPersonnel;
                 if (null == bucket)
@@ -4287,7 +4287,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpPersonnel", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpPersonnel", "status", "status", fields);
                 base.export_attributes (obj, "ErpPersonnel", "ErpPersons", "ErpPersons", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4307,7 +4307,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersons}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4337,7 +4337,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4396,7 +4396,7 @@ define
                 base.parse_element (/<cim:ErpJournalEntry.amount>([\s\S]*?)<\/cim:ErpJournalEntry.amount>/g, obj, "amount", base.to_string, sub, context);
                 base.parse_element (/<cim:ErpJournalEntry.postingDateTime>([\s\S]*?)<\/cim:ErpJournalEntry.postingDateTime>/g, obj, "postingDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ErpJournalEntry.sourceID>([\s\S]*?)<\/cim:ErpJournalEntry.sourceID>/g, obj, "sourceID", base.to_string, sub, context);
-                base.parse_element (/<cim:ErpJournalEntry.status>([\s\S]*?)<\/cim:ErpJournalEntry.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpJournalEntry.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:ErpJournalEntry.transactionDateTime>([\s\S]*?)<\/cim:ErpJournalEntry.transactionDateTime>/g, obj, "transactionDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ErpJournalEntry.ErpLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpLedgerEntry", sub, context);
                 base.parse_attributes (/<cim:ErpJournalEntry.ErpPayableLineItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayableLineItems", sub, context);
@@ -4420,7 +4420,7 @@ define
                 base.export_element (obj, "ErpJournalEntry", "amount", "amount",  base.from_string, fields);
                 base.export_element (obj, "ErpJournalEntry", "postingDateTime", "postingDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "ErpJournalEntry", "sourceID", "sourceID",  base.from_string, fields);
-                base.export_element (obj, "ErpJournalEntry", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpJournalEntry", "status", "status", fields);
                 base.export_element (obj, "ErpJournalEntry", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "ErpJournalEntry", "ErpLedgerEntry", "ErpLedgerEntry", fields);
                 base.export_attributes (obj, "ErpJournalEntry", "ErpPayableLineItems", "ErpPayableLineItems", fields);
@@ -4456,7 +4456,7 @@ define
                     {{#CostTypes}}<div><b>CostTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CostTypes}}
                     {{#ErpInvoiceLineItem}}<div><b>ErpInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInvoiceLineItem}}&quot;);}); return false;'>{{ErpInvoiceLineItem}}</a></div>{{/ErpInvoiceLineItem}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4501,7 +4501,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CostTypes'>CostTypes: </label><div class='col-sm-8'><input id='{{id}}_CostTypes' class='form-control' type='text'{{#CostTypes}} value='{{CostTypes_string}}'{{/CostTypes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4610,7 +4610,7 @@ define
                     {{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);}); return false;'>{{DesignLocation}}</a></div>{{/DesignLocation}}
                     {{#ErpBOM}}<div><b>ErpBOM</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpBOM}}&quot;);}); return false;'>{{ErpBOM}}</a></div>{{/ErpBOM}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4640,7 +4640,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='{{id}}_DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpBOM'>ErpBOM: </label><div class='col-sm-8'><input id='{{id}}_ErpBOM' class='form-control' type='text'{{#ErpBOM}} value='{{ErpBOM}}'{{/ErpBOM}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4701,7 +4701,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpSiteLevelData";
-                base.parse_element (/<cim:ErpSiteLevelData.status>([\s\S]*?)<\/cim:ErpSiteLevelData.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpSiteLevelData.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpSiteLevelData.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LandProperty", sub, context);
                 var bucket = context.parsed.ErpSiteLevelData;
                 if (null == bucket)
@@ -4715,7 +4715,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpSiteLevelData", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpSiteLevelData", "status", "status", fields);
                 base.export_attribute (obj, "ErpSiteLevelData", "LandProperty", "LandProperty", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4735,7 +4735,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);}); return false;'>{{LandProperty}}</a></div>{{/LandProperty}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4764,7 +4764,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='{{id}}_LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4822,7 +4822,7 @@ define
 
                 obj = ErpIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ErpRecDelvLineItem";
-                base.parse_element (/<cim:ErpRecDelvLineItem.status>([\s\S]*?)<\/cim:ErpRecDelvLineItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ErpRecDelvLineItem.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpPOLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItem", sub, context);
                 base.parse_attribute (/<cim:ErpRecDelvLineItem.ErpInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoiceLineItem", sub, context);
                 base.parse_attributes (/<cim:ErpRecDelvLineItem.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
@@ -4839,7 +4839,7 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpRecDelvLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpRecDelvLineItem", "status", "status", fields);
                 base.export_attribute (obj, "ErpRecDelvLineItem", "ErpPOLineItem", "ErpPOLineItem", fields);
                 base.export_attribute (obj, "ErpRecDelvLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
                 base.export_attributes (obj, "ErpRecDelvLineItem", "Assets", "Assets", fields);
@@ -4865,7 +4865,7 @@ define
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#ErpReceiveDelivery}}<div><b>ErpReceiveDelivery</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpReceiveDelivery}}&quot;);}); return false;'>{{ErpReceiveDelivery}}</a></div>{{/ErpReceiveDelivery}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4899,7 +4899,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReceiveDelivery'>ErpReceiveDelivery: </label><div class='col-sm-8'><input id='{{id}}_ErpReceiveDelivery' class='form-control' type='text'{{#ErpReceiveDelivery}} value='{{ErpReceiveDelivery}}'{{/ErpReceiveDelivery}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4995,7 +4995,7 @@ define
                     `
                     {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersons}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5024,7 +5024,7 @@ define
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5051,11 +5051,12 @@ define
 
         return (
             {
-                ErpRecLineItem: ErpRecLineItem,
                 ErpPOLineItem: ErpPOLineItem,
+                ErpRecLineItem: ErpRecLineItem,
                 ErpPayable: ErpPayable,
                 ErpBOM: ErpBOM,
                 ErpBankAccount: ErpBankAccount,
+                ErpAccountKind: ErpAccountKind,
                 ErpSiteLevelData: ErpSiteLevelData,
                 ErpQuote: ErpQuote,
                 ErpPurchaseOrder: ErpPurchaseOrder,
@@ -5071,16 +5072,19 @@ define
                 ErpPayableLineItem: ErpPayableLineItem,
                 ErpIdentifiedObject: ErpIdentifiedObject,
                 ErpBomItemData: ErpBomItemData,
-                ErpItemMaster: ErpItemMaster,
+                BillMediaKind: BillMediaKind,
                 ErpReqLineItem: ErpReqLineItem,
+                ErpItemMaster: ErpItemMaster,
                 ErpSalesOrder: ErpSalesOrder,
                 ErpInvoice: ErpInvoice,
-                ErpIssueInventory: ErpIssueInventory,
+                ErpInventory: ErpInventory,
                 ErpDocument: ErpDocument,
+                ErpInvoiceKind: ErpInvoiceKind,
                 ErpLedger: ErpLedger,
                 ErpLedgerEntry: ErpLedgerEntry,
-                ErpInventory: ErpInventory,
+                ErpIssueInventory: ErpIssueInventory,
                 ErpCompetency: ErpCompetency,
+                ErpInvoiceLineItemKind: ErpInvoiceLineItemKind,
                 ErpPayment: ErpPayment,
                 ErpInvoiceLineItem: ErpInvoiceLineItem,
                 ErpLedBudLineItem: ErpLedBudLineItem,

@@ -114,7 +114,7 @@ define
                     {{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);}); return false;'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
                     {{#DiscontinuousExcitationControlDynamics}}<div><b>DiscontinuousExcitationControlDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlDynamics}}&quot;);}); return false;'>{{DiscontinuousExcitationControlDynamics}}</a></div>{{/DiscontinuousExcitationControlDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -123,13 +123,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.RemoteSignalKind = []; if (!obj.remoteSignalType) obj.RemoteSignalKind.push ({ id: '', selected: true}); for (var property in RemoteSignalKind) obj.RemoteSignalKind.push ({ id: property, selected: obj.remoteSignalType && obj.remoteSignalType.endsWith ('.' + property)});
+                obj.remoteSignalTypeRemoteSignalKind = [{ id: '', selected: (!obj.remoteSignalType)}]; for (var property in RemoteSignalKind) obj.remoteSignalTypeRemoteSignalKind.push ({ id: property, selected: obj.remoteSignalType && obj.remoteSignalType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.RemoteSignalKind;
+                delete obj.remoteSignalTypeRemoteSignalKind;
             }
 
             edit_template ()
@@ -142,7 +142,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteSignalType'>remoteSignalType: </label><div class='col-sm-8'><select id='{{id}}_remoteSignalType' class='form-control custom-select'>{{#RemoteSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteSignalType'>remoteSignalType: </label><div class='col-sm-8'><select id='{{id}}_remoteSignalType' class='form-control custom-select'>{{#remoteSignalTypeRemoteSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/remoteSignalTypeRemoteSignalKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageCompensatorDynamics'>VoltageCompensatorDynamics: </label><div class='col-sm-8'><input id='{{id}}_VoltageCompensatorDynamics' class='form-control' type='text'{{#VoltageCompensatorDynamics}} value='{{VoltageCompensatorDynamics}}'{{/VoltageCompensatorDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantDynamics'>WindPlantDynamics: </label><div class='col-sm-8'><input id='{{id}}_WindPlantDynamics' class='form-control' type='text'{{#WindPlantDynamics}} value='{{WindPlantDynamics}}'{{/WindPlantDynamics}}></div></div>
@@ -153,7 +153,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiscontinuousExcitationControlDynamics'>DiscontinuousExcitationControlDynamics: </label><div class='col-sm-8'><input id='{{id}}_DiscontinuousExcitationControlDynamics' class='form-control' type='text'{{#DiscontinuousExcitationControlDynamics}} value='{{DiscontinuousExcitationControlDynamics}}'{{/DiscontinuousExcitationControlDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -164,7 +164,7 @@ define
 
                 var obj = obj || { id: id, cls: "RemoteInputSignal" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_remoteSignalType").value; if ("" != temp) { temp = RemoteSignalKind[temp]; if ("undefined" != typeof (temp)) obj.remoteSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; }
+                temp = RemoteSignalKind[document.getElementById (id + "_remoteSignalType").value]; if (temp) obj.remoteSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; else delete obj.remoteSignalType;
                 temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
                 temp = document.getElementById (id + "_VoltageCompensatorDynamics").value; if ("" != temp) obj.VoltageCompensatorDynamics = temp;
                 temp = document.getElementById (id + "_WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;
@@ -200,7 +200,8 @@ define
 
         return (
             {
-                RemoteInputSignal: RemoteInputSignal
+                RemoteInputSignal: RemoteInputSignal,
+                RemoteSignalKind: RemoteSignalKind
             }
         );
     }

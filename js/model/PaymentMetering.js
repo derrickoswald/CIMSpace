@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Common", "model/Core"],
+    ["model/base", "model/Common", "model/Core", "model/Domain"],
     /**
      * This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering.
      *
      * These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
      *
      */
-    function (base, Common, Core)
+    function (base, Common, Core, Domain)
     {
 
         /**
@@ -112,7 +112,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Receipt";
                 base.parse_element (/<cim:Receipt.isBankable>([\s\S]*?)<\/cim:Receipt.isBankable>/g, obj, "isBankable", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Receipt.line>([\s\S]*?)<\/cim:Receipt.line>/g, obj, "line", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Receipt.line\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "line", sub, context);
                 base.parse_attributes (/<cim:Receipt.Transactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Transactions", sub, context);
                 base.parse_attribute (/<cim:Receipt.VendorShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VendorShift", sub, context);
                 base.parse_attribute (/<cim:Receipt.CashierShift\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CashierShift", sub, context);
@@ -130,7 +130,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Receipt", "isBankable", "isBankable",  base.from_boolean, fields);
-                base.export_element (obj, "Receipt", "line", "line",  base.from_string, fields);
+                base.export_attribute (obj, "Receipt", "line", "line", fields);
                 base.export_attributes (obj, "Receipt", "Transactions", "Transactions", fields);
                 base.export_attribute (obj, "Receipt", "VendorShift", "VendorShift", fields);
                 base.export_attribute (obj, "Receipt", "CashierShift", "CashierShift", fields);
@@ -157,7 +157,7 @@ define
                     {{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CashierShift}}&quot;);}); return false;'>{{CashierShift}}</a></div>{{/CashierShift}}
                     {{#Tenders}}<div><b>Tenders</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Tenders}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -192,7 +192,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VendorShift'>VendorShift: </label><div class='col-sm-8'><input id='{{id}}_VendorShift' class='form-control' type='text'{{#VendorShift}} value='{{VendorShift}}'{{/VendorShift}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CashierShift'>CashierShift: </label><div class='col-sm-8'><input id='{{id}}_CashierShift' class='form-control' type='text'{{#CashierShift}} value='{{CashierShift}}'{{/CashierShift}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -297,7 +297,7 @@ define
                     {{#pan}}<div><b>pan</b>: {{pan}}</div>{{/pan}}
                     {{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Tender}}&quot;);}); return false;'>{{Tender}}</a></div>{{/Tender}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -329,7 +329,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pan'>pan: </label><div class='col-sm-8'><input id='{{id}}_pan' class='form-control' type='text'{{#pan}} value='{{pan}}'{{/pan}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tender'>Tender: </label><div class='col-sm-8'><input id='{{id}}_Tender' class='form-control' type='text'{{#Tender}} value='{{Tender}}'{{/Tender}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -432,7 +432,7 @@ define
                     {{#interest}}<div><b>interest</b>: {{interest}}</div>{{/interest}}
                     {{#principle}}<div><b>principle</b>: {{principle}}</div>{{/principle}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -464,7 +464,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interest'>interest: </label><div class='col-sm-8'><input id='{{id}}_interest' class='form-control' type='text'{{#interest}} value='{{interest}}'{{/interest}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_principle'>principle: </label><div class='col-sm-8'><input id='{{id}}_principle' class='form-control' type='text'{{#principle}} value='{{principle}}'{{/principle}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -514,7 +514,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Charge";
-                base.parse_element (/<cim:Charge.fixedPortion>([\s\S]*?)<\/cim:Charge.fixedPortion>/g, obj, "fixedPortion", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Charge.fixedPortion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fixedPortion", sub, context);
                 base.parse_attribute (/<cim:Charge.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Charge.variablePortion>([\s\S]*?)<\/cim:Charge.variablePortion>/g, obj, "variablePortion", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Charge.AuxiliaryAccounts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryAccounts", sub, context);
@@ -534,7 +534,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Charge", "fixedPortion", "fixedPortion",  base.from_string, fields);
+                base.export_attribute (obj, "Charge", "fixedPortion", "fixedPortion", fields);
                 base.export_attribute (obj, "Charge", "kind", "kind", fields);
                 base.export_element (obj, "Charge", "variablePortion", "variablePortion",  base.from_string, fields);
                 base.export_attributes (obj, "Charge", "AuxiliaryAccounts", "AuxiliaryAccounts", fields);
@@ -566,7 +566,7 @@ define
                     {{#ParentCharge}}<div><b>ParentCharge</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCharge}}&quot;);}); return false;'>{{ParentCharge}}</a></div>{{/ParentCharge}}
                     {{#TimeTariffIntervals}}<div><b>TimeTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TimeTariffIntervals}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -575,7 +575,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ChargeKind = []; if (!obj.kind) obj.ChargeKind.push ({ id: '', selected: true}); for (var property in ChargeKind) obj.ChargeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindChargeKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ChargeKind) obj.kindChargeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.AuxiliaryAccounts) obj.AuxiliaryAccounts_string = obj.AuxiliaryAccounts.join ();
                 if (obj.ConsumptionTariffIntervals) obj.ConsumptionTariffIntervals_string = obj.ConsumptionTariffIntervals.join ();
                 if (obj.ChildCharges) obj.ChildCharges_string = obj.ChildCharges.join ();
@@ -585,7 +585,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ChargeKind;
+                delete obj.kindChargeKind;
                 delete obj.AuxiliaryAccounts_string;
                 delete obj.ConsumptionTariffIntervals_string;
                 delete obj.ChildCharges_string;
@@ -603,14 +603,14 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fixedPortion'>fixedPortion: </label><div class='col-sm-8'><input id='{{id}}_fixedPortion' class='form-control' type='text'{{#fixedPortion}} value='{{fixedPortion}}'{{/fixedPortion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ChargeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChargeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindChargeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindChargeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_variablePortion'>variablePortion: </label><div class='col-sm-8'><input id='{{id}}_variablePortion' class='form-control' type='text'{{#variablePortion}} value='{{variablePortion}}'{{/variablePortion}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAccounts'>AuxiliaryAccounts: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAccounts' class='form-control' type='text'{{#AuxiliaryAccounts}} value='{{AuxiliaryAccounts_string}}'{{/AuxiliaryAccounts}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals_string}}'{{/ConsumptionTariffIntervals}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCharge'>ParentCharge: </label><div class='col-sm-8'><input id='{{id}}_ParentCharge' class='form-control' type='text'{{#ParentCharge}} value='{{ParentCharge}}'{{/ParentCharge}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals_string}}'{{/TimeTariffIntervals}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -622,7 +622,7 @@ define
                 var obj = obj || { id: id, cls: "Charge" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_fixedPortion").value; if ("" != temp) obj.fixedPortion = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ChargeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ChargeKind." + temp; }
+                temp = ChargeKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ChargeKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_variablePortion").value; if ("" != temp) obj.variablePortion = temp;
                 temp = document.getElementById (id + "_AuxiliaryAccounts").value; if ("" != temp) obj.AuxiliaryAccounts = temp.split (",");
                 temp = document.getElementById (id + "_ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
@@ -718,7 +718,7 @@ define
                     {{#Tariffs}}<div><b>Tariffs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Tariffs}}
                     {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -755,7 +755,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='{{id}}_Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs_string}}'{{/Tariffs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals_string}}'{{/ConsumptionTariffIntervals}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -853,7 +853,7 @@ define
                     {{#dateTime}}<div><b>dateTime</b>: {{dateTime}}</div>{{/dateTime}}
                     {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -883,7 +883,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dateTime'>dateTime: </label><div class='col-sm-8'><input id='{{id}}_dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><input id='{{id}}_reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -975,7 +975,7 @@ define
                     {{#TouTariffIntervals}}<div><b>TouTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TouTariffIntervals}}
                     {{#TariffProfiles}}<div><b>TariffProfiles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TariffProfiles}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1013,7 +1013,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TouTariffIntervals'>TouTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TouTariffIntervals' class='form-control' type='text'{{#TouTariffIntervals}} value='{{TouTariffIntervals_string}}'{{/TouTariffIntervals}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles_string}}'{{/TariffProfiles}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1120,7 +1120,7 @@ define
                     {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
                     {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Charges}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1158,7 +1158,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals_string}}'{{/ConsumptionTariffIntervals}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges_string}}'{{/Charges}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1283,7 +1283,7 @@ define
                     {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);}); return false;'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
                     {{#AuxiliaryAccounts}}<div><b>AuxiliaryAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxiliaryAccounts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1322,7 +1322,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vendPortionArrear'>vendPortionArrear: </label><div class='col-sm-8'><input id='{{id}}_vendPortionArrear' class='form-control' type='text'{{#vendPortionArrear}} value='{{vendPortionArrear}}'{{/vendPortionArrear}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1421,7 +1421,7 @@ define
                     `
                     {{#VendorShifts}}<div><b>VendorShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VendorShifts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1450,7 +1450,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1546,7 +1546,7 @@ define
                     {{#holderID}}<div><b>holderID</b>: {{holderID}}</div>{{/holderID}}
                     {{#holderName}}<div><b>holderName</b>: {{holderName}}</div>{{/holderName}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1578,7 +1578,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_holderID'>holderID: </label><div class='col-sm-8'><input id='{{id}}_holderID' class='form-control' type='text'{{#holderID}} value='{{holderID}}'{{/holderID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_holderName'>holderName: </label><div class='col-sm-8'><input id='{{id}}_holderName' class='form-control' type='text'{{#holderName}} value='{{holderName}}'{{/holderName}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1661,7 +1661,7 @@ define
                     {{#location}}<div><b>location</b>: {{location}}</div>{{/location}}
                     {{#CashierShifts}}<div><b>CashierShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CashierShifts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1691,7 +1691,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_location'>location: </label><div class='col-sm-8'><input id='{{id}}_location' class='form-control' type='text'{{#location}} value='{{location}}'{{/location}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1748,7 +1748,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Shift";
-                base.parse_element (/<cim:Shift.activityInterval>([\s\S]*?)<\/cim:Shift.activityInterval>/g, obj, "activityInterval", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Shift.activityInterval\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "activityInterval", sub, context);
                 base.parse_element (/<cim:Shift.receiptsGrandTotalBankable>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalBankable>/g, obj, "receiptsGrandTotalBankable", base.to_string, sub, context);
                 base.parse_element (/<cim:Shift.receiptsGrandTotalNonBankable>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalNonBankable>/g, obj, "receiptsGrandTotalNonBankable", base.to_string, sub, context);
                 base.parse_element (/<cim:Shift.receiptsGrandTotalRounding>([\s\S]*?)<\/cim:Shift.receiptsGrandTotalRounding>/g, obj, "receiptsGrandTotalRounding", base.to_string, sub, context);
@@ -1766,7 +1766,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Shift", "activityInterval", "activityInterval",  base.from_string, fields);
+                base.export_attribute (obj, "Shift", "activityInterval", "activityInterval", fields);
                 base.export_element (obj, "Shift", "receiptsGrandTotalBankable", "receiptsGrandTotalBankable",  base.from_string, fields);
                 base.export_element (obj, "Shift", "receiptsGrandTotalNonBankable", "receiptsGrandTotalNonBankable",  base.from_string, fields);
                 base.export_element (obj, "Shift", "receiptsGrandTotalRounding", "receiptsGrandTotalRounding",  base.from_string, fields);
@@ -1795,7 +1795,7 @@ define
                     {{#transactionsGrandTotal}}<div><b>transactionsGrandTotal</b>: {{transactionsGrandTotal}}</div>{{/transactionsGrandTotal}}
                     {{#transactionsGrandTotalRounding}}<div><b>transactionsGrandTotalRounding</b>: {{transactionsGrandTotalRounding}}</div>{{/transactionsGrandTotalRounding}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1828,7 +1828,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionsGrandTotal'>transactionsGrandTotal: </label><div class='col-sm-8'><input id='{{id}}_transactionsGrandTotal' class='form-control' type='text'{{#transactionsGrandTotal}} value='{{transactionsGrandTotal}}'{{/transactionsGrandTotal}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionsGrandTotalRounding'>transactionsGrandTotalRounding: </label><div class='col-sm-8'><input id='{{id}}_transactionsGrandTotalRounding' class='form-control' type='text'{{#transactionsGrandTotalRounding}} value='{{transactionsGrandTotalRounding}}'{{/transactionsGrandTotalRounding}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1918,7 +1918,7 @@ define
                     {{#note}}<div><b>note</b>: {{note}}</div>{{/note}}
                     {{#rounding}}<div><b>rounding</b>: {{rounding}}</div>{{/rounding}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1949,7 +1949,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_note'>note: </label><div class='col-sm-8'><input id='{{id}}_note' class='form-control' type='text'{{#note}} value='{{note}}'{{/note}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rounding'>rounding: </label><div class='col-sm-8'><input id='{{id}}_rounding' class='form-control' type='text'{{#rounding}} value='{{rounding}}'{{/rounding}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1998,7 +1998,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Cashier";
-                base.parse_element (/<cim:Cashier.electronicAddress>([\s\S]*?)<\/cim:Cashier.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Cashier.electronicAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddress", sub, context);
                 base.parse_attributes (/<cim:Cashier.CashierShifts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CashierShifts", sub, context);
                 var bucket = context.parsed.Cashier;
                 if (null == bucket)
@@ -2012,7 +2012,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Cashier", "electronicAddress", "electronicAddress",  base.from_string, fields);
+                base.export_attribute (obj, "Cashier", "electronicAddress", "electronicAddress", fields);
                 base.export_attributes (obj, "Cashier", "CashierShifts", "CashierShifts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2032,7 +2032,7 @@ define
                     `
                     {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddress}}&quot;);}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}\n                    {{#CashierShifts}}<div><b>CashierShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CashierShifts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2062,7 +2062,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2161,7 +2161,7 @@ define
                     {{#BankAccounts}}<div><b>BankAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BankAccounts}}
                     {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePoints}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2170,7 +2170,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SupplierKind = []; if (!obj.kind) obj.SupplierKind.push ({ id: '', selected: true}); for (var property in SupplierKind) obj.SupplierKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindSupplierKind = [{ id: '', selected: (!obj.kind)}]; for (var property in SupplierKind) obj.kindSupplierKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
                 if (obj.BankAccounts) obj.BankAccounts_string = obj.BankAccounts.join ();
                 if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
@@ -2179,7 +2179,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SupplierKind;
+                delete obj.kindSupplierKind;
                 delete obj.CustomerAgreements_string;
                 delete obj.BankAccounts_string;
                 delete obj.UsagePoints_string;
@@ -2196,9 +2196,9 @@ define
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issuerIdentificationNumber'>issuerIdentificationNumber: </label><div class='col-sm-8'><input id='{{id}}_issuerIdentificationNumber' class='form-control' type='text'{{#issuerIdentificationNumber}} value='{{issuerIdentificationNumber}}'{{/issuerIdentificationNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#SupplierKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SupplierKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindSupplierKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindSupplierKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2210,7 +2210,7 @@ define
                 var obj = obj || { id: id, cls: "ServiceSupplier" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_issuerIdentificationNumber").value; if ("" != temp) obj.issuerIdentificationNumber = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SupplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SupplierKind." + temp; }
+                temp = SupplierKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SupplierKind." + temp; else delete obj.kind;
 
                 return (obj);
             }
@@ -2256,7 +2256,7 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Cheque";
-                base.parse_element (/<cim:Cheque.bankAccountDetail>([\s\S]*?)<\/cim:Cheque.bankAccountDetail>/g, obj, "bankAccountDetail", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Cheque.bankAccountDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "bankAccountDetail", sub, context);
                 base.parse_element (/<cim:Cheque.chequeNumber>([\s\S]*?)<\/cim:Cheque.chequeNumber>/g, obj, "chequeNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:Cheque.date>([\s\S]*?)<\/cim:Cheque.date>/g, obj, "date", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Cheque.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
@@ -2274,7 +2274,7 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Cheque", "bankAccountDetail", "bankAccountDetail",  base.from_string, fields);
+                base.export_attribute (obj, "Cheque", "bankAccountDetail", "bankAccountDetail", fields);
                 base.export_element (obj, "Cheque", "chequeNumber", "chequeNumber",  base.from_string, fields);
                 base.export_element (obj, "Cheque", "date", "date",  base.from_string, fields);
                 base.export_attribute (obj, "Cheque", "kind", "kind", fields);
@@ -2302,7 +2302,7 @@ define
                     {{#micrNumber}}<div><b>micrNumber</b>: {{micrNumber}}</div>{{/micrNumber}}
                     {{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Tender}}&quot;);}); return false;'>{{Tender}}</a></div>{{/Tender}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2311,13 +2311,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ChequeKind = []; if (!obj.kind) obj.ChequeKind.push ({ id: '', selected: true}); for (var property in ChequeKind) obj.ChequeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindChequeKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ChequeKind) obj.kindChequeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ChequeKind;
+                delete obj.kindChequeKind;
             }
 
             edit_template ()
@@ -2333,11 +2333,11 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bankAccountDetail'>bankAccountDetail: </label><div class='col-sm-8'><input id='{{id}}_bankAccountDetail' class='form-control' type='text'{{#bankAccountDetail}} value='{{bankAccountDetail}}'{{/bankAccountDetail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chequeNumber'>chequeNumber: </label><div class='col-sm-8'><input id='{{id}}_chequeNumber' class='form-control' type='text'{{#chequeNumber}} value='{{chequeNumber}}'{{/chequeNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_date'>date: </label><div class='col-sm-8'><input id='{{id}}_date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ChequeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChequeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindChequeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindChequeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_micrNumber'>micrNumber: </label><div class='col-sm-8'><input id='{{id}}_micrNumber' class='form-control' type='text'{{#micrNumber}} value='{{micrNumber}}'{{/micrNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tender'>Tender: </label><div class='col-sm-8'><input id='{{id}}_Tender' class='form-control' type='text'{{#Tender}} value='{{Tender}}'{{/Tender}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2351,7 +2351,7 @@ define
                 temp = document.getElementById (id + "_bankAccountDetail").value; if ("" != temp) obj.bankAccountDetail = temp;
                 temp = document.getElementById (id + "_chequeNumber").value; if ("" != temp) obj.chequeNumber = temp;
                 temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ChequeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ChequeKind." + temp; }
+                temp = ChequeKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ChequeKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_micrNumber").value; if ("" != temp) obj.micrNumber = temp;
                 temp = document.getElementById (id + "_Tender").value; if ("" != temp) obj.Tender = temp;
 
@@ -2446,7 +2446,7 @@ define
                     {{#Card}}<div><b>Card</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Card}}&quot;);}); return false;'>{{Card}}</a></div>{{/Card}}
                     {{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt}}&quot;);}); return false;'>{{Receipt}}</a></div>{{/Receipt}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2455,13 +2455,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TenderKind = []; if (!obj.kind) obj.TenderKind.push ({ id: '', selected: true}); for (var property in TenderKind) obj.TenderKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindTenderKind = [{ id: '', selected: (!obj.kind)}]; for (var property in TenderKind) obj.kindTenderKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TenderKind;
+                delete obj.kindTenderKind;
             }
 
             edit_template ()
@@ -2476,12 +2476,12 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_change'>change: </label><div class='col-sm-8'><input id='{{id}}_change' class='form-control' type='text'{{#change}} value='{{change}}'{{/change}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#TenderKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TenderKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindTenderKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindTenderKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Cheque'>Cheque: </label><div class='col-sm-8'><input id='{{id}}_Cheque' class='form-control' type='text'{{#Cheque}} value='{{Cheque}}'{{/Cheque}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Card'>Card: </label><div class='col-sm-8'><input id='{{id}}_Card' class='form-control' type='text'{{#Card}} value='{{Card}}'{{/Card}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Receipt'>Receipt: </label><div class='col-sm-8'><input id='{{id}}_Receipt' class='form-control' type='text'{{#Receipt}} value='{{Receipt}}'{{/Receipt}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2494,7 +2494,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
                 temp = document.getElementById (id + "_change").value; if ("" != temp) obj.change = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TenderKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TenderKind." + temp; }
+                temp = TenderKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TenderKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_Cheque").value; if ("" != temp) obj.Cheque = temp;
                 temp = document.getElementById (id + "_Card").value; if ("" != temp) obj.Card = temp;
                 temp = document.getElementById (id + "_Receipt").value; if ("" != temp) obj.Receipt = temp;
@@ -2575,7 +2575,7 @@ define
                     `
                     {{#MerchantAccounts}}<div><b>MerchantAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MerchantAccounts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2605,7 +2605,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAccounts'>MerchantAccounts: </label><div class='col-sm-8'><input id='{{id}}_MerchantAccounts' class='form-control' type='text'{{#MerchantAccounts}} value='{{MerchantAccounts_string}}'{{/MerchantAccounts}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2661,9 +2661,9 @@ define
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "AuxiliaryAccount";
                 base.parse_element (/<cim:AuxiliaryAccount.balance>([\s\S]*?)<\/cim:AuxiliaryAccount.balance>/g, obj, "balance", base.to_string, sub, context);
-                base.parse_element (/<cim:AuxiliaryAccount.due>([\s\S]*?)<\/cim:AuxiliaryAccount.due>/g, obj, "due", base.to_string, sub, context);
-                base.parse_element (/<cim:AuxiliaryAccount.lastCredit>([\s\S]*?)<\/cim:AuxiliaryAccount.lastCredit>/g, obj, "lastCredit", base.to_string, sub, context);
-                base.parse_element (/<cim:AuxiliaryAccount.lastDebit>([\s\S]*?)<\/cim:AuxiliaryAccount.lastDebit>/g, obj, "lastDebit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AuxiliaryAccount.due\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "due", sub, context);
+                base.parse_attribute (/<cim:AuxiliaryAccount.lastCredit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "lastCredit", sub, context);
+                base.parse_attribute (/<cim:AuxiliaryAccount.lastDebit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "lastDebit", sub, context);
                 base.parse_element (/<cim:AuxiliaryAccount.principleAmount>([\s\S]*?)<\/cim:AuxiliaryAccount.principleAmount>/g, obj, "principleAmount", base.to_string, sub, context);
                 base.parse_attributes (/<cim:AuxiliaryAccount.PaymentTransactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PaymentTransactions", sub, context);
                 base.parse_attributes (/<cim:AuxiliaryAccount.Charges\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Charges", sub, context);
@@ -2681,9 +2681,9 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AuxiliaryAccount", "balance", "balance",  base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAccount", "due", "due",  base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAccount", "lastCredit", "lastCredit",  base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAccount", "lastDebit", "lastDebit",  base.from_string, fields);
+                base.export_attribute (obj, "AuxiliaryAccount", "due", "due", fields);
+                base.export_attribute (obj, "AuxiliaryAccount", "lastCredit", "lastCredit", fields);
+                base.export_attribute (obj, "AuxiliaryAccount", "lastDebit", "lastDebit", fields);
                 base.export_element (obj, "AuxiliaryAccount", "principleAmount", "principleAmount",  base.from_string, fields);
                 base.export_attributes (obj, "AuxiliaryAccount", "PaymentTransactions", "PaymentTransactions", fields);
                 base.export_attributes (obj, "AuxiliaryAccount", "Charges", "Charges", fields);
@@ -2710,7 +2710,7 @@ define
                     {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Charges}}
                     {{#AuxiliaryAgreement}}<div><b>AuxiliaryAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxiliaryAgreement}}&quot;);}); return false;'>{{AuxiliaryAgreement}}</a></div>{{/AuxiliaryAgreement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2748,7 +2748,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges_string}}'{{/Charges}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAgreement'>AuxiliaryAgreement: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAgreement' class='form-control' type='text'{{#AuxiliaryAgreement}} value='{{AuxiliaryAgreement}}'{{/AuxiliaryAgreement}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2812,8 +2812,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "AccountingUnit";
                 base.parse_element (/<cim:AccountingUnit.energyUnit>([\s\S]*?)<\/cim:AccountingUnit.energyUnit>/g, obj, "energyUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:AccountingUnit.monetaryUnit>([\s\S]*?)<\/cim:AccountingUnit.monetaryUnit>/g, obj, "monetaryUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:AccountingUnit.multiplier>([\s\S]*?)<\/cim:AccountingUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AccountingUnit.monetaryUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "monetaryUnit", sub, context);
+                base.parse_attribute (/<cim:AccountingUnit.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 base.parse_element (/<cim:AccountingUnit.value>([\s\S]*?)<\/cim:AccountingUnit.value>/g, obj, "value", base.to_float, sub, context);
                 var bucket = context.parsed.AccountingUnit;
                 if (null == bucket)
@@ -2828,8 +2828,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "AccountingUnit", "energyUnit", "energyUnit",  base.from_string, fields);
-                base.export_element (obj, "AccountingUnit", "monetaryUnit", "monetaryUnit",  base.from_string, fields);
-                base.export_element (obj, "AccountingUnit", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_attribute (obj, "AccountingUnit", "monetaryUnit", "monetaryUnit", fields);
+                base.export_attribute (obj, "AccountingUnit", "multiplier", "multiplier", fields);
                 base.export_element (obj, "AccountingUnit", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2852,7 +2852,7 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2861,11 +2861,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.monetaryUnitCurrency = [{ id: '', selected: (!obj.monetaryUnit)}]; for (var property in Domain.Currency) obj.monetaryUnitCurrency.push ({ id: property, selected: obj.monetaryUnit && obj.monetaryUnit.endsWith ('.' + property)});
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.monetaryUnitCurrency;
+                delete obj.multiplierUnitMultiplier;
             }
 
             edit_template ()
@@ -2879,11 +2883,11 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyUnit'>energyUnit: </label><div class='col-sm-8'><input id='{{id}}_energyUnit' class='form-control' type='text'{{#energyUnit}} value='{{energyUnit}}'{{/energyUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_monetaryUnit'>monetaryUnit: </label><div class='col-sm-8'><input id='{{id}}_monetaryUnit' class='form-control' type='text'{{#monetaryUnit}} value='{{monetaryUnit}}'{{/monetaryUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_monetaryUnit'>monetaryUnit: </label><div class='col-sm-8'><select id='{{id}}_monetaryUnit' class='form-control custom-select'>{{#monetaryUnitCurrency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/monetaryUnitCurrency}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2895,8 +2899,8 @@ define
                 var obj = obj || { id: id, cls: "AccountingUnit" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_energyUnit").value; if ("" != temp) obj.energyUnit = temp;
-                temp = document.getElementById (id + "_monetaryUnit").value; if ("" != temp) obj.monetaryUnit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = Domain.Currency[document.getElementById (id + "_monetaryUnit").value]; if (temp) obj.monetaryUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; else delete obj.monetaryUnit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2964,7 +2968,7 @@ define
                     `
                     {{#MerchantAccounts}}<div><b>MerchantAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MerchantAccounts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2993,7 +2997,7 @@ define
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3048,7 +3052,7 @@ define
                 base.parse_element (/<cim:Transaction.diverseReference>([\s\S]*?)<\/cim:Transaction.diverseReference>/g, obj, "diverseReference", base.to_string, sub, context);
                 base.parse_element (/<cim:Transaction.donorReference>([\s\S]*?)<\/cim:Transaction.donorReference>/g, obj, "donorReference", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Transaction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_element (/<cim:Transaction.line>([\s\S]*?)<\/cim:Transaction.line>/g, obj, "line", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Transaction.line\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "line", sub, context);
                 base.parse_element (/<cim:Transaction.receiverReference>([\s\S]*?)<\/cim:Transaction.receiverReference>/g, obj, "receiverReference", base.to_string, sub, context);
                 base.parse_element (/<cim:Transaction.reversedId>([\s\S]*?)<\/cim:Transaction.reversedId>/g, obj, "reversedId", base.to_string, sub, context);
                 base.parse_element (/<cim:Transaction.serviceUnitsEnergy>([\s\S]*?)<\/cim:Transaction.serviceUnitsEnergy>/g, obj, "serviceUnitsEnergy", base.to_string, sub, context);
@@ -3076,7 +3080,7 @@ define
                 base.export_element (obj, "Transaction", "diverseReference", "diverseReference",  base.from_string, fields);
                 base.export_element (obj, "Transaction", "donorReference", "donorReference",  base.from_string, fields);
                 base.export_attribute (obj, "Transaction", "kind", "kind", fields);
-                base.export_element (obj, "Transaction", "line", "line",  base.from_string, fields);
+                base.export_attribute (obj, "Transaction", "line", "line", fields);
                 base.export_element (obj, "Transaction", "receiverReference", "receiverReference",  base.from_string, fields);
                 base.export_element (obj, "Transaction", "reversedId", "reversedId",  base.from_string, fields);
                 base.export_element (obj, "Transaction", "serviceUnitsEnergy", "serviceUnitsEnergy",  base.from_string, fields);
@@ -3121,7 +3125,7 @@ define
                     {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);}); return false;'>{{Meter}}</a></div>{{/Meter}}
                     {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);}); return false;'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3130,14 +3134,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TransactionKind = []; if (!obj.kind) obj.TransactionKind.push ({ id: '', selected: true}); for (var property in TransactionKind) obj.TransactionKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindTransactionKind = [{ id: '', selected: (!obj.kind)}]; for (var property in TransactionKind) obj.kindTransactionKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.UserAttributes) obj.UserAttributes_string = obj.UserAttributes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TransactionKind;
+                delete obj.kindTransactionKind;
                 delete obj.UserAttributes_string;
             }
 
@@ -3153,7 +3157,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diverseReference'>diverseReference: </label><div class='col-sm-8'><input id='{{id}}_diverseReference' class='form-control' type='text'{{#diverseReference}} value='{{diverseReference}}'{{/diverseReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_donorReference'>donorReference: </label><div class='col-sm-8'><input id='{{id}}_donorReference' class='form-control' type='text'{{#donorReference}} value='{{donorReference}}'{{/donorReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#TransactionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransactionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindTransactionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindTransactionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_line'>line: </label><div class='col-sm-8'><input id='{{id}}_line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiverReference'>receiverReference: </label><div class='col-sm-8'><input id='{{id}}_receiverReference' class='form-control' type='text'{{#receiverReference}} value='{{receiverReference}}'{{/receiverReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reversedId'>reversedId: </label><div class='col-sm-8'><input id='{{id}}_reversedId' class='form-control' type='text'{{#reversedId}} value='{{reversedId}}'{{/reversedId}}></div></div>
@@ -3167,7 +3171,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Meter'>Meter: </label><div class='col-sm-8'><input id='{{id}}_Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3180,7 +3184,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_diverseReference").value; if ("" != temp) obj.diverseReference = temp;
                 temp = document.getElementById (id + "_donorReference").value; if ("" != temp) obj.donorReference = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TransactionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransactionKind." + temp; }
+                temp = TransactionKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransactionKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_line").value; if ("" != temp) obj.line = temp;
                 temp = document.getElementById (id + "_receiverReference").value; if ("" != temp) obj.receiverReference = temp;
                 temp = document.getElementById (id + "_reversedId").value; if ("" != temp) obj.reversedId = temp;
@@ -3289,7 +3293,7 @@ define
                     {{#VendorShifts}}<div><b>VendorShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VendorShifts}}
                     {{#MerchantAgreement}}<div><b>MerchantAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MerchantAgreement}}&quot;);}); return false;'>{{MerchantAgreement}}</a></div>{{/MerchantAgreement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3324,7 +3328,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Transactors'>Transactors: </label><div class='col-sm-8'><input id='{{id}}_Transactors' class='form-control' type='text'{{#Transactors}} value='{{Transactors_string}}'{{/Transactors}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAgreement'>MerchantAgreement: </label><div class='col-sm-8'><input id='{{id}}_MerchantAgreement' class='form-control' type='text'{{#MerchantAgreement}} value='{{MerchantAgreement}}'{{/MerchantAgreement}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3428,7 +3432,7 @@ define
                     {{#Receipts}}<div><b>Receipts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Receipts}}
                     {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Transactions}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3462,7 +3466,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Cashier'>Cashier: </label><div class='col-sm-8'><input id='{{id}}_Cashier' class='form-control' type='text'{{#Cashier}} value='{{Cashier}}'{{/Cashier}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PointOfSale'>PointOfSale: </label><div class='col-sm-8'><input id='{{id}}_PointOfSale' class='form-control' type='text'{{#PointOfSale}} value='{{PointOfSale}}'{{/PointOfSale}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3571,7 +3575,7 @@ define
                     {{#Vendor}}<div><b>Vendor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Vendor}}&quot;);}); return false;'>{{Vendor}}</a></div>{{/Vendor}}
                     {{#MerchantAccount}}<div><b>MerchantAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MerchantAccount}}&quot;);}); return false;'>{{MerchantAccount}}</a></div>{{/MerchantAccount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3606,7 +3610,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Vendor'>Vendor: </label><div class='col-sm-8'><input id='{{id}}_Vendor' class='form-control' type='text'{{#Vendor}} value='{{Vendor}}'{{/Vendor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAccount'>MerchantAccount: </label><div class='col-sm-8'><input id='{{id}}_MerchantAccount' class='form-control' type='text'{{#MerchantAccount}} value='{{MerchantAccount}}'{{/MerchantAccount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3642,32 +3646,37 @@ define
 
         return (
             {
-                Shift: Shift,
                 MerchantAccount: MerchantAccount,
-                Receipt: Receipt,
-                VendorShift: VendorShift,
                 Cashier: Cashier,
+                TenderKind: TenderKind,
                 AccountingUnit: AccountingUnit,
-                Cheque: Cheque,
-                LineDetail: LineDetail,
                 BankAccountDetail: BankAccountDetail,
                 ServiceSupplier: ServiceSupplier,
+                MerchantAgreement: MerchantAgreement,
+                ChargeKind: ChargeKind,
+                PointOfSale: PointOfSale,
+                Due: Due,
+                ChequeKind: ChequeKind,
+                Receipt: Receipt,
+                VendorShift: VendorShift,
+                SupplierKind: SupplierKind,
+                Cheque: Cheque,
+                LineDetail: LineDetail,
                 TariffProfile: TariffProfile,
                 AuxiliaryAccount: AuxiliaryAccount,
                 Charge: Charge,
                 AccountMovement: AccountMovement,
-                AuxiliaryAgreement: AuxiliaryAgreement,
-                MerchantAgreement: MerchantAgreement,
-                Tender: Tender,
-                Transaction: Transaction,
                 ConsumptionTariffInterval: ConsumptionTariffInterval,
+                AuxiliaryAgreement: AuxiliaryAgreement,
+                Transaction: Transaction,
+                Tender: Tender,
                 Vendor: Vendor,
                 CashierShift: CashierShift,
                 TimeTariffInterval: TimeTariffInterval,
                 Card: Card,
-                PointOfSale: PointOfSale,
-                Due: Due,
-                Transactor: Transactor
+                Transactor: Transactor,
+                TransactionKind: TransactionKind,
+                Shift: Shift
             }
         );
     }

@@ -100,7 +100,7 @@ define
                     {{#TurbineLoadControllerDynamics}}<div><b>TurbineLoadControllerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerDynamics}}&quot;);}); return false;'>{{TurbineLoadControllerDynamics}}</a></div>{{/TurbineLoadControllerDynamics}}
                     {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SynchronousMachineDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -132,7 +132,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TurbineLoadControllerDynamics'>TurbineLoadControllerDynamics: </label><div class='col-sm-8'><input id='{{id}}_TurbineLoadControllerDynamics' class='form-control' type='text'{{#TurbineLoadControllerDynamics}} value='{{TurbineLoadControllerDynamics}}'{{/TurbineLoadControllerDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics_string}}'{{/SynchronousMachineDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -271,7 +271,7 @@ define
                     {{#t5hp}}<div><b>t5hp</b>: {{t5hp}}</div>{{/t5hp}}
                     {{#t5lp}}<div><b>t5lp</b>: {{t5lp}}</div>{{/t5lp}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -315,7 +315,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5hp'>t5hp: </label><div class='col-sm-8'><input id='{{id}}_t5hp' class='form-control' type='text'{{#t5hp}} value='{{t5hp}}'{{/t5hp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5lp'>t5lp: </label><div class='col-sm-8'><input id='{{id}}_t5lp' class='form-control' type='text'{{#t5lp}} value='{{t5lp}}'{{/t5lp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -503,7 +503,7 @@ define
                     {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
                     {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -563,7 +563,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velcl'>velcl: </label><div class='col-sm-8'><input id='{{id}}_velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velop'>velop: </label><div class='col-sm-8'><input id='{{id}}_velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -838,7 +838,7 @@ define
                     {{#wfnl}}<div><b>wfnl</b>: {{wfnl}}</div>{{/wfnl}}
                     {{#wfspd}}<div><b>wfspd</b>: {{wfspd}}</div>{{/wfspd}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -847,13 +847,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DroopSignalFeedbackKind = []; if (!obj.rselect) obj.DroopSignalFeedbackKind.push ({ id: '', selected: true}); for (var property in DroopSignalFeedbackKind) obj.DroopSignalFeedbackKind.push ({ id: property, selected: obj.rselect && obj.rselect.endsWith ('.' + property)});
+                obj.rselectDroopSignalFeedbackKind = [{ id: '', selected: (!obj.rselect)}]; for (var property in DroopSignalFeedbackKind) obj.rselectDroopSignalFeedbackKind.push ({ id: property, selected: obj.rselect && obj.rselect.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DroopSignalFeedbackKind;
+                delete obj.rselectDroopSignalFeedbackKind;
             }
 
             edit_template ()
@@ -906,7 +906,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rclose'>rclose: </label><div class='col-sm-8'><input id='{{id}}_rclose' class='form-control' type='text'{{#rclose}} value='{{rclose}}'{{/rclose}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rdown'>rdown: </label><div class='col-sm-8'><input id='{{id}}_rdown' class='form-control' type='text'{{#rdown}} value='{{rdown}}'{{/rdown}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ropen'>ropen: </label><div class='col-sm-8'><input id='{{id}}_ropen' class='form-control' type='text'{{#ropen}} value='{{ropen}}'{{/ropen}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rselect'>rselect: </label><div class='col-sm-8'><select id='{{id}}_rselect' class='form-control custom-select'>{{#DroopSignalFeedbackKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DroopSignalFeedbackKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rselect'>rselect: </label><div class='col-sm-8'><select id='{{id}}_rselect' class='form-control custom-select'>{{#rselectDroopSignalFeedbackKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rselectDroopSignalFeedbackKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rup'>rup: </label><div class='col-sm-8'><input id='{{id}}_rup' class='form-control' type='text'{{#rup}} value='{{rup}}'{{/rup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tact'>tact: </label><div class='col-sm-8'><input id='{{id}}_tact' class='form-control' type='text'{{#tact}} value='{{tact}}'{{/tact}}></div></div>
@@ -923,7 +923,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wfnl'>wfnl: </label><div class='col-sm-8'><input id='{{id}}_wfnl' class='form-control' type='text'{{#wfnl}} value='{{wfnl}}'{{/wfnl}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_wfspd'>wfspd: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_wfspd' class='form-check-input' type='checkbox'{{#wfspd}} checked{{/wfspd}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -974,7 +974,7 @@ define
                 temp = document.getElementById (id + "_rclose").value; if ("" != temp) obj.rclose = temp;
                 temp = document.getElementById (id + "_rdown").value; if ("" != temp) obj.rdown = temp;
                 temp = document.getElementById (id + "_ropen").value; if ("" != temp) obj.ropen = temp;
-                temp = document.getElementById (id + "_rselect").value; if ("" != temp) { temp = DroopSignalFeedbackKind[temp]; if ("undefined" != typeof (temp)) obj.rselect = "http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; }
+                temp = DroopSignalFeedbackKind[document.getElementById (id + "_rselect").value]; if (temp) obj.rselect = "http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; else delete obj.rselect;
                 temp = document.getElementById (id + "_rup").value; if ("" != temp) obj.rup = temp;
                 temp = document.getElementById (id + "_ta").value; if ("" != temp) obj.ta = temp;
                 temp = document.getElementById (id + "_tact").value; if ("" != temp) obj.tact = temp;
@@ -1138,7 +1138,7 @@ define
                     {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
                     {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1194,7 +1194,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uc'>uc: </label><div class='col-sm-8'><input id='{{id}}_uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uo'>uo: </label><div class='col-sm-8'><input id='{{id}}_uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1375,7 +1375,7 @@ define
                     {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
                     {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1428,7 +1428,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uc'>uc: </label><div class='col-sm-8'><input id='{{id}}_uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uo'>uo: </label><div class='col-sm-8'><input id='{{id}}_uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1592,7 +1592,7 @@ define
                     {{#velmax}}<div><b>velmax</b>: {{velmax}}</div>{{/velmax}}
                     {{#velmin}}<div><b>velmin</b>: {{velmin}}</div>{{/velmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1641,7 +1641,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velmax'>velmax: </label><div class='col-sm-8'><input id='{{id}}_velmax' class='form-control' type='text'{{#velmax}} value='{{velmax}}'{{/velmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velmin'>velmin: </label><div class='col-sm-8'><input id='{{id}}_velmin' class='form-control' type='text'{{#velmin}} value='{{velmin}}'{{/velmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1888,7 +1888,7 @@ define
                     {{#ympmn}}<div><b>ympmn</b>: {{ympmn}}</div>{{/ympmn}}
                     {{#ympmx}}<div><b>ympmx</b>: {{ympmx}}</div>{{/ympmx}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1966,7 +1966,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ympmn'>ympmn: </label><div class='col-sm-8'><input id='{{id}}_ympmn' class='form-control' type='text'{{#ympmn}} value='{{ympmn}}'{{/ympmn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ympmx'>ympmx: </label><div class='col-sm-8'><input id='{{id}}_ympmx' class='form-control' type='text'{{#ympmx}} value='{{ympmx}}'{{/ympmx}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2157,7 +2157,7 @@ define
                     {{#velmax}}<div><b>velmax</b>: {{velmax}}</div>{{/velmax}}
                     {{#velmin}}<div><b>velmin</b>: {{velmin}}</div>{{/velmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2206,7 +2206,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velmax'>velmax: </label><div class='col-sm-8'><input id='{{id}}_velmax' class='form-control' type='text'{{#velmax}} value='{{velmax}}'{{/velmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velmin'>velmin: </label><div class='col-sm-8'><input id='{{id}}_velmin' class='form-control' type='text'{{#velmin}} value='{{velmin}}'{{/velmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2330,7 +2330,7 @@ define
                     {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
                     {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2367,7 +2367,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmax'>vmax: </label><div class='col-sm-8'><input id='{{id}}_vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin'>vmin: </label><div class='col-sm-8'><input id='{{id}}_vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2554,7 +2554,7 @@ define
                     {{#wwmax}}<div><b>wwmax</b>: {{wwmax}}</div>{{/wwmax}}
                     {{#wwmin}}<div><b>wwmin</b>: {{wwmin}}</div>{{/wwmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2616,7 +2616,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wwmax'>wwmax: </label><div class='col-sm-8'><input id='{{id}}_wwmax' class='form-control' type='text'{{#wwmax}} value='{{wwmax}}'{{/wwmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wwmin'>wwmin: </label><div class='col-sm-8'><input id='{{id}}_wwmin' class='form-control' type='text'{{#wwmin}} value='{{wwmin}}'{{/wwmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2833,7 +2833,7 @@ define
                     {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
                     {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2896,7 +2896,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velcl'>velcl: </label><div class='col-sm-8'><input id='{{id}}_velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velop'>velop: </label><div class='col-sm-8'><input id='{{id}}_velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3069,7 +3069,7 @@ define
                     {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
                     {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3117,7 +3117,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uc'>uc: </label><div class='col-sm-8'><input id='{{id}}_uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uo'>uo: </label><div class='col-sm-8'><input id='{{id}}_uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3309,7 +3309,7 @@ define
                     {{#trate}}<div><b>trate</b>: {{trate}}</div>{{/trate}}
                     {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3369,7 +3369,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_trate'>trate: </label><div class='col-sm-8'><input id='{{id}}_trate' class='form-control' type='text'{{#trate}} value='{{trate}}'{{/trate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tt'>tt: </label><div class='col-sm-8'><input id='{{id}}_tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3537,7 +3537,7 @@ define
                     {{#ttc}}<div><b>ttc</b>: {{ttc}}</div>{{/ttc}}
                     {{#ty}}<div><b>ty</b>: {{ty}}</div>{{/ty}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3585,7 +3585,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ttc'>ttc: </label><div class='col-sm-8'><input id='{{id}}_ttc' class='form-control' type='text'{{#ttc}} value='{{ttc}}'{{/ttc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ty'>ty: </label><div class='col-sm-8'><input id='{{id}}_ty' class='form-control' type='text'{{#ty}} value='{{ty}}'{{/ty}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3717,7 +3717,7 @@ define
                     {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
                     {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3757,7 +3757,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmax'>vmax: </label><div class='col-sm-8'><input id='{{id}}_vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin'>vmin: </label><div class='col-sm-8'><input id='{{id}}_vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3928,7 +3928,7 @@ define
                     {{#waterTunnelSurgeChamberSimulation}}<div><b>waterTunnelSurgeChamberSimulation</b>: {{waterTunnelSurgeChamberSimulation}}</div>{{/waterTunnelSurgeChamberSimulation}}
                     {{#zsfc}}<div><b>zsfc</b>: {{zsfc}}</div>{{/zsfc}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3983,7 +3983,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_waterTunnelSurgeChamberSimulation'>waterTunnelSurgeChamberSimulation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_waterTunnelSurgeChamberSimulation' class='form-check-input' type='checkbox'{{#waterTunnelSurgeChamberSimulation}} checked{{/waterTunnelSurgeChamberSimulation}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zsfc'>zsfc: </label><div class='col-sm-8'><input id='{{id}}_zsfc' class='form-control' type='text'{{#zsfc}} value='{{zsfc}}'{{/zsfc}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4190,7 +4190,7 @@ define
                     {{#wfnl}}<div><b>wfnl</b>: {{wfnl}}</div>{{/wfnl}}
                     {{#wfspd}}<div><b>wfspd</b>: {{wfspd}}</div>{{/wfspd}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4199,13 +4199,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DroopSignalFeedbackKind = []; if (!obj.rselect) obj.DroopSignalFeedbackKind.push ({ id: '', selected: true}); for (var property in DroopSignalFeedbackKind) obj.DroopSignalFeedbackKind.push ({ id: property, selected: obj.rselect && obj.rselect.endsWith ('.' + property)});
+                obj.rselectDroopSignalFeedbackKind = [{ id: '', selected: (!obj.rselect)}]; for (var property in DroopSignalFeedbackKind) obj.rselectDroopSignalFeedbackKind.push ({ id: property, selected: obj.rselect && obj.rselect.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DroopSignalFeedbackKind;
+                delete obj.rselectDroopSignalFeedbackKind;
             }
 
             edit_template ()
@@ -4237,7 +4237,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rclose'>rclose: </label><div class='col-sm-8'><input id='{{id}}_rclose' class='form-control' type='text'{{#rclose}} value='{{rclose}}'{{/rclose}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rdown'>rdown: </label><div class='col-sm-8'><input id='{{id}}_rdown' class='form-control' type='text'{{#rdown}} value='{{rdown}}'{{/rdown}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ropen'>ropen: </label><div class='col-sm-8'><input id='{{id}}_ropen' class='form-control' type='text'{{#ropen}} value='{{ropen}}'{{/ropen}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rselect'>rselect: </label><div class='col-sm-8'><select id='{{id}}_rselect' class='form-control custom-select'>{{#DroopSignalFeedbackKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DroopSignalFeedbackKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rselect'>rselect: </label><div class='col-sm-8'><select id='{{id}}_rselect' class='form-control custom-select'>{{#rselectDroopSignalFeedbackKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rselectDroopSignalFeedbackKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rup'>rup: </label><div class='col-sm-8'><input id='{{id}}_rup' class='form-control' type='text'{{#rup}} value='{{rup}}'{{/rup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tact'>tact: </label><div class='col-sm-8'><input id='{{id}}_tact' class='form-control' type='text'{{#tact}} value='{{tact}}'{{/tact}}></div></div>
@@ -4254,7 +4254,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wfnl'>wfnl: </label><div class='col-sm-8'><input id='{{id}}_wfnl' class='form-control' type='text'{{#wfnl}} value='{{wfnl}}'{{/wfnl}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_wfspd'>wfspd: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_wfspd' class='form-check-input' type='checkbox'{{#wfspd}} checked{{/wfspd}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4284,7 +4284,7 @@ define
                 temp = document.getElementById (id + "_rclose").value; if ("" != temp) obj.rclose = temp;
                 temp = document.getElementById (id + "_rdown").value; if ("" != temp) obj.rdown = temp;
                 temp = document.getElementById (id + "_ropen").value; if ("" != temp) obj.ropen = temp;
-                temp = document.getElementById (id + "_rselect").value; if ("" != temp) { temp = DroopSignalFeedbackKind[temp]; if ("undefined" != typeof (temp)) obj.rselect = "http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; }
+                temp = DroopSignalFeedbackKind[document.getElementById (id + "_rselect").value]; if (temp) obj.rselect = "http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; else delete obj.rselect;
                 temp = document.getElementById (id + "_rup").value; if ("" != temp) obj.rup = temp;
                 temp = document.getElementById (id + "_ta").value; if ("" != temp) obj.ta = temp;
                 temp = document.getElementById (id + "_tact").value; if ("" != temp) obj.tact = temp;
@@ -4403,7 +4403,7 @@ define
                     {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
                     {{#velm}}<div><b>velm</b>: {{velm}}</div>{{/velm}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4444,7 +4444,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw'>tw: </label><div class='col-sm-8'><input id='{{id}}_tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velm'>velm: </label><div class='col-sm-8'><input id='{{id}}_velm' class='form-control' type='text'{{#velm}} value='{{velm}}'{{/velm}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4554,7 +4554,7 @@ define
                     {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
                     {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4589,7 +4589,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4774,7 +4774,7 @@ define
                     {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
                     {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4836,7 +4836,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velcl'>velcl: </label><div class='col-sm-8'><input id='{{id}}_velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velop'>velop: </label><div class='col-sm-8'><input id='{{id}}_velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4969,7 +4969,7 @@ define
                     {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
                     {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5004,7 +5004,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5108,7 +5108,7 @@ define
                     {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
                     {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5143,7 +5143,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmax'>vmax: </label><div class='col-sm-8'><input id='{{id}}_vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin'>vmin: </label><div class='col-sm-8'><input id='{{id}}_vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5259,7 +5259,7 @@ define
                     {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
                     {{#t6}}<div><b>t6</b>: {{t6}}</div>{{/t6}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5298,7 +5298,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5508,7 +5508,7 @@ define
                     {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
                     {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5577,7 +5577,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velcl'>velcl: </label><div class='col-sm-8'><input id='{{id}}_velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velop'>velop: </label><div class='col-sm-8'><input id='{{id}}_velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5807,7 +5807,7 @@ define
                     {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
                     {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5872,7 +5872,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uc'>uc: </label><div class='col-sm-8'><input id='{{id}}_uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uo'>uo: </label><div class='col-sm-8'><input id='{{id}}_uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6084,7 +6084,7 @@ define
                     {{#vmax}}<div><b>vmax</b>: {{vmax}}</div>{{/vmax}}
                     {{#vmin}}<div><b>vmin</b>: {{vmin}}</div>{{/vmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6145,7 +6145,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmax'>vmax: </label><div class='col-sm-8'><input id='{{id}}_vmax' class='form-control' type='text'{{#vmax}} value='{{vmax}}'{{/vmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vmin'>vmin: </label><div class='col-sm-8'><input id='{{id}}_vmin' class='form-control' type='text'{{#vmin}} value='{{vmin}}'{{/vmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6368,7 +6368,7 @@ define
                     {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
                     {{#valve}}<div><b>valve</b>: {{valve}}</div>{{/valve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6434,7 +6434,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uo'>uo: </label><div class='col-sm-8'><input id='{{id}}_uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_valve'>valve: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_valve' class='form-check-input' type='checkbox'{{#valve}} checked{{/valve}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6628,7 +6628,7 @@ define
                     {{#waterTunnelSurgeChamberSimulation}}<div><b>waterTunnelSurgeChamberSimulation</b>: {{waterTunnelSurgeChamberSimulation}}</div>{{/waterTunnelSurgeChamberSimulation}}
                     {{#zsfc}}<div><b>zsfc</b>: {{zsfc}}</div>{{/zsfc}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6637,13 +6637,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.FrancisGovernorControlKind = []; if (!obj.governorControl) obj.FrancisGovernorControlKind.push ({ id: '', selected: true}); for (var property in FrancisGovernorControlKind) obj.FrancisGovernorControlKind.push ({ id: property, selected: obj.governorControl && obj.governorControl.endsWith ('.' + property)});
+                obj.governorControlFrancisGovernorControlKind = [{ id: '', selected: (!obj.governorControl)}]; for (var property in FrancisGovernorControlKind) obj.governorControlFrancisGovernorControlKind.push ({ id: property, selected: obj.governorControl && obj.governorControl.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.FrancisGovernorControlKind;
+                delete obj.governorControlFrancisGovernorControlKind;
             }
 
             edit_template ()
@@ -6662,7 +6662,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bp'>bp: </label><div class='col-sm-8'><input id='{{id}}_bp' class='form-control' type='text'{{#bp}} value='{{bp}}'{{/bp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_db1'>db1: </label><div class='col-sm-8'><input id='{{id}}_db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_etamax'>etamax: </label><div class='col-sm-8'><input id='{{id}}_etamax' class='form-control' type='text'{{#etamax}} value='{{etamax}}'{{/etamax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_governorControl'>governorControl: </label><div class='col-sm-8'><select id='{{id}}_governorControl' class='form-control custom-select'>{{#FrancisGovernorControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FrancisGovernorControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_governorControl'>governorControl: </label><div class='col-sm-8'><select id='{{id}}_governorControl' class='form-control custom-select'>{{#governorControlFrancisGovernorControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/governorControlFrancisGovernorControlKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_h1'>h1: </label><div class='col-sm-8'><input id='{{id}}_h1' class='form-control' type='text'{{#h1}} value='{{h1}}'{{/h1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_h2'>h2: </label><div class='col-sm-8'><input id='{{id}}_h2' class='form-control' type='text'{{#h2}} value='{{h2}}'{{/h2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hn'>hn: </label><div class='col-sm-8'><input id='{{id}}_hn' class='form-control' type='text'{{#hn}} value='{{hn}}'{{/hn}}></div></div>
@@ -6684,7 +6684,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_waterTunnelSurgeChamberSimulation'>waterTunnelSurgeChamberSimulation: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_waterTunnelSurgeChamberSimulation' class='form-check-input' type='checkbox'{{#waterTunnelSurgeChamberSimulation}} checked{{/waterTunnelSurgeChamberSimulation}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zsfc'>zsfc: </label><div class='col-sm-8'><input id='{{id}}_zsfc' class='form-control' type='text'{{#zsfc}} value='{{zsfc}}'{{/zsfc}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6701,7 +6701,7 @@ define
                 temp = document.getElementById (id + "_bp").value; if ("" != temp) obj.bp = temp;
                 temp = document.getElementById (id + "_db1").value; if ("" != temp) obj.db1 = temp;
                 temp = document.getElementById (id + "_etamax").value; if ("" != temp) obj.etamax = temp;
-                temp = document.getElementById (id + "_governorControl").value; if ("" != temp) { temp = FrancisGovernorControlKind[temp]; if ("undefined" != typeof (temp)) obj.governorControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#FrancisGovernorControlKind." + temp; }
+                temp = FrancisGovernorControlKind[document.getElementById (id + "_governorControl").value]; if (temp) obj.governorControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#FrancisGovernorControlKind." + temp; else delete obj.governorControl;
                 temp = document.getElementById (id + "_h1").value; if ("" != temp) obj.h1 = temp;
                 temp = document.getElementById (id + "_h2").value; if ("" != temp) obj.h2 = temp;
                 temp = document.getElementById (id + "_hn").value; if ("" != temp) obj.hn = temp;
@@ -6816,7 +6816,7 @@ define
                     {{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
                     {{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6854,7 +6854,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tm'>tm: </label><div class='col-sm-8'><input id='{{id}}_tm' class='form-control' type='text'{{#tm}} value='{{tm}}'{{/tm}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tv'>tv: </label><div class='col-sm-8'><input id='{{id}}_tv' class='form-control' type='text'{{#tv}} value='{{tv}}'{{/tv}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6994,7 +6994,7 @@ define
                     {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
                     {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7040,7 +7040,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uc'>uc: </label><div class='col-sm-8'><input id='{{id}}_uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uo'>uo: </label><div class='col-sm-8'><input id='{{id}}_uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7284,7 +7284,7 @@ define
                     {{#tpe}}<div><b>tpe</b>: {{tpe}}</div>{{/tpe}}
                     {{#tw}}<div><b>tw</b>: {{tw}}</div>{{/tw}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7362,7 +7362,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpe'>tpe: </label><div class='col-sm-8'><input id='{{id}}_tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw'>tw: </label><div class='col-sm-8'><input id='{{id}}_tw' class='form-control' type='text'{{#tw}} value='{{tw}}'{{/tw}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7581,7 +7581,7 @@ define
                     {{#y}}<div><b>y</b>: {{y}}</div>{{/y}}
                     {{#z}}<div><b>z</b>: {{z}}</div>{{/z}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7640,7 +7640,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y'>y: </label><div class='col-sm-8'><input id='{{id}}_y' class='form-control' type='text'{{#y}} value='{{y}}'{{/y}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_z'>z: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_z' class='form-check-input' type='checkbox'{{#z}} checked{{/z}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7691,15 +7691,16 @@ define
         return (
             {
                 GovHydroPID2: GovHydroPID2,
-                TurbineGovernorDynamics: TurbineGovernorDynamics,
                 GovHydroIEEE2: GovHydroIEEE2,
                 GovCT2: GovCT2,
+                TurbineGovernorDynamics: TurbineGovernorDynamics,
                 GovHydro3: GovHydro3,
                 GovCT1: GovCT1,
                 GovSteamIEEE1: GovSteamIEEE1,
-                GovSteamFV3: GovSteamFV3,
                 GovGAST3: GovGAST3,
+                GovSteamFV3: GovSteamFV3,
                 GovHydroIEEE0: GovHydroIEEE0,
+                DroopSignalFeedbackKind: DroopSignalFeedbackKind,
                 GovSteam2: GovSteam2,
                 GovHydro2: GovHydro2,
                 GovGAST1: GovGAST1,
@@ -7710,6 +7711,7 @@ define
                 GovHydroDD: GovHydroDD,
                 GovHydro1: GovHydro1,
                 GovGAST2: GovGAST2,
+                FrancisGovernorControlKind: FrancisGovernorControlKind,
                 GovHydroWPID: GovHydroWPID,
                 GovSteamFV4: GovSteamFV4,
                 GovHydroPID: GovHydroPID,

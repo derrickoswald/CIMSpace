@@ -146,7 +146,7 @@ define
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#BaseWork}}<div><b>BaseWork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseWork}}&quot;);}); return false;'>{{BaseWork}}</a></div>{{/BaseWork}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -155,13 +155,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WorkTimeScheduleKind = []; if (!obj.kind) obj.WorkTimeScheduleKind.push ({ id: '', selected: true}); for (var property in WorkTimeScheduleKind) obj.WorkTimeScheduleKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindWorkTimeScheduleKind = [{ id: '', selected: (!obj.kind)}]; for (var property in WorkTimeScheduleKind) obj.kindWorkTimeScheduleKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WorkTimeScheduleKind;
+                delete obj.kindWorkTimeScheduleKind;
             }
 
             edit_template ()
@@ -174,10 +174,10 @@ define
                     `
                     + Common.TimeSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#WorkTimeScheduleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkTimeScheduleKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindWorkTimeScheduleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindWorkTimeScheduleKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BaseWork'>BaseWork: </label><div class='col-sm-8'><input id='{{id}}_BaseWork' class='form-control' type='text'{{#BaseWork}} value='{{BaseWork}}'{{/BaseWork}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -188,7 +188,7 @@ define
 
                 var obj = obj || { id: id, cls: "WorkTimeSchedule" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkTimeScheduleKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTimeScheduleKind." + temp; }
+                temp = WorkTimeScheduleKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTimeScheduleKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_BaseWork").value; if ("" != temp) obj.BaseWork = temp;
 
                 return (obj);
@@ -234,7 +234,7 @@ define
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "BaseWork";
                 base.parse_attribute (/<cim:BaseWork.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_element (/<cim:BaseWork.priority>([\s\S]*?)<\/cim:BaseWork.priority>/g, obj, "priority", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BaseWork.priority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "priority", sub, context);
                 base.parse_attribute (/<cim:BaseWork.statusKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "statusKind", sub, context);
                 base.parse_attribute (/<cim:BaseWork.WorkLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkLocation", sub, context);
                 base.parse_attributes (/<cim:BaseWork.TimeSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSchedules", sub, context);
@@ -251,7 +251,7 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "BaseWork", "kind", "kind", fields);
-                base.export_element (obj, "BaseWork", "priority", "priority",  base.from_string, fields);
+                base.export_attribute (obj, "BaseWork", "priority", "priority", fields);
                 base.export_attribute (obj, "BaseWork", "statusKind", "statusKind", fields);
                 base.export_attribute (obj, "BaseWork", "WorkLocation", "WorkLocation", fields);
                 base.export_attributes (obj, "BaseWork", "TimeSchedules", "TimeSchedules", fields);
@@ -276,7 +276,7 @@ define
                     {{#WorkLocation}}<div><b>WorkLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkLocation}}&quot;);}); return false;'>{{WorkLocation}}</a></div>{{/WorkLocation}}
                     {{#TimeSchedules}}<div><b>TimeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TimeSchedules}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -285,16 +285,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WorkKind = []; if (!obj.kind) obj.WorkKind.push ({ id: '', selected: true}); for (var property in WorkKind) obj.WorkKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                obj.WorkStatusKind = []; if (!obj.statusKind) obj.WorkStatusKind.push ({ id: '', selected: true}); for (var property in WorkStatusKind) obj.WorkStatusKind.push ({ id: property, selected: obj.statusKind && obj.statusKind.endsWith ('.' + property)});
+                obj.kindWorkKind = [{ id: '', selected: (!obj.kind)}]; for (var property in WorkKind) obj.kindWorkKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.statusKindWorkStatusKind = [{ id: '', selected: (!obj.statusKind)}]; for (var property in WorkStatusKind) obj.statusKindWorkStatusKind.push ({ id: property, selected: obj.statusKind && obj.statusKind.endsWith ('.' + property)});
                 if (obj.TimeSchedules) obj.TimeSchedules_string = obj.TimeSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WorkKind;
-                delete obj.WorkStatusKind;
+                delete obj.kindWorkKind;
+                delete obj.statusKindWorkStatusKind;
                 delete obj.TimeSchedules_string;
             }
 
@@ -308,12 +308,12 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#WorkKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindWorkKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindWorkKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusKind'>statusKind: </label><div class='col-sm-8'><select id='{{id}}_statusKind' class='form-control custom-select'>{{#WorkStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusKind'>statusKind: </label><div class='col-sm-8'><select id='{{id}}_statusKind' class='form-control custom-select'>{{#statusKindWorkStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/statusKindWorkStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkLocation'>WorkLocation: </label><div class='col-sm-8'><input id='{{id}}_WorkLocation' class='form-control' type='text'{{#WorkLocation}} value='{{WorkLocation}}'{{/WorkLocation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -324,9 +324,9 @@ define
 
                 var obj = obj || { id: id, cls: "BaseWork" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkKind." + temp; }
+                temp = WorkKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById (id + "_statusKind").value; if ("" != temp) { temp = WorkStatusKind[temp]; if ("undefined" != typeof (temp)) obj.statusKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkStatusKind." + temp; }
+                temp = WorkStatusKind[document.getElementById (id + "_statusKind").value]; if (temp) obj.statusKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkStatusKind." + temp; else delete obj.statusKind;
                 temp = document.getElementById (id + "_WorkLocation").value; if ("" != temp) obj.WorkLocation = temp;
 
                 return (obj);
@@ -410,7 +410,7 @@ define
                     {{#BaseWorks}}<div><b>BaseWorks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BaseWorks}}
                     {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DesignLocations}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -443,7 +443,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OneCallRequest'>OneCallRequest: </label><div class='col-sm-8'><input id='{{id}}_OneCallRequest' class='form-control' type='text'{{#OneCallRequest}} value='{{OneCallRequest}}'{{/OneCallRequest}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations_string}}'{{/DesignLocations}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -503,7 +503,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MaterialItem";
-                base.parse_element (/<cim:MaterialItem.quantity>([\s\S]*?)<\/cim:MaterialItem.quantity>/g, obj, "quantity", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MaterialItem.quantity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "quantity", sub, context);
                 base.parse_attribute (/<cim:MaterialItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
                 base.parse_attribute (/<cim:MaterialItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
                 var bucket = context.parsed.MaterialItem;
@@ -518,7 +518,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MaterialItem", "quantity", "quantity",  base.from_string, fields);
+                base.export_attribute (obj, "MaterialItem", "quantity", "quantity", fields);
                 base.export_attribute (obj, "MaterialItem", "TypeMaterial", "TypeMaterial", fields);
                 base.export_attribute (obj, "MaterialItem", "WorkTask", "WorkTask", fields);
                 if (full)
@@ -541,7 +541,7 @@ define
                     {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
                     {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -571,7 +571,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -661,7 +661,7 @@ define
                     `
                     {{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);}); return false;'>{{Crew}}</a></div>{{/Crew}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -689,7 +689,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crew'>Crew: </label><div class='col-sm-8'><input id='{{id}}_Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -799,7 +799,7 @@ define
                     {{#OldAsset}}<div><b>OldAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldAsset}}&quot;);}); return false;'>{{OldAsset}}</a></div>{{/OldAsset}}
                     {{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingPlan}}&quot;);}); return false;'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -808,7 +808,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WorkTaskKind = []; if (!obj.taskKind) obj.WorkTaskKind.push ({ id: '', selected: true}); for (var property in WorkTaskKind) obj.WorkTaskKind.push ({ id: property, selected: obj.taskKind && obj.taskKind.endsWith ('.' + property)});
+                obj.taskKindWorkTaskKind = [{ id: '', selected: (!obj.taskKind)}]; for (var property in WorkTaskKind) obj.taskKindWorkTaskKind.push ({ id: property, selected: obj.taskKind && obj.taskKind.endsWith ('.' + property)});
                 if (obj.Crews) obj.Crews_string = obj.Crews.join ();
                 if (obj.Assets) obj.Assets_string = obj.Assets.join ();
                 if (obj.MaterialItems) obj.MaterialItems_string = obj.MaterialItems.join ();
@@ -817,7 +817,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WorkTaskKind;
+                delete obj.taskKindWorkTaskKind;
                 delete obj.Crews_string;
                 delete obj.Assets_string;
                 delete obj.MaterialItems_string;
@@ -835,7 +835,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instruction'>instruction: </label><div class='col-sm-8'><input id='{{id}}_instruction' class='form-control' type='text'{{#instruction}} value='{{instruction}}'{{/instruction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_schedOverride'>schedOverride: </label><div class='col-sm-8'><input id='{{id}}_schedOverride' class='form-control' type='text'{{#schedOverride}} value='{{schedOverride}}'{{/schedOverride}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_taskKind'>taskKind: </label><div class='col-sm-8'><select id='{{id}}_taskKind' class='form-control custom-select'>{{#WorkTaskKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkTaskKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_taskKind'>taskKind: </label><div class='col-sm-8'><select id='{{id}}_taskKind' class='form-control custom-select'>{{#taskKindWorkTaskKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/taskKindWorkTaskKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_crewETA'>crewETA: </label><div class='col-sm-8'><input id='{{id}}_crewETA' class='form-control' type='text'{{#crewETA}} value='{{crewETA}}'{{/crewETA}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews_string}}'{{/Crews}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
@@ -843,7 +843,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OldAsset'>OldAsset: </label><div class='col-sm-8'><input id='{{id}}_OldAsset' class='form-control' type='text'{{#OldAsset}} value='{{OldAsset}}'{{/OldAsset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingPlan'>SwitchingPlan: </label><div class='col-sm-8'><input id='{{id}}_SwitchingPlan' class='form-control' type='text'{{#SwitchingPlan}} value='{{SwitchingPlan}}'{{/SwitchingPlan}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -856,7 +856,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_instruction").value; if ("" != temp) obj.instruction = temp;
                 temp = document.getElementById (id + "_schedOverride").value; if ("" != temp) obj.schedOverride = temp;
-                temp = document.getElementById (id + "_taskKind").value; if ("" != temp) { temp = WorkTaskKind[temp]; if ("undefined" != typeof (temp)) obj.taskKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTaskKind." + temp; }
+                temp = WorkTaskKind[document.getElementById (id + "_taskKind").value]; if (temp) obj.taskKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTaskKind." + temp; else delete obj.taskKind;
                 temp = document.getElementById (id + "_crewETA").value; if ("" != temp) obj.crewETA = temp;
                 temp = document.getElementById (id + "_Crews").value; if ("" != temp) obj.Crews = temp.split (",");
                 temp = document.getElementById (id + "_Assets").value; if ("" != temp) obj.Assets = temp.split (",");
@@ -976,7 +976,7 @@ define
                     {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
                     {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);}); return false;'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1026,7 +1026,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails_string}}'{{/WorkCostDetails}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1140,7 +1140,7 @@ define
                     {{#nearestIntersection}}<div><b>nearestIntersection</b>: {{nearestIntersection}}</div>{{/nearestIntersection}}
                     {{#subdivision}}<div><b>subdivision</b>: {{subdivision}}</div>{{/subdivision}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1171,7 +1171,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nearestIntersection'>nearestIntersection: </label><div class='col-sm-8'><input id='{{id}}_nearestIntersection' class='form-control' type='text'{{#nearestIntersection}} value='{{nearestIntersection}}'{{/nearestIntersection}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subdivision'>subdivision: </label><div class='col-sm-8'><input id='{{id}}_subdivision' class='form-control' type='text'{{#subdivision}} value='{{subdivision}}'{{/subdivision}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1256,7 +1256,7 @@ define
                     {{#odometerReading}}<div><b>odometerReading</b>: {{odometerReading}}</div>{{/odometerReading}}
                     {{#usageKind}}<div><b>usageKind</b>: {{usageKind}}</div>{{/usageKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1265,13 +1265,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.VehicleUsageKind = []; if (!obj.usageKind) obj.VehicleUsageKind.push ({ id: '', selected: true}); for (var property in VehicleUsageKind) obj.VehicleUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
+                obj.usageKindVehicleUsageKind = [{ id: '', selected: (!obj.usageKind)}]; for (var property in VehicleUsageKind) obj.usageKindVehicleUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.VehicleUsageKind;
+                delete obj.usageKindVehicleUsageKind;
             }
 
             edit_template ()
@@ -1286,9 +1286,9 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_odometerReadDateTime'>odometerReadDateTime: </label><div class='col-sm-8'><input id='{{id}}_odometerReadDateTime' class='form-control' type='text'{{#odometerReadDateTime}} value='{{odometerReadDateTime}}'{{/odometerReadDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_odometerReading'>odometerReading: </label><div class='col-sm-8'><input id='{{id}}_odometerReading' class='form-control' type='text'{{#odometerReading}} value='{{odometerReading}}'{{/odometerReading}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#VehicleUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VehicleUsageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#usageKindVehicleUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/usageKindVehicleUsageKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1301,7 +1301,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_odometerReadDateTime").value; if ("" != temp) obj.odometerReadDateTime = temp;
                 temp = document.getElementById (id + "_odometerReading").value; if ("" != temp) obj.odometerReading = temp;
-                temp = document.getElementById (id + "_usageKind").value; if ("" != temp) { temp = VehicleUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#VehicleUsageKind." + temp; }
+                temp = VehicleUsageKind[document.getElementById (id + "_usageKind").value]; if (temp) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#VehicleUsageKind." + temp; else delete obj.usageKind;
 
                 return (obj);
             }
@@ -1366,7 +1366,7 @@ define
                     `
                     {{#lastCalibrationDate}}<div><b>lastCalibrationDate</b>: {{lastCalibrationDate}}</div>{{/lastCalibrationDate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1394,7 +1394,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastCalibrationDate'>lastCalibrationDate: </label><div class='col-sm-8'><input id='{{id}}_lastCalibrationDate' class='form-control' type='text'{{#lastCalibrationDate}} value='{{lastCalibrationDate}}'{{/lastCalibrationDate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1414,15 +1414,20 @@ define
         return (
             {
                 Tool: Tool,
-                Work: Work,
                 Vehicle: Vehicle,
                 WorkAsset: WorkAsset,
+                MaterialItem: MaterialItem,
+                WorkTask: WorkTask,
+                VehicleUsageKind: VehicleUsageKind,
+                BaseWork: BaseWork,
+                WorkTimeScheduleKind: WorkTimeScheduleKind,
+                WorkStatusKind: WorkStatusKind,
+                Work: Work,
+                WorkKind: WorkKind,
                 WorkTimeSchedule: WorkTimeSchedule,
                 MaintenanceLocation: MaintenanceLocation,
                 WorkLocation: WorkLocation,
-                MaterialItem: MaterialItem,
-                WorkTask: WorkTask,
-                BaseWork: BaseWork
+                WorkTaskKind: WorkTaskKind
             }
         );
     }

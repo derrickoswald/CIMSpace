@@ -86,7 +86,7 @@ define
                     {{#iban}}<div><b>iban</b>: {{iban}}</div>{{/iban}}
                     {{#BankAccounts}}<div><b>BankAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BankAccounts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -117,7 +117,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bic'>bic: </label><div class='col-sm-8'><input id='{{id}}_bic' class='form-control' type='text'{{#bic}} value='{{bic}}'{{/bic}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iban'>iban: </label><div class='col-sm-8'><input id='{{id}}_iban' class='form-control' type='text'{{#iban}} value='{{iban}}'{{/iban}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -175,7 +175,7 @@ define
 
                 obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "BusinessRole";
-                base.parse_element (/<cim:BusinessRole.status>([\s\S]*?)<\/cim:BusinessRole.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BusinessRole.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:BusinessRole.type>([\s\S]*?)<\/cim:BusinessRole.type>/g, obj, "type", base.to_string, sub, context);
                 var bucket = context.parsed.BusinessRole;
                 if (null == bucket)
@@ -189,7 +189,7 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BusinessRole", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "BusinessRole", "status", "status", fields);
                 base.export_element (obj, "BusinessRole", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -209,7 +209,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -238,7 +238,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -315,7 +315,7 @@ define
                     `
                     {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LandProperty}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -344,7 +344,7 @@ define
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -446,7 +446,7 @@ define
                     {{#Capabilities}}<div><b>Capabilities</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Capabilities}}
                     {{#Route}}<div><b>Route</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Route}}&quot;);}); return false;'>{{Route}}</a></div>{{/Route}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -489,7 +489,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Route'>Route: </label><div class='col-sm-8'><input id='{{id}}_Route' class='form-control' type='text'{{#Route}} value='{{Route}}'{{/Route}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -588,7 +588,7 @@ define
                     `
                     {{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -616,7 +616,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clientID'>clientID: </label><div class='col-sm-8'><input id='{{id}}_clientID' class='form-control' type='text'{{#clientID}} value='{{clientID}}'{{/clientID}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -660,7 +660,7 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "Skill";
-                base.parse_element (/<cim:Skill.certificationPeriod>([\s\S]*?)<\/cim:Skill.certificationPeriod>/g, obj, "certificationPeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Skill.certificationPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certificationPeriod", sub, context);
                 base.parse_element (/<cim:Skill.effectiveDateTime>([\s\S]*?)<\/cim:Skill.effectiveDateTime>/g, obj, "effectiveDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:Skill.level\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "level", sub, context);
                 base.parse_attribute (/<cim:Skill.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context);
@@ -678,7 +678,7 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Skill", "certificationPeriod", "certificationPeriod",  base.from_string, fields);
+                base.export_attribute (obj, "Skill", "certificationPeriod", "certificationPeriod", fields);
                 base.export_element (obj, "Skill", "effectiveDateTime", "effectiveDateTime",  base.from_datetime, fields);
                 base.export_attribute (obj, "Skill", "level", "level", fields);
                 base.export_attribute (obj, "Skill", "ErpPerson", "ErpPerson", fields);
@@ -707,7 +707,7 @@ define
                     {{#Crafts}}<div><b>Crafts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crafts}}
                     {{#QualificationRequirements}}<div><b>QualificationRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/QualificationRequirements}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -716,7 +716,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SkillLevelKind = []; if (!obj.level) obj.SkillLevelKind.push ({ id: '', selected: true}); for (var property in SkillLevelKind) obj.SkillLevelKind.push ({ id: property, selected: obj.level && obj.level.endsWith ('.' + property)});
+                obj.levelSkillLevelKind = [{ id: '', selected: (!obj.level)}]; for (var property in SkillLevelKind) obj.levelSkillLevelKind.push ({ id: property, selected: obj.level && obj.level.endsWith ('.' + property)});
                 if (obj.Crafts) obj.Crafts_string = obj.Crafts.join ();
                 if (obj.QualificationRequirements) obj.QualificationRequirements_string = obj.QualificationRequirements.join ();
             }
@@ -724,7 +724,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SkillLevelKind;
+                delete obj.levelSkillLevelKind;
                 delete obj.Crafts_string;
                 delete obj.QualificationRequirements_string;
             }
@@ -741,12 +741,12 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='{{id}}_certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><select id='{{id}}_level' class='form-control custom-select'>{{#SkillLevelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SkillLevelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><select id='{{id}}_level' class='form-control custom-select'>{{#levelSkillLevelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/levelSkillLevelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements_string}}'{{/QualificationRequirements}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -759,7 +759,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
                 temp = document.getElementById (id + "_effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
-                temp = document.getElementById (id + "_level").value; if ("" != temp) { temp = SkillLevelKind[temp]; if ("undefined" != typeof (temp)) obj.level = "http://iec.ch/TC57/2013/CIM-schema-cim16#SkillLevelKind." + temp; }
+                temp = SkillLevelKind[document.getElementById (id + "_level").value]; if (temp) obj.level = "http://iec.ch/TC57/2013/CIM-schema-cim16#SkillLevelKind." + temp; else delete obj.level;
                 temp = document.getElementById (id + "_ErpPerson").value; if ("" != temp) obj.ErpPerson = temp;
                 temp = document.getElementById (id + "_Crafts").value; if ("" != temp) obj.Crafts = temp.split (",");
                 temp = document.getElementById (id + "_QualificationRequirements").value; if ("" != temp) obj.QualificationRequirements = temp.split (",");
@@ -839,7 +839,7 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -866,7 +866,7 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -907,7 +907,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Role";
-                base.parse_element (/<cim:Role.status>([\s\S]*?)<\/cim:Role.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Role.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Role.type>([\s\S]*?)<\/cim:Role.type>/g, obj, "type", base.to_string, sub, context);
                 var bucket = context.parsed.Role;
                 if (null == bucket)
@@ -921,7 +921,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Role", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Role", "status", "status", fields);
                 base.export_element (obj, "Role", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -941,7 +941,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -970,7 +970,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1044,7 +1044,7 @@ define
                     + Common.OrganisationRole.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1071,7 +1071,7 @@ define
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1147,7 +1147,7 @@ define
                     {{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
                     {{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1176,7 +1176,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominator'>denominator: </label><div class='col-sm-8'><input id='{{id}}_denominator' class='form-control' type='text'{{#denominator}} value='{{denominator}}'{{/denominator}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_numerator'>numerator: </label><div class='col-sm-8'><input id='{{id}}_numerator' class='form-control' type='text'{{#numerator}} value='{{numerator}}'{{/numerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1223,7 +1223,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Craft";
-                base.parse_element (/<cim:Craft.status>([\s\S]*?)<\/cim:Craft.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Craft.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Craft.type>([\s\S]*?)<\/cim:Craft.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Craft.Capabilities\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Capabilities", sub, context);
                 base.parse_attributes (/<cim:Craft.Skills\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Skills", sub, context);
@@ -1240,7 +1240,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Craft", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Craft", "status", "status", fields);
                 base.export_element (obj, "Craft", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "Craft", "Capabilities", "Capabilities", fields);
                 base.export_attributes (obj, "Craft", "Skills", "Skills", fields);
@@ -1266,7 +1266,7 @@ define
                     {{#Skills}}<div><b>Skills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Skills}}
                     {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPersons}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1304,7 +1304,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills_string}}'{{/Skills}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='{{id}}_ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons_string}}'{{/ErpPersons}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1365,7 +1365,7 @@ define
 
                 obj = Common.Person.prototype.parse.call (this, context, sub);
                 obj.cls = "OldPerson";
-                base.parse_element (/<cim:OldPerson.status>([\s\S]*?)<\/cim:OldPerson.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OldPerson.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:OldPerson.type>([\s\S]*?)<\/cim:OldPerson.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:OldPerson.Skills\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Skills", sub, context);
                 base.parse_attribute (/<cim:OldPerson.CustomerData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerData", sub, context);
@@ -1389,7 +1389,7 @@ define
             {
                 var fields = Common.Person.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OldPerson", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "OldPerson", "status", "status", fields);
                 base.export_element (obj, "OldPerson", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "OldPerson", "Skills", "Skills", fields);
                 base.export_attribute (obj, "OldPerson", "CustomerData", "CustomerData", fields);
@@ -1429,7 +1429,7 @@ define
                     {{#OrganisationRoles}}<div><b>OrganisationRoles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OrganisationRoles}}
                     {{#LandPropertyRoles}}<div><b>LandPropertyRoles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LandPropertyRoles}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1477,7 +1477,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LaborItems'>LaborItems: </label><div class='col-sm-8'><input id='{{id}}_LaborItems' class='form-control' type='text'{{#LaborItems}} value='{{LaborItems_string}}'{{/LaborItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1582,7 +1582,7 @@ define
                     {{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
                     {{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);}); return false;'>{{ErpPerson}}</a></div>{{/ErpPerson}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1611,7 +1611,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clientID'>clientID: </label><div class='col-sm-8'><input id='{{id}}_clientID' class='form-control' type='text'{{#clientID}} value='{{clientID}}'{{/clientID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1705,7 +1705,7 @@ define
                     {{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);}); return false;'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
                     {{#Bank}}<div><b>Bank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bank}}&quot;);}); return false;'>{{Bank}}</a></div>{{/Bank}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1735,7 +1735,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='{{id}}_ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bank'>Bank: </label><div class='col-sm-8'><input id='{{id}}_Bank' class='form-control' type='text'{{#Bank}} value='{{Bank}}'{{/Bank}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1825,7 +1825,7 @@ define
                     `
                     {{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);}); return false;'>{{Person}}</a></div>{{/Person}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1853,7 +1853,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Person'>Person: </label><div class='col-sm-8'><input id='{{id}}_Person' class='form-control' type='text'{{#Person}} value='{{Person}}'{{/Person}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1945,7 +1945,7 @@ define
                     {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LandProperty}}&quot;);}); return false;'>{{LandProperty}}</a></div>{{/LandProperty}}
                     {{#Person}}<div><b>Person</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Person}}&quot;);}); return false;'>{{Person}}</a></div>{{/Person}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1974,7 +1974,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='{{id}}_LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Person'>Person: </label><div class='col-sm-8'><input id='{{id}}_Person' class='form-control' type='text'{{#Person}} value='{{Person}}'{{/Person}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2014,6 +2014,7 @@ define
                 Craft: Craft,
                 PersonPropertyRole: PersonPropertyRole,
                 PersonOrganisationRole: PersonOrganisationRole,
+                SkillLevelKind: SkillLevelKind,
                 PersonDocumentRole: PersonDocumentRole,
                 BankAccount: BankAccount,
                 Bank: Bank,

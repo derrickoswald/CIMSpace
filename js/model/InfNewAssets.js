@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/Assets"],
-    function (base, Assets)
+    ["model/base", "model/Assets", "model/Core"],
+    function (base, Assets, Core)
     {
 
         /**
@@ -69,7 +69,7 @@ define
                     {{#conditionBefore}}<div><b>conditionBefore</b>: {{conditionBefore}}</div>{{/conditionBefore}}
                     {{#maintCode}}<div><b>maintCode</b>: {{maintCode}}</div>{{/maintCode}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -99,7 +99,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_conditionBefore'>conditionBefore: </label><div class='col-sm-8'><input id='{{id}}_conditionBefore' class='form-control' type='text'{{#conditionBefore}} value='{{conditionBefore}}'{{/conditionBefore}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maintCode'>maintCode: </label><div class='col-sm-8'><input id='{{id}}_maintCode' class='form-control' type='text'{{#maintCode}} value='{{maintCode}}'{{/maintCode}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -180,7 +180,7 @@ define
                     {{#locationCondition}}<div><b>locationCondition</b>: {{locationCondition}}</div>{{/locationCondition}}
                     {{#AccordingToSchedules}}<div><b>AccordingToSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AccordingToSchedules}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -210,7 +210,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_locationCondition'>locationCondition: </label><div class='col-sm-8'><input id='{{id}}_locationCondition' class='form-control' type='text'{{#locationCondition}} value='{{locationCondition}}'{{/locationCondition}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -271,7 +271,7 @@ define
                 base.parse_element (/<cim:DiagnosisDataSet.finalCode>([\s\S]*?)<\/cim:DiagnosisDataSet.finalCode>/g, obj, "finalCode", base.to_string, sub, context);
                 base.parse_element (/<cim:DiagnosisDataSet.finalOrigin>([\s\S]*?)<\/cim:DiagnosisDataSet.finalOrigin>/g, obj, "finalOrigin", base.to_string, sub, context);
                 base.parse_element (/<cim:DiagnosisDataSet.finalRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.finalRemark>/g, obj, "finalRemark", base.to_string, sub, context);
-                base.parse_element (/<cim:DiagnosisDataSet.phaseCode>([\s\S]*?)<\/cim:DiagnosisDataSet.phaseCode>/g, obj, "phaseCode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DiagnosisDataSet.phaseCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phaseCode", sub, context);
                 base.parse_element (/<cim:DiagnosisDataSet.preliminaryCode>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryCode>/g, obj, "preliminaryCode", base.to_string, sub, context);
                 base.parse_element (/<cim:DiagnosisDataSet.preliminaryDateTime>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryDateTime>/g, obj, "preliminaryDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:DiagnosisDataSet.preliminaryRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.preliminaryRemark>/g, obj, "preliminaryRemark", base.to_string, sub, context);
@@ -296,7 +296,7 @@ define
                 base.export_element (obj, "DiagnosisDataSet", "finalCode", "finalCode",  base.from_string, fields);
                 base.export_element (obj, "DiagnosisDataSet", "finalOrigin", "finalOrigin",  base.from_string, fields);
                 base.export_element (obj, "DiagnosisDataSet", "finalRemark", "finalRemark",  base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "phaseCode", "phaseCode",  base.from_string, fields);
+                base.export_attribute (obj, "DiagnosisDataSet", "phaseCode", "phaseCode", fields);
                 base.export_element (obj, "DiagnosisDataSet", "preliminaryCode", "preliminaryCode",  base.from_string, fields);
                 base.export_element (obj, "DiagnosisDataSet", "preliminaryDateTime", "preliminaryDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "DiagnosisDataSet", "preliminaryRemark", "preliminaryRemark",  base.from_string, fields);
@@ -333,7 +333,7 @@ define
                     {{#rootOrigin}}<div><b>rootOrigin</b>: {{rootOrigin}}</div>{{/rootOrigin}}
                     {{#rootRemark}}<div><b>rootRemark</b>: {{rootRemark}}</div>{{/rootRemark}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -342,11 +342,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.phaseCodePhaseCode = [{ id: '', selected: (!obj.phaseCode)}]; for (var property in Core.PhaseCode) obj.phaseCodePhaseCode.push ({ id: property, selected: obj.phaseCode && obj.phaseCode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.phaseCodePhaseCode;
             }
 
             edit_template ()
@@ -365,7 +367,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalCode'>finalCode: </label><div class='col-sm-8'><input id='{{id}}_finalCode' class='form-control' type='text'{{#finalCode}} value='{{finalCode}}'{{/finalCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalOrigin'>finalOrigin: </label><div class='col-sm-8'><input id='{{id}}_finalOrigin' class='form-control' type='text'{{#finalOrigin}} value='{{finalOrigin}}'{{/finalOrigin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalRemark'>finalRemark: </label><div class='col-sm-8'><input id='{{id}}_finalRemark' class='form-control' type='text'{{#finalRemark}} value='{{finalRemark}}'{{/finalRemark}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='{{id}}_phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><select id='{{id}}_phaseCode' class='form-control custom-select'>{{#phaseCodePhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseCodePhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryCode'>preliminaryCode: </label><div class='col-sm-8'><input id='{{id}}_preliminaryCode' class='form-control' type='text'{{#preliminaryCode}} value='{{preliminaryCode}}'{{/preliminaryCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryDateTime'>preliminaryDateTime: </label><div class='col-sm-8'><input id='{{id}}_preliminaryDateTime' class='form-control' type='text'{{#preliminaryDateTime}} value='{{preliminaryDateTime}}'{{/preliminaryDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryRemark'>preliminaryRemark: </label><div class='col-sm-8'><input id='{{id}}_preliminaryRemark' class='form-control' type='text'{{#preliminaryRemark}} value='{{preliminaryRemark}}'{{/preliminaryRemark}}></div></div>
@@ -373,7 +375,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rootOrigin'>rootOrigin: </label><div class='col-sm-8'><input id='{{id}}_rootOrigin' class='form-control' type='text'{{#rootOrigin}} value='{{rootOrigin}}'{{/rootOrigin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rootRemark'>rootRemark: </label><div class='col-sm-8'><input id='{{id}}_rootRemark' class='form-control' type='text'{{#rootRemark}} value='{{rootRemark}}'{{/rootRemark}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -390,7 +392,7 @@ define
                 temp = document.getElementById (id + "_finalCode").value; if ("" != temp) obj.finalCode = temp;
                 temp = document.getElementById (id + "_finalOrigin").value; if ("" != temp) obj.finalOrigin = temp;
                 temp = document.getElementById (id + "_finalRemark").value; if ("" != temp) obj.finalRemark = temp;
-                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) obj.phaseCode = temp;
+                temp = Core.PhaseCode[document.getElementById (id + "_phaseCode").value]; if (temp) obj.phaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.phaseCode;
                 temp = document.getElementById (id + "_preliminaryCode").value; if ("" != temp) obj.preliminaryCode = temp;
                 temp = document.getElementById (id + "_preliminaryDateTime").value; if ("" != temp) obj.preliminaryDateTime = temp;
                 temp = document.getElementById (id + "_preliminaryRemark").value; if ("" != temp) obj.preliminaryRemark = temp;
@@ -467,7 +469,7 @@ define
                     {{#specimenID}}<div><b>specimenID</b>: {{specimenID}}</div>{{/specimenID}}
                     {{#specimenToLabDateTime}}<div><b>specimenToLabDateTime</b>: {{specimenToLabDateTime}}</div>{{/specimenToLabDateTime}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -497,7 +499,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specimenID'>specimenID: </label><div class='col-sm-8'><input id='{{id}}_specimenID' class='form-control' type='text'{{#specimenID}} value='{{specimenID}}'{{/specimenID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specimenToLabDateTime'>specimenToLabDateTime: </label><div class='col-sm-8'><input id='{{id}}_specimenToLabDateTime' class='form-control' type='text'{{#specimenToLabDateTime}} value='{{specimenToLabDateTime}}'{{/specimenToLabDateTime}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

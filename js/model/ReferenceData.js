@@ -1,11 +1,11 @@
 define
 (
-    ["model/base", "model/Common", "model/Contingency", "model/Core", "model/MarketCommon", "model/MarketOpCommon", "model/Production"],
+    ["model/base", "model/Common", "model/Contingency", "model/Core", "model/MarketCommon", "model/MarketOpCommon", "model/MktDomain", "model/Production"],
     /**
      * Market static reference data.
      *
      */
-    function (base, Common, Contingency, Core, MarketCommon, MarketOpCommon, Production)
+    function (base, Common, Contingency, Core, MarketCommon, MarketOpCommon, MktDomain, Production)
     {
 
         /**
@@ -37,7 +37,7 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ResourceCapacity";
-                base.parse_element (/<cim:ResourceCapacity.capacityType>([\s\S]*?)<\/cim:ResourceCapacity.capacityType>/g, obj, "capacityType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceCapacity.capacityType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "capacityType", sub, context);
                 base.parse_element (/<cim:ResourceCapacity.maximumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.maximumCapacity>/g, obj, "maximumCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceCapacity.minimumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.minimumCapacity>/g, obj, "minimumCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceCapacity.defaultCapacity>([\s\S]*?)<\/cim:ResourceCapacity.defaultCapacity>/g, obj, "defaultCapacity", base.to_string, sub, context);
@@ -54,7 +54,7 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResourceCapacity", "capacityType", "capacityType",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceCapacity", "capacityType", "capacityType", fields);
                 base.export_element (obj, "ResourceCapacity", "maximumCapacity", "maximumCapacity",  base.from_string, fields);
                 base.export_element (obj, "ResourceCapacity", "minimumCapacity", "minimumCapacity",  base.from_string, fields);
                 base.export_element (obj, "ResourceCapacity", "defaultCapacity", "defaultCapacity",  base.from_string, fields);
@@ -81,7 +81,7 @@ define
                     {{#defaultCapacity}}<div><b>defaultCapacity</b>: {{defaultCapacity}}</div>{{/defaultCapacity}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -90,12 +90,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.capacityTypeResourceCapacityType = [{ id: '', selected: (!obj.capacityType)}]; for (var property in MktDomain.ResourceCapacityType) obj.capacityTypeResourceCapacityType.push ({ id: property, selected: obj.capacityType && obj.capacityType.endsWith ('.' + property)});
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.capacityTypeResourceCapacityType;
                 delete obj.RegisteredResource_string;
             }
 
@@ -109,13 +111,13 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacityType'>capacityType: </label><div class='col-sm-8'><input id='{{id}}_capacityType' class='form-control' type='text'{{#capacityType}} value='{{capacityType}}'{{/capacityType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacityType'>capacityType: </label><div class='col-sm-8'><select id='{{id}}_capacityType' class='form-control custom-select'>{{#capacityTypeResourceCapacityType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/capacityTypeResourceCapacityType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumCapacity'>maximumCapacity: </label><div class='col-sm-8'><input id='{{id}}_maximumCapacity' class='form-control' type='text'{{#maximumCapacity}} value='{{maximumCapacity}}'{{/maximumCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumCapacity'>minimumCapacity: </label><div class='col-sm-8'><input id='{{id}}_minimumCapacity' class='form-control' type='text'{{#minimumCapacity}} value='{{minimumCapacity}}'{{/minimumCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultCapacity'>defaultCapacity: </label><div class='col-sm-8'><input id='{{id}}_defaultCapacity' class='form-control' type='text'{{#defaultCapacity}} value='{{defaultCapacity}}'{{/defaultCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -126,7 +128,7 @@ define
 
                 var obj = obj || { id: id, cls: "ResourceCapacity" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_capacityType").value; if ("" != temp) obj.capacityType = temp;
+                temp = MktDomain.ResourceCapacityType[document.getElementById (id + "_capacityType").value]; if (temp) obj.capacityType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceCapacityType." + temp; else delete obj.capacityType;
                 temp = document.getElementById (id + "_maximumCapacity").value; if ("" != temp) obj.maximumCapacity = temp;
                 temp = document.getElementById (id + "_minimumCapacity").value; if ("" != temp) obj.minimumCapacity = temp;
                 temp = document.getElementById (id + "_defaultCapacity").value; if ("" != temp) obj.defaultCapacity = temp;
@@ -176,10 +178,10 @@ define
                 obj.cls = "ResourceAncillaryServiceQualification";
                 base.parse_element (/<cim:ResourceAncillaryServiceQualification.certifiedCapacity>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.certifiedCapacity>/g, obj, "certifiedCapacity", base.to_float, sub, context);
                 base.parse_element (/<cim:ResourceAncillaryServiceQualification.endEffectiveDate>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ResourceAncillaryServiceQualification.market>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.market>/g, obj, "market", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceAncillaryServiceQualification.qualificationFlag>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.qualificationFlag>/g, obj, "qualificationFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.market\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "market", sub, context);
+                base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.qualificationFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "qualificationFlag", sub, context);
                 base.parse_element (/<cim:ResourceAncillaryServiceQualification.startEffectiveDate>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ResourceAncillaryServiceQualification.type>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
                 base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 var bucket = context.parsed.ResourceAncillaryServiceQualification;
                 if (null == bucket)
@@ -195,10 +197,10 @@ define
 
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "certifiedCapacity", "certifiedCapacity",  base.from_float, fields);
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ResourceAncillaryServiceQualification", "market", "market",  base.from_string, fields);
-                base.export_element (obj, "ResourceAncillaryServiceQualification", "qualificationFlag", "qualificationFlag",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceAncillaryServiceQualification", "market", "market", fields);
+                base.export_attribute (obj, "ResourceAncillaryServiceQualification", "qualificationFlag", "qualificationFlag", fields);
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ResourceAncillaryServiceQualification", "type", "type",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceAncillaryServiceQualification", "type", "type", fields);
                 base.export_attribute (obj, "ResourceAncillaryServiceQualification", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -224,7 +226,7 @@ define
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -233,11 +235,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.marketMarketType = [{ id: '', selected: (!obj.market)}]; for (var property in MktDomain.MarketType) obj.marketMarketType.push ({ id: property, selected: obj.market && obj.market.endsWith ('.' + property)});
+                obj.qualificationFlagYesNo = [{ id: '', selected: (!obj.qualificationFlag)}]; for (var property in MktDomain.YesNo) obj.qualificationFlagYesNo.push ({ id: property, selected: obj.qualificationFlag && obj.qualificationFlag.endsWith ('.' + property)});
+                obj.typeResourceAncillaryServiceType = [{ id: '', selected: (!obj.type)}]; for (var property in MktDomain.ResourceAncillaryServiceType) obj.typeResourceAncillaryServiceType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.marketMarketType;
+                delete obj.qualificationFlagYesNo;
+                delete obj.typeResourceAncillaryServiceType;
             }
 
             edit_template ()
@@ -252,13 +260,13 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedCapacity'>certifiedCapacity: </label><div class='col-sm-8'><input id='{{id}}_certifiedCapacity' class='form-control' type='text'{{#certifiedCapacity}} value='{{certifiedCapacity}}'{{/certifiedCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_market'>market: </label><div class='col-sm-8'><input id='{{id}}_market' class='form-control' type='text'{{#market}} value='{{market}}'{{/market}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationFlag'>qualificationFlag: </label><div class='col-sm-8'><input id='{{id}}_qualificationFlag' class='form-control' type='text'{{#qualificationFlag}} value='{{qualificationFlag}}'{{/qualificationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_market'>market: </label><div class='col-sm-8'><select id='{{id}}_market' class='form-control custom-select'>{{#marketMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketMarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationFlag'>qualificationFlag: </label><div class='col-sm-8'><select id='{{id}}_qualificationFlag' class='form-control custom-select'>{{#qualificationFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/qualificationFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#typeResourceAncillaryServiceType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/typeResourceAncillaryServiceType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -271,10 +279,10 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_certifiedCapacity").value; if ("" != temp) obj.certifiedCapacity = temp;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_market").value; if ("" != temp) obj.market = temp;
-                temp = document.getElementById (id + "_qualificationFlag").value; if ("" != temp) obj.qualificationFlag = temp;
+                temp = MktDomain.MarketType[document.getElementById (id + "_market").value]; if (temp) obj.market = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.market;
+                temp = MktDomain.YesNo[document.getElementById (id + "_qualificationFlag").value]; if (temp) obj.qualificationFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.qualificationFlag;
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = MktDomain.ResourceAncillaryServiceType[document.getElementById (id + "_type").value]; if (temp) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceAncillaryServiceType." + temp; else delete obj.type;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
@@ -372,7 +380,7 @@ define
                     {{#ContingencyConstraintLimit}}<div><b>ContingencyConstraintLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ContingencyConstraintLimit}}
                     {{#TransferInterfaceSolutionA}}<div><b>TransferInterfaceSolutionA</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransferInterfaceSolutionA}}&quot;);}); return false;'>{{TransferInterfaceSolutionA}}</a></div>{{/TransferInterfaceSolutionA}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -409,7 +417,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransferInterfaceSolutionB'>TransferInterfaceSolutionB: </label><div class='col-sm-8'><input id='{{id}}_TransferInterfaceSolutionB' class='form-control' type='text'{{#TransferInterfaceSolutionB}} value='{{TransferInterfaceSolutionB}}'{{/TransferInterfaceSolutionB}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransferInterfaceSolutionA'>TransferInterfaceSolutionA: </label><div class='col-sm-8'><input id='{{id}}_TransferInterfaceSolutionA' class='form-control' type='text'{{#TransferInterfaceSolutionA}} value='{{TransferInterfaceSolutionA}}'{{/TransferInterfaceSolutionA}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -504,7 +512,7 @@ define
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -532,7 +540,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -588,8 +596,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "PnodeDistributionFactor";
                 base.parse_element (/<cim:PnodeDistributionFactor.factor>([\s\S]*?)<\/cim:PnodeDistributionFactor.factor>/g, obj, "factor", base.to_float, sub, context);
-                base.parse_element (/<cim:PnodeDistributionFactor.offPeak>([\s\S]*?)<\/cim:PnodeDistributionFactor.offPeak>/g, obj, "offPeak", base.to_string, sub, context);
-                base.parse_element (/<cim:PnodeDistributionFactor.onPeak>([\s\S]*?)<\/cim:PnodeDistributionFactor.onPeak>/g, obj, "onPeak", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PnodeDistributionFactor.offPeak\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "offPeak", sub, context);
+                base.parse_attribute (/<cim:PnodeDistributionFactor.onPeak\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "onPeak", sub, context);
                 base.parse_element (/<cim:PnodeDistributionFactor.podLossFactor>([\s\S]*?)<\/cim:PnodeDistributionFactor.podLossFactor>/g, obj, "podLossFactor", base.to_float, sub, context);
                 base.parse_attribute (/<cim:PnodeDistributionFactor.IndividualPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IndividualPnode", sub, context);
                 base.parse_attribute (/<cim:PnodeDistributionFactor.BidDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidDistributionFactor", sub, context);
@@ -607,8 +615,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "PnodeDistributionFactor", "factor", "factor",  base.from_float, fields);
-                base.export_element (obj, "PnodeDistributionFactor", "offPeak", "offPeak",  base.from_string, fields);
-                base.export_element (obj, "PnodeDistributionFactor", "onPeak", "onPeak",  base.from_string, fields);
+                base.export_attribute (obj, "PnodeDistributionFactor", "offPeak", "offPeak", fields);
+                base.export_attribute (obj, "PnodeDistributionFactor", "onPeak", "onPeak", fields);
                 base.export_element (obj, "PnodeDistributionFactor", "podLossFactor", "podLossFactor",  base.from_float, fields);
                 base.export_attribute (obj, "PnodeDistributionFactor", "IndividualPnode", "IndividualPnode", fields);
                 base.export_attribute (obj, "PnodeDistributionFactor", "BidDistributionFactor", "BidDistributionFactor", fields);
@@ -637,7 +645,7 @@ define
                     {{#BidDistributionFactor}}<div><b>BidDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BidDistributionFactor}}&quot;);}); return false;'>{{BidDistributionFactor}}</a></div>{{/BidDistributionFactor}}
                     {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AggregatedPnode}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -646,12 +654,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.offPeakYesNo = [{ id: '', selected: (!obj.offPeak)}]; for (var property in MktDomain.YesNo) obj.offPeakYesNo.push ({ id: property, selected: obj.offPeak && obj.offPeak.endsWith ('.' + property)});
+                obj.onPeakYesNo = [{ id: '', selected: (!obj.onPeak)}]; for (var property in MktDomain.YesNo) obj.onPeakYesNo.push ({ id: property, selected: obj.onPeak && obj.onPeak.endsWith ('.' + property)});
                 if (obj.AggregatedPnode) obj.AggregatedPnode_string = obj.AggregatedPnode.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.offPeakYesNo;
+                delete obj.onPeakYesNo;
                 delete obj.AggregatedPnode_string;
             }
 
@@ -666,13 +678,13 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offPeak'>offPeak: </label><div class='col-sm-8'><input id='{{id}}_offPeak' class='form-control' type='text'{{#offPeak}} value='{{offPeak}}'{{/offPeak}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_onPeak'>onPeak: </label><div class='col-sm-8'><input id='{{id}}_onPeak' class='form-control' type='text'{{#onPeak}} value='{{onPeak}}'{{/onPeak}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offPeak'>offPeak: </label><div class='col-sm-8'><select id='{{id}}_offPeak' class='form-control custom-select'>{{#offPeakYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/offPeakYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_onPeak'>onPeak: </label><div class='col-sm-8'><select id='{{id}}_onPeak' class='form-control custom-select'>{{#onPeakYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/onPeakYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_podLossFactor'>podLossFactor: </label><div class='col-sm-8'><input id='{{id}}_podLossFactor' class='form-control' type='text'{{#podLossFactor}} value='{{podLossFactor}}'{{/podLossFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='{{id}}_IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}'{{/IndividualPnode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidDistributionFactor'>BidDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_BidDistributionFactor' class='form-control' type='text'{{#BidDistributionFactor}} value='{{BidDistributionFactor}}'{{/BidDistributionFactor}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -684,8 +696,8 @@ define
                 var obj = obj || { id: id, cls: "PnodeDistributionFactor" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
-                temp = document.getElementById (id + "_offPeak").value; if ("" != temp) obj.offPeak = temp;
-                temp = document.getElementById (id + "_onPeak").value; if ("" != temp) obj.onPeak = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_offPeak").value]; if (temp) obj.offPeak = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.offPeak;
+                temp = MktDomain.YesNo[document.getElementById (id + "_onPeak").value]; if (temp) obj.onPeak = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.onPeak;
                 temp = document.getElementById (id + "_podLossFactor").value; if ("" != temp) obj.podLossFactor = temp;
                 temp = document.getElementById (id + "_IndividualPnode").value; if ("" != temp) obj.IndividualPnode = temp;
                 temp = document.getElementById (id + "_BidDistributionFactor").value; if ("" != temp) obj.BidDistributionFactor = temp;
@@ -808,7 +820,7 @@ define
                     {{#TransmissionContractRight}}<div><b>TransmissionContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransmissionContractRight}}
                     {{#TransmissionRightChain}}<div><b>TransmissionRightChain</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransmissionRightChain}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -866,7 +878,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceGroupReqs'>ResourceGroupReqs: </label><div class='col-sm-8'><input id='{{id}}_ResourceGroupReqs' class='form-control' type='text'{{#ResourceGroupReqs}} value='{{ResourceGroupReqs_string}}'{{/ResourceGroupReqs}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -976,7 +988,7 @@ define
                     {{#loginID}}<div><b>loginID</b>: {{loginID}}</div>{{/loginID}}
                     {{#loginRole}}<div><b>loginRole</b>: {{loginRole}}</div>{{/loginRole}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1007,7 +1019,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loginID'>loginID: </label><div class='col-sm-8'><input id='{{id}}_loginID' class='form-control' type='text'{{#loginID}} value='{{loginID}}'{{/loginID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loginRole'>loginRole: </label><div class='col-sm-8'><input id='{{id}}_loginRole' class='form-control' type='text'{{#loginRole}} value='{{loginRole}}'{{/loginRole}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1057,7 +1069,7 @@ define
                 base.parse_element (/<cim:FlowgateValue.economicDispatchLimit>([\s\S]*?)<\/cim:FlowgateValue.economicDispatchLimit>/g, obj, "economicDispatchLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:FlowgateValue.effectiveDate>([\s\S]*?)<\/cim:FlowgateValue.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FlowgateValue.firmNetworkLimit>([\s\S]*?)<\/cim:FlowgateValue.firmNetworkLimit>/g, obj, "firmNetworkLimit", base.to_string, sub, context);
-                base.parse_element (/<cim:FlowgateValue.flowDirectionFlag>([\s\S]*?)<\/cim:FlowgateValue.flowDirectionFlag>/g, obj, "flowDirectionFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:FlowgateValue.flowDirectionFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "flowDirectionFlag", sub, context);
                 base.parse_element (/<cim:FlowgateValue.mktFlow>([\s\S]*?)<\/cim:FlowgateValue.mktFlow>/g, obj, "mktFlow", base.to_string, sub, context);
                 base.parse_element (/<cim:FlowgateValue.netFirmNetworkLimit>([\s\S]*?)<\/cim:FlowgateValue.netFirmNetworkLimit>/g, obj, "netFirmNetworkLimit", base.to_string, sub, context);
                 base.parse_attribute (/<cim:FlowgateValue.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
@@ -1077,7 +1089,7 @@ define
                 base.export_element (obj, "FlowgateValue", "economicDispatchLimit", "economicDispatchLimit",  base.from_string, fields);
                 base.export_element (obj, "FlowgateValue", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "FlowgateValue", "firmNetworkLimit", "firmNetworkLimit",  base.from_string, fields);
-                base.export_element (obj, "FlowgateValue", "flowDirectionFlag", "flowDirectionFlag",  base.from_string, fields);
+                base.export_attribute (obj, "FlowgateValue", "flowDirectionFlag", "flowDirectionFlag", fields);
                 base.export_element (obj, "FlowgateValue", "mktFlow", "mktFlow",  base.from_string, fields);
                 base.export_element (obj, "FlowgateValue", "netFirmNetworkLimit", "netFirmNetworkLimit",  base.from_string, fields);
                 base.export_attribute (obj, "FlowgateValue", "Flowgate", "Flowgate", fields);
@@ -1107,7 +1119,7 @@ define
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
                     {{#FlowgatePartner}}<div><b>FlowgatePartner</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FlowgatePartner}}&quot;);}); return false;'>{{FlowgatePartner}}</a></div>{{/FlowgatePartner}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1116,11 +1128,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.flowDirectionFlagFlowDirectionType = [{ id: '', selected: (!obj.flowDirectionFlag)}]; for (var property in MktDomain.FlowDirectionType) obj.flowDirectionFlagFlowDirectionType.push ({ id: property, selected: obj.flowDirectionFlag && obj.flowDirectionFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.flowDirectionFlagFlowDirectionType;
             }
 
             edit_template ()
@@ -1136,13 +1150,13 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_economicDispatchLimit'>economicDispatchLimit: </label><div class='col-sm-8'><input id='{{id}}_economicDispatchLimit' class='form-control' type='text'{{#economicDispatchLimit}} value='{{economicDispatchLimit}}'{{/economicDispatchLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_firmNetworkLimit'>firmNetworkLimit: </label><div class='col-sm-8'><input id='{{id}}_firmNetworkLimit' class='form-control' type='text'{{#firmNetworkLimit}} value='{{firmNetworkLimit}}'{{/firmNetworkLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flowDirectionFlag'>flowDirectionFlag: </label><div class='col-sm-8'><input id='{{id}}_flowDirectionFlag' class='form-control' type='text'{{#flowDirectionFlag}} value='{{flowDirectionFlag}}'{{/flowDirectionFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flowDirectionFlag'>flowDirectionFlag: </label><div class='col-sm-8'><select id='{{id}}_flowDirectionFlag' class='form-control custom-select'>{{#flowDirectionFlagFlowDirectionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/flowDirectionFlagFlowDirectionType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mktFlow'>mktFlow: </label><div class='col-sm-8'><input id='{{id}}_mktFlow' class='form-control' type='text'{{#mktFlow}} value='{{mktFlow}}'{{/mktFlow}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_netFirmNetworkLimit'>netFirmNetworkLimit: </label><div class='col-sm-8'><input id='{{id}}_netFirmNetworkLimit' class='form-control' type='text'{{#netFirmNetworkLimit}} value='{{netFirmNetworkLimit}}'{{/netFirmNetworkLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FlowgatePartner'>FlowgatePartner: </label><div class='col-sm-8'><input id='{{id}}_FlowgatePartner' class='form-control' type='text'{{#FlowgatePartner}} value='{{FlowgatePartner}}'{{/FlowgatePartner}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1156,7 +1170,7 @@ define
                 temp = document.getElementById (id + "_economicDispatchLimit").value; if ("" != temp) obj.economicDispatchLimit = temp;
                 temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
                 temp = document.getElementById (id + "_firmNetworkLimit").value; if ("" != temp) obj.firmNetworkLimit = temp;
-                temp = document.getElementById (id + "_flowDirectionFlag").value; if ("" != temp) obj.flowDirectionFlag = temp;
+                temp = MktDomain.FlowDirectionType[document.getElementById (id + "_flowDirectionFlag").value]; if (temp) obj.flowDirectionFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#FlowDirectionType." + temp; else delete obj.flowDirectionFlag;
                 temp = document.getElementById (id + "_mktFlow").value; if ("" != temp) obj.mktFlow = temp;
                 temp = document.getElementById (id + "_netFirmNetworkLimit").value; if ("" != temp) obj.netFirmNetworkLimit = temp;
                 temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
@@ -1246,7 +1260,7 @@ define
                     {{#ResourceStartupCost}}<div><b>ResourceStartupCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ResourceStartupCost}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1278,7 +1292,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktHeatRateCurve'>MktHeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_MktHeatRateCurve' class='form-control' type='text'{{#MktHeatRateCurve}} value='{{MktHeatRateCurve}}'{{/MktHeatRateCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1370,7 +1384,7 @@ define
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1398,7 +1412,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1453,7 +1467,7 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketSkill";
-                base.parse_element (/<cim:MarketSkill.certificationPeriod>([\s\S]*?)<\/cim:MarketSkill.certificationPeriod>/g, obj, "certificationPeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketSkill.certificationPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "certificationPeriod", sub, context);
                 base.parse_element (/<cim:MarketSkill.effectiveDateTime>([\s\S]*?)<\/cim:MarketSkill.effectiveDateTime>/g, obj, "effectiveDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MarketSkill.level>([\s\S]*?)<\/cim:MarketSkill.level>/g, obj, "level", base.to_string, sub, context);
                 base.parse_attributes (/<cim:MarketSkill.MarketQualificationRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketQualificationRequirements", sub, context);
@@ -1470,7 +1484,7 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MarketSkill", "certificationPeriod", "certificationPeriod",  base.from_string, fields);
+                base.export_attribute (obj, "MarketSkill", "certificationPeriod", "certificationPeriod", fields);
                 base.export_element (obj, "MarketSkill", "effectiveDateTime", "effectiveDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "MarketSkill", "level", "level",  base.from_string, fields);
                 base.export_attributes (obj, "MarketSkill", "MarketQualificationRequirements", "MarketQualificationRequirements", fields);
@@ -1497,7 +1511,7 @@ define
                     {{#MarketQualificationRequirements}}<div><b>MarketQualificationRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MarketQualificationRequirements}}
                     {{#MarketPerson}}<div><b>MarketPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketPerson}}&quot;);}); return false;'>{{MarketPerson}}</a></div>{{/MarketPerson}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1531,7 +1545,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketQualificationRequirements'>MarketQualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_MarketQualificationRequirements' class='form-control' type='text'{{#MarketQualificationRequirements}} value='{{MarketQualificationRequirements_string}}'{{/MarketQualificationRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketPerson'>MarketPerson: </label><div class='col-sm-8'><input id='{{id}}_MarketPerson' class='form-control' type='text'{{#MarketPerson}} value='{{MarketPerson}}'{{/MarketPerson}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1626,7 +1640,7 @@ define
                     {{#MSSZone}}<div><b>MSSZone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MSSZone}}
                     {{#MSSAggregation}}<div><b>MSSAggregation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MSSAggregation}}&quot;);}); return false;'>{{MSSAggregation}}</a></div>{{/MSSAggregation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1656,7 +1670,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MSSAggregation'>MSSAggregation: </label><div class='col-sm-8'><input id='{{id}}_MSSAggregation' class='form-control' type='text'{{#MSSAggregation}} value='{{MSSAggregation}}'{{/MSSAggregation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1744,7 +1758,7 @@ define
                     `
                     {{#CombinedCycleConfigurationMember}}<div><b>CombinedCycleConfigurationMember</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CombinedCycleConfigurationMember}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1773,7 +1787,7 @@ define
                     + Production.ThermalGeneratingUnit.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1878,7 +1892,7 @@ define
                     {{#GasPrice}}<div><b>GasPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GasPrice}}&quot;);}); return false;'>{{GasPrice}}</a></div>{{/GasPrice}}
                     {{#OilPrice}}<div><b>OilPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OilPrice}}&quot;);}); return false;'>{{OilPrice}}</a></div>{{/OilPrice}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1914,7 +1928,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GasPrice'>GasPrice: </label><div class='col-sm-8'><input id='{{id}}_GasPrice' class='form-control' type='text'{{#GasPrice}} value='{{GasPrice}}'{{/GasPrice}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OilPrice'>OilPrice: </label><div class='col-sm-8'><input id='{{id}}_OilPrice' class='form-control' type='text'{{#OilPrice}} value='{{OilPrice}}'{{/OilPrice}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2010,7 +2024,7 @@ define
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2038,7 +2052,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2093,13 +2107,13 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MSSAggregation";
-                base.parse_element (/<cim:MSSAggregation.costRecovery>([\s\S]*?)<\/cim:MSSAggregation.costRecovery>/g, obj, "costRecovery", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.costRecovery\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "costRecovery", sub, context);
                 base.parse_element (/<cim:MSSAggregation.endEffectiveDate>([\s\S]*?)<\/cim:MSSAggregation.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:MSSAggregation.grossSettlement>([\s\S]*?)<\/cim:MSSAggregation.grossSettlement>/g, obj, "grossSettlement", base.to_string, sub, context);
-                base.parse_element (/<cim:MSSAggregation.ignoreLosses>([\s\S]*?)<\/cim:MSSAggregation.ignoreLosses>/g, obj, "ignoreLosses", base.to_string, sub, context);
-                base.parse_element (/<cim:MSSAggregation.ignoreMarginalLosses>([\s\S]*?)<\/cim:MSSAggregation.ignoreMarginalLosses>/g, obj, "ignoreMarginalLosses", base.to_string, sub, context);
-                base.parse_element (/<cim:MSSAggregation.loadFollowing>([\s\S]*?)<\/cim:MSSAggregation.loadFollowing>/g, obj, "loadFollowing", base.to_string, sub, context);
-                base.parse_element (/<cim:MSSAggregation.rucProcurement>([\s\S]*?)<\/cim:MSSAggregation.rucProcurement>/g, obj, "rucProcurement", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.grossSettlement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "grossSettlement", sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.ignoreLosses\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ignoreLosses", sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.ignoreMarginalLosses\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ignoreMarginalLosses", sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.loadFollowing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "loadFollowing", sub, context);
+                base.parse_attribute (/<cim:MSSAggregation.rucProcurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rucProcurement", sub, context);
                 base.parse_element (/<cim:MSSAggregation.startEffectiveDate>([\s\S]*?)<\/cim:MSSAggregation.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attributes (/<cim:MSSAggregation.MeteredSubSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeteredSubSystem", sub, context);
                 base.parse_attribute (/<cim:MSSAggregation.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
@@ -2115,13 +2129,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MSSAggregation", "costRecovery", "costRecovery",  base.from_string, fields);
+                base.export_attribute (obj, "MSSAggregation", "costRecovery", "costRecovery", fields);
                 base.export_element (obj, "MSSAggregation", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "MSSAggregation", "grossSettlement", "grossSettlement",  base.from_string, fields);
-                base.export_element (obj, "MSSAggregation", "ignoreLosses", "ignoreLosses",  base.from_string, fields);
-                base.export_element (obj, "MSSAggregation", "ignoreMarginalLosses", "ignoreMarginalLosses",  base.from_string, fields);
-                base.export_element (obj, "MSSAggregation", "loadFollowing", "loadFollowing",  base.from_string, fields);
-                base.export_element (obj, "MSSAggregation", "rucProcurement", "rucProcurement",  base.from_string, fields);
+                base.export_attribute (obj, "MSSAggregation", "grossSettlement", "grossSettlement", fields);
+                base.export_attribute (obj, "MSSAggregation", "ignoreLosses", "ignoreLosses", fields);
+                base.export_attribute (obj, "MSSAggregation", "ignoreMarginalLosses", "ignoreMarginalLosses", fields);
+                base.export_attribute (obj, "MSSAggregation", "loadFollowing", "loadFollowing", fields);
+                base.export_attribute (obj, "MSSAggregation", "rucProcurement", "rucProcurement", fields);
                 base.export_element (obj, "MSSAggregation", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
                 base.export_attributes (obj, "MSSAggregation", "MeteredSubSystem", "MeteredSubSystem", fields);
                 base.export_attribute (obj, "MSSAggregation", "RTO", "RTO", fields);
@@ -2152,7 +2166,7 @@ define
                     {{#MeteredSubSystem}}<div><b>MeteredSubSystem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeteredSubSystem}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);}); return false;'>{{RTO}}</a></div>{{/RTO}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2161,12 +2175,24 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.costRecoveryYesNo = [{ id: '', selected: (!obj.costRecovery)}]; for (var property in MktDomain.YesNo) obj.costRecoveryYesNo.push ({ id: property, selected: obj.costRecovery && obj.costRecovery.endsWith ('.' + property)});
+                obj.grossSettlementYesNo = [{ id: '', selected: (!obj.grossSettlement)}]; for (var property in MktDomain.YesNo) obj.grossSettlementYesNo.push ({ id: property, selected: obj.grossSettlement && obj.grossSettlement.endsWith ('.' + property)});
+                obj.ignoreLossesYesNo = [{ id: '', selected: (!obj.ignoreLosses)}]; for (var property in MktDomain.YesNo) obj.ignoreLossesYesNo.push ({ id: property, selected: obj.ignoreLosses && obj.ignoreLosses.endsWith ('.' + property)});
+                obj.ignoreMarginalLossesYesNo = [{ id: '', selected: (!obj.ignoreMarginalLosses)}]; for (var property in MktDomain.YesNo) obj.ignoreMarginalLossesYesNo.push ({ id: property, selected: obj.ignoreMarginalLosses && obj.ignoreMarginalLosses.endsWith ('.' + property)});
+                obj.loadFollowingYesNo = [{ id: '', selected: (!obj.loadFollowing)}]; for (var property in MktDomain.YesNo) obj.loadFollowingYesNo.push ({ id: property, selected: obj.loadFollowing && obj.loadFollowing.endsWith ('.' + property)});
+                obj.rucProcurementYesNo = [{ id: '', selected: (!obj.rucProcurement)}]; for (var property in MktDomain.YesNo) obj.rucProcurementYesNo.push ({ id: property, selected: obj.rucProcurement && obj.rucProcurement.endsWith ('.' + property)});
                 if (obj.MeteredSubSystem) obj.MeteredSubSystem_string = obj.MeteredSubSystem.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.costRecoveryYesNo;
+                delete obj.grossSettlementYesNo;
+                delete obj.ignoreLossesYesNo;
+                delete obj.ignoreMarginalLossesYesNo;
+                delete obj.loadFollowingYesNo;
+                delete obj.rucProcurementYesNo;
                 delete obj.MeteredSubSystem_string;
             }
 
@@ -2180,17 +2206,17 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costRecovery'>costRecovery: </label><div class='col-sm-8'><input id='{{id}}_costRecovery' class='form-control' type='text'{{#costRecovery}} value='{{costRecovery}}'{{/costRecovery}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costRecovery'>costRecovery: </label><div class='col-sm-8'><select id='{{id}}_costRecovery' class='form-control custom-select'>{{#costRecoveryYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/costRecoveryYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_grossSettlement'>grossSettlement: </label><div class='col-sm-8'><input id='{{id}}_grossSettlement' class='form-control' type='text'{{#grossSettlement}} value='{{grossSettlement}}'{{/grossSettlement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreLosses' class='form-control' type='text'{{#ignoreLosses}} value='{{ignoreLosses}}'{{/ignoreLosses}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreMarginalLosses'>ignoreMarginalLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreMarginalLosses' class='form-control' type='text'{{#ignoreMarginalLosses}} value='{{ignoreMarginalLosses}}'{{/ignoreMarginalLosses}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowing'>loadFollowing: </label><div class='col-sm-8'><input id='{{id}}_loadFollowing' class='form-control' type='text'{{#loadFollowing}} value='{{loadFollowing}}'{{/loadFollowing}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucProcurement'>rucProcurement: </label><div class='col-sm-8'><input id='{{id}}_rucProcurement' class='form-control' type='text'{{#rucProcurement}} value='{{rucProcurement}}'{{/rucProcurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_grossSettlement'>grossSettlement: </label><div class='col-sm-8'><select id='{{id}}_grossSettlement' class='form-control custom-select'>{{#grossSettlementYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/grossSettlementYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><select id='{{id}}_ignoreLosses' class='form-control custom-select'>{{#ignoreLossesYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ignoreLossesYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreMarginalLosses'>ignoreMarginalLosses: </label><div class='col-sm-8'><select id='{{id}}_ignoreMarginalLosses' class='form-control custom-select'>{{#ignoreMarginalLossesYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ignoreMarginalLossesYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowing'>loadFollowing: </label><div class='col-sm-8'><select id='{{id}}_loadFollowing' class='form-control custom-select'>{{#loadFollowingYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/loadFollowingYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucProcurement'>rucProcurement: </label><div class='col-sm-8'><select id='{{id}}_rucProcurement' class='form-control custom-select'>{{#rucProcurementYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rucProcurementYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2201,13 +2227,13 @@ define
 
                 var obj = obj || { id: id, cls: "MSSAggregation" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_costRecovery").value; if ("" != temp) obj.costRecovery = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_costRecovery").value]; if (temp) obj.costRecovery = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.costRecovery;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_grossSettlement").value; if ("" != temp) obj.grossSettlement = temp;
-                temp = document.getElementById (id + "_ignoreLosses").value; if ("" != temp) obj.ignoreLosses = temp;
-                temp = document.getElementById (id + "_ignoreMarginalLosses").value; if ("" != temp) obj.ignoreMarginalLosses = temp;
-                temp = document.getElementById (id + "_loadFollowing").value; if ("" != temp) obj.loadFollowing = temp;
-                temp = document.getElementById (id + "_rucProcurement").value; if ("" != temp) obj.rucProcurement = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_grossSettlement").value]; if (temp) obj.grossSettlement = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.grossSettlement;
+                temp = MktDomain.YesNo[document.getElementById (id + "_ignoreLosses").value]; if (temp) obj.ignoreLosses = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.ignoreLosses;
+                temp = MktDomain.YesNo[document.getElementById (id + "_ignoreMarginalLosses").value]; if (temp) obj.ignoreMarginalLosses = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.ignoreMarginalLosses;
+                temp = MktDomain.YesNo[document.getElementById (id + "_loadFollowing").value]; if (temp) obj.loadFollowing = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.loadFollowing;
+                temp = MktDomain.YesNo[document.getElementById (id + "_rucProcurement").value]; if (temp) obj.rucProcurement = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.rucProcurement;
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
 
@@ -2256,7 +2282,7 @@ define
                 obj.cls = "MPMTestThreshold";
                 base.parse_element (/<cim:MPMTestThreshold.price>([\s\S]*?)<\/cim:MPMTestThreshold.price>/g, obj, "price", base.to_string, sub, context);
                 base.parse_element (/<cim:MPMTestThreshold.percent>([\s\S]*?)<\/cim:MPMTestThreshold.percent>/g, obj, "percent", base.to_string, sub, context);
-                base.parse_element (/<cim:MPMTestThreshold.marketType>([\s\S]*?)<\/cim:MPMTestThreshold.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MPMTestThreshold.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_attribute (/<cim:MPMTestThreshold.MPMTestCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestCategory", sub, context);
                 base.parse_attributes (/<cim:MPMTestThreshold.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregatedPnode", sub, context);
                 base.parse_attributes (/<cim:MPMTestThreshold.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
@@ -2274,7 +2300,7 @@ define
 
                 base.export_element (obj, "MPMTestThreshold", "price", "price",  base.from_string, fields);
                 base.export_element (obj, "MPMTestThreshold", "percent", "percent",  base.from_string, fields);
-                base.export_element (obj, "MPMTestThreshold", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "MPMTestThreshold", "marketType", "marketType", fields);
                 base.export_attribute (obj, "MPMTestThreshold", "MPMTestCategory", "MPMTestCategory", fields);
                 base.export_attributes (obj, "MPMTestThreshold", "AggregatedPnode", "AggregatedPnode", fields);
                 base.export_attributes (obj, "MPMTestThreshold", "RegisteredResource", "RegisteredResource", fields);
@@ -2301,7 +2327,7 @@ define
                     {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AggregatedPnode}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2310,6 +2336,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.AggregatedPnode) obj.AggregatedPnode_string = obj.AggregatedPnode.join ();
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
@@ -2317,6 +2344,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.marketTypeMarketType;
                 delete obj.AggregatedPnode_string;
                 delete obj.RegisteredResource_string;
             }
@@ -2333,12 +2361,12 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_price'>price: </label><div class='col-sm-8'><input id='{{id}}_price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_percent'>percent: </label><div class='col-sm-8'><input id='{{id}}_percent' class='form-control' type='text'{{#percent}} value='{{percent}}'{{/percent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestCategory'>MPMTestCategory: </label><div class='col-sm-8'><input id='{{id}}_MPMTestCategory' class='form-control' type='text'{{#MPMTestCategory}} value='{{MPMTestCategory}}'{{/MPMTestCategory}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode_string}}'{{/AggregatedPnode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2351,7 +2379,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_price").value; if ("" != temp) obj.price = temp;
                 temp = document.getElementById (id + "_percent").value; if ("" != temp) obj.percent = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_MPMTestCategory").value; if ("" != temp) obj.MPMTestCategory = temp;
                 temp = document.getElementById (id + "_AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp.split (",");
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
@@ -2434,7 +2462,7 @@ define
                     `
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2462,7 +2490,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2518,17 +2546,17 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketPerson";
                 base.parse_element (/<cim:MarketPerson.category>([\s\S]*?)<\/cim:MarketPerson.category>/g, obj, "category", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.electronicAddressAlternate>([\s\S]*?)<\/cim:MarketPerson.electronicAddressAlternate>/g, obj, "electronicAddressAlternate", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.electronicAddressPrimary>([\s\S]*?)<\/cim:MarketPerson.electronicAddressPrimary>/g, obj, "electronicAddressPrimary", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketPerson.electronicAddressAlternate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddressAlternate", sub, context);
+                base.parse_attribute (/<cim:MarketPerson.electronicAddressPrimary\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddressPrimary", sub, context);
                 base.parse_element (/<cim:MarketPerson.firstName>([\s\S]*?)<\/cim:MarketPerson.firstName>/g, obj, "firstName", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.governmentID>([\s\S]*?)<\/cim:MarketPerson.governmentID>/g, obj, "governmentID", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.landlinePhone>([\s\S]*?)<\/cim:MarketPerson.landlinePhone>/g, obj, "landlinePhone", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketPerson.landlinePhone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "landlinePhone", sub, context);
                 base.parse_element (/<cim:MarketPerson.lastName>([\s\S]*?)<\/cim:MarketPerson.lastName>/g, obj, "lastName", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.mName>([\s\S]*?)<\/cim:MarketPerson.mName>/g, obj, "mName", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.mobilePhone>([\s\S]*?)<\/cim:MarketPerson.mobilePhone>/g, obj, "mobilePhone", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketPerson.mobilePhone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mobilePhone", sub, context);
                 base.parse_element (/<cim:MarketPerson.prefix>([\s\S]*?)<\/cim:MarketPerson.prefix>/g, obj, "prefix", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.specialNeed>([\s\S]*?)<\/cim:MarketPerson.specialNeed>/g, obj, "specialNeed", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketPerson.status>([\s\S]*?)<\/cim:MarketPerson.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketPerson.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:MarketPerson.suffix>([\s\S]*?)<\/cim:MarketPerson.suffix>/g, obj, "suffix", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.userID>([\s\S]*?)<\/cim:MarketPerson.userID>/g, obj, "userID", base.to_string, sub, context);
                 base.parse_attributes (/<cim:MarketPerson.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrganisation", sub, context);
@@ -2546,17 +2574,17 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MarketPerson", "category", "category",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "electronicAddressAlternate", "electronicAddressAlternate",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "electronicAddressPrimary", "electronicAddressPrimary",  base.from_string, fields);
+                base.export_attribute (obj, "MarketPerson", "electronicAddressAlternate", "electronicAddressAlternate", fields);
+                base.export_attribute (obj, "MarketPerson", "electronicAddressPrimary", "electronicAddressPrimary", fields);
                 base.export_element (obj, "MarketPerson", "firstName", "firstName",  base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "governmentID", "governmentID",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "landlinePhone", "landlinePhone",  base.from_string, fields);
+                base.export_attribute (obj, "MarketPerson", "landlinePhone", "landlinePhone", fields);
                 base.export_element (obj, "MarketPerson", "lastName", "lastName",  base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "mName", "mName",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "mobilePhone", "mobilePhone",  base.from_string, fields);
+                base.export_attribute (obj, "MarketPerson", "mobilePhone", "mobilePhone", fields);
                 base.export_element (obj, "MarketPerson", "prefix", "prefix",  base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "specialNeed", "specialNeed",  base.from_string, fields);
-                base.export_element (obj, "MarketPerson", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "MarketPerson", "status", "status", fields);
                 base.export_element (obj, "MarketPerson", "suffix", "suffix",  base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "userID", "userID",  base.from_string, fields);
                 base.export_attributes (obj, "MarketPerson", "MktOrganisation", "MktOrganisation", fields);
@@ -2589,7 +2617,7 @@ define
                     {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MktOrganisation}}
                     {{#MarketSkills}}<div><b>MarketSkills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MarketSkills}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2635,7 +2663,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_userID'>userID: </label><div class='col-sm-8'><input id='{{id}}_userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation_string}}'{{/MktOrganisation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2751,7 +2779,7 @@ define
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);}); return false;'>{{RTO}}</a></div>{{/RTO}}
                     {{#Chain_ContractRight}}<div><b>Chain_ContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Chain_ContractRight}}&quot;);}); return false;'>{{Chain_ContractRight}}</a></div>{{/Chain_ContractRight}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2784,7 +2812,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Chain_ContractRight'>Chain_ContractRight: </label><div class='col-sm-8'><input id='{{id}}_Chain_ContractRight' class='form-control' type='text'{{#Chain_ContractRight}} value='{{Chain_ContractRight}}'{{/Chain_ContractRight}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2902,7 +2930,7 @@ define
                     {{#FromSCTrade}}<div><b>FromSCTrade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FromSCTrade}}
                     {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Bid}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2944,7 +2972,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadRatio'>LoadRatio: </label><div class='col-sm-8'><input id='{{id}}_LoadRatio' class='form-control' type='text'{{#LoadRatio}} value='{{LoadRatio}}'{{/LoadRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrgansation'>MktOrgansation: </label><div class='col-sm-8'><input id='{{id}}_MktOrgansation' class='form-control' type='text'{{#MktOrgansation}} value='{{MktOrgansation}}'{{/MktOrgansation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3012,18 +3040,18 @@ define
                 base.parse_element (/<cim:RegisteredGenerator.coldStartTime>([\s\S]*?)<\/cim:RegisteredGenerator.coldStartTime>/g, obj, "coldStartTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.combinedCyclePlantName>([\s\S]*?)<\/cim:RegisteredGenerator.combinedCyclePlantName>/g, obj, "combinedCyclePlantName", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.commericialOperationDate>([\s\S]*?)<\/cim:RegisteredGenerator.commericialOperationDate>/g, obj, "commericialOperationDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.constrainedOutputFlag>([\s\S]*?)<\/cim:RegisteredGenerator.constrainedOutputFlag>/g, obj, "constrainedOutputFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.costBasis>([\s\S]*?)<\/cim:RegisteredGenerator.costBasis>/g, obj, "costBasis", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.extremeLongStart>([\s\S]*?)<\/cim:RegisteredGenerator.extremeLongStart>/g, obj, "extremeLongStart", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.fuelSource>([\s\S]*?)<\/cim:RegisteredGenerator.fuelSource>/g, obj, "fuelSource", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.constrainedOutputFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "constrainedOutputFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.costBasis\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "costBasis", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.extremeLongStart\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "extremeLongStart", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.fuelSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "fuelSource", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.highControlLimit>([\s\S]*?)<\/cim:RegisteredGenerator.highControlLimit>/g, obj, "highControlLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.hotIntTime>([\s\S]*?)<\/cim:RegisteredGenerator.hotIntTime>/g, obj, "hotIntTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.hotStartTime>([\s\S]*?)<\/cim:RegisteredGenerator.hotStartTime>/g, obj, "hotStartTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.intColdTime>([\s\S]*?)<\/cim:RegisteredGenerator.intColdTime>/g, obj, "intColdTime", base.to_float, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.intendedPIRP>([\s\S]*?)<\/cim:RegisteredGenerator.intendedPIRP>/g, obj, "intendedPIRP", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.intendedPIRP\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "intendedPIRP", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.intStartTime>([\s\S]*?)<\/cim:RegisteredGenerator.intStartTime>/g, obj, "intStartTime", base.to_float, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.loadFollowingDownMSS>([\s\S]*?)<\/cim:RegisteredGenerator.loadFollowingDownMSS>/g, obj, "loadFollowingDownMSS", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.loadFollowingUpMSS>([\s\S]*?)<\/cim:RegisteredGenerator.loadFollowingUpMSS>/g, obj, "loadFollowingUpMSS", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.loadFollowingDownMSS\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "loadFollowingDownMSS", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.loadFollowingUpMSS\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "loadFollowingUpMSS", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.lowControlLImit>([\s\S]*?)<\/cim:RegisteredGenerator.lowControlLImit>/g, obj, "lowControlLImit", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.lowerControlRate>([\s\S]*?)<\/cim:RegisteredGenerator.lowerControlRate>/g, obj, "lowerControlRate", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.lowerRampRate>([\s\S]*?)<\/cim:RegisteredGenerator.lowerRampRate>/g, obj, "lowerRampRate", base.to_string, sub, context);
@@ -3040,11 +3068,11 @@ define
                 base.parse_element (/<cim:RegisteredGenerator.minimumLoadFuelCost>([\s\S]*?)<\/cim:RegisteredGenerator.minimumLoadFuelCost>/g, obj, "minimumLoadFuelCost", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.minimumOperatingMW>([\s\S]*?)<\/cim:RegisteredGenerator.minimumOperatingMW>/g, obj, "minimumOperatingMW", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.minLoadCost>([\s\S]*?)<\/cim:RegisteredGenerator.minLoadCost>/g, obj, "minLoadCost", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.mustOfferRA>([\s\S]*?)<\/cim:RegisteredGenerator.mustOfferRA>/g, obj, "mustOfferRA", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.mustOfferRA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mustOfferRA", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.nameplateCapacity>([\s\S]*?)<\/cim:RegisteredGenerator.nameplateCapacity>/g, obj, "nameplateCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.operatingMaintenanceCost>([\s\S]*?)<\/cim:RegisteredGenerator.operatingMaintenanceCost>/g, obj, "operatingMaintenanceCost", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.operatingMode>([\s\S]*?)<\/cim:RegisteredGenerator.operatingMode>/g, obj, "operatingMode", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.proxyFlag>([\s\S]*?)<\/cim:RegisteredGenerator.proxyFlag>/g, obj, "proxyFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.proxyFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "proxyFlag", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.pumpingCost>([\s\S]*?)<\/cim:RegisteredGenerator.pumpingCost>/g, obj, "pumpingCost", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.pumpingFactor>([\s\S]*?)<\/cim:RegisteredGenerator.pumpingFactor>/g, obj, "pumpingFactor", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.pumpMinDownTime>([\s\S]*?)<\/cim:RegisteredGenerator.pumpMinDownTime>/g, obj, "pumpMinDownTime", base.to_float, sub, context);
@@ -3052,23 +3080,23 @@ define
                 base.parse_element (/<cim:RegisteredGenerator.pumpShutdownCost>([\s\S]*?)<\/cim:RegisteredGenerator.pumpShutdownCost>/g, obj, "pumpShutdownCost", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.pumpShutdownTime>([\s\S]*?)<\/cim:RegisteredGenerator.pumpShutdownTime>/g, obj, "pumpShutdownTime", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.qualifyingFacilityOwner>([\s\S]*?)<\/cim:RegisteredGenerator.qualifyingFacilityOwner>/g, obj, "qualifyingFacilityOwner", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.quickStartFlag>([\s\S]*?)<\/cim:RegisteredGenerator.quickStartFlag>/g, obj, "quickStartFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.quickStartFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "quickStartFlag", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.raiseControlRate>([\s\S]*?)<\/cim:RegisteredGenerator.raiseControlRate>/g, obj, "raiseControlRate", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.raiseRampRate>([\s\S]*?)<\/cim:RegisteredGenerator.raiseRampRate>/g, obj, "raiseRampRate", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.rampCurveType>([\s\S]*?)<\/cim:RegisteredGenerator.rampCurveType>/g, obj, "rampCurveType", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.rampMode>([\s\S]*?)<\/cim:RegisteredGenerator.rampMode>/g, obj, "rampMode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.rampCurveType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rampCurveType", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.rampMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rampMode", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.regulationFlag>([\s\S]*?)<\/cim:RegisteredGenerator.regulationFlag>/g, obj, "regulationFlag", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.regulationRampRate>([\s\S]*?)<\/cim:RegisteredGenerator.regulationRampRate>/g, obj, "regulationRampRate", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.resourceSubType>([\s\S]*?)<\/cim:RegisteredGenerator.resourceSubType>/g, obj, "resourceSubType", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.riverSystem>([\s\S]*?)<\/cim:RegisteredGenerator.riverSystem>/g, obj, "riverSystem", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.RMNRFlag>([\s\S]*?)<\/cim:RegisteredGenerator.RMNRFlag>/g, obj, "RMNRFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.RMRFlag>([\s\S]*?)<\/cim:RegisteredGenerator.RMRFlag>/g, obj, "RMRFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.RMRManualIndicator>([\s\S]*?)<\/cim:RegisteredGenerator.RMRManualIndicator>/g, obj, "RMRManualIndicator", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.RMTFlag>([\s\S]*?)<\/cim:RegisteredGenerator.RMTFlag>/g, obj, "RMTFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.RMNRFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMNRFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.RMRFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.RMRManualIndicator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRManualIndicator", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.RMTFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMTFlag", sub, context);
                 base.parse_element (/<cim:RegisteredGenerator.spinReserveRamp>([\s\S]*?)<\/cim:RegisteredGenerator.spinReserveRamp>/g, obj, "spinReserveRamp", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.syncCondCapable>([\s\S]*?)<\/cim:RegisteredGenerator.syncCondCapable>/g, obj, "syncCondCapable", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.unitType>([\s\S]*?)<\/cim:RegisteredGenerator.unitType>/g, obj, "unitType", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredGenerator.useLimitFlag>([\s\S]*?)<\/cim:RegisteredGenerator.useLimitFlag>/g, obj, "useLimitFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.syncCondCapable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "syncCondCapable", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.unitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unitType", sub, context);
+                base.parse_attribute (/<cim:RegisteredGenerator.useLimitFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "useLimitFlag", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.RMRHeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRHeatRateCurve", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.StartUpTimeCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartUpTimeCurve", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.FuelCostCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FuelCostCurve", sub, context);
@@ -3105,18 +3133,18 @@ define
                 base.export_element (obj, "RegisteredGenerator", "coldStartTime", "coldStartTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "combinedCyclePlantName", "combinedCyclePlantName",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "commericialOperationDate", "commericialOperationDate",  base.from_datetime, fields);
-                base.export_element (obj, "RegisteredGenerator", "constrainedOutputFlag", "constrainedOutputFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "costBasis", "costBasis",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "extremeLongStart", "extremeLongStart",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "fuelSource", "fuelSource",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "constrainedOutputFlag", "constrainedOutputFlag", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "costBasis", "costBasis", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "extremeLongStart", "extremeLongStart", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "fuelSource", "fuelSource", fields);
                 base.export_element (obj, "RegisteredGenerator", "highControlLimit", "highControlLimit",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "hotIntTime", "hotIntTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "hotStartTime", "hotStartTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "intColdTime", "intColdTime",  base.from_float, fields);
-                base.export_element (obj, "RegisteredGenerator", "intendedPIRP", "intendedPIRP",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "intendedPIRP", "intendedPIRP", fields);
                 base.export_element (obj, "RegisteredGenerator", "intStartTime", "intStartTime",  base.from_float, fields);
-                base.export_element (obj, "RegisteredGenerator", "loadFollowingDownMSS", "loadFollowingDownMSS",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "loadFollowingUpMSS", "loadFollowingUpMSS",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "loadFollowingDownMSS", "loadFollowingDownMSS", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "loadFollowingUpMSS", "loadFollowingUpMSS", fields);
                 base.export_element (obj, "RegisteredGenerator", "lowControlLImit", "lowControlLImit",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "lowerControlRate", "lowerControlRate",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "lowerRampRate", "lowerRampRate",  base.from_string, fields);
@@ -3133,11 +3161,11 @@ define
                 base.export_element (obj, "RegisteredGenerator", "minimumLoadFuelCost", "minimumLoadFuelCost",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "minimumOperatingMW", "minimumOperatingMW",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "minLoadCost", "minLoadCost",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "mustOfferRA", "mustOfferRA",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "mustOfferRA", "mustOfferRA", fields);
                 base.export_element (obj, "RegisteredGenerator", "nameplateCapacity", "nameplateCapacity",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "operatingMaintenanceCost", "operatingMaintenanceCost",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "operatingMode", "operatingMode",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "proxyFlag", "proxyFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "proxyFlag", "proxyFlag", fields);
                 base.export_element (obj, "RegisteredGenerator", "pumpingCost", "pumpingCost",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "pumpingFactor", "pumpingFactor",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "pumpMinDownTime", "pumpMinDownTime",  base.from_float, fields);
@@ -3145,23 +3173,23 @@ define
                 base.export_element (obj, "RegisteredGenerator", "pumpShutdownCost", "pumpShutdownCost",  base.from_float, fields);
                 base.export_element (obj, "RegisteredGenerator", "pumpShutdownTime", "pumpShutdownTime",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "qualifyingFacilityOwner", "qualifyingFacilityOwner",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "quickStartFlag", "quickStartFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "quickStartFlag", "quickStartFlag", fields);
                 base.export_element (obj, "RegisteredGenerator", "raiseControlRate", "raiseControlRate",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "raiseRampRate", "raiseRampRate",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "rampCurveType", "rampCurveType",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "rampMode", "rampMode",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "rampCurveType", "rampCurveType", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "rampMode", "rampMode", fields);
                 base.export_element (obj, "RegisteredGenerator", "regulationFlag", "regulationFlag",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "regulationRampRate", "regulationRampRate",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "resourceSubType", "resourceSubType",  base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "riverSystem", "riverSystem",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "RMNRFlag", "RMNRFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "RMRFlag", "RMRFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "RMRManualIndicator", "RMRManualIndicator",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "RMTFlag", "RMTFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "RMNRFlag", "RMNRFlag", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "RMRFlag", "RMRFlag", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "RMRManualIndicator", "RMRManualIndicator", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "RMTFlag", "RMTFlag", fields);
                 base.export_element (obj, "RegisteredGenerator", "spinReserveRamp", "spinReserveRamp",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "syncCondCapable", "syncCondCapable",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "unitType", "unitType",  base.from_string, fields);
-                base.export_element (obj, "RegisteredGenerator", "useLimitFlag", "useLimitFlag",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredGenerator", "syncCondCapable", "syncCondCapable", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "unitType", "unitType", fields);
+                base.export_attribute (obj, "RegisteredGenerator", "useLimitFlag", "useLimitFlag", fields);
                 base.export_attribute (obj, "RegisteredGenerator", "RMRHeatRateCurve", "RMRHeatRateCurve", fields);
                 base.export_attribute (obj, "RegisteredGenerator", "StartUpTimeCurve", "StartUpTimeCurve", fields);
                 base.export_attribute (obj, "RegisteredGenerator", "FuelCostCurve", "FuelCostCurve", fields);
@@ -3279,7 +3307,7 @@ define
                     {{#RegulatingLimit}}<div><b>RegulatingLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulatingLimit}}&quot;);}); return false;'>{{RegulatingLimit}}</a></div>{{/RegulatingLimit}}
                     {{#GeneratingBids}}<div><b>GeneratingBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GeneratingBids}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3288,6 +3316,25 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.constrainedOutputFlagYesNo = [{ id: '', selected: (!obj.constrainedOutputFlag)}]; for (var property in MktDomain.YesNo) obj.constrainedOutputFlagYesNo.push ({ id: property, selected: obj.constrainedOutputFlag && obj.constrainedOutputFlag.endsWith ('.' + property)});
+                obj.costBasisCostBasis = [{ id: '', selected: (!obj.costBasis)}]; for (var property in MktDomain.CostBasis) obj.costBasisCostBasis.push ({ id: property, selected: obj.costBasis && obj.costBasis.endsWith ('.' + property)});
+                obj.extremeLongStartYesNo = [{ id: '', selected: (!obj.extremeLongStart)}]; for (var property in MktDomain.YesNo) obj.extremeLongStartYesNo.push ({ id: property, selected: obj.extremeLongStart && obj.extremeLongStart.endsWith ('.' + property)});
+                obj.fuelSourceFuelSource = [{ id: '', selected: (!obj.fuelSource)}]; for (var property in MktDomain.FuelSource) obj.fuelSourceFuelSource.push ({ id: property, selected: obj.fuelSource && obj.fuelSource.endsWith ('.' + property)});
+                obj.intendedPIRPYesNo = [{ id: '', selected: (!obj.intendedPIRP)}]; for (var property in MktDomain.YesNo) obj.intendedPIRPYesNo.push ({ id: property, selected: obj.intendedPIRP && obj.intendedPIRP.endsWith ('.' + property)});
+                obj.loadFollowingDownMSSYesNo = [{ id: '', selected: (!obj.loadFollowingDownMSS)}]; for (var property in MktDomain.YesNo) obj.loadFollowingDownMSSYesNo.push ({ id: property, selected: obj.loadFollowingDownMSS && obj.loadFollowingDownMSS.endsWith ('.' + property)});
+                obj.loadFollowingUpMSSYesNo = [{ id: '', selected: (!obj.loadFollowingUpMSS)}]; for (var property in MktDomain.YesNo) obj.loadFollowingUpMSSYesNo.push ({ id: property, selected: obj.loadFollowingUpMSS && obj.loadFollowingUpMSS.endsWith ('.' + property)});
+                obj.mustOfferRAYesNo = [{ id: '', selected: (!obj.mustOfferRA)}]; for (var property in MktDomain.YesNo) obj.mustOfferRAYesNo.push ({ id: property, selected: obj.mustOfferRA && obj.mustOfferRA.endsWith ('.' + property)});
+                obj.proxyFlagYesNo = [{ id: '', selected: (!obj.proxyFlag)}]; for (var property in MktDomain.YesNo) obj.proxyFlagYesNo.push ({ id: property, selected: obj.proxyFlag && obj.proxyFlag.endsWith ('.' + property)});
+                obj.quickStartFlagYesNo = [{ id: '', selected: (!obj.quickStartFlag)}]; for (var property in MktDomain.YesNo) obj.quickStartFlagYesNo.push ({ id: property, selected: obj.quickStartFlag && obj.quickStartFlag.endsWith ('.' + property)});
+                obj.rampCurveTypeRampCurveType = [{ id: '', selected: (!obj.rampCurveType)}]; for (var property in MktDomain.RampCurveType) obj.rampCurveTypeRampCurveType.push ({ id: property, selected: obj.rampCurveType && obj.rampCurveType.endsWith ('.' + property)});
+                obj.rampModeRampModeType = [{ id: '', selected: (!obj.rampMode)}]; for (var property in MktDomain.RampModeType) obj.rampModeRampModeType.push ({ id: property, selected: obj.rampMode && obj.rampMode.endsWith ('.' + property)});
+                obj.RMNRFlagYesNo = [{ id: '', selected: (!obj.RMNRFlag)}]; for (var property in MktDomain.YesNo) obj.RMNRFlagYesNo.push ({ id: property, selected: obj.RMNRFlag && obj.RMNRFlag.endsWith ('.' + property)});
+                obj.RMRFlagFlagTypeRMR = [{ id: '', selected: (!obj.RMRFlag)}]; for (var property in MktDomain.FlagTypeRMR) obj.RMRFlagFlagTypeRMR.push ({ id: property, selected: obj.RMRFlag && obj.RMRFlag.endsWith ('.' + property)});
+                obj.RMRManualIndicatorYesNo = [{ id: '', selected: (!obj.RMRManualIndicator)}]; for (var property in MktDomain.YesNo) obj.RMRManualIndicatorYesNo.push ({ id: property, selected: obj.RMRManualIndicator && obj.RMRManualIndicator.endsWith ('.' + property)});
+                obj.RMTFlagYesNo = [{ id: '', selected: (!obj.RMTFlag)}]; for (var property in MktDomain.YesNo) obj.RMTFlagYesNo.push ({ id: property, selected: obj.RMTFlag && obj.RMTFlag.endsWith ('.' + property)});
+                obj.syncCondCapableYesNo = [{ id: '', selected: (!obj.syncCondCapable)}]; for (var property in MktDomain.YesNo) obj.syncCondCapableYesNo.push ({ id: property, selected: obj.syncCondCapable && obj.syncCondCapable.endsWith ('.' + property)});
+                obj.unitTypeUnitType = [{ id: '', selected: (!obj.unitType)}]; for (var property in MktDomain.UnitType) obj.unitTypeUnitType.push ({ id: property, selected: obj.unitType && obj.unitType.endsWith ('.' + property)});
+                obj.useLimitFlagYesNo = [{ id: '', selected: (!obj.useLimitFlag)}]; for (var property in MktDomain.YesNo) obj.useLimitFlagYesNo.push ({ id: property, selected: obj.useLimitFlag && obj.useLimitFlag.endsWith ('.' + property)});
                 if (obj.UnitInitialConditions) obj.UnitInitialConditions_string = obj.UnitInitialConditions.join ();
                 if (obj.Trade) obj.Trade_string = obj.Trade.join ();
                 if (obj.StartUpCostCurves) obj.StartUpCostCurves_string = obj.StartUpCostCurves.join ();
@@ -3299,6 +3346,25 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.constrainedOutputFlagYesNo;
+                delete obj.costBasisCostBasis;
+                delete obj.extremeLongStartYesNo;
+                delete obj.fuelSourceFuelSource;
+                delete obj.intendedPIRPYesNo;
+                delete obj.loadFollowingDownMSSYesNo;
+                delete obj.loadFollowingUpMSSYesNo;
+                delete obj.mustOfferRAYesNo;
+                delete obj.proxyFlagYesNo;
+                delete obj.quickStartFlagYesNo;
+                delete obj.rampCurveTypeRampCurveType;
+                delete obj.rampModeRampModeType;
+                delete obj.RMNRFlagYesNo;
+                delete obj.RMRFlagFlagTypeRMR;
+                delete obj.RMRManualIndicatorYesNo;
+                delete obj.RMTFlagYesNo;
+                delete obj.syncCondCapableYesNo;
+                delete obj.unitTypeUnitType;
+                delete obj.useLimitFlagYesNo;
                 delete obj.UnitInitialConditions_string;
                 delete obj.Trade_string;
                 delete obj.StartUpCostCurves_string;
@@ -3321,18 +3387,18 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldStartTime'>coldStartTime: </label><div class='col-sm-8'><input id='{{id}}_coldStartTime' class='form-control' type='text'{{#coldStartTime}} value='{{coldStartTime}}'{{/coldStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_combinedCyclePlantName'>combinedCyclePlantName: </label><div class='col-sm-8'><input id='{{id}}_combinedCyclePlantName' class='form-control' type='text'{{#combinedCyclePlantName}} value='{{combinedCyclePlantName}}'{{/combinedCyclePlantName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commericialOperationDate'>commericialOperationDate: </label><div class='col-sm-8'><input id='{{id}}_commericialOperationDate' class='form-control' type='text'{{#commericialOperationDate}} value='{{commericialOperationDate}}'{{/commericialOperationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constrainedOutputFlag'>constrainedOutputFlag: </label><div class='col-sm-8'><input id='{{id}}_constrainedOutputFlag' class='form-control' type='text'{{#constrainedOutputFlag}} value='{{constrainedOutputFlag}}'{{/constrainedOutputFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costBasis'>costBasis: </label><div class='col-sm-8'><input id='{{id}}_costBasis' class='form-control' type='text'{{#costBasis}} value='{{costBasis}}'{{/costBasis}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_extremeLongStart'>extremeLongStart: </label><div class='col-sm-8'><input id='{{id}}_extremeLongStart' class='form-control' type='text'{{#extremeLongStart}} value='{{extremeLongStart}}'{{/extremeLongStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelSource'>fuelSource: </label><div class='col-sm-8'><input id='{{id}}_fuelSource' class='form-control' type='text'{{#fuelSource}} value='{{fuelSource}}'{{/fuelSource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constrainedOutputFlag'>constrainedOutputFlag: </label><div class='col-sm-8'><select id='{{id}}_constrainedOutputFlag' class='form-control custom-select'>{{#constrainedOutputFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/constrainedOutputFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costBasis'>costBasis: </label><div class='col-sm-8'><select id='{{id}}_costBasis' class='form-control custom-select'>{{#costBasisCostBasis}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/costBasisCostBasis}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_extremeLongStart'>extremeLongStart: </label><div class='col-sm-8'><select id='{{id}}_extremeLongStart' class='form-control custom-select'>{{#extremeLongStartYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/extremeLongStartYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelSource'>fuelSource: </label><div class='col-sm-8'><select id='{{id}}_fuelSource' class='form-control custom-select'>{{#fuelSourceFuelSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/fuelSourceFuelSource}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highControlLimit'>highControlLimit: </label><div class='col-sm-8'><input id='{{id}}_highControlLimit' class='form-control' type='text'{{#highControlLimit}} value='{{highControlLimit}}'{{/highControlLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotIntTime'>hotIntTime: </label><div class='col-sm-8'><input id='{{id}}_hotIntTime' class='form-control' type='text'{{#hotIntTime}} value='{{hotIntTime}}'{{/hotIntTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotStartTime'>hotStartTime: </label><div class='col-sm-8'><input id='{{id}}_hotStartTime' class='form-control' type='text'{{#hotStartTime}} value='{{hotStartTime}}'{{/hotStartTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intColdTime'>intColdTime: </label><div class='col-sm-8'><input id='{{id}}_intColdTime' class='form-control' type='text'{{#intColdTime}} value='{{intColdTime}}'{{/intColdTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intendedPIRP'>intendedPIRP: </label><div class='col-sm-8'><input id='{{id}}_intendedPIRP' class='form-control' type='text'{{#intendedPIRP}} value='{{intendedPIRP}}'{{/intendedPIRP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intendedPIRP'>intendedPIRP: </label><div class='col-sm-8'><select id='{{id}}_intendedPIRP' class='form-control custom-select'>{{#intendedPIRPYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/intendedPIRPYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intStartTime'>intStartTime: </label><div class='col-sm-8'><input id='{{id}}_intStartTime' class='form-control' type='text'{{#intStartTime}} value='{{intStartTime}}'{{/intStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingDownMSS'>loadFollowingDownMSS: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingDownMSS' class='form-control' type='text'{{#loadFollowingDownMSS}} value='{{loadFollowingDownMSS}}'{{/loadFollowingDownMSS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingUpMSS'>loadFollowingUpMSS: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingUpMSS' class='form-control' type='text'{{#loadFollowingUpMSS}} value='{{loadFollowingUpMSS}}'{{/loadFollowingUpMSS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingDownMSS'>loadFollowingDownMSS: </label><div class='col-sm-8'><select id='{{id}}_loadFollowingDownMSS' class='form-control custom-select'>{{#loadFollowingDownMSSYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/loadFollowingDownMSSYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingUpMSS'>loadFollowingUpMSS: </label><div class='col-sm-8'><select id='{{id}}_loadFollowingUpMSS' class='form-control custom-select'>{{#loadFollowingUpMSSYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/loadFollowingUpMSSYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowControlLImit'>lowControlLImit: </label><div class='col-sm-8'><input id='{{id}}_lowControlLImit' class='form-control' type='text'{{#lowControlLImit}} value='{{lowControlLImit}}'{{/lowControlLImit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerControlRate'>lowerControlRate: </label><div class='col-sm-8'><input id='{{id}}_lowerControlRate' class='form-control' type='text'{{#lowerControlRate}} value='{{lowerControlRate}}'{{/lowerControlRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerRampRate'>lowerRampRate: </label><div class='col-sm-8'><input id='{{id}}_lowerRampRate' class='form-control' type='text'{{#lowerRampRate}} value='{{lowerRampRate}}'{{/lowerRampRate}}></div></div>
@@ -3349,11 +3415,11 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumLoadFuelCost'>minimumLoadFuelCost: </label><div class='col-sm-8'><input id='{{id}}_minimumLoadFuelCost' class='form-control' type='text'{{#minimumLoadFuelCost}} value='{{minimumLoadFuelCost}}'{{/minimumLoadFuelCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumOperatingMW'>minimumOperatingMW: </label><div class='col-sm-8'><input id='{{id}}_minimumOperatingMW' class='form-control' type='text'{{#minimumOperatingMW}} value='{{minimumOperatingMW}}'{{/minimumOperatingMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadCost'>minLoadCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadCost' class='form-control' type='text'{{#minLoadCost}} value='{{minLoadCost}}'{{/minLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mustOfferRA'>mustOfferRA: </label><div class='col-sm-8'><input id='{{id}}_mustOfferRA' class='form-control' type='text'{{#mustOfferRA}} value='{{mustOfferRA}}'{{/mustOfferRA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mustOfferRA'>mustOfferRA: </label><div class='col-sm-8'><select id='{{id}}_mustOfferRA' class='form-control custom-select'>{{#mustOfferRAYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/mustOfferRAYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nameplateCapacity'>nameplateCapacity: </label><div class='col-sm-8'><input id='{{id}}_nameplateCapacity' class='form-control' type='text'{{#nameplateCapacity}} value='{{nameplateCapacity}}'{{/nameplateCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMaintenanceCost'>operatingMaintenanceCost: </label><div class='col-sm-8'><input id='{{id}}_operatingMaintenanceCost' class='form-control' type='text'{{#operatingMaintenanceCost}} value='{{operatingMaintenanceCost}}'{{/operatingMaintenanceCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><input id='{{id}}_operatingMode' class='form-control' type='text'{{#operatingMode}} value='{{operatingMode}}'{{/operatingMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_proxyFlag'>proxyFlag: </label><div class='col-sm-8'><input id='{{id}}_proxyFlag' class='form-control' type='text'{{#proxyFlag}} value='{{proxyFlag}}'{{/proxyFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_proxyFlag'>proxyFlag: </label><div class='col-sm-8'><select id='{{id}}_proxyFlag' class='form-control custom-select'>{{#proxyFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/proxyFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpingCost'>pumpingCost: </label><div class='col-sm-8'><input id='{{id}}_pumpingCost' class='form-control' type='text'{{#pumpingCost}} value='{{pumpingCost}}'{{/pumpingCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpingFactor'>pumpingFactor: </label><div class='col-sm-8'><input id='{{id}}_pumpingFactor' class='form-control' type='text'{{#pumpingFactor}} value='{{pumpingFactor}}'{{/pumpingFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpMinDownTime'>pumpMinDownTime: </label><div class='col-sm-8'><input id='{{id}}_pumpMinDownTime' class='form-control' type='text'{{#pumpMinDownTime}} value='{{pumpMinDownTime}}'{{/pumpMinDownTime}}></div></div>
@@ -3361,23 +3427,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpShutdownCost'>pumpShutdownCost: </label><div class='col-sm-8'><input id='{{id}}_pumpShutdownCost' class='form-control' type='text'{{#pumpShutdownCost}} value='{{pumpShutdownCost}}'{{/pumpShutdownCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpShutdownTime'>pumpShutdownTime: </label><div class='col-sm-8'><input id='{{id}}_pumpShutdownTime' class='form-control' type='text'{{#pumpShutdownTime}} value='{{pumpShutdownTime}}'{{/pumpShutdownTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualifyingFacilityOwner'>qualifyingFacilityOwner: </label><div class='col-sm-8'><input id='{{id}}_qualifyingFacilityOwner' class='form-control' type='text'{{#qualifyingFacilityOwner}} value='{{qualifyingFacilityOwner}}'{{/qualifyingFacilityOwner}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quickStartFlag'>quickStartFlag: </label><div class='col-sm-8'><input id='{{id}}_quickStartFlag' class='form-control' type='text'{{#quickStartFlag}} value='{{quickStartFlag}}'{{/quickStartFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quickStartFlag'>quickStartFlag: </label><div class='col-sm-8'><select id='{{id}}_quickStartFlag' class='form-control custom-select'>{{#quickStartFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/quickStartFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_raiseControlRate'>raiseControlRate: </label><div class='col-sm-8'><input id='{{id}}_raiseControlRate' class='form-control' type='text'{{#raiseControlRate}} value='{{raiseControlRate}}'{{/raiseControlRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_raiseRampRate'>raiseRampRate: </label><div class='col-sm-8'><input id='{{id}}_raiseRampRate' class='form-control' type='text'{{#raiseRampRate}} value='{{raiseRampRate}}'{{/raiseRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampCurveType'>rampCurveType: </label><div class='col-sm-8'><input id='{{id}}_rampCurveType' class='form-control' type='text'{{#rampCurveType}} value='{{rampCurveType}}'{{/rampCurveType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampMode'>rampMode: </label><div class='col-sm-8'><input id='{{id}}_rampMode' class='form-control' type='text'{{#rampMode}} value='{{rampMode}}'{{/rampMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampCurveType'>rampCurveType: </label><div class='col-sm-8'><select id='{{id}}_rampCurveType' class='form-control custom-select'>{{#rampCurveTypeRampCurveType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rampCurveTypeRampCurveType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampMode'>rampMode: </label><div class='col-sm-8'><select id='{{id}}_rampMode' class='form-control custom-select'>{{#rampModeRampModeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rampModeRampModeType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationFlag'>regulationFlag: </label><div class='col-sm-8'><input id='{{id}}_regulationFlag' class='form-control' type='text'{{#regulationFlag}} value='{{regulationFlag}}'{{/regulationFlag}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationRampRate'>regulationRampRate: </label><div class='col-sm-8'><input id='{{id}}_regulationRampRate' class='form-control' type='text'{{#regulationRampRate}} value='{{regulationRampRate}}'{{/regulationRampRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='{{id}}_resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_riverSystem'>riverSystem: </label><div class='col-sm-8'><input id='{{id}}_riverSystem' class='form-control' type='text'{{#riverSystem}} value='{{riverSystem}}'{{/riverSystem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMNRFlag'>RMNRFlag: </label><div class='col-sm-8'><input id='{{id}}_RMNRFlag' class='form-control' type='text'{{#RMNRFlag}} value='{{RMNRFlag}}'{{/RMNRFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRFlag'>RMRFlag: </label><div class='col-sm-8'><input id='{{id}}_RMRFlag' class='form-control' type='text'{{#RMRFlag}} value='{{RMRFlag}}'{{/RMRFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRManualIndicator'>RMRManualIndicator: </label><div class='col-sm-8'><input id='{{id}}_RMRManualIndicator' class='form-control' type='text'{{#RMRManualIndicator}} value='{{RMRManualIndicator}}'{{/RMRManualIndicator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMTFlag'>RMTFlag: </label><div class='col-sm-8'><input id='{{id}}_RMTFlag' class='form-control' type='text'{{#RMTFlag}} value='{{RMTFlag}}'{{/RMTFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMNRFlag'>RMNRFlag: </label><div class='col-sm-8'><select id='{{id}}_RMNRFlag' class='form-control custom-select'>{{#RMNRFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RMNRFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRFlag'>RMRFlag: </label><div class='col-sm-8'><select id='{{id}}_RMRFlag' class='form-control custom-select'>{{#RMRFlagFlagTypeRMR}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RMRFlagFlagTypeRMR}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRManualIndicator'>RMRManualIndicator: </label><div class='col-sm-8'><select id='{{id}}_RMRManualIndicator' class='form-control custom-select'>{{#RMRManualIndicatorYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RMRManualIndicatorYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMTFlag'>RMTFlag: </label><div class='col-sm-8'><select id='{{id}}_RMTFlag' class='form-control custom-select'>{{#RMTFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RMTFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_spinReserveRamp'>spinReserveRamp: </label><div class='col-sm-8'><input id='{{id}}_spinReserveRamp' class='form-control' type='text'{{#spinReserveRamp}} value='{{spinReserveRamp}}'{{/spinReserveRamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_syncCondCapable'>syncCondCapable: </label><div class='col-sm-8'><input id='{{id}}_syncCondCapable' class='form-control' type='text'{{#syncCondCapable}} value='{{syncCondCapable}}'{{/syncCondCapable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitType'>unitType: </label><div class='col-sm-8'><input id='{{id}}_unitType' class='form-control' type='text'{{#unitType}} value='{{unitType}}'{{/unitType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_useLimitFlag'>useLimitFlag: </label><div class='col-sm-8'><input id='{{id}}_useLimitFlag' class='form-control' type='text'{{#useLimitFlag}} value='{{useLimitFlag}}'{{/useLimitFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_syncCondCapable'>syncCondCapable: </label><div class='col-sm-8'><select id='{{id}}_syncCondCapable' class='form-control custom-select'>{{#syncCondCapableYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/syncCondCapableYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitType'>unitType: </label><div class='col-sm-8'><select id='{{id}}_unitType' class='form-control custom-select'>{{#unitTypeUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitTypeUnitType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_useLimitFlag'>useLimitFlag: </label><div class='col-sm-8'><select id='{{id}}_useLimitFlag' class='form-control custom-select'>{{#useLimitFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/useLimitFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRHeatRateCurve'>RMRHeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRHeatRateCurve' class='form-control' type='text'{{#RMRHeatRateCurve}} value='{{RMRHeatRateCurve}}'{{/RMRHeatRateCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpTimeCurve'>StartUpTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_StartUpTimeCurve' class='form-control' type='text'{{#StartUpTimeCurve}} value='{{StartUpTimeCurve}}'{{/StartUpTimeCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelCostCurve'>FuelCostCurve: </label><div class='col-sm-8'><input id='{{id}}_FuelCostCurve' class='form-control' type='text'{{#FuelCostCurve}} value='{{FuelCostCurve}}'{{/FuelCostCurve}}></div></div>
@@ -3394,7 +3460,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpEnergyCurve'>StartUpEnergyCurve: </label><div class='col-sm-8'><input id='{{id}}_StartUpEnergyCurve' class='form-control' type='text'{{#StartUpEnergyCurve}} value='{{StartUpEnergyCurve}}'{{/StartUpEnergyCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegulatingLimit'>RegulatingLimit: </label><div class='col-sm-8'><input id='{{id}}_RegulatingLimit' class='form-control' type='text'{{#RegulatingLimit}} value='{{RegulatingLimit}}'{{/RegulatingLimit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3409,18 +3475,18 @@ define
                 temp = document.getElementById (id + "_coldStartTime").value; if ("" != temp) obj.coldStartTime = temp;
                 temp = document.getElementById (id + "_combinedCyclePlantName").value; if ("" != temp) obj.combinedCyclePlantName = temp;
                 temp = document.getElementById (id + "_commericialOperationDate").value; if ("" != temp) obj.commericialOperationDate = temp;
-                temp = document.getElementById (id + "_constrainedOutputFlag").value; if ("" != temp) obj.constrainedOutputFlag = temp;
-                temp = document.getElementById (id + "_costBasis").value; if ("" != temp) obj.costBasis = temp;
-                temp = document.getElementById (id + "_extremeLongStart").value; if ("" != temp) obj.extremeLongStart = temp;
-                temp = document.getElementById (id + "_fuelSource").value; if ("" != temp) obj.fuelSource = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_constrainedOutputFlag").value]; if (temp) obj.constrainedOutputFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.constrainedOutputFlag;
+                temp = MktDomain.CostBasis[document.getElementById (id + "_costBasis").value]; if (temp) obj.costBasis = "http://iec.ch/TC57/2013/CIM-schema-cim16#CostBasis." + temp; else delete obj.costBasis;
+                temp = MktDomain.YesNo[document.getElementById (id + "_extremeLongStart").value]; if (temp) obj.extremeLongStart = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.extremeLongStart;
+                temp = MktDomain.FuelSource[document.getElementById (id + "_fuelSource").value]; if (temp) obj.fuelSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelSource." + temp; else delete obj.fuelSource;
                 temp = document.getElementById (id + "_highControlLimit").value; if ("" != temp) obj.highControlLimit = temp;
                 temp = document.getElementById (id + "_hotIntTime").value; if ("" != temp) obj.hotIntTime = temp;
                 temp = document.getElementById (id + "_hotStartTime").value; if ("" != temp) obj.hotStartTime = temp;
                 temp = document.getElementById (id + "_intColdTime").value; if ("" != temp) obj.intColdTime = temp;
-                temp = document.getElementById (id + "_intendedPIRP").value; if ("" != temp) obj.intendedPIRP = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_intendedPIRP").value]; if (temp) obj.intendedPIRP = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.intendedPIRP;
                 temp = document.getElementById (id + "_intStartTime").value; if ("" != temp) obj.intStartTime = temp;
-                temp = document.getElementById (id + "_loadFollowingDownMSS").value; if ("" != temp) obj.loadFollowingDownMSS = temp;
-                temp = document.getElementById (id + "_loadFollowingUpMSS").value; if ("" != temp) obj.loadFollowingUpMSS = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_loadFollowingDownMSS").value]; if (temp) obj.loadFollowingDownMSS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.loadFollowingDownMSS;
+                temp = MktDomain.YesNo[document.getElementById (id + "_loadFollowingUpMSS").value]; if (temp) obj.loadFollowingUpMSS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.loadFollowingUpMSS;
                 temp = document.getElementById (id + "_lowControlLImit").value; if ("" != temp) obj.lowControlLImit = temp;
                 temp = document.getElementById (id + "_lowerControlRate").value; if ("" != temp) obj.lowerControlRate = temp;
                 temp = document.getElementById (id + "_lowerRampRate").value; if ("" != temp) obj.lowerRampRate = temp;
@@ -3437,11 +3503,11 @@ define
                 temp = document.getElementById (id + "_minimumLoadFuelCost").value; if ("" != temp) obj.minimumLoadFuelCost = temp;
                 temp = document.getElementById (id + "_minimumOperatingMW").value; if ("" != temp) obj.minimumOperatingMW = temp;
                 temp = document.getElementById (id + "_minLoadCost").value; if ("" != temp) obj.minLoadCost = temp;
-                temp = document.getElementById (id + "_mustOfferRA").value; if ("" != temp) obj.mustOfferRA = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_mustOfferRA").value]; if (temp) obj.mustOfferRA = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.mustOfferRA;
                 temp = document.getElementById (id + "_nameplateCapacity").value; if ("" != temp) obj.nameplateCapacity = temp;
                 temp = document.getElementById (id + "_operatingMaintenanceCost").value; if ("" != temp) obj.operatingMaintenanceCost = temp;
                 temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) obj.operatingMode = temp;
-                temp = document.getElementById (id + "_proxyFlag").value; if ("" != temp) obj.proxyFlag = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_proxyFlag").value]; if (temp) obj.proxyFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.proxyFlag;
                 temp = document.getElementById (id + "_pumpingCost").value; if ("" != temp) obj.pumpingCost = temp;
                 temp = document.getElementById (id + "_pumpingFactor").value; if ("" != temp) obj.pumpingFactor = temp;
                 temp = document.getElementById (id + "_pumpMinDownTime").value; if ("" != temp) obj.pumpMinDownTime = temp;
@@ -3449,23 +3515,23 @@ define
                 temp = document.getElementById (id + "_pumpShutdownCost").value; if ("" != temp) obj.pumpShutdownCost = temp;
                 temp = document.getElementById (id + "_pumpShutdownTime").value; if ("" != temp) obj.pumpShutdownTime = temp;
                 temp = document.getElementById (id + "_qualifyingFacilityOwner").value; if ("" != temp) obj.qualifyingFacilityOwner = temp;
-                temp = document.getElementById (id + "_quickStartFlag").value; if ("" != temp) obj.quickStartFlag = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_quickStartFlag").value]; if (temp) obj.quickStartFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.quickStartFlag;
                 temp = document.getElementById (id + "_raiseControlRate").value; if ("" != temp) obj.raiseControlRate = temp;
                 temp = document.getElementById (id + "_raiseRampRate").value; if ("" != temp) obj.raiseRampRate = temp;
-                temp = document.getElementById (id + "_rampCurveType").value; if ("" != temp) obj.rampCurveType = temp;
-                temp = document.getElementById (id + "_rampMode").value; if ("" != temp) obj.rampMode = temp;
+                temp = MktDomain.RampCurveType[document.getElementById (id + "_rampCurveType").value]; if (temp) obj.rampCurveType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampCurveType." + temp; else delete obj.rampCurveType;
+                temp = MktDomain.RampModeType[document.getElementById (id + "_rampMode").value]; if (temp) obj.rampMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampModeType." + temp; else delete obj.rampMode;
                 temp = document.getElementById (id + "_regulationFlag").value; if ("" != temp) obj.regulationFlag = temp;
                 temp = document.getElementById (id + "_regulationRampRate").value; if ("" != temp) obj.regulationRampRate = temp;
                 temp = document.getElementById (id + "_resourceSubType").value; if ("" != temp) obj.resourceSubType = temp;
                 temp = document.getElementById (id + "_riverSystem").value; if ("" != temp) obj.riverSystem = temp;
-                temp = document.getElementById (id + "_RMNRFlag").value; if ("" != temp) obj.RMNRFlag = temp;
-                temp = document.getElementById (id + "_RMRFlag").value; if ("" != temp) obj.RMRFlag = temp;
-                temp = document.getElementById (id + "_RMRManualIndicator").value; if ("" != temp) obj.RMRManualIndicator = temp;
-                temp = document.getElementById (id + "_RMTFlag").value; if ("" != temp) obj.RMTFlag = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_RMNRFlag").value]; if (temp) obj.RMNRFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.RMNRFlag;
+                temp = MktDomain.FlagTypeRMR[document.getElementById (id + "_RMRFlag").value]; if (temp) obj.RMRFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#FlagTypeRMR." + temp; else delete obj.RMRFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_RMRManualIndicator").value]; if (temp) obj.RMRManualIndicator = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.RMRManualIndicator;
+                temp = MktDomain.YesNo[document.getElementById (id + "_RMTFlag").value]; if (temp) obj.RMTFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.RMTFlag;
                 temp = document.getElementById (id + "_spinReserveRamp").value; if ("" != temp) obj.spinReserveRamp = temp;
-                temp = document.getElementById (id + "_syncCondCapable").value; if ("" != temp) obj.syncCondCapable = temp;
-                temp = document.getElementById (id + "_unitType").value; if ("" != temp) obj.unitType = temp;
-                temp = document.getElementById (id + "_useLimitFlag").value; if ("" != temp) obj.useLimitFlag = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_syncCondCapable").value]; if (temp) obj.syncCondCapable = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.syncCondCapable;
+                temp = MktDomain.UnitType[document.getElementById (id + "_unitType").value]; if (temp) obj.unitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitType." + temp; else delete obj.unitType;
+                temp = MktDomain.YesNo[document.getElementById (id + "_useLimitFlag").value]; if (temp) obj.useLimitFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.useLimitFlag;
                 temp = document.getElementById (id + "_RMRHeatRateCurve").value; if ("" != temp) obj.RMRHeatRateCurve = temp;
                 temp = document.getElementById (id + "_StartUpTimeCurve").value; if ("" != temp) obj.StartUpTimeCurve = temp;
                 temp = document.getElementById (id + "_FuelCostCurve").value; if ("" != temp) obj.FuelCostCurve = temp;
@@ -3543,7 +3609,7 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "Flowgate";
-                base.parse_element (/<cim:Flowgate.direction>([\s\S]*?)<\/cim:Flowgate.direction>/g, obj, "direction", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Flowgate.direction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "direction", sub, context);
                 base.parse_element (/<cim:Flowgate.endEffectiveDate>([\s\S]*?)<\/cim:Flowgate.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Flowgate.exportMWRating>([\s\S]*?)<\/cim:Flowgate.exportMWRating>/g, obj, "exportMWRating", base.to_string, sub, context);
                 base.parse_element (/<cim:Flowgate.importMWRating>([\s\S]*?)<\/cim:Flowgate.importMWRating>/g, obj, "importMWRating", base.to_string, sub, context);
@@ -3581,7 +3647,7 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Flowgate", "direction", "direction",  base.from_string, fields);
+                base.export_attribute (obj, "Flowgate", "direction", "direction", fields);
                 base.export_element (obj, "Flowgate", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "Flowgate", "exportMWRating", "exportMWRating",  base.from_string, fields);
                 base.export_element (obj, "Flowgate", "importMWRating", "importMWRating",  base.from_string, fields);
@@ -3650,7 +3716,7 @@ define
                     {{#GenericConstraints}}<div><b>GenericConstraints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenericConstraints}}&quot;);}); return false;'>{{GenericConstraints}}</a></div>{{/GenericConstraints}}
                     {{#InterTie}}<div><b>InterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/InterTie}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3659,6 +3725,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.directionInterTieDirection = [{ id: '', selected: (!obj.direction)}]; for (var property in MktDomain.InterTieDirection) obj.directionInterTieDirection.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
                 if (obj.FlowgateValue) obj.FlowgateValue_string = obj.FlowgateValue.join ();
                 if (obj.TransmissionCapacity) obj.TransmissionCapacity_string = obj.TransmissionCapacity.join ();
                 if (obj.MktTerminal) obj.MktTerminal_string = obj.MktTerminal.join ();
@@ -3679,6 +3746,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.directionInterTieDirection;
                 delete obj.FlowgateValue_string;
                 delete obj.TransmissionCapacity_string;
                 delete obj.MktTerminal_string;
@@ -3706,7 +3774,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><input id='{{id}}_direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#directionInterTieDirection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/directionInterTieDirection}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_exportMWRating'>exportMWRating: </label><div class='col-sm-8'><input id='{{id}}_exportMWRating' class='form-control' type='text'{{#exportMWRating}} value='{{exportMWRating}}'{{/exportMWRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_importMWRating'>importMWRating: </label><div class='col-sm-8'><input id='{{id}}_importMWRating' class='form-control' type='text'{{#importMWRating}} value='{{importMWRating}}'{{/importMWRating}}></div></div>
@@ -3720,7 +3788,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_From_SubControlArea'>From_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_From_SubControlArea' class='form-control' type='text'{{#From_SubControlArea}} value='{{From_SubControlArea}}'{{/From_SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenericConstraints'>GenericConstraints: </label><div class='col-sm-8'><input id='{{id}}_GenericConstraints' class='form-control' type='text'{{#GenericConstraints}} value='{{GenericConstraints}}'{{/GenericConstraints}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3731,7 +3799,7 @@ define
 
                 var obj = obj || { id: id, cls: "Flowgate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_direction").value; if ("" != temp) obj.direction = temp;
+                temp = MktDomain.InterTieDirection[document.getElementById (id + "_direction").value]; if (temp) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#InterTieDirection." + temp; else delete obj.direction;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_exportMWRating").value; if ("" != temp) obj.exportMWRating = temp;
                 temp = document.getElementById (id + "_importMWRating").value; if ("" != temp) obj.importMWRating = temp;
@@ -3839,7 +3907,7 @@ define
                     `
                     {{#FlowgateValue}}<div><b>FlowgateValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FlowgateValue}}&quot;);}); return false;'>{{FlowgateValue}}</a></div>{{/FlowgateValue}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3867,7 +3935,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FlowgateValue'>FlowgateValue: </label><div class='col-sm-8'><input id='{{id}}_FlowgateValue' class='form-control' type='text'{{#FlowgateValue}} value='{{FlowgateValue}}'{{/FlowgateValue}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4002,7 +4070,7 @@ define
                     {{#solidfuelPercentLowSustainedLimit}}<div><b>solidfuelPercentLowSustainedLimit</b>: {{solidfuelPercentLowSustainedLimit}}</div>{{/solidfuelPercentLowSustainedLimit}}
                     {{#ResourceVerifiableCosts}}<div><b>ResourceVerifiableCosts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceVerifiableCosts}}&quot;);}); return false;'>{{ResourceVerifiableCosts}}</a></div>{{/ResourceVerifiableCosts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4046,7 +4114,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidfuelPercentLowSustainedLimit'>solidfuelPercentLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_solidfuelPercentLowSustainedLimit' class='form-control' type='text'{{#solidfuelPercentLowSustainedLimit}} value='{{solidfuelPercentLowSustainedLimit}}'{{/solidfuelPercentLowSustainedLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='{{id}}_ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4152,7 +4220,7 @@ define
                     {{#gasPriceIndex}}<div><b>gasPriceIndex</b>: {{gasPriceIndex}}</div>{{/gasPriceIndex}}
                     {{#FuelRegion}}<div><b>FuelRegion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FuelRegion}}&quot;);}); return false;'>{{FuelRegion}}</a></div>{{/FuelRegion}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4181,7 +4249,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gasPriceIndex'>gasPriceIndex: </label><div class='col-sm-8'><input id='{{id}}_gasPriceIndex' class='form-control' type='text'{{#gasPriceIndex}} value='{{gasPriceIndex}}'{{/gasPriceIndex}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='{{id}}_FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4278,7 +4346,7 @@ define
                     {{#share}}<div><b>share</b>: {{share}}</div>{{/share}}
                     {{#SchedulingCoordinator}}<div><b>SchedulingCoordinator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SchedulingCoordinator}}&quot;);}); return false;'>{{SchedulingCoordinator}}</a></div>{{/SchedulingCoordinator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4309,7 +4377,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_share'>share: </label><div class='col-sm-8'><input id='{{id}}_share' class='form-control' type='text'{{#share}} value='{{share}}'{{/share}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='{{id}}_SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4367,10 +4435,10 @@ define
 
                 obj = MarketCommon.RegisteredResource.prototype.parse.call (this, context, sub);
                 obj.cls = "RegisteredInterTie";
-                base.parse_element (/<cim:RegisteredInterTie.direction>([\s\S]*?)<\/cim:RegisteredInterTie.direction>/g, obj, "direction", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredInterTie.energyProductType>([\s\S]*?)<\/cim:RegisteredInterTie.energyProductType>/g, obj, "energyProductType", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredInterTie.isDCTie>([\s\S]*?)<\/cim:RegisteredInterTie.isDCTie>/g, obj, "isDCTie", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredInterTie.isDynamicInterchange>([\s\S]*?)<\/cim:RegisteredInterTie.isDynamicInterchange>/g, obj, "isDynamicInterchange", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredInterTie.direction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "direction", sub, context);
+                base.parse_attribute (/<cim:RegisteredInterTie.energyProductType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "energyProductType", sub, context);
+                base.parse_attribute (/<cim:RegisteredInterTie.isDCTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "isDCTie", sub, context);
+                base.parse_attribute (/<cim:RegisteredInterTie.isDynamicInterchange\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "isDynamicInterchange", sub, context);
                 base.parse_element (/<cim:RegisteredInterTie.minHourlyBlockLimit>([\s\S]*?)<\/cim:RegisteredInterTie.minHourlyBlockLimit>/g, obj, "minHourlyBlockLimit", base.to_string, sub, context);
                 base.parse_attributes (/<cim:RegisteredInterTie.InterchangeSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterchangeSchedule", sub, context);
                 base.parse_attributes (/<cim:RegisteredInterTie.InterTieDispatchResponse\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieDispatchResponse", sub, context);
@@ -4389,10 +4457,10 @@ define
             {
                 var fields = MarketCommon.RegisteredResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RegisteredInterTie", "direction", "direction",  base.from_string, fields);
-                base.export_element (obj, "RegisteredInterTie", "energyProductType", "energyProductType",  base.from_string, fields);
-                base.export_element (obj, "RegisteredInterTie", "isDCTie", "isDCTie",  base.from_string, fields);
-                base.export_element (obj, "RegisteredInterTie", "isDynamicInterchange", "isDynamicInterchange",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredInterTie", "direction", "direction", fields);
+                base.export_attribute (obj, "RegisteredInterTie", "energyProductType", "energyProductType", fields);
+                base.export_attribute (obj, "RegisteredInterTie", "isDCTie", "isDCTie", fields);
+                base.export_attribute (obj, "RegisteredInterTie", "isDynamicInterchange", "isDynamicInterchange", fields);
                 base.export_element (obj, "RegisteredInterTie", "minHourlyBlockLimit", "minHourlyBlockLimit",  base.from_string, fields);
                 base.export_attributes (obj, "RegisteredInterTie", "InterchangeSchedule", "InterchangeSchedule", fields);
                 base.export_attributes (obj, "RegisteredInterTie", "InterTieDispatchResponse", "InterTieDispatchResponse", fields);
@@ -4426,7 +4494,7 @@ define
                     {{#WheelingCounterParty}}<div><b>WheelingCounterParty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WheelingCounterParty}}
                     {{#InterTieBid}}<div><b>InterTieBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTieBid}}&quot;);}); return false;'>{{InterTieBid}}</a></div>{{/InterTieBid}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4435,6 +4503,10 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.directionInterTieDirection = [{ id: '', selected: (!obj.direction)}]; for (var property in MktDomain.InterTieDirection) obj.directionInterTieDirection.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
+                obj.energyProductTypeEnergyProductType = [{ id: '', selected: (!obj.energyProductType)}]; for (var property in MktDomain.EnergyProductType) obj.energyProductTypeEnergyProductType.push ({ id: property, selected: obj.energyProductType && obj.energyProductType.endsWith ('.' + property)});
+                obj.isDCTieYesNo = [{ id: '', selected: (!obj.isDCTie)}]; for (var property in MktDomain.YesNo) obj.isDCTieYesNo.push ({ id: property, selected: obj.isDCTie && obj.isDCTie.endsWith ('.' + property)});
+                obj.isDynamicInterchangeYesNo = [{ id: '', selected: (!obj.isDynamicInterchange)}]; for (var property in MktDomain.YesNo) obj.isDynamicInterchangeYesNo.push ({ id: property, selected: obj.isDynamicInterchange && obj.isDynamicInterchange.endsWith ('.' + property)});
                 if (obj.InterchangeSchedule) obj.InterchangeSchedule_string = obj.InterchangeSchedule.join ();
                 if (obj.InterTieDispatchResponse) obj.InterTieDispatchResponse_string = obj.InterTieDispatchResponse.join ();
                 if (obj.WheelingCounterParty) obj.WheelingCounterParty_string = obj.WheelingCounterParty.join ();
@@ -4443,6 +4515,10 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.directionInterTieDirection;
+                delete obj.energyProductTypeEnergyProductType;
+                delete obj.isDCTieYesNo;
+                delete obj.isDynamicInterchangeYesNo;
                 delete obj.InterchangeSchedule_string;
                 delete obj.InterTieDispatchResponse_string;
                 delete obj.WheelingCounterParty_string;
@@ -4458,16 +4534,16 @@ define
                     `
                     + MarketCommon.RegisteredResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><input id='{{id}}_direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyProductType'>energyProductType: </label><div class='col-sm-8'><input id='{{id}}_energyProductType' class='form-control' type='text'{{#energyProductType}} value='{{energyProductType}}'{{/energyProductType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDCTie'>isDCTie: </label><div class='col-sm-8'><input id='{{id}}_isDCTie' class='form-control' type='text'{{#isDCTie}} value='{{isDCTie}}'{{/isDCTie}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDynamicInterchange'>isDynamicInterchange: </label><div class='col-sm-8'><input id='{{id}}_isDynamicInterchange' class='form-control' type='text'{{#isDynamicInterchange}} value='{{isDynamicInterchange}}'{{/isDynamicInterchange}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#directionInterTieDirection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/directionInterTieDirection}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyProductType'>energyProductType: </label><div class='col-sm-8'><select id='{{id}}_energyProductType' class='form-control custom-select'>{{#energyProductTypeEnergyProductType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/energyProductTypeEnergyProductType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDCTie'>isDCTie: </label><div class='col-sm-8'><select id='{{id}}_isDCTie' class='form-control custom-select'>{{#isDCTieYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/isDCTieYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDynamicInterchange'>isDynamicInterchange: </label><div class='col-sm-8'><select id='{{id}}_isDynamicInterchange' class='form-control custom-select'>{{#isDynamicInterchangeYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/isDynamicInterchangeYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minHourlyBlockLimit'>minHourlyBlockLimit: </label><div class='col-sm-8'><input id='{{id}}_minHourlyBlockLimit' class='form-control' type='text'{{#minHourlyBlockLimit}} value='{{minHourlyBlockLimit}}'{{/minHourlyBlockLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WheelingCounterParty'>WheelingCounterParty: </label><div class='col-sm-8'><input id='{{id}}_WheelingCounterParty' class='form-control' type='text'{{#WheelingCounterParty}} value='{{WheelingCounterParty_string}}'{{/WheelingCounterParty}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='{{id}}_InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4478,10 +4554,10 @@ define
 
                 var obj = obj || { id: id, cls: "RegisteredInterTie" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_direction").value; if ("" != temp) obj.direction = temp;
-                temp = document.getElementById (id + "_energyProductType").value; if ("" != temp) obj.energyProductType = temp;
-                temp = document.getElementById (id + "_isDCTie").value; if ("" != temp) obj.isDCTie = temp;
-                temp = document.getElementById (id + "_isDynamicInterchange").value; if ("" != temp) obj.isDynamicInterchange = temp;
+                temp = MktDomain.InterTieDirection[document.getElementById (id + "_direction").value]; if (temp) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#InterTieDirection." + temp; else delete obj.direction;
+                temp = MktDomain.EnergyProductType[document.getElementById (id + "_energyProductType").value]; if (temp) obj.energyProductType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyProductType." + temp; else delete obj.energyProductType;
+                temp = MktDomain.YesNo[document.getElementById (id + "_isDCTie").value]; if (temp) obj.isDCTie = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.isDCTie;
+                temp = MktDomain.YesNo[document.getElementById (id + "_isDynamicInterchange").value]; if (temp) obj.isDynamicInterchange = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.isDynamicInterchange;
                 temp = document.getElementById (id + "_minHourlyBlockLimit").value; if ("" != temp) obj.minHourlyBlockLimit = temp;
                 temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
                 temp = document.getElementById (id + "_WheelingCounterParty").value; if ("" != temp) obj.WheelingCounterParty = temp.split (",");
@@ -4533,10 +4609,10 @@ define
 
                 obj = MarketCommon.RegisteredResource.prototype.parse.call (this, context, sub);
                 obj.cls = "RegisteredLoad";
-                base.parse_element (/<cim:RegisteredLoad.blockLoadTransferFlag>([\s\S]*?)<\/cim:RegisteredLoad.blockLoadTransferFlag>/g, obj, "blockLoadTransferFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.dynamicallyScheduledLoadResourceFlag>([\s\S]*?)<\/cim:RegisteredLoad.dynamicallyScheduledLoadResourceFlag>/g, obj, "dynamicallyScheduledLoadResourceFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.dynamicallyScheduledQualificationFlag>([\s\S]*?)<\/cim:RegisteredLoad.dynamicallyScheduledQualificationFlag>/g, obj, "dynamicallyScheduledQualificationFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.loadRegistryMSS>([\s\S]*?)<\/cim:RegisteredLoad.loadRegistryMSS>/g, obj, "loadRegistryMSS", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.blockLoadTransferFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "blockLoadTransferFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.dynamicallyScheduledLoadResourceFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "dynamicallyScheduledLoadResourceFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.dynamicallyScheduledQualificationFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "dynamicallyScheduledQualificationFlag", sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.loadRegistryMSS\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "loadRegistryMSS", sub, context);
                 base.parse_element (/<cim:RegisteredLoad.maxBaseLoad>([\s\S]*?)<\/cim:RegisteredLoad.maxBaseLoad>/g, obj, "maxBaseLoad", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.maxDeploymentTime>([\s\S]*?)<\/cim:RegisteredLoad.maxDeploymentTime>/g, obj, "maxDeploymentTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.maxLoadRedTimesPerDay>([\s\S]*?)<\/cim:RegisteredLoad.maxLoadRedTimesPerDay>/g, obj, "maxLoadRedTimesPerDay", base.to_string, sub, context);
@@ -4548,8 +4624,8 @@ define
                 base.parse_element (/<cim:RegisteredLoad.minLoadReductionInterval>([\s\S]*?)<\/cim:RegisteredLoad.minLoadReductionInterval>/g, obj, "minLoadReductionInterval", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.minReductionTime>([\s\S]*?)<\/cim:RegisteredLoad.minReductionTime>/g, obj, "minReductionTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.minTimeBetLoadRed>([\s\S]*?)<\/cim:RegisteredLoad.minTimeBetLoadRed>/g, obj, "minTimeBetLoadRed", base.to_float, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.NPLCustomLoadAggregation>([\s\S]*?)<\/cim:RegisteredLoad.NPLCustomLoadAggregation>/g, obj, "NPLCustomLoadAggregation", base.to_string, sub, context);
-                base.parse_element (/<cim:RegisteredLoad.participatingLoad>([\s\S]*?)<\/cim:RegisteredLoad.participatingLoad>/g, obj, "participatingLoad", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.NPLCustomLoadAggregation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NPLCustomLoadAggregation", sub, context);
+                base.parse_attribute (/<cim:RegisteredLoad.participatingLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "participatingLoad", sub, context);
                 base.parse_element (/<cim:RegisteredLoad.reqNoticeTime>([\s\S]*?)<\/cim:RegisteredLoad.reqNoticeTime>/g, obj, "reqNoticeTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.resourceSubType>([\s\S]*?)<\/cim:RegisteredLoad.resourceSubType>/g, obj, "resourceSubType", base.to_string, sub, context);
                 base.parse_attributes (/<cim:RegisteredLoad.AuxillaryObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryObject", sub, context);
@@ -4570,10 +4646,10 @@ define
             {
                 var fields = MarketCommon.RegisteredResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RegisteredLoad", "blockLoadTransferFlag", "blockLoadTransferFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredLoad", "dynamicallyScheduledLoadResourceFlag", "dynamicallyScheduledLoadResourceFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredLoad", "dynamicallyScheduledQualificationFlag", "dynamicallyScheduledQualificationFlag",  base.from_string, fields);
-                base.export_element (obj, "RegisteredLoad", "loadRegistryMSS", "loadRegistryMSS",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredLoad", "blockLoadTransferFlag", "blockLoadTransferFlag", fields);
+                base.export_attribute (obj, "RegisteredLoad", "dynamicallyScheduledLoadResourceFlag", "dynamicallyScheduledLoadResourceFlag", fields);
+                base.export_attribute (obj, "RegisteredLoad", "dynamicallyScheduledQualificationFlag", "dynamicallyScheduledQualificationFlag", fields);
+                base.export_attribute (obj, "RegisteredLoad", "loadRegistryMSS", "loadRegistryMSS", fields);
                 base.export_element (obj, "RegisteredLoad", "maxBaseLoad", "maxBaseLoad",  base.from_string, fields);
                 base.export_element (obj, "RegisteredLoad", "maxDeploymentTime", "maxDeploymentTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "maxLoadRedTimesPerDay", "maxLoadRedTimesPerDay",  base.from_string, fields);
@@ -4585,8 +4661,8 @@ define
                 base.export_element (obj, "RegisteredLoad", "minLoadReductionInterval", "minLoadReductionInterval",  base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "minReductionTime", "minReductionTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "minTimeBetLoadRed", "minTimeBetLoadRed",  base.from_float, fields);
-                base.export_element (obj, "RegisteredLoad", "NPLCustomLoadAggregation", "NPLCustomLoadAggregation",  base.from_string, fields);
-                base.export_element (obj, "RegisteredLoad", "participatingLoad", "participatingLoad",  base.from_string, fields);
+                base.export_attribute (obj, "RegisteredLoad", "NPLCustomLoadAggregation", "NPLCustomLoadAggregation", fields);
+                base.export_attribute (obj, "RegisteredLoad", "participatingLoad", "participatingLoad", fields);
                 base.export_element (obj, "RegisteredLoad", "reqNoticeTime", "reqNoticeTime",  base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "resourceSubType", "resourceSubType",  base.from_string, fields);
                 base.export_attributes (obj, "RegisteredLoad", "AuxillaryObject", "AuxillaryObject", fields);
@@ -4637,7 +4713,7 @@ define
                     {{#MktLoadArea}}<div><b>MktLoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktLoadArea}}&quot;);}); return false;'>{{MktLoadArea}}</a></div>{{/MktLoadArea}}
                     {{#LoadReductionPriceCurve}}<div><b>LoadReductionPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LoadReductionPriceCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4646,6 +4722,12 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.blockLoadTransferFlagYesNo = [{ id: '', selected: (!obj.blockLoadTransferFlag)}]; for (var property in MktDomain.YesNo) obj.blockLoadTransferFlagYesNo.push ({ id: property, selected: obj.blockLoadTransferFlag && obj.blockLoadTransferFlag.endsWith ('.' + property)});
+                obj.dynamicallyScheduledLoadResourceFlagYesNo = [{ id: '', selected: (!obj.dynamicallyScheduledLoadResourceFlag)}]; for (var property in MktDomain.YesNo) obj.dynamicallyScheduledLoadResourceFlagYesNo.push ({ id: property, selected: obj.dynamicallyScheduledLoadResourceFlag && obj.dynamicallyScheduledLoadResourceFlag.endsWith ('.' + property)});
+                obj.dynamicallyScheduledQualificationFlagYesNo = [{ id: '', selected: (!obj.dynamicallyScheduledQualificationFlag)}]; for (var property in MktDomain.YesNo) obj.dynamicallyScheduledQualificationFlagYesNo.push ({ id: property, selected: obj.dynamicallyScheduledQualificationFlag && obj.dynamicallyScheduledQualificationFlag.endsWith ('.' + property)});
+                obj.loadRegistryMSSYesNo = [{ id: '', selected: (!obj.loadRegistryMSS)}]; for (var property in MktDomain.YesNo) obj.loadRegistryMSSYesNo.push ({ id: property, selected: obj.loadRegistryMSS && obj.loadRegistryMSS.endsWith ('.' + property)});
+                obj.NPLCustomLoadAggregationYesNo = [{ id: '', selected: (!obj.NPLCustomLoadAggregation)}]; for (var property in MktDomain.YesNo) obj.NPLCustomLoadAggregationYesNo.push ({ id: property, selected: obj.NPLCustomLoadAggregation && obj.NPLCustomLoadAggregation.endsWith ('.' + property)});
+                obj.participatingLoadYesNo = [{ id: '', selected: (!obj.participatingLoad)}]; for (var property in MktDomain.YesNo) obj.participatingLoadYesNo.push ({ id: property, selected: obj.participatingLoad && obj.participatingLoad.endsWith ('.' + property)});
                 if (obj.AuxillaryObject) obj.AuxillaryObject_string = obj.AuxillaryObject.join ();
                 if (obj.MktEnergyConsumer) obj.MktEnergyConsumer_string = obj.MktEnergyConsumer.join ();
                 if (obj.LoadReductionTimeCurve) obj.LoadReductionTimeCurve_string = obj.LoadReductionTimeCurve.join ();
@@ -4656,6 +4738,12 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.blockLoadTransferFlagYesNo;
+                delete obj.dynamicallyScheduledLoadResourceFlagYesNo;
+                delete obj.dynamicallyScheduledQualificationFlagYesNo;
+                delete obj.loadRegistryMSSYesNo;
+                delete obj.NPLCustomLoadAggregationYesNo;
+                delete obj.participatingLoadYesNo;
                 delete obj.AuxillaryObject_string;
                 delete obj.MktEnergyConsumer_string;
                 delete obj.LoadReductionTimeCurve_string;
@@ -4673,10 +4761,10 @@ define
                     `
                     + MarketCommon.RegisteredResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_blockLoadTransferFlag'>blockLoadTransferFlag: </label><div class='col-sm-8'><input id='{{id}}_blockLoadTransferFlag' class='form-control' type='text'{{#blockLoadTransferFlag}} value='{{blockLoadTransferFlag}}'{{/blockLoadTransferFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledLoadResourceFlag'>dynamicallyScheduledLoadResourceFlag: </label><div class='col-sm-8'><input id='{{id}}_dynamicallyScheduledLoadResourceFlag' class='form-control' type='text'{{#dynamicallyScheduledLoadResourceFlag}} value='{{dynamicallyScheduledLoadResourceFlag}}'{{/dynamicallyScheduledLoadResourceFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledQualificationFlag'>dynamicallyScheduledQualificationFlag: </label><div class='col-sm-8'><input id='{{id}}_dynamicallyScheduledQualificationFlag' class='form-control' type='text'{{#dynamicallyScheduledQualificationFlag}} value='{{dynamicallyScheduledQualificationFlag}}'{{/dynamicallyScheduledQualificationFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRegistryMSS'>loadRegistryMSS: </label><div class='col-sm-8'><input id='{{id}}_loadRegistryMSS' class='form-control' type='text'{{#loadRegistryMSS}} value='{{loadRegistryMSS}}'{{/loadRegistryMSS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_blockLoadTransferFlag'>blockLoadTransferFlag: </label><div class='col-sm-8'><select id='{{id}}_blockLoadTransferFlag' class='form-control custom-select'>{{#blockLoadTransferFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/blockLoadTransferFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledLoadResourceFlag'>dynamicallyScheduledLoadResourceFlag: </label><div class='col-sm-8'><select id='{{id}}_dynamicallyScheduledLoadResourceFlag' class='form-control custom-select'>{{#dynamicallyScheduledLoadResourceFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/dynamicallyScheduledLoadResourceFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledQualificationFlag'>dynamicallyScheduledQualificationFlag: </label><div class='col-sm-8'><select id='{{id}}_dynamicallyScheduledQualificationFlag' class='form-control custom-select'>{{#dynamicallyScheduledQualificationFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/dynamicallyScheduledQualificationFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRegistryMSS'>loadRegistryMSS: </label><div class='col-sm-8'><select id='{{id}}_loadRegistryMSS' class='form-control custom-select'>{{#loadRegistryMSSYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/loadRegistryMSSYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxBaseLoad'>maxBaseLoad: </label><div class='col-sm-8'><input id='{{id}}_maxBaseLoad' class='form-control' type='text'{{#maxBaseLoad}} value='{{maxBaseLoad}}'{{/maxBaseLoad}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxDeploymentTime'>maxDeploymentTime: </label><div class='col-sm-8'><input id='{{id}}_maxDeploymentTime' class='form-control' type='text'{{#maxDeploymentTime}} value='{{maxDeploymentTime}}'{{/maxDeploymentTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxLoadRedTimesPerDay'>maxLoadRedTimesPerDay: </label><div class='col-sm-8'><input id='{{id}}_maxLoadRedTimesPerDay' class='form-control' type='text'{{#maxLoadRedTimesPerDay}} value='{{maxLoadRedTimesPerDay}}'{{/maxLoadRedTimesPerDay}}></div></div>
@@ -4688,15 +4776,15 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minReductionTime'>minReductionTime: </label><div class='col-sm-8'><input id='{{id}}_minReductionTime' class='form-control' type='text'{{#minReductionTime}} value='{{minReductionTime}}'{{/minReductionTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='{{id}}_minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NPLCustomLoadAggregation'>NPLCustomLoadAggregation: </label><div class='col-sm-8'><input id='{{id}}_NPLCustomLoadAggregation' class='form-control' type='text'{{#NPLCustomLoadAggregation}} value='{{NPLCustomLoadAggregation}}'{{/NPLCustomLoadAggregation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participatingLoad'>participatingLoad: </label><div class='col-sm-8'><input id='{{id}}_participatingLoad' class='form-control' type='text'{{#participatingLoad}} value='{{participatingLoad}}'{{/participatingLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NPLCustomLoadAggregation'>NPLCustomLoadAggregation: </label><div class='col-sm-8'><select id='{{id}}_NPLCustomLoadAggregation' class='form-control custom-select'>{{#NPLCustomLoadAggregationYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/NPLCustomLoadAggregationYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participatingLoad'>participatingLoad: </label><div class='col-sm-8'><select id='{{id}}_participatingLoad' class='form-control custom-select'>{{#participatingLoadYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/participatingLoadYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='{{id}}_reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='{{id}}_resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionTimeCurve'>LoadReductionTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionTimeCurve' class='form-control' type='text'{{#LoadReductionTimeCurve}} value='{{LoadReductionTimeCurve_string}}'{{/LoadReductionTimeCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktLoadArea'>MktLoadArea: </label><div class='col-sm-8'><input id='{{id}}_MktLoadArea' class='form-control' type='text'{{#MktLoadArea}} value='{{MktLoadArea}}'{{/MktLoadArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionPriceCurve'>LoadReductionPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionPriceCurve' class='form-control' type='text'{{#LoadReductionPriceCurve}} value='{{LoadReductionPriceCurve_string}}'{{/LoadReductionPriceCurve}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4707,10 +4795,10 @@ define
 
                 var obj = obj || { id: id, cls: "RegisteredLoad" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_blockLoadTransferFlag").value; if ("" != temp) obj.blockLoadTransferFlag = temp;
-                temp = document.getElementById (id + "_dynamicallyScheduledLoadResourceFlag").value; if ("" != temp) obj.dynamicallyScheduledLoadResourceFlag = temp;
-                temp = document.getElementById (id + "_dynamicallyScheduledQualificationFlag").value; if ("" != temp) obj.dynamicallyScheduledQualificationFlag = temp;
-                temp = document.getElementById (id + "_loadRegistryMSS").value; if ("" != temp) obj.loadRegistryMSS = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_blockLoadTransferFlag").value]; if (temp) obj.blockLoadTransferFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.blockLoadTransferFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_dynamicallyScheduledLoadResourceFlag").value]; if (temp) obj.dynamicallyScheduledLoadResourceFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.dynamicallyScheduledLoadResourceFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_dynamicallyScheduledQualificationFlag").value]; if (temp) obj.dynamicallyScheduledQualificationFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.dynamicallyScheduledQualificationFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_loadRegistryMSS").value]; if (temp) obj.loadRegistryMSS = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.loadRegistryMSS;
                 temp = document.getElementById (id + "_maxBaseLoad").value; if ("" != temp) obj.maxBaseLoad = temp;
                 temp = document.getElementById (id + "_maxDeploymentTime").value; if ("" != temp) obj.maxDeploymentTime = temp;
                 temp = document.getElementById (id + "_maxLoadRedTimesPerDay").value; if ("" != temp) obj.maxLoadRedTimesPerDay = temp;
@@ -4722,8 +4810,8 @@ define
                 temp = document.getElementById (id + "_minLoadReductionInterval").value; if ("" != temp) obj.minLoadReductionInterval = temp;
                 temp = document.getElementById (id + "_minReductionTime").value; if ("" != temp) obj.minReductionTime = temp;
                 temp = document.getElementById (id + "_minTimeBetLoadRed").value; if ("" != temp) obj.minTimeBetLoadRed = temp;
-                temp = document.getElementById (id + "_NPLCustomLoadAggregation").value; if ("" != temp) obj.NPLCustomLoadAggregation = temp;
-                temp = document.getElementById (id + "_participatingLoad").value; if ("" != temp) obj.participatingLoad = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_NPLCustomLoadAggregation").value]; if (temp) obj.NPLCustomLoadAggregation = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.NPLCustomLoadAggregation;
+                temp = MktDomain.YesNo[document.getElementById (id + "_participatingLoad").value]; if (temp) obj.participatingLoad = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.participatingLoad;
                 temp = document.getElementById (id + "_reqNoticeTime").value; if ("" != temp) obj.reqNoticeTime = temp;
                 temp = document.getElementById (id + "_resourceSubType").value; if ("" != temp) obj.resourceSubType = temp;
                 temp = document.getElementById (id + "_LoadReductionTimeCurve").value; if ("" != temp) obj.LoadReductionTimeCurve = temp.split (",");
@@ -4779,7 +4867,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "AggregateNode";
-                base.parse_element (/<cim:AggregateNode.anodeType>([\s\S]*?)<\/cim:AggregateNode.anodeType>/g, obj, "anodeType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AggregateNode.anodeType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "anodeType", sub, context);
                 base.parse_element (/<cim:AggregateNode.endEffectiveDate>([\s\S]*?)<\/cim:AggregateNode.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:AggregateNode.qualifASOrder>([\s\S]*?)<\/cim:AggregateNode.qualifASOrder>/g, obj, "qualifASOrder", base.to_string, sub, context);
                 base.parse_element (/<cim:AggregateNode.startEffectiveDate>([\s\S]*?)<\/cim:AggregateNode.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
@@ -4801,7 +4889,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AggregateNode", "anodeType", "anodeType",  base.from_string, fields);
+                base.export_attribute (obj, "AggregateNode", "anodeType", "anodeType", fields);
                 base.export_element (obj, "AggregateNode", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "AggregateNode", "qualifASOrder", "qualifASOrder",  base.from_string, fields);
                 base.export_element (obj, "AggregateNode", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
@@ -4838,7 +4926,7 @@ define
                     {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SubControlArea}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);}); return false;'>{{RTO}}</a></div>{{/RTO}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4847,6 +4935,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.anodeTypeAnodeType = [{ id: '', selected: (!obj.anodeType)}]; for (var property in MktDomain.AnodeType) obj.anodeTypeAnodeType.push ({ id: property, selected: obj.anodeType && obj.anodeType.endsWith ('.' + property)});
                 if (obj.Pnode) obj.Pnode_string = obj.Pnode.join ();
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
                 if (obj.AreaLoadCurve) obj.AreaLoadCurve_string = obj.AreaLoadCurve.join ();
@@ -4857,6 +4946,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.anodeTypeAnodeType;
                 delete obj.Pnode_string;
                 delete obj.RegisteredResource_string;
                 delete obj.AreaLoadCurve_string;
@@ -4874,7 +4964,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_anodeType'>anodeType: </label><div class='col-sm-8'><input id='{{id}}_anodeType' class='form-control' type='text'{{#anodeType}} value='{{anodeType}}'{{/anodeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_anodeType'>anodeType: </label><div class='col-sm-8'><select id='{{id}}_anodeType' class='form-control custom-select'>{{#anodeTypeAnodeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/anodeTypeAnodeType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualifASOrder'>qualifASOrder: </label><div class='col-sm-8'><input id='{{id}}_qualifASOrder' class='form-control' type='text'{{#qualifASOrder}} value='{{qualifASOrder}}'{{/qualifASOrder}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
@@ -4883,7 +4973,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea_string}}'{{/SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4894,7 +4984,7 @@ define
 
                 var obj = obj || { id: id, cls: "AggregateNode" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_anodeType").value; if ("" != temp) obj.anodeType = temp;
+                temp = MktDomain.AnodeType[document.getElementById (id + "_anodeType").value]; if (temp) obj.anodeType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnodeType." + temp; else delete obj.anodeType;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_qualifASOrder").value; if ("" != temp) obj.qualifASOrder = temp;
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
@@ -4987,7 +5077,7 @@ define
                     {{#CombinedCycleLogicalConfiguration}}<div><b>CombinedCycleLogicalConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CombinedCycleLogicalConfiguration}}
                     {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);}); return false;'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5017,7 +5107,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5110,7 +5200,7 @@ define
                     {{#MktCombinedCyclePlant}}<div><b>MktCombinedCyclePlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktCombinedCyclePlant}}&quot;);}); return false;'>{{MktCombinedCyclePlant}}</a></div>{{/MktCombinedCyclePlant}}
                     {{#CombinedCycleConfiguration}}<div><b>CombinedCycleConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CombinedCycleConfiguration}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5140,7 +5230,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktCombinedCyclePlant'>MktCombinedCyclePlant: </label><div class='col-sm-8'><input id='{{id}}_MktCombinedCyclePlant' class='form-control' type='text'{{#MktCombinedCyclePlant}} value='{{MktCombinedCyclePlant}}'{{/MktCombinedCyclePlant}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5228,7 +5318,7 @@ define
                     `
                     {{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredInterTie}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5258,7 +5348,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie_string}}'{{/RegisteredInterTie}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5351,7 +5441,7 @@ define
                     {{#FromConfiguration}}<div><b>FromConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromConfiguration}}&quot;);}); return false;'>{{FromConfiguration}}</a></div>{{/FromConfiguration}}
                     {{#ToConfiguration}}<div><b>ToConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ToConfiguration}}&quot;);}); return false;'>{{ToConfiguration}}</a></div>{{/ToConfiguration}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5381,7 +5471,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FromConfiguration'>FromConfiguration: </label><div class='col-sm-8'><input id='{{id}}_FromConfiguration' class='form-control' type='text'{{#FromConfiguration}} value='{{FromConfiguration}}'{{/FromConfiguration}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ToConfiguration'>ToConfiguration: </label><div class='col-sm-8'><input id='{{id}}_ToConfiguration' class='form-control' type='text'{{#ToConfiguration}} value='{{ToConfiguration}}'{{/ToConfiguration}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5439,9 +5529,9 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "OrgResOwnership";
-                base.parse_element (/<cim:OrgResOwnership.asscType>([\s\S]*?)<\/cim:OrgResOwnership.asscType>/g, obj, "asscType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OrgResOwnership.asscType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "asscType", sub, context);
                 base.parse_element (/<cim:OrgResOwnership.endEffectiveDate>([\s\S]*?)<\/cim:OrgResOwnership.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:OrgResOwnership.masterSchedulingCoordinatorFlag>([\s\S]*?)<\/cim:OrgResOwnership.masterSchedulingCoordinatorFlag>/g, obj, "masterSchedulingCoordinatorFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:OrgResOwnership.masterSchedulingCoordinatorFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "masterSchedulingCoordinatorFlag", sub, context);
                 base.parse_element (/<cim:OrgResOwnership.ownershipPercent>([\s\S]*?)<\/cim:OrgResOwnership.ownershipPercent>/g, obj, "ownershipPercent", base.to_string, sub, context);
                 base.parse_element (/<cim:OrgResOwnership.startEffectiveDate>([\s\S]*?)<\/cim:OrgResOwnership.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:OrgResOwnership.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
@@ -5458,9 +5548,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OrgResOwnership", "asscType", "asscType",  base.from_string, fields);
+                base.export_attribute (obj, "OrgResOwnership", "asscType", "asscType", fields);
                 base.export_element (obj, "OrgResOwnership", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "OrgResOwnership", "masterSchedulingCoordinatorFlag", "masterSchedulingCoordinatorFlag",  base.from_string, fields);
+                base.export_attribute (obj, "OrgResOwnership", "masterSchedulingCoordinatorFlag", "masterSchedulingCoordinatorFlag", fields);
                 base.export_element (obj, "OrgResOwnership", "ownershipPercent", "ownershipPercent",  base.from_string, fields);
                 base.export_element (obj, "OrgResOwnership", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
                 base.export_attribute (obj, "OrgResOwnership", "RegisteredResource", "RegisteredResource", fields);
@@ -5489,7 +5579,7 @@ define
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrganisation}}&quot;);}); return false;'>{{MktOrganisation}}</a></div>{{/MktOrganisation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5498,11 +5588,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.asscTypeResourceAssnType = [{ id: '', selected: (!obj.asscType)}]; for (var property in MktDomain.ResourceAssnType) obj.asscTypeResourceAssnType.push ({ id: property, selected: obj.asscType && obj.asscType.endsWith ('.' + property)});
+                obj.masterSchedulingCoordinatorFlagYesNo = [{ id: '', selected: (!obj.masterSchedulingCoordinatorFlag)}]; for (var property in MktDomain.YesNo) obj.masterSchedulingCoordinatorFlagYesNo.push ({ id: property, selected: obj.masterSchedulingCoordinatorFlag && obj.masterSchedulingCoordinatorFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.asscTypeResourceAssnType;
+                delete obj.masterSchedulingCoordinatorFlagYesNo;
             }
 
             edit_template ()
@@ -5515,15 +5609,15 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asscType'>asscType: </label><div class='col-sm-8'><input id='{{id}}_asscType' class='form-control' type='text'{{#asscType}} value='{{asscType}}'{{/asscType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asscType'>asscType: </label><div class='col-sm-8'><select id='{{id}}_asscType' class='form-control custom-select'>{{#asscTypeResourceAssnType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/asscTypeResourceAssnType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_masterSchedulingCoordinatorFlag'>masterSchedulingCoordinatorFlag: </label><div class='col-sm-8'><input id='{{id}}_masterSchedulingCoordinatorFlag' class='form-control' type='text'{{#masterSchedulingCoordinatorFlag}} value='{{masterSchedulingCoordinatorFlag}}'{{/masterSchedulingCoordinatorFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_masterSchedulingCoordinatorFlag'>masterSchedulingCoordinatorFlag: </label><div class='col-sm-8'><select id='{{id}}_masterSchedulingCoordinatorFlag' class='form-control custom-select'>{{#masterSchedulingCoordinatorFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/masterSchedulingCoordinatorFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ownershipPercent'>ownershipPercent: </label><div class='col-sm-8'><input id='{{id}}_ownershipPercent' class='form-control' type='text'{{#ownershipPercent}} value='{{ownershipPercent}}'{{/ownershipPercent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5534,9 +5628,9 @@ define
 
                 var obj = obj || { id: id, cls: "OrgResOwnership" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_asscType").value; if ("" != temp) obj.asscType = temp;
+                temp = MktDomain.ResourceAssnType[document.getElementById (id + "_asscType").value]; if (temp) obj.asscType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceAssnType." + temp; else delete obj.asscType;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_masterSchedulingCoordinatorFlag").value; if ("" != temp) obj.masterSchedulingCoordinatorFlag = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_masterSchedulingCoordinatorFlag").value]; if (temp) obj.masterSchedulingCoordinatorFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.masterSchedulingCoordinatorFlag;
                 temp = document.getElementById (id + "_ownershipPercent").value; if ("" != temp) obj.ownershipPercent = temp;
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
@@ -5592,25 +5686,25 @@ define
                 base.parse_element (/<cim:ContractRight.contractPrice>([\s\S]*?)<\/cim:ContractRight.contractPrice>/g, obj, "contractPrice", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.contractPriority>([\s\S]*?)<\/cim:ContractRight.contractPriority>/g, obj, "contractPriority", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.contractStatus>([\s\S]*?)<\/cim:ContractRight.contractStatus>/g, obj, "contractStatus", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.contractType>([\s\S]*?)<\/cim:ContractRight.contractType>/g, obj, "contractType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.contractType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "contractType", sub, context);
                 base.parse_element (/<cim:ContractRight.endEffectiveDate>([\s\S]*?)<\/cim:ContractRight.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ContractRight.financialLocation>([\s\S]*?)<\/cim:ContractRight.financialLocation>/g, obj, "financialLocation", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.financialRightsDAM>([\s\S]*?)<\/cim:ContractRight.financialRightsDAM>/g, obj, "financialRightsDAM", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.financialRightsRTM>([\s\S]*?)<\/cim:ContractRight.financialRightsRTM>/g, obj, "financialRightsRTM", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.financialLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "financialLocation", sub, context);
+                base.parse_attribute (/<cim:ContractRight.financialRightsDAM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "financialRightsDAM", sub, context);
+                base.parse_attribute (/<cim:ContractRight.financialRightsRTM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "financialRightsRTM", sub, context);
                 base.parse_element (/<cim:ContractRight.fuelAdder>([\s\S]*?)<\/cim:ContractRight.fuelAdder>/g, obj, "fuelAdder", base.to_float, sub, context);
                 base.parse_element (/<cim:ContractRight.latestSchedMinutes>([\s\S]*?)<\/cim:ContractRight.latestSchedMinutes>/g, obj, "latestSchedMinutes", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.latestSchedMktType>([\s\S]*?)<\/cim:ContractRight.latestSchedMktType>/g, obj, "latestSchedMktType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.latestSchedMktType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "latestSchedMktType", sub, context);
                 base.parse_element (/<cim:ContractRight.maximumScheduleQuantity>([\s\S]*?)<\/cim:ContractRight.maximumScheduleQuantity>/g, obj, "maximumScheduleQuantity", base.to_float, sub, context);
                 base.parse_element (/<cim:ContractRight.maximumServiceHours>([\s\S]*?)<\/cim:ContractRight.maximumServiceHours>/g, obj, "maximumServiceHours", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.maximumStartups>([\s\S]*?)<\/cim:ContractRight.maximumStartups>/g, obj, "maximumStartups", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.maxNetDependableCapacity>([\s\S]*?)<\/cim:ContractRight.maxNetDependableCapacity>/g, obj, "maxNetDependableCapacity", base.to_float, sub, context);
                 base.parse_element (/<cim:ContractRight.minimumLoad>([\s\S]*?)<\/cim:ContractRight.minimumLoad>/g, obj, "minimumLoad", base.to_float, sub, context);
                 base.parse_element (/<cim:ContractRight.minimumScheduleQuantity>([\s\S]*?)<\/cim:ContractRight.minimumScheduleQuantity>/g, obj, "minimumScheduleQuantity", base.to_float, sub, context);
-                base.parse_element (/<cim:ContractRight.physicalRightsDAM>([\s\S]*?)<\/cim:ContractRight.physicalRightsDAM>/g, obj, "physicalRightsDAM", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.physicalRightsRTM>([\s\S]*?)<\/cim:ContractRight.physicalRightsRTM>/g, obj, "physicalRightsRTM", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.physicalRightsDAM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "physicalRightsDAM", sub, context);
+                base.parse_attribute (/<cim:ContractRight.physicalRightsRTM\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "physicalRightsRTM", sub, context);
                 base.parse_element (/<cim:ContractRight.startEffectiveDate>([\s\S]*?)<\/cim:ContractRight.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ContractRight.startupLeadTime>([\s\S]*?)<\/cim:ContractRight.startupLeadTime>/g, obj, "startupLeadTime", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractRight.TRType>([\s\S]*?)<\/cim:ContractRight.TRType>/g, obj, "TRType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractRight.TRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TRType", sub, context);
                 base.parse_attribute (/<cim:ContractRight.SchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SchedulingCoordinator", sub, context);
                 base.parse_attributes (/<cim:ContractRight.BidSelfSched\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
                 base.parse_attributes (/<cim:ContractRight.SubstitutionResourceList\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubstitutionResourceList", sub, context);
@@ -5637,25 +5731,25 @@ define
                 base.export_element (obj, "ContractRight", "contractPrice", "contractPrice",  base.from_string, fields);
                 base.export_element (obj, "ContractRight", "contractPriority", "contractPriority",  base.from_string, fields);
                 base.export_element (obj, "ContractRight", "contractStatus", "contractStatus",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "contractType", "contractType",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "contractType", "contractType", fields);
                 base.export_element (obj, "ContractRight", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ContractRight", "financialLocation", "financialLocation",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "financialRightsDAM", "financialRightsDAM",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "financialRightsRTM", "financialRightsRTM",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "financialLocation", "financialLocation", fields);
+                base.export_attribute (obj, "ContractRight", "financialRightsDAM", "financialRightsDAM", fields);
+                base.export_attribute (obj, "ContractRight", "financialRightsRTM", "financialRightsRTM", fields);
                 base.export_element (obj, "ContractRight", "fuelAdder", "fuelAdder",  base.from_float, fields);
                 base.export_element (obj, "ContractRight", "latestSchedMinutes", "latestSchedMinutes",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "latestSchedMktType", "latestSchedMktType",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "latestSchedMktType", "latestSchedMktType", fields);
                 base.export_element (obj, "ContractRight", "maximumScheduleQuantity", "maximumScheduleQuantity",  base.from_float, fields);
                 base.export_element (obj, "ContractRight", "maximumServiceHours", "maximumServiceHours",  base.from_string, fields);
                 base.export_element (obj, "ContractRight", "maximumStartups", "maximumStartups",  base.from_string, fields);
                 base.export_element (obj, "ContractRight", "maxNetDependableCapacity", "maxNetDependableCapacity",  base.from_float, fields);
                 base.export_element (obj, "ContractRight", "minimumLoad", "minimumLoad",  base.from_float, fields);
                 base.export_element (obj, "ContractRight", "minimumScheduleQuantity", "minimumScheduleQuantity",  base.from_float, fields);
-                base.export_element (obj, "ContractRight", "physicalRightsDAM", "physicalRightsDAM",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "physicalRightsRTM", "physicalRightsRTM",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "physicalRightsDAM", "physicalRightsDAM", fields);
+                base.export_attribute (obj, "ContractRight", "physicalRightsRTM", "physicalRightsRTM", fields);
                 base.export_element (obj, "ContractRight", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "ContractRight", "startupLeadTime", "startupLeadTime",  base.from_string, fields);
-                base.export_element (obj, "ContractRight", "TRType", "TRType",  base.from_string, fields);
+                base.export_attribute (obj, "ContractRight", "TRType", "TRType", fields);
                 base.export_attribute (obj, "ContractRight", "SchedulingCoordinator", "SchedulingCoordinator", fields);
                 base.export_attributes (obj, "ContractRight", "BidSelfSched", "BidSelfSched", fields);
                 base.export_attributes (obj, "ContractRight", "SubstitutionResourceList", "SubstitutionResourceList", fields);
@@ -5715,7 +5809,7 @@ define
                     {{#ContractDistributionFactor}}<div><b>ContractDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ContractDistributionFactor}}
                     {{#Chain_TransmissionRightChain}}<div><b>Chain_TransmissionRightChain</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Chain_TransmissionRightChain}}&quot;);}); return false;'>{{Chain_TransmissionRightChain}}</a></div>{{/Chain_TransmissionRightChain}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5724,6 +5818,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.contractTypeContractType = [{ id: '', selected: (!obj.contractType)}]; for (var property in MktDomain.ContractType) obj.contractTypeContractType.push ({ id: property, selected: obj.contractType && obj.contractType.endsWith ('.' + property)});
+                obj.financialLocationYesNo = [{ id: '', selected: (!obj.financialLocation)}]; for (var property in MktDomain.YesNo) obj.financialLocationYesNo.push ({ id: property, selected: obj.financialLocation && obj.financialLocation.endsWith ('.' + property)});
+                obj.financialRightsDAMYesNo = [{ id: '', selected: (!obj.financialRightsDAM)}]; for (var property in MktDomain.YesNo) obj.financialRightsDAMYesNo.push ({ id: property, selected: obj.financialRightsDAM && obj.financialRightsDAM.endsWith ('.' + property)});
+                obj.financialRightsRTMYesNo = [{ id: '', selected: (!obj.financialRightsRTM)}]; for (var property in MktDomain.YesNo) obj.financialRightsRTMYesNo.push ({ id: property, selected: obj.financialRightsRTM && obj.financialRightsRTM.endsWith ('.' + property)});
+                obj.latestSchedMktTypeMarketType = [{ id: '', selected: (!obj.latestSchedMktType)}]; for (var property in MktDomain.MarketType) obj.latestSchedMktTypeMarketType.push ({ id: property, selected: obj.latestSchedMktType && obj.latestSchedMktType.endsWith ('.' + property)});
+                obj.physicalRightsDAMYesNo = [{ id: '', selected: (!obj.physicalRightsDAM)}]; for (var property in MktDomain.YesNo) obj.physicalRightsDAMYesNo.push ({ id: property, selected: obj.physicalRightsDAM && obj.physicalRightsDAM.endsWith ('.' + property)});
+                obj.physicalRightsRTMYesNo = [{ id: '', selected: (!obj.physicalRightsRTM)}]; for (var property in MktDomain.YesNo) obj.physicalRightsRTMYesNo.push ({ id: property, selected: obj.physicalRightsRTM && obj.physicalRightsRTM.endsWith ('.' + property)});
+                obj.TRTypeTRType = [{ id: '', selected: (!obj.TRType)}]; for (var property in MktDomain.TRType) obj.TRTypeTRType.push ({ id: property, selected: obj.TRType && obj.TRType.endsWith ('.' + property)});
                 if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
                 if (obj.SubstitutionResourceList) obj.SubstitutionResourceList_string = obj.SubstitutionResourceList.join ();
                 if (obj.TransmissionInterfaceEntitlement) obj.TransmissionInterfaceEntitlement_string = obj.TransmissionInterfaceEntitlement.join ();
@@ -5734,6 +5836,14 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.contractTypeContractType;
+                delete obj.financialLocationYesNo;
+                delete obj.financialRightsDAMYesNo;
+                delete obj.financialRightsRTMYesNo;
+                delete obj.latestSchedMktTypeMarketType;
+                delete obj.physicalRightsDAMYesNo;
+                delete obj.physicalRightsRTMYesNo;
+                delete obj.TRTypeTRType;
                 delete obj.BidSelfSched_string;
                 delete obj.SubstitutionResourceList_string;
                 delete obj.TransmissionInterfaceEntitlement_string;
@@ -5756,31 +5866,31 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractPrice'>contractPrice: </label><div class='col-sm-8'><input id='{{id}}_contractPrice' class='form-control' type='text'{{#contractPrice}} value='{{contractPrice}}'{{/contractPrice}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractPriority'>contractPriority: </label><div class='col-sm-8'><input id='{{id}}_contractPriority' class='form-control' type='text'{{#contractPriority}} value='{{contractPriority}}'{{/contractPriority}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractStatus'>contractStatus: </label><div class='col-sm-8'><input id='{{id}}_contractStatus' class='form-control' type='text'{{#contractStatus}} value='{{contractStatus}}'{{/contractStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractType'>contractType: </label><div class='col-sm-8'><input id='{{id}}_contractType' class='form-control' type='text'{{#contractType}} value='{{contractType}}'{{/contractType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractType'>contractType: </label><div class='col-sm-8'><select id='{{id}}_contractType' class='form-control custom-select'>{{#contractTypeContractType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/contractTypeContractType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialLocation'>financialLocation: </label><div class='col-sm-8'><input id='{{id}}_financialLocation' class='form-control' type='text'{{#financialLocation}} value='{{financialLocation}}'{{/financialLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsDAM'>financialRightsDAM: </label><div class='col-sm-8'><input id='{{id}}_financialRightsDAM' class='form-control' type='text'{{#financialRightsDAM}} value='{{financialRightsDAM}}'{{/financialRightsDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsRTM'>financialRightsRTM: </label><div class='col-sm-8'><input id='{{id}}_financialRightsRTM' class='form-control' type='text'{{#financialRightsRTM}} value='{{financialRightsRTM}}'{{/financialRightsRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialLocation'>financialLocation: </label><div class='col-sm-8'><select id='{{id}}_financialLocation' class='form-control custom-select'>{{#financialLocationYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/financialLocationYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsDAM'>financialRightsDAM: </label><div class='col-sm-8'><select id='{{id}}_financialRightsDAM' class='form-control custom-select'>{{#financialRightsDAMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/financialRightsDAMYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsRTM'>financialRightsRTM: </label><div class='col-sm-8'><select id='{{id}}_financialRightsRTM' class='form-control custom-select'>{{#financialRightsRTMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/financialRightsRTMYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelAdder'>fuelAdder: </label><div class='col-sm-8'><input id='{{id}}_fuelAdder' class='form-control' type='text'{{#fuelAdder}} value='{{fuelAdder}}'{{/fuelAdder}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestSchedMinutes'>latestSchedMinutes: </label><div class='col-sm-8'><input id='{{id}}_latestSchedMinutes' class='form-control' type='text'{{#latestSchedMinutes}} value='{{latestSchedMinutes}}'{{/latestSchedMinutes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestSchedMktType'>latestSchedMktType: </label><div class='col-sm-8'><input id='{{id}}_latestSchedMktType' class='form-control' type='text'{{#latestSchedMktType}} value='{{latestSchedMktType}}'{{/latestSchedMktType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestSchedMktType'>latestSchedMktType: </label><div class='col-sm-8'><select id='{{id}}_latestSchedMktType' class='form-control custom-select'>{{#latestSchedMktTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/latestSchedMktTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumScheduleQuantity'>maximumScheduleQuantity: </label><div class='col-sm-8'><input id='{{id}}_maximumScheduleQuantity' class='form-control' type='text'{{#maximumScheduleQuantity}} value='{{maximumScheduleQuantity}}'{{/maximumScheduleQuantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumServiceHours'>maximumServiceHours: </label><div class='col-sm-8'><input id='{{id}}_maximumServiceHours' class='form-control' type='text'{{#maximumServiceHours}} value='{{maximumServiceHours}}'{{/maximumServiceHours}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumStartups'>maximumStartups: </label><div class='col-sm-8'><input id='{{id}}_maximumStartups' class='form-control' type='text'{{#maximumStartups}} value='{{maximumStartups}}'{{/maximumStartups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxNetDependableCapacity'>maxNetDependableCapacity: </label><div class='col-sm-8'><input id='{{id}}_maxNetDependableCapacity' class='form-control' type='text'{{#maxNetDependableCapacity}} value='{{maxNetDependableCapacity}}'{{/maxNetDependableCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumLoad'>minimumLoad: </label><div class='col-sm-8'><input id='{{id}}_minimumLoad' class='form-control' type='text'{{#minimumLoad}} value='{{minimumLoad}}'{{/minimumLoad}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumScheduleQuantity'>minimumScheduleQuantity: </label><div class='col-sm-8'><input id='{{id}}_minimumScheduleQuantity' class='form-control' type='text'{{#minimumScheduleQuantity}} value='{{minimumScheduleQuantity}}'{{/minimumScheduleQuantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsDAM'>physicalRightsDAM: </label><div class='col-sm-8'><input id='{{id}}_physicalRightsDAM' class='form-control' type='text'{{#physicalRightsDAM}} value='{{physicalRightsDAM}}'{{/physicalRightsDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsRTM'>physicalRightsRTM: </label><div class='col-sm-8'><input id='{{id}}_physicalRightsRTM' class='form-control' type='text'{{#physicalRightsRTM}} value='{{physicalRightsRTM}}'{{/physicalRightsRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsDAM'>physicalRightsDAM: </label><div class='col-sm-8'><select id='{{id}}_physicalRightsDAM' class='form-control custom-select'>{{#physicalRightsDAMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/physicalRightsDAMYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsRTM'>physicalRightsRTM: </label><div class='col-sm-8'><select id='{{id}}_physicalRightsRTM' class='form-control custom-select'>{{#physicalRightsRTMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/physicalRightsRTMYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startupLeadTime'>startupLeadTime: </label><div class='col-sm-8'><input id='{{id}}_startupLeadTime' class='form-control' type='text'{{#startupLeadTime}} value='{{startupLeadTime}}'{{/startupLeadTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TRType'>TRType: </label><div class='col-sm-8'><input id='{{id}}_TRType' class='form-control' type='text'{{#TRType}} value='{{TRType}}'{{/TRType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TRType'>TRType: </label><div class='col-sm-8'><select id='{{id}}_TRType' class='form-control custom-select'>{{#TRTypeTRType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TRTypeTRType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='{{id}}_SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Ind_TransmissionRightChain'>Ind_TransmissionRightChain: </label><div class='col-sm-8'><input id='{{id}}_Ind_TransmissionRightChain' class='form-control' type='text'{{#Ind_TransmissionRightChain}} value='{{Ind_TransmissionRightChain}}'{{/Ind_TransmissionRightChain}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Chain_TransmissionRightChain'>Chain_TransmissionRightChain: </label><div class='col-sm-8'><input id='{{id}}_Chain_TransmissionRightChain' class='form-control' type='text'{{#Chain_TransmissionRightChain}} value='{{Chain_TransmissionRightChain}}'{{/Chain_TransmissionRightChain}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5796,25 +5906,25 @@ define
                 temp = document.getElementById (id + "_contractPrice").value; if ("" != temp) obj.contractPrice = temp;
                 temp = document.getElementById (id + "_contractPriority").value; if ("" != temp) obj.contractPriority = temp;
                 temp = document.getElementById (id + "_contractStatus").value; if ("" != temp) obj.contractStatus = temp;
-                temp = document.getElementById (id + "_contractType").value; if ("" != temp) obj.contractType = temp;
+                temp = MktDomain.ContractType[document.getElementById (id + "_contractType").value]; if (temp) obj.contractType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ContractType." + temp; else delete obj.contractType;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_financialLocation").value; if ("" != temp) obj.financialLocation = temp;
-                temp = document.getElementById (id + "_financialRightsDAM").value; if ("" != temp) obj.financialRightsDAM = temp;
-                temp = document.getElementById (id + "_financialRightsRTM").value; if ("" != temp) obj.financialRightsRTM = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_financialLocation").value]; if (temp) obj.financialLocation = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.financialLocation;
+                temp = MktDomain.YesNo[document.getElementById (id + "_financialRightsDAM").value]; if (temp) obj.financialRightsDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.financialRightsDAM;
+                temp = MktDomain.YesNo[document.getElementById (id + "_financialRightsRTM").value]; if (temp) obj.financialRightsRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.financialRightsRTM;
                 temp = document.getElementById (id + "_fuelAdder").value; if ("" != temp) obj.fuelAdder = temp;
                 temp = document.getElementById (id + "_latestSchedMinutes").value; if ("" != temp) obj.latestSchedMinutes = temp;
-                temp = document.getElementById (id + "_latestSchedMktType").value; if ("" != temp) obj.latestSchedMktType = temp;
+                temp = MktDomain.MarketType[document.getElementById (id + "_latestSchedMktType").value]; if (temp) obj.latestSchedMktType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.latestSchedMktType;
                 temp = document.getElementById (id + "_maximumScheduleQuantity").value; if ("" != temp) obj.maximumScheduleQuantity = temp;
                 temp = document.getElementById (id + "_maximumServiceHours").value; if ("" != temp) obj.maximumServiceHours = temp;
                 temp = document.getElementById (id + "_maximumStartups").value; if ("" != temp) obj.maximumStartups = temp;
                 temp = document.getElementById (id + "_maxNetDependableCapacity").value; if ("" != temp) obj.maxNetDependableCapacity = temp;
                 temp = document.getElementById (id + "_minimumLoad").value; if ("" != temp) obj.minimumLoad = temp;
                 temp = document.getElementById (id + "_minimumScheduleQuantity").value; if ("" != temp) obj.minimumScheduleQuantity = temp;
-                temp = document.getElementById (id + "_physicalRightsDAM").value; if ("" != temp) obj.physicalRightsDAM = temp;
-                temp = document.getElementById (id + "_physicalRightsRTM").value; if ("" != temp) obj.physicalRightsRTM = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_physicalRightsDAM").value]; if (temp) obj.physicalRightsDAM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.physicalRightsDAM;
+                temp = MktDomain.YesNo[document.getElementById (id + "_physicalRightsRTM").value]; if (temp) obj.physicalRightsRTM = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.physicalRightsRTM;
                 temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
                 temp = document.getElementById (id + "_startupLeadTime").value; if ("" != temp) obj.startupLeadTime = temp;
-                temp = document.getElementById (id + "_TRType").value; if ("" != temp) obj.TRType = temp;
+                temp = MktDomain.TRType[document.getElementById (id + "_TRType").value]; if (temp) obj.TRType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TRType." + temp; else delete obj.TRType;
                 temp = document.getElementById (id + "_SchedulingCoordinator").value; if ("" != temp) obj.SchedulingCoordinator = temp;
                 temp = document.getElementById (id + "_Ind_TransmissionRightChain").value; if ("" != temp) obj.Ind_TransmissionRightChain = temp;
                 temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
@@ -5923,7 +6033,7 @@ define
                     {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BidSelfSched}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);}); return false;'>{{RTO}}</a></div>{{/RTO}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5961,7 +6071,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6068,7 +6178,7 @@ define
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6103,7 +6213,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6207,7 +6317,7 @@ define
                     {{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pnode}}&quot;);}); return false;'>{{Pnode}}</a></div>{{/Pnode}}
                     {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrganisation}}&quot;);}); return false;'>{{MktOrganisation}}</a></div>{{/MktOrganisation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6239,7 +6349,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnode'>Pnode: </label><div class='col-sm-8'><input id='{{id}}_Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6352,7 +6462,7 @@ define
                     {{#solidfuelPercentAboveLowSustainedLimit}}<div><b>solidfuelPercentAboveLowSustainedLimit</b>: {{solidfuelPercentAboveLowSustainedLimit}}</div>{{/solidfuelPercentAboveLowSustainedLimit}}
                     {{#ResourceVerifiableCosts}}<div><b>ResourceVerifiableCosts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceVerifiableCosts}}&quot;);}); return false;'>{{ResourceVerifiableCosts}}</a></div>{{/ResourceVerifiableCosts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6387,7 +6497,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidfuelPercentAboveLowSustainedLimit'>solidfuelPercentAboveLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_solidfuelPercentAboveLowSustainedLimit' class='form-control' type='text'{{#solidfuelPercentAboveLowSustainedLimit}} value='{{solidfuelPercentAboveLowSustainedLimit}}'{{/solidfuelPercentAboveLowSustainedLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='{{id}}_ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6537,7 +6647,7 @@ define
                     {{#ReceiptTransactionBids}}<div><b>ReceiptTransactionBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ReceiptTransactionBids}}
                     {{#DeliveryTransactionBids}}<div><b>DeliveryTransactionBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DeliveryTransactionBids}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6599,7 +6709,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SourceCRRSegment'>SourceCRRSegment: </label><div class='col-sm-8'><input id='{{id}}_SourceCRRSegment' class='form-control' type='text'{{#SourceCRRSegment}} value='{{SourceCRRSegment_string}}'{{/SourceCRRSegment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6711,7 +6821,7 @@ define
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6739,7 +6849,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6831,7 +6941,7 @@ define
                     {{#loadReductionTimeCurveType}}<div><b>loadReductionTimeCurveType</b>: {{loadReductionTimeCurveType}}</div>{{/loadReductionTimeCurveType}}
                     {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredLoad}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6862,7 +6972,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadReductionTimeCurveType'>loadReductionTimeCurveType: </label><div class='col-sm-8'><input id='{{id}}_loadReductionTimeCurveType' class='form-control' type='text'{{#loadReductionTimeCurveType}} value='{{loadReductionTimeCurveType}}'{{/loadReductionTimeCurveType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad_string}}'{{/RegisteredLoad}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -6953,7 +7063,7 @@ define
                     {{#ResourceVerifiableCosts}}<div><b>ResourceVerifiableCosts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceVerifiableCosts}}&quot;);}); return false;'>{{ResourceVerifiableCosts}}</a></div>{{/ResourceVerifiableCosts}}
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -6982,7 +7092,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='{{id}}_ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7041,7 +7151,7 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "HostControlArea";
-                base.parse_element (/<cim:HostControlArea.areaControlMode>([\s\S]*?)<\/cim:HostControlArea.areaControlMode>/g, obj, "areaControlMode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:HostControlArea.areaControlMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "areaControlMode", sub, context);
                 base.parse_element (/<cim:HostControlArea.endEffectiveDate>([\s\S]*?)<\/cim:HostControlArea.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:HostControlArea.freqSetPoint>([\s\S]*?)<\/cim:HostControlArea.freqSetPoint>/g, obj, "freqSetPoint", base.to_string, sub, context);
                 base.parse_element (/<cim:HostControlArea.frequencyBiasFactor>([\s\S]*?)<\/cim:HostControlArea.frequencyBiasFactor>/g, obj, "frequencyBiasFactor", base.to_float, sub, context);
@@ -7069,7 +7179,7 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HostControlArea", "areaControlMode", "areaControlMode",  base.from_string, fields);
+                base.export_attribute (obj, "HostControlArea", "areaControlMode", "areaControlMode", fields);
                 base.export_element (obj, "HostControlArea", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
                 base.export_element (obj, "HostControlArea", "freqSetPoint", "freqSetPoint",  base.from_string, fields);
                 base.export_element (obj, "HostControlArea", "frequencyBiasFactor", "frequencyBiasFactor",  base.from_float, fields);
@@ -7118,7 +7228,7 @@ define
                     {{#LossClearingResults}}<div><b>LossClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LossClearingResults}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);}); return false;'>{{RTO}}</a></div>{{/RTO}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7127,6 +7237,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.areaControlModeAreaControlMode = [{ id: '', selected: (!obj.areaControlMode)}]; for (var property in MktDomain.AreaControlMode) obj.areaControlModeAreaControlMode.push ({ id: property, selected: obj.areaControlMode && obj.areaControlMode.endsWith ('.' + property)});
                 if (obj.SubControlAreas) obj.SubControlAreas_string = obj.SubControlAreas.join ();
                 if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
@@ -7140,6 +7251,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.areaControlModeAreaControlMode;
                 delete obj.SubControlAreas_string;
                 delete obj.BidSelfSched_string;
                 delete obj.RegisteredResource_string;
@@ -7160,7 +7272,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_areaControlMode'>areaControlMode: </label><div class='col-sm-8'><input id='{{id}}_areaControlMode' class='form-control' type='text'{{#areaControlMode}} value='{{areaControlMode}}'{{/areaControlMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_areaControlMode'>areaControlMode: </label><div class='col-sm-8'><select id='{{id}}_areaControlMode' class='form-control custom-select'>{{#areaControlModeAreaControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/areaControlModeAreaControlMode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_freqSetPoint'>freqSetPoint: </label><div class='col-sm-8'><input id='{{id}}_freqSetPoint' class='form-control' type='text'{{#freqSetPoint}} value='{{freqSetPoint}}'{{/freqSetPoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyBiasFactor'>frequencyBiasFactor: </label><div class='col-sm-8'><input id='{{id}}_frequencyBiasFactor' class='form-control' type='text'{{#frequencyBiasFactor}} value='{{frequencyBiasFactor}}'{{/frequencyBiasFactor}}></div></div>
@@ -7169,7 +7281,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='{{id}}_AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7180,7 +7292,7 @@ define
 
                 var obj = obj || { id: id, cls: "HostControlArea" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_areaControlMode").value; if ("" != temp) obj.areaControlMode = temp;
+                temp = MktDomain.AreaControlMode[document.getElementById (id + "_areaControlMode").value]; if (temp) obj.areaControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#AreaControlMode." + temp; else delete obj.areaControlMode;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
                 temp = document.getElementById (id + "_freqSetPoint").value; if ("" != temp) obj.freqSetPoint = temp;
                 temp = document.getElementById (id + "_frequencyBiasFactor").value; if ("" != temp) obj.frequencyBiasFactor = temp;
@@ -7273,7 +7385,7 @@ define
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7301,7 +7413,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7399,7 +7511,7 @@ define
                     {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AggregatedPnode}}
                     {{#AreaLoadCurve}}<div><b>AreaLoadCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AreaLoadCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7433,7 +7545,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode_string}}'{{/AggregatedPnode}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7526,7 +7638,7 @@ define
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredGenerator}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);}); return false;'>{{RTO}}</a></div>{{/RTO}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7556,7 +7668,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7644,7 +7756,7 @@ define
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7672,7 +7784,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7765,7 +7877,7 @@ define
                     {{#lowLimit}}<div><b>lowLimit</b>: {{lowLimit}}</div>{{/lowLimit}}
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7795,7 +7907,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowLimit'>lowLimit: </label><div class='col-sm-8'><input id='{{id}}_lowLimit' class='form-control' type='text'{{#lowLimit}} value='{{lowLimit}}'{{/lowLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7852,8 +7964,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ControlAreaDesignation";
-                base.parse_element (/<cim:ControlAreaDesignation.attained>([\s\S]*?)<\/cim:ControlAreaDesignation.attained>/g, obj, "attained", base.to_string, sub, context);
-                base.parse_element (/<cim:ControlAreaDesignation.native>([\s\S]*?)<\/cim:ControlAreaDesignation.native>/g, obj, "native", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ControlAreaDesignation.attained\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "attained", sub, context);
+                base.parse_attribute (/<cim:ControlAreaDesignation.native\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "native", sub, context);
                 base.parse_attributes (/<cim:ControlAreaDesignation.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attributes (/<cim:ControlAreaDesignation.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
                 var bucket = context.parsed.ControlAreaDesignation;
@@ -7868,8 +7980,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ControlAreaDesignation", "attained", "attained",  base.from_string, fields);
-                base.export_element (obj, "ControlAreaDesignation", "native", "native",  base.from_string, fields);
+                base.export_attribute (obj, "ControlAreaDesignation", "attained", "attained", fields);
+                base.export_attribute (obj, "ControlAreaDesignation", "native", "native", fields);
                 base.export_attributes (obj, "ControlAreaDesignation", "RegisteredResource", "RegisteredResource", fields);
                 base.export_attributes (obj, "ControlAreaDesignation", "SubControlArea", "SubControlArea", fields);
                 if (full)
@@ -7893,7 +8005,7 @@ define
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
                     {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SubControlArea}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -7902,6 +8014,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.attainedYesNo = [{ id: '', selected: (!obj.attained)}]; for (var property in MktDomain.YesNo) obj.attainedYesNo.push ({ id: property, selected: obj.attained && obj.attained.endsWith ('.' + property)});
+                obj.nativeYesNo = [{ id: '', selected: (!obj.native)}]; for (var property in MktDomain.YesNo) obj.nativeYesNo.push ({ id: property, selected: obj.native && obj.native.endsWith ('.' + property)});
                 if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
                 if (obj.SubControlArea) obj.SubControlArea_string = obj.SubControlArea.join ();
             }
@@ -7909,6 +8023,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.attainedYesNo;
+                delete obj.nativeYesNo;
                 delete obj.RegisteredResource_string;
                 delete obj.SubControlArea_string;
             }
@@ -7923,12 +8039,12 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_attained'>attained: </label><div class='col-sm-8'><input id='{{id}}_attained' class='form-control' type='text'{{#attained}} value='{{attained}}'{{/attained}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_native'>native: </label><div class='col-sm-8'><input id='{{id}}_native' class='form-control' type='text'{{#native}} value='{{native}}'{{/native}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_attained'>attained: </label><div class='col-sm-8'><select id='{{id}}_attained' class='form-control custom-select'>{{#attainedYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/attainedYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_native'>native: </label><div class='col-sm-8'><select id='{{id}}_native' class='form-control custom-select'>{{#nativeYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/nativeYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea_string}}'{{/SubControlArea}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -7939,8 +8055,8 @@ define
 
                 var obj = obj || { id: id, cls: "ControlAreaDesignation" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_attained").value; if ("" != temp) obj.attained = temp;
-                temp = document.getElementById (id + "_native").value; if ("" != temp) obj.native = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_attained").value]; if (temp) obj.attained = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.attained;
+                temp = MktDomain.YesNo[document.getElementById (id + "_native").value]; if (temp) obj.native = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.native;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
                 temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
 
@@ -8018,7 +8134,7 @@ define
                     + Core.Curve.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8045,7 +8161,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8135,7 +8251,7 @@ define
                     {{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);}); return false;'>{{HostControlArea}}</a></div>{{/HostControlArea}}
                     {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubControlArea}}&quot;);}); return false;'>{{SubControlArea}}</a></div>{{/SubControlArea}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8168,7 +8284,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8233,9 +8349,9 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MPMTestCategory";
-                base.parse_element (/<cim:MPMTestCategory.testIdentifier>([\s\S]*?)<\/cim:MPMTestCategory.testIdentifier>/g, obj, "testIdentifier", base.to_string, sub, context);
-                base.parse_element (/<cim:MPMTestCategory.testMethod>([\s\S]*?)<\/cim:MPMTestCategory.testMethod>/g, obj, "testMethod", base.to_string, sub, context);
-                base.parse_element (/<cim:MPMTestCategory.purposeFlag>([\s\S]*?)<\/cim:MPMTestCategory.purposeFlag>/g, obj, "purposeFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MPMTestCategory.testIdentifier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "testIdentifier", sub, context);
+                base.parse_attribute (/<cim:MPMTestCategory.testMethod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "testMethod", sub, context);
+                base.parse_attribute (/<cim:MPMTestCategory.purposeFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "purposeFlag", sub, context);
                 base.parse_attributes (/<cim:MPMTestCategory.MPMTestThreshold\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestThreshold", sub, context);
                 base.parse_attributes (/<cim:MPMTestCategory.MPMResourceStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMResourceStatus", sub, context);
                 base.parse_attributes (/<cim:MPMTestCategory.MPMTestResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestResults", sub, context);
@@ -8251,9 +8367,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MPMTestCategory", "testIdentifier", "testIdentifier",  base.from_string, fields);
-                base.export_element (obj, "MPMTestCategory", "testMethod", "testMethod",  base.from_string, fields);
-                base.export_element (obj, "MPMTestCategory", "purposeFlag", "purposeFlag",  base.from_string, fields);
+                base.export_attribute (obj, "MPMTestCategory", "testIdentifier", "testIdentifier", fields);
+                base.export_attribute (obj, "MPMTestCategory", "testMethod", "testMethod", fields);
+                base.export_attribute (obj, "MPMTestCategory", "purposeFlag", "purposeFlag", fields);
                 base.export_attributes (obj, "MPMTestCategory", "MPMTestThreshold", "MPMTestThreshold", fields);
                 base.export_attributes (obj, "MPMTestCategory", "MPMResourceStatus", "MPMResourceStatus", fields);
                 base.export_attributes (obj, "MPMTestCategory", "MPMTestResults", "MPMTestResults", fields);
@@ -8280,7 +8396,7 @@ define
                     {{#MPMResourceStatus}}<div><b>MPMResourceStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MPMResourceStatus}}
                     {{#MPMTestResults}}<div><b>MPMTestResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MPMTestResults}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8289,6 +8405,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.testIdentifierMPMTestIdentifierType = [{ id: '', selected: (!obj.testIdentifier)}]; for (var property in MktDomain.MPMTestIdentifierType) obj.testIdentifierMPMTestIdentifierType.push ({ id: property, selected: obj.testIdentifier && obj.testIdentifier.endsWith ('.' + property)});
+                obj.testMethodMPMTestMethodType = [{ id: '', selected: (!obj.testMethod)}]; for (var property in MktDomain.MPMTestMethodType) obj.testMethodMPMTestMethodType.push ({ id: property, selected: obj.testMethod && obj.testMethod.endsWith ('.' + property)});
+                obj.purposeFlagPurposeFlagType = [{ id: '', selected: (!obj.purposeFlag)}]; for (var property in MktDomain.PurposeFlagType) obj.purposeFlagPurposeFlagType.push ({ id: property, selected: obj.purposeFlag && obj.purposeFlag.endsWith ('.' + property)});
                 if (obj.MPMTestThreshold) obj.MPMTestThreshold_string = obj.MPMTestThreshold.join ();
                 if (obj.MPMResourceStatus) obj.MPMResourceStatus_string = obj.MPMResourceStatus.join ();
                 if (obj.MPMTestResults) obj.MPMTestResults_string = obj.MPMTestResults.join ();
@@ -8297,6 +8416,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.testIdentifierMPMTestIdentifierType;
+                delete obj.testMethodMPMTestMethodType;
+                delete obj.purposeFlagPurposeFlagType;
                 delete obj.MPMTestThreshold_string;
                 delete obj.MPMResourceStatus_string;
                 delete obj.MPMTestResults_string;
@@ -8312,11 +8434,11 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testIdentifier'>testIdentifier: </label><div class='col-sm-8'><input id='{{id}}_testIdentifier' class='form-control' type='text'{{#testIdentifier}} value='{{testIdentifier}}'{{/testIdentifier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testMethod'>testMethod: </label><div class='col-sm-8'><input id='{{id}}_testMethod' class='form-control' type='text'{{#testMethod}} value='{{testMethod}}'{{/testMethod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purposeFlag'>purposeFlag: </label><div class='col-sm-8'><input id='{{id}}_purposeFlag' class='form-control' type='text'{{#purposeFlag}} value='{{purposeFlag}}'{{/purposeFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testIdentifier'>testIdentifier: </label><div class='col-sm-8'><select id='{{id}}_testIdentifier' class='form-control custom-select'>{{#testIdentifierMPMTestIdentifierType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/testIdentifierMPMTestIdentifierType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testMethod'>testMethod: </label><div class='col-sm-8'><select id='{{id}}_testMethod' class='form-control custom-select'>{{#testMethodMPMTestMethodType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/testMethodMPMTestMethodType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purposeFlag'>purposeFlag: </label><div class='col-sm-8'><select id='{{id}}_purposeFlag' class='form-control custom-select'>{{#purposeFlagPurposeFlagType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/purposeFlagPurposeFlagType}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8327,9 +8449,9 @@ define
 
                 var obj = obj || { id: id, cls: "MPMTestCategory" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_testIdentifier").value; if ("" != temp) obj.testIdentifier = temp;
-                temp = document.getElementById (id + "_testMethod").value; if ("" != temp) obj.testMethod = temp;
-                temp = document.getElementById (id + "_purposeFlag").value; if ("" != temp) obj.purposeFlag = temp;
+                temp = MktDomain.MPMTestIdentifierType[document.getElementById (id + "_testIdentifier").value]; if (temp) obj.testIdentifier = "http://iec.ch/TC57/2013/CIM-schema-cim16#MPMTestIdentifierType." + temp; else delete obj.testIdentifier;
+                temp = MktDomain.MPMTestMethodType[document.getElementById (id + "_testMethod").value]; if (temp) obj.testMethod = "http://iec.ch/TC57/2013/CIM-schema-cim16#MPMTestMethodType." + temp; else delete obj.testMethod;
+                temp = MktDomain.PurposeFlagType[document.getElementById (id + "_purposeFlag").value]; if (temp) obj.purposeFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#PurposeFlagType." + temp; else delete obj.purposeFlag;
 
                 return (obj);
             }
@@ -8410,7 +8532,7 @@ define
                     {{#oilPriceIndex}}<div><b>oilPriceIndex</b>: {{oilPriceIndex}}</div>{{/oilPriceIndex}}
                     {{#FuelRegion}}<div><b>FuelRegion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FuelRegion}}&quot;);}); return false;'>{{FuelRegion}}</a></div>{{/FuelRegion}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8439,7 +8561,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPriceIndex'>oilPriceIndex: </label><div class='col-sm-8'><input id='{{id}}_oilPriceIndex' class='form-control' type='text'{{#oilPriceIndex}} value='{{oilPriceIndex}}'{{/oilPriceIndex}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='{{id}}_FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8536,7 +8658,7 @@ define
                     {{#MktThermalGeneratingUnit}}<div><b>MktThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktThermalGeneratingUnit}}&quot;);}); return false;'>{{MktThermalGeneratingUnit}}</a></div>{{/MktThermalGeneratingUnit}}
                     {{#CombinedCycleConfiguration}}<div><b>CombinedCycleConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombinedCycleConfiguration}}&quot;);}); return false;'>{{CombinedCycleConfiguration}}</a></div>{{/CombinedCycleConfiguration}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8567,7 +8689,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktThermalGeneratingUnit'>MktThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_MktThermalGeneratingUnit' class='form-control' type='text'{{#MktThermalGeneratingUnit}} value='{{MktThermalGeneratingUnit}}'{{/MktThermalGeneratingUnit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CombinedCycleConfiguration'>CombinedCycleConfiguration: </label><div class='col-sm-8'><input id='{{id}}_CombinedCycleConfiguration' class='form-control' type='text'{{#CombinedCycleConfiguration}} value='{{CombinedCycleConfiguration}}'{{/CombinedCycleConfiguration}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8626,7 +8748,7 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "BidPriceCap";
-                base.parse_element (/<cim:BidPriceCap.marketType>([\s\S]*?)<\/cim:BidPriceCap.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:BidPriceCap.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_element (/<cim:BidPriceCap.bidFloor>([\s\S]*?)<\/cim:BidPriceCap.bidFloor>/g, obj, "bidFloor", base.to_string, sub, context);
                 base.parse_element (/<cim:BidPriceCap.bidCeiling>([\s\S]*?)<\/cim:BidPriceCap.bidCeiling>/g, obj, "bidCeiling", base.to_string, sub, context);
                 base.parse_element (/<cim:BidPriceCap.defaultPrice>([\s\S]*?)<\/cim:BidPriceCap.defaultPrice>/g, obj, "defaultPrice", base.to_string, sub, context);
@@ -8645,7 +8767,7 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "BidPriceCap", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "BidPriceCap", "marketType", "marketType", fields);
                 base.export_element (obj, "BidPriceCap", "bidFloor", "bidFloor",  base.from_string, fields);
                 base.export_element (obj, "BidPriceCap", "bidCeiling", "bidCeiling",  base.from_string, fields);
                 base.export_element (obj, "BidPriceCap", "defaultPrice", "defaultPrice",  base.from_string, fields);
@@ -8676,7 +8798,7 @@ define
                     {{#bidCeilingAS}}<div><b>bidCeilingAS</b>: {{bidCeilingAS}}</div>{{/bidCeilingAS}}
                     {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);}); return false;'>{{MarketProduct}}</a></div>{{/MarketProduct}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8685,11 +8807,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.marketTypeMarketType;
             }
 
             edit_template ()
@@ -8702,7 +8826,7 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidFloor'>bidFloor: </label><div class='col-sm-8'><input id='{{id}}_bidFloor' class='form-control' type='text'{{#bidFloor}} value='{{bidFloor}}'{{/bidFloor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidCeiling'>bidCeiling: </label><div class='col-sm-8'><input id='{{id}}_bidCeiling' class='form-control' type='text'{{#bidCeiling}} value='{{bidCeiling}}'{{/bidCeiling}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultPrice'>defaultPrice: </label><div class='col-sm-8'><input id='{{id}}_defaultPrice' class='form-control' type='text'{{#defaultPrice}} value='{{defaultPrice}}'{{/defaultPrice}}></div></div>
@@ -8710,7 +8834,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidCeilingAS'>bidCeilingAS: </label><div class='col-sm-8'><input id='{{id}}_bidCeilingAS' class='form-control' type='text'{{#bidCeilingAS}} value='{{bidCeilingAS}}'{{/bidCeilingAS}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8721,7 +8845,7 @@ define
 
                 var obj = obj || { id: id, cls: "BidPriceCap" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_bidFloor").value; if ("" != temp) obj.bidFloor = temp;
                 temp = document.getElementById (id + "_bidCeiling").value; if ("" != temp) obj.bidCeiling = temp;
                 temp = document.getElementById (id + "_defaultPrice").value; if ("" != temp) obj.defaultPrice = temp;
@@ -8812,7 +8936,7 @@ define
                     {{#idcTargetMktFlow}}<div><b>idcTargetMktFlow</b>: {{idcTargetMktFlow}}</div>{{/idcTargetMktFlow}}
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8843,7 +8967,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_idcTargetMktFlow'>idcTargetMktFlow: </label><div class='col-sm-8'><input id='{{id}}_idcTargetMktFlow' class='form-control' type='text'{{#idcTargetMktFlow}} value='{{idcTargetMktFlow}}'{{/idcTargetMktFlow}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -8947,7 +9071,7 @@ define
                     {{#lowMW}}<div><b>lowMW</b>: {{lowMW}}</div>{{/lowMW}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -8981,7 +9105,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowMW'>lowMW: </label><div class='col-sm-8'><input id='{{id}}_lowMW' class='form-control' type='text'{{#lowMW}} value='{{lowMW}}'{{/lowMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9087,7 +9211,7 @@ define
                     {{#statusType}}<div><b>statusType</b>: {{statusType}}</div>{{/statusType}}
                     {{#MarketSkills}}<div><b>MarketSkills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MarketSkills}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9122,7 +9246,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusType'>statusType: </label><div class='col-sm-8'><input id='{{id}}_statusType' class='form-control' type='text'{{#statusType}} value='{{statusType}}'{{/statusType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketSkills'>MarketSkills: </label><div class='col-sm-8'><input id='{{id}}_MarketSkills' class='form-control' type='text'{{#MarketSkills}} value='{{MarketSkills_string}}'{{/MarketSkills}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9222,7 +9346,7 @@ define
                     {{#TransmissionContractRight}}<div><b>TransmissionContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionContractRight}}&quot;);}); return false;'>{{TransmissionContractRight}}</a></div>{{/TransmissionContractRight}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9252,7 +9376,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='{{id}}_TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9311,8 +9435,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ContractDistributionFactor";
                 base.parse_element (/<cim:ContractDistributionFactor.factor>([\s\S]*?)<\/cim:ContractDistributionFactor.factor>/g, obj, "factor", base.to_float, sub, context);
-                base.parse_element (/<cim:ContractDistributionFactor.sourceFlag>([\s\S]*?)<\/cim:ContractDistributionFactor.sourceFlag>/g, obj, "sourceFlag", base.to_string, sub, context);
-                base.parse_element (/<cim:ContractDistributionFactor.sinkFlag>([\s\S]*?)<\/cim:ContractDistributionFactor.sinkFlag>/g, obj, "sinkFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ContractDistributionFactor.sourceFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "sourceFlag", sub, context);
+                base.parse_attribute (/<cim:ContractDistributionFactor.sinkFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "sinkFlag", sub, context);
                 base.parse_attribute (/<cim:ContractDistributionFactor.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:ContractDistributionFactor.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
                 base.parse_attribute (/<cim:ContractDistributionFactor.TransmissionContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionContractRight", sub, context);
@@ -9329,8 +9453,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "ContractDistributionFactor", "factor", "factor",  base.from_float, fields);
-                base.export_element (obj, "ContractDistributionFactor", "sourceFlag", "sourceFlag",  base.from_string, fields);
-                base.export_element (obj, "ContractDistributionFactor", "sinkFlag", "sinkFlag",  base.from_string, fields);
+                base.export_attribute (obj, "ContractDistributionFactor", "sourceFlag", "sourceFlag", fields);
+                base.export_attribute (obj, "ContractDistributionFactor", "sinkFlag", "sinkFlag", fields);
                 base.export_attribute (obj, "ContractDistributionFactor", "RegisteredResource", "RegisteredResource", fields);
                 base.export_attribute (obj, "ContractDistributionFactor", "Flowgate", "Flowgate", fields);
                 base.export_attribute (obj, "ContractDistributionFactor", "TransmissionContractRight", "TransmissionContractRight", fields);
@@ -9357,7 +9481,7 @@ define
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
                     {{#TransmissionContractRight}}<div><b>TransmissionContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionContractRight}}&quot;);}); return false;'>{{TransmissionContractRight}}</a></div>{{/TransmissionContractRight}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9366,11 +9490,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.sourceFlagYesNo = [{ id: '', selected: (!obj.sourceFlag)}]; for (var property in MktDomain.YesNo) obj.sourceFlagYesNo.push ({ id: property, selected: obj.sourceFlag && obj.sourceFlag.endsWith ('.' + property)});
+                obj.sinkFlagYesNo = [{ id: '', selected: (!obj.sinkFlag)}]; for (var property in MktDomain.YesNo) obj.sinkFlagYesNo.push ({ id: property, selected: obj.sinkFlag && obj.sinkFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.sourceFlagYesNo;
+                delete obj.sinkFlagYesNo;
             }
 
             edit_template ()
@@ -9384,13 +9512,13 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sourceFlag'>sourceFlag: </label><div class='col-sm-8'><input id='{{id}}_sourceFlag' class='form-control' type='text'{{#sourceFlag}} value='{{sourceFlag}}'{{/sourceFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sinkFlag'>sinkFlag: </label><div class='col-sm-8'><input id='{{id}}_sinkFlag' class='form-control' type='text'{{#sinkFlag}} value='{{sinkFlag}}'{{/sinkFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sourceFlag'>sourceFlag: </label><div class='col-sm-8'><select id='{{id}}_sourceFlag' class='form-control custom-select'>{{#sourceFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/sourceFlagYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sinkFlag'>sinkFlag: </label><div class='col-sm-8'><select id='{{id}}_sinkFlag' class='form-control custom-select'>{{#sinkFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/sinkFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='{{id}}_TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9402,8 +9530,8 @@ define
                 var obj = obj || { id: id, cls: "ContractDistributionFactor" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
-                temp = document.getElementById (id + "_sourceFlag").value; if ("" != temp) obj.sourceFlag = temp;
-                temp = document.getElementById (id + "_sinkFlag").value; if ("" != temp) obj.sinkFlag = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_sourceFlag").value]; if (temp) obj.sourceFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.sourceFlag;
+                temp = MktDomain.YesNo[document.getElementById (id + "_sinkFlag").value]; if (temp) obj.sinkFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.sinkFlag;
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
                 temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
                 temp = document.getElementById (id + "_TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
@@ -9484,7 +9612,7 @@ define
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9512,7 +9640,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9599,7 +9727,7 @@ define
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9627,7 +9755,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9684,11 +9812,11 @@ define
                 obj.cls = "SubControlArea";
                 base.parse_element (/<cim:SubControlArea.areaShortName>([\s\S]*?)<\/cim:SubControlArea.areaShortName>/g, obj, "areaShortName", base.to_string, sub, context);
                 base.parse_element (/<cim:SubControlArea.constantCoefficient>([\s\S]*?)<\/cim:SubControlArea.constantCoefficient>/g, obj, "constantCoefficient", base.to_float, sub, context);
-                base.parse_element (/<cim:SubControlArea.embeddedControlArea>([\s\S]*?)<\/cim:SubControlArea.embeddedControlArea>/g, obj, "embeddedControlArea", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SubControlArea.embeddedControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "embeddedControlArea", sub, context);
                 base.parse_element (/<cim:SubControlArea.endEffectiveDate>([\s\S]*?)<\/cim:SubControlArea.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:SubControlArea.internalCA>([\s\S]*?)<\/cim:SubControlArea.internalCA>/g, obj, "internalCA", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SubControlArea.internalCA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "internalCA", sub, context);
                 base.parse_element (/<cim:SubControlArea.linearCoefficient>([\s\S]*?)<\/cim:SubControlArea.linearCoefficient>/g, obj, "linearCoefficient", base.to_float, sub, context);
-                base.parse_element (/<cim:SubControlArea.localCA>([\s\S]*?)<\/cim:SubControlArea.localCA>/g, obj, "localCA", base.to_string, sub, context);
+                base.parse_attribute (/<cim:SubControlArea.localCA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "localCA", sub, context);
                 base.parse_element (/<cim:SubControlArea.maxSelfSchedMW>([\s\S]*?)<\/cim:SubControlArea.maxSelfSchedMW>/g, obj, "maxSelfSchedMW", base.to_float, sub, context);
                 base.parse_element (/<cim:SubControlArea.minSelfSchedMW>([\s\S]*?)<\/cim:SubControlArea.minSelfSchedMW>/g, obj, "minSelfSchedMW", base.to_float, sub, context);
                 base.parse_element (/<cim:SubControlArea.quadraticCoefficient>([\s\S]*?)<\/cim:SubControlArea.quadraticCoefficient>/g, obj, "quadraticCoefficient", base.to_float, sub, context);
@@ -9729,11 +9857,11 @@ define
 
                 base.export_element (obj, "SubControlArea", "areaShortName", "areaShortName",  base.from_string, fields);
                 base.export_element (obj, "SubControlArea", "constantCoefficient", "constantCoefficient",  base.from_float, fields);
-                base.export_element (obj, "SubControlArea", "embeddedControlArea", "embeddedControlArea",  base.from_string, fields);
+                base.export_attribute (obj, "SubControlArea", "embeddedControlArea", "embeddedControlArea", fields);
                 base.export_element (obj, "SubControlArea", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "SubControlArea", "internalCA", "internalCA",  base.from_string, fields);
+                base.export_attribute (obj, "SubControlArea", "internalCA", "internalCA", fields);
                 base.export_element (obj, "SubControlArea", "linearCoefficient", "linearCoefficient",  base.from_float, fields);
-                base.export_element (obj, "SubControlArea", "localCA", "localCA",  base.from_string, fields);
+                base.export_attribute (obj, "SubControlArea", "localCA", "localCA", fields);
                 base.export_element (obj, "SubControlArea", "maxSelfSchedMW", "maxSelfSchedMW",  base.from_float, fields);
                 base.export_element (obj, "SubControlArea", "minSelfSchedMW", "minSelfSchedMW",  base.from_float, fields);
                 base.export_element (obj, "SubControlArea", "quadraticCoefficient", "quadraticCoefficient",  base.from_float, fields);
@@ -9810,7 +9938,7 @@ define
                     {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BidSelfSched}}
                     {{#LossClearingResults}}<div><b>LossClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LossClearingResults}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -9819,6 +9947,9 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.embeddedControlAreaYesNo = [{ id: '', selected: (!obj.embeddedControlArea)}]; for (var property in MktDomain.YesNo) obj.embeddedControlAreaYesNo.push ({ id: property, selected: obj.embeddedControlArea && obj.embeddedControlArea.endsWith ('.' + property)});
+                obj.internalCAYesNo = [{ id: '', selected: (!obj.internalCA)}]; for (var property in MktDomain.YesNo) obj.internalCAYesNo.push ({ id: property, selected: obj.internalCA && obj.internalCA.endsWith ('.' + property)});
+                obj.localCAYesNo = [{ id: '', selected: (!obj.localCA)}]; for (var property in MktDomain.YesNo) obj.localCAYesNo.push ({ id: property, selected: obj.localCA && obj.localCA.endsWith ('.' + property)});
                 if (obj.To_Flowgate) obj.To_Flowgate_string = obj.To_Flowgate.join ();
                 if (obj.InadvertentAccount) obj.InadvertentAccount_string = obj.InadvertentAccount.join ();
                 if (obj.AggregateNode) obj.AggregateNode_string = obj.AggregateNode.join ();
@@ -9842,6 +9973,9 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.embeddedControlAreaYesNo;
+                delete obj.internalCAYesNo;
+                delete obj.localCAYesNo;
                 delete obj.To_Flowgate_string;
                 delete obj.InadvertentAccount_string;
                 delete obj.AggregateNode_string;
@@ -9874,11 +10008,11 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_areaShortName'>areaShortName: </label><div class='col-sm-8'><input id='{{id}}_areaShortName' class='form-control' type='text'{{#areaShortName}} value='{{areaShortName}}'{{/areaShortName}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constantCoefficient'>constantCoefficient: </label><div class='col-sm-8'><input id='{{id}}_constantCoefficient' class='form-control' type='text'{{#constantCoefficient}} value='{{constantCoefficient}}'{{/constantCoefficient}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_embeddedControlArea'>embeddedControlArea: </label><div class='col-sm-8'><input id='{{id}}_embeddedControlArea' class='form-control' type='text'{{#embeddedControlArea}} value='{{embeddedControlArea}}'{{/embeddedControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_embeddedControlArea'>embeddedControlArea: </label><div class='col-sm-8'><select id='{{id}}_embeddedControlArea' class='form-control custom-select'>{{#embeddedControlAreaYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/embeddedControlAreaYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_internalCA'>internalCA: </label><div class='col-sm-8'><input id='{{id}}_internalCA' class='form-control' type='text'{{#internalCA}} value='{{internalCA}}'{{/internalCA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_internalCA'>internalCA: </label><div class='col-sm-8'><select id='{{id}}_internalCA' class='form-control custom-select'>{{#internalCAYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/internalCAYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_linearCoefficient'>linearCoefficient: </label><div class='col-sm-8'><input id='{{id}}_linearCoefficient' class='form-control' type='text'{{#linearCoefficient}} value='{{linearCoefficient}}'{{/linearCoefficient}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localCA'>localCA: </label><div class='col-sm-8'><input id='{{id}}_localCA' class='form-control' type='text'{{#localCA}} value='{{localCA}}'{{/localCA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localCA'>localCA: </label><div class='col-sm-8'><select id='{{id}}_localCA' class='form-control custom-select'>{{#localCAYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/localCAYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxSelfSchedMW'>maxSelfSchedMW: </label><div class='col-sm-8'><input id='{{id}}_maxSelfSchedMW' class='form-control' type='text'{{#maxSelfSchedMW}} value='{{maxSelfSchedMW}}'{{/maxSelfSchedMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minSelfSchedMW'>minSelfSchedMW: </label><div class='col-sm-8'><input id='{{id}}_minSelfSchedMW' class='form-control' type='text'{{#minSelfSchedMW}} value='{{minSelfSchedMW}}'{{/minSelfSchedMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quadraticCoefficient'>quadraticCoefficient: </label><div class='col-sm-8'><input id='{{id}}_quadraticCoefficient' class='form-control' type='text'{{#quadraticCoefficient}} value='{{quadraticCoefficient}}'{{/quadraticCoefficient}}></div></div>
@@ -9891,7 +10025,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlAreaDesignation'>ControlAreaDesignation: </label><div class='col-sm-8'><input id='{{id}}_ControlAreaDesignation' class='form-control' type='text'{{#ControlAreaDesignation}} value='{{ControlAreaDesignation_string}}'{{/ControlAreaDesignation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -9904,11 +10038,11 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_areaShortName").value; if ("" != temp) obj.areaShortName = temp;
                 temp = document.getElementById (id + "_constantCoefficient").value; if ("" != temp) obj.constantCoefficient = temp;
-                temp = document.getElementById (id + "_embeddedControlArea").value; if ("" != temp) obj.embeddedControlArea = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_embeddedControlArea").value]; if (temp) obj.embeddedControlArea = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.embeddedControlArea;
                 temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById (id + "_internalCA").value; if ("" != temp) obj.internalCA = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_internalCA").value]; if (temp) obj.internalCA = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.internalCA;
                 temp = document.getElementById (id + "_linearCoefficient").value; if ("" != temp) obj.linearCoefficient = temp;
-                temp = document.getElementById (id + "_localCA").value; if ("" != temp) obj.localCA = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_localCA").value]; if (temp) obj.localCA = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.localCA;
                 temp = document.getElementById (id + "_maxSelfSchedMW").value; if ("" != temp) obj.maxSelfSchedMW = temp;
                 temp = document.getElementById (id + "_minSelfSchedMW").value; if ("" != temp) obj.minSelfSchedMW = temp;
                 temp = document.getElementById (id + "_quadraticCoefficient").value; if ("" != temp) obj.quadraticCoefficient = temp;
@@ -10013,7 +10147,7 @@ define
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10040,7 +10174,7 @@ define
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10133,7 +10267,7 @@ define
                     {{#CombinedCycleConfigurationMember}}<div><b>CombinedCycleConfigurationMember</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CombinedCycleConfigurationMember}}
                     {{#CombinedCycleLogicalConfiguration}}<div><b>CombinedCycleLogicalConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombinedCycleLogicalConfiguration}}&quot;);}); return false;'>{{CombinedCycleLogicalConfiguration}}</a></div>{{/CombinedCycleLogicalConfiguration}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10170,7 +10304,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_StartupFlag'>StartupFlag: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_StartupFlag' class='form-check-input' type='checkbox'{{#StartupFlag}} checked{{/StartupFlag}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CombinedCycleLogicalConfiguration'>CombinedCycleLogicalConfiguration: </label><div class='col-sm-8'><input id='{{id}}_CombinedCycleLogicalConfiguration' class='form-control' type='text'{{#CombinedCycleLogicalConfiguration}} value='{{CombinedCycleLogicalConfiguration}}'{{/CombinedCycleLogicalConfiguration}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10262,7 +10396,7 @@ define
                     + AggregateNode.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10289,7 +10423,7 @@ define
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10370,7 +10504,7 @@ define
                     {{#MarketRegionResults}}<div><b>MarketRegionResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MarketRegionResults}}
                     {{#ReserveDemandCurve}}<div><b>ReserveDemandCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ReserveDemandCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10403,7 +10537,7 @@ define
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10457,9 +10591,9 @@ define
 
                 obj = AggregateNode.prototype.parse.call (this, context, sub);
                 obj.cls = "MSSZone";
-                base.parse_element (/<cim:MSSZone.ignoreLosses>([\s\S]*?)<\/cim:MSSZone.ignoreLosses>/g, obj, "ignoreLosses", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MSSZone.ignoreLosses\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ignoreLosses", sub, context);
                 base.parse_element (/<cim:MSSZone.lossFactor>([\s\S]*?)<\/cim:MSSZone.lossFactor>/g, obj, "lossFactor", base.to_float, sub, context);
-                base.parse_element (/<cim:MSSZone.rucGrossSettlement>([\s\S]*?)<\/cim:MSSZone.rucGrossSettlement>/g, obj, "rucGrossSettlement", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MSSZone.rucGrossSettlement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rucGrossSettlement", sub, context);
                 base.parse_attribute (/<cim:MSSZone.MeteredSubSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeteredSubSystem", sub, context);
                 var bucket = context.parsed.MSSZone;
                 if (null == bucket)
@@ -10473,9 +10607,9 @@ define
             {
                 var fields = AggregateNode.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MSSZone", "ignoreLosses", "ignoreLosses",  base.from_string, fields);
+                base.export_attribute (obj, "MSSZone", "ignoreLosses", "ignoreLosses", fields);
                 base.export_element (obj, "MSSZone", "lossFactor", "lossFactor",  base.from_float, fields);
-                base.export_element (obj, "MSSZone", "rucGrossSettlement", "rucGrossSettlement",  base.from_string, fields);
+                base.export_attribute (obj, "MSSZone", "rucGrossSettlement", "rucGrossSettlement", fields);
                 base.export_attribute (obj, "MSSZone", "MeteredSubSystem", "MeteredSubSystem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -10498,7 +10632,7 @@ define
                     {{#rucGrossSettlement}}<div><b>rucGrossSettlement</b>: {{rucGrossSettlement}}</div>{{/rucGrossSettlement}}
                     {{#MeteredSubSystem}}<div><b>MeteredSubSystem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeteredSubSystem}}&quot;);}); return false;'>{{MeteredSubSystem}}</a></div>{{/MeteredSubSystem}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10507,11 +10641,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.ignoreLossesYesNo = [{ id: '', selected: (!obj.ignoreLosses)}]; for (var property in MktDomain.YesNo) obj.ignoreLossesYesNo.push ({ id: property, selected: obj.ignoreLosses && obj.ignoreLosses.endsWith ('.' + property)});
+                obj.rucGrossSettlementYesNo = [{ id: '', selected: (!obj.rucGrossSettlement)}]; for (var property in MktDomain.YesNo) obj.rucGrossSettlementYesNo.push ({ id: property, selected: obj.rucGrossSettlement && obj.rucGrossSettlement.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ignoreLossesYesNo;
+                delete obj.rucGrossSettlementYesNo;
             }
 
             edit_template ()
@@ -10524,12 +10662,12 @@ define
                     `
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreLosses' class='form-control' type='text'{{#ignoreLosses}} value='{{ignoreLosses}}'{{/ignoreLosses}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><select id='{{id}}_ignoreLosses' class='form-control custom-select'>{{#ignoreLossesYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ignoreLossesYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossFactor'>lossFactor: </label><div class='col-sm-8'><input id='{{id}}_lossFactor' class='form-control' type='text'{{#lossFactor}} value='{{lossFactor}}'{{/lossFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucGrossSettlement'>rucGrossSettlement: </label><div class='col-sm-8'><input id='{{id}}_rucGrossSettlement' class='form-control' type='text'{{#rucGrossSettlement}} value='{{rucGrossSettlement}}'{{/rucGrossSettlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucGrossSettlement'>rucGrossSettlement: </label><div class='col-sm-8'><select id='{{id}}_rucGrossSettlement' class='form-control custom-select'>{{#rucGrossSettlementYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rucGrossSettlementYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeteredSubSystem'>MeteredSubSystem: </label><div class='col-sm-8'><input id='{{id}}_MeteredSubSystem' class='form-control' type='text'{{#MeteredSubSystem}} value='{{MeteredSubSystem}}'{{/MeteredSubSystem}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10540,9 +10678,9 @@ define
 
                 var obj = obj || { id: id, cls: "MSSZone" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ignoreLosses").value; if ("" != temp) obj.ignoreLosses = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_ignoreLosses").value]; if (temp) obj.ignoreLosses = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.ignoreLosses;
                 temp = document.getElementById (id + "_lossFactor").value; if ("" != temp) obj.lossFactor = temp;
-                temp = document.getElementById (id + "_rucGrossSettlement").value; if ("" != temp) obj.rucGrossSettlement = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_rucGrossSettlement").value]; if (temp) obj.rucGrossSettlement = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.rucGrossSettlement;
                 temp = document.getElementById (id + "_MeteredSubSystem").value; if ("" != temp) obj.MeteredSubSystem = temp;
 
                 return (obj);
@@ -10621,7 +10759,7 @@ define
                     `
                     {{#LossClearingResults}}<div><b>LossClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LossClearingResults}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10650,7 +10788,7 @@ define
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10746,7 +10884,7 @@ define
                     {{#GenDistributionFactor}}<div><b>GenDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenDistributionFactor}}&quot;);}); return false;'>{{GenDistributionFactor}}</a></div>{{/GenDistributionFactor}}
                     {{#LoadDistributionFactor}}<div><b>LoadDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadDistributionFactor}}&quot;);}); return false;'>{{LoadDistributionFactor}}</a></div>{{/LoadDistributionFactor}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10781,7 +10919,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenDistributionFactor'>GenDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_GenDistributionFactor' class='form-control' type='text'{{#GenDistributionFactor}} value='{{GenDistributionFactor}}'{{/GenDistributionFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadDistributionFactor'>LoadDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_LoadDistributionFactor' class='form-control' type='text'{{#LoadDistributionFactor}} value='{{LoadDistributionFactor}}'{{/LoadDistributionFactor}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10843,8 +10981,8 @@ define
 
                 obj = Pnode.prototype.parse.call (this, context, sub);
                 obj.cls = "AggregatedPnode";
-                base.parse_element (/<cim:AggregatedPnode.apnodeType>([\s\S]*?)<\/cim:AggregatedPnode.apnodeType>/g, obj, "apnodeType", base.to_string, sub, context);
-                base.parse_element (/<cim:AggregatedPnode.participationCategory>([\s\S]*?)<\/cim:AggregatedPnode.participationCategory>/g, obj, "participationCategory", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AggregatedPnode.apnodeType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "apnodeType", sub, context);
+                base.parse_attribute (/<cim:AggregatedPnode.participationCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "participationCategory", sub, context);
                 base.parse_attributes (/<cim:AggregatedPnode.GenDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenDistributionFactor", sub, context);
                 base.parse_attributes (/<cim:AggregatedPnode.MPMTestResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestResults", sub, context);
                 base.parse_attributes (/<cim:AggregatedPnode.MPMTestThreshold\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestThreshold", sub, context);
@@ -10865,8 +11003,8 @@ define
             {
                 var fields = Pnode.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AggregatedPnode", "apnodeType", "apnodeType",  base.from_string, fields);
-                base.export_element (obj, "AggregatedPnode", "participationCategory", "participationCategory",  base.from_string, fields);
+                base.export_attribute (obj, "AggregatedPnode", "apnodeType", "apnodeType", fields);
+                base.export_attribute (obj, "AggregatedPnode", "participationCategory", "participationCategory", fields);
                 base.export_attributes (obj, "AggregatedPnode", "GenDistributionFactor", "GenDistributionFactor", fields);
                 base.export_attributes (obj, "AggregatedPnode", "MPMTestResults", "MPMTestResults", fields);
                 base.export_attributes (obj, "AggregatedPnode", "MPMTestThreshold", "MPMTestThreshold", fields);
@@ -10902,7 +11040,7 @@ define
                     {{#MktCombinedCyclePlant}}<div><b>MktCombinedCyclePlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MktCombinedCyclePlant}}
                     {{#LoadDistributionFactor}}<div><b>LoadDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LoadDistributionFactor}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -10911,6 +11049,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.apnodeTypeApnodeType = [{ id: '', selected: (!obj.apnodeType)}]; for (var property in MktDomain.ApnodeType) obj.apnodeTypeApnodeType.push ({ id: property, selected: obj.apnodeType && obj.apnodeType.endsWith ('.' + property)});
+                obj.participationCategoryParticipationCategoryMPM = [{ id: '', selected: (!obj.participationCategory)}]; for (var property in MktDomain.ParticipationCategoryMPM) obj.participationCategoryParticipationCategoryMPM.push ({ id: property, selected: obj.participationCategory && obj.participationCategory.endsWith ('.' + property)});
                 if (obj.GenDistributionFactor) obj.GenDistributionFactor_string = obj.GenDistributionFactor.join ();
                 if (obj.MPMTestResults) obj.MPMTestResults_string = obj.MPMTestResults.join ();
                 if (obj.MPMTestThreshold) obj.MPMTestThreshold_string = obj.MPMTestThreshold.join ();
@@ -10923,6 +11063,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.apnodeTypeApnodeType;
+                delete obj.participationCategoryParticipationCategoryMPM;
                 delete obj.GenDistributionFactor_string;
                 delete obj.MPMTestResults_string;
                 delete obj.MPMTestThreshold_string;
@@ -10942,13 +11084,13 @@ define
                     `
                     + Pnode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_apnodeType'>apnodeType: </label><div class='col-sm-8'><input id='{{id}}_apnodeType' class='form-control' type='text'{{#apnodeType}} value='{{apnodeType}}'{{/apnodeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participationCategory'>participationCategory: </label><div class='col-sm-8'><input id='{{id}}_participationCategory' class='form-control' type='text'{{#participationCategory}} value='{{participationCategory}}'{{/participationCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_apnodeType'>apnodeType: </label><div class='col-sm-8'><select id='{{id}}_apnodeType' class='form-control custom-select'>{{#apnodeTypeApnodeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/apnodeTypeApnodeType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participationCategory'>participationCategory: </label><div class='col-sm-8'><select id='{{id}}_participationCategory' class='form-control custom-select'>{{#participationCategoryParticipationCategoryMPM}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/participationCategoryParticipationCategoryMPM}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='{{id}}_MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold_string}}'{{/MPMTestThreshold}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TACArea'>TACArea: </label><div class='col-sm-8'><input id='{{id}}_TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea_string}}'{{/TACArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PnodeDistributionFactor'>PnodeDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_PnodeDistributionFactor' class='form-control' type='text'{{#PnodeDistributionFactor}} value='{{PnodeDistributionFactor}}'{{/PnodeDistributionFactor}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -10959,8 +11101,8 @@ define
 
                 var obj = obj || { id: id, cls: "AggregatedPnode" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_apnodeType").value; if ("" != temp) obj.apnodeType = temp;
-                temp = document.getElementById (id + "_participationCategory").value; if ("" != temp) obj.participationCategory = temp;
+                temp = MktDomain.ApnodeType[document.getElementById (id + "_apnodeType").value]; if (temp) obj.apnodeType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ApnodeType." + temp; else delete obj.apnodeType;
+                temp = MktDomain.ParticipationCategoryMPM[document.getElementById (id + "_participationCategory").value]; if (temp) obj.participationCategory = "http://iec.ch/TC57/2013/CIM-schema-cim16#ParticipationCategoryMPM." + temp; else delete obj.participationCategory;
                 temp = document.getElementById (id + "_MPMTestThreshold").value; if ("" != temp) obj.MPMTestThreshold = temp.split (",");
                 temp = document.getElementById (id + "_TACArea").value; if ("" != temp) obj.TACArea = temp.split (",");
                 temp = document.getElementById (id + "_PnodeDistributionFactor").value; if ("" != temp) obj.PnodeDistributionFactor = temp;
@@ -11046,7 +11188,7 @@ define
                     `
                     {{#IndividualPnode}}<div><b>IndividualPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IndividualPnode}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -11076,7 +11218,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='{{id}}_IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode_string}}'{{/IndividualPnode}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -11110,30 +11252,30 @@ define
                 FlowgateValue: FlowgateValue,
                 LoadReductionTimeCurve: LoadReductionTimeCurve,
                 MarketRegion: MarketRegion,
-                RMRStartUpFuelCurve: RMRStartUpFuelCurve,
                 MaxStartUpCostCurve: MaxStartUpCostCurve,
+                RMRStartUpFuelCurve: RMRStartUpFuelCurve,
                 SubstitutionResourceList: SubstitutionResourceList,
                 RegulatingLimit: RegulatingLimit,
                 AggregateNode: AggregateNode,
                 MktContingency: MktContingency,
                 FlowgateRelief: FlowgateRelief,
+                TACArea: TACArea,
                 MktCombinedCyclePlant: MktCombinedCyclePlant,
                 LoadAggregationPoint: LoadAggregationPoint,
-                TACArea: TACArea,
                 MPMTestThreshold: MPMTestThreshold,
                 SchedulingPoint: SchedulingPoint,
                 ContractDistributionFactor: ContractDistributionFactor,
                 MktThermalGeneratingUnit: MktThermalGeneratingUnit,
                 OilPrice: OilPrice,
-                RMRStartUpEnergyCurve: RMRStartUpEnergyCurve,
                 ResourceVerifiableCosts: ResourceVerifiableCosts,
+                RMRStartUpEnergyCurve: RMRStartUpEnergyCurve,
                 MarketPerson: MarketPerson,
                 LoadRatio: LoadRatio,
                 IndividualPnode: IndividualPnode,
                 ResourceAncillaryServiceQualification: ResourceAncillaryServiceQualification,
                 FormerReference: FormerReference,
-                FuelRegion: FuelRegion,
                 RUCZone: RUCZone,
+                FuelRegion: FuelRegion,
                 ControlAreaDesignation: ControlAreaDesignation,
                 PnodeDistributionFactor: PnodeDistributionFactor,
                 SchedulingCoordinatorUser: SchedulingCoordinatorUser,
@@ -11141,8 +11283,8 @@ define
                 ResourceCapacity: ResourceCapacity,
                 MktConductingEquipment: MktConductingEquipment,
                 LocalReliabilityArea: LocalReliabilityArea,
-                SchedulingCoordinator: SchedulingCoordinator,
                 Flowgate: Flowgate,
+                SchedulingCoordinator: SchedulingCoordinator,
                 RMRHeatRateCurve: RMRHeatRateCurve,
                 TransmissionRightChain: TransmissionRightChain,
                 MktHeatRateCurve: MktHeatRateCurve,
@@ -11158,8 +11300,8 @@ define
                 AggregatedPnode: AggregatedPnode,
                 RegisteredInterTie: RegisteredInterTie,
                 RTO: RTO,
-                RegisteredGenerator: RegisteredGenerator,
                 MPMTestCategory: MPMTestCategory,
+                RegisteredGenerator: RegisteredGenerator,
                 RMRStartUpCostCurve: RMRStartUpCostCurve,
                 CombinedCycleConfigurationMember: CombinedCycleConfigurationMember,
                 CombinedCycleConfiguration: CombinedCycleConfiguration,

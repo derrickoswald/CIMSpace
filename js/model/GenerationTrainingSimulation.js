@@ -90,7 +90,7 @@ define
                     `
                     {{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombustionTurbine}}&quot;);}); return false;'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -118,7 +118,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CombustionTurbine'>CombustionTurbine: </label><div class='col-sm-8'><input id='{{id}}_CombustionTurbine' class='form-control' type='text'{{#CombustionTurbine}} value='{{CombustionTurbine}}'{{/CombustionTurbine}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -208,7 +208,7 @@ define
                     {{#steamSupplyRating}}<div><b>steamSupplyRating</b>: {{steamSupplyRating}}</div>{{/steamSupplyRating}}
                     {{#SteamTurbines}}<div><b>SteamTurbines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SteamTurbines}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -239,7 +239,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamSupplyRating'>steamSupplyRating: </label><div class='col-sm-8'><input id='{{id}}_steamSupplyRating' class='form-control' type='text'{{#steamSupplyRating}} value='{{steamSupplyRating}}'{{/steamSupplyRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamTurbines'>SteamTurbines: </label><div class='col-sm-8'><input id='{{id}}_SteamTurbines' class='form-control' type='text'{{#SteamTurbines}} value='{{SteamTurbines_string}}'{{/SteamTurbines}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -330,7 +330,7 @@ define
                     {{#primeMoverRating}}<div><b>primeMoverRating</b>: {{primeMoverRating}}</div>{{/primeMoverRating}}
                     {{#SynchronousMachines}}<div><b>SynchronousMachines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SynchronousMachines}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -361,7 +361,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primeMoverRating'>primeMoverRating: </label><div class='col-sm-8'><input id='{{id}}_primeMoverRating' class='form-control' type='text'{{#primeMoverRating}} value='{{primeMoverRating}}'{{/primeMoverRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachines'>SynchronousMachines: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachines' class='form-control' type='text'{{#SynchronousMachines}} value='{{SynchronousMachines_string}}'{{/SynchronousMachines}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -509,7 +509,7 @@ define
                     {{#rodPatternConstant}}<div><b>rodPatternConstant</b>: {{rodPatternConstant}}</div>{{/rodPatternConstant}}
                     {{#upperLimit}}<div><b>upperLimit</b>: {{upperLimit}}</div>{{/upperLimit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -557,7 +557,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rodPatternConstant'>rodPatternConstant: </label><div class='col-sm-8'><input id='{{id}}_rodPatternConstant' class='form-control' type='text'{{#rodPatternConstant}} value='{{rodPatternConstant}}'{{/rodPatternConstant}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upperLimit'>upperLimit: </label><div class='col-sm-8'><input id='{{id}}_upperLimit' class='form-control' type='text'{{#upperLimit}} value='{{upperLimit}}'{{/upperLimit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -728,7 +728,7 @@ define
                     {{#superHeaterPipePD}}<div><b>superHeaterPipePD</b>: {{superHeaterPipePD}}</div>{{/superHeaterPipePD}}
                     {{#throttlePressureSP}}<div><b>throttlePressureSP</b>: {{throttlePressureSP}}</div>{{/throttlePressureSP}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -737,13 +737,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.BoilerControlMode = []; if (!obj.boilerControlMode) obj.BoilerControlMode.push ({ id: '', selected: true}); for (var property in BoilerControlMode) obj.BoilerControlMode.push ({ id: property, selected: obj.boilerControlMode && obj.boilerControlMode.endsWith ('.' + property)});
+                obj.boilerControlModeBoilerControlMode = [{ id: '', selected: (!obj.boilerControlMode)}]; for (var property in BoilerControlMode) obj.boilerControlModeBoilerControlMode.push ({ id: property, selected: obj.boilerControlMode && obj.boilerControlMode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.BoilerControlMode;
+                delete obj.boilerControlModeBoilerControlMode;
             }
 
             edit_template ()
@@ -758,7 +758,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerVersusFrequency'>auxPowerVersusFrequency: </label><div class='col-sm-8'><input id='{{id}}_auxPowerVersusFrequency' class='form-control' type='text'{{#auxPowerVersusFrequency}} value='{{auxPowerVersusFrequency}}'{{/auxPowerVersusFrequency}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerVersusVoltage'>auxPowerVersusVoltage: </label><div class='col-sm-8'><input id='{{id}}_auxPowerVersusVoltage' class='form-control' type='text'{{#auxPowerVersusVoltage}} value='{{auxPowerVersusVoltage}}'{{/auxPowerVersusVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_boilerControlMode'>boilerControlMode: </label><div class='col-sm-8'><select id='{{id}}_boilerControlMode' class='form-control custom-select'>{{#BoilerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BoilerControlMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_boilerControlMode'>boilerControlMode: </label><div class='col-sm-8'><select id='{{id}}_boilerControlMode' class='form-control custom-select'>{{#boilerControlModeBoilerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/boilerControlModeBoilerControlMode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlErrorBiasP'>controlErrorBiasP: </label><div class='col-sm-8'><input id='{{id}}_controlErrorBiasP' class='form-control' type='text'{{#controlErrorBiasP}} value='{{controlErrorBiasP}}'{{/controlErrorBiasP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlIC'>controlIC: </label><div class='col-sm-8'><input id='{{id}}_controlIC' class='form-control' type='text'{{#controlIC}} value='{{controlIC}}'{{/controlIC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlPC'>controlPC: </label><div class='col-sm-8'><input id='{{id}}_controlPC' class='form-control' type='text'{{#controlPC}} value='{{controlPC}}'{{/controlPC}}></div></div>
@@ -783,7 +783,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_superHeaterPipePD'>superHeaterPipePD: </label><div class='col-sm-8'><input id='{{id}}_superHeaterPipePD' class='form-control' type='text'{{#superHeaterPipePD}} value='{{superHeaterPipePD}}'{{/superHeaterPipePD}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_throttlePressureSP'>throttlePressureSP: </label><div class='col-sm-8'><input id='{{id}}_throttlePressureSP' class='form-control' type='text'{{#throttlePressureSP}} value='{{throttlePressureSP}}'{{/throttlePressureSP}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -796,7 +796,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
                 temp = document.getElementById (id + "_auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
-                temp = document.getElementById (id + "_boilerControlMode").value; if ("" != temp) { temp = BoilerControlMode[temp]; if ("undefined" != typeof (temp)) obj.boilerControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; }
+                temp = BoilerControlMode[document.getElementById (id + "_boilerControlMode").value]; if (temp) obj.boilerControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; else delete obj.boilerControlMode;
                 temp = document.getElementById (id + "_controlErrorBiasP").value; if ("" != temp) obj.controlErrorBiasP = temp;
                 temp = document.getElementById (id + "_controlIC").value; if ("" != temp) obj.controlIC = temp;
                 temp = document.getElementById (id + "_controlPC").value; if ("" != temp) obj.controlPC = temp;
@@ -881,7 +881,7 @@ define
                     + FossilSteamSupply.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -908,7 +908,7 @@ define
                     + FossilSteamSupply.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1038,7 +1038,7 @@ define
                     {{#throttlePressureFactor}}<div><b>throttlePressureFactor</b>: {{throttlePressureFactor}}</div>{{/throttlePressureFactor}}
                     {{#throttlePressureSP}}<div><b>throttlePressureSP</b>: {{throttlePressureSP}}</div>{{/throttlePressureSP}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1085,7 +1085,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_throttlePressureFactor'>throttlePressureFactor: </label><div class='col-sm-8'><input id='{{id}}_throttlePressureFactor' class='form-control' type='text'{{#throttlePressureFactor}} value='{{throttlePressureFactor}}'{{/throttlePressureFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_throttlePressureSP'>throttlePressureSP: </label><div class='col-sm-8'><input id='{{id}}_throttlePressureSP' class='form-control' type='text'{{#throttlePressureSP}} value='{{throttlePressureSP}}'{{/throttlePressureSP}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1183,7 +1183,7 @@ define
                     {{#steamSupplyRating2}}<div><b>steamSupplyRating2</b>: {{steamSupplyRating2}}</div>{{/steamSupplyRating2}}
                     {{#CombustionTurbines}}<div><b>CombustionTurbines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CombustionTurbines}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1213,7 +1213,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamSupplyRating2'>steamSupplyRating2: </label><div class='col-sm-8'><input id='{{id}}_steamSupplyRating2' class='form-control' type='text'{{#steamSupplyRating2}} value='{{steamSupplyRating2}}'{{/steamSupplyRating2}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1300,7 +1300,7 @@ define
                     `
                     {{#drumBoilerRating}}<div><b>drumBoilerRating</b>: {{drumBoilerRating}}</div>{{/drumBoilerRating}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1328,7 +1328,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_drumBoilerRating'>drumBoilerRating: </label><div class='col-sm-8'><input id='{{id}}_drumBoilerRating' class='form-control' type='text'{{#drumBoilerRating}} value='{{drumBoilerRating}}'{{/drumBoilerRating}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1401,7 +1401,7 @@ define
                     + FossilSteamSupply.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1428,7 +1428,7 @@ define
                     + FossilSteamSupply.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1533,7 +1533,7 @@ define
                     {{#turbineType}}<div><b>turbineType</b>: {{turbineType}}</div>{{/turbineType}}
                     {{#waterStartingTime}}<div><b>waterStartingTime</b>: {{waterStartingTime}}</div>{{/waterStartingTime}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1542,13 +1542,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TurbineType = []; if (!obj.turbineType) obj.TurbineType.push ({ id: '', selected: true}); for (var property in TurbineType) obj.TurbineType.push ({ id: property, selected: obj.turbineType && obj.turbineType.endsWith ('.' + property)});
+                obj.turbineTypeTurbineType = [{ id: '', selected: (!obj.turbineType)}]; for (var property in TurbineType) obj.turbineTypeTurbineType.push ({ id: property, selected: obj.turbineType && obj.turbineType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TurbineType;
+                delete obj.turbineTypeTurbineType;
             }
 
             edit_template ()
@@ -1570,10 +1570,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transientDroopTime'>transientDroopTime: </label><div class='col-sm-8'><input id='{{id}}_transientDroopTime' class='form-control' type='text'{{#transientDroopTime}} value='{{transientDroopTime}}'{{/transientDroopTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transientRegulation'>transientRegulation: </label><div class='col-sm-8'><input id='{{id}}_transientRegulation' class='form-control' type='text'{{#transientRegulation}} value='{{transientRegulation}}'{{/transientRegulation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_turbineRating'>turbineRating: </label><div class='col-sm-8'><input id='{{id}}_turbineRating' class='form-control' type='text'{{#turbineRating}} value='{{turbineRating}}'{{/turbineRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_turbineType'>turbineType: </label><div class='col-sm-8'><select id='{{id}}_turbineType' class='form-control custom-select'>{{#TurbineType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TurbineType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_turbineType'>turbineType: </label><div class='col-sm-8'><select id='{{id}}_turbineType' class='form-control custom-select'>{{#turbineTypeTurbineType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/turbineTypeTurbineType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_waterStartingTime'>waterStartingTime: </label><div class='col-sm-8'><input id='{{id}}_waterStartingTime' class='form-control' type='text'{{#waterStartingTime}} value='{{waterStartingTime}}'{{/waterStartingTime}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1593,7 +1593,7 @@ define
                 temp = document.getElementById (id + "_transientDroopTime").value; if ("" != temp) obj.transientDroopTime = temp;
                 temp = document.getElementById (id + "_transientRegulation").value; if ("" != temp) obj.transientRegulation = temp;
                 temp = document.getElementById (id + "_turbineRating").value; if ("" != temp) obj.turbineRating = temp;
-                temp = document.getElementById (id + "_turbineType").value; if ("" != temp) { temp = TurbineType[temp]; if ("undefined" != typeof (temp)) obj.turbineType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; }
+                temp = TurbineType[document.getElementById (id + "_turbineType").value]; if (temp) obj.turbineType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; else delete obj.turbineType;
                 temp = document.getElementById (id + "_waterStartingTime").value; if ("" != temp) obj.waterStartingTime = temp;
 
                 return (obj);
@@ -1695,7 +1695,7 @@ define
                     {{#steamChestTC}}<div><b>steamChestTC</b>: {{steamChestTC}}</div>{{/steamChestTC}}
                     {{#SteamSupplys}}<div><b>SteamSupplys</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SteamSupplys}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1737,7 +1737,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamChestTC'>steamChestTC: </label><div class='col-sm-8'><input id='{{id}}_steamChestTC' class='form-control' type='text'{{#steamChestTC}} value='{{steamChestTC}}'{{/steamChestTC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamSupplys'>SteamSupplys: </label><div class='col-sm-8'><input id='{{id}}_SteamSupplys' class='form-control' type='text'{{#SteamSupplys}} value='{{SteamSupplys_string}}'{{/SteamSupplys}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1866,7 +1866,7 @@ define
                     {{#HeatRecoveryBoiler}}<div><b>HeatRecoveryBoiler</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRecoveryBoiler}}&quot;);}); return false;'>{{HeatRecoveryBoiler}}</a></div>{{/HeatRecoveryBoiler}}
                     {{#CTTempActivePowerCurve}}<div><b>CTTempActivePowerCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CTTempActivePowerCurve}}&quot;);}); return false;'>{{CTTempActivePowerCurve}}</a></div>{{/CTTempActivePowerCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1904,7 +1904,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HeatRecoveryBoiler'>HeatRecoveryBoiler: </label><div class='col-sm-8'><input id='{{id}}_HeatRecoveryBoiler' class='form-control' type='text'{{#HeatRecoveryBoiler}} value='{{HeatRecoveryBoiler}}'{{/HeatRecoveryBoiler}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CTTempActivePowerCurve'>CTTempActivePowerCurve: </label><div class='col-sm-8'><input id='{{id}}_CTTempActivePowerCurve' class='form-control' type='text'{{#CTTempActivePowerCurve}} value='{{CTTempActivePowerCurve}}'{{/CTTempActivePowerCurve}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1946,19 +1946,21 @@ define
 
         return (
             {
-                FossilSteamSupply: FossilSteamSupply,
                 BWRSteamSupply: BWRSteamSupply,
                 HeatRecoveryBoiler: HeatRecoveryBoiler,
-                PWRSteamSupply: PWRSteamSupply,
+                BoilerControlMode: BoilerControlMode,
                 CTTempActivePowerCurve: CTTempActivePowerCurve,
                 PrimeMover: PrimeMover,
-                CombustionTurbine: CombustionTurbine,
-                HydroTurbine: HydroTurbine,
                 Subcritical: Subcritical,
                 SteamSupply: SteamSupply,
                 Supercritical: Supercritical,
-                DrumBoiler: DrumBoiler,
-                SteamTurbine: SteamTurbine
+                TurbineType: TurbineType,
+                SteamTurbine: SteamTurbine,
+                FossilSteamSupply: FossilSteamSupply,
+                PWRSteamSupply: PWRSteamSupply,
+                CombustionTurbine: CombustionTurbine,
+                HydroTurbine: HydroTurbine,
+                DrumBoiler: DrumBoiler
             }
         );
     }

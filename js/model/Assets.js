@@ -108,16 +108,16 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Asset";
-                base.parse_element (/<cim:Asset.acceptanceTest>([\s\S]*?)<\/cim:Asset.acceptanceTest>/g, obj, "acceptanceTest", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Asset.acceptanceTest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "acceptanceTest", sub, context);
                 base.parse_element (/<cim:Asset.critical>([\s\S]*?)<\/cim:Asset.critical>/g, obj, "critical", base.to_boolean, sub, context);
-                base.parse_element (/<cim:Asset.electronicAddress>([\s\S]*?)<\/cim:Asset.electronicAddress>/g, obj, "electronicAddress", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Asset.electronicAddress\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "electronicAddress", sub, context);
                 base.parse_element (/<cim:Asset.initialCondition>([\s\S]*?)<\/cim:Asset.initialCondition>/g, obj, "initialCondition", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.initialLossOfLife>([\s\S]*?)<\/cim:Asset.initialLossOfLife>/g, obj, "initialLossOfLife", base.to_string, sub, context);
-                base.parse_element (/<cim:Asset.lifecycle>([\s\S]*?)<\/cim:Asset.lifecycle>/g, obj, "lifecycle", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Asset.lifecycle\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "lifecycle", sub, context);
                 base.parse_element (/<cim:Asset.lotNumber>([\s\S]*?)<\/cim:Asset.lotNumber>/g, obj, "lotNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.purchasePrice>([\s\S]*?)<\/cim:Asset.purchasePrice>/g, obj, "purchasePrice", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.serialNumber>([\s\S]*?)<\/cim:Asset.serialNumber>/g, obj, "serialNumber", base.to_string, sub, context);
-                base.parse_element (/<cim:Asset.status>([\s\S]*?)<\/cim:Asset.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Asset.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_element (/<cim:Asset.type>([\s\S]*?)<\/cim:Asset.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.utcNumber>([\s\S]*?)<\/cim:Asset.utcNumber>/g, obj, "utcNumber", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Asset.OperationTags\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationTags", sub, context);
@@ -154,16 +154,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Asset", "acceptanceTest", "acceptanceTest",  base.from_string, fields);
+                base.export_attribute (obj, "Asset", "acceptanceTest", "acceptanceTest", fields);
                 base.export_element (obj, "Asset", "critical", "critical",  base.from_boolean, fields);
-                base.export_element (obj, "Asset", "electronicAddress", "electronicAddress",  base.from_string, fields);
+                base.export_attribute (obj, "Asset", "electronicAddress", "electronicAddress", fields);
                 base.export_element (obj, "Asset", "initialCondition", "initialCondition",  base.from_string, fields);
                 base.export_element (obj, "Asset", "initialLossOfLife", "initialLossOfLife",  base.from_string, fields);
-                base.export_element (obj, "Asset", "lifecycle", "lifecycle",  base.from_string, fields);
+                base.export_attribute (obj, "Asset", "lifecycle", "lifecycle", fields);
                 base.export_element (obj, "Asset", "lotNumber", "lotNumber",  base.from_string, fields);
                 base.export_element (obj, "Asset", "purchasePrice", "purchasePrice",  base.from_string, fields);
                 base.export_element (obj, "Asset", "serialNumber", "serialNumber",  base.from_string, fields);
-                base.export_element (obj, "Asset", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "Asset", "status", "status", fields);
                 base.export_element (obj, "Asset", "type", "type",  base.from_string, fields);
                 base.export_element (obj, "Asset", "utcNumber", "utcNumber",  base.from_string, fields);
                 base.export_attributes (obj, "Asset", "OperationTags", "OperationTags", fields);
@@ -235,7 +235,7 @@ define
                     {{#Ownerships}}<div><b>Ownerships</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Ownerships}}
                     {{#ReplacementWorkTasks}}<div><b>ReplacementWorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ReplacementWorkTasks}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -322,7 +322,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReliabilityInfos'>ReliabilityInfos: </label><div class='col-sm-8'><input id='{{id}}_ReliabilityInfos' class='form-control' type='text'{{#ReliabilityInfos}} value='{{ReliabilityInfos_string}}'{{/ReliabilityInfos}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetInfo'>AssetInfo: </label><div class='col-sm-8'><input id='{{id}}_AssetInfo' class='form-control' type='text'{{#AssetInfo}} value='{{AssetInfo}}'{{/AssetInfo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -463,7 +463,7 @@ define
                     {{#success}}<div><b>success</b>: {{success}}</div>{{/success}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -493,7 +493,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_success'>success: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_success' class='form-check-input' type='checkbox'{{#success}} checked{{/success}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -581,7 +581,7 @@ define
                     {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);}); return false;'>{{AssetModel}}</a></div>{{/AssetModel}}
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -613,7 +613,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='{{id}}_AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -702,7 +702,7 @@ define
                     `
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -732,7 +732,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -819,7 +819,7 @@ define
                     `
                     {{#ProductAssetModels}}<div><b>ProductAssetModels</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProductAssetModels}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -848,7 +848,7 @@ define
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -946,7 +946,7 @@ define
                     {{#Properties}}<div><b>Properties</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Properties}}
                     {{#Procedure}}<div><b>Procedure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Procedure}}&quot;);}); return false;'>{{Procedure}}</a></div>{{/Procedure}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -984,7 +984,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Properties'>Properties: </label><div class='col-sm-8'><input id='{{id}}_Properties' class='form-control' type='text'{{#Properties}} value='{{Properties_string}}'{{/Properties}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedure'>Procedure: </label><div class='col-sm-8'><input id='{{id}}_Procedure' class='form-control' type='text'{{#Procedure}} value='{{Procedure}}'{{/Procedure}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1090,7 +1090,7 @@ define
                     {{#password}}<div><b>password</b>: {{password}}</div>{{/password}}
                     {{#programID}}<div><b>programID</b>: {{programID}}</div>{{/programID}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1122,7 +1122,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_password'>password: </label><div class='col-sm-8'><input id='{{id}}_password' class='form-control' type='text'{{#password}} value='{{password}}'{{/password}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_programID'>programID: </label><div class='col-sm-8'><input id='{{id}}_programID' class='form-control' type='text'{{#programID}} value='{{programID}}'{{/programID}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1214,7 +1214,7 @@ define
                     {{#sealNumber}}<div><b>sealNumber</b>: {{sealNumber}}</div>{{/sealNumber}}
                     {{#AssetContainer}}<div><b>AssetContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetContainer}}&quot;);}); return false;'>{{AssetContainer}}</a></div>{{/AssetContainer}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1223,15 +1223,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.SealConditionKind = []; if (!obj.condition) obj.SealConditionKind.push ({ id: '', selected: true}); for (var property in SealConditionKind) obj.SealConditionKind.push ({ id: property, selected: obj.condition && obj.condition.endsWith ('.' + property)});
-                obj.SealKind = []; if (!obj.kind) obj.SealKind.push ({ id: '', selected: true}); for (var property in SealKind) obj.SealKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.conditionSealConditionKind = [{ id: '', selected: (!obj.condition)}]; for (var property in SealConditionKind) obj.conditionSealConditionKind.push ({ id: property, selected: obj.condition && obj.condition.endsWith ('.' + property)});
+                obj.kindSealKind = [{ id: '', selected: (!obj.kind)}]; for (var property in SealKind) obj.kindSealKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.SealConditionKind;
-                delete obj.SealKind;
+                delete obj.conditionSealConditionKind;
+                delete obj.kindSealKind;
             }
 
             edit_template ()
@@ -1245,12 +1245,12 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_appliedDateTime'>appliedDateTime: </label><div class='col-sm-8'><input id='{{id}}_appliedDateTime' class='form-control' type='text'{{#appliedDateTime}} value='{{appliedDateTime}}'{{/appliedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><select id='{{id}}_condition' class='form-control custom-select'>{{#SealConditionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SealConditionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#SealKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SealKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><select id='{{id}}_condition' class='form-control custom-select'>{{#conditionSealConditionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/conditionSealConditionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindSealKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindSealKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sealNumber'>sealNumber: </label><div class='col-sm-8'><input id='{{id}}_sealNumber' class='form-control' type='text'{{#sealNumber}} value='{{sealNumber}}'{{/sealNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetContainer'>AssetContainer: </label><div class='col-sm-8'><input id='{{id}}_AssetContainer' class='form-control' type='text'{{#AssetContainer}} value='{{AssetContainer}}'{{/AssetContainer}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1262,8 +1262,8 @@ define
                 var obj = obj || { id: id, cls: "Seal" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_appliedDateTime").value; if ("" != temp) obj.appliedDateTime = temp;
-                temp = document.getElementById (id + "_condition").value; if ("" != temp) { temp = SealConditionKind[temp]; if ("undefined" != typeof (temp)) obj.condition = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealConditionKind." + temp; }
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SealKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealKind." + temp; }
+                temp = SealConditionKind[document.getElementById (id + "_condition").value]; if (temp) obj.condition = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealConditionKind." + temp; else delete obj.condition;
+                temp = SealKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_sealNumber").value; if ("" != temp) obj.sealNumber = temp;
                 temp = document.getElementById (id + "_AssetContainer").value; if ("" != temp) obj.AssetContainer = temp;
 
@@ -1343,7 +1343,7 @@ define
                     `
                     {{#Locations}}<div><b>Locations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Locations}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1373,7 +1373,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations_string}}'{{/Locations}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1475,7 +1475,7 @@ define
                     {{#removalDate}}<div><b>removalDate</b>: {{removalDate}}</div>{{/removalDate}}
                     {{#retiredDate}}<div><b>retiredDate</b>: {{retiredDate}}</div>{{/retiredDate}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1508,7 +1508,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_removalDate'>removalDate: </label><div class='col-sm-8'><input id='{{id}}_removalDate' class='form-control' type='text'{{#removalDate}} value='{{removalDate}}'{{/removalDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_retiredDate'>retiredDate: </label><div class='col-sm-8'><input id='{{id}}_retiredDate' class='form-control' type='text'{{#retiredDate}} value='{{retiredDate}}'{{/retiredDate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1594,7 +1594,7 @@ define
                     {{#ErpInventoryCounts}}<div><b>ErpInventoryCounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpInventoryCounts}}
                     {{#AssetInfo}}<div><b>AssetInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetInfo}}&quot;);}); return false;'>{{AssetInfo}}</a></div>{{/AssetInfo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1624,7 +1624,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetInfo'>AssetInfo: </label><div class='col-sm-8'><input id='{{id}}_AssetInfo' class='form-control' type='text'{{#AssetInfo}} value='{{AssetInfo}}'{{/AssetInfo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1733,7 +1733,7 @@ define
                     {{#ProcedureDataSets}}<div><b>ProcedureDataSets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProcedureDataSets}}
                     {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1742,7 +1742,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ProcedureKind = []; if (!obj.kind) obj.ProcedureKind.push ({ id: '', selected: true}); for (var property in ProcedureKind) obj.ProcedureKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindProcedureKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ProcedureKind) obj.kindProcedureKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.Measurements) obj.Measurements_string = obj.Measurements.join ();
                 if (obj.Limits) obj.Limits_string = obj.Limits.join ();
                 if (obj.Assets) obj.Assets_string = obj.Assets.join ();
@@ -1753,7 +1753,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ProcedureKind;
+                delete obj.kindProcedureKind;
                 delete obj.Measurements_string;
                 delete obj.Limits_string;
                 delete obj.Assets_string;
@@ -1772,14 +1772,14 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instruction'>instruction: </label><div class='col-sm-8'><input id='{{id}}_instruction' class='form-control' type='text'{{#instruction}} value='{{instruction}}'{{/instruction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#ProcedureKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProcedureKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindProcedureKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindProcedureKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurements'>Measurements: </label><div class='col-sm-8'><input id='{{id}}_Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements_string}}'{{/Measurements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Limits'>Limits: </label><div class='col-sm-8'><input id='{{id}}_Limits' class='form-control' type='text'{{#Limits}} value='{{Limits_string}}'{{/Limits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets_string}}'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits_string}}'{{/CompatibleUnits}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1791,7 +1791,7 @@ define
                 var obj = obj || { id: id, cls: "Procedure" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_instruction").value; if ("" != temp) obj.instruction = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ProcedureKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProcedureKind." + temp; }
+                temp = ProcedureKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProcedureKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
                 temp = document.getElementById (id + "_Measurements").value; if ("" != temp) obj.Measurements = temp.split (",");
                 temp = document.getElementById (id + "_Limits").value; if ("" != temp) obj.Limits = temp.split (",");
@@ -1882,7 +1882,7 @@ define
                     {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
                     {{#LandProperties}}<div><b>LandProperties</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LandProperties}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1916,7 +1916,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties_string}}'{{/LandProperties}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2002,7 +2002,7 @@ define
                     + Asset.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2029,7 +2029,7 @@ define
                     + Asset.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2099,7 +2099,7 @@ define
                     + AssetOrganisationRole.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2126,7 +2126,7 @@ define
                     + AssetOrganisationRole.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2199,7 +2199,7 @@ define
                     `
                     {{#Ownerships}}<div><b>Ownerships</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Ownerships}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2228,7 +2228,7 @@ define
                     + AssetOrganisationRole.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2309,7 +2309,7 @@ define
                     + AssetOrganisationRole.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2336,7 +2336,7 @@ define
                     + AssetOrganisationRole.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2433,7 +2433,7 @@ define
                     {{#Manufacturer}}<div><b>Manufacturer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Manufacturer}}&quot;);}); return false;'>{{Manufacturer}}</a></div>{{/Manufacturer}}
                     {{#OperationalRestrictions}}<div><b>OperationalRestrictions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperationalRestrictions}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2442,8 +2442,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CorporateStandardKind = []; if (!obj.corporateStandardKind) obj.CorporateStandardKind.push ({ id: '', selected: true}); for (var property in CorporateStandardKind) obj.CorporateStandardKind.push ({ id: property, selected: obj.corporateStandardKind && obj.corporateStandardKind.endsWith ('.' + property)});
-                obj.AssetModelUsageKind = []; if (!obj.usageKind) obj.AssetModelUsageKind.push ({ id: '', selected: true}); for (var property in AssetModelUsageKind) obj.AssetModelUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
+                obj.corporateStandardKindCorporateStandardKind = [{ id: '', selected: (!obj.corporateStandardKind)}]; for (var property in CorporateStandardKind) obj.corporateStandardKindCorporateStandardKind.push ({ id: property, selected: obj.corporateStandardKind && obj.corporateStandardKind.endsWith ('.' + property)});
+                obj.usageKindAssetModelUsageKind = [{ id: '', selected: (!obj.usageKind)}]; for (var property in AssetModelUsageKind) obj.usageKindAssetModelUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
                 if (obj.AssetModelCatalogueItems) obj.AssetModelCatalogueItems_string = obj.AssetModelCatalogueItems.join ();
                 if (obj.OperationalRestrictions) obj.OperationalRestrictions_string = obj.OperationalRestrictions.join ();
             }
@@ -2451,8 +2451,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CorporateStandardKind;
-                delete obj.AssetModelUsageKind;
+                delete obj.corporateStandardKindCorporateStandardKind;
+                delete obj.usageKindAssetModelUsageKind;
                 delete obj.AssetModelCatalogueItems_string;
                 delete obj.OperationalRestrictions_string;
             }
@@ -2467,15 +2467,15 @@ define
                     `
                     + AssetModel.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_corporateStandardKind'>corporateStandardKind: </label><div class='col-sm-8'><select id='{{id}}_corporateStandardKind' class='form-control custom-select'>{{#CorporateStandardKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CorporateStandardKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_corporateStandardKind'>corporateStandardKind: </label><div class='col-sm-8'><select id='{{id}}_corporateStandardKind' class='form-control custom-select'>{{#corporateStandardKindCorporateStandardKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/corporateStandardKindCorporateStandardKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelNumber'>modelNumber: </label><div class='col-sm-8'><input id='{{id}}_modelNumber' class='form-control' type='text'{{#modelNumber}} value='{{modelNumber}}'{{/modelNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelVersion'>modelVersion: </label><div class='col-sm-8'><input id='{{id}}_modelVersion' class='form-control' type='text'{{#modelVersion}} value='{{modelVersion}}'{{/modelVersion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#AssetModelUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AssetModelUsageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usageKind'>usageKind: </label><div class='col-sm-8'><select id='{{id}}_usageKind' class='form-control custom-select'>{{#usageKindAssetModelUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/usageKindAssetModelUsageKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_weightTotal'>weightTotal: </label><div class='col-sm-8'><input id='{{id}}_weightTotal' class='form-control' type='text'{{#weightTotal}} value='{{weightTotal}}'{{/weightTotal}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenericAssetModelOrMaterial'>GenericAssetModelOrMaterial: </label><div class='col-sm-8'><input id='{{id}}_GenericAssetModelOrMaterial' class='form-control' type='text'{{#GenericAssetModelOrMaterial}} value='{{GenericAssetModelOrMaterial}}'{{/GenericAssetModelOrMaterial}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Manufacturer'>Manufacturer: </label><div class='col-sm-8'><input id='{{id}}_Manufacturer' class='form-control' type='text'{{#Manufacturer}} value='{{Manufacturer}}'{{/Manufacturer}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2486,10 +2486,10 @@ define
 
                 var obj = obj || { id: id, cls: "ProductAssetModel" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_corporateStandardKind").value; if ("" != temp) { temp = CorporateStandardKind[temp]; if ("undefined" != typeof (temp)) obj.corporateStandardKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CorporateStandardKind." + temp; }
+                temp = CorporateStandardKind[document.getElementById (id + "_corporateStandardKind").value]; if (temp) obj.corporateStandardKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CorporateStandardKind." + temp; else delete obj.corporateStandardKind;
                 temp = document.getElementById (id + "_modelNumber").value; if ("" != temp) obj.modelNumber = temp;
                 temp = document.getElementById (id + "_modelVersion").value; if ("" != temp) obj.modelVersion = temp;
-                temp = document.getElementById (id + "_usageKind").value; if ("" != temp) { temp = AssetModelUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AssetModelUsageKind." + temp; }
+                temp = AssetModelUsageKind[document.getElementById (id + "_usageKind").value]; if (temp) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AssetModelUsageKind." + temp; else delete obj.usageKind;
                 temp = document.getElementById (id + "_weightTotal").value; if ("" != temp) obj.weightTotal = temp;
                 temp = document.getElementById (id + "_GenericAssetModelOrMaterial").value; if ("" != temp) obj.GenericAssetModelOrMaterial = temp;
                 temp = document.getElementById (id + "_Manufacturer").value; if ("" != temp) obj.Manufacturer = temp;
@@ -2515,11 +2515,13 @@ define
         return (
             {
                 Maintainer: Maintainer,
+                ProcedureKind: ProcedureKind,
                 AssetOwner: AssetOwner,
                 LifecycleDate: LifecycleDate,
                 Asset: Asset,
-                ProductAssetModel: ProductAssetModel,
                 AssetModel: AssetModel,
+                ProductAssetModel: ProductAssetModel,
+                SealKind: SealKind,
                 ProcedureDataSet: ProcedureDataSet,
                 AssetOrganisationRole: AssetOrganisationRole,
                 AssetFunction: AssetFunction,
@@ -2527,7 +2529,10 @@ define
                 AcceptanceTest: AcceptanceTest,
                 AssetInfo: AssetInfo,
                 AssetUser: AssetUser,
+                AssetModelUsageKind: AssetModelUsageKind,
                 AssetContainer: AssetContainer,
+                SealConditionKind: SealConditionKind,
+                CorporateStandardKind: CorporateStandardKind,
                 AssetLocationHazard: AssetLocationHazard,
                 ComMedia: ComMedia,
                 Manufacturer: Manufacturer,

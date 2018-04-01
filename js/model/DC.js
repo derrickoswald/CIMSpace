@@ -142,7 +142,7 @@ define
                     {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTerminals}}
                     {{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCEquipmentContainer}}&quot;);}); return false;'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -173,7 +173,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCTopologicalNode'>DCTopologicalNode: </label><div class='col-sm-8'><input id='{{id}}_DCTopologicalNode' class='form-control' type='text'{{#DCTopologicalNode}} value='{{DCTopologicalNode}}'{{/DCTopologicalNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCEquipmentContainer'>DCEquipmentContainer: </label><div class='col-sm-8'><input id='{{id}}_DCEquipmentContainer' class='form-control' type='text'{{#DCEquipmentContainer}} value='{{DCEquipmentContainer}}'{{/DCEquipmentContainer}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -265,7 +265,7 @@ define
                     `
                     {{#DCTopologicalNodes}}<div><b>DCTopologicalNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTopologicalNodes}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -294,7 +294,7 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -383,7 +383,7 @@ define
                     {{#DCNode}}<div><b>DCNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCNode}}&quot;);}); return false;'>{{DCNode}}</a></div>{{/DCNode}}
                     {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);}); return false;'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -412,7 +412,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCNode'>DCNode: </label><div class='col-sm-8'><input id='{{id}}_DCNode' class='form-control' type='text'{{#DCNode}} value='{{DCNode}}'{{/DCNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCTopologicalNode'>DCTopologicalNode: </label><div class='col-sm-8'><input id='{{id}}_DCTopologicalNode' class='form-control' type='text'{{#DCTopologicalNode}} value='{{DCTopologicalNode}}'{{/DCTopologicalNode}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -555,7 +555,7 @@ define
                     {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTerminals}}
                     {{#PccTerminal}}<div><b>PccTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PccTerminal}}&quot;);}); return false;'>{{PccTerminal}}</a></div>{{/PccTerminal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -602,7 +602,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q'>q: </label><div class='col-sm-8'><input id='{{id}}_q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PccTerminal'>PccTerminal: </label><div class='col-sm-8'><input id='{{id}}_PccTerminal' class='form-control' type='text'{{#PccTerminal}} value='{{PccTerminal}}'{{/PccTerminal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -712,7 +712,7 @@ define
                     {{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
                     {{#DCLineSegments}}<div><b>DCLineSegments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCLineSegments}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -744,7 +744,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductance'>inductance: </label><div class='col-sm-8'><input id='{{id}}_inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resistance'>resistance: </label><div class='col-sm-8'><input id='{{id}}_resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -838,7 +838,7 @@ define
                     {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTopologicalNode}}
                     {{#DCNodes}}<div><b>DCNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCNodes}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -869,7 +869,7 @@ define
                     + Core.EquipmentContainer.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -954,7 +954,7 @@ define
                     `
                     {{#VsConverterDCSides}}<div><b>VsConverterDCSides</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VsConverterDCSides}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -983,7 +983,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1070,7 +1070,7 @@ define
                     {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTerminals}}
                     {{#ProtectiveActionAdjustment}}<div><b>ProtectiveActionAdjustment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProtectiveActionAdjustment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1101,7 +1101,7 @@ define
                     + Core.Equipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1191,7 +1191,7 @@ define
                     {{#polarity}}<div><b>polarity</b>: {{polarity}}</div>{{/polarity}}
                     {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);}); return false;'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1200,13 +1200,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DCPolarityKind = []; if (!obj.polarity) obj.DCPolarityKind.push ({ id: '', selected: true}); for (var property in DCPolarityKind) obj.DCPolarityKind.push ({ id: property, selected: obj.polarity && obj.polarity.endsWith ('.' + property)});
+                obj.polarityDCPolarityKind = [{ id: '', selected: (!obj.polarity)}]; for (var property in DCPolarityKind) obj.polarityDCPolarityKind.push ({ id: property, selected: obj.polarity && obj.polarity.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DCPolarityKind;
+                delete obj.polarityDCPolarityKind;
             }
 
             edit_template ()
@@ -1219,10 +1219,10 @@ define
                     `
                     + DCBaseTerminal.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_polarity'>polarity: </label><div class='col-sm-8'><select id='{{id}}_polarity' class='form-control custom-select'>{{#DCPolarityKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DCPolarityKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_polarity'>polarity: </label><div class='col-sm-8'><select id='{{id}}_polarity' class='form-control custom-select'>{{#polarityDCPolarityKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/polarityDCPolarityKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1233,7 +1233,7 @@ define
 
                 var obj = obj || { id: id, cls: "ACDCConverterDCTerminal" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_polarity").value; if ("" != temp) { temp = DCPolarityKind[temp]; if ("undefined" != typeof (temp)) obj.polarity = "http://iec.ch/TC57/2013/CIM-schema-cim16#DCPolarityKind." + temp; }
+                temp = DCPolarityKind[document.getElementById (id + "_polarity").value]; if (temp) obj.polarity = "http://iec.ch/TC57/2013/CIM-schema-cim16#DCPolarityKind." + temp; else delete obj.polarity;
                 temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
 
                 return (obj);
@@ -1310,7 +1310,7 @@ define
                     `
                     {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);}); return false;'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1338,7 +1338,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1464,7 +1464,7 @@ define
                     {{#minIdc}}<div><b>minIdc</b>: {{minIdc}}</div>{{/minIdc}}
                     {{#operatingMode}}<div><b>operatingMode</b>: {{operatingMode}}</div>{{/operatingMode}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1473,15 +1473,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CsPpccControlKind = []; if (!obj.pPccControl) obj.CsPpccControlKind.push ({ id: '', selected: true}); for (var property in CsPpccControlKind) obj.CsPpccControlKind.push ({ id: property, selected: obj.pPccControl && obj.pPccControl.endsWith ('.' + property)});
-                obj.CsOperatingModeKind = []; if (!obj.operatingMode) obj.CsOperatingModeKind.push ({ id: '', selected: true}); for (var property in CsOperatingModeKind) obj.CsOperatingModeKind.push ({ id: property, selected: obj.operatingMode && obj.operatingMode.endsWith ('.' + property)});
+                obj.pPccControlCsPpccControlKind = [{ id: '', selected: (!obj.pPccControl)}]; for (var property in CsPpccControlKind) obj.pPccControlCsPpccControlKind.push ({ id: property, selected: obj.pPccControl && obj.pPccControl.endsWith ('.' + property)});
+                obj.operatingModeCsOperatingModeKind = [{ id: '', selected: (!obj.operatingMode)}]; for (var property in CsOperatingModeKind) obj.operatingModeCsOperatingModeKind.push ({ id: property, selected: obj.operatingMode && obj.operatingMode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CsPpccControlKind;
-                delete obj.CsOperatingModeKind;
+                delete obj.pPccControlCsPpccControlKind;
+                delete obj.operatingModeCsOperatingModeKind;
             }
 
             edit_template ()
@@ -1496,7 +1496,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxIdc'>maxIdc: </label><div class='col-sm-8'><input id='{{id}}_maxIdc' class='form-control' type='text'{{#maxIdc}} value='{{maxIdc}}'{{/maxIdc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedIdc'>ratedIdc: </label><div class='col-sm-8'><input id='{{id}}_ratedIdc' class='form-control' type='text'{{#ratedIdc}} value='{{ratedIdc}}'{{/ratedIdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='{{id}}_pPccControl' class='form-control custom-select'>{{#CsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CsPpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='{{id}}_pPccControl' class='form-control custom-select'>{{#pPccControlCsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/pPccControlCsPpccControlKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_alpha'>alpha: </label><div class='col-sm-8'><input id='{{id}}_alpha' class='form-control' type='text'{{#alpha}} value='{{alpha}}'{{/alpha}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gamma'>gamma: </label><div class='col-sm-8'><input id='{{id}}_gamma' class='form-control' type='text'{{#gamma}} value='{{gamma}}'{{/gamma}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxAlpha'>maxAlpha: </label><div class='col-sm-8'><input id='{{id}}_maxAlpha' class='form-control' type='text'{{#maxAlpha}} value='{{maxAlpha}}'{{/maxAlpha}}></div></div>
@@ -1507,9 +1507,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetGamma'>targetGamma: </label><div class='col-sm-8'><input id='{{id}}_targetGamma' class='form-control' type='text'{{#targetGamma}} value='{{targetGamma}}'{{/targetGamma}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetIdc'>targetIdc: </label><div class='col-sm-8'><input id='{{id}}_targetIdc' class='form-control' type='text'{{#targetIdc}} value='{{targetIdc}}'{{/targetIdc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minIdc'>minIdc: </label><div class='col-sm-8'><input id='{{id}}_minIdc' class='form-control' type='text'{{#minIdc}} value='{{minIdc}}'{{/minIdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><select id='{{id}}_operatingMode' class='form-control custom-select'>{{#CsOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CsOperatingModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><select id='{{id}}_operatingMode' class='form-control custom-select'>{{#operatingModeCsOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/operatingModeCsOperatingModeKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1522,7 +1522,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_maxIdc").value; if ("" != temp) obj.maxIdc = temp;
                 temp = document.getElementById (id + "_ratedIdc").value; if ("" != temp) obj.ratedIdc = temp;
-                temp = document.getElementById (id + "_pPccControl").value; if ("" != temp) { temp = CsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#CsPpccControlKind." + temp; }
+                temp = CsPpccControlKind[document.getElementById (id + "_pPccControl").value]; if (temp) obj.pPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#CsPpccControlKind." + temp; else delete obj.pPccControl;
                 temp = document.getElementById (id + "_alpha").value; if ("" != temp) obj.alpha = temp;
                 temp = document.getElementById (id + "_gamma").value; if ("" != temp) obj.gamma = temp;
                 temp = document.getElementById (id + "_maxAlpha").value; if ("" != temp) obj.maxAlpha = temp;
@@ -1533,7 +1533,7 @@ define
                 temp = document.getElementById (id + "_targetGamma").value; if ("" != temp) obj.targetGamma = temp;
                 temp = document.getElementById (id + "_targetIdc").value; if ("" != temp) obj.targetIdc = temp;
                 temp = document.getElementById (id + "_minIdc").value; if ("" != temp) obj.minIdc = temp;
-                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) { temp = CsOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#CsOperatingModeKind." + temp; }
+                temp = CsOperatingModeKind[document.getElementById (id + "_operatingMode").value]; if (temp) obj.operatingMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#CsOperatingModeKind." + temp; else delete obj.operatingMode;
 
                 return (obj);
             }
@@ -1631,7 +1631,7 @@ define
                     {{#qPccControl}}<div><b>qPccControl</b>: {{qPccControl}}</div>{{/qPccControl}}
                     {{#CapabilityCurve}}<div><b>CapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CapabilityCurve}}&quot;);}); return false;'>{{CapabilityCurve}}</a></div>{{/CapabilityCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1640,15 +1640,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.VsPpccControlKind = []; if (!obj.pPccControl) obj.VsPpccControlKind.push ({ id: '', selected: true}); for (var property in VsPpccControlKind) obj.VsPpccControlKind.push ({ id: property, selected: obj.pPccControl && obj.pPccControl.endsWith ('.' + property)});
-                obj.VsQpccControlKind = []; if (!obj.qPccControl) obj.VsQpccControlKind.push ({ id: '', selected: true}); for (var property in VsQpccControlKind) obj.VsQpccControlKind.push ({ id: property, selected: obj.qPccControl && obj.qPccControl.endsWith ('.' + property)});
+                obj.pPccControlVsPpccControlKind = [{ id: '', selected: (!obj.pPccControl)}]; for (var property in VsPpccControlKind) obj.pPccControlVsPpccControlKind.push ({ id: property, selected: obj.pPccControl && obj.pPccControl.endsWith ('.' + property)});
+                obj.qPccControlVsQpccControlKind = [{ id: '', selected: (!obj.qPccControl)}]; for (var property in VsQpccControlKind) obj.qPccControlVsQpccControlKind.push ({ id: property, selected: obj.qPccControl && obj.qPccControl.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.VsPpccControlKind;
-                delete obj.VsQpccControlKind;
+                delete obj.pPccControlVsPpccControlKind;
+                delete obj.qPccControlVsQpccControlKind;
             }
 
             edit_template ()
@@ -1661,7 +1661,7 @@ define
                     `
                     + ACDCConverter.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='{{id}}_pPccControl' class='form-control custom-select'>{{#VsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VsPpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='{{id}}_pPccControl' class='form-control custom-select'>{{#pPccControlVsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/pPccControlVsPpccControlKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qShare'>qShare: </label><div class='col-sm-8'><input id='{{id}}_qShare' class='form-control' type='text'{{#qShare}} value='{{qShare}}'{{/qShare}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetQpcc'>targetQpcc: </label><div class='col-sm-8'><input id='{{id}}_targetQpcc' class='form-control' type='text'{{#targetQpcc}} value='{{targetQpcc}}'{{/targetQpcc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetUpcc'>targetUpcc: </label><div class='col-sm-8'><input id='{{id}}_targetUpcc' class='form-control' type='text'{{#targetUpcc}} value='{{targetUpcc}}'{{/targetUpcc}}></div></div>
@@ -1671,10 +1671,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uf'>uf: </label><div class='col-sm-8'><input id='{{id}}_uf' class='form-control' type='text'{{#uf}} value='{{uf}}'{{/uf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxValveCurrent'>maxValveCurrent: </label><div class='col-sm-8'><input id='{{id}}_maxValveCurrent' class='form-control' type='text'{{#maxValveCurrent}} value='{{maxValveCurrent}}'{{/maxValveCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxModulationIndex'>maxModulationIndex: </label><div class='col-sm-8'><input id='{{id}}_maxModulationIndex' class='form-control' type='text'{{#maxModulationIndex}} value='{{maxModulationIndex}}'{{/maxModulationIndex}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qPccControl'>qPccControl: </label><div class='col-sm-8'><select id='{{id}}_qPccControl' class='form-control custom-select'>{{#VsQpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VsQpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qPccControl'>qPccControl: </label><div class='col-sm-8'><select id='{{id}}_qPccControl' class='form-control custom-select'>{{#qPccControlVsQpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/qPccControlVsQpccControlKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CapabilityCurve'>CapabilityCurve: </label><div class='col-sm-8'><input id='{{id}}_CapabilityCurve' class='form-control' type='text'{{#CapabilityCurve}} value='{{CapabilityCurve}}'{{/CapabilityCurve}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1685,7 +1685,7 @@ define
 
                 var obj = obj || { id: id, cls: "VsConverter" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_pPccControl").value; if ("" != temp) { temp = VsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#VsPpccControlKind." + temp; }
+                temp = VsPpccControlKind[document.getElementById (id + "_pPccControl").value]; if (temp) obj.pPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#VsPpccControlKind." + temp; else delete obj.pPccControl;
                 temp = document.getElementById (id + "_qShare").value; if ("" != temp) obj.qShare = temp;
                 temp = document.getElementById (id + "_targetQpcc").value; if ("" != temp) obj.targetQpcc = temp;
                 temp = document.getElementById (id + "_targetUpcc").value; if ("" != temp) obj.targetUpcc = temp;
@@ -1695,7 +1695,7 @@ define
                 temp = document.getElementById (id + "_uf").value; if ("" != temp) obj.uf = temp;
                 temp = document.getElementById (id + "_maxValveCurrent").value; if ("" != temp) obj.maxValveCurrent = temp;
                 temp = document.getElementById (id + "_maxModulationIndex").value; if ("" != temp) obj.maxModulationIndex = temp;
-                temp = document.getElementById (id + "_qPccControl").value; if ("" != temp) { temp = VsQpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.qPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#VsQpccControlKind." + temp; }
+                temp = VsQpccControlKind[document.getElementById (id + "_qPccControl").value]; if (temp) obj.qPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#VsQpccControlKind." + temp; else delete obj.qPccControl;
                 temp = document.getElementById (id + "_CapabilityCurve").value; if ("" != temp) obj.CapabilityCurve = temp;
 
                 return (obj);
@@ -1772,7 +1772,7 @@ define
                     `
                     {{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);}); return false;'>{{Region}}</a></div>{{/Region}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1800,7 +1800,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Region'>Region: </label><div class='col-sm-8'><input id='{{id}}_Region' class='form-control' type='text'{{#Region}} value='{{Region}}'{{/Region}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1890,7 +1890,7 @@ define
                     {{#operationMode}}<div><b>operationMode</b>: {{operationMode}}</div>{{/operationMode}}
                     {{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);}); return false;'>{{Substation}}</a></div>{{/Substation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1899,13 +1899,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.DCConverterOperatingModeKind = []; if (!obj.operationMode) obj.DCConverterOperatingModeKind.push ({ id: '', selected: true}); for (var property in DCConverterOperatingModeKind) obj.DCConverterOperatingModeKind.push ({ id: property, selected: obj.operationMode && obj.operationMode.endsWith ('.' + property)});
+                obj.operationModeDCConverterOperatingModeKind = [{ id: '', selected: (!obj.operationMode)}]; for (var property in DCConverterOperatingModeKind) obj.operationModeDCConverterOperatingModeKind.push ({ id: property, selected: obj.operationMode && obj.operationMode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.DCConverterOperatingModeKind;
+                delete obj.operationModeDCConverterOperatingModeKind;
             }
 
             edit_template ()
@@ -1918,10 +1918,10 @@ define
                     `
                     + DCEquipmentContainer.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operationMode'>operationMode: </label><div class='col-sm-8'><select id='{{id}}_operationMode' class='form-control custom-select'>{{#DCConverterOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DCConverterOperatingModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operationMode'>operationMode: </label><div class='col-sm-8'><select id='{{id}}_operationMode' class='form-control custom-select'>{{#operationModeDCConverterOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/operationModeDCConverterOperatingModeKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Substation'>Substation: </label><div class='col-sm-8'><input id='{{id}}_Substation' class='form-control' type='text'{{#Substation}} value='{{Substation}}'{{/Substation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1932,7 +1932,7 @@ define
 
                 var obj = obj || { id: id, cls: "DCConverterUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_operationMode").value; if ("" != temp) { temp = DCConverterOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operationMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#DCConverterOperatingModeKind." + temp; }
+                temp = DCConverterOperatingModeKind[document.getElementById (id + "_operationMode").value]; if (temp) obj.operationMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#DCConverterOperatingModeKind." + temp; else delete obj.operationMode;
                 temp = document.getElementById (id + "_Substation").value; if ("" != temp) obj.Substation = temp;
 
                 return (obj);
@@ -2006,7 +2006,7 @@ define
                     + DCConductingEquipment.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2033,7 +2033,7 @@ define
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2103,7 +2103,7 @@ define
                     + DCSwitch.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2130,7 +2130,7 @@ define
                     + DCSwitch.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2211,7 +2211,7 @@ define
                     {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
                     {{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2241,7 +2241,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductance'>inductance: </label><div class='col-sm-8'><input id='{{id}}_inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='{{id}}_ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2316,7 +2316,7 @@ define
                     + DCConductingEquipment.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2343,7 +2343,7 @@ define
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2424,7 +2424,7 @@ define
                     {{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
                     {{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2454,7 +2454,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='{{id}}_ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resistance'>resistance: </label><div class='col-sm-8'><input id='{{id}}_resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2544,7 +2544,7 @@ define
                     {{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
                     {{#PerLengthParameter}}<div><b>PerLengthParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PerLengthParameter}}&quot;);}); return false;'>{{PerLengthParameter}}</a></div>{{/PerLengthParameter}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2576,7 +2576,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_length'>length: </label><div class='col-sm-8'><input id='{{id}}_length' class='form-control' type='text'{{#length}} value='{{length}}'{{/length}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PerLengthParameter'>PerLengthParameter: </label><div class='col-sm-8'><input id='{{id}}_PerLengthParameter' class='form-control' type='text'{{#PerLengthParameter}} value='{{PerLengthParameter}}'{{/PerLengthParameter}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2670,7 +2670,7 @@ define
                     {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
                     {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2699,7 +2699,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductance'>inductance: </label><div class='col-sm-8'><input id='{{id}}_inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2773,7 +2773,7 @@ define
                     + DCSwitch.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2800,7 +2800,7 @@ define
                     + DCSwitch.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2872,7 +2872,7 @@ define
                     + DCConductingEquipment.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2899,7 +2899,7 @@ define
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2916,25 +2916,31 @@ define
         return (
             {
                 DCShunt: DCShunt,
-                DCTopologicalIsland: DCTopologicalIsland,
                 DCEquipmentContainer: DCEquipmentContainer,
-                DCDisconnector: DCDisconnector,
+                VsQpccControlKind: VsQpccControlKind,
+                CsPpccControlKind: CsPpccControlKind,
                 DCGround: DCGround,
-                VsConverter: VsConverter,
                 DCChopper: DCChopper,
                 DCConductingEquipment: DCConductingEquipment,
+                DCConverterOperatingModeKind: DCConverterOperatingModeKind,
                 DCBreaker: DCBreaker,
                 PerLengthDCLineParameter: PerLengthDCLineParameter,
+                DCBaseTerminal: DCBaseTerminal,
+                DCSwitch: DCSwitch,
+                DCSeriesDevice: DCSeriesDevice,
+                VsPpccControlKind: VsPpccControlKind,
+                CsOperatingModeKind: CsOperatingModeKind,
+                DCTopologicalIsland: DCTopologicalIsland,
+                DCPolarityKind: DCPolarityKind,
+                DCDisconnector: DCDisconnector,
+                VsConverter: VsConverter,
                 ACDCConverter: ACDCConverter,
                 CsConverter: CsConverter,
-                DCBaseTerminal: DCBaseTerminal,
                 DCLineSegment: DCLineSegment,
                 VsCapabilityCurve: VsCapabilityCurve,
-                DCSwitch: DCSwitch,
                 DCConverterUnit: DCConverterUnit,
                 DCTerminal: DCTerminal,
                 DCBusbar: DCBusbar,
-                DCSeriesDevice: DCSeriesDevice,
                 DCLine: DCLine,
                 ACDCConverterDCTerminal: ACDCConverterDCTerminal,
                 DCNode: DCNode

@@ -72,7 +72,7 @@ define
                     {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -101,7 +101,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -204,7 +204,7 @@ define
                     {{#vdmin}}<div><b>vdmin</b>: {{vdmin}}</div>{{/vdmin}}
                     {{#vk}}<div><b>vk</b>: {{vk}}</div>{{/vk}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -236,7 +236,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vdmin'>vdmin: </label><div class='col-sm-8'><input id='{{id}}_vdmin' class='form-control' type='text'{{#vdmin}} value='{{vdmin}}'{{/vdmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vk'>vk: </label><div class='col-sm-8'><input id='{{id}}_vk' class='form-control' type='text'{{#vk}} value='{{vk}}'{{/vk}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -369,7 +369,7 @@ define
                     {{#vtm}}<div><b>vtm</b>: {{vtm}}</div>{{/vtm}}
                     {{#vtn}}<div><b>vtn</b>: {{vtn}}</div>{{/vtn}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -414,7 +414,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vtm'>vtm: </label><div class='col-sm-8'><input id='{{id}}_vtm' class='form-control' type='text'{{#vtm}} value='{{vtm}}'{{/vtm}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vtn'>vtn: </label><div class='col-sm-8'><input id='{{id}}_vtn' class='form-control' type='text'{{#vtn}} value='{{vtn}}'{{/vtn}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -512,7 +512,7 @@ define
                     {{#tdr}}<div><b>tdr</b>: {{tdr}}</div>{{/tdr}}
                     {{#vtmin}}<div><b>vtmin</b>: {{vtmin}}</div>{{/vtmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -541,7 +541,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tdr'>tdr: </label><div class='col-sm-8'><input id='{{id}}_tdr' class='form-control' type='text'{{#tdr}} value='{{tdr}}'{{/tdr}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vtmin'>vtmin: </label><div class='col-sm-8'><input id='{{id}}_vtmin' class='form-control' type='text'{{#vtmin}} value='{{vtmin}}'{{/vtmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -561,9 +561,9 @@ define
 
         return (
             {
-                DiscExcContIEEEDEC1A: DiscExcContIEEEDEC1A,
                 DiscExcContIEEEDEC2A: DiscExcContIEEEDEC2A,
                 DiscontinuousExcitationControlDynamics: DiscontinuousExcitationControlDynamics,
+                DiscExcContIEEEDEC1A: DiscExcContIEEEDEC1A,
                 DiscExcContIEEEDEC3A: DiscExcContIEEEDEC3A
             }
         );

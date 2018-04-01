@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "model/Core", "model/StateVariables"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "model/Core", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the ConductingEquipment level.
      * @description Digitizes a point and makes a ConductingEquipment element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports conductingequipmentmaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, Core, StateVariables)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, Core, StateVariables)
     {
         class ConductingEquipmentMaker extends PowerSystemResourceMaker
         {
@@ -22,7 +22,7 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
-            classes ()
+            static classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -38,9 +38,10 @@ define
                 return (ret);
             }
 
-            render_parameters ()
+            render_parameters (proto)
             {
-                return (mustache.render (this.class_template (), { classes: this.classes () }));
+                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                return (mustache.render (this.class_template (), view ));
             }
 
             low_voltage ()
@@ -58,16 +59,15 @@ define
                 return ("BaseVoltage_150000");
             }
 
-            ensure_voltages (features)
+            ensure_voltages ()
             {
                 var ret = [];
-                var data = this._cimmap.get_data ();
-                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_150000"])
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_150000", mRID: "BaseVoltage_150000", name: "150kV", description: "high voltage", nominalVoltage: 150.0 }, features));
-                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_16000"])
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, features));
-                if (!data || !data.BaseVoltage || !data.BaseVoltage["BaseVoltage_400"])
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, features));
+                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_150000"))
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_150000", mRID: "BaseVoltage_150000", name: "150kV", description: "high voltage", nominalVoltage: 150.0 }, this._cimedit.new_features ()));
+                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_16000"))
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, this._cimedit.new_features ()));
+                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_400"))
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, this._cimedit.new_features ()));
                 return (ret);
             }
 
@@ -81,29 +81,28 @@ define
                 return ("not_in_use");
             }
 
-            ensure_status (features)
+            ensure_status ()
             {
                 var ret = [];
-                var data = this._cimmap.get_data ();
-                if (!data || !data.SvStatus || !data.SvStatus["in_use"])
-                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use", description: "Status for equipment in use.", inService: true }, features));
-                if (!data || !data.SvStatus || !data.SvStatus["not_in_use"])
-                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use", description: "Status for equipment not in use", inService: false }, features));
+                if (!this._cimmap.get ("SvStatus", "in_use"))
+                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use", description: "Status for equipment in use.", inService: true }, this._cimedit.new_features ()));
+                if (!this._cimmap.get ("SvStatus", "not_in_use"))
+                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use", description: "Status for equipment not in use", inService: false }, this._cimedit.new_features ()));
                 return (ret);
             }
 
-            make_equipment (feature)
+            make_equipment (array)
             {
-                var ret = [];
-
-                var equipment = this._cimedit.primary_element ();
+                var equipment = array[0];
                 var id = equipment.id;
 
-                var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
+                // get the position
+                var pp = array.filter (o => o.cls == "PositionPoint")[0];
+                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition));
                 if (null == connectivity) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node"));
-                    ret.push (new Core.ConnectivityNode (node, this._features));
+                    array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -127,23 +126,25 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal.TopologicalNode = connectivity.TopologicalNode;
-                ret.push (new Core.Terminal (terminal, this._features));
+                array.push (new Core.Terminal (terminal, this._cimedit.new_features ()));
 
                 if (!equipment.BaseVoltage)
+                {
+                    array = array.concat (this.ensure_voltages (this._cimedit.new_features ()));
                     equipment.BaseVoltage = this.low_voltage ();
-                ret = ret.concat (this.make_psr (feature, equipment));
-                this._cimedit.create_from (equipment);
+                }
 
-                return (ret);
+                return (array);
             }
 
-            make (features)
+            make ()
             {
-                this._features = features;
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, this._features);
+                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this)));
                 return (cpromise);
             }

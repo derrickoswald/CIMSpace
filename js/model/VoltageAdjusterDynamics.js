@@ -69,7 +69,7 @@ define
                     `
                     {{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);}); return false;'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -97,7 +97,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -201,7 +201,7 @@ define
                     {{#vadjmax}}<div><b>vadjmax</b>: {{vadjmax}}</div>{{/vadjmax}}
                     {{#vadjmin}}<div><b>vadjmin</b>: {{vadjmin}}</div>{{/vadjmin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -234,7 +234,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vadjmax'>vadjmax: </label><div class='col-sm-8'><input id='{{id}}_vadjmax' class='form-control' type='text'{{#vadjmax}} value='{{vadjmax}}'{{/vadjmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vadjmin'>vadjmin: </label><div class='col-sm-8'><input id='{{id}}_vadjmin' class='form-control' type='text'{{#vadjmin}} value='{{vadjmin}}'{{/vadjmin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

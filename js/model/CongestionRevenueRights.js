@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Common", "model/Core"],
+    ["model/base", "model/Common", "model/Core", "model/MktDomain"],
     /**
      * Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets.
      *
      * For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
      *
      */
-    function (base, Common, Core)
+    function (base, Common, Core, MktDomain)
     {
 
         /**
@@ -92,7 +92,7 @@ define
                     {{#Sink}}<div><b>Sink</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Sink}}
                     {{#CRR}}<div><b>CRR</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRR}}&quot;);}); return false;'>{{CRR}}</a></div>{{/CRR}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -131,7 +131,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Sink'>Sink: </label><div class='col-sm-8'><input id='{{id}}_Sink' class='form-control' type='text'{{#Sink}} value='{{Sink_string}}'{{/Sink}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CRR'>CRR: </label><div class='col-sm-8'><input id='{{id}}_CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -197,10 +197,10 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "CRR";
-                base.parse_element (/<cim:CRR.cRRcategory>([\s\S]*?)<\/cim:CRR.cRRcategory>/g, obj, "cRRcategory", base.to_string, sub, context);
-                base.parse_element (/<cim:CRR.cRRtype>([\s\S]*?)<\/cim:CRR.cRRtype>/g, obj, "cRRtype", base.to_string, sub, context);
-                base.parse_element (/<cim:CRR.hedgeType>([\s\S]*?)<\/cim:CRR.hedgeType>/g, obj, "hedgeType", base.to_string, sub, context);
-                base.parse_element (/<cim:CRR.timeOfUse>([\s\S]*?)<\/cim:CRR.timeOfUse>/g, obj, "timeOfUse", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CRR.cRRcategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "cRRcategory", sub, context);
+                base.parse_attribute (/<cim:CRR.cRRtype\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "cRRtype", sub, context);
+                base.parse_attribute (/<cim:CRR.hedgeType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "hedgeType", sub, context);
+                base.parse_attribute (/<cim:CRR.timeOfUse\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "timeOfUse", sub, context);
                 base.parse_element (/<cim:CRR.tradeSliceID>([\s\S]*?)<\/cim:CRR.tradeSliceID>/g, obj, "tradeSliceID", base.to_string, sub, context);
                 base.parse_attributes (/<cim:CRR.CRROrgRole\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRROrgRole", sub, context);
                 base.parse_attribute (/<cim:CRR.CRRMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRRMarket", sub, context);
@@ -218,10 +218,10 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CRR", "cRRcategory", "cRRcategory",  base.from_string, fields);
-                base.export_element (obj, "CRR", "cRRtype", "cRRtype",  base.from_string, fields);
-                base.export_element (obj, "CRR", "hedgeType", "hedgeType",  base.from_string, fields);
-                base.export_element (obj, "CRR", "timeOfUse", "timeOfUse",  base.from_string, fields);
+                base.export_attribute (obj, "CRR", "cRRcategory", "cRRcategory", fields);
+                base.export_attribute (obj, "CRR", "cRRtype", "cRRtype", fields);
+                base.export_attribute (obj, "CRR", "hedgeType", "hedgeType", fields);
+                base.export_attribute (obj, "CRR", "timeOfUse", "timeOfUse", fields);
                 base.export_element (obj, "CRR", "tradeSliceID", "tradeSliceID",  base.from_string, fields);
                 base.export_attributes (obj, "CRR", "CRROrgRole", "CRROrgRole", fields);
                 base.export_attribute (obj, "CRR", "CRRMarket", "CRRMarket", fields);
@@ -253,7 +253,7 @@ define
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
                     {{#CRRSegment}}<div><b>CRRSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CRRSegment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -262,6 +262,10 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.cRRcategoryCRRCategoryType = [{ id: '', selected: (!obj.cRRcategory)}]; for (var property in MktDomain.CRRCategoryType) obj.cRRcategoryCRRCategoryType.push ({ id: property, selected: obj.cRRcategory && obj.cRRcategory.endsWith ('.' + property)});
+                obj.cRRtypeCRRSegmentType = [{ id: '', selected: (!obj.cRRtype)}]; for (var property in MktDomain.CRRSegmentType) obj.cRRtypeCRRSegmentType.push ({ id: property, selected: obj.cRRtype && obj.cRRtype.endsWith ('.' + property)});
+                obj.hedgeTypeCRRHedgeType = [{ id: '', selected: (!obj.hedgeType)}]; for (var property in MktDomain.CRRHedgeType) obj.hedgeTypeCRRHedgeType.push ({ id: property, selected: obj.hedgeType && obj.hedgeType.endsWith ('.' + property)});
+                obj.timeOfUseTimeOfUse = [{ id: '', selected: (!obj.timeOfUse)}]; for (var property in MktDomain.TimeOfUse) obj.timeOfUseTimeOfUse.push ({ id: property, selected: obj.timeOfUse && obj.timeOfUse.endsWith ('.' + property)});
                 if (obj.CRROrgRole) obj.CRROrgRole_string = obj.CRROrgRole.join ();
                 if (obj.CRRSegment) obj.CRRSegment_string = obj.CRRSegment.join ();
             }
@@ -269,6 +273,10 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.cRRcategoryCRRCategoryType;
+                delete obj.cRRtypeCRRSegmentType;
+                delete obj.hedgeTypeCRRHedgeType;
+                delete obj.timeOfUseTimeOfUse;
                 delete obj.CRROrgRole_string;
                 delete obj.CRRSegment_string;
             }
@@ -283,15 +291,15 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cRRcategory'>cRRcategory: </label><div class='col-sm-8'><input id='{{id}}_cRRcategory' class='form-control' type='text'{{#cRRcategory}} value='{{cRRcategory}}'{{/cRRcategory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cRRtype'>cRRtype: </label><div class='col-sm-8'><input id='{{id}}_cRRtype' class='form-control' type='text'{{#cRRtype}} value='{{cRRtype}}'{{/cRRtype}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hedgeType'>hedgeType: </label><div class='col-sm-8'><input id='{{id}}_hedgeType' class='form-control' type='text'{{#hedgeType}} value='{{hedgeType}}'{{/hedgeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeOfUse'>timeOfUse: </label><div class='col-sm-8'><input id='{{id}}_timeOfUse' class='form-control' type='text'{{#timeOfUse}} value='{{timeOfUse}}'{{/timeOfUse}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cRRcategory'>cRRcategory: </label><div class='col-sm-8'><select id='{{id}}_cRRcategory' class='form-control custom-select'>{{#cRRcategoryCRRCategoryType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/cRRcategoryCRRCategoryType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cRRtype'>cRRtype: </label><div class='col-sm-8'><select id='{{id}}_cRRtype' class='form-control custom-select'>{{#cRRtypeCRRSegmentType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/cRRtypeCRRSegmentType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hedgeType'>hedgeType: </label><div class='col-sm-8'><select id='{{id}}_hedgeType' class='form-control custom-select'>{{#hedgeTypeCRRHedgeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/hedgeTypeCRRHedgeType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeOfUse'>timeOfUse: </label><div class='col-sm-8'><select id='{{id}}_timeOfUse' class='form-control custom-select'>{{#timeOfUseTimeOfUse}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/timeOfUseTimeOfUse}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeSliceID'>tradeSliceID: </label><div class='col-sm-8'><input id='{{id}}_tradeSliceID' class='form-control' type='text'{{#tradeSliceID}} value='{{tradeSliceID}}'{{/tradeSliceID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CRRMarket'>CRRMarket: </label><div class='col-sm-8'><input id='{{id}}_CRRMarket' class='form-control' type='text'{{#CRRMarket}} value='{{CRRMarket}}'{{/CRRMarket}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -302,10 +310,10 @@ define
 
                 var obj = obj || { id: id, cls: "CRR" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_cRRcategory").value; if ("" != temp) obj.cRRcategory = temp;
-                temp = document.getElementById (id + "_cRRtype").value; if ("" != temp) obj.cRRtype = temp;
-                temp = document.getElementById (id + "_hedgeType").value; if ("" != temp) obj.hedgeType = temp;
-                temp = document.getElementById (id + "_timeOfUse").value; if ("" != temp) obj.timeOfUse = temp;
+                temp = MktDomain.CRRCategoryType[document.getElementById (id + "_cRRcategory").value]; if (temp) obj.cRRcategory = "http://iec.ch/TC57/2013/CIM-schema-cim16#CRRCategoryType." + temp; else delete obj.cRRcategory;
+                temp = MktDomain.CRRSegmentType[document.getElementById (id + "_cRRtype").value]; if (temp) obj.cRRtype = "http://iec.ch/TC57/2013/CIM-schema-cim16#CRRSegmentType." + temp; else delete obj.cRRtype;
+                temp = MktDomain.CRRHedgeType[document.getElementById (id + "_hedgeType").value]; if (temp) obj.hedgeType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CRRHedgeType." + temp; else delete obj.hedgeType;
+                temp = MktDomain.TimeOfUse[document.getElementById (id + "_timeOfUse").value]; if (temp) obj.timeOfUse = "http://iec.ch/TC57/2013/CIM-schema-cim16#TimeOfUse." + temp; else delete obj.timeOfUse;
                 temp = document.getElementById (id + "_tradeSliceID").value; if ("" != temp) obj.tradeSliceID = temp;
                 temp = document.getElementById (id + "_CRRMarket").value; if ("" != temp) obj.CRRMarket = temp;
                 temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
@@ -355,8 +363,8 @@ define
 
                 obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "CRROrgRole";
-                base.parse_element (/<cim:CRROrgRole.kind>([\s\S]*?)<\/cim:CRROrgRole.kind>/g, obj, "kind", base.to_string, sub, context);
-                base.parse_element (/<cim:CRROrgRole.status>([\s\S]*?)<\/cim:CRROrgRole.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CRROrgRole.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_attribute (/<cim:CRROrgRole.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:CRROrgRole.CRR\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRR", sub, context);
                 base.parse_attribute (/<cim:CRROrgRole.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrganisation", sub, context);
                 var bucket = context.parsed.CRROrgRole;
@@ -371,8 +379,8 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CRROrgRole", "kind", "kind",  base.from_string, fields);
-                base.export_element (obj, "CRROrgRole", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "CRROrgRole", "kind", "kind", fields);
+                base.export_attribute (obj, "CRROrgRole", "status", "status", fields);
                 base.export_attribute (obj, "CRROrgRole", "CRR", "CRR", fields);
                 base.export_attribute (obj, "CRROrgRole", "MktOrganisation", "MktOrganisation", fields);
                 if (full)
@@ -395,7 +403,7 @@ define
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#CRR}}<div><b>CRR</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRR}}&quot;);}); return false;'>{{CRR}}</a></div>{{/CRR}}
                     {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrganisation}}&quot;);}); return false;'>{{MktOrganisation}}</a></div>{{/MktOrganisation}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -404,11 +412,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.kindCRRRoleType = [{ id: '', selected: (!obj.kind)}]; for (var property in MktDomain.CRRRoleType) obj.kindCRRRoleType.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.kindCRRRoleType;
             }
 
             edit_template ()
@@ -421,12 +431,12 @@ define
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><input id='{{id}}_kind' class='form-control' type='text'{{#kind}} value='{{kind}}'{{/kind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCRRRoleType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCRRRoleType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CRR'>CRR: </label><div class='col-sm-8'><input id='{{id}}_CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -437,7 +447,7 @@ define
 
                 var obj = obj || { id: id, cls: "CRROrgRole" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) obj.kind = temp;
+                temp = MktDomain.CRRRoleType[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CRRRoleType." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_CRR").value; if ("" != temp) obj.CRR = temp;
                 temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;

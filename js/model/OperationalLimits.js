@@ -87,7 +87,7 @@ define
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -118,7 +118,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -219,7 +219,7 @@ define
                     {{#LimitScalingLimit}}<div><b>LimitScalingLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LimitScalingLimit}}
                     {{#LimitDependencyModel}}<div><b>LimitDependencyModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LimitDependencyModel}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -253,7 +253,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimitType'>OperationalLimitType: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimitType' class='form-control' type='text'{{#OperationalLimitType}} value='{{OperationalLimitType}}'{{/OperationalLimitType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitDependencyModel'>LimitDependencyModel: </label><div class='col-sm-8'><input id='{{id}}_LimitDependencyModel' class='form-control' type='text'{{#LimitDependencyModel}} value='{{LimitDependencyModel_string}}'{{/LimitDependencyModel}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -351,7 +351,7 @@ define
                     {{#BranchGroup}}<div><b>BranchGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BranchGroup}}&quot;);}); return false;'>{{BranchGroup}}</a></div>{{/BranchGroup}}
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -381,7 +381,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BranchGroup'>BranchGroup: </label><div class='col-sm-8'><input id='{{id}}_BranchGroup' class='form-control' type='text'{{#BranchGroup}} value='{{BranchGroup}}'{{/BranchGroup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -494,7 +494,7 @@ define
                     {{#PinBranchGroup}}<div><b>PinBranchGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PinBranchGroup}}
                     {{#BranchGroupTerminal}}<div><b>BranchGroupTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BranchGroupTerminal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -531,7 +531,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_monitorActivePower'>monitorActivePower: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_monitorActivePower' class='form-check-input' type='checkbox'{{#monitorActivePower}} checked{{/monitorActivePower}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_monitorReactivePower'>monitorReactivePower: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_monitorReactivePower' class='form-check-input' type='checkbox'{{#monitorReactivePower}} checked{{/monitorReactivePower}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -636,7 +636,7 @@ define
                     {{#SourceOperationalLimitTypeScaling}}<div><b>SourceOperationalLimitTypeScaling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SourceOperationalLimitTypeScaling}}
                     {{#TargetOperationalLimitmTypeScaling}}<div><b>TargetOperationalLimitmTypeScaling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimitmTypeScaling}}&quot;);}); return false;'>{{TargetOperationalLimitmTypeScaling}}</a></div>{{/TargetOperationalLimitmTypeScaling}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -645,7 +645,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.OperationalLimitDirectionKind = []; if (!obj.direction) obj.OperationalLimitDirectionKind.push ({ id: '', selected: true}); for (var property in OperationalLimitDirectionKind) obj.OperationalLimitDirectionKind.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
+                obj.directionOperationalLimitDirectionKind = [{ id: '', selected: (!obj.direction)}]; for (var property in OperationalLimitDirectionKind) obj.directionOperationalLimitDirectionKind.push ({ id: property, selected: obj.direction && obj.direction.endsWith ('.' + property)});
                 if (obj.OperationalLimit) obj.OperationalLimit_string = obj.OperationalLimit.join ();
                 if (obj.SourceOperationalLimitTypeScaling) obj.SourceOperationalLimitTypeScaling_string = obj.SourceOperationalLimitTypeScaling.join ();
             }
@@ -653,7 +653,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.OperationalLimitDirectionKind;
+                delete obj.directionOperationalLimitDirectionKind;
                 delete obj.OperationalLimit_string;
                 delete obj.SourceOperationalLimitTypeScaling_string;
             }
@@ -669,10 +669,10 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptableDuration'>acceptableDuration: </label><div class='col-sm-8'><input id='{{id}}_acceptableDuration' class='form-control' type='text'{{#acceptableDuration}} value='{{acceptableDuration}}'{{/acceptableDuration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#OperationalLimitDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OperationalLimitDirectionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#directionOperationalLimitDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/directionOperationalLimitDirectionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TargetOperationalLimitmTypeScaling'>TargetOperationalLimitmTypeScaling: </label><div class='col-sm-8'><input id='{{id}}_TargetOperationalLimitmTypeScaling' class='form-control' type='text'{{#TargetOperationalLimitmTypeScaling}} value='{{TargetOperationalLimitmTypeScaling}}'{{/TargetOperationalLimitmTypeScaling}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -684,7 +684,7 @@ define
                 var obj = obj || { id: id, cls: "OperationalLimitType" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_acceptableDuration").value; if ("" != temp) obj.acceptableDuration = temp;
-                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = OperationalLimitDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; }
+                temp = OperationalLimitDirectionKind[document.getElementById (id + "_direction").value]; if (temp) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; else delete obj.direction;
                 temp = document.getElementById (id + "_TargetOperationalLimitmTypeScaling").value; if ("" != temp) obj.TargetOperationalLimitmTypeScaling = temp;
 
                 return (obj);
@@ -763,7 +763,7 @@ define
                     `
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -791,7 +791,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -867,7 +867,7 @@ define
                     `
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -895,7 +895,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -971,7 +971,7 @@ define
                     `
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -999,7 +999,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1075,7 +1075,7 @@ define
                     `
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1103,7 +1103,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1126,6 +1126,7 @@ define
                 BranchGroup: BranchGroup,
                 OperationalLimitType: OperationalLimitType,
                 ActivePowerLimit: ActivePowerLimit,
+                OperationalLimitDirectionKind: OperationalLimitDirectionKind,
                 OperationalLimitSet: OperationalLimitSet,
                 BranchGroupTerminal: BranchGroupTerminal,
                 ApparentPowerLimit: ApparentPowerLimit,

@@ -140,7 +140,7 @@ define
                 }
             }
 
-            digitize_point (obj, features, callback_success, callback_failure)
+            digitize_point (obj, features, text, callback_success, callback_failure)
             {
                 this._mrid = obj.mRID;
 
@@ -189,10 +189,10 @@ define
                 this.set_point_listeners ();
 
                 // pop up a prompt and wait
-                this._popup = this.popup ("<h1>Digitize point geometry</h1>");
+                this._popup = this.popup (text);
             }
 
-            async digitize_point_wait (obj, features, callback_success, callback_failure)
+            async digitize_point_wait (obj, features, text, callback_success, callback_failure)
             {
                 var status = null;
                 function cb_success (feature)
@@ -209,14 +209,15 @@ define
                 {
                     return (new Promise (resolve => setTimeout (resolve, ms)));
                 }
-                this.digitize_point (obj, features, cb_success, cb_failure)
+                this.digitize_point (obj, features, text, cb_success, cb_failure)
                 do
                     await sleep (500);
                 while (null == status);
             }
 
-            point (obj, features)
+            point (obj, features, prompt)
             {
+                var text = prompt || "<h1>Digitize point geometry</h1>";
                 function abort ()
                 {
                     if (this._popup)
@@ -226,7 +227,7 @@ define
                     }
                     this.reset_point_listeners ();
                 }
-                return (new CancelablePromise (new Promise (this.digitize_point_wait.bind (this, obj, features)), abort.bind (this)));
+                return (new CancelablePromise (new Promise (this.digitize_point_wait.bind (this, obj, features, text)), abort.bind (this)));
             }
 
             digitize_line_mousedown_listener (lines, callback_success, callback_failure, event)
@@ -313,7 +314,7 @@ define
                 }
             }
 
-            digitize_line (obj, features, callback_success, callback_failure)
+            digitize_line (obj, features, text, callback_success, callback_failure)
             {
                 this._mrid = obj.mRID;
 
@@ -365,10 +366,10 @@ define
 
                 this.set_line_listeners ();
                 // pop up a prompt
-                this._popup = this.popup ("<h1>Digitize linear geometry<br>Right-click to finsh</h1>");
+                this._popup = this.popup (text);
             }
 
-            async digitize_line_wait (obj, features, callback_success, callback_failure)
+            async digitize_line_wait (obj, features, text, callback_success, callback_failure)
             {
                 var status = null;
                 function cb_success (feature)
@@ -385,14 +386,15 @@ define
                 {
                     return (new Promise (resolve => setTimeout (resolve, ms)));
                 }
-                this.digitize_line (obj, features, cb_success, cb_failure)
+                this.digitize_line (obj, features, text, cb_success, cb_failure)
                 do
                     await sleep (500);
                 while (null == status);
             }
 
-            line (obj, features)
+            line (obj, features, prompt)
             {
+                var text = prompt || "<h1>Digitize linear geometry<br>Right-click to finish</h1>";
                 function abort ()
                 {
                     if (this._popup)
@@ -402,7 +404,7 @@ define
                     }
                     this.reset_line_listeners ();
                 }
-                return (new CancelablePromise (new Promise (this.digitize_line_wait.bind (this, obj, features)), abort.bind (this)));
+                return (new CancelablePromise (new Promise (this.digitize_line_wait.bind (this, obj, features, text)), abort.bind (this)));
             }
 
         }

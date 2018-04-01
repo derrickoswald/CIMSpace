@@ -214,7 +214,7 @@ define
                     `
                     {{#resetKind}}<div><b>resetKind</b>: {{resetKind}}</div>{{/resetKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -223,13 +223,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.FaultIndicatorResetKind = []; if (!obj.resetKind) obj.FaultIndicatorResetKind.push ({ id: '', selected: true}); for (var property in FaultIndicatorResetKind) obj.FaultIndicatorResetKind.push ({ id: property, selected: obj.resetKind && obj.resetKind.endsWith ('.' + property)});
+                obj.resetKindFaultIndicatorResetKind = [{ id: '', selected: (!obj.resetKind)}]; for (var property in FaultIndicatorResetKind) obj.resetKindFaultIndicatorResetKind.push ({ id: property, selected: obj.resetKind && obj.resetKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.FaultIndicatorResetKind;
+                delete obj.resetKindFaultIndicatorResetKind;
             }
 
             edit_template ()
@@ -242,9 +242,9 @@ define
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resetKind'>resetKind: </label><div class='col-sm-8'><select id='{{id}}_resetKind' class='form-control custom-select'>{{#FaultIndicatorResetKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FaultIndicatorResetKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resetKind'>resetKind: </label><div class='col-sm-8'><select id='{{id}}_resetKind' class='form-control custom-select'>{{#resetKindFaultIndicatorResetKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/resetKindFaultIndicatorResetKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -255,7 +255,7 @@ define
 
                 var obj = obj || { id: id, cls: "FaultIndicatorInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_resetKind").value; if ("" != temp) { temp = FaultIndicatorResetKind[temp]; if ("undefined" != typeof (temp)) obj.resetKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#FaultIndicatorResetKind." + temp; }
+                temp = FaultIndicatorResetKind[document.getElementById (id + "_resetKind").value]; if (temp) obj.resetKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#FaultIndicatorResetKind." + temp; else delete obj.resetKind;
 
                 return (obj);
             }
@@ -334,7 +334,7 @@ define
                     {{#ErpQuoteLineItems}}<div><b>ErpQuoteLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpQuoteLineItems}}
                     {{#AssetModelCatalogue}}<div><b>AssetModelCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogue}}&quot;);}); return false;'>{{AssetModelCatalogue}}</a></div>{{/AssetModelCatalogue}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -368,7 +368,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='{{id}}_AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModelCatalogue'>AssetModelCatalogue: </label><div class='col-sm-8'><input id='{{id}}_AssetModelCatalogue' class='form-control' type='text'{{#AssetModelCatalogue}} value='{{AssetModelCatalogue}}'{{/AssetModelCatalogue}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -478,7 +478,7 @@ define
                     {{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
                     {{#withstandCurrent}}<div><b>withstandCurrent</b>: {{withstandCurrent}}</div>{{/withstandCurrent}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -512,7 +512,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_remote'>remote: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_withstandCurrent'>withstandCurrent: </label><div class='col-sm-8'><input id='{{id}}_withstandCurrent' class='form-control' type='text'{{#withstandCurrent}} value='{{withstandCurrent}}'{{/withstandCurrent}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -568,15 +568,15 @@ define
                 base.parse_element (/<cim:CurrentTransformerInfo.ctClass>([\s\S]*?)<\/cim:CurrentTransformerInfo.ctClass>/g, obj, "ctClass", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.kneePointCurrent>([\s\S]*?)<\/cim:CurrentTransformerInfo.kneePointCurrent>/g, obj, "kneePointCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.kneePointVoltage>([\s\S]*?)<\/cim:CurrentTransformerInfo.kneePointVoltage>/g, obj, "kneePointVoltage", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.maxRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.maxRatio>/g, obj, "maxRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.nominalRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.nominalRatio>/g, obj, "nominalRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.maxRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "maxRatio", sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.nominalRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "nominalRatio", sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.primaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.primaryFlsRating>/g, obj, "primaryFlsRating", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.primaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.primaryRatio>/g, obj, "primaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.primaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "primaryRatio", sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.ratedCurrent>([\s\S]*?)<\/cim:CurrentTransformerInfo.ratedCurrent>/g, obj, "ratedCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.secondaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.secondaryFlsRating>/g, obj, "secondaryFlsRating", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.secondaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.secondaryRatio>/g, obj, "secondaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.secondaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "secondaryRatio", sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.tertiaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.tertiaryFlsRating>/g, obj, "tertiaryFlsRating", base.to_string, sub, context);
-                base.parse_element (/<cim:CurrentTransformerInfo.tertiaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.tertiaryRatio>/g, obj, "tertiaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CurrentTransformerInfo.tertiaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "tertiaryRatio", sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.usage>([\s\S]*?)<\/cim:CurrentTransformerInfo.usage>/g, obj, "usage", base.to_string, sub, context);
                 var bucket = context.parsed.CurrentTransformerInfo;
                 if (null == bucket)
@@ -596,15 +596,15 @@ define
                 base.export_element (obj, "CurrentTransformerInfo", "ctClass", "ctClass",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformerInfo", "kneePointCurrent", "kneePointCurrent",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformerInfo", "kneePointVoltage", "kneePointVoltage",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "maxRatio", "maxRatio",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "nominalRatio", "nominalRatio",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "maxRatio", "maxRatio", fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "nominalRatio", "nominalRatio", fields);
                 base.export_element (obj, "CurrentTransformerInfo", "primaryFlsRating", "primaryFlsRating",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "primaryRatio", "primaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "primaryRatio", "primaryRatio", fields);
                 base.export_element (obj, "CurrentTransformerInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformerInfo", "secondaryFlsRating", "secondaryFlsRating",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "secondaryRatio", "secondaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "secondaryRatio", "secondaryRatio", fields);
                 base.export_element (obj, "CurrentTransformerInfo", "tertiaryFlsRating", "tertiaryFlsRating",  base.from_string, fields);
-                base.export_element (obj, "CurrentTransformerInfo", "tertiaryRatio", "tertiaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentTransformerInfo", "tertiaryRatio", "tertiaryRatio", fields);
                 base.export_element (obj, "CurrentTransformerInfo", "usage", "usage",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -634,7 +634,7 @@ define
                     {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryRatio}}&quot;);}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}\n                    {{#tertiaryFlsRating}}<div><b>tertiaryFlsRating</b>: {{tertiaryFlsRating}}</div>{{/tertiaryFlsRating}}
                     {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{tertiaryRatio}}&quot;);}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}\n                    {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -677,7 +677,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='{{id}}_tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -792,7 +792,7 @@ define
                     {{#steepFrontDischargeVoltage}}<div><b>steepFrontDischargeVoltage</b>: {{steepFrontDischargeVoltage}}</div>{{/steepFrontDischargeVoltage}}
                     {{#switchingImpulseDischargeVoltage}}<div><b>switchingImpulseDischargeVoltage</b>: {{switchingImpulseDischargeVoltage}}</div>{{/switchingImpulseDischargeVoltage}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -828,7 +828,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steepFrontDischargeVoltage'>steepFrontDischargeVoltage: </label><div class='col-sm-8'><input id='{{id}}_steepFrontDischargeVoltage' class='form-control' type='text'{{#steepFrontDischargeVoltage}} value='{{steepFrontDischargeVoltage}}'{{/steepFrontDischargeVoltage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchingImpulseDischargeVoltage'>switchingImpulseDischargeVoltage: </label><div class='col-sm-8'><input id='{{id}}_switchingImpulseDischargeVoltage' class='form-control' type='text'{{#switchingImpulseDischargeVoltage}} value='{{switchingImpulseDischargeVoltage}}'{{/switchingImpulseDischargeVoltage}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -882,7 +882,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetModelCatalogue";
-                base.parse_element (/<cim:AssetModelCatalogue.status>([\s\S]*?)<\/cim:AssetModelCatalogue.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AssetModelCatalogue.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attributes (/<cim:AssetModelCatalogue.AssetModelCatalogueItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogueItems", sub, context);
                 var bucket = context.parsed.AssetModelCatalogue;
                 if (null == bucket)
@@ -896,7 +896,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AssetModelCatalogue", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "AssetModelCatalogue", "status", "status", fields);
                 base.export_attributes (obj, "AssetModelCatalogue", "AssetModelCatalogueItems", "AssetModelCatalogueItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -916,7 +916,7 @@ define
                     `
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#AssetModelCatalogueItems}}<div><b>AssetModelCatalogueItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AssetModelCatalogueItems}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -946,7 +946,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1036,7 +1036,7 @@ define
                     {{#groundTrip}}<div><b>groundTrip</b>: {{groundTrip}}</div>{{/groundTrip}}
                     {{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1065,7 +1065,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_groundTrip'>groundTrip: </label><div class='col-sm-8'><input id='{{id}}_groundTrip' class='form-control' type='text'{{#groundTrip}} value='{{groundTrip}}'{{/groundTrip}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='{{id}}_phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1153,7 +1153,7 @@ define
                     {{#neutralBIL}}<div><b>neutralBIL</b>: {{neutralBIL}}</div>{{/neutralBIL}}
                     {{#oilPreservationKind}}<div><b>oilPreservationKind</b>: {{oilPreservationKind}}</div>{{/oilPreservationKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1162,19 +1162,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.TransformerConstructionKind = []; if (!obj.constructionKind) obj.TransformerConstructionKind.push ({ id: '', selected: true}); for (var property in TransformerConstructionKind) obj.TransformerConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
-                obj.TransformerCoreKind = []; if (!obj.coreKind) obj.TransformerCoreKind.push ({ id: '', selected: true}); for (var property in TransformerCoreKind) obj.TransformerCoreKind.push ({ id: property, selected: obj.coreKind && obj.coreKind.endsWith ('.' + property)});
-                obj.TransformerFunctionKind = []; if (!obj.function) obj.TransformerFunctionKind.push ({ id: '', selected: true}); for (var property in TransformerFunctionKind) obj.TransformerFunctionKind.push ({ id: property, selected: obj.function && obj.function.endsWith ('.' + property)});
-                obj.OilPreservationKind = []; if (!obj.oilPreservationKind) obj.OilPreservationKind.push ({ id: '', selected: true}); for (var property in OilPreservationKind) obj.OilPreservationKind.push ({ id: property, selected: obj.oilPreservationKind && obj.oilPreservationKind.endsWith ('.' + property)});
+                obj.constructionKindTransformerConstructionKind = [{ id: '', selected: (!obj.constructionKind)}]; for (var property in TransformerConstructionKind) obj.constructionKindTransformerConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
+                obj.coreKindTransformerCoreKind = [{ id: '', selected: (!obj.coreKind)}]; for (var property in TransformerCoreKind) obj.coreKindTransformerCoreKind.push ({ id: property, selected: obj.coreKind && obj.coreKind.endsWith ('.' + property)});
+                obj.functionTransformerFunctionKind = [{ id: '', selected: (!obj.function)}]; for (var property in TransformerFunctionKind) obj.functionTransformerFunctionKind.push ({ id: property, selected: obj.function && obj.function.endsWith ('.' + property)});
+                obj.oilPreservationKindOilPreservationKind = [{ id: '', selected: (!obj.oilPreservationKind)}]; for (var property in OilPreservationKind) obj.oilPreservationKindOilPreservationKind.push ({ id: property, selected: obj.oilPreservationKind && obj.oilPreservationKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.TransformerConstructionKind;
-                delete obj.TransformerCoreKind;
-                delete obj.TransformerFunctionKind;
-                delete obj.OilPreservationKind;
+                delete obj.constructionKindTransformerConstructionKind;
+                delete obj.coreKindTransformerCoreKind;
+                delete obj.functionTransformerFunctionKind;
+                delete obj.oilPreservationKindOilPreservationKind;
             }
 
             edit_template ()
@@ -1187,14 +1187,14 @@ define
                     `
                     + AssetInfo.TransformerTankInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control custom-select'>{{#TransformerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerConstructionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control custom-select'>{{#constructionKindTransformerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/constructionKindTransformerConstructionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreCoilsWeight'>coreCoilsWeight: </label><div class='col-sm-8'><input id='{{id}}_coreCoilsWeight' class='form-control' type='text'{{#coreCoilsWeight}} value='{{coreCoilsWeight}}'{{/coreCoilsWeight}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreKind'>coreKind: </label><div class='col-sm-8'><select id='{{id}}_coreKind' class='form-control custom-select'>{{#TransformerCoreKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerCoreKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_function'>function: </label><div class='col-sm-8'><select id='{{id}}_function' class='form-control custom-select'>{{#TransformerFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerFunctionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreKind'>coreKind: </label><div class='col-sm-8'><select id='{{id}}_coreKind' class='form-control custom-select'>{{#coreKindTransformerCoreKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/coreKindTransformerCoreKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_function'>function: </label><div class='col-sm-8'><select id='{{id}}_function' class='form-control custom-select'>{{#functionTransformerFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/functionTransformerFunctionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralBIL'>neutralBIL: </label><div class='col-sm-8'><input id='{{id}}_neutralBIL' class='form-control' type='text'{{#neutralBIL}} value='{{neutralBIL}}'{{/neutralBIL}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPreservationKind'>oilPreservationKind: </label><div class='col-sm-8'><select id='{{id}}_oilPreservationKind' class='form-control custom-select'>{{#OilPreservationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OilPreservationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPreservationKind'>oilPreservationKind: </label><div class='col-sm-8'><select id='{{id}}_oilPreservationKind' class='form-control custom-select'>{{#oilPreservationKindOilPreservationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/oilPreservationKindOilPreservationKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1205,12 +1205,12 @@ define
 
                 var obj = obj || { id: id, cls: "OldTransformerTankInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = TransformerConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerConstructionKind." + temp; }
+                temp = TransformerConstructionKind[document.getElementById (id + "_constructionKind").value]; if (temp) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerConstructionKind." + temp; else delete obj.constructionKind;
                 temp = document.getElementById (id + "_coreCoilsWeight").value; if ("" != temp) obj.coreCoilsWeight = temp;
-                temp = document.getElementById (id + "_coreKind").value; if ("" != temp) { temp = TransformerCoreKind[temp]; if ("undefined" != typeof (temp)) obj.coreKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerCoreKind." + temp; }
-                temp = document.getElementById (id + "_function").value; if ("" != temp) { temp = TransformerFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.function = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerFunctionKind." + temp; }
+                temp = TransformerCoreKind[document.getElementById (id + "_coreKind").value]; if (temp) obj.coreKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerCoreKind." + temp; else delete obj.coreKind;
+                temp = TransformerFunctionKind[document.getElementById (id + "_function").value]; if (temp) obj.function = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerFunctionKind." + temp; else delete obj.function;
                 temp = document.getElementById (id + "_neutralBIL").value; if ("" != temp) obj.neutralBIL = temp;
-                temp = document.getElementById (id + "_oilPreservationKind").value; if ("" != temp) { temp = OilPreservationKind[temp]; if ("undefined" != typeof (temp)) obj.oilPreservationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#OilPreservationKind." + temp; }
+                temp = OilPreservationKind[document.getElementById (id + "_oilPreservationKind").value]; if (temp) obj.oilPreservationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#OilPreservationKind." + temp; else delete obj.oilPreservationKind;
 
                 return (obj);
             }
@@ -1247,7 +1247,7 @@ define
                 base.parse_element (/<cim:CompositeSwitchInfo.initOpMode>([\s\S]*?)<\/cim:CompositeSwitchInfo.initOpMode>/g, obj, "initOpMode", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.interruptingRating>([\s\S]*?)<\/cim:CompositeSwitchInfo.interruptingRating>/g, obj, "interruptingRating", base.to_string, sub, context);
                 base.parse_attribute (/<cim:CompositeSwitchInfo.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_element (/<cim:CompositeSwitchInfo.phaseCode>([\s\S]*?)<\/cim:CompositeSwitchInfo.phaseCode>/g, obj, "phaseCode", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CompositeSwitchInfo.phaseCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phaseCode", sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.phaseCount>([\s\S]*?)<\/cim:CompositeSwitchInfo.phaseCount>/g, obj, "phaseCount", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.ratedVoltage>([\s\S]*?)<\/cim:CompositeSwitchInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.remote>([\s\S]*?)<\/cim:CompositeSwitchInfo.remote>/g, obj, "remote", base.to_boolean, sub, context);
@@ -1268,7 +1268,7 @@ define
                 base.export_element (obj, "CompositeSwitchInfo", "initOpMode", "initOpMode",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "interruptingRating", "interruptingRating",  base.from_string, fields);
                 base.export_attribute (obj, "CompositeSwitchInfo", "kind", "kind", fields);
-                base.export_element (obj, "CompositeSwitchInfo", "phaseCode", "phaseCode",  base.from_string, fields);
+                base.export_attribute (obj, "CompositeSwitchInfo", "phaseCode", "phaseCode", fields);
                 base.export_element (obj, "CompositeSwitchInfo", "phaseCount", "phaseCount",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "remote", "remote",  base.from_boolean, fields);
@@ -1299,7 +1299,7 @@ define
                     {{#remote}}<div><b>remote</b>: {{remote}}</div>{{/remote}}
                     {{#switchStateCount}}<div><b>switchStateCount</b>: {{switchStateCount}}</div>{{/switchStateCount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1308,13 +1308,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CompositeSwitchKind = []; if (!obj.kind) obj.CompositeSwitchKind.push ({ id: '', selected: true}); for (var property in CompositeSwitchKind) obj.CompositeSwitchKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindCompositeSwitchKind = [{ id: '', selected: (!obj.kind)}]; for (var property in CompositeSwitchKind) obj.kindCompositeSwitchKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.phaseCodePhaseCode = [{ id: '', selected: (!obj.phaseCode)}]; for (var property in Core.PhaseCode) obj.phaseCodePhaseCode.push ({ id: property, selected: obj.phaseCode && obj.phaseCode.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CompositeSwitchKind;
+                delete obj.kindCompositeSwitchKind;
+                delete obj.phaseCodePhaseCode;
             }
 
             edit_template ()
@@ -1330,14 +1332,14 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_ganged'>ganged: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_ganged' class='form-check-input' type='checkbox'{{#ganged}} checked{{/ganged}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initOpMode'>initOpMode: </label><div class='col-sm-8'><input id='{{id}}_initOpMode' class='form-control' type='text'{{#initOpMode}} value='{{initOpMode}}'{{/initOpMode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interruptingRating'>interruptingRating: </label><div class='col-sm-8'><input id='{{id}}_interruptingRating' class='form-control' type='text'{{#interruptingRating}} value='{{interruptingRating}}'{{/interruptingRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#CompositeSwitchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CompositeSwitchKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='{{id}}_phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCompositeSwitchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCompositeSwitchKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><select id='{{id}}_phaseCode' class='form-control custom-select'>{{#phaseCodePhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseCodePhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='{{id}}_phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_remote'>remote: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchStateCount'>switchStateCount: </label><div class='col-sm-8'><input id='{{id}}_switchStateCount' class='form-control' type='text'{{#switchStateCount}} value='{{switchStateCount}}'{{/switchStateCount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1351,8 +1353,8 @@ define
                 temp = document.getElementById (id + "_ganged").checked; if (temp) obj.ganged = true;
                 temp = document.getElementById (id + "_initOpMode").value; if ("" != temp) obj.initOpMode = temp;
                 temp = document.getElementById (id + "_interruptingRating").value; if ("" != temp) obj.interruptingRating = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CompositeSwitchKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; }
-                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) obj.phaseCode = temp;
+                temp = CompositeSwitchKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; else delete obj.kind;
+                temp = Core.PhaseCode[document.getElementById (id + "_phaseCode").value]; if (temp) obj.phaseCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.phaseCode;
                 temp = document.getElementById (id + "_phaseCount").value; if ("" != temp) obj.phaseCount = temp;
                 temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
                 temp = document.getElementById (id + "_remote").checked; if (temp) obj.remote = true;
@@ -1390,12 +1392,12 @@ define
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "PotentialTransformerInfo";
                 base.parse_element (/<cim:PotentialTransformerInfo.accuracyClass>([\s\S]*?)<\/cim:PotentialTransformerInfo.accuracyClass>/g, obj, "accuracyClass", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerInfo.nominalRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.nominalRatio>/g, obj, "nominalRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerInfo.primaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.primaryRatio>/g, obj, "primaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PotentialTransformerInfo.nominalRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "nominalRatio", sub, context);
+                base.parse_attribute (/<cim:PotentialTransformerInfo.primaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "primaryRatio", sub, context);
                 base.parse_element (/<cim:PotentialTransformerInfo.ptClass>([\s\S]*?)<\/cim:PotentialTransformerInfo.ptClass>/g, obj, "ptClass", base.to_string, sub, context);
                 base.parse_element (/<cim:PotentialTransformerInfo.ratedVoltage>([\s\S]*?)<\/cim:PotentialTransformerInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerInfo.secondaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.secondaryRatio>/g, obj, "secondaryRatio", base.to_string, sub, context);
-                base.parse_element (/<cim:PotentialTransformerInfo.tertiaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.tertiaryRatio>/g, obj, "tertiaryRatio", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PotentialTransformerInfo.secondaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "secondaryRatio", sub, context);
+                base.parse_attribute (/<cim:PotentialTransformerInfo.tertiaryRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "tertiaryRatio", sub, context);
                 var bucket = context.parsed.PotentialTransformerInfo;
                 if (null == bucket)
                    context.parsed.PotentialTransformerInfo = bucket = {};
@@ -1409,12 +1411,12 @@ define
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PotentialTransformerInfo", "accuracyClass", "accuracyClass",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerInfo", "nominalRatio", "nominalRatio",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerInfo", "primaryRatio", "primaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "PotentialTransformerInfo", "nominalRatio", "nominalRatio", fields);
+                base.export_attribute (obj, "PotentialTransformerInfo", "primaryRatio", "primaryRatio", fields);
                 base.export_element (obj, "PotentialTransformerInfo", "ptClass", "ptClass",  base.from_string, fields);
                 base.export_element (obj, "PotentialTransformerInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerInfo", "secondaryRatio", "secondaryRatio",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformerInfo", "tertiaryRatio", "tertiaryRatio",  base.from_string, fields);
+                base.export_attribute (obj, "PotentialTransformerInfo", "secondaryRatio", "secondaryRatio", fields);
+                base.export_attribute (obj, "PotentialTransformerInfo", "tertiaryRatio", "tertiaryRatio", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1435,7 +1437,7 @@ define
                     {{#nominalRatio}}<div><b>nominalRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{nominalRatio}}&quot;);}); return false;'>{{nominalRatio}}</a></div>{{/nominalRatio}}\n                    {{#primaryRatio}}<div><b>primaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{primaryRatio}}&quot;);}); return false;'>{{primaryRatio}}</a></div>{{/primaryRatio}}\n                    {{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
                     {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryRatio}}&quot;);}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}\n                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{tertiaryRatio}}&quot;);}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}\n                    </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1469,7 +1471,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='{{id}}_secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='{{id}}_tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1556,7 +1558,7 @@ define
                     {{#solidInsulationWeight}}<div><b>solidInsulationWeight</b>: {{solidInsulationWeight}}</div>{{/solidInsulationWeight}}
                     {{#windingInsulationKind}}<div><b>windingInsulationKind</b>: {{windingInsulationKind}}</div>{{/windingInsulationKind}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1565,13 +1567,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WindingInsulationKind = []; if (!obj.windingInsulationKind) obj.WindingInsulationKind.push ({ id: '', selected: true}); for (var property in WindingInsulationKind) obj.WindingInsulationKind.push ({ id: property, selected: obj.windingInsulationKind && obj.windingInsulationKind.endsWith ('.' + property)});
+                obj.windingInsulationKindWindingInsulationKind = [{ id: '', selected: (!obj.windingInsulationKind)}]; for (var property in WindingInsulationKind) obj.windingInsulationKindWindingInsulationKind.push ({ id: property, selected: obj.windingInsulationKind && obj.windingInsulationKind.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WindingInsulationKind;
+                delete obj.windingInsulationKindWindingInsulationKind;
             }
 
             edit_template ()
@@ -1587,9 +1589,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dayOverLoadRating'>dayOverLoadRating: </label><div class='col-sm-8'><input id='{{id}}_dayOverLoadRating' class='form-control' type='text'{{#dayOverLoadRating}} value='{{dayOverLoadRating}}'{{/dayOverLoadRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hourOverLoadRating'>hourOverLoadRating: </label><div class='col-sm-8'><input id='{{id}}_hourOverLoadRating' class='form-control' type='text'{{#hourOverLoadRating}} value='{{hourOverLoadRating}}'{{/hourOverLoadRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidInsulationWeight'>solidInsulationWeight: </label><div class='col-sm-8'><input id='{{id}}_solidInsulationWeight' class='form-control' type='text'{{#solidInsulationWeight}} value='{{solidInsulationWeight}}'{{/solidInsulationWeight}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windingInsulationKind'>windingInsulationKind: </label><div class='col-sm-8'><select id='{{id}}_windingInsulationKind' class='form-control custom-select'>{{#WindingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindingInsulationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windingInsulationKind'>windingInsulationKind: </label><div class='col-sm-8'><select id='{{id}}_windingInsulationKind' class='form-control custom-select'>{{#windingInsulationKindWindingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/windingInsulationKindWindingInsulationKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1603,7 +1605,7 @@ define
                 temp = document.getElementById (id + "_dayOverLoadRating").value; if ("" != temp) obj.dayOverLoadRating = temp;
                 temp = document.getElementById (id + "_hourOverLoadRating").value; if ("" != temp) obj.hourOverLoadRating = temp;
                 temp = document.getElementById (id + "_solidInsulationWeight").value; if ("" != temp) obj.solidInsulationWeight = temp;
-                temp = document.getElementById (id + "_windingInsulationKind").value; if ("" != temp) { temp = WindingInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.windingInsulationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingInsulationKind." + temp; }
+                temp = WindingInsulationKind[document.getElementById (id + "_windingInsulationKind").value]; if (temp) obj.windingInsulationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingInsulationKind." + temp; else delete obj.windingInsulationKind;
 
                 return (obj);
             }
@@ -1680,7 +1682,7 @@ define
                     {{#phaseTripRating}}<div><b>phaseTripRating</b>: {{phaseTripRating}}</div>{{/phaseTripRating}}
                     {{#recloseLockoutCount}}<div><b>recloseLockoutCount</b>: {{recloseLockoutCount}}</div>{{/recloseLockoutCount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1712,7 +1714,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTripRating'>phaseTripRating: </label><div class='col-sm-8'><input id='{{id}}_phaseTripRating' class='form-control' type='text'{{#phaseTripRating}} value='{{phaseTripRating}}'{{/phaseTripRating}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recloseLockoutCount'>recloseLockoutCount: </label><div class='col-sm-8'><input id='{{id}}_recloseLockoutCount' class='form-control' type='text'{{#recloseLockoutCount}} value='{{recloseLockoutCount}}'{{/recloseLockoutCount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1792,7 +1794,7 @@ define
                     `
                     {{#phaseTrip}}<div><b>phaseTrip</b>: {{phaseTrip}}</div>{{/phaseTrip}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1820,7 +1822,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='{{id}}_phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1842,15 +1844,25 @@ define
                 OldTransformerTankInfo: OldTransformerTankInfo,
                 PotentialTransformerInfo: PotentialTransformerInfo,
                 OldSwitchInfo: OldSwitchInfo,
-                AssetModelCatalogue: AssetModelCatalogue,
                 FaultIndicatorInfo: FaultIndicatorInfo,
-                AssetModelCatalogueItem: AssetModelCatalogueItem,
+                AssetModelCatalogue: AssetModelCatalogue,
                 ProtectionEquipmentInfo: ProtectionEquipmentInfo,
-                SurgeArresterInfo: SurgeArresterInfo,
+                TransformerCoreKind: TransformerCoreKind,
+                CompositeSwitchKind: CompositeSwitchKind,
+                TransformerFunctionKind: TransformerFunctionKind,
                 CurrentTransformerInfo: CurrentTransformerInfo,
+                ShuntImpedanceControlKind: ShuntImpedanceControlKind,
+                ShuntImpedanceLocalControlKind: ShuntImpedanceLocalControlKind,
+                OldTransformerEndInfo: OldTransformerEndInfo,
+                OilPreservationKind: OilPreservationKind,
+                TransformerConstructionKind: TransformerConstructionKind,
+                WindingInsulationKind: WindingInsulationKind,
+                AssetModelCatalogueItem: AssetModelCatalogueItem,
+                RegulationBranchKind: RegulationBranchKind,
+                SurgeArresterInfo: SurgeArresterInfo,
                 BreakerInfo: BreakerInfo,
                 CompositeSwitchInfo: CompositeSwitchInfo,
-                OldTransformerEndInfo: OldTransformerEndInfo,
+                FaultIndicatorResetKind: FaultIndicatorResetKind,
                 RecloserInfo: RecloserInfo
             }
         );

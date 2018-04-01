@@ -69,7 +69,7 @@ define
                     `
                     {{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadGroup}}&quot;);}); return false;'>{{LoadGroup}}</a></div>{{/LoadGroup}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -97,7 +97,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadGroup'>LoadGroup: </label><div class='col-sm-8'><input id='{{id}}_LoadGroup' class='form-control' type='text'{{#LoadGroup}} value='{{LoadGroup}}'{{/LoadGroup}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -184,7 +184,7 @@ define
                     `
                     {{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadGroup}}&quot;);}); return false;'>{{LoadGroup}}</a></div>{{/LoadGroup}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -212,7 +212,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadGroup'>LoadGroup: </label><div class='col-sm-8'><input id='{{id}}_LoadGroup' class='form-control' type='text'{{#LoadGroup}} value='{{LoadGroup}}'{{/LoadGroup}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -296,7 +296,7 @@ define
                     + Wires.EnergyConsumer.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -323,7 +323,7 @@ define
                     + Wires.EnergyConsumer.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

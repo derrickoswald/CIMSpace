@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "cimdetails", "cimcoordinates", "cimedit", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
+    ["cimnav", "cimdetails", "cimcoordinates", "cimedit", "cimconnectivity", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, CIMDetails, CIMCoordinates, CIMEdit, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
+    function (cimnav, CIMDetails, CIMCoordinates, CIMEdit, CIMConnectivity, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
     {
         /**
          * The map object.
@@ -40,6 +40,11 @@ define
          * The editor control object.
          */
         var TheEditor = null;
+
+        /**
+         * The connectivity control object.
+         */
+        var TheConnectivity = null;
 
         /**
          * The scale bar control.
@@ -70,6 +75,26 @@ define
          * The last selected features.
          */
         var CURRENT_SELECTION = null;
+
+        /**
+         * Flag indicating map listeners are attached or not.
+         */
+        var Listening = false;
+
+        /**
+         * List of registered objects supporting selection_change (CURRENT_FEATURE, CURRENT_SELECTION).
+         */
+        var FeatureListeners = [
+            {
+                selection_change: function (mrid, list)
+                {
+                    if (null != mrid)
+                        highlight ();
+                    else
+                        unhighlight ();
+                }
+            }
+        ];
 
         /**
          * Get the MapBox map.
@@ -144,6 +169,35 @@ define
         }
 
         /**
+         * Add an object that will be called when feature selections change.
+         * @function add_feature_listener
+         * @memberOf module:cimmap
+         */
+        function add_feature_listener (obj)
+        {
+            if (!FeatureListeners.includes (obj))
+            {
+                FeatureListeners.push (obj);
+                if (get_selected_feature ())
+                    obj.selection_change (get_selected_feature (), get_selected_features ());
+            }
+        }
+
+        /**
+         * Remove an object from the list of objects that will be called when feature selections change.
+         * @function remove_feature_listener
+         * @memberOf module:cimmap
+         */
+        function remove_feature_listener (obj)
+        {
+            if (FeatureListeners.includes (obj))
+            {
+                var index = FeatureListeners.indexOf (obj);
+                FeatureListeners = FeatureListeners.filter ((x, i) => i != index);
+            }
+        }
+
+        /**
          * Set the extents of the CIM data for the map to draw.
          * @param {Object} new extents value { xmin: , ymin: , xmax: , ymax: }
          * @function set_extents
@@ -199,6 +253,17 @@ define
         }
 
         /**
+         * Get the connectivity for changing connectivity.
+         * @return {Object} The object handling connectivity.
+         * @function get_connectivity
+         * @memberOf module:cimmap
+         */
+        function get_connectivity ()
+        {
+            return (TheConnectivity);
+        }
+
+        /**
          * Get the user's choice for showing internal features.
          * @returns {boolean} <code>true</code> if internal features should be shown, <code>false</code> otherwise
          * @function show_internal_features
@@ -243,7 +308,7 @@ define
 
         /**
          * Get the user's choice for whether StreetView links are displayed or not.
-         * @returns {boolean} <code>true</code> if a streetview link for the selected feature should be shown, <code>false</code> otherwise
+         * @returns {boolean} <code>true</code> if a streetview link for features should be shown, <code>false</code> otherwise
          * @function show_streetview
          * @memberOf module:cimmap
          */
@@ -262,7 +327,7 @@ define
         {
             var start = new Date ().getTime ();
             console.log ("rendering CIM data");
-            hide_details ();
+            select (null);
 
             function sleep(ms)
             {
@@ -306,6 +371,14 @@ define
                     { linear: true, padding: 50 });
         }
 
+        function toggle_info ()
+        {
+            if (TheDetails.visible ())
+                TheMap.removeControl (TheDetails);
+            else
+                TheMap.addControl (TheDetails);
+        }
+
         function toggle_themer ()
         {
             if (TheThemer.visible ())
@@ -322,43 +395,94 @@ define
                 TheMap.addControl (TheThemer.getTheme ().getLegend ());
         }
 
-        function edit ()
+        function toggle_edit ()
         {
             if (get_editor ().visible ())
                 TheMap.removeControl (get_editor ());
             else
-            {
-                if (TheThemer.getTheme ().getLegend ().visible ())
-                    TheMap.removeControl (TheThemer.getTheme ().getLegend ());
-                hide_details ();
                 TheMap.addControl (get_editor ());
-                if ((null != CIM_Data) && (null != get_selected_feature ()))
-                    get_editor ().edit (CIM_Data.Element[get_selected_feature ()], true);
+        }
+
+        function connectivity ()
+        {
+            if (get_connectivity ().visible ())
+                TheMap.removeControl (get_connectivity ());
+            else
+                TheMap.addControl (get_connectivity ());
+        }
+
+        function get (classname, id)
+        {
+            var ret = undefined;
+            if (classname && id)
+            {
+                var data = get_data ();
+                if (data)
+                {
+                    var objects = data[classname];
+                    if (objects)
+                        ret = objects[id];
+                }
+                if (get_editor ().has_new_features ())
+                {
+                    data = get_editor ().new_features ();
+                    var objects = data[classname];
+                    if (objects)
+                        ret = objects[id];
+                }
+            }
+            return ((ret && ret.EditDisposition && ret.EditDisposition == "delete") ? undefined : ret);
+        }
+
+        function forAll (classname, fn)
+        {
+            function iterateOver (objects, fn)
+            {
+                if (objects)
+                    for (var property in objects)
+                        if (objects.hasOwnProperty (property))
+                        {
+                            var obj = objects[property];
+                            if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                fn (obj);
+                        }
+            }
+            var data = get_data ();
+            if (data)
+                iterateOver (data[classname], fn);
+            if (get_editor ().has_new_features ())
+            {
+                data = get_editor ().new_features ();
+                if (data)
+                    iterateOver (data[classname], fn);
             }
         }
 
-        /**
-         * @summary Make the details non-model dialog visible.
-         * @description Sets the style display to "block".
-         * @function show_details
-         * @memberOf module:cimmap
-         */
-        function show_details ()
+        function fetch (classname, fn)
         {
-            if (!get_details ().visible ())
-                TheMap.addControl (get_details ());
-        }
-
-        /**
-         * @summary Make the details non-model dialog invisible.
-         * @description Sets the style display to "none".
-         * @function hide_details
-         * @memberOf module:cimmap
-         */
-        function hide_details ()
-        {
-            if (get_details ().visible ())
-                TheMap.removeControl (get_details ());
+            var ret = [];
+            function iterateOver (objects, fn)
+            {
+                if (objects)
+                    for (var property in objects)
+                        if (objects.hasOwnProperty (property))
+                        {
+                            var obj = objects[property];
+                            if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                if (fn (obj))
+                                    ret.push (obj);
+                        }
+            }
+            var data = get_data ();
+            if (data)
+                iterateOver (data[classname], fn);
+            if (get_editor ().has_new_features ())
+            {
+                data = get_editor ().new_features ();
+                if (data)
+                    iterateOver (data[classname], fn);
+            }
+            return (ret);
         }
 
         /**
@@ -401,17 +525,7 @@ define
         {
             var feature;
             if ((null != CIM_Data) && (null != get_selected_feature ()))
-                if (null != (feature = CIM_Data.Element[get_selected_feature ()]))
-                {
-                    if (get_editor ().visible ())
-                        get_editor ().edit (feature, true);
-                    else
-                    {
-                        show_details ();
-                        get_details ().render ();
-                    }
-                    glow (["in", "mRID", get_selected_feature ()]);
-                }
+                glow (["in", "mRID", get_selected_feature ()]);
         }
 
         /**
@@ -423,32 +537,39 @@ define
         function unhighlight ()
         {
             glow (["==", "mRID", ""]);
-            CURRENT_FEATURE = null;
-            CURRENT_SELECTION = null;
-            hide_details ();
             return (false);
         }
 
         /**
          * @summary Handler for a current feature link click.
-         * @description Sets the current feature and redisplay the details window and highlighting appropriately.
+         * @description Sets the current feature and redisplay the highlighting appropriately and notify listeners.
          * @function select
          * @memberOf module:cimmap
          */
-        function select (mrid)
+        function select (mrid, list)
         {
             if (null != mrid)
             {
-                if (mrid != get_selected_feature ())
+                // cheap check for array equality
+                function lists_equal (list1, list2)
                 {
+                    return (list1.sort ().join (",") == list2.sort ().join (","))
+                }
+                if (mrid != get_selected_feature () || !lists_equal (get_selected_features (), list))
+                {
+                    if (!list || !list.includes (mrid))
+                        list = [mrid];
                     CURRENT_FEATURE = mrid;
-                    if (!CURRENT_SELECTION.includes (mrid))
-                        CURRENT_SELECTION = [mrid];
-                    highlight ();
+                    CURRENT_SELECTION = list;
+                    FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
                 }
             }
             else
-                unhighlight ();
+            {
+                CURRENT_FEATURE = null;
+                CURRENT_SELECTION = null;
+                FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
+            }
         }
 
         /**
@@ -810,12 +931,12 @@ define
                     }
                     // sort the list to make it easy to find an element
                     equipment.sort ();
+                    // notify listeners
+                    select (get_selected_feature (), equipment);
                     // highlight the elements on screen
-                    equipment.unshift ("in", "mRID");
-                    glow (equipment);
-                    // set the current selection set and re-render the details
-                    CURRENT_SELECTION = equipment.slice (2);
-                    get_details ().render ();
+                    var hl = equipment.slice (0);
+                    hl.unshift ("in", "mRID");
+                    glow (hl);
                 }
             }
 
@@ -905,11 +1026,11 @@ define
                     if (match.length > 0)
                     {
                         match.sort ();
-                        CURRENT_SELECTION = match;
-                        CURRENT_FEATURE = match[0];
+                        var list = match;
+                        var mrid = match[0];
                         var current = null;
                         var bb = null;
-                        for (var i = 0; i < CURRENT_SELECTION.length; i++)
+                        for (var i = 0; i < list.length; i++)
                         {
                             bb = get_bounding_box (match[i]);
                             if (null != bb)
@@ -920,7 +1041,7 @@ define
                         }
                         if (null != current)
                         {
-                            CURRENT_FEATURE = current;
+                            mrid = current;
                             var x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
                             var y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
                             TheMap.easeTo
@@ -931,7 +1052,7 @@ define
                                 }
                             );
                         }
-                        highlight ();
+                        select (mrid, list);
                     }
                     else
                         alert ("No matches found for '" + text + "'");
@@ -1007,21 +1128,15 @@ define
                         selection.push (mrid);
                 }
                 if (selection.length > 0)
-                {
-                    if (selection[0] != get_selected_feature ())
-                    {
-                        CURRENT_FEATURE = selection[0];
-                        CURRENT_SELECTION = selection;
-                        highlight ();
-                    }
-                }
+                    select (selection[0], selection);
                 else
-                    unhighlight ();
+                    select (null);
             }
             else
-                unhighlight ();
+                select (null);
         }
 
+        // handle mouse click
         function default_mousedown_listener (event)
         {
             // only do something if no key is pressed
@@ -1058,15 +1173,22 @@ define
 
         function add_listeners ()
         {
-            // handle mouse click
-            TheMap.on ("mousedown", default_mousedown_listener);
-            TheMap.on ("touchstart", default_touchstart_listener);
+            if (!Listening)
+            {
+                TheMap.on ("mousedown", default_mousedown_listener);
+                TheMap.on ("touchstart", default_touchstart_listener);
+                Listening = true;
+            }
         }
 
         function remove_listeners ()
         {
-            TheMap.off ("mousedown", default_mousedown_listener);
-            TheMap.off ("touchstart", default_touchstart_listener);
+            if (Listening)
+            {
+                TheMap.off ("mousedown", default_mousedown_listener);
+                TheMap.off ("touchstart", default_touchstart_listener);
+                Listening = false;
+            }
         }
 
         /**
@@ -1099,7 +1221,7 @@ define
                 }
             );
             // add zoom and rotation controls to the map
-            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_themer, toggle_legend, edit));
+            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_info, toggle_themer, toggle_legend, toggle_edit, connectivity));
             add_listeners ();
             // set up themes
             TheThemer = new ThemeControl ();
@@ -1112,6 +1234,8 @@ define
             TheDetails = new CIMDetails (getInterface ());
             // set up editing
             TheEditor = new CIMEdit (getInterface ());
+            // set up connectivity
+            TheConnectivity = new CIMConnectivity (getInterface (), TheEditor);
             // display any existing data
             redraw ();
         }
@@ -1142,10 +1266,13 @@ define
                      get_data: get_data,
                      get_selected_feature: get_selected_feature,
                      get_selected_features: get_selected_features,
+                     add_feature_listener: add_feature_listener,
+                     remove_feature_listener: remove_feature_listener,
                      set_extents: set_extents,
                      get_extents: get_extents,
                      get_themer: get_themer,
                      get_editor: get_editor,
+                     get_connectivity: get_connectivity,
                      show_internal_features: show_internal_features,
                      show_3d_buildings: show_3d_buildings,
                      show_scale_bar: show_scale_bar,
@@ -1153,12 +1280,13 @@ define
                      show_streetview: show_streetview,
                      make_map, make_map,
                      zoom_extents: zoom_extents,
+                     get: get,
+                     forAll: forAll,
+                     fetch: fetch,
                      select: select,
                      buildings_3d: buildings_3d,
                      scale_bar: scale_bar,
                      coordinates: coordinates,
-                     highlight: highlight,
-                     unhighlight: unhighlight,
                      trace: trace,
                      search: search,
                      redraw: redraw,

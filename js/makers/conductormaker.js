@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Common", "model/Core"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Common", "model/Core"],
     /**
      * @summary Make a CIM object at the Conductor level.
      * @description Digitizes a line and makes a Conductor element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports conductormaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Common, Core)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Common, Core)
     {
         class ConductorMaker extends PowerSystemResourceMaker
         {
@@ -22,7 +22,7 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
-            classes ()
+            static classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -38,31 +38,33 @@ define
                 return (ret);
             }
 
-            render_parameters ()
+            render_parameters (proto)
             {
-                var ret = mustache.render (this.class_template (), { classes: this.classes () });
-                var data = this._cimmap.get_data ();
-                if (data)
+                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                var ret = mustache.render (this.class_template (), view);
+                var template =
+                "    <div class='form-group row'>\n" +
+                "      <label class='col-sm-4 col-form-label' for='cable_name'>Cable</label>\n" +
+                "      <div class='col-sm-8'>\n" +
+                "        <select id='cable_name' class='form-control custom-select'>\n" +
+                "{{#cables}}\n" +
+                "              <option value='{{id}}'{{#isSelected}} selected{{/isSelected}}>{{name}}</option>\n" +
+                "{{/cables}}\n";
+                "        </select>\n" +
+                "      </div>\n" +
+                "    </div>\n";
+                var cimmap = this._cimmap;
+                var wireinfos = cimmap.fetch ("WireInfo", info => info.PerLengthParameters);
+                // for now we only understand the first PerLengthSequenceImpedance
+                var cables = wireinfos.filter (info => cimmap.get ("PerLengthSequenceImpedance", info.PerLengthParameters[0]));
+                function fn ()
                 {
-                    var template =
-                    "    <div class='form-group row'>\n" +
-                    "      <label class='col-sm-4 col-form-label' for='class_name'>Cable</label>\n" +
-                    "      <div class='col-sm-8'>\n" +
-                    "        <select id='cable_name' class='form-control custom-select'>\n" +
-                    "{{#cables}}\n" +
-                    "              <option value='{{id}}'>{{name}}</option>\n" +
-                    "{{/cables}}\n";
-                    "        </select>\n" +
-                    "      </div>\n" +
-                    "    </div>\n";
-                    var wireinfos = [];
-                    for (var name in data.WireInfo)
-                        if (data.WireInfo[name].PerLengthParameters)
-                            wireinfos.push (name);
-                    // for now we only understand the first PerLengthSequenceImpedance
-                    var cables = wireinfos.filter (name => data.PerLengthSequenceImpedance[data.WireInfo[name].PerLengthParameters[0]]);
-                    if (0 != cables.length)
-                        ret = ret + mustache.render (template, { cables: cables.map (x => data.WireInfo[x]) });
+                    return (proto && (proto.AssetDatasheet == this.id));
+                }
+                if (0 != cables.length)
+                {
+                    view = { cables: cables, isSelected: fn };
+                    ret = ret + mustache.render (template, view);
                 }
                 return (ret);
             }
@@ -70,16 +72,12 @@ define
             submit_parameters ()
             {
                 var parameters = super.submit_parameters ();
-                var data = this._cimmap.get_data ();
-                if (data)
+                var cable_name = document.getElementById ("cable_name");
+                if (cable_name)
                 {
-                    var cable_name = document.getElementById ("cable_name");
-                    if (cable_name)
-                    {
-                        cable_name = cable_name.value;
-                        parameters.AssetDatasheet = cable_name; // add the cable type
-                        parameters.PerLengthImpedance = data.WireInfo[cable_name].PerLengthParameters[0]; // add the per length parameters
-                    }
+                    cable_name = cable_name.value;
+                    parameters.AssetDatasheet = cable_name; // add the cable type
+                    parameters.PerLengthImpedance = this._cimmap.get ("WireInfo", cable_name).PerLengthParameters[0]; // add the per length parameters
                 }
                 return (parameters);
             }
@@ -97,25 +95,26 @@ define
                 return (c * 6378.137e3); // earth radius in meters
             }
 
-            distance (coordinates)
+            distance (pp)
             {
                 var ret = 0.0;
-                for (var i = 0; i < coordinates.length - 1; i++)
-                    ret += this.measure (coordinates[i][0], coordinates[i][1], coordinates[i + 1][0], coordinates[i + 1][1]);
+                for (var i = 0; i < pp.length - 1; i++)
+                    ret += this.measure (Number (pp[i].xPosition), Number (pp[i].yPosition), Number (pp[i + 1].xPosition), Number (pp[i + 1].yPosition));
                 return (ret);
             }
 
-            make_conductor (feature)
+            make_conductor (array)
             {
-                var ret = [];
-                var line = this._cimedit.primary_element ();
+                var line = array[0];
                 var id = line.id;
 
-                var connectivity1 = this.get_connectivity (feature.geometry.coordinates[0][0], feature.geometry.coordinates[0][1]);
+                // get the position points
+                var pp = array.filter (o => o.cls == "PositionPoint").sort ((a, b) => a.sequenceNumber - b.sequenceNumber);
+                var connectivity1 = this.get_connectivity (Number (pp[0].xPosition), Number (pp[0].yPosition));
                 if (null == connectivity1) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_1"));
-                    ret.push (new Core.ConnectivityNode (node, this._features));
+                    array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found at end 1, created ConnectivityNode " + node.id);
                     connectivity1 = { ConnectivityNode: node.id };
                 }
@@ -140,12 +139,12 @@ define
                 if (connectivity1.TopologicalNode)
                     terminal1.TopologicalNode = connectivity1.TopologicalNode;
 
-                var last = feature.geometry.coordinates.length - 1;
-                var connectivity2 = this.get_connectivity (feature.geometry.coordinates[last][0], feature.geometry.coordinates[last][1]);
+                var last = pp.length - 1;
+                var connectivity2 = this.get_connectivity (Number (pp[last].xPosition), Number (pp[last].yPosition));
                 if (null == connectivity2) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_2"));
-                    ret.push (new Core.ConnectivityNode (node, this._features));
+                    array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found at end 2, created ConnectivityNode " + node.id);
                     connectivity2 = { ConnectivityNode: node.id };
                 }
@@ -169,17 +168,13 @@ define
                 if (connectivity2.TopologicalNode)
                     terminal2.TopologicalNode = connectivity2.TopologicalNode;
 
-                ret.push (new Core.Terminal (terminal1, this._features));
-                ret.push (new Core.Terminal (terminal2, this._features));
+                array.push (new Core.Terminal (terminal1, this._cimedit.new_features ()));
+                array.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
 
-                var loc = this.make_location (id, "wgs84", feature);
-                var location = loc[0];
-                line.Location = location.id;
-                ret = ret.concat (loc);
-                line.length = this.distance (feature.geometry.coordinates);
+                line.length = this.distance (pp);
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
-                ret = ret.concat (eqm.ensure_voltages (this._features));
-                ret = ret.concat (eqm.ensure_status (this._features));
+                array = array.concat (eqm.ensure_voltages ());
+                array = array.concat (eqm.ensure_status ());
                 line.normallyInService = true;
                 line.SvStatus = eqm.in_use ();
                 if (!line.BaseVoltage)
@@ -187,26 +182,26 @@ define
                 if (line.PerLengthImpedance)
                 {
                     // do we really want to set r+jx and r0+jx0 from length and PerLengthSequenceImpedance? Seems redundant.
-                    var plsi = this._cimmap.get_data ().PerLengthSequenceImpedance[line.PerLengthImpedance];
+                    var plsi = this._cimmap.get ("PerLengthSequenceImpedance", line.PerLengthImpedance);
                     var km = line.length / 1e3;
                     line.r = plsi.r * km;
                     line.x = plsi.x * km;
                     line.r0 = plsi.r0 * km;
                     line.x0 = plsi.x0 * km;
                 }
-                this._cimedit.create_from (line);
 
-                return (ret);
+                return (array);
             }
 
-            make (features)
+            make ()
             {
-                this._features = features;
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 this._cimedit.refresh ();
-                var cpromise = this._digitizer.line (obj, this._features);
+                var cpromise = this._digitizer.line (obj, this._cimedit.new_features ());
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_conductor.bind (this)));
                 return (cpromise);
             }

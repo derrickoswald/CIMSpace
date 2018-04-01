@@ -79,7 +79,7 @@ define
                     `
                     {{#Faults}}<div><b>Faults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Faults}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -109,7 +109,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Faults'>Faults: </label><div class='col-sm-8'><input id='{{id}}_Faults' class='form-control' type='text'{{#Faults}} value='{{Faults_string}}'{{/Faults}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -205,7 +205,7 @@ define
                     {{#xGround}}<div><b>xGround</b>: {{xGround}}</div>{{/xGround}}
                     {{#xLineToLine}}<div><b>xLineToLine</b>: {{xLineToLine}}</div>{{/xLineToLine}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -236,7 +236,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xGround'>xGround: </label><div class='col-sm-8'><input id='{{id}}_xGround' class='form-control' type='text'{{#xGround}} value='{{xGround}}'{{/xGround}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xLineToLine'>xLineToLine: </label><div class='col-sm-8'><input id='{{id}}_xLineToLine' class='form-control' type='text'{{#xLineToLine}} value='{{xLineToLine}}'{{/xLineToLine}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -284,8 +284,8 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Fault";
                 base.parse_attribute (/<cim:Fault.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_element (/<cim:Fault.phases>([\s\S]*?)<\/cim:Fault.phases>/g, obj, "phases", base.to_string, sub, context);
-                base.parse_element (/<cim:Fault.impedance>([\s\S]*?)<\/cim:Fault.impedance>/g, obj, "impedance", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Fault.phases\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phases", sub, context);
+                base.parse_attribute (/<cim:Fault.impedance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "impedance", sub, context);
                 base.parse_attribute (/<cim:Fault.FaultyEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FaultyEquipment", sub, context);
                 base.parse_attributes (/<cim:Fault.FaultCauseTypes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FaultCauseTypes", sub, context);
                 base.parse_attribute (/<cim:Fault.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context);
@@ -302,8 +302,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "Fault", "kind", "kind", fields);
-                base.export_element (obj, "Fault", "phases", "phases",  base.from_string, fields);
-                base.export_element (obj, "Fault", "impedance", "impedance",  base.from_string, fields);
+                base.export_attribute (obj, "Fault", "phases", "phases", fields);
+                base.export_attribute (obj, "Fault", "impedance", "impedance", fields);
                 base.export_attribute (obj, "Fault", "FaultyEquipment", "FaultyEquipment", fields);
                 base.export_attributes (obj, "Fault", "FaultCauseTypes", "FaultCauseTypes", fields);
                 base.export_attribute (obj, "Fault", "Outage", "Outage", fields);
@@ -329,7 +329,7 @@ define
                     {{#FaultCauseTypes}}<div><b>FaultCauseTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FaultCauseTypes}}
                     {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);}); return false;'>{{Outage}}</a></div>{{/Outage}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -338,14 +338,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.PhaseConnectedFaultKind = []; if (!obj.kind) obj.PhaseConnectedFaultKind.push ({ id: '', selected: true}); for (var property in PhaseConnectedFaultKind) obj.PhaseConnectedFaultKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindPhaseConnectedFaultKind = [{ id: '', selected: (!obj.kind)}]; for (var property in PhaseConnectedFaultKind) obj.kindPhaseConnectedFaultKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.phasesPhaseCode = [{ id: '', selected: (!obj.phases)}]; for (var property in Core.PhaseCode) obj.phasesPhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
                 if (obj.FaultCauseTypes) obj.FaultCauseTypes_string = obj.FaultCauseTypes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.PhaseConnectedFaultKind;
+                delete obj.kindPhaseConnectedFaultKind;
+                delete obj.phasesPhaseCode;
                 delete obj.FaultCauseTypes_string;
             }
 
@@ -359,14 +361,14 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#PhaseConnectedFaultKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseConnectedFaultKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><input id='{{id}}_phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPhaseConnectedFaultKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPhaseConnectedFaultKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#phasesPhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phasesPhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_impedance'>impedance: </label><div class='col-sm-8'><input id='{{id}}_impedance' class='form-control' type='text'{{#impedance}} value='{{impedance}}'{{/impedance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultyEquipment'>FaultyEquipment: </label><div class='col-sm-8'><input id='{{id}}_FaultyEquipment' class='form-control' type='text'{{#FaultyEquipment}} value='{{FaultyEquipment}}'{{/FaultyEquipment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultCauseTypes'>FaultCauseTypes: </label><div class='col-sm-8'><input id='{{id}}_FaultCauseTypes' class='form-control' type='text'{{#FaultCauseTypes}} value='{{FaultCauseTypes_string}}'{{/FaultCauseTypes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -377,8 +379,8 @@ define
 
                 var obj = obj || { id: id, cls: "Fault" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PhaseConnectedFaultKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; }
-                temp = document.getElementById (id + "_phases").value; if ("" != temp) obj.phases = temp;
+                temp = PhaseConnectedFaultKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; else delete obj.kind;
+                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj.phases;
                 temp = document.getElementById (id + "_impedance").value; if ("" != temp) obj.impedance = temp;
                 temp = document.getElementById (id + "_FaultyEquipment").value; if ("" != temp) obj.FaultyEquipment = temp;
                 temp = document.getElementById (id + "_FaultCauseTypes").value; if ("" != temp) obj.FaultCauseTypes = temp.split (",");
@@ -463,7 +465,7 @@ define
                     {{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
                     {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -492,7 +494,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lengthFromTerminal1'>lengthFromTerminal1: </label><div class='col-sm-8'><input id='{{id}}_lengthFromTerminal1' class='form-control' type='text'{{#lengthFromTerminal1}} value='{{lengthFromTerminal1}}'{{/lengthFromTerminal1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACLineSegment'>ACLineSegment: </label><div class='col-sm-8'><input id='{{id}}_ACLineSegment' class='form-control' type='text'{{#ACLineSegment}} value='{{ACLineSegment}}'{{/ACLineSegment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -582,7 +584,7 @@ define
                     `
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -610,7 +612,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -643,6 +645,7 @@ define
                 LineFault: LineFault,
                 FaultCauseType: FaultCauseType,
                 Fault: Fault,
+                PhaseConnectedFaultKind: PhaseConnectedFaultKind,
                 FaultImpedance: FaultImpedance,
                 EquipmentFault: EquipmentFault
             }

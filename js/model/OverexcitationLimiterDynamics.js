@@ -69,7 +69,7 @@ define
                     `
                     {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -97,7 +97,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -195,7 +195,7 @@ define
                     {{#voimax}}<div><b>voimax</b>: {{voimax}}</div>{{/voimax}}
                     {{#voimin}}<div><b>voimin</b>: {{voimin}}</div>{{/voimin}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -226,7 +226,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voimax'>voimax: </label><div class='col-sm-8'><input id='{{id}}_voimax' class='form-control' type='text'{{#voimax}} value='{{voimax}}'{{/voimax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voimin'>voimin: </label><div class='col-sm-8'><input id='{{id}}_voimin' class='form-control' type='text'{{#voimin}} value='{{voimin}}'{{/voimin}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -322,7 +322,7 @@ define
                     {{#kcd}}<div><b>kcd</b>: {{kcd}}</div>{{/kcd}}
                     {{#kramp}}<div><b>kramp</b>: {{kramp}}</div>{{/kramp}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -355,7 +355,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kcd'>kcd: </label><div class='col-sm-8'><input id='{{id}}_kcd' class='form-control' type='text'{{#kcd}} value='{{kcd}}'{{/kcd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kramp'>kramp: </label><div class='col-sm-8'><input id='{{id}}_kramp' class='form-control' type='text'{{#kramp}} value='{{kramp}}'{{/kramp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -463,7 +463,7 @@ define
                     {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
                     {{#vlow}}<div><b>vlow</b>: {{vlow}}</div>{{/vlow}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -500,7 +500,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vlow'>vlow: </label><div class='col-sm-8'><input id='{{id}}_vlow' class='form-control' type='text'{{#vlow}} value='{{vlow}}'{{/vlow}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -615,7 +615,7 @@ define
                     {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
                     {{#vlow}}<div><b>vlow</b>: {{vlow}}</div>{{/vlow}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -653,7 +653,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vlow'>vlow: </label><div class='col-sm-8'><input id='{{id}}_vlow' class='form-control' type='text'{{#vlow}} value='{{vlow}}'{{/vlow}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

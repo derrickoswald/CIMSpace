@@ -81,7 +81,7 @@ define
                     {{#mustStudy}}<div><b>mustStudy</b>: {{mustStudy}}</div>{{/mustStudy}}
                     {{#ContingencyElement}}<div><b>ContingencyElement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ContingencyElement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -111,7 +111,7 @@ define
                     `
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_mustStudy'>mustStudy: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_mustStudy' class='form-check-input' type='checkbox'{{#mustStudy}} checked{{/mustStudy}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -198,7 +198,7 @@ define
                     `
                     {{#Contingency}}<div><b>Contingency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Contingency}}&quot;);}); return false;'>{{Contingency}}</a></div>{{/Contingency}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -226,7 +226,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Contingency'>Contingency: </label><div class='col-sm-8'><input id='{{id}}_Contingency' class='form-control' type='text'{{#Contingency}} value='{{Contingency}}'{{/Contingency}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -316,7 +316,7 @@ define
                     {{#contingentStatus}}<div><b>contingentStatus</b>: {{contingentStatus}}</div>{{/contingentStatus}}
                     {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -325,13 +325,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ContingencyEquipmentStatusKind = []; if (!obj.contingentStatus) obj.ContingencyEquipmentStatusKind.push ({ id: '', selected: true}); for (var property in ContingencyEquipmentStatusKind) obj.ContingencyEquipmentStatusKind.push ({ id: property, selected: obj.contingentStatus && obj.contingentStatus.endsWith ('.' + property)});
+                obj.contingentStatusContingencyEquipmentStatusKind = [{ id: '', selected: (!obj.contingentStatus)}]; for (var property in ContingencyEquipmentStatusKind) obj.contingentStatusContingencyEquipmentStatusKind.push ({ id: property, selected: obj.contingentStatus && obj.contingentStatus.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ContingencyEquipmentStatusKind;
+                delete obj.contingentStatusContingencyEquipmentStatusKind;
             }
 
             edit_template ()
@@ -344,10 +344,10 @@ define
                     `
                     + ContingencyElement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingentStatus'>contingentStatus: </label><div class='col-sm-8'><select id='{{id}}_contingentStatus' class='form-control custom-select'>{{#ContingencyEquipmentStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ContingencyEquipmentStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingentStatus'>contingentStatus: </label><div class='col-sm-8'><select id='{{id}}_contingentStatus' class='form-control custom-select'>{{#contingentStatusContingencyEquipmentStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/contingentStatusContingencyEquipmentStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -358,7 +358,7 @@ define
 
                 var obj = obj || { id: id, cls: "ContingencyEquipment" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_contingentStatus").value; if ("" != temp) { temp = ContingencyEquipmentStatusKind[temp]; if ("undefined" != typeof (temp)) obj.contingentStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; }
+                temp = ContingencyEquipmentStatusKind[document.getElementById (id + "_contingentStatus").value]; if (temp) obj.contingentStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; else delete obj.contingentStatus;
                 temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);
@@ -380,6 +380,7 @@ define
             {
                 Contingency: Contingency,
                 ContingencyEquipment: ContingencyEquipment,
+                ContingencyEquipmentStatusKind: ContingencyEquipmentStatusKind,
                 ContingencyElement: ContingencyElement
             }
         );

@@ -1,7 +1,7 @@
 define
 (
-    ["model/base", "model/Core"],
-    function (base, Core)
+    ["model/base", "model/Core", "model/Domain"],
+    function (base, Core, Domain)
     {
 
         var ICCPControlPointDeviceClass =
@@ -96,7 +96,7 @@ define
                     {{#addressType}}<div><b>addressType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{addressType}}&quot;);}); return false;'>{{addressType}}</a></div>{{/addressType}}\n                    {{#gateway}}<div><b>gateway</b>: {{gateway}}</div>{{/gateway}}
                     {{#subnet}}<div><b>subnet</b>: {{subnet}}</div>{{/subnet}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -127,7 +127,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gateway'>gateway: </label><div class='col-sm-8'><input id='{{id}}_gateway' class='form-control' type='text'{{#gateway}} value='{{gateway}}'{{/gateway}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subnet'>subnet: </label><div class='col-sm-8'><input id='{{id}}_subnet' class='form-control' type='text'{{#subnet}} value='{{subnet}}'{{/subnet}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -171,8 +171,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "IPAddressType";
                 base.parse_element (/<cim:IPAddressType.value>([\s\S]*?)<\/cim:IPAddressType.value>/g, obj, "value", base.to_string, sub, context);
-                base.parse_element (/<cim:IPAddressType.multiplier>([\s\S]*?)<\/cim:IPAddressType.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:IPAddressType.unit>([\s\S]*?)<\/cim:IPAddressType.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:IPAddressType.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:IPAddressType.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 var bucket = context.parsed.IPAddressType;
                 if (null == bucket)
                    context.parsed.IPAddressType = bucket = {};
@@ -186,8 +186,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "IPAddressType", "value", "value",  base.from_string, fields);
-                base.export_element (obj, "IPAddressType", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "IPAddressType", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "IPAddressType", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "IPAddressType", "unit", "unit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -208,7 +208,7 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -217,11 +217,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.unitUnitSymbol = [{ id: '', selected: (!obj.unit)}]; for (var property in Domain.UnitSymbol) obj.unitUnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.multiplierUnitMultiplier;
+                delete obj.unitUnitSymbol;
             }
 
             edit_template ()
@@ -235,10 +239,10 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -250,8 +254,8 @@ define
                 var obj = obj || { id: id, cls: "IPAddressType" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.unit;
 
                 return (obj);
             }
@@ -321,7 +325,7 @@ define
                     {{#localReference}}<div><b>localReference</b>: {{localReference}}</div>{{/localReference}}
                     {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -330,13 +334,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPPScope = []; if (!obj.scope) obj.ICCPPScope.push ({ id: '', selected: true}); for (var property in ICCPPScope) obj.ICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
+                obj.scopeICCPPScope = [{ id: '', selected: (!obj.scope)}]; for (var property in ICCPPScope) obj.scopeICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPPScope;
+                delete obj.scopeICCPPScope;
             }
 
             edit_template ()
@@ -350,9 +354,9 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localReference'>localReference: </label><div class='col-sm-8'><input id='{{id}}_localReference' class='form-control' type='text'{{#localReference}} value='{{localReference}}'{{/localReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#scopeICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/scopeICCPPScope}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -364,7 +368,7 @@ define
                 var obj = obj || { id: id, cls: "ICCPInformationMessage" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_localReference").value; if ("" != temp) obj.localReference = temp;
-                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+                temp = ICCPPScope[document.getElementById (id + "_scope").value]; if (temp) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; else delete obj.scope;
 
                 return (obj);
             }
@@ -431,7 +435,7 @@ define
                     `
                     {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -440,13 +444,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPPScope = []; if (!obj.scope) obj.ICCPPScope.push ({ id: '', selected: true}); for (var property in ICCPPScope) obj.ICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
+                obj.scopeICCPPScope = [{ id: '', selected: (!obj.scope)}]; for (var property in ICCPPScope) obj.scopeICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPPScope;
+                delete obj.scopeICCPPScope;
             }
 
             edit_template ()
@@ -459,9 +463,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control custom-select'>{{#scopeICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/scopeICCPPScope}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -472,7 +476,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+                temp = ICCPPScope[document.getElementById (id + "_scope").value]; if (temp) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; else delete obj.scope;
 
                 return (obj);
             }
@@ -548,7 +552,7 @@ define
                     {{#nameOfICC}}<div><b>nameOfICC</b>: {{nameOfICC}}</div>{{/nameOfICC}}
                     {{#tase2version}}<div><b>tase2version</b>: {{tase2version}}</div>{{/tase2version}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -579,7 +583,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nameOfICC'>nameOfICC: </label><div class='col-sm-8'><input id='{{id}}_nameOfICC' class='form-control' type='text'{{#nameOfICC}} value='{{nameOfICC}}'{{/nameOfICC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tase2version'>tase2version: </label><div class='col-sm-8'><input id='{{id}}_tase2version' class='form-control' type='text'{{#tase2version}} value='{{tase2version}}'{{/tase2version}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -623,8 +627,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ISOAPAddressing";
                 base.parse_element (/<cim:ISOAPAddressing.value>([\s\S]*?)<\/cim:ISOAPAddressing.value>/g, obj, "value", base.to_string, sub, context);
-                base.parse_element (/<cim:ISOAPAddressing.unit>([\s\S]*?)<\/cim:ISOAPAddressing.unit>/g, obj, "unit", base.to_string, sub, context);
-                base.parse_element (/<cim:ISOAPAddressing.multiplier>([\s\S]*?)<\/cim:ISOAPAddressing.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ISOAPAddressing.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
+                base.parse_attribute (/<cim:ISOAPAddressing.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 var bucket = context.parsed.ISOAPAddressing;
                 if (null == bucket)
                    context.parsed.ISOAPAddressing = bucket = {};
@@ -638,8 +642,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "ISOAPAddressing", "value", "value",  base.from_string, fields);
-                base.export_element (obj, "ISOAPAddressing", "unit", "unit",  base.from_string, fields);
-                base.export_element (obj, "ISOAPAddressing", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_attribute (obj, "ISOAPAddressing", "unit", "unit", fields);
+                base.export_attribute (obj, "ISOAPAddressing", "multiplier", "multiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -660,7 +664,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -669,11 +673,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.unitUnitSymbol = [{ id: '', selected: (!obj.unit)}]; for (var property in Domain.UnitSymbol) obj.unitUnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.unitUnitSymbol;
+                delete obj.multiplierUnitMultiplier;
             }
 
             edit_template ()
@@ -687,10 +695,10 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -702,8 +710,8 @@ define
                 var obj = obj || { id: id, cls: "ISOAPAddressing" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.unit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
 
                 return (obj);
             }
@@ -767,7 +775,7 @@ define
                     {{#keepAliveTime}}<div><b>keepAliveTime</b>: {{keepAliveTime}}</div>{{/keepAliveTime}}
                     {{#port}}<div><b>port</b>: {{port}}</div>{{/port}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -796,7 +804,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_keepAliveTime'>keepAliveTime: </label><div class='col-sm-8'><input id='{{id}}_keepAliveTime' class='form-control' type='text'{{#keepAliveTime}} value='{{keepAliveTime}}'{{/keepAliveTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_port'>port: </label><div class='col-sm-8'><input id='{{id}}_port' class='form-control' type='text'{{#port}} value='{{port}}'{{/port}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -877,7 +885,7 @@ define
                     {{#osiSsel}}<div><b>osiSsel</b>: {{osiSsel}}</div>{{/osiSsel}}
                     {{#osiTsel}}<div><b>osiTsel</b>: {{osiTsel}}</div>{{/osiTsel}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -908,7 +916,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiSsel'>osiSsel: </label><div class='col-sm-8'><input id='{{id}}_osiSsel' class='form-control' type='text'{{#osiSsel}} value='{{osiSsel}}'{{/osiSsel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiTsel'>osiTsel: </label><div class='col-sm-8'><input id='{{id}}_osiTsel' class='form-control' type='text'{{#osiTsel}} value='{{osiTsel}}'{{/osiTsel}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -983,7 +991,7 @@ define
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -992,13 +1000,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPIndicationPointType = []; if (!obj.type) obj.ICCPIndicationPointType.push ({ id: '', selected: true}); for (var property in ICCPIndicationPointType) obj.ICCPIndicationPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+                obj.typeICCPIndicationPointType = [{ id: '', selected: (!obj.type)}]; for (var property in ICCPIndicationPointType) obj.typeICCPIndicationPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPIndicationPointType;
+                delete obj.typeICCPIndicationPointType;
             }
 
             edit_template ()
@@ -1011,9 +1019,9 @@ define
                     `
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPIndicationPointType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#typeICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/typeICCPIndicationPointType}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1024,7 +1032,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPIndicationPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPIndicationPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; }
+                temp = ICCPIndicationPointType[document.getElementById (id + "_type").value]; if (temp) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; else delete obj.type;
 
                 return (obj);
             }
@@ -1085,7 +1093,7 @@ define
                     `
                     {{#deviceClass}}<div><b>deviceClass</b>: {{deviceClass}}</div>{{/deviceClass}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1094,13 +1102,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPControlPointDeviceClass = []; if (!obj.deviceClass) obj.ICCPControlPointDeviceClass.push ({ id: '', selected: true}); for (var property in ICCPControlPointDeviceClass) obj.ICCPControlPointDeviceClass.push ({ id: property, selected: obj.deviceClass && obj.deviceClass.endsWith ('.' + property)});
+                obj.deviceClassICCPControlPointDeviceClass = [{ id: '', selected: (!obj.deviceClass)}]; for (var property in ICCPControlPointDeviceClass) obj.deviceClassICCPControlPointDeviceClass.push ({ id: property, selected: obj.deviceClass && obj.deviceClass.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPControlPointDeviceClass;
+                delete obj.deviceClassICCPControlPointDeviceClass;
             }
 
             edit_template ()
@@ -1113,9 +1121,9 @@ define
                     `
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='{{id}}_deviceClass' class='form-control custom-select'>{{#ICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPControlPointDeviceClass}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='{{id}}_deviceClass' class='form-control custom-select'>{{#deviceClassICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/deviceClassICCPControlPointDeviceClass}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1126,7 +1134,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPControlPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_deviceClass").value; if ("" != temp) { temp = ICCPControlPointDeviceClass[temp]; if ("undefined" != typeof (temp)) obj.deviceClass = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; }
+                temp = ICCPControlPointDeviceClass[document.getElementById (id + "_deviceClass").value]; if (temp) obj.deviceClass = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; else delete obj.deviceClass;
 
                 return (obj);
             }
@@ -1184,7 +1192,7 @@ define
                     + ICCPControlPoint.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1211,7 +1219,7 @@ define
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1280,7 +1288,7 @@ define
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1289,13 +1297,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.ICCPSetPointType = []; if (!obj.type) obj.ICCPSetPointType.push ({ id: '', selected: true}); for (var property in ICCPSetPointType) obj.ICCPSetPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+                obj.typeICCPSetPointType = [{ id: '', selected: (!obj.type)}]; for (var property in ICCPSetPointType) obj.typeICCPSetPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ICCPSetPointType;
+                delete obj.typeICCPSetPointType;
             }
 
             edit_template ()
@@ -1308,9 +1316,9 @@ define
                     `
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#ICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPSetPointType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control custom-select'>{{#typeICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/typeICCPSetPointType}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1321,7 +1329,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPSetPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPSetPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; }
+                temp = ICCPSetPointType[document.getElementById (id + "_type").value]; if (temp) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; else delete obj.type;
 
                 return (obj);
             }
@@ -1330,17 +1338,21 @@ define
         return (
             {
                 IPAccessPoint: IPAccessPoint,
+                ICCPPScope: ICCPPScope,
+                TCPAcessPoint: TCPAcessPoint,
+                ISOUpperLayer: ISOUpperLayer,
+                ICCPIndicationPoint: ICCPIndicationPoint,
+                ICCPSetPointType: ICCPSetPointType,
                 ICCPInformationMessage: ICCPInformationMessage,
                 ICCPControlPoint: ICCPControlPoint,
-                ISOUpperLayer: ISOUpperLayer,
-                TCPAcessPoint: TCPAcessPoint,
                 IPAddressType: IPAddressType,
+                ICCPIndicationPointType: ICCPIndicationPointType,
                 ICCPSetPoint: ICCPSetPoint,
                 TASE2BilateralTable: TASE2BilateralTable,
+                ISOAPAddressing: ISOAPAddressing,
                 ICCPPoint: ICCPPoint,
                 ICCPCommandPoint: ICCPCommandPoint,
-                ISOAPAddressing: ISOAPAddressing,
-                ICCPIndicationPoint: ICCPIndicationPoint
+                ICCPControlPointDeviceClass: ICCPControlPointDeviceClass
             }
         );
     }

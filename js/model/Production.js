@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Core"],
+    ["model/base", "model/Core", "model/Domain"],
     /**
      * The production package is responsible for classes which describe various kinds of generators.
      *
      * These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
      *
      */
-    function (base, Core)
+    function (base, Core, Domain)
     {
 
         /**
@@ -136,10 +136,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Emission";
-                base.parse_element (/<cim:Emission.denominatorMultiplier>([\s\S]*?)<\/cim:Emission.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Emission.denominatorUnit>([\s\S]*?)<\/cim:Emission.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:Emission.multiplier>([\s\S]*?)<\/cim:Emission.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Emission.unit>([\s\S]*?)<\/cim:Emission.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Emission.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:Emission.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:Emission.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Emission.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Emission.value>([\s\S]*?)<\/cim:Emission.value>/g, obj, "value", base.to_float, sub, context);
                 var bucket = context.parsed.Emission;
                 if (null == bucket)
@@ -153,10 +153,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Emission", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "Emission", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "Emission", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Emission", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Emission", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "Emission", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "Emission", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Emission", "unit", "unit", fields);
                 base.export_element (obj, "Emission", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -180,7 +180,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -189,11 +189,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.denominatorMultiplierUnitMultiplier = [{ id: '', selected: (!obj.denominatorMultiplier)}]; for (var property in Domain.UnitMultiplier) obj.denominatorMultiplierUnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.denominatorUnitUnitSymbol = [{ id: '', selected: (!obj.denominatorUnit)}]; for (var property in Domain.UnitSymbol) obj.denominatorUnitUnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.unitUnitSymbol = [{ id: '', selected: (!obj.unit)}]; for (var property in Domain.UnitSymbol) obj.unitUnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.denominatorMultiplierUnitMultiplier;
+                delete obj.denominatorUnitUnitSymbol;
+                delete obj.multiplierUnitMultiplier;
+                delete obj.unitUnitSymbol;
             }
 
             edit_template ()
@@ -206,13 +214,13 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='{{id}}_denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='{{id}}_denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#denominatorMultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/denominatorMultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='{{id}}_denominatorUnit' class='form-control custom-select'>{{#denominatorUnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/denominatorUnitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -223,10 +231,10 @@ define
 
                 var obj = obj || { id: id, cls: "Emission" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_denominatorMultiplier").value]; if (temp) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.denominatorMultiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_denominatorUnit").value]; if (temp) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.denominatorUnit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.unit;
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -310,7 +318,7 @@ define
                     {{#HydroPumpOpSchedule}}<div><b>HydroPumpOpSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPumpOpSchedule}}&quot;);}); return false;'>{{HydroPumpOpSchedule}}</a></div>{{/HydroPumpOpSchedule}}
                     {{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);}); return false;'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -344,7 +352,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HydroPumpOpSchedule'>HydroPumpOpSchedule: </label><div class='col-sm-8'><input id='{{id}}_HydroPumpOpSchedule' class='form-control' type='text'{{#HydroPumpOpSchedule}} value='{{HydroPumpOpSchedule}}'{{/HydroPumpOpSchedule}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HydroPowerPlant'>HydroPowerPlant: </label><div class='col-sm-8'><input id='{{id}}_HydroPowerPlant' class='form-control' type='text'{{#HydroPowerPlant}} value='{{HydroPowerPlant}}'{{/HydroPowerPlant}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -441,7 +449,7 @@ define
                     `
                     {{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);}); return false;'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -469,7 +477,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HydroGeneratingUnit'>HydroGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_HydroGeneratingUnit' class='form-control' type='text'{{#HydroGeneratingUnit}} value='{{HydroGeneratingUnit}}'{{/HydroGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -576,7 +584,7 @@ define
                     {{#ThermalGeneratingUnits}}<div><b>ThermalGeneratingUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ThermalGeneratingUnits}}
                     {{#SteamSendoutSchedule}}<div><b>SteamSendoutSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SteamSendoutSchedule}}&quot;);}); return false;'>{{SteamSendoutSchedule}}</a></div>{{/SteamSendoutSchedule}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -611,7 +619,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedP'>ratedP: </label><div class='col-sm-8'><input id='{{id}}_ratedP' class='form-control' type='text'{{#ratedP}} value='{{ratedP}}'{{/ratedP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamSendoutSchedule'>SteamSendoutSchedule: </label><div class='col-sm-8'><input id='{{id}}_SteamSendoutSchedule' class='form-control' type='text'{{#SteamSendoutSchedule}} value='{{SteamSendoutSchedule}}'{{/SteamSendoutSchedule}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -709,7 +717,7 @@ define
                     {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -738,7 +746,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetGrossP'>isNetGrossP: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -879,7 +887,7 @@ define
                     {{#UpstreamFromHydroPowerPlants}}<div><b>UpstreamFromHydroPowerPlants</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UpstreamFromHydroPowerPlants}}
                     {{#InflowForecasts}}<div><b>InflowForecasts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/InflowForecasts}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -929,7 +937,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TargetLevelSchedule'>TargetLevelSchedule: </label><div class='col-sm-8'><input id='{{id}}_TargetLevelSchedule' class='form-control' type='text'{{#TargetLevelSchedule}} value='{{TargetLevelSchedule}}'{{/TargetLevelSchedule}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SpillsFromReservoir'>SpillsFromReservoir: </label><div class='col-sm-8'><input id='{{id}}_SpillsFromReservoir' class='form-control' type='text'{{#SpillsFromReservoir}} value='{{SpillsFromReservoir}}'{{/SpillsFromReservoir}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1004,8 +1012,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Classification";
-                base.parse_element (/<cim:Classification.multiplier>([\s\S]*?)<\/cim:Classification.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:Classification.unit>([\s\S]*?)<\/cim:Classification.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Classification.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:Classification.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Classification.value>([\s\S]*?)<\/cim:Classification.value>/g, obj, "value", base.to_string, sub, context);
                 var bucket = context.parsed.Classification;
                 if (null == bucket)
@@ -1019,8 +1027,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Classification", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Classification", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Classification", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Classification", "unit", "unit", fields);
                 base.export_element (obj, "Classification", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1042,7 +1050,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1051,11 +1059,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.unitUnitSymbol = [{ id: '', selected: (!obj.unit)}]; for (var property in Domain.UnitSymbol) obj.unitUnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.multiplierUnitMultiplier;
+                delete obj.unitUnitSymbol;
             }
 
             edit_template ()
@@ -1068,11 +1080,11 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1083,8 +1095,8 @@ define
 
                 var obj = obj || { id: id, cls: "Classification" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.unit;
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1153,7 +1165,7 @@ define
                     {{#ignitionFuelType}}<div><b>ignitionFuelType</b>: {{ignitionFuelType}}</div>{{/ignitionFuelType}}
                     {{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);}); return false;'>{{StartupModel}}</a></div>{{/StartupModel}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1162,13 +1174,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.FuelType = []; if (!obj.ignitionFuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.ignitionFuelType && obj.ignitionFuelType.endsWith ('.' + property)});
+                obj.ignitionFuelTypeFuelType = [{ id: '', selected: (!obj.ignitionFuelType)}]; for (var property in FuelType) obj.ignitionFuelTypeFuelType.push ({ id: property, selected: obj.ignitionFuelType && obj.ignitionFuelType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.FuelType;
+                delete obj.ignitionFuelTypeFuelType;
             }
 
             edit_template ()
@@ -1181,10 +1193,10 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignitionFuelType'>ignitionFuelType: </label><div class='col-sm-8'><select id='{{id}}_ignitionFuelType' class='form-control custom-select'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignitionFuelType'>ignitionFuelType: </label><div class='col-sm-8'><select id='{{id}}_ignitionFuelType' class='form-control custom-select'>{{#ignitionFuelTypeFuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ignitionFuelTypeFuelType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartupModel'>StartupModel: </label><div class='col-sm-8'><input id='{{id}}_StartupModel' class='form-control' type='text'{{#StartupModel}} value='{{StartupModel}}'{{/StartupModel}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1195,7 +1207,7 @@ define
 
                 var obj = obj || { id: id, cls: "StartIgnFuelCurve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ignitionFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.ignitionFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = FuelType[document.getElementById (id + "_ignitionFuelType").value]; if (temp) obj.ignitionFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; else delete obj.ignitionFuelType;
                 temp = document.getElementById (id + "_StartupModel").value; if ("" != temp) obj.StartupModel = temp;
 
                 return (obj);
@@ -1274,7 +1286,7 @@ define
                     `
                     {{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);}); return false;'>{{Reservoir}}</a></div>{{/Reservoir}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1302,7 +1314,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reservoir'>Reservoir: </label><div class='col-sm-8'><input id='{{id}}_Reservoir' class='form-control' type='text'{{#Reservoir}} value='{{Reservoir}}'{{/Reservoir}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1391,7 +1403,7 @@ define
                     `
                     {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);}); return false;'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1419,7 +1431,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1512,7 +1524,7 @@ define
                     {{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombustionTurbine}}&quot;);}); return false;'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
                     {{#CAESPlant}}<div><b>CAESPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CAESPlant}}&quot;);}); return false;'>{{CAESPlant}}</a></div>{{/CAESPlant}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1542,7 +1554,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CombustionTurbine'>CombustionTurbine: </label><div class='col-sm-8'><input id='{{id}}_CombustionTurbine' class='form-control' type='text'{{#CombustionTurbine}} value='{{CombustionTurbine}}'{{/CombustionTurbine}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CAESPlant'>CAESPlant: </label><div class='col-sm-8'><input id='{{id}}_CAESPlant' class='form-control' type='text'{{#CAESPlant}} value='{{CAESPlant}}'{{/CAESPlant}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1600,10 +1612,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "HeatRate";
-                base.parse_element (/<cim:HeatRate.denominatorMultiplier>([\s\S]*?)<\/cim:HeatRate.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:HeatRate.denominatorUnit>([\s\S]*?)<\/cim:HeatRate.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:HeatRate.multiplier>([\s\S]*?)<\/cim:HeatRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:HeatRate.unit>([\s\S]*?)<\/cim:HeatRate.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:HeatRate.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:HeatRate.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:HeatRate.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:HeatRate.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:HeatRate.value>([\s\S]*?)<\/cim:HeatRate.value>/g, obj, "value", base.to_float, sub, context);
                 var bucket = context.parsed.HeatRate;
                 if (null == bucket)
@@ -1617,10 +1629,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "HeatRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "HeatRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "HeatRate", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "HeatRate", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "HeatRate", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "HeatRate", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "HeatRate", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "HeatRate", "unit", "unit", fields);
                 base.export_element (obj, "HeatRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1644,7 +1656,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1653,11 +1665,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.denominatorMultiplierUnitMultiplier = [{ id: '', selected: (!obj.denominatorMultiplier)}]; for (var property in Domain.UnitMultiplier) obj.denominatorMultiplierUnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.denominatorUnitUnitSymbol = [{ id: '', selected: (!obj.denominatorUnit)}]; for (var property in Domain.UnitSymbol) obj.denominatorUnitUnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.unitUnitSymbol = [{ id: '', selected: (!obj.unit)}]; for (var property in Domain.UnitSymbol) obj.unitUnitSymbol.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.denominatorMultiplierUnitMultiplier;
+                delete obj.denominatorUnitUnitSymbol;
+                delete obj.multiplierUnitMultiplier;
+                delete obj.unitUnitSymbol;
             }
 
             edit_template ()
@@ -1670,13 +1690,13 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='{{id}}_denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='{{id}}_denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#denominatorMultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/denominatorMultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='{{id}}_denominatorUnit' class='form-control custom-select'>{{#denominatorUnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/denominatorUnitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1687,10 +1707,10 @@ define
 
                 var obj = obj || { id: id, cls: "HeatRate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_denominatorMultiplier").value]; if (temp) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.denominatorMultiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_denominatorUnit").value]; if (temp) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.denominatorUnit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.unit;
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1774,7 +1794,7 @@ define
                     {{#FossilFuel}}<div><b>FossilFuel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FossilFuel}}&quot;);}); return false;'>{{FossilFuel}}</a></div>{{/FossilFuel}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1783,13 +1803,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.FuelType = []; if (!obj.fuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.fuelType && obj.fuelType.endsWith ('.' + property)});
+                obj.fuelTypeFuelType = [{ id: '', selected: (!obj.fuelType)}]; for (var property in FuelType) obj.fuelTypeFuelType.push ({ id: property, selected: obj.fuelType && obj.fuelType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.FuelType;
+                delete obj.fuelTypeFuelType;
             }
 
             edit_template ()
@@ -1804,13 +1824,13 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelAllocationEndDate'>fuelAllocationEndDate: </label><div class='col-sm-8'><input id='{{id}}_fuelAllocationEndDate' class='form-control' type='text'{{#fuelAllocationEndDate}} value='{{fuelAllocationEndDate}}'{{/fuelAllocationEndDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelAllocationStartDate'>fuelAllocationStartDate: </label><div class='col-sm-8'><input id='{{id}}_fuelAllocationStartDate' class='form-control' type='text'{{#fuelAllocationStartDate}} value='{{fuelAllocationStartDate}}'{{/fuelAllocationStartDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelType'>fuelType: </label><div class='col-sm-8'><select id='{{id}}_fuelType' class='form-control custom-select'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelType'>fuelType: </label><div class='col-sm-8'><select id='{{id}}_fuelType' class='form-control custom-select'>{{#fuelTypeFuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/fuelTypeFuelType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxFuelAllocation'>maxFuelAllocation: </label><div class='col-sm-8'><input id='{{id}}_maxFuelAllocation' class='form-control' type='text'{{#maxFuelAllocation}} value='{{maxFuelAllocation}}'{{/maxFuelAllocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minFuelAllocation'>minFuelAllocation: </label><div class='col-sm-8'><input id='{{id}}_minFuelAllocation' class='form-control' type='text'{{#minFuelAllocation}} value='{{minFuelAllocation}}'{{/minFuelAllocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FossilFuel'>FossilFuel: </label><div class='col-sm-8'><input id='{{id}}_FossilFuel' class='form-control' type='text'{{#FossilFuel}} value='{{FossilFuel}}'{{/FossilFuel}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1823,7 +1843,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_fuelAllocationEndDate").value; if ("" != temp) obj.fuelAllocationEndDate = temp;
                 temp = document.getElementById (id + "_fuelAllocationStartDate").value; if ("" != temp) obj.fuelAllocationStartDate = temp;
-                temp = document.getElementById (id + "_fuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = FuelType[document.getElementById (id + "_fuelType").value]; if (temp) obj.fuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; else delete obj.fuelType;
                 temp = document.getElementById (id + "_maxFuelAllocation").value; if ("" != temp) obj.maxFuelAllocation = temp;
                 temp = document.getElementById (id + "_minFuelAllocation").value; if ("" != temp) obj.minFuelAllocation = temp;
                 temp = document.getElementById (id + "_FossilFuel").value; if ("" != temp) obj.FossilFuel = temp;
@@ -1906,7 +1926,7 @@ define
                     `
                     {{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);}); return false;'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1934,7 +1954,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HydroGeneratingUnit'>HydroGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_HydroGeneratingUnit' class='form-control' type='text'{{#HydroGeneratingUnit}} value='{{HydroGeneratingUnit}}'{{/HydroGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2023,7 +2043,7 @@ define
                     `
                     {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);}); return false;'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2051,7 +2071,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2143,7 +2163,7 @@ define
                     {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2172,7 +2192,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetGrossP'>isNetGrossP: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2265,7 +2285,7 @@ define
                     {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
                     {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);}); return false;'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2294,7 +2314,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetGrossP'>isNetGrossP: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2382,7 +2402,7 @@ define
                     `
                     {{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);}); return false;'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2410,7 +2430,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CogenerationPlant'>CogenerationPlant: </label><div class='col-sm-8'><input id='{{id}}_CogenerationPlant' class='form-control' type='text'{{#CogenerationPlant}} value='{{CogenerationPlant}}'{{/CogenerationPlant}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2499,7 +2519,7 @@ define
                     `
                     {{#HydroGeneratingUnit}}<div><b>HydroGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroGeneratingUnit}}&quot;);}); return false;'>{{HydroGeneratingUnit}}</a></div>{{/HydroGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2527,7 +2547,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HydroGeneratingUnit'>HydroGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_HydroGeneratingUnit' class='form-control' type='text'{{#HydroGeneratingUnit}} value='{{HydroGeneratingUnit}}'{{/HydroGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2623,7 +2643,7 @@ define
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     {{#AirCompressor}}<div><b>AirCompressor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AirCompressor}}&quot;);}); return false;'>{{AirCompressor}}</a></div>{{/AirCompressor}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2654,7 +2674,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AirCompressor'>AirCompressor: </label><div class='col-sm-8'><input id='{{id}}_AirCompressor' class='form-control' type='text'{{#AirCompressor}} value='{{AirCompressor}}'{{/AirCompressor}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2755,7 +2775,7 @@ define
                     {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2764,13 +2784,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.EmissionType = []; if (!obj.emissionType) obj.EmissionType.push ({ id: '', selected: true}); for (var property in EmissionType) obj.EmissionType.push ({ id: property, selected: obj.emissionType && obj.emissionType.endsWith ('.' + property)});
+                obj.emissionTypeEmissionType = [{ id: '', selected: (!obj.emissionType)}]; for (var property in EmissionType) obj.emissionTypeEmissionType.push ({ id: property, selected: obj.emissionType && obj.emissionType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.EmissionType;
+                delete obj.emissionTypeEmissionType;
             }
 
             edit_template ()
@@ -2784,11 +2804,11 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionContent'>emissionContent: </label><div class='col-sm-8'><input id='{{id}}_emissionContent' class='form-control' type='text'{{#emissionContent}} value='{{emissionContent}}'{{/emissionContent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionType'>emissionType: </label><div class='col-sm-8'><select id='{{id}}_emissionType' class='form-control custom-select'>{{#EmissionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EmissionType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionType'>emissionType: </label><div class='col-sm-8'><select id='{{id}}_emissionType' class='form-control custom-select'>{{#emissionTypeEmissionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/emissionTypeEmissionType}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetGrossP'>isNetGrossP: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2800,7 +2820,7 @@ define
                 var obj = obj || { id: id, cls: "EmissionCurve" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_emissionContent").value; if ("" != temp) obj.emissionContent = temp;
-                temp = document.getElementById (id + "_emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
+                temp = EmissionType[document.getElementById (id + "_emissionType").value]; if (temp) obj.emissionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; else delete obj.emissionType;
                 temp = document.getElementById (id + "_isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
                 temp = document.getElementById (id + "_ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
 
@@ -2881,7 +2901,7 @@ define
                     {{#mainFuelType}}<div><b>mainFuelType</b>: {{mainFuelType}}</div>{{/mainFuelType}}
                     {{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);}); return false;'>{{StartupModel}}</a></div>{{/StartupModel}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2890,13 +2910,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.FuelType = []; if (!obj.mainFuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.mainFuelType && obj.mainFuelType.endsWith ('.' + property)});
+                obj.mainFuelTypeFuelType = [{ id: '', selected: (!obj.mainFuelType)}]; for (var property in FuelType) obj.mainFuelTypeFuelType.push ({ id: property, selected: obj.mainFuelType && obj.mainFuelType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.FuelType;
+                delete obj.mainFuelTypeFuelType;
             }
 
             edit_template ()
@@ -2909,10 +2929,10 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mainFuelType'>mainFuelType: </label><div class='col-sm-8'><select id='{{id}}_mainFuelType' class='form-control custom-select'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mainFuelType'>mainFuelType: </label><div class='col-sm-8'><select id='{{id}}_mainFuelType' class='form-control custom-select'>{{#mainFuelTypeFuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/mainFuelTypeFuelType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartupModel'>StartupModel: </label><div class='col-sm-8'><input id='{{id}}_StartupModel' class='form-control' type='text'{{#StartupModel}} value='{{StartupModel}}'{{/StartupModel}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2923,7 +2943,7 @@ define
 
                 var obj = obj || { id: id, cls: "StartMainFuelCurve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_mainFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.mainFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = FuelType[document.getElementById (id + "_mainFuelType").value]; if (temp) obj.mainFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; else delete obj.mainFuelType;
                 temp = document.getElementById (id + "_StartupModel").value; if ("" != temp) obj.StartupModel = temp;
 
                 return (obj);
@@ -3003,7 +3023,7 @@ define
                     {{#hotStandbyRamp}}<div><b>hotStandbyRamp</b>: {{hotStandbyRamp}}</div>{{/hotStandbyRamp}}
                     {{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);}); return false;'>{{StartupModel}}</a></div>{{/StartupModel}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3032,7 +3052,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotStandbyRamp'>hotStandbyRamp: </label><div class='col-sm-8'><input id='{{id}}_hotStandbyRamp' class='form-control' type='text'{{#hotStandbyRamp}} value='{{hotStandbyRamp}}'{{/hotStandbyRamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartupModel'>StartupModel: </label><div class='col-sm-8'><input id='{{id}}_StartupModel' class='form-control' type='text'{{#StartupModel}} value='{{StartupModel}}'{{/StartupModel}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3152,7 +3172,7 @@ define
                     {{#FuelAllocationSchedules}}<div><b>FuelAllocationSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FuelAllocationSchedules}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3161,14 +3181,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.FuelType = []; if (!obj.fossilFuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.fossilFuelType && obj.fossilFuelType.endsWith ('.' + property)});
+                obj.fossilFuelTypeFuelType = [{ id: '', selected: (!obj.fossilFuelType)}]; for (var property in FuelType) obj.fossilFuelTypeFuelType.push ({ id: property, selected: obj.fossilFuelType && obj.fossilFuelType.endsWith ('.' + property)});
                 if (obj.FuelAllocationSchedules) obj.FuelAllocationSchedules_string = obj.FuelAllocationSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.FuelType;
+                delete obj.fossilFuelTypeFuelType;
                 delete obj.FuelAllocationSchedules_string;
             }
 
@@ -3182,7 +3202,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fossilFuelType'>fossilFuelType: </label><div class='col-sm-8'><select id='{{id}}_fossilFuelType' class='form-control custom-select'>{{#FuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FuelType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fossilFuelType'>fossilFuelType: </label><div class='col-sm-8'><select id='{{id}}_fossilFuelType' class='form-control custom-select'>{{#fossilFuelTypeFuelType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/fossilFuelTypeFuelType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelCost'>fuelCost: </label><div class='col-sm-8'><input id='{{id}}_fuelCost' class='form-control' type='text'{{#fuelCost}} value='{{fuelCost}}'{{/fuelCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelDispatchCost'>fuelDispatchCost: </label><div class='col-sm-8'><input id='{{id}}_fuelDispatchCost' class='form-control' type='text'{{#fuelDispatchCost}} value='{{fuelDispatchCost}}'{{/fuelDispatchCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelEffFactor'>fuelEffFactor: </label><div class='col-sm-8'><input id='{{id}}_fuelEffFactor' class='form-control' type='text'{{#fuelEffFactor}} value='{{fuelEffFactor}}'{{/fuelEffFactor}}></div></div>
@@ -3194,7 +3214,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowBreakpointP'>lowBreakpointP: </label><div class='col-sm-8'><input id='{{id}}_lowBreakpointP' class='form-control' type='text'{{#lowBreakpointP}} value='{{lowBreakpointP}}'{{/lowBreakpointP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3205,7 +3225,7 @@ define
 
                 var obj = obj || { id: id, cls: "FossilFuel" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_fossilFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fossilFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = FuelType[document.getElementById (id + "_fossilFuelType").value]; if (temp) obj.fossilFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; else delete obj.fossilFuelType;
                 temp = document.getElementById (id + "_fuelCost").value; if ("" != temp) obj.fuelCost = temp;
                 temp = document.getElementById (id + "_fuelDispatchCost").value; if ("" != temp) obj.fuelDispatchCost = temp;
                 temp = document.getElementById (id + "_fuelEffFactor").value; if ("" != temp) obj.fuelEffFactor = temp;
@@ -3416,7 +3436,7 @@ define
                     {{#ControlAreaGeneratingUnit}}<div><b>ControlAreaGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ControlAreaGeneratingUnit}}
                     {{#GrossToNetActivePowerCurves}}<div><b>GrossToNetActivePowerCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GrossToNetActivePowerCurves}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3425,8 +3445,8 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.GeneratorControlMode = []; if (!obj.genControlMode) obj.GeneratorControlMode.push ({ id: '', selected: true}); for (var property in GeneratorControlMode) obj.GeneratorControlMode.push ({ id: property, selected: obj.genControlMode && obj.genControlMode.endsWith ('.' + property)});
-                obj.GeneratorControlSource = []; if (!obj.genControlSource) obj.GeneratorControlSource.push ({ id: '', selected: true}); for (var property in GeneratorControlSource) obj.GeneratorControlSource.push ({ id: property, selected: obj.genControlSource && obj.genControlSource.endsWith ('.' + property)});
+                obj.genControlModeGeneratorControlMode = [{ id: '', selected: (!obj.genControlMode)}]; for (var property in GeneratorControlMode) obj.genControlModeGeneratorControlMode.push ({ id: property, selected: obj.genControlMode && obj.genControlMode.endsWith ('.' + property)});
+                obj.genControlSourceGeneratorControlSource = [{ id: '', selected: (!obj.genControlSource)}]; for (var property in GeneratorControlSource) obj.genControlSourceGeneratorControlSource.push ({ id: property, selected: obj.genControlSource && obj.genControlSource.endsWith ('.' + property)});
                 if (obj.RotatingMachine) obj.RotatingMachine_string = obj.RotatingMachine.join ();
                 if (obj.GenUnitOpCostCurves) obj.GenUnitOpCostCurves_string = obj.GenUnitOpCostCurves.join ();
                 if (obj.ControlAreaGeneratingUnit) obj.ControlAreaGeneratingUnit_string = obj.ControlAreaGeneratingUnit.join ();
@@ -3436,8 +3456,8 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.GeneratorControlMode;
-                delete obj.GeneratorControlSource;
+                delete obj.genControlModeGeneratorControlMode;
+                delete obj.genControlSourceGeneratorControlSource;
                 delete obj.RotatingMachine_string;
                 delete obj.GenUnitOpCostCurves_string;
                 delete obj.ControlAreaGeneratingUnit_string;
@@ -3462,8 +3482,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlPulseLow'>controlPulseLow: </label><div class='col-sm-8'><input id='{{id}}_controlPulseLow' class='form-control' type='text'{{#controlPulseLow}} value='{{controlPulseLow}}'{{/controlPulseLow}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlResponseRate'>controlResponseRate: </label><div class='col-sm-8'><input id='{{id}}_controlResponseRate' class='form-control' type='text'{{#controlResponseRate}} value='{{controlResponseRate}}'{{/controlResponseRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efficiency'>efficiency: </label><div class='col-sm-8'><input id='{{id}}_efficiency' class='form-control' type='text'{{#efficiency}} value='{{efficiency}}'{{/efficiency}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genControlMode'>genControlMode: </label><div class='col-sm-8'><select id='{{id}}_genControlMode' class='form-control custom-select'>{{#GeneratorControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GeneratorControlMode}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genControlSource'>genControlSource: </label><div class='col-sm-8'><select id='{{id}}_genControlSource' class='form-control custom-select'>{{#GeneratorControlSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GeneratorControlSource}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genControlMode'>genControlMode: </label><div class='col-sm-8'><select id='{{id}}_genControlMode' class='form-control custom-select'>{{#genControlModeGeneratorControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/genControlModeGeneratorControlMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genControlSource'>genControlSource: </label><div class='col-sm-8'><select id='{{id}}_genControlSource' class='form-control custom-select'>{{#genControlSourceGeneratorControlSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/genControlSourceGeneratorControlSource}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_governorMPL'>governorMPL: </label><div class='col-sm-8'><input id='{{id}}_governorMPL' class='form-control' type='text'{{#governorMPL}} value='{{governorMPL}}'{{/governorMPL}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_governorSCD'>governorSCD: </label><div class='col-sm-8'><input id='{{id}}_governorSCD' class='form-control' type='text'{{#governorSCD}} value='{{governorSCD}}'{{/governorSCD}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highControlLimit'>highControlLimit: </label><div class='col-sm-8'><input id='{{id}}_highControlLimit' class='form-control' type='text'{{#highControlLimit}} value='{{highControlLimit}}'{{/highControlLimit}}></div></div>
@@ -3493,7 +3513,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalEfficiency'>totalEfficiency: </label><div class='col-sm-8'><input id='{{id}}_totalEfficiency' class='form-control' type='text'{{#totalEfficiency}} value='{{totalEfficiency}}'{{/totalEfficiency}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenUnitOpSchedule'>GenUnitOpSchedule: </label><div class='col-sm-8'><input id='{{id}}_GenUnitOpSchedule' class='form-control' type='text'{{#GenUnitOpSchedule}} value='{{GenUnitOpSchedule}}'{{/GenUnitOpSchedule}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3512,8 +3532,8 @@ define
                 temp = document.getElementById (id + "_controlPulseLow").value; if ("" != temp) obj.controlPulseLow = temp;
                 temp = document.getElementById (id + "_controlResponseRate").value; if ("" != temp) obj.controlResponseRate = temp;
                 temp = document.getElementById (id + "_efficiency").value; if ("" != temp) obj.efficiency = temp;
-                temp = document.getElementById (id + "_genControlMode").value; if ("" != temp) { temp = GeneratorControlMode[temp]; if ("undefined" != typeof (temp)) obj.genControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlMode." + temp; }
-                temp = document.getElementById (id + "_genControlSource").value; if ("" != temp) { temp = GeneratorControlSource[temp]; if ("undefined" != typeof (temp)) obj.genControlSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlSource." + temp; }
+                temp = GeneratorControlMode[document.getElementById (id + "_genControlMode").value]; if (temp) obj.genControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlMode." + temp; else delete obj.genControlMode;
+                temp = GeneratorControlSource[document.getElementById (id + "_genControlSource").value]; if (temp) obj.genControlSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlSource." + temp; else delete obj.genControlSource;
                 temp = document.getElementById (id + "_governorMPL").value; if ("" != temp) obj.governorMPL = temp;
                 temp = document.getElementById (id + "_governorSCD").value; if ("" != temp) obj.governorSCD = temp;
                 temp = document.getElementById (id + "_highControlLimit").value; if ("" != temp) obj.highControlLimit = temp;
@@ -3659,7 +3679,7 @@ define
                     {{#GenSourcePumpDischargeReservoir}}<div><b>GenSourcePumpDischargeReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenSourcePumpDischargeReservoir}}&quot;);}); return false;'>{{GenSourcePumpDischargeReservoir}}</a></div>{{/GenSourcePumpDischargeReservoir}}
                     {{#HydroGeneratingUnits}}<div><b>HydroGeneratingUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/HydroGeneratingUnits}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3668,7 +3688,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.HydroPlantStorageKind = []; if (!obj.hydroPlantStorageType) obj.HydroPlantStorageKind.push ({ id: '', selected: true}); for (var property in HydroPlantStorageKind) obj.HydroPlantStorageKind.push ({ id: property, selected: obj.hydroPlantStorageType && obj.hydroPlantStorageType.endsWith ('.' + property)});
+                obj.hydroPlantStorageTypeHydroPlantStorageKind = [{ id: '', selected: (!obj.hydroPlantStorageType)}]; for (var property in HydroPlantStorageKind) obj.hydroPlantStorageTypeHydroPlantStorageKind.push ({ id: property, selected: obj.hydroPlantStorageType && obj.hydroPlantStorageType.endsWith ('.' + property)});
                 if (obj.HydroPumps) obj.HydroPumps_string = obj.HydroPumps.join ();
                 if (obj.HydroGeneratingUnits) obj.HydroGeneratingUnits_string = obj.HydroGeneratingUnits.join ();
             }
@@ -3676,7 +3696,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.HydroPlantStorageKind;
+                delete obj.hydroPlantStorageTypeHydroPlantStorageKind;
                 delete obj.HydroPumps_string;
                 delete obj.HydroGeneratingUnits_string;
             }
@@ -3693,7 +3713,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dischargeTravelDelay'>dischargeTravelDelay: </label><div class='col-sm-8'><input id='{{id}}_dischargeTravelDelay' class='form-control' type='text'{{#dischargeTravelDelay}} value='{{dischargeTravelDelay}}'{{/dischargeTravelDelay}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genRatedP'>genRatedP: </label><div class='col-sm-8'><input id='{{id}}_genRatedP' class='form-control' type='text'{{#genRatedP}} value='{{genRatedP}}'{{/genRatedP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hydroPlantStorageType'>hydroPlantStorageType: </label><div class='col-sm-8'><select id='{{id}}_hydroPlantStorageType' class='form-control custom-select'>{{#HydroPlantStorageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/HydroPlantStorageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hydroPlantStorageType'>hydroPlantStorageType: </label><div class='col-sm-8'><select id='{{id}}_hydroPlantStorageType' class='form-control custom-select'>{{#hydroPlantStorageTypeHydroPlantStorageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/hydroPlantStorageTypeHydroPlantStorageKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_penstockType'>penstockType: </label><div class='col-sm-8'><input id='{{id}}_penstockType' class='form-control' type='text'{{#penstockType}} value='{{penstockType}}'{{/penstockType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plantDischargeCapacity'>plantDischargeCapacity: </label><div class='col-sm-8'><input id='{{id}}_plantDischargeCapacity' class='form-control' type='text'{{#plantDischargeCapacity}} value='{{plantDischargeCapacity}}'{{/plantDischargeCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plantRatedHead'>plantRatedHead: </label><div class='col-sm-8'><input id='{{id}}_plantRatedHead' class='form-control' type='text'{{#plantRatedHead}} value='{{plantRatedHead}}'{{/plantRatedHead}}></div></div>
@@ -3703,7 +3723,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reservoir'>Reservoir: </label><div class='col-sm-8'><input id='{{id}}_Reservoir' class='form-control' type='text'{{#Reservoir}} value='{{Reservoir}}'{{/Reservoir}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenSourcePumpDischargeReservoir'>GenSourcePumpDischargeReservoir: </label><div class='col-sm-8'><input id='{{id}}_GenSourcePumpDischargeReservoir' class='form-control' type='text'{{#GenSourcePumpDischargeReservoir}} value='{{GenSourcePumpDischargeReservoir}}'{{/GenSourcePumpDischargeReservoir}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3716,7 +3736,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_dischargeTravelDelay").value; if ("" != temp) obj.dischargeTravelDelay = temp;
                 temp = document.getElementById (id + "_genRatedP").value; if ("" != temp) obj.genRatedP = temp;
-                temp = document.getElementById (id + "_hydroPlantStorageType").value; if ("" != temp) { temp = HydroPlantStorageKind[temp]; if ("undefined" != typeof (temp)) obj.hydroPlantStorageType = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroPlantStorageKind." + temp; }
+                temp = HydroPlantStorageKind[document.getElementById (id + "_hydroPlantStorageType").value]; if (temp) obj.hydroPlantStorageType = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroPlantStorageKind." + temp; else delete obj.hydroPlantStorageType;
                 temp = document.getElementById (id + "_penstockType").value; if ("" != temp) obj.penstockType = temp;
                 temp = document.getElementById (id + "_plantDischargeCapacity").value; if ("" != temp) obj.plantDischargeCapacity = temp;
                 temp = document.getElementById (id + "_plantRatedHead").value; if ("" != temp) obj.plantRatedHead = temp;
@@ -3805,7 +3825,7 @@ define
                     `
                     {{#HydroPump}}<div><b>HydroPump</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPump}}&quot;);}); return false;'>{{HydroPump}}</a></div>{{/HydroPump}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3833,7 +3853,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HydroPump'>HydroPump: </label><div class='col-sm-8'><input id='{{id}}_HydroPump' class='form-control' type='text'{{#HydroPump}} value='{{HydroPump}}'{{/HydroPump}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -3926,7 +3946,7 @@ define
                     {{#shutdownDate}}<div><b>shutdownDate</b>: {{shutdownDate}}</div>{{/shutdownDate}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -3956,7 +3976,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shutdownDate'>shutdownDate: </label><div class='col-sm-8'><input id='{{id}}_shutdownDate' class='form-control' type='text'{{#shutdownDate}} value='{{shutdownDate}}'{{/shutdownDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4053,7 +4073,7 @@ define
                     {{#emissionValueSource}}<div><b>emissionValueSource</b>: {{emissionValueSource}}</div>{{/emissionValueSource}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4062,15 +4082,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.EmissionType = []; if (!obj.emissionType) obj.EmissionType.push ({ id: '', selected: true}); for (var property in EmissionType) obj.EmissionType.push ({ id: property, selected: obj.emissionType && obj.emissionType.endsWith ('.' + property)});
-                obj.EmissionValueSource = []; if (!obj.emissionValueSource) obj.EmissionValueSource.push ({ id: '', selected: true}); for (var property in EmissionValueSource) obj.EmissionValueSource.push ({ id: property, selected: obj.emissionValueSource && obj.emissionValueSource.endsWith ('.' + property)});
+                obj.emissionTypeEmissionType = [{ id: '', selected: (!obj.emissionType)}]; for (var property in EmissionType) obj.emissionTypeEmissionType.push ({ id: property, selected: obj.emissionType && obj.emissionType.endsWith ('.' + property)});
+                obj.emissionValueSourceEmissionValueSource = [{ id: '', selected: (!obj.emissionValueSource)}]; for (var property in EmissionValueSource) obj.emissionValueSourceEmissionValueSource.push ({ id: property, selected: obj.emissionValueSource && obj.emissionValueSource.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.EmissionType;
-                delete obj.EmissionValueSource;
+                delete obj.emissionTypeEmissionType;
+                delete obj.emissionValueSourceEmissionValueSource;
             }
 
             edit_template ()
@@ -4083,11 +4103,11 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionType'>emissionType: </label><div class='col-sm-8'><select id='{{id}}_emissionType' class='form-control custom-select'>{{#EmissionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EmissionType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionValueSource'>emissionValueSource: </label><div class='col-sm-8'><select id='{{id}}_emissionValueSource' class='form-control custom-select'>{{#EmissionValueSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/EmissionValueSource}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionType'>emissionType: </label><div class='col-sm-8'><select id='{{id}}_emissionType' class='form-control custom-select'>{{#emissionTypeEmissionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/emissionTypeEmissionType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emissionValueSource'>emissionValueSource: </label><div class='col-sm-8'><select id='{{id}}_emissionValueSource' class='form-control custom-select'>{{#emissionValueSourceEmissionValueSource}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/emissionValueSourceEmissionValueSource}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4098,8 +4118,8 @@ define
 
                 var obj = obj || { id: id, cls: "EmissionAccount" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
-                temp = document.getElementById (id + "_emissionValueSource").value; if ("" != temp) { temp = EmissionValueSource[temp]; if ("undefined" != typeof (temp)) obj.emissionValueSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionValueSource." + temp; }
+                temp = EmissionType[document.getElementById (id + "_emissionType").value]; if (temp) obj.emissionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; else delete obj.emissionType;
+                temp = EmissionValueSource[document.getElementById (id + "_emissionValueSource").value]; if (temp) obj.emissionValueSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionValueSource." + temp; else delete obj.emissionValueSource;
                 temp = document.getElementById (id + "_ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
 
                 return (obj);
@@ -4192,7 +4212,7 @@ define
                     {{#heatInputOffset}}<div><b>heatInputOffset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{heatInputOffset}}&quot;);}); return false;'>{{heatInputOffset}}</a></div>{{/heatInputOffset}}\n                    {{#isNetGrossP}}<div><b>isNetGrossP</b>: {{isNetGrossP}}</div>{{/isNetGrossP}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);}); return false;'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4225,7 +4245,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetGrossP'>isNetGrossP: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetGrossP' class='form-check-input' type='checkbox'{{#isNetGrossP}} checked{{/isNetGrossP}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ThermalGeneratingUnit'>ThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ThermalGeneratingUnit' class='form-control' type='text'{{#ThermalGeneratingUnit}} value='{{ThermalGeneratingUnit}}'{{/ThermalGeneratingUnit}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4355,7 +4375,7 @@ define
                     {{#StartMainFuelCurve}}<div><b>StartMainFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartMainFuelCurve}}&quot;);}); return false;'>{{StartMainFuelCurve}}</a></div>{{/StartMainFuelCurve}}
                     {{#StartRampCurve}}<div><b>StartRampCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartRampCurve}}&quot;);}); return false;'>{{StartRampCurve}}</a></div>{{/StartRampCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4396,7 +4416,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartMainFuelCurve'>StartMainFuelCurve: </label><div class='col-sm-8'><input id='{{id}}_StartMainFuelCurve' class='form-control' type='text'{{#StartMainFuelCurve}} value='{{StartMainFuelCurve}}'{{/StartMainFuelCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartRampCurve'>StartRampCurve: </label><div class='col-sm-8'><input id='{{id}}_StartRampCurve' class='form-control' type='text'{{#StartRampCurve}} value='{{StartRampCurve}}'{{/StartRampCurve}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4467,10 +4487,10 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "CostPerHeatUnit";
-                base.parse_element (/<cim:CostPerHeatUnit.denominatorMultiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.denominatorMultiplier>/g, obj, "denominatorMultiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerHeatUnit.denominatorUnit>([\s\S]*?)<\/cim:CostPerHeatUnit.denominatorUnit>/g, obj, "denominatorUnit", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerHeatUnit.multiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
-                base.parse_element (/<cim:CostPerHeatUnit.unit>([\s\S]*?)<\/cim:CostPerHeatUnit.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attribute (/<cim:CostPerHeatUnit.denominatorMultiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorMultiplier", sub, context);
+                base.parse_attribute (/<cim:CostPerHeatUnit.denominatorUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "denominatorUnit", sub, context);
+                base.parse_attribute (/<cim:CostPerHeatUnit.multiplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:CostPerHeatUnit.unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:CostPerHeatUnit.value>([\s\S]*?)<\/cim:CostPerHeatUnit.value>/g, obj, "value", base.to_float, sub, context);
                 var bucket = context.parsed.CostPerHeatUnit;
                 if (null == bucket)
@@ -4484,10 +4504,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CostPerHeatUnit", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "CostPerHeatUnit", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "CostPerHeatUnit", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "CostPerHeatUnit", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "CostPerHeatUnit", "unit", "unit", fields);
                 base.export_element (obj, "CostPerHeatUnit", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4511,7 +4531,7 @@ define
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4520,11 +4540,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.denominatorMultiplierUnitMultiplier = [{ id: '', selected: (!obj.denominatorMultiplier)}]; for (var property in Domain.UnitMultiplier) obj.denominatorMultiplierUnitMultiplier.push ({ id: property, selected: obj.denominatorMultiplier && obj.denominatorMultiplier.endsWith ('.' + property)});
+                obj.denominatorUnitUnitSymbol = [{ id: '', selected: (!obj.denominatorUnit)}]; for (var property in Domain.UnitSymbol) obj.denominatorUnitUnitSymbol.push ({ id: property, selected: obj.denominatorUnit && obj.denominatorUnit.endsWith ('.' + property)});
+                obj.multiplierUnitMultiplier = [{ id: '', selected: (!obj.multiplier)}]; for (var property in Domain.UnitMultiplier) obj.multiplierUnitMultiplier.push ({ id: property, selected: obj.multiplier && obj.multiplier.endsWith ('.' + property)});
+                obj.unitCurrency = [{ id: '', selected: (!obj.unit)}]; for (var property in Domain.Currency) obj.unitCurrency.push ({ id: property, selected: obj.unit && obj.unit.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.denominatorMultiplierUnitMultiplier;
+                delete obj.denominatorUnitUnitSymbol;
+                delete obj.multiplierUnitMultiplier;
+                delete obj.unitCurrency;
             }
 
             edit_template ()
@@ -4537,13 +4565,13 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><input id='{{id}}_denominatorMultiplier' class='form-control' type='text'{{#denominatorMultiplier}} value='{{denominatorMultiplier}}'{{/denominatorMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><input id='{{id}}_denominatorUnit' class='form-control' type='text'{{#denominatorUnit}} value='{{denominatorUnit}}'{{/denominatorUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorMultiplier'>denominatorMultiplier: </label><div class='col-sm-8'><select id='{{id}}_denominatorMultiplier' class='form-control custom-select'>{{#denominatorMultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/denominatorMultiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominatorUnit'>denominatorUnit: </label><div class='col-sm-8'><select id='{{id}}_denominatorUnit' class='form-control custom-select'>{{#denominatorUnitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/denominatorUnitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitCurrency}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitCurrency}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4554,10 +4582,10 @@ define
 
                 var obj = obj || { id: id, cls: "CostPerHeatUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_denominatorMultiplier").value]; if (temp) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.denominatorMultiplier;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_denominatorUnit").value]; if (temp) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj.denominatorUnit;
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj.multiplier;
+                temp = Domain.Currency[document.getElementById (id + "_unit").value]; if (temp) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; else delete obj.unit;
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4626,7 +4654,7 @@ define
                     {{#combCyclePlantRating}}<div><b>combCyclePlantRating</b>: {{combCyclePlantRating}}</div>{{/combCyclePlantRating}}
                     {{#ThermalGeneratingUnits}}<div><b>ThermalGeneratingUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ThermalGeneratingUnits}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4656,7 +4684,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_combCyclePlantRating'>combCyclePlantRating: </label><div class='col-sm-8'><input id='{{id}}_combCyclePlantRating' class='form-control' type='text'{{#combCyclePlantRating}} value='{{combCyclePlantRating}}'{{/combCyclePlantRating}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4751,7 +4779,7 @@ define
                     {{#lowLevelLimit}}<div><b>lowLevelLimit</b>: {{lowLevelLimit}}</div>{{/lowLevelLimit}}
                     {{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);}); return false;'>{{Reservoir}}</a></div>{{/Reservoir}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4781,7 +4809,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowLevelLimit'>lowLevelLimit: </label><div class='col-sm-8'><input id='{{id}}_lowLevelLimit' class='form-control' type='text'{{#lowLevelLimit}} value='{{lowLevelLimit}}'{{/lowLevelLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reservoir'>Reservoir: </label><div class='col-sm-8'><input id='{{id}}_Reservoir' class='form-control' type='text'{{#Reservoir}} value='{{Reservoir}}'{{/Reservoir}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -4872,7 +4900,7 @@ define
                     `
                     {{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);}); return false;'>{{Reservoir}}</a></div>{{/Reservoir}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -4900,7 +4928,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Reservoir'>Reservoir: </label><div class='col-sm-8'><input id='{{id}}_Reservoir' class='form-control' type='text'{{#Reservoir}} value='{{Reservoir}}'{{/Reservoir}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5022,7 +5050,7 @@ define
                     {{#FossilFuels}}<div><b>FossilFuels</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FossilFuels}}
                     {{#HeatInputCurve}}<div><b>HeatInputCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatInputCurve}}&quot;);}); return false;'>{{HeatInputCurve}}</a></div>{{/HeatInputCurve}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5066,7 +5094,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IncrementalHeatRateCurve'>IncrementalHeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_IncrementalHeatRateCurve' class='form-control' type='text'{{#IncrementalHeatRateCurve}} value='{{IncrementalHeatRateCurve}}'{{/IncrementalHeatRateCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HeatInputCurve'>HeatInputCurve: </label><div class='col-sm-8'><input id='{{id}}_HeatInputCurve' class='form-control' type='text'{{#HeatInputCurve}} value='{{HeatInputCurve}}'{{/HeatInputCurve}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5187,7 +5215,7 @@ define
                     {{#PenstockLossCurve}}<div><b>PenstockLossCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PenstockLossCurve}}&quot;);}); return false;'>{{PenstockLossCurve}}</a></div>{{/PenstockLossCurve}}
                     {{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);}); return false;'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5196,7 +5224,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.HydroEnergyConversionKind = []; if (!obj.energyConversionCapability) obj.HydroEnergyConversionKind.push ({ id: '', selected: true}); for (var property in HydroEnergyConversionKind) obj.HydroEnergyConversionKind.push ({ id: property, selected: obj.energyConversionCapability && obj.energyConversionCapability.endsWith ('.' + property)});
+                obj.energyConversionCapabilityHydroEnergyConversionKind = [{ id: '', selected: (!obj.energyConversionCapability)}]; for (var property in HydroEnergyConversionKind) obj.energyConversionCapabilityHydroEnergyConversionKind.push ({ id: property, selected: obj.energyConversionCapability && obj.energyConversionCapability.endsWith ('.' + property)});
                 if (obj.TailbayLossCurve) obj.TailbayLossCurve_string = obj.TailbayLossCurve.join ();
                 if (obj.HydroGeneratingEfficiencyCurves) obj.HydroGeneratingEfficiencyCurves_string = obj.HydroGeneratingEfficiencyCurves.join ();
             }
@@ -5204,7 +5232,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.HydroEnergyConversionKind;
+                delete obj.energyConversionCapabilityHydroEnergyConversionKind;
                 delete obj.TailbayLossCurve_string;
                 delete obj.HydroGeneratingEfficiencyCurves_string;
             }
@@ -5219,12 +5247,12 @@ define
                     `
                     + GeneratingUnit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyConversionCapability'>energyConversionCapability: </label><div class='col-sm-8'><select id='{{id}}_energyConversionCapability' class='form-control custom-select'>{{#HydroEnergyConversionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/HydroEnergyConversionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyConversionCapability'>energyConversionCapability: </label><div class='col-sm-8'><select id='{{id}}_energyConversionCapability' class='form-control custom-select'>{{#energyConversionCapabilityHydroEnergyConversionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/energyConversionCapabilityHydroEnergyConversionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hydroUnitWaterCost'>hydroUnitWaterCost: </label><div class='col-sm-8'><input id='{{id}}_hydroUnitWaterCost' class='form-control' type='text'{{#hydroUnitWaterCost}} value='{{hydroUnitWaterCost}}'{{/hydroUnitWaterCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PenstockLossCurve'>PenstockLossCurve: </label><div class='col-sm-8'><input id='{{id}}_PenstockLossCurve' class='form-control' type='text'{{#PenstockLossCurve}} value='{{PenstockLossCurve}}'{{/PenstockLossCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HydroPowerPlant'>HydroPowerPlant: </label><div class='col-sm-8'><input id='{{id}}_HydroPowerPlant' class='form-control' type='text'{{#HydroPowerPlant}} value='{{HydroPowerPlant}}'{{/HydroPowerPlant}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5235,7 +5263,7 @@ define
 
                 var obj = obj || { id: id, cls: "HydroGeneratingUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_energyConversionCapability").value; if ("" != temp) { temp = HydroEnergyConversionKind[temp]; if ("undefined" != typeof (temp)) obj.energyConversionCapability = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroEnergyConversionKind." + temp; }
+                temp = HydroEnergyConversionKind[document.getElementById (id + "_energyConversionCapability").value]; if (temp) obj.energyConversionCapability = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroEnergyConversionKind." + temp; else delete obj.energyConversionCapability;
                 temp = document.getElementById (id + "_hydroUnitWaterCost").value; if ("" != temp) obj.hydroUnitWaterCost = temp;
                 temp = document.getElementById (id + "_PenstockLossCurve").value; if ("" != temp) obj.PenstockLossCurve = temp;
                 temp = document.getElementById (id + "_HydroPowerPlant").value; if ("" != temp) obj.HydroPowerPlant = temp;
@@ -5319,7 +5347,7 @@ define
                     `
                     {{#windGenUnitType}}<div><b>windGenUnitType</b>: {{windGenUnitType}}</div>{{/windGenUnitType}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5328,13 +5356,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WindGenUnitKind = []; if (!obj.windGenUnitType) obj.WindGenUnitKind.push ({ id: '', selected: true}); for (var property in WindGenUnitKind) obj.WindGenUnitKind.push ({ id: property, selected: obj.windGenUnitType && obj.windGenUnitType.endsWith ('.' + property)});
+                obj.windGenUnitTypeWindGenUnitKind = [{ id: '', selected: (!obj.windGenUnitType)}]; for (var property in WindGenUnitKind) obj.windGenUnitTypeWindGenUnitKind.push ({ id: property, selected: obj.windGenUnitType && obj.windGenUnitType.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WindGenUnitKind;
+                delete obj.windGenUnitTypeWindGenUnitKind;
             }
 
             edit_template ()
@@ -5347,9 +5375,9 @@ define
                     `
                     + GeneratingUnit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windGenUnitType'>windGenUnitType: </label><div class='col-sm-8'><select id='{{id}}_windGenUnitType' class='form-control custom-select'>{{#WindGenUnitKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindGenUnitKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windGenUnitType'>windGenUnitType: </label><div class='col-sm-8'><select id='{{id}}_windGenUnitType' class='form-control custom-select'>{{#windGenUnitTypeWindGenUnitKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/windGenUnitTypeWindGenUnitKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5360,7 +5388,7 @@ define
 
                 var obj = obj || { id: id, cls: "WindGeneratingUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_windGenUnitType").value; if ("" != temp) { temp = WindGenUnitKind[temp]; if ("undefined" != typeof (temp)) obj.windGenUnitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindGenUnitKind." + temp; }
+                temp = WindGenUnitKind[document.getElementById (id + "_windGenUnitType").value]; if (temp) obj.windGenUnitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindGenUnitKind." + temp; else delete obj.windGenUnitType;
 
                 return (obj);
             }
@@ -5422,7 +5450,7 @@ define
                     + GeneratingUnit.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5449,7 +5477,7 @@ define
                     + GeneratingUnit.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5519,7 +5547,7 @@ define
                     + GeneratingUnit.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -5546,7 +5574,7 @@ define
                     + GeneratingUnit.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -5563,6 +5591,7 @@ define
         return (
             {
                 HydroGeneratingUnit: HydroGeneratingUnit,
+                HydroEnergyConversionKind: HydroEnergyConversionKind,
                 EmissionCurve: EmissionCurve,
                 Classification: Classification,
                 InflowForecast: InflowForecast,
@@ -5575,12 +5604,16 @@ define
                 GeneratingUnit: GeneratingUnit,
                 ShutdownCurve: ShutdownCurve,
                 WindGeneratingUnit: WindGeneratingUnit,
+                FuelType: FuelType,
+                EmissionType: EmissionType,
+                EmissionValueSource: EmissionValueSource,
                 TargetLevelSchedule: TargetLevelSchedule,
                 FuelAllocationSchedule: FuelAllocationSchedule,
-                Reservoir: Reservoir,
                 HeatRateCurve: HeatRateCurve,
+                Reservoir: Reservoir,
                 IncrementalHeatRateCurve: IncrementalHeatRateCurve,
                 EmissionAccount: EmissionAccount,
+                WindGenUnitKind: WindGenUnitKind,
                 CombinedCyclePlant: CombinedCyclePlant,
                 SteamSendoutSchedule: SteamSendoutSchedule,
                 TailbayLossCurve: TailbayLossCurve,
@@ -5589,16 +5622,19 @@ define
                 ThermalGeneratingUnit: ThermalGeneratingUnit,
                 LevelVsVolumeCurve: LevelVsVolumeCurve,
                 CogenerationPlant: CogenerationPlant,
-                AirCompressor: AirCompressor,
-                StartupModel: StartupModel,
                 HeatInputCurve: HeatInputCurve,
+                StartupModel: StartupModel,
+                GeneratorControlMode: GeneratorControlMode,
+                AirCompressor: AirCompressor,
                 NuclearGeneratingUnit: NuclearGeneratingUnit,
                 SolarGeneratingUnit: SolarGeneratingUnit,
+                GeneratorControlSource: GeneratorControlSource,
+                HydroPlantStorageKind: HydroPlantStorageKind,
                 HydroPump: HydroPump,
-                StartRampCurve: StartRampCurve,
-                PenstockLossCurve: PenstockLossCurve,
-                FossilFuel: FossilFuel,
                 CostPerHeatUnit: CostPerHeatUnit,
+                StartRampCurve: StartRampCurve,
+                FossilFuel: FossilFuel,
+                PenstockLossCurve: PenstockLossCurve,
                 HydroPumpOpSchedule: HydroPumpOpSchedule,
                 HydroGeneratingEfficiencyCurve: HydroGeneratingEfficiencyCurve,
                 HydroPowerPlant: HydroPowerPlant

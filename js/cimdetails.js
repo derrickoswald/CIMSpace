@@ -20,6 +20,22 @@ define
             constructor (cimmap)
             {
                 this._cimmap = cimmap;
+                this._template =
+                    `
+                    <div class="card">
+                      <div class="card-body" style="min-width:200px;">
+                        <h5 class="card-title">
+                          <span class="info_title">Info</span>
+                          <button class="close" type="button" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </h5>
+                        <h6 class="card-subtitle mb-2"></h6>
+                        <div class="card-text">
+                        </div>
+                      </div>
+                    </div>
+                    `;
             }
 
             onAdd (map)
@@ -27,23 +43,27 @@ define
                 this._map = map;
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
+                this._container.innerHTML = this._template;
+                this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                 this._resizer = this.on_map_resize.bind (this);
                 this._map.on ("resize", this._resizer);
+                this._cimmap.add_feature_listener (this);
                 return (this._container);
             }
 
             onRemove ()
             {
+                this._cimmap.remove_feature_listener (this);
                 // turn off the resize listener
                 if (this._resizer)
                 {
                     this._map.off ("resize", this._resizer);
-                    this._resizer = null;
+                    delete this._resizer;
                 }
                 // destroy the container
                 this._container.parentNode.removeChild (this._container);
-                this._container = null;
-                this._map = undefined;
+                delete this._container;
+                delete this._map;
             }
 
             getDefaultPosition ()
@@ -59,43 +79,35 @@ define
                 var logo_height = 18;
                 var max_height = map_height - bottom_margin - well_padding - logo_height;
                 this._container.style.maxHeight = max_height.toString () + "px";
-                var guts = document.getElementById ("feature_detail_contents");
+                var guts = this._container.getElementsByClassName ("card-text")[0];
                 if (guts)
                     guts.style.maxHeight = (max_height - this._frame_height).toString () + "px";
             }
 
             close (event)
             {
-                this._cimmap.select (null);
+                this._map.removeControl (this);
             }
 
             visible ()
             {
-                return (null != this._container);
+                return ("undefined" != typeof (this._container));
             }
 
             detail_text ()
             {
-                var cim_data = this._cimmap.get_data ();
-                var mrid = this._cimmap.get_selected_feature ();
-                var feature = cim_data.Element[mrid];
+                var cimmap = this._cimmap;
+                var mrid = cimmap.get_selected_feature ();
+                var feature = cimmap.get ("Element", mrid);
                 if (!feature)
                     return ("");
                 var cls = cim.class_map (feature);
                 var template = cls.prototype.template ();
                 var text = mustache.render (template, feature);
-                var conducting = cim_data.ConductingEquipment ? cim_data.ConductingEquipment[mrid] : undefined;
-                if ("undefined" != typeof (conducting))
+                var conducting = cimmap.get ("ConductingEquipment", mrid);
+                if (conducting)
                 {
-                    var terminals = cim_data.Terminal;
-                    var terms = [];
-                    for (var property in terminals)
-                        if (terminals.hasOwnProperty (property))
-                        {
-                            var terminal = terminals[property];
-                            if (mrid == terminal.ConductingEquipment)
-                                terms.push (terminal);
-                        }
+                    var terms = cimmap.fetch ("Terminal", terminal => mrid == terminal.ConductingEquipment);
                     if (0 != terms.length)
                     {
                         var connected = terms.map (
@@ -103,20 +115,19 @@ define
                             {
                                 var node = terminal.ConnectivityNode;
                                 var equipment = [];
-                                for (var property in terminals)
-                                    if (terminals.hasOwnProperty (property))
+                                cimmap.forAll ("Terminal",
+                                    terminal =>
                                     {
-                                        var term = terminals[property];
-                                        if (!term.EditDisposition || (term.EditDisposition != "delete"))
-                                            if (node == term.ConnectivityNode)
-                                                if (mrid != term.ConductingEquipment)
-                                                    if (!cim_data.Element[term.ConductingEquipment].EditDisposition || (cim_data.Element[term.ConductingEquipment].EditDisposition != "delete"))
-                                                        equipment.push (term.ConductingEquipment);
+                                        if (node == terminal.ConnectivityNode) // same node
+                                            if (mrid != terminal.ConductingEquipment) // not the same equipment
+                                                if (cimmap.get ("ConductingEquipment", terminal.ConductingEquipment)) // and not deleted
+                                                    equipment.push (terminal.ConductingEquipment);
                                     }
+                                );
                                 return ({ terminal: terminal, equipment: equipment });
                             }
                         );
-                        if (connected.some (function (element) { return (0 != element.equipment.length); }))
+                        if (connected.some (obj => 0 != obj.equipment.length))
                         {
                             text = text + "<div>Connected:</div>\n";
                             for (var i = 0; i < connected.length; i++)
@@ -136,9 +147,9 @@ define
                 }
 
                 // add links to other selected elements
-                var mrids = this._cimmap.get_selected_features ();
+                var mrids = cimmap.get_selected_features ();
                 if (null != mrids)
-                    if (mrids.some (function (element) { return (element != mrid); }))
+                    if (mrids.some (id => id != mrid))
                     {
                         text = text + "<div>Selected:</div>\n";
                         for (var i = 0; i < mrids.length; i++)
@@ -149,12 +160,12 @@ define
                     }
 
                 // add details from simulation or analysis
-                var toHTML = this._cimmap.get_themer ().getTheme ().toHTML;
+                var toHTML = cimmap.get_themer ().getTheme ().toHTML;
                 if (toHTML)
                 {
-                    var html = toHTML.bind (this._cimmap.get_themer ().getTheme ()) (feature);
+                    var html = toHTML.bind (cimmap.get_themer ().getTheme ()) (feature);
                     if ("" != html)
-                        text = text + "<div>" + this._cimmap.get_themer ().getTheme ().getTitle () + ":</div>\n" + html;
+                        text = text + "<div>" + cimmap.get_themer ().getTheme ().getTitle () + ":</div>\n" + html;
                 }
 
                 return (text);
@@ -164,25 +175,18 @@ define
             {
                 if (this.visible ())
                 {
-                    this._container.innerHTML =
-                        "<div id='view_frame' class='card'>\n" +
-                        "  <div class='card-body'>\n" +
-                        "    <h5 class='card-title'>" + this._cimmap.get_selected_feature () + "\n" +
-                        "      <button type='button' class='close' aria-label='Close'>\n" +
-                        "        <span aria-hidden='true'>&times;</span>\n" +
-                        "      </button>\n" +
-                        "    </h5>\n" +
-                        "    <h6 id='streetviewlink' class='card-subtitle mb-2'></h6>\n" +
-                        "    <div id='view_contents' class='card-text'>\n" +
-                        "      <div id='feature_detail_contents'></div>\n" +
-                        "    </div>\n" +
-                        "  </div>\n" +
-                        "</div>\n";
-                    this._frame_height = document.getElementById ("view_frame").clientHeight; // frame height with no contents
-                    document.getElementById ("feature_detail_contents").innerHTML = this.detail_text ()
-                    this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
-                    this.maybe_streetview ();
-                    this.on_map_resize ();
+                    this._container.getElementsByClassName ("info_title")[0].innerHTML = "Info";
+                    this._container.getElementsByClassName ("card-text")[0].innerHTML = "";
+                    this._container.getElementsByClassName ("card-subtitle")[0].innerHTML = "";
+                    var mrid = this._cimmap.get_selected_feature ();
+                    if (mrid)
+                    {
+                        this._container.getElementsByClassName ("info_title")[0].innerHTML = mrid;
+                        this._frame_height = this._container.getElementsByClassName ("card")[0].clientHeight; // frame height with no contents
+                        this._container.getElementsByClassName ("card-text")[0].innerHTML = this.detail_text ();
+                        this.maybe_streetview ();
+                        this.on_map_resize ();
+                    }
                 }
             }
 
@@ -190,25 +194,22 @@ define
             {
                 if (this._cimmap.show_streetview ())
                 {
-                    var cim_data = this._cimmap.get_data ();
                     var mrid = this._cimmap.get_selected_feature ();
-                    var feature = cim_data.Element[mrid]
+                    var feature = this._cimmap.get ("Element", mrid);
                     if (feature.Location)
                     {
-                        var cim_data = this._cimmap.get_data ();
-                        var location = cim_data.Location[feature.Location];
+                        var location = this._cimmap.get ("Location", feature.Location);
                         if (location.CoordinateSystem == "wgs84")
                         {
                             var id = location.id;
                             var coordinates = [];
-                            var points = cim_data.PositionPoint;
-                            for (var property in points)
-                                if (points.hasOwnProperty (property))
+                            this._cimmap.forAll ("PositionPoint",
+                                point =>
                                 {
-                                    var point = points[property];
                                     if (point.Location == id)
                                         coordinates[Number (point.sequenceNumber)] = [point.xPosition, point.yPosition];
                                 }
+                            );
                             if (0 != coordinates.length)
                             {
                                 if ("undefined" == typeof (coordinates[0]))
@@ -219,7 +220,7 @@ define
                                         if (-1 != url.indexOf ("pano"))
                                         {
                                             var link = "<a href='" + url + "' target='_blank'>StreetView</a>";
-                                            document.getElementById ("streetviewlink").innerHTML = link;
+                                            this._container.getElementsByClassName ("card-subtitle")[0].innerHTML = link;
                                         }
                                     }
                                 );
@@ -229,6 +230,14 @@ define
                 }
             }
 
+
+            /**
+             * Connect the selected object at user selected terminal synchronously.
+             */
+            selection_change (current_feature, current_selection)
+            {
+                this.render ();
+            }
         }
 
         return (CIMDetails);

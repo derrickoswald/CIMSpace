@@ -70,7 +70,7 @@ define
                     {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);}); return false;'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
                     {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);}); return false;'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -99,7 +99,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}'{{/SynchronousMachineDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -197,7 +197,7 @@ define
                     {{#d}}<div><b>d</b>: {{d}}</div>{{/d}}
                     {{#e}}<div><b>e</b>: {{e}}</div>{{/e}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -228,7 +228,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_d'>d: </label><div class='col-sm-8'><input id='{{id}}_d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_e'>e: </label><div class='col-sm-8'><input id='{{id}}_e' class='form-control' type='text'{{#e}} value='{{e}}'{{/e}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

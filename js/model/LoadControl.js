@@ -102,7 +102,7 @@ define
                     {{#powerLimit}}<div><b>powerLimit</b>: {{powerLimit}}</div>{{/powerLimit}}
                     {{#usePushbutton}}<div><b>usePushbutton</b>: {{usePushbutton}}</div>{{/usePushbutton}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -141,7 +141,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_powerLimit'>powerLimit: </label><div class='col-sm-8'><input id='{{id}}_powerLimit' class='form-control' type='text'{{#powerLimit}} value='{{powerLimit}}'{{/powerLimit}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_usePushbutton'>usePushbutton: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_usePushbutton' class='form-check-input' type='checkbox'{{#usePushbutton}} checked{{/usePushbutton}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -203,7 +203,7 @@ define
                 base.parse_element (/<cim:ConnectDisconnectFunction.isLocalAutoReconOp>([\s\S]*?)<\/cim:ConnectDisconnectFunction.isLocalAutoReconOp>/g, obj, "isLocalAutoReconOp", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ConnectDisconnectFunction.isRemoteAutoDisconOp>([\s\S]*?)<\/cim:ConnectDisconnectFunction.isRemoteAutoDisconOp>/g, obj, "isRemoteAutoDisconOp", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ConnectDisconnectFunction.isRemoteAutoReconOp>([\s\S]*?)<\/cim:ConnectDisconnectFunction.isRemoteAutoReconOp>/g, obj, "isRemoteAutoReconOp", base.to_boolean, sub, context);
-                base.parse_element (/<cim:ConnectDisconnectFunction.rcdInfo>([\s\S]*?)<\/cim:ConnectDisconnectFunction.rcdInfo>/g, obj, "rcdInfo", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ConnectDisconnectFunction.rcdInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "rcdInfo", sub, context);
                 base.parse_attributes (/<cim:ConnectDisconnectFunction.Switches\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Switches", sub, context);
                 var bucket = context.parsed.ConnectDisconnectFunction;
                 if (null == bucket)
@@ -224,7 +224,7 @@ define
                 base.export_element (obj, "ConnectDisconnectFunction", "isLocalAutoReconOp", "isLocalAutoReconOp",  base.from_boolean, fields);
                 base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoDisconOp", "isRemoteAutoDisconOp",  base.from_boolean, fields);
                 base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoReconOp", "isRemoteAutoReconOp",  base.from_boolean, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "rcdInfo", "rcdInfo",  base.from_string, fields);
+                base.export_attribute (obj, "ConnectDisconnectFunction", "rcdInfo", "rcdInfo", fields);
                 base.export_attributes (obj, "ConnectDisconnectFunction", "Switches", "Switches", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -251,7 +251,7 @@ define
                     {{#isRemoteAutoReconOp}}<div><b>isRemoteAutoReconOp</b>: {{isRemoteAutoReconOp}}</div>{{/isRemoteAutoReconOp}}
                     {{#rcdInfo}}<div><b>rcdInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{rcdInfo}}&quot;);}); return false;'>{{rcdInfo}}</a></div>{{/rcdInfo}}\n                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Switches}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -289,7 +289,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcdInfo'>rcdInfo: </label><div class='col-sm-8'><input id='{{id}}_rcdInfo' class='form-control' type='text'{{#rcdInfo}} value='{{rcdInfo}}'{{/rcdInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switches'>Switches: </label><div class='col-sm-8'><input id='{{id}}_Switches' class='form-control' type='text'{{#Switches}} value='{{Switches_string}}'{{/Switches}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

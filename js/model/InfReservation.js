@@ -71,7 +71,7 @@ define
                     {{#ForMktMeasurement}}<div><b>ForMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ForMktMeasurement}}
                     {{#ByMktMeasurement}}<div><b>ByMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ByMktMeasurement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -103,7 +103,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tiePointMWRating'>tiePointMWRating: </label><div class='col-sm-8'><input id='{{id}}_tiePointMWRating' class='form-control' type='text'{{#tiePointMWRating}} value='{{tiePointMWRating}}'{{/tiePointMWRating}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

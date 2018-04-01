@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
+    ["mustache", "cim", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "makers/houseservicemaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
     /**
      * @summary Edit control.
      * @description UI element for editing
@@ -13,7 +13,7 @@ define
      * @exports cimedit
      * @version 1.0
      */
-    function (mustache, cim, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, layers, Common, Core, Wires)
+    function (mustache, cim, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, HouseServiceMaker, layers, Common, Core, Wires)
     {
         class CIMEdit
         {
@@ -23,7 +23,7 @@ define
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
-                "    <h5 class='card-title'>Edit <span id='edit_id'></span>\n" +
+                "    <h5 class='card-title'>Edit\n" +
                 "      <button type='button' class='close' aria-label='Close'>\n" +
                 "        <span aria-hidden='true'>&times;</span>\n" +
                 "      </button>\n" +
@@ -59,6 +59,7 @@ define
                 [
                     ConductingEquipmentMaker,
                     ConductorMaker,
+                    HouseServiceMaker,
                     PowerSystemResourceMaker,
                     PowerTransformerMaker,
                     SubstationMaker,
@@ -84,11 +85,13 @@ define
                 this._resizer = this.on_map_resize.bind (this);
                 this._map.on ("resize", this._resizer);
                 this._digitizer = new Digitizer (this._map, this._cimmap);
+                this._cimmap.add_feature_listener (this);
                 return (this._container);
             }
 
             onRemove ()
             {
+                this._cimmap.remove_feature_listener (this);
                 // remove features from edit layers
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                 this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
@@ -100,8 +103,8 @@ define
                 }
                 // destroy the container
                 this._container.parentNode.removeChild (this._container);
-                this._container = null;
-                this._map = undefined;
+                delete this._container;
+                delete this._map;
             }
 
             getDefaultPosition ()
@@ -115,6 +118,14 @@ define
                 this._map.removeControl (this);
             }
 
+            start_maker (maker, proto)
+            {
+                document.getElementById ("class_chooser").style.display = "none";
+                this._maker = new maker (this._cimmap, this, this._digitizer);
+                document.getElementById ("maker_parameters").innerHTML = this._maker.render_parameters (proto);
+                document.getElementById ("create").disabled = false;
+            }
+
             change (event)
             {
                 if (event.target.id == "class_name")
@@ -126,12 +137,7 @@ define
                     var maker_name = ("" != event.target.value) ? event.target.value : undefined;
                     var maker = maker_name ? this._makers.find (x => x.name == maker_name) : undefined;
                     if (maker)
-                    {
-                        document.getElementById ("class_chooser").style.display = "none";
-                        this._maker = new maker (this._cimmap, this, this._digitizer);
-                        document.getElementById ("maker_parameters").innerHTML = this._maker.render_parameters ();
-                        document.getElementById ("create").disabled = false;
-                    }
+                        this.start_maker (maker);
                     else
                     {
                         delete this._maker;
@@ -144,7 +150,7 @@ define
 
             visible ()
             {
-                return (null != this._container);
+                return ("undefined" != typeof (this._container));
             }
 
             render ()
@@ -157,13 +163,25 @@ define
                     selects.item (i).onchange = this.change.bind (this);
             }
 
+            has_new_features ()
+            {
+                return ("undefined" != typeof (this._data));
+            }
+
+            new_features ()
+            {
+                if (!this._data)
+                    this._data = {};
+                return (this._data);
+            }
+
             refresh ()
             {
                 var options =
                     {
                         show_internal_features: this._cimmap.show_internal_features ()
                     };
-                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this._features, options);
+                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this.new_features (), options);
                 this._map.getSource ("edit points").setData (geo.points);
                 this._map.getSource ("edit lines").setData (geo.lines);
             }
@@ -225,7 +243,13 @@ define
             editnew (array)
             {
                 for (var i = 0; i < array.length; i++)
-                    this.edit (array[i]);
+                {
+                    var proto = array[i];
+                    proto.EditDisposition = "new";
+                    var cls = cim.class_map (proto);
+                    var obj = new cls (proto, this.new_features ());
+                    this.edit (obj, 0 == i, true);
+                }
                 this.refresh ();
             }
 
@@ -233,10 +257,12 @@ define
             {
                 proto.EditDisposition = "new";
                 var cls = cim.class_map (proto);
-                var obj = new cls (proto, this._features);
-                if (this._features.IdentifiedObject)
+                var data = {};
+                var obj = new cls (proto, data);
+                if (data.IdentifiedObject)
                     proto.mRID = proto.id;
-                obj = new cls (proto, this._features); // do it again, possibly with mRID set
+                // do it again, possibly with mRID set
+                obj = new cls (proto, this.new_features ());
                 this.edit (obj, true, true);
                 this.refresh ();
                 return (obj);
@@ -244,10 +270,10 @@ define
 
             create ()
             {
-                this._features = {};
+                delete this._data;
                 if (this._maker)
                 {
-                    this._maker_promise = this._maker.make (this._features);
+                    this._maker_promise = this._maker.make ();
                     this._maker_promise.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
                 }
                 else
@@ -263,7 +289,23 @@ define
             {
                 var proto = JSON.parse (JSON.stringify (this._elements[0]));
                 proto.id = this.uuidv4 ();
-                this.create_from (proto);
+                // find a maker for this class
+                var maker = this._makers.find (maker => maker.classes ().includes (proto.cls));
+                if (maker)
+                {
+                    this.render ();
+                    var maker_name = document.getElementById ("maker_name");
+                    for (var i = 0; i < maker_name.length; i++)
+                        if (maker_name.options[i].value == maker.name)
+                        {
+                            maker_name.options.selectedIndex = i;
+                            break;
+                        }
+                    maker_name.options[maker_name.options.selectedIndex].selected = true;
+                    this.start_maker (maker, proto);
+                }
+                else
+                    this.create_from (proto);
             }
 
             add_layers ()
@@ -352,22 +394,15 @@ define
             // true if obj is only referenced by element and no other
             only_related (obj, element)
             {
+                var ret = true;
+
                 var cls = cim.class_map (obj);
-                var data = this._cimmap.get_data ();
                 var relations = cls.prototype.relations ();
                 for (var i = 0; i < relations.length; i++)
                     if ((relations[i][2] == "0..1") || (relations[i][2] == "0..*"))
-                    {
-                        var related = data[relations[i][3]];
-                        if (related)
-                            for (var id in related)
-                            {
-                                var child = related[id];
-                                if (child[relations[i][4]] == obj.id && child.id != element.id)
-                                    return (false);
-                            }
-                    }
-                return (true);
+                        this._cimmap.forAll (relations[i][3], child => { if (child[relations[i][4]] == obj.id && child.id != element.id) ret = false; });
+
+                return (ret);
             }
 
             get_related (element)
@@ -379,75 +414,41 @@ define
                         ret.push (e);
                 }
                 var cls = cim.class_map (element);
-                var data = this._cimmap.get_data ();
-                if (data)
+                var relations = cls.prototype.relations ();
+                for (var i = 0; i < relations.length; i++)
+                    if (relations[i][1] == "0..1")
+                    {
+                        var ref = element[relations[i][0]];
+                        if (ref)
+                        {
+                            var obj = this._cimmap.get (relations[i][3], ref);
+                            if (obj && this.only_related (obj, element))
+                                add (obj);
+                        }
+                    }
+                    else
+                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
+                            this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] == element.id) add (obj); });
+                // get ConnectivityNode and PositionPoint
+                // ToDo: should it/can it be made fully recursive
+                for (var j = 0; j < ret.length; j++)
                 {
+                    var cls = cim.class_map (ret[j]);
                     var relations = cls.prototype.relations ();
                     for (var i = 0; i < relations.length; i++)
                         if (relations[i][1] == "0..1")
                         {
-                            var ref = element[relations[i][0]];
+                            var ref = ret[j][relations[i][0]];
                             if (ref)
                             {
-                                var related = data[relations[i][3]];
-                                if (related)
-                                {
-                                    var obj = related[ref];
-                                    if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
-                                        if (this.only_related (obj, element))
-                                            add (obj)
-                                }
+                                var obj = this._cimmap.get (relations[i][3], ref);
+                                if (obj && this.only_related (obj, ret[j]))
+                                    add (obj);
                             }
                         }
                         else
-                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
-                        {
-                            var related = data[relations[i][3]];
-                            if (related)
-                                for (var id in related)
-                                {
-                                    var obj = related[id];
-                                    if (obj[relations[i][4]] == element.id)
-                                        if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                            add (obj)
-                                }
-                        }
-                    // get ConnectivityNode and PositionPoint
-                    // ToDo: should it/can it be made fully recursive
-                    for (var j = 0; j < ret.length; j++)
-                    {
-                        var cls = cim.class_map (ret[j]);
-                        var relations = cls.prototype.relations ();
-                        for (var i = 0; i < relations.length; i++)
-                            if (relations[i][1] == "0..1")
-                            {
-                                var ref = ret[j][relations[i][0]];
-                                if (ref)
-                                {
-                                    var related = data[relations[i][3]];
-                                    if (related)
-                                    {
-                                        var obj = related[ref];
-                                        if (obj && (!obj.EditDisposition || (obj.EditDisposition != "delete")))
-                                            if (this.only_related (obj, ret[j]))
-                                                add (obj)
-                                    }
-                                }
-                            }
-                        else
-                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
-                        {
-                            var related = data[relations[i][3]];
-                            if (related)
-                                for (var id in related)
-                                {
-                                    var obj = related[id];
-                                    if (obj[relations[i][4]] == ret[j].id)
-                                        if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                            add (obj)
-                                }
-                        }
-                    }
+                            if (relations[i][2] == "0..1" || relations[i][2] == "1")
+                                this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] == ret[j].id) add (obj); });
                 }
 
                 return (ret);
@@ -465,7 +466,7 @@ define
             {
                 var cls = cim.class_map (element);
                 var data = this._cimmap.get_data ();
-                var newdata = this._features;
+                var newdata = this._data;
                 var relations = cls.prototype.relations ();
                 for (var i = 0; i < relations.length; i++)
                     if (relations[i][1] == "0..1")
@@ -522,9 +523,9 @@ define
                 if (top_level)
                 {
                     var frame =
-                        "<div id='edit_frame' class='card'>\n" +
+                        "<div class='card'>\n" +
                         "  <div class='card-body'>\n" +
-                        "    <h5 id='view_title' class='card-title'>Edit <span id='edit_id'></span></h5>\n" +
+                        "    <h5 id='view_title' class='card-title'>Edit <span class='edit_id'></span></h5>\n" +
                         "    <div id='edit_contents' class='card-text'></div>\n" +
                         "    <div class='card-footer'>\n" +
                         "      <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
@@ -536,18 +537,23 @@ define
                         "</div>\n";
                     this._container.innerHTML = frame;
                     // for non-IdentifiedObject elements, display the id
-                    document.getElementById ("edit_id").innerHTML = element.id;
-                    this._frame_height = document.getElementById ("edit_frame").clientHeight; // frame height with no edit template contents
+                    this._container.getElementsByClassName ("edit_id")[0].innerHTML = element.id;
+                    this._frame_height = this._container.getElementsByClassName ("card")[0].clientHeight; // frame height with no edit template contents
 
                     this._elements = [];
                     var text = this.build (element);
 
-                    // get related elements
-                    var relatives = this.get_related (element)
-                    for (var j = 0; j < relatives.length; j++)
-                        text = text + this.build (relatives[j]);
-
-                    document.getElementById ("edit_contents").innerHTML = text;
+                    // get related only for existing objects
+                    var relatives = [];
+                    if (!is_new)
+                    {
+                        // get related elements
+                        relatives = this.get_related (element)
+                        for (var j = 0; j < relatives.length; j++)
+                            text = text + this.build (relatives[j]);
+                    }
+                    var guts = this._container.getElementsByClassName ("card-text")[0];
+                    guts.innerHTML = text;
                     this.process_related (element);
                     for (var j = 0; j < relatives.length; j++)
                         this.process_related (relatives[j]);
@@ -555,7 +561,8 @@ define
                 else
                 {
                     var text = this.build (element);
-                    document.getElementById ("edit_contents").innerHTML = document.getElementById ("edit_contents").innerHTML + text;
+                    var guts = this._container.getElementsByClassName ("card-text")[0];
+                    guts.innerHTML = guts.innerHTML + text;
                     this.process_related (element);
                 }
                 this.on_map_resize ();
@@ -601,11 +608,11 @@ define
                 return (version);
             }
 
-            next_version (feature)
+            next_version (feature, data)
             {
                 var version = 1;
 
-                var list = this._cimmap.get_data ()[feature.cls];
+                var list = data[feature.cls];
                 var mrid = this.mrid (feature);
                 while (null != list[version.toString () + ":" + mrid])
                     version = version + 1;
@@ -613,16 +620,33 @@ define
                 return (version.toString () + ":" + mrid);
             }
 
-            shutdown ()
-            {
-                this._cimmap.unhighlight ();
-                this.render ();
-            }
-
             regen ()
             {
-                this.shutdown ();
+                this.render ();
                 this._cimmap.make_map ();
+            }
+
+            // remove the old object and replace it with a "deleted" version
+            retire (old_obj, data)
+            {
+                var cls = cim.class_map (old_obj);
+                cls.prototype.remove (old_obj, data);
+
+                old_obj.id = this.next_version (old_obj, data);
+                if (old_obj.mRID)
+                    old_obj.mRID = old_obj.id;
+                old_obj.EditDisposition = "delete";
+                new cls (old_obj, data);
+            }
+
+            // retire the old and add the new object
+            replace (old_obj, new_obj, data)
+            {
+                this.retire (old_obj, data);
+
+                var cls = cim.class_map (new_obj);
+                new_obj.EditDisposition = "edit";
+                new cls (new_obj, data);
             }
 
             save ()
@@ -630,30 +654,20 @@ define
                 if (null == this._cimmap.get_data ())
                     this._cimmap.set_data ({});
 
-                if (!this._features)
+                if (!this._data)
                 {
                     // editing an existing object
                     for (var i = 0; i < this._elements.length; i++)
                     {
-                        var element = this._elements[i];
-                        var id = element.id;
-                        var cls = cim.class_map (element);
-                        // delete the old object and replace it with a "deleted" version
-                        var version = this.next_version (element);
-                        cls.prototype.remove (element, this._cimmap.get_data ());
-                        element.id = version;
-                        element.mRID = version;
-                        element.EditDisposition = "delete";
-                        var deleted = new cls (element, this._cimmap.get_data ());
-                        // add a new object with a possibly changed mRID
-                        element = cls.prototype.submit (id);
-                        if (element.mRID)
-                            element.id = element.mRID;
+                        var old_obj = this._elements[i];
+                        var id = old_obj.id;
+                        var cls = cim.class_map (old_obj);
+                        var new_obj = cls.prototype.submit (id);
+                        if (new_obj.mRID)
+                            new_obj.id = new_obj.mRID;
                         else
-                            element.id = id;
-                        element.cls = deleted.cls;
-                        element.EditDisposition = "edit";
-                        new cls (element, this._cimmap.get_data ());
+                            new_obj.id = id;
+                        this.replace (old_obj, new_obj, this._cimmap.get_data ());
                     }
                 }
                 else
@@ -669,7 +683,7 @@ define
                         new cls (element, this._cimmap.get_data ());
                     }
                     delete this._elements;
-                    delete this._features;
+                    delete this._data;
                 }
                 // remove features from edit layers
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
@@ -687,28 +701,20 @@ define
                     maker_promise.cancel ();
                     delete this._maker;
                 }
-                if (!this._features)
+                if (!this._data)
                 {
                     if (this._elements)
                     {
                         // delete existing features
                         for (var i = 0; i < this._elements.length; i++)
-                        {
-                            var old_obj = this._elements[i];
-                            var cls = cim.class_map (old_obj);
-                            cls.prototype.remove (old_obj, this._cimmap.get_data ());
-                            old_obj.EditDisposition = "delete";
-                            old_obj.id = this.next_version (old_obj);
-                            old_obj.mRID = old_obj.id;
-                            this._elements[i] = new cls (old_obj, this._cimmap.get_data ());
-                        }
+                            this.retire (this._elements[i], this._cimmap.get_data ());
                         delete this._elements;
                     }
                 }
                 else
                 {
                     delete this._elements;
-                    delete this._features;
+                    delete this._data;
                     this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                     this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
                 }
@@ -727,10 +733,21 @@ define
                     delete this._maker;
                 }
                 delete this._elements;
-                delete this._features;
+                delete this._data;
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                 this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
-                this.shutdown ();
+                this.render ();
+            }
+
+            /**
+             * Edit the selected object.
+             */
+            selection_change (current_feature, current_selection)
+            {
+                if (null != current_feature)
+                    this.edit (this._cimmap.get ("Element", current_feature), true);
+                else
+                    this.cancel ();
             }
         }
 

@@ -67,7 +67,7 @@ define
                     `
                     {{#ModelingAuthoritySets}}<div><b>ModelingAuthoritySets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelingAuthoritySets}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -96,7 +96,7 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -182,7 +182,7 @@ define
                     `
                     {{#ModelingAuthority}}<div><b>ModelingAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelingAuthority}}&quot;);}); return false;'>{{ModelingAuthority}}</a></div>{{/ModelingAuthority}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -210,7 +210,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ModelingAuthority'>ModelingAuthority: </label><div class='col-sm-8'><input id='{{id}}_ModelingAuthority' class='form-control' type='text'{{#ModelingAuthority}} value='{{ModelingAuthority}}'{{/ModelingAuthority}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

@@ -1,13 +1,13 @@
 define
 (
-    ["model/base", "model/Assets", "model/Core"],
+    ["model/base", "model/Assets", "model/Core", "model/Wires"],
     /**
      * This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses.
      *
      * They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
      *
      */
-    function (base, Assets, Core)
+    function (base, Assets, Core, Wires)
     {
 
         /**
@@ -196,7 +196,7 @@ define
                     {{#Structures}}<div><b>Structures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Structures}}
                     {{#PerLengthParameters}}<div><b>PerLengthParameters</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PerLengthParameters}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -205,7 +205,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WireUsageKind = []; if (!obj.usage) obj.WireUsageKind.push ({ id: '', selected: true}); for (var property in WireUsageKind) obj.WireUsageKind.push ({ id: property, selected: obj.usage && obj.usage.endsWith ('.' + property)});
+                obj.usageWireUsageKind = [{ id: '', selected: (!obj.usage)}]; for (var property in WireUsageKind) obj.usageWireUsageKind.push ({ id: property, selected: obj.usage && obj.usage.endsWith ('.' + property)});
                 if (obj.WirePositions) obj.WirePositions_string = obj.WirePositions.join ();
                 if (obj.Structures) obj.Structures_string = obj.Structures.join ();
                 if (obj.PerLengthParameters) obj.PerLengthParameters_string = obj.PerLengthParameters.join ();
@@ -214,7 +214,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WireUsageKind;
+                delete obj.usageWireUsageKind;
                 delete obj.WirePositions_string;
                 delete obj.Structures_string;
                 delete obj.PerLengthParameters_string;
@@ -233,11 +233,11 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isCable'>isCable: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isCable' class='form-check-input' type='checkbox'{{#isCable}} checked{{/isCable}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseWireCount'>phaseWireCount: </label><div class='col-sm-8'><input id='{{id}}_phaseWireCount' class='form-control' type='text'{{#phaseWireCount}} value='{{phaseWireCount}}'{{/phaseWireCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseWireSpacing'>phaseWireSpacing: </label><div class='col-sm-8'><input id='{{id}}_phaseWireSpacing' class='form-control' type='text'{{#phaseWireSpacing}} value='{{phaseWireSpacing}}'{{/phaseWireSpacing}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><select id='{{id}}_usage' class='form-control custom-select'>{{#WireUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireUsageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><select id='{{id}}_usage' class='form-control custom-select'>{{#usageWireUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/usageWireUsageKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DuctBank'>DuctBank: </label><div class='col-sm-8'><input id='{{id}}_DuctBank' class='form-control' type='text'{{#DuctBank}} value='{{DuctBank}}'{{/DuctBank}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Structures'>Structures: </label><div class='col-sm-8'><input id='{{id}}_Structures' class='form-control' type='text'{{#Structures}} value='{{Structures_string}}'{{/Structures}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -251,7 +251,7 @@ define
                 temp = document.getElementById (id + "_isCable").checked; if (temp) obj.isCable = true;
                 temp = document.getElementById (id + "_phaseWireCount").value; if ("" != temp) obj.phaseWireCount = temp;
                 temp = document.getElementById (id + "_phaseWireSpacing").value; if ("" != temp) obj.phaseWireSpacing = temp;
-                temp = document.getElementById (id + "_usage").value; if ("" != temp) { temp = WireUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usage = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireUsageKind." + temp; }
+                temp = WireUsageKind[document.getElementById (id + "_usage").value]; if (temp) obj.usage = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireUsageKind." + temp; else delete obj.usage;
                 temp = document.getElementById (id + "_DuctBank").value; if ("" != temp) obj.DuctBank = temp;
                 temp = document.getElementById (id + "_Structures").value; if ("" != temp) obj.Structures = temp.split (",");
 
@@ -374,7 +374,7 @@ define
                     {{#stepPhaseIncrement}}<div><b>stepPhaseIncrement</b>: {{stepPhaseIncrement}}</div>{{/stepPhaseIncrement}}
                     {{#stepVoltageIncrement}}<div><b>stepVoltageIncrement</b>: {{stepVoltageIncrement}}</div>{{/stepVoltageIncrement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -416,7 +416,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepPhaseIncrement'>stepPhaseIncrement: </label><div class='col-sm-8'><input id='{{id}}_stepPhaseIncrement' class='form-control' type='text'{{#stepPhaseIncrement}} value='{{stepPhaseIncrement}}'{{/stepPhaseIncrement}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepVoltageIncrement'>stepVoltageIncrement: </label><div class='col-sm-8'><input id='{{id}}_stepVoltageIncrement' class='form-control' type='text'{{#stepVoltageIncrement}} value='{{stepVoltageIncrement}}'{{/stepVoltageIncrement}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -509,7 +509,7 @@ define
                     {{#PowerTransformerInfo}}<div><b>PowerTransformerInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformerInfo}}&quot;);}); return false;'>{{PowerTransformerInfo}}</a></div>{{/PowerTransformerInfo}}
                     {{#TransformerEndInfos}}<div><b>TransformerEndInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerEndInfos}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -539,7 +539,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerTransformerInfo'>PowerTransformerInfo: </label><div class='col-sm-8'><input id='{{id}}_PowerTransformerInfo' class='form-control' type='text'{{#PowerTransformerInfo}} value='{{PowerTransformerInfo}}'{{/PowerTransformerInfo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -630,7 +630,7 @@ define
                     {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -659,7 +659,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -736,7 +736,7 @@ define
                     `
                     {{#TransformerTankInfos}}<div><b>TransformerTankInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerTankInfos}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -765,7 +765,7 @@ define
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -894,7 +894,7 @@ define
                     {{#strandCount}}<div><b>strandCount</b>: {{strandCount}}</div>{{/strandCount}}
                     {{#PerLengthParameters}}<div><b>PerLengthParameters</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PerLengthParameters}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -903,16 +903,16 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.WireInsulationKind = []; if (!obj.insulationMaterial) obj.WireInsulationKind.push ({ id: '', selected: true}); for (var property in WireInsulationKind) obj.WireInsulationKind.push ({ id: property, selected: obj.insulationMaterial && obj.insulationMaterial.endsWith ('.' + property)});
-                obj.WireMaterialKind = []; if (!obj.material) obj.WireMaterialKind.push ({ id: '', selected: true}); for (var property in WireMaterialKind) obj.WireMaterialKind.push ({ id: property, selected: obj.material && obj.material.endsWith ('.' + property)});
+                obj.insulationMaterialWireInsulationKind = [{ id: '', selected: (!obj.insulationMaterial)}]; for (var property in WireInsulationKind) obj.insulationMaterialWireInsulationKind.push ({ id: property, selected: obj.insulationMaterial && obj.insulationMaterial.endsWith ('.' + property)});
+                obj.materialWireMaterialKind = [{ id: '', selected: (!obj.material)}]; for (var property in WireMaterialKind) obj.materialWireMaterialKind.push ({ id: property, selected: obj.material && obj.material.endsWith ('.' + property)});
                 if (obj.PerLengthParameters) obj.PerLengthParameters_string = obj.PerLengthParameters.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.WireInsulationKind;
-                delete obj.WireMaterialKind;
+                delete obj.insulationMaterialWireInsulationKind;
+                delete obj.materialWireMaterialKind;
                 delete obj.PerLengthParameters_string;
             }
 
@@ -930,9 +930,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreStrandCount'>coreStrandCount: </label><div class='col-sm-8'><input id='{{id}}_coreStrandCount' class='form-control' type='text'{{#coreStrandCount}} value='{{coreStrandCount}}'{{/coreStrandCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gmr'>gmr: </label><div class='col-sm-8'><input id='{{id}}_gmr' class='form-control' type='text'{{#gmr}} value='{{gmr}}'{{/gmr}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_insulated'>insulated: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_insulated' class='form-check-input' type='checkbox'{{#insulated}} checked{{/insulated}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationMaterial'>insulationMaterial: </label><div class='col-sm-8'><select id='{{id}}_insulationMaterial' class='form-control custom-select'>{{#WireInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireInsulationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationMaterial'>insulationMaterial: </label><div class='col-sm-8'><select id='{{id}}_insulationMaterial' class='form-control custom-select'>{{#insulationMaterialWireInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/insulationMaterialWireInsulationKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationThickness'>insulationThickness: </label><div class='col-sm-8'><input id='{{id}}_insulationThickness' class='form-control' type='text'{{#insulationThickness}} value='{{insulationThickness}}'{{/insulationThickness}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_material'>material: </label><div class='col-sm-8'><select id='{{id}}_material' class='form-control custom-select'>{{#WireMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireMaterialKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_material'>material: </label><div class='col-sm-8'><select id='{{id}}_material' class='form-control custom-select'>{{#materialWireMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/materialWireMaterialKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rAC25'>rAC25: </label><div class='col-sm-8'><input id='{{id}}_rAC25' class='form-control' type='text'{{#rAC25}} value='{{rAC25}}'{{/rAC25}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rAC50'>rAC50: </label><div class='col-sm-8'><input id='{{id}}_rAC50' class='form-control' type='text'{{#rAC50}} value='{{rAC50}}'{{/rAC50}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rAC75'>rAC75: </label><div class='col-sm-8'><input id='{{id}}_rAC75' class='form-control' type='text'{{#rAC75}} value='{{rAC75}}'{{/rAC75}}></div></div>
@@ -943,7 +943,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_strandCount'>strandCount: </label><div class='col-sm-8'><input id='{{id}}_strandCount' class='form-control' type='text'{{#strandCount}} value='{{strandCount}}'{{/strandCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PerLengthParameters'>PerLengthParameters: </label><div class='col-sm-8'><input id='{{id}}_PerLengthParameters' class='form-control' type='text'{{#PerLengthParameters}} value='{{PerLengthParameters_string}}'{{/PerLengthParameters}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -958,9 +958,9 @@ define
                 temp = document.getElementById (id + "_coreStrandCount").value; if ("" != temp) obj.coreStrandCount = temp;
                 temp = document.getElementById (id + "_gmr").value; if ("" != temp) obj.gmr = temp;
                 temp = document.getElementById (id + "_insulated").checked; if (temp) obj.insulated = true;
-                temp = document.getElementById (id + "_insulationMaterial").value; if ("" != temp) { temp = WireInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.insulationMaterial = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireInsulationKind." + temp; }
+                temp = WireInsulationKind[document.getElementById (id + "_insulationMaterial").value]; if (temp) obj.insulationMaterial = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireInsulationKind." + temp; else delete obj.insulationMaterial;
                 temp = document.getElementById (id + "_insulationThickness").value; if ("" != temp) obj.insulationThickness = temp;
-                temp = document.getElementById (id + "_material").value; if ("" != temp) { temp = WireMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.material = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireMaterialKind." + temp; }
+                temp = WireMaterialKind[document.getElementById (id + "_material").value]; if (temp) obj.material = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireMaterialKind." + temp; else delete obj.material;
                 temp = document.getElementById (id + "_rAC25").value; if ("" != temp) obj.rAC25 = temp;
                 temp = document.getElementById (id + "_rAC50").value; if ("" != temp) obj.rAC50 = temp;
                 temp = document.getElementById (id + "_rAC75").value; if ("" != temp) obj.rAC75 = temp;
@@ -1057,7 +1057,7 @@ define
                     {{#ratedReactivePower}}<div><b>ratedReactivePower</b>: {{ratedReactivePower}}</div>{{/ratedReactivePower}}
                     {{#ShuntCompensatorControl}}<div><b>ShuntCompensatorControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorControl}}&quot;);}); return false;'>{{ShuntCompensatorControl}}</a></div>{{/ShuntCompensatorControl}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1089,7 +1089,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedReactivePower'>ratedReactivePower: </label><div class='col-sm-8'><input id='{{id}}_ratedReactivePower' class='form-control' type='text'{{#ratedReactivePower}} value='{{ratedReactivePower}}'{{/ratedReactivePower}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensatorControl'>ShuntCompensatorControl: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensatorControl' class='form-control' type='text'{{#ShuntCompensatorControl}} value='{{ShuntCompensatorControl}}'{{/ShuntCompensatorControl}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1192,7 +1192,7 @@ define
                     {{#isSinglePhase}}<div><b>isSinglePhase</b>: {{isSinglePhase}}</div>{{/isSinglePhase}}
                     {{#isUnganged}}<div><b>isUnganged</b>: {{isUnganged}}</div>{{/isUnganged}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1224,7 +1224,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isSinglePhase'>isSinglePhase: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isSinglePhase' class='form-check-input' type='checkbox'{{#isSinglePhase}} checked{{/isSinglePhase}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isUnganged'>isUnganged: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isUnganged' class='form-check-input' type='checkbox'{{#isUnganged}} checked{{/isUnganged}}></div></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1272,7 +1272,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "WirePosition";
-                base.parse_element (/<cim:WirePosition.phase>([\s\S]*?)<\/cim:WirePosition.phase>/g, obj, "phase", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WirePosition.phase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phase", sub, context);
                 base.parse_element (/<cim:WirePosition.xCoord>([\s\S]*?)<\/cim:WirePosition.xCoord>/g, obj, "xCoord", base.to_string, sub, context);
                 base.parse_element (/<cim:WirePosition.yCoord>([\s\S]*?)<\/cim:WirePosition.yCoord>/g, obj, "yCoord", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WirePosition.WireSpacingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WireSpacingInfo", sub, context);
@@ -1288,7 +1288,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WirePosition", "phase", "phase",  base.from_string, fields);
+                base.export_attribute (obj, "WirePosition", "phase", "phase", fields);
                 base.export_element (obj, "WirePosition", "xCoord", "xCoord",  base.from_string, fields);
                 base.export_element (obj, "WirePosition", "yCoord", "yCoord",  base.from_string, fields);
                 base.export_attribute (obj, "WirePosition", "WireSpacingInfo", "WireSpacingInfo", fields);
@@ -1313,7 +1313,7 @@ define
                     {{#yCoord}}<div><b>yCoord</b>: {{yCoord}}</div>{{/yCoord}}
                     {{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireSpacingInfo}}&quot;);}); return false;'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1322,11 +1322,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.phaseSinglePhaseKind = [{ id: '', selected: (!obj.phase)}]; for (var property in Wires.SinglePhaseKind) obj.phaseSinglePhaseKind.push ({ id: property, selected: obj.phase && obj.phase.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.phaseSinglePhaseKind;
             }
 
             edit_template ()
@@ -1339,12 +1341,12 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><input id='{{id}}_phase' class='form-control' type='text'{{#phase}} value='{{phase}}'{{/phase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#phaseSinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xCoord'>xCoord: </label><div class='col-sm-8'><input id='{{id}}_xCoord' class='form-control' type='text'{{#xCoord}} value='{{xCoord}}'{{/xCoord}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_yCoord'>yCoord: </label><div class='col-sm-8'><input id='{{id}}_yCoord' class='form-control' type='text'{{#yCoord}} value='{{yCoord}}'{{/yCoord}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfo'>WireSpacingInfo: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfo' class='form-control' type='text'{{#WireSpacingInfo}} value='{{WireSpacingInfo}}'{{/WireSpacingInfo}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1355,7 +1357,7 @@ define
 
                 var obj = obj || { id: id, cls: "WirePosition" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_phase").value; if ("" != temp) obj.phase = temp;
+                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj.phase;
                 temp = document.getElementById (id + "_xCoord").value; if ("" != temp) obj.xCoord = temp;
                 temp = document.getElementById (id + "_yCoord").value; if ("" != temp) obj.yCoord = temp;
                 temp = document.getElementById (id + "_WireSpacingInfo").value; if ("" != temp) obj.WireSpacingInfo = temp;
@@ -1402,7 +1404,7 @@ define
 
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "TransformerEndInfo";
-                base.parse_element (/<cim:TransformerEndInfo.connectionKind>([\s\S]*?)<\/cim:TransformerEndInfo.connectionKind>/g, obj, "connectionKind", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TransformerEndInfo.connectionKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "connectionKind", sub, context);
                 base.parse_element (/<cim:TransformerEndInfo.emergencyS>([\s\S]*?)<\/cim:TransformerEndInfo.emergencyS>/g, obj, "emergencyS", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerEndInfo.endNumber>([\s\S]*?)<\/cim:TransformerEndInfo.endNumber>/g, obj, "endNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerEndInfo.insulationU>([\s\S]*?)<\/cim:TransformerEndInfo.insulationU>/g, obj, "insulationU", base.to_string, sub, context);
@@ -1433,7 +1435,7 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TransformerEndInfo", "connectionKind", "connectionKind",  base.from_string, fields);
+                base.export_attribute (obj, "TransformerEndInfo", "connectionKind", "connectionKind", fields);
                 base.export_element (obj, "TransformerEndInfo", "emergencyS", "emergencyS",  base.from_string, fields);
                 base.export_element (obj, "TransformerEndInfo", "endNumber", "endNumber",  base.from_string, fields);
                 base.export_element (obj, "TransformerEndInfo", "insulationU", "insulationU",  base.from_string, fields);
@@ -1488,7 +1490,7 @@ define
                     {{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);}); return false;'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
                     {{#EnergisedEndOpenCircuitTests}}<div><b>EnergisedEndOpenCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergisedEndOpenCircuitTests}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1497,6 +1499,7 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.connectionKindWindingConnection = [{ id: '', selected: (!obj.connectionKind)}]; for (var property in Wires.WindingConnection) obj.connectionKindWindingConnection.push ({ id: property, selected: obj.connectionKind && obj.connectionKind.endsWith ('.' + property)});
                 if (obj.EnergisedEndNoLoadTests) obj.EnergisedEndNoLoadTests_string = obj.EnergisedEndNoLoadTests.join ();
                 if (obj.ToMeshImpedances) obj.ToMeshImpedances_string = obj.ToMeshImpedances.join ();
                 if (obj.EnergisedEndShortCircuitTests) obj.EnergisedEndShortCircuitTests_string = obj.EnergisedEndShortCircuitTests.join ();
@@ -1509,6 +1512,7 @@ define
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.connectionKindWindingConnection;
                 delete obj.EnergisedEndNoLoadTests_string;
                 delete obj.ToMeshImpedances_string;
                 delete obj.EnergisedEndShortCircuitTests_string;
@@ -1528,7 +1532,7 @@ define
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_connectionKind'>connectionKind: </label><div class='col-sm-8'><input id='{{id}}_connectionKind' class='form-control' type='text'{{#connectionKind}} value='{{connectionKind}}'{{/connectionKind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_connectionKind'>connectionKind: </label><div class='col-sm-8'><select id='{{id}}_connectionKind' class='form-control custom-select'>{{#connectionKindWindingConnection}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/connectionKindWindingConnection}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emergencyS'>emergencyS: </label><div class='col-sm-8'><input id='{{id}}_emergencyS' class='form-control' type='text'{{#emergencyS}} value='{{emergencyS}}'{{/emergencyS}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endNumber'>endNumber: </label><div class='col-sm-8'><input id='{{id}}_endNumber' class='form-control' type='text'{{#endNumber}} value='{{endNumber}}'{{/endNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationU'>insulationU: </label><div class='col-sm-8'><input id='{{id}}_insulationU' class='form-control' type='text'{{#insulationU}} value='{{insulationU}}'{{/insulationU}}></div></div>
@@ -1543,7 +1547,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerTankInfo'>TransformerTankInfo: </label><div class='col-sm-8'><input id='{{id}}_TransformerTankInfo' class='form-control' type='text'{{#TransformerTankInfo}} value='{{TransformerTankInfo}}'{{/TransformerTankInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CoreAdmittance'>CoreAdmittance: </label><div class='col-sm-8'><input id='{{id}}_CoreAdmittance' class='form-control' type='text'{{#CoreAdmittance}} value='{{CoreAdmittance}}'{{/CoreAdmittance}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1554,7 +1558,7 @@ define
 
                 var obj = obj || { id: id, cls: "TransformerEndInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_connectionKind").value; if ("" != temp) obj.connectionKind = temp;
+                temp = Wires.WindingConnection[document.getElementById (id + "_connectionKind").value]; if (temp) obj.connectionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection." + temp; else delete obj.connectionKind;
                 temp = document.getElementById (id + "_emergencyS").value; if ("" != temp) obj.emergencyS = temp;
                 temp = document.getElementById (id + "_endNumber").value; if ("" != temp) obj.endNumber = temp;
                 temp = document.getElementById (id + "_insulationU").value; if ("" != temp) obj.insulationU = temp;
@@ -1655,7 +1659,7 @@ define
                     {{#basePower}}<div><b>basePower</b>: {{basePower}}</div>{{/basePower}}
                     {{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1684,7 +1688,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_basePower'>basePower: </label><div class='col-sm-8'><input id='{{id}}_basePower' class='form-control' type='text'{{#basePower}} value='{{basePower}}'{{/basePower}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_temperature'>temperature: </label><div class='col-sm-8'><input id='{{id}}_temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1788,7 +1792,7 @@ define
                     {{#sheathAsNeutral}}<div><b>sheathAsNeutral</b>: {{sheathAsNeutral}}</div>{{/sheathAsNeutral}}
                     {{#shieldMaterial}}<div><b>shieldMaterial</b>: {{shieldMaterial}}</div>{{/shieldMaterial}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1797,17 +1801,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CableConstructionKind = []; if (!obj.constructionKind) obj.CableConstructionKind.push ({ id: '', selected: true}); for (var property in CableConstructionKind) obj.CableConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
-                obj.CableOuterJacketKind = []; if (!obj.outerJacketKind) obj.CableOuterJacketKind.push ({ id: '', selected: true}); for (var property in CableOuterJacketKind) obj.CableOuterJacketKind.push ({ id: property, selected: obj.outerJacketKind && obj.outerJacketKind.endsWith ('.' + property)});
-                obj.CableShieldMaterialKind = []; if (!obj.shieldMaterial) obj.CableShieldMaterialKind.push ({ id: '', selected: true}); for (var property in CableShieldMaterialKind) obj.CableShieldMaterialKind.push ({ id: property, selected: obj.shieldMaterial && obj.shieldMaterial.endsWith ('.' + property)});
+                obj.constructionKindCableConstructionKind = [{ id: '', selected: (!obj.constructionKind)}]; for (var property in CableConstructionKind) obj.constructionKindCableConstructionKind.push ({ id: property, selected: obj.constructionKind && obj.constructionKind.endsWith ('.' + property)});
+                obj.outerJacketKindCableOuterJacketKind = [{ id: '', selected: (!obj.outerJacketKind)}]; for (var property in CableOuterJacketKind) obj.outerJacketKindCableOuterJacketKind.push ({ id: property, selected: obj.outerJacketKind && obj.outerJacketKind.endsWith ('.' + property)});
+                obj.shieldMaterialCableShieldMaterialKind = [{ id: '', selected: (!obj.shieldMaterial)}]; for (var property in CableShieldMaterialKind) obj.shieldMaterialCableShieldMaterialKind.push ({ id: property, selected: obj.shieldMaterial && obj.shieldMaterial.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CableConstructionKind;
-                delete obj.CableOuterJacketKind;
-                delete obj.CableShieldMaterialKind;
+                delete obj.constructionKindCableConstructionKind;
+                delete obj.outerJacketKindCableOuterJacketKind;
+                delete obj.shieldMaterialCableShieldMaterialKind;
             }
 
             edit_template ()
@@ -1820,18 +1824,18 @@ define
                     `
                     + WireInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control custom-select'>{{#CableConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableConstructionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control custom-select'>{{#constructionKindCableConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/constructionKindCableConstructionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverCore'>diameterOverCore: </label><div class='col-sm-8'><input id='{{id}}_diameterOverCore' class='form-control' type='text'{{#diameterOverCore}} value='{{diameterOverCore}}'{{/diameterOverCore}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverInsulation'>diameterOverInsulation: </label><div class='col-sm-8'><input id='{{id}}_diameterOverInsulation' class='form-control' type='text'{{#diameterOverInsulation}} value='{{diameterOverInsulation}}'{{/diameterOverInsulation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverJacket'>diameterOverJacket: </label><div class='col-sm-8'><input id='{{id}}_diameterOverJacket' class='form-control' type='text'{{#diameterOverJacket}} value='{{diameterOverJacket}}'{{/diameterOverJacket}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverScreen'>diameterOverScreen: </label><div class='col-sm-8'><input id='{{id}}_diameterOverScreen' class='form-control' type='text'{{#diameterOverScreen}} value='{{diameterOverScreen}}'{{/diameterOverScreen}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_isStrandFill'>isStrandFill: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isStrandFill' class='form-check-input' type='checkbox'{{#isStrandFill}} checked{{/isStrandFill}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalTemperature'>nominalTemperature: </label><div class='col-sm-8'><input id='{{id}}_nominalTemperature' class='form-control' type='text'{{#nominalTemperature}} value='{{nominalTemperature}}'{{/nominalTemperature}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outerJacketKind'>outerJacketKind: </label><div class='col-sm-8'><select id='{{id}}_outerJacketKind' class='form-control custom-select'>{{#CableOuterJacketKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableOuterJacketKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outerJacketKind'>outerJacketKind: </label><div class='col-sm-8'><select id='{{id}}_outerJacketKind' class='form-control custom-select'>{{#outerJacketKindCableOuterJacketKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/outerJacketKindCableOuterJacketKind}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_sheathAsNeutral'>sheathAsNeutral: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_sheathAsNeutral' class='form-check-input' type='checkbox'{{#sheathAsNeutral}} checked{{/sheathAsNeutral}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shieldMaterial'>shieldMaterial: </label><div class='col-sm-8'><select id='{{id}}_shieldMaterial' class='form-control custom-select'>{{#CableShieldMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableShieldMaterialKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shieldMaterial'>shieldMaterial: </label><div class='col-sm-8'><select id='{{id}}_shieldMaterial' class='form-control custom-select'>{{#shieldMaterialCableShieldMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/shieldMaterialCableShieldMaterialKind}}</select></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1842,16 +1846,16 @@ define
 
                 var obj = obj || { id: id, cls: "CableInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = CableConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableConstructionKind." + temp; }
+                temp = CableConstructionKind[document.getElementById (id + "_constructionKind").value]; if (temp) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableConstructionKind." + temp; else delete obj.constructionKind;
                 temp = document.getElementById (id + "_diameterOverCore").value; if ("" != temp) obj.diameterOverCore = temp;
                 temp = document.getElementById (id + "_diameterOverInsulation").value; if ("" != temp) obj.diameterOverInsulation = temp;
                 temp = document.getElementById (id + "_diameterOverJacket").value; if ("" != temp) obj.diameterOverJacket = temp;
                 temp = document.getElementById (id + "_diameterOverScreen").value; if ("" != temp) obj.diameterOverScreen = temp;
                 temp = document.getElementById (id + "_isStrandFill").checked; if (temp) obj.isStrandFill = true;
                 temp = document.getElementById (id + "_nominalTemperature").value; if ("" != temp) obj.nominalTemperature = temp;
-                temp = document.getElementById (id + "_outerJacketKind").value; if ("" != temp) { temp = CableOuterJacketKind[temp]; if ("undefined" != typeof (temp)) obj.outerJacketKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableOuterJacketKind." + temp; }
+                temp = CableOuterJacketKind[document.getElementById (id + "_outerJacketKind").value]; if (temp) obj.outerJacketKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableOuterJacketKind." + temp; else delete obj.outerJacketKind;
                 temp = document.getElementById (id + "_sheathAsNeutral").checked; if (temp) obj.sheathAsNeutral = true;
-                temp = document.getElementById (id + "_shieldMaterial").value; if ("" != temp) { temp = CableShieldMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.shieldMaterial = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableShieldMaterialKind." + temp; }
+                temp = CableShieldMaterialKind[document.getElementById (id + "_shieldMaterial").value]; if (temp) obj.shieldMaterial = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableShieldMaterialKind." + temp; else delete obj.shieldMaterial;
 
                 return (obj);
             }
@@ -1928,7 +1932,7 @@ define
                     {{#neutralStrandRadius}}<div><b>neutralStrandRadius</b>: {{neutralStrandRadius}}</div>{{/neutralStrandRadius}}
                     {{#neutralStrandRDC20}}<div><b>neutralStrandRDC20</b>: {{neutralStrandRDC20}}</div>{{/neutralStrandRDC20}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1960,7 +1964,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStrandRadius'>neutralStrandRadius: </label><div class='col-sm-8'><input id='{{id}}_neutralStrandRadius' class='form-control' type='text'{{#neutralStrandRadius}} value='{{neutralStrandRadius}}'{{/neutralStrandRadius}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStrandRDC20'>neutralStrandRDC20: </label><div class='col-sm-8'><input id='{{id}}_neutralStrandRDC20' class='form-control' type='text'{{#neutralStrandRDC20}} value='{{neutralStrandRDC20}}'{{/neutralStrandRDC20}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2037,7 +2041,7 @@ define
                     + WireInfo.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2064,7 +2068,7 @@ define
                     + WireInfo.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2140,7 +2144,7 @@ define
                     {{#tapeLap}}<div><b>tapeLap</b>: {{tapeLap}}</div>{{/tapeLap}}
                     {{#tapeThickness}}<div><b>tapeThickness</b>: {{tapeThickness}}</div>{{/tapeThickness}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2169,7 +2173,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tapeLap'>tapeLap: </label><div class='col-sm-8'><input id='{{id}}_tapeLap' class='form-control' type='text'{{#tapeLap}} value='{{tapeLap}}'{{/tapeLap}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tapeThickness'>tapeThickness: </label><div class='col-sm-8'><input id='{{id}}_tapeThickness' class='form-control' type='text'{{#tapeThickness}} value='{{tapeThickness}}'{{/tapeThickness}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2269,7 +2273,7 @@ define
                     {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
                     {{#GroundedEnds}}<div><b>GroundedEnds</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GroundedEnds}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2306,7 +2310,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GroundedEnds'>GroundedEnds: </label><div class='col-sm-8'><input id='{{id}}_GroundedEnds' class='form-control' type='text'{{#GroundedEnds}} value='{{GroundedEnds_string}}'{{/GroundedEnds}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2418,7 +2422,7 @@ define
                     {{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
                     {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2451,7 +2455,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossZero'>lossZero: </label><div class='col-sm-8'><input id='{{id}}_lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2563,7 +2567,7 @@ define
                     {{#OpenEnd}}<div><b>OpenEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OpenEnd}}&quot;);}); return false;'>{{OpenEnd}}</a></div>{{/OpenEnd}}
                     {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -2597,7 +2601,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OpenEnd'>OpenEnd: </label><div class='col-sm-8'><input id='{{id}}_OpenEnd' class='form-control' type='text'{{#OpenEnd}} value='{{OpenEnd}}'{{/OpenEnd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -2637,19 +2641,25 @@ define
                 ShuntCompensatorInfo: ShuntCompensatorInfo,
                 TapeShieldCableInfo: TapeShieldCableInfo,
                 TapChangerInfo: TapChangerInfo,
+                CableOuterJacketKind: CableOuterJacketKind,
+                CableShieldMaterialKind: CableShieldMaterialKind,
                 SwitchInfo: SwitchInfo,
                 TransformerTest: TransformerTest,
                 ShortCircuitTest: ShortCircuitTest,
                 TransformerTankInfo: TransformerTankInfo,
                 PowerTransformerInfo: PowerTransformerInfo,
                 BusbarSectionInfo: BusbarSectionInfo,
+                WireInsulationKind: WireInsulationKind,
                 TransformerEndInfo: TransformerEndInfo,
                 CableInfo: CableInfo,
+                WireUsageKind: WireUsageKind,
+                CableConstructionKind: CableConstructionKind,
                 WireSpacingInfo: WireSpacingInfo,
                 NoLoadTest: NoLoadTest,
                 OverheadWireInfo: OverheadWireInfo,
-                WireInfo: WireInfo,
                 ConcentricNeutralCableInfo: ConcentricNeutralCableInfo,
+                WireInfo: WireInfo,
+                WireMaterialKind: WireMaterialKind,
                 OpenCircuitTest: OpenCircuitTest,
                 WirePosition: WirePosition
             }

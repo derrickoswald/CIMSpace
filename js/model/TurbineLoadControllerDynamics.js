@@ -67,7 +67,7 @@ define
                     `
                     {{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorDynamics}}&quot;);}); return false;'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -95,7 +95,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='{{id}}_TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics}}'{{/TurbineGovernorDynamics}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -217,7 +217,7 @@ define
                     {{#speedReferenceGovernor}}<div><b>speedReferenceGovernor</b>: {{speedReferenceGovernor}}</div>{{/speedReferenceGovernor}}
                     {{#tpelec}}<div><b>tpelec</b>: {{tpelec}}</div>{{/tpelec}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -256,7 +256,7 @@ define
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_speedReferenceGovernor'>speedReferenceGovernor: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_speedReferenceGovernor' class='form-check-input' type='checkbox'{{#speedReferenceGovernor}} checked{{/speedReferenceGovernor}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpelec'>tpelec: </label><div class='col-sm-8'><input id='{{id}}_tpelec' class='form-control' type='text'{{#tpelec}} value='{{tpelec}}'{{/tpelec}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }

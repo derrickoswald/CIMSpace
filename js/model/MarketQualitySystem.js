@@ -1,13 +1,13 @@
 define
 (
-    ["model/base"],
+    ["model/base", "model/MktDomain"],
     /**
      * Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes.
      *
      * Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
      *
      */
-    function (base)
+    function (base, MktDomain)
     {
 
         /**
@@ -38,7 +38,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "AuxiliaryCost";
                 base.parse_element (/<cim:AuxiliaryCost.intervalStartTime>([\s\S]*?)<\/cim:AuxiliaryCost.intervalStartTime>/g, obj, "intervalStartTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:AuxiliaryCost.marketType>([\s\S]*?)<\/cim:AuxiliaryCost.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AuxiliaryCost.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_element (/<cim:AuxiliaryCost.updateTimeStamp>([\s\S]*?)<\/cim:AuxiliaryCost.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
                 base.parse_element (/<cim:AuxiliaryCost.updateUser>([\s\S]*?)<\/cim:AuxiliaryCost.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_attributes (/<cim:AuxiliaryCost.AuxillaryValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryValues", sub, context);
@@ -55,7 +55,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "AuxiliaryCost", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
-                base.export_element (obj, "AuxiliaryCost", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "AuxiliaryCost", "marketType", "marketType", fields);
                 base.export_element (obj, "AuxiliaryCost", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
                 base.export_element (obj, "AuxiliaryCost", "updateUser", "updateUser",  base.from_string, fields);
                 base.export_attributes (obj, "AuxiliaryCost", "AuxillaryValues", "AuxillaryValues", fields);
@@ -81,7 +81,7 @@ define
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#AuxillaryValues}}<div><b>AuxillaryValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxillaryValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -90,12 +90,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.AuxillaryValues) obj.AuxillaryValues_string = obj.AuxillaryValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.marketTypeMarketType;
                 delete obj.AuxillaryValues_string;
             }
 
@@ -110,11 +112,11 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -126,7 +128,7 @@ define
                 var obj = obj || { id: id, cls: "AuxiliaryCost" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
 
@@ -213,7 +215,7 @@ define
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     {{#ExpectedEnergy}}<div><b>ExpectedEnergy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExpectedEnergy}}&quot;);}); return false;'>{{ExpectedEnergy}}</a></div>{{/ExpectedEnergy}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -244,7 +246,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExpectedEnergy'>ExpectedEnergy: </label><div class='col-sm-8'><input id='{{id}}_ExpectedEnergy' class='form-control' type='text'{{#ExpectedEnergy}} value='{{ExpectedEnergy}}'{{/ExpectedEnergy}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -338,7 +340,7 @@ define
                     {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredLoad}}&quot;);}); return false;'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -367,7 +369,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}'{{/RegisteredLoad}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -462,7 +464,7 @@ define
                     {{#TradingHubPrice}}<div><b>TradingHubPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TradingHubPrice}}&quot;);}); return false;'>{{TradingHubPrice}}</a></div>{{/TradingHubPrice}}
                     {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);}); return false;'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -492,7 +494,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TradingHubPrice'>TradingHubPrice: </label><div class='col-sm-8'><input id='{{id}}_TradingHubPrice' class='form-control' type='text'{{#TradingHubPrice}} value='{{TradingHubPrice}}'{{/TradingHubPrice}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -551,7 +553,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "TradingHubPrice";
                 base.parse_element (/<cim:TradingHubPrice.intervalStartTime>([\s\S]*?)<\/cim:TradingHubPrice.intervalStartTime>/g, obj, "intervalStartTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:TradingHubPrice.marketType>([\s\S]*?)<\/cim:TradingHubPrice.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TradingHubPrice.marketType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
                 base.parse_element (/<cim:TradingHubPrice.updateUser>([\s\S]*?)<\/cim:TradingHubPrice.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_element (/<cim:TradingHubPrice.updateTimeStamp>([\s\S]*?)<\/cim:TradingHubPrice.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
                 base.parse_attributes (/<cim:TradingHubPrice.TradingHubValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TradingHubValues", sub, context);
@@ -568,7 +570,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "TradingHubPrice", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
-                base.export_element (obj, "TradingHubPrice", "marketType", "marketType",  base.from_string, fields);
+                base.export_attribute (obj, "TradingHubPrice", "marketType", "marketType", fields);
                 base.export_element (obj, "TradingHubPrice", "updateUser", "updateUser",  base.from_string, fields);
                 base.export_element (obj, "TradingHubPrice", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
                 base.export_attributes (obj, "TradingHubPrice", "TradingHubValues", "TradingHubValues", fields);
@@ -594,7 +596,7 @@ define
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#TradingHubValues}}<div><b>TradingHubValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TradingHubValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -603,12 +605,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.marketTypeMarketType = [{ id: '', selected: (!obj.marketType)}]; for (var property in MktDomain.MarketType) obj.marketTypeMarketType.push ({ id: property, selected: obj.marketType && obj.marketType.endsWith ('.' + property)});
                 if (obj.TradingHubValues) obj.TradingHubValues_string = obj.TradingHubValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.marketTypeMarketType;
                 delete obj.TradingHubValues_string;
             }
 
@@ -623,11 +627,11 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -639,7 +643,7 @@ define
                 var obj = obj || { id: id, cls: "TradingHubPrice" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj.marketType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj.marketType;
                 temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
                 temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
 
@@ -726,7 +730,7 @@ define
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#ExpectedEnergyValues}}<div><b>ExpectedEnergyValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ExpectedEnergyValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -758,7 +762,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -856,7 +860,7 @@ define
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#AuxillaryData}}<div><b>AuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxillaryData}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -888,7 +892,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -988,7 +992,7 @@ define
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#AllocationResultValues}}<div><b>AllocationResultValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AllocationResultValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1020,7 +1024,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1127,7 +1131,7 @@ define
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     {{#AllocationResult}}<div><b>AllocationResult</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AllocationResult}}&quot;);}); return false;'>{{AllocationResult}}</a></div>{{/AllocationResult}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1161,7 +1165,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AllocationResult'>AllocationResult: </label><div class='col-sm-8'><input id='{{id}}_AllocationResult' class='form-control' type='text'{{#AllocationResult}} value='{{AllocationResult}}'{{/AllocationResult}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1264,7 +1268,7 @@ define
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#AuxillaryValues}}<div><b>AuxillaryValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxillaryValues}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1296,7 +1300,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1358,9 +1362,9 @@ define
                 base.parse_element (/<cim:AuxiliaryValues.availUndispatchedQ>([\s\S]*?)<\/cim:AuxiliaryValues.availUndispatchedQ>/g, obj, "availUndispatchedQ", base.to_float, sub, context);
                 base.parse_element (/<cim:AuxiliaryValues.incrementalORAvail>([\s\S]*?)<\/cim:AuxiliaryValues.incrementalORAvail>/g, obj, "incrementalORAvail", base.to_float, sub, context);
                 base.parse_element (/<cim:AuxiliaryValues.startUpCost>([\s\S]*?)<\/cim:AuxiliaryValues.startUpCost>/g, obj, "startUpCost", base.to_float, sub, context);
-                base.parse_element (/<cim:AuxiliaryValues.startUpCostEligibilityFlag>([\s\S]*?)<\/cim:AuxiliaryValues.startUpCostEligibilityFlag>/g, obj, "startUpCostEligibilityFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AuxiliaryValues.startUpCostEligibilityFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "startUpCostEligibilityFlag", sub, context);
                 base.parse_element (/<cim:AuxiliaryValues.noLoadCost>([\s\S]*?)<\/cim:AuxiliaryValues.noLoadCost>/g, obj, "noLoadCost", base.to_float, sub, context);
-                base.parse_element (/<cim:AuxiliaryValues.noLoadCostEligibilityFlag>([\s\S]*?)<\/cim:AuxiliaryValues.noLoadCostEligibilityFlag>/g, obj, "noLoadCostEligibilityFlag", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AuxiliaryValues.noLoadCostEligibilityFlag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "noLoadCostEligibilityFlag", sub, context);
                 base.parse_attribute (/<cim:AuxiliaryValues.AuxillaryCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryCost", sub, context);
                 base.parse_attribute (/<cim:AuxiliaryValues.FiveMinAuxillaryData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FiveMinAuxillaryData", sub, context);
                 base.parse_attribute (/<cim:AuxiliaryValues.TenMinAuxillaryData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TenMinAuxillaryData", sub, context);
@@ -1381,9 +1385,9 @@ define
                 base.export_element (obj, "AuxiliaryValues", "availUndispatchedQ", "availUndispatchedQ",  base.from_float, fields);
                 base.export_element (obj, "AuxiliaryValues", "incrementalORAvail", "incrementalORAvail",  base.from_float, fields);
                 base.export_element (obj, "AuxiliaryValues", "startUpCost", "startUpCost",  base.from_float, fields);
-                base.export_element (obj, "AuxiliaryValues", "startUpCostEligibilityFlag", "startUpCostEligibilityFlag",  base.from_string, fields);
+                base.export_attribute (obj, "AuxiliaryValues", "startUpCostEligibilityFlag", "startUpCostEligibilityFlag", fields);
                 base.export_element (obj, "AuxiliaryValues", "noLoadCost", "noLoadCost",  base.from_float, fields);
-                base.export_element (obj, "AuxiliaryValues", "noLoadCostEligibilityFlag", "noLoadCostEligibilityFlag",  base.from_string, fields);
+                base.export_attribute (obj, "AuxiliaryValues", "noLoadCostEligibilityFlag", "noLoadCostEligibilityFlag", fields);
                 base.export_attribute (obj, "AuxiliaryValues", "AuxillaryCost", "AuxillaryCost", fields);
                 base.export_attribute (obj, "AuxiliaryValues", "FiveMinAuxillaryData", "FiveMinAuxillaryData", fields);
                 base.export_attribute (obj, "AuxiliaryValues", "TenMinAuxillaryData", "TenMinAuxillaryData", fields);
@@ -1415,7 +1419,7 @@ define
                     {{#FiveMinAuxillaryData}}<div><b>FiveMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FiveMinAuxillaryData}}&quot;);}); return false;'>{{FiveMinAuxillaryData}}</a></div>{{/FiveMinAuxillaryData}}
                     {{#TenMinAuxillaryData}}<div><b>TenMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TenMinAuxillaryData}}&quot;);}); return false;'>{{TenMinAuxillaryData}}</a></div>{{/TenMinAuxillaryData}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -1424,11 +1428,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                obj.startUpCostEligibilityFlagYesNo = [{ id: '', selected: (!obj.startUpCostEligibilityFlag)}]; for (var property in MktDomain.YesNo) obj.startUpCostEligibilityFlagYesNo.push ({ id: property, selected: obj.startUpCostEligibilityFlag && obj.startUpCostEligibilityFlag.endsWith ('.' + property)});
+                obj.noLoadCostEligibilityFlagYesNo = [{ id: '', selected: (!obj.noLoadCostEligibilityFlag)}]; for (var property in MktDomain.YesNo) obj.noLoadCostEligibilityFlagYesNo.push ({ id: property, selected: obj.noLoadCostEligibilityFlag && obj.noLoadCostEligibilityFlag.endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.startUpCostEligibilityFlagYesNo;
+                delete obj.noLoadCostEligibilityFlagYesNo;
             }
 
             edit_template ()
@@ -1446,14 +1454,14 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_availUndispatchedQ'>availUndispatchedQ: </label><div class='col-sm-8'><input id='{{id}}_availUndispatchedQ' class='form-control' type='text'{{#availUndispatchedQ}} value='{{availUndispatchedQ}}'{{/availUndispatchedQ}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_incrementalORAvail'>incrementalORAvail: </label><div class='col-sm-8'><input id='{{id}}_incrementalORAvail' class='form-control' type='text'{{#incrementalORAvail}} value='{{incrementalORAvail}}'{{/incrementalORAvail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCost'>startUpCost: </label><div class='col-sm-8'><input id='{{id}}_startUpCost' class='form-control' type='text'{{#startUpCost}} value='{{startUpCost}}'{{/startUpCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCostEligibilityFlag'>startUpCostEligibilityFlag: </label><div class='col-sm-8'><input id='{{id}}_startUpCostEligibilityFlag' class='form-control' type='text'{{#startUpCostEligibilityFlag}} value='{{startUpCostEligibilityFlag}}'{{/startUpCostEligibilityFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCostEligibilityFlag'>startUpCostEligibilityFlag: </label><div class='col-sm-8'><select id='{{id}}_startUpCostEligibilityFlag' class='form-control custom-select'>{{#startUpCostEligibilityFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/startUpCostEligibilityFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='{{id}}_noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCostEligibilityFlag'>noLoadCostEligibilityFlag: </label><div class='col-sm-8'><input id='{{id}}_noLoadCostEligibilityFlag' class='form-control' type='text'{{#noLoadCostEligibilityFlag}} value='{{noLoadCostEligibilityFlag}}'{{/noLoadCostEligibilityFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCostEligibilityFlag'>noLoadCostEligibilityFlag: </label><div class='col-sm-8'><select id='{{id}}_noLoadCostEligibilityFlag' class='form-control custom-select'>{{#noLoadCostEligibilityFlagYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/noLoadCostEligibilityFlagYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxillaryCost'>AuxillaryCost: </label><div class='col-sm-8'><input id='{{id}}_AuxillaryCost' class='form-control' type='text'{{#AuxillaryCost}} value='{{AuxillaryCost}}'{{/AuxillaryCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FiveMinAuxillaryData'>FiveMinAuxillaryData: </label><div class='col-sm-8'><input id='{{id}}_FiveMinAuxillaryData' class='form-control' type='text'{{#FiveMinAuxillaryData}} value='{{FiveMinAuxillaryData}}'{{/FiveMinAuxillaryData}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TenMinAuxillaryData'>TenMinAuxillaryData: </label><div class='col-sm-8'><input id='{{id}}_TenMinAuxillaryData' class='form-control' type='text'{{#TenMinAuxillaryData}} value='{{TenMinAuxillaryData}}'{{/TenMinAuxillaryData}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1469,9 +1477,9 @@ define
                 temp = document.getElementById (id + "_availUndispatchedQ").value; if ("" != temp) obj.availUndispatchedQ = temp;
                 temp = document.getElementById (id + "_incrementalORAvail").value; if ("" != temp) obj.incrementalORAvail = temp;
                 temp = document.getElementById (id + "_startUpCost").value; if ("" != temp) obj.startUpCost = temp;
-                temp = document.getElementById (id + "_startUpCostEligibilityFlag").value; if ("" != temp) obj.startUpCostEligibilityFlag = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_startUpCostEligibilityFlag").value]; if (temp) obj.startUpCostEligibilityFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.startUpCostEligibilityFlag;
                 temp = document.getElementById (id + "_noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
-                temp = document.getElementById (id + "_noLoadCostEligibilityFlag").value; if ("" != temp) obj.noLoadCostEligibilityFlag = temp;
+                temp = MktDomain.YesNo[document.getElementById (id + "_noLoadCostEligibilityFlag").value]; if (temp) obj.noLoadCostEligibilityFlag = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj.noLoadCostEligibilityFlag;
                 temp = document.getElementById (id + "_AuxillaryCost").value; if ("" != temp) obj.AuxillaryCost = temp;
                 temp = document.getElementById (id + "_FiveMinAuxillaryData").value; if ("" != temp) obj.FiveMinAuxillaryData = temp;
                 temp = document.getElementById (id + "_TenMinAuxillaryData").value; if ("" != temp) obj.TenMinAuxillaryData = temp;
@@ -1495,14 +1503,14 @@ define
 
         return (
             {
+                TenMinAuxiliaryData: TenMinAuxiliaryData,
                 AuxiliaryCost: AuxiliaryCost,
                 AllocationResult: AllocationResult,
-                TenMinAuxiliaryData: TenMinAuxiliaryData,
                 AllocationResultValues: AllocationResultValues,
                 ExpectedEnergyValues: ExpectedEnergyValues,
                 AuxiliaryValues: AuxiliaryValues,
-                ExpectedEnergy: ExpectedEnergy,
                 FiveMinAuxiliaryData: FiveMinAuxiliaryData,
+                ExpectedEnergy: ExpectedEnergy,
                 TradingHubValues: TradingHubValues,
                 TradingHubPrice: TradingHubPrice,
                 AuxiliaryObject: AuxiliaryObject

@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core"],
     /**
      * @summary Make a CIM object at the Switch level.
      * @description Digitizes a point and makes a Switch element with connectivity.
@@ -13,7 +13,7 @@ define
      * @exports switchmaker
      * @version 1.0
      */
-    function (mustache, cim, PowerSystemResourceMaker, ConductingEquipmentMaker, Core)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Core)
     {
         class SwitchMaker extends PowerSystemResourceMaker
         {
@@ -22,7 +22,7 @@ define
                 super (cimmap, cimedit, digitizer);
             }
 
-            classes ()
+            static classes ()
             {
                 var ret = [];
                 var cimclasses = cim.classes ();
@@ -38,30 +38,35 @@ define
                 return (ret);
             }
 
-            render_parameters ()
+            render_parameters (proto)
             {
-                return (mustache.render (this.class_template (), { classes: this.classes () }));
+                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                return (mustache.render (this.class_template (), view));
             }
 
-            make_switch (feature)
+            make_switch (array)
             {
-                var ret = [];
-
                 var swtch = this._cimedit.primary_element ();
                 var id = swtch.id;
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
+                swtch.normallyInService = true;
+                swtch.SvStatus = eqm.in_use ();
 
-                var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
+                // get the position
+                var pp = array.filter (o => o.cls == "PositionPoint")[0];
+                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition));
                 if (null == connectivity) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_1"));
-                    ret.push (new Core.ConnectivityNode (node, this._features));
+                    array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
                 else
                     if (connectivity.BaseVoltage)
                         swtch.BaseVoltage = connectivity.BaseVoltage;
+                if (!swtch.BaseVoltage)
+                    swtch.BaseVoltage = eqm.low_voltage ();
 
                 // add the terminal
                 var tid1 = this._cimedit.generateId (id, "_terminal_1");
@@ -79,12 +84,12 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal.TopologicalNode = connectivity.TopologicalNode;
-                ret.push (new Core.Terminal (terminal, this._features));
+                array.push (new Core.Terminal (terminal, this._cimedit.new_features ()));
 
                 // add a second connectivity node
                 {
                     var node = this.new_connectivity (this._cimedit.generateId (id, "_node_2"));
-                    ret.push (new Core.ConnectivityNode (node, this._features));
+                    array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("created second ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -101,27 +106,22 @@ define
                     ConductingEquipment: id,
                     ConnectivityNode: connectivity.ConnectivityNode
                 };
-                ret.push (new Core.Terminal (terminal2, this._features));
+                array.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
 
-                ret = ret.concat (eqm.ensure_voltages (this._features));
-                ret = ret.concat (eqm.ensure_status (this._features));
-                swtch.normallyInService = true;
-                swtch.SvStatus = eqm.in_use ();
-                if (!swtch.BaseVoltage)
-                    swtch.BaseVoltage = eqm.low_voltage ();
-                ret = ret.concat (this.make_psr (feature, swtch));
-                this._cimedit.create_from (swtch);
+                array = array.concat (eqm.ensure_voltages ());
+                array = array.concat (eqm.ensure_status ());
 
-                return (ret);
+                return (array);
             }
 
-            make (features)
+            make ()
             {
-                this._features = features;
                 var parameters = this.submit_parameters ();
                 parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, this._features);
+                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_switch.bind (this)));
                 return (cpromise);
             }

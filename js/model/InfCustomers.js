@@ -85,7 +85,7 @@ define
                     {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
                     {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CustomerAgreements}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -115,7 +115,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -172,7 +172,7 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "ServiceGuarantee";
-                base.parse_element (/<cim:ServiceGuarantee.applicationPeriod>([\s\S]*?)<\/cim:ServiceGuarantee.applicationPeriod>/g, obj, "applicationPeriod", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ServiceGuarantee.applicationPeriod\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "applicationPeriod", sub, context);
                 base.parse_element (/<cim:ServiceGuarantee.automaticPay>([\s\S]*?)<\/cim:ServiceGuarantee.automaticPay>/g, obj, "automaticPay", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ServiceGuarantee.payAmount>([\s\S]*?)<\/cim:ServiceGuarantee.payAmount>/g, obj, "payAmount", base.to_string, sub, context);
                 base.parse_element (/<cim:ServiceGuarantee.serviceRequirement>([\s\S]*?)<\/cim:ServiceGuarantee.serviceRequirement>/g, obj, "serviceRequirement", base.to_string, sub, context);
@@ -188,7 +188,7 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ServiceGuarantee", "applicationPeriod", "applicationPeriod",  base.from_string, fields);
+                base.export_attribute (obj, "ServiceGuarantee", "applicationPeriod", "applicationPeriod", fields);
                 base.export_element (obj, "ServiceGuarantee", "automaticPay", "automaticPay",  base.from_boolean, fields);
                 base.export_element (obj, "ServiceGuarantee", "payAmount", "payAmount",  base.from_string, fields);
                 base.export_element (obj, "ServiceGuarantee", "serviceRequirement", "serviceRequirement",  base.from_string, fields);
@@ -213,7 +213,7 @@ define
                     {{#payAmount}}<div><b>payAmount</b>: {{payAmount}}</div>{{/payAmount}}
                     {{#serviceRequirement}}<div><b>serviceRequirement</b>: {{serviceRequirement}}</div>{{/serviceRequirement}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -244,7 +244,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_payAmount'>payAmount: </label><div class='col-sm-8'><input id='{{id}}_payAmount' class='form-control' type='text'{{#payAmount}} value='{{payAmount}}'{{/payAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceRequirement'>serviceRequirement: </label><div class='col-sm-8'><input id='{{id}}_serviceRequirement' class='form-control' type='text'{{#serviceRequirement}} value='{{serviceRequirement}}'{{/serviceRequirement}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -325,7 +325,7 @@ define
                     `
                     {{#deadline}}<div><b>deadline</b>: {{deadline}}</div>{{/deadline}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -353,7 +353,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deadline'>deadline: </label><div class='col-sm-8'><input id='{{id}}_deadline' class='form-control' type='text'{{#deadline}} value='{{deadline}}'{{/deadline}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -458,7 +458,7 @@ define
                     {{#ErpLineItems}}<div><b>ErpLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpLineItems}}
                     {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);}); return false;'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -498,7 +498,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLineItems'>ErpLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpLineItems' class='form-control' type='text'{{#ErpLineItems}} value='{{ErpLineItems_string}}'{{/ErpLineItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -594,7 +594,7 @@ define
                     + Common.Agreement.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -621,7 +621,7 @@ define
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -718,7 +718,7 @@ define
                     {{#voltImbalanceViolCost}}<div><b>voltImbalanceViolCost</b>: {{voltImbalanceViolCost}}</div>{{/voltImbalanceViolCost}}
                     {{#voltLimitViolCost}}<div><b>voltLimitViolCost</b>: {{voltLimitViolCost}}</div>{{/voltLimitViolCost}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -754,7 +754,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltImbalanceViolCost'>voltImbalanceViolCost: </label><div class='col-sm-8'><input id='{{id}}_voltImbalanceViolCost' class='form-control' type='text'{{#voltImbalanceViolCost}} value='{{voltImbalanceViolCost}}'{{/voltImbalanceViolCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltLimitViolCost'>voltLimitViolCost: </label><div class='col-sm-8'><input id='{{id}}_voltLimitViolCost' class='form-control' type='text'{{#voltLimitViolCost}} value='{{voltLimitViolCost}}'{{/voltLimitViolCost}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -835,7 +835,7 @@ define
                     + Core.Curve.prototype.template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -862,7 +862,7 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -964,7 +964,7 @@ define
                     {{#ErpInvoiceLineItems}}<div><b>ErpInvoiceLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpInvoiceLineItems}}
                     {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);}); return false;'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
                     </div>
-                    <fieldset>
+                    </fieldset>
 
                     `
                 );
@@ -973,14 +973,14 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.CustomerBillingKind = []; if (!obj.kind) obj.CustomerBillingKind.push ({ id: '', selected: true}); for (var property in CustomerBillingKind) obj.CustomerBillingKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj.kindCustomerBillingKind = [{ id: '', selected: (!obj.kind)}]; for (var property in CustomerBillingKind) obj.kindCustomerBillingKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 if (obj.ErpInvoiceLineItems) obj.ErpInvoiceLineItems_string = obj.ErpInvoiceLineItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.CustomerBillingKind;
+                delete obj.kindCustomerBillingKind;
                 delete obj.ErpInvoiceLineItems_string;
             }
 
@@ -996,7 +996,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billingDate'>billingDate: </label><div class='col-sm-8'><input id='{{id}}_billingDate' class='form-control' type='text'{{#billingDate}} value='{{billingDate}}'{{/billingDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dueDate'>dueDate: </label><div class='col-sm-8'><input id='{{id}}_dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#CustomerBillingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CustomerBillingKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCustomerBillingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCustomerBillingKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastPaymentAmt'>lastPaymentAmt: </label><div class='col-sm-8'><input id='{{id}}_lastPaymentAmt' class='form-control' type='text'{{#lastPaymentAmt}} value='{{lastPaymentAmt}}'{{/lastPaymentAmt}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastPaymentDate'>lastPaymentDate: </label><div class='col-sm-8'><input id='{{id}}_lastPaymentDate' class='form-control' type='text'{{#lastPaymentDate}} value='{{lastPaymentDate}}'{{/lastPaymentDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outBalance'>outBalance: </label><div class='col-sm-8'><input id='{{id}}_outBalance' class='form-control' type='text'{{#outBalance}} value='{{outBalance}}'{{/outBalance}}></div></div>
@@ -1005,7 +1005,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems_string}}'{{/ErpInvoiceLineItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
-                    <fieldset>
+                    </fieldset>
                     `
                 );
             }
@@ -1018,7 +1018,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_billingDate").value; if ("" != temp) obj.billingDate = temp;
                 temp = document.getElementById (id + "_dueDate").value; if ("" != temp) obj.dueDate = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerBillingKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; }
+                temp = CustomerBillingKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; else delete obj.kind;
                 temp = document.getElementById (id + "_lastPaymentAmt").value; if ("" != temp) obj.lastPaymentAmt = temp;
                 temp = document.getElementById (id + "_lastPaymentDate").value; if ("" != temp) obj.lastPaymentDate = temp;
                 temp = document.getElementById (id + "_outBalance").value; if ("" != temp) obj.outBalance = temp;
@@ -1048,8 +1048,9 @@ define
                 ExternalCustomerAgreement: ExternalCustomerAgreement,
                 SubscribePowerCurve: SubscribePowerCurve,
                 ComplianceEvent: ComplianceEvent,
-                StandardIndustryCode: StandardIndustryCode,
+                CustomerBillingKind: CustomerBillingKind,
                 PowerQualityPricing: PowerQualityPricing,
+                StandardIndustryCode: StandardIndustryCode,
                 WorkBillingInfo: WorkBillingInfo,
                 CustomerBillingInfo: CustomerBillingInfo,
                 ServiceGuarantee: ServiceGuarantee
