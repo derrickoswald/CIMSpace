@@ -106,14 +106,13 @@ define
             make_conductor (array)
             {
                 var line = array[0];
-                var id = line.id;
 
                 // get the position points
                 var pp = array.filter (o => o.cls == "PositionPoint").sort ((a, b) => a.sequenceNumber - b.sequenceNumber);
-                var connectivity1 = this.get_connectivity (Number (pp[0].xPosition), Number (pp[0].yPosition));
+                var connectivity1 = this.get_connectivity (Number (pp[0].xPosition), Number (pp[0].yPosition), line);
                 if (null == connectivity1) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (this._cimedit.generateId (id, "_node_1"));
+                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", line, "_node_1"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found at end 1, created ConnectivityNode " + node.id);
                     connectivity1 = { ConnectivityNode: node.id };
@@ -123,7 +122,7 @@ define
                         line.BaseVoltage = connectivity1.BaseVoltage;
 
                 // add the terminals
-                var tid1 = this._cimedit.generateId (id, "_terminal_1");
+                var tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", line, "_terminal_1");
                 var terminal1 =
                 {
                     EditDisposition: "new",
@@ -133,17 +132,17 @@ define
                     name: tid1,
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
-                    ConductingEquipment: id,
+                    ConductingEquipment: line.id,
                     ConnectivityNode: connectivity1.ConnectivityNode
                 };
                 if (connectivity1.TopologicalNode)
                     terminal1.TopologicalNode = connectivity1.TopologicalNode;
 
                 var last = pp.length - 1;
-                var connectivity2 = this.get_connectivity (Number (pp[last].xPosition), Number (pp[last].yPosition));
+                var connectivity2 = this.get_connectivity (Number (pp[last].xPosition), Number (pp[last].yPosition), line);
                 if (null == connectivity2) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (this._cimedit.generateId (id, "_node_2"));
+                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", line, "_node_2"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found at end 2, created ConnectivityNode " + node.id);
                     connectivity2 = { ConnectivityNode: node.id };
@@ -152,7 +151,7 @@ define
                     if (connectivity2.BaseVoltage)
                         line.BaseVoltage = connectivity2.BaseVoltage;
 
-                var tid2 = this._cimedit.generateId (id, "_terminal_2");
+                var tid2 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", line, "_terminal_2");
                 var terminal2 =
                 {
                     EditDisposition: "new",
@@ -162,7 +161,7 @@ define
                     name: tid2,
                     sequenceNumber: 2,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
-                    ConductingEquipment: id,
+                    ConductingEquipment: line.id,
                     ConnectivityNode: connectivity2.ConnectivityNode
                 };
                 if (connectivity2.TopologicalNode)
@@ -196,7 +195,6 @@ define
             make ()
             {
                 var parameters = this.submit_parameters ();
-                parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 this._cimedit.refresh ();
                 var cpromise = this._digitizer.line (obj, this._cimedit.new_features ());

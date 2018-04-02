@@ -43,8 +43,8 @@ define
                 this._map.off ("mousemove", this.mousemove_listener);
                 // destroy the container
                 this._container.parentNode.removeChild (this._container);
-                this._container = null;
-                this._map = undefined;
+                delete this._container;
+                delete this._map;
             }
 
             getDefaultPosition ()

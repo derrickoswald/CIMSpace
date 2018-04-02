@@ -81,7 +81,7 @@ define
                     { value: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.Yn", description: "Wye with neutral" }
                 ];
                 if (!proto)
-                    proto = { mRID: this._cimedit.uuidv4 (), customerCount: 1, phaseConnection: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.Yn" };
+                    proto = { mRID: this._cimedit.get_cimmrid ().nextIdFor ("EnergyConsumer"), customerCount: 1, phaseConnection: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind.Yn" };
                 var view = { proto: proto, phaseConnections: phaseConnections, isSelected: function () { return (proto.phaseConnection == this.value); } };
                 var ret = mustache.render (template, view);
                 return (ret);
@@ -90,8 +90,6 @@ define
             submit_parameters ()
             {
                 var id = document.getElementById ("mRID").value;
-                if (!/([^\d]+)(\d+)$/.test (id))
-                    id = "HAS0001";
                 var consumer = { id: id, mRID: id, cls: "EnergyConsumer", EditDisposition: "new" };
                 var customerCount = document.getElementById ("customerCount").value;
                 if ("" != customerCount)
@@ -106,50 +104,25 @@ define
                 if ("" != phaseConnection)
                     consumer.phaseConnection = phaseConnection;
 
-                var cable = { cls: "ACLineSegment", EditDisposition: "new" };
-                var cable_name = document.getElementById ("cable_name");
-                if (cable_name)
-                {
-                    cable_name = cable_name.value;
-                    cable.AssetDatasheet = cable_name; // add the cable type
-                    cable.PerLengthImpedance = this._cimmap.get ("WireInfo", cable_name).PerLengthParameters[0]; // add the per length parameters
-                }
-
-                return ([consumer, cable]);
-            }
-
-            next (id)
-            {
-                function pad (width, string, padding)
-                {
-                    return ((width <= string.length) ? string : pad (width, padding + string, padding));
-                }
-                var ret = id + "0";
-                var regexp = /(\S+[^\d])(\d+)$/;
-                var array = regexp.exec (id);
-                if (array)
-                    ret = array[1] + pad (array[2].length, (Number (array[2]) + 1).toString (), "0");
-                return (ret);
+                return (consumer);
             }
 
             make ()
             {
-                var parameters = this.submit_parameters ();
+                var consumer = this.submit_parameters ();
                 var iterations = Number (document.getElementById ("iterations").value);
-                var consumer = parameters[0];
-                var cable = parameters[1];
                 var obj = this._cimedit.create_from (consumer);
                 var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
                 // set up iterations
-                var objs = [];
-                var id = obj.id;
-                for (var i = 0; i < iterations; i++)
+                var objs = [obj];
+                this._cimedit.editnew (objs);
+                for (var i = 1; i < iterations; i++)
                 {
                     obj = JSON.parse (JSON.stringify (obj));
-                    obj.id = id;
-                    obj.mRID = id;
+                    obj.id = this._cimedit.get_cimmrid ().nextIdFor ("EnergyConsumer");
+                    obj.mRID = obj.id;
                     objs.push (obj);
-                    id = this.next (id);
+                    this._cimedit.editnew (objs);
                 }
 
                 function do_one (obj)
@@ -175,7 +148,7 @@ define
                         console.log ("catch cancel " + message);
                         return (list_so_far);
                     }
-                    return (cpromise.promise ().then (append, catch_cancel));
+                    return (cpromise.promise ().then (append /*, catch_cancel */));
                 }
                 var ret = do_one.call (this, objs[0]);
                 for (var i = 1; i < objs.length; i++)

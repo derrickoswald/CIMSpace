@@ -63,7 +63,9 @@ define
 
             submit_parameters ()
             {
-                return ({ cls: document.getElementById ("psr_class").value });
+                var cls = document.getElementById ("psr_class").value;
+                var id = this._cimedit.get_cimmrid ().nextIdFor (cls);
+                return ({ cls: cls, id: id });
             }
 
             get_connectivity_for_equipment (equipment, point)
@@ -87,19 +89,22 @@ define
                     sequence = 2;
 
                 // get the terminal with that sequence number and the total number of terminals
-                var terminals = data.Terminal;
                 var n = 0;
                 var terminal = null;
                 var default_terminal = null;
-                for (var id in terminals)
-                    if (terminals[id].ConductingEquipment == equipment.id)
+                this._cimmap.forAll ("Terminal",
+                    t =>
                     {
-                        n = n + 1;
-                        if (null == default_terminal)
-                            default_terminal = terminals[id];
-                        if (terminals[id].sequenceNumber == sequence)
-                            terminal = terminals[id];
+                        if (t.ConductingEquipment == equipment.id)
+                        {
+                            n = n + 1;
+                            if (null == default_terminal)
+                                default_terminal = t;
+                            if (t.sequenceNumber == sequence)
+                                terminal = t;
+                        }
                     }
+                );
 
                 // assign ConnectivityNode and TopologicalNode based on the terminal or default
                 if (null != terminal)
@@ -150,19 +155,19 @@ define
                 return (ret);
             }
 
-            get_connectivity_for_point (point)
+            get_connectivity_for_point (not_obj, point)
             {
-                var ret = {};
+                var ret = null;
                 var location = this._cimmap.get ("Location", point.Location);
                 var matches = [];
                 if (location)
                     this._cimmap.forAll ("ConductingEquipment",
                         equipment =>
                         {
-                            if (equipment.Location == location.id)
+                            if (equipment.Location == location.id && (not_obj.id != equipment.id))
                             {
-                                matches.push (equipment[id]);
-                                console.log ("connectivity found to " + equipment[id].cls + ":" + equipment[id].id);
+                                matches.push (equipment);
+                                console.log ("connectivity found to " + equipment.cls + ":" + equipment.id);
                             }
                         }
                     );
@@ -177,12 +182,12 @@ define
                 return (ret);
             }
 
-            get_best_connectivity_for_points (points)
+            get_best_connectivity_for_points (not_obj, points)
             {
                 var ret = {};
 
-                function gc (point) { return (this.get_connectivity_for_point (point)); }
-                var list = points.map (gc.bind (this));
+                function gc (point) { return (this.get_connectivity_for_point (not_obj, point)); }
+                var list = points.map (gc.bind (this)).filter (x => null != x);
                 if (0 != list.length)
                 {
                     var existing = list.filter (function (connectivity) { return (connectivity.ConnectivityNode); });
@@ -207,7 +212,7 @@ define
                 return (ret);
             }
 
-            get_connectivity (lng, lat)
+            get_connectivity (lng, lat, not_obj)
             {
                 var ret = null;
 
@@ -216,26 +221,23 @@ define
                 this._cimmap.forAll ("PositionPoint",
                     point =>
                     {
-                        if (point.EditDisposition != "new") // don't find our own object
+                        var x = point.xPosition;
+                        var y = point.yPosition;
+                        var dx = lng - x;
+                        var dy = lat - y;
+                        if (dx * dx + dy * dy < 1e-12) // ToDo: a parameter somehow?
                         {
-                            var x = point.xPosition;
-                            var y = point.yPosition;
-                            var dx = lng - x;
-                            var dy = lat - y;
-                            if (dx * dx + dy * dy < 1e-12) // ToDo: a parameter somehow?
-                            {
-                                matches.push (point);
-                                console.log ("match point d = " + (dx * dx + dy * dy).toString () + " " + point.id + " [" + point.xPosition + "," + point.yPosition + "]");
-                            }
+                            matches.push (point);
+                            console.log ("match point d = " + (dx * dx + dy * dy).toString () + " " + point.id + " [" + point.xPosition + "," + point.yPosition + "]");
                         }
                     }
                 );
                 // if there are no matches, bail out
                 // if there is only one, use that one
                 if (1 == matches.length)
-                    ret = this.get_connectivity_for_point (matches[0]);
+                    ret = this.get_connectivity_for_point (not_obj, matches[0]);
                 else if (1 < matches.length)
-                    ret = this.get_best_connectivity_for_points (matches);
+                    ret = this.get_best_connectivity_for_points (not_obj, matches);
 
                 return (ret);
             }
@@ -262,7 +264,6 @@ define
             make ()
             {
                 var parameters = this.submit_parameters ();
-                parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
                 var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);

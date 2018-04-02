@@ -214,13 +214,14 @@ define
                             {
                                 if ("undefined" == typeof (coordinates[0]))
                                     coordinates = coordinates.slice (1);
+                                var self = this;
                                 streetview.urlFor (coordinates[0][0], coordinates[0][1],
                                     function (url)
                                     {
                                         if (-1 != url.indexOf ("pano"))
                                         {
                                             var link = "<a href='" + url + "' target='_blank'>StreetView</a>";
-                                            this._container.getElementsByClassName ("card-subtitle")[0].innerHTML = link;
+                                            self._container.getElementsByClassName ("card-subtitle")[0].innerHTML = link;
                                         }
                                     }
                                 );

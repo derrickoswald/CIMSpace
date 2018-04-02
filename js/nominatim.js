@@ -145,40 +145,6 @@ define
                 );
             }
 
-    // ToDo: break out into module:
-            /**
-             * Generate a GUID.
-             * See https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript#2117523
-             */
-            uuidv4 ()
-            {
-                var uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace (/[018]/g, c => (c ^ crypto.getRandomValues (new Uint8Array (1))[0] & 15 >> c / 4).toString (16));
-                return ("_" + uuid);
-            }
-
-            /**
-             * Predicate to check if the <code>id</code> looks like a GUID.
-             * @param s the string to test
-             * @return <code>true</code> if the string has the form of a GUID with an optional leading underscore, <code>false</code> otherwise.
-             */
-            isGUID (s)
-            {
-                return ((null != s) ? /^[_]?[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test (s) : false);
-            }
-
-            /**
-             * Generate a 'unique' id.
-             * If the supplied string looks like a GUID, this generates another GUID,
-             * else it appends the suffix to the suplied string to generate a 'unique' id - if you know what you are doing.
-             * @param s the 'base' id
-             * @param the suffix to add to the base id if the base id isn't a GUID
-             * @return a GUID or the supplied string with the suffix
-             */
-            generateId (s, suffix)
-            {
-                return (this.isGUID (s) ? this.uuidv4 () : s + suffix);
-            }
-
             /**
              * Check for an existing TownDetail with the same attributes.
              * @param town the new TownDetail to check if it exists
@@ -212,14 +178,14 @@ define
 
             /**
              * Create CIM components matching the Nominatim geocode data.
-             * @param id the base mRID to generate new mRID from (with suffixes)
+             * @param parent the base object, used to generate new mRID from (with suffixes)
              * @param response The nominatim server response as a JavaScript object
              * @return an array of new CIM elements including StreetAddress, StreetDetail and Status,
              * with possibly a TownDetail unless it already exists in the map data
              * @function formStreetAddress
              * @memberOf Nominatim
              */
-            formStreetAddress (id, response)
+            formStreetAddress (parent, response)
             {
                 var ret = [];
                 if (null != response)
@@ -229,7 +195,7 @@ define
                     var status = new Common.Status (
                         {
                             cls: "Status",
-                            id: this.generateId (id, "_status"),
+                            id: this._cimmap.get_editor ().get_cimmrid ().nextIdFor ("Status", parent, "_status"),
                             dateTime: new Date ().toISOString (),
                             reason: "Nominatim initialization",
                             remark: response.url,
@@ -242,7 +208,7 @@ define
                     var street = new Common.StreetDetail (
                         {
                             cls: "StreetDetail",
-                            id: this.generateId (id, "_street"),
+                            id: this._cimmap.get_editor ().get_cimmrid ().nextIdFor ("Status", parent, "_street"),
                             addressGeneral: response.display_name,
                             buildingName: response.address.housename ? response.address.housename : response.address.building,
                             code: response.type,
@@ -286,7 +252,7 @@ define
                     var address = new Common.StreetAddress (
                         {
                             cls: "StreetAddress",
-                            id: this.generateId (id, "_address"),
+                            id: this._cimmap.get_editor ().get_cimmrid ().nextIdFor ("Status", parent, "_address"),
                             status: status.id,
                             streetDetail: street.id,
                             townDetail: town.id
@@ -322,8 +288,7 @@ define
                             this.getAddress (lon, lat).then (
                                 (response) =>
                                 {
-                                    var id = array[0].id;
-                                    var extra = this.formStreetAddress (id, response);
+                                    var extra = this.formStreetAddress (array[0], response);
                                     // set the Location.mainAddress
                                     var address = extra.filter (o => o.cls == "StreetAddress")[0];
                                     location.mainAddress = address.id;

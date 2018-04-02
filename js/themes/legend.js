@@ -19,7 +19,6 @@ define
         {
             constructor (theme)
             {
-                this._onMap = false;
                 this._theme = theme;
                 this._template =
                 "<div class='card'>\n" +
@@ -58,15 +57,15 @@ define
                 for (var i = 0; i < list.length; i++)
                     list[i].onchange = this.legend_change.bind (this);
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
-                this._onMap = true;
                 return (this._container);
             }
 
             onRemove ()
             {
                 this._container.parentNode.removeChild (this._container);
-                this._map = undefined;
-                this._onMap = false;
+                delete this._items;
+                delete this._container;
+                delete this._map;
             }
 
             getDefaultPosition ()
@@ -81,13 +80,13 @@ define
 
             visible ()
             {
-                return (this._onMap);
+                return ("undefined" != typeof (this._container));
             }
 
             legend_change (event)
             {
                 var element = this._items.find (function (item) { return (item.id == event.target.id); });
-                if ("undefined" != typeof (element))
+                if (element)
                     element.checked = event.target.checked;
                 if (this._legend_listener)
                     this._legend_listener ();

@@ -47,7 +47,6 @@ define
             make_transformer (array)
             {
                 var trafo = array[0];
-                var id = trafo.id;
 
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 trafo.normallyInService = true;
@@ -55,17 +54,17 @@ define
 
                 // ToDo: assume it's the primary?
                 var pp = array.filter (o => o.cls == "PositionPoint")[0];
-                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition));
+                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition), trafo);
                 if (null == connectivity) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (this._cimedit.generateId (id, "_node_1"));
+                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", trafo, "_node_1"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created primary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
 
                 // add the terminal
-                var tid1 = this._cimedit.generateId (id, "_terminal_1");
+                var tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", trafo, "_terminal_1");
                 var terminal1 =
                 {
                     EditDisposition: "new",
@@ -75,7 +74,7 @@ define
                     name: tid1,
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
-                    ConductingEquipment: id,
+                    ConductingEquipment: trafo.id,
                     ConnectivityNode: connectivity.ConnectivityNode
                 };
                 if (connectivity.TopologicalNode)
@@ -84,12 +83,12 @@ define
 
                 // add a secondary connectivity node
                 {
-                    var node = this.new_connectivity (this._cimedit.generateId (id, "_node_2"));
+                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", trafo, "_node_2"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("created secondary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
-                var tid2 = this._cimedit.generateId (id, "_terminal_2");
+                var tid2 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", trafo, "_terminal_2");
                 var terminal2 =
                 {
                     EditDisposition: "new",
@@ -99,13 +98,13 @@ define
                     name: tid2,
                     sequenceNumber: 2,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
-                    ConductingEquipment: id,
+                    ConductingEquipment: trafo.id,
                     ConnectivityNode: connectivity.ConnectivityNode
                 };
                 array.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
 
                 // add power transformer ends
-                var eid1 = this._cimedit.generateId (id, "_end_1");
+                var eid1 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformer", trafo, "_end_1");
                 var end1 =
                 {
                     EditDisposition: "new",
@@ -118,9 +117,9 @@ define
                     BaseVoltage: eqm.medium_voltage (),
                     Terminal: terminal1.id,
                     connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.D",
-                    PowerTransformer: id
+                    PowerTransformer: trafo.id
                 };
-                var eid2 = this._cimedit.generateId (id, "_end_2");
+                var eid2 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformer", trafo, "_end_2");
                 var end2 =
                 {
                     EditDisposition: "new",
@@ -133,7 +132,7 @@ define
                     BaseVoltage: eqm.low_voltage (),
                     Terminal: terminal2.id,
                     connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.Yn",
-                    PowerTransformer: id
+                    PowerTransformer: trafo.id
                 };
                 array.push (new Wires.PowerTransformerEnd (end1, this._cimedit.new_features ()));
                 array.push (new Wires.PowerTransformerEnd (end2, this._cimedit.new_features ()));
@@ -147,7 +146,6 @@ define
             make ()
             {
                 var parameters = this.submit_parameters ();
-                parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
                 var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);

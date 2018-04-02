@@ -423,7 +423,8 @@ define
                     if (objects)
                         ret = objects[id];
                 }
-                if (get_editor ().has_new_features ())
+                ret = (ret && ret.EditDisposition && ret.EditDisposition == "delete") ? undefined : ret;
+                if (!ret && get_editor ().has_new_features ())
                 {
                     data = get_editor ().new_features ();
                     var objects = data[classname];
@@ -436,21 +437,26 @@ define
 
         function forAll (classname, fn)
         {
+            var broken = false;
             function iterateOver (objects, fn)
             {
                 if (objects)
                     for (var property in objects)
+                    {
                         if (objects.hasOwnProperty (property))
                         {
                             var obj = objects[property];
                             if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                fn (obj);
+                                broken = fn (obj);
                         }
+                        if (broken)
+                            break;
+                    }
             }
             var data = get_data ();
             if (data)
                 iterateOver (data[classname], fn);
-            if (get_editor ().has_new_features ())
+            if (!broken && get_editor ().has_new_features ())
             {
                 data = get_editor ().new_features ();
                 if (data)

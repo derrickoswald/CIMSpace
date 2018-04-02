@@ -38,10 +38,9 @@ define
             create_location (coordsys, array, feature)
             {
                 var element = array[0];
-                var id = element.id;
 
                 // create the location
-                var lid = this._cimedit.generateId (id, "_location");
+                var lid = this._cimedit.get_cimmrid ().nextIdFor ("Location", element, "_location");
                 var location =
                 {
                     EditDisposition: "new",
@@ -63,7 +62,7 @@ define
                         EditDisposition: "new",
                         Location: location.id,
                         cls: "PositionPoint",
-                        id: this._cimedit.generateId (id, "_location_p"),
+                        id: this._cimedit.get_cimmrid ().nextIdFor ("PositionPoint", location, "_point"),
                         sequenceNumber: 1,
                         xPosition: lnglat[0].toString (),
                         yPosition: lnglat[1].toString ()
@@ -81,7 +80,7 @@ define
                             EditDisposition: "new",
                             Location: location.id,
                             cls: "PositionPoint",
-                            id: this._cimedit.generateId (id, "_location_p" + (i + 1).toString ()),
+                            id: this._cimedit.get_cimmrid ().nextIdFor ("PositionPoint", location, "_point_" + (i + 1).toString ()),
                             sequenceNumber: (i + 1).toString (),
                             xPosition: lnglat[0].toString (),
                             yPosition: lnglat[1].toString ()

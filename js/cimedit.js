@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "makers/houseservicemaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
+    ["mustache", "cim", "cimmrid", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "makers/houseservicemaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
     /**
      * @summary Edit control.
      * @description UI element for editing
@@ -13,13 +13,14 @@ define
      * @exports cimedit
      * @version 1.0
      */
-    function (mustache, cim, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, HouseServiceMaker, layers, Common, Core, Wires)
+    function (mustache, cim, CIMmrid, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, HouseServiceMaker, layers, Common, Core, Wires)
     {
         class CIMEdit
         {
             constructor (cimmap)
             {
                 this._cimmap = cimmap;
+                this._cimmrid = new CIMmrid (cimmap);
                 this._template =
                 "<div class='card'>\n" +
                 "  <div class='card-body'>\n" +
@@ -99,10 +100,11 @@ define
                 if (this._resizer)
                 {
                     this._map.off ("resize", this._resizer);
-                    this._resizer = null;
+                    delete this._resizer;
                 }
                 // destroy the container
                 this._container.parentNode.removeChild (this._container);
+                delete this._digitizer;
                 delete this._container;
                 delete this._map;
             }
@@ -163,6 +165,11 @@ define
                     selects.item (i).onchange = this.change.bind (this);
             }
 
+            get_cimmrid ()
+            {
+                return (this._cimmrid);
+            }
+
             has_new_features ()
             {
                 return ("undefined" != typeof (this._data));
@@ -184,39 +191,6 @@ define
                 var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this.new_features (), options);
                 this._map.getSource ("edit points").setData (geo.points);
                 this._map.getSource ("edit lines").setData (geo.lines);
-            }
-
-            /**
-             * Generate a GUID.
-             * See https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript#2117523
-             */
-            uuidv4 ()
-            {
-                var uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace (/[018]/g, c => (c ^ crypto.getRandomValues (new Uint8Array (1))[0] & 15 >> c / 4).toString (16));
-                return ("_" + uuid);
-            }
-
-            /**
-             * Predicate to check if the <code>id</code> looks like a GUID.
-             * @param s the string to test
-             * @return <code>true</code> if the string has the form of a GUID with an optional leading underscore, <code>false</code> otherwise.
-             */
-            isGUID (s)
-            {
-                return ((null != s) ? /^[_]?[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test (s) : false);
-            }
-
-            /**
-             * Generate a 'unique' id.
-             * If the supplied string looks like a GUID, this generates another GUID,
-             * else it appends the suffix to the suplied string to generate a 'unique' id - if you know what you are doing.
-             * @param s the 'base' id
-             * @param the suffix to add to the base id if the base id isn't a GUID
-             * @return a GUID or the supplied string with the suffix
-             */
-            generateId (s, suffix)
-            {
-                return (this.isGUID (s) ? this.uuidv4 () : s + suffix);
             }
 
             primary_element ()
@@ -279,7 +253,7 @@ define
                 else
                 {
                     var class_name = document.getElementById ("class_name").value;
-                    var id = this.uuidv4 ();
+                    var id = this.get_cimmrid ().nextIdFor (class_name);
                     var proto = { cls: class_name, id: id };
                     this.create_from (proto);
                 }
@@ -288,7 +262,7 @@ define
             create_new ()
             {
                 var proto = JSON.parse (JSON.stringify (this._elements[0]));
-                proto.id = this.uuidv4 ();
+                proto.id = this.get_cimmrid ().nextIdFor (proto.cls);
                 // find a maker for this class
                 var maker = this._makers.find (maker => maker.classes ().includes (proto.cls));
                 if (maker)

@@ -74,20 +74,29 @@ define
                 return (ret);
             }
 
-            make_substation (feature)
+            make_substation (array)
             {
                 var station = this._cimedit.primary_element ();
-                var id = station.id;
                 station.PSRType = this.transformer_station ();
-
                 var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
-                var ret = lm.create_location ("pseudo_wgs84", [station], feature);
-                ret = ret.concat (lm.ensure_coordinate_systems ());
 
+                // build a GeoJSON feature to locate all the pieces
+                var pp = array.filter (o => o.cls == "PositionPoint").sort ((a, b) => a.sequenceNumber - b.sequenceNumber)[0];
+                var lon = Number (pp.xPosition);
+                var lat = Number (pp.yPosition);
+                var feature =
+                    {
+                        type : "Feature",
+                        geometry :
+                        {
+                            type : "Point",
+                            coordinates : [ lon, lat ]
+                        }
+                    };
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
-                ret = ret.concat (eqm.ensure_voltages ());
-                ret = ret.concat (eqm.ensure_status ());
-                ret = ret.concat (this.ensure_stations ());
+                array = array.concat (eqm.ensure_voltages ());
+                array = array.concat (eqm.ensure_status ());
+                array = array.concat (this.ensure_stations ());
 
                 var x = feature.geometry.coordinates[0];
                 var y = feature.geometry.coordinates[1];
@@ -95,8 +104,8 @@ define
                 // add BusbarSection
                 x = x + this._xoffset;
                 feature.geometry.coordinates[0] = x;
-                var bid = this._cimedit.generateId (id, "_busbar");
-                var b =
+                var bid = this._cimedit.get_cimmrid ().nextIdFor ("BusbarSection", station, "_busbar");
+                var bus =
                 {
                     EditDisposition: "new",
                     cls: "BusbarSection",
@@ -106,12 +115,12 @@ define
                     BaseVoltage: eqm.low_voltage (),
                     normallyInService: true,
                     SvStatus: eqm.in_use (),
-                    EquipmentContainer: id
+                    EquipmentContainer: station.id
                 };
-                var location = lm.create_location ("pseudo_wgs84", [b], feature);
-                var busbar = new Wires.BusbarSection (b, this._cimedit.new_features ());
-                var node = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.generateId (bid, "_node"), id), this._cimedit.new_features ());
-                var tid = this._cimedit.generateId (bid, "_terminal");
+                var location = lm.create_location ("pseudo_wgs84", [bus], feature);
+                var busbar = new Wires.BusbarSection (bus, this._cimedit.new_features ());
+                var node = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", bus, "_node"), station.id), this._cimedit.new_features ());
+                var tid = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", bus, "_terminal");
                 var t =
                 {
                     EditDisposition: "new",
@@ -127,10 +136,10 @@ define
                 };
                 var terminal = new Core.Terminal (t, this._cimedit.new_features ());
 
-                ret.push (busbar);
-                ret.push (terminal);
-                ret.push (node);
-                ret = ret.concat (location);
+                array.push (busbar);
+                array.push (terminal);
+                array.push (node);
+                array = array.concat (location);
 
                 y = y - this._yoffset;
                 for (var i = 0; i < this._fusecount; i++)
@@ -143,8 +152,8 @@ define
 
                     if (0 == i)
                     {
-                        did = this._cimedit.generateId (id, "_switch");
-                        var s =
+                        did = this._cimedit.get_cimmrid ().nextIdFor ("Switch", station, "_switch");
+                        var swtch =
                         {
                             EditDisposition: "new",
                             cls: "Switch",
@@ -155,14 +164,14 @@ define
                             normallyInService: true,
                             retained: true,
                             SvStatus: eqm.in_use (),
-                            EquipmentContainer: id
+                            EquipmentContainer: station.id
                         };
-                        location = lm.create_location ("pseudo_wgs84", [s], feature);
-                        device = new Wires.Switch (s, this._cimedit.new_features ());
+                        location = lm.create_location ("pseudo_wgs84", [swtch], feature);
+                        device = new Wires.Switch (swtch, this._cimedit.new_features ());
                     }
                     else
                     {
-                        did = this._cimedit.generateId (id, "_fuse_" + i);
+                        did = this._cimedit.get_cimmrid ().nextIdFor ("Fuse", station, "_fuse_" + i);
                         var f =
                         {
                             EditDisposition: "new",
@@ -174,13 +183,13 @@ define
                             ratedCurrent: 125.0,
                             normallyInService: true,
                             SvStatus: eqm.in_use (),
-                            EquipmentContainer: id
+                            EquipmentContainer: station.id
                         };
                         location = lm.create_location ("pseudo_wgs84", [f], feature);
                         device = new Wires.Fuse (f, this._cimedit.new_features ());
                     }
 
-                    var tid1 = this._cimedit.generateId (did, "_terminal_1");
+                    var tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", device, "_terminal_1");
                     var t1 =
                     {
                         EditDisposition: "new",
@@ -196,8 +205,8 @@ define
                     };
                     var terminal1 = new Core.Terminal (t1, this._cimedit.new_features ());
 
-                    var n = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.generateId (did, "_node"), id), this._cimedit.new_features ());
-                    var tid2 = this._cimedit.generateId (did, "_terminal_2");
+                    var n = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", device, "_node_2"), station.id), this._cimedit.new_features ());
+                    var tid2 =  this._cimedit.get_cimmrid ().nextIdFor ("Terminal", device, "_terminal_2");
                     var t2 =
                     {
                         EditDisposition: "new",
@@ -213,14 +222,14 @@ define
                     };
                     var terminal2 = new Core.Terminal (t2, this._cimedit.new_features ());
 
-                    ret.push (device);
-                    ret.push (terminal1);
-                    ret.push (terminal2);
-                    ret.push (n);
-                    ret = ret.concat (location);
+                    array.push (device);
+                    array.push (terminal1);
+                    array.push (terminal2);
+                    array.push (n);
+                    array = array.concat (location);
 
                     feature.geometry.coordinates[1] = y - this._yoffset;
-                    var cid = this._cimedit.generateId (id, "_connector_" + (i + 1));
+                    var cid = this._cimedit.get_cimmrid ().nextIdFor ("Connector", station, "_connector_" + (i + 1));
                     var c =
                     {
                         EditDisposition: "new",
@@ -231,11 +240,11 @@ define
                         BaseVoltage: eqm.low_voltage (),
                         normallyInService: true,
                         SvStatus: eqm.in_use (),
-                        EquipmentContainer: id
+                        EquipmentContainer: station.id
                     };
                     location = lm.create_location ("pseudo_wgs84", [c], feature);
                     var connector = new Wires.Connector (c, this._cimedit.new_features ());
-                    var tid3 = this._cimedit.generateId (cid, "_terminal");
+                    var tid3 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", c, "_terminal");
                     var t3 =
                     {
                         EditDisposition: "new",
@@ -250,23 +259,25 @@ define
                         ConnectivityNode: n.id
                     };
                     var terminal3 = new Core.Terminal (t3, this._cimedit.new_features ());
-                    ret.push (connector);
-                    ret.push (terminal3);
-                    ret = ret.concat (location);
+                    array.push (connector);
+                    array.push (terminal3);
+                    array = array.concat (location);
 
                     x = x + this._xoffset;
                 }
 
-                return (ret);
+                return (array);
             }
 
             make ()
             {
                 var parameters = this.submit_parameters ();
-                parameters.id = this._cimedit.uuidv4 ();
+
                 var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
-                cpromise.setPromise (cpromise.promise ().then (this.make_substation.bind (this)));
+                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84").then (this.make_substation.bind (this)));
+
                 return (cpromise);
             }
         }

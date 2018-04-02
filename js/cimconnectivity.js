@@ -53,8 +53,9 @@ define
 
             onRemove ()
             {
-                this._container.parentNode.removeChild (this._container);
                 this._cimmap.remove_feature_listener (this);
+                this._container.parentNode.removeChild (this._container);
+                delete this._container;
                 delete this._map;
             }
 

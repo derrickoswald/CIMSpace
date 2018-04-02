@@ -19,7 +19,6 @@ define
         {
             constructor ()
             {
-                this._onMap = false;
                 this._themes = [];
                 this._template =
                     "<div class='card'>\n" +
@@ -61,8 +60,8 @@ define
                         );
                     }
                 );
-                this._html = mustache.render (this._template, { themes: list });
-                this._container.innerHTML = this._html;
+                var html = mustache.render (this._template, { themes: list });
+                this._container.innerHTML = html;
                 if (0 != this._themes.length)
                 {
                     var current = this._theme.getName ();
@@ -74,7 +73,6 @@ define
                         list[i].onchange = this.theme_change.bind (this);
                 }
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
-                this._onMap = true;
                 return (this._container);
             }
 
@@ -82,8 +80,8 @@ define
             {
                 this._container.innerHTML = "";
                 this._container.parentNode.removeChild (this._container);
-                this._map = undefined;
-                this._onMap = false;
+                delete this._container;
+                delete this._map;
             }
 
             getDefaultPosition ()
@@ -133,7 +131,7 @@ define
 
             visible ()
             {
-                return (this._onMap);
+                return ("undefined" != typeof (this._container));
             }
 
             theme_change (event)

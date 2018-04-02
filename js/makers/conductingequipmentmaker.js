@@ -94,14 +94,13 @@ define
             make_equipment (array)
             {
                 var equipment = array[0];
-                var id = equipment.id;
 
                 // get the position
                 var pp = array.filter (o => o.cls == "PositionPoint")[0];
-                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition));
+                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition), equipment);
                 if (null == connectivity) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (this._cimedit.generateId (id, "_node"));
+                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", equipment, "_node"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
@@ -111,7 +110,7 @@ define
                         equipment.BaseVoltage = connectivity.BaseVoltage;
 
                 // add the terminal
-                var tid = this._cimedit.generateId (id, "_terminal_1");
+                var tid = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", equipment, "_terminal");
                 var terminal =
                 {
                     EditDisposition: "new",
@@ -121,7 +120,7 @@ define
                     name: tid,
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
-                    ConductingEquipment: id,
+                    ConductingEquipment: equipment.id,
                     ConnectivityNode: connectivity.ConnectivityNode
                 };
                 if (connectivity.TopologicalNode)
@@ -140,12 +139,10 @@ define
             make ()
             {
                 var parameters = this.submit_parameters ();
-                parameters.id = this._cimedit.uuidv4 ();
                 var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
                 var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
-                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
-                cpromise.setPromise (cpromise.promise ().then (this.make_equipment.bind (this)));
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84").then (this.make_equipment.bind (this)));
                 return (cpromise);
             }
         }
