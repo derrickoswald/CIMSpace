@@ -39,13 +39,14 @@ The program is available online [http://derrickoswald.github.io/CIMSpace/](http:
 **Controls**
 
 The controls toolbox in the upper right hand corner has the following features:
+https://rawgit.com/derrickoswald/CIMReader/master/img/Overview.svg
 
-- ![Zoom extents](css/font/src/zoome.svg?raw=true) to zoom the map view to include all CIM elements
-- ![Info](css/font/src/info.svg?raw=true) to hide or show an info box containing the attributes of user selected, searched or traced elements
-- ![Theme](css/font/src/themer.svg?raw=true) to hide or show the theme chooser
-- ![Legend](css/font/src/legend.svg?raw=true) to hide or show the legend for the current theme
-- ![Edit](css/font/src/edit.svg?raw=true) to hide or show the editor
-- ![Connectivity](css/font/src/connectivity.svg?raw=true) to hide or show the connectivity editor
+- ![Zoom extents](https://rawgit.com/derrickoswald/CIMSpace/css/font/src/zoome.svg) to zoom the map view to include all CIM elements
+- ![Info](https://rawgit.com/derrickoswald/CIMSpace/css/font/src/info.svg) to hide or show an info box containing the attributes of user selected, searched or traced elements
+- ![Theme](https://rawgit.com/derrickoswald/CIMSpace/css/font/src/themer.svg) to hide or show the theme chooser
+- ![Legend](https://rawgit.com/derrickoswald/CIMSpace/css/font/src/legend.svg) to hide or show the legend for the current theme
+- ![Edit](https://rawgit.com/derrickoswald/CIMSpace/css/font/src/edit.svg) to hide or show the editor
+- ![Connectivity](https://rawgit.com/derrickoswald/CIMSpace/css/font/src/connectivity.svg) to hide or show the connectivity editor
 
 **Options**
 
