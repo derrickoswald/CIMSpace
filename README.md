@@ -40,12 +40,12 @@ The program is available online [http://derrickoswald.github.io/CIMSpace/](http:
 
 The controls toolbox in the upper right hand corner has the following features:
 
-- ![Zoom extents](https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/zoome.svg) to zoom the map view to include all CIM elements
-- ![Info](https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/info.svg) to hide or show an info box containing the attributes of user selected, searched or traced elements
-- ![Theme](https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/themer.svg) to hide or show the theme chooser
-- ![Legend](https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/legend.svg) to hide or show the legend for the current theme
-- ![Edit](https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/edit.svg) to hide or show the editor
-- ![Connectivity](https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/connectivity.svg) to hide or show the connectivity editor
+- <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/zoome.svg" alt="Zoom extents" width="12px" height="12px"> to zoom the map view to include all CIM elements
+- <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/info.svg" alt="Info" width="12px" height="12px"> to hide or show an info box containing the attributes of user selected, searched or traced elements
+- <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/themer.svg" alt="Theme" width="12px" height="12px"> to hide or show the theme chooser
+- <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/legend.svg" alt="Legend" width="12px" height="12px"> to hide or show the legend for the current theme
+- <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/edit.svg" alt="Edit" width="12px" height="12px"> to hide or show the editor
+- <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/connectivity.svg" alt="Connectivity" width="12px" height="12px"> to hide or show the connectivity editor
 
 **Options**
 
