@@ -24,24 +24,48 @@ define
 
             static classes ()
             {
-                var ret = [];
-                var cimclasses = cim.classes ();
-                for (var name in cimclasses)
-                {
-                    var cls = cimclasses[name];
-                    var data = {};
-                    var obj = new cls ({}, data);
-                    if (data.PowerTransformer)
-                        ret.push (name);
-                }
-                ret.sort ();
+                var ret = ["PowerTransformer"]; // to avoid MktTransformer
                 return (ret);
             }
 
             render_parameters (proto)
             {
-                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
-                return (mustache.render (this.class_template (), view));
+                var ret = super.render_parameters (proto);
+                var template =
+                "    <div class='form-group row'>\n" +
+                "      <label class='col-sm-4 col-form-label' for='transformer_name'>Transformer</label>\n" +
+                "      <div class='col-sm-8'>\n" +
+                "        <select id='transformer_name' class='form-control custom-select'>\n" +
+                "{{#trafos}}\n" +
+                "              <option value='{{id}}'{{#isSelected}} selected{{/isSelected}}>{{name}}</option>\n" +
+                "{{/trafos}}\n";
+                "        </select>\n" +
+                "      </div>\n" +
+                "    </div>\n";
+                var cimmap = this._cimmap;
+                var trafos = cimmap.fetch ("PowerTransformerInfo", info => true)
+                function fn ()
+                {
+                    return (proto && (proto.AssetDatasheet == this.id));
+                }
+                if (0 != trafos.length)
+                {
+                    var view = { trafos: trafos, isSelected: fn };
+                    ret = ret + mustache.render (template, view);
+                }
+                return (ret);
+            }
+
+            submit_parameters ()
+            {
+                var parameters = super.submit_parameters ();
+                var transformer_name = document.getElementById ("transformer_name");
+                if (transformer_name)
+                {
+                    transformer_name = transformer_name.value;
+                    parameters.AssetDatasheet = transformer_name; // add the transformer type
+                }
+                return (parameters);
             }
 
             make_transformer (array)
@@ -63,7 +87,8 @@ define
                     connectivity = { ConnectivityNode: node.id };
                 }
 
-                // add the terminal
+                // add the terminals
+                var terminals = [];
                 var tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", trafo, "_terminal_1");
                 var terminal1 =
                 {
@@ -79,7 +104,7 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal1.TopologicalNode = connectivity.TopologicalNode;
-                array.push (new Core.Terminal (terminal1, this._cimedit.new_features ()));
+                terminals.push (new Core.Terminal (terminal1, this._cimedit.new_features ()));
 
                 // add a secondary connectivity node
                 {
@@ -101,44 +126,97 @@ define
                     ConductingEquipment: trafo.id,
                     ConnectivityNode: connectivity.ConnectivityNode
                 };
-                array.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
-
-                // add power transformer ends
-                var eid1 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformer", trafo, "_end_1");
-                var end1 =
-                {
-                    EditDisposition: "new",
-                    cls: "PowerTransformerEnd",
-                    id: eid1,
-                    mRID: eid1,
-                    description: "PowerTransformer End",
-                    name: eid1,
-                    endNumber: 1,
-                    BaseVoltage: eqm.medium_voltage (),
-                    Terminal: terminal1.id,
-                    connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.D",
-                    PowerTransformer: trafo.id
-                };
-                var eid2 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformer", trafo, "_end_2");
-                var end2 =
-                {
-                    EditDisposition: "new",
-                    cls: "PowerTransformerEnd",
-                    id: eid2,
-                    mRID: eid2,
-                    description: "PowerTransformer End",
-                    name: eid2,
-                    endNumber: 2,
-                    BaseVoltage: eqm.low_voltage (),
-                    Terminal: terminal2.id,
-                    connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.Yn",
-                    PowerTransformer: trafo.id
-                };
-                array.push (new Wires.PowerTransformerEnd (end1, this._cimedit.new_features ()));
-                array.push (new Wires.PowerTransformerEnd (end2, this._cimedit.new_features ()));
-
+                terminals.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
+                array = array.concat (terminals);
                 array = array.concat (eqm.ensure_voltages ());
                 array = array.concat (eqm.ensure_status ());
+
+                // add power transformer ends
+                var endinfos = null;
+                if (trafo.AssetDatasheet)
+                {
+                    var tankinfo = this._cimmap.fetch ("TransformerTankInfo", info => info.PowerTransformerInfo == trafo.AssetDatasheet)
+                    if (tankinfo.length > 0)
+                    {
+                        tankinfo = tankinfo[0];
+                        endinfos = this._cimmap.fetch ("TransformerEndInfo", info => info.TransformerTankInfo == tankinfo.id);
+                    }
+                }
+
+                if (endinfos)
+                {
+                    var cimmap = this._cimmap;
+                    var cimedit = this._cimedit;
+                    var ends = endinfos.map (info =>
+                        {
+                            var id = cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_" + info.endNumber);
+                            var voltage = cimmap.fetch ("BaseVoltage", voltage => voltage.nominalVoltage * 1000.0 == info.ratedU); // ToDo: get rid of this 1000 volt multiplier
+                            if (voltage.length <= 0)
+                                voltage = (info.endNumber < 2) ? eqm.medium_voltage () : eqm.low_voltage ();
+                            else
+                                voltage = voltage[0].id;
+                            var terminal = terminals[info.endNumber - 1];
+                            var impedance = cimmap.fetch ("TransformerMeshImpedance", mesh => mesh.FromTransformerEndInfo == info.id);
+                            // ToDo: copy the TransformerMeshImpedance(s) or not?
+                            impedance = (impedance.length > 0) ? impedance[0] : undefined;
+                            var end =
+                                Object.assign ({},
+                                    info,
+                                    impedance,
+                                    {
+                                        EditDisposition: "new",
+                                        cls: "PowerTransformerEnd",
+                                        id: id,
+                                        mRID: id,
+                                        aliasName: id,
+                                        description: "PowerTransformer End " + info.endNumber,
+                                        name: id,
+                                        BaseVoltage: voltage,
+                                        Terminal: terminal.id,
+                                        PowerTransformer: trafo.id
+                                    }
+                                );
+                            delete end.aliasName;
+                            return (end);
+                        }
+                    );
+                    array = array.concat (ends.map (end => new Wires.PowerTransformerEnd (end, cimedit.new_features ())));
+                }
+                else
+                {
+                    var eid1 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_1");
+                    var end1 =
+                    {
+                        EditDisposition: "new",
+                        cls: "PowerTransformerEnd",
+                        id: eid1,
+                        mRID: eid1,
+                        description: "PowerTransformer End 1",
+                        name: eid1,
+                        endNumber: 1,
+                        BaseVoltage: eqm.medium_voltage (),
+                        Terminal: terminal1.id,
+                        connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.D",
+                        PowerTransformer: trafo.id
+                    };
+                    var eid2 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_2");
+                    var end2 =
+                    {
+                        EditDisposition: "new",
+                        cls: "PowerTransformerEnd",
+                        id: eid2,
+                        mRID: eid2,
+                        description: "PowerTransformer End 2",
+                        name: eid2,
+                        endNumber: 2,
+                        BaseVoltage: eqm.low_voltage (),
+                        Terminal: terminal2.id,
+                        connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.Yn",
+                        PowerTransformer: trafo.id
+                    };
+                    array.push (new Wires.PowerTransformerEnd (end1, this._cimedit.new_features ()));
+                    array.push (new Wires.PowerTransformerEnd (end2, this._cimedit.new_features ()));
+                }
 
                 return (array);
             }

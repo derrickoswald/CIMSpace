@@ -43,7 +43,7 @@ define
             class_template ()
             {
                 return (
-                    "    <div class='form-group row'>\n" +
+                    "    <div class='form-group row'{{#isHidden}} style='display: none;'{{/isHidden}}>\n" +
                     "      <label class='col-sm-4 col-form-label' for='psr_class'>Class</label>\n" +
                     "      <div class='col-sm-8'>\n" +
                     "        <select id='psr_class' class='form-control custom-select'>\n" +
@@ -57,7 +57,8 @@ define
 
             render_parameters (proto)
             {
-                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                var classes = this.constructor.classes ();
+                var view = { classes: classes, isHidden: function () { return (classes.length > 0); }, isSelected: function () { return (proto && (proto.cls == this)); } };
                 return (mustache.render (this.class_template (), view));
             }
 
