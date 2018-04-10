@@ -34,7 +34,8 @@ define
             cancel ()
             {
                 this._iscanceled = true;
-                this._cancelcallback ();
+                if (this._cancelcallback)
+                    this._cancelcallback ();
                 this._then ( {canceled: true} );
             }
             promise ()

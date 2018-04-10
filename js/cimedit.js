@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "cimmrid", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "makers/houseservicemaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
+    ["mustache", "cim", "cimmrid", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "makers/houseservicemaker", "makers/transformermeshimpedancemaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
     /**
      * @summary Edit control.
      * @description UI element for editing
@@ -13,7 +13,7 @@ define
      * @exports cimedit
      * @version 1.0
      */
-    function (mustache, cim, CIMmrid, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, HouseServiceMaker, layers, Common, Core, Wires)
+    function (mustache, cim, CIMmrid, Digitizer, PowerSystemResourceMaker, ConductingEquipmentMaker, SwitchMaker, PowerTransformerMaker, ConductorMaker, SubstationMaker, HouseServiceMaker, TransformerMeshImpedanceMaker, layers, Common, Core, Wires)
     {
         class CIMEdit
         {
@@ -64,7 +64,8 @@ define
                     PowerSystemResourceMaker,
                     PowerTransformerMaker,
                     SubstationMaker,
-                    SwitchMaker
+                    SwitchMaker,
+                    TransformerMeshImpedanceMaker
                 ];
                 var cls_map = cim.classes ();
                 var classes = [];
@@ -221,7 +222,11 @@ define
                     var proto = array[i];
                     proto.EditDisposition = "new";
                     var cls = cim.class_map (proto);
-                    var obj = new cls (proto, this.new_features ());
+                    var data = {};
+                    var obj = new cls (proto, data);
+                    if (data.IdentifiedObject)
+                        proto.mRID = proto.id;
+                    obj = new cls (proto, this.new_features ());
                     this.edit (obj, 0 == i, true);
                 }
                 this.refresh ();

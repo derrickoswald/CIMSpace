@@ -26,50 +26,50 @@ define
             {
                 var template =
                 `
-                    <div class='form-group row'>
-                      <label class='col-sm-4 col-form-label' for='iterations'>Iterations</label>
-                      <div class='col-sm-8'>
-                        <input id='iterations' class='form-control' type='text' name='iterations' aria-describedby='iterationsHelp' value='1'>
-                        <small id='iterationsHelp' class='form-text text-muted'>Number of house services to create.</small>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="iterations">Iterations</label>
+                      <div class="col-sm-8">
+                        <input id="iterations" class="form-control" type="text" name="iterations" aria-describedby="iterationsHelp" value="1">
+                        <small id="iterationsHelp" class="form-text text-muted">Number of house services to create.</small>
                       </div>
                     </div>
-                    <div class='form-group row'>
-                      <label class='col-sm-4 col-form-label' for='mRID'>mRID</label>
-                      <div class='col-sm-8'>
-                        <input id='mRID' class='form-control' type='text' name='mRID' aria-describedby='mRIDHelp' value='{{proto.mRID}}'>
-                        <small id='mRIDHelp' class='form-text text-muted'>Unique identifier (or initial identifier) for house services.</small>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="mRID">mRID</label>
+                      <div class="col-sm-8">
+                        <input id="mRID" class="form-control" type="text" name="mRID" aria-describedby="mRIDHelp" value="{{proto.mRID}}">
+                        <small id="mRIDHelp" class="form-text text-muted">Unique identifier (or initial identifier) for house services.</small>
                       </div>
                     </div>
-                    <div class='form-group row'>
-                      <label class='col-sm-4 col-form-label' for='customerCount'>Customer count</label>
-                      <div class='col-sm-8'>
-                        <input id='customerCount' class='form-control' type='text' name='customerCount' aria-describedby='customerCountHelp' value='{{proto.customerCount}}'>
-                        <small id='customerCountHelp' class='form-text text-muted'>Number of individual customers represented by this demand.</small>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="customerCount">Customer count</label>
+                      <div class="col-sm-8">
+                        <input id="customerCount" class="form-control" type="text" name="customerCount" aria-describedby="customerCountHelp" value="{{proto.customerCount}}">
+                        <small id="customerCountHelp" class="form-text text-muted">Number of individual customers represented by this demand.</small>
                       </div>
                     </div>
-                    <div class='form-group row'>
-                      <label class='col-sm-4 col-form-label' for='p'>Active power</label>
-                      <div class='col-sm-8'>
-                        <input id='p' class='form-control' type='text' name='p' aria-describedby='pHelp' value='{{proto.p}}'>
-                        <small id='pHelp' class='form-text text-muted'>Active power of the load, (+)=flow out (VA).</small>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="p">Active power</label>
+                      <div class="col-sm-8">
+                        <input id="p" class="form-control" type="text" name="p" aria-describedby="pHelp" value="{{proto.p}}">
+                        <small id="pHelp" class="form-text text-muted">Active power of the load, (+)=flow out (VA).</small>
                       </div>
                     </div>
-                    <div class='form-group row'>
-                      <label class='col-sm-4 col-form-label' for='q'>Reactive power</label>
-                      <div class='col-sm-8'>
-                        <input id='q' class='form-control' type='text' name='q' aria-describedby='qHelp' value='{{proto.q}}'>
-                        <small id='qHelp' class='form-text text-muted'>Reactive power of the load, (+)=flow out (VAr).</small>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="q">Reactive power</label>
+                      <div class="col-sm-8">
+                        <input id="q" class="form-control" type="text" name="q" aria-describedby="qHelp" value="{{proto.q}}">
+                        <small id="qHelp" class="form-text text-muted">Reactive power of the load, (+)=flow out (VAr).</small>
                       </div>
                     </div>
-                    <div class='form-group row'>
-                      <label class='col-sm-4 col-form-label' for='phaseConnection'>Phase connection</label>
-                      <div class='col-sm-8'>
-                        <select id='phaseConnection' class='form-control custom-select' name='phaseConnection' aria-describedby='phaseConnectionHelp'>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="phaseConnection">Phase connection</label>
+                      <div class="col-sm-8">
+                        <select id="phaseConnection" class="form-control custom-select" name="phaseConnection" aria-describedby="phaseConnectionHelp">
                         {{#phaseConnections}}
-                          <option value='{{value}}'{{#isSelected}} selected{{/isSelected}}>{{description}}</option>
+                          <option value="{{value}}"{{#isSelected}} selected{{/isSelected}}>{{description}}</option>
                         {{/phaseConnections}}
                         </select>
-                        <small id='phaseConnectionHelp' class='form-text text-muted'>The type of phase connection, such as wye or delta.</small>
+                        <small id="phaseConnectionHelp" class="form-text text-muted">The type of phase connection, such as wye or delta.</small>
                       </div>
                     </div>
                 `;

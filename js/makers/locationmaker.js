@@ -31,7 +31,7 @@ define
                 if (!this._cimmap.get ("CoordinateSystem", "wgs84"))
                     ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "wgs84", mRID: "wgs84", name: "WGS 84", description: "new World Geodetic System", crsUrn: "EPSG::4326" }, this._cimedit.new_features ()));
                 if (!this._cimmap.get ("CoordinateSystem", "pseudo_wgs84"))
-                    ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "pseudo_wgs84", mRID: "pseudo_wgs84", name: "WGS 84", description: "schematic coordinates translated to the new World Geodetic System", crsUrn: "EPSG::4326" }, this._cimedit.new_features ()));
+                    ret.push (new Common.CoordinateSystem ({ EditDisposition: "new", cls: "CoordinateSystem", id: "pseudo_wgs84", mRID: "pseudo_wgs84", name: "WGS 84 (internal)", description: "schematic coordinates translated to the new World Geodetic System", crsUrn: "EPSG::4326" }, this._cimedit.new_features ()));
                 return (ret);
             }
 

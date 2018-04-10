@@ -32,16 +32,18 @@ define
             {
                 var ret = super.render_parameters (proto);
                 var template =
-                "    <div class='form-group row'>\n" +
-                "      <label class='col-sm-4 col-form-label' for='transformer_name'>Transformer</label>\n" +
-                "      <div class='col-sm-8'>\n" +
-                "        <select id='transformer_name' class='form-control custom-select'>\n" +
-                "{{#trafos}}\n" +
-                "              <option value='{{id}}'{{#isSelected}} selected{{/isSelected}}>{{name}}</option>\n" +
-                "{{/trafos}}\n";
-                "        </select>\n" +
-                "      </div>\n" +
-                "    </div>\n";
+                `
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="transformer_name">Transformer</label>
+                      <div class="col-sm-8">
+                        <select id="transformer_name" class="form-control custom-select">
+                {{#trafos}}
+                              <option value="{{id}}"{{#isSelected}} selected{{/isSelected}}>{{name}}</option>
+                {{/trafos}}
+                        </select>
+                      </div>
+                    </div>
+                `;
                 var cimmap = this._cimmap;
                 var trafos = cimmap.fetch ("PowerTransformerInfo", info => true)
                 function fn ()
