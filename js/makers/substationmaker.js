@@ -27,24 +27,12 @@ define
 
             static classes ()
             {
-                var ret = [];
-                var cimclasses = cim.classes ();
-                for (var name in cimclasses)
-                {
-                    var cls = cimclasses[name];
-                    var data = {};
-                    var obj = new cls ({}, data);
-                    if (data.Substation)
-                        ret.push (name);
-                }
-                ret.sort ();
-                return (ret);
+                return (["Substation"]);
             }
 
             render_parameters (proto)
             {
-                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
-                return (mustache.render (this.class_template (), view));
+                return (super.render_parameters (proto));
             }
 
             distribution_box ()
@@ -76,23 +64,12 @@ define
 
             make_substation (array)
             {
-                var station = this._cimedit.primary_element ();
+                var station = array[0];
                 station.PSRType = this.transformer_station ();
                 var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
 
                 // build a GeoJSON feature to locate all the pieces
-                var pp = array.filter (o => o.cls == "PositionPoint").sort ((a, b) => a.sequenceNumber - b.sequenceNumber)[0];
-                var lon = Number (pp.xPosition);
-                var lat = Number (pp.yPosition);
-                var feature =
-                    {
-                        type : "Feature",
-                        geometry :
-                        {
-                            type : "Point",
-                            coordinates : [ lon, lat ]
-                        }
-                    };
+                var feature = lm.extractFeature (array);
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 array = array.concat (eqm.ensure_voltages ());
                 array = array.concat (eqm.ensure_status ());

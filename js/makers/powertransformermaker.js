@@ -229,7 +229,7 @@ define
                 var obj = this._cimedit.create_from (parameters);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
                 var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
-                cpromise.setPromise (lm.make (cpromise.promise (), "pseudo_wgs84"));
+                cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_transformer.bind (this)));
                 return (cpromise);
             }

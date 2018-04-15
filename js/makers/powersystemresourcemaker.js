@@ -58,7 +58,7 @@ define
             render_parameters (proto)
             {
                 var classes = this.constructor.classes ();
-                var view = { classes: classes, isHidden: function () { return (classes.length > 0); }, isSelected: function () { return (proto && (proto.cls == this)); } };
+                var view = { classes: classes, isHidden: function () { return (classes.length <= 1); }, isSelected: function () { return (proto && (proto.cls == this)); } };
                 return (mustache.render (this.class_template (), view));
             }
 

@@ -107,6 +107,49 @@ define
             {
                 return (promise.then (this.make_location.bind (this, coordsys)).then (this._nominatim.getStreetAddress.bind (this._nominatim)));
             }
+
+
+            /**
+             * Convert location back into a feature.
+             *
+             * Does the opposite of create_location, it turns an array containing a location into a GeoJSON feature.
+             * @param array An array of CIM elements containing at least one PositionPoint.
+             * @return a GeoJSON object with the geometry.
+             */
+            extractFeature (array)
+            {
+                var ret = null;
+                var pp = array.filter (o => o.cls == "PositionPoint").sort ((a, b) => a.sequenceNumber - b.sequenceNumber);
+                if (pp.length > 0)
+                    if (pp.length == 1)
+                    {
+                        var lon = Number (pp[0].xPosition);
+                        var lat = Number (pp[0].yPosition);
+                        ret =
+                            {
+                                type: "Feature",
+                                geometry :
+                                {
+                                    type: "Point",
+                                    coordinates: [ lon, lat ]
+                                }
+                            };
+                    }
+                    else
+                    {
+                        ret =
+                            {
+                                type: "Feature",
+                                geometry:
+                                {
+                                    type: "LineString",
+                                    coordinates: []
+                                }
+                            };
+                        pp.forEach (point => ret.geometry.coordinates.push ([point.xPosition, point.yPosition]));
+                    }
+                return (ret);
+            }
         }
 
         return (LocationMaker);
