@@ -107,7 +107,7 @@ define
             }
 
             /**
-             * Scrape the form data and prpare to make house services.
+             * Scrape the form data and prepare to make house services.
              * @return an object with the number of house services to make (iterations),
              * the template(s) for EnergyConsumer (consumer) and possibly Fuse (fuse),
              * and initial values for the object collection (objs) and current count (index).
