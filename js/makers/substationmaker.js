@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "./powertransformermaker", "model/Core", "model/Wires"],
     /**
      * @summary Make a collection of objects representing a Substation with internal data.
      * @description Digitizes a point and makes a Substation, PowerTransformer, BusbarSection, a number of Switch and Fuse with Connector and connectivity.
@@ -13,14 +13,16 @@ define
      * @exports substationmaker
      * @version 1.0
      */
-    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, PowerTransformerMaker, Core, Wires)
     {
         class SubstationMaker extends PowerSystemResourceMaker
         {
             constructor (cimmap, cimedit, digitizer)
             {
                 super (cimmap, cimedit, digitizer);
-                this._locationmaker = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                this._locationmaker = new LocationMaker (cimmap, cimedit, digitizer);
+                this._equipmentmaker = new ConductingEquipmentMaker (cimmap, cimedit, digitizer);
+                this._transformermaker = new PowerTransformerMaker (cimmap, cimedit, digitizer);
                 this._xoffset = 3.5e-5;
                 this._yoffset = 3.0e-5;
             }
@@ -35,7 +37,14 @@ define
                 var template =
                 `
                     <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="type">Phase connection</label>
+                      <label class="col-sm-4 col-form-label" for="mRID">mRID</label>
+                      <div class="col-sm-8">
+                        <input id="mRID" class="form-control" type="text" name="mRID" aria-describedby="mRIDHelp" value="{{proto.mRID}}">
+                        <small id="mRIDHelp" class="form-text text-muted">Unique identifier for the substation.</small>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="type">Type</label>
                       <div class="col-sm-8">
                         <select id="type" class="form-control custom-select" name="type" aria-describedby="typeHelp">
                         {{#types}}
@@ -46,17 +55,29 @@ define
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="feeders">Iterations</label>
+                      <label class="col-sm-4 col-form-label" for="feeders">Feeders</label>
                       <div class="col-sm-8">
                         <input id="feeders" class="form-control" type="text" name="feeders" aria-describedby="feedersHelp" value="8">
-                        <small id="feedersHelp" class="form-text text-muted">Number of feeder connections entering/leaving the substation.</small>
+                        <small id="feedersHelp" class="form-text text-muted">Number of feeders entering/leaving the substation.</small>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="mRID">mRID</label>
+                      <label class="col-sm-4 col-form-label" for="with_trafo">Add transformer</label>
                       <div class="col-sm-8">
-                        <input id="mRID" class="form-control" type="text" name="mRID" aria-describedby="mRIDHelp" value="{{proto.mRID}}">
-                        <small id="mRIDHelp" class="form-text text-muted">Unique identifier for the substation.</small>
+                        <div class='form-check'>
+                          <input id="with_trafo" class="form-check-input" type="checkbox" name="with_trafo" aria-describedby="withTrafoHelp" checked>
+                          <small id="withTrafoHelp" class="form-text text-muted">Include a transformer in the substation.</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="transformer_name">Transformer</label>
+                      <div class="col-sm-8">
+                        <select id="transformer_name" class="form-control custom-select">
+                {{#trafos}}
+                              <option value="{{id}}">{{name}}</option>
+                {{/trafos}}
+                        </select>
                       </div>
                     </div>
                 `;
@@ -68,7 +89,8 @@ define
                 ];
                 if (!proto)
                     proto = { mRID: this._cimedit.get_cimmrid ().nextIdFor ("Substation"), PSRType: "PSRType_TransformerStation" };
-                var view = { proto: proto, types: types, isSelected: function () { return (proto.PSRType == this.value); } };
+                var trafos = this._cimmap.fetch ("PowerTransformerInfo", info => true)
+                var view = { proto: proto, types: types, isSelected: function () { return (proto.PSRType == this.value); }, trafos: trafos };
                 var ret = mustache.render (template, view);
                 return (ret);
             }
@@ -93,6 +115,8 @@ define
                     feeders: Math.max (1, Number (document.getElementById ("feeders").value)),
                     substation: substation
                 };
+                if (document.getElementById ("with_trafo").checked)
+                    ret.transformer = document.getElementById ("transformer_name").value;
 
                 return (ret);
             }
@@ -129,15 +153,19 @@ define
                 var station = array[0];
                 station.PSRType = this.transformer_station ();
 
-                var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
-                array = array.concat (eqm.ensure_voltages ());
-                array = array.concat (eqm.ensure_status ());
+                array = array.concat (this._equipmentmaker.ensure_voltages ());
+                array = array.concat (this._equipmentmaker.ensure_status ());
                 array = array.concat (this.ensure_stations ());
 
                 // build a GeoJSON feature to locate all the pieces
                 var feature = this._locationmaker.extractFeature (array);
                 var x = feature.geometry.coordinates[0];
                 var y = feature.geometry.coordinates[1];
+
+                // remember the trafo location for later on
+                var trafox = x - this._xoffset;
+                var trafoy = y - this._yoffset;
+                var trafo_node;
 
                 // add BusbarSection
                 x = x + this._xoffset;
@@ -150,9 +178,9 @@ define
                         mRID: bid,
                         name: bid,
                         description: station.name + " busbar",
-                        BaseVoltage: eqm.low_voltage (),
+                        BaseVoltage: this._equipmentmaker.low_voltage (),
                         normallyInService: true,
-                        SvStatus: eqm.in_use (),
+                        SvStatus: this._equipmentmaker.in_use (),
                         EquipmentContainer: station.id
                     }, this._cimedit.new_features ());
                 var bus_n_location = this._locationmaker.create_location ("pseudo_wgs84", [busbar], feature);
@@ -182,23 +210,25 @@ define
                     feature.geometry.coordinates[0] = x;
                     feature.geometry.coordinates[1] = y;
                     var did;
-                    var location;
                     var device;
+                    var location;
+                    var fname;
 
                     if (0 == i)
                     {
                         did = this._cimedit.get_cimmrid ().nextIdFor ("Switch", station, "_switch");
+                        fname = "switch";
                         device = new Wires.Switch (
                             {
                                 cls: "Switch",
                                 id: did,
                                 mRID: did,
                                 name: did,
-                                name: station.name + " switch",
-                                BaseVoltage: eqm.low_voltage (),
+                                description: station.name + " " + fname,
+                                BaseVoltage: this._equipmentmaker.low_voltage (),
                                 normallyInService: true,
                                 retained: true,
-                                SvStatus: eqm.in_use (),
+                                SvStatus: this._equipmentmaker.in_use (),
                                 EquipmentContainer: station.id
                             }, this._cimedit.new_features ());
                         location = this._locationmaker.create_location ("pseudo_wgs84", [device], feature);
@@ -206,17 +236,18 @@ define
                     else
                     {
                         did = this._cimedit.get_cimmrid ().nextIdFor ("Fuse", station, "_fuse_" + i);
+                        fname = "feeder fuse " + i;
                         device = new Wires.Fuse (
                             {
                                 cls: "Fuse",
                                 id: did,
                                 mRID: did,
                                 name: did,
-                                description: station.name + " feeder fuse " + i,
-                                BaseVoltage: eqm.low_voltage (),
+                                description: station.name + " " + fname,
+                                BaseVoltage: this._equipmentmaker.low_voltage (),
                                 ratedCurrent: 125.0,
                                 normallyInService: true,
-                                SvStatus: eqm.in_use (),
+                                SvStatus: this._equipmentmaker.in_use (),
                                 EquipmentContainer: station.id
                             }, this._cimedit.new_features ());
                         location = this._locationmaker.create_location ("pseudo_wgs84", [device], feature);
@@ -229,7 +260,7 @@ define
                             id: tid1,
                             mRID: tid1,
                             name: tid1,
-                            description: station.name + " feeder fuse " + i + " terminal 1",
+                            description: station.name + " " + fname + " terminal 1",
                             sequenceNumber: 1,
                             phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABCN",
                             connected: true,
@@ -237,6 +268,8 @@ define
                             ConnectivityNode: node.id
                         }, this._cimedit.new_features ());
                     var n = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", device, "_node_2"), station.id), this._cimedit.new_features ());
+                    if (0 == i)
+                        trafo_node = n;
                     var tid2 =  this._cimedit.get_cimmrid ().nextIdFor ("Terminal", device, "_terminal_2");
                     var terminal2 = new Core.Terminal (
                         {
@@ -244,7 +277,7 @@ define
                             id: tid2,
                             mRID: tid2,
                             name: tid2,
-                            description: station.name + " feeder fuse " + i + " terminal 2",
+                            description: station.name + " " + fname + " terminal 2",
                             sequenceNumber: 2,
                             phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABCN",
                             connected: true,
@@ -266,9 +299,9 @@ define
                             mRID: cid,
                             name: cid,
                             description: station.name + " connector " + (i + 1),
-                            BaseVoltage: eqm.low_voltage (),
+                            BaseVoltage: this._equipmentmaker.low_voltage (),
                             normallyInService: true,
-                            SvStatus: eqm.in_use (),
+                            SvStatus: this._equipmentmaker.in_use (),
                             EquipmentContainer: station.id
                         }, this._cimedit.new_features ());
                     location = this._locationmaker.create_location ("pseudo_wgs84", [connector], feature);
@@ -290,6 +323,33 @@ define
                     array.push (terminal3);
 
                     x = x + this._xoffset;
+                }
+
+                // add a transformer if it was requested
+                if (parameters.transformer)
+                {
+                    var id = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformer", station, "_transformer");
+                    var trafo =
+                        {
+                            cls: "PowerTransformer",
+                            id: id,
+                            mRID: id,
+                            AssetDatasheet: parameters.transformer
+                        };
+                    var obj = this._cimedit.create_from (trafo);
+                    feature.geometry.coordinates[0] = trafox;
+                    feature.geometry.coordinates[1] = trafoy;
+                    var trafo_n_location = this._locationmaker.create_location ("pseudo_wgs84", [obj], feature);
+                    var trafo_all = this._transformermaker.make_transformer (trafo_n_location);
+
+                    // make a surgical cut to remove the transformer's second ConnectivityNode and
+                    // replace it with the Switch second ConnectivityNode
+                    var terminal = trafo_all.find (x => ((x.cls == "Terminal") && (x.sequenceNumber == 2)));
+                    var node = trafo_all.findIndex (x => ((x.cls == "ConnectivityNode") && (x.id == terminal.ConnectivityNode)));
+                    terminal.ConnectivityNode = trafo_node.id;
+                    trafo_all.splice (node, 1);
+
+                    array = array.concat (trafo_all);
                 }
 
                 return (array);
