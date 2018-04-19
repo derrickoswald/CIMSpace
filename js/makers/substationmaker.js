@@ -51,14 +51,21 @@ define
                           <option value="{{value}}"{{#isSelected}} selected{{/isSelected}}>{{description}}</option>
                         {{/types}}
                         </select>
-                        <small id="typeHelp" class="form-text text-muted">The type of plant, such as substation or distribution box.</small>
+                        <small id="typeHelp" class="form-text text-muted">The type of substation, enclosure or box.</small>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label" for="feeders">Feeders</label>
                       <div class="col-sm-8">
                         <input id="feeders" class="form-control" type="text" name="feeders" aria-describedby="feedersHelp" value="8">
-                        <small id="feedersHelp" class="form-text text-muted">Number of feeders entering/leaving the substation.</small>
+                        <small id="feedersHelp" class="form-text text-muted">Number of feeders entering and/or leaving.</small>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label" for="ratedCurrent">Rated current</label>
+                      <div class="col-sm-8">
+                        <input id="ratedCurrent" class="form-control" type="text" name="ratedCurrent" aria-describedby="ratedCurrentHelp" value="125.0">
+                        <small id="ratedCurrentHelp" class="form-text text-muted">Rated current for fuses.</small>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -113,6 +120,7 @@ define
                 var ret =
                 {
                     feeders: Math.max (1, Number (document.getElementById ("feeders").value)),
+                    ratedCurrent: document.getElementById ("ratedCurrent").value,
                     substation: substation
                 };
                 if (document.getElementById ("with_trafo").checked)
@@ -245,7 +253,7 @@ define
                                 name: did,
                                 description: station.name + " " + fname,
                                 BaseVoltage: this._equipmentmaker.low_voltage (),
-                                ratedCurrent: 125.0,
+                                ratedCurrent: parameters.ratedCurrent,
                                 normallyInService: true,
                                 SvStatus: this._equipmentmaker.in_use (),
                                 EquipmentContainer: station.id
@@ -334,6 +342,8 @@ define
                             cls: "PowerTransformer",
                             id: id,
                             mRID: id,
+                            name: id,
+                            description: station.name + " transformer",
                             AssetDatasheet: parameters.transformer
                         };
                     var obj = this._cimedit.create_from (trafo);

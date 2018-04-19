@@ -72,9 +72,11 @@ define
             submit_parameters ()
             {
                 var parameters = super.submit_parameters ();
+                parameters.name = parameters.id;
                 var cable_name = document.getElementById ("cable_name");
                 if (cable_name)
                 {
+                    parameters.description = cable_name.options[cable_name.selectedIndex].text;
                     cable_name = cable_name.value;
                     parameters.AssetDatasheet = cable_name; // add the cable type
                     parameters.PerLengthImpedance = this._cimmap.get ("WireInfo", cable_name).PerLengthParameters[0]; // add the per length parameters
@@ -130,8 +132,10 @@ define
                     id: tid1,
                     mRID: tid1,
                     name: tid1,
+                    description: line.name + " starting terminal",
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    connected: true,
                     ConductingEquipment: line.id,
                     ConnectivityNode: connectivity1.ConnectivityNode
                 };
@@ -159,8 +163,10 @@ define
                     id: tid2,
                     mRID: tid2,
                     name: tid2,
+                    description: line.name + " ending terminal",
                     sequenceNumber: 2,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    connected: true,
                     ConductingEquipment: line.id,
                     ConnectivityNode: connectivity2.ConnectivityNode
                 };
