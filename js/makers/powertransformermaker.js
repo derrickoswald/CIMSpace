@@ -44,8 +44,7 @@ define
                       </div>
                     </div>
                 `;
-                var cimmap = this._cimmap;
-                var trafos = cimmap.fetch ("PowerTransformerInfo", info => true)
+                var trafos = this._cimmap.fetch ("PowerTransformerInfo", info => true);
                 function fn ()
                 {
                     return (proto && (proto.AssetDatasheet == this.id));
@@ -61,10 +60,17 @@ define
             submit_parameters ()
             {
                 var parameters = super.submit_parameters ();
+                parameters.name = parameters.id;
                 var transformer_name = document.getElementById ("transformer_name");
                 if (transformer_name)
                 {
+                    parameters.description = transformer_name.options[transformer_name.selectedIndex].text;
                     transformer_name = transformer_name.value;
+                    // ToDo: figure out vector group from end infos connectionKind and phaseAngleClock
+                    // till then, just check for the most common one:
+                    var info = this._cimmap.get ("PowerTransformerInfo", transformer_name);
+                    if (info && info.description && 0 <= info.description.indexOf ("Dyn5"))
+                        parameters.vectorGroup = "Dyn5";
                     parameters.AssetDatasheet = transformer_name; // add the transformer type
                 }
                 return (parameters);

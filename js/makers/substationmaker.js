@@ -346,6 +346,12 @@ define
                             description: station.name + " transformer",
                             AssetDatasheet: parameters.transformer
                         };
+                    // ToDo: figure out vector group from end infos connectionKind and phaseAngleClock
+                    // till then, just check for the most common one:
+                    var info = this._cimmap.get ("PowerTransformerInfo", parameters.transformer);
+                    if (info && info.description && 0 <= info.description.indexOf ("Dyn5"))
+                        trafo.vectorGroup = "Dyn5";
+
                     var obj = this._cimedit.create_from (trafo);
                     feature.geometry.coordinates[0] = trafox;
                     feature.geometry.coordinates[1] = trafoy;
