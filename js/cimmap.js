@@ -29,22 +29,27 @@ define
         /**
          * The theme setting control object.
          */
-        var TheThemer = null;
+        var TheThemer = new ThemeControl ();
+        TheThemer.addTheme (new DefaultTheme ());
+        TheThemer.addTheme (new VoltageTheme ());
+        TheThemer.addTheme (new IslandTheme ());
+        TheThemer.addTheme (new InServiceTheme ());
+        TheThemer.theme_change_listener (redraw);
 
         /**
          * The detail view control object.
          */
-        var TheDetails = null;
+        var TheDetails = new CIMDetails (getInterface ());
 
         /**
          * The editor control object.
          */
-        var TheEditor = null;
+        var TheEditor = new CIMEdit (getInterface ());
 
         /**
          * The connectivity control object.
          */
-        var TheConnectivity = null;
+        var TheConnectivity = new CIMConnectivity (getInterface (), TheEditor);
 
         /**
          * The scale bar control.
@@ -106,22 +111,6 @@ define
             return (TheMap);
         }
 
-        /*
-         * Predicate for an empty object.
-         * @parm the object to check for emptiness
-         * @return <code>true</code> if the object has no properties.
-         */
-        function empty (obj)
-        {
-            var ret = true;
-            for (var property in CIM_Data)
-            {
-                ret = false;
-                break;
-            }
-            return (ret);
-        }
-
         /**
          * Set the CIM data for the map to draw.
          * @param {JSON} Data parsed from the cim module.
@@ -131,8 +120,7 @@ define
         function set_data (data)
         {
             CIM_Data = data;
-            if (null != CIM_Data && !empty (CIM_Data))
-                make_map (function () { zoom_extents (); });
+            make_map ().then (zoom_extents);;
         }
 
         /**
@@ -317,41 +305,91 @@ define
             return (document.getElementById ("streetview").checked);
         }
 
+        async function pause (predicate, callback)
+        {
+            function sleep(ms)
+            {
+                return new Promise (resolve => setTimeout (resolve, ms));
+            }
+            if (predicate ())
+                do
+                    await sleep (1000);
+                while (predicate ());
+            callback ();
+        }
+
+        function wait_for_map ()
+        {
+            return (
+                new Promise (
+                    function (resolve, reject)
+                    {
+                        pause (() => null == TheMap, resolve);
+                    }
+                )
+            );
+        }
+
+        function wait_for_map_loaded ()
+        {
+            return (
+                new Promise (
+                    function (resolve, reject)
+                    {
+                        function predicate ()
+                        {
+                            return (!TheMap.loaded ())
+                        }
+                        if (predicate ())
+                        {
+                            function fuckoff (message)
+                            {
+                                console.log (message);
+                                TheMap.off ("error", fuckoff);
+                                reject (message);
+                            }
+                            TheMap.on ("error", fuckoff);
+                            pause (predicate, () => { TheMap.off ("error", fuckoff); resolve (); });
+                        }
+                        else
+                            resolve ();
+                    }
+                )
+            );
+        }
+
+        function domap ()
+        {
+            return (
+                new Promise (
+                    function (resolve, reject)
+                    {
+                        select (null);
+                        if (TheThemer)
+                            if (TheThemer.getTheme ())
+                                if (TheThemer.getTheme ().getLegend ().visible ())
+                                    TheMap.removeControl (TheThemer.getTheme ().getLegend ());
+                        TheThemer.theme (getInterface (),
+                            {
+                                show_internal_features: show_internal_features ()
+                            });
+                        TheExtents = TheThemer.getExtents ();
+                        buildings_3d ();
+                        resolve ();
+                    }
+                )
+            );
+        }
+
         /**
-         * Generate a map.
-         * @param {function} callback The function to invoke when the map is complete.
+         * Returns a promise to create the map.
+         * The resolve() action resolves with no argument.
          * @function make_map
          * @memberOf module:cimmap
          */
-        async function make_map (callback)
+        function make_map ()
         {
-            var start = new Date ().getTime ();
-            console.log ("rendering CIM data");
-            select (null);
-
-            function sleep(ms)
-            {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
-            do
-                await sleep (2000);
-            while (!TheMap.loaded ())
-
-            if (TheThemer.getTheme ())
-                if (TheThemer.getTheme ().getLegend ().visible ())
-                    TheMap.removeControl (TheThemer.getTheme ().getLegend ());
-            TheThemer.theme (TheMap, CIM_Data,
-                {
-                    show_internal_features: show_internal_features ()
-                });
-            TheExtents = TheThemer.getExtents ();
-
-            buildings_3d ();
-
-            var end = new Date ().getTime ();
-            console.log ("finished rendering CIM data (" + (Math.round (end - start) / 1000) + " seconds)");
-            if (callback)
-                callback ();
+            return (wait_for_map ().then (wait_for_map_loaded).then (domap));
         }
 
         function valid_extents ()
@@ -504,13 +542,13 @@ define
          */
         function glow (filter)
         {
-            if (TheMap.getSource ("cim lines"))
+            if (TheMap && TheMap.getSource ("cim lines"))
             {
                 TheMap.setFilter ("lines_highlight", filter);
                 TheMap.setFilter ("circle_highlight", filter);
                 TheMap.setFilter ("symbol_highlight", filter);
             }
-            if (TheMap.getSource ("edit lines"))
+            if (TheMap && TheMap.getSource ("edit lines"))
             {
                 TheMap.setFilter ("edit_lines_highlight", filter);
                 TheMap.setFilter ("edit_circle_highlight", filter);
@@ -1078,8 +1116,7 @@ define
          */
         function redraw (event)
         {
-            if (null != CIM_Data)
-                make_map ();
+            make_map ();
         }
 
         /**
@@ -1229,21 +1266,6 @@ define
             // add zoom and rotation controls to the map
             TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_info, toggle_themer, toggle_legend, toggle_edit, connectivity));
             add_listeners ();
-            // set up themes
-            TheThemer = new ThemeControl ();
-            TheThemer.addTheme (new DefaultTheme ());
-            TheThemer.addTheme (new VoltageTheme ());
-            TheThemer.addTheme (new IslandTheme ());
-            TheThemer.addTheme (new InServiceTheme ());
-            TheThemer.theme_change_listener (redraw);
-            // set up viewing
-            TheDetails = new CIMDetails (getInterface ());
-            // set up editing
-            TheEditor = new CIMEdit (getInterface ());
-            // set up connectivity
-            TheConnectivity = new CIMConnectivity (getInterface (), TheEditor);
-            // display any existing data
-            redraw ();
         }
 
         /**
@@ -1284,7 +1306,8 @@ define
                      show_scale_bar: show_scale_bar,
                      show_coordinates: show_coordinates,
                      show_streetview: show_streetview,
-                     make_map, make_map,
+                     make_map: make_map,
+                     wait_for_map_loaded: wait_for_map_loaded,
                      zoom_extents: zoom_extents,
                      get: get,
                      forAll: forAll,

@@ -94,7 +94,13 @@ define
                 this._map.removeControl (this);
             }
 
-            addTheme (theme)
+            /**
+             * Adds a theme to the theme user interface.
+             * @param theme the theme to add
+             * @param set if <code>true</code> make the new theme the current theme
+             * @return the given theme or the existing theme of the same name
+             */
+            addTheme (theme, set)
             {
                 var name = theme.getName ();
                 var index = -1;
@@ -106,8 +112,17 @@ define
                     }
                 if (-1 == index)
                     this._themes.push (theme);
-                if ("undefined" == typeof (this._theme))
-                    this._theme = this._themes[0];
+                else
+                    theme = this._themes[index];
+                if (set || !this._theme)
+                {
+                    if (this._theme)
+                        this._theme.remove_theme ();
+                    this._theme = theme;
+                    if (this._theme_listener)
+                        this._theme_listener ();
+                }
+                return (theme);
             }
 
             removeTheme (theme)
@@ -156,10 +171,10 @@ define
                 this._theme_listener = fn;
             }
 
-            theme (map, data, options)
+            theme (cimmap, options)
             {
                 this._theme.remove_theme ();
-                this._theme.make_theme (map, data, options);
+                this._theme.make_theme (cimmap, options);
             }
 
             getExtents ()

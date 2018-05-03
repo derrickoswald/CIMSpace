@@ -419,9 +419,12 @@ define
                     "type" : "FeatureCollection",
                     "features" : []
                 };
-                var locations = get_locations (data, options);
-                this.process_spatial_objects (data, locations, points, lines, options);
-                this.process_spatial_objects_again (data, options);
+                if (null != data)
+                {
+                    var locations = get_locations (data, options);
+                    this.process_spatial_objects (data, locations, points, lines, options);
+                    this.process_spatial_objects_again (data, options);
+                }
                 return ({ lines: lines, points: points });
             }
 
@@ -447,18 +450,21 @@ define
 
             /**
              * Add sources and layers to the map.
-             * @param {Object} map - the Mapbox map object
-             * @param {Object} data - the hash table object of CIM classes by class name
+             * @param {Object} cimmap - the CIM map object
              * @param {Object} options - object with rendering options, e.g.
              *   show_internal_features flag - render internal features
              * @function make_theme
              * @memberOf module:default_theme
              */
-            make_theme (map, data, options)
+            make_theme (cimmap, options)
             {
+                var start = new Date ().getTime ();
+                console.log ("rendering CIM data");
+
+                var map = cimmap.get_map ();
                 this._TheMap = map; // to be able to remove it later
 
-                var geo = this.make_geojson (data, options);
+                var geo = this.make_geojson (cimmap.get_data (), options);
 
                 // update the map
                 map.addSource
@@ -495,6 +501,9 @@ define
 
                 // set the current filter
                 this.legend_changed ();
+
+                var end = new Date ().getTime ();
+                console.log ("finished rendering CIM data (" + (Math.round (end - start) / 1000) + " seconds)");
             }
         }
 

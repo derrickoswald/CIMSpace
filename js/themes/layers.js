@@ -138,11 +138,57 @@ define
             return (ret);
         }
 
+        function full_circle_layer (id, source, color, filter)
+        {
+            var ret =
+                {
+                    id: id,
+                    type: "circle",
+                    source: source,
+                    paint:
+                    {
+                        "circle-radius": 5, // Optional number. Units in pixels. Defaults to 5.
+                        "circle-color": color, // Optional color. Defaults to #000000.
+                        "circle-blur": 0, // Optional number. Defaults to 0. 1 blurs the circle such that only the centerpoint is full opacity.
+                        "circle-opacity": 1, // Optional number. Defaults to 1.
+                        "circle-translate": [0, 0], // Optional array. Units in pixels. Defaults to 0,0. Values are [x, y] where negatives indicate left and up, respectively.
+                        "circle-translate-anchor": "map", // Optional enum. One of map, viewport. Defaults to map. Requires circle-translate.
+                    }
+                };
+            if ("undefined" != typeof (filter) && (null != filter))
+                ret.filter = filter;
+
+            return (ret);
+        }
+
+        function polygon_layer (id, source, color, edge_color, filter)
+        {
+            var ret =
+                {
+                    id: id,
+                    type: "fill",
+                    source: source,
+                    interactive: true,
+                    paint:
+                    {
+                        "fill-opacity": 0.25,
+                        "fill-color": color,
+                        "fill-outline-color": edge_color
+                    }
+                };
+            if ("undefined" != typeof (filter) && (null != filter))
+                ret.filter = filter;
+
+            return (ret);
+        }
+
         return (
             {
                 line_layer: line_layer,
                 circle_layer: circle_layer,
-                symbol_layer: symbol_layer
+                symbol_layer: symbol_layer,
+                full_circle_layer: full_circle_layer,
+                polygon_layer: polygon_layer
             }
         );
     }
