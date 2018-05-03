@@ -38,7 +38,33 @@ define
             {
                 var dx = a.lng - b.lng;
                 var dy = a.lat - b.lat;
-                return (dx * dx + dy * dy);
+                return (Math.sqrt (dx * dx + dy * dy));
+            }
+
+            /**
+             * The distance of p to line (p0,p1).
+             * @param p LngLat the point to test
+             * @param p0, p1 LngLat the coordinates of the line endpoints
+             * @return the perpendicular point on (p0,p1) and
+             * the value of t (the corresponding value for the parametric line).
+             * Note: if t < 0.0 or t > 1.0 the perpendicular point is not on the line segment.
+             */
+            point_line_distance (p, p0, p1)
+            {
+                var ret;
+                var l = [p1.lng - p0.lng, p1.lat - p0.lat]; // L(t) = p0 + t*l
+                var l2 = l[0] * l[0] + l[1] * l[1];
+                if (l2 == 0.0)
+                    ret = { valid: false };
+                else
+                {
+                    var w = [p.lng - p0.lng, p.lat - p0.lat];
+                    var t = (w[0] * l[0] + w[1] * l[1]) / l2;
+                    var perp = [p0.lng + t * l[0], p0.lat + t * l[1]];
+                    var point = mapboxgl.LngLat.convert (perp);
+                    ret = { point: point, t: t, distance: this.distance (p, point), valid: true }
+                }
+                return (ret);
             }
 
             snap (event)
@@ -57,42 +83,59 @@ define
                 if ((null != features) && (0 != features.length))
                 {
                     var mrid = this._mrid;
-                    var best_lnglat = null;
-                    var best_feature = null;
-                    var dist = this.distance.bind (this);
-                    function assign_best (lnglat, feature)
-                    {
-                        best_lnglat = lnglat;
-                        best_feature = feature;
-                        console.log ("snap " + feature.properties.cls + ":" + feature.properties.mRID + " " + dist (ret, lnglat) + " [" + lnglat.lng + "," + lnglat.lat + "]");
-                    }
+                    var candidates = [];
                     for (var i = 0; i < features.length; i++)
                     {
-                        if (features[i].properties.mRID && (mrid != features[i].properties.mRID)) // only our features and not the current one
+                        var feature = features[i];
+                        if (feature.properties.mRID && (mrid != feature.properties.mRID)) // only our features and not the current one
                         {
-                            if ("Point" == features[i].geometry.type)
+                            var geometry = feature.geometry;
+                            if ("Point" == geometry.type)
                             {
-                                var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates);
-                                if (null == best_lnglat)
-                                    assign_best (candidate, features[i]);
-                                else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
-                                    assign_best (candidate, features[i]);
+                                var candidate = mapboxgl.LngLat.convert (geometry.coordinates);
+                                candidates.push ({ distance: this.distance (ret, candidate), feature: feature, point: candidate, type: "POINT" });
                             }
-                            else if ("LineString" == features[i].geometry.type)
+                            else if ("LineString" == geometry.type)
                             {
-                                for (var j = 0; j < features[i].geometry.coordinates.length; j++)
+                                for (var j = 0; j < geometry.coordinates.length; j++)
                                 {
-                                    var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates[j]);
-                                    if (null == best_lnglat)
-                                        assign_best (candidate, features[i]);
-                                    else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
-                                        assign_best (candidate, features[i]);
+                                    var candidate = mapboxgl.LngLat.convert (geometry.coordinates[j]);
+                                    candidates.push ({ distance: this.distance (ret, candidate), feature: feature, point: candidate, type: "ENDPOINT" });
+                                }
+                                for (var j = 0; j < geometry.coordinates.length - 1; j++)
+                                {
+                                    var p0 = mapboxgl.LngLat.convert (geometry.coordinates[j]);
+                                    var p1 = mapboxgl.LngLat.convert (geometry.coordinates[j + 1]);
+                                    var pl = this.point_line_distance (ret, p0, p1);
+                                    if (pl.valid)
+                                        if ((pl.t >= 0.0) && (pl.t <= 1.0))
+                                            candidates.push ({ distance: pl.distance, feature: feature, point: pl.point, type: "NEAR" });
                                 }
                             }
                         }
                     }
-                    if (null != best_lnglat)
-                        ret = best_lnglat;
+                    if (0 < candidates.length)
+                    {
+                        var threshold = Number.POSITIVE_INFINITY;
+                        // set up the threshold as ten times the "NEAR"est point
+                        candidates.forEach (candidate => { if ((candidate.type == "NEAR") && (candidate.distance < threshold)) threshold = candidate.distance; });
+                        if (threshold != Number.POSITIVE_INFINITY)
+                            threshold = threshold * 10.0;
+                        // discard anything over the threshold
+                        var culled = candidates.filter (candidate => candidate.distance <= threshold);
+                        // choose in order of POINT, ENDPOINT, NEAR
+                        var chosen = null;
+                        culled.forEach (candidate => { if ((candidate.type == "POINT") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
+                        if (null == chosen)
+                            culled.forEach (candidate => { if ((candidate.type == "ENDPOINT") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
+                        if (null == chosen)
+                            culled.forEach (candidate => { if ((candidate.type == "NEAR") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
+                        if (null != chosen)
+                        {
+                            console.log ("snap " + chosen.type + " " + chosen.feature.properties.cls + ":" + chosen.feature.properties.mRID + " " + chosen.distance + " " + chosen.point);
+                            ret = chosen.point;
+                        }
+                    }
                 }
 
                 return (ret);
