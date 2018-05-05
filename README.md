@@ -10,6 +10,12 @@ See [CIM users group](http://cimug.ucaiug.org/default.aspx) for additional detai
 # Online
 The program is available online [http://derrickoswald.github.io/CIMSpace/](http://derrickoswald.github.io/CIMSpace/).
 
+# Video
+
+An overview of the current release:
+
+[![CIMApplication Overview](https://i9.ytimg.com/vi/ASHvqJ4Cg_k/3.jpg?sqp=CKS0uNcF&rs=AOn4CLAZci2RUGVVFpc26hTU1wRGPFyBcg)](http://www.youtube.com/watch?v=uWfDuNiRp8M "CIMSpace Movie")
+
 # Operation
 
 **Load**
