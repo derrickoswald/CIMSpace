@@ -25,17 +25,17 @@ define
                 this._default_digits = 4;
                 this._patterns =
                 {
-                    "ACLineSegment":    "CABLE",
+                    "ACLineSegment":    "CAB",
                     "Breaker":          "BRK",
                     "BusbarSection":    "BUS",
-                    // use parent as template: "ConnectivityNode": "CN",
-                    "Connector":        "CONN",
-                    "EnergyConsumer":   "USER",
-                    "Fuse":             "FUSE",
+                    // use parent as template: "ConnectivityNode": "NOD",
+                    "Connector":        "CN",
+                    "EnergyConsumer":   "USR",
+                    "Fuse":             "FUS",
                     "Junction":         "JCN",
-                    "Switch":           "SWITCH",
+                    "Switch":           "SW",
                     "Substation":       "STA",
-                    // use parent as template: "Terminal":         "TERM",
+                    // use parent as template: "Terminal":         "TER",
                     "PowerTransformer": "TX"
                 };
             }
