@@ -64,28 +64,31 @@ define
             for (var point in points)
             {
                 var p = points[point];
-                var location = p.Location;
-                if ((null != location) && ("undefined" == typeof (blacklist[location])))
+                if (!p.EditDisposition || (p.EditDisposition != "delete"))
                 {
-                    if (null == ret[location])
-                        ret[location] = [];
-                    var seq = Number (p.sequenceNumber);
-                    if (null != seq)
+                    var location = p.Location;
+                    if ((null != location) && ("undefined" == typeof (blacklist[location])))
                     {
-                        var x = Number (p.xPosition);
-                        var y = Number (p.yPosition);
-                        ret[location][seq * 2] = x;
-                        ret[location][seq * 2 + 1] = y;
-                        if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
+                        if (null == ret[location])
+                            ret[location] = [];
+                        var seq = Number (p.sequenceNumber);
+                        if (null != seq)
                         {
-                            if (x < extents.xmin)
-                                extents.xmin = x;
-                            if (x > extents.xmax)
-                                extents.xmax = x;
-                            if (y < extents.ymin)
-                                extents.ymin = y;
-                            if (y > extents.ymax)
-                                extents.ymax = y;
+                            var x = Number (p.xPosition);
+                            var y = Number (p.yPosition);
+                            ret[location][seq * 2] = x;
+                            ret[location][seq * 2 + 1] = y;
+                            if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
+                            {
+                                if (x < extents.xmin)
+                                    extents.xmin = x;
+                                if (x > extents.xmax)
+                                    extents.xmax = x;
+                                if (y < extents.ymin)
+                                    extents.ymin = y;
+                                if (y > extents.ymax)
+                                    extents.ymax = y;
+                            }
                         }
                     }
                 }

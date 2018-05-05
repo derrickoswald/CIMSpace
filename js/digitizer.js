@@ -48,6 +48,7 @@ define
              * @return the perpendicular point on (p0,p1) and
              * the value of t (the corresponding value for the parametric line).
              * Note: if t < 0.0 or t > 1.0 the perpendicular point is not on the line segment.
+             * See: http://geomalgorithms.com/a02-_lines.html
              */
             point_line_distance (p, p0, p1)
             {

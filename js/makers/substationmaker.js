@@ -44,17 +44,6 @@ define
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="type">Type</label>
-                      <div class="col-sm-8">
-                        <select id="type" class="form-control custom-select" name="type" aria-describedby="typeHelp">
-                        {{#types}}
-                          <option value="{{value}}"{{#isSelected}} selected{{/isSelected}}>{{description}}</option>
-                        {{/types}}
-                        </select>
-                        <small id="typeHelp" class="form-text text-muted">The type of substation, enclosure or box.</small>
-                      </div>
-                    </div>
-                    <div class="form-group row">
                       <label class="col-sm-4 col-form-label" for="feeders">Feeders</label>
                       <div class="col-sm-8">
                         <input id="feeders" class="form-control" type="text" name="feeders" aria-describedby="feedersHelp" value="8">
@@ -97,7 +86,7 @@ define
                 if (!proto)
                     proto = { mRID: this._cimedit.get_cimmrid ().nextIdFor ("Substation"), PSRType: "PSRType_TransformerStation" };
                 var trafos = this._cimmap.fetch ("PowerTransformerInfo", info => true)
-                var view = { proto: proto, types: types, isSelected: function () { return (proto.PSRType == this.value); }, trafos: trafos };
+                var view = { proto: proto, trafos: trafos };
                 var ret = mustache.render (template, view);
                 return (ret);
             }
@@ -115,7 +104,7 @@ define
                     mRID: id,
                     name: id,
                     cls: "Substation",
-                    PSRType: document.getElementById ("type").value
+                    PSRType: document.getElementById ("with_trafo").checked ? "PSRType_TransformerStation" : "PSRType_DistributionBox"
                 };
                 var ret =
                 {
@@ -127,21 +116,6 @@ define
                     ret.transformer = document.getElementById ("transformer_name").value;
 
                 return (ret);
-            }
-
-            distribution_box ()
-            {
-                return ("PSRType_DistributionBox");
-            }
-
-            transformer_station ()
-            {
-                return ("PSRType_TransformerStation");
-            }
-
-            substation ()
-            {
-                return ("PSRType_Substation");
             }
 
             ensure_stations ()
@@ -158,17 +132,18 @@ define
 
             make_substation (parameters, array)
             {
-                var station = array[0];
-                station.PSRType = this.transformer_station ();
-
-                array = array.concat (this._equipmentmaker.ensure_voltages ());
-                array = array.concat (this._equipmentmaker.ensure_status ());
-                array = array.concat (this.ensure_stations ());
-
                 // build a GeoJSON feature to locate all the pieces
                 var feature = this._locationmaker.extractFeature (array);
                 var x = feature.geometry.coordinates[0];
                 var y = feature.geometry.coordinates[1];
+
+                if (parameters.existing) // attach new elements to an existing SubStation?
+                    array = [parameters.existing];
+                var station = array[0];
+
+                array = array.concat (this._equipmentmaker.ensure_voltages ());
+                array = array.concat (this._equipmentmaker.ensure_status ());
+                array = array.concat (this.ensure_stations ());
 
                 // remember the trafo location for later on
                 var trafox = x - this._xoffset;
@@ -376,6 +351,8 @@ define
                 // ToDo: maybe need an interface to the map options?
                 document.getElementById ("internal_features").checked = true;
                 var parameters = this.submit_parameters ();
+                // if it's an already existing station, proceed with the digitization, but handle is specially later
+                parameters.existing = this._cimmap.get ("Substation", parameters.substation.mRID);
                 var obj = this._cimedit.create_from (parameters.substation);
                 var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
                 cpromise.setPromise (this._locationmaker.make (cpromise.promise (), "wgs84").then (this.make_substation.bind (this, parameters)));
