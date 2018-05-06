@@ -64,8 +64,8 @@ define
                 var ret = [];
                 if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_150000"))
                     ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_150000", mRID: "BaseVoltage_150000", name: "150kV", description: "high voltage", nominalVoltage: 150.0 }, this._cimedit.new_features ()));
-                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_16000"))
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_16000", mRID: "BaseVoltage_16000", name: "16kV", description: "medium voltage", nominalVoltage: 16.0 }, this._cimedit.new_features ()));
+                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_20000"))
+                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_20000", mRID: "BaseVoltage_20000", name: "20kV", description: "medium voltage", nominalVoltage: 20.0 }, this._cimedit.new_features ()));
                 if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_400"))
                     ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, this._cimedit.new_features ()));
                 return (ret);
