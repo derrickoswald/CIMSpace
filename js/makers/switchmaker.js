@@ -49,6 +49,8 @@ define
                 var swtch = array[0];
                 var id = swtch.id;
                 var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
+                swtch.normalOpen = false;
+                swtch.open = false;
                 swtch.normallyInService = true;
                 swtch.SvStatus = eqm.in_use ();
 

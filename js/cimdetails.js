@@ -103,7 +103,7 @@ define
                     return ("");
                 var cls = cim.class_map (feature);
                 var template = cls.prototype.template ();
-                var text = mustache.render (template, feature);
+                var text = mustache.render (template, JSON.parse (JSON.stringify (feature, (key, value) => (typeof value === 'boolean') ? value.toString () : value)));
                 var conducting = cimmap.get ("ConductingEquipment", mrid);
                 if (conducting)
                 {

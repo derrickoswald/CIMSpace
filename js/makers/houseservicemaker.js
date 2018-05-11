@@ -120,6 +120,7 @@ define
                     id: id,
                     mRID: id,
                     cls: "EnergyConsumer",
+                    PSRType: "PSRType_HouseService",
                     normallyInService: true
                 };
                 var customerCount = document.getElementById ("customerCount").value;
@@ -176,6 +177,16 @@ define
                 }
             }
 
+            ensure_consumers ()
+            {
+                var ret = [];
+                if (!this._cimmap.get ("PSRType", "PSRType_HouseService"))
+                    ret.push (new Core.PSRType ({ cls: "PSRType", id: "PSRType_HouseService", mRID: "PSRType_HouseService", name: "House Service", description: "Consumer/Customer" }, this._cimedit.new_features ()));
+                if (!this._cimmap.get ("PSRType", "PSRType_StreetLight"))
+                    ret.push (new Core.PSRType ({ cls: "PSRType", id: "PSRType_StreetLight", mRID: "PSRType_StreetLight", name: "Street Light", description: "Street Lighting" }, this._cimedit.new_features ()));
+                return (ret);
+            }
+
             /**
              * Create an EnergyConsumer and possibly a Fuse.
              * @param parameters the form scraped data and existing template objects (see submit_parameters)
@@ -186,6 +197,7 @@ define
             {
                 var consumer = this.make_equipment (array);
                 parameters.objs = parameters.objs.concat (consumer);
+                parameters.objs = parameters.objs.concat (this.ensure_consumers ());
                 if (parameters.fuse)
                 {
                     // edit just the house service so the connectivity can be found

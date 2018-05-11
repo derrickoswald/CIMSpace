@@ -209,6 +209,8 @@ define
                                 name: did,
                                 description: station.name + " " + fname,
                                 BaseVoltage: this._equipmentmaker.low_voltage (),
+                                normalOpen: false,
+                                open: false,
                                 normallyInService: true,
                                 retained: true,
                                 SvStatus: this._equipmentmaker.in_use (),
@@ -229,6 +231,8 @@ define
                                 description: station.name + " " + fname,
                                 BaseVoltage: this._equipmentmaker.low_voltage (),
                                 ratedCurrent: parameters.ratedCurrent,
+                                normalOpen: false,
+                                open: false,
                                 normallyInService: true,
                                 SvStatus: this._equipmentmaker.in_use (),
                                 EquipmentContainer: station.id
@@ -319,7 +323,8 @@ define
                             mRID: id,
                             name: id,
                             description: station.name + " transformer",
-                            AssetDatasheet: parameters.transformer
+                            AssetDatasheet: parameters.transformer,
+                            EquipmentContainer: station.id
                         };
                     // ToDo: figure out vector group from end infos connectionKind and phaseAngleClock
                     // till then, just check for the most common one:

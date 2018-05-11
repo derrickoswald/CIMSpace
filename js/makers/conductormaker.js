@@ -81,6 +81,8 @@ define
                     parameters.AssetDatasheet = cable_name; // add the cable type
                     parameters.PerLengthImpedance = this._cimmap.get ("WireInfo", cable_name).PerLengthParameters[0]; // add the per length parameters
                 }
+                // ToDo: make this dependent on ProductAssetModel.usageKind (from AssetInfo.AssetModel) when we add aerial wires
+                parameters.PSRType = "PSRType_Underground";
                 return (parameters);
             }
 
@@ -105,12 +107,24 @@ define
                 return (ret);
             }
 
+            ensure_cables ()
+            {
+                var ret = [];
+                if (!this._cimmap.get ("PSRType", "PSRType_Underground"))
+                    ret.push (new Core.PSRType ({ cls: "PSRType", id: "PSRType_Underground", mRID: "PSRType_Underground", name: "Underground cable", description: "Buried cable in duct or trench." }, this._cimedit.new_features ()));
+                if (!this._cimmap.get ("PSRType", "PSRType_Overhead"))
+                    ret.push (new Core.PSRType ({ cls: "PSRType", id: "PSRType_Overhead", mRID: "PSRType_Overhead", name: "Overhead wires", description: "Aerial suspended conductors." }, this._cimedit.new_features ()));
+                return (ret);
+            }
+
             make_conductor (array)
             {
                 var line = array[0];
+                array = array.concat (this.ensure_cables ());
 
                 // get the position points
                 var pp = array.filter (o => o.cls == "PositionPoint").sort ((a, b) => a.sequenceNumber - b.sequenceNumber);
+                array = array.concat (this.ensure_cables ());
                 var connectivity1 = this.get_connectivity (Number (pp[0].xPosition), Number (pp[0].yPosition), line);
                 if (null == connectivity1) // invent a new node if there are none
                 {
