@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim"],
+    [],
     /**
      * @summary Coordinates control.
      * @description UI element for displaying mouse coordinates.
@@ -13,7 +13,7 @@ define
      * @exports cimcoordinates
      * @version 1.0
      */
-    function (mustache, cim, streetview)
+    function ()
     {
         class CIMCoordinates
         {

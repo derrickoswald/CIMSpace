@@ -427,10 +427,14 @@ define
 
         function toggle_legend ()
         {
-            if (TheThemer.getTheme ().getLegend ().visible ())
-                TheMap.removeControl (TheThemer.getTheme ().getLegend ());
+            var legend = TheThemer.getTheme ().getLegend ();
+            if (legend.visible ())
+                TheMap.removeControl (legend);
             else
-                TheMap.addControl (TheThemer.getTheme ().getLegend ());
+            {
+                TheMap.addControl (legend);
+                legend.initialize ();
+            }
         }
 
         function toggle_edit ()

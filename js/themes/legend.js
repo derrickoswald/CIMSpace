@@ -83,6 +83,10 @@ define
                 return ("undefined" != typeof (this._container));
             }
 
+            initialize ()
+            {
+            }
+
             legend_change (event)
             {
                 var element = this._items.find (function (item) { return (item.id == event.target.id); });
