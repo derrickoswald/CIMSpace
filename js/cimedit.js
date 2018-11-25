@@ -390,6 +390,30 @@ define
                 return (ret);
             }
 
+            orderBySequenceNumber (objects)
+            {
+                var ret = [];
+
+                var sequenced = {};
+                for (var i = 0; i < objects.length; i++)
+                {
+                    var obj = objects[i];
+                    if (obj.sequenceNumber)
+                    {
+                        var bucket = sequenced[obj.cls];
+                        if (null == bucket)
+                           sequenced[obj.cls] = bucket = [];
+                        bucket.push (obj);
+                    }
+                    else
+                        ret.push (obj);
+                }
+                for (var cls in sequenced)
+                    ret = ret.concat (sequenced[cls].sort ((a, b) => (Number (a.sequenceNumber) < Number (b.sequenceNumber)) ? -1 : (Number (a.sequenceNumber) > Number (b.sequenceNumber)) ? 1 : 0));
+
+                return (ret);
+            }
+
             get_related (element)
             {
                 var ret = [];
@@ -435,6 +459,8 @@ define
                             if (relations[i][2] == "0..1" || relations[i][2] == "1")
                                 this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] == ret[j].id) add (obj); });
                 }
+
+                ret = this.orderBySequenceNumber (ret);
 
                 return (ret);
             }
