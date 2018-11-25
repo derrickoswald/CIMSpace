@@ -21,17 +21,17 @@ define
             {
                 super ();
                 this._colors = [
-	                "rgb(0, 0, 0)",
-	                "rgb(0, 139, 0)",
-	                "rgb(0, 0, 139)",
-	                "rgb(0, 139, 139)",
-	                "rgb(139, 139, 0)",
-	                "rgb(139, 0, 0)",
-	                "rgb(139, 0, 139)",
-	                "rgb(255, 0, 0)",
-	                "rgb(255, 0, 255)",
-	                "rgb(0, 255, 255)",
-	                "rgb(255, 255, 0)"
+                    "rgb(0, 0, 0)",
+                    "rgb(0, 139, 0)",
+                    "rgb(0, 0, 139)",
+                    "rgb(0, 139, 139)",
+                    "rgb(139, 139, 0)",
+                    "rgb(139, 0, 0)",
+                    "rgb(139, 0, 139)",
+                    "rgb(255, 0, 0)",
+                    "rgb(255, 0, 255)",
+                    "rgb(0, 255, 255)",
+                    "rgb(255, 255, 0)"
                 ];
                 this._items = [];
             }
@@ -84,7 +84,10 @@ define
                 for (var id in terminals)
                 {
                     var terminal = terminals[id];
-                    psr[terminal.ConductingEquipment].color = maptable[terminal.TopologicalNode];
+                    var colour = maptable[terminal.TopologicalNode];
+                    var equipment = psr[terminal.ConductingEquipment];
+                    if (colour && equipment)
+                        equipment.color = colour;
                 }
                 this._items = [];
                 var i = 1;
@@ -98,6 +101,8 @@ define
                     if (text != "")
                     {
                         text = text.substring (1);
+                        if (text.length > 80)
+                            text = text.substring (0, 80) + "...";
                         this._items.push (
                             {
                                 id: "islands" + i,
