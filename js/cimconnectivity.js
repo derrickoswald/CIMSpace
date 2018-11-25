@@ -221,18 +221,21 @@ define
                                     if (!list[id].find (x => x.ConductingEquipment.id == terminal.ConductingEquipment))
                                     {
                                         var equipment = cimmap.get ("ConductingEquipment", terminal.ConductingEquipment);
-                                        var connectivity =
-                                            {
-                                                ConnectivityNode: id,
-                                                ConductingEquipment: equipment,
-                                                Terminal: terminal,
-                                                BaseVoltage: ""
-                                            };
-                                        if (equipment.BaseVoltage)
-                                            connectivity.BaseVoltage = equipment.BaseVoltage;
-                                        else
-                                            cimmap.forAll ("PowerTransformerEnd", end => { if (end.Terminal == terminal.id) connectivity.BaseVoltage = end.BaseVoltage; });
-                                        list[id].push (connectivity);
+                                        if (equipment)
+                                        {
+                                            var connectivity =
+                                                {
+                                                    ConnectivityNode: id,
+                                                    ConductingEquipment: equipment,
+                                                    Terminal: terminal,
+                                                    BaseVoltage: ""
+                                                };
+                                            if (equipment.BaseVoltage)
+                                                connectivity.BaseVoltage = equipment.BaseVoltage;
+                                            else
+                                                cimmap.forAll ("PowerTransformerEnd", end => { if (end.Terminal == terminal.id) connectivity.BaseVoltage = end.BaseVoltage; });
+                                            list[id].push (connectivity);
+                                        }
                                     }
                             }
                         );

@@ -115,15 +115,16 @@ define
                             {
                                 var node = terminal.ConnectivityNode;
                                 var equipment = [];
-                                cimmap.forAll ("Terminal",
-                                    terminal =>
-                                    {
-                                        if (node == terminal.ConnectivityNode) // same node
-                                            if (mrid != terminal.ConductingEquipment) // not the same equipment
-                                                if (cimmap.get ("ConductingEquipment", terminal.ConductingEquipment)) // and not deleted
-                                                    equipment.push (terminal.ConductingEquipment);
-                                    }
-                                );
+                                if (null != node)
+                                    cimmap.forAll ("Terminal",
+                                        terminal =>
+                                        {
+                                            if (node == terminal.ConnectivityNode) // same node
+                                                if (mrid != terminal.ConductingEquipment) // not the same equipment
+                                                    if (cimmap.get ("ConductingEquipment", terminal.ConductingEquipment)) // and not deleted
+                                                        equipment.push (terminal.ConductingEquipment);
+                                        }
+                                    );
                                 return ({ terminal: terminal, equipment: equipment });
                             }
                         );
