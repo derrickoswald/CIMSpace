@@ -164,11 +164,7 @@ define
         function add_feature_listener (obj)
         {
             if (!FeatureListeners.includes (obj))
-            {
                 FeatureListeners.push (obj);
-                if (get_selected_feature ())
-                    obj.selection_change (get_selected_feature (), get_selected_features ());
-            }
         }
 
         /**
@@ -409,48 +405,21 @@ define
                     { linear: true, padding: 50 });
         }
 
-        function toggle_info ()
+        function toggle (control_function)
         {
-            if (TheDetails.visible ())
-                TheMap.removeControl (TheDetails);
-            else
-                TheMap.addControl (TheDetails);
-        }
-
-        function toggle_themer ()
-        {
-            if (TheThemer.visible ())
-                TheMap.removeControl (TheThemer);
-            else
-                TheMap.addControl (TheThemer);
-        }
-
-        function toggle_legend ()
-        {
-            var legend = TheThemer.getTheme ().getLegend ();
-            if (legend.visible ())
-                TheMap.removeControl (legend);
-            else
-            {
-                TheMap.addControl (legend);
-                legend.initialize ();
-            }
-        }
-
-        function toggle_edit ()
-        {
-            if (get_editor ().visible ())
-                TheMap.removeControl (get_editor ());
-            else
-                TheMap.addControl (get_editor ());
-        }
-
-        function connectivity ()
-        {
-            if (get_connectivity ().visible ())
-                TheMap.removeControl (get_connectivity ());
-            else
-                TheMap.addControl (get_connectivity ());
+            return (
+                function ()
+                {
+                    var control = control_function ();
+                    if (control.visible ())
+                        TheMap.removeControl (control);
+                    else
+                    {
+                        TheMap.addControl (control);
+                        control.initialize ();
+                    }
+                }
+            );
         }
 
         function get (classname, id)
@@ -1280,7 +1249,14 @@ define
                 }
             );
             // add zoom and rotation controls to the map
-            TheMap.addControl (new cimnav.NavigationControl (zoom_extents, toggle_info, toggle_themer, toggle_legend, toggle_edit, connectivity));
+            TheMap.addControl (
+                new cimnav.NavigationControl (
+                    zoom_extents,
+                    toggle (get_details),
+                    toggle (get_themer),
+                    toggle (function () { return (get_themer ().getTheme ().getLegend ()); }),
+                    toggle (get_editor),
+                    toggle (get_connectivity)));
             add_listeners ();
         }
 

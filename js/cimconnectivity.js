@@ -75,6 +75,12 @@ define
                 return ("undefined" != typeof (this._container));
             }
 
+            initialize ()
+            {
+                if (this._cimmap.get_selected_feature ())
+                    this.selection_change (this._cimmap.get_selected_feature (), this._cimmap.get_selected_features ());
+            }
+
             popup (html, position)
             {
                 var lnglat = position || this._map.getCenter ();
@@ -795,7 +801,7 @@ define
                 while (null == status);
             }
 
-            initialize  (mrid)
+            set_conducting_equipment  (mrid)
             {
                 if (this._target)
                     this.reset_gui ();
@@ -824,13 +830,13 @@ define
                 {
                     console.log ("begin success " + equipment.id);
                     delete self._cpromise;
-                    self.initialize (equipment.id);
+                    self.set_conducting_equipment (equipment.id);
                 }
                 function cb_failure (message)
                 {
                     console.log ("begin not ok " + message);
                     delete self._cpromise;
-                    self.initialize (obj);
+                    self.set_conducting_equipment (obj);
                 }
                 this._cpromise.setPromise (this._cpromise.promise ().then (cb_success, cb_failure));
             }
@@ -917,7 +923,7 @@ require(["cimmap"], function(cimmap) { cimmap.get_connectivity ().connect (obj, 
              */
             connect (obj, terminal, callback_success, callback_failure)
             {
-                this.initialize (obj.id);
+                this.set_conducting_equipment (obj.id);
                 return (new CancelablePromise (new Promise (this.do_connectivity_wait.bind (this, obj)), this.abort.bind (this)));
             }
 
@@ -927,7 +933,7 @@ require(["cimmap"], function(cimmap) { cimmap.get_connectivity ().connect (obj, 
             selection_change (current_feature, current_selection)
             {
                 if (null != current_feature)
-                    this.initialize (current_feature);
+                    this.set_conducting_equipment (current_feature);
                 else
                 {
                     this.abort ();

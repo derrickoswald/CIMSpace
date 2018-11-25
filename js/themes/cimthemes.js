@@ -94,6 +94,15 @@ define
                 this._map.removeControl (this);
             }
 
+            visible ()
+            {
+                return ("undefined" != typeof (this._container));
+            }
+
+            initialize ()
+            {
+            }
+
             /**
              * Adds a theme to the theme user interface.
              * @param theme the theme to add
@@ -142,11 +151,6 @@ define
             getTheme ()
             {
                 return (this._theme);
-            }
-
-            visible ()
-            {
-                return ("undefined" != typeof (this._container));
             }
 
             theme_change (event)

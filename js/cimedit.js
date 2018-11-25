@@ -121,6 +121,17 @@ define
                 this._map.removeControl (this);
             }
 
+            visible ()
+            {
+                return ("undefined" != typeof (this._container));
+            }
+
+            initialize ()
+            {
+                if (this._cimmap.get_selected_feature ())
+                    this.selection_change (this._cimmap.get_selected_feature (), this._cimmap.get_selected_features ());
+            }
+
             start_maker (maker, proto)
             {
                 document.getElementById ("class_chooser").style.display = "none";
@@ -149,11 +160,6 @@ define
                         document.getElementById ("create").disabled = "" != document.getElementById ("class_name").value;
                     }
                 }
-            }
-
-            visible ()
-            {
-                return ("undefined" != typeof (this._container));
             }
 
             render ()

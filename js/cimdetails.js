@@ -94,6 +94,12 @@ define
                 return ("undefined" != typeof (this._container));
             }
 
+            initialize ()
+            {
+                if (this._cimmap.get_selected_feature ())
+                    this.selection_change (this._cimmap.get_selected_feature (), this._cimmap.get_selected_features ());
+            }
+
             detail_text ()
             {
                 var cimmap = this._cimmap;
