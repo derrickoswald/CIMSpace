@@ -31,7 +31,7 @@ define
                           </button>
                         </h5>
                         <h6 class="card-subtitle mb-2"></h6>
-                        <div class="card-text">
+                        <div id='view_contents' class="card-text">
                         </div>
                       </div>
                     </div>
