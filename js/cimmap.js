@@ -1090,15 +1090,27 @@ define
                         if (null != current)
                         {
                             mrid = current;
-                            var x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
-                            var y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
-                            TheMap.easeTo
-                            (
-                                {
-                                    center: [x, y],
-                                    zoom: 17
-                                }
-                            );
+                            var bounds = TheMap.getBounds ();
+                            var zoom = TheMap.getZoom ();
+                            // if we're not zoomed in already (showing symbols icons from 17 and deeper)
+                            // or the object bounds are not within the map bounds,
+                            // refocus the map
+                            if ((zoom < 17) ||
+                                ((bb[0][0] < bounds.getWest ()) ||
+                                 (bb[1][0] > bounds.getEast ()) ||
+                                 (bb[0][1] < bounds.getSouth ()) ||
+                                 (bb[1][1] > bounds.getNorth ())))
+                            {
+                                var x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
+                                var y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
+                                TheMap.easeTo
+                                (
+                                    {
+                                        center: [x, y],
+                                        zoom: 17
+                                    }
+                                );
+                            }
                         }
                         select (mrid, list);
                     }
