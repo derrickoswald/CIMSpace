@@ -2961,7 +2961,7 @@
         "visible": true,
         "sdf": true
     },
-    "energy_consumer": {
+    "distribution_box": {
         "x": 384,
         "y": 758,
         "width": 192,
@@ -2970,7 +2970,7 @@
         "visible": true,
         "sdf": true
     },
-    "distribution_box": {
+    "energy_consumer": {
         "x": 576,
         "y": 758,
         "width": 192,
@@ -2997,17 +2997,8 @@
         "visible": true,
         "sdf": true
     },
-    "station": {
-        "x": 192,
-        "y": 950,
-        "width": 192,
-        "height": 192,
-        "pixelRatio": 2,
-        "visible": true,
-        "sdf": true
-    },
     "street_light": {
-        "x": 384,
+        "x": 192,
         "y": 950,
         "width": 192,
         "height": 192,
@@ -3016,7 +3007,7 @@
         "sdf": true
     },
     "substation": {
-        "x": 576,
+        "x": 384,
         "y": 950,
         "width": 192,
         "height": 192,
@@ -3025,7 +3016,7 @@
         "sdf": true
     },
     "switch": {
-        "x": 768,
+        "x": 576,
         "y": 950,
         "width": 192,
         "height": 192,
@@ -3034,8 +3025,8 @@
         "sdf": true
     },
     "transformer_station": {
-        "x": 0,
-        "y": 1142,
+        "x": 768,
+        "y": 950,
         "width": 192,
         "height": 192,
         "pixelRatio": 2,
@@ -3043,7 +3034,7 @@
         "sdf": true
     },
     "transformer": {
-        "x": 192,
+        "x": 0,
         "y": 1142,
         "width": 192,
         "height": 192,

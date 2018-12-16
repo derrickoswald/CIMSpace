@@ -815,8 +815,13 @@ define
                         this.reset_gui ();
                     }
                     else
+                    {
                         // not ConductingEquipment
                         this.abort ();
+                        delete this._target;
+                        delete this._candidates;
+                        this.reset_gui ();
+                    }
                 }
             }
 

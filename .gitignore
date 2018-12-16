@@ -34,4 +34,4 @@ glslogs/
 /bin/
 .cache-main
 .cache-tests
-
+node_modules/

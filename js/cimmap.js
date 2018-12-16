@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "cimdetails", "cimcoordinates", "cimedit", "cimconnectivity", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
+    ["cimnav", "cimdetails", "cimcoordinates", "cimedit", "cimconnectivity", "cimdiagram", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, CIMDetails, CIMCoordinates, CIMEdit, CIMConnectivity, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
+    function (cimnav, CIMDetails, CIMCoordinates, CIMEdit, CIMConnectivity, CIMDiagram, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
     {
         /**
          * The map object.
@@ -50,6 +50,11 @@ define
          * The connectivity control object.
          */
         var TheConnectivity = new CIMConnectivity (getInterface (), TheEditor);
+
+        /**
+         * The diagram control object.
+         */
+        var TheDiagram = new CIMDiagram (getInterface ());
 
         /**
          * The scale bar control.
@@ -245,6 +250,17 @@ define
         function get_connectivity ()
         {
             return (TheConnectivity);
+        }
+
+        /**
+         * Get the diagram editor.
+         * @return {Object} The object handling diagrams.
+         * @function get_diagram
+         * @memberOf module:cimmap
+         */
+        function get_diagram ()
+        {
+            return (TheDiagram);
         }
 
         /**
@@ -1256,7 +1272,8 @@ define
                     toggle (get_themer),
                     toggle (function () { return (get_themer ().getTheme ().getLegend ()); }),
                     toggle (get_editor),
-                    toggle (get_connectivity)));
+                    toggle (get_connectivity),
+                    toggle (get_diagram)));
             add_listeners ();
         }
 
@@ -1293,6 +1310,7 @@ define
                      get_themer: get_themer,
                      get_editor: get_editor,
                      get_connectivity: get_connectivity,
+                     get_diagram: get_diagram,
                      show_internal_features: show_internal_features,
                      show_3d_buildings: show_3d_buildings,
                      show_scale_bar: show_scale_bar,

@@ -52,7 +52,7 @@ define
          */
         class NavigationControl {
 
-            constructor (zoome, info, themer, legend, edit, connectivity)
+            constructor (zoome, info, themer, legend, edit, connectivity, diagram)
             {
                 bindAll (["_rotateCompassArrow"], this);
 
@@ -69,6 +69,7 @@ define
                 this._legendDisplay = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-legend', 'Legend', legend);
                 this._edit = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-edit', 'Edit', edit);
                 this._connectivity = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-connectivity', 'Connectivity', connectivity);
+                this._diagram = this._createButton ('mapboxgl-ctrl-icon mapboxgl-ctrl-diagram', 'Diagram', diagram);
             }
 
             _rotateCompassArrow ()

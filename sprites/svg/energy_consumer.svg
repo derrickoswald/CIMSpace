@@ -1,48 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:cc="http://creativecommons.org/ns#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:svg="http://www.w3.org/2000/svg"
      xmlns="http://www.w3.org/2000/svg"
-     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
      width="96"
      height="96"
      viewBox="0 0 96 96"
      version="1.1"
-     id="svg8"
-     inkscape:version="0.92.2 (30a58d1, 2017-08-07)"
-     sodipodi:docname="energy_consumer.svg">
+     id="svg8">
     <defs
          id="defs2" />
-    <sodipodi:namedview
-         id="base"
-         pagecolor="#ffffff"
-         bordercolor="#666666"
-         borderopacity="1.0"
-         inkscape:pageopacity="0.0"
-         inkscape:pageshadow="2"
-         inkscape:zoom="13.09375"
-         inkscape:cx="34.176611"
-         inkscape:cy="48"
-         inkscape:document-units="px"
-         inkscape:current-layer="layer1"
-         showgrid="true"
-         units="px"
-         inkscape:window-width="2495"
-         inkscape:window-height="1416"
-         inkscape:window-x="2625"
-         inkscape:window-y="24"
-         inkscape:window-maximized="1">
-        <inkscape:grid
-             type="xygrid"
-             id="grid815"
-             originx="12.000001"
-             originy="21.000049" />
-    </sodipodi:namedview>
     <metadata
          id="metadata5">
         <rdf:RDF>
@@ -55,33 +24,12 @@
             </cc:Work>
         </rdf:RDF>
     </metadata>
-    <g
-         inkscape:label="Layer 1"
-         inkscape:groupmode="layer"
-         id="layer1"
-         transform="translate(12.000001,-288.70872)">
-        <path
-             style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="m 35.999999,288.70867 v 61"
-             id="path821"
-             inkscape:connector-curvature="0"
-             sodipodi:nodetypes="cc" />
-        <path
-             sodipodi:type="star"
-             style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.88245308;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-             id="path846"
-             sodipodi:sides="3"
-             sodipodi:cx="12"
-             sodipodi:cy="349.53162"
-             sodipodi:r1="6.7082038"
-             sodipodi:r2="3.3541019"
-             sodipodi:arg1="-0.52359878"
-             sodipodi:arg2="0.52359878"
-             inkscape:flatsided="false"
-             inkscape:rounded="0"
-             inkscape:randomized="0"
-             d="M 17.809475,346.17751 14.904737,351.20867 12,356.23982 9.0952625,351.20867 6.1905251,346.17751 12,346.17751 Z"
-             inkscape:transform-center-y="5.8333906"
-             transform="matrix(3.2705196,0,0,3.4783233,-3.2462362,-854.40855)" />
-    </g>
+    <path
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 48,0 V 61"
+         id="path821" />
+    <path
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="path846"
+         d="M 67,61 57.5,78.5 48,96 38.5,78.5 29,61 h 19 z" />
 </svg>
