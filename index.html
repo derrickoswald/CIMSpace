@@ -144,8 +144,15 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 control-label" for="server_url">Server URL</label>
-                        <div class="col-sm-9">
-                            <input id="server_url" class="form-control" type="text" name="server_url" placeholder="http://9code.ch" value="data/equipmentlibrary.zip">
+                        <div class="col-sm-9 input-group">
+                            <input id="server_url" type="text" class="form-control" aria-label="Server URL with dropdown button" value="data/sampledata.zip">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Preset</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" onclick="(() => document.getElementById ('server_url').value='data/equipmentlibrary.zip')()" href="#">Equipment Library</a>
+                                    <a class="dropdown-item" onclick="(() => document.getElementById ('server_url').value='data/sampledata.zip')()" href="#">Sample Data</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -216,6 +223,9 @@
 
     <!-- JQuery -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap popper JavaScript -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
 
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
