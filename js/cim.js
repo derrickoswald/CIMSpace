@@ -81,12 +81,11 @@ define
          * Parse an XML file into constituent parts
          * @param {String} xml - the string to parse
          * @param {Object} context - the file reading context
-         * @param {Object} parsed - optional parsed elements to add to
          * @returns {Object} the parsed object
          * @function read_xml
          * @memberOf module:cim
          */
-        function read_xml (xml, context, parsed)
+        function read_xml (xml, context)
         {
             var regex;
             var startindex;
@@ -98,7 +97,7 @@ define
                 start_character: 0,
                 end_character: 0,
                 newlines: [],
-                parsed: parsed || { ignored: 0 }
+                parsed: { ignored: 0 }
             };
 
             // update the newline index
@@ -159,7 +158,7 @@ define
          * @function read_full_xml
          * @memberOf module:cim
          */
-        function read_full_xml (xml, start, context, parsed)
+        function read_full_xml (xml, start, context)
         {
             var subxml;
             var regex;
@@ -225,7 +224,7 @@ define
             }
 
             context.end_character = context.start_character;
-            result = read_xml (subxml, context, parsed);
+            result = read_xml (subxml, context);
 
             return (result);
         }
@@ -236,13 +235,12 @@ define
          * @param {Blob} blob - the blob to read
          * @param {Number} start - the starting byte to read from the blob
          * @param {Object} context - the state of the parser
-         * @param {Object} parsed - the output of the parser so far
          * @param {Function} resolve - the function to call to resolve the promise
          * @param {Function} reject - the function to call to reject the promise
          * @function xml_read_promise
          * @memberOf module:cim
          */
-        function xml_read_promise (blob, start, context, parsed, resolve, reject)
+        function xml_read_promise (blob, start, context, resolve, reject)
         {
             var size;
             var tbd;
@@ -263,10 +261,10 @@ define
 
                 xml = event.target.result;
                 if ("" == xml)
-                    resolve ({context: context, parsed: parsed});
+                    resolve ({context: context, parsed: { ignored: 0 }});
                 else
                 {
-                    result = read_full_xml (xml, start, context, parsed);
+                    result = read_full_xml (xml, start, context);
                     read = result.context.end_character - result.context.start_character; // number of characters parsed
                     if (0 == read)
                         reject (Error ("parse failed at line " + base.line_number (context)));
@@ -275,7 +273,7 @@ define
                         bytes = encode_utf8 (xml.substring (0, read + result.context.offset)).length;
 
                         context = result.context;
-                        parsed = result.parsed;
+                        parsed = context.parsed;
 
                         // check for done
                         done = false;
@@ -294,7 +292,7 @@ define
                         if (done)
                             resolve ({context: context, parsed: parsed});
                         else
-                            xml_read_promise (blob, start + bytes, context, parsed, resolve, reject); // tail recursive
+                            xml_read_promise (blob, start + bytes, context, resolve, reject); // tail recursive
                     }
                 }
             };
@@ -317,7 +315,7 @@ define
         {
             var promise;
 
-            promise = new Promise (xml_read_promise.bind (this, blob, 0, null, null));
+            promise = new Promise (xml_read_promise.bind (this, blob, 0, null));
             promise.then
             (
                 callback,
