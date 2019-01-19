@@ -49,6 +49,7 @@ define
                         console.log (result.parsed.ignored.toString () + " unrecognized element" + ((1 < result.parsed.ignored) ? "s" : ""));
                     delete result.parsed.ignored
                     cimmap.set_data (result.parsed);
+                    cimmap.set_loaded ({ files: [blob.name], options: {}, elements: Object.keys (result.parsed.Element).length });
                 }
             );
         }
@@ -92,6 +93,7 @@ define
                                             zipReader.close ();
                                             var end = new Date ().getTime ();
                                             console.log ("finished unzip (" + (Math.round (end - start) / 1000) + " seconds)");
+                                            data.name = entries[j].filename;
                                             read_cim (data);
                                         }
                                     );

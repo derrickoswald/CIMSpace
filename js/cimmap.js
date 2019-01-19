@@ -72,6 +72,11 @@ define
         var TheToken = "pk.eyJ1IjoiZG9zd2FsZCIsImEiOiJjaXdvd213aHgwMDBsMnlvZWY3amQ4YXR0In0.e9FmfCdPkY6I9DreofObwA";
 
         /**
+         * Information about loaded file(s).
+         */
+        var CIM_File = null;
+
+        /**
          * The CIM file contents after load.
          */
         var CIM_Data = null;
@@ -114,6 +119,38 @@ define
         function get_map ()
         {
             return (TheMap);
+        }
+
+        /**
+         * Set the loaded file information.
+         *
+         * info is of the form { files: ["filename"], options: {}, elements: int }
+         *
+         * @function set_loaded
+         * @memberOf module:cimmap
+         */
+        function set_loaded (info)
+        {
+            CIM_File = info;
+            if (CIM_File && CIM_File.files)
+            {
+                var title = document.title;
+                var index = title.indexOf (" - ");
+                if (-1 != index)
+                    title = title.substring (0, index);
+                title = title + " - " + CIM_File.files[0].replace (/\.(rdf|xml|RDF|XML)$/, "");
+                document.title = title;
+            }
+        }
+
+        /**
+         * Get the loaded file information.
+         * @function get_loaded
+         * @memberOf module:cimmap
+         */
+        function get_loaded ()
+        {
+            return (CIM_File);
         }
 
         /**
@@ -1298,41 +1335,43 @@ define
         {
             return (
                 {
-                     get_map: get_map,
-                     set_data: set_data,
-                     get_data: get_data,
-                     get_selected_feature: get_selected_feature,
-                     get_selected_features: get_selected_features,
-                     add_feature_listener: add_feature_listener,
-                     remove_feature_listener: remove_feature_listener,
-                     set_extents: set_extents,
-                     get_extents: get_extents,
-                     get_themer: get_themer,
-                     get_editor: get_editor,
-                     get_connectivity: get_connectivity,
-                     get_diagram: get_diagram,
-                     show_internal_features: show_internal_features,
-                     show_3d_buildings: show_3d_buildings,
-                     show_scale_bar: show_scale_bar,
-                     show_coordinates: show_coordinates,
-                     show_streetview: show_streetview,
-                     make_map: make_map,
-                     wait_for_map_loaded: wait_for_map_loaded,
-                     zoom_extents: zoom_extents,
-                     get: get,
-                     forAll: forAll,
-                     fetch: fetch,
-                     select: select,
-                     buildings_3d: buildings_3d,
-                     scale_bar: scale_bar,
-                     coordinates: coordinates,
-                     trace: trace,
-                     search: search,
-                     redraw: redraw,
-                     add_listeners: add_listeners,
-                     remove_listeners: remove_listeners,
-                     initialize: initialize,
-                     terminate: terminate
+                    get_map: get_map,
+                    set_loaded: set_loaded,
+                    get_loaded: get_loaded,
+                    set_data: set_data,
+                    get_data: get_data,
+                    get_selected_feature: get_selected_feature,
+                    get_selected_features: get_selected_features,
+                    add_feature_listener: add_feature_listener,
+                    remove_feature_listener: remove_feature_listener,
+                    set_extents: set_extents,
+                    get_extents: get_extents,
+                    get_themer: get_themer,
+                    get_editor: get_editor,
+                    get_connectivity: get_connectivity,
+                    get_diagram: get_diagram,
+                    show_internal_features: show_internal_features,
+                    show_3d_buildings: show_3d_buildings,
+                    show_scale_bar: show_scale_bar,
+                    show_coordinates: show_coordinates,
+                    show_streetview: show_streetview,
+                    make_map: make_map,
+                    wait_for_map_loaded: wait_for_map_loaded,
+                    zoom_extents: zoom_extents,
+                    get: get,
+                    forAll: forAll,
+                    fetch: fetch,
+                    select: select,
+                    buildings_3d: buildings_3d,
+                    scale_bar: scale_bar,
+                    coordinates: coordinates,
+                    trace: trace,
+                    search: search,
+                    redraw: redraw,
+                    add_listeners: add_listeners,
+                    remove_listeners: remove_listeners,
+                    initialize: initialize,
+                    terminate: terminate
                 }
             );
         }
