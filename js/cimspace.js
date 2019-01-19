@@ -45,9 +45,8 @@ define
                 {
                     var end = new Date ().getTime ();
                     console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
-                    if (0 != result.parsed.ignored)
-                        console.log (result.parsed.ignored.toString () + " unrecognized element" + ((1 < result.parsed.ignored) ? "s" : ""));
-                    delete result.parsed.ignored
+                    if (0 != result.context.ignored)
+                        console.log (result.context.ignored.toString () + " unrecognized element" + ((1 < result.context.ignored) ? "s" : ""));
                     cimmap.set_data (result.parsed);
                     cimmap.set_loaded ({ files: [blob.name], options: {}, elements: Object.keys (result.parsed.Element).length });
                 }
@@ -180,9 +179,8 @@ define
                                 var result = cim.read_full_xml (xmlhttp.response, 0, null, null);
                                 var end = new Date ().getTime ();
                                 console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
-                                if (0 != result.parsed.ignored)
-                                    console.log (result.parsed.ignored.toString () + " unrecognized element" + ((1 < result.parsed.ignored) ? "s" : ""));
-                                delete result.parsed.ignored
+                                if (0 != result.context.ignored)
+                                    console.log (result.context.ignored.toString () + " unrecognized element" + ((1 < result.context.ignored) ? "s" : ""));
                                 cimmap.set_data (result.parsed);
                             }
                         }

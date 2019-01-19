@@ -97,7 +97,8 @@ define
                 start_character: 0,
                 end_character: 0,
                 newlines: [],
-                parsed: { ignored: 0 }
+                ignored: 0,
+                parsed: { }
             };
 
             // update the newline index
@@ -135,12 +136,12 @@ define
                     parser.prototype.parse (subcontext, guts);
                 else
                 {
-                    if (context.parsed.ignored < 3)
+                    if (context.ignored < 3)
                         if ("undefined" != typeof (console))
                             console.log ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
                         else
                             print ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
-                    context.parsed.ignored++;
+                    context.ignored++;
                 }
 
                 result = null;
@@ -174,7 +175,8 @@ define
                     start_character: 0,
                     end_character: 0,
                     newlines: [],
-                    parsed: { ignored: 0 }
+                    ignored: 0,
+                    parsed: { }
                 };
                 subxml = xml;
 
@@ -261,7 +263,7 @@ define
 
                 xml = event.target.result;
                 if ("" == xml)
-                    resolve ({context: context, parsed: { ignored: 0 }});
+                    resolve ({context: context, parsed: { }});
                 else
                 {
                     result = read_full_xml (xml, start, context);
