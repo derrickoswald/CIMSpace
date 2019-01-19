@@ -320,10 +320,7 @@ define
             promise = new Promise (xml_read_promise.bind (this, blob, 0, null, null));
             promise.then
             (
-                function (result)
-                {
-                    callback (result);
-                },
+                callback,
                 function (err)
                 {
                     if ("undefined" != typeof (console))
