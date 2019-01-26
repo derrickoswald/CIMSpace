@@ -305,60 +305,60 @@ define
          * @summary Read blobs as XML.
          * @description Processes a file reading the blob as UTF8.
          * @param {Blob} blobs - array of blobs to read
-         * @param {Function} callback - function to call back with the parsing context (elements in context.parsed)
+         * @return a Promise that resolves with the parsing context (elements in context.parsed)
          * @function read_xml_blobs
          * @memberOf module:cim
          */
-        function read_xml_blobs (blobs, callback)
+        function read_xml_blobs (blobs)
         {
-            var promises;
+            var ret = new Promise (
+                (resolve, reject) =>
+                {
+                    var promises;
 
-            promises = blobs.map (blob => new Promise (read_xml_promise.bind (this, blob, 0, null)));
-            Promise.all (promises).then
-            (
-                function (contexts)
-                {
-                    // gather all the contexts
-                    var context;
-                    if (contexts.length == 1)
-                        context = contexts[0];
-                    else
-                    {
-                        var parsed = {};
-                        var ignored = 0;
-                        contexts.forEach (
-                            function (ctx)
+                    promises = blobs.map (blob => new Promise (read_xml_promise.bind (this, blob, 0, null)));
+                    Promise.all (promises).then
+                    (
+                        function (contexts)
+                        {
+                            // gather all the contexts
+                            var context;
+                            if (contexts.length == 1)
+                                context = contexts[0];
+                            else
                             {
-                                ignored += ctx.ignored;
-                                for (var cls in ctx.parsed)
-                                    if (ctx.parsed.hasOwnProperty (cls))
+                                var parsed = {};
+                                var ignored = 0;
+                                contexts.forEach (
+                                    function (ctx)
                                     {
-                                        if (!parsed[cls]) parsed[cls] = {};
-                                        for (var element in ctx.parsed[cls])
-                                            if (ctx.parsed[cls].hasOwnProperty (element))
-                                                parsed[cls][element] = ctx.parsed[cls][element];
+                                        ignored += ctx.ignored;
+                                        for (var cls in ctx.parsed)
+                                            if (ctx.parsed.hasOwnProperty (cls))
+                                            {
+                                                if (!parsed[cls]) parsed[cls] = {};
+                                                for (var element in ctx.parsed[cls])
+                                                    if (ctx.parsed[cls].hasOwnProperty (element))
+                                                        parsed[cls][element] = ctx.parsed[cls][element];
+                                            }
                                     }
+                                );
+                                context = {
+                                    offset: 0,
+                                    start_character: 0,
+                                    end_character: 0,
+                                    newlines: [],
+                                    ignored: ignored,
+                                    parsed: parsed
+                                };
                             }
-                        );
-                        context = {
-                            offset: 0,
-                            start_character: 0,
-                            end_character: 0,
-                            newlines: [],
-                            ignored: ignored,
-                            parsed: parsed
-                        };
-                    }
-                    callback (context);
-                },
-                function (err)
-                {
-                    if ("undefined" != typeof (console))
-                        console.log (err);
-                    else
-                        print (err);
+                            resolve (context);
+                        },
+                        reject
+                    );
                 }
             );
+            return (ret);
         }
 
         /**

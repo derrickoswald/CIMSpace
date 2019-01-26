@@ -38,9 +38,7 @@ define
         {
             var start = new Date ().getTime ();
             console.log ("starting CIM read\n    " + blobs.map (x => x.name).join ("\n    "));
-            cim.read_xml_blobs
-            (
-                blobs,
+            cim.read_xml_blobs (blobs).then (
                 function (context)
                 {
                     var end = new Date ().getTime ();
