@@ -80,8 +80,8 @@ define
         /**
          * Parse an XML file into constituent parts
          * @param {String} xml - the string to parse
-         * @param {Object} context - the file reading context
-         * @returns {Object} the parsed object
+         * @param {Object} context - the CIM reading context
+         * @returns {Object} the CIM reading context
          * @function read_xml
          * @memberOf module:cim
          */
@@ -147,15 +147,15 @@ define
                 result = null;
             }
 
-            return ({parsed: context.parsed, context: context});
+            return (context);
         }
 
         /**
          * Parse an XML file into constituent parts.
          * @param {String} xml - the string to parse
          * @param {Number} start - the position in the string to start parsing at
-         * @param {Object} context - the file reading context
-         * @returns {Object} the parsed object
+         * @param {Object} context - the CIM reading context
+         * @returns {Object} the CIM reading context
          * @function read_full_xml
          * @memberOf module:cim
          */
@@ -226,9 +226,9 @@ define
             }
 
             context.end_character = context.start_character;
-            result = read_xml (subxml, context);
+            context = read_xml (subxml, context);
 
-            return (result);
+            return (context);
         }
 
         /**
@@ -239,10 +239,10 @@ define
          * @param {Object} context - the state of the parser
          * @param {Function} resolve - the function to call to resolve the promise
          * @param {Function} reject - the function to call to reject the promise
-         * @function xml_read_promise
+         * @function read_xml_promise
          * @memberOf module:cim
          */
-        function xml_read_promise (blob, start, context, resolve, reject)
+        function read_xml_promise (blob, start, context, resolve, reject)
         {
             var size;
             var tbd;
@@ -263,24 +263,20 @@ define
 
                 xml = event.target.result;
                 if ("" == xml)
-                    resolve ({context: context, parsed: { }});
+                    resolve (context);
                 else
                 {
-                    result = read_full_xml (xml, start, context);
-                    read = result.context.end_character - result.context.start_character; // number of characters parsed
+                    context = read_full_xml (xml, start, context);
+                    read = context.end_character - context.start_character; // number of characters parsed
                     if (0 == read)
                         reject (Error ("parse failed at line " + base.line_number (context)));
                     else
                     {
-                        bytes = encode_utf8 (xml.substring (0, read + result.context.offset)).length;
-
-                        context = result.context;
-                        parsed = context.parsed;
-
+                        bytes = encode_utf8 (xml.substring (0, read + context.offset)).length;
                         // check for done
                         done = false;
                         regex = /\s*<\/rdf:RDF>\s*/g;
-                        if (null != (result = regex.exec (xml.substring (read + result.context.offset))))
+                        if (null != (result = regex.exec (xml.substring (read + context.offset))))
                         {
                             context.end_character += regex.lastIndex;
                             done = true;
@@ -292,9 +288,9 @@ define
                         }
 
                         if (done)
-                            resolve ({context: context, parsed: parsed});
+                            resolve (context);
                         else
-                            xml_read_promise (blob, start + bytes, context, resolve, reject); // tail recursive
+                            read_xml_promise (blob, start + bytes, context, resolve, reject); // tail recursive
                     }
                 }
             };
@@ -306,21 +302,55 @@ define
         }
 
         /**
-         * @summary Read a blob as XML.
-         * @description Processes chunks of the file reading the blob as UTF8.
-         * @param {Blob} blob - the blob to read
-         * @param {Function} callback - function to call back with the data: { parsed: data, context: ctx }
-         * @function read_xml_blob
+         * @summary Read blobs as XML.
+         * @description Processes a file reading the blob as UTF8.
+         * @param {Blob} blobs - array of blobs to read
+         * @param {Function} callback - function to call back with the parsing context (elements in context.parsed)
+         * @function read_xml_blobs
          * @memberOf module:cim
          */
-        function read_xml_blob (blob, callback)
+        function read_xml_blobs (blobs, callback)
         {
-            var promise;
+            var promises;
 
-            promise = new Promise (xml_read_promise.bind (this, blob, 0, null));
-            promise.then
+            promises = blobs.map (blob => new Promise (read_xml_promise.bind (this, blob, 0, null)));
+            Promise.all (promises).then
             (
-                callback,
+                function (contexts)
+                {
+                    // gather all the contexts
+                    var context;
+                    if (contexts.length == 1)
+                        context = contexts[0];
+                    else
+                    {
+                        var parsed = {};
+                        var ignored = 0;
+                        contexts.forEach (
+                            function (ctx)
+                            {
+                                ignored += ctx.ignored;
+                                for (var cls in ctx.parsed)
+                                    if (ctx.parsed.hasOwnProperty (cls))
+                                    {
+                                        if (!parsed[cls]) parsed[cls] = {};
+                                        for (var element in ctx.parsed[cls])
+                                            if (ctx.parsed[cls].hasOwnProperty (element))
+                                                parsed[cls][element] = ctx.parsed[cls][element];
+                                    }
+                            }
+                        );
+                        context = {
+                            offset: 0,
+                            start_character: 0,
+                            end_character: 0,
+                            newlines: [],
+                            ignored: ignored,
+                            parsed: parsed
+                        };
+                    }
+                    callback (context);
+                },
                 function (err)
                 {
                     if ("undefined" != typeof (console))
@@ -336,7 +366,7 @@ define
          * @description Writes each element where filter(element) returns <code>true</code>.
          * @param {Object} elements - the object with elements to write stored as properties of their mRID
          * (as returned from the parse context: context.parsed.Element[obj.mRID] = obj).
-         * @param {Function} filter - pedicate to determine if the element should be written or not.
+         * @param {Function} filter - predicate to determine if the element should be written or not.
          * @returns The XML text as an array of Strings.
          * @function write_elements
          * @memberOf module:cim
@@ -443,7 +473,8 @@ define
                 classes: classes,
                 class_map: class_map,
                 read_full_xml: read_full_xml,
-                read_xml_blob: read_xml_blob,
+                read_xml_promise: read_xml_promise,
+                read_xml_blobs: read_xml_blobs,
                 write_xml: write_xml
             }
         );

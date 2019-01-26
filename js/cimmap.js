@@ -138,7 +138,7 @@ define
                 var index = title.indexOf (" - ");
                 if (-1 != index)
                     title = title.substring (0, index);
-                title = title + " - " + CIM_File.files[0].replace (/\.(rdf|xml|RDF|XML)$/, "");
+                title = title + " - " + CIM_File.files.map (x => x.replace (/\.(rdf|xml|RDF|XML)$/, "")).join ();
                 document.title = title;
             }
         }

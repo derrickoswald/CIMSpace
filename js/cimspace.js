@@ -28,27 +28,28 @@ define
         var TheCurrentDescription = null;
 
         /**
-         * @summary Parse a zip file.
-         * @description Read in a CIM file.
-         * @param {Blob} blob - the blob of CIM data
+         * @summary Parse a set of CIM files.
+         * @description Read in CIM files.
+         * @param {Blob} blobs - the blobs of CIM data
          * @function read_cim
          * @memberOf module:cimspace
          */
-        function read_cim (blob)
+        function read_cim (blobs)
         {
             var start = new Date ().getTime ();
-            console.log ("starting CIM read");
-            cim.read_xml_blob
+            console.log ("starting CIM read\n    " + blobs.map (x => x.name).join ("\n    "));
+            cim.read_xml_blobs
             (
-                blob,
-                function (result)
+                blobs,
+                function (context)
                 {
                     var end = new Date ().getTime ();
-                    console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
-                    if (0 != result.context.ignored)
-                        console.log (result.context.ignored.toString () + " unrecognized element" + ((1 < result.context.ignored) ? "s" : ""));
-                    cimmap.set_data (result.parsed);
-                    cimmap.set_loaded ({ files: [blob.name], options: {}, elements: Object.keys (result.parsed.Element).length });
+                    var elements = Object.keys (context.parsed.Element).length;
+                    console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds, " + elements + " elements)");
+                    if (0 != context.ignored)
+                        console.log (context.ignored.toString () + " unrecognized element" + ((1 < context.ignored) ? "s" : ""));
+                    cimmap.set_data (context.parsed);
+                    cimmap.set_loaded ({ files: blobs.map (b => b.name), options: {}, elements: elements });
                 }
             );
         }
@@ -60,14 +61,16 @@ define
          * @function read_zip
          * @memberOf module:cimspace
          */
-        function read_zip (blob)
+        function read_zip (blob, fn)
         {
-            var start = new Date ().getTime ();
-            console.log ("starting unzip");
+            fn = fn || function (data) { read_cim ([data])};
             require (
                 ["zip/zip", "zip/mime-types"],
                 function (zip, mimeTypes)
                 {
+                    var start = new Date ().getTime ();
+                    console.log ("starting unzip '" + blob.name + "'");
+
                     //zip.workerScriptsPath = "js/zip/";
                     zip.useWebWorkers = false;
                     zip.createReader (new zip.BlobReader (blob),
@@ -84,16 +87,15 @@ define
                                         if (name.endsWith (".rdf") || name.endsWith (".xml"))
                                             j = i;
                                     }
-                                    console.log ("file: " + entries[j].filename);
                                     entries[j].getData (
-                                        new zip.BlobWriter (mimeTypes.getMimeType (entries[0].filename)),
+                                        new zip.BlobWriter (mimeTypes.getMimeType (entries[j].filename)),
                                         function (data)
                                         {
                                             zipReader.close ();
-                                            var end = new Date ().getTime ();
-                                            console.log ("finished unzip (" + (Math.round (end - start) / 1000) + " seconds)");
                                             data.name = entries[j].filename;
-                                            read_cim (data);
+                                            var end = new Date ().getTime ();
+                                            console.log ("finished unzip '" + data.name + "' (" + (Math.round (end - start) / 1000) + " seconds)");
+                                            fn (data);
                                         }
                                     );
                                 }
@@ -137,10 +139,22 @@ define
             if (0 < files.length)
             {
                 TheCurrentName = base_name (files[0].name);
-                if (files[0].name.endsWith (".zip"))
-                    read_zip (files[0]);
-                else
-                    read_cim (files[0]);
+                var array = Array (files.length).fill (null);
+                function check ()
+                {
+                    if (array.every (x => x != null))
+                        read_cim (array);
+                };
+                function unzip (n)
+                {
+                    read_zip (files[n], function (blob) { array[n] = blob; check (); });
+                };
+                for (var i = 0; i < files.length; i++)
+                    if (files[i].name.endsWith (".zip"))
+                        unzip (i);
+                    else
+                        array[i] = files[i];
+                check ();
             }
         }
 
@@ -176,12 +190,14 @@ define
                             {
                                 var start = new Date ().getTime ();
                                 console.log ("starting CIM read");
-                                var result = cim.read_full_xml (xmlhttp.response, 0, null, null);
+                                var context = cim.read_full_xml (xmlhttp.response, 0, null, null);
                                 var end = new Date ().getTime ();
-                                console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
-                                if (0 != result.context.ignored)
-                                    console.log (result.context.ignored.toString () + " unrecognized element" + ((1 < result.context.ignored) ? "s" : ""));
-                                cimmap.set_data (result.parsed);
+                                var elements = Object.keys (context.parsed.Element).length;
+                                console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds, " + elements + " elements)");
+                                if (0 != context.ignored)
+                                    console.log (context.ignored.toString () + " unrecognized element" + ((1 < context.ignored) ? "s" : ""));
+                                cimmap.set_data (context.parsed);
+                                cimmap.set_loaded ({ files: [TheCurrentName], options: {}, elements: elements });
                             }
                         }
                         else
