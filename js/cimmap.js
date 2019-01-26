@@ -354,51 +354,71 @@ define
             return (document.getElementById ("streetview").checked);
         }
 
-        async function pause (predicate, callback)
+        /**
+         * Sleep for some milliseconds.
+         *
+         * @param ms number of milliseconds to sleep
+         * @return a Promise that resolves when the number of milliseconds elapses
+         */
+        function sleep (ms)
         {
-            function sleep(ms)
-            {
-                return new Promise (resolve => setTimeout (resolve, ms));
-            }
-            if (predicate ())
-                do
-                    await sleep (1000);
-                while (predicate ());
-            callback ();
+            return (new Promise (resolve => setTimeout (resolve, ms)));
+        }
+
+        /**
+         * Pause to wait for some occurrence.
+         *
+         * @param predicate function to test, returns false when the pause is over, true if pausing should continue
+         * @param ms number of milliseconds to wait between predicate tests
+         * @return a Promise that resolves only when the predicate fails
+         */
+        function pause (predicate, ms)
+        {
+            var ms = ms || 1000;
+            var ret = new Promise (
+                (resolve, reject) =>
+                {
+                    if (predicate ())
+                        sleep (ms).then (
+                            () =>
+                            {
+                                pause (predicate, ms).then (resolve, reject);
+                            }
+                        );
+                    else
+                        resolve ();
+                }
+            );
+            return (ret);
         }
 
         function wait_for_map ()
         {
-            return (
-                new Promise (
-                    function (resolve, reject)
-                    {
-                        pause (() => null == TheMap, resolve);
-                    }
-                )
-            );
+            return (pause (() => null == TheMap));
         }
 
         function wait_for_map_loaded ()
         {
+            function predicate ()
+            {
+                return (!TheMap.loaded ())
+            }
+
             return (
                 new Promise (
                     function (resolve, reject)
                     {
-                        function predicate ()
-                        {
-                            return (!TheMap.loaded ())
-                        }
                         if (predicate ())
                         {
-                            function fuckoff (message)
+                            function handler (data) // {error: {message: string}}
                             {
+                                var message = JSON.stringify (data);
                                 console.log (message);
-                                TheMap.off ("error", fuckoff);
+                                TheMap.off ("error", handler);
                                 reject (message);
                             }
-                            TheMap.on ("error", fuckoff);
-                            pause (predicate, () => { TheMap.off ("error", fuckoff); resolve (); });
+                            TheMap.on ("error", handler);
+                            pause (predicate).then (() => { TheMap.off ("error", handler); resolve (); });
                         }
                         else
                             resolve ();
