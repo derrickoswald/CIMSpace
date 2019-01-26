@@ -185,7 +185,12 @@ define
                         {
                             TheCurrentName = base_name (url);
                             if (url.endsWith (".zip"))
-                                read_zip (xmlhttp.response);
+                            {
+                                var blob = xmlhttp.response;
+                                if (!blob.name)
+                                    blob.name = url;
+                                read_zip (blob);
+                            }
                             else
                             {
                                 var start = new Date ().getTime ();
