@@ -265,20 +265,27 @@ define
          * @summary Blob to base64 conversion.
          * @description Convert the blob into base64 characters.
          * @param {Blob} blob - the blob of data
-         * @param {Function} callback - the callback to recieve the converted data: signature function (base64)
+         * @return a Promise that resolves with the converted string.
          * @function blob2base64
          * @memberOf module:cimspace
          */
-        function blob2base64 (blob, callback)
+        function blob2base64 (blob)
         {
-            var reader = new FileReader ();
-            reader.onload = function ()
-            {
-                var dataUrl = reader.result;
-                var base64 = dataUrl.split (",")[1];
-                callback (base64);
-            };
-            reader.readAsDataURL (blob);
+            return (
+                new Promise (
+                    (resolve, reject) =>
+                    {
+                        var reader = new FileReader ();
+                        reader.onload = function ()
+                        {
+                            var dataUrl = reader.result;
+                            var base64 = dataUrl.split (",")[1];
+                            resolve (base64);
+                        };
+                        reader.readAsDataURL (blob);
+                    }
+                )
+            );
         }
 
         /**
@@ -398,7 +405,7 @@ define
 
                                                             // so we do this instead
                                                             console.log ("starting base64 conversion");
-                                                            blob2base64 (blob,
+                                                            blob2base64 (blob).then (
                                                                 function (data)
                                                                 {
                                                                     var finish = new Date ().getTime ();
