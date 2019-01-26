@@ -222,7 +222,7 @@ define
                                 if ("undefined" == typeof (coordinates[0]))
                                     coordinates = coordinates.slice (1);
                                 var self = this;
-                                streetview.urlFor (coordinates[0][0], coordinates[0][1],
+                                streetview.urlFor (coordinates[0][0], coordinates[0][1]).then (
                                     function (url)
                                     {
                                         if (-1 != url.indexOf ("pano"))
