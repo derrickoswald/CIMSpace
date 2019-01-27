@@ -36,7 +36,8 @@ define
                       </div>
                     </div>
                     `;
-                this._size = 32;
+                this._sizex = 32;
+                this._sizey = 40;
                 this._radius = 5;
                 this._border = 2;
             }
@@ -347,29 +348,23 @@ define
 //                return (text.join (""));
 //            }
 
-            marker_svg (n, fill, stroke, font)
+            rectangle_svg (x, y, dx, dy, radius, border, fill, stroke)
             {
                 // d="M 6 1 h 20 c 3,0 5,2 5,5 v 20 c 0,3 -2,5 -5,5 h -20 c -3,0 -5,-2 -5,-5 v -20 c 0,-3 2,-5 5,-5 z"
-                var h = this._size.toFixed (0);
-                var v = (this._size - (2 * this._radius) - this._border).toFixed (0);
-                var g = (this._radius - this._border).toFixed (0);
-                var r = (this._radius).toFixed (0);
-                var b = (this._border).toFixed (0);
-                var e = (this._size / 2.0).toPrecision (8);
-                var f = ((this._size + font) / 2.0).toPrecision (8);
-                var factor = 1.33333333333333; // I dunno why this is needed
+                var h = (dx - (2 * radius) - border).toFixed (0);
+                var v = (dy - (2 * radius) - border).toFixed (0);
+                var g = (radius - border).toFixed (0);
+                var r = radius.toFixed (0);
+                var b = border.toFixed (0);
+
                 var text =
                 [
-                    "<svg width='",
-                    h,
-                    "' height='",
-                    h,
-                    "'><path d='M ",
-                    (this._radius + this._border / 2).toFixed (0),
+                    "<path d='M ",
+                    (x + radius + border / 2).toFixed (0),
                     ",",
-                    (this._border / 2).toFixed (0),
+                    (y + border / 2).toFixed (0),
                     " h ",
-                    v,
+                    h,
                     " c ",
                     g,
                     ",0 ",
@@ -393,7 +388,7 @@ define
                     ",",
                     r,
                     " h -",
-                    v,
+                    h,
                     " c -",
                     g,
                     ",0 -",
@@ -421,8 +416,27 @@ define
                     ";stroke:",
                     stroke,
                     ";stroke-width:",
-                    this._border.toFixed (0),
-                    "px' />",
+                    border.toFixed (0),
+                    "px' />"
+                ];
+                return (text.join (""));
+            }
+
+            marker_svg (dx, dy, radius, border, label, fill, stroke, font)
+            {
+                var w = dx.toFixed (0);
+                var h = dy.toFixed (0);
+                var e = (dx / 2.0).toPrecision (8);
+                var f = ((dy + font) / 2.0).toPrecision (8);
+                var factor = 1.33333333333333; // I dunno why this is needed
+                var text =
+                [
+                    "<svg width='",
+                    w,
+                    "' height='",
+                    h,
+                    "'>",
+                    this.rectangle_svg (0, 0, dx, dy, radius, border, fill, stroke),
                     "<text x='",
                     e,
                     "' y='",
@@ -436,7 +450,7 @@ define
                     "' y='",
                     f,
                     "'>",
-                    n.toString (),
+                    label,
                     "</tspan></text></svg>"
                 ];
                 return (text.join (""));
@@ -447,7 +461,7 @@ define
                 var element = document.createElement ("span");
                 element.setAttribute ("style", "height: 32px;");
                 element.className = "marker";
-                element.innerHTML = this.marker_svg (n, "#ffffff", "#0000ff",  (n < 10) ? 24 : 18);
+                element.innerHTML = this.marker_svg (this._sizex, this._sizey, this._radius, this._border, n.toString (), "#ffffff", "#0000ff",  (n < 10) ? 24 : 18);
                 // freeze the selection process
                 var reset = (function ()
                 {
@@ -470,7 +484,7 @@ define
                     return (false);
                 }
                 element.addEventListener ("click", marker_event, { capture: true });
-                var m = new mapboxgl.Marker (element, { offset: [ (n - 1) * this._size, 0.0] });
+                var m = new mapboxgl.Marker (element, { offset: [ (n - 1) * this._sizex, 0.0] });
                 m.setLngLat (ll);
                 m.addTo (this._cimmap.get_map ());
 
@@ -737,7 +751,7 @@ define
                     var x0 = point.x;
                     var y0 = point.y;
                     var n = this._candidates.filter (x => x.Marker).length;
-                    var half = (this._size + this._border) / 2.0;
+                    var half = (this._sizex + this._border) / 2.0;
                     if ((x < x0 - half) || (y < y0 - half) || (y > y0 + half) || (x > x0 + (2 * (n - 1) + 1) * half))
                         this.reset_candidates ();
                     else if ((x >= x0 - half) && (y >= y0 - half) && (y <= y0 + half) && (x <= x0 + half))
