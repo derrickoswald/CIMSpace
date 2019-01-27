@@ -37,6 +37,7 @@ define
                     </div>
                     `;
                 this._size = 32;
+                this._radius = 5;
                 this._border = 2;
             }
 
@@ -346,51 +347,90 @@ define
 //                return (text.join (""));
 //            }
 
-            svg (n, r, fill, stroke, border, font)
+            marker_svg (n, fill, stroke, font)
             {
-                var b = (stroke / 2.0).toFixed (0);
-                var c = (r + stroke / 2.0).toFixed (0);
-                var d = (r + stroke).toFixed (0);
-                var e = ((r + stroke) / 2.0).toPrecision (8);
-                var f = ((r + stroke + font) / 2.0).toPrecision (8);
+                // d="M 6 1 h 20 c 3,0 5,2 5,5 v 20 c 0,3 -2,5 -5,5 h -20 c -3,0 -5,-2 -5,-5 v -20 c 0,-3 2,-5 5,-5 z"
+                var h = this._size.toFixed (0);
+                var v = (this._size - (2 * this._radius) - this._border).toFixed (0);
+                var g = (this._radius - this._border).toFixed (0);
+                var r = (this._radius).toFixed (0);
+                var b = (this._border).toFixed (0);
+                var e = (this._size / 2.0).toPrecision (8);
+                var f = ((this._size + font) / 2.0).toPrecision (8);
                 var factor = 1.33333333333333; // I dunno why this is needed
                 var text =
                 [
                     "<svg width='",
-                    d,
+                    h,
                     "' height='",
-                    d,
+                    h,
                     "'><path d='M ",
-                    b,
+                    (this._radius + this._border / 2).toFixed (0),
                     ",",
-                    b,
-                    " L ",
-                    c,
+                    (this._border / 2).toFixed (0),
+                    " h ",
+                    v,
+                    " c ",
+                    g,
+                    ",0 ",
+                    r,
                     ",",
                     b,
                     " ",
-                    c,
+                    r,
                     ",",
-                    c,
-                    " ",
+                    r,
+                    " v ",
+                    v,
+                    " c 0,",
+                    g,
+                    " -",
                     b,
                     ",",
-                    c,
-                    " Z' style='fill:",
+                    r,
+                    " -",
+                    r,
+                    ",",
+                    r,
+                    " h -",
+                    v,
+                    " c -",
+                    g,
+                    ",0 -",
+                    r,
+                    ",-",
+                    b,
+                    " -",
+                    r,
+                    ",-",
+                    r,
+                    " v -",
+                    v,
+                    " c 0,-",
+                    g,
+                    " ",
+                    b,
+                    ",-",
+                    r,
+                    " ",
+                    r,
+                    ",-",
+                    r,
+                    " z' style='fill:",
                     fill,
                     ";stroke:",
-                    border,
+                    stroke,
                     ";stroke-width:",
-                    stroke.toFixed (0),
+                    this._border.toFixed (0),
                     "px' />",
                     "<text x='",
                     e,
                     "' y='",
                     f,
-                    "' style='font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:",
+                    "' style='font-size:",
                     (font * factor).toFixed (0),
                     "px",
-                    ";line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none'>",
+                    ";font-family:sans-serif;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none'>",
                     "<tspan x='",
                     e,
                     "' y='",
@@ -407,7 +447,7 @@ define
                 var element = document.createElement ("span");
                 element.setAttribute ("style", "height: 32px;");
                 element.className = "marker";
-                element.innerHTML = this.svg (n, this._size, "#ffffff", this._border, "#0000ff",  (n < 10) ? 24 : 18);
+                element.innerHTML = this.marker_svg (n, "#ffffff", "#0000ff",  (n < 10) ? 24 : 18);
                 // freeze the selection process
                 var reset = (function ()
                 {
@@ -430,7 +470,7 @@ define
                     return (false);
                 }
                 element.addEventListener ("click", marker_event, { capture: true });
-                var m = new mapboxgl.Marker (element, { offset: [ (n - 1) * (this._size + this._border / 2.0), 0.0] });
+                var m = new mapboxgl.Marker (element, { offset: [ (n - 1) * this._size, 0.0] });
                 m.setLngLat (ll);
                 m.addTo (this._cimmap.get_map ());
 
