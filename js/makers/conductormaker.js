@@ -86,24 +86,11 @@ define
                 return (parameters);
             }
 
-            measure (lon1, lat1, lon2, lat2)
-            {
-                var rlat1 = lat1 * Math.PI / 180;
-                var rlat2 = lat2 * Math.PI / 180
-                var dlat = rlat2 - rlat1;
-                var dlon = (lon2 -lon1) * Math.PI / 180;
-                var a = Math.sin (dlat / 2.0) * Math.sin (dlat / 2.0) +
-                    Math.cos (rlat1) * Math.cos (rlat2) *
-                    Math.sin (dlon / 2.0) * Math.sin (dlon / 2.0);
-                var c = 2.0 * Math.atan2 (Math.sqrt (a), Math.sqrt (1.0 - a));
-                return (c * 6378.137e3); // earth radius in meters
-            }
-
             distance (pp)
             {
                 var ret = 0.0;
                 for (var i = 0; i < pp.length - 1; i++)
-                    ret += this.measure (Number (pp[i].xPosition), Number (pp[i].yPosition), Number (pp[i + 1].xPosition), Number (pp[i + 1].yPosition));
+                    ret += this._cimmap.measure (Number (pp[i].xPosition), Number (pp[i].yPosition), Number (pp[i + 1].xPosition), Number (pp[i + 1].yPosition));
                 return (ret);
             }
 

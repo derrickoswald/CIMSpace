@@ -1082,6 +1082,20 @@ define
             return (ret);
         }
 
+        function measure (lon1, lat1, lon2, lat2)
+        {
+            var rlat1 = lat1 * Math.PI / 180;
+            var rlat2 = lat2 * Math.PI / 180
+            var dlat = rlat2 - rlat1;
+            var dlon = (lon2 -lon1) * Math.PI / 180;
+            var sin1 = Math.sin (dlat / 2.0)
+            var sin2 = Math.sin (dlon / 2.0)
+            var a = sin1 * sin1 + Math.cos (rlat1) * Math.cos (rlat2) * sin2 * sin2;
+            var c = 2.0 * Math.atan2 (Math.sqrt (a), Math.sqrt (1.0 - a));
+            return (c * 6378.137e3); // earth radius in meters
+        }
+
+
         /**
          * Search the element identifiers to find those that match the search text.
          * @description Scan through all elements and make a list of those
@@ -1134,22 +1148,28 @@ define
                             mrid = current;
                             var bounds = TheMap.getBounds ();
                             var zoom = TheMap.getZoom ();
+                            var x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
+                            var y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
+                            // resolution (meters/pixel) = (Math.cos (y * Math.PI / 180.0) * 2.0 * Math.PI * 6378.137e3) / (512 * Math.pow (2, zoom));
+                            // zoom = Math.log2 ((Math.cos (y * Math.PI / 180.0) * 2.0 * Math.PI * 6378.137e3) / (512 * resolution)) ;
+                            var margin = 20; // pixels
+                            var pixels = TheMap.getContainer ().clientHeight - 2 * margin;
+                            var height = measure (bb[0][0], bb[0][1], bb[0][0], bb[1][1])
+                            var new_zoom = Math.log2 ((Math.cos (y * Math.PI / 180.0) * 2.0 * Math.PI * 6378.137e3) / (512 * (height / pixels)));
                             // if we're not zoomed in already (showing symbols icons from 17 and deeper)
                             // or the object bounds are not within the map bounds,
                             // refocus the map
-                            if ((zoom < 17) ||
-                                ((bb[0][0] < bounds.getWest ()) ||
-                                 (bb[1][0] > bounds.getEast ()) ||
-                                 (bb[0][1] < bounds.getSouth ()) ||
-                                 (bb[1][1] > bounds.getNorth ())))
+                            new_zoom = Math.min (Math.max (17, zoom), new_zoom)
+                            if ((bb[0][0] < bounds.getWest ()) ||
+                                (bb[1][0] > bounds.getEast ()) ||
+                                (bb[0][1] < bounds.getSouth ()) ||
+                                (bb[1][1] > bounds.getNorth ()))
                             {
-                                var x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
-                                var y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
                                 TheMap.easeTo
                                 (
                                     {
                                         center: [x, y],
-                                        zoom: 17
+                                        zoom: new_zoom
                                     }
                                 );
                             }
@@ -1386,6 +1406,7 @@ define
                     scale_bar: scale_bar,
                     coordinates: coordinates,
                     trace: trace,
+                    measure: measure,
                     search: search,
                     redraw: redraw,
                     add_listeners: add_listeners,
