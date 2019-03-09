@@ -14,7 +14,7 @@ The program is available online [http://derrickoswald.github.io/CIMSpace/](http:
 
 An overview of the current release:
 
-[![CIMApplication Overview](https://i9.ytimg.com/vi/ASHvqJ4Cg_k/3.jpg?sqp=CKS0uNcF&rs=AOn4CLAZci2RUGVVFpc26hTU1wRGPFyBcg)](http://www.youtube.com/watch?v=uWfDuNiRp8M "CIMSpace Movie")
+[![CIMSpace Overview](https://i9.ytimg.com/vi/ASHvqJ4Cg_k/3.jpg?sqp=CKS0uNcF&rs=AOn4CLAZci2RUGVVFpc26hTU1wRGPFyBcg)](https://www.youtube.com/watch?v=ASHvqJ4Cg_k "CIMSpace Movie")
 
 # Operation
 
