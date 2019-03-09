@@ -184,7 +184,7 @@ define
                             TheCurrentName = base_name (url);
                             if (url.endsWith (".zip"))
                             {
-                                var blob = xmlhttp.response;
+                                var blob = xmlhttp.response.slice();
                                 if (!blob.name)
                                     blob.name = url;
                                 read_zip (blob);

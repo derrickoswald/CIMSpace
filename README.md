@@ -4,7 +4,7 @@ CIMSpace
 Common Information Model (CIM) visualization and tools.
 
 # Overview
-CIMSpace allows you to read, display and analyze CIM files, which are a data interchange format based on IEC standards 61968 & 61970.
+CIMSpace allows you to read, display, analyze and edit CIM files, which are a data interchange format based on IEC standards 61968 & 61970.
 See [CIM users group](http://cimug.ucaiug.org/default.aspx) for additional details on the CIM format.
 
 # Online
@@ -18,7 +18,7 @@ An overview of the current release:
 
 # Operation
 
-**Load**
+### Load
 
 *View a CIM file from local disk storage*
 
@@ -30,19 +30,19 @@ An overview of the current release:
 *View a CIM file from the internet*
 
 - click *Load* menu item in the upper nav bar
-- enter the URL in the text box, e.g. http://9code.ch/data/sample.zip
+- enter the URL in the text box, e.g. http://9code.ch/data/sample.zip, or choose one of the presets from the drop down menu.
 - click the *Load* button
 
 <code>note: the specified server must have Cross Origin Resource Sharing ([CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)) enabled</code>
 
-**Navigation**
+### Navigation
 
-- Zoom *mouse wheel* or *click _+_ or _-_ in upper right hand corner* or *shift-left-click and hold, drag window, release*
-- Pan *left-click and hold, drag, release*
-- Rotate *control-left-click and hold, drag left or right, release*, reset North to vertical by *clicking compass icon in upper right hand corner*
-- 3D *control-left-click and hold, drag up or down, release*
+- **Zoom** *mouse wheel* or *click _+_ or _-_ in upper right hand corner* or *shift-left-click and hold, drag window, release*
+- **Pan** *left-click and hold, drag, release*
+- **Rotate** *control-left-click and hold, drag left or right, release*, reset North to vertical by *clicking compass icon in upper right hand corner*
+- **3D** *control-left-click and hold, drag up or down, release*
 
-**Controls**
+### Controls
 
 The controls toolbox in the upper right hand corner has the following features:
 
@@ -52,8 +52,9 @@ The controls toolbox in the upper right hand corner has the following features:
 - <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/legend.svg" alt="Legend" width="12px" height="12px"> to hide or show the legend for the current theme
 - <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/edit.svg" alt="Edit" width="12px" height="12px"> to hide or show the editor
 - <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/connectivity.svg" alt="Connectivity" width="12px" height="12px"> to hide or show the connectivity editor
+- <img src="https://rawgit.com/derrickoswald/CIMSpace/master/css/font/src/diagram.svg" alt="Diagram" width="12px" height="12px"> to hide or show the diagram viewer (experimental)
 
-**Options**
+### Options
 
 The *Options* drop down in the upper nav bar has the following features:
 
@@ -63,17 +64,17 @@ The *Options* drop down in the upper nav bar has the following features:
 - toggle *Coordinates* to hide or show cursor longitude,latitude (x,y) in the lower left hand corner
 - toggle *Streetview* to add a Google Streetview link at the top of the Info box when possible
 
-**Attributes**
+### Attributes
 
 - toggle the *Info* box on
-- click on an element, e.g. ACLineSegment, Switch
+- click on an element, e.g. ACLineSegment or Switch
 - click through links in attribute display
 - to deselect, click in a blank area of the map
 
-**Edit**
+### Edit
 
 Selecting an element loads it into the edit box, along with its child elements (those that solely reference the parent selected element).
-The elements are shown as links. Attributes can be edited by expanding the link and enetering new information in the provided edit boxes.
+The elements are shown as links. Attributes can be edited by expanding the link and entering new information in the provided edit boxes.
 Buttons at the bottom allow:
 
 - *Save* persists the edited CIM elements (only in memory - see Save below)
@@ -94,13 +95,14 @@ complex CIM elements. When no element is currently being edited, there are two s
 For other classes of CIM elements for which no Maker exists:
 
 - choose from the *Class* drop-down to select the class of CIM element
+- click the *Create* button
 - edit the attributes of the created element as appropriate
 - click *Save* or *Cancel* to keep or discard the new element
 
 
-**Save**
+### Save
 
-To persist the in-memory CIM elements to disk, click the *Save* menu item fin the upper nav bar.
+To persist the in-memory CIM elements to disk, click the *Save* menu item in the upper nav bar.
 Fields for *File name* and internal "rdf:about" and "description" attributes are provided.
 
 <code>note: after editing these fields, you will need to click outside the field before clicking *Save*, otherwise you will get a "not ready yet message"</code>
@@ -113,13 +115,13 @@ Three options for saving are provided:
 
 The file is downloaded as a .zip file with the CIM file enclosed. Save the file to your persistent storage.
 
-**Search**
+### Search
 
 - enter mRID, name or aliasName in the search box in upper nav bar, *press Enter* or *click magnifying glass icon*
 - if the element has a geographic location, the map is centered on it and it is highlighted
 - otherwise it will only be shown in the Info, Edit or Connectivity boxes if they are visible
 
-**Trace**
+### Trace
 
 - select the start element, *click Trace* in the *Trace* drop down in the upper nav bar
 - options for tracing in the *Trace* drop down in upper nav bar:
@@ -131,6 +133,11 @@ The file is downloaded as a .zip file with the CIM file enclosed. Save the file 
 # WebGL
 
 CIMSpace uses [Mapbox GL](https://www.mapbox.com/mapbox-gl-js/api/) and requires WebGL to be enabled in your browser.
+All current browsers have WebGL support, but WebGL support is dependent on GPU support and may not be available
+on older devices/browsers, due to a lack of up-to-date video drivers.
+
+You can test if your browser supports WebGL by navigating to https://get.webgl.org/ to see if a spinning cube is displayed.
+If not, for some older browser versions, WebGL can be enabled as follows: 
 
 **FireFox**
 
