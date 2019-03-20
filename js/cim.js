@@ -421,43 +421,51 @@ define
             if (difference_model)
             {
                 header = [
-                    "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>",
-                    "<rdf:RDF xmlns:cim='http://iec.ch/TC57/2013/CIM-schema-cim16#' xmlns:md='http://iec.ch/TC57/61970-552/ModelDescription/1#' xmlns:dm='http://iec.ch/TC57/61970-552/DifferenceModel/1#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>",
-                    "	<dm:DifferenceModel rdf:about=\"" + about + "\">",
-                    "		<md:Model.created>" + date + "</md:Model.created>",
-                    "		<md:Model.description>" + description + "</md:Model.description>",
-                    "		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>",
-                    "		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>"
+`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/TC57/61970-552/DifferenceModel/1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<dm:DifferenceModel rdf:about="` + about + `">
+		<md:Model.created>` + date + `</md:Model.created>
+		<md:Model.description>` + description + `</md:Model.description>
+		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
+		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>`
                 ];
                 trailer = [
-                    "	</dm:DifferenceModel>",
-                    "</rdf:RDF>"
+`	</dm:DifferenceModel>
+</rdf:RDF>`
                 ];
             }
             else
             {
                 header = [
-                    "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>",
-                    "<rdf:RDF xmlns:cim='http://iec.ch/TC57/2013/CIM-schema-cim16#' xmlns:md='http://iec.ch/TC57/61970-552/ModelDescription/1#' xmlns:dm='http://iec.ch/2002/schema/CIM_difference_model#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>",
-                    "	<md:FullModel rdf:about=\"" + about + "\">",
-                    "		<md:Model.created>" + date + "</md:Model.created>",
-                    "		<md:Model.description>" + description + "</md:Model.description>",
-                    "		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>",
-                    "		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>",
-                    "	</md:FullModel>"
+`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/TC57/61970-552/DifferenceModel/1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<md:FullModel rdf:about="` + about + `">
+		<md:Model.created>` + date + `</md:Model.created>
+		<md:Model.description>` + description + `</md:Model.description>
+		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
+		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>
+	</md:FullModel>`
                 ];
-                trailer = ["</rdf:RDF>"];
+                trailer = [
+`</rdf:RDF>`
+                ];
             }
             chunks.push (header);
             if (difference_model)
             {
                 // ToDo: check if we need to handle individual attributes with "rdf:Description rdf:about", or if we can use the sledgehammer: delete then new
-                chunks.push (["		<dm:reverseDifferences parseType=\"Statements\">"]);
+                chunks.push ([
+`		<dm:reverseDifferences parseType="Statements">`
+                    ]);
                 chunks.push (write_elements (elements, function (obj) { return (obj.EditDisposition == "delete" && obj.id.startsWith ("1:")); }));
-                chunks.push (["		</dm:reverseDifferences>",
-                              "		<dm:forwardDifferences parseType=\"Statements\">"]);
+                chunks.push ([
+`		</dm:reverseDifferences>
+		<dm:forwardDifferences parseType="Statements">`
+                    ]);
                 chunks.push (write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "new" || disp == "edit"); }));
-                chunks.push (["		</dm:forwardDifferences>"]);
+                chunks.push ([
+`		</dm:forwardDifferences>`
+                    ]);
             }
             else if (only_new)
                 chunks.push (write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" != typeof (disp) && disp == "new"); }));
