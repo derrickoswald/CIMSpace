@@ -476,7 +476,7 @@ define
                     {
                         type: "geojson",
                         data: geo.lines,
-                        maxzoom: 25
+                        maxzoom: 24
                     }
                 );
 
@@ -486,7 +486,7 @@ define
                     {
                         type: "geojson",
                         data: geo.points,
-                        maxzoom: 25
+                        maxzoom: 24
                     }
                 );
 

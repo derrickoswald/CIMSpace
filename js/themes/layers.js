@@ -182,13 +182,52 @@ define
             return (ret);
         }
 
+        function label_layer (id, source, placement, text, color, filter)
+        {
+            var ret =
+                {
+                    id: id,
+                    type: "symbol",
+                    source: source,
+                    layout:
+                    {
+                        "symbol-placement": placement,
+                        "text-field": text,
+                        "text-justify": "center",
+                        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                        "text-allow-overlap": true,
+                        "text-size":
+                        {
+                            stops: [[12, 8], [17, 16], [18, 24], [19, 48], [20, 56]]
+                        }
+
+                    },
+                    paint:
+                    {
+                        "text-color": color
+                    }
+                };
+            if (placement == "line" || placement == "line-center")
+            {
+                ret.paint["text-halo-color"] = "#ffffff";
+                ret.paint["text-halo-width"] = 8;
+                ret.layout["text-allow-overlap"] = false;
+                ret.layout["symbol-avoid-edges"] = true;
+            }
+            if ("undefined" != typeof (filter) && (null != filter))
+                ret.filter = filter;
+
+            return (ret);
+        }
+
         return (
             {
                 line_layer: line_layer,
                 circle_layer: circle_layer,
                 symbol_layer: symbol_layer,
                 full_circle_layer: full_circle_layer,
-                polygon_layer: polygon_layer
+                polygon_layer: polygon_layer,
+                label_layer: label_layer
             }
         );
     }

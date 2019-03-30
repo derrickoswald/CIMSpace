@@ -156,13 +156,16 @@ define
         /**
          * Set the CIM data for the map to draw.
          * @param {JSON} Data parsed from the cim module.
+         * @param nozoom If <code>true</code> does not perform a zoom extents.
          * @function set_data
          * @memberOf module:cimmap
          */
-        function set_data (data)
+        function set_data (data, nozoom)
         {
             CIM_Data = data;
-            make_map ().then (zoom_extents);;
+            var make = make_map ();
+            if (!nozoom)
+                make.then (zoom_extents);
         }
 
         /**
@@ -1332,7 +1335,7 @@ define
                     container: "map",
                     center: [7.48634000000001, 46.93003],
                     zoom: 8,
-                    maxZoom: 22,
+                    maxZoom: 24,
                     // Note: this local copy is the same as mapbox (as of 3.10.2017) except for the reference
                     // to the sprite URL which is changed to     sprite: "/styles/streets-v9-sprites"
                     // style: "mapbox://styles/mapbox/streets-v9",
