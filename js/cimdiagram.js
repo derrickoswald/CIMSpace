@@ -34,6 +34,8 @@ define
                       </div>
                     </div>
                     `;
+                this._SIZEX = 600;
+                this._SIZEY = 400;
                 this._size = 32;
                 this._border = 2;
                 this._alternate_junction =
@@ -298,6 +300,21 @@ define
                     var y = points[0].yPosition;
                     switch (element.cls)
                     {
+                        case "ACLineSegment":
+                            var offsetx = this._diagram_extents[0][0];
+                            var offsety = this._diagram_extents[1][1];
+                            var scalex = this._SIZEX / (this._diagram_extents[1][0] - this._diagram_extents[0][0]);
+                            var scaley = this._SIZEY / (this._diagram_extents[0][1] - this._diagram_extents[1][1]);
+                            if (Math.abs (scalex) < Math.abs (scaley))
+                                scaley = Math.abs (scalex) * Math.sign (scaley);
+                            else
+                                scalex = Math.abs (scaley) * Math.sign (scalex);
+                            var coordinates = points.map (point => "" + (point.xPosition - offsetx) * scalex + "," + (point.yPosition - offsety) * scaley);
+                            ret =
+                                "<g class='Line' id='cimdiagram-" + element.id + "'>" +
+                                "<path d='M " + coordinates.join (" ") + "' style='stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none'>" +
+                                "</g>";
+                            break;
                         case "PowerTransformer":
                             ret =
                                 "<g class='PowerTransformerIcon' id='cimdiagram-" + element.id + "' transform='translate(" + x + "," + y + ") rotate(0)'>" +
@@ -377,7 +394,7 @@ define
                 var text_template =
                     `
                         <div class="app-diagram">
-                            <svg width="600" height="400" style="border: 1px solid black;">
+                            <svg width="` + this._SIZEX + `" height="` + this._SIZEY + `" style="border: 1px solid black;">
                                 <path stroke-width="1" stroke="black" fill="none"></path>
                                 <g class="brush"></g>
                                 <g class="diagram-grid"></g>
@@ -428,6 +445,21 @@ define
                         return (points);
                     }
                 );
+                // ToDo: should only do this once when the diagram is loaded
+                var xmin = Number.MAX_VALUE;
+                var xmax = Number.MIN_VALUE;
+                var ymin = Number.MAX_VALUE;
+                var ymax = Number.MIN_VALUE;
+                this._cimmap.forAll ("DiagramObjectPoint",
+                    point =>
+                    {
+                        if (point.xPosition < xmin) xmin = point.xPosition;
+                        if (point.xPosition > xmax) xmax = point.xPosition;
+                        if (point.yPosition < ymin) ymin = point.yPosition;
+                        if (point.yPosition > ymax) ymax = point.yPosition;
+                    }
+                );
+                this._diagram_extents = [[xmin, ymin], [xmax, ymax]];
                 this.renderDiagram (diagram, this._diagram_objects, this._diagram_points);
             }
 
