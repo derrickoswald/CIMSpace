@@ -405,7 +405,7 @@ define
             /**
              * Create the GeoJSON for the data with the given options.
              * @param {Object} data - the hash table object of CIM classes by class name
-             * @function remove_theme
+             * @function make_geojson
              * @memberOf module:default_theme
              */
             make_geojson (data, options)
