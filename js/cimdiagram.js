@@ -21,7 +21,7 @@ define
                 this._cimmap = cimmap;
                 this._template =
                     `
-                    <div class="card">
+                    <div class="card card_resizeable">
                       <div class="card-body" style="min-width:200px;">
                         <h5 class="card-title">Diagram
                             <button class="close" type="button" aria-label="Close">
@@ -244,7 +244,7 @@ define
 
             getDefaultPosition ()
             {
-                return ("bottom-right");
+                return ("bottom-left");
             }
 
             close (event)

@@ -315,7 +315,7 @@ define
                     {
                         type: "geojson",
                         data: lines,
-                        maxzoom: 25
+                        maxzoom: 24
                     }
                 );
 
@@ -325,7 +325,7 @@ define
                     {
                         type: "geojson",
                         data: points,
-                        maxzoom: 25
+                        maxzoom: 24
                     }
                 );
 
