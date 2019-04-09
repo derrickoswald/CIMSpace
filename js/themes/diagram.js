@@ -346,6 +346,20 @@ define
                                 element.rotation = obj.rotation * 180.0 / Math.PI;
                         }
                     }
+                    if (null != obj.DiagramObjectStyle)
+                    {
+                        var style = data.DiagramObjectStyle[obj.DiagramObjectStyle];
+                        if (style.name == "False")
+                        {
+                            var id = obj.IdentifiedObject;
+                            if (null != id)
+                            {
+                                var element = data.Element[id];
+                                if (null != element)
+                                    element.color = "rgb(255, 0, 255)";
+                            }
+                        }
+                    }
                 }
             }
 
