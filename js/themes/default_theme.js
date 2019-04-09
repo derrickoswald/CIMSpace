@@ -242,6 +242,7 @@ define
                                     }
                                 );
                                 psr[id].id = id;
+                                psr[id].rotation = 0.0;
 
                                 // assign the symbol and color
                                 if ("PowerTransformer" == psr[id].cls)

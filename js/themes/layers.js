@@ -111,7 +111,7 @@ define
                         {
                             stops: [[17, 0.1875], [18, 0.25], [19, 0.3], [20, 0.45], [21, 0.9], [22, 1.8], [23, 3.75], [24, 7.5]]
                         },
-                        "icon-rotate": 0.0,
+                        "icon-rotate": { type: "identity", property: "rotation" },
                         "icon-offset": [0, 0],
                         "text-field": "{name}",
                         "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],

@@ -180,6 +180,7 @@ define
                                 }
                             );
                             objects[id].id = id;
+                            objects[id].rotation = 0.0;
 
                             // assign the symbol and color
                             if ("PowerTransformer" == objects[id].cls)
@@ -324,6 +325,25 @@ define
                             );
                             objects[id].id = id;
                             objects[id].color = "rgb(0, 0, 0)";
+                        }
+                    }
+                }
+            }
+
+            process_spatial_objects_again (data, options)
+            {
+                var diagram_object = data.DiagramObject;
+                for (var id in diagram_object)
+                {
+                    var obj = diagram_object[id];
+                    if (obj.rotation != 0.0)
+                    {
+                        var id = obj.IdentifiedObject;
+                        if (null != id)
+                        {
+                            var element = data.Element[id];
+                            if (null != element)
+                                element.rotation = obj.rotation * 180.0 / Math.PI;
                         }
                     }
                 }
