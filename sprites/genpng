@@ -5,12 +5,14 @@
 
         inkscape \
             --export-dpi=96 \
-            --export-png=png/${icon}.png \
+            --export-type=png \
+            --export-file=png/${icon}.png \
             $svg &> /dev/null
 
         inkscape \
             --export-dpi=192 \
-            --export-png=png/${icon}@2x.png \
+            --export-type=png \
+            --export-file=png/${icon}@2x.png \
             $svg &> /dev/null
     done
 
