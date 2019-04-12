@@ -82,6 +82,9 @@ define
          */
         var CIM_Data = null;
 
+        var CIM_Data_EWS = null;
+
+
         /**
          * The last selected feature.
          */
@@ -154,6 +157,101 @@ define
             return (CIM_File);
         }
 
+        function get_trafo_location(trafo)
+        {
+            var trafoloc = trafo.Location;
+            var positions = CIM_Data_EWS.PositionPoint;
+            for (var property in positions) {
+                if (positions.hasOwnProperty(property)) {
+                    var pos = positions[property];
+                    if (pos.Location == trafoloc){
+                        return ([Number(pos.xPosition), Number(pos.yPosition)]);
+                    }
+                }
+            }
+
+        }
+
+        function get_trafo_location2(trafo)
+        {
+            var trafoloc = trafo.Location;
+            var positions = CIM_Data.PositionPoint;
+            for (var property in positions) {
+                if (positions.hasOwnProperty(property)) {
+                    var pos = positions[property];
+                    if (pos.Location == trafoloc){
+                        return ([Number(pos.xPosition), Number(pos.yPosition)]);
+                    }
+                }
+            }
+
+        }
+
+        function get_rated_s(trafoid)
+        {
+            var ends = CIM_Data.PowerTransformerEnd;
+            for (var property in ends) {
+                if (ends.hasOwnProperty(property)) {
+                    var end = ends[property];
+                    if (end.PowerTransformer == trafoid){
+                        return end.ratedS;
+                    }
+                }
+            }
+
+        }
+
+        function map_transformers()
+        {
+            var myTrafos = CIM_Data_EWS.PowerTransformer;
+            var myLastTrafos = CIM_Data.PowerTransformer;
+            var newTrafos = [];
+            var trafocord = [];
+
+            for (var name in myLastTrafos) {
+                if (myLastTrafos.hasOwnProperty(name)) {
+                    var temptrafo = myLastTrafos[name];
+                    var coords2 = get_trafo_location2(temptrafo);
+                    if (coords2) {
+                        trafocord.push({
+                            ratedS: get_rated_s(name),
+                            coords: coords2
+                        });
+                    }
+                }
+            }
+
+
+            for (var ewstrafoid in myTrafos) {
+                if (myTrafos.hasOwnProperty(ewstrafoid)) {
+                    var trafo = myTrafos[ewstrafoid];
+                    var coords1 = get_trafo_location(trafo);
+                    console.log(ewstrafoid+"("+coords1[0]+","+coords1[1]+")");
+                    trafocord.some(
+                        function(e){
+                            var distance = measure ( coords1[0], coords1[1], e.coords[0], e.coords[1]);
+                            if (distance < 100){
+                                newTrafos.push({
+                                    trafo: ewstrafoid,
+                                    ratedS: e.ratedS
+                                });
+                                return true;
+                            }
+                            return false;
+                        }
+                    )
+                }
+            }
+            console.log(JSON.stringify(newTrafos,null,4));
+            var string = newTrafos.map(x => {
+                return (x.trafo + ";" + x.ratedS);
+            }).join("\n");
+            var data = btoa(string);
+            var a = document.getElementById("downloaddata");
+            a.setAttribute ("href", "data:application/csv;base64," + data);
+            a.setAttribute ("type", "application/csv");
+
+        }
         /**
          * Set the CIM data for the map to draw.
          * @param {JSON} Data parsed from the cim module.
@@ -164,6 +262,8 @@ define
         function set_data (data, nozoom)
         {
             CIM_Data = data;
+            if (!CIM_Data_EWS)
+                CIM_Data_EWS = CIM_Data;
             var make = make_map ();
             if (!nozoom)
                 make.then (zoom_extents);
@@ -1418,7 +1518,8 @@ define
                     add_listeners: add_listeners,
                     remove_listeners: remove_listeners,
                     initialize: initialize,
-                    terminate: terminate
+                    terminate: terminate,
+                    map_transformers: map_transformers
                 }
             );
         }
