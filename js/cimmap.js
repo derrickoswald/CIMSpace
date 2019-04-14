@@ -1167,7 +1167,8 @@ define
                             if ((bb[0][0] < bounds.getWest ()) ||
                                 (bb[1][0] > bounds.getEast ()) ||
                                 (bb[0][1] < bounds.getSouth ()) ||
-                                (bb[1][1] > bounds.getNorth ()))
+                                (bb[1][1] > bounds.getNorth ()) ||
+                                (new_zoom != zoom))
                             {
                                 TheMap.easeTo
                                 (

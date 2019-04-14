@@ -347,7 +347,7 @@ define
                                 // -90.0: fix symbol, zero is east & not down
                                 // value is in degrees clockwise, not counter-clockwise
                                 // +180: symbol points in to station
-                                element.rotation =  -90.0 + (-obj.rotation * 180.0 / Math.PI) + 180.0;
+                                element.rotation = -90.0 + (-obj.rotation * 180.0 / Math.PI) + 180.0;
                         }
                     }
                     if (null != obj.DiagramObjectStyle)
@@ -357,7 +357,21 @@ define
                         {
                             var element = data.Element[id];
                             if (null != element)
-                                element.color = ("feeder_externally_feed_style" == obj.DiagramObjectStyle) ? "rgb(255, 0, 255)" : "rgb(139, 0, 0)";
+                            {
+                                if ("feeder_internally_fed_style" == obj.DiagramObjectStyle)
+                                    element.color = "rgb(139, 0, 0)";
+                                else if ("feeder_externally_feed_style" == obj.DiagramObjectStyle)
+                                    element.color = "rgb(255, 0, 255)";
+                                else
+                                {
+                                    var style = data.DiagramObjectStyle[obj.DiagramObjectStyle];
+                                    if (style)
+                                    {
+                                        var color_name = style.name; // e.g. yellowgreen
+                                        element.kolour = color_name;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -536,7 +550,8 @@ define
                 );
 
                 // lines 3 pixels wide
-                map.addLayer (layers.line_layer ("lines", "cim lines", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
+                // note: really weird shit starts happening if the property name is "color", so use "kolour" instead
+                map.addLayer (layers.line_layer ("lines", "cim lines", { type: "identity", property: "kolour" }, ["!has", "EditDisposition"]));
                 map.addLayer (layers.line_layer ("lines_highlight", "cim lines", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // simple circle from 14 to 17
@@ -547,7 +562,7 @@ define
                 map.addLayer (layers.symbol_layer ("symbol", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
                 map.addLayer (layers.symbol_layer ("symbol_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
-                map.addLayer (layers.polygon_layer ("polygons", "cim polygons", { type: "identity", property: "color" }, "#000000"))
+                map.addLayer (layers.polygon_layer ("polygons", "cim polygons", { type: "identity", property: "kolour" }, "#000000"))
 
                 // set the current filter
                 this.legend_changed ();
