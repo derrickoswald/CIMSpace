@@ -117,7 +117,7 @@ define
                         "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                         "text-offset":
                         {
-                            stops: [[18, [0, 1.0]], [20, [0, 2.0]], [21, [0, 3.0]], [22, [0, 4.0]], [23, [0, 5.0]], [24, [0, 6.0]]]
+                            stops: [[18, [0, 0.75]], [20, [0, 1.5]], [21, [0, 2.5]], [22, [0, 3.0]], [23, [0, 4.0]], [24, [0, 5.0]]]
                         },
                         "text-anchor": "top",
                         "text-allow-overlap": true,

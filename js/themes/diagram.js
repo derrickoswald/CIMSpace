@@ -478,24 +478,6 @@ define
                 super.remove_theme ();
             }
 
-            click (event)
-            {
-                var x = event.point.x;
-                var y = event.point.y;
-                var width = 4;
-                var height = 4;
-                var features = this._TheMap.queryRenderedFeatures
-                (
-                    [
-                      [x - width / 2, y - height / 2],
-                      [x + width / 2, y + height / 2]
-                    ],
-                    {}
-                );
-                if ((null != features) && (0 != features.length))
-                    this._cimmap.default_mousedown_listener (event);
-            }
-
             // handle mouse click
             mousedown_listener (event)
             {
@@ -510,7 +492,7 @@ define
                     var leftbutton = 0 != (buttons & 1);
                     var rightbutton = 0 != (buttons & 2);
                     if (leftbutton)
-                        this.click (event);
+                        this._cimmap.default_mousedown_listener (event);
                 }
             }
 
