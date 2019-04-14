@@ -154,6 +154,7 @@ define
                 }
 
                 // add links to other selected elements
+                // other features in the current selection are provided as links that make them the current feature
                 var mrids = cimmap.get_selected_features ();
                 if (null != mrids)
                     if (mrids.some (id => id != mrid))

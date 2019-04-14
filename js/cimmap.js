@@ -4,16 +4,15 @@
 "use strict";
 define
 (
-    ["cimnav", "cimdetails", "cimcoordinates", "cimedit", "cimconnectivity", "cimdiagram", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice", "themes/diagram"],
+    ["cimcoordinates"],
     /**
-     * @summary Main entry point for the application.
-     * @description Performs application initialization as the first step in the RequireJS load sequence.
-     * @see http://requirejs.org/docs/api.html#data-main
+     * @summary MapBox map.
+     * @description Container and interface for map operations.
      * @name cimmap
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, CIMDetails, CIMCoordinates, CIMEdit, CIMConnectivity, CIMDiagram, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme, DiagramTheme)
+    function (CIMCoordinates)
     {
         /**
          * The map object.
@@ -27,35 +26,14 @@ define
         var TheExtents = null;
 
         /**
-         * The theme setting control object.
-         */
-        var TheThemer = new ThemeControl ();
-        TheThemer.addTheme (new DefaultTheme ());
-        TheThemer.addTheme (new VoltageTheme ());
-        TheThemer.addTheme (new IslandTheme ());
-        TheThemer.addTheme (new InServiceTheme ());
-        TheThemer.addTheme (new DiagramTheme ());
-        TheThemer.theme_change_listener (redraw);
-
-        /**
-         * The detail view control object.
-         */
-        var TheDetails = new CIMDetails (getInterface ());
-
-        /**
          * The editor control object.
          */
-        var TheEditor = new CIMEdit (getInterface ());
+        var TheEditor = null;
 
         /**
-         * The connectivity control object.
+         * The theme setting control object.
          */
-        var TheConnectivity = new CIMConnectivity (getInterface (), TheEditor);
-
-        /**
-         * The diagram control object.
-         */
-        var TheDiagram = new CIMDiagram (getInterface ());
+        var TheThemer = null;
 
         /**
          * The scale bar control.
@@ -261,17 +239,6 @@ define
         }
 
         /**
-         * Get the detail view object for access to viewing.
-         * @return {Object} The object handling details view.
-         * @function get_details
-         * @memberOf module:cimmap
-         */
-        function get_details ()
-        {
-            return (TheDetails);
-        }
-
-        /**
          * Get the editor object for access to editing.
          * @return {Object} The object handling editing.
          * @function get_editor
@@ -280,28 +247,6 @@ define
         function get_editor ()
         {
             return (TheEditor);
-        }
-
-        /**
-         * Get the connectivity for changing connectivity.
-         * @return {Object} The object handling connectivity.
-         * @function get_connectivity
-         * @memberOf module:cimmap
-         */
-        function get_connectivity ()
-        {
-            return (TheConnectivity);
-        }
-
-        /**
-         * Get the diagram editor.
-         * @return {Object} The object handling diagrams.
-         * @function get_diagram
-         * @memberOf module:cimmap
-         */
-        function get_diagram ()
-        {
-            return (TheDiagram);
         }
 
         /**
@@ -482,23 +427,6 @@ define
                     { linear: true, padding: 50 });
         }
 
-        function toggle (control_function)
-        {
-            return (
-                function ()
-                {
-                    var control = control_function ();
-                    if (control.visible ())
-                        TheMap.removeControl (control);
-                    else
-                    {
-                        TheMap.addControl (control);
-                        control.initialize ();
-                    }
-                }
-            );
-        }
-
         function get (classname, id)
         {
             var ret = undefined;
@@ -607,24 +535,20 @@ define
         }
 
         /**
-         * @summary Display the current feature properties and highlight it on the map.
-         * @description Shows a properties sheet in the details window,
-         * and highlights the current feature in the map.
-         * Other features in the current selection are provided links in the details window
-         * to make them the current feature.
+         * @summary Display the current feature highlighted on the map.
+         * @description Highlights the currently selected feature in the map.
          * @function highlight
          * @memberOf module:cimmap
          */
         function highlight ()
         {
-            var feature;
             if ((null != CIM_Data) && (null != get_selected_feature ()))
                 glow (["in", "mRID", get_selected_feature ()]);
         }
 
         /**
-         * @summary Clears the current feature and selection.
-         * @description Hides the details non-modal dialog and reverts any highlighting in the map.
+         * @summary Removes highlighting from the highlighted object.
+         * @description Reverts any highlighting in the map.
          * @function unhighlight
          * @memberOf module:cimmap
          */
@@ -1320,11 +1244,13 @@ define
         /**
          * @summary Initialize the map.
          * @description Create the background map, centered on Bern and showing most of Switzerland.
-         * @param {object} event - <em>not used</em>
+         * @param nav the navigation control for the map
+         * @param themer the theme setting control for the map
+         * @param editor the CIM data editor
          * @function initialize
          * @memberOf module:cimmap
          */
-        function initialize (event)
+        function initialize (nav, themer, editor)
         {
             // make the map
             document.getElementById ("map").innerHTML = "";
@@ -1347,15 +1273,10 @@ define
                 }
             );
             // add zoom and rotation controls to the map
-            TheMap.addControl (
-                new cimnav.NavigationControl (
-                    zoom_extents,
-                    toggle (get_details),
-                    toggle (get_themer),
-                    toggle (function () { return (get_themer ().getTheme ().getLegend ()); }),
-                    toggle (get_editor),
-                    toggle (get_connectivity),
-                    toggle (get_diagram)));
+            TheMap.addControl (nav);
+            TheEditor = editor;
+            TheThemer = themer;
+            TheThemer.theme_change_listener (redraw);
             add_listeners ();
         }
 
@@ -1393,8 +1314,6 @@ define
                     get_extents: get_extents,
                     get_themer: get_themer,
                     get_editor: get_editor,
-                    get_connectivity: get_connectivity,
-                    get_diagram: get_diagram,
                     show_internal_features: show_internal_features,
                     show_3d_buildings: show_3d_buildings,
                     show_scale_bar: show_scale_bar,
