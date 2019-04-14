@@ -173,7 +173,8 @@ define
                     {
                         "fill-opacity": 0.25,
                         "fill-color": color,
-                        "fill-outline-color": edge_color
+                        "fill-outline-color": edge_color,
+                        "fill-antialias": true
                     }
                 };
             if ("undefined" != typeof (filter) && (null != filter))

@@ -206,14 +206,32 @@ define
              * Add stylization information to elements and make a list of point and linear features.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates
-             * @param {Object} points - the resultant list of point GeoJSON objects
-             * @param {Object} lines - the resultant list of linear GeoJSON objects
              * @param {Object} options - options for processing
+             * @return {Object} with points, lines and polygons feature collections
              * @function process_spatial_objects
              * @memberOf module:default_theme
              */
-            process_spatial_objects (data, locations, points, lines, options)
+            process_spatial_objects (data, locations, options)
             {
+                // the points GeoJSON
+                var points =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+                // the lines GeoJSON
+                var lines =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+                // the polygons GeoJSON
+                var polygons =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+
                 var coordinates;
                 var location;
                 var psr = data.PowerSystemResource
@@ -391,45 +409,44 @@ define
                         }
                     }
                 }
+
+                return ({ points: points, lines: lines, polygons: polygons });
             }
 
             /**
              * For subclasses to override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
+             * @param {Object} options - options for processing
              * @function process_spatial_objects_again
              * @memberOf module:default_theme
              */
-            process_spatial_objects_again (data)
+            process_spatial_objects_again (data, options)
             {
             }
 
             /**
              * Create the GeoJSON for the data with the given options.
              * @param {Object} data - the hash table object of CIM classes by class name
+             * @param {Object} options - options for processing
+             * @return {Object} with points, lines and polygons feature collections
              * @function make_geojson
              * @memberOf module:default_theme
              */
             make_geojson (data, options)
             {
-                // the lines GeoJSON
-                var lines =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                // the points GeoJSON
-                var points =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
+                var ret;
                 if (null != data)
                 {
                     var locations = get_locations (data, options);
-                    this.process_spatial_objects (data, locations, points, lines, options);
+                    ret = this.process_spatial_objects (data, locations, options);
                     this.process_spatial_objects_again (data, options);
                 }
-                return ({ lines: lines, points: points });
+                else
+                {
+                    var fc = { "type" : "FeatureCollection", "features" : [] };
+                    ret = { points: fc, lines: fc, polygons: fc };
+                }
+                return (ret);
             }
 
             /**
@@ -447,8 +464,9 @@ define
                     this._TheMap.removeLayer ("circle_highlight");
                     this._TheMap.removeLayer ("symbol");
                     this._TheMap.removeLayer ("symbol_highlight");
-                    this._TheMap.removeSource ("cim lines");
                     this._TheMap.removeSource ("cim points");
+                    this._TheMap.removeSource ("cim lines");
+                    this._TheMap.removeSource ("cim polygons");
                 }
             }
 
@@ -473,6 +491,16 @@ define
                 // update the map
                 map.addSource
                 (
+                    "cim points",
+                    {
+                        type: "geojson",
+                        data: geo.points,
+                        maxzoom: 24
+                    }
+                );
+
+                map.addSource
+                (
                     "cim lines",
                     {
                         type: "geojson",
@@ -483,10 +511,10 @@ define
 
                 map.addSource
                 (
-                    "cim points",
+                    "cim polygons",
                     {
                         type: "geojson",
-                        data: geo.points,
+                        data: geo.polygons,
                         maxzoom: 24
                     }
                 );

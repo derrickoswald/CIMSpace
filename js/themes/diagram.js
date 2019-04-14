@@ -63,7 +63,12 @@ define
                             if (null != id)
                             {
                                 if (null == ret[id])
-                                    ret[id] = [];
+                                {
+                                    var array = [];
+                                    var polygon = object.isPolygon;
+                                    array.isPolygon = polygon ? function () { return (true); } : function () { return (false); }
+                                    ret[id] = array;
+                                }
                                 var seq = Number (p.sequenceNumber);
                                 if (null != seq)
                                 {
@@ -94,7 +99,10 @@ define
                 {
                     var a = ret[property];
                     if (("undefined" == typeof (a[0])) && ("undefined" == typeof (a[1])))
+                    {
                         ret[property] = a.slice (2);
+                        ret[property].isPolygon = a.isPolygon;
+                    }
                 }
 
             TheExtents = extents;
@@ -106,21 +114,6 @@ define
             constructor ()
             {
                 super ();
-                this._diagram_points =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                this._diagram_lines =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                this._diagram_polygons =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
             }
 
             getName ()
@@ -147,14 +140,32 @@ define
              * Add stylization information to elements and make a list of point and linear features.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates
-             * @param {Object} points - the resultant list of point GeoJSON objects
-             * @param {Object} lines - the resultant list of linear GeoJSON objects
              * @param {Object} options - options for processing
+             * @return {Object} with points, lines and polygons feature collections
              * @function process_spatial_objects
              * @memberOf module:default_theme
              */
-            process_spatial_objects (data, locations, points, lines, options)
+            process_spatial_objects (data, locations, options)
             {
+                // the points GeoJSON
+                var points =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+                // the lines GeoJSON
+                var lines =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+                // the polygons GeoJSON
+                var polygons =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+
                 var coordinates;
                 var location;
                 var objects = data.IdentifiedObject
@@ -295,42 +306,73 @@ define
                         }
                         else
                         {
-                            lines.features.push
+                            var coords = coordinates.reduce
                             (
+                                function (ret, item)
                                 {
-                                    type : "Feature",
-                                    geometry :
+                                    var next;
+
+                                    next = ret[ret.length - 1];
+                                    if (!next || (2 <= next.length))
                                     {
-                                        type : "LineString",
-                                        coordinates : coordinates.reduce
-                                        (
-                                            function (ret, item)
-                                            {
-                                                var next;
+                                        next = [];
+                                        ret.push (next);
+                                    }
+                                    next.push (item);
 
-                                                next = ret[ret.length - 1];
-                                                if (!next || (2 <= next.length))
-                                                {
-                                                    next = [];
-                                                    ret.push (next);
-                                                }
-                                                next.push (item);
-
-                                                return (ret);
-                                            },
-                                            []
-                                        )
-                                    },
-                                    properties : objects[id]
-                                }
+                                    return (ret);
+                                },
+                                []
                             );
-                            objects[id].id = id;
-                            objects[id].color = "rgb(0, 0, 0)";
+                            if (coordinates.isPolygon ())
+                            {
+                                polygons.features.push
+                                (
+                                    {
+                                        type : "Feature",
+                                        geometry :
+                                        {
+                                            type : "Polygon",
+                                            coordinates : [ coords ]
+                                        },
+                                        properties : objects[id]
+                                    }
+                                );
+                                objects[id].id = id;
+                                objects[id].kolour = "rgb(0, 0, 255)";
+                            }
+                            else
+                            {
+                                lines.features.push
+                                (
+                                    {
+                                        type : "Feature",
+                                        geometry :
+                                        {
+                                            type : "LineString",
+                                            coordinates : coords
+                                        },
+                                        properties : objects[id]
+                                    }
+                                );
+                                objects[id].id = id;
+                                objects[id].color = "rgb(0, 0, 0)";
+                            }
                         }
                     }
                 }
+
+
+                return ({ points: points, lines: lines, polygons: polygons });
             }
 
+            /**
+             * Override stylization information.
+             * @param {Object} data - the hash table object of CIM classes by class name
+             * @param {Object} options - options for processing
+             * @function process_spatial_objects_again
+             * @memberOf module:diagram
+             */
             process_spatial_objects_again (data, options)
             {
                 var diagram_object = data.DiagramObject;
@@ -380,31 +422,28 @@ define
             /**
              * Create the GeoJSON for the data with the given options.
              * @param {Object} data - the hash table object of CIM classes by class name
-             * @function remove_theme
+             * @param {Object} options - options for processing
+             * @return {Object} with points, lines and polygons feature collections
+             * @function make_geojson
              * @memberOf module:default_theme
              */
             make_geojson (data, options)
             {
-                // the lines GeoJSON
-                var lines =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                // the points GeoJSON
-                var points =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
+                var ret;
                 if (null != data)
                 {
                     var locations = get_locations (data, options);
-                    this.process_spatial_objects (data, locations, points, lines, options);
+                    ret = this.process_spatial_objects (data, locations, options);
                     this.process_spatial_objects_again (data, options);
                 }
-                return ({ lines: lines, points: points });
+                else
+                {
+                    var fc = { "type" : "FeatureCollection", "features" : [] };
+                    ret = { points: fc, lines: fc, polygons: fc };
+                }
+                return (ret);
             }
+
 
             /**
              * Remove layers and sources from the map.
@@ -477,24 +516,10 @@ define
 
             clear ()
             {
-                this._diagram_points =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                this._diagram_lines =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                this._diagram_polygons =
-                {
-                    "type" : "FeatureCollection",
-                    "features" : []
-                };
-                this._TheMap.getSource ("cim points").setData (this._diagram_points);
-                this._TheMap.getSource ("cim lines").setData (this._diagram_lines);
-                this._TheMap.getSource ("cim polygons").setData (this._diagram_polygons);
+                var fc = { type: "FeatureCollection", features: [] };
+                this._TheMap.getSource ("cim points").setData (fc);
+                this._TheMap.getSource ("cim lines").setData (fc);
+                this._TheMap.getSource ("cim polygons").setData (fc);
             }
 
             /**
@@ -515,8 +540,6 @@ define
                 this._TheMap = map; // to be able to remove it later
 
                 var geo = this.make_geojson (cimmap.get_data (), options);
-                this._diagram_points = geo.points;
-                this._diagram_lines = geo.lines;
 
                 // update the map
                 map.addSource
@@ -524,7 +547,7 @@ define
                     "cim points",
                     {
                         type: "geojson",
-                        data: this._diagram_points,
+                        data: geo.points,
                         maxzoom: 24
                     }
                 );
@@ -534,7 +557,7 @@ define
                     "cim lines",
                     {
                         type: "geojson",
-                        data: this._diagram_lines,
+                        data: geo.lines,
                         maxzoom: 24
                     }
                 );
@@ -544,7 +567,7 @@ define
                     "cim polygons",
                     {
                         type: "geojson",
-                        data: this._diagram_polygons,
+                        data: geo.polygons,
                         maxzoom: 24
                     }
                 );

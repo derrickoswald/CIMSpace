@@ -69,10 +69,11 @@ define
             /**
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
+             * @param {Object} options - options for processing
              * @function process_spatial_objects_again
              * @memberOf module:inservice
              */
-            process_spatial_objects_again (data)
+            process_spatial_objects_again (data, options)
             {
                 var statuses = data.SvStatus;
                 var colormap = {};
