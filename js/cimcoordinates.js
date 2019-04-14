@@ -8,42 +8,57 @@ define
     [],
     /**
      * @summary Coordinates control.
-     * @description UI element for displaying mouse coordinates.
+     * @description Custom UI element for displaying mouse coordinates.
+     * usage: <mouse-coordinates></mouse-coordinates>
      * @name cimcoordinates
      * @exports cimcoordinates
-     * @version 1.0
+     * @version 2.0
      */
     function ()
     {
-        class CIMCoordinates
+        class CIMCoordinates extends HTMLElement
         {
             constructor ()
             {
+                super ();
+                const shadow = this.attachShadow ({mode: 'open'});
+                // create a text element to display the coordinates
+                var text = document.createElement ("span");
+                text.id = "coordinates";
+                text.innerHTML = "0.000000,0.000000";
+                // apply some CSS to the host element
+                var style = document.createElement ("style");
+                style.textContent = `
+                :host
+                {
+                    padding: 1em 1.25em 1em;
+                    background-color: rgba(255, 255, 255, 0.75);
+                    border-radius: 4px;
+                }
+                `;
+                // add the elements to the shadow DOM
+                shadow.appendChild (text);
+                shadow.appendChild (style);
+                // prepare to listen with a method bound to this
+                this._listener = this.mousemove_listener.bind (this);
             }
 
             onAdd (map)
             {
+                // remember the map
                 this._map = map;
-                this._container = document.createElement ("div");
-                this._container.className = "mapboxgl-ctrl card";
-                var text = document.createElement ("div");
-                text.id = "coordinates";
-                text.className = "card-body";
-                text.setAttribute ("style", "padding: 1em 1.25em 1em;"); // slightly less padding
-                text.innerHTML = "0.000000,0.000000";
-                this._container.appendChild (text);
                 // handle mouse movement
-                this._map.on ("mousemove", this.mousemove_listener);
-                return (this._container);
+                this._map.on ("mousemove", this._listener);
+                return (this);
             }
 
             onRemove ()
             {
                 // stop handling mouse movements
-                this._map.off ("mousemove", this.mousemove_listener);
+                this._map.off ("mousemove", this._listener);
                 // destroy the container
-                this._container.parentNode.removeChild (this._container);
-                delete this._container;
+                this.parentNode.removeChild (this);
+                // forget the map
                 delete this._map;
             }
 
@@ -57,9 +72,11 @@ define
                 var lnglat = event.lngLat;
                 var lng = lnglat.lng.toPrecision (7);
                 var lat = lnglat.lat.toPrecision (7);
-                document.getElementById ("coordinates").innerHTML = lng + "," + lat;
+                this.shadowRoot.getElementById ("coordinates").innerHTML = lng + "," + lat;
             }
         }
+
+        customElements.define ("mouse-coordinates", CIMCoordinates);
 
         return (CIMCoordinates);
     }

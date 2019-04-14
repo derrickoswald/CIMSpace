@@ -685,7 +685,8 @@ define
             {
                 if ((null != TheMap) && (null == TheCoordinates))
                 {
-                    TheCoordinates = new CIMCoordinates ();
+                    TheCoordinates = document.createElement ("mouse-coordinates");
+                    TheCoordinates.classList.add ("mapboxgl-ctrl");
                     TheMap.addControl (TheCoordinates);
                 }
             }
