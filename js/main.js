@@ -103,7 +103,7 @@ requirejs
          * Get the diagram editor.
          * @return {Object} The object handling diagrams.
          * @function get_diagram
-         * @memberOf module:cimmap
+         * @memberOf module:main
          */
         function get_diagram ()
         {

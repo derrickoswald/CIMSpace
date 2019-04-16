@@ -43,6 +43,11 @@ define
                 this._listener = this.mousemove_listener.bind (this);
             }
 
+            connectedCallback ()
+            {
+                this.setAttribute ("class", "mapboxgl-ctrl");
+            }
+
             onAdd (map)
             {
                 // remember the map
