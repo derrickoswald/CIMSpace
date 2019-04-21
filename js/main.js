@@ -6,10 +6,12 @@
 "use strict";
 requirejs
 (
-    ["cimspace", "cimmap", "cimnav", "cimdetails", "cimedit", "cimconnectivity", "cimdiagram",
-     "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice", "themes/diagram"],
-    function (cimspace, cimmap, cimnav, CIMDetails, CIMEdit, CIMConnectivity, CIMDiagram,
-              ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme, DiagramTheme)
+    ["cimspace", "cimmap", "cimdetails", "cimedit", "cimconnectivity", "cimdiagram",
+     "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice", "themes/diagram",
+     "nav/cimnav", "nav/zoominnav", "nav/zoomoutnav", "nav/rotationnav", "nav/zoomnav", "nav/infonav", "nav/themenav", "nav/legendnav", "nav/editnav", "nav/connectivitynav", "nav/diagramnav"],
+    function (cimspace, cimmap, CIMDetails, CIMEdit, CIMConnectivity, CIMDiagram,
+              ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme, DiagramTheme,
+              NavigationControl, ZoomInNav, ZoomOutNav, RotationNav, ZoomNav, InfoNav, ThemeNav, LegendNav, EditNav, ConnectivityNav, DiagramNav)
     {
         // initialize widgets
         document.getElementById ("file_button").onchange = cimspace.file_change;
@@ -66,67 +68,12 @@ requirejs
         TheThemer.addTheme (new InServiceTheme ());
         TheThemer.addTheme (new DiagramTheme ());
 
-        /**
-         * Get the detail view object for access to viewing.
-         * @return {Object} The object handling details view.
-         * @function get_details
-         * @memberOf module:cimmain
-         */
-        function get_details ()
-        {
-            return (TheDetails);
-        }
-
-        /**
-         * Get the editor object for access to editing.
-         * @return {Object} The object handling editing.
-         * @function get_editor
-         * @memberOf module:main
-         */
-        function get_editor ()
-        {
-            return (TheEditor);
-        }
-
-        /**
-         * Get the connectivity for changing connectivity.
-         * @return {Object} The object handling connectivity.
-         * @function get_connectivity
-         * @memberOf module:main
-         */
-        function get_connectivity ()
-        {
-            return (TheConnectivity);
-        }
-
-        /**
-         * Get the diagram editor.
-         * @return {Object} The object handling diagrams.
-         * @function get_diagram
-         * @memberOf module:main
-         */
-        function get_diagram ()
-        {
-            return (TheDiagram);
-        }
-
-        /**
-         * Get the theming object for access to themes.
-         * @return {Object} The object handling theming.
-         * @function get_themer
-         * @memberOf module:main
-         */
-        function get_themer ()
-        {
-            return (TheThemer);
-        }
-
-        function toggle (control_function)
+        function toggle (control_or_function)
         {
             return (
-                function ()
+                function (event)
                 {
-                    var control = control_function ();
+                    var control = ("function" == typeof (control_or_function)) ? control_or_function () : control_or_function;
                     if (control.visible ())
                         cimmap.get_map ().removeControl (control);
                     else
@@ -138,15 +85,34 @@ requirejs
             );
         }
 
-        var TheNavigator =  new cimnav.NavigationControl (
-            cimmap.zoom_extents,
-            toggle (get_details),
-            toggle (get_themer),
-            toggle (function () { return (get_themer ().getTheme ().getLegend ()); }),
-            toggle (get_editor),
-            toggle (get_connectivity),
-            toggle (get_diagram));
+        var zoom = document.createElement ("button", { is: "zoom-nav-button" });
+        var info = document.createElement ("button", { is: "info-nav-button" });
+        var theme = document.createElement ("button", { is: "theme-nav-button" });
+        var legend = document.createElement ("button", { is: "legend-nav-button" });
+        var edit = document.createElement ("button", { is: "edit-nav-button" });
+        var connectivity = document.createElement ("button", { is: "connectivity-nav-button" });
+        var diagram = document.createElement ("button", { is: "diagram-nav-button" });
+
+        var TheNavigator =  new NavigationControl ();
+        TheNavigator.addButton (document.createElement ("button", { is: "zoomin-nav-button" }));
+        TheNavigator.addButton (document.createElement ("button", { is: "zoomout-nav-button" }));
+        TheNavigator.addButton (document.createElement ("button", { is: "rotation-nav-button" }));
+        TheNavigator.addButton (zoom);
+        TheNavigator.addButton (info);
+        TheNavigator.addButton (theme);
+        TheNavigator.addButton (legend);
+        TheNavigator.addButton (edit);
+        TheNavigator.addButton (connectivity);
+        TheNavigator.addButton (diagram);
 
         cimmap.initialize (TheNavigator, TheThemer, TheEditor);
+
+        zoom.addEventListener ("click", cimmap.zoom_extents);
+        info.addEventListener ("click", toggle (TheDetails));
+        theme.addEventListener ("click", toggle (TheThemer));
+        legend.addEventListener ("click", toggle (function () { return (TheThemer.getTheme ().getLegend ()); }));
+        edit.addEventListener ("click", toggle (TheEditor));
+        connectivity.addEventListener ("click", toggle (TheConnectivity));
+        diagram.addEventListener ("click", toggle (TheDiagram));
     }
 );
