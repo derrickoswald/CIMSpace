@@ -41,27 +41,27 @@ requirejs
         /**
          * The detail view control object.
          */
-        var TheDetails = new CIMDetails (cimmap);
+        const TheDetails = new CIMDetails (cimmap);
 
         /**
          * The editor control object.
          */
-        var TheEditor = new CIMEdit (cimmap);
+        const TheEditor = new CIMEdit (cimmap);
 
         /**
          * The connectivity control object.
          */
-        var TheConnectivity = new CIMConnectivity (cimmap, TheEditor);
+        const TheConnectivity = new CIMConnectivity (cimmap, TheEditor);
 
         /**
          * The diagram control object.
          */
-        var TheDiagram = new CIMDiagram (cimmap);
+        const TheDiagram = new CIMDiagram (cimmap);
 
         /**
          * The theme setting control object.
          */
-        var TheThemer = new ThemeControl ();
+        const TheThemer = new ThemeControl ();
         TheThemer.addTheme (new DefaultTheme ());
         TheThemer.addTheme (new VoltageTheme ());
         TheThemer.addTheme (new IslandTheme ());
@@ -73,7 +73,7 @@ requirejs
             return (
                 function (event)
                 {
-                    var control = ("function" == typeof (control_or_function)) ? control_or_function () : control_or_function;
+                    const control = ("function" == typeof (control_or_function)) ? control_or_function () : control_or_function;
                     if (control.visible ())
                         cimmap.get_map ().removeControl (control);
                     else
@@ -85,15 +85,15 @@ requirejs
             );
         }
 
-        var zoom = document.createElement ("button", { is: "zoom-nav-button" });
-        var info = document.createElement ("button", { is: "info-nav-button" });
-        var theme = document.createElement ("button", { is: "theme-nav-button" });
-        var legend = document.createElement ("button", { is: "legend-nav-button" });
-        var edit = document.createElement ("button", { is: "edit-nav-button" });
-        var connectivity = document.createElement ("button", { is: "connectivity-nav-button" });
-        var diagram = document.createElement ("button", { is: "diagram-nav-button" });
+        const zoom = document.createElement ("button", { is: "zoom-nav-button" });
+        const info = document.createElement ("button", { is: "info-nav-button" });
+        const theme = document.createElement ("button", { is: "theme-nav-button" });
+        const legend = document.createElement ("button", { is: "legend-nav-button" });
+        const edit = document.createElement ("button", { is: "edit-nav-button" });
+        const connectivity = document.createElement ("button", { is: "connectivity-nav-button" });
+        const diagram = document.createElement ("button", { is: "diagram-nav-button" });
 
-        var TheNavigator =  new NavigationControl ();
+        const TheNavigator =  new NavigationControl ();
         TheNavigator.addButton (document.createElement ("button", { is: "zoomin-nav-button" }));
         TheNavigator.addButton (document.createElement ("button", { is: "zoomout-nav-button" }));
         TheNavigator.addButton (document.createElement ("button", { is: "rotation-nav-button" }));

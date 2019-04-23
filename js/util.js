@@ -20,14 +20,14 @@ define
          * @description Creates the CORS request and opens it.
          * @param {string} method The method type, e.g. "GET" or "POST"
          * @param {string} url the URL to open the request on
-         * @param {boolean} asynchronous optional parameter for open() call, default <em>true</em>
-         * @param {boolean} withcredentials optional parameter for XMLHttpRequest, default <em>false</em>
+         * @param {boolean} [asynchronous = true] optional parameter for open() call, default <em>true</em>
+         * @param {boolean} [withcredentials = false] optional parameter for XMLHttpRequest, default <em>false</em>
          * @returns {object} the request object or <code>null</code> if CORS isn't supported
          * @memberOf module:util
          */
         function createCORSRequest (method, url, asynchronous, withcredentials)
         {
-            var ret;
+            let ret;
 
             if ("undefined" == typeof (asynchronous))
                 asynchronous = true;
@@ -60,8 +60,8 @@ define
         function running_local ()
         {
             return (
-                ("null" == window.location.origin) // Firefox
-             || ("file://" == window.location.origin) // chromium
+                ("null" === window.location.origin) // Firefox
+             || ("file://" === window.location.origin) // chromium
                 )
         }
 
@@ -76,7 +76,7 @@ define
             return (running_local () ?
                 "http://localhost:9080/cimweb/"
             :
-                url = window.location.origin + window.location.pathname);
+                window.location.origin + window.location.pathname);
         }
 
         return (

@@ -167,3 +167,8 @@ footer.page-footer {
     resize: both;
     overflow: auto;
 }
+
+.tooltip
+{
+    top: 0;
+}

@@ -9,7 +9,6 @@ define
     /**
      * @summary Theme control.
      * @description UI element for theming.
-     * @name cimthemes
      * @exports cimthemes
      * @version 1.0
      */
@@ -39,7 +38,6 @@ define
                     "    {{description}}\n" +
                     "    </small></em>\n" +
                     "{{/themes}}\n" +
-                    "  </div>\n";
                     "</div>\n";
             }
 
@@ -48,7 +46,7 @@ define
                 this._map = map;
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
-                var list = this._themes.map (
+                const list = this._themes.map (
                     function (theme)
                     {
                         return (
@@ -60,16 +58,15 @@ define
                         );
                     }
                 );
-                var html = mustache.render (this._template, { themes: list });
-                this._container.innerHTML = html;
-                if (0 != this._themes.length)
+                this._container.innerHTML = mustache.render (this._template, { themes: list });
+                if (0 !== this._themes.length)
                 {
                     var current = this._theme.getName ();
-                    var list = this._container.getElementsByTagName ("input")
-                    for (var i = 0; i < list.length; i++)
-                        if (current == list[i].value)
+                    let list = this._container.getElementsByTagName ("input");
+                    for (let i = 0; i < list.length; i++)
+                        if (current === list[i].value)
                             list[i].setAttribute ("checked", "checked");
-                    for (var i = 0; i < list.length; i++)
+                    for (let i = 0; i < list.length; i++)
                         list[i].onchange = this.theme_change.bind (this);
                 }
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);

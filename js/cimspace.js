@@ -9,42 +9,41 @@ define
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
      * @see http://requirejs.org/docs/api.html#data-main
-     * @name cimspace
      * @exports cimspace
      * @version 1.0
      */
     function (util, cim, cimmap)
     {
         // the pending xml creation
-        var Pending = null;
+        let Pending = null;
 
         // the base name of the currently loaded file
-        var TheCurrentName = null;
+        let TheCurrentName = null;
 
         // the rdf:about text for saving
-        var TheCurrentAbout = null;
+        let TheCurrentAbout = null;
 
         // the md:description text for saving
-        var TheCurrentDescription = null;
+        let TheCurrentDescription = null;
 
         /**
          * @summary Parse a set of CIM files.
          * @description Read in CIM files.
-         * @param {Blob} blobs - the blobs of CIM data
+         * @param {Blob[]} blobs - the blobs of CIM data
          * @function read_cim
          * @memberOf module:cimspace
          */
         function read_cim (blobs)
         {
-            var start = new Date ().getTime ();
+            const start = new Date ().getTime ();
             console.log ("starting CIM read\n    " + blobs.map (x => x.name).join ("\n    "));
             cim.read_xml_blobs (blobs).then (
                 function (context)
                 {
-                    var end = new Date ().getTime ();
-                    var elements = Object.keys (context.parsed.Element).length;
+                    const end = new Date ().getTime ();
+                    const elements = Object.keys (context.parsed.Element).length;
                     console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds, " + elements + " elements)");
-                    if (0 != context.ignored)
+                    if (0 !== context.ignored)
                         console.log (context.ignored.toString () + " unrecognized element" + ((1 < context.ignored) ? "s" : ""));
                     cimmap.set_data (context.parsed);
                     cimmap.set_loaded ({ files: blobs.map (b => b.name), options: {}, elements: elements });
@@ -56,6 +55,7 @@ define
          * @summary Uncompress a zip file and then parse it.
          * @description Use AMD wrapped zip.js (see https://github.com/MeltingMosaic/zip-amd) to read in a CIM file.
          * @param {Blob} blob - the blob of zipped data
+         * @param {Function} [fn = read_cim()] - the function to apply to the unzipped entry.
          * @function read_zip
          * @memberOf module:cimspace
          */
@@ -66,7 +66,7 @@ define
                 ["zip/zip", "zip/mime-types"],
                 function (zip, mimeTypes)
                 {
-                    var start = new Date ().getTime ();
+                    const start = new Date ().getTime ();
                     console.log ("starting unzip '" + blob.name + "'");
 
                     //zip.workerScriptsPath = "js/zip/";
@@ -78,10 +78,10 @@ define
                                 function (entries)
                                 {
                                     // find the CIM file with extension rdf or xml... if any
-                                    var j = 0;
-                                    for (var i = 0; i < entries.length; i++)
+                                    let j = 0;
+                                    for (let i = 0; i < entries.length; i++)
                                     {
-                                        var name = entries[i].filename.toLowerCase ();
+                                        const name = entries[i].filename.toLowerCase ();
                                         if (name.endsWith (".rdf") || name.endsWith (".xml"))
                                             j = i;
                                     }
@@ -91,7 +91,7 @@ define
                                         {
                                             zipReader.close ();
                                             data.name = entries[j].filename;
-                                            var end = new Date ().getTime ();
+                                            const end = new Date ().getTime ();
                                             console.log ("finished unzip '" + data.name + "' (" + (Math.round (end - start) / 1000) + " seconds)");
                                             fn (data);
                                         }
@@ -113,13 +113,13 @@ define
          */
         function base_name (name)
         {
-            var index;
+            let index;
 
             index = name.lastIndexOf ("/");
-            if (-1 != index)
+            if (-1 !== index)
                 name = name.substring (index + 1);
             index = name.lastIndexOf (".");
-            if (-1 != index)
+            if (-1 !== index)
                 name = name.substring (0, index);
 
             return (name);
@@ -128,26 +128,26 @@ define
         /**
          * @summary Handler for file change events.
          * @description Process files from the browse dialog.
-         * @param {File[]} files - the list of files
+         * @param {FileList} files - the list of files
          * @function process_files
          * @memberOf module:cimspace
          */
         function process_files (files)
         {
+            const array = Array (files.length).fill (null);
+            function check ()
+            {
+                if (array.every (x => x != null))
+                    read_cim (array);
+            }
+            function unzip (n)
+            {
+                read_zip (files[n], function (blob) { array[n] = blob; check (); });
+            }
             if (0 < files.length)
             {
                 TheCurrentName = base_name (files[0].name);
-                var array = Array (files.length).fill (null);
-                function check ()
-                {
-                    if (array.every (x => x != null))
-                        read_cim (array);
-                };
-                function unzip (n)
-                {
-                    read_zip (files[n], function (blob) { array[n] = blob; check (); });
-                };
-                for (var i = 0; i < files.length; i++)
+                for (let i = 0; i < files.length; i++)
                     if (files[i].name.endsWith (".zip"))
                         unzip (i);
                     else
@@ -165,10 +165,10 @@ define
          */
         function process_url (event)
         {
-            var url;
-            if ("" != (url = document.getElementById ("server_url").value))
+            let url = document.getElementById ("server_url").value;
+            if ("" !== url)
             {
-                var xmlhttp = util.createCORSRequest ("GET", url);
+                const xmlhttp = util.createCORSRequest ("GET", url);
                 if (url.endsWith (".zip"))
                 {
                     xmlhttp.setRequestHeader ("Accept", "application/zip");
@@ -178,26 +178,26 @@ define
                     xmlhttp.setRequestHeader ("Accept", "application/octet-stream");
                 xmlhttp.onreadystatechange = function ()
                 {
-                    if (4 == xmlhttp.readyState)
-                        if (200 == xmlhttp.status || 201 == xmlhttp.status || 202 == xmlhttp.status)
+                    if (4 === xmlhttp.readyState)
+                        if (200 === xmlhttp.status || 201 === xmlhttp.status || 202 === xmlhttp.status)
                         {
                             TheCurrentName = base_name (url);
                             if (url.endsWith (".zip"))
                             {
-                                var blob = xmlhttp.response.slice();
+                                const blob = xmlhttp.response.slice();
                                 if (!blob.name)
                                     blob.name = url;
                                 read_zip (blob);
                             }
                             else
                             {
-                                var start = new Date ().getTime ();
+                                const start = new Date ().getTime ();
                                 console.log ("starting CIM read");
-                                var context = cim.read_full_xml (xmlhttp.response, 0, null, null);
-                                var end = new Date ().getTime ();
-                                var elements = Object.keys (context.parsed.Element).length;
+                                const context = cim.read_full_xml (xmlhttp.response, 0, null);
+                                const end = new Date ().getTime ();
+                                const elements = Object.keys (context.parsed.Element).length;
                                 console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds, " + elements + " elements)");
-                                if (0 != context.ignored)
+                                if (0 !== context.ignored)
                                     console.log (context.ignored.toString () + " unrecognized element" + ((1 < context.ignored) ? "s" : ""));
                                 cimmap.set_data (context.parsed);
                                 cimmap.set_loaded ({ files: [TheCurrentName], options: {}, elements: elements });
@@ -278,13 +278,14 @@ define
                 new Promise (
                     (resolve, reject) =>
                     {
-                        var reader = new FileReader ();
+                        const reader = new FileReader ();
                         reader.onload = function ()
                         {
-                            var dataUrl = reader.result;
-                            var base64 = dataUrl.split (",")[1];
+                            const dataUrl = reader.result;
+                            const base64 = dataUrl.split (",")[1];
                             resolve (base64);
                         };
+                        reader.onerror = reject;
                         reader.readAsDataURL (blob);
                     }
                 )
@@ -300,9 +301,9 @@ define
          */
         function save_name_change (event)
         {
-            var name = base_name (document.getElementById ("save_name").value);
+            const name = base_name (document.getElementById ("save_name").value);
             TheCurrentName = name;
-            var a = document.getElementById ("save");
+            const a = document.getElementById ("save");
             a.setAttribute ("download", name + ".zip");
             Pending.then (generate_rdf, generate_rdf);
         }
@@ -353,13 +354,12 @@ define
          */
         function generate_rdf (event)
         {
-            var name = TheCurrentName || "save";
-            var about = TheCurrentAbout || "";
-            var description = TheCurrentDescription || "";
-            var full_model = document.getElementById ("full_model").checked;
-            var difference_model = document.getElementById ("difference_model").checked;
-            var only_new = document.getElementById ("only_new").checked;
-            var suffix = "";
+            const name = TheCurrentName || "save";
+            const about = TheCurrentAbout || "";
+            const description = TheCurrentDescription || "";
+            const difference_model = document.getElementById ("difference_model").checked;
+            const only_new = document.getElementById ("only_new").checked;
+            let suffix = "";
             if (difference_model)
                 suffix = "_diff";
             else if (only_new)
@@ -373,20 +373,20 @@ define
                         function (resolve, reject)
                         {
                             // disable the link until it's ready
-                            var a = document.getElementById ("save");
+                            const a = document.getElementById ("save");
                             a.setAttribute ("disabled", "disabled");
-                            var file = name + (difference_model ? "_diff" : "") + ".zip"
+                            const file = name + (difference_model ? "_diff" : "") + ".zip";
                             a.setAttribute ("download", file);
-                            a.onclick = function (event) { event.preventDefault (); event.stopPropagation (); alert ("sorry... not ready yet"); }
-                            var begin = new Date ().getTime ();
+                            a.onclick = function (event) { event.preventDefault (); event.stopPropagation (); alert ("sorry... not ready yet"); };
+                            const begin = new Date ().getTime ();
                             console.log ("starting xml creation");
-                            var text = cim.write_xml (cimmap.get_data ().Element, difference_model, only_new, about, description);
-                            var start = new Date ().getTime ();
+                            const text = cim.write_xml (cimmap.get_data ().Element, difference_model, only_new, about, description);
+                            const start = new Date ().getTime ();
                             console.log ("finished xml creation (" + (Math.round (start - begin) / 1000) + " seconds)");
                             console.log ("starting zip");
                             require (
-                                ["zip/zip", "zip/mime-types"],
-                                function (zip, mimeTypes)
+                                ["zip/zip"],
+                                function (zip)
                                 {
                                     //zip.workerScriptsPath = "js/zip/";
                                     zip.useWebWorkers = false;
@@ -399,11 +399,11 @@ define
                                                     writer.close (
                                                         function (blob) // blob contains the zip file as a Blob object
                                                         {
-                                                            var end = new Date ().getTime ();
+                                                            const end = new Date ().getTime ();
                                                             console.log ("finished zip (" + (Math.round (end - start) / 1000) + " seconds)");
 
                                                             // this is surprisingly not performant:
-                                                            // var url = URL.createObjectURL (blob);
+                                                            // const url = URL.createObjectURL (blob);
                                                             // a.setAttribute ("href", url);
 
                                                             // so we do this instead
@@ -411,11 +411,11 @@ define
                                                             blob2base64 (blob).then (
                                                                 function (data)
                                                                 {
-                                                                    var finish = new Date ().getTime ();
+                                                                    const finish = new Date ().getTime ();
                                                                     console.log ("finished base64 conversion (" + (Math.round (finish - end) / 1000) + " seconds)");
                                                                     a.setAttribute ("href", "data:application/zip;base64," + data);
                                                                     a.setAttribute ("type", "application/zip");
-                                                                    a.onclick = function (event) { $("#save_modal").modal ("hide"); }
+                                                                    a.onclick = function () { $("#save_modal").modal ("hide"); };
                                                                     a.removeAttribute ("disabled");
                                                                     console.log ("ready (" + (Math.round (new Date ().getTime () - finish) / 1000) + " seconds)");
                                                                     resolve ("OK");

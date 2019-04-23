@@ -9,7 +9,6 @@ define
     /**
      * @summary Rotation navigation button.
      * @description Shows current map orientation and reverts to north upwards when clicked.
-     * @name rotationnav
      * @exports RotationNav
      * @version 2.0
      */
@@ -34,7 +33,7 @@ define
                 this.setAttribute ("title", "Reset bearing and pitch to north");
                 this.setAttribute ("type", "button");
                 this.innerHTML = this.template;
-                $(this).tooltip ();
+                $(this).tooltip ({ placement: "left" });
             }
 
             onAdd (map)
@@ -67,4 +66,4 @@ define
 
         return (RotationNav);
     }
-)
+);

@@ -304,7 +304,7 @@ define
         /**
          * @summary Read blobs as XML.
          * @description Processes a file reading the blob as UTF8.
-         * @param {Blob} blobs - array of blobs to read
+         * @param {Blob[]} blobs - array of blobs to read
          * @return a Promise that resolves with the parsing context (elements in context.parsed)
          * @function read_xml_blobs
          * @memberOf module:cim
@@ -399,9 +399,9 @@ define
          * (as returned from the parse context: context.parsed.Element[obj.mRID] = obj).
          * @param {Boolean} difference_model - if <code>true</code> output a CIM Difference Model rather than a full model.
          * @param {Boolean} only_new - if <code>true</code> output a CIM Full Model with only new elements.
-         * @param {String} about - the about string for the CIM header.
-         * @param {String} description - the description string for the CIM header.
-         * @param {String} date - the created string for the CIM header.
+         * @param {String} [about = CIMSpace] - the about string for the CIM header.
+         * @param {String} [description = js export] - the description string for the CIM header.
+         * @param {String} [date = now] - the created string for the CIM header.
          * @returns The XML text.
          * @function write_xml
          * @memberOf module:cim
@@ -409,8 +409,6 @@ define
         function write_xml (elements, difference_model, only_new, about, description, date)
         {
             var chunks = []; // array of arrays of strings
-            var exporter;
-            var obj;
 
             about = about || "CIMSpace";
             description = description || "CIMSpace cim.js export";
