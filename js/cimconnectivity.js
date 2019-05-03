@@ -618,16 +618,27 @@ define
             // only used in mustache render
             display_name ()
             {
-                var ret;
-                if (this.name)
-                    ret = this.name;
-                else if (this.aliasName)
-                    ret = this.aliasName;
-                else if (this.mRID)
-                    ret = this.mRID;
-                else
-                    ret = this.id;
-                return (ret);
+                function names ()
+                {
+                    function distinct (array)
+                    {
+                        var ret = [];
+                        array.forEach (x => !ret.includes (x) ? ret.push (x) : null);
+                        return (ret);
+                    }
+
+                    var ret = [];
+                    if (this.name)
+                        ret.push (this.name);
+                    if (this.mRID)
+                        ret.push (this.mRID);
+                    ret.push (this.id);
+                    if (this.aliasName)
+                        ret.push (this.aliasName);
+                    return (distinct.call (this, ret));
+                }
+
+                return (names.call (this)[0]);
             }
 
             show_candidates ()
@@ -680,6 +691,11 @@ define
                     radios[i].addEventListener ("change", fn);
             }
 
+            element_svg (equipment)
+            {
+                return (this.marker_svg (250, 100, 5, 4, this.display_name.call (equipment), "#00000000", "#000000ff",  18));
+            }
+
             show_connectivity ()
             {
 //            [
@@ -703,6 +719,7 @@ define
                       <h6>{{display_name}} ({{cls}})</h6>
                       {{#description}}<div>{{description}}</div>{{/description}}
                     {{/equipment}}
+                    {{{picture}}}
                     {{#target}}
                     <div class="form-check">
                       <input id="target_{{Terminal.id}}" class="form-check-input" type="radio" name="target_choice" value="{{Terminal.id}}"{{#current}} checked{{/current}}>
@@ -724,7 +741,7 @@ define
                     for (var i = 0; this._candidates && i < this._candidates.length; i++)
                         if (this._candidates[i].Marker)
                             this._candidates[i].index = index++;
-                    var text = mustache.render (template, { equipment: equipment, target: this._target, display_name: this.display_name });
+                    var text = mustache.render (template, { equipment: equipment, picture: this.element_svg (equipment), target: this._target, display_name: this.display_name });
                     for (var i = 0; this._candidates && i < this._candidates.length; i++)
                         delete this._candidates[i].index;
 

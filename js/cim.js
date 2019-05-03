@@ -20,7 +20,7 @@ define
         /**
          * The size of chunks to read into memory.
          */
-        var CHUNK_SIZE = 4000000;
+        const CHUNK_SIZE = 4000000;
 
         /**
          * Convert a string into UTF-8 encoded (all high order bytes are zero) string.
@@ -33,18 +33,18 @@ define
         function encode_utf8 (str)
         {
             return (unescape (encodeURIComponent (str)));
-        };
+        }
 
         // create the mapping tables
-        var theParseMap = {};
-        var theExportMap = {};
+        const theParseMap = {};
+        const theExportMap = {};
         Array.prototype.map.call (arguments,
             function (x)
             {
-                for (var property in x)
+                for (let property in x)
                     if (x.hasOwnProperty (property))
                     {
-                        var c = x[property];
+                        const c = x[property];
                         if (c.prototype && c.prototype.parse) // a CIM class
                         {
                             theParseMap["cim:" + property] = x[property];
@@ -87,10 +87,7 @@ define
          */
         function read_xml (xml, context)
         {
-            var regex;
-            var startindex;
-            var result;
-            var subcontext;
+            let result;
 
             context = context ||
             {
@@ -106,22 +103,22 @@ define
             context.end_character = context.start_character;
 
             // scan for cim elements
-            regex = new RegExp ("\\s*<(cim:[^ >\\s]+)([\\s\\S]*?)<\\/\\1>\\s*", "g");
+            const regex = new RegExp ("\\s*<(cim:[^ >\\s]+)([\\s\\S]*?)<\\/\\1>\\s*", "g");
 //            regex = /\s*<(cim:[^ >\\s]+)([\s\S]*?)<\/\1>\s*/g; // important to consume leading and trailing whitespace
-            startindex = 0;
+            let startindex = 0;
             while (null != (result = regex.exec (xml)))
             {
                 // check for a complete outer element,
                 // i.e. check that the matched pattern length fills starting index to ending index
                 // this is in lieu of all browser support for the sticky flag - y
-                if (startindex + result[0].length != regex.lastIndex)
+                if (startindex + result[0].length !== regex.lastIndex)
                     break;
                 startindex = regex.lastIndex;
 
                 // update the last seen character position
                 context.end_character = context.start_character + regex.lastIndex;
                 // form the subcontext for parsing individual elements
-                subcontext =
+                const subcontext =
                 {
                     start_character: context.start_character + result.index,
                     end_character: context.end_character,
@@ -129,9 +126,9 @@ define
                     parsed: context.parsed
                 };
                 // parse individual elements
-                var element = result[1];
-                var guts = result[2];
-                var parser = theParseMap[element];
+                const element = result[1];
+                const guts = result[2];
+                const parser = theParseMap[element];
                 if ("undefined" != typeof (parser))
                     parser.prototype.parse (subcontext, guts);
                 else
@@ -161,13 +158,11 @@ define
          */
         function read_full_xml (xml, start, context)
         {
-            var subxml;
-            var regex;
-            var encoding;
-            var result;
+            let subxml;
+            let result;
 
             // check for just starting
-            if (0 == start)
+            if (0 === start)
             {
                 context = context ||
                 {
@@ -181,7 +176,7 @@ define
                 subxml = xml;
 
                 // remove the XML declaration, i.e. <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-                regex = /<\?([\s\S]*)\?>\s*/g;
+                let regex = /<\?([\s\S]*)\?>\s*/g;
                 if (null != (result = regex.exec (subxml)))
                 {
                     context.offset += regex.lastIndex;
@@ -192,15 +187,15 @@ define
                     regex = /encoding="([^"]*)"/g;
                     if (null != (result = regex.exec (result[1])))
                     {
-                        encoding = result[1];
-                        if ("UTF-8" != encoding.toUpperCase ())
-                            reject (Error ("unsupported encoding " + encoding));
+                        const encoding = result[1];
+                        if ("UTF-8" !== encoding.toUpperCase ())
+                            console.log ("unsupported encoding " + encoding);
                     }
                 }
 
                 // parse RDF, i.e. <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
                 regex = /<rdf:RDF([\s\S]*?)>\s*/g;
-                if (null != (result = regex.exec (subxml)))
+                if (null != regex.exec (subxml))
                 {
                     context.offset += regex.lastIndex;
                     context.newlines = base.index_string (subxml.substring (0, regex.lastIndex), context.start_character, context.newlines);
@@ -210,7 +205,7 @@ define
 
                 // parse FullModel, i.e. <md:FullModel ....  </md:FullModel>
                 regex = new RegExp ("\\s*<md:FullModel ([\\s\\S]*?)<\\/md:FullModel>\\s*", "g");
-                if (null != (result = regex.exec (subxml)))
+                if (null != regex.exec (subxml))
                 {
                     // ToDo: how to get the header attributes from here to the caller
                     context.offset += regex.lastIndex;
@@ -244,39 +239,28 @@ define
          */
         function read_xml_promise (blob, start, context, resolve, reject)
         {
-            var size;
-            var tbd;
-            var subblob;
-            var reader;
-
-            size = blob.size;
-            tbd = Math.min (CHUNK_SIZE, size - start);
-            subblob = blob.slice (start, start + tbd, blob.type);
-            reader = new FileReader ();
+            const size = blob.size;
+            const tbd = Math.min (CHUNK_SIZE, size - start);
+            const subblob = blob.slice (start, start + tbd, blob.type);
+            const reader = new FileReader ();
             reader.onload = function (event)
             {
-                var xml;
-                var result;
-                var read;
-                var bytes;
-                var done;
-
-                xml = event.target.result;
-                if ("" == xml)
+                const xml = event.target.result;
+                if ("" === xml)
                     resolve (context);
                 else
                 {
                     context = read_full_xml (xml, start, context);
-                    read = context.end_character - context.start_character; // number of characters parsed
-                    if (0 == read)
+                    const read = context.end_character - context.start_character; // number of characters parsed
+                    if (0 === read)
                         reject (Error ("parse failed at line " + base.line_number (context)));
                     else
                     {
-                        bytes = encode_utf8 (xml.substring (0, read + context.offset)).length;
+                        const bytes = encode_utf8 (xml.substring (0, read + context.offset)).length;
                         // check for done
-                        done = false;
-                        regex = /\s*<\/rdf:RDF>\s*/g;
-                        if (null != (result = regex.exec (xml.substring (read + context.offset))))
+                        let done = false;
+                        const regex = /\s*<\/rdf:RDF>\s*/g;
+                        if (null != regex.exec (xml.substring (read + context.offset)))
                         {
                             context.end_character += regex.lastIndex;
                             done = true;
@@ -311,33 +295,31 @@ define
          */
         function read_xml_blobs (blobs)
         {
-            var ret = new Promise (
+            const ret = new Promise (
                 (resolve, reject) =>
                 {
-                    var promises;
-
-                    promises = blobs.map (blob => new Promise (read_xml_promise.bind (this, blob, 0, null)));
+                    const promises = blobs.map (blob => new Promise (read_xml_promise.bind (this, blob, 0, null)));
                     Promise.all (promises).then
                     (
                         function (contexts)
                         {
                             // gather all the contexts
-                            var context;
-                            if (contexts.length == 1)
+                            let context;
+                            if (1 === contexts.length)
                                 context = contexts[0];
                             else
                             {
-                                var parsed = {};
-                                var ignored = 0;
+                                const parsed = {};
+                                let ignored = 0;
                                 contexts.forEach (
                                     function (ctx)
                                     {
                                         ignored += ctx.ignored;
-                                        for (var cls in ctx.parsed)
+                                        for (let cls in ctx.parsed)
                                             if (ctx.parsed.hasOwnProperty (cls))
                                             {
                                                 if (!parsed[cls]) parsed[cls] = {};
-                                                for (var element in ctx.parsed[cls])
+                                                for (let element in ctx.parsed[cls])
                                                     if (ctx.parsed[cls].hasOwnProperty (element))
                                                         parsed[cls][element] = ctx.parsed[cls][element];
                                             }
@@ -367,22 +349,22 @@ define
          * @param {Object} elements - the object with elements to write stored as properties of their mRID
          * (as returned from the parse context: context.parsed.Element[obj.mRID] = obj).
          * @param {Function} filter - predicate to determine if the element should be written or not.
-         * @returns The XML text as an array of Strings.
+         * @returns {String[]} The XML text as an array of Strings.
          * @function write_elements
          * @memberOf module:cim
          */
         function write_elements (elements, filter)
         {
-            var ret = [];
+            const ret = [];
 
-            for (var property in elements)
+            for (let property in elements)
                 if (elements.hasOwnProperty (property))
                 {
-                    obj = elements[property];
+                    const obj = elements[property];
                     if (filter (obj))
                     {
-                        exporter = class_map (obj);
-                        if ("undefined" != typeof (exporter))
+                        const exporter = class_map (obj);
+                        if (exporter)
                             Array.prototype.push.apply (ret, exporter.prototype.export (obj, true));
                         else
                             ret.push (JSON.stringify (obj, null, 4));
@@ -402,20 +384,20 @@ define
          * @param {String} [about = CIMSpace] - the about string for the CIM header.
          * @param {String} [description = js export] - the description string for the CIM header.
          * @param {String} [date = now] - the created string for the CIM header.
-         * @returns The XML text.
+         * @returns {String} The XML text.
          * @function write_xml
          * @memberOf module:cim
          */
         function write_xml (elements, difference_model, only_new, about, description, date)
         {
-            var chunks = []; // array of arrays of strings
+            const chunks = []; // array of arrays of strings
 
             about = about || "CIMSpace";
             description = description || "CIMSpace cim.js export";
             date = date || new Date ().toISOString ();
 
-            var header;
-            var trailer;
+            let header;
+            let trailer;
             if (difference_model)
             {
                 header = [
@@ -455,20 +437,20 @@ define
                 chunks.push ([
 `		<dm:reverseDifferences parseType="Statements">`
                     ]);
-                chunks.push (write_elements (elements, function (obj) { return (obj.EditDisposition == "delete" && obj.id.startsWith ("1:")); }));
+                chunks.push (write_elements (elements, function (obj) { return ("delete" === obj.EditDisposition && obj.id.startsWith ("1:")); }));
                 chunks.push ([
 `		</dm:reverseDifferences>
 		<dm:forwardDifferences parseType="Statements">`
                     ]);
-                chunks.push (write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "new" || disp == "edit"); }));
+                chunks.push (write_elements (elements, function (obj) { const disp = obj.EditDisposition; return ("new" === disp || "edit" === disp); }));
                 chunks.push ([
 `		</dm:forwardDifferences>`
                     ]);
             }
             else if (only_new)
-                chunks.push (write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" != typeof (disp) && disp == "new"); }));
+                chunks.push (write_elements (elements, function (obj) { const disp = obj.EditDisposition; return ("undefined" != typeof (disp) && "new" === disp); }));
             else
-                chunks.push (write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" == typeof (disp) || disp != "delete"); }));
+                chunks.push (write_elements (elements, function (obj) { const disp = obj.EditDisposition; return ("undefined" == typeof (disp) || "delete" !== disp); }));
             chunks.push (trailer);
 
             return (Array.prototype.concat.apply ([], chunks).join ("\n"));

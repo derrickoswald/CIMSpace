@@ -19,7 +19,7 @@ define
         /**
          * Unique numbering for elements without an rdf:ID.
          */
-        var UNIQUE_NUMBER = 0;
+        let UNIQUE_NUMBER = 0;
 
         /**
          * Pass a string through unchanged.
@@ -40,7 +40,7 @@ define
          */
         function to_boolean (str)
         {
-            var ret = (null == str) ? str : (str.toLowerCase () === "true")
+            const ret = (null == str) ? str : (str.toLowerCase () === "true");
             return (ret);
         }
 
@@ -52,7 +52,7 @@ define
          */
         function to_float (str)
         {
-            var ret = (null == str) ? NaN : Number (str);
+            let ret = (null == str) ? NaN : Number (str);
             if (isNaN (ret))
                 ret = str;
             return (ret);
@@ -61,12 +61,12 @@ define
         /**
          * Convert a string into a date.
          * @param {String} str - the string to convert
-         * @returns {Date} the date and time value
+         * @returns {Date|String} the date and time value, or the original string if it isn't parsable
          * @memberOf module:model/base
          */
         function to_datetime (str)
         {
-            var ret = Date.parse (str);
+            let ret = Date.parse (str);
             if (isNaN (ret))
                 ret = str;
             else
@@ -77,8 +77,8 @@ define
         /**
          * Create an index of newline characters in a string.
          * @param {String} str - the string to index
-         * @param {Number} offset - optional offset to add to the index values
-         * @param {Number[]} newlines - optional existing index to append to
+         * @param {Number} [offset = 0] - optional offset to add to the index values
+         * @param {Number[]} [newlines = []] - optional existing index to append to
          * Originally the idea behind this parameter was to:
          * read the file in 64K chunks using slice on the File blob,
          * and then read as text, scan with regex,
@@ -92,12 +92,11 @@ define
          */
         function index_string (str, offset, newlines)
         {
-            var lines;
-            var res;
+            let res;
 
             offset = offset || 0;
-            var nl = newlines || [];
-            lines = /\n/g;
+            const nl = newlines || [];
+            const lines = /\n/g;
             while (null != (res = lines.exec (str)))
                 nl.push (res.index + offset);
 
@@ -109,24 +108,21 @@ define
          * @param {Object} context - the context object
          * @param {Number[]} context.newlines - the index of newline positions within the text
          * @param {Number} context.start_character - the starting character position for this context
-         * @param {Number} offset - the character position to find line number of, default = context.start_character
+         * @param {Number} [offset = context.start_character] - the character position to find line number of, default = context.start_character
          * @returns {Number} the one-based line number for the starting character position
          * @memberOf module:model/base
          */
         function line_number (context, offset)
         {
-            var min = 0;
-            var max = context.newlines.length - 1;
-            if ("undefined" == typeof (offset))
-                offset = context.start_character;
-            var index;
-            var item;
+            let min = 0;
+            let max = context.newlines.length - 1;
+            offset = offset || context.start_character;
 
-            index = min;
+            let index = min;
             while (min <= max)
             {
                 index = (min + max) / 2 | 0;
-                item = context.newlines[index];
+                const item = context.newlines[index];
 
                 if (item < offset)
                     min = index + 1;
@@ -153,9 +149,8 @@ define
          */
         function parse_element (regex, obj, attribute, fn, str, context)
         {
-            var result;
-
-            if (null != (result = regex.exec (str)))
+            let result = regex.exec (str);
+            if (null != result)
                 obj[attribute] = fn (result[1]);
         }
 
@@ -173,13 +168,11 @@ define
          */
         function parse_attribute (regex, obj, attribute, str, context)
         {
-            var result;
-            var value;
-
-            if (null != (result = regex.exec (str)))
+            let result = regex.exec (str);
+            if (null != result)
             {
-                value = result[2];
-                if (value.charAt (0) == '#') // remove '#'
+                let value = result[2];
+                if ("#" === value.charAt (0)) // remove '#'
                     value = value.substring (1);
                 obj[attribute] = value;
             }
@@ -199,14 +192,13 @@ define
          */
         function parse_attributes (regex, obj, attribute, str, context)
         {
-            var result;
-            var value;
-            var array = [];
+            let result;
+            const array = [];
 
             while (null != (result = regex.exec (str)))
             {
-                value = result[2];
-                if (value.charAt (0) == '#') // remove '#'
+                let value = result[2];
+                if ("#" === value.charAt (0)) // remove '#'
                     value = value.substring (1);
                 array.push (value);
                 obj[attribute] = array;
@@ -254,12 +246,13 @@ define
          */
         function from_datetime (date)
         {
-            var ret;
+            let ret;
             if ("object" == typeof (date))
                 ret = date.toISOString ();
             else if ("string" == typeof (date))
                 ret = date;
-            else ret = date.toString ();
+            else
+                ret = date.toString ();
             return (ret);
         }
 
@@ -285,10 +278,10 @@ define
          */
         function export_element (obj, cls, attribute, name, fn, fields)
         {
-            var value = obj[attribute];
-            if ("undefined" != typeof (value))
+            const value = obj[attribute];
+            if (value)
             {
-                var element = "cim:" + cls + "." + attribute;
+                const element = "cim:" + cls + "." + attribute;
                 fields.push ("\t\t<" + element + ">" + fn (value) + "</" + element + ">");
             }
         }
@@ -306,10 +299,10 @@ define
          */
         function export_attribute (obj, cls, attribute, name, fields)
         {
-            var value = obj[attribute];
-            if ("undefined" != typeof (value))
+            const value = obj[attribute];
+            if (value)
             {
-                var s = value.toString ();
+                const s = value.toString ();
                 fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"" + (s.includes ("#") ? "" : "#") + s + "\"/>");
             }
         }
@@ -328,11 +321,11 @@ define
          */
         function export_attributes (obj, cls, attribute, name, fields)
         {
-            var value = obj[attribute];
+            const value = obj[attribute];
             if ("undefined" != typeof (value))
-                for (var i = 0; i < value.length; i++)
+                for (let i = 0; i < value.length; i++)
                 {
-                    var s = value.toString ();
+                    const s = value.toString ();
                     fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"" + (s.includes ("#") ? "" : "#") + s + "\"/>");
                 }
         }
@@ -346,12 +339,11 @@ define
                     UNIQUE_NUMBER++;
                     template.id = "element_" + UNIQUE_NUMBER;
                 }
-                var bucket = cim_data.Element;
+                let bucket = cim_data.Element;
                 if (null == bucket)
                    cim_data.Element = bucket = {};
                 bucket[template.id] = template;
-                if (null != this)
-                    Object.assign (this, template);
+                Object.assign (this, template);
             }
 
             remove (obj, cim_data)
@@ -361,25 +353,20 @@ define
 
             /**
              * Parse an Element.
-             * @param {Object} context - the file reading context
-             * @param {Object} context.parsed.Element - the list of elements
+             * @param {Object} context - the context object
              * @param {String} sub - the substring within which to parse the element
              * @memberOf module:model/base
              */
             parse (context, sub)
             {
-                var id;
-                var elements;
-                var ret;
-
-                ret = { cls: "Element" };
-                parse_attribute (/rdf:ID=("|')([\s\S]*?)\1/g, ret, "id", sub, context);
+                const ret = { cls: "Element" };
+                parse_attribute (/rdf:ID=(["'])([\s\S]*?)\1/g, ret, "id", sub, context);
                 if ("undefined" == typeof (ret.id))
                 {
                     UNIQUE_NUMBER++;
                     ret.id = "element_" + UNIQUE_NUMBER;
                 }
-                elements = context.parsed.Element;
+                let elements = context.parsed.Element;
                 if (null == elements)
                     context.parsed.Element = elements = {};
                 elements[ret.id] = ret;
@@ -389,13 +376,13 @@ define
 
             id (feature)
             {
-                var id = feature.id.startsWith ("element_") ? null : feature.id;
+                let id = feature.id.startsWith ("element_") ? null : feature.id;
 
                 if (id)
                 {
                     while (!isNaN (Number (id.charAt (0))))
                         id = id.substring (1);
-                    if (":" == id.charAt (0))
+                    if (":" === id.charAt (0))
                         id = id.substring (1);
                 }
 
@@ -409,7 +396,7 @@ define
              */
             export (obj, fields)
             {
-                var id = this.id (obj);
+                const id = this.id (obj);
                 fields.splice (0, 0, "\t<cim:" + obj.cls + (id ? (" rdf:ID=\"" + id + "\">") : ">"));
                 fields.push ("\t</cim:" + obj.cls + ">");
             }

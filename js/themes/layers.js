@@ -23,7 +23,6 @@ define
          * @param {Any[]} filter - optional filter to apply to the lines
          * @returns {Object} the layer
          * @function line_layer
-         * @memberOf module:layers
          */
         function line_layer (id, source, color, filter)
         {
@@ -50,14 +49,13 @@ define
         }
 
         /**
-         * Create a circle layer object.
+         * Create a circle layer object from zoom level 14 to 17.
          * @param {String} id - the layer id
          * @param {String} source - the data source
          * @param {String} color - the symbol color
          * @param {Any[]} filter - optional filter to apply to the points
          * @returns {Object} the layer
          * @function circle_layer
-         * @memberOf module:layers
          */
         function circle_layer (id, source, color, filter)
         {
@@ -90,12 +88,53 @@ define
          * @param {String} source - the data source
          * @param {String} color - the symbol color
          * @param {Any[]} filter - optional filter to apply to the points
+         * @param hidelabels - if <code>true</code>
          * @returns {Object} the layer
          * @function symbol_layer
-         * @memberOf module:layers
          */
-        function symbol_layer (id, source, color, filter)
+        function symbol_layer (id, source, color, filter, hidelabels)
         {
+            var textlayout =
+                {
+                    "text-field": "{name}",
+                    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                    "text-offset":
+                        {
+                            stops: [[18, [0, 0.75]], [20, [0, 1.5]], [21, [0, 2.5]], [22, [0, 3.0]], [23, [0, 4.0]], [24, [0, 5.0]]]
+                        },
+                    "text-anchor": "top",
+                    "text-allow-overlap": true,
+                    "text-size":
+                        {
+                            stops: [[17, 4], [18, 8], [19, 12], [20, 14], [21, 18], [22, 24], [23, 30], [24, 38]]
+                        }
+                };
+            var layout =
+                {
+                    "icon-image": "{symbol}",
+                    "icon-allow-overlap": true,
+                    "icon-size":
+                        {
+                            stops: [[17, 0.1875], [18, 0.25], [19, 0.3], [20, 0.45], [21, 0.9], [22, 1.6], [23, 2.0], [24, 4.0]]
+                        },
+                    "icon-rotate": { type: "identity", property: "rotation" },
+                    "icon-offset": [0, 0]
+                };
+            var textpaint =
+                {
+                    "text-color": color
+                };
+
+            var paint =
+                {
+                    "icon-color": color
+                };
+            if (!hidelabels)
+            {
+                Object.assign (layout, textlayout);
+                Object.assign (paint, textpaint);
+            }
+
             var ret =
                 {
                     id: id,
@@ -103,34 +142,8 @@ define
                     source: source,
                     minzoom: 17,
                     interactive: true,
-                    layout:
-                    {
-                        "icon-image": "{symbol}",
-                        "icon-allow-overlap": true,
-                        "icon-size":
-                        {
-                            stops: [[17, 0.1875], [18, 0.25], [19, 0.3], [20, 0.45], [21, 0.9], [22, 1.6], [23, 2.0], [24, 4.0]]
-                        },
-                        "icon-rotate": { type: "identity", property: "rotation" },
-                        "icon-offset": [0, 0],
-                        "text-field": "{name}",
-                        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                        "text-offset":
-                        {
-                            stops: [[18, [0, 0.75]], [20, [0, 1.5]], [21, [0, 2.5]], [22, [0, 3.0]], [23, [0, 4.0]], [24, [0, 5.0]]]
-                        },
-                        "text-anchor": "top",
-                        "text-allow-overlap": true,
-                        "text-size":
-                        {
-                            stops: [[17, 4], [18, 8], [19, 12], [20, 14], [21, 18], [22, 24], [23, 30], [24, 38]]
-                        }
-                    },
-                    paint:
-                    {
-                        "icon-color": color,
-                        "text-color": color
-                    }
+                    layout: layout,
+                    paint: paint
                 };
             if ("undefined" != typeof (filter) && (null != filter))
                 ret.filter = filter;
@@ -138,6 +151,15 @@ define
             return (ret);
         }
 
+        /**
+         * Create a circle layer object.
+         * @param {String} id - the layer id
+         * @param {String} source - the data source
+         * @param {String} color - the symbol color
+         * @param {Any[]} filter - optional filter to apply to the points
+         * @returns {Object} the layer
+         * @function circle_layer
+         */
         function full_circle_layer (id, source, color, filter)
         {
             var ret =
@@ -174,6 +196,7 @@ define
                         "fill-opacity": 0.25,
                         "fill-color": color,
                         "fill-outline-color": edge_color,
+//                        "fill-pattern": "junction",
                         "fill-antialias": true
                     }
                 };
@@ -208,7 +231,7 @@ define
                         "text-color": color
                     }
                 };
-            if (placement == "line" || placement == "line-center")
+            if (placement === "line" || placement === "line-center")
             {
                 ret.paint["text-halo-color"] = "#ffffff";
                 ret.paint["text-halo-width"] = 8;

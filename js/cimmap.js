@@ -357,15 +357,16 @@ define
                 new Promise (
                     function (resolve, reject)
                     {
+                        function handler (data) // {error: {message: string}}
+                        {
+                            var message = JSON.stringify (data);
+                            console.log (message);
+                            TheMap.off ("error", handler);
+                            reject (message);
+                        }
+
                         if (predicate ())
                         {
-                            function handler (data) // {error: {message: string}}
-                            {
-                                var message = JSON.stringify (data);
-                                console.log (message);
-                                TheMap.off ("error", handler);
-                                reject (message);
-                            }
                             TheMap.on ("error", handler);
                             pause (predicate).then (() => { TheMap.off ("error", handler); resolve (); });
                         }
@@ -522,15 +523,21 @@ define
         {
             if (TheMap && TheMap.getSource ("cim lines"))
             {
-                TheMap.setFilter ("lines_highlight", filter);
-                TheMap.setFilter ("circle_highlight", filter);
-                TheMap.setFilter ("symbol_highlight", filter);
+                if (TheMap.getLayer("lines_highlight"))
+                    TheMap.setFilter ("lines_highlight", filter);
+                if (TheMap.getLayer("circle_highlight"))
+                    TheMap.setFilter ("circle_highlight", filter);
+                if (TheMap.getLayer("symbol_highlight"))
+                    TheMap.setFilter ("symbol_highlight", filter);
             }
             if (TheMap && TheMap.getSource ("edit lines"))
             {
-                TheMap.setFilter ("edit_lines_highlight", filter);
-                TheMap.setFilter ("edit_circle_highlight", filter);
-                TheMap.setFilter ("edit_symbol_highlight", filter);
+                if (TheMap.getLayer("edit_lines_highlight"))
+                    TheMap.setFilter ("edit_lines_highlight", filter);
+                if (TheMap.getLayer("edit_circle_highlight"))
+                    TheMap.setFilter ("edit_circle_highlight", filter);
+                if (TheMap.getLayer("edit_symbol_highlight"))
+                    TheMap.setFilter ("edit_symbol_highlight", filter);
             }
         }
 
@@ -566,14 +573,15 @@ define
          */
         function select (mrid, list)
         {
+            // cheap check for array equality
+            function lists_equal (list1, list2)
+            {
+                return (list1.sort ().join (",") === list2.sort ().join (","))
+            }
+
             if (null != mrid)
             {
-                // cheap check for array equality
-                function lists_equal (list1, list2)
-                {
-                    return (list1.sort ().join (",") == list2.sort ().join (","))
-                }
-                if (mrid != get_selected_feature () || !lists_equal (get_selected_features (), list))
+                if (mrid !== get_selected_feature () || !lists_equal (get_selected_features (), list))
                 {
                     if (!list || !list.includes (mrid))
                         list = [mrid];

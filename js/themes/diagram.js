@@ -8,7 +8,6 @@ define
     ["../mustache", "./default_theme", "./layers"],
     /**
      * @summary Theme of diagrams.
-     * @name diagram_theme
      * @exports diagram_theme
      * @version 1.0
      */
@@ -17,20 +16,20 @@ define
         /**
          * symbology
          */
-        var junction_symbol = "alternate_junction";
-        var connector_symbol = "connector";
-        var distribution_box_symbol = "distribution_box";
-        var energy_consumer_symbol = "energy_consumer";
-        var fuse_symbol = "fuse";
-        var other_symbol = "junction";
-        var street_light_symbol = "street_light";
-        var substation_symbol = "substation";
-        var switch_symbol = "switch";
-        var transformer_station_symbol = "transformer_station";
-        var transformer_symbol = "transformer";
-        var feeder_symbol = "feeder";
+        const junction_symbol = "alternate_junction";
+        const connector_symbol = "connector";
+        const distribution_box_symbol = "distribution_box";
+        const energy_consumer_symbol = "energy_consumer";
+        const fuse_symbol = "fuse";
+        const other_symbol = "junction";
+        const street_light_symbol = "street_light";
+        const substation_symbol = "substation";
+        const switch_symbol = "switch";
+        const transformer_station_symbol = "transformer_station";
+        const transformer_symbol = "transformer";
+        const feeder_symbol = "feeder";
 
-        var TheExtents;
+        let TheExtents;
 
         /**
          * @summary Gather diagram object points into diagram objects.
@@ -44,38 +43,45 @@ define
          */
         function get_locations (data, options)
         {
-            var ret = {};
+            const ret = {};
 
-            var points = data.DiagramObjectPoint;
-            var objects = data.DiagramObject;
-            var extents = { xmin: Number.MAX_VALUE, ymin: Number.MAX_VALUE, xmax: -Number.MAX_VALUE, ymax: -Number.MAX_VALUE };
-            if (points && objects)
-                for (var point in points)
-                {
-                    var p = points[point];
-                    var obj = p.DiagramObject;
-                    if (null != obj)
+            const location_points = data.PositionPoint;
+            const locations = data.Location;
+            const diagram_points = data.DiagramObjectPoint;
+            const objects = data.DiagramObject;
+            const extents = { xmin: Number.MAX_VALUE, ymin: Number.MAX_VALUE, xmax: -Number.MAX_VALUE, ymax: -Number.MAX_VALUE };
+            // list of locations to include from normal locations
+            const whitelist = {};
+            if (options.show_internal_features)
+            {
+                for (let location in locations)
+                    if (locations.hasOwnProperty (location)  && (locations[location].CoordinateSystem === "pseudo_wgs84"))
+                        whitelist[location] = true;
+
+                const locs = {};
+                for (let point in location_points)
+                    if (location_points.hasOwnProperty (point))
                     {
-                        var object = objects[obj];
-                        if (null != object)
+                        const p = location_points[point];
+                        if (!p.EditDisposition || (p.EditDisposition !== "delete"))
                         {
-                            var id = object.IdentifiedObject;
-                            if (null != id)
+                            const location = p.Location;
+                            if ((null != location) && whitelist[location])
                             {
-                                if (null == ret[id])
+                                if (null == locs[location])
                                 {
-                                    var array = [];
-                                    var polygon = object.isPolygon;
-                                    array.isPolygon = polygon ? function () { return (true); } : function () { return (false); }
-                                    ret[id] = array;
+                                    const array = [];
+                                    array.isPolygon = function () { return (false); };
+                                    array.isInternal = function () { return (true); };
+                                    locs[location] = array;
                                 }
-                                var seq = Number (p.sequenceNumber);
+                                const seq = Number (p.sequenceNumber);
                                 if (null != seq)
                                 {
-                                    var x = Number (p.xPosition);
-                                    var y = Number (p.yPosition);
-                                    ret[id][seq * 2] = x;
-                                    ret[id][seq * 2 + 1] = y;
+                                    const x = Number (p.xPosition);
+                                    const y = Number (p.yPosition);
+                                    locs[location][seq * 2] = x;
+                                    locs[location][seq * 2 + 1] = y;
                                     if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
                                     {
                                         if (x < extents.xmin)
@@ -91,17 +97,77 @@ define
                             }
                         }
                     }
-                }
+
+                const objects = data.IdentifiedObject;
+                for (let id in objects)
+                    if (objects.hasOwnProperty (id))
+                    {
+                        const loc = objects[id].Location;
+                        if (loc)
+                        {
+                            const coordinates = locs[loc];
+                            if (coordinates)
+                                ret[id + "_internal"] = coordinates;
+                        }
+                    }
+            }
+
+            if (diagram_points && objects)
+                for (let point in diagram_points)
+                    if (diagram_points.hasOwnProperty (point))
+                    {
+                        const p = diagram_points[point];
+                        const obj = p.DiagramObject;
+                        if (null != obj)
+                        {
+                            const object = objects[obj];
+                            if (null != object)
+                            {
+                                const id = object.IdentifiedObject;
+                                if (null != id)
+                                {
+                                    if (null == ret[id])
+                                    {
+                                        const array = [];
+                                        const polygon = object.isPolygon;
+                                        array.isPolygon = polygon ? function () { return (true); } : function () { return (false); };
+                                        array.isInternal = function () { return (false); };
+                                        ret[id] = array;
+                                    }
+                                    const seq = Number (p.sequenceNumber);
+                                    if (null != seq)
+                                    {
+                                        const x = Number (p.xPosition);
+                                        const y = Number (p.yPosition);
+                                        ret[id][seq * 2] = x;
+                                        ret[id][seq * 2 + 1] = y;
+                                        if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
+                                        {
+                                            if (x < extents.xmin)
+                                                extents.xmin = x;
+                                            if (x > extents.xmax)
+                                                extents.xmax = x;
+                                            if (y < extents.ymin)
+                                                extents.ymin = y;
+                                            if (y > extents.ymax)
+                                                extents.ymax = y;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
 
             // fix non-zero based sequence numbers
-            for (var property in ret)
+            for (let property in ret)
                 if (ret.hasOwnProperty (property))
                 {
-                    var a = ret[property];
+                    const a = ret[property];
                     if (("undefined" == typeof (a[0])) && ("undefined" == typeof (a[1])))
                     {
                         ret[property] = a.slice (2);
                         ret[property].isPolygon = a.isPolygon;
+                        ret[property].isInternal = a.isInternal;
                     }
                 }
 
@@ -123,12 +189,12 @@ define
 
             getTitle ()
             {
-                return ("Diagram");
+                return ("Schematic");
             }
 
             getDescription ()
             {
-                return ("Show the diagram layout objects on the map.");
+                return ("Show the schematic layout objects on the map.");
             }
 
             getExtents ()
@@ -148,222 +214,259 @@ define
             process_spatial_objects (data, locations, options)
             {
                 // the points GeoJSON
-                var points =
+                const points =
+                {
+                    "type" : "FeatureCollection",
+                    "features" : []
+                };
+                // the special points (internal switches and transformers)
+                const special_points =
                 {
                     "type" : "FeatureCollection",
                     "features" : []
                 };
                 // the lines GeoJSON
-                var lines =
+                const lines =
                 {
                     "type" : "FeatureCollection",
                     "features" : []
                 };
                 // the polygons GeoJSON
-                var polygons =
+                const polygons =
                 {
                     "type" : "FeatureCollection",
                     "features" : []
                 };
 
-                var coordinates;
-                var location;
-                var objects = data.IdentifiedObject
-                for (var id in objects)
-                {
-                    if (null != (coordinates = locations[id]))
-                    {
-                        // don't show deleted elements
-                        if (objects[id].EditDisposition && ("delete" == objects[id].EditDisposition))
-                            continue;
+                let coordinates;
+                const objects = data.IdentifiedObject;
 
-                        if (2 == coordinates.length)
+                function symbolize (id)
+                {
+                    if (2 === coordinates.length)
+                    {
+                        var target_array = points;
+                        objects[id].id = id;
+                        objects[id].rotation = 0.0;
+
+                        // assign the symbol and color
+                        if ("PowerTransformer" === objects[id].cls)
                         {
-                            points.features.push
-                            (
-                                {
-                                    type : "Feature",
-                                    geometry :
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = transformer_symbol;
+                            objects[id].color = "rgb(0, 100, 0)";
+                        }
+                        else if ("Fuse" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = fuse_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("Switch" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("Cut" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("Disconnector" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("GroundDisconnector" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("Jumper" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("MktSwitch" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("ProtectedSwitch" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("Breaker" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("LoadBreakSwitch" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("Recloser" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("Sectionaliser" === objects[id].cls)
+                        {
+                            if (coordinates.isInternal ()) target_array = special_points;
+                            objects[id].symbol = switch_symbol;
+                            objects[id].color = "rgb(0, 0, 139)";
+                        }
+                        else if ("EnergyConsumer" === objects[id].cls)
+                        {
+                            if (objects[id].PSRType === "PSRType_StreetLight")
+                                objects[id].symbol = street_light_symbol;
+                            else
+                                objects[id].symbol = energy_consumer_symbol;
+                            objects[id].color = "rgb(0, 139, 139)";
+                        }
+                        else if ("Connector" === objects[id].cls)
+                        {
+                            objects[id].symbol = feeder_symbol;
+                            objects[id].color = "rgb(139, 0, 0)";
+                        }
+                        else if ("Junction" === objects[id].cls)
+                        {
+                            objects[id].symbol = other_symbol;
+                            objects[id].color = "rgb(139, 0, 0)";
+                        }
+                        else if ("BusbarSection" === objects[id].cls)
+                        {
+                            objects[id].symbol = junction_symbol;
+                            objects[id].color = "rgb(139, 0, 0)";
+                        }
+                        else
+                        {
+                            if (data.Substation && ("undefined" != typeof (data.Substation[id])))
+                            {
+                                if (objects[id].PSRType === "PSRType_DistributionBox")
+                                    objects[id].symbol = distribution_box_symbol;
+                                else if (objects[id].PSRType === "PSRType_Substation")
+                                    objects[id].symbol = substation_symbol;
+                                else if (objects[id].PSRType === "PSRType_TransformerStation")
+                                    objects[id].symbol = transformer_station_symbol;
+                                else
+                                    objects[id].symbol = substation_symbol;
+                                objects[id].color = "rgb(255, 0, 255)";
+                            }
+                            else
+                            {
+                                objects[id].symbol = other_symbol;
+                                objects[id].color = "rgb(0, 0, 0)";
+                            }
+                        }
+                        target_array.features.push
+                        (
+                            {
+                                type : "Feature",
+                                geometry :
                                     {
                                         type : "Point",
                                         coordinates : [ coordinates[0], coordinates[1] ]
                                     },
-                                    properties : objects[id]
-                                }
-                            );
-                            objects[id].id = id;
-                            objects[id].rotation = 0.0;
+                                properties : objects[id]
+                            }
+                        );
+                    }
+                    else
+                    {
+                        const coords = coordinates.reduce
+                        (
+                            function (ret, item)
+                            {
+                                let next;
 
-                            // assign the symbol and color
-                            if ("PowerTransformer" == objects[id].cls)
-                            {
-                                objects[id].symbol = transformer_symbol;
-                                objects[id].color = "rgb(0, 100, 0)";
-                            }
-                            else if ("Fuse" == objects[id].cls)
-                            {
-                                objects[id].symbol = fuse_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("Switch" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("Cut" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("Disconnector" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("GroundDisconnector" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("Jumper" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("MktSwitch" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("ProtectedSwitch" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("Breaker" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("LoadBreakSwitch" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("Recloser" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("Sectionaliser" == objects[id].cls)
-                            {
-                                objects[id].symbol = switch_symbol;
-                                objects[id].color = "rgb(0, 0, 139)";
-                            }
-                            else if ("EnergyConsumer" == objects[id].cls)
-                            {
-                                if (objects[id].PSRType == "PSRType_StreetLight")
-                                    objects[id].symbol = street_light_symbol;
-                                else
-                                    objects[id].symbol = energy_consumer_symbol;
-                                objects[id].color = "rgb(0, 139, 139)";
-                            }
-                            else if ("Connector" == objects[id].cls)
-                            {
-                                objects[id].symbol = feeder_symbol;
-                                objects[id].color = "rgb(139, 0, 0)";
-                            }
-                            else if ("Junction" == objects[id].cls)
-                            {
-                                objects[id].symbol = other_symbol;
-                                objects[id].color = "rgb(139, 0, 0)";
-                            }
-                            else if ("BusbarSection" == objects[id].cls)
-                            {
-                                objects[id].symbol = junction_symbol;
-                                objects[id].color = "rgb(139, 0, 0)";
-                            }
-                            else
-                            {
-                                if (data.Substation && ("undefined" != typeof (data.Substation[id])))
+                                next = ret[ret.length - 1];
+                                if (!next || (2 <= next.length))
                                 {
-                                    if (objects[id].PSRType == "PSRType_DistributionBox")
-                                        objects[id].symbol = distribution_box_symbol;
-                                    else if (objects[id].PSRType == "PSRType_Substation")
-                                        objects[id].symbol = substation_symbol;
-                                    else if (objects[id].PSRType == "PSRType_TransformerStation")
-                                        objects[id].symbol = transformer_station_symbol;
-                                    else
-                                        objects[id].symbol = substation_symbol;
-                                    objects[id].color = "rgb(255, 0, 255)";
+                                    next = [];
+                                    ret.push (next);
                                 }
-                                else
-                                {
-                                    objects[id].symbol = other_symbol;
-                                    objects[id].color = "rgb(0, 0, 0)";
-                                }
-                            }
-                        }
-                        else
+                                next.push (item);
+
+                                return (ret);
+                            },
+                            []
+                        );
+                        if (coordinates.isPolygon ())
                         {
-                            var coords = coordinates.reduce
+                            polygons.features.push
                             (
-                                function (ret, item)
                                 {
-                                    var next;
-
-                                    next = ret[ret.length - 1];
-                                    if (!next || (2 <= next.length))
-                                    {
-                                        next = [];
-                                        ret.push (next);
-                                    }
-                                    next.push (item);
-
-                                    return (ret);
-                                },
-                                []
-                            );
-                            if (coordinates.isPolygon ())
-                            {
-                                polygons.features.push
-                                (
-                                    {
-                                        type : "Feature",
-                                        geometry :
+                                    type : "Feature",
+                                    geometry :
                                         {
                                             type : "Polygon",
                                             coordinates : [ coords ]
                                         },
-                                        properties : objects[id]
-                                    }
-                                );
-                                objects[id].id = id;
-                                objects[id].kolour = "rgb(0, 0, 255)";
-                            }
-                            else
-                            {
-                                lines.features.push
-                                (
-                                    {
-                                        type : "Feature",
-                                        geometry :
+                                    properties : objects[id]
+                                }
+                            );
+                            objects[id].id = id;
+                            objects[id].kolour = "rgb(0, 0, 255)";
+                        }
+                        else
+                        {
+                            lines.features.push
+                            (
+                                {
+                                    type : "Feature",
+                                    geometry :
                                         {
                                             type : "LineString",
                                             coordinates : coords
                                         },
-                                        properties : objects[id]
-                                    }
-                                );
-                                objects[id].id = id;
-                                objects[id].color = "rgb(0, 0, 0)";
-                            }
+                                    properties : objects[id]
+                                }
+                            );
+                            objects[id].id = id;
+                            objects[id].color = "rgb(0, 0, 0)";
                         }
                     }
                 }
 
+                for (let id in objects)
+                {
+                    if (objects.hasOwnProperty (id))
+                    {
+                        coordinates = locations[id];
+                        if (coordinates)
+                        {
+                            // don't show deleted elements
+                            if (objects[id].EditDisposition && ("delete" === objects[id].EditDisposition))
+                                continue;
 
-                return ({ points: points, lines: lines, polygons: polygons });
+                            symbolize (id);
+                        }
+                        coordinates = locations[id + "_internal"];
+                        if (coordinates)
+                        {
+                            // don't show deleted elements
+                            if (objects[id].EditDisposition && ("delete" === objects[id].EditDisposition))
+                                continue;
+
+                            symbolize (id);
+                        }
+                    }
+                }
+
+                return ({ points: points, special_points: special_points, lines: lines, polygons: polygons });
             }
 
             /**
@@ -375,42 +478,29 @@ define
              */
             process_spatial_objects_again (data, options)
             {
-                var diagram_object = data.DiagramObject;
-                for (var id in diagram_object)
+                const diagram_object = data.DiagramObject;
+                for (let id in diagram_object)
                 {
-                    var obj = diagram_object[id];
-                    if (obj.rotation != 0.0)
+                    if (diagram_object.hasOwnProperty (id))
                     {
-                        var id = obj.IdentifiedObject;
-                        if (null != id)
+                        const obj = diagram_object[id];
+                        if (null != obj.DiagramObjectStyle)
                         {
-                            var element = data.Element[id];
-                            if (null != element)
-                                // -90.0: fix symbol, zero is east & not down
-                                // value is in degrees clockwise, not counter-clockwise
-                                // +180: symbol points in to station
-                                element.rotation = -90.0 + (-obj.rotation * 180.0 / Math.PI) + 180.0;
-                        }
-                    }
-                    if (null != obj.DiagramObjectStyle)
-                    {
-                        var id = obj.IdentifiedObject;
-                        if (null != id)
-                        {
-                            var element = data.Element[id];
-                            if (null != element)
+                            const id = obj.IdentifiedObject;
+                            if (null != id)
                             {
-                                if ("feeder_internally_fed_style" == obj.DiagramObjectStyle)
-                                    element.color = "rgb(139, 0, 0)";
-                                else if ("feeder_externally_feed_style" == obj.DiagramObjectStyle)
-                                    element.color = "rgb(255, 0, 255)";
-                                else
+                                const element = data.Element[id];
+                                if (null != element)
                                 {
-                                    var style = data.DiagramObjectStyle[obj.DiagramObjectStyle];
-                                    if (style)
+                                    if ("feeder_internally_fed_style" === obj.DiagramObjectStyle)
+                                        element.color = "rgb(139, 0, 0)";
+                                    else if ("feeder_externally_feed_style" === obj.DiagramObjectStyle)
+                                        element.color = "rgb(255, 0, 255)";
+                                    else
                                     {
-                                        var color_name = style.name; // e.g. yellowgreen
-                                        element.kolour = color_name;
+                                        const style = data.DiagramObjectStyle[obj.DiagramObjectStyle];
+                                        if (style)
+                                            element.kolour = style.name; // e.g. yellowgreen
                                     }
                                 }
                             }
@@ -429,17 +519,17 @@ define
              */
             make_geojson (data, options)
             {
-                var ret;
+                let ret;
                 if (null != data)
                 {
-                    var locations = get_locations (data, options);
+                    const locations = get_locations (data, options);
                     ret = this.process_spatial_objects (data, locations, options);
                     this.process_spatial_objects_again (data, options);
                 }
                 else
                 {
-                    var fc = { "type" : "FeatureCollection", "features" : [] };
-                    ret = { points: fc, lines: fc, polygons: fc };
+                    const fc = { "type" : "FeatureCollection", "features" : [] };
+                    ret = { points: fc, special_points: fc, lines: fc, polygons: fc };
                 }
                 return (ret);
             }
@@ -467,6 +557,7 @@ define
                     this._TheMap.removeLayer ("symbol_highlight");
                     this._TheMap.removeLayer ("polygons");
                     this._TheMap.removeSource ("cim points");
+                    this._TheMap.removeSource ("cim special points");
                     this._TheMap.removeSource ("cim lines");
                     this._TheMap.removeSource ("cim polygons");
                 }
@@ -482,15 +573,15 @@ define
             mousedown_listener (event)
             {
                 // only do something if no key is pressed
-                var key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
+                const key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
                 if (!key)
                 {
-                    var buttons = event.originalEvent.buttons;
+                    const buttons = event.originalEvent.buttons;
                     //    0  : No button or un-initialized
                     //    1  : Primary button (usually left)
                     //    2  : Secondary button (usually right)
-                    var leftbutton = 0 != (buttons & 1);
-                    var rightbutton = 0 != (buttons & 2);
+                    const leftbutton = 0 !== (buttons & 1);
+                    const rightbutton = 0 !== (buttons & 2);
                     if (leftbutton)
                         this._cimmap.default_mousedown_listener (event);
                 }
@@ -498,8 +589,9 @@ define
 
             clear ()
             {
-                var fc = { type: "FeatureCollection", features: [] };
+                const fc = { type: "FeatureCollection", features: [] };
                 this._TheMap.getSource ("cim points").setData (fc);
+                this._TheMap.getSource ("cim special points").setData (fc);
                 this._TheMap.getSource ("cim lines").setData (fc);
                 this._TheMap.getSource ("cim polygons").setData (fc);
             }
@@ -514,14 +606,14 @@ define
              */
             make_theme (cimmap, options)
             {
-                var start = new Date ().getTime ();
+                const start = new Date ().getTime ();
                 console.log ("rendering diagram data");
 
                 this._cimmap = cimmap;
-                var map = cimmap.get_map ();
+                const map = cimmap.get_map ();
                 this._TheMap = map; // to be able to remove it later
 
-                var geo = this.make_geojson (cimmap.get_data (), options);
+                const geo = this.make_geojson (cimmap.get_data (), options);
 
                 // update the map
                 map.addSource
@@ -530,6 +622,16 @@ define
                     {
                         type: "geojson",
                         data: geo.points,
+                        maxzoom: 24
+                    }
+                );
+
+                map.addSource
+                (
+                    "cim special points",
+                    {
+                        type: "geojson",
+                        data: geo.special_points,
                         maxzoom: 24
                     }
                 );
@@ -559,20 +661,20 @@ define
                 map.addLayer (layers.line_layer ("lines", "cim lines", { type: "identity", property: "kolour" }, ["!has", "EditDisposition"]));
                 map.addLayer (layers.line_layer ("lines_highlight", "cim lines", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
-                // simple circle from 14 to 17
-                map.addLayer (layers.circle_layer ("circle", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]))
-                map.addLayer (layers.circle_layer ("circle_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]))
+                // simple circle
+                map.addLayer (layers.full_circle_layer ("circle", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
+                map.addLayer (layers.full_circle_layer ("circle_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // symbol icon from 17 and deeper
-                map.addLayer (layers.symbol_layer ("symbol", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
-                map.addLayer (layers.symbol_layer ("symbol_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
+                map.addLayer (layers.symbol_layer ("symbol", "cim special points", { type: "identity", property: "color" }, ["!has", "EditDisposition"], true));
+                map.addLayer (layers.symbol_layer ("symbol_highlight", "cim special points", "rgb(255, 255, 0)", ["==", "mRID", ""], true));
 
-                map.addLayer (layers.polygon_layer ("polygons", "cim polygons", { type: "identity", property: "kolour" }, "#000000"))
+                map.addLayer (layers.polygon_layer ("polygons", "cim polygons", { type: "identity", property: "kolour" }, "#000000"));
 
                 // set the current filter
                 this.legend_changed ();
 
-                var end = new Date ().getTime ();
+                const end = new Date ().getTime ();
                 console.log ("finished rendering diagram data (" + (Math.round (end - start) / 1000) + " seconds)");
 
                 if (this._render_listener)
@@ -591,4 +693,4 @@ define
 
         return (DiagramTheme);
     }
-)
+);
