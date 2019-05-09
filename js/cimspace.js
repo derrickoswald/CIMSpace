@@ -14,17 +14,8 @@ define
      */
     function (util, cim, cimmap)
     {
-        // the pending xml creation
-        let Pending = null;
-
         // the base name of the currently loaded file
         let TheCurrentName = null;
-
-        // the rdf:about text for saving
-        let TheCurrentAbout = null;
-
-        // the md:description text for saving
-        let TheCurrentDescription = null;
 
         /**
          * @summary Parse a set of CIM files.
@@ -292,71 +283,28 @@ define
             );
         }
 
-        /**
-         * @summary Event handler for changing the Save As file name.
-         * @description Attached to the input field for file name, sets the download attribute of the Save link.
-         * @param {object} event - the change event - <em>not used</em>
-         * @function save_name_change
-         * @memberOf module:cimspace
-         */
-        function save_name_change (event)
+        function initialize_save_dialog (event)
         {
-            const name = base_name (document.getElementById ("save_name").value);
-            TheCurrentName = name;
-            const a = document.getElementById ("save");
-            a.setAttribute ("download", name + ".zip");
-            Pending.then (generate_rdf, generate_rdf);
-        }
-        /**
-         * @summary Event handler for changing the rdf:about text.
-         * @description Attached to the about input field.
-         * @param {object} event - the change event - <em>not used</em>
-         * @function about_change
-         * @memberOf module:cimspace
-         */
-        function about_change (event)
-        {
-            TheCurrentAbout = document.getElementById ("rdf_about").value;
-            Pending.then (generate_rdf, generate_rdf);
+            let save_name = document.getElementById ("save_name");
+            if ("" === save_name.value)
+                save_name.value = TheCurrentName;
         }
 
         /**
-         * @summary Event handler for changing changing the md:description text.
-         * @description Attached to the description input field.
-         * @param {object} event - the change event - <em>not used</em>
-         * @function description_change
-         * @memberOf module:cimspace
+         * Save the current in-memory contents as a zipped CIM file.
+         *
+         * @param event The event that triggered the save (usually "id=save" clicked).
          */
-        function description_change (event)
+        function save (event)
         {
-            TheCurrentDescription = document.getElementById ("md_description").value;
-            Pending.then (generate_rdf, generate_rdf);
-        }
-
-        /**
-         * @summary Event handler for changing to a different save mode.
-         * @description Attached to the difference_model checkbox.
-         * @param {object} event - the change event - <em>not used</em>
-         * @function save_mode_change
-         * @memberOf module:cimspace
-         */
-        function save_mode_change (event)
-        {
-            Pending.then (generate_rdf, generate_rdf);
-        }
-
-        /**
-         * @summary Event handler for Save.
-         * @description Attached to the Save menu item, performs the CIM export and zipping.
-         * @param {object} event - the click event - <em>not used</em>
-         * @function generate_rdf
-         * @memberOf module:cimspace
-         */
-        function generate_rdf (event)
-        {
-            const name = TheCurrentName || "save";
-            const about = TheCurrentAbout || "";
-            const description = TheCurrentDescription || "";
+            event.stopPropagation ();
+            event.preventDefault ();
+            let save_name = document.getElementById ("save_name").value;
+            if ("" === save_name)
+                save_name = TheCurrentName;
+            const name = base_name (save_name);
+            const about = document.getElementById ("rdf_about").value;
+            const description = document.getElementById ("md_description").value;
             const difference_model = document.getElementById ("difference_model").checked;
             const only_new = document.getElementById ("only_new").checked;
             let suffix = "";
@@ -365,77 +313,69 @@ define
             else if (only_new)
                 suffix = "_new";
             document.getElementById ("save_name").value = name + suffix;
-            if (null == cimmap.get_data ())
-                Pending = Promise.resolve ("no data");
-            else
-                Pending =
-                    new Promise (
-                        function (resolve, reject)
-                        {
-                            // disable the link until it's ready
-                            const a = document.getElementById ("save");
-                            a.setAttribute ("disabled", "disabled");
-                            const file = name + (difference_model ? "_diff" : "") + ".zip";
-                            a.setAttribute ("download", file);
-                            a.onclick = function (event) { event.preventDefault (); event.stopPropagation (); alert ("sorry... not ready yet"); };
-                            const begin = new Date ().getTime ();
-                            console.log ("starting xml creation");
-                            const text = cim.write_xml (cimmap.get_data ().Element, difference_model, only_new, about, description);
-                            const start = new Date ().getTime ();
-                            console.log ("finished xml creation (" + (Math.round (start - begin) / 1000) + " seconds)");
-                            console.log ("starting zip");
-                            require (
-                                ["zip/zip"],
-                                function (zip)
-                                {
-                                    //zip.workerScriptsPath = "js/zip/";
-                                    zip.useWebWorkers = false;
-                                    zip.createWriter (new zip.BlobWriter (),
-                                        function (writer)
-                                        {
-                                            writer.add (name + suffix + ".rdf", new zip.TextReader (text),
-                                                function ()
-                                                {
-                                                    writer.close (
-                                                        function (blob) // blob contains the zip file as a Blob object
-                                                        {
-                                                            const end = new Date ().getTime ();
-                                                            console.log ("finished zip (" + (Math.round (end - start) / 1000) + " seconds)");
+            $("#save_modal").modal ("hide");
+            if (null != cimmap.get_data ())
+            {
+                const file = name + (difference_model ? "_diff" : "") + ".zip";
+                const begin = new Date ().getTime ();
+                console.log ("starting xml creation");
+                const text = cim.write_xml (cimmap.get_data ().Element, difference_model, only_new, about, description);
+                const start = new Date ().getTime ();
+                console.log ("finished xml creation (" + (Math.round (start - begin) / 1000) + " seconds)");
+                console.log ("starting zip");
+                require (
+                    ["zip/zip"],
+                    function (zip)
+                    {
+                        //zip.workerScriptsPath = "js/zip/";
+                        zip.useWebWorkers = false;
+                        zip.createWriter (new zip.BlobWriter (),
+                            function (writer)
+                            {
+                                writer.add (name + suffix + ".rdf", new zip.TextReader (text),
+                                    function ()
+                                    {
+                                        writer.close (
+                                            function (blob) // blob contains the zip file as a Blob object
+                                            {
+                                                const end = new Date ().getTime ();
+                                                console.log ("finished zip (" + (Math.round (end - start) / 1000) + " seconds)");
 
-                                                            // this is surprisingly not performant:
-                                                            // const url = URL.createObjectURL (blob);
-                                                            // a.setAttribute ("href", url);
+                                                // this is surprisingly not performant:
+                                                // const url = URL.createObjectURL (blob);
+                                                // a.setAttribute ("href", url);
 
-                                                            // so we do this instead
-                                                            console.log ("starting base64 conversion");
-                                                            blob2base64 (blob).then (
-                                                                function (data)
-                                                                {
-                                                                    const finish = new Date ().getTime ();
-                                                                    console.log ("finished base64 conversion (" + (Math.round (finish - end) / 1000) + " seconds)");
-                                                                    a.setAttribute ("href", "data:application/zip;base64," + data);
-                                                                    a.setAttribute ("type", "application/zip");
-                                                                    a.onclick = function () { $("#save_modal").modal ("hide"); };
-                                                                    a.removeAttribute ("disabled");
-                                                                    console.log ("ready (" + (Math.round (new Date ().getTime () - finish) / 1000) + " seconds)");
-                                                                    resolve ("OK");
-                                                                }
-                                                            );
-                                                        }
-                                                    );
-                                                }
-                                            );
-                                        },
-                                        function (error)
-                                        {
-                                           console.log (error);
-                                           reject (error);
-                                        }
-                                    );
-                                }
-                            );
-                        }
-                    );
+                                                // so we do this instead
+                                                console.log ("starting base64 conversion");
+                                                blob2base64 (blob).then (
+                                                    function (data)
+                                                    {
+                                                        const finish = new Date ().getTime ();
+                                                        console.log ("finished base64 conversion (" + (Math.round (finish - end) / 1000) + " seconds)");
+                                                        const a = document.createElement ("a");
+                                                        a.setAttribute ("href", "data:application/zip;base64," + data);
+                                                        a.setAttribute ("download", file);
+                                                        a.setAttribute ("type", "application/zip");
+                                                        a.setAttribute ("style", "display: none;");
+                                                        a.setAttribute ("target", "_blank");
+                                                        document.body.appendChild (a);
+                                                        a.click ();
+                                                        document.body.removeChild (a);
+                                                    }
+                                                );
+                                            }
+                                        );
+                                    }
+                                );
+                            },
+                            function (error)
+                            {
+                                console.log (error);
+                            }
+                        );
+                    }
+                );
+            }
         }
 
         return (
@@ -444,11 +384,8 @@ define
                 file_drag: file_drag,
                 file_drop: file_drop,
                 process_url: process_url,
-                save_name_change: save_name_change,
-                about_change: about_change,
-                description_change: description_change,
-                save_mode_change: save_mode_change,
-                generate_rdf: generate_rdf
+                initialize_save_dialog: initialize_save_dialog,
+                save: save
             }
         );
     }
