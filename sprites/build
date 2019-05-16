@@ -3,8 +3,10 @@ wget --output-document=sprite.png https://api.mapbox.com/styles/v1/mapbox/street
 wget --output-document=sprite@2x.json https://api.mapbox.com/styles/v1/mapbox/streets-v9/sprite@2x.json?access_token=pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw
 wget --output-document=sprite@2x.png https://api.mapbox.com/styles/v1/mapbox/streets-v9/sprite@2x.png?access_token=pk.eyJ1IjoiZGVycmlja29zd2FsZCIsImEiOiJjaWV6b2szd3MwMHFidDRtNDZoejMyc3hsIn0.wnEkePEuhYiNcXDLACSxVw
 
-genpng svg/*
-genpat pat/*
+mkdir sdf
+mkdir png
+./genpng svg/*
+./genpat pat/*
 node make-sdf.js
 node make-sprite.js
 

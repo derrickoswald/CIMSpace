@@ -3006,7 +3006,7 @@
         "visible": true,
         "sdf": true
     },
-    "street_light": {
+    "substation": {
         "x": 384,
         "y": 950,
         "width": 192,
@@ -3015,7 +3015,7 @@
         "visible": true,
         "sdf": true
     },
-    "substation": {
+    "street_light": {
         "x": 576,
         "y": 950,
         "width": 192,

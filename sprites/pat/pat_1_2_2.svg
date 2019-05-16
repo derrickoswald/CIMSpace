@@ -32,21 +32,21 @@
      height="32"
      width="32"
      id="rect833"
-     style="fill:#ffa500;fill-opacity:1;stroke:none;stroke-width:11.314;stroke-linecap:round;stroke-dashoffset:9.99999" />
+     style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:11.314;stroke-linecap:round;stroke-dashoffset:9.99999" />
   <path
      id="path833"
      d="M 32.000104,1.0311007e-4 1.030814e-4,32.000104"
-     style="opacity:1;fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:11.314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-opacity:1" />
+     style="opacity:1;fill:none;fill-rule:evenodd;stroke:#ffa500;stroke-width:11.314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-opacity:1" />
   <path
      id="path846"
      d="M 0,0 32,32"
-     style="opacity:1;fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:11.314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-opacity:1" />
+     style="opacity:1;fill:none;fill-rule:evenodd;stroke:#ffa500;stroke-width:11.314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-opacity:1" />
   <path
-     style="opacity:1;fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:11.314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-opacity:1"
+     style="opacity:1;fill:none;fill-rule:evenodd;stroke:#ffa500;stroke-width:11.314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-opacity:1"
      d="m -3.9998969,28.000103 31.9999999,32"
      id="path853" />
   <path
-     style="opacity:1;fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:11.314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-opacity:1"
+     style="opacity:1;fill:none;fill-rule:evenodd;stroke:#ffa500;stroke-width:11.314;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stop-opacity:1"
      d="M 4.0001031,-27.999897 36.000104,4.0001032"
      id="path855" />
 </svg>

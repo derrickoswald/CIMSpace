@@ -2943,9 +2943,252 @@
         "pixelRatio": 1,
         "visible": true
     },
-    "alternate_junction": {
+    "pat_0_0_0": {
         "x": 0,
         "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_0_0_1": {
+        "x": 32,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_0_0_2": {
+        "x": 64,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_0_1_0": {
+        "x": 96,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_0_1_1": {
+        "x": 128,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_0_1_2": {
+        "x": 160,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_0_2_0": {
+        "x": 192,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_0_2_1": {
+        "x": 224,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_0_2_2": {
+        "x": 256,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_0_0": {
+        "x": 288,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_0_1": {
+        "x": 320,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_0_2": {
+        "x": 352,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_1_0": {
+        "x": 384,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_1_1": {
+        "x": 416,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_1_2": {
+        "x": 448,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_2_0": {
+        "x": 480,
+        "y": 379,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_2_1": {
+        "x": 0,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_1_2_2": {
+        "x": 32,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_0_0": {
+        "x": 64,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_0_1": {
+        "x": 96,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_0_2": {
+        "x": 128,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_1_0": {
+        "x": 160,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_1_1": {
+        "x": 192,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_1_2": {
+        "x": 224,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_2_0": {
+        "x": 256,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_2_1": {
+        "x": 288,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "pat_2_2_2": {
+        "x": 320,
+        "y": 411,
+        "width": 32,
+        "height": 32,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "alternate_junction": {
+        "x": 352,
+        "y": 411,
         "width": 96,
         "height": 96,
         "pixelRatio": 1,
@@ -2953,89 +3196,8 @@
         "sdf": true
     },
     "connector": {
-        "x": 96,
-        "y": 379,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "energy_consumer": {
-        "x": 192,
-        "y": 379,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "feeder": {
-        "x": 288,
-        "y": 379,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "fuse": {
-        "x": 384,
-        "y": 379,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "junction": {
         "x": 0,
-        "y": 475,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "street_light": {
-        "x": 96,
-        "y": 475,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "substation": {
-        "x": 192,
-        "y": 475,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "switch": {
-        "x": 288,
-        "y": 475,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "transformer_station": {
-        "x": 384,
-        "y": 475,
-        "width": 96,
-        "height": 96,
-        "pixelRatio": 1,
-        "visible": true,
-        "sdf": true
-    },
-    "transformer": {
-        "x": 0,
-        "y": 571,
+        "y": 507,
         "width": 96,
         "height": 96,
         "pixelRatio": 1,
@@ -3044,7 +3206,88 @@
     },
     "distribution_box": {
         "x": 96,
-        "y": 571,
+        "y": 507,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "energy_consumer": {
+        "x": 192,
+        "y": 507,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "feeder": {
+        "x": 288,
+        "y": 507,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "fuse": {
+        "x": 384,
+        "y": 507,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "junction": {
+        "x": 0,
+        "y": 603,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "street_light": {
+        "x": 96,
+        "y": 603,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "switch": {
+        "x": 192,
+        "y": 603,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "transformer_station": {
+        "x": 288,
+        "y": 603,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "transformer": {
+        "x": 384,
+        "y": 603,
+        "width": 96,
+        "height": 96,
+        "pixelRatio": 1,
+        "visible": true,
+        "sdf": true
+    },
+    "substation": {
+        "x": 0,
+        "y": 699,
         "width": 96,
         "height": 96,
         "pixelRatio": 1,
