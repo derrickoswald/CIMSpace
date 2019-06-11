@@ -231,6 +231,7 @@ define
          * Get the theming object for access to themes.
          * @return {Object} The object handling theming.
          * @function get_themer
+         * @return {{ removeTheme : function(Object), addTheme : function(Object, [Boolean]) }} The current theme object.
          * @memberOf module:cimmap
          */
         function get_themer ()
@@ -809,6 +810,38 @@ define
             // the type of transformer trace
             var through_voltages = trace_though_voltage_level_changes ();
 
+            function stop (equipment)
+            {
+                var ret = false;
+
+                if (!through_opens &&
+                    (equipment.open || ("undefined" == typeof (equipment.open) && equipment.normalOpen)))
+                    ret = true;
+                else if (!through_voltages && (null != transformers[equipment.mRID]))
+                    ret = true;
+
+                return (ret);
+            }
+
+            function preload (source, terminal)
+            {
+                if (null != source)
+                // check for an open switch or step-down transformer, and if so, remove all but this terminal from the source
+                    if (stop (source))
+                    {
+                        terminals_by_equp[source.mRID] = [terminal.mRID];
+                        // add all connected equipment
+                        terminals_by_node[terminal.ConnectivityNode].forEach (
+                            function (t)
+                            {
+                                var terminal = CIM_Data.Terminal[t];
+                                if (terminal.ConductingEquipment !== source.mRID)
+                                    todo.push (terminal.ConductingEquipment);
+                            }
+                        );
+                    }
+            }
+
             if (null == CIM_Data)
                 alert ("no CIM data loaded");
             else if (null == get_selected_feature ())
@@ -842,38 +875,6 @@ define
                 // the list of things to trace
                 var todo = [];
                 var transformers = (!through_voltages) ? get_transformers () : {};
-
-                function stop (equipment)
-                {
-                    var ret = false;
-
-                    if (!through_opens &&
-                        (equipment.open || ("undefined" == typeof (equipment.open) && equipment.normalOpen)))
-                        ret = true;
-                    else if (!through_voltages && (null != transformers[equipment.mRID]))
-                        ret = true;
-
-                    return (ret);
-                }
-
-                function preload (source, terminal)
-                {
-                    if (null != source)
-                        // check for an open switch or step-down transformer, and if so, remove all but this terminal from the source
-                        if (stop (source))
-                        {
-                            terminals_by_equp[source.mRID] = [terminal.mRID];
-                            // add all connected equipment
-                            terminals_by_node[terminal.ConnectivityNode].forEach (
-                                function (t)
-                                {
-                                    var terminal = CIM_Data.Terminal[t];
-                                    if (terminal.ConductingEquipment != source.mRID)
-                                        todo.push (terminal.ConductingEquipment);
-                                }
-                            );
-                        }
-                }
 
                 // get the source equipment
                 source = CIM_Data.ConductingEquipment[get_selected_feature ()];

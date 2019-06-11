@@ -183,22 +183,24 @@ define
             return (ret);
         }
 
-        function polygon_layer (id, source, color, edge_color, filter)
+        function polygon_layer (id, source, color, edge_color, filter, pattern)
         {
+            var paint =
+                {
+                    "fill-opacity": 0.25,
+                    "fill-color": color,
+                    "fill-outline-color": edge_color,
+                    "fill-antialias": true
+                };
+            if (pattern)
+                paint["fill-pattern"] = pattern;
             var ret =
                 {
                     id: id,
                     type: "fill",
                     source: source,
                     interactive: true,
-                    paint:
-                    {
-                        "fill-opacity": 0.25,
-                        "fill-color": color,
-                        "fill-outline-color": edge_color,
-//                        "fill-pattern": "junction",
-                        "fill-antialias": true
-                    }
+                    paint: paint
                 };
             if ("undefined" != typeof (filter) && (null != filter))
                 ret.filter = filter;
