@@ -1,5 +1,5 @@
 /**
- * Theme navigation button for CIM Application.
+ * Connectivity navigation button for CIM Application.
  */
 "use strict";
 

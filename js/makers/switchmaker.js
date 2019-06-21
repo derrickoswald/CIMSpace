@@ -9,7 +9,6 @@ define
     /**
      * @summary Make a CIM object at the Switch level.
      * @description Digitizes a point and makes a Switch element with connectivity.
-     * @name switchmaker
      * @exports switchmaker
      * @version 1.0
      */
@@ -24,42 +23,43 @@ define
 
             static classes ()
             {
-                var ret = [];
-                var cimclasses = cim.classes ();
-                for (var name in cimclasses)
-                {
-                    var cls = cimclasses[name];
-                    var data = {};
-                    var obj = new cls ({}, data);
-                    if (data.Switch)
-                        ret.push (name);
-                }
+                const ret = [];
+                const cimclasses = cim.classes ();
+                for (let name in cimclasses)
+                    if (cimclasses.hasOwnProperty (name))
+                    {
+                        const cls = cimclasses[name];
+                        const data = {};
+                        const obj = new cls ({}, data);
+                        if (data.Switch)
+                            ret.push (name);
+                    }
                 ret.sort ();
                 return (ret);
             }
 
             render_parameters (proto)
             {
-                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                const view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls === this)); } };
                 return (mustache.render (this.class_template (), view));
             }
 
             make_switch (array)
             {
-                var swtch = array[0];
-                var id = swtch.id;
-                var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
+                const swtch = array[0];
+                const id = swtch.id;
+                const eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 swtch.normalOpen = false;
                 swtch.open = false;
                 swtch.normallyInService = true;
                 swtch.SvStatus = eqm.in_use ();
 
                 // get the position
-                var pp = array.filter (o => o.cls == "PositionPoint")[0];
-                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition), swtch);
+                const pp = array.filter (o => o.cls === "PositionPoint")[0];
+                let connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition), swtch);
                 if (null == connectivity) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", swtch, "_node_1"));
+                    const node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", swtch, "_node_1"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
@@ -71,8 +71,8 @@ define
                     swtch.BaseVoltage = eqm.low_voltage ();
 
                 // add the terminal
-                var tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", swtch, "_terminal_1");
-                var terminal =
+                const tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", swtch, "_terminal_1");
+                const terminal =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
@@ -90,13 +90,13 @@ define
 
                 // add a second connectivity node
                 {
-                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", swtch, "_node_2"));
+                    const node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", swtch, "_node_2"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("created second ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
-                var tid2 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", swtch, "_terminal_2");
-                var terminal2 =
+                const tid2 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", swtch, "_terminal_2");
+                const terminal2 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
@@ -118,10 +118,10 @@ define
 
             make ()
             {
-                var parameters = this.submit_parameters ();
-                var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
-                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                const parameters = this.submit_parameters ();
+                const obj = this._cimedit.create_from (parameters);
+                const cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                const lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
                 cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_switch.bind (this)));
                 return (cpromise);
@@ -130,4 +130,4 @@ define
 
         return (SwitchMaker);
     }
-)
+);

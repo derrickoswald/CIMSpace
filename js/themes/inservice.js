@@ -9,7 +9,6 @@ define
     /**
      * @summary Theme on service status.
      * @description Theme class for colorizing by in-service status.
-     * @name inservice
      * @exports inservice
      * @version 1.0
      */
@@ -70,28 +69,30 @@ define
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - options for processing
-             * @function process_spatial_objects_again
-             * @memberOf module:inservice
              */
             process_spatial_objects_again (data, options)
             {
-                var statuses = data.SvStatus;
-                var colormap = {};
-                for (var id in statuses)
-                    colormap[id] = statuses[id].inService ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)";
-                var equipment = data.ConductingEquipment;
-                for (var id in equipment)
+                const statuses = data.SvStatus;
+                const colormap = {};
+                for (let status in statuses)
+                    if (statuses.hasOwnProperty(status))
+                    colormap[status] = statuses[status].inService ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)";
+                const equipment = data.ConductingEquipment;
+                for (let id in equipment)
                 {
-                    var status = equipment[id].SvStatus;
-                    if ("undefined" != typeof (status))
-                        equipment[id].color = colormap[status];
-                    else
+                    if (equipment.hasOwnProperty(id))
                     {
-                        var normal = equipment[id].normallyInService;
-                        if ("undefined" != typeof (normal))
-                            equipment[id].color = normal ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)";
+                        const status = equipment[id].SvStatus;
+                        if ("undefined" != typeof (status))
+                            equipment[id].color = colormap[status];
                         else
-                            equipment[id].color = "rgb(128, 128, 128)";
+                        {
+                            const normal = equipment[id].normallyInService;
+                            if ("undefined" != typeof (normal))
+                                equipment[id].color = normal ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)";
+                            else
+                                equipment[id].color = "rgb(128, 128, 128)";
+                        }
                     }
                 }
             }
@@ -99,4 +100,4 @@ define
 
         return (InServiceTheme);
     }
-)
+);

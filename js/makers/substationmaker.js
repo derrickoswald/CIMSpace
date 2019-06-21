@@ -9,7 +9,6 @@ define
     /**
      * @summary Make a collection of objects representing a Substation with internal data.
      * @description Digitizes a point and makes a Substation, PowerTransformer, BusbarSection, a number of Switch and Fuse with Connector and connectivity.
-     * @name substationmaker
      * @exports substationmaker
      * @version 1.0
      */
@@ -34,50 +33,50 @@ define
 
             render_parameters (proto)
             {
-                var template =
-                `
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="mRID">mRID</label>
-                      <div class="col-sm-8">
-                        <input id="mRID" class="form-control" type="text" name="mRID" aria-describedby="mRIDHelp" value="{{proto.mRID}}">
-                        <small id="mRIDHelp" class="form-text text-muted">Unique identifier for the substation.</small>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="feeders">Feeders</label>
-                      <div class="col-sm-8">
-                        <input id="feeders" class="form-control" type="text" name="feeders" aria-describedby="feedersHelp" value="8">
-                        <small id="feedersHelp" class="form-text text-muted">Number of feeders entering and/or leaving.</small>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="ratedCurrent">Rated current</label>
-                      <div class="col-sm-8">
-                        <input id="ratedCurrent" class="form-control" type="text" name="ratedCurrent" aria-describedby="ratedCurrentHelp" value="125.0">
-                        <small id="ratedCurrentHelp" class="form-text text-muted">Rated current for fuses.</small>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="with_trafo">Add transformer</label>
-                      <div class="col-sm-8">
-                        <div class='form-check'>
-                          <input id="with_trafo" class="form-check-input" type="checkbox" name="with_trafo" aria-describedby="withTrafoHelp" checked>
-                          <small id="withTrafoHelp" class="form-text text-muted">Include a transformer in the substation.</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="transformer_name">Transformer</label>
-                      <div class="col-sm-8">
-                        <select id="transformer_name" class="form-control custom-select">
-                {{#trafos}}
-                              <option value="{{id}}">{{name}}</option>
-                {{/trafos}}
-                        </select>
-                      </div>
-                    </div>
-                `;
-                var types =
+                const template =
+`
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="mRID">mRID</label>
+        <div class="col-sm-8">
+            <input id="mRID" class="form-control" type="text" name="mRID" aria-describedby="mRIDHelp" value="{{proto.mRID}}">
+            <small id="mRIDHelp" class="form-text text-muted">Unique identifier for the substation.</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="feeders">Feeders</label>
+        <div class="col-sm-8">
+            <input id="feeders" class="form-control" type="text" name="feeders" aria-describedby="feedersHelp" value="8">
+            <small id="feedersHelp" class="form-text text-muted">Number of feeders entering and/or leaving.</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="ratedCurrent">Rated current</label>
+        <div class="col-sm-8">
+            <input id="ratedCurrent" class="form-control" type="text" name="ratedCurrent" aria-describedby="ratedCurrentHelp" value="125.0">
+            <small id="ratedCurrentHelp" class="form-text text-muted">Rated current for fuses.</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="with_trafo">Add transformer</label>
+        <div class="col-sm-8">
+            <div class='form-check'>
+                <input id="with_trafo" class="form-check-input" type="checkbox" name="with_trafo" aria-describedby="withTrafoHelp" checked>
+                <small id="withTrafoHelp" class="form-text text-muted">Include a transformer in the substation.</small>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="transformer_name">Transformer</label>
+        <div class="col-sm-8">
+            <select id="transformer_name" class="form-control custom-select">
+{{#trafos}}
+                <option value="{{id}}">{{name}}</option>
+{{/trafos}}
+            </select>
+        </div>
+    </div>
+`;
+                const types =
                 [
                     { value: "PSRType_DistributionBox", description: "Distribution box" },
                     { value: "PSRType_TransformerStation", description: "Transformer station" },
@@ -85,20 +84,20 @@ define
                 ];
                 if (!proto)
                     proto = { mRID: this._cimedit.get_cimmrid ().nextIdFor ("Substation"), PSRType: "PSRType_TransformerStation" };
-                var trafos = this._cimmap.fetch ("PowerTransformerInfo", info => true)
-                var view = { proto: proto, trafos: trafos };
-                var ret = mustache.render (template, view);
+                const trafos = this._cimmap.fetch ("PowerTransformerInfo", info => true);
+                const view = { proto: proto, trafos: trafos };
+                const ret = mustache.render (template, view);
                 return (ret);
             }
 
             /**
              * Scrape the form data and prepare to make the Substation.
-             * @return an object with a prototype (substation) and the number of entry/exit connectors (feeders).
+             * @return {Object} an object with a prototype (substation) and the number of entry/exit connectors (feeders).
              */
             submit_parameters ()
             {
-                var id = document.getElementById ("mRID").value;
-                var substation =
+                const id = document.getElementById ("mRID").value;
+                const substation =
                 {
                     id: id,
                     mRID: id,
@@ -106,7 +105,7 @@ define
                     cls: "Substation",
                     PSRType: document.getElementById ("with_trafo").checked ? "PSRType_TransformerStation" : "PSRType_DistributionBox"
                 };
-                var ret =
+                const ret =
                 {
                     feeders: Math.max (1, Number (document.getElementById ("feeders").value)),
                     ratedCurrent: document.getElementById ("ratedCurrent").value,
@@ -120,7 +119,7 @@ define
 
             ensure_stations ()
             {
-                var ret = [];
+                const ret = [];
                 if (!this._cimmap.get ("PSRType", "PSRType_DistributionBox"))
                     ret.push (new Core.PSRType ({ cls: "PSRType", id: "PSRType_DistributionBox", mRID: "PSRType_DistributionBox", name: "Distribution Box", description: "N7 level station" }, this._cimedit.new_features ()));
                 if (!this._cimmap.get ("PSRType", "PSRType_TransformerStation"))
@@ -133,28 +132,28 @@ define
             make_substation (parameters, array)
             {
                 // build a GeoJSON feature to locate all the pieces
-                var feature = this._locationmaker.extractFeature (array);
-                var x = feature.geometry.coordinates[0];
-                var y = feature.geometry.coordinates[1];
+                const feature = this._locationmaker.extractFeature (array);
+                let x = feature.geometry.coordinates[0];
+                let y = feature.geometry.coordinates[1];
 
                 if (parameters.existing) // attach new elements to an existing SubStation?
                     array = [parameters.existing];
-                var station = array[0];
+                const station = array[0];
 
                 array = array.concat (this._equipmentmaker.ensure_voltages ());
                 array = array.concat (this._equipmentmaker.ensure_status ());
                 array = array.concat (this.ensure_stations ());
 
                 // remember the trafo location for later on
-                var trafox = x - this._xoffset;
-                var trafoy = y - this._yoffset;
-                var trafo_node;
+                const trafox = x - this._xoffset;
+                const trafoy = y - this._yoffset;
+                let trafo_node;
 
                 // add BusbarSection
                 x = x + this._xoffset;
                 feature.geometry.coordinates[0] = x;
-                var bid = this._cimedit.get_cimmrid ().nextIdFor ("BusbarSection", station, "_busbar");
-                var busbar = new Wires.BusbarSection (
+                const bid = this._cimedit.get_cimmrid ().nextIdFor ("BusbarSection", station, "_busbar");
+                const busbar = new Wires.BusbarSection (
                     {
                         cls: "BusbarSection",
                         id: bid,
@@ -166,10 +165,10 @@ define
                         SvStatus: this._equipmentmaker.in_use (),
                         EquipmentContainer: station.id
                     }, this._cimedit.new_features ());
-                var bus_n_location = this._locationmaker.create_location ("pseudo_wgs84", [busbar], feature);
-                var node = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", busbar, "_node"), station.id), this._cimedit.new_features ());
-                var tid = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", busbar, "_terminal");
-                var terminal = new Core.Terminal (
+                const bus_n_location = this._locationmaker.create_location ("pseudo_wgs84", [busbar], feature);
+                let node = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", busbar, "_node"), station.id), this._cimedit.new_features ());
+                const tid = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", busbar, "_terminal");
+                let terminal = new Core.Terminal (
                     {
                         cls: "Terminal",
                         id: tid,
@@ -188,16 +187,16 @@ define
                 array.push (node);
 
                 y = y - this._yoffset;
-                for (var i = 0; i < parameters.feeders; i++)
+                for (let i = 0; i < parameters.feeders; i++)
                 {
                     feature.geometry.coordinates[0] = x;
                     feature.geometry.coordinates[1] = y;
-                    var did;
-                    var device;
-                    var location;
-                    var fname;
+                    let did = null;
+                    let fname = null;
+                    let device = null;
+                    let location;
 
-                    if (0 == i)
+                    if (0 === i)
                     {
                         did = this._cimedit.get_cimmrid ().nextIdFor ("Switch", station, "_switch");
                         fname = "switch";
@@ -240,8 +239,8 @@ define
                         location = this._locationmaker.create_location ("pseudo_wgs84", [device], feature);
                     }
 
-                    var tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", device, "_terminal_1");
-                    var terminal1 = new Core.Terminal (
+                    const tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", device, "_terminal_1");
+                    const terminal1 = new Core.Terminal (
                         {
                             cls: "Terminal",
                             id: tid1,
@@ -254,11 +253,11 @@ define
                             ConductingEquipment: did,
                             ConnectivityNode: node.id
                         }, this._cimedit.new_features ());
-                    var n = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", device, "_node_2"), station.id), this._cimedit.new_features ());
-                    if (0 == i)
+                    const n = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", device, "_node_2"), station.id), this._cimedit.new_features ());
+                    if (0 === i)
                         trafo_node = n;
-                    var tid2 =  this._cimedit.get_cimmrid ().nextIdFor ("Terminal", device, "_terminal_2");
-                    var terminal2 = new Core.Terminal (
+                    const tid2 =  this._cimedit.get_cimmrid ().nextIdFor ("Terminal", device, "_terminal_2");
+                    const terminal2 = new Core.Terminal (
                         {
                             cls: "Terminal",
                             id: tid2,
@@ -278,8 +277,8 @@ define
                     array.push (n);
 
                     feature.geometry.coordinates[1] = y - this._yoffset;
-                    var cid = this._cimedit.get_cimmrid ().nextIdFor ("Connector", station, "_connector_" + (i + 1));
-                    var connector = new Wires.Connector (
+                    const cid = this._cimedit.get_cimmrid ().nextIdFor ("Connector", station, "_connector_" + (i + 1));
+                    const connector = new Wires.Connector (
                         {
                             cls: "Connector",
                             id: cid,
@@ -292,8 +291,8 @@ define
                             EquipmentContainer: station.id
                         }, this._cimedit.new_features ());
                     location = this._locationmaker.create_location ("pseudo_wgs84", [connector], feature);
-                    var tid3 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", connector, "_terminal");
-                    var terminal3 = new Core.Terminal (
+                    const tid3 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", connector, "_terminal");
+                    const terminal3 = new Core.Terminal (
                         {
                             cls: "Terminal",
                             id: tid3,
@@ -315,8 +314,8 @@ define
                 // add a transformer if it was requested
                 if (parameters.transformer)
                 {
-                    var id = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformer", station, "_transformer");
-                    var trafo =
+                    const id = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformer", station, "_transformer");
+                    const trafo =
                         {
                             cls: "PowerTransformer",
                             id: id,
@@ -328,20 +327,20 @@ define
                         };
                     // ToDo: figure out vector group from end infos connectionKind and phaseAngleClock
                     // till then, just check for the most common one:
-                    var info = this._cimmap.get ("PowerTransformerInfo", parameters.transformer);
+                    const info = this._cimmap.get ("PowerTransformerInfo", parameters.transformer);
                     if (info && info.description && 0 <= info.description.indexOf ("Dyn5"))
                         trafo.vectorGroup = "Dyn5";
 
-                    var obj = this._cimedit.create_from (trafo);
+                    const obj = this._cimedit.create_from (trafo);
                     feature.geometry.coordinates[0] = trafox;
                     feature.geometry.coordinates[1] = trafoy;
-                    var trafo_n_location = this._locationmaker.create_location ("pseudo_wgs84", [obj], feature);
-                    var trafo_all = this._transformermaker.make_transformer (trafo_n_location);
+                    const trafo_n_location = this._locationmaker.create_location ("pseudo_wgs84", [obj], feature);
+                    const trafo_all = this._transformermaker.make_transformer (trafo_n_location);
 
                     // make a surgical cut to remove the transformer's second ConnectivityNode and
                     // replace it with the Switch second ConnectivityNode
-                    var terminal = trafo_all.find (x => ((x.cls == "Terminal") && (x.sequenceNumber == 2)));
-                    var node = trafo_all.findIndex (x => ((x.cls == "ConnectivityNode") && (x.id == terminal.ConnectivityNode)));
+                    const terminal = trafo_all.find (x => ((x.cls === "Terminal") && (x.sequenceNumber === 2)));
+                    const node = trafo_all.findIndex (x => ((x.cls === "ConnectivityNode") && (x.id === terminal.ConnectivityNode)));
                     terminal.ConnectivityNode = trafo_node.id;
                     trafo_all.splice (node, 1);
 
@@ -355,11 +354,11 @@ define
             {
                 // ToDo: maybe need an interface to the map options?
                 document.getElementById ("internal_features").checked = true;
-                var parameters = this.submit_parameters ();
+                const parameters = this.submit_parameters ();
                 // if it's an already existing station, proceed with the digitization, but handle is specially later
                 parameters.existing = this._cimmap.get ("Substation", parameters.substation.mRID);
-                var obj = this._cimedit.create_from (parameters.substation);
-                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                const obj = this._cimedit.create_from (parameters.substation);
+                const cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
                 cpromise.setPromise (this._locationmaker.make (cpromise.promise (), "wgs84").then (this.make_substation.bind (this, parameters)));
 
                 return (cpromise);
@@ -368,4 +367,4 @@ define
 
         return (SubstationMaker);
     }
-)
+);

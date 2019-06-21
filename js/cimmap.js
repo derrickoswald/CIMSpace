@@ -8,79 +8,78 @@ define
     /**
      * @summary MapBox map.
      * @description Container and interface for map operations.
-     * @name cimmap
      * @exports cimmap
      * @version 1.0
      */
-    function (CIMCoordinates)
+    function (cimcoordinates)
     {
         /**
          * The map object.
          * @see https://www.mapbox.com
          */
-        var TheMap = null;
+        let TheMap = null;
 
         /**
          * The extents of visible objects (those with Location and PositionPoint).
          */
-        var TheExtents = null;
+        let TheExtents = null;
 
         /**
          * The editor control object.
          */
-        var TheEditor = null;
+        let TheEditor = null;
 
         /**
          * The theme setting control object.
          */
-        var TheThemer = null;
+        let TheThemer = null;
 
         /**
          * The scale bar control.
          */
-        var TheScaleBar = null;
+        let TheScaleBar = null;
 
         /**
          * The coordinate display control.
          */
-        var TheCoordinates = null;
+        let TheCoordinates = null;
 
         /**
          * The user specific token to access mapbox tiles.
          */
-        var TheToken = "pk.eyJ1IjoiZG9zd2FsZCIsImEiOiJjaXdvd213aHgwMDBsMnlvZWY3amQ4YXR0In0.e9FmfCdPkY6I9DreofObwA";
+        const TheToken = "pk.eyJ1IjoiZG9zd2FsZCIsImEiOiJjaXdvd213aHgwMDBsMnlvZWY3amQ4YXR0In0.e9FmfCdPkY6I9DreofObwA";
 
         /**
          * Information about loaded file(s).
          */
-        var CIM_File = null;
+        let CIM_File = null;
 
         /**
          * The CIM file contents after load.
          */
-        var CIM_Data = null;
+        let CIM_Data = null;
 
         /**
          * The last selected feature.
          */
-        var CURRENT_FEATURE = null;
+        let CURRENT_FEATURE = null;
 
         /**
          * The last selected features.
          */
-        var CURRENT_SELECTION = null;
+        let CURRENT_SELECTION = null;
 
         /**
          * Flag indicating map listeners are attached or not.
          */
-        var Listening = false;
+        let Listening = false;
 
         /**
          * List of registered objects supporting selection_change (CURRENT_FEATURE, CURRENT_SELECTION).
          */
-        var FeatureListeners = [
+        let FeatureListeners = [
             {
-                selection_change: function (mrid, list)
+                selection_change: function (mrid)
                 {
                     if (null != mrid)
                         highlight ();
@@ -92,8 +91,6 @@ define
 
         /**
          * Get the MapBox map.
-         * @function get_map
-         * @memberOf module:cimmap
          */
         function get_map ()
         {
@@ -103,29 +100,22 @@ define
         /**
          * Set the loaded file information.
          *
-         * info is of the form { files: ["filename"], options: {}, elements: int }
-         *
-         * @function set_loaded
-         * @memberOf module:cimmap
+         * @param {Object} info is of the form { files: ["filename"], options: {}, elements: int }
          */
         function set_loaded (info)
         {
             CIM_File = info;
             if (CIM_File && CIM_File.files)
             {
-                var title = document.title;
-                var index = title.indexOf (" - ");
-                if (-1 != index)
-                    title = title.substring (0, index);
-                title = title + " - " + CIM_File.files.map (x => x.replace (/\.(rdf|xml|RDF|XML)$/, "")).join ();
-                document.title = title;
+                const t = document.title;
+                const index = t.indexOf (" - ");
+                const banner = (-1 !== index) ? t.substring (0, index) : t;
+                document.title = banner + " - " + CIM_File.files.map (x => x.replace (/\.(rdf|xml|RDF|XML)$/, "")).join ();
             }
         }
 
         /**
          * Get the loaded file information.
-         * @function get_loaded
-         * @memberOf module:cimmap
          */
         function get_loaded ()
         {
@@ -134,15 +124,13 @@ define
 
         /**
          * Set the CIM data for the map to draw.
-         * @param {JSON} Data parsed from the cim module.
+         * @param {JSON} data Data parsed from the cim module.
          * @param nozoom If <code>true</code> does not perform a zoom extents.
-         * @function set_data
-         * @memberOf module:cimmap
          */
         function set_data (data, nozoom)
         {
             CIM_Data = data;
-            var make = make_map ();
+            const make = make_map ();
             if (!nozoom)
                 make.then (zoom_extents);
         }
@@ -150,8 +138,6 @@ define
         /**
          * Get the CIM data the map is displaying.
          * @return {JSON} Data parsed from the cim module.
-         * @function get_data
-         * @memberOf module:cimmap
          */
         function get_data ()
         {
@@ -161,8 +147,6 @@ define
         /**
          * Get the currently selected feature.
          * @return the mRID of the currently selected feature or null if none.
-         * @function get_selected_feature
-         * @memberOf module:cimmap
          */
         function get_selected_feature ()
         {
@@ -172,8 +156,6 @@ define
         /**
          * Get the currently selected feature list.
          * @return the array of mRID of the currently selected features or null if none.
-         * @function get_selected_features
-         * @memberOf module:cimmap
          */
         function get_selected_features ()
         {
@@ -182,8 +164,7 @@ define
 
         /**
          * Add an object that will be called when feature selections change.
-         * @function add_feature_listener
-         * @memberOf module:cimmap
+         * @param {Object} obj the feature listener
          */
         function add_feature_listener (obj)
         {
@@ -193,23 +174,20 @@ define
 
         /**
          * Remove an object from the list of objects that will be called when feature selections change.
-         * @function remove_feature_listener
-         * @memberOf module:cimmap
+         * @param {Object} obj the feature listener
          */
         function remove_feature_listener (obj)
         {
             if (FeatureListeners.includes (obj))
             {
-                var index = FeatureListeners.indexOf (obj);
-                FeatureListeners = FeatureListeners.filter ((x, i) => i != index);
+                const index = FeatureListeners.indexOf (obj);
+                FeatureListeners = FeatureListeners.filter ((x, i) => i !== index);
             }
         }
 
         /**
          * Set the extents of the CIM data for the map to draw.
-         * @param {Object} new extents value { xmin: , ymin: , xmax: , ymax: }
-         * @function set_extents
-         * @memberOf module:cimmap
+         * @param {Object} extents new extents value { xmin: , ymin: , xmax: , ymax: }
          */
         function set_extents (extents)
         {
@@ -219,8 +197,6 @@ define
         /**
          * Get the extents of the CIM data the map is displaying.
          * @return {Object} current extents value { xmin: , ymin: , xmax: , ymax: }
-         * @function get_extents
-         * @memberOf module:cimmap
          */
         function get_extents ()
         {
@@ -230,9 +206,7 @@ define
         /**
          * Get the theming object for access to themes.
          * @return {Object} The object handling theming.
-         * @function get_themer
          * @return {{ removeTheme : function(Object), addTheme : function(Object, [Boolean]) }} The current theme object.
-         * @memberOf module:cimmap
          */
         function get_themer ()
         {
@@ -242,8 +216,6 @@ define
         /**
          * Get the editor object for access to editing.
          * @return {Object} The object handling editing.
-         * @function get_editor
-         * @memberOf module:cimmap
          */
         function get_editor ()
         {
@@ -253,8 +225,6 @@ define
         /**
          * Get the user's choice for showing internal features.
          * @returns {boolean} <code>true</code> if internal features should be shown, <code>false</code> otherwise
-         * @function show_internal_features
-         * @memberOf module:cimmap
          */
         function show_internal_features ()
         {
@@ -264,8 +234,6 @@ define
         /**
          * Get the user's choice for 3d buildings.
          * @returns {boolean} <code>true</code> show buildings in 3D, <code>false</code> otherwise
-         * @function show_3d_buildings
-         * @memberOf module:cimmap
          */
         function show_3d_buildings ()
         {
@@ -275,8 +243,6 @@ define
         /**
          * Get the user's choice for whether a scale bar is displayed or not.
          * @returns {boolean} <code>true</code> if a scale bar should be shown, <code>false</code> otherwise
-         * @function show_scale_bar
-         * @memberOf module:cimmap
          */
         function show_scale_bar ()
         {
@@ -286,7 +252,6 @@ define
         /**
          * Get the user's choice for whether coordinates are displayed or not.
          * @returns {boolean} <code>true</code> if coordinates should be shown, <code>false</code> otherwise
-         * @function show_coordinates
          */
         function show_coordinates ()
         {
@@ -296,8 +261,6 @@ define
         /**
          * Get the user's choice for whether StreetView links are displayed or not.
          * @returns {boolean} <code>true</code> if a streetview link for features should be shown, <code>false</code> otherwise
-         * @function show_streetview
-         * @memberOf module:cimmap
          */
         function show_streetview ()
         {
@@ -324,8 +287,8 @@ define
          */
         function pause (predicate, ms)
         {
-            var ms = ms || 1000;
-            var ret = new Promise (
+            ms = ms || 1000;
+            const ret = new Promise (
                 (resolve, reject) =>
                 {
                     if (predicate ())
@@ -360,7 +323,7 @@ define
                     {
                         function handler (data) // {error: {message: string}}
                         {
-                            var message = JSON.stringify (data);
+                            const message = JSON.stringify (data);
                             console.log (message);
                             TheMap.off ("error", handler);
                             reject (message);
@@ -382,7 +345,7 @@ define
         {
             return (
                 new Promise (
-                    function (resolve, reject)
+                    function (resolve)
                     {
                         select (null);
                         if (TheThemer)
@@ -404,8 +367,6 @@ define
         /**
          * Returns a promise to create the map.
          * The resolve() action resolves with no argument.
-         * @function make_map
-         * @memberOf module:cimmap
          */
         function make_map ()
         {
@@ -431,47 +392,47 @@ define
 
         function get (classname, id)
         {
-            var ret = undefined;
+            let ret = undefined;
             if (classname && id)
             {
-                var data = get_data ();
+                let data = get_data ();
                 if (data)
                 {
-                    var objects = data[classname];
+                    const objects = data[classname];
                     if (objects)
                         ret = objects[id];
                 }
-                ret = (ret && ret.EditDisposition && ret.EditDisposition == "delete") ? undefined : ret;
+                ret = (ret && ret.EditDisposition && ret.EditDisposition === "delete") ? undefined : ret;
                 if (!ret && get_editor ().has_new_features ())
                 {
                     data = get_editor ().new_features ();
-                    var objects = data[classname];
+                    const objects = data[classname];
                     if (objects)
                         ret = objects[id];
                 }
             }
-            return ((ret && ret.EditDisposition && ret.EditDisposition == "delete") ? undefined : ret);
+            return ((ret && ret.EditDisposition && ret.EditDisposition === "delete") ? undefined : ret);
         }
 
         function forAll (classname, fn)
         {
-            var broken = false;
+            let broken = false;
             function iterateOver (objects, fn)
             {
                 if (objects)
-                    for (var property in objects)
+                    for (let property in objects)
                     {
                         if (objects.hasOwnProperty (property))
                         {
-                            var obj = objects[property];
-                            if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                            const obj = objects[property];
+                            if (!obj.EditDisposition || (obj.EditDisposition !== "delete"))
                                 broken = fn (obj);
                         }
                         if (broken)
                             break;
                     }
             }
-            var data = get_data ();
+            let data = get_data ();
             if (data)
                 iterateOver (data[classname], fn);
             if (!broken && get_editor ().has_new_features ())
@@ -484,20 +445,20 @@ define
 
         function fetch (classname, fn)
         {
-            var ret = [];
+            const ret = [];
             function iterateOver (objects, fn)
             {
                 if (objects)
-                    for (var property in objects)
+                    for (let property in objects)
                         if (objects.hasOwnProperty (property))
                         {
-                            var obj = objects[property];
-                            if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                            const obj = objects[property];
+                            if (!obj.EditDisposition || (obj.EditDisposition !== "delete"))
                                 if (fn (obj))
                                     ret.push (obj);
                         }
             }
-            var data = get_data ();
+            let data = get_data ();
             if (data)
                 iterateOver (data[classname], fn);
             if (get_editor ().has_new_features ())
@@ -516,9 +477,7 @@ define
          * When a filter matches a feature, the yeloow layer is drawn on top of
          * the original layer creating a cheezy 'glow' effect.
          * Setting the filter to something that never matches effectively turns off the layer.
-         * @param {string} filter - the filter to apply to the highlight layers
-         * @function glow
-         * @memberOf module:cimmap
+         * @param {string | Object} filter - the filter to apply to the highlight layers
          */
         function glow (filter)
         {
@@ -545,8 +504,6 @@ define
         /**
          * @summary Display the current feature highlighted on the map.
          * @description Highlights the currently selected feature in the map.
-         * @function highlight
-         * @memberOf module:cimmap
          */
         function highlight ()
         {
@@ -557,8 +514,6 @@ define
         /**
          * @summary Removes highlighting from the highlighted object.
          * @description Reverts any highlighting in the map.
-         * @function unhighlight
-         * @memberOf module:cimmap
          */
         function unhighlight ()
         {
@@ -569,8 +524,6 @@ define
         /**
          * @summary Handler for a current feature link click.
          * @description Sets the current feature and redisplay the highlighting appropriately and notify listeners.
-         * @function select
-         * @memberOf module:cimmap
          */
         function select (mrid, list)
         {
@@ -603,25 +556,22 @@ define
          * Turn on or off 3D building display.
          * @description Insert or remove a layer showing buildings with height.
          * The 'building' layer in the mapbox-streets vector source contains building-height data from OpenStreetMap.
-         * @ param {object} event - optional event trigger <em>not used</em>
-         * @function buildings_3d
-         * @memberOf module:cimmap
          */
-        function buildings_3d (event)
+        function buildings_3d ()
         {
             if (show_3d_buildings ())
             {
                 if ("undefined" == typeof (TheMap.getLayer ("3d-buildings")))
                 {
                     // insert the layer beneath any symbol layer.
-                    var layers = TheMap.getStyle ().layers.reverse ();
-                    var index = layers.findIndex (
+                    const layers = TheMap.getStyle ().layers.reverse ();
+                    const index = layers.findIndex (
                         function (layer)
                         {
                             return (layer.type !== "symbol");
                         }
                     );
-                    var id = index !== -1 ? layers[index].id : undefined;
+                    const id = index !== -1 ? layers[index].id : undefined;
                     TheMap.addLayer (
                         {
                             "id": "3d-buildings",
@@ -657,11 +607,8 @@ define
         /**
          * Turn on or off the scale bar.
          * @description Add or remove the scale bar control.
-         * @ param {object} event - optional event trigger <em>not used</em>
-         * @function scale_bar
-         * @memberOf module:cimmap
          */
-        function scale_bar (event)
+        function scale_bar ()
         {
             if (show_scale_bar ())
             {
@@ -684,17 +631,14 @@ define
         /**
          * Turn on or off the coordinates
          * @description Add or remove the coordinates control.
-         * @ param {object} event - optional event trigger <em>not used</em>
-         * @function coordinates
-         * @memberOf module:cimmap
          */
-        function coordinates (event)
+        function coordinates ()
         {
             if (show_coordinates ())
             {
                 if ((null != TheMap) && (null == TheCoordinates))
                 {
-                    TheCoordinates = document.createElement ("mouse-coordinates");
+                    TheCoordinates = new cimcoordinates ();
                     TheMap.addControl (TheCoordinates);
                 }
             }
@@ -711,8 +655,6 @@ define
         /**
          * Get the user's choice for through switch tracing.
          * @returns {boolean} <code>true</code> a trace through open switches should be done, <code>false</code> otherwise
-         * @function trace_through_open_switches
-         * @memberOf module:cimmap
          */
         function trace_through_open_switches ()
         {
@@ -722,8 +664,6 @@ define
         /**
          * Get the user's choice for through transformer tracing.
          * @returns {boolean} <code>true</code> a trace across voltage level changes should be done, <code>false</code> otherwise
-         * @function trace_though_voltage_level_changes
-         * @memberOf module:cimmap
          */
         function trace_though_voltage_level_changes ()
         {
@@ -733,13 +673,11 @@ define
         /**
          * Get the user's choice for number of elements to trace.
          * @returns {number} Either the user's requested number or 0 indicating don't limit tracing.
-         * @function number_of_elements
-         * @memberOf module:cimmap
          */
         function number_of_elements ()
         {
-            var no = document.getElementById ("number_of_elements").value;
-            var ret = Number (no);
+            const no = document.getElementById ("number_of_elements").value;
+            let ret = Number (no);
             if (isNaN (ret))
                 ret = 0;
             return (ret);
@@ -748,42 +686,42 @@ define
         /**
          * Get voltage level boundary transformers.
          * @description Get a list of tranformers with ends where voltages differ.
-         * @function get_transformers
-         * @memberOf module:cimmap
          */
         function get_transformers ()
         {
-            var transformers = {};
-            var ret = {};
+            const transformers = {};
+            const ret = {};
 
-            for (var end in CIM_Data.PowerTransformerEnd)
-            {
-                var e = CIM_Data.PowerTransformerEnd[end]
-                var transformer = e.PowerTransformer;
-                if (null != transformer)
+            for (let end in CIM_Data.PowerTransformerEnd)
+                if (CIM_Data.PowerTransformerEnd.hasOwnProperty (end))
                 {
-                    if (null == transformers[transformer])
-                        transformers[transformer] = [];
-                    var no = e.endNumber;
-                    if (null != no)
-                        transformers[transformer][Number(no)] = e
+                    const e = CIM_Data.PowerTransformerEnd[end];
+                    const transformer = e.PowerTransformer;
+                    if (null != transformer)
+                    {
+                        if (null == transformers[transformer])
+                            transformers[transformer] = [];
+                        const no = e.endNumber;
+                        if (null != no)
+                            transformers[transformer][Number(no)] = e
+                    }
                 }
-            }
             // eliminate transformers which have the same voltage on both ends
-            for (var trans in transformers)
-            {
-                var ends = transformers[trans];
-                if (ends && ends.length > 1)
+            for (let trans in transformers)
+                if (transformers.hasOwnProperty (trans))
                 {
-                    var high_voltage = Number (CIM_Data.BaseVoltage[ends[1].BaseVoltage].nominalVoltage);
-                    var unequal = false;
-                    for (var i = 2; "undefined" != typeof (ends[i]); i++)
-                        if (high_voltage != Number (CIM_Data.BaseVoltage[ends[i].BaseVoltage].nominalVoltage))
-                            unequal = true;
-                    if (unequal)
-                        ret[trans] = ends; // could also store something else here - the test is just for non-null
+                    const ends = transformers[trans];
+                    if (ends && ends.length > 1)
+                    {
+                        const high_voltage = Number (CIM_Data.BaseVoltage[ends[1].BaseVoltage].nominalVoltage);
+                        let unequal = false;
+                        for (let i = 2; "undefined" != typeof (ends[i]); i++)
+                            if (high_voltage !== Number (CIM_Data.BaseVoltage[ends[i].BaseVoltage].nominalVoltage))
+                                unequal = true;
+                        if (unequal)
+                            ret[trans] = ends; // could also store something else here - the test is just for non-null
+                    }
                 }
-            }
             //alert(JSON.stringify(ret, null, 4));
 
             return (ret);
@@ -791,31 +729,29 @@ define
 
         function deleted (equipment)
         {
-            return (equipment.EditDisposition && ("delete" == equipment.EditDisposition));
+            return (equipment.EditDisposition && ("delete" === equipment.EditDisposition));
         }
 
         /**
          * Trace the currently selected object and highlight the results.
          * @description Traverse through the ConnectivityNode, Terminal and ConductingEquipment
          * to make a list of connected devices and wires. Then highlight them on screen.
-         * @function trace
-         * @memberOf module:cimmap
          */
         function trace ()
         {
             // the source feature
-            var source;
+            let source;
             // the type of switch trace
-            var through_opens = trace_through_open_switches ();
+            const through_opens = trace_through_open_switches ();
             // the type of transformer trace
-            var through_voltages = trace_though_voltage_level_changes ();
+            const through_voltages = trace_though_voltage_level_changes ();
+            const transformers = (through_voltages) ? get_transformers () : {};
 
             function stop (equipment)
             {
-                var ret = false;
+                let ret = false;
 
-                if (!through_opens &&
-                    (equipment.open || ("undefined" == typeof (equipment.open) && equipment.normalOpen)))
+                if (!through_opens && (equipment.open || ("undefined" == typeof (equipment.open) && equipment.normalOpen)))
                     ret = true;
                 else if (!through_voltages && (null != transformers[equipment.mRID]))
                     ret = true;
@@ -823,10 +759,10 @@ define
                 return (ret);
             }
 
-            function preload (source, terminal)
+            function preload (source, terminal, terminals_by_equp, terminals_by_node)
             {
                 if (null != source)
-                // check for an open switch or step-down transformer, and if so, remove all but this terminal from the source
+                    // check for an open switch or step-down transformer, and if so, remove all but this terminal from the source
                     if (stop (source))
                     {
                         terminals_by_equp[source.mRID] = [terminal.mRID];
@@ -834,7 +770,7 @@ define
                         terminals_by_node[terminal.ConnectivityNode].forEach (
                             function (t)
                             {
-                                var terminal = CIM_Data.Terminal[t];
+                                const terminal = CIM_Data.Terminal[t];
                                 if (terminal.ConductingEquipment !== source.mRID)
                                     todo.push (terminal.ConductingEquipment);
                             }
@@ -849,52 +785,52 @@ define
             else
             {
                 // organize terminals by connectivity node and equipment
-                var terminals_by_node = {};
-                var terminals_by_equp = {};
-                for (var t in CIM_Data.Terminal)
-                {
-                    var terminal = CIM_Data.Terminal[t];
-                    var node = terminal.ConnectivityNode;
-                    if (null != node)
+                const terminals_by_node = {};
+                const terminals_by_equp = {};
+                for (let t in CIM_Data.Terminal)
+                    if (CIM_Data.Terminal.hasOwnProperty (t))
                     {
-                        if (null == terminals_by_node[node])
-                            terminals_by_node[node] = [];
-                        if (!terminals_by_node[node].includes (terminal.mRID))
-                            terminals_by_node[node].push (terminal.mRID);
+                        const terminal = CIM_Data.Terminal[t];
+                        const node = terminal.ConnectivityNode;
+                        if (null != node)
+                        {
+                            if (null == terminals_by_node[node])
+                                terminals_by_node[node] = [];
+                            if (!terminals_by_node[node].includes (terminal.mRID))
+                                terminals_by_node[node].push (terminal.mRID);
+                        }
+                        const equp = terminal.ConductingEquipment;
+                        if (null != equp)
+                        {
+                            if (null == terminals_by_equp[equp])
+                                terminals_by_equp[equp] = [];
+                            if (!terminals_by_equp[equp].includes (terminal.mRID))
+                                terminals_by_equp[equp].push (terminal.mRID);
+                        }
                     }
-                    var equp = terminal.ConductingEquipment;
-                    if (null != equp)
-                    {
-                        if (null == terminals_by_equp[equp])
-                            terminals_by_equp[equp] = [];
-                        if (!terminals_by_equp[equp].includes (terminal.mRID))
-                            terminals_by_equp[equp].push (terminal.mRID);
-                    }
-                }
 
                 // the list of things to trace
-                var todo = [];
-                var transformers = (!through_voltages) ? get_transformers () : {};
+                const todo = [];
 
                 // get the source equipment
                 source = CIM_Data.ConductingEquipment[get_selected_feature ()];
                 if (null == source)
                 {
                     // try for a terminal
-                    var term = CIM_Data.Terminal[get_selected_feature ()];
+                    const term = CIM_Data.Terminal[get_selected_feature ()];
                     source = term ? CIM_Data.ConductingEquipment[term.ConductingEquipment] : null;
-                    preload (source, term);
+                    preload (source, term, terminals_by_equp, terminals_by_node);
                 }
                 if (null == source)
                 {
                     // try for a node
-                    var terms = terminals_by_node[get_selected_feature ()];
+                    const terms = terminals_by_node[get_selected_feature ()];
                     if (terms)
-                        for (var i = 0; (i < terms.length) && (null == source); i++)
+                        for (let i = 0; (i < terms.length) && (null == source); i++)
                         {
-                            var term = CIM_Data.Terminal[terms[i]];
+                            const term = CIM_Data.Terminal[terms[i]];
                             source = term ? CIM_Data.ConductingEquipment[term.ConductingEquipment] : null;
-                            preload (source, term);
+                            preload (source, term, terminals_by_equp, terminals_by_node);
                         }
                 }
                 if (null == source)
@@ -904,44 +840,44 @@ define
                     todo.push (source.mRID);
 
                     // the list of traced conducting equipment
-                    var equipment = [];
+                    const equipment = [];
                     // iterate until done
-                    var count = number_of_elements ();
+                    let count = number_of_elements ();
                     while ("undefined" != typeof (source = todo.pop ())) // if you call pop() on an empty array, it returns undefined
                     {
                         // don't trace deleted elements
-                        var element = CIM_Data.Element[source];
+                        const element = CIM_Data.Element[source];
                         if (null == element || deleted (element))
                             continue;
 
                         equipment.push (source);
-                        var ce = CIM_Data.ConductingEquipment[source];
+                        const ce = CIM_Data.ConductingEquipment[source];
                         if (null == ce || stop (ce))
                             continue;
-                        var terms = terminals_by_equp[source];
+                        const terms = terminals_by_equp[source];
                         if (null != terms)
-                            for (var i = 0; i < terms.length; i++)
+                            for (let i = 0; i < terms.length; i++)
                             {
-                                var terminal = CIM_Data.Terminal[terms[i]];
+                                const terminal = CIM_Data.Terminal[terms[i]];
                                 if (null != terminal && !deleted (terminal))
                                 {
-                                    var equp = terminal.ConductingEquipment;
+                                    const equp = terminal.ConductingEquipment;
                                     if (null != equp && !deleted (equp))
                                         if (!equipment.includes (equp) && !todo.includes (equp))
                                             todo.push (equp); // this should never happen
-                                    var node = terminal.ConnectivityNode;
+                                    const node = terminal.ConnectivityNode;
                                     if (null != node && !deleted (node))
                                     {
-                                        var next = terminals_by_node[node];
+                                        const next = terminals_by_node[node];
                                         if (null != next)
-                                            for (var j = 0; j < next.length; j++)
+                                            for (let j = 0; j < next.length; j++)
                                             {
-                                                if (next[j] != terms[i]) // don't trace back the way we came
+                                                if (next[j] !== terms[i]) // don't trace back the way we came
                                                 {
-                                                    var t = CIM_Data.Terminal[next[j]];
+                                                    const t = CIM_Data.Terminal[next[j]];
                                                     if (null != t && !deleted (t))
                                                     {
-                                                        var e = t.ConductingEquipment;
+                                                        const e = t.ConductingEquipment;
                                                         if (null != e && !deleted (e))
                                                             if (!equipment.includes (e) && !todo.includes (e))
                                                                 todo.push (e);
@@ -953,7 +889,7 @@ define
 
                             }
                         count -= 1;
-                        if (0 == count)
+                        if (0 === count)
                             break;
                     }
                     // sort the list to make it easy to find an element
@@ -961,7 +897,7 @@ define
                     // notify listeners
                     select (get_selected_feature (), equipment);
                     // highlight the elements on screen
-                    var hl = equipment.slice (0);
+                    const hl = equipment.slice (0);
                     hl.unshift ("in", "mRID");
                     glow (hl);
                 }
@@ -975,43 +911,43 @@ define
          * @description Look up all PositionPoint elements associated with elemen's location,
          * and compute the minimum bounding box that would enclose it.
          * @parm {string} id - the id of the element to process
-         * @function get_bounding_box
-         * @memberOf module:cimmap
+         * @return {Object} the bounding box
          */
         function get_bounding_box (id)
         {
-            var ret = null;
+            let ret = null;
 
-            var feature;
-            var location;
+            let feature;
+            let location;
             if (null != (feature = CIM_Data.Element[id]))
             {
                 if (null != (location = feature.Location))
                 {
-                    var minx = Number.MAX_VALUE;
-                    var maxx = Number.MIN_VALUE;
-                    var miny = Number.MAX_VALUE;
-                    var maxy = Number.MIN_VALUE;
-                    var pp = CIM_Data.PositionPoint;
-                    var valid = false;
-                    for (var point in pp)
-                    {
-                        var p = pp[point];
-                        if (location == p.Location)
+                    let minx = Number.MAX_VALUE;
+                    let maxx = Number.MIN_VALUE;
+                    let miny = Number.MAX_VALUE;
+                    let maxy = Number.MIN_VALUE;
+                    const pp = CIM_Data.PositionPoint;
+                    let valid = false;
+                    for (let point in pp)
+                        if (pp.hasOwnProperty (point))
                         {
-                            var x = Number (p.xPosition);
-                            var y = Number (p.yPosition);
-                            if (minx > x)
-                                minx = x;
-                            if (maxx < x)
-                                maxx = x;
-                            if (miny > y)
-                                miny = y;
-                            if (maxy < y)
-                                maxy = y;
-                            valid = true;
+                            const p = pp[point];
+                            if (location === p.Location)
+                            {
+                                const x = Number (p.xPosition);
+                                const y = Number (p.yPosition);
+                                if (minx > x)
+                                    minx = x;
+                                if (maxx < x)
+                                    maxx = x;
+                                if (miny > y)
+                                    miny = y;
+                                if (maxy < y)
+                                    maxy = y;
+                                valid = true;
+                            }
                         }
-                    }
                     if (valid)
                         ret = [[minx, miny], [maxx, maxy]];
                 }
@@ -1021,14 +957,14 @@ define
 
         function measure (lon1, lat1, lon2, lat2)
         {
-            var rlat1 = lat1 * Math.PI / 180;
-            var rlat2 = lat2 * Math.PI / 180
-            var dlat = rlat2 - rlat1;
-            var dlon = (lon2 -lon1) * Math.PI / 180;
-            var sin1 = Math.sin (dlat / 2.0)
-            var sin2 = Math.sin (dlon / 2.0)
-            var a = sin1 * sin1 + Math.cos (rlat1) * Math.cos (rlat2) * sin2 * sin2;
-            var c = 2.0 * Math.atan2 (Math.sqrt (a), Math.sqrt (1.0 - a));
+            const rlat1 = lat1 * Math.PI / 180;
+            const rlat2 = lat2 * Math.PI / 180;
+            const dlat = rlat2 - rlat1;
+            const dlon = (lon2 -lon1) * Math.PI / 180;
+            const sin1 = Math.sin (dlat / 2.0);
+            const sin2 = Math.sin (dlon / 2.0);
+            const a = sin1 * sin1 + Math.cos (rlat1) * Math.cos (rlat2) * sin2 * sin2;
+            const c = 2.0 * Math.atan2 (Math.sqrt (a), Math.sqrt (1.0 - a));
             return (c * 6378.137e3); // earth radius in meters
         }
 
@@ -1039,39 +975,38 @@ define
          * where the id, mRID, name or aliasName match the user enetered text.
          * If some are found, highlight the first and zoom to the area that
          * contains the element.
-         * @function search
-         * @memberOf module:cimmap
          */
         function search ()
         {
-            var text;
+            let text;
             if (null != CIM_Data)
-                if ("" != (text = document.getElementById ("search_text").value.trim ()))
+                if ("" !== (text = document.getElementById ("search_text").value.trim ()))
                 {
-                    var match = [];
-                    for (var id in CIM_Data.Element)
-                    {
-                        var obj = CIM_Data.Element[id];
-                        if (!deleted (obj))
+                    const match = [];
+                    for (let id in CIM_Data.Element)
+                        if (CIM_Data.Element.hasOwnProperty (id))
                         {
-                            if (obj.id == text)
-                                match.push (id);
-                            else if (obj.mRID == text)
-                                match.push (id);
-                            else if (obj.name == text)
-                                match.push (id);
-                            else if (obj.aliasName == text)
-                                match.push (id);
+                            const obj = CIM_Data.Element[id];
+                            if (!deleted (obj))
+                            {
+                                if (obj.id === text)
+                                    match.push (id);
+                                else if (obj.mRID === text)
+                                    match.push (id);
+                                else if (obj.name === text)
+                                    match.push (id);
+                                else if (obj.aliasName === text)
+                                    match.push (id);
+                            }
                         }
-                    }
                     if (match.length > 0)
                     {
                         match.sort ();
-                        var list = match;
-                        var mrid = match[0];
-                        var current = null;
-                        var bb = null;
-                        for (var i = 0; i < list.length; i++)
+                        const list = match;
+                        let mrid = match[0];
+                        let current = null;
+                        let bb = null;
+                        for (let i = 0; i < list.length; i++)
                         {
                             bb = get_bounding_box (match[i]);
                             if (null != bb)
@@ -1083,25 +1018,25 @@ define
                         if (null != current)
                         {
                             mrid = current;
-                            var bounds = TheMap.getBounds ();
-                            var zoom = TheMap.getZoom ();
-                            var x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
-                            var y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
+                            const bounds = TheMap.getBounds ();
+                            const zoom = TheMap.getZoom ();
+                            const x = (bb[1][0] - bb[0][0]) / 2.0 + bb[0][0];
+                            const y = (bb[1][1] - bb[0][1]) / 2.0 + bb[0][1];
                             // resolution (meters/pixel) = (Math.cos (y * Math.PI / 180.0) * 2.0 * Math.PI * 6378.137e3) / (512 * Math.pow (2, zoom));
                             // zoom = Math.log2 ((Math.cos (y * Math.PI / 180.0) * 2.0 * Math.PI * 6378.137e3) / (512 * resolution)) ;
-                            var margin = 20; // pixels
-                            var pixels = TheMap.getContainer ().clientHeight - 2 * margin;
-                            var height = measure (bb[0][0], bb[0][1], bb[0][0], bb[1][1])
-                            var new_zoom = Math.log2 ((Math.cos (y * Math.PI / 180.0) * 2.0 * Math.PI * 6378.137e3) / (512 * (height / pixels)));
+                            const margin = 20; // pixels
+                            const pixels = TheMap.getContainer ().clientHeight - 2 * margin;
+                            const height = measure (bb[0][0], bb[0][1], bb[0][0], bb[1][1]);
+                            let new_zoom = Math.log2 ((Math.cos (y * Math.PI / 180.0) * 2.0 * Math.PI * 6378.137e3) / (512 * (height / pixels)));
                             // if we're not zoomed in already (showing symbols icons from 17 and deeper)
                             // or the object bounds are not within the map bounds,
                             // refocus the map
-                            new_zoom = Math.min (Math.max (17, zoom), new_zoom)
+                            new_zoom = Math.min (Math.max (17, zoom), new_zoom);
                             if ((bb[0][0] < bounds.getWest ()) ||
                                 (bb[1][0] > bounds.getEast ()) ||
                                 (bb[0][1] < bounds.getSouth ()) ||
                                 (bb[1][1] > bounds.getNorth ()) ||
-                                (new_zoom != zoom))
+                                (new_zoom !== zoom))
                             {
                                 TheMap.easeTo
                                 (
@@ -1127,8 +1062,6 @@ define
          * @summary Redraw the map.
          * @description Given some CIM data has been loaded, redraws the map.
          * @param {object} event - optional, the vector tile checkbox change event
-         * @function redraw
-         * @memberOf module:cimmap
          */
         function redraw (event)
         {
@@ -1139,13 +1072,12 @@ define
          * @summary Checks for execution from file://.
          * @description Determines if the script is running from an active server or just loaded passively from file.
          * @returns {boolean} <code>true</code> if the code is running from file://
-         * @memberOf module:cimmap
          */
         function running_local ()
         {
             return (
-                ("null" == window.location.origin) // Firefox
-             || ("file://" == window.location.origin) // chromium
+                ("null" === window.location.origin) // Firefox
+             || ("file://" === window.location.origin) // chromium
                 )
         }
 
@@ -1154,12 +1086,10 @@ define
          * @description Fix the brain-dead handling by mapbox for local URLs.
          * @param {string} url - the URL to massage.
          * @param {string} resourcetype - the resource type <em>not used</em>
-         * @function toURL
-         * @memberOf module:cimmap
          */
         function toURL (url, resourcetype)
         {
-            var _url = url.startsWith (":///") ? url.substring (3) : url;
+            let _url = url.startsWith (":///") ? url.substring (3) : url;
             if (_url.startsWith ("/"))
                _url = running_local () ? _url.substring (1) : window.location.origin + window.location.pathname + _url.substring (1);
             return ({ url: _url });
@@ -1167,9 +1097,9 @@ define
 
         function poink (x, y)
         {
-            var width = 4;
-            var height = 4;
-            var features = TheMap.queryRenderedFeatures
+            const width = 4;
+            const height = 4;
+            const features = TheMap.queryRenderedFeatures
             (
                 [
                   [x - width / 2, y - height / 2],
@@ -1177,12 +1107,12 @@ define
                 ],
                 {}
             );
-            if ((null != features) && (0 != features.length))
+            if ((null != features) && (0 !== features.length))
             {
-                var selection = [];
-                for (var i = 0; i < features.length; i++)
+                const selection = [];
+                for (let i = 0; i < features.length; i++)
                 {
-                    var mrid = features[i].properties.mRID;
+                    const mrid = features[i].properties.mRID;
                     if (null != mrid && !selection.includes (mrid))
                         selection.push (mrid);
                 }
@@ -1199,23 +1129,23 @@ define
         function default_mousedown_listener (event)
         {
             // only do something if no key is pressed
-            var key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
+            const key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
             if (!key)
             {
-                var buttons = event.originalEvent.buttons;
+                const buttons = event.originalEvent.buttons;
                 //    0  : No button or un-initialized
                 //    1  : Primary button (usually left)
                 //    2  : Secondary button (usually right)
-                var leftbutton = 0 != (buttons & 1);
-                var rightbutton = 0 != (buttons & 2);
+                const leftbutton = 0 !== (buttons & 1);
+                const rightbutton = 0 !== (buttons & 2);
                 if (leftbutton)
                     poink (event.point.x, event.point.y);
                 else if (rightbutton)
                 {
                     //<i id="" class="fa fa-map-marker"></i>
-                    var element = document.createElement ("i");
+                    const element = document.createElement ("i");
                     element.className = "fa fa-map-marker fa-2x";
-                    var marker = new mapboxgl.Marker (element)
+                    const marker = new mapboxgl.Marker (element)
                       .setLngLat (event.lngLat)
                       .addTo (event.target);
                 }
@@ -1225,7 +1155,7 @@ define
         function default_touchstart_listener (event)
         {
             // only do something if no key is pressed
-            var key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
+            const key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
             if (!key)
                 poink (event.point.x, event.point.y);
         }
@@ -1256,8 +1186,6 @@ define
          * @param nav the navigation control for the map
          * @param themer the theme setting control for the map
          * @param editor the CIM data editor
-         * @function initialize
-         * @memberOf module:cimmap
          */
         function initialize (nav, themer, editor)
         {
@@ -1293,15 +1221,12 @@ define
          * @summary Shut down the map.
          * @description Clean up and close the map.
          * @param {object} event - <em>not used</em>
-         * @function terminate
-         * @memberOf module:cimmap
          */
         function terminate (event)
         {
             if (null != TheMap)
             {
-                var map = TheMap;
-                map.remove ();
+                TheMap.remove ();
                 document.getElementById ("map").innerHTML = "";
             }
         }

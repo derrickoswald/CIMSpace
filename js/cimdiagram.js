@@ -4,15 +4,14 @@
 "use strict";
 define
 (
-    ["cim"],
+    [],
     /**
      * @summary Diagram display and editing functions.
      * @description Edit cim:Diagram objects.
-     * @name cimdiagram
      * @exports cimdiagram
      * @version 1.0
      */
-    function (cim)
+    function ()
     {
         class CIMDiagram
         {
@@ -247,7 +246,7 @@ define
                 return ("bottom-left");
             }
 
-            close (event)
+            close ()
             {
                 this._map.removeControl (this);
             }
@@ -270,8 +269,8 @@ define
 
             clearDiagram ()
             {
-                var text = this._container.getElementsByClassName ("card-text")[0];
-                var footer = this._container.getElementsByClassName ("card-footer")[0];
+                const text = this._container.getElementsByClassName ("card-text")[0];
+                const footer = this._container.getElementsByClassName ("card-footer")[0];
                 text.innerHTML = "";
                 footer.innerHTML = "";
                 footer.style.display = "none";
@@ -279,15 +278,15 @@ define
 
             renderObject (diagram, object, points, element, style)
             {
-                var ret = ""
+                let ret = "";
                 if (object.isPolygon)
                 {
-                    var l = points.length - 1;
+                    const l = points.length - 1;
                     if (l > 2)
                     {
-                        if ((points[0].xPosition != points[l].xPosition) || (points[0].yPosition != points[l].yPosition))
+                        if ((points[0].xPosition !== points[l].xPosition) || (points[0].yPosition !== points[l].yPosition))
                             points.push (points[0]);
-                        var coordinates = points.map (point => "" + point.xPosition + "," + point.yPosition);
+                        const coordinates = points.map (point => "" + point.xPosition + "," + point.yPosition);
                         ret =
                             "<g class='Polygon' id='cimdiagram-" + element.id + "'>" +
                             "<path d='M " + coordinates.join (" ") + " Z' style='fill:#f93333;fill-opacity:0.1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1' />" +
@@ -296,20 +295,20 @@ define
                 }
                 else
                 {
-                    var x = points[0].xPosition;
-                    var y = points[0].yPosition;
+                    const x = points[0].xPosition;
+                    const y = points[0].yPosition;
                     switch (element.cls)
                     {
                         case "ACLineSegment":
-                            var offsetx = this._diagram_extents[0][0];
-                            var offsety = this._diagram_extents[1][1];
-                            var scalex = this._SIZEX / (this._diagram_extents[1][0] - this._diagram_extents[0][0]);
-                            var scaley = this._SIZEY / (this._diagram_extents[0][1] - this._diagram_extents[1][1]);
+                            const offsetx = this._diagram_extents[0][0];
+                            const offsety = this._diagram_extents[1][1];
+                            let scalex = this._SIZEX / (this._diagram_extents[1][0] - this._diagram_extents[0][0]);
+                            let scaley = this._SIZEY / (this._diagram_extents[0][1] - this._diagram_extents[1][1]);
                             if (Math.abs (scalex) < Math.abs (scaley))
                                 scaley = Math.abs (scalex) * Math.sign (scaley);
                             else
                                 scalex = Math.abs (scaley) * Math.sign (scalex);
-                            var coordinates = points.map (point => "" + (point.xPosition - offsetx) * scalex + "," + (point.yPosition - offsety) * scaley);
+                            const coordinates = points.map (point => "" + (point.xPosition - offsetx) * scalex + "," + (point.yPosition - offsety) * scaley);
                             ret =
                                 "<g class='Line' id='cimdiagram-" + element.id + "'>" +
                                 "<path d='M " + coordinates.join (" ") + "' style='stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none'>" +
@@ -346,7 +345,7 @@ define
                         case "EnergyConsumer":
                             ret =
                                 "<g class='EnergyConsumerIcon' id='cimdiagram-" + element.id + "' transform='translate(" + x + "," + y + ") rotate(0)'>" +
-                                (element.PSRType == "PSRType_StreetLight" ? this._street_light : this._energy_consumer) +
+                                (element.PSRType === "PSRType_StreetLight" ? this._street_light : this._energy_consumer) +
                                 "</g>";
                             break;
                         case "Connector":
@@ -380,18 +379,18 @@ define
 
             renderDiagram (diagram, objects, points)
             {
-                var text = this._container.getElementsByClassName ("card-text")[0];
-                var footer = this._container.getElementsByClassName ("card-footer")[0];
+                const text = this._container.getElementsByClassName ("card-text")[0];
+                const footer = this._container.getElementsByClassName ("card-footer")[0];
 
-                var svgs = objects.map (
+                const svgs = objects.map (
                     (obj, index) =>
                     {
-                        var element = this._cimmap.get ("Element", obj.IdentifiedObject);
-                        var style = this._cimmap.get ("DiagramObjectStyle", obj.DiagramObjectStyle);
+                        const element = this._cimmap.get ("Element", obj.IdentifiedObject);
+                        const style = this._cimmap.get ("DiagramObjectStyle", obj.DiagramObjectStyle);
                         return (this.renderObject (diagram, obj, points[index], element, style));
                     }
                 );
-                var text_template =
+                const text_template =
                     `
                         <div class="app-diagram">
                             <svg width="` + this._SIZEX + `" height="` + this._SIZEY + `" style="border: 1px solid black;">
@@ -409,7 +408,7 @@ define
                         </div>
                     `;
                 text.innerHTML = text_template.replace (`<g class="edges"></g>`, svgs.join ("\n"));
-                var footer_template =
+                const footer_template =
                     `
                         <button id="diagram_save" type="button" class="btn btn-primary">Save</button>
                     `;
@@ -424,7 +423,7 @@ define
                 this._cimmap.forAll ("DiagramObject",
                     obj =>
                     {
-                        if (obj.Diagram == diagram.id)
+                        if (obj.Diagram === diagram.id)
                             this._diagram_objects.push (obj)
                     }
                 );
@@ -433,11 +432,11 @@ define
                 this._diagram_points = this._diagram_objects.map (
                     obj =>
                     {
-                        var points = [];
+                        const points = [];
                         this._cimmap.forAll ("DiagramObjectPoint",
                             point =>
                             {
-                                if (point.DiagramObject == obj.id)
+                                if (point.DiagramObject === obj.id)
                                     points.push (point);
                             }
                         );
@@ -446,10 +445,10 @@ define
                     }
                 );
                 // ToDo: should only do this once when the diagram is loaded
-                var xmin = Number.MAX_VALUE;
-                var xmax = Number.MIN_VALUE;
-                var ymin = Number.MAX_VALUE;
-                var ymax = Number.MIN_VALUE;
+                let xmin = Number.MAX_VALUE;
+                let xmax = Number.MIN_VALUE;
+                let ymin = Number.MAX_VALUE;
+                let ymax = Number.MIN_VALUE;
                 this._cimmap.forAll ("DiagramObjectPoint",
                     point =>
                     {
@@ -471,7 +470,7 @@ define
                     this._cimmap.forAll ("Diagram",
                         obj =>
                         {
-                            if (obj.IdentifiedObject == mrid)
+                            if (obj.IdentifiedObject === mrid)
                                 if (!this._diagrams.includes (mrid))
                                     this._diagrams.push (mrid)
                         }
@@ -479,7 +478,7 @@ define
                     this._cimmap.forAll ("DiagramObject",
                         obj =>
                         {
-                            if (obj.IdentifiedObject == mrid)
+                            if (obj.IdentifiedObject === mrid)
                                 if (!this._diagrams.includes (obj.Diagram))
                                     this._diagrams.push (obj.Diagram)
                         }
@@ -496,7 +495,7 @@ define
             {
                 if (null != current_feature)
                 {
-                    var diagrams = this.getDiagramsFor (current_feature);
+                    const diagrams = this.getDiagramsFor (current_feature);
                     if (diagrams.length > 0)
                         this.drawDiagram (diagrams[0]);
                     else

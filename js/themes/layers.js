@@ -17,16 +17,15 @@ define
     {
         /**
          * Create a line layer object.
-         * @param {String} id - the layer id
-         * @param {String} source - the data source
-         * @param {String} color - the line color
-         * @param {Any[]} filter - optional filter to apply to the lines
+         * @param {string} id - the layer id
+         * @param {string} source - the data source
+         * @param {string|Object} color - the line color
+         * @param {Object[]} [filter] - optional filter to apply to the lines
          * @returns {Object} the layer
-         * @function line_layer
          */
         function line_layer (id, source, color, filter)
         {
-            var ret =
+            const ret =
                 {
                     id: id,
                     type: "line",
@@ -50,16 +49,15 @@ define
 
         /**
          * Create a circle layer object from zoom level 14 to 17.
-         * @param {String} id - the layer id
-         * @param {String} source - the data source
-         * @param {String} color - the symbol color
-         * @param {Any[]} filter - optional filter to apply to the points
+         * @param {string} id - the layer id
+         * @param {string} source - the data source
+         * @param {string|Object} color - the symbol color
+         * @param {Object[]} [filter] - optional filter to apply to the points
          * @returns {Object} the layer
-         * @function circle_layer
          */
         function circle_layer (id, source, color, filter)
         {
-            var ret =
+            const ret =
                 {
                     id: id,
                     type: "circle",
@@ -84,17 +82,16 @@ define
 
         /**
          * Create a symbol layer object.
-         * @param {String} id - the layer id
-         * @param {String} source - the data source
-         * @param {String} color - the symbol color
-         * @param {Any[]} filter - optional filter to apply to the points
+         * @param {string} id - the layer id
+         * @param {string} source - the data source
+         * @param {string|Object} color - the symbol color
+         * @param {Object[]} [filter] - optional filter to apply to the points
          * @param hidelabels - if <code>true</code>
          * @returns {Object} the layer
-         * @function symbol_layer
          */
         function symbol_layer (id, source, color, filter, hidelabels)
         {
-            var textlayout =
+            const textlayout =
                 {
                     "text-field": "{name}",
                     "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -109,7 +106,7 @@ define
                             stops: [[17, 4], [18, 8], [19, 12], [20, 14], [21, 18], [22, 24], [23, 30], [24, 38]]
                         }
                 };
-            var layout =
+            const layout =
                 {
                     "icon-image": "{symbol}",
                     "icon-allow-overlap": true,
@@ -120,12 +117,12 @@ define
                     "icon-rotate": { type: "identity", property: "rotation" },
                     "icon-offset": [0, 0]
                 };
-            var textpaint =
+            const textpaint =
                 {
                     "text-color": color
                 };
 
-            var paint =
+            const paint =
                 {
                     "icon-color": color
                 };
@@ -135,7 +132,7 @@ define
                 Object.assign (paint, textpaint);
             }
 
-            var ret =
+            const ret =
                 {
                     id: id,
                     type: "symbol",
@@ -153,16 +150,15 @@ define
 
         /**
          * Create a circle layer object.
-         * @param {String} id - the layer id
-         * @param {String} source - the data source
-         * @param {String} color - the symbol color
-         * @param {Any[]} filter - optional filter to apply to the points
+         * @param {string} id - the layer id
+         * @param {string} source - the data source
+         * @param {string|Object} color - the symbol color
+         * @param {Object[]} [filter] - optional filter to apply to the points
          * @returns {Object} the layer
-         * @function circle_layer
          */
         function full_circle_layer (id, source, color, filter)
         {
-            var ret =
+            const ret =
                 {
                     id: id,
                     type: "circle",
@@ -183,9 +179,20 @@ define
             return (ret);
         }
 
+        /**
+         * Create a polygon layer object.
+         *
+         * @param {string} id - the layer id
+         * @param {string} source - the data source
+         * @param {string|Object} color - the fill color
+         * @param {string|Object} edge_color - the edge color
+         * @param {Object[]} [filter] - optional filter to apply to the labels
+         * @param {string} pattern - the fill pattern
+         * @returns {Object} the layer
+         */
         function polygon_layer (id, source, color, edge_color, filter, pattern)
         {
-            var paint =
+            const paint =
                 {
                     "fill-opacity": 0.25,
                     "fill-color": color,
@@ -194,7 +201,7 @@ define
                 };
             if (pattern)
                 paint["fill-pattern"] = pattern;
-            var ret =
+            const ret =
                 {
                     id: id,
                     type: "fill",
@@ -208,9 +215,20 @@ define
             return (ret);
         }
 
+        /**
+         * Create a label layer object.
+         *
+         * @param {string} id - the layer id
+         * @param {string} source - the data source
+         * @param {string} placement - the label placement (e.g. on 'point' or 'line-center')
+         * @param {string} text - the text content function
+         * @param {string|Object} color - the symbol color
+         * @param {Object[]} [filter] - optional filter to apply to the labels
+         * @returns {Object} the layer
+         */
         function label_layer (id, source, placement, text, color, filter)
         {
-            var ret =
+            const ret =
                 {
                     id: id,
                     type: "symbol",

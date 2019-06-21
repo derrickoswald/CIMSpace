@@ -10,7 +10,6 @@ define
      * @summary Coordinates control.
      * @description Custom UI element for displaying mouse coordinates.
      * usage: <mouse-coordinates></mouse-coordinates>
-     * @name cimcoordinates
      * @exports cimcoordinates
      * @version 2.0
      */
@@ -23,11 +22,11 @@ define
                 super ();
                 const shadow = this.attachShadow ({mode: 'open'});
                 // create a text element to display the coordinates
-                var text = document.createElement ("span");
+                const text = document.createElement ("span");
                 text.id = "coordinates";
                 text.innerHTML = "0.000000,0.000000";
                 // apply some CSS to the host element
-                var style = document.createElement ("style");
+                const style = document.createElement ("style");
                 style.textContent = `
                 :host
                 {
@@ -74,9 +73,9 @@ define
 
             mousemove_listener (event)
             {
-                var lnglat = event.lngLat;
-                var lng = lnglat.lng.toPrecision (7);
-                var lat = lnglat.lat.toPrecision (7);
+                const lnglat = event.lngLat;
+                const lng = lnglat.lng.toPrecision (7);
+                const lat = lnglat.lat.toPrecision (7);
                 this.shadowRoot.getElementById ("coordinates").innerHTML = lng + "," + lat;
             }
         }
@@ -85,4 +84,4 @@ define
 
         return (CIMCoordinates);
     }
-)
+);

@@ -9,7 +9,6 @@ define
     /**
      * @summary Wrap a Promise and add a cancel method.
      * @description Provides a way to cancel an asynchronous Promise.
-     * @name cancelablepromise
      * @exports cancelablepromise
      * @version 1.0
      */
@@ -25,7 +24,7 @@ define
                 this._promise = new Promise (
                     (resolve, reject) =>
                     {
-                        this._then = (value) => this._iscanceled ? reject ( {canceled: true} ) : resolve (value)
+                        this._then = (value) => this._iscanceled ? reject ( {canceled: true} ) : resolve (value);
                         promise.then (this._then);
                         promise.catch ((error) => this._iscanceled ? reject ( {canceled: true} ) : reject (error));
                     }
@@ -50,7 +49,7 @@ define
 
         return (CancelablePromise);
     }
-)
+);
 
 //function echo (msg) { console.log (msg); }
 //function echofun (msg) { return (function () { console.log (msg); }) }

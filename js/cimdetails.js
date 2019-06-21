@@ -9,7 +9,6 @@ define
     /**
      * @summary Details control.
      * @description UI element for displaying element details.
-     * @name cimdetails
      * @exports cimdetails
      * @version 1.0
      */
@@ -71,20 +70,20 @@ define
                 return ("top-left");
             }
 
-            on_map_resize (event)
+            on_map_resize ()
             {
-                var map_height = document.getElementById ("map").clientHeight;
-                var bottom_margin = 10;
-                var well_padding = 20;
-                var logo_height = 18;
-                var max_height = map_height - bottom_margin - well_padding - logo_height;
+                const map_height = document.getElementById ("map").clientHeight;
+                const bottom_margin = 10;
+                const well_padding = 20;
+                const logo_height = 18;
+                const max_height = map_height - bottom_margin - well_padding - logo_height;
                 this._container.style.maxHeight = max_height.toString () + "px";
-                var guts = this._container.getElementsByClassName ("card-text")[0];
+                const guts = this._container.getElementsByClassName ("card-text")[0];
                 if (guts)
                     guts.style.maxHeight = (max_height - this._frame_height).toString () + "px";
             }
 
-            close (event)
+            close ()
             {
                 this._map.removeControl (this);
             }
@@ -102,31 +101,31 @@ define
 
             detail_text ()
             {
-                var cimmap = this._cimmap;
-                var mrid = cimmap.get_selected_feature ();
-                var feature = cimmap.get ("Element", mrid);
+                const cimmap = this._cimmap;
+                const mrid = cimmap.get_selected_feature ();
+                const feature = cimmap.get ("Element", mrid);
                 if (!feature)
                     return ("");
-                var cls = cim.class_map (feature);
-                var template = cls.prototype.template ();
-                var text = mustache.render (template, JSON.parse (JSON.stringify (feature, (key, value) => (typeof value === 'boolean') ? value.toString () : value)));
-                var conducting = cimmap.get ("ConductingEquipment", mrid);
+                const cls = cim.class_map (feature);
+                const template = cls.prototype.template ();
+                let text = mustache.render (template, JSON.parse (JSON.stringify (feature, (key, value) => (typeof value === 'boolean') ? value.toString () : value)));
+                const conducting = cimmap.get ("ConductingEquipment", mrid);
                 if (conducting)
                 {
-                    var terms = cimmap.fetch ("Terminal", terminal => mrid == terminal.ConductingEquipment);
-                    if (0 != terms.length)
+                    const terms = cimmap.fetch ("Terminal", terminal => mrid === terminal.ConductingEquipment);
+                    if (0 !== terms.length)
                     {
-                        var connected = terms.map (
+                        const connected = terms.map (
                             function (terminal)
                             {
-                                var node = terminal.ConnectivityNode;
-                                var equipment = [];
+                                const node = terminal.ConnectivityNode;
+                                const equipment = [];
                                 if (null != node)
                                     cimmap.forAll ("Terminal",
                                         terminal =>
                                         {
-                                            if (node == terminal.ConnectivityNode) // same node
-                                                if (mrid != terminal.ConductingEquipment) // not the same equipment
+                                            if (node === terminal.ConnectivityNode) // same node
+                                                if (mrid !== terminal.ConductingEquipment) // not the same equipment
                                                     if (cimmap.get ("ConductingEquipment", terminal.ConductingEquipment)) // and not deleted
                                                         equipment.push (terminal.ConductingEquipment);
                                         }
@@ -134,17 +133,17 @@ define
                                 return ({ terminal: terminal, equipment: equipment });
                             }
                         );
-                        if (connected.some (obj => 0 != obj.equipment.length))
+                        if (connected.some (obj => 0 !== obj.equipment.length))
                         {
                             text = text + "<div>Connected:</div>\n";
-                            for (var i = 0; i < connected.length; i++)
+                            for (let i = 0; i < connected.length; i++)
                             {
-                                var terminal = connected[i].terminal.mRID;
-                                var equipment = connected[i].equipment;
-                                if (0 != equipment.length)
+                                const terminal = connected[i].terminal.mRID;
+                                const equipment = connected[i].equipment;
+                                if (0 !== equipment.length)
                                 {
-                                    var links = "";
-                                    for (var j = 0; j < equipment.length; j++)
+                                    let links = "";
+                                    for (let j = 0; j < equipment.length; j++)
                                         links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + equipment[j] + "\"); }); return false;'>" + equipment[j] + "</a>";
                                     text = text + "<div>" + terminal + ": " + links + "</div>\n";
                                 }
@@ -155,25 +154,26 @@ define
 
                 // add links to other selected elements
                 // other features in the current selection are provided as links that make them the current feature
-                var mrids = cimmap.get_selected_features ();
+                const mrids = cimmap.get_selected_features ();
                 if (null != mrids)
-                    if (mrids.some (id => id != mrid))
+                    if (mrids.some (id => id !== mrid))
                     {
                         text = text + "<div>Selected:</div>\n";
-                        for (var i = 0; i < mrids.length; i++)
+                        for (let i = 0; i < mrids.length; i++)
                         {
-                            if (mrids[i] != mrid)
+                            if (mrids[i] !== mrid)
                                 text = text + "<div><a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + mrids[i] + "\"); }); return false;'>" + mrids[i] + "</a></div>\n";
                         }
                     }
 
                 // add details from simulation or analysis
-                var toHTML = cimmap.get_themer ().getTheme ().toHTML;
+                const theme = cimmap.get_themer ().getTheme ();
+                const toHTML = theme.toHTML;
                 if (toHTML)
                 {
-                    var html = toHTML.bind (cimmap.get_themer ().getTheme ()) (feature);
-                    if ("" != html)
-                        text = text + "<div>" + cimmap.get_themer ().getTheme ().getTitle () + ":</div>\n" + html;
+                    const html = toHTML.bind (theme) (feature);
+                    if ("" !== html)
+                        text = text + "<div>" + theme.getTitle () + ":</div>\n" + html;
                 }
 
                 return (text);
@@ -186,7 +186,7 @@ define
                     this._container.getElementsByClassName ("info_title")[0].innerHTML = "Info";
                     this._container.getElementsByClassName ("card-text")[0].innerHTML = "";
                     this._container.getElementsByClassName ("card-subtitle")[0].innerHTML = "";
-                    var mrid = this._cimmap.get_selected_feature ();
+                    const mrid = this._cimmap.get_selected_feature ();
                     if (mrid)
                     {
                         this._container.getElementsByClassName ("info_title")[0].innerHTML = mrid;
@@ -202,33 +202,33 @@ define
             {
                 if (this._cimmap.show_streetview ())
                 {
-                    var mrid = this._cimmap.get_selected_feature ();
-                    var feature = this._cimmap.get ("Element", mrid);
+                    const mrid = this._cimmap.get_selected_feature ();
+                    const feature = this._cimmap.get ("Element", mrid);
                     if (feature.Location)
                     {
-                        var location = this._cimmap.get ("Location", feature.Location);
-                        if (location.CoordinateSystem == "wgs84")
+                        const location = this._cimmap.get ("Location", feature.Location);
+                        if (location.CoordinateSystem === "wgs84")
                         {
-                            var id = location.id;
-                            var coordinates = [];
+                            const id = location.id;
+                            let coordinates = [];
                             this._cimmap.forAll ("PositionPoint",
                                 point =>
                                 {
-                                    if (point.Location == id)
+                                    if (point.Location === id)
                                         coordinates[Number (point.sequenceNumber)] = [point.xPosition, point.yPosition];
                                 }
                             );
-                            if (0 != coordinates.length)
+                            if (0 !== coordinates.length)
                             {
                                 if ("undefined" == typeof (coordinates[0]))
                                     coordinates = coordinates.slice (1);
-                                var self = this;
+                                const self = this;
                                 streetview.urlFor (coordinates[0][0], coordinates[0][1]).then (
                                     function (url)
                                     {
-                                        if (-1 != url.indexOf ("pano"))
+                                        if (-1 !== url.indexOf ("pano"))
                                         {
-                                            var link = "<a href='" + url + "' target='_blank'>StreetView</a>";
+                                            const link = "<a href='" + url + "' target='_blank'>StreetView</a>";
                                             self._container.getElementsByClassName ("card-subtitle")[0].innerHTML = link;
                                         }
                                     }
@@ -251,4 +251,4 @@ define
 
         return (CIMDetails);
     }
-)
+);

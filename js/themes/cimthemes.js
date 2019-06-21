@@ -20,25 +20,27 @@ define
             {
                 this._themes = [];
                 this._template =
-                    "<div class='card'>\n" +
-                    "  <div class='card-body'>\n" +
-                    "    <h5 class='card-title'>Themes\n" +
-                    "      <button type='button' class='close' aria-label='Close'>\n" +
-                    "        <span aria-hidden='true'>&times;</span>\n" +
-                    "      </button>\n" +
-                    "    </h5>\n" +
-                    "{{#themes}}\n" +
-                    "    <div class='form-check'>\n" +
-                    "      <label class='form-check-label'>\n" +
-                    "        <input id='{{name}}' class='form-check-input' type='radio' name='themeRadios' value='{{name}}' aria-describedby='{{name}}Description'>\n" +
-                    "        {{title}}\n" +
-                    "      </label>\n" +
-                    "    </div>\n" +
-                    "    <em><small id='{{name}}Description' class='form-text text-muted'>\n" +
-                    "    {{description}}\n" +
-                    "    </small></em>\n" +
-                    "{{/themes}}\n" +
-                    "</div>\n";
+`
+<div class='card'>
+  <div class='card-body'>
+    <h5 class='card-title'>Themes
+      <button type='button' class='close' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+      </button>
+    </h5>
+{{#themes}}
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <input id='{{name}}' class='form-check-input' type='radio' name='themeRadios' value='{{name}}' aria-describedby='{{name}}Description'>
+        {{title}}
+      </label>
+    </div>
+    <em><small id='{{name}}Description' class='form-text text-muted'>
+    {{description}}
+    </small></em>
+{{/themes}}
+</div>
+`;
             }
 
             onAdd (map)
@@ -61,7 +63,7 @@ define
                 this._container.innerHTML = mustache.render (this._template, { themes: list });
                 if (0 !== this._themes.length)
                 {
-                    var current = this._theme.getName ();
+                    const current = this._theme.getName ();
                     let list = this._container.getElementsByTagName ("input");
                     for (let i = 0; i < list.length; i++)
                         if (current === list[i].value)
@@ -86,7 +88,7 @@ define
                 return ("bottom-right");
             }
 
-            close (event)
+            close ()
             {
                 this._map.removeControl (this);
             }
@@ -108,15 +110,15 @@ define
              */
             addTheme (theme, set)
             {
-                var name = theme.getName ();
-                var index = -1;
-                for (var i = 0; i < this._themes.length; i++)
-                    if (name == this._themes[i].getName ())
+                const name = theme.getName ();
+                let index = -1;
+                for (let i = 0; i < this._themes.length; i++)
+                    if (name === this._themes[i].getName ())
                     {
                         index = i;
                         break;
                     }
-                if (-1 == index)
+                if (-1 === index)
                     this._themes.push (theme);
                 else
                     theme = this._themes[index];
@@ -133,15 +135,15 @@ define
 
             removeTheme (theme)
             {
-                var name = theme.getName ();
-                var index = -1;
-                for (var i = 0; i < this._themes.length; i++)
-                    if (name == this._themes[i].getName ())
+                const name = theme.getName ();
+                let index = -1;
+                for (let i = 0; i < this._themes.length; i++)
+                    if (name === this._themes[i].getName ())
                     {
                         index = i;
                         break;
                     }
-                if (-1 != index)
+                if (-1 !== index)
                     this._themes.splice (index, 1);
             }
 
@@ -152,13 +154,13 @@ define
 
             theme_change (event)
             {
-                var legend = this._theme.getLegend ().visible ();
+                const legend = this._theme.getLegend ().visible ();
                 if (legend)
                     this._map.removeControl (this._theme.getLegend ());
                 this._theme.remove_theme ();
-                var name = event.target.value;
-                for (var i = 0; i < this._themes.length; i++)
-                    if (name == this._themes[i].getName ())
+                const name = event.target.value;
+                for (let i = 0; i < this._themes.length; i++)
+                    if (name === this._themes[i].getName ())
                     {
                         this._theme = this._themes[i];
                         break;
@@ -186,4 +188,4 @@ define
 
         return (ThemeControl);
     }
-)
+);

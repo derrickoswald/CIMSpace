@@ -31,79 +31,6 @@ define
 
         let TheExtents;
 
-        /**
-         * @summary Gather position points into locations.
-         * @description Convert sequences of position points into locations with coordinate array.
-         * As a side effect, computes the minimum bounding rectangle and stores it in TheExtents.
-         * @param {object} data - the hash table object of CIM classes by class name
-         * @param {object} options layer options, e.g. show_internal_features
-         * @return {object} object of arrays stored by Location.id
-         * @function get_locations
-         * @memberOf module:icon_theme
-         */
-        function get_locations (data, options)
-        {
-            const ret = {};
-
-            const points = data.PositionPoint;
-            const locations = data.Location;
-            // list of locations to exclude
-            const blacklist = {};
-            const extents = { xmin: Number.MAX_VALUE, ymin: Number.MAX_VALUE, xmax: -Number.MAX_VALUE, ymax: -Number.MAX_VALUE };
-
-            if (!options.show_internal_features)
-            {
-                for (let location in locations)
-                    if (locations.hasOwnProperty (location) && (locations[location].CoordinateSystem === "pseudo_wgs84"))
-                        blacklist[location] = true;
-            }
-            for (let point in points)
-                if (points.hasOwnProperty (point))
-                {
-                    const p = points[point];
-                    if (!p.EditDisposition || (p.EditDisposition !== "delete"))
-                    {
-                        const location = p.Location;
-                        if ((null != location) && !blacklist[location])
-                        {
-                            if (null == ret[location])
-                                ret[location] = [];
-                            const seq = Number (p.sequenceNumber);
-                            if (null != seq)
-                            {
-                                const x = Number (p.xPosition);
-                                const y = Number (p.yPosition);
-                                ret[location][seq * 2] = x;
-                                ret[location][seq * 2 + 1] = y;
-                                if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
-                                {
-                                    if (x < extents.xmin)
-                                        extents.xmin = x;
-                                    if (x > extents.xmax)
-                                        extents.xmax = x;
-                                    if (y < extents.ymin)
-                                        extents.ymin = y;
-                                    if (y > extents.ymax)
-                                        extents.ymax = y;
-                                }
-                            }
-                        }
-                    }
-                }
-
-            // fix non-zero based sequence numbers
-            for (let property in ret)
-                if (ret.hasOwnProperty (property))
-                {
-                    const a = ret[property];
-                    if (("undefined" == typeof (a[0])) && ("undefined" == typeof (a[1])))
-                        ret[property] = a.slice (2);
-                }
-
-            TheExtents = extents;
-            return (ret);
-        }
-
         class IconTheme
         {
             constructor()
@@ -205,8 +132,6 @@ define
              * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates
              * @param {Object} options - options for processing
              * @return {Object} with points, lines and polygons feature collections
-             * @function process_spatial_objects
-             * @memberOf module:icon_theme
              */
             process_spatial_objects (data, locations, options)
             {
@@ -414,11 +339,80 @@ define
              * For subclasses to override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - options for processing
-             * @function process_spatial_objects_again
-             * @memberOf module:icon_theme
              */
             process_spatial_objects_again (data, options)
             {
+            }
+
+            /**
+             * @summary Gather position points into locations.
+             * @description Convert sequences of position points into locations with coordinate array.
+             * As a side effect, computes the minimum bounding rectangle and stores it in TheExtents.
+             * @param {object} data - the hash table object of CIM classes by class name
+             * @param {object} options layer options, e.g. show_internal_features
+             * @return {object} object of arrays stored by Location.id
+             */
+            get_locations (data, options)
+            {
+                const ret = {};
+
+                const points = data.PositionPoint;
+                const locations = data.Location;
+                // list of locations to exclude
+                const blacklist = {};
+                const extents = { xmin: Number.MAX_VALUE, ymin: Number.MAX_VALUE, xmax: -Number.MAX_VALUE, ymax: -Number.MAX_VALUE };
+
+                if (!options.show_internal_features)
+                {
+                    for (let location in locations)
+                        if (locations.hasOwnProperty (location) && (locations[location].CoordinateSystem === "pseudo_wgs84"))
+                            blacklist[location] = true;
+                }
+                for (let point in points)
+                    if (points.hasOwnProperty (point))
+                    {
+                        const p = points[point];
+                        if (!p.EditDisposition || (p.EditDisposition !== "delete"))
+                        {
+                            const location = p.Location;
+                            if ((null != location) && !blacklist[location])
+                            {
+                                if (null == ret[location])
+                                    ret[location] = [];
+                                const seq = Number (p.sequenceNumber);
+                                if (null != seq)
+                                {
+                                    const x = Number (p.xPosition);
+                                    const y = Number (p.yPosition);
+                                    ret[location][seq * 2] = x;
+                                    ret[location][seq * 2 + 1] = y;
+                                    if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
+                                    {
+                                        if (x < extents.xmin)
+                                            extents.xmin = x;
+                                        if (x > extents.xmax)
+                                            extents.xmax = x;
+                                        if (y < extents.ymin)
+                                            extents.ymin = y;
+                                        if (y > extents.ymax)
+                                            extents.ymax = y;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                // fix non-zero based sequence numbers
+                for (let property in ret)
+                    if (ret.hasOwnProperty (property))
+                    {
+                        const a = ret[property];
+                        if (("undefined" == typeof (a[0])) && ("undefined" == typeof (a[1])))
+                            ret[property] = a.slice (2);
+                    }
+
+                TheExtents = extents;
+                return (ret);
             }
 
             /**
@@ -426,15 +420,13 @@ define
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - options for processing
              * @return {Object} with points, lines and polygons feature collections
-             * @function make_geojson
-             * @memberOf module:icon_theme
              */
             make_geojson (data, options)
             {
                 let ret;
                 if (null != data)
                 {
-                    const locations = get_locations (data, options);
+                    const locations = this.get_locations (data, options);
                     ret = this.process_spatial_objects (data, locations, options);
                     this.process_spatial_objects_again (data, options);
                 }
@@ -448,8 +440,6 @@ define
 
             /**
              * Remove layers and sources from the map.
-             * @function remove_theme
-             * @memberOf module:icon_theme
              */
             remove_theme ()
             {
@@ -472,8 +462,6 @@ define
              * @param {Object} cimmap - the CIM map object
              * @param {Object} options - object with rendering options, e.g.
              *   show_internal_features flag - render internal features
-             * @function make_theme
-             * @memberOf module:icon_theme
              */
             make_theme (cimmap, options)
             {

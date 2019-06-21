@@ -27,8 +27,6 @@ define
          * @see {@link http://monsur.hossa.in/2012/07/20/utf-8-in-javascript.html}
          * @param {String} str - the string to encode
          * @returns {String} UTF-8 encoded string
-         * @function encode_utf8
-         * @memberOf module:cim
          */
         function encode_utf8 (str)
         {
@@ -57,8 +55,6 @@ define
         /**
          * Get the registered classes.
          * @return the map between class name and ES6 class
-         * @function classes
-         * @memberOf module:cim
          */
         function classes ()
         {
@@ -69,8 +65,6 @@ define
          * Get the class for a given object.
          * @param {Object} obj the JavaScript bucket-o-properies' object.
          * @return the ES6 class for the object
-         * @function class_map
-         * @memberOf module:cim
          */
         function class_map (obj)
         {
@@ -82,8 +76,6 @@ define
          * @param {String} xml - the string to parse
          * @param {Object} context - the CIM reading context
          * @returns {Object} the CIM reading context
-         * @function read_xml
-         * @memberOf module:cim
          */
         function read_xml (xml, context)
         {
@@ -153,8 +145,6 @@ define
          * @param {Number} start - the position in the string to start parsing at
          * @param {Object} context - the CIM reading context
          * @returns {Object} the CIM reading context
-         * @function read_full_xml
-         * @memberOf module:cim
          */
         function read_full_xml (xml, start, context)
         {
@@ -234,8 +224,6 @@ define
          * @param {Object} context - the state of the parser
          * @param {Function} resolve - the function to call to resolve the promise
          * @param {Function} reject - the function to call to reject the promise
-         * @function read_xml_promise
-         * @memberOf module:cim
          */
         function read_xml_promise (blob, start, context, resolve, reject)
         {
@@ -290,8 +278,6 @@ define
          * @description Processes a file reading the blob as UTF8.
          * @param {Blob[]} blobs - array of blobs to read
          * @return a Promise that resolves with the parsing context (elements in context.parsed)
-         * @function read_xml_blobs
-         * @memberOf module:cim
          */
         function read_xml_blobs (blobs)
         {
@@ -350,8 +336,6 @@ define
          * (as returned from the parse context: context.parsed.Element[obj.mRID] = obj).
          * @param {Function} filter - predicate to determine if the element should be written or not.
          * @returns {String[]} The XML text as an array of Strings.
-         * @function write_elements
-         * @memberOf module:cim
          */
         function write_elements (elements, filter)
         {
@@ -385,8 +369,6 @@ define
          * @param {String} [description = js export] - the description string for the CIM header.
          * @param {String} [date = now] - the created string for the CIM header.
          * @returns {String} The XML text.
-         * @function write_xml
-         * @memberOf module:cim
          */
         function write_xml (elements, difference_model, only_new, about, description, date)
         {

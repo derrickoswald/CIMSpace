@@ -9,7 +9,6 @@ define
     /**
      * @summary Point and line digitizer.
      * @description functions to digitize a point or a line
-     * @name digitizer
      * @exports digitizer
      * @version 1.0
      */
@@ -26,43 +25,44 @@ define
 
             popup (html, position)
             {
-                var lnglat = position || this._map.getCenter ();
-                var popup = new mapboxgl.Popup ();
-                popup.setLngLat (lnglat)
-                popup.setHTML (html)
+                const lnglat = position || this._map.getCenter ();
+                const popup = new mapboxgl.Popup ();
+                popup.setLngLat (lnglat);
+                popup.setHTML (html);
                 popup.addTo (this._map);
                 return (popup);
             }
 
             distance (a, b)
             {
-                var dx = a.lng - b.lng;
-                var dy = a.lat - b.lat;
+                const dx = a.lng - b.lng;
+                const dy = a.lat - b.lat;
                 return (Math.sqrt (dx * dx + dy * dy));
             }
 
             /**
              * The distance of p to line (p0,p1).
              * @param p LngLat the point to test
-             * @param p0, p1 LngLat the coordinates of the line endpoints
-             * @return the perpendicular point on (p0,p1) and
+             * @param {Array.<number>} p0 LngLat the coordinates of the line startpoint
+             * @param {Array.<number>} p1 LngLat the coordinates of the line endpoint
+             * @return {Object} the perpendicular point on (p0,p1) and
              * the value of t (the corresponding value for the parametric line).
              * Note: if t < 0.0 or t > 1.0 the perpendicular point is not on the line segment.
              * See: http://geomalgorithms.com/a02-_lines.html
              */
             point_line_distance (p, p0, p1)
             {
-                var ret;
-                var l = [p1.lng - p0.lng, p1.lat - p0.lat]; // L(t) = p0 + t*l
-                var l2 = l[0] * l[0] + l[1] * l[1];
-                if (l2 == 0.0)
+                let ret;
+                const l = [p1.lng - p0.lng, p1.lat - p0.lat]; // L(t) = p0 + t*l
+                const l2 = l[0] * l[0] + l[1] * l[1];
+                if (l2 === 0.0)
                     ret = { valid: false };
                 else
                 {
-                    var w = [p.lng - p0.lng, p.lat - p0.lat];
-                    var t = (w[0] * l[0] + w[1] * l[1]) / l2;
-                    var perp = [p0.lng + t * l[0], p0.lat + t * l[1]];
-                    var point = mapboxgl.LngLat.convert (perp);
+                    const w = [p.lng - p0.lng, p.lat - p0.lat];
+                    const t = (w[0] * l[0] + w[1] * l[1]) / l2;
+                    const perp = [p0.lng + t * l[0], p0.lat + t * l[1]];
+                    const point = mapboxgl.LngLat.convert (perp);
                     ret = { point: point, t: t, distance: this.distance (p, point), valid: true }
                 }
                 return (ret);
@@ -70,10 +70,10 @@ define
 
             snap (event)
             {
-                var ret = event.lngLat
-                var width = 4;
-                var height = 4;
-                var features = this._map.queryRenderedFeatures
+                let ret = event.lngLat;
+                const width = 4;
+                const height = 4;
+                const features = this._map.queryRenderedFeatures
                 (
                     [
                       [event.point.x - width / 2, event.point.y - height / 2],
@@ -81,33 +81,33 @@ define
                     ],
                     {}
                 );
-                if ((null != features) && (0 != features.length))
+                if ((null != features) && (0 !== features.length))
                 {
-                    var mrid = this._mrid;
-                    var candidates = [];
-                    for (var i = 0; i < features.length; i++)
+                    const mrid = this._mrid;
+                    const candidates = [];
+                    for (let i = 0; i < features.length; i++)
                     {
-                        var feature = features[i];
-                        if (feature.properties.mRID && (mrid != feature.properties.mRID)) // only our features and not the current one
+                        const feature = features[i];
+                        if (feature.properties.mRID && (mrid !== feature.properties.mRID)) // only our features and not the current one
                         {
-                            var geometry = feature.geometry;
-                            if ("Point" == geometry.type)
+                            const geometry = feature.geometry;
+                            if ("Point" === geometry.type)
                             {
-                                var candidate = mapboxgl.LngLat.convert (geometry.coordinates);
+                                const candidate = mapboxgl.LngLat.convert (geometry.coordinates);
                                 candidates.push ({ distance: this.distance (ret, candidate), feature: feature, point: candidate, type: "POINT" });
                             }
-                            else if ("LineString" == geometry.type)
+                            else if ("LineString" === geometry.type)
                             {
-                                for (var j = 0; j < geometry.coordinates.length; j++)
+                                for (let j = 0; j < geometry.coordinates.length; j++)
                                 {
-                                    var candidate = mapboxgl.LngLat.convert (geometry.coordinates[j]);
+                                    const candidate = mapboxgl.LngLat.convert (geometry.coordinates[j]);
                                     candidates.push ({ distance: this.distance (ret, candidate), feature: feature, point: candidate, type: "ENDPOINT" });
                                 }
-                                for (var j = 0; j < geometry.coordinates.length - 1; j++)
+                                for (let j = 0; j < geometry.coordinates.length - 1; j++)
                                 {
-                                    var p0 = mapboxgl.LngLat.convert (geometry.coordinates[j]);
-                                    var p1 = mapboxgl.LngLat.convert (geometry.coordinates[j + 1]);
-                                    var pl = this.point_line_distance (ret, p0, p1);
+                                    const p0 = mapboxgl.LngLat.convert (geometry.coordinates[j]);
+                                    const p1 = mapboxgl.LngLat.convert (geometry.coordinates[j + 1]);
+                                    const pl = this.point_line_distance (ret, p0, p1);
                                     if (pl.valid)
                                         if ((pl.t >= 0.0) && (pl.t <= 1.0))
                                             candidates.push ({ distance: pl.distance, feature: feature, point: pl.point, type: "NEAR" });
@@ -117,20 +117,20 @@ define
                     }
                     if (0 < candidates.length)
                     {
-                        var threshold = Number.POSITIVE_INFINITY;
+                        let threshold = Number.POSITIVE_INFINITY;
                         // set up the threshold as ten times the "NEAR"est point
-                        candidates.forEach (candidate => { if ((candidate.type == "NEAR") && (candidate.distance < threshold)) threshold = candidate.distance; });
-                        if (threshold != Number.POSITIVE_INFINITY)
+                        candidates.forEach (candidate => { if ((candidate.type === "NEAR") && (candidate.distance < threshold)) threshold = candidate.distance; });
+                        if (threshold !== Number.POSITIVE_INFINITY)
                             threshold = threshold * 10.0;
                         // discard anything over the threshold
-                        var culled = candidates.filter (candidate => candidate.distance <= threshold);
+                        const culled = candidates.filter (candidate => candidate.distance <= threshold);
                         // choose in order of POINT, ENDPOINT, NEAR
-                        var chosen = null;
-                        culled.forEach (candidate => { if ((candidate.type == "POINT") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
+                        let chosen = null;
+                        culled.forEach (candidate => { if ((candidate.type === "POINT") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
                         if (null == chosen)
-                            culled.forEach (candidate => { if ((candidate.type == "ENDPOINT") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
+                            culled.forEach (candidate => { if ((candidate.type === "ENDPOINT") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
                         if (null == chosen)
-                            culled.forEach (candidate => { if ((candidate.type == "NEAR") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
+                            culled.forEach (candidate => { if ((candidate.type === "NEAR") && ((null == chosen) || (candidate.distance < chosen.distance))) chosen = candidate; });
                         if (null != chosen)
                         {
                             console.log ("snap " + chosen.type + " " + chosen.feature.properties.cls + ":" + chosen.feature.properties.mRID + " " + chosen.distance + " " + chosen.point);
@@ -146,12 +146,12 @@ define
             {
                 event.originalEvent.preventDefault ();
                 event.originalEvent.stopPropagation ();
-                var buttons = event.originalEvent.buttons;
-                var leftbutton = 0 != (buttons & 1);
+                const buttons = event.originalEvent.buttons;
+                const leftbutton = 0 !== (buttons & 1);
                 if (leftbutton)
                 {
-                    var lnglat = this.snap (event);
-                    var feature = points.features[points.features.length - 1];
+                    const lnglat = this.snap (event);
+                    const feature = points.features[points.features.length - 1];
                     feature.geometry.coordinates = [lnglat.lng, lnglat.lat];
                     this._map.getSource ("edit points").setData (points);
                     callback_success (feature);
@@ -189,12 +189,12 @@ define
                 this._mrid = obj.mRID;
 
                 // get the current GeoJSON
-                var options =
+                const options =
                     {
                         show_internal_features: this._cimmap.show_internal_features ()
                     };
-                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (features, options);
-                var points = geo.points;
+                const geo = this._cimmap.get_themer ().getTheme ().make_geojson (features, options);
+                const points = geo.points;
                 points.features.push
                 (
                     {
@@ -238,7 +238,7 @@ define
 
             async digitize_point_wait (obj, features, text, callback_success, callback_failure)
             {
-                var status = null;
+                let status = null;
                 function cb_success (feature)
                 {
                     status = "success";
@@ -253,7 +253,7 @@ define
                 {
                     return (new Promise (resolve => setTimeout (resolve, ms)));
                 }
-                this.digitize_point (obj, features, text, cb_success, cb_failure)
+                this.digitize_point (obj, features, text, cb_success, cb_failure);
                 do
                     await sleep (500);
                 while (null == status);
@@ -261,7 +261,7 @@ define
 
             point (obj, features, prompt)
             {
-                var text = prompt || "<h1>Digitize point geometry</h1>";
+                const text = prompt || "<h1>Digitize point geometry</h1>";
                 function abort ()
                 {
                     if (this._popup)
@@ -278,12 +278,12 @@ define
             {
                 event.originalEvent.preventDefault ();
                 event.originalEvent.stopPropagation ();
-                var feature = lines.features[lines.features.length - 1];
-                var coordinates = feature.geometry.coordinates;
-                var lnglat = this.snap (event);
-                var buttons = event.originalEvent.buttons;
-                var leftbutton = 0 != (buttons & 1);
-                var rightbutton = 0 != (buttons & 2);
+                const feature = lines.features[lines.features.length - 1];
+                const coordinates = feature.geometry.coordinates;
+                const lnglat = this.snap (event);
+                const buttons = event.originalEvent.buttons;
+                const leftbutton = 0 !== (buttons & 1);
+                const rightbutton = 0 !== (buttons & 2);
 
                 if (leftbutton)
                 {
@@ -305,18 +305,18 @@ define
             {
                 event.originalEvent.preventDefault ();
                 event.originalEvent.stopPropagation ();
-                var lnglat = event.lngLat;
-                var feature = lines.features[lines.features.length - 1];
+                const lnglat = event.lngLat;
+                const feature = lines.features[lines.features.length - 1];
                 // ToDo: snap to point or end of line
                 feature.transient = [lnglat.lng, lnglat.lat];
             }
 
-            animate_line (lines, timestamp)
+            animate_line (lines)
             {
-                var feature = lines.features[lines.features.length - 1];
+                const feature = lines.features[lines.features.length - 1];
                 if (null != feature.transient)
                 {
-                    var coordinates = feature.geometry.coordinates;
+                    const coordinates = feature.geometry.coordinates;
                     coordinates.push (feature.transient);
                     if (coordinates.length >= 2)
                         this._map.getSource ("edit lines").setData (lines);
@@ -363,12 +363,12 @@ define
                 this._mrid = obj.mRID;
 
                 // get the current GeoJSON
-                var options =
+                const options =
                     {
                         show_internal_features: this._cimmap.show_internal_features ()
                     };
-                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (features, options);
-                var lines = geo.lines;
+                const geo = this._cimmap.get_themer ().getTheme ().make_geojson (features, options);
+                const lines = geo.lines;
 
                 // add an empty line
                 lines.features.push
@@ -415,7 +415,7 @@ define
 
             async digitize_line_wait (obj, features, text, callback_success, callback_failure)
             {
-                var status = null;
+                let status = null;
                 function cb_success (feature)
                 {
                     status = "success";
@@ -438,7 +438,7 @@ define
 
             line (obj, features, prompt)
             {
-                var text = prompt || "<h1>Digitize linear geometry<br>Right-click to finish</h1>";
+                const text = prompt || "<h1>Digitize linear geometry<br>Right-click to finish</h1>";
                 function abort ()
                 {
                     if (this._popup)
@@ -455,4 +455,4 @@ define
 
         return (Digitizer);
     }
-)
+);

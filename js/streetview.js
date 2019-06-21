@@ -17,12 +17,12 @@ define
      */
     function (util)
     {
-        var data_properties_regex = new RegExp ("[\\s\\S]*<data_properties ([\\s\\S]*?)<\\/data_properties>[\\s\\S]*");
-        var pano_id_regex = new RegExp ("pano_id=(\"|')([\\s\\S]*?)\\1");
-        var latitude_regex = new RegExp ("lat=(\"|')([\\s\\S]*?)\\1");
-        var longitude_regex = new RegExp ("lng=(\"|')([\\s\\S]*?)\\1");
-        var projection_properties_regex = new RegExp ("[\\s\\S]*<projection_properties ([\\s\\S]*?)\\/>[\\s\\S]*");
-        var pano_yaw_regex = new RegExp ("pano_yaw_deg=(\"|')([\\s\\S]*?)\\1");
+        const data_properties_regex = new RegExp ("[\\s\\S]*<data_properties ([\\s\\S]*?)<\\/data_properties>[\\s\\S]*");
+        const pano_id_regex = new RegExp ("pano_id=([\"'])([\\s\\S]*?)\\1");
+        const latitude_regex = new RegExp ("lat=([\"'])([\\s\\S]*?)\\1");
+        const longitude_regex = new RegExp ("lng=([\"'])([\\s\\S]*?)\\1");
+        const projection_properties_regex = new RegExp ("[\\s\\S]*<projection_properties ([\\s\\S]*?)\\/>[\\s\\S]*");
+        const pano_yaw_regex = new RegExp ("pano_yaw_deg=([\"'])([\\s\\S]*?)\\1");
 
         /**
          * Get the nearest panoramic point.
@@ -36,24 +36,24 @@ define
             return (new Promise (
                 (resolve, reject) =>
                 {
-                    var ret =
+                    const ret =
                     {
                         pano_id: "",
                         pano_lon: 0.0,
                         pano_lat: 0.0,
                         pano_yaw: 0.0
-                    }
+                    };
                     // form the url
-                    var url = "http://maps.google.com/cbk?output=xml&ll=" + lat + "," + lon;
-                    var xmlhttp = util.createCORSRequest ("GET", url);
+                    const url = "http://maps.google.com/cbk?output=xml&ll=" + lat + "," + lon;
+                    const xmlhttp = util.createCORSRequest ("GET", url);
                     xmlhttp.onreadystatechange = function ()
                     {
-                        if (4 == xmlhttp.readyState)
+                        if (4 === xmlhttp.readyState)
                         {
-                            if (200 == xmlhttp.status || 201 == xmlhttp.status || 202 == xmlhttp.status)
+                            if (200 === xmlhttp.status || 201 === xmlhttp.status || 202 === xmlhttp.status)
                             {
-                                var result;
-                                var xml = xmlhttp.response;
+                                let result;
+                                const xml = xmlhttp.response;
 
                                 //    <?xml version="1.0" encoding="UTF-8" ?>
                                 //    <panorama>
@@ -80,7 +80,7 @@ define
                                 //    </panorama>
                                 if (null != (result = data_properties_regex.exec (xml)))
                                 {
-                                    var guts = result[1];
+                                    const guts = result[1];
                                     if (null != (result = pano_id_regex.exec (guts)))
                                         ret.pano_id = result[2];
                                     if (null != (result = latitude_regex.exec (guts)))
@@ -90,7 +90,7 @@ define
                                 }
                                 if (null != (result = projection_properties_regex.exec (xml)))
                                 {
-                                    var guts = result[1];
+                                    const guts = result[1];
                                     if (null != (result = pano_yaw_regex.exec (guts)))
                                         ret.pano_yaw = Number (result[2]);
                                 }
@@ -121,10 +121,10 @@ define
                     getPanoPoint (lon, lat).then (
                         function (pano) // { pano_id: "oVi3A6P1RPZxp7YZryxtGw", pano_lat: 47.116508, pano_lon: 7.252622, pano_yaw: 264 }
                         {
-                            var url;
-                            if ("" != pano.pano_id)
+                            let url;
+                            if ("" !== pano.pano_id)
                             {
-                                var azimuth = Math.atan2 (lat - pano.pano_lat, lon - pano.pano_lon);
+                                let azimuth = Math.atan2 (lat - pano.pano_lat, lon - pano.pano_lon);
                                 azimuth = azimuth * 180.0 / Math.PI; // convert to degrees
                                 // OK, this is a bit tricky, and it took a while to figure out.
                                 // I envisage me facing north with a cylinder of photographic paper around my head.

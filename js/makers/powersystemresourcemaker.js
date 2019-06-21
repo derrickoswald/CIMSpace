@@ -9,7 +9,6 @@ define
     /**
      * @summary Make a CIM object at the PSR level.
      * @description Base class for CIM object makers
-     * @name powersystemresourcemaker
      * @exports powersystemresourcemaker
      * @version 1.0
      */
@@ -26,16 +25,17 @@ define
 
             static classes ()
             {
-                var ret = [];
-                var cimclasses = cim.classes ();
-                for (var name in cimclasses)
-                {
-                    var cls = cimclasses[name];
-                    var data = {};
-                    var obj = new cls ({}, data);
-                    if (data.PowerSystemResource && !(data.Substation || data.ConductingEquipment))
-                        ret.push (name);
-                }
+                const ret = [];
+                const cimclasses = cim.classes ();
+                for (let name in cimclasses)
+                    if (cimclasses.hasOwnProperty (name))
+                    {
+                        const cls = cimclasses[name];
+                        const data = {};
+                        const obj = new cls ({}, data);
+                        if (data.PowerSystemResource && !(data.Substation || data.ConductingEquipment))
+                            ret.push (name);
+                    }
                 ret.sort ();
                 return (ret);
             }
@@ -57,32 +57,32 @@ define
 
             render_parameters (proto)
             {
-                var classes = this.constructor.classes ();
-                var view = { classes: classes, isHidden: function () { return (classes.length <= 1); }, isSelected: function () { return (proto && (proto.cls == this)); } };
+                const classes = this.constructor.classes ();
+                const view = { classes: classes, isHidden: function () { return (classes.length <= 1); }, isSelected: function () { return (proto && (proto.cls === this)); } };
                 return (mustache.render (this.class_template (), view));
             }
 
             submit_parameters ()
             {
-                var cls = document.getElementById ("psr_class").value;
-                var id = this._cimedit.get_cimmrid ().nextIdFor (cls);
+                const cls = document.getElementById ("psr_class").value;
+                const id = this._cimedit.get_cimmrid ().nextIdFor (cls);
                 return ({ cls: cls, id: id });
             }
 
             get_connectivity_for_equipment (equipment, point)
             {
-                var ret = {};
+                const ret = {};
 
-                var ordered = [];
-                this._cimmap.forAll ("PositionPoint", point => { if (point.Location == equipment.Location) ordered[point.sequenceNumber] = point; });
+                let ordered = [];
+                this._cimmap.forAll ("PositionPoint", point => { if (point.Location === equipment.Location) ordered[point.sequenceNumber] = point; });
                 // here we un-screw up the sequence numbers on the PositionPoint elements
                 if ("undefined" == typeof (ordered[0]))
                     ordered = ordered.slice (1);
 
                 // heuristic to get the sequence number of the terminal
-                var index = ordered.indexOf (point);
-                var sequence;
-                if (0 == index)
+                const index = ordered.indexOf (point);
+                let sequence;
+                if (0 === index)
                     sequence = 1;
                 else if (index < ordered.length / 2)
                     sequence = 1;
@@ -90,18 +90,18 @@ define
                     sequence = 2;
 
                 // get the terminal with that sequence number and the total number of terminals
-                var n = 0;
-                var terminal = null;
-                var default_terminal = null;
+                let n = 0;
+                let terminal = null;
+                let default_terminal = null;
                 this._cimmap.forAll ("Terminal",
                     t =>
                     {
-                        if (t.ConductingEquipment == equipment.id)
+                        if (t.ConductingEquipment === equipment.id)
                         {
                             n = n + 1;
                             if (null == default_terminal)
                                 default_terminal = t;
-                            if (t.sequenceNumber == sequence)
+                            if (t.sequenceNumber === sequence)
                                 terminal = t;
                         }
                     }
@@ -117,9 +117,9 @@ define
                     if (terminal.TopologicalNode)
                         ret.TopologicalNode = terminal.TopologicalNode;
                 }
-                else if (0 != n)
+                else if (0 !== n)
                 {
-                    console.log ("connectivity not found using default terminal for " + equipment.cls + ":" + equipment.id)
+                    console.log ("connectivity not found using default terminal for " + equipment.cls + ":" + equipment.id);
                     if (equipment.BaseVoltage)
                         ret.BaseVoltage = equipment.BaseVoltage;
                     if (default_terminal.ConnectivityNode)
@@ -133,19 +133,19 @@ define
 
             get_best_connectivity_for_equipment (equipments, point)
             {
-                var ret = {};
+                let ret = {};
 
                 function eq (equipment) { return (this.get_connectivity_for_equipment (equipment, point)); }
-                var list = equipments.map (eq.bind (this)).filter (function (connectivity) { return (connectivity.ConnectivityNode); });
-                if (0 == list.length)
+                const list = equipments.map (eq.bind (this)).filter (function (connectivity) { return (connectivity.ConnectivityNode); });
+                if (0 === list.length)
                     // no ConnectivityNode just pick the first new one
                     ret = list[0];
-                else if (1 == list.length)
+                else if (1 === list.length)
                     // one ConnectivityNode, use that
                     ret = list[0];
                 else
                     // if they are all the same ConnectivityNode we're still OK
-                    if (list.every (function (connectivity) { return (connectivity.ConnectivityNode == list[0].ConnectivityNode); }))
+                    if (list.every (function (connectivity) { return (connectivity.ConnectivityNode === list[0].ConnectivityNode); }))
                         ret = list[0];
                     else
                     {
@@ -158,14 +158,14 @@ define
 
             get_connectivity_for_point (not_obj, point)
             {
-                var ret = null;
-                var location = this._cimmap.get ("Location", point.Location);
-                var matches = [];
+                let ret = null;
+                const location = this._cimmap.get ("Location", point.Location);
+                const matches = [];
                 if (location)
                     this._cimmap.forAll ("ConductingEquipment",
                         equipment =>
                         {
-                            if (equipment.Location == location.id && (not_obj.id != equipment.id))
+                            if (equipment.Location === location.id && (not_obj.id !== equipment.id))
                             {
                                 matches.push (equipment);
                                 console.log ("connectivity found to " + equipment.cls + ":" + equipment.id);
@@ -174,7 +174,7 @@ define
                     );
                 // if there are none, we have a problem Houston
                 // if there is only one, use the best terminal
-                if (1 == matches.length)
+                if (1 === matches.length)
                     ret = this.get_connectivity_for_equipment (matches[0], point);
                 else if (1 < matches.length)
                     // if there are many pieces of equipment with the same location, try our best to pick up the connectivity
@@ -185,23 +185,23 @@ define
 
             get_best_connectivity_for_points (not_obj, points)
             {
-                var ret = {};
+                let ret = {};
 
                 function gc (point) { return (this.get_connectivity_for_point (not_obj, point)); }
-                var list = points.map (gc.bind (this)).filter (x => null != x);
-                if (0 != list.length)
+                const list = points.map (gc.bind (this)).filter (x => null != x);
+                if (0 !== list.length)
                 {
-                    var existing = list.filter (function (connectivity) { return (connectivity.ConnectivityNode); });
-                    var uniques = existing.map (JSON.stringify).filter (function (value, index, self) { return (self.indexOf (value) === index); }).map (JSON.parse);
-                    if (0 == uniques.length)
+                    const existing = list.filter (function (connectivity) { return (connectivity.ConnectivityNode); });
+                    const uniques = existing.map (JSON.stringify).filter (function (value, index, self) { return (self.indexOf (value) === index); }).map (JSON.parse);
+                    if (0 === uniques.length)
                         // no ConnectivityNode just pick the first new one
                         ret = list[0];
-                    else if (1 == uniques.length)
+                    else if (1 === uniques.length)
                         // one ConnectivityNode, use that
                         ret = uniques[0];
                     else
                         // if they are all the same ConnectivityNode we're still OK
-                        if (uniques.every (function (connectivity) { return (connectivity.ConnectivityNode == uniques[0].ConnectivityNode); }))
+                        if (uniques.every (function (connectivity) { return (connectivity.ConnectivityNode === uniques[0].ConnectivityNode); }))
                             ret = uniques[0];
                         else
                         {
@@ -215,17 +215,17 @@ define
 
             get_connectivity (lng, lat, not_obj)
             {
-                var ret = null;
+                let ret = null;
 
                 // get PositionPoint with matching coordinates
-                var matches = [];
+                const matches = [];
                 this._cimmap.forAll ("PositionPoint",
                     point =>
                     {
-                        var x = point.xPosition;
-                        var y = point.yPosition;
-                        var dx = lng - x;
-                        var dy = lat - y;
+                        const x = point.xPosition;
+                        const y = point.yPosition;
+                        const dx = lng - x;
+                        const dy = lat - y;
                         if (dx * dx + dy * dy < 1e-12) // ToDo: a parameter somehow?
                         {
                             matches.push (point);
@@ -235,7 +235,7 @@ define
                 );
                 // if there are no matches, bail out
                 // if there is only one, use that one
-                if (1 == matches.length)
+                if (1 === matches.length)
                     ret = this.get_connectivity_for_point (not_obj, matches[0]);
                 else if (1 < matches.length)
                     ret = this.get_best_connectivity_for_points (not_obj, matches);
@@ -245,7 +245,7 @@ define
 
             new_connectivity (id, container)
             {
-                var c =
+                const c =
                 {
                     EditDisposition: "new",
                     cls: "ConnectivityNode",
@@ -264,10 +264,10 @@ define
 
             make ()
             {
-                var parameters = this.submit_parameters ();
-                var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
-                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                const parameters = this.submit_parameters ();
+                const obj = this._cimedit.create_from (parameters);
+                const cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                const lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
                 cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_psr.bind (this)));
                 return (cpromise);
@@ -276,4 +276,4 @@ define
 
         return (PowerSystemResourceMaker);
     }
-)
+);

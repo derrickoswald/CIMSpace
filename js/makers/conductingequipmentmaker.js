@@ -9,7 +9,6 @@ define
     /**
      * @summary Make a CIM object at the ConductingEquipment level.
      * @description Digitizes a point and makes a ConductingEquipment element with connectivity.
-     * @name conductingequipmentmaker
      * @exports conductingequipmentmaker
      * @version 1.0
      */
@@ -24,23 +23,24 @@ define
 
             static classes ()
             {
-                var ret = [];
-                var cimclasses = cim.classes ();
-                for (var name in cimclasses)
-                {
-                    var cls = cimclasses[name];
-                    var data = {};
-                    var obj = new cls ({}, data);
-                    if (data.ConductingEquipment && !(data.Switch || data.Conductor || data.PowerTransformer))
-                        ret.push (name);
-                }
+                const ret = [];
+                const cimclasses = cim.classes ();
+                for (let name in cimclasses)
+                    if (cimclasses.hasOwnProperty (name))
+                    {
+                        const cls = cimclasses[name];
+                        const data = {};
+                        const obj = new cls ({}, data);
+                        if (data.ConductingEquipment && !(data.Switch || data.Conductor || data.PowerTransformer))
+                            ret.push (name);
+                    }
                 ret.sort ();
                 return (ret);
             }
 
             render_parameters (proto)
             {
-                var view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls == this)); } };
+                const view = { classes: this.constructor.classes (), isSelected: function () { return (proto && (proto.cls === this)); } };
                 return (mustache.render (this.class_template (), view ));
             }
 
@@ -51,7 +51,7 @@ define
 
             medium_voltage ()
             {
-                return ("BaseVoltage_16000");
+                return ("BaseVoltage_20000");
             }
 
             high_voltage ()
@@ -59,15 +59,23 @@ define
                 return ("BaseVoltage_150000");
             }
 
+            make_voltage (voltage, description)
+            {
+                const v = Number (voltage.substr (voltage.indexOf ("_") + 1));
+                const k = v / 1000.0;
+                const n = (k >= 1.0) ? k.toString() + "kV" : v + "V";
+                return (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: voltage, mRID: voltage, name: n, description: description, nominalVoltage: k }, this._cimedit.new_features ()));
+            }
+
             ensure_voltages ()
             {
-                var ret = [];
-                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_150000"))
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_150000", mRID: "BaseVoltage_150000", name: "150kV", description: "high voltage", nominalVoltage: 150.0 }, this._cimedit.new_features ()));
-                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_20000"))
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_20000", mRID: "BaseVoltage_20000", name: "20kV", description: "medium voltage", nominalVoltage: 20.0 }, this._cimedit.new_features ()));
-                if (!this._cimmap.get ("BaseVoltage", "BaseVoltage_400"))
-                    ret.push (new Core.BaseVoltage ({ EditDisposition: "new", cls: "BaseVoltage", id: "BaseVoltage_400", mRID: "BaseVoltage_400", name: "400V", description: "low voltage", nominalVoltage: 0.4 }, this._cimedit.new_features ()));
+                const ret = [];
+                if (!this._cimmap.get ("BaseVoltage", this.high_voltage ()))
+                    ret.push (this.make_voltage (this.high_voltage (), "high voltage"));
+                if (!this._cimmap.get ("BaseVoltage", this.medium_voltage ()))
+                    ret.push (this.make_voltage (this.medium_voltage (), "medium voltage"));
+                if (!this._cimmap.get ("BaseVoltage", this.low_voltage ()))
+                    ret.push (this.make_voltage (this.low_voltage (), "low voltage"));
                 return (ret);
             }
 
@@ -83,7 +91,7 @@ define
 
             ensure_status ()
             {
-                var ret = [];
+                const ret = [];
                 if (!this._cimmap.get ("SvStatus", "in_use"))
                     ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use", description: "Status for equipment in use.", inService: true }, this._cimedit.new_features ()));
                 if (!this._cimmap.get ("SvStatus", "not_in_use"))
@@ -93,14 +101,14 @@ define
 
             make_equipment (array)
             {
-                var equipment = array[0];
+                const equipment = array[0];
 
                 // get the position
-                var pp = array.filter (o => o.cls == "PositionPoint")[0];
-                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition), equipment);
+                const pp = array.filter (o => o.cls === "PositionPoint")[0];
+                let connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition), equipment);
                 if (null == connectivity) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", equipment, "_node"));
+                    const node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", equipment, "_node"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
@@ -110,8 +118,8 @@ define
                         equipment.BaseVoltage = connectivity.BaseVoltage;
 
                 // add the terminal
-                var tid = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", equipment, "_terminal");
-                var terminal =
+                const tid = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", equipment, "_terminal");
+                const terminal =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
@@ -138,10 +146,10 @@ define
 
             make ()
             {
-                var parameters = this.submit_parameters ();
-                var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
-                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                const parameters = this.submit_parameters ();
+                const obj = this._cimedit.create_from (parameters);
+                const cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                const lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
                 cpromise.setPromise (lm.make (cpromise.promise (), "wgs84").then (this.make_equipment.bind (this)));
                 return (cpromise);
             }
@@ -149,4 +157,4 @@ define
 
         return (ConductingEquipmentMaker);
     }
-)
+);

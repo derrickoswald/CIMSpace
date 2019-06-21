@@ -9,7 +9,6 @@ define
     /**
      * @summary Make a CIM object at the PowerTransformer level.
      * @description Digitizes a point and makes a PowerTransformer element with ends and connectivity.
-     * @name powertransformermaker
      * @exports powertransformermaker
      * @version 1.0
      */
@@ -24,34 +23,34 @@ define
 
             static classes ()
             {
-                var ret = ["PowerTransformer"]; // to avoid MktTransformer
+                const ret = ["PowerTransformer"]; // to avoid MktTransformer
                 return (ret);
             }
 
             render_parameters (proto)
             {
-                var ret = super.render_parameters (proto);
-                var template =
+                let ret = super.render_parameters (proto);
+                const template =
                 `
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label" for="transformer_name">Transformer</label>
-                      <div class="col-sm-8">
-                        <select id="transformer_name" class="form-control custom-select">
-                {{#trafos}}
-                              <option value="{{id}}"{{#isSelected}} selected{{/isSelected}}>{{name}}</option>
-                {{/trafos}}
-                        </select>
-                      </div>
-                    </div>
-                `;
-                var trafos = this._cimmap.fetch ("PowerTransformerInfo", info => true);
+<div class="form-group row">
+    <label class="col-sm-4 col-form-label" for="transformer_name">Transformer</label>
+    <div class="col-sm-8">
+        <select id="transformer_name" class="form-control custom-select">
+{{#trafos}}
+            <option value="{{id}}"{{#isSelected}} selected{{/isSelected}}>{{name}}</option>
+{{/trafos}}
+        </select>
+    </div>
+</div>
+`;
+                const trafos = this._cimmap.fetch ("PowerTransformerInfo", info => true);
                 function fn ()
                 {
-                    return (proto && (proto.AssetDatasheet == this.id));
+                    return (proto && (proto.AssetDatasheet === this.id));
                 }
-                if (0 != trafos.length)
+                if (0 !== trafos.length)
                 {
-                    var view = { trafos: trafos, isSelected: fn };
+                    const view = { trafos: trafos, isSelected: fn };
                     ret = ret + mustache.render (template, view);
                 }
                 return (ret);
@@ -59,16 +58,16 @@ define
 
             submit_parameters ()
             {
-                var parameters = super.submit_parameters ();
+                const parameters = super.submit_parameters ();
                 parameters.name = parameters.id;
-                var transformer_name = document.getElementById ("transformer_name");
+                let transformer_name = document.getElementById ("transformer_name");
                 if (transformer_name)
                 {
                     parameters.description = transformer_name.options[transformer_name.selectedIndex].text;
                     transformer_name = transformer_name.value;
                     // ToDo: figure out vector group from end infos connectionKind and phaseAngleClock
                     // till then, just check for the most common one:
-                    var info = this._cimmap.get ("PowerTransformerInfo", transformer_name);
+                    const info = this._cimmap.get ("PowerTransformerInfo", transformer_name);
                     if (info && info.description && 0 <= info.description.indexOf ("Dyn5"))
                         parameters.vectorGroup = "Dyn5";
                     parameters.AssetDatasheet = transformer_name; // add the transformer type
@@ -78,27 +77,27 @@ define
 
             make_transformer (array)
             {
-                var trafo = array[0];
+                const trafo = array[0];
 
-                var eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
+                const eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 trafo.normallyInService = true;
                 trafo.SvStatus = eqm.in_use ();
 
                 // ToDo: assume it's the primary?
-                var pp = array.filter (o => o.cls == "PositionPoint")[0];
-                var connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition), trafo);
+                const pp = array.filter (o => o.cls === "PositionPoint")[0];
+                let connectivity = this.get_connectivity (Number (pp.xPosition), Number (pp.yPosition), trafo);
                 if (null == connectivity) // invent a new node if there are none
                 {
-                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", trafo, "_node_1"));
+                    const node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", trafo, "_node_1"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("no connectivity found, created primary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
 
                 // add the terminals
-                var terminals = [];
-                var tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", trafo, "_terminal_1");
-                var terminal1 =
+                const terminals = [];
+                const tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", trafo, "_terminal_1");
+                const terminal1 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
@@ -116,13 +115,13 @@ define
 
                 // add a secondary connectivity node
                 {
-                    var node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", trafo, "_node_2"));
+                    const node = this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", trafo, "_node_2"));
                     array.push (new Core.ConnectivityNode (node, this._cimedit.new_features ()));
                     console.log ("created secondary ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
-                var tid2 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", trafo, "_terminal_2");
-                var terminal2 =
+                const tid2 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", trafo, "_terminal_2");
+                const terminal2 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
@@ -140,34 +139,34 @@ define
                 array = array.concat (eqm.ensure_status ());
 
                 // add power transformer ends
-                var endinfos = null;
+                let endinfos = null;
                 if (trafo.AssetDatasheet)
                 {
-                    var tankinfo = this._cimmap.fetch ("TransformerTankInfo", info => info.PowerTransformerInfo == trafo.AssetDatasheet)
+                    let tankinfo = this._cimmap.fetch ("TransformerTankInfo", info => info.PowerTransformerInfo === trafo.AssetDatasheet);
                     if (tankinfo.length > 0)
                     {
                         tankinfo = tankinfo[0];
-                        endinfos = this._cimmap.fetch ("TransformerEndInfo", info => info.TransformerTankInfo == tankinfo.id);
+                        endinfos = this._cimmap.fetch ("TransformerEndInfo", info => info.TransformerTankInfo === tankinfo.id);
                     }
                 }
 
                 if (endinfos)
                 {
-                    var cimmap = this._cimmap;
-                    var cimedit = this._cimedit;
-                    var ends = endinfos.map (info =>
+                    const cimmap = this._cimmap;
+                    const cimedit = this._cimedit;
+                    const ends = endinfos.map (info =>
                         {
-                            var id = cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_" + info.endNumber);
-                            var voltage = cimmap.fetch ("BaseVoltage", voltage => voltage.nominalVoltage * 1000.0 == info.ratedU); // ToDo: get rid of this 1000 volt multiplier
+                            const id = cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_" + info.endNumber);
+                            let voltage = cimmap.fetch ("BaseVoltage", voltage => voltage.nominalVoltage * 1000.0 === info.ratedU); // ToDo: get rid of this 1000 volt multiplier
                             if (voltage.length <= 0)
                                 voltage = (info.endNumber < 2) ? eqm.medium_voltage () : eqm.low_voltage ();
                             else
                                 voltage = voltage[0].id;
-                            var terminal = terminals[info.endNumber - 1];
-                            var impedance = cimmap.fetch ("TransformerMeshImpedance", mesh => mesh.FromTransformerEndInfo == info.id);
+                            const terminal = terminals[info.endNumber - 1];
+                            let impedance = cimmap.fetch ("TransformerMeshImpedance", mesh => mesh.FromTransformerEndInfo === info.id);
                             // ToDo: copy the TransformerMeshImpedance(s) or not?
                             impedance = (impedance.length > 0) ? impedance[0] : undefined;
-                            var end =
+                            const end =
                                 Object.assign ({},
                                     info,
                                     impedance,
@@ -192,8 +191,8 @@ define
                 }
                 else
                 {
-                    var eid1 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_1");
-                    var end1 =
+                    const eid1 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_1");
+                    const end1 =
                     {
                         EditDisposition: "new",
                         cls: "PowerTransformerEnd",
@@ -207,8 +206,8 @@ define
                         connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.D",
                         PowerTransformer: trafo.id
                     };
-                    var eid2 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_2");
-                    var end2 =
+                    const eid2 = this._cimedit.get_cimmrid ().nextIdFor ("PowerTransformerEnd", trafo, "_end_2");
+                    const end2 =
                     {
                         EditDisposition: "new",
                         cls: "PowerTransformerEnd",
@@ -231,10 +230,10 @@ define
 
             make ()
             {
-                var parameters = this.submit_parameters ();
-                var obj = this._cimedit.create_from (parameters);
-                var cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
-                var lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                const parameters = this.submit_parameters ();
+                const obj = this._cimedit.create_from (parameters);
+                const cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
+                const lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
                 cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_transformer.bind (this)));
                 return (cpromise);
@@ -243,4 +242,4 @@ define
 
         return (PowerTransformerMaker);
     }
-)
+);

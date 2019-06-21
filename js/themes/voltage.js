@@ -48,15 +48,16 @@ define
 	                BaseVoltage_380000: "rgb(0, 0, 255)"
                 };
                 this._items = [];
-                for (var id in this._colormap)
-                    this._items.push (
-                        {
-                            id: id,
-                            description: "<span style='width: 15px; height: 15px; background: " + this._colormap[id] + ";'>&nbsp;&nbsp;&nbsp;</span> " + id,
-                            checked: true,
-                            color: this._colormap[id]
-                        }
-                    );
+                for (let id in this._colormap)
+                    if (this._colormap.hasOwnProperty (id))
+                        this._items.push (
+                            {
+                                id: id,
+                                description: "<span style='width: 15px; height: 15px; background: " + this._colormap[id] + ";'>&nbsp;&nbsp;&nbsp;</span> " + id,
+                                checked: true,
+                                color: this._colormap[id]
+                            }
+                        );
             }
 
             getName ()
@@ -84,29 +85,30 @@ define
 
             getVoltages (data)
             {
-                var voltages = [];
-                for (var id in data.BaseVoltage)
-                    voltages.push (
-                        {
-                            id: id,
-                            name: data.BaseVoltage[id].name,
-                            voltage: data.BaseVoltage[id].nominalVoltage
-                        }
-                    );
+                const voltages = [];
+                for (let id in data.BaseVoltage)
+                    if (data.BaseVoltage.hasOwnProperty (id))
+                        voltages.push (
+                            {
+                                id: id,
+                                name: data.BaseVoltage[id].name,
+                                voltage: data.BaseVoltage[id].nominalVoltage
+                            }
+                        );
                 voltages.sort (function (a, b) { return (a.voltage - b.voltage); });
                 this._colormap = {};
-                for (var i = 0; i < voltages.length; i++)
+                for (let i = 0; i < voltages.length; i++)
                 {
-                    var color = this._colors[i % this._colors.length];
+                    const color = this._colors[i % this._colors.length];
                     this._colormap[voltages[i].id] = color;
                     voltages[i].color = color;
                 }
                 this._items = voltages.map (
                     function (voltage)
                     {
-                        var id = voltage.id;
-                        var name = voltage.name;
-                        var color = voltage.color;
+                        const id = voltage.id;
+                        const name = voltage.name;
+                        const color = voltage.color;
                         return (
                             {
                                 id: id,
@@ -131,22 +133,23 @@ define
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - options for processing
-             * @function process_spatial_objects_again
-             * @memberOf module:voltage
              */
             process_spatial_objects_again (data, options)
             {
                 this.getVoltages (data);
-                var psr = data.PowerSystemResource;
-                for (var id in psr)
+                const psr = data.PowerSystemResource;
+                for (let id in psr)
                 {
-                    psr[id].color = this._colormap[psr[id].BaseVoltage];
-                    if ("undefined" == typeof (psr[id].color))
-                        psr[id].color = "rgb(139, 139, 139)";
+                    if (psr.hasOwnProperty (id))
+                    {
+                        psr[id].color = this._colormap[psr[id].BaseVoltage];
+                        if ("undefined" == typeof (psr[id].color))
+                            psr[id].color = "rgb(139, 139, 139)";
+                    }
                 }
             }
         }
 
         return (VoltageTheme);
     }
-)
+);

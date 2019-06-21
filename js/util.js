@@ -23,7 +23,6 @@ define
          * @param {boolean} [asynchronous = true] optional parameter for open() call, default <em>true</em>
          * @param {boolean} [withcredentials = false] optional parameter for XMLHttpRequest, default <em>false</em>
          * @returns {object} the request object or <code>null</code> if CORS isn't supported
-         * @memberOf module:util
          */
         function createCORSRequest (method, url, asynchronous, withcredentials)
         {
@@ -55,7 +54,6 @@ define
          * @summary Checks for execution from file://.
          * @description Determines if the script is running from an active server or just loaded passively from file.
          * @returns {boolean} <code>true</code> if the code is running from file://
-         * @memberOf module:util
          */
         function running_local ()
         {
@@ -69,7 +67,6 @@ define
          * @summary Page home URL.
          * @description Gets the URL for the root page.
          * @returns {string} The base URL.
-         * @memberOf module:util
          */
         function home ()
         {

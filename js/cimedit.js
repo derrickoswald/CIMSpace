@@ -9,7 +9,6 @@ define
     /**
      * @summary Edit control.
      * @description UI element for editing
-     * @name cimedit
      * @exports cimedit
      * @version 1.0
      */
@@ -22,40 +21,42 @@ define
                 this._cimmap = cimmap;
                 this._cimmrid = new CIMmrid (cimmap);
                 this._template =
-                "<div class='card'>\n" +
-                "  <div class='card-body'>\n" +
-                "    <h5 class='card-title'>Edit\n" +
-                "      <button type='button' class='close' aria-label='Close'>\n" +
-                "        <span aria-hidden='true'>&times;</span>\n" +
-                "      </button>\n" +
-                "    </h5>\n" +
-                "    <div id='maker_parameters'></div>\n" +
-                "    <div class='form-group row'>\n" +
-                "      <label class='col-sm-4 col-form-label' for='maker_name'>Maker</label>\n" +
-                "      <div class='col-sm-8'>\n" +
-                "        <select id='maker_name' class='form-control custom-select'>\n" +
-                "              <option value='' selected></option>\n" +
-                "{{#makers}}\n" +
-                "              <option value='{{.}}'>{{.}}</option>\n" +
-                "{{/makers}}\n" +
-                "        </select>\n" +
-                "      </div>\n" +
-                "    </div>\n" +
-                "    <div id='class_chooser' class='form-group row'>\n" +
-                "      <label class='col-sm-4 col-form-label' for='class_name'>Class</label>\n" +
-                "      <div class='col-sm-8'>\n" +
-                "        <select id='class_name' class='form-control custom-select'>\n" +
-                "              <option value='' selected></option>\n" +
-                "{{#classes}}\n" +
-                "              <option value='{{.}}'>{{.}}</option>\n" +
-                "{{/classes}}\n" +
-                "        </select>\n" +
-                "      </div>\n" +
-                "    </div>\n" +
-                "    <div class='card-footer'>\n" +
-                "      <button id='create' type='button' class='btn btn-primary' disabled>Create</button>\n" +
-                "  </div>\n" +
-                "</div>\n";
+`
+<div class='card'>
+    <div class='card-body'>
+        <h5 class='card-title'>Edit
+            <button type='button' class='close' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+            </button>
+        </h5>
+    <div id='maker_parameters'></div>
+    <div class='form-group row'>
+        <label class='col-sm-4 col-form-label' for='maker_name'>Maker</label>
+        <div class='col-sm-8'>
+            <select id='maker_name' class='form-control custom-select'>
+                <option value='' selected></option>
+{{#makers}}
+                <option value='{{.}}'>{{.}}</option>
+{{/makers}}
+            </select>
+        </div>
+    </div>
+    <div id='class_chooser' class='form-group row'>
+        <label class='col-sm-4 col-form-label' for='class_name'>Class</label>
+        <div class='col-sm-8'>
+            <select id='class_name' class='form-control custom-select'>
+                <option value='' selected></option>
+{{#classes}}
+                <option value='{{.}}'>{{.}}</option>
+{{/classes}}
+            </select>
+        </div>
+    </div>
+    <div class='card-footer'>
+        <button id='create' type='button' class='btn btn-primary' disabled>Create</button>
+  </div>
+</div>
+`;
                 this._makers =
                 [
                     ConductingEquipmentMaker,
@@ -67,9 +68,9 @@ define
                     SwitchMaker,
                     TransformerMeshImpedanceMaker
                 ];
-                var cls_map = cim.classes ();
-                var classes = [];
-                for (var property in cls_map)
+                const cls_map = cim.classes ();
+                const classes = [];
+                for (const property in cls_map)
                     if (cls_map.hasOwnProperty (property))
                         classes.push (property);
                 classes.sort ();
@@ -115,7 +116,7 @@ define
                 return ("bottom-left");
             }
 
-            close (event)
+            close ()
             {
                 this.cancel ();
                 this._map.removeControl (this);
@@ -142,14 +143,14 @@ define
 
             change (event)
             {
-                if (event.target.id == "class_name")
+                if (event.target.id === "class_name")
                 {
-                    document.getElementById ("create").disabled = "" == event.target.value;
+                    document.getElementById ("create").disabled = "" === event.target.value;
                 }
-                else if (event.target.id == "maker_name")
+                else if (event.target.id === "maker_name")
                 {
-                    var maker_name = ("" != event.target.value) ? event.target.value : undefined;
-                    var maker = maker_name ? this._makers.find (x => x.name == maker_name) : undefined;
+                    const maker_name = ("" !== event.target.value) ? event.target.value : undefined;
+                    const maker = maker_name ? this._makers.find (x => x.name === maker_name) : undefined;
                     if (maker)
                         this.start_maker (maker);
                     else
@@ -157,7 +158,7 @@ define
                         delete this._maker;
                         document.getElementById ("maker_parameters").innerHTML = "";
                         document.getElementById ("class_chooser").style.display = "inline-block";
-                        document.getElementById ("create").disabled = "" != document.getElementById ("class_name").value;
+                        document.getElementById ("create").disabled = "" !== document.getElementById ("class_name").value;
                     }
                 }
             }
@@ -167,8 +168,8 @@ define
                 this._container.innerHTML = mustache.render (this._template, { classes: this._classes, makers: this._makers.map (x => x.name) });
                 this._container.getElementsByClassName ("close")[0].onclick = this.close.bind (this);
                 this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.create.bind (this);
-                var selects = this._container.getElementsByClassName ("form-control custom-select");
-                for (var i = 0; i < selects.length; i++)
+                const selects = this._container.getElementsByClassName ("form-control custom-select");
+                for (let i = 0; i < selects.length; i++)
                     selects.item (i).onchange = this.change.bind (this);
             }
 
@@ -191,30 +192,29 @@ define
 
             refresh ()
             {
-                var options =
+                const options =
                     {
                         show_internal_features: this._cimmap.show_internal_features ()
                     };
-                var geo = this._cimmap.get_themer ().getTheme ().make_geojson (this.new_features (), options);
+                const geo = this._cimmap.get_themer ().getTheme ().make_geojson (this.new_features (), options);
                 this._map.getSource ("edit points").setData (geo.points);
                 this._map.getSource ("edit lines").setData (geo.lines);
             }
 
             primary_element ()
             {
-                var element = this._elements[0];
-                var id = element.id;
+                let element = this._elements[0];
+                const id = element.id;
                 // read attributes from the form
-                var cls = cim.class_map (element);
+                const cls = cim.class_map (element);
                 element = Object.assign (element, cls.prototype.submit (element.id));
                 if (element.mRID)
                     element.id = element.mRID; // reassign id based on mRID
-                if (id != element.id)
+                if (id !== element.id)
                 {
                     // update the form if the id changed
                     this._elements = [];
-                    var text = this.build (element);
-                    document.getElementById ("edit_contents").innerHTML = text;
+                    document.getElementById ("edit_contents").innerHTML = this.build (element);
                     this.process_related (element);
                 }
 
@@ -223,17 +223,17 @@ define
 
             editnew (array)
             {
-                for (var i = 0; i < array.length; i++)
+                for (let i = 0; i < array.length; i++)
                 {
-                    var proto = array[i];
+                    const proto = array[i];
                     proto.EditDisposition = "new";
-                    var cls = cim.class_map (proto);
-                    var data = {};
-                    var obj = new cls (proto, data);
+                    const cls = cim.class_map (proto);
+                    const data = {};
+                    let obj = new cls (proto, data);
                     if (data.IdentifiedObject)
                         proto.mRID = proto.id;
                     obj = new cls (proto, this.new_features ());
-                    this.edit (obj, 0 == i, true);
+                    this.edit (obj, 0 === i, true);
                 }
                 this.refresh ();
             }
@@ -241,9 +241,9 @@ define
             create_from (proto)
             {
                 proto.EditDisposition = "new";
-                var cls = cim.class_map (proto);
-                var data = {};
-                var obj = new cls (proto, data);
+                const cls = cim.class_map (proto);
+                const data = {};
+                let obj = new cls (proto, data);
                 if (data.IdentifiedObject)
                     proto.mRID = proto.id;
                 // do it again, possibly with mRID set
@@ -263,25 +263,25 @@ define
                 }
                 else
                 {
-                    var class_name = document.getElementById ("class_name").value;
-                    var id = this.get_cimmrid ().nextIdFor (class_name);
-                    var proto = { cls: class_name, id: id };
+                    const class_name = document.getElementById ("class_name").value;
+                    const id = this.get_cimmrid ().nextIdFor (class_name);
+                    const proto = { cls: class_name, id: id };
                     this.create_from (proto);
                 }
             }
 
             create_new ()
             {
-                var proto = JSON.parse (JSON.stringify (this._elements[0]));
+                const proto = JSON.parse (JSON.stringify (this._elements[0]));
                 proto.id = this.get_cimmrid ().nextIdFor (proto.cls);
                 // find a maker for this class
-                var maker = this._makers.find (maker => maker.classes ().includes (proto.cls));
+                const maker = this._makers.find (maker => maker.classes ().includes (proto.cls));
                 if (maker)
                 {
                     this.render ();
-                    var maker_name = document.getElementById ("maker_name");
-                    for (var i = 0; i < maker_name.length; i++)
-                        if (maker_name.options[i].value == maker.name)
+                    const maker_name = document.getElementById ("maker_name");
+                    for (let i = 0; i < maker_name.length; i++)
+                        if (maker_name.options[i].value === maker.name)
                         {
                             maker_name.options.selectedIndex = i;
                             break;
@@ -296,13 +296,13 @@ define
             add_layers ()
             {
                 // the lines GeoJSON
-                var lines =
+                const lines =
                 {
                     "type" : "FeatureCollection",
                     "features" : []
                 };
                 // the points GeoJSON
-                var points =
+                const points =
                 {
                     "type" : "FeatureCollection",
                     "features" : []
@@ -334,23 +334,23 @@ define
                 this._map.addLayer (layers.line_layer ("edit_lines_highlight", "edit lines", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // simple circle from 14 to 17
-                this._map.addLayer (layers.circle_layer ("edit_circle", "edit points", "rgb(255, 0, 0)"))
-                this._map.addLayer (layers.circle_layer ("edit_circle_highlight", "edit points", "rgb(255, 255, 0)", ["==", "mRID", ""]))
+                this._map.addLayer (layers.circle_layer ("edit_circle", "edit points", "rgb(255, 0, 0)"));
+                this._map.addLayer (layers.circle_layer ("edit_circle_highlight", "edit points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // symbol icon from 17 and deeper
                 this._map.addLayer (layers.symbol_layer ("edit_symbol", "edit points", "rgb(255, 0, 0)"));
                 this._map.addLayer (layers.symbol_layer ("edit_symbol_highlight", "edit points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
             }
 
-            on_map_resize (event)
+            on_map_resize ()
             {
-                var map_height = document.getElementById ("map").clientHeight;
-                var top_margin = 10;
-                var well_padding = 20;
-                var logo_height = 18;
-                var max_height = map_height - top_margin - well_padding - logo_height;
+                const map_height = document.getElementById ("map").clientHeight;
+                const top_margin = 10;
+                const well_padding = 20;
+                const logo_height = 18;
+                const max_height = map_height - top_margin - well_padding - logo_height;
                 this._container.style.maxHeight = max_height.toString () + "px";
-                var guts = document.getElementById ("edit_contents");
+                const guts = document.getElementById ("edit_contents");
                 if (guts)
                     guts.style.maxHeight = (max_height - this._frame_height).toString () + "px";
             }
@@ -367,10 +367,10 @@ define
             build (element)
             {
                 this._elements.push (element);
-                var cls = cim.class_map (element);
+                const cls = cim.class_map (element);
                 cls.prototype.condition (element);
-                var template = cls.prototype.edit_template ();
-                var text = mustache.render (template, element);
+                const template = cls.prototype.edit_template ();
+                let text = mustache.render (template, element);
                 cls.prototype.uncondition (element);
                 text = this.setCollapsed (text);
                 return (text);
@@ -379,28 +379,28 @@ define
             // true if obj is only referenced by element and no other
             only_related (obj, element)
             {
-                var ret = true;
+                let ret = true;
 
-                var cls = cim.class_map (obj);
-                var relations = cls.prototype.relations ();
-                for (var i = 0; i < relations.length; i++)
-                    if ((relations[i][2] == "0..1") || (relations[i][2] == "0..*"))
-                        this._cimmap.forAll (relations[i][3], child => { if (child[relations[i][4]] == obj.id && child.id != element.id) ret = false; });
+                const cls = cim.class_map (obj);
+                const relations = cls.prototype.relations ();
+                for (let i = 0; i < relations.length; i++)
+                    if ((relations[i][2] === "0..1") || (relations[i][2] === "0..*"))
+                        this._cimmap.forAll (relations[i][3], child => { if (child[relations[i][4]] === obj.id && child.id !== element.id) ret = false; });
 
                 return (ret);
             }
 
             orderBySequenceNumber (objects)
             {
-                var ret = [];
+                let ret = [];
 
-                var sequenced = {};
-                for (var i = 0; i < objects.length; i++)
+                const sequenced = {};
+                for (let i = 0; i < objects.length; i++)
                 {
-                    var obj = objects[i];
+                    const obj = objects[i];
                     if (obj.sequenceNumber)
                     {
-                        var bucket = sequenced[obj.cls];
+                        let bucket = sequenced[obj.cls];
                         if (null == bucket)
                            sequenced[obj.cls] = bucket = [];
                         bucket.push (obj);
@@ -408,61 +408,60 @@ define
                     else
                         ret.push (obj);
                 }
-                for (var cls in sequenced)
-                    ret = ret.concat (sequenced[cls].sort ((a, b) => (Number (a.sequenceNumber) < Number (b.sequenceNumber)) ? -1 : (Number (a.sequenceNumber) > Number (b.sequenceNumber)) ? 1 : 0));
+                for (let cls in sequenced)
+                    if (sequenced.hasOwnProperty (cls))
+                        ret = ret.concat (sequenced[cls].sort ((a, b) => (Number (a.sequenceNumber) < Number (b.sequenceNumber)) ? -1 : (Number (a.sequenceNumber) > Number (b.sequenceNumber)) ? 1 : 0));
 
                 return (ret);
             }
 
             get_related (element)
             {
-                var ret = [];
+                const ret = [];
                 function add (e)
                 {
-                    if ((e.id != element.id) && !ret.find (x => x.id == e.id))
+                    if ((e.id !== element.id) && !ret.find (x => x.id === e.id))
                         ret.push (e);
                 }
-                var cls = cim.class_map (element);
-                var relations = cls.prototype.relations ();
-                for (var i = 0; i < relations.length; i++)
-                    if (relations[i][1] == "0..1")
+                const cls = cim.class_map (element);
+                const relations = cls.prototype.relations ();
+                for (let i = 0; i < relations.length; i++)
+                    if (relations[i][1] === "0..1")
                     {
-                        var ref = element[relations[i][0]];
+                        const ref = element[relations[i][0]];
                         if (ref)
                         {
-                            var obj = this._cimmap.get (relations[i][3], ref);
+                            const obj = this._cimmap.get (relations[i][3], ref);
                             if (obj && this.only_related (obj, element))
                                 add (obj);
                         }
                     }
                     else
-                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
-                            this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] == element.id) add (obj); });
+                        if (relations[i][2] === "0..1" || relations[i][2] === "1")
+                            this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] === element.id) add (obj); });
                 // get ConnectivityNode and PositionPoint
                 // ToDo: should it/can it be made fully recursive
-                for (var j = 0; j < ret.length; j++)
+                for (let j = 0; j < ret.length; j++)
                 {
-                    var cls = cim.class_map (ret[j]);
-                    var relations = cls.prototype.relations ();
-                    for (var i = 0; i < relations.length; i++)
-                        if (relations[i][1] == "0..1")
+                    const cls = cim.class_map (ret[j]);
+                    const relations = cls.prototype.relations ();
+                    for (let i = 0; i < relations.length; i++)
+                        if (relations[i][1] === "0..1")
                         {
-                            var ref = ret[j][relations[i][0]];
+                            const ref = ret[j][relations[i][0]];
                             if (ref)
                             {
-                                var obj = this._cimmap.get (relations[i][3], ref);
+                                let obj = this._cimmap.get (relations[i][3], ref);
                                 if (obj && this.only_related (obj, ret[j]))
                                     add (obj);
                             }
                         }
                         else
-                            if (relations[i][2] == "0..1" || relations[i][2] == "1")
-                                this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] == ret[j].id) add (obj); });
+                            if (relations[i][2] === "0..1" || relations[i][2] === "1")
+                                this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] === ret[j].id) add (obj); });
                 }
 
-                ret = this.orderBySequenceNumber (ret);
-
-                return (ret);
+                return (this.orderBySequenceNumber (ret));
             }
 
             // fix the form to make references into select drop-downs, i.e. turn this:
@@ -475,53 +474,55 @@ define
             //  </select>
             process_related (element)
             {
-                var cls = cim.class_map (element);
-                var data = this._cimmap.get_data ();
-                var newdata = this._data;
-                var relations = cls.prototype.relations ();
-                for (var i = 0; i < relations.length; i++)
-                    if (relations[i][1] == "0..1")
+                const cls = cim.class_map (element);
+                const data = this._cimmap.get_data ();
+                const newdata = this._data;
+                const relations = cls.prototype.relations ();
+                for (let i = 0; i < relations.length; i++)
+                    if (relations[i][1] === "0..1")
                     {
-                        var member = relations[i][0]; // object member name
-                        var ref = element[member]; // mRID of current reference or undefined
-                        var domid = element.id + "_" + member; // the HTML DOM element id
-                        var candidates = [];
-                        var selected = "";
-                        var relatable = data ? data[relations[i][3]] : undefined;
+                        const member = relations[i][0]; // object member name
+                        const ref = element[member]; // mRID of current reference or undefined
+                        const domid = element.id + "_" + member; // the HTML DOM element id
+                        const candidates = [];
+                        let selected = "";
+                        const relatable = data ? data[relations[i][3]] : undefined;
                         if (relatable)
                         {
-                            for (var id in relatable)
-                            {
-                                var obj = relatable[id];
-                                if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                    candidates.push (obj);
-                            }
-                            var obj = ref ? relatable[ref] : undefined;
+                            for (let id in relatable)
+                                if (relatable.hasOwnProperty (id))
+                                {
+                                    const obj = relatable[id];
+                                    if (!obj.EditDisposition || (obj.EditDisposition !== "delete"))
+                                        candidates.push (obj);
+                                }
+                            const obj = ref ? relatable[ref] : undefined;
                             selected = obj ? obj.id : selected;
                         }
-                        var relatable2 = newdata ? newdata[relations[i][3]] : undefined;
+                        const relatable2 = newdata ? newdata[relations[i][3]] : undefined;
                         if (relatable2)
                         {
-                            for (var id in relatable2)
-                            {
-                                var obj = relatable2[id];
-                                if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                    candidates.push (obj);
-                            }
-                            var obj = ref ? relatable2[ref] : undefined;
+                            for (let id in relatable2)
+                                if (relatable2.hasOwnProperty (id))
+                                {
+                                    const obj = relatable2[id];
+                                    if (!obj.EditDisposition || (obj.EditDisposition !== "delete"))
+                                        candidates.push (obj);
+                                }
+                            const obj = ref ? relatable2[ref] : undefined;
                             selected = obj ? obj.id : selected;
                         }
                         if (candidates.length > 0)
                         {
                             candidates.sort ((a, b) => (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0);
-                            if ("" == selected)
+                            if ("" === selected)
                                 candidates.unshift ({ id: "" });
-                            var options = candidates.map (choice => "<option value='" + choice.id + "' " + (choice.id == selected ? " selected" : "") + ">" + (choice.name ? choice.name : choice.id) + "</option>");
-                            var select = document.createElement ("select");
+                            const options = candidates.map (choice => "<option value='" + choice.id + "' " + (choice.id === selected ? " selected" : "") + ">" + (choice.name ? choice.name : choice.id) + "</option>");
+                            const select = document.createElement ("select");
                             select.setAttribute ("class", "form-control custom-select");
                             select.innerHTML = options.join ('');
                             select.id = domid;
-                            var input = document.getElementById (domid);
+                            const input = document.getElementById (domid);
                             if (input)
                                 input.parentNode.replaceChild (select, input);
                         }
@@ -530,49 +531,51 @@ define
 
             edit (element, top_level, is_new)
             {
-                var cls = cim.class_map (element);
+                const cls = cim.class_map (element);
                 if (top_level)
                 {
-                    var frame =
-                        "<div class='card'>\n" +
-                        "  <div class='card-body'>\n" +
-                        "    <h5 id='view_title' class='card-title'>Edit <span class='edit_id'></span></h5>\n" +
-                        "    <div id='edit_contents' class='card-text'></div>\n" +
-                        "    <div class='card-footer'>\n" +
-                        "      <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
+                    const frame =
+`
+<div class='card'>
+    <div class='card-body'>
+        <h5 id='view_title' class='card-title'>Edit <span class='edit_id'></span></h5>
+        <div id='edit_contents' class='card-text'></div>
+        <div class='card-footer'>
+            <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>` +
                         (is_new ? "" : "      <button id='delete' type='button' class='btn btn-danger' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().del ();})'>Delete</button>\n") +
-                        "      <button id='cancel' type='button' class='btn btn-success' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().cancel ();})'>Cancel</button>\n" +
-                        "      <button id='create_new' type='button' class='btn btn-info' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().create_new ();})'>Create new</button>\n" +
-                        "    </div>\n" +
-                        "  </div>\n" +
-                        "</div>\n";
+`            <button id='cancel' type='button' class='btn btn-success' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().cancel ();})'>Cancel</button>
+            <button id='create_new' type='button' class='btn btn-info' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().create_new ();})'>Create new</button>
+        </div>
+    </div>
+</div>
+`;
                     this._container.innerHTML = frame;
                     // for non-IdentifiedObject elements, display the id
                     this._container.getElementsByClassName ("edit_id")[0].innerHTML = element.id;
                     this._frame_height = this._container.getElementsByClassName ("card")[0].clientHeight; // frame height with no edit template contents
 
                     this._elements = [];
-                    var text = this.build (element);
+                    let text = this.build (element);
 
                     // get related only for existing objects
-                    var relatives = [];
+                    let relatives = [];
                     if (!is_new)
                     {
                         // get related elements
-                        relatives = this.get_related (element)
-                        for (var j = 0; j < relatives.length; j++)
+                        relatives = this.get_related (element);
+                        for (let j = 0; j < relatives.length; j++)
                             text = text + this.build (relatives[j]);
                     }
-                    var guts = this._container.getElementsByClassName ("card-text")[0];
+                    const guts = this._container.getElementsByClassName ("card-text")[0];
                     guts.innerHTML = text;
                     this.process_related (element);
-                    for (var j = 0; j < relatives.length; j++)
+                    for (let j = 0; j < relatives.length; j++)
                         this.process_related (relatives[j]);
                 }
                 else
                 {
-                    var text = this.build (element);
-                    var guts = this._container.getElementsByClassName ("card-text")[0];
+                    const text = this.build (element);
+                    const guts = this._container.getElementsByClassName ("card-text")[0];
                     guts.innerHTML = guts.innerHTML + text;
                     this.process_related (element);
                 }
@@ -594,11 +597,11 @@ define
 
             mrid (feature)
             {
-                var mrid = feature.id;
+                let mrid = feature.id;
 
                 while (!isNaN (Number (mrid.charAt (0))))
                     mrid = mrid.substring (1);
-                if (":" == mrid.charAt (0))
+                if (":" === mrid.charAt (0))
                     mrid = mrid.substring (1);
 
                 return (mrid);
@@ -606,10 +609,10 @@ define
 
             version (feature)
             {
-                var version = 0;
+                let version = 0;
 
-                var mrid = feature.id;
-                var i = 0;
+                const mrid = feature.id;
+                let i = 0;
                 while (!isNaN (Number (mrid.charAt (i))))
                 {
                     i = i + 1;
@@ -621,10 +624,10 @@ define
 
             next_version (feature, data)
             {
-                var version = 1;
+                let version = 1;
 
-                var list = data[feature.cls];
-                var mrid = this.mrid (feature);
+                const list = data[feature.cls];
+                const mrid = this.mrid (feature);
                 while (null != list[version.toString () + ":" + mrid])
                     version = version + 1;
 
@@ -640,7 +643,7 @@ define
             // remove the old object and replace it with a "deleted" version
             retire (old_obj, data)
             {
-                var cls = cim.class_map (old_obj);
+                const cls = cim.class_map (old_obj);
                 cls.prototype.remove (old_obj, data);
 
                 old_obj.id = this.next_version (old_obj, data);
@@ -655,7 +658,7 @@ define
             {
                 this.retire (old_obj, data);
 
-                var cls = cim.class_map (new_obj);
+                const cls = cim.class_map (new_obj);
                 new_obj.EditDisposition = "edit";
                 new cls (new_obj, data);
             }
@@ -668,12 +671,12 @@ define
                 if (!this._data)
                 {
                     // editing an existing object
-                    for (var i = 0; i < this._elements.length; i++)
+                    for (let i = 0; i < this._elements.length; i++)
                     {
-                        var old_obj = this._elements[i];
-                        var id = old_obj.id;
-                        var cls = cim.class_map (old_obj);
-                        var new_obj = cls.prototype.submit (id);
+                        const old_obj = this._elements[i];
+                        const id = old_obj.id;
+                        const cls = cim.class_map (old_obj);
+                        const new_obj = cls.prototype.submit (id);
                         if (new_obj.mRID)
                             new_obj.id = new_obj.mRID;
                         else
@@ -684,10 +687,10 @@ define
                 else
                 {
                     // saving a new set of objects
-                    for (var i = 0; i < this._elements.length; i++)
+                    for (let i = 0; i < this._elements.length; i++)
                     {
-                        var element = this._elements[i];
-                        var cls = cim.class_map (element);
+                        let element = this._elements[i];
+                        const cls = cim.class_map (element);
                         element = Object.assign (element, cls.prototype.submit (element.id));
                         if (element.mRID)
                             element.id = element.mRID; // reassign id based on mRID
@@ -707,7 +710,7 @@ define
             {
                 if (this._maker_promise)
                 {
-                    var maker_promise = this._maker_promise; // ensure recursion doesn't happen
+                    const maker_promise = this._maker_promise; // ensure recursion doesn't happen
                     delete this._maker_promise;
                     maker_promise.cancel ();
                     delete this._maker;
@@ -717,7 +720,7 @@ define
                     if (this._elements)
                     {
                         // delete existing features
-                        for (var i = 0; i < this._elements.length; i++)
+                        for (let i = 0; i < this._elements.length; i++)
                             this.retire (this._elements[i], this._cimmap.get_data ());
                         delete this._elements;
                     }
@@ -738,7 +741,7 @@ define
                     console.log (error);
                 if (this._maker_promise)
                 {
-                    var maker_promise = this._maker_promise; // ensure recursion doesn't happen
+                    const maker_promise = this._maker_promise; // ensure recursion doesn't happen
                     delete this._maker_promise;
                     maker_promise.cancel ();
                     delete this._maker;
@@ -764,4 +767,4 @@ define
 
         return (CIMEdit);
     }
-)
+);

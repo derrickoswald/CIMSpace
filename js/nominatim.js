@@ -32,8 +32,6 @@ define
              * @param lon the longitude of the point to get the address for
              * @param lat the latitude of the point to get the address for
              * @return a Promise that resolves if successful and rejects if not.
-             * @function getAddress
-             * @memberOf Nominatim
              */
             getAddress (lon, lat)
             {
@@ -148,8 +146,6 @@ define
              * Check for an existing TownDetail with the same attributes.
              * @param town the new TownDetail to check if it exists
              * @return the matching town if any, null otherwise
-             * @function isExisting
-             * @memberOf Nominatim
              */
             isExisting (town)
             {
@@ -177,10 +173,8 @@ define
              * Create CIM components matching the Nominatim geocode data.
              * @param parent the base object, used to generate new mRID from (with suffixes)
              * @param response The nominatim server response as a JavaScript object
-             * @return an array of new CIM elements including StreetAddress, StreetDetail and Status,
+             * @return {Array.<Object>} an array of new CIM elements including StreetAddress, StreetDetail and Status,
              * with possibly a TownDetail unless it already exists in the map data
-             * @function formStreetAddress
-             * @memberOf Nominatim
              */
             formStreetAddress (parent, response)
             {
@@ -266,8 +260,6 @@ define
              * @param array an array of CIM objects that must include a Location and one PositionPoint.
              * The mainAddress attribute of the first element of the array is set to the generated address if successful.
              * @return a Promise that resolves with the array with street address elements if successful or resolves with the unaltered array if not.
-             * @function getStreetAddress
-             * @memberOf Nominatim
              */
             getStreetAddress (array)
             {
@@ -291,7 +283,7 @@ define
                                     location.mainAddress = address.id;
                                     return (array.concat (extra));
                                 },
-                                (error) =>
+                                () =>
                                 {
                                     // just return the original array
                                     return (array);

@@ -21,8 +21,6 @@ define
          * @summary Parse a set of CIM files.
          * @description Read in CIM files.
          * @param {Blob[]} blobs - the blobs of CIM data
-         * @function read_cim
-         * @memberOf module:cimspace
          */
         function read_cim (blobs)
         {
@@ -47,8 +45,6 @@ define
          * @description Use AMD wrapped zip.js (see https://github.com/MeltingMosaic/zip-amd) to read in a CIM file.
          * @param {Blob} blob - the blob of zipped data
          * @param {Function} [fn = read_cim()] - the function to apply to the unzipped entry.
-         * @function read_zip
-         * @memberOf module:cimspace
          */
         function read_zip (blob, fn)
         {
@@ -99,8 +95,6 @@ define
          * @summary Extract the base file name.
          * @description Strip off extension and remove any prefix.
          * @param {String} name - the raw name or URL
-         * @function base_name
-         * @memberOf module:cimspace
          */
         function base_name (name)
         {
@@ -120,8 +114,6 @@ define
          * @summary Handler for file change events.
          * @description Process files from the browse dialog.
          * @param {FileList} files - the list of files
-         * @function process_files
-         * @memberOf module:cimspace
          */
         function process_files (files)
         {
@@ -151,8 +143,6 @@ define
          * @summary Handler for server connect event.
          * @description Process URL from the connect dialog.
          * @param {object} event - the button click event
-         * @function process_url
-         * @memberOf module:cimspace
          */
         function process_url (event)
         {
@@ -204,8 +194,6 @@ define
         /**
          * @summary Close the file dialog.
          * @description Hide the modal dialog.
-         * @function close_file_modal
-         * @memberOf module:cimspace
          */
         function close_file_modal ()
         {
@@ -216,8 +204,6 @@ define
          * @summary Handler for file change events.
          * @description Process files from the browse dialog.
          * @param {object} event - the file change event
-         * @function file_change
-         * @memberOf module:cimspace
          */
         function file_change (event)
         {
@@ -229,8 +215,6 @@ define
          * @summary Event handler for dropped files.
          * @description Attached to the drop target, this handler responds to dropped files.
          * @param {object} event - the drop event
-         * @function file_drop
-         * @memberOf module:cimspace
          */
         function file_drop (event)
         {
@@ -245,8 +229,6 @@ define
          * @description Attached to the drop target, this handler simply modifies the effect to copy,
          * (which produces the typical hand cursor).
          * @param {object} event - the dragover event
-         * @function file_drag
-         * @memberOf module:cimspace
          */
         function file_drag (event)
         {
@@ -260,8 +242,6 @@ define
          * @description Convert the blob into base64 characters.
          * @param {Blob} blob - the blob of data
          * @return a Promise that resolves with the converted string.
-         * @function blob2base64
-         * @memberOf module:cimspace
          */
         function blob2base64 (blob)
         {
@@ -283,7 +263,7 @@ define
             );
         }
 
-        function initialize_save_dialog (event)
+        function initialize_save_dialog ()
         {
             let save_name = document.getElementById ("save_name");
             if ("" === save_name.value)

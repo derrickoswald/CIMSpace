@@ -9,7 +9,6 @@ define
     /**
      * @summary Theme on topological island.
      * @description Theme class for colorizing by topological island.
-     * @name island
      * @exports island
      * @version 1.0
      */
@@ -63,43 +62,49 @@ define
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - options for processing
-             * @function process_spatial_objects_again
-             * @memberOf module:island
              */
             process_spatial_objects_again (data, options)
             {
-                var islands = data.TopologicalIsland;
-                var colormap = {};
-                var index = 0;
-                for (var id in islands)
+                const islands = data.TopologicalIsland;
+                const colormap = {};
+                let index = 0;
+                for (let id in islands)
                 {
-                    colormap[id] = this._colors[index % this._colors.length];
-                    index++;
+                    if (islands.hasOwnProperty (id))
+                    {
+                        colormap[id] = this._colors[index % this._colors.length];
+                        index++;
+                    }
                 }
-                var nodes = data.TopologicalNode;
-                var maptable = {};
-                for (var id in nodes)
-                    maptable[id] = colormap[nodes[id].TopologicalIsland];
-                var terminals = data.Terminal;
-                var psr = data.PowerSystemResource
-                for (var id in terminals)
+                const nodes = data.TopologicalNode;
+                const maptable = {};
+                for (let id in nodes)
+                    if (nodes.hasOwnProperty( id))
+                        maptable[id] = colormap[nodes[id].TopologicalIsland];
+                const terminals = data.Terminal;
+                const psr = data.PowerSystemResource;
+                for (let id in terminals)
                 {
-                    var terminal = terminals[id];
-                    var colour = maptable[terminal.TopologicalNode];
-                    var equipment = psr[terminal.ConductingEquipment];
-                    if (colour && equipment)
-                        equipment.color = colour;
+                    if (terminals.hasOwnProperty( id))
+                    {
+                        const terminal = terminals[id];
+                        const colour = maptable[terminal.TopologicalNode];
+                        const equipment = psr[terminal.ConductingEquipment];
+                        if (colour && equipment)
+                            equipment.color = colour;
+                    }
                 }
                 this._items = [];
-                var i = 1;
-                for (var j = 0; j < this._colors.length; j++)
+                let i = 1;
+                for (let j = 0; j < this._colors.length; j++)
                 {
-                    var color = this._colors[j];
-                    var text = "";
-                    for (var island in colormap)
-                        if (colormap[island] == color)
-                            text += "," + island;
-                    if (text != "")
+                    const color = this._colors[j];
+                    let text = "";
+                    for (let island in colormap)
+                        if (colormap.hasOwnProperty (island))
+                            if (colormap[island] === color)
+                                text += "," + island;
+                    if (text !== "")
                     {
                         text = text.substring (1);
                         if (text.length > 80)
@@ -120,4 +125,4 @@ define
 
         return (IslandTheme);
     }
-)
+);

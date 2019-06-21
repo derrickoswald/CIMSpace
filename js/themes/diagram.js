@@ -31,150 +31,6 @@ define
 
         let TheExtents;
 
-        /**
-         * @summary Gather diagram object points into diagram objects.
-         * @description Convert sequences of diagram object points into locations with coordinate array.
-         * As a side effect, computes the minimum bounding rectangle and stores it in TheExtents.
-         * @param {object} data - the hash table object of CIM classes by class name
-         * @param {object} options layer options, e.g. show_internal_features
-         * @return {object} object of arrays stored by Location.id
-         * @function get_locations
-         * @memberOf module:default_theme
-         */
-        function get_locations (data, options)
-        {
-            const ret = {};
-
-            const location_points = data.PositionPoint;
-            const locations = data.Location;
-            const diagram_points = data.DiagramObjectPoint;
-            const objects = data.DiagramObject;
-            const extents = { xmin: Number.MAX_VALUE, ymin: Number.MAX_VALUE, xmax: -Number.MAX_VALUE, ymax: -Number.MAX_VALUE };
-            // list of locations to include from normal locations
-            const whitelist = {};
-            if (options.show_internal_features)
-            {
-                for (let location in locations)
-                    if (locations.hasOwnProperty (location)  && (locations[location].CoordinateSystem === "pseudo_wgs84"))
-                        whitelist[location] = true;
-
-                const locs = {};
-                for (let point in location_points)
-                    if (location_points.hasOwnProperty (point))
-                    {
-                        const p = location_points[point];
-                        if (!p.EditDisposition || (p.EditDisposition !== "delete"))
-                        {
-                            const location = p.Location;
-                            if ((null != location) && whitelist[location])
-                            {
-                                if (null == locs[location])
-                                {
-                                    const array = [];
-                                    array.isPolygon = function () { return (false); };
-                                    array.isInternal = function () { return (true); };
-                                    locs[location] = array;
-                                }
-                                const seq = Number (p.sequenceNumber);
-                                if (null != seq)
-                                {
-                                    const x = Number (p.xPosition);
-                                    const y = Number (p.yPosition);
-                                    locs[location][seq * 2] = x;
-                                    locs[location][seq * 2 + 1] = y;
-                                    if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
-                                    {
-                                        if (x < extents.xmin)
-                                            extents.xmin = x;
-                                        if (x > extents.xmax)
-                                            extents.xmax = x;
-                                        if (y < extents.ymin)
-                                            extents.ymin = y;
-                                        if (y > extents.ymax)
-                                            extents.ymax = y;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                const objects = data.IdentifiedObject;
-                for (let id in objects)
-                    if (objects.hasOwnProperty (id))
-                    {
-                        const loc = objects[id].Location;
-                        if (loc)
-                        {
-                            const coordinates = locs[loc];
-                            if (coordinates)
-                                ret[id + "_internal"] = coordinates;
-                        }
-                    }
-            }
-
-            if (diagram_points && objects)
-                for (let point in diagram_points)
-                    if (diagram_points.hasOwnProperty (point))
-                    {
-                        const p = diagram_points[point];
-                        const obj = p.DiagramObject;
-                        if (null != obj)
-                        {
-                            const object = objects[obj];
-                            if (null != object)
-                            {
-                                const id = object.IdentifiedObject;
-                                if (null != id)
-                                {
-                                    if (null == ret[id])
-                                    {
-                                        const array = [];
-                                        const polygon = object.isPolygon;
-                                        array.isPolygon = polygon ? function () { return (true); } : function () { return (false); };
-                                        array.isInternal = function () { return (false); };
-                                        ret[id] = array;
-                                    }
-                                    const seq = Number (p.sequenceNumber);
-                                    if (null != seq)
-                                    {
-                                        const x = Number (p.xPosition);
-                                        const y = Number (p.yPosition);
-                                        ret[id][seq * 2] = x;
-                                        ret[id][seq * 2 + 1] = y;
-                                        if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
-                                        {
-                                            if (x < extents.xmin)
-                                                extents.xmin = x;
-                                            if (x > extents.xmax)
-                                                extents.xmax = x;
-                                            if (y < extents.ymin)
-                                                extents.ymin = y;
-                                            if (y > extents.ymax)
-                                                extents.ymax = y;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-            // fix non-zero based sequence numbers
-            for (let property in ret)
-                if (ret.hasOwnProperty (property))
-                {
-                    const a = ret[property];
-                    if (("undefined" == typeof (a[0])) && ("undefined" == typeof (a[1])))
-                    {
-                        ret[property] = a.slice (2);
-                        ret[property].isPolygon = a.isPolygon;
-                        ret[property].isInternal = a.isInternal;
-                    }
-                }
-
-            TheExtents = extents;
-            return (ret);
-        }
-
         class DiagramTheme extends DefaultTheme
         {
             constructor ()
@@ -208,8 +64,6 @@ define
              * @param {Object} locations - the hash table object with properties that are locations with arrays of coordinates
              * @param {Object} options - options for processing
              * @return {Object} with points, lines and polygons feature collections
-             * @function process_spatial_objects
-             * @memberOf module:default_theme
              */
             process_spatial_objects (data, locations, options)
             {
@@ -245,7 +99,7 @@ define
                 {
                     if (2 === coordinates.length)
                     {
-                        var target_array = points;
+                        let target_array = points;
                         objects[id].id = id;
                         objects[id].rotation = 0.0;
 
@@ -473,8 +327,6 @@ define
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - options for processing
-             * @function process_spatial_objects_again
-             * @memberOf module:diagram
              */
             process_spatial_objects_again (data, options)
             {
@@ -510,19 +362,159 @@ define
             }
 
             /**
+             * @summary Gather diagram object points into diagram objects.
+             * @description Convert sequences of diagram object points into locations with coordinate array.
+             * As a side effect, computes the minimum bounding rectangle and stores it in TheExtents.
+             * @param {object} data - the hash table object of CIM classes by class name
+             * @param {object} options layer options, e.g. show_internal_features
+             * @return {object} object of arrays stored by Location.id
+             */
+            get_locations (data, options)
+            {
+                const ret = {};
+
+                const location_points = data.PositionPoint;
+                const locations = data.Location;
+                const diagram_points = data.DiagramObjectPoint;
+                const objects = data.DiagramObject;
+                const extents = { xmin: Number.MAX_VALUE, ymin: Number.MAX_VALUE, xmax: -Number.MAX_VALUE, ymax: -Number.MAX_VALUE };
+                // list of locations to include from normal locations
+                const whitelist = {};
+                if (options.show_internal_features)
+                {
+                    for (let location in locations)
+                        if (locations.hasOwnProperty (location)  && (locations[location].CoordinateSystem === "pseudo_wgs84"))
+                            whitelist[location] = true;
+
+                    const locs = {};
+                    for (let point in location_points)
+                        if (location_points.hasOwnProperty (point))
+                        {
+                            const p = location_points[point];
+                            if (!p.EditDisposition || (p.EditDisposition !== "delete"))
+                            {
+                                const location = p.Location;
+                                if ((null != location) && whitelist[location])
+                                {
+                                    if (null == locs[location])
+                                    {
+                                        const array = [];
+                                        array.isPolygon = function () { return (false); };
+                                        array.isInternal = function () { return (true); };
+                                        locs[location] = array;
+                                    }
+                                    const seq = Number (p.sequenceNumber);
+                                    if (null != seq)
+                                    {
+                                        const x = Number (p.xPosition);
+                                        const y = Number (p.yPosition);
+                                        locs[location][seq * 2] = x;
+                                        locs[location][seq * 2 + 1] = y;
+                                        if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
+                                        {
+                                            if (x < extents.xmin)
+                                                extents.xmin = x;
+                                            if (x > extents.xmax)
+                                                extents.xmax = x;
+                                            if (y < extents.ymin)
+                                                extents.ymin = y;
+                                            if (y > extents.ymax)
+                                                extents.ymax = y;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    const objects = data.IdentifiedObject;
+                    for (let id in objects)
+                        if (objects.hasOwnProperty (id))
+                        {
+                            const loc = objects[id].Location;
+                            if (loc)
+                            {
+                                const coordinates = locs[loc];
+                                if (coordinates)
+                                    ret[id + "_internal"] = coordinates;
+                            }
+                        }
+                }
+
+                if (diagram_points && objects)
+                    for (let point in diagram_points)
+                        if (diagram_points.hasOwnProperty (point))
+                        {
+                            const p = diagram_points[point];
+                            const obj = p.DiagramObject;
+                            if (null != obj)
+                            {
+                                const object = objects[obj];
+                                if (null != object)
+                                {
+                                    const id = object.IdentifiedObject;
+                                    if (null != id)
+                                    {
+                                        if (null == ret[id])
+                                        {
+                                            const array = [];
+                                            const polygon = object.isPolygon;
+                                            array.isPolygon = polygon ? function () { return (true); } : function () { return (false); };
+                                            array.isInternal = function () { return (false); };
+                                            ret[id] = array;
+                                        }
+                                        const seq = Number (p.sequenceNumber);
+                                        if (null != seq)
+                                        {
+                                            const x = Number (p.xPosition);
+                                            const y = Number (p.yPosition);
+                                            ret[id][seq * 2] = x;
+                                            ret[id][seq * 2 + 1] = y;
+                                            if ((x >= -180.0) && (x <= 180.0) && (y >= -90.0) && (y <= 90.0)) // eliminate fucked up coordinates
+                                            {
+                                                if (x < extents.xmin)
+                                                    extents.xmin = x;
+                                                if (x > extents.xmax)
+                                                    extents.xmax = x;
+                                                if (y < extents.ymin)
+                                                    extents.ymin = y;
+                                                if (y > extents.ymax)
+                                                    extents.ymax = y;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                // fix non-zero based sequence numbers
+                for (let property in ret)
+                    if (ret.hasOwnProperty (property))
+                    {
+                        const a = ret[property];
+                        if (("undefined" == typeof (a[0])) && ("undefined" == typeof (a[1])))
+                        {
+                            ret[property] = a.slice (2);
+                            ret[property].isPolygon = a.isPolygon;
+                            ret[property].isInternal = a.isInternal;
+                        }
+                    }
+
+                TheExtents = extents;
+                return (ret);
+            }
+
+            /**
              * Create the GeoJSON for the data with the given options.
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - options for processing
              * @return {Object} with points, lines and polygons feature collections
-             * @function make_geojson
-             * @memberOf module:default_theme
              */
             make_geojson (data, options)
             {
                 let ret;
                 if (null != data)
                 {
-                    const locations = get_locations (data, options);
+                    const locations = this.get_locations (data, options);
                     ret = this.process_spatial_objects (data, locations, options);
                     this.process_spatial_objects_again (data, options);
                 }
@@ -537,8 +529,6 @@ define
 
             /**
              * Remove layers and sources from the map.
-             * @function remove_theme
-             * @memberOf module:default_theme
              */
             remove_theme ()
             {
@@ -601,8 +591,6 @@ define
              * @param {Object} cimmap - the CIM map object
              * @param {Object} options - object with rendering options, e.g.
              *   show_internal_features flag - render internal features
-             * @function make_theme
-             * @memberOf module:diagram_theme
              */
             make_theme (cimmap, options)
             {

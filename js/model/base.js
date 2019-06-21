@@ -25,7 +25,6 @@ define
          * Pass a string through unchanged.
          * @param {String} str - the string
          * @returns {String} the same string
-         * @memberOf module:model/base
          */
         function to_string (str)
         {
@@ -36,7 +35,6 @@ define
          * Convert a string into a boolean value.
          * @param {String} str - the string to convert
          * @returns {Boolean} the boolean value
-         * @memberOf module:model/base
          */
         function to_boolean (str)
         {
@@ -48,7 +46,6 @@ define
          * Convert a string into a floating point value.
          * @param {String} str - the string to convert
          * @returns {Number} the float value
-         * @memberOf module:model/base
          */
         function to_float (str)
         {
@@ -62,7 +59,6 @@ define
          * Convert a string into a date.
          * @param {String} str - the string to convert
          * @returns {Date|String} the date and time value, or the original string if it isn't parsable
-         * @memberOf module:model/base
          */
         function to_datetime (str)
         {
@@ -88,7 +84,6 @@ define
          * then ask for the next 64K slice starting at that byte offset.
          * But reading in the entire file (64MB so far) seems to work OK, so this isn't used.
          * @returns {[Number]} the index of newlines, e.g. [15, 32, 64] for "Now is the time\nfor all good men\nto come to the aid of the party\n"
-         * @memberOf module:model/base
          */
         function index_string (str, offset, newlines)
         {
@@ -110,7 +105,6 @@ define
          * @param {Number} context.start_character - the starting character position for this context
          * @param {Number} [offset = context.start_character] - the character position to find line number of, default = context.start_character
          * @returns {Number} the one-based line number for the starting character position
-         * @memberOf module:model/base
          */
         function line_number (context, offset)
         {
@@ -145,7 +139,6 @@ define
          * @param {Object} context - the context object
          * @param {Number[]} context.newlines - the index of newline positions within the text
          * @param {Number} context.start_character - the starting character position for this context
-         * @memberOf module:model/base
          */
         function parse_element (regex, obj, attribute, fn, str, context)
         {
@@ -164,7 +157,6 @@ define
          * @param {Object} context - the context object
          * @param {Number[]} context.newlines - the index of newline positions within the text
          * @param {Number} context.start_character - the starting character position for this context
-         * @memberOf module:model/base
          */
         function parse_attribute (regex, obj, attribute, str, context)
         {
@@ -188,7 +180,6 @@ define
          * @param {Object} context - the context object
          * @param {Number[]} context.newlines - the index of newline positions within the text
          * @param {Number} context.start_character - the starting character position for this context
-         * @memberOf module:model/base
          */
         function parse_attributes (regex, obj, attribute, str, context)
         {
@@ -209,7 +200,6 @@ define
          * Change the value into a string.
          * @param {object} value - the value of the element
          * @returns {String} the element value converted to a string
-         * @memberOf module:model/base
          */
         function from_string (value)
         {
@@ -220,7 +210,6 @@ define
          * Convert a boolean value into a string.
          * @param {Boolean} value - the boolean value to convert
          * @returns {String} the boolean value converted to a string
-         * @memberOf module:model/base
          */
         function from_boolean (value)
         {
@@ -231,7 +220,6 @@ define
          * Convert a floating point value into a string.
          * @param {Number} value - the float or double value to convert
          * @returns {String} str - the number as a string
-         * @memberOf module:model/base
          */
         function from_float (value)
         {
@@ -242,7 +230,6 @@ define
          * Convert a date into a string.
          * @param {Date} date - the date and time value
          * @returns {String} str - the datetime converted to a string
-         * @memberOf module:model/base
          */
         function from_datetime (date)
         {
@@ -274,7 +261,6 @@ define
          * @param {String} name - the JavaScript property name
          * @param {Function} fn - the conversion function to be applied to the attribute, e.g. from_datetime
          * @param {String[]} fields - the forming element array of strings to add to
-         * @memberOf module:model/base
          */
         function export_element (obj, cls, attribute, name, fn, fields)
         {
@@ -295,7 +281,6 @@ define
          * @param {String} attribute - the attribute being written, e.g. CoordinateSystem in the example above
          * @param {String} name - the JavaScript property name
          * @param {String[]} fields - the forming element array of strings to add to
-         * @memberOf module:model/base
          */
         function export_attribute (obj, cls, attribute, name, fields)
         {
@@ -317,7 +302,6 @@ define
          * @param {String} attribute - the attribute being written, e.g. PowerSystemResources in the example above
          * @param {String} name - the JavaScript property name
          * @param {String[]} fields - the forming element array of strings to add to
-         * @memberOf module:model/base
          */
         function export_attributes (obj, cls, attribute, name, fields)
         {
@@ -355,7 +339,6 @@ define
              * Parse an Element.
              * @param {Object} context - the context object
              * @param {String} sub - the substring within which to parse the element
-             * @memberOf module:model/base
              */
             parse (context, sub)
             {
