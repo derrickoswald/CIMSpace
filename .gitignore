@@ -27,6 +27,7 @@ release.properties
 # Test Data #
 data/
 private_data/
+geckodriver
 
 # Misc #
 glslogs/
