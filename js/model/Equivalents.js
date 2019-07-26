@@ -9,121 +9,6 @@ define
     {
 
         /**
-         * A class that represents an external meshed network that has been reduced to an electrically equivalent model.
-         *
-         * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
-         *
-         */
-        class EquivalentNetwork extends Core.ConnectivityNodeContainer
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.EquivalentNetwork;
-                if (null == bucket)
-                   cim_data.EquivalentNetwork = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.EquivalentNetwork[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = Core.ConnectivityNodeContainer.prototype.parse.call (this, context, sub);
-                obj.cls = "EquivalentNetwork";
-                base.parse_attributes (/<cim:EquivalentNetwork.EquivalentEquipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquivalentEquipments", sub, context);
-                var bucket = context.parsed.EquivalentNetwork;
-                if (null == bucket)
-                   context.parsed.EquivalentNetwork = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = Core.ConnectivityNodeContainer.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "EquivalentNetwork", "EquivalentEquipments", "EquivalentEquipments", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
-                    <div id="EquivalentNetwork_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.ConnectivityNodeContainer.prototype.template.call (this) +
-                    `
-                    {{#EquivalentEquipments}}<div><b>EquivalentEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EquivalentEquipments}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj.EquivalentEquipments) obj.EquivalentEquipments_string = obj.EquivalentEquipments.join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj.EquivalentEquipments_string;
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentNetwork_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
-                    <div id="{{id}}_EquivalentNetwork_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.ConnectivityNodeContainer.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var obj = obj || { id: id, cls: "EquivalentNetwork" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["EquivalentEquipments", "0..*", "0..1", "EquivalentEquipment", "EquivalentNetwork"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
          * The class represents equivalent objects that are the result of a network reduction.
          *
          * The class is the base for equivalent objects of different types.
@@ -134,7 +19,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.EquivalentEquipment;
+                let bucket = cim_data.EquivalentEquipment;
                 if (null == bucket)
                    cim_data.EquivalentEquipment = bucket = {};
                 bucket[template.id] = template;
@@ -148,12 +33,10 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.ConductingEquipment.prototype.parse.call (this, context, sub);
+                let obj = Core.ConductingEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "EquivalentEquipment";
-                base.parse_attribute (/<cim:EquivalentEquipment.EquivalentNetwork\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquivalentNetwork", sub, context);
-                var bucket = context.parsed.EquivalentEquipment;
+                base.parse_attribute (/<cim:EquivalentEquipment.EquivalentNetwork\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EquivalentNetwork", sub, context);
+                let bucket = context.parsed.EquivalentEquipment;
                 if (null == bucket)
                    context.parsed.EquivalentEquipment = bucket = {};
                 bucket[obj.id] = obj;
@@ -163,11 +46,11 @@ define
 
             export (obj, full)
             {
-                var fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
+                let fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "EquivalentEquipment", "EquivalentNetwork", "EquivalentNetwork", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -219,11 +102,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "EquivalentEquipment" };
+                obj = obj || { id: id, cls: "EquivalentEquipment" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_EquivalentNetwork").value; if ("" != temp) obj.EquivalentNetwork = temp;
+                temp = document.getElementById (id + "_EquivalentNetwork").value; if ("" !== temp) obj["EquivalentNetwork"] = temp;
 
                 return (obj);
             }
@@ -241,37 +124,36 @@ define
         }
 
         /**
-         * The class represents equivalent shunts.
+         * A class that represents an external meshed network that has been reduced to an electrically equivalent model.
+         *
+         * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
          *
          */
-        class EquivalentShunt extends EquivalentEquipment
+        class EquivalentNetwork extends Core.ConnectivityNodeContainer
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.EquivalentShunt;
+                let bucket = cim_data.EquivalentNetwork;
                 if (null == bucket)
-                   cim_data.EquivalentShunt = bucket = {};
+                   cim_data.EquivalentNetwork = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.EquivalentShunt[obj.id];
+               delete cim_data.EquivalentNetwork[obj.id];
             }
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = EquivalentEquipment.prototype.parse.call (this, context, sub);
-                obj.cls = "EquivalentShunt";
-                base.parse_element (/<cim:EquivalentShunt.b>([\s\S]*?)<\/cim:EquivalentShunt.b>/g, obj, "b", base.to_string, sub, context);
-                base.parse_element (/<cim:EquivalentShunt.g>([\s\S]*?)<\/cim:EquivalentShunt.g>/g, obj, "g", base.to_string, sub, context);
-                var bucket = context.parsed.EquivalentShunt;
+                let obj = Core.ConnectivityNodeContainer.prototype.parse.call (this, context, sub);
+                obj.cls = "EquivalentNetwork";
+                base.parse_attributes (/<cim:EquivalentNetwork.EquivalentEquipments\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EquivalentEquipments", sub, context);
+                let bucket = context.parsed.EquivalentNetwork;
                 if (null == bucket)
-                   context.parsed.EquivalentShunt = bucket = {};
+                   context.parsed.EquivalentNetwork = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -279,12 +161,11 @@ define
 
             export (obj, full)
             {
-                var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
+                let fields = Core.ConnectivityNodeContainer.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EquivalentShunt", "b", "b",  base.from_string, fields);
-                base.export_element (obj, "EquivalentShunt", "g", "g",  base.from_string, fields);
+                base.export_attributes (obj, "EquivalentNetwork", "EquivalentEquipments", "EquivalentEquipments", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -294,13 +175,12 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
-                    <div id="EquivalentShunt_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
+                    <div id="EquivalentNetwork_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + EquivalentEquipment.prototype.template.call (this) +
+                    + Core.ConnectivityNodeContainer.prototype.template.call (this) +
                     `
-                    {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
-                    {{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+                    {{#EquivalentEquipments}}<div><b>EquivalentEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EquivalentEquipments}}
                     </div>
                     </fieldset>
 
@@ -311,11 +191,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj["EquivalentEquipments"]) obj["EquivalentEquipments_string"] = obj["EquivalentEquipments"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj["EquivalentEquipments_string"];
             }
 
             edit_template ()
@@ -323,13 +205,11 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentShunt_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
-                    <div id="{{id}}_EquivalentShunt_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentNetwork_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
+                    <div id="{{id}}_EquivalentNetwork_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + EquivalentEquipment.prototype.edit_template.call (this) +
+                    + Core.ConnectivityNodeContainer.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b'>b: </label><div class='col-sm-8'><input id='{{id}}_b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g'>g: </label><div class='col-sm-8'><input id='{{id}}_g' class='form-control' type='text'{{#g}} value='{{g}}'{{/g}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -338,14 +218,21 @@ define
 
             submit (id, obj)
             {
-                var temp;
-
-                var obj = obj || { id: id, cls: "EquivalentShunt" };
+                obj = obj || { id: id, cls: "EquivalentNetwork" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_b").value; if ("" != temp) obj.b = temp;
-                temp = document.getElementById (id + "_g").value; if ("" != temp) obj.g = temp;
 
                 return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["EquivalentEquipments", "0..*", "0..1", "EquivalentEquipment", "EquivalentNetwork"]
+                        ]
+                    )
+                );
             }
         }
 
@@ -358,7 +245,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.EquivalentBranch;
+                let bucket = cim_data.EquivalentBranch;
                 if (null == bucket)
                    cim_data.EquivalentBranch = bucket = {};
                 bucket[template.id] = template;
@@ -372,9 +259,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = EquivalentEquipment.prototype.parse.call (this, context, sub);
+                let obj = EquivalentEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "EquivalentBranch";
                 base.parse_element (/<cim:EquivalentBranch.negativeR12>([\s\S]*?)<\/cim:EquivalentBranch.negativeR12>/g, obj, "negativeR12", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentBranch.negativeR21>([\s\S]*?)<\/cim:EquivalentBranch.negativeR21>/g, obj, "negativeR21", base.to_string, sub, context);
@@ -392,7 +277,7 @@ define
                 base.parse_element (/<cim:EquivalentBranch.zeroR21>([\s\S]*?)<\/cim:EquivalentBranch.zeroR21>/g, obj, "zeroR21", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentBranch.zeroX12>([\s\S]*?)<\/cim:EquivalentBranch.zeroX12>/g, obj, "zeroX12", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentBranch.zeroX21>([\s\S]*?)<\/cim:EquivalentBranch.zeroX21>/g, obj, "zeroX21", base.to_string, sub, context);
-                var bucket = context.parsed.EquivalentBranch;
+                let bucket = context.parsed.EquivalentBranch;
                 if (null == bucket)
                    context.parsed.EquivalentBranch = bucket = {};
                 bucket[obj.id] = obj;
@@ -402,7 +287,7 @@ define
 
             export (obj, full)
             {
-                var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
+                let fields = EquivalentEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EquivalentBranch", "negativeR12", "negativeR12",  base.from_string, fields);
                 base.export_element (obj, "EquivalentBranch", "negativeR21", "negativeR21",  base.from_string, fields);
@@ -421,7 +306,7 @@ define
                 base.export_element (obj, "EquivalentBranch", "zeroX12", "zeroX12",  base.from_string, fields);
                 base.export_element (obj, "EquivalentBranch", "zeroX21", "zeroX21",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -503,26 +388,26 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "EquivalentBranch" };
+                obj = obj || { id: id, cls: "EquivalentBranch" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_negativeR12").value; if ("" != temp) obj.negativeR12 = temp;
-                temp = document.getElementById (id + "_negativeR21").value; if ("" != temp) obj.negativeR21 = temp;
-                temp = document.getElementById (id + "_negativeX12").value; if ("" != temp) obj.negativeX12 = temp;
-                temp = document.getElementById (id + "_negativeX21").value; if ("" != temp) obj.negativeX21 = temp;
-                temp = document.getElementById (id + "_positiveR12").value; if ("" != temp) obj.positiveR12 = temp;
-                temp = document.getElementById (id + "_positiveR21").value; if ("" != temp) obj.positiveR21 = temp;
-                temp = document.getElementById (id + "_positiveX12").value; if ("" != temp) obj.positiveX12 = temp;
-                temp = document.getElementById (id + "_positiveX21").value; if ("" != temp) obj.positiveX21 = temp;
-                temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
-                temp = document.getElementById (id + "_r21").value; if ("" != temp) obj.r21 = temp;
-                temp = document.getElementById (id + "_x").value; if ("" != temp) obj.x = temp;
-                temp = document.getElementById (id + "_x21").value; if ("" != temp) obj.x21 = temp;
-                temp = document.getElementById (id + "_zeroR12").value; if ("" != temp) obj.zeroR12 = temp;
-                temp = document.getElementById (id + "_zeroR21").value; if ("" != temp) obj.zeroR21 = temp;
-                temp = document.getElementById (id + "_zeroX12").value; if ("" != temp) obj.zeroX12 = temp;
-                temp = document.getElementById (id + "_zeroX21").value; if ("" != temp) obj.zeroX21 = temp;
+                temp = document.getElementById (id + "_negativeR12").value; if ("" !== temp) obj["negativeR12"] = temp;
+                temp = document.getElementById (id + "_negativeR21").value; if ("" !== temp) obj["negativeR21"] = temp;
+                temp = document.getElementById (id + "_negativeX12").value; if ("" !== temp) obj["negativeX12"] = temp;
+                temp = document.getElementById (id + "_negativeX21").value; if ("" !== temp) obj["negativeX21"] = temp;
+                temp = document.getElementById (id + "_positiveR12").value; if ("" !== temp) obj["positiveR12"] = temp;
+                temp = document.getElementById (id + "_positiveR21").value; if ("" !== temp) obj["positiveR21"] = temp;
+                temp = document.getElementById (id + "_positiveX12").value; if ("" !== temp) obj["positiveX12"] = temp;
+                temp = document.getElementById (id + "_positiveX21").value; if ("" !== temp) obj["positiveX21"] = temp;
+                temp = document.getElementById (id + "_r").value; if ("" !== temp) obj["r"] = temp;
+                temp = document.getElementById (id + "_r21").value; if ("" !== temp) obj["r21"] = temp;
+                temp = document.getElementById (id + "_x").value; if ("" !== temp) obj["x"] = temp;
+                temp = document.getElementById (id + "_x21").value; if ("" !== temp) obj["x21"] = temp;
+                temp = document.getElementById (id + "_zeroR12").value; if ("" !== temp) obj["zeroR12"] = temp;
+                temp = document.getElementById (id + "_zeroR21").value; if ("" !== temp) obj["zeroR21"] = temp;
+                temp = document.getElementById (id + "_zeroX12").value; if ("" !== temp) obj["zeroX12"] = temp;
+                temp = document.getElementById (id + "_zeroX21").value; if ("" !== temp) obj["zeroX21"] = temp;
 
                 return (obj);
             }
@@ -539,7 +424,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.EquivalentInjection;
+                let bucket = cim_data.EquivalentInjection;
                 if (null == bucket)
                    cim_data.EquivalentInjection = bucket = {};
                 bucket[template.id] = template;
@@ -553,9 +438,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = EquivalentEquipment.prototype.parse.call (this, context, sub);
+                let obj = EquivalentEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "EquivalentInjection";
                 base.parse_element (/<cim:EquivalentInjection.maxP>([\s\S]*?)<\/cim:EquivalentInjection.maxP>/g, obj, "maxP", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentInjection.maxQ>([\s\S]*?)<\/cim:EquivalentInjection.maxQ>/g, obj, "maxQ", base.to_string, sub, context);
@@ -572,8 +455,8 @@ define
                 base.parse_element (/<cim:EquivalentInjection.x2>([\s\S]*?)<\/cim:EquivalentInjection.x2>/g, obj, "x2", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentInjection.p>([\s\S]*?)<\/cim:EquivalentInjection.p>/g, obj, "p", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentInjection.q>([\s\S]*?)<\/cim:EquivalentInjection.q>/g, obj, "q", base.to_string, sub, context);
-                base.parse_attribute (/<cim:EquivalentInjection.ReactiveCapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReactiveCapabilityCurve", sub, context);
-                var bucket = context.parsed.EquivalentInjection;
+                base.parse_attribute (/<cim:EquivalentInjection.ReactiveCapabilityCurve\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ReactiveCapabilityCurve", sub, context);
+                let bucket = context.parsed.EquivalentInjection;
                 if (null == bucket)
                    context.parsed.EquivalentInjection = bucket = {};
                 bucket[obj.id] = obj;
@@ -583,7 +466,7 @@ define
 
             export (obj, full)
             {
-                var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
+                let fields = EquivalentEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EquivalentInjection", "maxP", "maxP",  base.from_string, fields);
                 base.export_element (obj, "EquivalentInjection", "maxQ", "maxQ",  base.from_string, fields);
@@ -602,7 +485,7 @@ define
                 base.export_element (obj, "EquivalentInjection", "q", "q",  base.from_string, fields);
                 base.export_attribute (obj, "EquivalentInjection", "ReactiveCapabilityCurve", "ReactiveCapabilityCurve", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -684,26 +567,26 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "EquivalentInjection" };
+                obj = obj || { id: id, cls: "EquivalentInjection" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_maxP").value; if ("" != temp) obj.maxP = temp;
-                temp = document.getElementById (id + "_maxQ").value; if ("" != temp) obj.maxQ = temp;
-                temp = document.getElementById (id + "_minP").value; if ("" != temp) obj.minP = temp;
-                temp = document.getElementById (id + "_minQ").value; if ("" != temp) obj.minQ = temp;
-                temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
-                temp = document.getElementById (id + "_r0").value; if ("" != temp) obj.r0 = temp;
-                temp = document.getElementById (id + "_r2").value; if ("" != temp) obj.r2 = temp;
-                temp = document.getElementById (id + "_regulationCapability").checked; if (temp) obj.regulationCapability = true;
-                temp = document.getElementById (id + "_regulationStatus").checked; if (temp) obj.regulationStatus = true;
-                temp = document.getElementById (id + "_regulationTarget").value; if ("" != temp) obj.regulationTarget = temp;
-                temp = document.getElementById (id + "_x").value; if ("" != temp) obj.x = temp;
-                temp = document.getElementById (id + "_x0").value; if ("" != temp) obj.x0 = temp;
-                temp = document.getElementById (id + "_x2").value; if ("" != temp) obj.x2 = temp;
-                temp = document.getElementById (id + "_p").value; if ("" != temp) obj.p = temp;
-                temp = document.getElementById (id + "_q").value; if ("" != temp) obj.q = temp;
-                temp = document.getElementById (id + "_ReactiveCapabilityCurve").value; if ("" != temp) obj.ReactiveCapabilityCurve = temp;
+                temp = document.getElementById (id + "_maxP").value; if ("" !== temp) obj["maxP"] = temp;
+                temp = document.getElementById (id + "_maxQ").value; if ("" !== temp) obj["maxQ"] = temp;
+                temp = document.getElementById (id + "_minP").value; if ("" !== temp) obj["minP"] = temp;
+                temp = document.getElementById (id + "_minQ").value; if ("" !== temp) obj["minQ"] = temp;
+                temp = document.getElementById (id + "_r").value; if ("" !== temp) obj["r"] = temp;
+                temp = document.getElementById (id + "_r0").value; if ("" !== temp) obj["r0"] = temp;
+                temp = document.getElementById (id + "_r2").value; if ("" !== temp) obj["r2"] = temp;
+                temp = document.getElementById (id + "_regulationCapability").checked; if (temp) obj["regulationCapability"] = true;
+                temp = document.getElementById (id + "_regulationStatus").checked; if (temp) obj["regulationStatus"] = true;
+                temp = document.getElementById (id + "_regulationTarget").value; if ("" !== temp) obj["regulationTarget"] = temp;
+                temp = document.getElementById (id + "_x").value; if ("" !== temp) obj["x"] = temp;
+                temp = document.getElementById (id + "_x0").value; if ("" !== temp) obj["x0"] = temp;
+                temp = document.getElementById (id + "_x2").value; if ("" !== temp) obj["x2"] = temp;
+                temp = document.getElementById (id + "_p").value; if ("" !== temp) obj["p"] = temp;
+                temp = document.getElementById (id + "_q").value; if ("" !== temp) obj["q"] = temp;
+                temp = document.getElementById (id + "_ReactiveCapabilityCurve").value; if ("" !== temp) obj["ReactiveCapabilityCurve"] = temp;
 
                 return (obj);
             }
@@ -717,6 +600,113 @@ define
                         ]
                     )
                 );
+            }
+        }
+
+        /**
+         * The class represents equivalent shunts.
+         *
+         */
+        class EquivalentShunt extends EquivalentEquipment
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.EquivalentShunt;
+                if (null == bucket)
+                   cim_data.EquivalentShunt = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.EquivalentShunt[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = EquivalentEquipment.prototype.parse.call (this, context, sub);
+                obj.cls = "EquivalentShunt";
+                base.parse_element (/<cim:EquivalentShunt.b>([\s\S]*?)<\/cim:EquivalentShunt.b>/g, obj, "b", base.to_string, sub, context);
+                base.parse_element (/<cim:EquivalentShunt.g>([\s\S]*?)<\/cim:EquivalentShunt.g>/g, obj, "g", base.to_string, sub, context);
+                let bucket = context.parsed.EquivalentShunt;
+                if (null == bucket)
+                   context.parsed.EquivalentShunt = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = EquivalentEquipment.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "EquivalentShunt", "b", "b",  base.from_string, fields);
+                base.export_element (obj, "EquivalentShunt", "g", "g",  base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
+                    <div id="EquivalentShunt_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + EquivalentEquipment.prototype.template.call (this) +
+                    `
+                    {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
+                    {{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EquivalentShunt_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
+                    <div id="{{id}}_EquivalentShunt_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + EquivalentEquipment.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b'>b: </label><div class='col-sm-8'><input id='{{id}}_b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g'>g: </label><div class='col-sm-8'><input id='{{id}}_g' class='form-control' type='text'{{#g}} value='{{g}}'{{/g}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "EquivalentShunt" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_b").value; if ("" !== temp) obj["b"] = temp;
+                temp = document.getElementById (id + "_g").value; if ("" !== temp) obj["g"] = temp;
+
+                return (obj);
             }
         }
 

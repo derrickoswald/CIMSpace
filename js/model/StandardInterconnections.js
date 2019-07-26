@@ -2,9 +2,11 @@ define
 (
     ["model/base", "model/Core"],
     /**
-     * This section describes the standard interconnections for various types of equipment.
+     * This subclause describes the standard interconnections for various types of equipment.
      *
      * These interconnections are understood by the application programs and can be identified based on the presence of one of the key classes with a relationship to the static power flow model: SynchronousMachineDynamics, AsynchronousMachineDynamics, EnergyConsumerDynamics or WindTurbineType3or4Dynamics.
+     * The relationships between classes expressed in the interconnection diagrams are intended to support dynamic behaviour described by either standard models or user-defined models.
+     * In the interconnection diagrams, boxes which are black in colour represent function blocks whose functionality can be provided by one of many standard models or by a user-defined model. Blue boxes represent specific standard models.  A dashed box means that the function block or specific standard model is optional.
      *
      */
     function (base, Core)
@@ -14,17 +16,17 @@ define
          * Type of input signal coming from remote bus.
          *
          */
-        var RemoteSignalKind =
+        let RemoteSignalKind =
         {
-            remoteBusVoltageFrequency: "remoteBusVoltageFrequency",
-            remoteBusVoltageFrequencyDeviation: "remoteBusVoltageFrequencyDeviation",
-            remoteBusFrequency: "remoteBusFrequency",
-            remoteBusFrequencyDeviation: "remoteBusFrequencyDeviation",
-            remoteBusVoltageAmplitude: "remoteBusVoltageAmplitude",
-            remoteBusVoltage: "remoteBusVoltage",
-            remoteBranchCurrentAmplitude: "remoteBranchCurrentAmplitude",
-            remoteBusVoltageAmplitudeDerivative: "remoteBusVoltageAmplitudeDerivative",
-            remotePuBusVoltageDerivative: "remotePuBusVoltageDerivative"
+            "remoteBusVoltageFrequency": "remoteBusVoltageFrequency",
+            "remoteBusVoltageFrequencyDeviation": "remoteBusVoltageFrequencyDeviation",
+            "remoteBusFrequency": "remoteBusFrequency",
+            "remoteBusFrequencyDeviation": "remoteBusFrequencyDeviation",
+            "remoteBusVoltageAmplitude": "remoteBusVoltageAmplitude",
+            "remoteBusVoltage": "remoteBusVoltage",
+            "remoteBranchCurrentAmplitude": "remoteBranchCurrentAmplitude",
+            "remoteBusVoltageAmplitudeDerivative": "remoteBusVoltageAmplitudeDerivative",
+            "remotePuBusVoltageDerivative": "remotePuBusVoltageDerivative"
         };
         Object.freeze (RemoteSignalKind);
 
@@ -37,7 +39,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.RemoteInputSignal;
+                let bucket = cim_data.RemoteInputSignal;
                 if (null == bucket)
                    cim_data.RemoteInputSignal = bucket = {};
                 bucket[template.id] = template;
@@ -51,21 +53,19 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "RemoteInputSignal";
-                base.parse_attribute (/<cim:RemoteInputSignal.remoteSignalType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "remoteSignalType", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.VoltageCompensatorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageCompensatorDynamics", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.WindPlantDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantDynamics", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.PowerSystemStabilizerDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemStabilizerDynamics", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType3or4Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4Dynamics", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.UnderexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UnderexcitationLimiterDynamics", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
-                base.parse_attribute (/<cim:RemoteInputSignal.DiscontinuousExcitationControlDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiscontinuousExcitationControlDynamics", sub, context);
-                var bucket = context.parsed.RemoteInputSignal;
+                base.parse_attribute (/<cim:RemoteInputSignal.remoteSignalType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "remoteSignalType", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.WindPlantDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantDynamics", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.Terminal\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.UnderexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "UnderexcitationLimiterDynamics", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.PowerSystemStabilizerDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemStabilizerDynamics", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.DiscontinuousExcitationControlDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "DiscontinuousExcitationControlDynamics", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType3or4Dynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4Dynamics", sub, context);
+                base.parse_attribute (/<cim:RemoteInputSignal.VoltageCompensatorDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "VoltageCompensatorDynamics", sub, context);
+                let bucket = context.parsed.RemoteInputSignal;
                 if (null == bucket)
                    context.parsed.RemoteInputSignal = bucket = {};
                 bucket[obj.id] = obj;
@@ -75,20 +75,20 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "RemoteInputSignal", "remoteSignalType", "remoteSignalType", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "Terminal", "Terminal", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "VoltageCompensatorDynamics", "VoltageCompensatorDynamics", fields);
                 base.export_attribute (obj, "RemoteInputSignal", "WindPlantDynamics", "WindPlantDynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", fields);
                 base.export_attribute (obj, "RemoteInputSignal", "WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "Terminal", "Terminal", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", fields);
                 base.export_attribute (obj, "RemoteInputSignal", "DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "VoltageCompensatorDynamics", "VoltageCompensatorDynamics", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -104,15 +104,15 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#remoteSignalType}}<div><b>remoteSignalType</b>: {{remoteSignalType}}</div>{{/remoteSignalType}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
-                    {{#VoltageCompensatorDynamics}}<div><b>VoltageCompensatorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorDynamics}}&quot;);}); return false;'>{{VoltageCompensatorDynamics}}</a></div>{{/VoltageCompensatorDynamics}}
                     {{#WindPlantDynamics}}<div><b>WindPlantDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantDynamics}}&quot;);}); return false;'>{{WindPlantDynamics}}</a></div>{{/WindPlantDynamics}}
-                    {{#PowerSystemStabilizerDynamics}}<div><b>PowerSystemStabilizerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerDynamics}}&quot;);}); return false;'>{{PowerSystemStabilizerDynamics}}</a></div>{{/PowerSystemStabilizerDynamics}}
-                    {{#WindTurbineType3or4Dynamics}}<div><b>WindTurbineType3or4Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4Dynamics}}&quot;);}); return false;'>{{WindTurbineType3or4Dynamics}}</a></div>{{/WindTurbineType3or4Dynamics}}
-                    {{#UnderexcitationLimiterDynamics}}<div><b>UnderexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterDynamics}}&quot;);}); return false;'>{{UnderexcitationLimiterDynamics}}</a></div>{{/UnderexcitationLimiterDynamics}}
                     {{#WindTurbineType1or2Dynamics}}<div><b>WindTurbineType1or2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2Dynamics}}&quot;);}); return false;'>{{WindTurbineType1or2Dynamics}}</a></div>{{/WindTurbineType1or2Dynamics}}
-                    {{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);}); return false;'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#UnderexcitationLimiterDynamics}}<div><b>UnderexcitationLimiterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnderexcitationLimiterDynamics}}&quot;);}); return false;'>{{UnderexcitationLimiterDynamics}}</a></div>{{/UnderexcitationLimiterDynamics}}
+                    {{#PowerSystemStabilizerDynamics}}<div><b>PowerSystemStabilizerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerSystemStabilizerDynamics}}&quot;);}); return false;'>{{PowerSystemStabilizerDynamics}}</a></div>{{/PowerSystemStabilizerDynamics}}
                     {{#DiscontinuousExcitationControlDynamics}}<div><b>DiscontinuousExcitationControlDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscontinuousExcitationControlDynamics}}&quot;);}); return false;'>{{DiscontinuousExcitationControlDynamics}}</a></div>{{/DiscontinuousExcitationControlDynamics}}
+                    {{#PFVArControllerType1Dynamics}}<div><b>PFVArControllerType1Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFVArControllerType1Dynamics}}&quot;);}); return false;'>{{PFVArControllerType1Dynamics}}</a></div>{{/PFVArControllerType1Dynamics}}
+                    {{#WindTurbineType3or4Dynamics}}<div><b>WindTurbineType3or4Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4Dynamics}}&quot;);}); return false;'>{{WindTurbineType3or4Dynamics}}</a></div>{{/WindTurbineType3or4Dynamics}}
+                    {{#VoltageCompensatorDynamics}}<div><b>VoltageCompensatorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageCompensatorDynamics}}&quot;);}); return false;'>{{VoltageCompensatorDynamics}}</a></div>{{/VoltageCompensatorDynamics}}
                     </div>
                     </fieldset>
 
@@ -123,13 +123,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.remoteSignalTypeRemoteSignalKind = [{ id: '', selected: (!obj.remoteSignalType)}]; for (var property in RemoteSignalKind) obj.remoteSignalTypeRemoteSignalKind.push ({ id: property, selected: obj.remoteSignalType && obj.remoteSignalType.endsWith ('.' + property)});
+                obj["remoteSignalTypeRemoteSignalKind"] = [{ id: '', selected: (!obj["remoteSignalType"])}]; for (let property in RemoteSignalKind) obj["remoteSignalTypeRemoteSignalKind"].push ({ id: property, selected: obj["remoteSignalType"] && obj["remoteSignalType"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.remoteSignalTypeRemoteSignalKind;
+                delete obj["remoteSignalTypeRemoteSignalKind"];
             }
 
             edit_template ()
@@ -143,15 +143,15 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteSignalType'>remoteSignalType: </label><div class='col-sm-8'><select id='{{id}}_remoteSignalType' class='form-control custom-select'>{{#remoteSignalTypeRemoteSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/remoteSignalTypeRemoteSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageCompensatorDynamics'>VoltageCompensatorDynamics: </label><div class='col-sm-8'><input id='{{id}}_VoltageCompensatorDynamics' class='form-control' type='text'{{#VoltageCompensatorDynamics}} value='{{VoltageCompensatorDynamics}}'{{/VoltageCompensatorDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantDynamics'>WindPlantDynamics: </label><div class='col-sm-8'><input id='{{id}}_WindPlantDynamics' class='form-control' type='text'{{#WindPlantDynamics}} value='{{WindPlantDynamics}}'{{/WindPlantDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemStabilizerDynamics'>PowerSystemStabilizerDynamics: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemStabilizerDynamics' class='form-control' type='text'{{#PowerSystemStabilizerDynamics}} value='{{PowerSystemStabilizerDynamics}}'{{/PowerSystemStabilizerDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4Dynamics'>WindTurbineType3or4Dynamics: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4Dynamics' class='form-control' type='text'{{#WindTurbineType3or4Dynamics}} value='{{WindTurbineType3or4Dynamics}}'{{/WindTurbineType3or4Dynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UnderexcitationLimiterDynamics'>UnderexcitationLimiterDynamics: </label><div class='col-sm-8'><input id='{{id}}_UnderexcitationLimiterDynamics' class='form-control' type='text'{{#UnderexcitationLimiterDynamics}} value='{{UnderexcitationLimiterDynamics}}'{{/UnderexcitationLimiterDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType1or2Dynamics'>WindTurbineType1or2Dynamics: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType1or2Dynamics' class='form-control' type='text'{{#WindTurbineType1or2Dynamics}} value='{{WindTurbineType1or2Dynamics}}'{{/WindTurbineType1or2Dynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UnderexcitationLimiterDynamics'>UnderexcitationLimiterDynamics: </label><div class='col-sm-8'><input id='{{id}}_UnderexcitationLimiterDynamics' class='form-control' type='text'{{#UnderexcitationLimiterDynamics}} value='{{UnderexcitationLimiterDynamics}}'{{/UnderexcitationLimiterDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemStabilizerDynamics'>PowerSystemStabilizerDynamics: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemStabilizerDynamics' class='form-control' type='text'{{#PowerSystemStabilizerDynamics}} value='{{PowerSystemStabilizerDynamics}}'{{/PowerSystemStabilizerDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiscontinuousExcitationControlDynamics'>DiscontinuousExcitationControlDynamics: </label><div class='col-sm-8'><input id='{{id}}_DiscontinuousExcitationControlDynamics' class='form-control' type='text'{{#DiscontinuousExcitationControlDynamics}} value='{{DiscontinuousExcitationControlDynamics}}'{{/DiscontinuousExcitationControlDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4Dynamics'>WindTurbineType3or4Dynamics: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4Dynamics' class='form-control' type='text'{{#WindTurbineType3or4Dynamics}} value='{{WindTurbineType3or4Dynamics}}'{{/WindTurbineType3or4Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageCompensatorDynamics'>VoltageCompensatorDynamics: </label><div class='col-sm-8'><input id='{{id}}_VoltageCompensatorDynamics' class='form-control' type='text'{{#VoltageCompensatorDynamics}} value='{{VoltageCompensatorDynamics}}'{{/VoltageCompensatorDynamics}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -160,20 +160,20 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "RemoteInputSignal" };
+                obj = obj || { id: id, cls: "RemoteInputSignal" };
                 super.submit (id, obj);
-                temp = RemoteSignalKind[document.getElementById (id + "_remoteSignalType").value]; if (temp) obj.remoteSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; else delete obj.remoteSignalType;
-                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
-                temp = document.getElementById (id + "_VoltageCompensatorDynamics").value; if ("" != temp) obj.VoltageCompensatorDynamics = temp;
-                temp = document.getElementById (id + "_WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;
-                temp = document.getElementById (id + "_PowerSystemStabilizerDynamics").value; if ("" != temp) obj.PowerSystemStabilizerDynamics = temp;
-                temp = document.getElementById (id + "_WindTurbineType3or4Dynamics").value; if ("" != temp) obj.WindTurbineType3or4Dynamics = temp;
-                temp = document.getElementById (id + "_UnderexcitationLimiterDynamics").value; if ("" != temp) obj.UnderexcitationLimiterDynamics = temp;
-                temp = document.getElementById (id + "_WindTurbineType1or2Dynamics").value; if ("" != temp) obj.WindTurbineType1or2Dynamics = temp;
-                temp = document.getElementById (id + "_PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
-                temp = document.getElementById (id + "_DiscontinuousExcitationControlDynamics").value; if ("" != temp) obj.DiscontinuousExcitationControlDynamics = temp;
+                temp = RemoteSignalKind[document.getElementById (id + "_remoteSignalType").value]; if (temp) obj["remoteSignalType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; else delete obj["remoteSignalType"];
+                temp = document.getElementById (id + "_WindPlantDynamics").value; if ("" !== temp) obj["WindPlantDynamics"] = temp;
+                temp = document.getElementById (id + "_WindTurbineType1or2Dynamics").value; if ("" !== temp) obj["WindTurbineType1or2Dynamics"] = temp;
+                temp = document.getElementById (id + "_Terminal").value; if ("" !== temp) obj["Terminal"] = temp;
+                temp = document.getElementById (id + "_UnderexcitationLimiterDynamics").value; if ("" !== temp) obj["UnderexcitationLimiterDynamics"] = temp;
+                temp = document.getElementById (id + "_PowerSystemStabilizerDynamics").value; if ("" !== temp) obj["PowerSystemStabilizerDynamics"] = temp;
+                temp = document.getElementById (id + "_DiscontinuousExcitationControlDynamics").value; if ("" !== temp) obj["DiscontinuousExcitationControlDynamics"] = temp;
+                temp = document.getElementById (id + "_PFVArControllerType1Dynamics").value; if ("" !== temp) obj["PFVArControllerType1Dynamics"] = temp;
+                temp = document.getElementById (id + "_WindTurbineType3or4Dynamics").value; if ("" !== temp) obj["WindTurbineType3or4Dynamics"] = temp;
+                temp = document.getElementById (id + "_VoltageCompensatorDynamics").value; if ("" !== temp) obj["VoltageCompensatorDynamics"] = temp;
 
                 return (obj);
             }
@@ -183,15 +183,15 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["Terminal", "1", "0..*", "Terminal", "RemoteInputSignal"],
-                            ["VoltageCompensatorDynamics", "0..1", "0..1", "VoltageCompensatorDynamics", "RemoteInputSignal"],
                             ["WindPlantDynamics", "0..1", "0..1", "WindPlantDynamics", "RemoteInputSignal"],
-                            ["PowerSystemStabilizerDynamics", "0..1", "0..*", "PowerSystemStabilizerDynamics", "RemoteInputSignal"],
-                            ["WindTurbineType3or4Dynamics", "0..1", "0..1", "WindTurbineType3or4Dynamics", "RemoteInputSignal"],
-                            ["UnderexcitationLimiterDynamics", "0..1", "0..1", "UnderexcitationLimiterDynamics", "RemoteInputSignal"],
                             ["WindTurbineType1or2Dynamics", "0..1", "0..1", "WindTurbineType1or2Dynamics", "RemoteInputSignal"],
+                            ["Terminal", "1", "0..*", "Terminal", "RemoteInputSignal"],
+                            ["UnderexcitationLimiterDynamics", "0..1", "0..1", "UnderexcitationLimiterDynamics", "RemoteInputSignal"],
+                            ["PowerSystemStabilizerDynamics", "0..1", "0..*", "PowerSystemStabilizerDynamics", "RemoteInputSignal"],
+                            ["DiscontinuousExcitationControlDynamics", "0..1", "0..1", "DiscontinuousExcitationControlDynamics", "RemoteInputSignal"],
                             ["PFVArControllerType1Dynamics", "0..1", "0..1", "PFVArControllerType1Dynamics", "RemoteInputSignal"],
-                            ["DiscontinuousExcitationControlDynamics", "0..1", "0..1", "DiscontinuousExcitationControlDynamics", "RemoteInputSignal"]
+                            ["WindTurbineType3or4Dynamics", "0..1", "0..1", "WindTurbineType3or4Dynamics", "RemoteInputSignal"],
+                            ["VoltageCompensatorDynamics", "0..1", "0..1", "VoltageCompensatorDynamics", "RemoteInputSignal"]
                         ]
                     )
                 );

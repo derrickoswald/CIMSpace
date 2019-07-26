@@ -15,7 +15,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.TiePoint;
+                let bucket = cim_data.TiePoint;
                 if (null == bucket)
                    cim_data.TiePoint = bucket = {};
                 bucket[template.id] = template;
@@ -29,14 +29,12 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "TiePoint";
                 base.parse_element (/<cim:TiePoint.tiePointMWRating>([\s\S]*?)<\/cim:TiePoint.tiePointMWRating>/g, obj, "tiePointMWRating", base.to_string, sub, context);
-                base.parse_attributes (/<cim:TiePoint.ForMktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ForMktMeasurement", sub, context);
-                base.parse_attributes (/<cim:TiePoint.ByMktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ByMktMeasurement", sub, context);
-                var bucket = context.parsed.TiePoint;
+                base.parse_attributes (/<cim:TiePoint.ByMktMeasurement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ByMktMeasurement", sub, context);
+                base.parse_attributes (/<cim:TiePoint.ForMktMeasurement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ForMktMeasurement", sub, context);
+                let bucket = context.parsed.TiePoint;
                 if (null == bucket)
                    context.parsed.TiePoint = bucket = {};
                 bucket[obj.id] = obj;
@@ -46,13 +44,13 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TiePoint", "tiePointMWRating", "tiePointMWRating",  base.from_string, fields);
-                base.export_attributes (obj, "TiePoint", "ForMktMeasurement", "ForMktMeasurement", fields);
                 base.export_attributes (obj, "TiePoint", "ByMktMeasurement", "ByMktMeasurement", fields);
+                base.export_attributes (obj, "TiePoint", "ForMktMeasurement", "ForMktMeasurement", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -68,8 +66,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#tiePointMWRating}}<div><b>tiePointMWRating</b>: {{tiePointMWRating}}</div>{{/tiePointMWRating}}
-                    {{#ForMktMeasurement}}<div><b>ForMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ForMktMeasurement}}
                     {{#ByMktMeasurement}}<div><b>ByMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ByMktMeasurement}}
+                    {{#ForMktMeasurement}}<div><b>ForMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ForMktMeasurement}}
                     </div>
                     </fieldset>
 
@@ -80,15 +78,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj.ForMktMeasurement) obj.ForMktMeasurement_string = obj.ForMktMeasurement.join ();
-                if (obj.ByMktMeasurement) obj.ByMktMeasurement_string = obj.ByMktMeasurement.join ();
+                if (obj["ByMktMeasurement"]) obj["ByMktMeasurement_string"] = obj["ByMktMeasurement"].join ();
+                if (obj["ForMktMeasurement"]) obj["ForMktMeasurement_string"] = obj["ForMktMeasurement"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ForMktMeasurement_string;
-                delete obj.ByMktMeasurement_string;
+                delete obj["ByMktMeasurement_string"];
+                delete obj["ForMktMeasurement_string"];
             }
 
             edit_template ()
@@ -110,11 +108,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "TiePoint" };
+                obj = obj || { id: id, cls: "TiePoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_tiePointMWRating").value; if ("" != temp) obj.tiePointMWRating = temp;
+                temp = document.getElementById (id + "_tiePointMWRating").value; if ("" !== temp) obj["tiePointMWRating"] = temp;
 
                 return (obj);
             }
@@ -124,8 +122,8 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["ForMktMeasurement", "1..*", "1", "MktMeasurement", "ForTiePoint"],
-                            ["ByMktMeasurement", "1..*", "1", "MktMeasurement", "ByTiePoint"]
+                            ["ByMktMeasurement", "1..*", "1", "MktMeasurement", "ByTiePoint"],
+                            ["ForMktMeasurement", "1..*", "1", "MktMeasurement", "ForTiePoint"]
                         ]
                     )
                 );

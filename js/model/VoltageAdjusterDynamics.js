@@ -4,7 +4,7 @@ define
     /**
      * <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
      *
-     * <font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+     * <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
      *
      */
     function (base, StandardModels)
@@ -19,7 +19,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.VoltageAdjusterDynamics;
+                let bucket = cim_data.VoltageAdjusterDynamics;
                 if (null == bucket)
                    cim_data.VoltageAdjusterDynamics = bucket = {};
                 bucket[template.id] = template;
@@ -33,12 +33,10 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
+                let obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "VoltageAdjusterDynamics";
-                base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
-                var bucket = context.parsed.VoltageAdjusterDynamics;
+                base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
+                let bucket = context.parsed.VoltageAdjusterDynamics;
                 if (null == bucket)
                    context.parsed.VoltageAdjusterDynamics = bucket = {};
                 bucket[obj.id] = obj;
@@ -48,11 +46,11 @@ define
 
             export (obj, full)
             {
-                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
+                let fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -104,11 +102,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "VoltageAdjusterDynamics" };
+                obj = obj || { id: id, cls: "VoltageAdjusterDynamics" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
+                temp = document.getElementById (id + "_PFVArControllerType1Dynamics").value; if ("" !== temp) obj["PFVArControllerType1Dynamics"] = temp;
 
                 return (obj);
             }
@@ -126,9 +124,9 @@ define
         }
 
         /**
-         * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
+         * IEEE voltage adjuster which is used to represent the voltage adjuster in either a power factor or VAr control system.
          *
-         * Reference: IEEE Standard 421.5-2005 Section 11.1.
+         * Reference: IEEE 421.5-2005, 11.1.
          *
          */
         class VAdjIEEE extends VoltageAdjusterDynamics
@@ -136,7 +134,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.VAdjIEEE;
+                let bucket = cim_data.VAdjIEEE;
                 if (null == bucket)
                    cim_data.VAdjIEEE = bucket = {};
                 bucket[template.id] = template;
@@ -150,9 +148,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = VoltageAdjusterDynamics.prototype.parse.call (this, context, sub);
+                let obj = VoltageAdjusterDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "VAdjIEEE";
                 base.parse_element (/<cim:VAdjIEEE.adjslew>([\s\S]*?)<\/cim:VAdjIEEE.adjslew>/g, obj, "adjslew", base.to_float, sub, context);
                 base.parse_element (/<cim:VAdjIEEE.taoff>([\s\S]*?)<\/cim:VAdjIEEE.taoff>/g, obj, "taoff", base.to_string, sub, context);
@@ -160,7 +156,7 @@ define
                 base.parse_element (/<cim:VAdjIEEE.vadjf>([\s\S]*?)<\/cim:VAdjIEEE.vadjf>/g, obj, "vadjf", base.to_float, sub, context);
                 base.parse_element (/<cim:VAdjIEEE.vadjmax>([\s\S]*?)<\/cim:VAdjIEEE.vadjmax>/g, obj, "vadjmax", base.to_string, sub, context);
                 base.parse_element (/<cim:VAdjIEEE.vadjmin>([\s\S]*?)<\/cim:VAdjIEEE.vadjmin>/g, obj, "vadjmin", base.to_string, sub, context);
-                var bucket = context.parsed.VAdjIEEE;
+                let bucket = context.parsed.VAdjIEEE;
                 if (null == bucket)
                    context.parsed.VAdjIEEE = bucket = {};
                 bucket[obj.id] = obj;
@@ -170,7 +166,7 @@ define
 
             export (obj, full)
             {
-                var fields = VoltageAdjusterDynamics.prototype.export.call (this, obj, false);
+                let fields = VoltageAdjusterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VAdjIEEE", "adjslew", "adjslew",  base.from_float, fields);
                 base.export_element (obj, "VAdjIEEE", "taoff", "taoff",  base.from_string, fields);
@@ -179,7 +175,7 @@ define
                 base.export_element (obj, "VAdjIEEE", "vadjmax", "vadjmax",  base.from_string, fields);
                 base.export_element (obj, "VAdjIEEE", "vadjmin", "vadjmin",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -241,16 +237,16 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "VAdjIEEE" };
+                obj = obj || { id: id, cls: "VAdjIEEE" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_adjslew").value; if ("" != temp) obj.adjslew = temp;
-                temp = document.getElementById (id + "_taoff").value; if ("" != temp) obj.taoff = temp;
-                temp = document.getElementById (id + "_taon").value; if ("" != temp) obj.taon = temp;
-                temp = document.getElementById (id + "_vadjf").value; if ("" != temp) obj.vadjf = temp;
-                temp = document.getElementById (id + "_vadjmax").value; if ("" != temp) obj.vadjmax = temp;
-                temp = document.getElementById (id + "_vadjmin").value; if ("" != temp) obj.vadjmin = temp;
+                temp = document.getElementById (id + "_adjslew").value; if ("" !== temp) obj["adjslew"] = temp;
+                temp = document.getElementById (id + "_taoff").value; if ("" !== temp) obj["taoff"] = temp;
+                temp = document.getElementById (id + "_taon").value; if ("" !== temp) obj["taon"] = temp;
+                temp = document.getElementById (id + "_vadjf").value; if ("" !== temp) obj["vadjf"] = temp;
+                temp = document.getElementById (id + "_vadjmax").value; if ("" !== temp) obj["vadjmax"] = temp;
+                temp = document.getElementById (id + "_vadjmin").value; if ("" !== temp) obj["vadjmin"] = temp;
 
                 return (obj);
             }

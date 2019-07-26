@@ -5,39 +5,158 @@ define
      * Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.
      *
      * Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.
+     * Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
      *
      */
     function (base, Core)
     {
 
         /**
-         * Type of generic non-linear load model.
-         *
-         */
-        var GenericNonLinearLoadModelKind =
-        {
-            exponentialRecovery: "exponentialRecovery",
-            loadAdaptive: "loadAdaptive"
-        };
-        Object.freeze (GenericNonLinearLoadModelKind);
-
-        /**
          * Type of static load model.
          *
          */
-        var StaticLoadModelKind =
+        let StaticLoadModelKind =
         {
-            exponential: "exponential",
-            zIP1: "zIP1",
-            zIP2: "zIP2",
-            constantZ: "constantZ"
+            "exponential": "exponential",
+            "zIP1": "zIP1",
+            "zIP2": "zIP2",
+            "constantZ": "constantZ"
         };
         Object.freeze (StaticLoadModelKind);
 
         /**
+         * Type of generic non-linear load model.
+         *
+         */
+        let GenericNonLinearLoadModelKind =
+        {
+            "exponentialRecovery": "exponentialRecovery",
+            "loadAdaptive": "loadAdaptive"
+        };
+        Object.freeze (GenericNonLinearLoadModelKind);
+
+        /**
+         * Load whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+         * A standard feature of dynamic load behaviour modelling is the ability to associate the same behaviour to multiple energy consumers by means of a single load definition.
+         *
+         * The load model is always applied to individual bus loads (energy consumers).
+         *
+         */
+        class LoadDynamics extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.LoadDynamics;
+                if (null == bucket)
+                   cim_data.LoadDynamics = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.LoadDynamics[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "LoadDynamics";
+                base.parse_attributes (/<cim:LoadDynamics.EnergyConsumer\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumer", sub, context);
+                let bucket = context.parsed.LoadDynamics;
+                if (null == bucket)
+                   context.parsed.LoadDynamics = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "LoadDynamics", "EnergyConsumer", "EnergyConsumer", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadDynamics_collapse" aria-expanded="true" aria-controls="LoadDynamics_collapse" style="margin-left: 10px;">LoadDynamics</a></legend>
+                    <div id="LoadDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumer}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["EnergyConsumer"]) obj["EnergyConsumer_string"] = obj["EnergyConsumer"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["EnergyConsumer_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_LoadDynamics_collapse" style="margin-left: 10px;">LoadDynamics</a></legend>
+                    <div id="{{id}}_LoadDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "LoadDynamics" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["EnergyConsumer", "0..*", "0..1", "EnergyConsumer", "LoadDynamics"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
          * Aggregate induction motor load.
          *
-         * This model  is used to represent a fraction of an ordinary load as "induction motor load".  It allows load that is treated as ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation.  If <b>Lpp</b> = 0. or <b>Lpp</b> = <b>Lp</b>, or <b>Tppo</b> = 0.,  only one cage is represented. Magnetic saturation is not modelled. Either a "one-cage" or "two-cage" model of the induction machine can be modelled. Magnetic saturation is not modelled.
+         * This model is used to represent a fraction of an ordinary load as "induction motor load".  It allows a load that is treated as an ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation. This model is intended for representation of aggregations of many motors dispersed through a load represented at a high voltage bus but where there is no information on the characteristics of individual motors.
+         * Either a "one-cage" or "two-cage" model of the induction machine can be modelled. Magnetic saturation is not modelled.
+         * This model treats a fraction of the constant power part of a load as a motor. During initialisation, the initial power drawn by the motor is set equal to <i>Pfrac</i> times the constant <i>P</i> part of the static load.  The remainder of the load is left as a static load.
+         * The reactive power demand of the motor is calculated during initialisation as a function of voltage at the load bus. This reactive power demand can be less than or greater than the constant <i>Q</i> component of the load.  If the motor's reactive demand is greater than the constant <i>Q</i> component of the load, the model inserts a shunt capacitor at the terminal of the motor to bring its reactive demand down to equal the constant <i>Q</i> reactive load.
+         * If an induction motor load model and a static load model are both present for a load, the motor <i>Pfrac</i> is assumed to be subtracted from the power flow constant <i>P</i> load before the static load model is applied.  The remainder of the load, if any, is then represented by the static load model.
          *
          */
         class LoadMotor extends Core.IdentifiedObject
@@ -45,7 +164,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.LoadMotor;
+                let bucket = cim_data.LoadMotor;
                 if (null == bucket)
                    cim_data.LoadMotor = bucket = {};
                 bucket[template.id] = template;
@@ -59,9 +178,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadMotor";
                 base.parse_element (/<cim:LoadMotor.d>([\s\S]*?)<\/cim:LoadMotor.d>/g, obj, "d", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadMotor.h>([\s\S]*?)<\/cim:LoadMotor.h>/g, obj, "h", base.to_string, sub, context);
@@ -76,8 +193,8 @@ define
                 base.parse_element (/<cim:LoadMotor.tppo>([\s\S]*?)<\/cim:LoadMotor.tppo>/g, obj, "tppo", base.to_string, sub, context);
                 base.parse_element (/<cim:LoadMotor.tv>([\s\S]*?)<\/cim:LoadMotor.tv>/g, obj, "tv", base.to_string, sub, context);
                 base.parse_element (/<cim:LoadMotor.vt>([\s\S]*?)<\/cim:LoadMotor.vt>/g, obj, "vt", base.to_string, sub, context);
-                base.parse_attribute (/<cim:LoadMotor.LoadAggregate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadAggregate", sub, context);
-                var bucket = context.parsed.LoadMotor;
+                base.parse_attribute (/<cim:LoadMotor.LoadAggregate\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadAggregate", sub, context);
+                let bucket = context.parsed.LoadMotor;
                 if (null == bucket)
                    context.parsed.LoadMotor = bucket = {};
                 bucket[obj.id] = obj;
@@ -87,7 +204,7 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadMotor", "d", "d",  base.from_float, fields);
                 base.export_element (obj, "LoadMotor", "h", "h",  base.from_string, fields);
@@ -104,7 +221,7 @@ define
                 base.export_element (obj, "LoadMotor", "vt", "vt",  base.from_string, fields);
                 base.export_attribute (obj, "LoadMotor", "LoadAggregate", "LoadAggregate", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -182,24 +299,24 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "LoadMotor" };
+                obj = obj || { id: id, cls: "LoadMotor" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_d").value; if ("" != temp) obj.d = temp;
-                temp = document.getElementById (id + "_h").value; if ("" != temp) obj.h = temp;
-                temp = document.getElementById (id + "_lfac").value; if ("" != temp) obj.lfac = temp;
-                temp = document.getElementById (id + "_lp").value; if ("" != temp) obj.lp = temp;
-                temp = document.getElementById (id + "_lpp").value; if ("" != temp) obj.lpp = temp;
-                temp = document.getElementById (id + "_ls").value; if ("" != temp) obj.ls = temp;
-                temp = document.getElementById (id + "_pfrac").value; if ("" != temp) obj.pfrac = temp;
-                temp = document.getElementById (id + "_ra").value; if ("" != temp) obj.ra = temp;
-                temp = document.getElementById (id + "_tbkr").value; if ("" != temp) obj.tbkr = temp;
-                temp = document.getElementById (id + "_tpo").value; if ("" != temp) obj.tpo = temp;
-                temp = document.getElementById (id + "_tppo").value; if ("" != temp) obj.tppo = temp;
-                temp = document.getElementById (id + "_tv").value; if ("" != temp) obj.tv = temp;
-                temp = document.getElementById (id + "_vt").value; if ("" != temp) obj.vt = temp;
-                temp = document.getElementById (id + "_LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
+                temp = document.getElementById (id + "_d").value; if ("" !== temp) obj["d"] = temp;
+                temp = document.getElementById (id + "_h").value; if ("" !== temp) obj["h"] = temp;
+                temp = document.getElementById (id + "_lfac").value; if ("" !== temp) obj["lfac"] = temp;
+                temp = document.getElementById (id + "_lp").value; if ("" !== temp) obj["lp"] = temp;
+                temp = document.getElementById (id + "_lpp").value; if ("" !== temp) obj["lpp"] = temp;
+                temp = document.getElementById (id + "_ls").value; if ("" !== temp) obj["ls"] = temp;
+                temp = document.getElementById (id + "_pfrac").value; if ("" !== temp) obj["pfrac"] = temp;
+                temp = document.getElementById (id + "_ra").value; if ("" !== temp) obj["ra"] = temp;
+                temp = document.getElementById (id + "_tbkr").value; if ("" !== temp) obj["tbkr"] = temp;
+                temp = document.getElementById (id + "_tpo").value; if ("" !== temp) obj["tpo"] = temp;
+                temp = document.getElementById (id + "_tppo").value; if ("" !== temp) obj["tppo"] = temp;
+                temp = document.getElementById (id + "_tv").value; if ("" !== temp) obj["tv"] = temp;
+                temp = document.getElementById (id + "_vt").value; if ("" !== temp) obj["vt"] = temp;
+                temp = document.getElementById (id + "_LoadAggregate").value; if ("" !== temp) obj["LoadAggregate"] = temp;
 
                 return (obj);
             }
@@ -217,124 +334,9 @@ define
         }
 
         /**
-         * Load whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
-         * 
-         * A standard feature of dynamic load behaviour modelling is the ability to associate the same behaviour to multiple energy consumers by means of a single aggregate load definition.
+         * General static load.
          *
-         * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data. This load is usually the aggregation of many individual load devices and the load model is approximate representation of the aggregate response of the load devices to system disturbances. The load model is always applied to individual bus loads (energy consumers) but a single set of load model parameters can used for all loads in the grouping.
-         *
-         */
-        class LoadDynamics extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.LoadDynamics;
-                if (null == bucket)
-                   cim_data.LoadDynamics = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.LoadDynamics[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "LoadDynamics";
-                base.parse_attributes (/<cim:LoadDynamics.EnergyConsumer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumer", sub, context);
-                var bucket = context.parsed.LoadDynamics;
-                if (null == bucket)
-                   context.parsed.LoadDynamics = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "LoadDynamics", "EnergyConsumer", "EnergyConsumer", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadDynamics_collapse" aria-expanded="true" aria-controls="LoadDynamics_collapse" style="margin-left: 10px;">LoadDynamics</a></legend>
-                    <div id="LoadDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumer}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj.EnergyConsumer) obj.EnergyConsumer_string = obj.EnergyConsumer.join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj.EnergyConsumer_string;
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_LoadDynamics_collapse" style="margin-left: 10px;">LoadDynamics</a></legend>
-                    <div id="{{id}}_LoadDynamics_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var obj = obj || { id: id, cls: "LoadDynamics" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["EnergyConsumer", "0..*", "0..1", "EnergyConsumer", "LoadDynamics"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * General static load model representing the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
+         * This model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
          *
          */
         class LoadStatic extends Core.IdentifiedObject
@@ -342,7 +344,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.LoadStatic;
+                let bucket = cim_data.LoadStatic;
                 if (null == bucket)
                    cim_data.LoadStatic = bucket = {};
                 bucket[template.id] = template;
@@ -356,9 +358,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadStatic";
                 base.parse_element (/<cim:LoadStatic.ep1>([\s\S]*?)<\/cim:LoadStatic.ep1>/g, obj, "ep1", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadStatic.ep2>([\s\S]*?)<\/cim:LoadStatic.ep2>/g, obj, "ep2", base.to_float, sub, context);
@@ -376,9 +376,9 @@ define
                 base.parse_element (/<cim:LoadStatic.kq3>([\s\S]*?)<\/cim:LoadStatic.kq3>/g, obj, "kq3", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadStatic.kq4>([\s\S]*?)<\/cim:LoadStatic.kq4>/g, obj, "kq4", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadStatic.kqf>([\s\S]*?)<\/cim:LoadStatic.kqf>/g, obj, "kqf", base.to_float, sub, context);
-                base.parse_attribute (/<cim:LoadStatic.staticLoadModelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "staticLoadModelType", sub, context);
-                base.parse_attribute (/<cim:LoadStatic.LoadAggregate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadAggregate", sub, context);
-                var bucket = context.parsed.LoadStatic;
+                base.parse_attribute (/<cim:LoadStatic.staticLoadModelType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "staticLoadModelType", sub, context);
+                base.parse_attribute (/<cim:LoadStatic.LoadAggregate\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadAggregate", sub, context);
+                let bucket = context.parsed.LoadStatic;
                 if (null == bucket)
                    context.parsed.LoadStatic = bucket = {};
                 bucket[obj.id] = obj;
@@ -388,7 +388,7 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadStatic", "ep1", "ep1",  base.from_float, fields);
                 base.export_element (obj, "LoadStatic", "ep2", "ep2",  base.from_float, fields);
@@ -409,7 +409,7 @@ define
                 base.export_attribute (obj, "LoadStatic", "staticLoadModelType", "staticLoadModelType", fields);
                 base.export_attribute (obj, "LoadStatic", "LoadAggregate", "LoadAggregate", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -452,13 +452,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.staticLoadModelTypeStaticLoadModelKind = [{ id: '', selected: (!obj.staticLoadModelType)}]; for (var property in StaticLoadModelKind) obj.staticLoadModelTypeStaticLoadModelKind.push ({ id: property, selected: obj.staticLoadModelType && obj.staticLoadModelType.endsWith ('.' + property)});
+                obj["staticLoadModelTypeStaticLoadModelKind"] = [{ id: '', selected: (!obj["staticLoadModelType"])}]; for (let property in StaticLoadModelKind) obj["staticLoadModelTypeStaticLoadModelKind"].push ({ id: property, selected: obj["staticLoadModelType"] && obj["staticLoadModelType"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.staticLoadModelTypeStaticLoadModelKind;
+                delete obj["staticLoadModelTypeStaticLoadModelKind"];
             }
 
             edit_template ()
@@ -497,28 +497,28 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "LoadStatic" };
+                obj = obj || { id: id, cls: "LoadStatic" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ep1").value; if ("" != temp) obj.ep1 = temp;
-                temp = document.getElementById (id + "_ep2").value; if ("" != temp) obj.ep2 = temp;
-                temp = document.getElementById (id + "_ep3").value; if ("" != temp) obj.ep3 = temp;
-                temp = document.getElementById (id + "_eq1").value; if ("" != temp) obj.eq1 = temp;
-                temp = document.getElementById (id + "_eq2").value; if ("" != temp) obj.eq2 = temp;
-                temp = document.getElementById (id + "_eq3").value; if ("" != temp) obj.eq3 = temp;
-                temp = document.getElementById (id + "_kp1").value; if ("" != temp) obj.kp1 = temp;
-                temp = document.getElementById (id + "_kp2").value; if ("" != temp) obj.kp2 = temp;
-                temp = document.getElementById (id + "_kp3").value; if ("" != temp) obj.kp3 = temp;
-                temp = document.getElementById (id + "_kp4").value; if ("" != temp) obj.kp4 = temp;
-                temp = document.getElementById (id + "_kpf").value; if ("" != temp) obj.kpf = temp;
-                temp = document.getElementById (id + "_kq1").value; if ("" != temp) obj.kq1 = temp;
-                temp = document.getElementById (id + "_kq2").value; if ("" != temp) obj.kq2 = temp;
-                temp = document.getElementById (id + "_kq3").value; if ("" != temp) obj.kq3 = temp;
-                temp = document.getElementById (id + "_kq4").value; if ("" != temp) obj.kq4 = temp;
-                temp = document.getElementById (id + "_kqf").value; if ("" != temp) obj.kqf = temp;
-                temp = StaticLoadModelKind[document.getElementById (id + "_staticLoadModelType").value]; if (temp) obj.staticLoadModelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; else delete obj.staticLoadModelType;
-                temp = document.getElementById (id + "_LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
+                temp = document.getElementById (id + "_ep1").value; if ("" !== temp) obj["ep1"] = temp;
+                temp = document.getElementById (id + "_ep2").value; if ("" !== temp) obj["ep2"] = temp;
+                temp = document.getElementById (id + "_ep3").value; if ("" !== temp) obj["ep3"] = temp;
+                temp = document.getElementById (id + "_eq1").value; if ("" !== temp) obj["eq1"] = temp;
+                temp = document.getElementById (id + "_eq2").value; if ("" !== temp) obj["eq2"] = temp;
+                temp = document.getElementById (id + "_eq3").value; if ("" !== temp) obj["eq3"] = temp;
+                temp = document.getElementById (id + "_kp1").value; if ("" !== temp) obj["kp1"] = temp;
+                temp = document.getElementById (id + "_kp2").value; if ("" !== temp) obj["kp2"] = temp;
+                temp = document.getElementById (id + "_kp3").value; if ("" !== temp) obj["kp3"] = temp;
+                temp = document.getElementById (id + "_kp4").value; if ("" !== temp) obj["kp4"] = temp;
+                temp = document.getElementById (id + "_kpf").value; if ("" !== temp) obj["kpf"] = temp;
+                temp = document.getElementById (id + "_kq1").value; if ("" !== temp) obj["kq1"] = temp;
+                temp = document.getElementById (id + "_kq2").value; if ("" !== temp) obj["kq2"] = temp;
+                temp = document.getElementById (id + "_kq3").value; if ("" !== temp) obj["kq3"] = temp;
+                temp = document.getElementById (id + "_kq4").value; if ("" !== temp) obj["kq4"] = temp;
+                temp = document.getElementById (id + "_kqf").value; if ("" !== temp) obj["kqf"] = temp;
+                temp = StaticLoadModelKind[document.getElementById (id + "_staticLoadModelType").value]; if (temp) obj["staticLoadModelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; else delete obj["staticLoadModelType"];
+                temp = document.getElementById (id + "_LoadAggregate").value; if ("" !== temp) obj["LoadAggregate"] = temp;
 
                 return (obj);
             }
@@ -536,7 +536,7 @@ define
         }
 
         /**
-         * This model combines static load and induction motor load effects.
+         * Combined static load and induction motor load effects.
          *
          * The dynamics of the motor are simplified by linearizing the induction machine equations.
          *
@@ -546,7 +546,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.LoadComposite;
+                let bucket = cim_data.LoadComposite;
                 if (null == bucket)
                    cim_data.LoadComposite = bucket = {};
                 bucket[template.id] = template;
@@ -560,9 +560,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = LoadDynamics.prototype.parse.call (this, context, sub);
+                let obj = LoadDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadComposite";
                 base.parse_element (/<cim:LoadComposite.epfd>([\s\S]*?)<\/cim:LoadComposite.epfd>/g, obj, "epfd", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadComposite.epfs>([\s\S]*?)<\/cim:LoadComposite.epfs>/g, obj, "epfs", base.to_float, sub, context);
@@ -573,9 +571,9 @@ define
                 base.parse_element (/<cim:LoadComposite.eqvd>([\s\S]*?)<\/cim:LoadComposite.eqvd>/g, obj, "eqvd", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadComposite.eqvs>([\s\S]*?)<\/cim:LoadComposite.eqvs>/g, obj, "eqvs", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadComposite.h>([\s\S]*?)<\/cim:LoadComposite.h>/g, obj, "h", base.to_string, sub, context);
-                base.parse_element (/<cim:LoadComposite.lfrac>([\s\S]*?)<\/cim:LoadComposite.lfrac>/g, obj, "lfrac", base.to_float, sub, context);
+                base.parse_element (/<cim:LoadComposite.lfac>([\s\S]*?)<\/cim:LoadComposite.lfac>/g, obj, "lfac", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadComposite.pfrac>([\s\S]*?)<\/cim:LoadComposite.pfrac>/g, obj, "pfrac", base.to_float, sub, context);
-                var bucket = context.parsed.LoadComposite;
+                let bucket = context.parsed.LoadComposite;
                 if (null == bucket)
                    context.parsed.LoadComposite = bucket = {};
                 bucket[obj.id] = obj;
@@ -585,7 +583,7 @@ define
 
             export (obj, full)
             {
-                var fields = LoadDynamics.prototype.export.call (this, obj, false);
+                let fields = LoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadComposite", "epfd", "epfd",  base.from_float, fields);
                 base.export_element (obj, "LoadComposite", "epfs", "epfs",  base.from_float, fields);
@@ -596,10 +594,10 @@ define
                 base.export_element (obj, "LoadComposite", "eqvd", "eqvd",  base.from_float, fields);
                 base.export_element (obj, "LoadComposite", "eqvs", "eqvs",  base.from_float, fields);
                 base.export_element (obj, "LoadComposite", "h", "h",  base.from_string, fields);
-                base.export_element (obj, "LoadComposite", "lfrac", "lfrac",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "lfac", "lfac",  base.from_float, fields);
                 base.export_element (obj, "LoadComposite", "pfrac", "pfrac",  base.from_float, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -623,7 +621,7 @@ define
                     {{#eqvd}}<div><b>eqvd</b>: {{eqvd}}</div>{{/eqvd}}
                     {{#eqvs}}<div><b>eqvs</b>: {{eqvs}}</div>{{/eqvs}}
                     {{#h}}<div><b>h</b>: {{h}}</div>{{/h}}
-                    {{#lfrac}}<div><b>lfrac</b>: {{lfrac}}</div>{{/lfrac}}
+                    {{#lfac}}<div><b>lfac</b>: {{lfac}}</div>{{/lfac}}
                     {{#pfrac}}<div><b>pfrac</b>: {{pfrac}}</div>{{/pfrac}}
                     </div>
                     </fieldset>
@@ -661,7 +659,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eqvd'>eqvd: </label><div class='col-sm-8'><input id='{{id}}_eqvd' class='form-control' type='text'{{#eqvd}} value='{{eqvd}}'{{/eqvd}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eqvs'>eqvs: </label><div class='col-sm-8'><input id='{{id}}_eqvs' class='form-control' type='text'{{#eqvs}} value='{{eqvs}}'{{/eqvs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_h'>h: </label><div class='col-sm-8'><input id='{{id}}_h' class='form-control' type='text'{{#h}} value='{{h}}'{{/h}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lfrac'>lfrac: </label><div class='col-sm-8'><input id='{{id}}_lfrac' class='form-control' type='text'{{#lfrac}} value='{{lfrac}}'{{/lfrac}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lfac'>lfac: </label><div class='col-sm-8'><input id='{{id}}_lfac' class='form-control' type='text'{{#lfac}} value='{{lfac}}'{{/lfac}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfrac'>pfrac: </label><div class='col-sm-8'><input id='{{id}}_pfrac' class='form-control' type='text'{{#pfrac}} value='{{pfrac}}'{{/pfrac}}></div></div>
                     </div>
                     </fieldset>
@@ -671,28 +669,30 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "LoadComposite" };
+                obj = obj || { id: id, cls: "LoadComposite" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_epfd").value; if ("" != temp) obj.epfd = temp;
-                temp = document.getElementById (id + "_epfs").value; if ("" != temp) obj.epfs = temp;
-                temp = document.getElementById (id + "_epvd").value; if ("" != temp) obj.epvd = temp;
-                temp = document.getElementById (id + "_epvs").value; if ("" != temp) obj.epvs = temp;
-                temp = document.getElementById (id + "_eqfd").value; if ("" != temp) obj.eqfd = temp;
-                temp = document.getElementById (id + "_eqfs").value; if ("" != temp) obj.eqfs = temp;
-                temp = document.getElementById (id + "_eqvd").value; if ("" != temp) obj.eqvd = temp;
-                temp = document.getElementById (id + "_eqvs").value; if ("" != temp) obj.eqvs = temp;
-                temp = document.getElementById (id + "_h").value; if ("" != temp) obj.h = temp;
-                temp = document.getElementById (id + "_lfrac").value; if ("" != temp) obj.lfrac = temp;
-                temp = document.getElementById (id + "_pfrac").value; if ("" != temp) obj.pfrac = temp;
+                temp = document.getElementById (id + "_epfd").value; if ("" !== temp) obj["epfd"] = temp;
+                temp = document.getElementById (id + "_epfs").value; if ("" !== temp) obj["epfs"] = temp;
+                temp = document.getElementById (id + "_epvd").value; if ("" !== temp) obj["epvd"] = temp;
+                temp = document.getElementById (id + "_epvs").value; if ("" !== temp) obj["epvs"] = temp;
+                temp = document.getElementById (id + "_eqfd").value; if ("" !== temp) obj["eqfd"] = temp;
+                temp = document.getElementById (id + "_eqfs").value; if ("" !== temp) obj["eqfs"] = temp;
+                temp = document.getElementById (id + "_eqvd").value; if ("" !== temp) obj["eqvd"] = temp;
+                temp = document.getElementById (id + "_eqvs").value; if ("" !== temp) obj["eqvs"] = temp;
+                temp = document.getElementById (id + "_h").value; if ("" !== temp) obj["h"] = temp;
+                temp = document.getElementById (id + "_lfac").value; if ("" !== temp) obj["lfac"] = temp;
+                temp = document.getElementById (id + "_pfrac").value; if ("" !== temp) obj["pfrac"] = temp;
 
                 return (obj);
             }
         }
 
         /**
-         * These load models (known also as generic non-linear dynamic (GNLD) load models) can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as they can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
+         * Generic non-linear dynamic (GNLD) load.
+         *
+         * This model can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as it can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
          *
          */
         class LoadGenericNonLinear extends LoadDynamics
@@ -700,7 +700,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.LoadGenericNonLinear;
+                let bucket = cim_data.LoadGenericNonLinear;
                 if (null == bucket)
                    cim_data.LoadGenericNonLinear = bucket = {};
                 bucket[template.id] = template;
@@ -714,20 +714,16 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = LoadDynamics.prototype.parse.call (this, context, sub);
+                let obj = LoadDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadGenericNonLinear";
                 base.parse_element (/<cim:LoadGenericNonLinear.bs>([\s\S]*?)<\/cim:LoadGenericNonLinear.bs>/g, obj, "bs", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadGenericNonLinear.bt>([\s\S]*?)<\/cim:LoadGenericNonLinear.bt>/g, obj, "bt", base.to_float, sub, context);
-                base.parse_attribute (/<cim:LoadGenericNonLinear.genericNonLinearLoadModelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "genericNonLinearLoadModelType", sub, context);
+                base.parse_attribute (/<cim:LoadGenericNonLinear.genericNonLinearLoadModelType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "genericNonLinearLoadModelType", sub, context);
                 base.parse_element (/<cim:LoadGenericNonLinear.ls>([\s\S]*?)<\/cim:LoadGenericNonLinear.ls>/g, obj, "ls", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadGenericNonLinear.lt>([\s\S]*?)<\/cim:LoadGenericNonLinear.lt>/g, obj, "lt", base.to_float, sub, context);
-                base.parse_element (/<cim:LoadGenericNonLinear.pt>([\s\S]*?)<\/cim:LoadGenericNonLinear.pt>/g, obj, "pt", base.to_float, sub, context);
-                base.parse_element (/<cim:LoadGenericNonLinear.qt>([\s\S]*?)<\/cim:LoadGenericNonLinear.qt>/g, obj, "qt", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadGenericNonLinear.tp>([\s\S]*?)<\/cim:LoadGenericNonLinear.tp>/g, obj, "tp", base.to_string, sub, context);
                 base.parse_element (/<cim:LoadGenericNonLinear.tq>([\s\S]*?)<\/cim:LoadGenericNonLinear.tq>/g, obj, "tq", base.to_string, sub, context);
-                var bucket = context.parsed.LoadGenericNonLinear;
+                let bucket = context.parsed.LoadGenericNonLinear;
                 if (null == bucket)
                    context.parsed.LoadGenericNonLinear = bucket = {};
                 bucket[obj.id] = obj;
@@ -737,19 +733,17 @@ define
 
             export (obj, full)
             {
-                var fields = LoadDynamics.prototype.export.call (this, obj, false);
+                let fields = LoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadGenericNonLinear", "bs", "bs",  base.from_float, fields);
                 base.export_element (obj, "LoadGenericNonLinear", "bt", "bt",  base.from_float, fields);
                 base.export_attribute (obj, "LoadGenericNonLinear", "genericNonLinearLoadModelType", "genericNonLinearLoadModelType", fields);
                 base.export_element (obj, "LoadGenericNonLinear", "ls", "ls",  base.from_float, fields);
                 base.export_element (obj, "LoadGenericNonLinear", "lt", "lt",  base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "pt", "pt",  base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "qt", "qt",  base.from_float, fields);
                 base.export_element (obj, "LoadGenericNonLinear", "tp", "tp",  base.from_string, fields);
                 base.export_element (obj, "LoadGenericNonLinear", "tq", "tq",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -769,8 +763,6 @@ define
                     {{#genericNonLinearLoadModelType}}<div><b>genericNonLinearLoadModelType</b>: {{genericNonLinearLoadModelType}}</div>{{/genericNonLinearLoadModelType}}
                     {{#ls}}<div><b>ls</b>: {{ls}}</div>{{/ls}}
                     {{#lt}}<div><b>lt</b>: {{lt}}</div>{{/lt}}
-                    {{#pt}}<div><b>pt</b>: {{pt}}</div>{{/pt}}
-                    {{#qt}}<div><b>qt</b>: {{qt}}</div>{{/qt}}
                     {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
                     {{#tq}}<div><b>tq</b>: {{tq}}</div>{{/tq}}
                     </div>
@@ -783,13 +775,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind = [{ id: '', selected: (!obj.genericNonLinearLoadModelType)}]; for (var property in GenericNonLinearLoadModelKind) obj.genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind.push ({ id: property, selected: obj.genericNonLinearLoadModelType && obj.genericNonLinearLoadModelType.endsWith ('.' + property)});
+                obj["genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind"] = [{ id: '', selected: (!obj["genericNonLinearLoadModelType"])}]; for (let property in GenericNonLinearLoadModelKind) obj["genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind"].push ({ id: property, selected: obj["genericNonLinearLoadModelType"] && obj["genericNonLinearLoadModelType"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind;
+                delete obj["genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind"];
             }
 
             edit_template ()
@@ -807,8 +799,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genericNonLinearLoadModelType'>genericNonLinearLoadModelType: </label><div class='col-sm-8'><select id='{{id}}_genericNonLinearLoadModelType' class='form-control custom-select'>{{#genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/genericNonLinearLoadModelTypeGenericNonLinearLoadModelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ls'>ls: </label><div class='col-sm-8'><input id='{{id}}_ls' class='form-control' type='text'{{#ls}} value='{{ls}}'{{/ls}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lt'>lt: </label><div class='col-sm-8'><input id='{{id}}_lt' class='form-control' type='text'{{#lt}} value='{{lt}}'{{/lt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pt'>pt: </label><div class='col-sm-8'><input id='{{id}}_pt' class='form-control' type='text'{{#pt}} value='{{pt}}'{{/pt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qt'>qt: </label><div class='col-sm-8'><input id='{{id}}_qt' class='form-control' type='text'{{#qt}} value='{{qt}}'{{/qt}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tq'>tq: </label><div class='col-sm-8'><input id='{{id}}_tq' class='form-control' type='text'{{#tq}} value='{{tq}}'{{/tq}}></div></div>
                     </div>
@@ -819,28 +809,27 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "LoadGenericNonLinear" };
+                obj = obj || { id: id, cls: "LoadGenericNonLinear" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_bs").value; if ("" != temp) obj.bs = temp;
-                temp = document.getElementById (id + "_bt").value; if ("" != temp) obj.bt = temp;
-                temp = GenericNonLinearLoadModelKind[document.getElementById (id + "_genericNonLinearLoadModelType").value]; if (temp) obj.genericNonLinearLoadModelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; else delete obj.genericNonLinearLoadModelType;
-                temp = document.getElementById (id + "_ls").value; if ("" != temp) obj.ls = temp;
-                temp = document.getElementById (id + "_lt").value; if ("" != temp) obj.lt = temp;
-                temp = document.getElementById (id + "_pt").value; if ("" != temp) obj.pt = temp;
-                temp = document.getElementById (id + "_qt").value; if ("" != temp) obj.qt = temp;
-                temp = document.getElementById (id + "_tp").value; if ("" != temp) obj.tp = temp;
-                temp = document.getElementById (id + "_tq").value; if ("" != temp) obj.tq = temp;
+                temp = document.getElementById (id + "_bs").value; if ("" !== temp) obj["bs"] = temp;
+                temp = document.getElementById (id + "_bt").value; if ("" !== temp) obj["bt"] = temp;
+                temp = GenericNonLinearLoadModelKind[document.getElementById (id + "_genericNonLinearLoadModelType").value]; if (temp) obj["genericNonLinearLoadModelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; else delete obj["genericNonLinearLoadModelType"];
+                temp = document.getElementById (id + "_ls").value; if ("" !== temp) obj["ls"] = temp;
+                temp = document.getElementById (id + "_lt").value; if ("" !== temp) obj["lt"] = temp;
+                temp = document.getElementById (id + "_tp").value; if ("" !== temp) obj["tp"] = temp;
+                temp = document.getElementById (id + "_tq").value; if ("" !== temp) obj["tq"] = temp;
 
                 return (obj);
             }
         }
 
         /**
-         * Standard aggregate load model comprised of static and/or dynamic components.
+         * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data.
          *
-         * A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can used to represent the aggregate response of the motor components of the load.
+         * This load is usually the aggregation of many individual load devices and the load model is an approximate representation of the aggregate response of the load devices to system disturbances.
+         * Standard aggregate load model comprised of static and/or dynamic components.  A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can be used to represent the aggregate response of the motor components of the load.
          *
          */
         class LoadAggregate extends LoadDynamics
@@ -848,7 +837,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.LoadAggregate;
+                let bucket = cim_data.LoadAggregate;
                 if (null == bucket)
                    cim_data.LoadAggregate = bucket = {};
                 bucket[template.id] = template;
@@ -862,13 +851,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = LoadDynamics.prototype.parse.call (this, context, sub);
+                let obj = LoadDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadAggregate";
-                base.parse_attribute (/<cim:LoadAggregate.LoadMotor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadMotor", sub, context);
-                base.parse_attribute (/<cim:LoadAggregate.LoadStatic\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadStatic", sub, context);
-                var bucket = context.parsed.LoadAggregate;
+                base.parse_attribute (/<cim:LoadAggregate.LoadMotor\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadMotor", sub, context);
+                base.parse_attribute (/<cim:LoadAggregate.LoadStatic\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadStatic", sub, context);
+                let bucket = context.parsed.LoadAggregate;
                 if (null == bucket)
                    context.parsed.LoadAggregate = bucket = {};
                 bucket[obj.id] = obj;
@@ -878,12 +865,12 @@ define
 
             export (obj, full)
             {
-                var fields = LoadDynamics.prototype.export.call (this, obj, false);
+                let fields = LoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "LoadAggregate", "LoadMotor", "LoadMotor", fields);
                 base.export_attribute (obj, "LoadAggregate", "LoadStatic", "LoadStatic", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -937,12 +924,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "LoadAggregate" };
+                obj = obj || { id: id, cls: "LoadAggregate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_LoadMotor").value; if ("" != temp) obj.LoadMotor = temp;
-                temp = document.getElementById (id + "_LoadStatic").value; if ("" != temp) obj.LoadStatic = temp;
+                temp = document.getElementById (id + "_LoadMotor").value; if ("" !== temp) obj["LoadMotor"] = temp;
+                temp = document.getElementById (id + "_LoadStatic").value; if ("" !== temp) obj["LoadStatic"] = temp;
 
                 return (obj);
             }

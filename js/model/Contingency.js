@@ -12,10 +12,10 @@ define
          * Indicates the state which the contingency equipment is to be in when the contingency is applied.
          *
          */
-        var ContingencyEquipmentStatusKind =
+        let ContingencyEquipmentStatusKind =
         {
-            inService: "inService",
-            outOfService: "outOfService"
+            "inService": "inService",
+            "outOfService": "outOfService"
         };
         Object.freeze (ContingencyEquipmentStatusKind);
 
@@ -28,7 +28,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.Contingency;
+                let bucket = cim_data.Contingency;
                 if (null == bucket)
                    cim_data.Contingency = bucket = {};
                 bucket[template.id] = template;
@@ -42,13 +42,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Contingency";
                 base.parse_element (/<cim:Contingency.mustStudy>([\s\S]*?)<\/cim:Contingency.mustStudy>/g, obj, "mustStudy", base.to_boolean, sub, context);
-                base.parse_attributes (/<cim:Contingency.ContingencyElement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContingencyElement", sub, context);
-                var bucket = context.parsed.Contingency;
+                base.parse_attributes (/<cim:Contingency.ContingencyElement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ContingencyElement", sub, context);
+                let bucket = context.parsed.Contingency;
                 if (null == bucket)
                    context.parsed.Contingency = bucket = {};
                 bucket[obj.id] = obj;
@@ -58,12 +56,12 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Contingency", "mustStudy", "mustStudy",  base.from_boolean, fields);
                 base.export_attributes (obj, "Contingency", "ContingencyElement", "ContingencyElement", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -90,13 +88,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj.ContingencyElement) obj.ContingencyElement_string = obj.ContingencyElement.join ();
+                if (obj["ContingencyElement"]) obj["ContingencyElement_string"] = obj["ContingencyElement"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ContingencyElement_string;
+                delete obj["ContingencyElement_string"];
             }
 
             edit_template ()
@@ -118,11 +116,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "Contingency" };
+                obj = obj || { id: id, cls: "Contingency" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_mustStudy").checked; if (temp) obj.mustStudy = true;
+                temp = document.getElementById (id + "_mustStudy").checked; if (temp) obj["mustStudy"] = true;
 
                 return (obj);
             }
@@ -148,7 +146,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.ContingencyElement;
+                let bucket = cim_data.ContingencyElement;
                 if (null == bucket)
                    cim_data.ContingencyElement = bucket = {};
                 bucket[template.id] = template;
@@ -162,12 +160,10 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ContingencyElement";
-                base.parse_attribute (/<cim:ContingencyElement.Contingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Contingency", sub, context);
-                var bucket = context.parsed.ContingencyElement;
+                base.parse_attribute (/<cim:ContingencyElement.Contingency\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Contingency", sub, context);
+                let bucket = context.parsed.ContingencyElement;
                 if (null == bucket)
                    context.parsed.ContingencyElement = bucket = {};
                 bucket[obj.id] = obj;
@@ -177,11 +173,11 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ContingencyElement", "Contingency", "Contingency", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -233,11 +229,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "ContingencyElement" };
+                obj = obj || { id: id, cls: "ContingencyElement" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_Contingency").value; if ("" != temp) obj.Contingency = temp;
+                temp = document.getElementById (id + "_Contingency").value; if ("" !== temp) obj["Contingency"] = temp;
 
                 return (obj);
             }
@@ -255,7 +251,7 @@ define
         }
 
         /**
-         * A equipment to which the in service status is to change such as a power transformer or AC line segment.
+         * Equipment whose in service status is to change, such as a power transformer or AC line segment.
          *
          */
         class ContingencyEquipment extends ContingencyElement
@@ -263,7 +259,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.ContingencyEquipment;
+                let bucket = cim_data.ContingencyEquipment;
                 if (null == bucket)
                    cim_data.ContingencyEquipment = bucket = {};
                 bucket[template.id] = template;
@@ -277,13 +273,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = ContingencyElement.prototype.parse.call (this, context, sub);
+                let obj = ContingencyElement.prototype.parse.call (this, context, sub);
                 obj.cls = "ContingencyEquipment";
-                base.parse_attribute (/<cim:ContingencyEquipment.contingentStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "contingentStatus", sub, context);
-                base.parse_attribute (/<cim:ContingencyEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
-                var bucket = context.parsed.ContingencyEquipment;
+                base.parse_attribute (/<cim:ContingencyEquipment.contingentStatus\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "contingentStatus", sub, context);
+                base.parse_attribute (/<cim:ContingencyEquipment.Equipment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
+                let bucket = context.parsed.ContingencyEquipment;
                 if (null == bucket)
                    context.parsed.ContingencyEquipment = bucket = {};
                 bucket[obj.id] = obj;
@@ -293,12 +287,12 @@ define
 
             export (obj, full)
             {
-                var fields = ContingencyElement.prototype.export.call (this, obj, false);
+                let fields = ContingencyElement.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "ContingencyEquipment", "contingentStatus", "contingentStatus", fields);
                 base.export_attribute (obj, "ContingencyEquipment", "Equipment", "Equipment", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -325,13 +319,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.contingentStatusContingencyEquipmentStatusKind = [{ id: '', selected: (!obj.contingentStatus)}]; for (var property in ContingencyEquipmentStatusKind) obj.contingentStatusContingencyEquipmentStatusKind.push ({ id: property, selected: obj.contingentStatus && obj.contingentStatus.endsWith ('.' + property)});
+                obj["contingentStatusContingencyEquipmentStatusKind"] = [{ id: '', selected: (!obj["contingentStatus"])}]; for (let property in ContingencyEquipmentStatusKind) obj["contingentStatusContingencyEquipmentStatusKind"].push ({ id: property, selected: obj["contingentStatus"] && obj["contingentStatus"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.contingentStatusContingencyEquipmentStatusKind;
+                delete obj["contingentStatusContingencyEquipmentStatusKind"];
             }
 
             edit_template ()
@@ -354,12 +348,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "ContingencyEquipment" };
+                obj = obj || { id: id, cls: "ContingencyEquipment" };
                 super.submit (id, obj);
-                temp = ContingencyEquipmentStatusKind[document.getElementById (id + "_contingentStatus").value]; if (temp) obj.contingentStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; else delete obj.contingentStatus;
-                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
+                temp = ContingencyEquipmentStatusKind[document.getElementById (id + "_contingentStatus").value]; if (temp) obj["contingentStatus"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; else delete obj["contingentStatus"];
+                temp = document.getElementById (id + "_Equipment").value; if ("" !== temp) obj["Equipment"] = temp;
 
                 return (obj);
             }

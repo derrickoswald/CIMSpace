@@ -4,24 +4,40 @@ define
     /**
      * System Integrity Protection Schemes (SIPS) (IEC terminology).
      *
-     * Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+     * Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
      *
      */
     function (base, Core)
     {
 
         /**
+         * Categorisation of type of compare done on Equipment.
+         *
+         */
+        let PinEquipmentKind =
+        {
+            "inService": "inService",
+            "ratedCurrent": "ratedCurrent",
+            "voltageLimit": "voltageLimit",
+            "currentLimit": "currentLimit",
+            "activePowerLimit": "activePowerLimit",
+            "apparentPowerLimit": "apparentPowerLimit",
+            "connected": "connected"
+        };
+        Object.freeze (PinEquipmentKind);
+
+        /**
          * Categories of analog to digital (or logical result) comparison.
          *
          */
-        var AnalogToDigitalLogicKind =
+        let AnalogToDigitalLogicKind =
         {
-            ne: "ne",
-            eq: "eq",
-            le: "le",
-            lt: "lt",
-            ge: "ge",
-            gt: "gt"
+            "ne": "ne",
+            "eq": "eq",
+            "le": "le",
+            "lt": "lt",
+            "ge": "ge",
+            "gt": "gt"
         };
         Object.freeze (AnalogToDigitalLogicKind);
 
@@ -29,63 +45,28 @@ define
          * Categorisation of different protective action adjustments that can be performed on equipment.
          *
          */
-        var ProtectiveActionAdjustmentKind =
+        let ProtectiveActionAdjustmentKind =
         {
-            byPercentage: "byPercentage",
-            byValue: "byValue",
-            setValue: "setValue",
-            measurement: "measurement"
+            "byPercentage": "byPercentage",
+            "byValue": "byValue",
+            "setValue": "setValue",
+            "measurement": "measurement"
         };
         Object.freeze (ProtectiveActionAdjustmentKind);
-
-        /**
-         * Categorisation of type of compare done on a branch group.
-         *
-         */
-        var PinBranchGroupKind =
-        {
-            activePower: "activePower",
-            reactivePower: "reactivePower"
-        };
-        Object.freeze (PinBranchGroupKind);
-
-        /**
-         * Categorisation of type of compare done on Terminal.
-         *
-         */
-        var PinTerminalKind =
-        {
-            activePower: "activePower",
-            apparentPower: "apparentPower",
-            reactivePower: "reactivePower",
-            voltage: "voltage"
-        };
-        Object.freeze (PinTerminalKind);
-
-        /**
-         * Classification of Remedial Action Scheme.
-         *
-         */
-        var RemedialActionSchemeKind =
-        {
-            rAS: "rAS",
-            rAP: "rAP"
-        };
-        Object.freeze (RemedialActionSchemeKind);
 
         /**
          * Define the different logical operations.
          *
          */
-        var GateLogicKind =
+        let GateLogicKind =
         {
-            and: "and",
-            or: "or",
-            nor: "nor",
-            nand: "nand",
-            not: "not",
-            xnor: "xnor",
-            xor: "xor"
+            "and": "and",
+            "or": "or",
+            "nor": "nor",
+            "nand": "nand",
+            "not": "not",
+            "xnor": "xnor",
+            "xor": "xor"
         };
         Object.freeze (GateLogicKind);
 
@@ -93,30 +74,49 @@ define
          * Categorisation of calculation operation that can be done to Measurement.
          *
          */
-        var CalculationKind =
+        let CalculationKind =
         {
-            sum: "sum",
-            mul: "mul",
-            div: "div",
-            sqrt: "sqrt"
+            "sum": "sum",
+            "mul": "mul",
+            "div": "div",
+            "sqrt": "sqrt"
         };
         Object.freeze (CalculationKind);
 
         /**
-         * Categorisation of type of compare done on Equipment.
+         * Categorisation of type of compare done on a branch group.
          *
          */
-        var PinEquipmentKind =
+        let PinBranchGroupKind =
         {
-            inService: "inService",
-            ratedCurrent: "ratedCurrent",
-            voltageLimit: "voltageLimit",
-            currentLimit: "currentLimit",
-            activePowerLimit: "activePowerLimit",
-            apparentPowerLimit: "apparentPowerLimit",
-            connected: "connected"
+            "activePower": "activePower",
+            "reactivePower": "reactivePower"
         };
-        Object.freeze (PinEquipmentKind);
+        Object.freeze (PinBranchGroupKind);
+
+        /**
+         * Classification of Remedial Action Scheme.
+         *
+         */
+        let RemedialActionSchemeKind =
+        {
+            "rAS": "rAS",
+            "rAP": "rAP"
+        };
+        Object.freeze (RemedialActionSchemeKind);
+
+        /**
+         * Categorisation of type of compare done on Terminal.
+         *
+         */
+        let PinTerminalKind =
+        {
+            "activePower": "activePower",
+            "apparentPower": "apparentPower",
+            "reactivePower": "reactivePower",
+            "voltage": "voltage"
+        };
+        Object.freeze (PinTerminalKind);
 
         /**
          * Input pin for a logical gate.
@@ -129,7 +129,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.GateInputPin;
+                let bucket = cim_data.GateInputPin;
                 if (null == bucket)
                    cim_data.GateInputPin = bucket = {};
                 bucket[template.id] = template;
@@ -143,18 +143,16 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "GateInputPin";
                 base.parse_element (/<cim:GateInputPin.absoluteValue>([\s\S]*?)<\/cim:GateInputPin.absoluteValue>/g, obj, "absoluteValue", base.to_boolean, sub, context);
-                base.parse_attribute (/<cim:GateInputPin.aDLogicKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "aDLogicKind", sub, context);
+                base.parse_attribute (/<cim:GateInputPin.aDLogicKind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "aDLogicKind", sub, context);
                 base.parse_element (/<cim:GateInputPin.duration>([\s\S]*?)<\/cim:GateInputPin.duration>/g, obj, "duration", base.to_string, sub, context);
                 base.parse_element (/<cim:GateInputPin.negate>([\s\S]*?)<\/cim:GateInputPin.negate>/g, obj, "negate", base.to_boolean, sub, context);
                 base.parse_element (/<cim:GateInputPin.thresholdPercentage>([\s\S]*?)<\/cim:GateInputPin.thresholdPercentage>/g, obj, "thresholdPercentage", base.to_string, sub, context);
                 base.parse_element (/<cim:GateInputPin.thresholdValue>([\s\S]*?)<\/cim:GateInputPin.thresholdValue>/g, obj, "thresholdValue", base.to_float, sub, context);
-                base.parse_attribute (/<cim:GateInputPin.Gate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Gate", sub, context);
-                var bucket = context.parsed.GateInputPin;
+                base.parse_attribute (/<cim:GateInputPin.Gate\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Gate", sub, context);
+                let bucket = context.parsed.GateInputPin;
                 if (null == bucket)
                    context.parsed.GateInputPin = bucket = {};
                 bucket[obj.id] = obj;
@@ -164,7 +162,7 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GateInputPin", "absoluteValue", "absoluteValue",  base.from_boolean, fields);
                 base.export_attribute (obj, "GateInputPin", "aDLogicKind", "aDLogicKind", fields);
@@ -174,7 +172,7 @@ define
                 base.export_element (obj, "GateInputPin", "thresholdValue", "thresholdValue",  base.from_float, fields);
                 base.export_attribute (obj, "GateInputPin", "Gate", "Gate", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -206,13 +204,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.aDLogicKindAnalogToDigitalLogicKind = [{ id: '', selected: (!obj.aDLogicKind)}]; for (var property in AnalogToDigitalLogicKind) obj.aDLogicKindAnalogToDigitalLogicKind.push ({ id: property, selected: obj.aDLogicKind && obj.aDLogicKind.endsWith ('.' + property)});
+                obj["aDLogicKindAnalogToDigitalLogicKind"] = [{ id: '', selected: (!obj["aDLogicKind"])}]; for (let property in AnalogToDigitalLogicKind) obj["aDLogicKindAnalogToDigitalLogicKind"].push ({ id: property, selected: obj["aDLogicKind"] && obj["aDLogicKind"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.aDLogicKindAnalogToDigitalLogicKind;
+                delete obj["aDLogicKindAnalogToDigitalLogicKind"];
             }
 
             edit_template ()
@@ -240,17 +238,17 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "GateInputPin" };
+                obj = obj || { id: id, cls: "GateInputPin" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj.absoluteValue = true;
-                temp = AnalogToDigitalLogicKind[document.getElementById (id + "_aDLogicKind").value]; if (temp) obj.aDLogicKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; else delete obj.aDLogicKind;
-                temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
-                temp = document.getElementById (id + "_negate").checked; if (temp) obj.negate = true;
-                temp = document.getElementById (id + "_thresholdPercentage").value; if ("" != temp) obj.thresholdPercentage = temp;
-                temp = document.getElementById (id + "_thresholdValue").value; if ("" != temp) obj.thresholdValue = temp;
-                temp = document.getElementById (id + "_Gate").value; if ("" != temp) obj.Gate = temp;
+                temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj["absoluteValue"] = true;
+                temp = AnalogToDigitalLogicKind[document.getElementById (id + "_aDLogicKind").value]; if (temp) obj["aDLogicKind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; else delete obj["aDLogicKind"];
+                temp = document.getElementById (id + "_duration").value; if ("" !== temp) obj["duration"] = temp;
+                temp = document.getElementById (id + "_negate").checked; if (temp) obj["negate"] = true;
+                temp = document.getElementById (id + "_thresholdPercentage").value; if ("" !== temp) obj["thresholdPercentage"] = temp;
+                temp = document.getElementById (id + "_thresholdValue").value; if ("" !== temp) obj["thresholdValue"] = temp;
+                temp = document.getElementById (id + "_Gate").value; if ("" !== temp) obj["Gate"] = temp;
 
                 return (obj);
             }
@@ -268,447 +266,6 @@ define
         }
 
         /**
-         * Remedial Action Scheme (RAS), Special Protection Schemes (SPS), System Protection Schemes (SPS) or System Integrity Protection Schemes (SIPS).
-         *
-         */
-        class RemedialActionScheme extends Core.PowerSystemResource
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.RemedialActionScheme;
-                if (null == bucket)
-                   cim_data.RemedialActionScheme = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.RemedialActionScheme[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
-                obj.cls = "RemedialActionScheme";
-                base.parse_element (/<cim:RemedialActionScheme.armed>([\s\S]*?)<\/cim:RemedialActionScheme.armed>/g, obj, "armed", base.to_boolean, sub, context);
-                base.parse_attribute (/<cim:RemedialActionScheme.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_element (/<cim:RemedialActionScheme.normalArmed>([\s\S]*?)<\/cim:RemedialActionScheme.normalArmed>/g, obj, "normalArmed", base.to_boolean, sub, context);
-                base.parse_attributes (/<cim:RemedialActionScheme.TriggerCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TriggerCondition", sub, context);
-                base.parse_attributes (/<cim:RemedialActionScheme.Stage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Stage", sub, context);
-                base.parse_attribute (/<cim:RemedialActionScheme.GateArmed\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateArmed", sub, context);
-                var bucket = context.parsed.RemedialActionScheme;
-                if (null == bucket)
-                   context.parsed.RemedialActionScheme = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "RemedialActionScheme", "armed", "armed",  base.from_boolean, fields);
-                base.export_attribute (obj, "RemedialActionScheme", "kind", "kind", fields);
-                base.export_element (obj, "RemedialActionScheme", "normalArmed", "normalArmed",  base.from_boolean, fields);
-                base.export_attributes (obj, "RemedialActionScheme", "TriggerCondition", "TriggerCondition", fields);
-                base.export_attributes (obj, "RemedialActionScheme", "Stage", "Stage", fields);
-                base.export_attribute (obj, "RemedialActionScheme", "GateArmed", "GateArmed", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RemedialActionScheme_collapse" aria-expanded="true" aria-controls="RemedialActionScheme_collapse" style="margin-left: 10px;">RemedialActionScheme</a></legend>
-                    <div id="RemedialActionScheme_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.PowerSystemResource.prototype.template.call (this) +
-                    `
-                    {{#armed}}<div><b>armed</b>: {{armed}}</div>{{/armed}}
-                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#normalArmed}}<div><b>normalArmed</b>: {{normalArmed}}</div>{{/normalArmed}}
-                    {{#TriggerCondition}}<div><b>TriggerCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TriggerCondition}}
-                    {{#Stage}}<div><b>Stage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Stage}}
-                    {{#GateArmed}}<div><b>GateArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateArmed}}&quot;);}); return false;'>{{GateArmed}}</a></div>{{/GateArmed}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                obj.kindRemedialActionSchemeKind = [{ id: '', selected: (!obj.kind)}]; for (var property in RemedialActionSchemeKind) obj.kindRemedialActionSchemeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                if (obj.TriggerCondition) obj.TriggerCondition_string = obj.TriggerCondition.join ();
-                if (obj.Stage) obj.Stage_string = obj.Stage.join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj.kindRemedialActionSchemeKind;
-                delete obj.TriggerCondition_string;
-                delete obj.Stage_string;
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RemedialActionScheme_collapse" aria-expanded="true" aria-controls="{{id}}_RemedialActionScheme_collapse" style="margin-left: 10px;">RemedialActionScheme</a></legend>
-                    <div id="{{id}}_RemedialActionScheme_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_armed'>armed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindRemedialActionSchemeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindRemedialActionSchemeKind}}</select></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalArmed'>normalArmed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='{{id}}_GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var temp;
-
-                var obj = obj || { id: id, cls: "RemedialActionScheme" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_armed").checked; if (temp) obj.armed = true;
-                temp = RemedialActionSchemeKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; else delete obj.kind;
-                temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj.normalArmed = true;
-                temp = document.getElementById (id + "_GateArmed").value; if ("" != temp) obj.GateArmed = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["TriggerCondition", "0..*", "1", "TriggerCondition", "RemedialActionScheme"],
-                            ["Stage", "1..*", "1", "Stage", "RemedialActionScheme"],
-                            ["GateArmed", "0..1", "0..*", "Gate", "RemedialActionScheme"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Condition that is triggered either by TriggerCondition of by gate condition within a stage and has remedial action-s.
-         *
-         */
-        class StageTrigger extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.StageTrigger;
-                if (null == bucket)
-                   cim_data.StageTrigger = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.StageTrigger[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "StageTrigger";
-                base.parse_element (/<cim:StageTrigger.armed>([\s\S]*?)<\/cim:StageTrigger.armed>/g, obj, "armed", base.to_boolean, sub, context);
-                base.parse_element (/<cim:StageTrigger.normalArmed>([\s\S]*?)<\/cim:StageTrigger.normalArmed>/g, obj, "normalArmed", base.to_boolean, sub, context);
-                base.parse_element (/<cim:StageTrigger.priority>([\s\S]*?)<\/cim:StageTrigger.priority>/g, obj, "priority", base.to_string, sub, context);
-                base.parse_attribute (/<cim:StageTrigger.Stage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Stage", sub, context);
-                base.parse_attribute (/<cim:StageTrigger.GateTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateTrigger", sub, context);
-                base.parse_attribute (/<cim:StageTrigger.GateArmed\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateArmed", sub, context);
-                base.parse_attribute (/<cim:StageTrigger.ProtectiveActionCollection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCollection", sub, context);
-                base.parse_attribute (/<cim:StageTrigger.GateComCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateComCondition", sub, context);
-                var bucket = context.parsed.StageTrigger;
-                if (null == bucket)
-                   context.parsed.StageTrigger = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "StageTrigger", "armed", "armed",  base.from_boolean, fields);
-                base.export_element (obj, "StageTrigger", "normalArmed", "normalArmed",  base.from_boolean, fields);
-                base.export_element (obj, "StageTrigger", "priority", "priority",  base.from_string, fields);
-                base.export_attribute (obj, "StageTrigger", "Stage", "Stage", fields);
-                base.export_attribute (obj, "StageTrigger", "GateTrigger", "GateTrigger", fields);
-                base.export_attribute (obj, "StageTrigger", "GateArmed", "GateArmed", fields);
-                base.export_attribute (obj, "StageTrigger", "ProtectiveActionCollection", "ProtectiveActionCollection", fields);
-                base.export_attribute (obj, "StageTrigger", "GateComCondition", "GateComCondition", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StageTrigger_collapse" aria-expanded="true" aria-controls="StageTrigger_collapse" style="margin-left: 10px;">StageTrigger</a></legend>
-                    <div id="StageTrigger_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#armed}}<div><b>armed</b>: {{armed}}</div>{{/armed}}
-                    {{#normalArmed}}<div><b>normalArmed</b>: {{normalArmed}}</div>{{/normalArmed}}
-                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
-                    {{#Stage}}<div><b>Stage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Stage}}&quot;);}); return false;'>{{Stage}}</a></div>{{/Stage}}
-                    {{#GateTrigger}}<div><b>GateTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateTrigger}}&quot;);}); return false;'>{{GateTrigger}}</a></div>{{/GateTrigger}}
-                    {{#GateArmed}}<div><b>GateArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateArmed}}&quot;);}); return false;'>{{GateArmed}}</a></div>{{/GateArmed}}
-                    {{#ProtectiveActionCollection}}<div><b>ProtectiveActionCollection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectiveActionCollection}}&quot;);}); return false;'>{{ProtectiveActionCollection}}</a></div>{{/ProtectiveActionCollection}}
-                    {{#GateComCondition}}<div><b>GateComCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateComCondition}}&quot;);}); return false;'>{{GateComCondition}}</a></div>{{/GateComCondition}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StageTrigger_collapse" aria-expanded="true" aria-controls="{{id}}_StageTrigger_collapse" style="margin-left: 10px;">StageTrigger</a></legend>
-                    <div id="{{id}}_StageTrigger_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_armed'>armed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalArmed'>normalArmed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Stage'>Stage: </label><div class='col-sm-8'><input id='{{id}}_Stage' class='form-control' type='text'{{#Stage}} value='{{Stage}}'{{/Stage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateTrigger'>GateTrigger: </label><div class='col-sm-8'><input id='{{id}}_GateTrigger' class='form-control' type='text'{{#GateTrigger}} value='{{GateTrigger}}'{{/GateTrigger}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='{{id}}_GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectiveActionCollection'>ProtectiveActionCollection: </label><div class='col-sm-8'><input id='{{id}}_ProtectiveActionCollection' class='form-control' type='text'{{#ProtectiveActionCollection}} value='{{ProtectiveActionCollection}}'{{/ProtectiveActionCollection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateComCondition'>GateComCondition: </label><div class='col-sm-8'><input id='{{id}}_GateComCondition' class='form-control' type='text'{{#GateComCondition}} value='{{GateComCondition}}'{{/GateComCondition}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var temp;
-
-                var obj = obj || { id: id, cls: "StageTrigger" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_armed").checked; if (temp) obj.armed = true;
-                temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj.normalArmed = true;
-                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById (id + "_Stage").value; if ("" != temp) obj.Stage = temp;
-                temp = document.getElementById (id + "_GateTrigger").value; if ("" != temp) obj.GateTrigger = temp;
-                temp = document.getElementById (id + "_GateArmed").value; if ("" != temp) obj.GateArmed = temp;
-                temp = document.getElementById (id + "_ProtectiveActionCollection").value; if ("" != temp) obj.ProtectiveActionCollection = temp;
-                temp = document.getElementById (id + "_GateComCondition").value; if ("" != temp) obj.GateComCondition = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["Stage", "1", "1..*", "Stage", "StageTrigger"],
-                            ["GateTrigger", "0..1", "0..*", "Gate", "StageTrigger"],
-                            ["GateArmed", "0..1", "0..*", "Gate", "StageTriggerArmed"],
-                            ["ProtectiveActionCollection", "1", "0..*", "ProtectiveActionCollection", "StageTrigger"],
-                            ["GateComCondition", "0..1", "0..*", "Gate", "StageTriggerCom"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * A protective action for supporting the integrity of the power system.
-         *
-         */
-        class ProtectiveAction extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.ProtectiveAction;
-                if (null == bucket)
-                   cim_data.ProtectiveAction = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.ProtectiveAction[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "ProtectiveAction";
-                base.parse_element (/<cim:ProtectiveAction.enabled>([\s\S]*?)<\/cim:ProtectiveAction.enabled>/g, obj, "enabled", base.to_boolean, sub, context);
-                base.parse_element (/<cim:ProtectiveAction.normalEnabled>([\s\S]*?)<\/cim:ProtectiveAction.normalEnabled>/g, obj, "normalEnabled", base.to_boolean, sub, context);
-                base.parse_attribute (/<cim:ProtectiveAction.ProtectionEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectionEquipment", sub, context);
-                base.parse_attribute (/<cim:ProtectiveAction.GateComCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateComCondition", sub, context);
-                base.parse_attribute (/<cim:ProtectiveAction.ProtectiveActionCollection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCollection", sub, context);
-                base.parse_attribute (/<cim:ProtectiveAction.GateEnabledCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateEnabledCondition", sub, context);
-                var bucket = context.parsed.ProtectiveAction;
-                if (null == bucket)
-                   context.parsed.ProtectiveAction = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "ProtectiveAction", "enabled", "enabled",  base.from_boolean, fields);
-                base.export_element (obj, "ProtectiveAction", "normalEnabled", "normalEnabled",  base.from_boolean, fields);
-                base.export_attribute (obj, "ProtectiveAction", "ProtectionEquipment", "ProtectionEquipment", fields);
-                base.export_attribute (obj, "ProtectiveAction", "GateComCondition", "GateComCondition", fields);
-                base.export_attribute (obj, "ProtectiveAction", "ProtectiveActionCollection", "ProtectiveActionCollection", fields);
-                base.export_attribute (obj, "ProtectiveAction", "GateEnabledCondition", "GateEnabledCondition", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProtectiveAction_collapse" aria-expanded="true" aria-controls="ProtectiveAction_collapse" style="margin-left: 10px;">ProtectiveAction</a></legend>
-                    <div id="ProtectiveAction_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
-                    {{#normalEnabled}}<div><b>normalEnabled</b>: {{normalEnabled}}</div>{{/normalEnabled}}
-                    {{#ProtectionEquipment}}<div><b>ProtectionEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectionEquipment}}&quot;);}); return false;'>{{ProtectionEquipment}}</a></div>{{/ProtectionEquipment}}
-                    {{#GateComCondition}}<div><b>GateComCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateComCondition}}&quot;);}); return false;'>{{GateComCondition}}</a></div>{{/GateComCondition}}
-                    {{#ProtectiveActionCollection}}<div><b>ProtectiveActionCollection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectiveActionCollection}}&quot;);}); return false;'>{{ProtectiveActionCollection}}</a></div>{{/ProtectiveActionCollection}}
-                    {{#GateEnabledCondition}}<div><b>GateEnabledCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateEnabledCondition}}&quot;);}); return false;'>{{GateEnabledCondition}}</a></div>{{/GateEnabledCondition}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProtectiveAction_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveAction_collapse" style="margin-left: 10px;">ProtectiveAction</a></legend>
-                    <div id="{{id}}_ProtectiveAction_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalEnabled'>normalEnabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalEnabled' class='form-check-input' type='checkbox'{{#normalEnabled}} checked{{/normalEnabled}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectionEquipment'>ProtectionEquipment: </label><div class='col-sm-8'><input id='{{id}}_ProtectionEquipment' class='form-control' type='text'{{#ProtectionEquipment}} value='{{ProtectionEquipment}}'{{/ProtectionEquipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateComCondition'>GateComCondition: </label><div class='col-sm-8'><input id='{{id}}_GateComCondition' class='form-control' type='text'{{#GateComCondition}} value='{{GateComCondition}}'{{/GateComCondition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectiveActionCollection'>ProtectiveActionCollection: </label><div class='col-sm-8'><input id='{{id}}_ProtectiveActionCollection' class='form-control' type='text'{{#ProtectiveActionCollection}} value='{{ProtectiveActionCollection}}'{{/ProtectiveActionCollection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateEnabledCondition'>GateEnabledCondition: </label><div class='col-sm-8'><input id='{{id}}_GateEnabledCondition' class='form-control' type='text'{{#GateEnabledCondition}} value='{{GateEnabledCondition}}'{{/GateEnabledCondition}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var temp;
-
-                var obj = obj || { id: id, cls: "ProtectiveAction" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_enabled").checked; if (temp) obj.enabled = true;
-                temp = document.getElementById (id + "_normalEnabled").checked; if (temp) obj.normalEnabled = true;
-                temp = document.getElementById (id + "_ProtectionEquipment").value; if ("" != temp) obj.ProtectionEquipment = temp;
-                temp = document.getElementById (id + "_GateComCondition").value; if ("" != temp) obj.GateComCondition = temp;
-                temp = document.getElementById (id + "_ProtectiveActionCollection").value; if ("" != temp) obj.ProtectiveActionCollection = temp;
-                temp = document.getElementById (id + "_GateEnabledCondition").value; if ("" != temp) obj.GateEnabledCondition = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["ProtectionEquipment", "0..1", "0..*", "ProtectionEquipment", "ProtectiveAction"],
-                            ["GateComCondition", "0..1", "0..*", "Gate", "ProtectiveActionCom"],
-                            ["ProtectiveActionCollection", "1", "1..*", "ProtectiveActionCollection", "ProtectiveAction"],
-                            ["GateEnabledCondition", "0..1", "0..*", "Gate", "ProtectiveActionEnabled"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
          * Input to measurement calculation.
          *
          * Support Analog, Discrete and Accumulator.
@@ -719,7 +276,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.MeasurementCalculatorInput;
+                let bucket = cim_data.MeasurementCalculatorInput;
                 if (null == bucket)
                    cim_data.MeasurementCalculatorInput = bucket = {};
                 bucket[template.id] = template;
@@ -733,15 +290,13 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MeasurementCalculatorInput";
                 base.parse_element (/<cim:MeasurementCalculatorInput.absoluteValue>([\s\S]*?)<\/cim:MeasurementCalculatorInput.absoluteValue>/g, obj, "absoluteValue", base.to_boolean, sub, context);
                 base.parse_element (/<cim:MeasurementCalculatorInput.order>([\s\S]*?)<\/cim:MeasurementCalculatorInput.order>/g, obj, "order", base.to_string, sub, context);
-                base.parse_attribute (/<cim:MeasurementCalculatorInput.MeasurementCalculator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculator", sub, context);
-                base.parse_attribute (/<cim:MeasurementCalculatorInput.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
-                var bucket = context.parsed.MeasurementCalculatorInput;
+                base.parse_attribute (/<cim:MeasurementCalculatorInput.MeasurementCalculator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculator", sub, context);
+                base.parse_attribute (/<cim:MeasurementCalculatorInput.Measurement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
+                let bucket = context.parsed.MeasurementCalculatorInput;
                 if (null == bucket)
                    context.parsed.MeasurementCalculatorInput = bucket = {};
                 bucket[obj.id] = obj;
@@ -751,14 +306,14 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MeasurementCalculatorInput", "absoluteValue", "absoluteValue",  base.from_boolean, fields);
                 base.export_element (obj, "MeasurementCalculatorInput", "order", "order",  base.from_string, fields);
                 base.export_attribute (obj, "MeasurementCalculatorInput", "MeasurementCalculator", "MeasurementCalculator", fields);
                 base.export_attribute (obj, "MeasurementCalculatorInput", "Measurement", "Measurement", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -816,14 +371,14 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "MeasurementCalculatorInput" };
+                obj = obj || { id: id, cls: "MeasurementCalculatorInput" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj.absoluteValue = true;
-                temp = document.getElementById (id + "_order").value; if ("" != temp) obj.order = temp;
-                temp = document.getElementById (id + "_MeasurementCalculator").value; if ("" != temp) obj.MeasurementCalculator = temp;
-                temp = document.getElementById (id + "_Measurement").value; if ("" != temp) obj.Measurement = temp;
+                temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj["absoluteValue"] = true;
+                temp = document.getElementById (id + "_order").value; if ("" !== temp) obj["order"] = temp;
+                temp = document.getElementById (id + "_MeasurementCalculator").value; if ("" !== temp) obj["MeasurementCalculator"] = temp;
+                temp = document.getElementById (id + "_Measurement").value; if ("" !== temp) obj["Measurement"] = temp;
 
                 return (obj);
             }
@@ -842,45 +397,39 @@ define
         }
 
         /**
-         * Logical gate than support logical operation based on the input.
+         * Remedial Action Scheme (RAS), Special Protection Schemes (SPS), System Protection Schemes (SPS) or System Integrity Protection Schemes (SIPS).
          *
          */
-        class Gate extends Core.IdentifiedObject
+        class RemedialActionScheme extends Core.PowerSystemResource
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.Gate;
+                let bucket = cim_data.RemedialActionScheme;
                 if (null == bucket)
-                   cim_data.Gate = bucket = {};
+                   cim_data.RemedialActionScheme = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.Gate[obj.id];
+               delete cim_data.RemedialActionScheme[obj.id];
             }
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "Gate";
-                base.parse_attribute (/<cim:Gate.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_attributes (/<cim:Gate.GateInputPin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateInputPin", sub, context);
-                base.parse_attributes (/<cim:Gate.RemedialActionScheme\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
-                base.parse_attributes (/<cim:Gate.ProtectiveActionCom\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCom", sub, context);
-                base.parse_attributes (/<cim:Gate.PinGate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PinGate", sub, context);
-                base.parse_attributes (/<cim:Gate.StageTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
-                base.parse_attributes (/<cim:Gate.StageTriggerArmed\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTriggerArmed", sub, context);
-                base.parse_attributes (/<cim:Gate.ProtectiveActionEnabled\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionEnabled", sub, context);
-                base.parse_attributes (/<cim:Gate.TriggerCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TriggerCondition", sub, context);
-                base.parse_attributes (/<cim:Gate.StageTriggerCom\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTriggerCom", sub, context);
-                var bucket = context.parsed.Gate;
+                let obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
+                obj.cls = "RemedialActionScheme";
+                base.parse_element (/<cim:RemedialActionScheme.armed>([\s\S]*?)<\/cim:RemedialActionScheme.armed>/g, obj, "armed", base.to_boolean, sub, context);
+                base.parse_attribute (/<cim:RemedialActionScheme.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_element (/<cim:RemedialActionScheme.normalArmed>([\s\S]*?)<\/cim:RemedialActionScheme.normalArmed>/g, obj, "normalArmed", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:RemedialActionScheme.TriggerCondition\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TriggerCondition", sub, context);
+                base.parse_attribute (/<cim:RemedialActionScheme.GateArmed\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateArmed", sub, context);
+                base.parse_attributes (/<cim:RemedialActionScheme.Stage\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Stage", sub, context);
+                let bucket = context.parsed.RemedialActionScheme;
                 if (null == bucket)
-                   context.parsed.Gate = bucket = {};
+                   context.parsed.RemedialActionScheme = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -888,20 +437,16 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "Gate", "kind", "kind", fields);
-                base.export_attributes (obj, "Gate", "GateInputPin", "GateInputPin", fields);
-                base.export_attributes (obj, "Gate", "RemedialActionScheme", "RemedialActionScheme", fields);
-                base.export_attributes (obj, "Gate", "ProtectiveActionCom", "ProtectiveActionCom", fields);
-                base.export_attributes (obj, "Gate", "PinGate", "PinGate", fields);
-                base.export_attributes (obj, "Gate", "StageTrigger", "StageTrigger", fields);
-                base.export_attributes (obj, "Gate", "StageTriggerArmed", "StageTriggerArmed", fields);
-                base.export_attributes (obj, "Gate", "ProtectiveActionEnabled", "ProtectiveActionEnabled", fields);
-                base.export_attributes (obj, "Gate", "TriggerCondition", "TriggerCondition", fields);
-                base.export_attributes (obj, "Gate", "StageTriggerCom", "StageTriggerCom", fields);
+                base.export_element (obj, "RemedialActionScheme", "armed", "armed",  base.from_boolean, fields);
+                base.export_attribute (obj, "RemedialActionScheme", "kind", "kind", fields);
+                base.export_element (obj, "RemedialActionScheme", "normalArmed", "normalArmed",  base.from_boolean, fields);
+                base.export_attributes (obj, "RemedialActionScheme", "TriggerCondition", "TriggerCondition", fields);
+                base.export_attribute (obj, "RemedialActionScheme", "GateArmed", "GateArmed", fields);
+                base.export_attributes (obj, "RemedialActionScheme", "Stage", "Stage", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -911,21 +456,17 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Gate_collapse" aria-expanded="true" aria-controls="Gate_collapse" style="margin-left: 10px;">Gate</a></legend>
-                    <div id="Gate_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RemedialActionScheme_collapse" aria-expanded="true" aria-controls="RemedialActionScheme_collapse" style="margin-left: 10px;">RemedialActionScheme</a></legend>
+                    <div id="RemedialActionScheme_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    + Core.PowerSystemResource.prototype.template.call (this) +
                     `
+                    {{#armed}}<div><b>armed</b>: {{armed}}</div>{{/armed}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#GateInputPin}}<div><b>GateInputPin</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GateInputPin}}
-                    {{#RemedialActionScheme}}<div><b>RemedialActionScheme</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RemedialActionScheme}}
-                    {{#ProtectiveActionCom}}<div><b>ProtectiveActionCom</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProtectiveActionCom}}
-                    {{#PinGate}}<div><b>PinGate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PinGate}}
-                    {{#StageTrigger}}<div><b>StageTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StageTrigger}}
-                    {{#StageTriggerArmed}}<div><b>StageTriggerArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StageTriggerArmed}}
-                    {{#ProtectiveActionEnabled}}<div><b>ProtectiveActionEnabled</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProtectiveActionEnabled}}
+                    {{#normalArmed}}<div><b>normalArmed</b>: {{normalArmed}}</div>{{/normalArmed}}
                     {{#TriggerCondition}}<div><b>TriggerCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TriggerCondition}}
-                    {{#StageTriggerCom}}<div><b>StageTriggerCom</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StageTriggerCom}}
+                    {{#GateArmed}}<div><b>GateArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateArmed}}&quot;);}); return false;'>{{GateArmed}}</a></div>{{/GateArmed}}
+                    {{#Stage}}<div><b>Stage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Stage}}
                     </div>
                     </fieldset>
 
@@ -936,31 +477,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.kindGateLogicKind = [{ id: '', selected: (!obj.kind)}]; for (var property in GateLogicKind) obj.kindGateLogicKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                if (obj.GateInputPin) obj.GateInputPin_string = obj.GateInputPin.join ();
-                if (obj.RemedialActionScheme) obj.RemedialActionScheme_string = obj.RemedialActionScheme.join ();
-                if (obj.ProtectiveActionCom) obj.ProtectiveActionCom_string = obj.ProtectiveActionCom.join ();
-                if (obj.PinGate) obj.PinGate_string = obj.PinGate.join ();
-                if (obj.StageTrigger) obj.StageTrigger_string = obj.StageTrigger.join ();
-                if (obj.StageTriggerArmed) obj.StageTriggerArmed_string = obj.StageTriggerArmed.join ();
-                if (obj.ProtectiveActionEnabled) obj.ProtectiveActionEnabled_string = obj.ProtectiveActionEnabled.join ();
-                if (obj.TriggerCondition) obj.TriggerCondition_string = obj.TriggerCondition.join ();
-                if (obj.StageTriggerCom) obj.StageTriggerCom_string = obj.StageTriggerCom.join ();
+                obj["kindRemedialActionSchemeKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in RemedialActionSchemeKind) obj["kindRemedialActionSchemeKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
+                if (obj["TriggerCondition"]) obj["TriggerCondition_string"] = obj["TriggerCondition"].join ();
+                if (obj["Stage"]) obj["Stage_string"] = obj["Stage"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.kindGateLogicKind;
-                delete obj.GateInputPin_string;
-                delete obj.RemedialActionScheme_string;
-                delete obj.ProtectiveActionCom_string;
-                delete obj.PinGate_string;
-                delete obj.StageTrigger_string;
-                delete obj.StageTriggerArmed_string;
-                delete obj.ProtectiveActionEnabled_string;
-                delete obj.TriggerCondition_string;
-                delete obj.StageTriggerCom_string;
+                delete obj["kindRemedialActionSchemeKind"];
+                delete obj["TriggerCondition_string"];
+                delete obj["Stage_string"];
             }
 
             edit_template ()
@@ -968,12 +495,15 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Gate_collapse" aria-expanded="true" aria-controls="{{id}}_Gate_collapse" style="margin-left: 10px;">Gate</a></legend>
-                    <div id="{{id}}_Gate_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RemedialActionScheme_collapse" aria-expanded="true" aria-controls="{{id}}_RemedialActionScheme_collapse" style="margin-left: 10px;">RemedialActionScheme</a></legend>
+                    <div id="{{id}}_RemedialActionScheme_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindGateLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindGateLogicKind}}</select></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_armed'>armed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindRemedialActionSchemeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindRemedialActionSchemeKind}}</select></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalArmed'>normalArmed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='{{id}}_GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -982,11 +512,14 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "Gate" };
+                obj = obj || { id: id, cls: "RemedialActionScheme" };
                 super.submit (id, obj);
-                temp = GateLogicKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; else delete obj.kind;
+                temp = document.getElementById (id + "_armed").checked; if (temp) obj["armed"] = true;
+                temp = RemedialActionSchemeKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; else delete obj["kind"];
+                temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj["normalArmed"] = true;
+                temp = document.getElementById (id + "_GateArmed").value; if ("" !== temp) obj["GateArmed"] = temp;
 
                 return (obj);
             }
@@ -996,269 +529,9 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["GateInputPin", "1..*", "1", "GateInputPin", "Gate"],
-                            ["RemedialActionScheme", "0..*", "0..1", "RemedialActionScheme", "GateArmed"],
-                            ["ProtectiveActionCom", "0..*", "0..1", "ProtectiveAction", "GateComCondition"],
-                            ["PinGate", "0..*", "1", "PinGate", "GateOutput"],
-                            ["StageTrigger", "0..*", "0..1", "StageTrigger", "GateTrigger"],
-                            ["StageTriggerArmed", "0..*", "0..1", "StageTrigger", "GateArmed"],
-                            ["ProtectiveActionEnabled", "0..*", "0..1", "ProtectiveAction", "GateEnabledCondition"],
-                            ["TriggerCondition", "0..*", "1", "TriggerCondition", "GateTrigger"],
-                            ["StageTriggerCom", "0..*", "0..1", "StageTrigger", "GateComCondition"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Stage of a remedial action scheme.
-         *
-         */
-        class Stage extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.Stage;
-                if (null == bucket)
-                   cim_data.Stage = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.Stage[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "Stage";
-                base.parse_element (/<cim:Stage.priority>([\s\S]*?)<\/cim:Stage.priority>/g, obj, "priority", base.to_string, sub, context);
-                base.parse_attributes (/<cim:Stage.StageTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
-                base.parse_attribute (/<cim:Stage.RemedialActionScheme\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
-                var bucket = context.parsed.Stage;
-                if (null == bucket)
-                   context.parsed.Stage = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "Stage", "priority", "priority",  base.from_string, fields);
-                base.export_attributes (obj, "Stage", "StageTrigger", "StageTrigger", fields);
-                base.export_attribute (obj, "Stage", "RemedialActionScheme", "RemedialActionScheme", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Stage_collapse" aria-expanded="true" aria-controls="Stage_collapse" style="margin-left: 10px;">Stage</a></legend>
-                    <div id="Stage_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
-                    {{#StageTrigger}}<div><b>StageTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StageTrigger}}
-                    {{#RemedialActionScheme}}<div><b>RemedialActionScheme</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemedialActionScheme}}&quot;);}); return false;'>{{RemedialActionScheme}}</a></div>{{/RemedialActionScheme}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj.StageTrigger) obj.StageTrigger_string = obj.StageTrigger.join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj.StageTrigger_string;
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Stage_collapse" aria-expanded="true" aria-controls="{{id}}_Stage_collapse" style="margin-left: 10px;">Stage</a></legend>
-                    <div id="{{id}}_Stage_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemedialActionScheme'>RemedialActionScheme: </label><div class='col-sm-8'><input id='{{id}}_RemedialActionScheme' class='form-control' type='text'{{#RemedialActionScheme}} value='{{RemedialActionScheme}}'{{/RemedialActionScheme}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var temp;
-
-                var obj = obj || { id: id, cls: "Stage" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById (id + "_RemedialActionScheme").value; if ("" != temp) obj.RemedialActionScheme = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["StageTrigger", "1..*", "1", "StageTrigger", "Stage"],
-                            ["RemedialActionScheme", "1", "1..*", "RemedialActionScheme", "Stage"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Result of a calculation of one or more measurement.
-         *
-         */
-        class MeasurementCalculator extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.MeasurementCalculator;
-                if (null == bucket)
-                   cim_data.MeasurementCalculator = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.MeasurementCalculator[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "MeasurementCalculator";
-                base.parse_attribute (/<cim:MeasurementCalculator.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_attributes (/<cim:MeasurementCalculator.MeasurementCalculatorInput\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculatorInput", sub, context);
-                base.parse_attributes (/<cim:MeasurementCalculator.PinMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PinMeasurement", sub, context);
-                var bucket = context.parsed.MeasurementCalculator;
-                if (null == bucket)
-                   context.parsed.MeasurementCalculator = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_attribute (obj, "MeasurementCalculator", "kind", "kind", fields);
-                base.export_attributes (obj, "MeasurementCalculator", "MeasurementCalculatorInput", "MeasurementCalculatorInput", fields);
-                base.export_attributes (obj, "MeasurementCalculator", "PinMeasurement", "PinMeasurement", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MeasurementCalculator_collapse" aria-expanded="true" aria-controls="MeasurementCalculator_collapse" style="margin-left: 10px;">MeasurementCalculator</a></legend>
-                    <div id="MeasurementCalculator_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#MeasurementCalculatorInput}}<div><b>MeasurementCalculatorInput</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeasurementCalculatorInput}}
-                    {{#PinMeasurement}}<div><b>PinMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PinMeasurement}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                obj.kindCalculationKind = [{ id: '', selected: (!obj.kind)}]; for (var property in CalculationKind) obj.kindCalculationKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
-                if (obj.MeasurementCalculatorInput) obj.MeasurementCalculatorInput_string = obj.MeasurementCalculatorInput.join ();
-                if (obj.PinMeasurement) obj.PinMeasurement_string = obj.PinMeasurement.join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj.kindCalculationKind;
-                delete obj.MeasurementCalculatorInput_string;
-                delete obj.PinMeasurement_string;
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MeasurementCalculator_collapse" aria-expanded="true" aria-controls="{{id}}_MeasurementCalculator_collapse" style="margin-left: 10px;">MeasurementCalculator</a></legend>
-                    <div id="{{id}}_MeasurementCalculator_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCalculationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCalculationKind}}</select></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var temp;
-
-                var obj = obj || { id: id, cls: "MeasurementCalculator" };
-                super.submit (id, obj);
-                temp = CalculationKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; else delete obj.kind;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["MeasurementCalculatorInput", "1..*", "1", "MeasurementCalculatorInput", "MeasurementCalculator"],
-                            ["PinMeasurement", "0..*", "0..1", "PinMeasurement", "MeasurementCalculator"]
+                            ["TriggerCondition", "0..*", "1", "TriggerCondition", "RemedialActionScheme"],
+                            ["GateArmed", "0..1", "0..*", "Gate", "RemedialActionScheme"],
+                            ["Stage", "1..*", "1", "Stage", "RemedialActionScheme"]
                         ]
                     )
                 );
@@ -1274,7 +547,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.TriggerCondition;
+                let bucket = cim_data.TriggerCondition;
                 if (null == bucket)
                    cim_data.TriggerCondition = bucket = {};
                 bucket[template.id] = template;
@@ -1288,13 +561,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "TriggerCondition";
-                base.parse_attribute (/<cim:TriggerCondition.RemedialActionScheme\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
-                base.parse_attribute (/<cim:TriggerCondition.GateTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateTrigger", sub, context);
-                var bucket = context.parsed.TriggerCondition;
+                base.parse_attribute (/<cim:TriggerCondition.RemedialActionScheme\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
+                base.parse_attribute (/<cim:TriggerCondition.GateTrigger\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateTrigger", sub, context);
+                let bucket = context.parsed.TriggerCondition;
                 if (null == bucket)
                    context.parsed.TriggerCondition = bucket = {};
                 bucket[obj.id] = obj;
@@ -1304,12 +575,12 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TriggerCondition", "RemedialActionScheme", "RemedialActionScheme", fields);
                 base.export_attribute (obj, "TriggerCondition", "GateTrigger", "GateTrigger", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -1363,12 +634,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "TriggerCondition" };
+                obj = obj || { id: id, cls: "TriggerCondition" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_RemedialActionScheme").value; if ("" != temp) obj.RemedialActionScheme = temp;
-                temp = document.getElementById (id + "_GateTrigger").value; if ("" != temp) obj.GateTrigger = temp;
+                temp = document.getElementById (id + "_RemedialActionScheme").value; if ("" !== temp) obj["RemedialActionScheme"] = temp;
+                temp = document.getElementById (id + "_GateTrigger").value; if ("" !== temp) obj["GateTrigger"] = temp;
 
                 return (obj);
             }
@@ -1387,6 +658,147 @@ define
         }
 
         /**
+         * A protective action for supporting the integrity of the power system.
+         *
+         */
+        class ProtectiveAction extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.ProtectiveAction;
+                if (null == bucket)
+                   cim_data.ProtectiveAction = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.ProtectiveAction[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "ProtectiveAction";
+                base.parse_element (/<cim:ProtectiveAction.enabled>([\s\S]*?)<\/cim:ProtectiveAction.enabled>/g, obj, "enabled", base.to_boolean, sub, context);
+                base.parse_element (/<cim:ProtectiveAction.normalEnabled>([\s\S]*?)<\/cim:ProtectiveAction.normalEnabled>/g, obj, "normalEnabled", base.to_boolean, sub, context);
+                base.parse_attribute (/<cim:ProtectiveAction.ProtectiveActionCollection\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCollection", sub, context);
+                base.parse_attribute (/<cim:ProtectiveAction.ProtectionEquipment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProtectionEquipment", sub, context);
+                base.parse_attribute (/<cim:ProtectiveAction.GateEnabledCondition\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateEnabledCondition", sub, context);
+                base.parse_attribute (/<cim:ProtectiveAction.GateComCondition\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateComCondition", sub, context);
+                let bucket = context.parsed.ProtectiveAction;
+                if (null == bucket)
+                   context.parsed.ProtectiveAction = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "ProtectiveAction", "enabled", "enabled",  base.from_boolean, fields);
+                base.export_element (obj, "ProtectiveAction", "normalEnabled", "normalEnabled",  base.from_boolean, fields);
+                base.export_attribute (obj, "ProtectiveAction", "ProtectiveActionCollection", "ProtectiveActionCollection", fields);
+                base.export_attribute (obj, "ProtectiveAction", "ProtectionEquipment", "ProtectionEquipment", fields);
+                base.export_attribute (obj, "ProtectiveAction", "GateEnabledCondition", "GateEnabledCondition", fields);
+                base.export_attribute (obj, "ProtectiveAction", "GateComCondition", "GateComCondition", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProtectiveAction_collapse" aria-expanded="true" aria-controls="ProtectiveAction_collapse" style="margin-left: 10px;">ProtectiveAction</a></legend>
+                    <div id="ProtectiveAction_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+                    {{#normalEnabled}}<div><b>normalEnabled</b>: {{normalEnabled}}</div>{{/normalEnabled}}
+                    {{#ProtectiveActionCollection}}<div><b>ProtectiveActionCollection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectiveActionCollection}}&quot;);}); return false;'>{{ProtectiveActionCollection}}</a></div>{{/ProtectiveActionCollection}}
+                    {{#ProtectionEquipment}}<div><b>ProtectionEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectionEquipment}}&quot;);}); return false;'>{{ProtectionEquipment}}</a></div>{{/ProtectionEquipment}}
+                    {{#GateEnabledCondition}}<div><b>GateEnabledCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateEnabledCondition}}&quot;);}); return false;'>{{GateEnabledCondition}}</a></div>{{/GateEnabledCondition}}
+                    {{#GateComCondition}}<div><b>GateComCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateComCondition}}&quot;);}); return false;'>{{GateComCondition}}</a></div>{{/GateComCondition}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProtectiveAction_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveAction_collapse" style="margin-left: 10px;">ProtectiveAction</a></legend>
+                    <div id="{{id}}_ProtectiveAction_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalEnabled'>normalEnabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalEnabled' class='form-check-input' type='checkbox'{{#normalEnabled}} checked{{/normalEnabled}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectiveActionCollection'>ProtectiveActionCollection: </label><div class='col-sm-8'><input id='{{id}}_ProtectiveActionCollection' class='form-control' type='text'{{#ProtectiveActionCollection}} value='{{ProtectiveActionCollection}}'{{/ProtectiveActionCollection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectionEquipment'>ProtectionEquipment: </label><div class='col-sm-8'><input id='{{id}}_ProtectionEquipment' class='form-control' type='text'{{#ProtectionEquipment}} value='{{ProtectionEquipment}}'{{/ProtectionEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateEnabledCondition'>GateEnabledCondition: </label><div class='col-sm-8'><input id='{{id}}_GateEnabledCondition' class='form-control' type='text'{{#GateEnabledCondition}} value='{{GateEnabledCondition}}'{{/GateEnabledCondition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateComCondition'>GateComCondition: </label><div class='col-sm-8'><input id='{{id}}_GateComCondition' class='form-control' type='text'{{#GateComCondition}} value='{{GateComCondition}}'{{/GateComCondition}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "ProtectiveAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_enabled").checked; if (temp) obj["enabled"] = true;
+                temp = document.getElementById (id + "_normalEnabled").checked; if (temp) obj["normalEnabled"] = true;
+                temp = document.getElementById (id + "_ProtectiveActionCollection").value; if ("" !== temp) obj["ProtectiveActionCollection"] = temp;
+                temp = document.getElementById (id + "_ProtectionEquipment").value; if ("" !== temp) obj["ProtectionEquipment"] = temp;
+                temp = document.getElementById (id + "_GateEnabledCondition").value; if ("" !== temp) obj["GateEnabledCondition"] = temp;
+                temp = document.getElementById (id + "_GateComCondition").value; if ("" !== temp) obj["GateComCondition"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["ProtectiveActionCollection", "1", "1..*", "ProtectiveActionCollection", "ProtectiveAction"],
+                            ["ProtectionEquipment", "0..1", "0..*", "ProtectionEquipment", "ProtectiveAction"],
+                            ["GateEnabledCondition", "0..1", "0..*", "Gate", "ProtectiveActionEnabled"],
+                            ["GateComCondition", "0..1", "0..*", "Gate", "ProtectiveActionCom"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
          * A collection of protective actions to protect the integrity of the power system.
          *
          */
@@ -1395,7 +807,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.ProtectiveActionCollection;
+                let bucket = cim_data.ProtectiveActionCollection;
                 if (null == bucket)
                    cim_data.ProtectiveActionCollection = bucket = {};
                 bucket[template.id] = template;
@@ -1409,13 +821,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ProtectiveActionCollection";
-                base.parse_attributes (/<cim:ProtectiveActionCollection.ProtectiveAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveAction", sub, context);
-                base.parse_attributes (/<cim:ProtectiveActionCollection.StageTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
-                var bucket = context.parsed.ProtectiveActionCollection;
+                base.parse_attributes (/<cim:ProtectiveActionCollection.ProtectiveAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveAction", sub, context);
+                base.parse_attributes (/<cim:ProtectiveActionCollection.StageTrigger\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
+                let bucket = context.parsed.ProtectiveActionCollection;
                 if (null == bucket)
                    context.parsed.ProtectiveActionCollection = bucket = {};
                 bucket[obj.id] = obj;
@@ -1425,12 +835,12 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_attributes (obj, "ProtectiveActionCollection", "ProtectiveAction", "ProtectiveAction", fields);
                 base.export_attributes (obj, "ProtectiveActionCollection", "StageTrigger", "StageTrigger", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -1457,15 +867,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj.ProtectiveAction) obj.ProtectiveAction_string = obj.ProtectiveAction.join ();
-                if (obj.StageTrigger) obj.StageTrigger_string = obj.StageTrigger.join ();
+                if (obj["ProtectiveAction"]) obj["ProtectiveAction_string"] = obj["ProtectiveAction"].join ();
+                if (obj["StageTrigger"]) obj["StageTrigger_string"] = obj["StageTrigger"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.ProtectiveAction_string;
-                delete obj.StageTrigger_string;
+                delete obj["ProtectiveAction_string"];
+                delete obj["StageTrigger_string"];
             }
 
             edit_template ()
@@ -1486,7 +896,7 @@ define
 
             submit (id, obj)
             {
-                var obj = obj || { id: id, cls: "ProtectiveActionCollection" };
+                obj = obj || { id: id, cls: "ProtectiveActionCollection" };
                 super.submit (id, obj);
 
                 return (obj);
@@ -1506,37 +916,36 @@ define
         }
 
         /**
-         * Value associated with Equipment is used as compare.
+         * Result of a calculation of one or more measurement.
          *
          */
-        class PinEquipment extends GateInputPin
+        class MeasurementCalculator extends Core.IdentifiedObject
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PinEquipment;
+                let bucket = cim_data.MeasurementCalculator;
                 if (null == bucket)
-                   cim_data.PinEquipment = bucket = {};
+                   cim_data.MeasurementCalculator = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.PinEquipment[obj.id];
+               delete cim_data.MeasurementCalculator[obj.id];
             }
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = GateInputPin.prototype.parse.call (this, context, sub);
-                obj.cls = "PinEquipment";
-                base.parse_attribute (/<cim:PinEquipment.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_attribute (/<cim:PinEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
-                var bucket = context.parsed.PinEquipment;
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "MeasurementCalculator";
+                base.parse_attribute (/<cim:MeasurementCalculator.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_attributes (/<cim:MeasurementCalculator.MeasurementCalculatorInput\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculatorInput", sub, context);
+                base.parse_attributes (/<cim:MeasurementCalculator.PinMeasurement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PinMeasurement", sub, context);
+                let bucket = context.parsed.MeasurementCalculator;
                 if (null == bucket)
-                   context.parsed.PinEquipment = bucket = {};
+                   context.parsed.MeasurementCalculator = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -1544,12 +953,13 @@ define
 
             export (obj, full)
             {
-                var fields = GateInputPin.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PinEquipment", "kind", "kind", fields);
-                base.export_attribute (obj, "PinEquipment", "Equipment", "Equipment", fields);
+                base.export_attribute (obj, "MeasurementCalculator", "kind", "kind", fields);
+                base.export_attributes (obj, "MeasurementCalculator", "MeasurementCalculatorInput", "MeasurementCalculatorInput", fields);
+                base.export_attributes (obj, "MeasurementCalculator", "PinMeasurement", "PinMeasurement", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -1559,13 +969,14 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PinEquipment_collapse" aria-expanded="true" aria-controls="PinEquipment_collapse" style="margin-left: 10px;">PinEquipment</a></legend>
-                    <div id="PinEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MeasurementCalculator_collapse" aria-expanded="true" aria-controls="MeasurementCalculator_collapse" style="margin-left: 10px;">MeasurementCalculator</a></legend>
+                    <div id="MeasurementCalculator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + GateInputPin.prototype.template.call (this) +
+                    + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
+                    {{#MeasurementCalculatorInput}}<div><b>MeasurementCalculatorInput</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeasurementCalculatorInput}}
+                    {{#PinMeasurement}}<div><b>PinMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PinMeasurement}}
                     </div>
                     </fieldset>
 
@@ -1576,13 +987,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.kindPinEquipmentKind = [{ id: '', selected: (!obj.kind)}]; for (var property in PinEquipmentKind) obj.kindPinEquipmentKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj["kindCalculationKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in CalculationKind) obj["kindCalculationKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
+                if (obj["MeasurementCalculatorInput"]) obj["MeasurementCalculatorInput_string"] = obj["MeasurementCalculatorInput"].join ();
+                if (obj["PinMeasurement"]) obj["PinMeasurement_string"] = obj["PinMeasurement"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.kindPinEquipmentKind;
+                delete obj["kindCalculationKind"];
+                delete obj["MeasurementCalculatorInput_string"];
+                delete obj["PinMeasurement_string"];
             }
 
             edit_template ()
@@ -1590,13 +1005,12 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PinEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_PinEquipment_collapse" style="margin-left: 10px;">PinEquipment</a></legend>
-                    <div id="{{id}}_PinEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MeasurementCalculator_collapse" aria-expanded="true" aria-controls="{{id}}_MeasurementCalculator_collapse" style="margin-left: 10px;">MeasurementCalculator</a></legend>
+                    <div id="{{id}}_MeasurementCalculator_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + GateInputPin.prototype.edit_template.call (this) +
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPinEquipmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPinEquipmentKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindCalculationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindCalculationKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1605,12 +1019,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PinEquipment" };
+                obj = obj || { id: id, cls: "MeasurementCalculator" };
                 super.submit (id, obj);
-                temp = PinEquipmentKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; else delete obj.kind;
-                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
+                temp = CalculationKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; else delete obj["kind"];
 
                 return (obj);
             }
@@ -1620,7 +1033,8 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["Equipment", "1", "0..*", "Equipment", "PinEquipment"]
+                            ["MeasurementCalculatorInput", "1..*", "1", "MeasurementCalculatorInput", "MeasurementCalculator"],
+                            ["PinMeasurement", "0..*", "0..1", "PinMeasurement", "MeasurementCalculator"]
                         ]
                     )
                 );
@@ -1628,36 +1042,41 @@ define
         }
 
         /**
-         * An output from one gate represent an input to another gate.
+         * Condition that is triggered either by TriggerCondition of by gate condition within a stage and has remedial action-s.
          *
          */
-        class PinGate extends GateInputPin
+        class StageTrigger extends Core.IdentifiedObject
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PinGate;
+                let bucket = cim_data.StageTrigger;
                 if (null == bucket)
-                   cim_data.PinGate = bucket = {};
+                   cim_data.StageTrigger = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.PinGate[obj.id];
+               delete cim_data.StageTrigger[obj.id];
             }
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = GateInputPin.prototype.parse.call (this, context, sub);
-                obj.cls = "PinGate";
-                base.parse_attribute (/<cim:PinGate.GateOutput\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateOutput", sub, context);
-                var bucket = context.parsed.PinGate;
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "StageTrigger";
+                base.parse_element (/<cim:StageTrigger.armed>([\s\S]*?)<\/cim:StageTrigger.armed>/g, obj, "armed", base.to_boolean, sub, context);
+                base.parse_element (/<cim:StageTrigger.normalArmed>([\s\S]*?)<\/cim:StageTrigger.normalArmed>/g, obj, "normalArmed", base.to_boolean, sub, context);
+                base.parse_element (/<cim:StageTrigger.priority>([\s\S]*?)<\/cim:StageTrigger.priority>/g, obj, "priority", base.to_string, sub, context);
+                base.parse_attribute (/<cim:StageTrigger.GateTrigger\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateTrigger", sub, context);
+                base.parse_attribute (/<cim:StageTrigger.ProtectiveActionCollection\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCollection", sub, context);
+                base.parse_attribute (/<cim:StageTrigger.Stage\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Stage", sub, context);
+                base.parse_attribute (/<cim:StageTrigger.GateArmed\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateArmed", sub, context);
+                base.parse_attribute (/<cim:StageTrigger.GateComCondition\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateComCondition", sub, context);
+                let bucket = context.parsed.StageTrigger;
                 if (null == bucket)
-                   context.parsed.PinGate = bucket = {};
+                   context.parsed.StageTrigger = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -1665,11 +1084,18 @@ define
 
             export (obj, full)
             {
-                var fields = GateInputPin.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PinGate", "GateOutput", "GateOutput", fields);
+                base.export_element (obj, "StageTrigger", "armed", "armed",  base.from_boolean, fields);
+                base.export_element (obj, "StageTrigger", "normalArmed", "normalArmed",  base.from_boolean, fields);
+                base.export_element (obj, "StageTrigger", "priority", "priority",  base.from_string, fields);
+                base.export_attribute (obj, "StageTrigger", "GateTrigger", "GateTrigger", fields);
+                base.export_attribute (obj, "StageTrigger", "ProtectiveActionCollection", "ProtectiveActionCollection", fields);
+                base.export_attribute (obj, "StageTrigger", "Stage", "Stage", fields);
+                base.export_attribute (obj, "StageTrigger", "GateArmed", "GateArmed", fields);
+                base.export_attribute (obj, "StageTrigger", "GateComCondition", "GateComCondition", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -1679,12 +1105,19 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PinGate_collapse" aria-expanded="true" aria-controls="PinGate_collapse" style="margin-left: 10px;">PinGate</a></legend>
-                    <div id="PinGate_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StageTrigger_collapse" aria-expanded="true" aria-controls="StageTrigger_collapse" style="margin-left: 10px;">StageTrigger</a></legend>
+                    <div id="StageTrigger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + GateInputPin.prototype.template.call (this) +
+                    + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#GateOutput}}<div><b>GateOutput</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateOutput}}&quot;);}); return false;'>{{GateOutput}}</a></div>{{/GateOutput}}
+                    {{#armed}}<div><b>armed</b>: {{armed}}</div>{{/armed}}
+                    {{#normalArmed}}<div><b>normalArmed</b>: {{normalArmed}}</div>{{/normalArmed}}
+                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+                    {{#GateTrigger}}<div><b>GateTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateTrigger}}&quot;);}); return false;'>{{GateTrigger}}</a></div>{{/GateTrigger}}
+                    {{#ProtectiveActionCollection}}<div><b>ProtectiveActionCollection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProtectiveActionCollection}}&quot;);}); return false;'>{{ProtectiveActionCollection}}</a></div>{{/ProtectiveActionCollection}}
+                    {{#Stage}}<div><b>Stage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Stage}}&quot;);}); return false;'>{{Stage}}</a></div>{{/Stage}}
+                    {{#GateArmed}}<div><b>GateArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateArmed}}&quot;);}); return false;'>{{GateArmed}}</a></div>{{/GateArmed}}
+                    {{#GateComCondition}}<div><b>GateComCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateComCondition}}&quot;);}); return false;'>{{GateComCondition}}</a></div>{{/GateComCondition}}
                     </div>
                     </fieldset>
 
@@ -1707,12 +1140,19 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PinGate_collapse" aria-expanded="true" aria-controls="{{id}}_PinGate_collapse" style="margin-left: 10px;">PinGate</a></legend>
-                    <div id="{{id}}_PinGate_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StageTrigger_collapse" aria-expanded="true" aria-controls="{{id}}_StageTrigger_collapse" style="margin-left: 10px;">StageTrigger</a></legend>
+                    <div id="{{id}}_StageTrigger_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + GateInputPin.prototype.edit_template.call (this) +
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateOutput'>GateOutput: </label><div class='col-sm-8'><input id='{{id}}_GateOutput' class='form-control' type='text'{{#GateOutput}} value='{{GateOutput}}'{{/GateOutput}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_armed'>armed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_normalArmed'>normalArmed: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateTrigger'>GateTrigger: </label><div class='col-sm-8'><input id='{{id}}_GateTrigger' class='form-control' type='text'{{#GateTrigger}} value='{{GateTrigger}}'{{/GateTrigger}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectiveActionCollection'>ProtectiveActionCollection: </label><div class='col-sm-8'><input id='{{id}}_ProtectiveActionCollection' class='form-control' type='text'{{#ProtectiveActionCollection}} value='{{ProtectiveActionCollection}}'{{/ProtectiveActionCollection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Stage'>Stage: </label><div class='col-sm-8'><input id='{{id}}_Stage' class='form-control' type='text'{{#Stage}} value='{{Stage}}'{{/Stage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='{{id}}_GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateComCondition'>GateComCondition: </label><div class='col-sm-8'><input id='{{id}}_GateComCondition' class='form-control' type='text'{{#GateComCondition}} value='{{GateComCondition}}'{{/GateComCondition}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1721,11 +1161,18 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PinGate" };
+                obj = obj || { id: id, cls: "StageTrigger" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_GateOutput").value; if ("" != temp) obj.GateOutput = temp;
+                temp = document.getElementById (id + "_armed").checked; if (temp) obj["armed"] = true;
+                temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj["normalArmed"] = true;
+                temp = document.getElementById (id + "_priority").value; if ("" !== temp) obj["priority"] = temp;
+                temp = document.getElementById (id + "_GateTrigger").value; if ("" !== temp) obj["GateTrigger"] = temp;
+                temp = document.getElementById (id + "_ProtectiveActionCollection").value; if ("" !== temp) obj["ProtectiveActionCollection"] = temp;
+                temp = document.getElementById (id + "_Stage").value; if ("" !== temp) obj["Stage"] = temp;
+                temp = document.getElementById (id + "_GateArmed").value; if ("" !== temp) obj["GateArmed"] = temp;
+                temp = document.getElementById (id + "_GateComCondition").value; if ("" !== temp) obj["GateComCondition"] = temp;
 
                 return (obj);
             }
@@ -1735,7 +1182,11 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["GateOutput", "1", "0..*", "Gate", "PinGate"]
+                            ["GateTrigger", "0..1", "0..*", "Gate", "StageTrigger"],
+                            ["ProtectiveActionCollection", "1", "0..*", "ProtectiveActionCollection", "StageTrigger"],
+                            ["Stage", "1", "1..*", "Stage", "StageTrigger"],
+                            ["GateArmed", "0..1", "0..*", "Gate", "StageTriggerArmed"],
+                            ["GateComCondition", "0..1", "0..*", "Gate", "StageTriggerCom"]
                         ]
                     )
                 );
@@ -1743,37 +1194,43 @@ define
         }
 
         /**
-         * Value associated with Terminal is used as compare.
+         * Logical gate than support logical operation based on the input.
          *
          */
-        class PinTerminal extends GateInputPin
+        class Gate extends Core.IdentifiedObject
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PinTerminal;
+                let bucket = cim_data.Gate;
                 if (null == bucket)
-                   cim_data.PinTerminal = bucket = {};
+                   cim_data.Gate = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.PinTerminal[obj.id];
+               delete cim_data.Gate[obj.id];
             }
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = GateInputPin.prototype.parse.call (this, context, sub);
-                obj.cls = "PinTerminal";
-                base.parse_attribute (/<cim:PinTerminal.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_attribute (/<cim:PinTerminal.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
-                var bucket = context.parsed.PinTerminal;
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "Gate";
+                base.parse_attribute (/<cim:Gate.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_attributes (/<cim:Gate.RemedialActionScheme\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
+                base.parse_attributes (/<cim:Gate.TriggerCondition\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TriggerCondition", sub, context);
+                base.parse_attributes (/<cim:Gate.GateInputPin\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateInputPin", sub, context);
+                base.parse_attributes (/<cim:Gate.ProtectiveActionEnabled\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionEnabled", sub, context);
+                base.parse_attributes (/<cim:Gate.StageTrigger\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
+                base.parse_attributes (/<cim:Gate.ProtectiveActionCom\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCom", sub, context);
+                base.parse_attributes (/<cim:Gate.PinGate\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PinGate", sub, context);
+                base.parse_attributes (/<cim:Gate.StageTriggerArmed\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "StageTriggerArmed", sub, context);
+                base.parse_attributes (/<cim:Gate.StageTriggerCom\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "StageTriggerCom", sub, context);
+                let bucket = context.parsed.Gate;
                 if (null == bucket)
-                   context.parsed.PinTerminal = bucket = {};
+                   context.parsed.Gate = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -1781,12 +1238,20 @@ define
 
             export (obj, full)
             {
-                var fields = GateInputPin.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PinTerminal", "kind", "kind", fields);
-                base.export_attribute (obj, "PinTerminal", "Terminal", "Terminal", fields);
+                base.export_attribute (obj, "Gate", "kind", "kind", fields);
+                base.export_attributes (obj, "Gate", "RemedialActionScheme", "RemedialActionScheme", fields);
+                base.export_attributes (obj, "Gate", "TriggerCondition", "TriggerCondition", fields);
+                base.export_attributes (obj, "Gate", "GateInputPin", "GateInputPin", fields);
+                base.export_attributes (obj, "Gate", "ProtectiveActionEnabled", "ProtectiveActionEnabled", fields);
+                base.export_attributes (obj, "Gate", "StageTrigger", "StageTrigger", fields);
+                base.export_attributes (obj, "Gate", "ProtectiveActionCom", "ProtectiveActionCom", fields);
+                base.export_attributes (obj, "Gate", "PinGate", "PinGate", fields);
+                base.export_attributes (obj, "Gate", "StageTriggerArmed", "StageTriggerArmed", fields);
+                base.export_attributes (obj, "Gate", "StageTriggerCom", "StageTriggerCom", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -1796,13 +1261,21 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PinTerminal_collapse" aria-expanded="true" aria-controls="PinTerminal_collapse" style="margin-left: 10px;">PinTerminal</a></legend>
-                    <div id="PinTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Gate_collapse" aria-expanded="true" aria-controls="Gate_collapse" style="margin-left: 10px;">Gate</a></legend>
+                    <div id="Gate_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + GateInputPin.prototype.template.call (this) +
+                    + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#RemedialActionScheme}}<div><b>RemedialActionScheme</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RemedialActionScheme}}
+                    {{#TriggerCondition}}<div><b>TriggerCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TriggerCondition}}
+                    {{#GateInputPin}}<div><b>GateInputPin</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GateInputPin}}
+                    {{#ProtectiveActionEnabled}}<div><b>ProtectiveActionEnabled</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProtectiveActionEnabled}}
+                    {{#StageTrigger}}<div><b>StageTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StageTrigger}}
+                    {{#ProtectiveActionCom}}<div><b>ProtectiveActionCom</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProtectiveActionCom}}
+                    {{#PinGate}}<div><b>PinGate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PinGate}}
+                    {{#StageTriggerArmed}}<div><b>StageTriggerArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StageTriggerArmed}}
+                    {{#StageTriggerCom}}<div><b>StageTriggerCom</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StageTriggerCom}}
                     </div>
                     </fieldset>
 
@@ -1813,13 +1286,31 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.kindPinTerminalKind = [{ id: '', selected: (!obj.kind)}]; for (var property in PinTerminalKind) obj.kindPinTerminalKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj["kindGateLogicKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in GateLogicKind) obj["kindGateLogicKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
+                if (obj["RemedialActionScheme"]) obj["RemedialActionScheme_string"] = obj["RemedialActionScheme"].join ();
+                if (obj["TriggerCondition"]) obj["TriggerCondition_string"] = obj["TriggerCondition"].join ();
+                if (obj["GateInputPin"]) obj["GateInputPin_string"] = obj["GateInputPin"].join ();
+                if (obj["ProtectiveActionEnabled"]) obj["ProtectiveActionEnabled_string"] = obj["ProtectiveActionEnabled"].join ();
+                if (obj["StageTrigger"]) obj["StageTrigger_string"] = obj["StageTrigger"].join ();
+                if (obj["ProtectiveActionCom"]) obj["ProtectiveActionCom_string"] = obj["ProtectiveActionCom"].join ();
+                if (obj["PinGate"]) obj["PinGate_string"] = obj["PinGate"].join ();
+                if (obj["StageTriggerArmed"]) obj["StageTriggerArmed_string"] = obj["StageTriggerArmed"].join ();
+                if (obj["StageTriggerCom"]) obj["StageTriggerCom_string"] = obj["StageTriggerCom"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.kindPinTerminalKind;
+                delete obj["kindGateLogicKind"];
+                delete obj["RemedialActionScheme_string"];
+                delete obj["TriggerCondition_string"];
+                delete obj["GateInputPin_string"];
+                delete obj["ProtectiveActionEnabled_string"];
+                delete obj["StageTrigger_string"];
+                delete obj["ProtectiveActionCom_string"];
+                delete obj["PinGate_string"];
+                delete obj["StageTriggerArmed_string"];
+                delete obj["StageTriggerCom_string"];
             }
 
             edit_template ()
@@ -1827,13 +1318,12 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PinTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_PinTerminal_collapse" style="margin-left: 10px;">PinTerminal</a></legend>
-                    <div id="{{id}}_PinTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Gate_collapse" aria-expanded="true" aria-controls="{{id}}_Gate_collapse" style="margin-left: 10px;">Gate</a></legend>
+                    <div id="{{id}}_Gate_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + GateInputPin.prototype.edit_template.call (this) +
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPinTerminalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPinTerminalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindGateLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindGateLogicKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1842,12 +1332,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PinTerminal" };
+                obj = obj || { id: id, cls: "Gate" };
                 super.submit (id, obj);
-                temp = PinTerminalKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; else delete obj.kind;
-                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
+                temp = GateLogicKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; else delete obj["kind"];
 
                 return (obj);
             }
@@ -1857,7 +1346,139 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["Terminal", "1", "0..*", "Terminal", "PinTerminal"]
+                            ["RemedialActionScheme", "0..*", "0..1", "RemedialActionScheme", "GateArmed"],
+                            ["TriggerCondition", "0..*", "1", "TriggerCondition", "GateTrigger"],
+                            ["GateInputPin", "1..*", "1", "GateInputPin", "Gate"],
+                            ["ProtectiveActionEnabled", "0..*", "0..1", "ProtectiveAction", "GateEnabledCondition"],
+                            ["StageTrigger", "0..*", "0..1", "StageTrigger", "GateTrigger"],
+                            ["ProtectiveActionCom", "0..*", "0..1", "ProtectiveAction", "GateComCondition"],
+                            ["PinGate", "0..*", "1", "PinGate", "GateOutput"],
+                            ["StageTriggerArmed", "0..*", "0..1", "StageTrigger", "GateArmed"],
+                            ["StageTriggerCom", "0..*", "0..1", "StageTrigger", "GateComCondition"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Stage of a remedial action scheme.
+         *
+         */
+        class Stage extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.Stage;
+                if (null == bucket)
+                   cim_data.Stage = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.Stage[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "Stage";
+                base.parse_element (/<cim:Stage.priority>([\s\S]*?)<\/cim:Stage.priority>/g, obj, "priority", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Stage.RemedialActionScheme\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
+                base.parse_attributes (/<cim:Stage.StageTrigger\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
+                let bucket = context.parsed.Stage;
+                if (null == bucket)
+                   context.parsed.Stage = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "Stage", "priority", "priority",  base.from_string, fields);
+                base.export_attribute (obj, "Stage", "RemedialActionScheme", "RemedialActionScheme", fields);
+                base.export_attributes (obj, "Stage", "StageTrigger", "StageTrigger", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Stage_collapse" aria-expanded="true" aria-controls="Stage_collapse" style="margin-left: 10px;">Stage</a></legend>
+                    <div id="Stage_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+                    {{#RemedialActionScheme}}<div><b>RemedialActionScheme</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemedialActionScheme}}&quot;);}); return false;'>{{RemedialActionScheme}}</a></div>{{/RemedialActionScheme}}
+                    {{#StageTrigger}}<div><b>StageTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StageTrigger}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["StageTrigger"]) obj["StageTrigger_string"] = obj["StageTrigger"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["StageTrigger_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Stage_collapse" aria-expanded="true" aria-controls="{{id}}_Stage_collapse" style="margin-left: 10px;">Stage</a></legend>
+                    <div id="{{id}}_Stage_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemedialActionScheme'>RemedialActionScheme: </label><div class='col-sm-8'><input id='{{id}}_RemedialActionScheme' class='form-control' type='text'{{#RemedialActionScheme}} value='{{RemedialActionScheme}}'{{/RemedialActionScheme}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "Stage" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_priority").value; if ("" !== temp) obj["priority"] = temp;
+                temp = document.getElementById (id + "_RemedialActionScheme").value; if ("" !== temp) obj["RemedialActionScheme"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["RemedialActionScheme", "1", "1..*", "RemedialActionScheme", "Stage"],
+                            ["StageTrigger", "1..*", "1", "StageTrigger", "Stage"]
                         ]
                     )
                 );
@@ -1873,7 +1494,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PinBranchGroup;
+                let bucket = cim_data.PinBranchGroup;
                 if (null == bucket)
                    cim_data.PinBranchGroup = bucket = {};
                 bucket[template.id] = template;
@@ -1887,13 +1508,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = GateInputPin.prototype.parse.call (this, context, sub);
+                let obj = GateInputPin.prototype.parse.call (this, context, sub);
                 obj.cls = "PinBranchGroup";
-                base.parse_attribute (/<cim:PinBranchGroup.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                base.parse_attribute (/<cim:PinBranchGroup.BranchGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BranchGroup", sub, context);
-                var bucket = context.parsed.PinBranchGroup;
+                base.parse_attribute (/<cim:PinBranchGroup.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_attribute (/<cim:PinBranchGroup.BranchGroup\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BranchGroup", sub, context);
+                let bucket = context.parsed.PinBranchGroup;
                 if (null == bucket)
                    context.parsed.PinBranchGroup = bucket = {};
                 bucket[obj.id] = obj;
@@ -1903,12 +1522,12 @@ define
 
             export (obj, full)
             {
-                var fields = GateInputPin.prototype.export.call (this, obj, false);
+                let fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PinBranchGroup", "kind", "kind", fields);
                 base.export_attribute (obj, "PinBranchGroup", "BranchGroup", "BranchGroup", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -1935,13 +1554,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.kindPinBranchGroupKind = [{ id: '', selected: (!obj.kind)}]; for (var property in PinBranchGroupKind) obj.kindPinBranchGroupKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj["kindPinBranchGroupKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in PinBranchGroupKind) obj["kindPinBranchGroupKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.kindPinBranchGroupKind;
+                delete obj["kindPinBranchGroupKind"];
             }
 
             edit_template ()
@@ -1964,12 +1583,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PinBranchGroup" };
+                obj = obj || { id: id, cls: "PinBranchGroup" };
                 super.submit (id, obj);
-                temp = PinBranchGroupKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; else delete obj.kind;
-                temp = document.getElementById (id + "_BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
+                temp = PinBranchGroupKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; else delete obj["kind"];
+                temp = document.getElementById (id + "_BranchGroup").value; if ("" !== temp) obj["BranchGroup"] = temp;
 
                 return (obj);
             }
@@ -1987,6 +1606,246 @@ define
         }
 
         /**
+         * Value associated with Equipment is used as compare.
+         *
+         */
+        class PinEquipment extends GateInputPin
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.PinEquipment;
+                if (null == bucket)
+                   cim_data.PinEquipment = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.PinEquipment[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = GateInputPin.prototype.parse.call (this, context, sub);
+                obj.cls = "PinEquipment";
+                base.parse_attribute (/<cim:PinEquipment.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_attribute (/<cim:PinEquipment.Equipment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
+                let bucket = context.parsed.PinEquipment;
+                if (null == bucket)
+                   context.parsed.PinEquipment = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = GateInputPin.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "PinEquipment", "kind", "kind", fields);
+                base.export_attribute (obj, "PinEquipment", "Equipment", "Equipment", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PinEquipment_collapse" aria-expanded="true" aria-controls="PinEquipment_collapse" style="margin-left: 10px;">PinEquipment</a></legend>
+                    <div id="PinEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + GateInputPin.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["kindPinEquipmentKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in PinEquipmentKind) obj["kindPinEquipmentKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["kindPinEquipmentKind"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PinEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_PinEquipment_collapse" style="margin-left: 10px;">PinEquipment</a></legend>
+                    <div id="{{id}}_PinEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + GateInputPin.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPinEquipmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPinEquipmentKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "PinEquipment" };
+                super.submit (id, obj);
+                temp = PinEquipmentKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; else delete obj["kind"];
+                temp = document.getElementById (id + "_Equipment").value; if ("" !== temp) obj["Equipment"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["Equipment", "1", "0..*", "Equipment", "PinEquipment"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Value associated with Terminal is used as compare.
+         *
+         */
+        class PinTerminal extends GateInputPin
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.PinTerminal;
+                if (null == bucket)
+                   cim_data.PinTerminal = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.PinTerminal[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = GateInputPin.prototype.parse.call (this, context, sub);
+                obj.cls = "PinTerminal";
+                base.parse_attribute (/<cim:PinTerminal.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_attribute (/<cim:PinTerminal.Terminal\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
+                let bucket = context.parsed.PinTerminal;
+                if (null == bucket)
+                   context.parsed.PinTerminal = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = GateInputPin.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "PinTerminal", "kind", "kind", fields);
+                base.export_attribute (obj, "PinTerminal", "Terminal", "Terminal", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PinTerminal_collapse" aria-expanded="true" aria-controls="PinTerminal_collapse" style="margin-left: 10px;">PinTerminal</a></legend>
+                    <div id="PinTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + GateInputPin.prototype.template.call (this) +
+                    `
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["kindPinTerminalKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in PinTerminalKind) obj["kindPinTerminalKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["kindPinTerminalKind"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PinTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_PinTerminal_collapse" style="margin-left: 10px;">PinTerminal</a></legend>
+                    <div id="{{id}}_PinTerminal_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + GateInputPin.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindPinTerminalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindPinTerminalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "PinTerminal" };
+                super.submit (id, obj);
+                temp = PinTerminalKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; else delete obj["kind"];
+                temp = document.getElementById (id + "_Terminal").value; if ("" !== temp) obj["Terminal"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["Terminal", "1", "0..*", "Terminal", "PinTerminal"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
          * Gate input pin that is associated with a Measurement or a calculation of Measurement.
          *
          */
@@ -1995,7 +1854,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PinMeasurement;
+                let bucket = cim_data.PinMeasurement;
                 if (null == bucket)
                    cim_data.PinMeasurement = bucket = {};
                 bucket[template.id] = template;
@@ -2009,13 +1868,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = GateInputPin.prototype.parse.call (this, context, sub);
+                let obj = GateInputPin.prototype.parse.call (this, context, sub);
                 obj.cls = "PinMeasurement";
-                base.parse_attribute (/<cim:PinMeasurement.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
-                base.parse_attribute (/<cim:PinMeasurement.MeasurementCalculator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculator", sub, context);
-                var bucket = context.parsed.PinMeasurement;
+                base.parse_attribute (/<cim:PinMeasurement.Measurement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
+                base.parse_attribute (/<cim:PinMeasurement.MeasurementCalculator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculator", sub, context);
+                let bucket = context.parsed.PinMeasurement;
                 if (null == bucket)
                    context.parsed.PinMeasurement = bucket = {};
                 bucket[obj.id] = obj;
@@ -2025,12 +1882,12 @@ define
 
             export (obj, full)
             {
-                var fields = GateInputPin.prototype.export.call (this, obj, false);
+                let fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "PinMeasurement", "Measurement", "Measurement", fields);
                 base.export_attribute (obj, "PinMeasurement", "MeasurementCalculator", "MeasurementCalculator", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -2084,12 +1941,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PinMeasurement" };
+                obj = obj || { id: id, cls: "PinMeasurement" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_Measurement").value; if ("" != temp) obj.Measurement = temp;
-                temp = document.getElementById (id + "_MeasurementCalculator").value; if ("" != temp) obj.MeasurementCalculator = temp;
+                temp = document.getElementById (id + "_Measurement").value; if ("" !== temp) obj["Measurement"] = temp;
+                temp = document.getElementById (id + "_MeasurementCalculator").value; if ("" !== temp) obj["MeasurementCalculator"] = temp;
 
                 return (obj);
             }
@@ -2108,6 +1965,237 @@ define
         }
 
         /**
+         * An output from one gate represent an input to another gate.
+         *
+         */
+        class PinGate extends GateInputPin
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.PinGate;
+                if (null == bucket)
+                   cim_data.PinGate = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.PinGate[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = GateInputPin.prototype.parse.call (this, context, sub);
+                obj.cls = "PinGate";
+                base.parse_attribute (/<cim:PinGate.GateOutput\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GateOutput", sub, context);
+                let bucket = context.parsed.PinGate;
+                if (null == bucket)
+                   context.parsed.PinGate = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = GateInputPin.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "PinGate", "GateOutput", "GateOutput", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PinGate_collapse" aria-expanded="true" aria-controls="PinGate_collapse" style="margin-left: 10px;">PinGate</a></legend>
+                    <div id="PinGate_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + GateInputPin.prototype.template.call (this) +
+                    `
+                    {{#GateOutput}}<div><b>GateOutput</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateOutput}}&quot;);}); return false;'>{{GateOutput}}</a></div>{{/GateOutput}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PinGate_collapse" aria-expanded="true" aria-controls="{{id}}_PinGate_collapse" style="margin-left: 10px;">PinGate</a></legend>
+                    <div id="{{id}}_PinGate_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + GateInputPin.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateOutput'>GateOutput: </label><div class='col-sm-8'><input id='{{id}}_GateOutput' class='form-control' type='text'{{#GateOutput}} value='{{GateOutput}}'{{/GateOutput}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "PinGate" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_GateOutput").value; if ("" !== temp) obj["GateOutput"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["GateOutput", "1", "0..*", "Gate", "PinGate"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Protective action to put an Equipment in-service/out-of-service.
+         *
+         */
+        class ProtectiveActionEquipment extends ProtectiveAction
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.ProtectiveActionEquipment;
+                if (null == bucket)
+                   cim_data.ProtectiveActionEquipment = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.ProtectiveActionEquipment[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = ProtectiveAction.prototype.parse.call (this, context, sub);
+                obj.cls = "ProtectiveActionEquipment";
+                base.parse_element (/<cim:ProtectiveActionEquipment.inService>([\s\S]*?)<\/cim:ProtectiveActionEquipment.inService>/g, obj, "inService", base.to_boolean, sub, context);
+                base.parse_attribute (/<cim:ProtectiveActionEquipment.Equipment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
+                let bucket = context.parsed.ProtectiveActionEquipment;
+                if (null == bucket)
+                   context.parsed.ProtectiveActionEquipment = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = ProtectiveAction.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "ProtectiveActionEquipment", "inService", "inService",  base.from_boolean, fields);
+                base.export_attribute (obj, "ProtectiveActionEquipment", "Equipment", "Equipment", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProtectiveActionEquipment_collapse" aria-expanded="true" aria-controls="ProtectiveActionEquipment_collapse" style="margin-left: 10px;">ProtectiveActionEquipment</a></legend>
+                    <div id="ProtectiveActionEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + ProtectiveAction.prototype.template.call (this) +
+                    `
+                    {{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProtectiveActionEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveActionEquipment_collapse" style="margin-left: 10px;">ProtectiveActionEquipment</a></legend>
+                    <div id="{{id}}_ProtectiveActionEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + ProtectiveAction.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_inService'>inService: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_inService' class='form-check-input' type='checkbox'{{#inService}} checked{{/inService}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "ProtectiveActionEquipment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_inService").checked; if (temp) obj["inService"] = true;
+                temp = document.getElementById (id + "_Equipment").value; if ("" !== temp) obj["Equipment"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["Equipment", "1", "0..*", "Equipment", "ProtectiveActionEquipment"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
          * Protective action to change regulation to Equipment.
          *
          */
@@ -2116,7 +2204,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.ProtectiveActionRegulation;
+                let bucket = cim_data.ProtectiveActionRegulation;
                 if (null == bucket)
                    cim_data.ProtectiveActionRegulation = bucket = {};
                 bucket[template.id] = template;
@@ -2130,14 +2218,12 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = ProtectiveAction.prototype.parse.call (this, context, sub);
+                let obj = ProtectiveAction.prototype.parse.call (this, context, sub);
                 obj.cls = "ProtectiveActionRegulation";
                 base.parse_element (/<cim:ProtectiveActionRegulation.isRegulating>([\s\S]*?)<\/cim:ProtectiveActionRegulation.isRegulating>/g, obj, "isRegulating", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ProtectiveActionRegulation.targetValue>([\s\S]*?)<\/cim:ProtectiveActionRegulation.targetValue>/g, obj, "targetValue", base.to_float, sub, context);
-                base.parse_attribute (/<cim:ProtectiveActionRegulation.RegulatingControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegulatingControl", sub, context);
-                var bucket = context.parsed.ProtectiveActionRegulation;
+                base.parse_attribute (/<cim:ProtectiveActionRegulation.RegulatingControl\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegulatingControl", sub, context);
+                let bucket = context.parsed.ProtectiveActionRegulation;
                 if (null == bucket)
                    context.parsed.ProtectiveActionRegulation = bucket = {};
                 bucket[obj.id] = obj;
@@ -2147,13 +2233,13 @@ define
 
             export (obj, full)
             {
-                var fields = ProtectiveAction.prototype.export.call (this, obj, false);
+                let fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectiveActionRegulation", "isRegulating", "isRegulating",  base.from_boolean, fields);
                 base.export_element (obj, "ProtectiveActionRegulation", "targetValue", "targetValue",  base.from_float, fields);
                 base.export_attribute (obj, "ProtectiveActionRegulation", "RegulatingControl", "RegulatingControl", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -2209,13 +2295,13 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "ProtectiveActionRegulation" };
+                obj = obj || { id: id, cls: "ProtectiveActionRegulation" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_isRegulating").checked; if (temp) obj.isRegulating = true;
-                temp = document.getElementById (id + "_targetValue").value; if ("" != temp) obj.targetValue = temp;
-                temp = document.getElementById (id + "_RegulatingControl").value; if ("" != temp) obj.RegulatingControl = temp;
+                temp = document.getElementById (id + "_isRegulating").checked; if (temp) obj["isRegulating"] = true;
+                temp = document.getElementById (id + "_targetValue").value; if ("" !== temp) obj["targetValue"] = temp;
+                temp = document.getElementById (id + "_RegulatingControl").value; if ("" !== temp) obj["RegulatingControl"] = temp;
 
                 return (obj);
             }
@@ -2243,7 +2329,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.ProtectiveActionAdjustment;
+                let bucket = cim_data.ProtectiveActionAdjustment;
                 if (null == bucket)
                    cim_data.ProtectiveActionAdjustment = bucket = {};
                 bucket[template.id] = template;
@@ -2257,19 +2343,17 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = ProtectiveAction.prototype.parse.call (this, context, sub);
+                let obj = ProtectiveAction.prototype.parse.call (this, context, sub);
                 obj.cls = "ProtectiveActionAdjustment";
                 base.parse_element (/<cim:ProtectiveActionAdjustment.byPercentage>([\s\S]*?)<\/cim:ProtectiveActionAdjustment.byPercentage>/g, obj, "byPercentage", base.to_string, sub, context);
                 base.parse_element (/<cim:ProtectiveActionAdjustment.byValue>([\s\S]*?)<\/cim:ProtectiveActionAdjustment.byValue>/g, obj, "byValue", base.to_float, sub, context);
-                base.parse_attribute (/<cim:ProtectiveActionAdjustment.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_attribute (/<cim:ProtectiveActionAdjustment.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:ProtectiveActionAdjustment.reduce>([\s\S]*?)<\/cim:ProtectiveActionAdjustment.reduce>/g, obj, "reduce", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ProtectiveActionAdjustment.setValue>([\s\S]*?)<\/cim:ProtectiveActionAdjustment.setValue>/g, obj, "setValue", base.to_float, sub, context);
-                base.parse_attribute (/<cim:ProtectiveActionAdjustment.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
-                base.parse_attribute (/<cim:ProtectiveActionAdjustment.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipment", sub, context);
-                base.parse_attribute (/<cim:ProtectiveActionAdjustment.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCConductingEquipment", sub, context);
-                var bucket = context.parsed.ProtectiveActionAdjustment;
+                base.parse_attribute (/<cim:ProtectiveActionAdjustment.DCConductingEquipment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "DCConductingEquipment", sub, context);
+                base.parse_attribute (/<cim:ProtectiveActionAdjustment.Measurement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
+                base.parse_attribute (/<cim:ProtectiveActionAdjustment.ConductingEquipment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipment", sub, context);
+                let bucket = context.parsed.ProtectiveActionAdjustment;
                 if (null == bucket)
                    context.parsed.ProtectiveActionAdjustment = bucket = {};
                 bucket[obj.id] = obj;
@@ -2279,18 +2363,18 @@ define
 
             export (obj, full)
             {
-                var fields = ProtectiveAction.prototype.export.call (this, obj, false);
+                let fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectiveActionAdjustment", "byPercentage", "byPercentage",  base.from_string, fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "byValue", "byValue",  base.from_float, fields);
                 base.export_attribute (obj, "ProtectiveActionAdjustment", "kind", "kind", fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "reduce", "reduce",  base.from_boolean, fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "setValue", "setValue",  base.from_float, fields);
+                base.export_attribute (obj, "ProtectiveActionAdjustment", "DCConductingEquipment", "DCConductingEquipment", fields);
                 base.export_attribute (obj, "ProtectiveActionAdjustment", "Measurement", "Measurement", fields);
                 base.export_attribute (obj, "ProtectiveActionAdjustment", "ConductingEquipment", "ConductingEquipment", fields);
-                base.export_attribute (obj, "ProtectiveActionAdjustment", "DCConductingEquipment", "DCConductingEquipment", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -2310,9 +2394,9 @@ define
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#reduce}}<div><b>reduce</b>: {{reduce}}</div>{{/reduce}}
                     {{#setValue}}<div><b>setValue</b>: {{setValue}}</div>{{/setValue}}
+                    {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);}); return false;'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
                     {{#Measurement}}<div><b>Measurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Measurement}}&quot;);}); return false;'>{{Measurement}}</a></div>{{/Measurement}}
                     {{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);}); return false;'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
-                    {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);}); return false;'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
                     </div>
                     </fieldset>
 
@@ -2323,13 +2407,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj.kindProtectiveActionAdjustmentKind = [{ id: '', selected: (!obj.kind)}]; for (var property in ProtectiveActionAdjustmentKind) obj.kindProtectiveActionAdjustmentKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                obj["kindProtectiveActionAdjustmentKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in ProtectiveActionAdjustmentKind) obj["kindProtectiveActionAdjustmentKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.kindProtectiveActionAdjustmentKind;
+                delete obj["kindProtectiveActionAdjustmentKind"];
             }
 
             edit_template ()
@@ -2347,9 +2431,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindProtectiveActionAdjustmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindProtectiveActionAdjustmentKind}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_reduce'>reduce: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_reduce' class='form-check-input' type='checkbox'{{#reduce}} checked{{/reduce}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_setValue'>setValue: </label><div class='col-sm-8'><input id='{{id}}_setValue' class='form-control' type='text'{{#setValue}} value='{{setValue}}'{{/setValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurement'>Measurement: </label><div class='col-sm-8'><input id='{{id}}_Measurement' class='form-control' type='text'{{#Measurement}} value='{{Measurement}}'{{/Measurement}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -2358,18 +2442,18 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "ProtectiveActionAdjustment" };
+                obj = obj || { id: id, cls: "ProtectiveActionAdjustment" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_byPercentage").value; if ("" != temp) obj.byPercentage = temp;
-                temp = document.getElementById (id + "_byValue").value; if ("" != temp) obj.byValue = temp;
-                temp = ProtectiveActionAdjustmentKind[document.getElementById (id + "_kind").value]; if (temp) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; else delete obj.kind;
-                temp = document.getElementById (id + "_reduce").checked; if (temp) obj.reduce = true;
-                temp = document.getElementById (id + "_setValue").value; if ("" != temp) obj.setValue = temp;
-                temp = document.getElementById (id + "_Measurement").value; if ("" != temp) obj.Measurement = temp;
-                temp = document.getElementById (id + "_ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
-                temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
+                temp = document.getElementById (id + "_byPercentage").value; if ("" !== temp) obj["byPercentage"] = temp;
+                temp = document.getElementById (id + "_byValue").value; if ("" !== temp) obj["byValue"] = temp;
+                temp = ProtectiveActionAdjustmentKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; else delete obj["kind"];
+                temp = document.getElementById (id + "_reduce").checked; if (temp) obj["reduce"] = true;
+                temp = document.getElementById (id + "_setValue").value; if ("" !== temp) obj["setValue"] = temp;
+                temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" !== temp) obj["DCConductingEquipment"] = temp;
+                temp = document.getElementById (id + "_Measurement").value; if ("" !== temp) obj["Measurement"] = temp;
+                temp = document.getElementById (id + "_ConductingEquipment").value; if ("" !== temp) obj["ConductingEquipment"] = temp;
 
                 return (obj);
             }
@@ -2379,129 +2463,9 @@ define
                 return (
                     super.relations ().concat (
                         [
+                            ["DCConductingEquipment", "1", "0..*", "DCConductingEquipment", "ProtectiveActionAdjustment"],
                             ["Measurement", "0..1", "0..*", "Measurement", "ProtectiveActionAdjustment"],
-                            ["ConductingEquipment", "1", "0..*", "ConductingEquipment", "ProtectiveActionAdjustment"],
-                            ["DCConductingEquipment", "1", "0..*", "DCConductingEquipment", "ProtectiveActionAdjustment"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Protective action to put an Equipment in-service/out-of-service.
-         *
-         */
-        class ProtectiveActionEquipment extends ProtectiveAction
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.ProtectiveActionEquipment;
-                if (null == bucket)
-                   cim_data.ProtectiveActionEquipment = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.ProtectiveActionEquipment[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = ProtectiveAction.prototype.parse.call (this, context, sub);
-                obj.cls = "ProtectiveActionEquipment";
-                base.parse_element (/<cim:ProtectiveActionEquipment.inService>([\s\S]*?)<\/cim:ProtectiveActionEquipment.inService>/g, obj, "inService", base.to_boolean, sub, context);
-                base.parse_attribute (/<cim:ProtectiveActionEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
-                var bucket = context.parsed.ProtectiveActionEquipment;
-                if (null == bucket)
-                   context.parsed.ProtectiveActionEquipment = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = ProtectiveAction.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "ProtectiveActionEquipment", "inService", "inService",  base.from_boolean, fields);
-                base.export_attribute (obj, "ProtectiveActionEquipment", "Equipment", "Equipment", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProtectiveActionEquipment_collapse" aria-expanded="true" aria-controls="ProtectiveActionEquipment_collapse" style="margin-left: 10px;">ProtectiveActionEquipment</a></legend>
-                    <div id="ProtectiveActionEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + ProtectiveAction.prototype.template.call (this) +
-                    `
-                    {{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
-                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProtectiveActionEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveActionEquipment_collapse" style="margin-left: 10px;">ProtectiveActionEquipment</a></legend>
-                    <div id="{{id}}_ProtectiveActionEquipment_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + ProtectiveAction.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_inService'>inService: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_inService' class='form-check-input' type='checkbox'{{#inService}} checked{{/inService}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var temp;
-
-                var obj = obj || { id: id, cls: "ProtectiveActionEquipment" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_inService").checked; if (temp) obj.inService = true;
-                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["Equipment", "1", "0..*", "Equipment", "ProtectiveActionEquipment"]
+                            ["ConductingEquipment", "1", "0..*", "ConductingEquipment", "ProtectiveActionAdjustment"]
                         ]
                     )
                 );

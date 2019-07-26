@@ -2,7 +2,7 @@ define
 (
     ["model/base", "model/Core"],
     /**
-     * This section contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
+     * This subclause contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
      *
      * In the CIM, standard dynamic models are expressed by means of a class named with the standard model name and attributes reflecting each of the parameters necessary to describe the behaviour of an instance of the standard model.
      *
@@ -19,7 +19,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.DynamicsFunctionBlock;
+                let bucket = cim_data.DynamicsFunctionBlock;
                 if (null == bucket)
                    cim_data.DynamicsFunctionBlock = bucket = {};
                 bucket[template.id] = template;
@@ -33,12 +33,10 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "DynamicsFunctionBlock";
                 base.parse_element (/<cim:DynamicsFunctionBlock.enabled>([\s\S]*?)<\/cim:DynamicsFunctionBlock.enabled>/g, obj, "enabled", base.to_boolean, sub, context);
-                var bucket = context.parsed.DynamicsFunctionBlock;
+                let bucket = context.parsed.DynamicsFunctionBlock;
                 if (null == bucket)
                    context.parsed.DynamicsFunctionBlock = bucket = {};
                 bucket[obj.id] = obj;
@@ -48,11 +46,11 @@ define
 
             export (obj, full)
             {
-                var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DynamicsFunctionBlock", "enabled", "enabled",  base.from_boolean, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -104,11 +102,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "DynamicsFunctionBlock" };
+                obj = obj || { id: id, cls: "DynamicsFunctionBlock" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_enabled").checked; if (temp) obj.enabled = true;
+                temp = document.getElementById (id + "_enabled").checked; if (temp) obj["enabled"] = true;
 
                 return (obj);
             }
@@ -123,7 +121,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.RotatingMachineDynamics;
+                let bucket = cim_data.RotatingMachineDynamics;
                 if (null == bucket)
                    cim_data.RotatingMachineDynamics = bucket = {};
                 bucket[template.id] = template;
@@ -137,9 +135,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
+                let obj = DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "RotatingMachineDynamics";
                 base.parse_element (/<cim:RotatingMachineDynamics.damping>([\s\S]*?)<\/cim:RotatingMachineDynamics.damping>/g, obj, "damping", base.to_float, sub, context);
                 base.parse_element (/<cim:RotatingMachineDynamics.inertia>([\s\S]*?)<\/cim:RotatingMachineDynamics.inertia>/g, obj, "inertia", base.to_string, sub, context);
@@ -147,7 +143,7 @@ define
                 base.parse_element (/<cim:RotatingMachineDynamics.saturationFactor120>([\s\S]*?)<\/cim:RotatingMachineDynamics.saturationFactor120>/g, obj, "saturationFactor120", base.to_float, sub, context);
                 base.parse_element (/<cim:RotatingMachineDynamics.statorLeakageReactance>([\s\S]*?)<\/cim:RotatingMachineDynamics.statorLeakageReactance>/g, obj, "statorLeakageReactance", base.to_string, sub, context);
                 base.parse_element (/<cim:RotatingMachineDynamics.statorResistance>([\s\S]*?)<\/cim:RotatingMachineDynamics.statorResistance>/g, obj, "statorResistance", base.to_string, sub, context);
-                var bucket = context.parsed.RotatingMachineDynamics;
+                let bucket = context.parsed.RotatingMachineDynamics;
                 if (null == bucket)
                    context.parsed.RotatingMachineDynamics = bucket = {};
                 bucket[obj.id] = obj;
@@ -157,7 +153,7 @@ define
 
             export (obj, full)
             {
-                var fields = DynamicsFunctionBlock.prototype.export.call (this, obj, false);
+                let fields = DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RotatingMachineDynamics", "damping", "damping",  base.from_float, fields);
                 base.export_element (obj, "RotatingMachineDynamics", "inertia", "inertia",  base.from_string, fields);
@@ -166,7 +162,7 @@ define
                 base.export_element (obj, "RotatingMachineDynamics", "statorLeakageReactance", "statorLeakageReactance",  base.from_string, fields);
                 base.export_element (obj, "RotatingMachineDynamics", "statorResistance", "statorResistance",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -228,16 +224,16 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "RotatingMachineDynamics" };
+                obj = obj || { id: id, cls: "RotatingMachineDynamics" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_damping").value; if ("" != temp) obj.damping = temp;
-                temp = document.getElementById (id + "_inertia").value; if ("" != temp) obj.inertia = temp;
-                temp = document.getElementById (id + "_saturationFactor").value; if ("" != temp) obj.saturationFactor = temp;
-                temp = document.getElementById (id + "_saturationFactor120").value; if ("" != temp) obj.saturationFactor120 = temp;
-                temp = document.getElementById (id + "_statorLeakageReactance").value; if ("" != temp) obj.statorLeakageReactance = temp;
-                temp = document.getElementById (id + "_statorResistance").value; if ("" != temp) obj.statorResistance = temp;
+                temp = document.getElementById (id + "_damping").value; if ("" !== temp) obj["damping"] = temp;
+                temp = document.getElementById (id + "_inertia").value; if ("" !== temp) obj["inertia"] = temp;
+                temp = document.getElementById (id + "_saturationFactor").value; if ("" !== temp) obj["saturationFactor"] = temp;
+                temp = document.getElementById (id + "_saturationFactor120").value; if ("" !== temp) obj["saturationFactor120"] = temp;
+                temp = document.getElementById (id + "_statorLeakageReactance").value; if ("" !== temp) obj["statorLeakageReactance"] = temp;
+                temp = document.getElementById (id + "_statorResistance").value; if ("" !== temp) obj["statorResistance"] = temp;
 
                 return (obj);
             }

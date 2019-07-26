@@ -17,7 +17,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.IEC61970CIMVersion;
+                let bucket = cim_data.IEC61970CIMVersion;
                 if (null == bucket)
                    cim_data.IEC61970CIMVersion = bucket = {};
                 bucket[template.id] = template;
@@ -31,13 +31,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
+                let obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "IEC61970CIMVersion";
                 base.parse_element (/<cim:IEC61970CIMVersion.date>([\s\S]*?)<\/cim:IEC61970CIMVersion.date>/g, obj, "date", base.to_string, sub, context);
                 base.parse_element (/<cim:IEC61970CIMVersion.version>([\s\S]*?)<\/cim:IEC61970CIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-                var bucket = context.parsed.IEC61970CIMVersion;
+                let bucket = context.parsed.IEC61970CIMVersion;
                 if (null == bucket)
                    context.parsed.IEC61970CIMVersion = bucket = {};
                 bucket[obj.id] = obj;
@@ -47,12 +45,12 @@ define
 
             export (obj, full)
             {
-                var fields = [];
+                let fields = [];
 
                 base.export_element (obj, "IEC61970CIMVersion", "date", "date",  base.from_string, fields);
                 base.export_element (obj, "IEC61970CIMVersion", "version", "version",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -106,12 +104,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "IEC61970CIMVersion" };
+                obj = obj || { id: id, cls: "IEC61970CIMVersion" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
+                temp = document.getElementById (id + "_date").value; if ("" !== temp) obj["date"] = temp;
+                temp = document.getElementById (id + "_version").value; if ("" !== temp) obj["version"] = temp;
 
                 return (obj);
             }

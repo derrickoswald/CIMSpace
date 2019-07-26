@@ -19,7 +19,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PackageDependenciesCIMVersion;
+                let bucket = cim_data.PackageDependenciesCIMVersion;
                 if (null == bucket)
                    cim_data.PackageDependenciesCIMVersion = bucket = {};
                 bucket[template.id] = template;
@@ -33,13 +33,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
+                let obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "PackageDependenciesCIMVersion";
                 base.parse_element (/<cim:PackageDependenciesCIMVersion.date>([\s\S]*?)<\/cim:PackageDependenciesCIMVersion.date>/g, obj, "date", base.to_string, sub, context);
                 base.parse_element (/<cim:PackageDependenciesCIMVersion.version>([\s\S]*?)<\/cim:PackageDependenciesCIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-                var bucket = context.parsed.PackageDependenciesCIMVersion;
+                let bucket = context.parsed.PackageDependenciesCIMVersion;
                 if (null == bucket)
                    context.parsed.PackageDependenciesCIMVersion = bucket = {};
                 bucket[obj.id] = obj;
@@ -49,12 +47,12 @@ define
 
             export (obj, full)
             {
-                var fields = [];
+                let fields = [];
 
                 base.export_element (obj, "PackageDependenciesCIMVersion", "date", "date",  base.from_string, fields);
                 base.export_element (obj, "PackageDependenciesCIMVersion", "version", "version",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -108,12 +106,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PackageDependenciesCIMVersion" };
+                obj = obj || { id: id, cls: "PackageDependenciesCIMVersion" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
+                temp = document.getElementById (id + "_date").value; if ("" !== temp) obj["date"] = temp;
+                temp = document.getElementById (id + "_version").value; if ("" !== temp) obj["version"] = temp;
 
                 return (obj);
             }

@@ -9,7 +9,7 @@ define
     {
 
         /**
-         * Turbine load controller function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+         * Turbine load controller function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
          *
          */
         class TurbineLoadControllerDynamics extends StandardModels.DynamicsFunctionBlock
@@ -17,7 +17,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.TurbineLoadControllerDynamics;
+                let bucket = cim_data.TurbineLoadControllerDynamics;
                 if (null == bucket)
                    cim_data.TurbineLoadControllerDynamics = bucket = {};
                 bucket[template.id] = template;
@@ -31,12 +31,10 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
+                let obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "TurbineLoadControllerDynamics";
-                base.parse_attribute (/<cim:TurbineLoadControllerDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context);
-                var bucket = context.parsed.TurbineLoadControllerDynamics;
+                base.parse_attribute (/<cim:TurbineLoadControllerDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context);
+                let bucket = context.parsed.TurbineLoadControllerDynamics;
                 if (null == bucket)
                    context.parsed.TurbineLoadControllerDynamics = bucket = {};
                 bucket[obj.id] = obj;
@@ -46,11 +44,11 @@ define
 
             export (obj, full)
             {
-                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
+                let fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "TurbineLoadControllerDynamics", "TurbineGovernorDynamics", "TurbineGovernorDynamics", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -102,11 +100,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "TurbineLoadControllerDynamics" };
+                obj = obj || { id: id, cls: "TurbineLoadControllerDynamics" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_TurbineGovernorDynamics").value; if ("" != temp) obj.TurbineGovernorDynamics = temp;
+                temp = document.getElementById (id + "_TurbineGovernorDynamics").value; if ("" !== temp) obj["TurbineGovernorDynamics"] = temp;
 
                 return (obj);
             }
@@ -124,7 +122,7 @@ define
         }
 
         /**
-         * Turbine Load Controller model developed in the WECC.
+         * Turbine load controller model developed by WECC.
          *
          * This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
          *
@@ -134,7 +132,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.TurbLCFB1;
+                let bucket = cim_data.TurbLCFB1;
                 if (null == bucket)
                    cim_data.TurbLCFB1 = bucket = {};
                 bucket[template.id] = template;
@@ -148,9 +146,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = TurbineLoadControllerDynamics.prototype.parse.call (this, context, sub);
+                let obj = TurbineLoadControllerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "TurbLCFB1";
                 base.parse_element (/<cim:TurbLCFB1.db>([\s\S]*?)<\/cim:TurbLCFB1.db>/g, obj, "db", base.to_string, sub, context);
                 base.parse_element (/<cim:TurbLCFB1.emax>([\s\S]*?)<\/cim:TurbLCFB1.emax>/g, obj, "emax", base.to_string, sub, context);
@@ -164,7 +160,7 @@ define
                 base.parse_element (/<cim:TurbLCFB1.pmwset>([\s\S]*?)<\/cim:TurbLCFB1.pmwset>/g, obj, "pmwset", base.to_string, sub, context);
                 base.parse_element (/<cim:TurbLCFB1.speedReferenceGovernor>([\s\S]*?)<\/cim:TurbLCFB1.speedReferenceGovernor>/g, obj, "speedReferenceGovernor", base.to_boolean, sub, context);
                 base.parse_element (/<cim:TurbLCFB1.tpelec>([\s\S]*?)<\/cim:TurbLCFB1.tpelec>/g, obj, "tpelec", base.to_string, sub, context);
-                var bucket = context.parsed.TurbLCFB1;
+                let bucket = context.parsed.TurbLCFB1;
                 if (null == bucket)
                    context.parsed.TurbLCFB1 = bucket = {};
                 bucket[obj.id] = obj;
@@ -174,7 +170,7 @@ define
 
             export (obj, full)
             {
-                var fields = TurbineLoadControllerDynamics.prototype.export.call (this, obj, false);
+                let fields = TurbineLoadControllerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TurbLCFB1", "db", "db",  base.from_string, fields);
                 base.export_element (obj, "TurbLCFB1", "emax", "emax",  base.from_string, fields);
@@ -189,7 +185,7 @@ define
                 base.export_element (obj, "TurbLCFB1", "speedReferenceGovernor", "speedReferenceGovernor",  base.from_boolean, fields);
                 base.export_element (obj, "TurbLCFB1", "tpelec", "tpelec",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -263,22 +259,22 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "TurbLCFB1" };
+                obj = obj || { id: id, cls: "TurbLCFB1" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_db").value; if ("" != temp) obj.db = temp;
-                temp = document.getElementById (id + "_emax").value; if ("" != temp) obj.emax = temp;
-                temp = document.getElementById (id + "_fb").value; if ("" != temp) obj.fb = temp;
-                temp = document.getElementById (id + "_fbf").checked; if (temp) obj.fbf = true;
-                temp = document.getElementById (id + "_irmax").value; if ("" != temp) obj.irmax = temp;
-                temp = document.getElementById (id + "_ki").value; if ("" != temp) obj.ki = temp;
-                temp = document.getElementById (id + "_kp").value; if ("" != temp) obj.kp = temp;
-                temp = document.getElementById (id + "_mwbase").value; if ("" != temp) obj.mwbase = temp;
-                temp = document.getElementById (id + "_pbf").checked; if (temp) obj.pbf = true;
-                temp = document.getElementById (id + "_pmwset").value; if ("" != temp) obj.pmwset = temp;
-                temp = document.getElementById (id + "_speedReferenceGovernor").checked; if (temp) obj.speedReferenceGovernor = true;
-                temp = document.getElementById (id + "_tpelec").value; if ("" != temp) obj.tpelec = temp;
+                temp = document.getElementById (id + "_db").value; if ("" !== temp) obj["db"] = temp;
+                temp = document.getElementById (id + "_emax").value; if ("" !== temp) obj["emax"] = temp;
+                temp = document.getElementById (id + "_fb").value; if ("" !== temp) obj["fb"] = temp;
+                temp = document.getElementById (id + "_fbf").checked; if (temp) obj["fbf"] = true;
+                temp = document.getElementById (id + "_irmax").value; if ("" !== temp) obj["irmax"] = temp;
+                temp = document.getElementById (id + "_ki").value; if ("" !== temp) obj["ki"] = temp;
+                temp = document.getElementById (id + "_kp").value; if ("" !== temp) obj["kp"] = temp;
+                temp = document.getElementById (id + "_mwbase").value; if ("" !== temp) obj["mwbase"] = temp;
+                temp = document.getElementById (id + "_pbf").checked; if (temp) obj["pbf"] = true;
+                temp = document.getElementById (id + "_pmwset").value; if ("" !== temp) obj["pmwset"] = temp;
+                temp = document.getElementById (id + "_speedReferenceGovernor").checked; if (temp) obj["speedReferenceGovernor"] = true;
+                temp = document.getElementById (id + "_tpelec").value; if ("" !== temp) obj["tpelec"] = temp;
 
                 return (obj);
             }

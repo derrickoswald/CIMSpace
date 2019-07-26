@@ -8,6 +8,8 @@ define
          * A unique identifier of a wheeling transaction.
          *
          * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
+         * 
+         * This schedule is assocated with the hourly parameters in a resource bid.
          *
          */
         class WheelingReferenceSchedule extends ParticipantInterfaces.BidHourlySchedule
@@ -15,7 +17,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.WheelingReferenceSchedule;
+                let bucket = cim_data.WheelingReferenceSchedule;
                 if (null == bucket)
                    cim_data.WheelingReferenceSchedule = bucket = {};
                 bucket[template.id] = template;
@@ -29,12 +31,10 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = ParticipantInterfaces.BidHourlySchedule.prototype.parse.call (this, context, sub);
+                let obj = ParticipantInterfaces.BidHourlySchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "WheelingReferenceSchedule";
                 base.parse_element (/<cim:WheelingReferenceSchedule.value>([\s\S]*?)<\/cim:WheelingReferenceSchedule.value>/g, obj, "value", base.to_string, sub, context);
-                var bucket = context.parsed.WheelingReferenceSchedule;
+                let bucket = context.parsed.WheelingReferenceSchedule;
                 if (null == bucket)
                    context.parsed.WheelingReferenceSchedule = bucket = {};
                 bucket[obj.id] = obj;
@@ -44,11 +44,11 @@ define
 
             export (obj, full)
             {
-                var fields = ParticipantInterfaces.BidHourlySchedule.prototype.export.call (this, obj, false);
+                let fields = ParticipantInterfaces.BidHourlySchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WheelingReferenceSchedule", "value", "value",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -100,11 +100,11 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "WheelingReferenceSchedule" };
+                obj = obj || { id: id, cls: "WheelingReferenceSchedule" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
             }

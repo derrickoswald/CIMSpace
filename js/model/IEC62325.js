@@ -2,7 +2,7 @@ define
 (
     ["model/base"],
     /**
-     * The IEC 62325 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 16.
+     * The IEC 62325 subpackages of the CIM are developed, standardized and maintained by the IEC TC57.
      *
      */
     function (base)
@@ -17,7 +17,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.IEC62325CIMVersion;
+                let bucket = cim_data.IEC62325CIMVersion;
                 if (null == bucket)
                    cim_data.IEC62325CIMVersion = bucket = {};
                 bucket[template.id] = template;
@@ -31,13 +31,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = base.Element.prototype.parse.call (this, context, sub);
+                let obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "IEC62325CIMVersion";
                 base.parse_element (/<cim:IEC62325CIMVersion.date>([\s\S]*?)<\/cim:IEC62325CIMVersion.date>/g, obj, "date", base.to_string, sub, context);
                 base.parse_element (/<cim:IEC62325CIMVersion.version>([\s\S]*?)<\/cim:IEC62325CIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-                var bucket = context.parsed.IEC62325CIMVersion;
+                let bucket = context.parsed.IEC62325CIMVersion;
                 if (null == bucket)
                    context.parsed.IEC62325CIMVersion = bucket = {};
                 bucket[obj.id] = obj;
@@ -47,12 +45,12 @@ define
 
             export (obj, full)
             {
-                var fields = [];
+                let fields = [];
 
                 base.export_element (obj, "IEC62325CIMVersion", "date", "date",  base.from_string, fields);
                 base.export_element (obj, "IEC62325CIMVersion", "version", "version",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -106,12 +104,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "IEC62325CIMVersion" };
+                obj = obj || { id: id, cls: "IEC62325CIMVersion" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
+                temp = document.getElementById (id + "_date").value; if ("" !== temp) obj["date"] = temp;
+                temp = document.getElementById (id + "_version").value; if ("" !== temp) obj["version"] = temp;
 
                 return (obj);
             }

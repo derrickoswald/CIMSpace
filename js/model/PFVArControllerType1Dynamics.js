@@ -2,16 +2,17 @@ define
 (
     ["model/base", "model/StandardModels"],
     /**
-     * <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.
+     * <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value.
      *
-     * A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
+     * This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
+     * <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
      *
      */
     function (base, StandardModels)
     {
 
         /**
-         * Power Factor or VAr controller Type I function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+         * Power factor or VAr controller type 1 function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
          *
          */
         class PFVArControllerType1Dynamics extends StandardModels.DynamicsFunctionBlock
@@ -19,7 +20,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PFVArControllerType1Dynamics;
+                let bucket = cim_data.PFVArControllerType1Dynamics;
                 if (null == bucket)
                    cim_data.PFVArControllerType1Dynamics = bucket = {};
                 bucket[template.id] = template;
@@ -33,14 +34,12 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
+                let obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "PFVArControllerType1Dynamics";
-                base.parse_attribute (/<cim:PFVArControllerType1Dynamics.VoltageAdjusterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageAdjusterDynamics", sub, context);
-                base.parse_attribute (/<cim:PFVArControllerType1Dynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
-                base.parse_attribute (/<cim:PFVArControllerType1Dynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-                var bucket = context.parsed.PFVArControllerType1Dynamics;
+                base.parse_attribute (/<cim:PFVArControllerType1Dynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
+                base.parse_attribute (/<cim:PFVArControllerType1Dynamics.VoltageAdjusterDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "VoltageAdjusterDynamics", sub, context);
+                base.parse_attribute (/<cim:PFVArControllerType1Dynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
+                let bucket = context.parsed.PFVArControllerType1Dynamics;
                 if (null == bucket)
                    context.parsed.PFVArControllerType1Dynamics = bucket = {};
                 bucket[obj.id] = obj;
@@ -50,13 +49,13 @@ define
 
             export (obj, full)
             {
-                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
+                let fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PFVArControllerType1Dynamics", "VoltageAdjusterDynamics", "VoltageAdjusterDynamics", fields);
                 base.export_attribute (obj, "PFVArControllerType1Dynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "PFVArControllerType1Dynamics", "VoltageAdjusterDynamics", "VoltageAdjusterDynamics", fields);
                 base.export_attribute (obj, "PFVArControllerType1Dynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -71,8 +70,8 @@ define
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
-                    {{#VoltageAdjusterDynamics}}<div><b>VoltageAdjusterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterDynamics}}&quot;);}); return false;'>{{VoltageAdjusterDynamics}}</a></div>{{/VoltageAdjusterDynamics}}
                     {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    {{#VoltageAdjusterDynamics}}<div><b>VoltageAdjusterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageAdjusterDynamics}}&quot;);}); return false;'>{{VoltageAdjusterDynamics}}</a></div>{{/VoltageAdjusterDynamics}}
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
                     </div>
                     </fieldset>
@@ -101,8 +100,8 @@ define
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageAdjusterDynamics'>VoltageAdjusterDynamics: </label><div class='col-sm-8'><input id='{{id}}_VoltageAdjusterDynamics' class='form-control' type='text'{{#VoltageAdjusterDynamics}} value='{{VoltageAdjusterDynamics}}'{{/VoltageAdjusterDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageAdjusterDynamics'>VoltageAdjusterDynamics: </label><div class='col-sm-8'><input id='{{id}}_VoltageAdjusterDynamics' class='form-control' type='text'{{#VoltageAdjusterDynamics}} value='{{VoltageAdjusterDynamics}}'{{/VoltageAdjusterDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
                     </fieldset>
@@ -112,13 +111,13 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PFVArControllerType1Dynamics" };
+                obj = obj || { id: id, cls: "PFVArControllerType1Dynamics" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_VoltageAdjusterDynamics").value; if ("" != temp) obj.VoltageAdjusterDynamics = temp;
-                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
-                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" !== temp) obj["ExcitationSystemDynamics"] = temp;
+                temp = document.getElementById (id + "_VoltageAdjusterDynamics").value; if ("" !== temp) obj["VoltageAdjusterDynamics"] = temp;
+                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" !== temp) obj["RemoteInputSignal"] = temp;
 
                 return (obj);
             }
@@ -128,8 +127,8 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["VoltageAdjusterDynamics", "0..1", "1", "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics"],
                             ["ExcitationSystemDynamics", "1", "0..1", "ExcitationSystemDynamics", "PFVArControllerType1Dynamics"],
+                            ["VoltageAdjusterDynamics", "0..1", "1", "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics"],
                             ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "PFVArControllerType1Dynamics"]
                         ]
                     )
@@ -138,9 +137,9 @@ define
         }
 
         /**
-         * The class represents IEEE VAR Controller Type 1 which operates by moving the voltage reference directly.
+         * IEEE VAR controller type 1 which operates by moving the voltage reference directly.
          *
-         * Reference: IEEE Standard 421.5-2005 Section 11.3.
+         * Reference: IEEE 421.5-2005, 11.3.
          *
          */
         class PFVArType1IEEEVArController extends PFVArControllerType1Dynamics
@@ -148,7 +147,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PFVArType1IEEEVArController;
+                let bucket = cim_data.PFVArType1IEEEVArController;
                 if (null == bucket)
                    cim_data.PFVArType1IEEEVArController = bucket = {};
                 bucket[template.id] = template;
@@ -162,9 +161,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = PFVArControllerType1Dynamics.prototype.parse.call (this, context, sub);
+                let obj = PFVArControllerType1Dynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PFVArType1IEEEVArController";
                 base.parse_element (/<cim:PFVArType1IEEEVArController.tvarc>([\s\S]*?)<\/cim:PFVArType1IEEEVArController.tvarc>/g, obj, "tvarc", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEVArController.vvar>([\s\S]*?)<\/cim:PFVArType1IEEEVArController.vvar>/g, obj, "vvar", base.to_string, sub, context);
@@ -172,7 +169,7 @@ define
                 base.parse_element (/<cim:PFVArType1IEEEVArController.vvarref>([\s\S]*?)<\/cim:PFVArType1IEEEVArController.vvarref>/g, obj, "vvarref", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEVArController.vvtmax>([\s\S]*?)<\/cim:PFVArType1IEEEVArController.vvtmax>/g, obj, "vvtmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEVArController.vvtmin>([\s\S]*?)<\/cim:PFVArType1IEEEVArController.vvtmin>/g, obj, "vvtmin", base.to_string, sub, context);
-                var bucket = context.parsed.PFVArType1IEEEVArController;
+                let bucket = context.parsed.PFVArType1IEEEVArController;
                 if (null == bucket)
                    context.parsed.PFVArType1IEEEVArController = bucket = {};
                 bucket[obj.id] = obj;
@@ -182,7 +179,7 @@ define
 
             export (obj, full)
             {
-                var fields = PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
+                let fields = PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArType1IEEEVArController", "tvarc", "tvarc",  base.from_string, fields);
                 base.export_element (obj, "PFVArType1IEEEVArController", "vvar", "vvar",  base.from_string, fields);
@@ -191,7 +188,7 @@ define
                 base.export_element (obj, "PFVArType1IEEEVArController", "vvtmax", "vvtmax",  base.from_string, fields);
                 base.export_element (obj, "PFVArType1IEEEVArController", "vvtmin", "vvtmin",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -253,25 +250,25 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PFVArType1IEEEVArController" };
+                obj = obj || { id: id, cls: "PFVArType1IEEEVArController" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_tvarc").value; if ("" != temp) obj.tvarc = temp;
-                temp = document.getElementById (id + "_vvar").value; if ("" != temp) obj.vvar = temp;
-                temp = document.getElementById (id + "_vvarcbw").value; if ("" != temp) obj.vvarcbw = temp;
-                temp = document.getElementById (id + "_vvarref").value; if ("" != temp) obj.vvarref = temp;
-                temp = document.getElementById (id + "_vvtmax").value; if ("" != temp) obj.vvtmax = temp;
-                temp = document.getElementById (id + "_vvtmin").value; if ("" != temp) obj.vvtmin = temp;
+                temp = document.getElementById (id + "_tvarc").value; if ("" !== temp) obj["tvarc"] = temp;
+                temp = document.getElementById (id + "_vvar").value; if ("" !== temp) obj["vvar"] = temp;
+                temp = document.getElementById (id + "_vvarcbw").value; if ("" !== temp) obj["vvarcbw"] = temp;
+                temp = document.getElementById (id + "_vvarref").value; if ("" !== temp) obj["vvarref"] = temp;
+                temp = document.getElementById (id + "_vvtmax").value; if ("" !== temp) obj["vvtmax"] = temp;
+                temp = document.getElementById (id + "_vvtmin").value; if ("" !== temp) obj["vvtmin"] = temp;
 
                 return (obj);
             }
         }
 
         /**
-         * The class represents IEEE PF Controller Type 1 which operates by moving the voltage reference directly.
+         * IEEE PF controller type 1 which operates by moving the voltage reference directly.
          *
-         * Reference: IEEE Standard 421.5-2005 Section 11.2.
+         * Reference: IEEE 421.5-2005, 11.2.
          *
          */
         class PFVArType1IEEEPFController extends PFVArControllerType1Dynamics
@@ -279,7 +276,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.PFVArType1IEEEPFController;
+                let bucket = cim_data.PFVArType1IEEEPFController;
                 if (null == bucket)
                    cim_data.PFVArType1IEEEPFController = bucket = {};
                 bucket[template.id] = template;
@@ -293,9 +290,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = PFVArControllerType1Dynamics.prototype.parse.call (this, context, sub);
+                let obj = PFVArControllerType1Dynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PFVArType1IEEEPFController";
                 base.parse_element (/<cim:PFVArType1IEEEPFController.ovex>([\s\S]*?)<\/cim:PFVArType1IEEEPFController.ovex>/g, obj, "ovex", base.to_boolean, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEPFController.tpfc>([\s\S]*?)<\/cim:PFVArType1IEEEPFController.tpfc>/g, obj, "tpfc", base.to_string, sub, context);
@@ -305,7 +300,7 @@ define
                 base.parse_element (/<cim:PFVArType1IEEEPFController.vpfref>([\s\S]*?)<\/cim:PFVArType1IEEEPFController.vpfref>/g, obj, "vpfref", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEPFController.vvtmax>([\s\S]*?)<\/cim:PFVArType1IEEEPFController.vvtmax>/g, obj, "vvtmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEPFController.vvtmin>([\s\S]*?)<\/cim:PFVArType1IEEEPFController.vvtmin>/g, obj, "vvtmin", base.to_string, sub, context);
-                var bucket = context.parsed.PFVArType1IEEEPFController;
+                let bucket = context.parsed.PFVArType1IEEEPFController;
                 if (null == bucket)
                    context.parsed.PFVArType1IEEEPFController = bucket = {};
                 bucket[obj.id] = obj;
@@ -315,7 +310,7 @@ define
 
             export (obj, full)
             {
-                var fields = PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
+                let fields = PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArType1IEEEPFController", "ovex", "ovex",  base.from_boolean, fields);
                 base.export_element (obj, "PFVArType1IEEEPFController", "tpfc", "tpfc",  base.from_string, fields);
@@ -326,7 +321,7 @@ define
                 base.export_element (obj, "PFVArType1IEEEPFController", "vvtmax", "vvtmax",  base.from_string, fields);
                 base.export_element (obj, "PFVArType1IEEEPFController", "vvtmin", "vvtmin",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -392,18 +387,18 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "PFVArType1IEEEPFController" };
+                obj = obj || { id: id, cls: "PFVArType1IEEEPFController" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ovex").checked; if (temp) obj.ovex = true;
-                temp = document.getElementById (id + "_tpfc").value; if ("" != temp) obj.tpfc = temp;
-                temp = document.getElementById (id + "_vitmin").value; if ("" != temp) obj.vitmin = temp;
-                temp = document.getElementById (id + "_vpf").value; if ("" != temp) obj.vpf = temp;
-                temp = document.getElementById (id + "_vpfcbw").value; if ("" != temp) obj.vpfcbw = temp;
-                temp = document.getElementById (id + "_vpfref").value; if ("" != temp) obj.vpfref = temp;
-                temp = document.getElementById (id + "_vvtmax").value; if ("" != temp) obj.vvtmax = temp;
-                temp = document.getElementById (id + "_vvtmin").value; if ("" != temp) obj.vvtmin = temp;
+                temp = document.getElementById (id + "_ovex").checked; if (temp) obj["ovex"] = true;
+                temp = document.getElementById (id + "_tpfc").value; if ("" !== temp) obj["tpfc"] = temp;
+                temp = document.getElementById (id + "_vitmin").value; if ("" !== temp) obj["vitmin"] = temp;
+                temp = document.getElementById (id + "_vpf").value; if ("" !== temp) obj["vpf"] = temp;
+                temp = document.getElementById (id + "_vpfcbw").value; if ("" !== temp) obj["vpfcbw"] = temp;
+                temp = document.getElementById (id + "_vpfref").value; if ("" !== temp) obj["vpfref"] = temp;
+                temp = document.getElementById (id + "_vvtmax").value; if ("" !== temp) obj["vvtmax"] = temp;
+                temp = document.getElementById (id + "_vvtmin").value; if ("" !== temp) obj["vvtmin"] = temp;
 
                 return (obj);
             }

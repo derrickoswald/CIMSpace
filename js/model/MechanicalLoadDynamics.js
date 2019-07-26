@@ -9,7 +9,7 @@ define
     {
 
         /**
-         * Mechanical load function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+         * Mechanical load function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
          *
          */
         class MechanicalLoadDynamics extends StandardModels.DynamicsFunctionBlock
@@ -17,7 +17,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.MechanicalLoadDynamics;
+                let bucket = cim_data.MechanicalLoadDynamics;
                 if (null == bucket)
                    cim_data.MechanicalLoadDynamics = bucket = {};
                 bucket[template.id] = template;
@@ -31,13 +31,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
+                let obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "MechanicalLoadDynamics";
-                base.parse_attribute (/<cim:MechanicalLoadDynamics.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context);
-                base.parse_attribute (/<cim:MechanicalLoadDynamics.AsynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachineDynamics", sub, context);
-                var bucket = context.parsed.MechanicalLoadDynamics;
+                base.parse_attribute (/<cim:MechanicalLoadDynamics.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context);
+                base.parse_attribute (/<cim:MechanicalLoadDynamics.AsynchronousMachineDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachineDynamics", sub, context);
+                let bucket = context.parsed.MechanicalLoadDynamics;
                 if (null == bucket)
                    context.parsed.MechanicalLoadDynamics = bucket = {};
                 bucket[obj.id] = obj;
@@ -47,12 +45,12 @@ define
 
             export (obj, full)
             {
-                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
+                let fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
                 base.export_attribute (obj, "MechanicalLoadDynamics", "SynchronousMachineDynamics", "SynchronousMachineDynamics", fields);
                 base.export_attribute (obj, "MechanicalLoadDynamics", "AsynchronousMachineDynamics", "AsynchronousMachineDynamics", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -106,12 +104,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "MechanicalLoadDynamics" };
+                obj = obj || { id: id, cls: "MechanicalLoadDynamics" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp;
-                temp = document.getElementById (id + "_AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
+                temp = document.getElementById (id + "_SynchronousMachineDynamics").value; if ("" !== temp) obj["SynchronousMachineDynamics"] = temp;
+                temp = document.getElementById (id + "_AsynchronousMachineDynamics").value; if ("" !== temp) obj["AsynchronousMachineDynamics"] = temp;
 
                 return (obj);
             }
@@ -138,7 +136,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.MechLoad1;
+                let bucket = cim_data.MechLoad1;
                 if (null == bucket)
                    cim_data.MechLoad1 = bucket = {};
                 bucket[template.id] = template;
@@ -152,15 +150,13 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = MechanicalLoadDynamics.prototype.parse.call (this, context, sub);
+                let obj = MechanicalLoadDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "MechLoad1";
                 base.parse_element (/<cim:MechLoad1.a>([\s\S]*?)<\/cim:MechLoad1.a>/g, obj, "a", base.to_float, sub, context);
                 base.parse_element (/<cim:MechLoad1.b>([\s\S]*?)<\/cim:MechLoad1.b>/g, obj, "b", base.to_float, sub, context);
                 base.parse_element (/<cim:MechLoad1.d>([\s\S]*?)<\/cim:MechLoad1.d>/g, obj, "d", base.to_float, sub, context);
                 base.parse_element (/<cim:MechLoad1.e>([\s\S]*?)<\/cim:MechLoad1.e>/g, obj, "e", base.to_float, sub, context);
-                var bucket = context.parsed.MechLoad1;
+                let bucket = context.parsed.MechLoad1;
                 if (null == bucket)
                    context.parsed.MechLoad1 = bucket = {};
                 bucket[obj.id] = obj;
@@ -170,14 +166,14 @@ define
 
             export (obj, full)
             {
-                var fields = MechanicalLoadDynamics.prototype.export.call (this, obj, false);
+                let fields = MechanicalLoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MechLoad1", "a", "a",  base.from_float, fields);
                 base.export_element (obj, "MechLoad1", "b", "b",  base.from_float, fields);
                 base.export_element (obj, "MechLoad1", "d", "d",  base.from_float, fields);
                 base.export_element (obj, "MechLoad1", "e", "e",  base.from_float, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -235,14 +231,14 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "MechLoad1" };
+                obj = obj || { id: id, cls: "MechLoad1" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_a").value; if ("" != temp) obj.a = temp;
-                temp = document.getElementById (id + "_b").value; if ("" != temp) obj.b = temp;
-                temp = document.getElementById (id + "_d").value; if ("" != temp) obj.d = temp;
-                temp = document.getElementById (id + "_e").value; if ("" != temp) obj.e = temp;
+                temp = document.getElementById (id + "_a").value; if ("" !== temp) obj["a"] = temp;
+                temp = document.getElementById (id + "_b").value; if ("" !== temp) obj["b"] = temp;
+                temp = document.getElementById (id + "_d").value; if ("" !== temp) obj["d"] = temp;
+                temp = document.getElementById (id + "_e").value; if ("" !== temp) obj["e"] = temp;
 
                 return (obj);
             }

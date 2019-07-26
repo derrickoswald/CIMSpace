@@ -2,9 +2,10 @@ define
 (
     ["model/base", "model/StandardModels"],
     /**
-     * <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited.
+     * In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited.
      *
-     * For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
+     * For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
+     * <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
      *
      */
     function (base, StandardModels)
@@ -19,7 +20,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.DiscontinuousExcitationControlDynamics;
+                let bucket = cim_data.DiscontinuousExcitationControlDynamics;
                 if (null == bucket)
                    cim_data.DiscontinuousExcitationControlDynamics = bucket = {};
                 bucket[template.id] = template;
@@ -33,13 +34,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
+                let obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "DiscontinuousExcitationControlDynamics";
-                base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
-                base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-                var bucket = context.parsed.DiscontinuousExcitationControlDynamics;
+                base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
+                base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
+                let bucket = context.parsed.DiscontinuousExcitationControlDynamics;
                 if (null == bucket)
                    context.parsed.DiscontinuousExcitationControlDynamics = bucket = {};
                 bucket[obj.id] = obj;
@@ -49,12 +48,12 @@ define
 
             export (obj, full)
             {
-                var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
+                let fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
                 base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -69,8 +68,8 @@ define
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
-                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
                     </div>
                     </fieldset>
 
@@ -98,8 +97,8 @@ define
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -108,12 +107,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "DiscontinuousExcitationControlDynamics" };
+                obj = obj || { id: id, cls: "DiscontinuousExcitationControlDynamics" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
-                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" !== temp) obj["RemoteInputSignal"] = temp;
+                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" !== temp) obj["ExcitationSystemDynamics"] = temp;
 
                 return (obj);
             }
@@ -123,8 +122,8 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["ExcitationSystemDynamics", "1", "0..1", "ExcitationSystemDynamics", "DiscontinuousExcitationControlDynamics"],
-                            ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "DiscontinuousExcitationControlDynamics"]
+                            ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "DiscontinuousExcitationControlDynamics"],
+                            ["ExcitationSystemDynamics", "1", "0..1", "ExcitationSystemDynamics", "DiscontinuousExcitationControlDynamics"]
                         ]
                     )
                 );
@@ -132,135 +131,9 @@ define
         }
 
         /**
-         * The class represents IEEE Type DEC2A model for the discontinuous excitation control.
+         * IEEE type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
          *
-         * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
-         *
-         */
-        class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                var bucket = cim_data.DiscExcContIEEEDEC2A;
-                if (null == bucket)
-                   cim_data.DiscExcContIEEEDEC2A = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.DiscExcContIEEEDEC2A[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                var obj;
-
-                obj = DiscontinuousExcitationControlDynamics.prototype.parse.call (this, context, sub);
-                obj.cls = "DiscExcContIEEEDEC2A";
-                base.parse_element (/<cim:DiscExcContIEEEDEC2A.td1>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.td1>/g, obj, "td1", base.to_string, sub, context);
-                base.parse_element (/<cim:DiscExcContIEEEDEC2A.td2>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.td2>/g, obj, "td2", base.to_string, sub, context);
-                base.parse_element (/<cim:DiscExcContIEEEDEC2A.vdmax>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vdmax>/g, obj, "vdmax", base.to_string, sub, context);
-                base.parse_element (/<cim:DiscExcContIEEEDEC2A.vdmin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vdmin>/g, obj, "vdmin", base.to_string, sub, context);
-                base.parse_element (/<cim:DiscExcContIEEEDEC2A.vk>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vk>/g, obj, "vk", base.to_string, sub, context);
-                var bucket = context.parsed.DiscExcContIEEEDEC2A;
-                if (null == bucket)
-                   context.parsed.DiscExcContIEEEDEC2A = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "td1", "td1",  base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "td2", "td2",  base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmax", "vdmax",  base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmin", "vdmin",  base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "vk", "vk",  base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
-                    <div id="DiscExcContIEEEDEC2A_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
-                    `
-                    {{#td1}}<div><b>td1</b>: {{td1}}</div>{{/td1}}
-                    {{#td2}}<div><b>td2</b>: {{td2}}</div>{{/td2}}
-                    {{#vdmax}}<div><b>vdmax</b>: {{vdmax}}</div>{{/vdmax}}
-                    {{#vdmin}}<div><b>vdmin</b>: {{vdmin}}</div>{{/vdmin}}
-                    {{#vk}}<div><b>vk</b>: {{vk}}</div>{{/vk}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="{{id}}_DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
-                    <div id="{{id}}_DiscExcContIEEEDEC2A_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td1'>td1: </label><div class='col-sm-8'><input id='{{id}}_td1' class='form-control' type='text'{{#td1}} value='{{td1}}'{{/td1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td2'>td2: </label><div class='col-sm-8'><input id='{{id}}_td2' class='form-control' type='text'{{#td2}} value='{{td2}}'{{/td2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vdmax'>vdmax: </label><div class='col-sm-8'><input id='{{id}}_vdmax' class='form-control' type='text'{{#vdmax}} value='{{vdmax}}'{{/vdmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vdmin'>vdmin: </label><div class='col-sm-8'><input id='{{id}}_vdmin' class='form-control' type='text'{{#vdmin}} value='{{vdmin}}'{{/vdmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vk'>vk: </label><div class='col-sm-8'><input id='{{id}}_vk' class='form-control' type='text'{{#vk}} value='{{vk}}'{{/vk}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                var temp;
-
-                var obj = obj || { id: id, cls: "DiscExcContIEEEDEC2A" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_td1").value; if ("" != temp) obj.td1 = temp;
-                temp = document.getElementById (id + "_td2").value; if ("" != temp) obj.td2 = temp;
-                temp = document.getElementById (id + "_vdmax").value; if ("" != temp) obj.vdmax = temp;
-                temp = document.getElementById (id + "_vdmin").value; if ("" != temp) obj.vdmin = temp;
-                temp = document.getElementById (id + "_vk").value; if ("" != temp) obj.vk = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
-         *
-         * Reference: IEEE Standard 421.5-2005 Section 12.2.
+         * Reference: IEEE 421.5-2005, 12.2.
          *
          */
         class DiscExcContIEEEDEC1A extends DiscontinuousExcitationControlDynamics
@@ -268,7 +141,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.DiscExcContIEEEDEC1A;
+                let bucket = cim_data.DiscExcContIEEEDEC1A;
                 if (null == bucket)
                    cim_data.DiscExcContIEEEDEC1A = bucket = {};
                 bucket[template.id] = template;
@@ -282,9 +155,7 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = DiscontinuousExcitationControlDynamics.prototype.parse.call (this, context, sub);
+                let obj = DiscontinuousExcitationControlDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "DiscExcContIEEEDEC1A";
                 base.parse_element (/<cim:DiscExcContIEEEDEC1A.esc>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.esc>/g, obj, "esc", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC1A.kan>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.kan>/g, obj, "kan", base.to_string, sub, context);
@@ -304,7 +175,7 @@ define
                 base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtlmt>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtlmt>/g, obj, "vtlmt", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtm>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtm>/g, obj, "vtm", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtn>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtn>/g, obj, "vtn", base.to_string, sub, context);
-                var bucket = context.parsed.DiscExcContIEEEDEC1A;
+                let bucket = context.parsed.DiscExcContIEEEDEC1A;
                 if (null == bucket)
                    context.parsed.DiscExcContIEEEDEC1A = bucket = {};
                 bucket[obj.id] = obj;
@@ -314,7 +185,7 @@ define
 
             export (obj, full)
             {
-                var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
+                let fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiscExcContIEEEDEC1A", "esc", "esc",  base.from_string, fields);
                 base.export_element (obj, "DiscExcContIEEEDEC1A", "kan", "kan",  base.from_string, fields);
@@ -335,7 +206,7 @@ define
                 base.export_element (obj, "DiscExcContIEEEDEC1A", "vtm", "vtm",  base.from_string, fields);
                 base.export_element (obj, "DiscExcContIEEEDEC1A", "vtn", "vtn",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -421,37 +292,163 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "DiscExcContIEEEDEC1A" };
+                obj = obj || { id: id, cls: "DiscExcContIEEEDEC1A" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_esc").value; if ("" != temp) obj.esc = temp;
-                temp = document.getElementById (id + "_kan").value; if ("" != temp) obj.kan = temp;
-                temp = document.getElementById (id + "_ketl").value; if ("" != temp) obj.ketl = temp;
-                temp = document.getElementById (id + "_tan").value; if ("" != temp) obj.tan = temp;
-                temp = document.getElementById (id + "_td").value; if ("" != temp) obj.td = temp;
-                temp = document.getElementById (id + "_tl1").value; if ("" != temp) obj.tl1 = temp;
-                temp = document.getElementById (id + "_tl2").value; if ("" != temp) obj.tl2 = temp;
-                temp = document.getElementById (id + "_tw5").value; if ("" != temp) obj.tw5 = temp;
-                temp = document.getElementById (id + "_val").value; if ("" != temp) obj.val = temp;
-                temp = document.getElementById (id + "_vanmax").value; if ("" != temp) obj.vanmax = temp;
-                temp = document.getElementById (id + "_vomax").value; if ("" != temp) obj.vomax = temp;
-                temp = document.getElementById (id + "_vomin").value; if ("" != temp) obj.vomin = temp;
-                temp = document.getElementById (id + "_vsmax").value; if ("" != temp) obj.vsmax = temp;
-                temp = document.getElementById (id + "_vsmin").value; if ("" != temp) obj.vsmin = temp;
-                temp = document.getElementById (id + "_vtc").value; if ("" != temp) obj.vtc = temp;
-                temp = document.getElementById (id + "_vtlmt").value; if ("" != temp) obj.vtlmt = temp;
-                temp = document.getElementById (id + "_vtm").value; if ("" != temp) obj.vtm = temp;
-                temp = document.getElementById (id + "_vtn").value; if ("" != temp) obj.vtn = temp;
+                temp = document.getElementById (id + "_esc").value; if ("" !== temp) obj["esc"] = temp;
+                temp = document.getElementById (id + "_kan").value; if ("" !== temp) obj["kan"] = temp;
+                temp = document.getElementById (id + "_ketl").value; if ("" !== temp) obj["ketl"] = temp;
+                temp = document.getElementById (id + "_tan").value; if ("" !== temp) obj["tan"] = temp;
+                temp = document.getElementById (id + "_td").value; if ("" !== temp) obj["td"] = temp;
+                temp = document.getElementById (id + "_tl1").value; if ("" !== temp) obj["tl1"] = temp;
+                temp = document.getElementById (id + "_tl2").value; if ("" !== temp) obj["tl2"] = temp;
+                temp = document.getElementById (id + "_tw5").value; if ("" !== temp) obj["tw5"] = temp;
+                temp = document.getElementById (id + "_val").value; if ("" !== temp) obj["val"] = temp;
+                temp = document.getElementById (id + "_vanmax").value; if ("" !== temp) obj["vanmax"] = temp;
+                temp = document.getElementById (id + "_vomax").value; if ("" !== temp) obj["vomax"] = temp;
+                temp = document.getElementById (id + "_vomin").value; if ("" !== temp) obj["vomin"] = temp;
+                temp = document.getElementById (id + "_vsmax").value; if ("" !== temp) obj["vsmax"] = temp;
+                temp = document.getElementById (id + "_vsmin").value; if ("" !== temp) obj["vsmin"] = temp;
+                temp = document.getElementById (id + "_vtc").value; if ("" !== temp) obj["vtc"] = temp;
+                temp = document.getElementById (id + "_vtlmt").value; if ("" !== temp) obj["vtlmt"] = temp;
+                temp = document.getElementById (id + "_vtm").value; if ("" !== temp) obj["vtm"] = temp;
+                temp = document.getElementById (id + "_vtn").value; if ("" !== temp) obj["vtn"] = temp;
 
                 return (obj);
             }
         }
 
         /**
-         * The class represents IEEE Type DEC3A model.
+         * IEEE type DEC2A model for discontinuous excitation control.
+         *
+         * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
+         * Reference: IEEE 421.5-2005 12.3.
+         *
+         */
+        class DiscExcContIEEEDEC2A extends DiscontinuousExcitationControlDynamics
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.DiscExcContIEEEDEC2A;
+                if (null == bucket)
+                   cim_data.DiscExcContIEEEDEC2A = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.DiscExcContIEEEDEC2A[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = DiscontinuousExcitationControlDynamics.prototype.parse.call (this, context, sub);
+                obj.cls = "DiscExcContIEEEDEC2A";
+                base.parse_element (/<cim:DiscExcContIEEEDEC2A.td1>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.td1>/g, obj, "td1", base.to_string, sub, context);
+                base.parse_element (/<cim:DiscExcContIEEEDEC2A.td2>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.td2>/g, obj, "td2", base.to_string, sub, context);
+                base.parse_element (/<cim:DiscExcContIEEEDEC2A.vdmax>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vdmax>/g, obj, "vdmax", base.to_string, sub, context);
+                base.parse_element (/<cim:DiscExcContIEEEDEC2A.vdmin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vdmin>/g, obj, "vdmin", base.to_string, sub, context);
+                base.parse_element (/<cim:DiscExcContIEEEDEC2A.vk>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vk>/g, obj, "vk", base.to_string, sub, context);
+                let bucket = context.parsed.DiscExcContIEEEDEC2A;
+                if (null == bucket)
+                   context.parsed.DiscExcContIEEEDEC2A = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "td1", "td1",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "td2", "td2",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmax", "vdmax",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmin", "vdmin",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "vk", "vk",  base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
+                    <div id="DiscExcContIEEEDEC2A_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
+                    `
+                    {{#td1}}<div><b>td1</b>: {{td1}}</div>{{/td1}}
+                    {{#td2}}<div><b>td2</b>: {{td2}}</div>{{/td2}}
+                    {{#vdmax}}<div><b>vdmax</b>: {{vdmax}}</div>{{/vdmax}}
+                    {{#vdmin}}<div><b>vdmin</b>: {{vdmin}}</div>{{/vdmin}}
+                    {{#vk}}<div><b>vk</b>: {{vk}}</div>{{/vk}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DiscExcContIEEEDEC2A_collapse" aria-expanded="true" aria-controls="{{id}}_DiscExcContIEEEDEC2A_collapse" style="margin-left: 10px;">DiscExcContIEEEDEC2A</a></legend>
+                    <div id="{{id}}_DiscExcContIEEEDEC2A_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td1'>td1: </label><div class='col-sm-8'><input id='{{id}}_td1' class='form-control' type='text'{{#td1}} value='{{td1}}'{{/td1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td2'>td2: </label><div class='col-sm-8'><input id='{{id}}_td2' class='form-control' type='text'{{#td2}} value='{{td2}}'{{/td2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vdmax'>vdmax: </label><div class='col-sm-8'><input id='{{id}}_vdmax' class='form-control' type='text'{{#vdmax}} value='{{vdmax}}'{{/vdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vdmin'>vdmin: </label><div class='col-sm-8'><input id='{{id}}_vdmin' class='form-control' type='text'{{#vdmin}} value='{{vdmin}}'{{/vdmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vk'>vk: </label><div class='col-sm-8'><input id='{{id}}_vk' class='form-control' type='text'{{#vk}} value='{{vk}}'{{/vk}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "DiscExcContIEEEDEC2A" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_td1").value; if ("" !== temp) obj["td1"] = temp;
+                temp = document.getElementById (id + "_td2").value; if ("" !== temp) obj["td2"] = temp;
+                temp = document.getElementById (id + "_vdmax").value; if ("" !== temp) obj["vdmax"] = temp;
+                temp = document.getElementById (id + "_vdmin").value; if ("" !== temp) obj["vdmin"] = temp;
+                temp = document.getElementById (id + "_vk").value; if ("" !== temp) obj["vk"] = temp;
+
+                return (obj);
+            }
+        }
+
+        /**
+         * IEEE type DEC3A model.
          *
          * In some systems, the stabilizer output is disconnected from the regulator immediately following a severe fault to prevent the stabilizer from competing with action of voltage regulator during the first swing.
+         * Reference: IEEE 421.5-2005 12.4.
          *
          */
         class DiscExcContIEEEDEC3A extends DiscontinuousExcitationControlDynamics
@@ -459,7 +456,7 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                var bucket = cim_data.DiscExcContIEEEDEC3A;
+                let bucket = cim_data.DiscExcContIEEEDEC3A;
                 if (null == bucket)
                    cim_data.DiscExcContIEEEDEC3A = bucket = {};
                 bucket[template.id] = template;
@@ -473,13 +470,11 @@ define
 
             parse (context, sub)
             {
-                var obj;
-
-                obj = DiscontinuousExcitationControlDynamics.prototype.parse.call (this, context, sub);
+                let obj = DiscontinuousExcitationControlDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "DiscExcContIEEEDEC3A";
                 base.parse_element (/<cim:DiscExcContIEEEDEC3A.tdr>([\s\S]*?)<\/cim:DiscExcContIEEEDEC3A.tdr>/g, obj, "tdr", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC3A.vtmin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC3A.vtmin>/g, obj, "vtmin", base.to_string, sub, context);
-                var bucket = context.parsed.DiscExcContIEEEDEC3A;
+                let bucket = context.parsed.DiscExcContIEEEDEC3A;
                 if (null == bucket)
                    context.parsed.DiscExcContIEEEDEC3A = bucket = {};
                 bucket[obj.id] = obj;
@@ -489,12 +484,12 @@ define
 
             export (obj, full)
             {
-                var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
+                let fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiscExcContIEEEDEC3A", "tdr", "tdr",  base.from_string, fields);
                 base.export_element (obj, "DiscExcContIEEEDEC3A", "vtmin", "vtmin",  base.from_string, fields);
                 if (full)
-                    base.Element.prototype.export.call (this, obj, fields)
+                    base.Element.prototype.export.call (this, obj, fields);
 
                 return (fields);
             }
@@ -548,12 +543,12 @@ define
 
             submit (id, obj)
             {
-                var temp;
+                let temp;
 
-                var obj = obj || { id: id, cls: "DiscExcContIEEEDEC3A" };
+                obj = obj || { id: id, cls: "DiscExcContIEEEDEC3A" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_tdr").value; if ("" != temp) obj.tdr = temp;
-                temp = document.getElementById (id + "_vtmin").value; if ("" != temp) obj.vtmin = temp;
+                temp = document.getElementById (id + "_tdr").value; if ("" !== temp) obj["tdr"] = temp;
+                temp = document.getElementById (id + "_vtmin").value; if ("" !== temp) obj["vtmin"] = temp;
 
                 return (obj);
             }
