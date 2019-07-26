@@ -267,7 +267,7 @@ define
                 const parameters = this.submit_parameters ();
                 const obj = this._cimedit.create_from (parameters);
                 const cpromise = this._digitizer.point (obj, this._cimedit.new_features ());
-                const lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                const lm = new LocationMaker (this._cimmap, this._cimedit);
                 cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_psr.bind (this)));
                 return (cpromise);

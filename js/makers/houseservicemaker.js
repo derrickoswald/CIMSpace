@@ -20,7 +20,7 @@ define
             {
                 super (cimmap, cimedit, digitizer);
                 this._switchmaker = new SwitchMaker (cimmap, cimedit, digitizer);
-                this._locationmaker = new LocationMaker (cimmap, cimedit, digitizer);
+                this._locationmaker = new LocationMaker (cimmap, cimedit);
 
             }
 

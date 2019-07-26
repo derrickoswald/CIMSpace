@@ -19,7 +19,7 @@ define
             constructor (cimmap, cimedit, digitizer)
             {
                 super (cimmap, cimedit, digitizer);
-                this._locationmaker = new LocationMaker (cimmap, cimedit, digitizer);
+                this._locationmaker = new LocationMaker (cimmap, cimedit);
                 this._equipmentmaker = new ConductingEquipmentMaker (cimmap, cimedit, digitizer);
                 this._transformermaker = new PowerTransformerMaker (cimmap, cimedit, digitizer);
                 this._xoffset = 3.5e-5;

@@ -241,7 +241,7 @@ define
 
 
             /**
-             * Connect the selected object at user selected terminal synchronously.
+             * Display information about the selected object.
              */
             selection_change (current_feature, current_selection)
             {

@@ -62,7 +62,7 @@ define
                     proto = { mRID: this._cimedit.get_cimmrid ().nextIdFor ("TransformerMeshImpedance") };
 
                 const cimmap = this._cimmap;
-                const trafos = cimmap.fetch ("PowerTransformerInfo", info => true)
+                const trafos = cimmap.fetch ("PowerTransformerInfo", info => true);
                 function fn ()
                 {
                     return (proto && (proto.AssetDatasheet === this.id));

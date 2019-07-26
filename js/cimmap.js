@@ -70,9 +70,9 @@ define
         let CURRENT_SELECTION = null;
 
         /**
-         * Flag indicating map listeners are attached or not.
+         * Map listener stack.
          */
-        let Listening = false;
+        let ListenerStack = [];
 
         /**
          * List of registered objects supporting selection_change (CURRENT_FEATURE, CURRENT_SELECTION).
@@ -524,6 +524,8 @@ define
         /**
          * @summary Handler for a current feature link click.
          * @description Sets the current feature and redisplay the highlighting appropriately and notify listeners.
+         * @param mrid {string} the mrid of the selection
+         * @param list {Array.string} the list of alternate selections
          */
         function select (mrid, list)
         {
@@ -535,16 +537,18 @@ define
 
             if (null != mrid)
             {
+                if (!list)
+                    list = [mrid];
+                else if (!list.includes (mrid))
+                    list = list.unshift (mrid);
                 if (mrid !== get_selected_feature () || !lists_equal (get_selected_features (), list))
                 {
-                    if (!list || !list.includes (mrid))
-                        list = [mrid];
                     CURRENT_FEATURE = mrid;
                     CURRENT_SELECTION = list;
                     FeatureListeners.map (x => x.selection_change (CURRENT_FEATURE, CURRENT_SELECTION));
                 }
             }
-            else
+            else if (null != get_selected_feature () || null != get_selected_features ())
             {
                 CURRENT_FEATURE = null;
                 CURRENT_SELECTION = null;
@@ -746,6 +750,8 @@ define
             // the type of transformer trace
             const through_voltages = trace_though_voltage_level_changes ();
             const transformers = (through_voltages) ? get_transformers () : {};
+            // the list of things to trace
+            const todo = [];
 
             function stop (equipment)
             {
@@ -808,9 +814,6 @@ define
                                 terminals_by_equp[equp].push (terminal.mRID);
                         }
                     }
-
-                // the list of things to trace
-                const todo = [];
 
                 // get the source equipment
                 source = CIM_Data.ConductingEquipment[get_selected_feature ()];
@@ -1160,24 +1163,103 @@ define
                 poink (event.point.x, event.point.y);
         }
 
-        function add_listeners ()
+        /**
+         * Set the map listeners, moving existing listeners down the stack.
+         *
+         * @param {{"mousedown": mousedown, "mousemove": mousemove, "touchstart": touchstart, "dragPan": boolean, "dragRotate": boolean}} listeners
+         * apply the given mousedown and touchstart listeners with drag settings
+         */
+        function push_listeners (listeners)
         {
-            if (!Listening)
+            if (listeners["mousedown"])
             {
-                TheMap.on ("mousedown", default_mousedown_listener);
-                TheMap.on ("touchstart", default_touchstart_listener);
-                Listening = true;
+                const mousedown = ListenerStack.map (l => l["mousedown"]).pop ();
+                if (mousedown)
+                    TheMap.off ("mousedown", mousedown);
+                TheMap.on ("mousedown", listeners["mousedown"]);
+            }
+            if (listeners["mousemove"])
+            {
+                const mousemove = ListenerStack.map (l => l["mousemove"]).pop ();
+                if (mousemove)
+                    TheMap.off ("mousemove", mousemove);
+                TheMap.on ("mousemove", listeners["mousemove"]);
+            }
+            if (listeners["touchstart"])
+            {
+                const touchstart = ListenerStack.map (l => l["touchstart"]).pop ();
+                if (touchstart)
+                    TheMap.off ("touchstart", touchstart);
+                TheMap.on ("touchstart", listeners["touchstart"]);
+            }
+            if ("undefined" != typeof (listeners["dragPan"]))
+                listeners["dragPan"] ? TheMap.dragPan.enable () : TheMap.dragPan.disable ();
+            if ("undefined" != typeof (listeners["dragRotate"]))
+                listeners["dragPan"] ? TheMap.dragRotate.enable () : TheMap.dragRotate.disable ();
+            ListenerStack.push (listeners);
+        }
+
+        /**
+         * Clear one level of the listener stack.
+         */
+        function pop_listeners ()
+        {
+            const listeners = ListenerStack.pop ();
+            if (listeners)
+            {
+                if (listeners["mousedown"])
+                {
+                    TheMap.off ("mousedown", listeners["mousedown"]);
+                    const mousedown = ListenerStack.map (l => l["mousedown"]).pop ();
+                    if (mousedown)
+                        TheMap.on ("mousedown", mousedown);
+                }
+                if (listeners["mousemove"])
+                {
+                    TheMap.off ("mousemove", listeners["mousemove"]);
+                    const mousemove = ListenerStack.map (l => l["mousemove"]).pop ();
+                    if (mousemove)
+                        TheMap.on ("mousemove", mousemove);
+                }
+                if (listeners["touchstart"])
+                {
+                    TheMap.off ("touchstart", listeners["touchstart"]);
+                    const touchstart = ListenerStack.map (l => l["touchstart"]).pop ();
+                    if (touchstart)
+                        TheMap.on ("touchstart", touchstart);
+                }
+                if ("undefined" != typeof (listeners["dragPan"]))
+                {
+                    const dragPan = ListenerStack.map (l => l["dragPan"]).pop ();
+                    dragPan ? TheMap.dragPan.enable () : TheMap.dragPan.disable ();
+                }
+                if ("undefined" != typeof (listeners["dragRotate"]))
+                {
+                    const dragRotate = ListenerStack.map (l => l["dragRotate"]).pop ();
+                    dragRotate ? TheMap.dragRotate.enable () : TheMap.dragRotate.disable ();
+                }
             }
         }
 
-        function remove_listeners ()
+        /**
+         * Peek at the listener stack.
+         * @return {{"mousedown": mousedown, "touchstart": touchstart, "dragPan": boolean, "dragRotate": boolean}} the current listeners, except the first
+         */
+        function peek_listeners ()
         {
-            if (Listening)
-            {
-                TheMap.off ("mousedown", default_mousedown_listener);
-                TheMap.off ("touchstart", default_touchstart_listener);
-                Listening = false;
-            }
+            const mousedowns = ListenerStack.map (l => l["mousedown"]);
+            mousedowns.pop ();
+            const mousedown = mousedowns.pop ();
+            const touchstarts = ListenerStack.map (l => l["touchstart"]);
+            touchstarts.pop ();
+            const touchstart = touchstarts.pop ();
+            const dragPans = ListenerStack.map (l => l["dragPan"]);
+            dragPans.pop ();
+            const dragPan = dragPans.pop ();
+            const dragRotates = ListenerStack.map (l => l["dragPan"]);
+            dragRotates.pop ();
+            const dragRotate = dragRotates.pop ();
+            return ({"mousedown": mousedown, "touchstart": touchstart, "dragPan": dragPan, "dragRotate": dragRotate });
         }
 
         /**
@@ -1214,7 +1296,7 @@ define
             TheEditor = editor;
             TheThemer = themer;
             TheThemer.theme_change_listener (redraw);
-            add_listeners ();
+            push_listeners ({"mousedown": default_mousedown_listener, "touchstart": default_touchstart_listener, "dragPan": true, "dragRotate": true});
         }
 
         /**
@@ -1267,10 +1349,9 @@ define
                     measure: measure,
                     search: search,
                     redraw: redraw,
-                    default_mousedown_listener: default_mousedown_listener,
-                    default_touchstart_listener: default_touchstart_listener,
-                    add_listeners: add_listeners,
-                    remove_listeners: remove_listeners,
+                    push_listeners: push_listeners,
+                    pop_listeners: pop_listeners,
+                    peek_listeners: peek_listeners,
                     initialize: initialize,
                     terminate: terminate
                 }

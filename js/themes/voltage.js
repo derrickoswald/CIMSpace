@@ -22,30 +22,30 @@ define
                 super ();
                 this._colors = [
                     "rgb(51, 51, 51)",
-	                "rgb(0, 139, 0)",
-	                "rgb(0, 0, 139)",
-	                "rgb(0, 139, 139)",
-	                "rgb(139, 139, 0)",
-	                "rgb(139, 0, 0)",
-	                "rgb(139, 0, 139)",
-	                "rgb(255, 0, 0)",
-	                "rgb(255, 0, 255)",
-	                "rgb(0, 255, 255)",
-	                "rgb(0, 0, 255)"
+                    "rgb(0, 139, 0)",
+                    "rgb(0, 0, 139)",
+                    "rgb(0, 139, 139)",
+                    "rgb(139, 139, 0)",
+                    "rgb(139, 0, 0)",
+                    "rgb(139, 0, 139)",
+                    "rgb(255, 0, 0)",
+                    "rgb(255, 0, 255)",
+                    "rgb(0, 255, 255)",
+                    "rgb(0, 0, 255)"
                 ];
                 this._colormap = {
                     BaseVoltage_Unknown: "rgb(139, 139, 139)",
-	                BaseVoltage_0: "rgb(51, 51, 51)",
-	                BaseVoltage_230: "rgb(0, 139, 0)",
-	                BaseVoltage_400: "rgb(0, 0, 139)",
-	                BaseVoltage_1000: "rgb(0, 139, 139)",
-	                BaseVoltage_12000: "rgb(139, 139, 0)",
-	                BaseVoltage_16000: "rgb(139, 0, 0)",
-	                BaseVoltage_20000: "rgb(139, 0, 139)",
-	                BaseVoltage_50000: "rgb(255, 0, 0)",
-	                BaseVoltage_132000: "rgb(255, 0, 255)",
-	                BaseVoltage_220000: "rgb(0, 255, 255)",
-	                BaseVoltage_380000: "rgb(0, 0, 255)"
+                    BaseVoltage_0: "rgb(51, 51, 51)",
+                    BaseVoltage_230: "rgb(0, 139, 0)",
+                    BaseVoltage_400: "rgb(0, 0, 139)",
+                    BaseVoltage_1000: "rgb(0, 139, 139)",
+                    BaseVoltage_12000: "rgb(139, 139, 0)",
+                    BaseVoltage_16000: "rgb(139, 0, 0)",
+                    BaseVoltage_20000: "rgb(139, 0, 139)",
+                    BaseVoltage_50000: "rgb(255, 0, 0)",
+                    BaseVoltage_132000: "rgb(255, 0, 255)",
+                    BaseVoltage_220000: "rgb(0, 255, 255)",
+                    BaseVoltage_380000: "rgb(0, 0, 255)"
                 };
                 this._items = [];
                 for (let id in this._colormap)

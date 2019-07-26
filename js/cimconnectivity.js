@@ -810,21 +810,17 @@ define
                 if (!this._mousemove)
                 {
                     this._mousemove = this.connectivity_mousemove_listener.bind (this, obj);
-                    this._map.on ("mousemove", this._mousemove);
+                    this._cimmap.push_listeners ({ "mousemove": this._mousemove });
                 }
-
-                // set up our listeners
-                this._cimmap.remove_listeners ();
             }
 
             reset_listeners ()
             {
                 if (this._mousemove)
                 {
-                    this._map.off ("mousemove", this._mousemove);
+                    this._cimmap.pop_listeners ();
                     delete this._mousemove;
                 }
-                this._cimmap.add_listeners ();
             }
 
             do_connectivity (obj, callback_success, callback_failure)

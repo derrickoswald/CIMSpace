@@ -504,16 +504,18 @@ define
                     }
                 );
 
+                const not_deleted = ["any", ["!", ["has", "EditDisposition"]], ["!=", ["get", "EditDisposition"], "delete"]];
+
                 // lines 3 pixels wide
-                map.addLayer (layers.line_layer ("lines", "cim lines", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
+                map.addLayer (layers.line_layer ("lines", "cim lines", { type: "identity", property: "color" }, not_deleted));
                 map.addLayer (layers.line_layer ("lines_highlight", "cim lines", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // simple circle from 14 to 17
-                map.addLayer (layers.circle_layer ("circle", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
+                map.addLayer (layers.circle_layer ("circle", "cim points", { type: "identity", property: "color" }, not_deleted));
                 map.addLayer (layers.circle_layer ("circle_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // symbol icon from 17 and deeper
-                map.addLayer (layers.symbol_layer ("symbol", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
+                map.addLayer (layers.symbol_layer ("symbol", "cim points", { type: "identity", property: "color" }, not_deleted));
                 map.addLayer (layers.symbol_layer ("symbol_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // set the current filter

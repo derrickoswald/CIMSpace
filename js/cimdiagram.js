@@ -489,7 +489,7 @@ define
             }
 
             /**
-             * Connect the selected object at user selected terminal synchronously.
+             * Display the selected object diagram layout objects if any.
              */
             selection_change (current_feature, current_selection)
             {

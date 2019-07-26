@@ -206,7 +206,7 @@ define
                 const obj = this._cimedit.create_from (parameters);
                 this._cimedit.refresh ();
                 const cpromise = this._digitizer.line (obj, this._cimedit.new_features ());
-                const lm = new LocationMaker (this._cimmap, this._cimedit, this._digitizer);
+                const lm = new LocationMaker (this._cimmap, this._cimedit);
                 cpromise.setPromise (lm.make (cpromise.promise (), "wgs84"));
                 cpromise.setPromise (cpromise.promise ().then (this.make_conductor.bind (this)));
                 return (cpromise);

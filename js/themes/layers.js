@@ -187,7 +187,7 @@ define
          * @param {string|Object} color - the fill color
          * @param {string|Object} edge_color - the edge color
          * @param {Object[]} [filter] - optional filter to apply to the labels
-         * @param {string} pattern - the fill pattern
+         * @param {{property: string, type: string}} [pattern] - the fill pattern
          * @returns {Object} the layer
          */
         function polygon_layer (id, source, color, edge_color, filter, pattern)

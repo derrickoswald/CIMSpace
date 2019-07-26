@@ -92,137 +92,138 @@ define
                     "features" : []
                 };
 
-                let coordinates;
-                const objects = data.IdentifiedObject;
-
-                function symbolize (id)
+                function symbolize (obj)
                 {
+                    let coordinates = locations[obj.id];
+                    if (!coordinates)
+                        coordinates = locations[obj.id + "_internal"];
+                    if (!coordinates)
+                        return;
                     if (2 === coordinates.length)
                     {
                         let target_array = points;
-                        objects[id].id = id;
-                        objects[id].rotation = 0.0;
+                        obj.rotation = 0.0;
 
                         // assign the symbol and color
-                        if ("PowerTransformer" === objects[id].cls)
+                        if ("PowerTransformer" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = transformer_symbol;
-                            objects[id].color = "rgb(0, 100, 0)";
+                            obj.symbol = transformer_symbol;
+                            obj.color = "rgb(0, 100, 0)";
                         }
-                        else if ("Fuse" === objects[id].cls)
+                        else if ("Fuse" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = fuse_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = fuse_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("Switch" === objects[id].cls)
+                        else if ("Switch" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("Cut" === objects[id].cls)
+                        else if ("Cut" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("Disconnector" === objects[id].cls)
+                        else if ("Disconnector" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("GroundDisconnector" === objects[id].cls)
+                        else if ("GroundDisconnector" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("Jumper" === objects[id].cls)
+                        else if ("Jumper" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("MktSwitch" === objects[id].cls)
+                        else if ("MktSwitch" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("ProtectedSwitch" === objects[id].cls)
+                        else if ("ProtectedSwitch" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("Breaker" === objects[id].cls)
+                        else if ("Breaker" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("LoadBreakSwitch" === objects[id].cls)
+                        else if ("LoadBreakSwitch" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("Recloser" === objects[id].cls)
+                        else if ("Recloser" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("Sectionaliser" === objects[id].cls)
+                        else if ("Sectionaliser" === obj.cls)
                         {
                             if (coordinates.isInternal ()) target_array = special_points;
-                            objects[id].symbol = switch_symbol;
-                            objects[id].color = "rgb(0, 0, 139)";
+                            obj.symbol = switch_symbol;
+                            obj.color = "rgb(0, 0, 139)";
                         }
-                        else if ("EnergyConsumer" === objects[id].cls)
+                        else if ("EnergyConsumer" === obj.cls)
                         {
-                            if (objects[id].PSRType === "PSRType_StreetLight")
-                                objects[id].symbol = street_light_symbol;
+                            if (obj.PSRType === "PSRType_StreetLight")
+                                obj.symbol = street_light_symbol;
                             else
-                                objects[id].symbol = energy_consumer_symbol;
-                            objects[id].color = "rgb(0, 139, 139)";
+                                obj.symbol = energy_consumer_symbol;
+                            obj.color = "rgb(0, 139, 139)";
                         }
-                        else if ("Connector" === objects[id].cls)
+                        else if ("Connector" === obj.cls)
                         {
-                            objects[id].symbol = feeder_symbol;
-                            objects[id].color = "rgb(139, 0, 0)";
+                            obj.symbol = feeder_symbol;
+                            obj.color = "rgb(139, 0, 0)";
                         }
-                        else if ("Junction" === objects[id].cls)
+                        else if ("Junction" === obj.cls)
                         {
-                            objects[id].symbol = other_symbol;
-                            objects[id].color = "rgb(139, 0, 0)";
+                            obj.symbol = other_symbol;
+                            obj.color = "rgb(139, 0, 0)";
                         }
-                        else if ("BusbarSection" === objects[id].cls)
+                        else if ("BusbarSection" === obj.cls)
                         {
-                            objects[id].symbol = junction_symbol;
-                            objects[id].color = "rgb(139, 0, 0)";
+                            obj.symbol = junction_symbol;
+                            obj.color = "rgb(139, 0, 0)";
                         }
                         else
                         {
                             if (data.Substation && ("undefined" != typeof (data.Substation[id])))
                             {
-                                if (objects[id].PSRType === "PSRType_DistributionBox")
-                                    objects[id].symbol = distribution_box_symbol;
-                                else if (objects[id].PSRType === "PSRType_Substation")
-                                    objects[id].symbol = substation_symbol;
-                                else if (objects[id].PSRType === "PSRType_TransformerStation")
-                                    objects[id].symbol = transformer_station_symbol;
+                                if (obj.PSRType === "PSRType_DistributionBox")
+                                    obj.symbol = distribution_box_symbol;
+                                else if (obj.PSRType === "PSRType_Substation")
+                                    obj.symbol = substation_symbol;
+                                else if (obj.PSRType === "PSRType_TransformerStation")
+                                    obj.symbol = transformer_station_symbol;
                                 else
-                                    objects[id].symbol = substation_symbol;
-                                objects[id].color = "rgb(255, 0, 255)";
+                                    obj.symbol = substation_symbol;
+                                obj.color = "rgb(255, 0, 255)";
                             }
                             else
                             {
-                                objects[id].symbol = other_symbol;
-                                objects[id].color = "rgb(0, 0, 0)";
+                                obj.symbol = other_symbol;
+                                obj.color = "rgb(0, 0, 0)";
                             }
                         }
                         target_array.features.push
@@ -234,7 +235,7 @@ define
                                         type : "Point",
                                         coordinates : [ coordinates[0], coordinates[1] ]
                                     },
-                                properties : objects[id]
+                                properties : obj
                             }
                         );
                     }
@@ -269,11 +270,10 @@ define
                                             type : "Polygon",
                                             coordinates : [ coords ]
                                         },
-                                    properties : objects[id]
+                                    properties : obj
                                 }
                             );
-                            objects[id].id = id;
-                            objects[id].kolour = "rgb(0, 0, 255)";
+                            obj.kolour = "rgb(0, 0, 255)";
                         }
                         else
                         {
@@ -286,39 +286,15 @@ define
                                             type : "LineString",
                                             coordinates : coords
                                         },
-                                    properties : objects[id]
+                                    properties : obj
                                 }
                             );
-                            objects[id].id = id;
-                            objects[id].color = "rgb(0, 0, 0)";
+                            obj.color = "rgb(0, 0, 0)";
                         }
                     }
                 }
 
-                for (let id in objects)
-                {
-                    if (objects.hasOwnProperty (id))
-                    {
-                        coordinates = locations[id];
-                        if (coordinates)
-                        {
-                            // don't show deleted elements
-                            if (objects[id].EditDisposition && ("delete" === objects[id].EditDisposition))
-                                continue;
-
-                            symbolize (id);
-                        }
-                        coordinates = locations[id + "_internal"];
-                        if (coordinates)
-                        {
-                            // don't show deleted elements
-                            if (objects[id].EditDisposition && ("delete" === objects[id].EditDisposition))
-                                continue;
-
-                            symbolize (id);
-                        }
-                    }
-                }
+                this._cimmap.forAll ("IdentifiedObject", symbolize);
 
                 return ({ points: points, special_points: special_points, lines: lines, polygons: polygons });
             }
@@ -537,7 +513,7 @@ define
                     this._TheMap.removeControl (this._TheChart);
                     delete this._TheChart;
                 }
-                if ((null != this._TheMap) && this._TheMap.getSource ("cim points"))
+                if (this._TheMap && this._TheMap.getSource ("cim points"))
                 {
                     this._TheMap.removeLayer ("lines");
                     this._TheMap.removeLayer ("lines_highlight");
@@ -551,30 +527,7 @@ define
                     this._TheMap.removeSource ("cim lines");
                     this._TheMap.removeSource ("cim polygons");
                 }
-                if (this._TheMap)
-                {
-                    this._TheMap.off ("mousedown", this._mousedown_listener);
-                    this._cimmap.add_listeners ();
-                }
                 super.remove_theme ();
-            }
-
-            // handle mouse click
-            mousedown_listener (event)
-            {
-                // only do something if no key is pressed
-                const key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
-                if (!key)
-                {
-                    const buttons = event.originalEvent.buttons;
-                    //    0  : No button or un-initialized
-                    //    1  : Primary button (usually left)
-                    //    2  : Secondary button (usually right)
-                    const leftbutton = 0 !== (buttons & 1);
-                    const rightbutton = 0 !== (buttons & 2);
-                    if (leftbutton)
-                        this._cimmap.default_mousedown_listener (event);
-                }
             }
 
             clear ()
@@ -644,17 +597,19 @@ define
                     }
                 );
 
+                const not_deleted = ["any", ["!", ["has", "EditDisposition"]], ["!=", ["get", "EditDisposition"], "delete"]];
+
                 // lines 3 pixels wide
                 // note: really weird shit starts happening if the property name is "color", so use "kolour" instead
-                map.addLayer (layers.line_layer ("lines", "cim lines", { type: "identity", property: "kolour" }, ["!has", "EditDisposition"]));
+                map.addLayer (layers.line_layer ("lines", "cim lines", { type: "identity", property: "kolour" }, not_deleted));
                 map.addLayer (layers.line_layer ("lines_highlight", "cim lines", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // simple circle
-                map.addLayer (layers.full_circle_layer ("circle", "cim points", { type: "identity", property: "color" }, ["!has", "EditDisposition"]));
+                map.addLayer (layers.full_circle_layer ("circle", "cim points", { type: "identity", property: "color" }, not_deleted));
                 map.addLayer (layers.full_circle_layer ("circle_highlight", "cim points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
 
                 // symbol icon from 17 and deeper
-                map.addLayer (layers.symbol_layer ("symbol", "cim special points", { type: "identity", property: "color" }, ["!has", "EditDisposition"], true));
+                map.addLayer (layers.symbol_layer ("symbol", "cim special points", { type: "identity", property: "color" }, not_deleted, true));
                 map.addLayer (layers.symbol_layer ("symbol_highlight", "cim special points", "rgb(255, 255, 0)", ["==", "mRID", ""], true));
 
                 map.addLayer (layers.polygon_layer ("polygons", "cim polygons", { type: "identity", property: "kolour" }, "#000000"));
@@ -667,10 +622,6 @@ define
 
                 if (this._render_listener)
                     this._render_listener ();
-
-                this._cimmap.remove_listeners ();
-                this._mousedown_listener = this.mousedown_listener.bind (this);
-                this._TheMap.on ("mousedown", this._mousedown_listener);
             }
 
             setRenderListener (fn)

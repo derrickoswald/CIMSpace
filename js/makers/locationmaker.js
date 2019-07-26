@@ -5,22 +5,21 @@
 
 define
 (
-    ["mustache", "cim", "model/Common", "nominatim"],
+    ["mustache", "cim", "model/Common", "model/DiagramLayout", "nominatim"],
     /**
      * @summary Make a CIM location.
      * @description Digitizes a point and makes a PowerTransformer element with ends and connectivity.
      * @exports powertransformermaker
      * @version 1.0
      */
-    function (mustache, cim, Common, Nominatim)
+    function (mustache, cim, Common, DiagramLayout, Nominatim)
     {
         class LocationMaker
         {
-            constructor (cimmap, cimedit, digitizer)
+            constructor (cimmap, cimedit)
             {
                 this._cimmap = cimmap;
                 this._cimedit = cimedit;
-                this._digitizer = digitizer;
                 this._nominatim = new Nominatim (this._cimmap);
             }
 
@@ -34,7 +33,7 @@ define
                 return (ret);
             }
 
-            create_location (coordsys, array, feature)
+            create_location (coordsys, array, feature, diagram = true)
             {
                 const element = array[0];
 
@@ -63,8 +62,8 @@ define
                         cls: "PositionPoint",
                         id: this._cimedit.get_cimmrid ().nextIdFor ("PositionPoint", location, "_point"),
                         sequenceNumber: 1,
-                        xPosition: lnglat[0].toString (),
-                        yPosition: lnglat[1].toString ()
+                        xPosition: lnglat[0],
+                        yPosition: lnglat[1]
                     };
                     array.push (new Common.PositionPoint (pp, this._cimedit.new_features ()));
                 }
@@ -81,10 +80,78 @@ define
                             cls: "PositionPoint",
                             id: this._cimedit.get_cimmrid ().nextIdFor ("PositionPoint", location, "_point_" + (i + 1).toString ()),
                             sequenceNumber: (i + 1).toString (),
-                            xPosition: lnglat[0].toString (),
-                            yPosition: lnglat[1].toString ()
+                            xPosition: lnglat[0],
+                            yPosition: lnglat[1]
                         };
                         array.push (new Common.PositionPoint (pp, this._cimedit.new_features ()));
+                    }
+                }
+
+                if (diagram)
+                {
+                    const did = this._cimedit.get_cimmrid ().nextIdFor ("Diagram", element, "_diagram");
+                    const diagram =
+                        {
+                            EditDisposition: "new",
+                            cls: "Diagram",
+                            id: did,
+                            mRID: did,
+                            aliasName: element.id,
+                            name: element.id + " schematic",
+                            description: "schematic diagram for " + element.id,
+                            orientation: "http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind.positive"
+                        };
+                    array.push (new DiagramLayout.Diagram (diagram, this._cimedit.new_features ()));
+
+                    const oid = this._cimedit.get_cimmrid ().nextIdFor ("DiagramObject", diagram, "_object");
+                    const diagram_object =
+                        {
+                            EditDisposition: "new",
+                            cls: "DiagramObject",
+                            id: oid,
+                            mRID: oid,
+                            name: element.id,
+                            description: "schematic object for " + element.id,
+                            drawingOrder: 2,
+                            isPolygon: false,
+                            rotation: 0.0,
+                            Diagram: did,
+                            IdentifiedObject: element.id
+                        };
+                    array.push (new DiagramLayout.DiagramObject (diagram_object, this._cimedit.new_features ()));
+
+                    if (feature.geometry.type === "Point")
+                    {
+                        const lnglat = feature.geometry.coordinates;
+                        const diagram_object_point =
+                            {
+                                EditDisposition: "new",
+                                cls: "DiagramObjectPoint",
+                                id: this._cimedit.get_cimmrid ().nextIdFor ("DiagramObjectPoint", diagram_object, "_point"),
+                                DiagramObject: oid,
+                                sequenceNumber: 1,
+                                xPosition: lnglat[0],
+                                yPosition: lnglat[1]
+                            };
+                        array.push (new DiagramLayout.DiagramObjectPoint (diagram_object_point, this._cimedit.new_features ()));
+                    }
+                    else if (feature.geometry.type === "LineString")
+                    {
+                        for (let i = 0; i < feature.geometry.coordinates.length; i++)
+                        {
+                            const lnglat = feature.geometry.coordinates[i];
+                            const diagram_object_point =
+                                {
+                                    EditDisposition: "new",
+                                    cls: "DiagramObjectPoint",
+                                    id: this._cimedit.get_cimmrid ().nextIdFor ("DiagramObjectPoint", diagram_object, "_point_" + (i + 1).toString ()),
+                                    DiagramObject: oid,
+                                    sequenceNumber: (i + 1).toString (),
+                                    xPosition: lnglat[0],
+                                    yPosition: lnglat[1]
+                                };
+                            array.push (new DiagramLayout.DiagramObjectPoint (diagram_object_point, this._cimedit.new_features ()));
+                        }
                     }
                 }
 

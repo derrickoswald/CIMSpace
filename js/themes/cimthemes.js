@@ -105,7 +105,7 @@ define
             /**
              * Adds a theme to the theme user interface.
              * @param theme the theme to add
-             * @param set if <code>true</code> make the new theme the current theme
+             * @param {boolean} [set] if <code>true</code> make the new theme the current theme
              * @return the given theme or the existing theme of the same name
              */
             addTheme (theme, set)
