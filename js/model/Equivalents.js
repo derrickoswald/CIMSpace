@@ -65,7 +65,7 @@ define
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
-                    {{#EquivalentNetwork}}<div><b>EquivalentNetwork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquivalentNetwork}}&quot;);}); return false;'>{{EquivalentNetwork}}</a></div>{{/EquivalentNetwork}}
+                    {{#EquivalentNetwork}}<div><b>EquivalentNetwork</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EquivalentNetwork}}");}); return false;'>{{EquivalentNetwork}}</a></div>{{/EquivalentNetwork}}
                     </div>
                     </fieldset>
 
@@ -180,7 +180,7 @@ define
                     `
                     + Core.ConnectivityNodeContainer.prototype.template.call (this) +
                     `
-                    {{#EquivalentEquipments}}<div><b>EquivalentEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EquivalentEquipments}}
+                    {{#EquivalentEquipments}}<div><b>EquivalentEquipments</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EquivalentEquipments}}
                     </div>
                     </fieldset>
 
@@ -515,7 +515,7 @@ define
                     {{#x2}}<div><b>x2</b>: {{x2}}</div>{{/x2}}
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-                    {{#ReactiveCapabilityCurve}}<div><b>ReactiveCapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReactiveCapabilityCurve}}&quot;);}); return false;'>{{ReactiveCapabilityCurve}}</a></div>{{/ReactiveCapabilityCurve}}
+                    {{#ReactiveCapabilityCurve}}<div><b>ReactiveCapabilityCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReactiveCapabilityCurve}}");}); return false;'>{{ReactiveCapabilityCurve}}</a></div>{{/ReactiveCapabilityCurve}}
                     </div>
                     </fieldset>
 

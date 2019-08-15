@@ -74,9 +74,9 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
-                    {{#ReportingGroup}}<div><b>ReportingGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingGroup}}&quot;);}); return false;'>{{ReportingGroup}}</a></div>{{/ReportingGroup}}
-                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);}); return false;'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Terminal}}
+                    {{#ReportingGroup}}<div><b>ReportingGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReportingGroup}}");}); return false;'>{{ReportingGroup}}</a></div>{{/ReportingGroup}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TopologicalNode}}");}); return false;'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Terminal}}
                     </div>
                     </fieldset>
 
@@ -224,16 +224,16 @@ define
                     `
                     {{#pInjection}}<div><b>pInjection</b>: {{pInjection}}</div>{{/pInjection}}
                     {{#qInjection}}<div><b>qInjection</b>: {{qInjection}}</div>{{/qInjection}}
-                    {{#AngleRefTopologicalIsland}}<div><b>AngleRefTopologicalIsland</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AngleRefTopologicalIsland}}&quot;);}); return false;'>{{AngleRefTopologicalIsland}}</a></div>{{/AngleRefTopologicalIsland}}
-                    {{#TopologicalIsland}}<div><b>TopologicalIsland</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalIsland}}&quot;);}); return false;'>{{TopologicalIsland}}</a></div>{{/TopologicalIsland}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Terminal}}
-                    {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);}); return false;'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
-                    {{#ConnectivityNodes}}<div><b>ConnectivityNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConnectivityNodes}}
-                    {{#ReportingGroup}}<div><b>ReportingGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingGroup}}&quot;);}); return false;'>{{ReportingGroup}}</a></div>{{/ReportingGroup}}
-                    {{#ConnectivityNodeContainer}}<div><b>ConnectivityNodeContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNodeContainer}}&quot;);}); return false;'>{{ConnectivityNodeContainer}}</a></div>{{/ConnectivityNodeContainer}}
-                    {{#BusNameMarker}}<div><b>BusNameMarker</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BusNameMarker}}
-                    {{#SvInjection}}<div><b>SvInjection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SvInjection}}
-                    {{#SvVoltage}}<div><b>SvVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SvVoltage}}
+                    {{#AngleRefTopologicalIsland}}<div><b>AngleRefTopologicalIsland</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AngleRefTopologicalIsland}}");}); return false;'>{{AngleRefTopologicalIsland}}</a></div>{{/AngleRefTopologicalIsland}}
+                    {{#TopologicalIsland}}<div><b>TopologicalIsland</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TopologicalIsland}}");}); return false;'>{{TopologicalIsland}}</a></div>{{/TopologicalIsland}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Terminal}}
+                    {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BaseVoltage}}");}); return false;'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+                    {{#ConnectivityNodes}}<div><b>ConnectivityNodes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConnectivityNodes}}
+                    {{#ReportingGroup}}<div><b>ReportingGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReportingGroup}}");}); return false;'>{{ReportingGroup}}</a></div>{{/ReportingGroup}}
+                    {{#ConnectivityNodeContainer}}<div><b>ConnectivityNodeContainer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ConnectivityNodeContainer}}");}); return false;'>{{ConnectivityNodeContainer}}</a></div>{{/ConnectivityNodeContainer}}
+                    {{#BusNameMarker}}<div><b>BusNameMarker</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BusNameMarker}}
+                    {{#SvInjection}}<div><b>SvInjection</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SvInjection}}
+                    {{#SvVoltage}}<div><b>SvVoltage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SvVoltage}}
                     </div>
                     </fieldset>
 
@@ -383,8 +383,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#AngleRefTopologicalNode}}<div><b>AngleRefTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AngleRefTopologicalNode}}&quot;);}); return false;'>{{AngleRefTopologicalNode}}</a></div>{{/AngleRefTopologicalNode}}
-                    {{#TopologicalNodes}}<div><b>TopologicalNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TopologicalNodes}}
+                    {{#AngleRefTopologicalNode}}<div><b>AngleRefTopologicalNode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AngleRefTopologicalNode}}");}); return false;'>{{AngleRefTopologicalNode}}</a></div>{{/AngleRefTopologicalNode}}
+                    {{#TopologicalNodes}}<div><b>TopologicalNodes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TopologicalNodes}}
                     </div>
                     </fieldset>
 

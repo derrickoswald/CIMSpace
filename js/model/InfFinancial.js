@@ -65,7 +65,7 @@ define
                     `
                     + Common.Organisation.prototype.template.call (this) +
                     `
-                    {{#ProvidedBy}}<div><b>ProvidedBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProvidedBy}}
+                    {{#ProvidedBy}}<div><b>ProvidedBy</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProvidedBy}}
                     </div>
                     </fieldset>
 
@@ -177,8 +177,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#transmissionProductType}}<div><b>transmissionProductType</b>: {{transmissionProductType}}</div>{{/transmissionProductType}}
-                    {{#LocationFor}}<div><b>LocationFor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LocationFor}}
-                    {{#TransmissionProvider}}<div><b>TransmissionProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionProvider}}&quot;);}); return false;'>{{TransmissionProvider}}</a></div>{{/TransmissionProvider}}
+                    {{#LocationFor}}<div><b>LocationFor</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LocationFor}}
+                    {{#TransmissionProvider}}<div><b>TransmissionProvider</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransmissionProvider}}");}); return false;'>{{TransmissionProvider}}</a></div>{{/TransmissionProvider}}
                     </div>
                     </fieldset>
 
@@ -404,8 +404,8 @@ define
                     `
                     + Common.Organisation.prototype.template.call (this) +
                     `
-                    {{#TransmissionProducts}}<div><b>TransmissionProducts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransmissionProducts}}
-                    {{#For}}<div><b>For</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/For}}
+                    {{#TransmissionProducts}}<div><b>TransmissionProducts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransmissionProducts}}
+                    {{#For}}<div><b>For</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/For}}
                     </div>
                     </fieldset>
 
@@ -618,8 +618,8 @@ define
                     `
                     + Common.Organisation.prototype.template.call (this) +
                     `
-                    {{#CAChildOf}}<div><b>CAChildOf</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CAChildOf}}
-                    {{#ControlledBy}}<div><b>ControlledBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlledBy}}&quot;);}); return false;'>{{ControlledBy}}</a></div>{{/ControlledBy}}
+                    {{#CAChildOf}}<div><b>CAChildOf</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CAChildOf}}
+                    {{#ControlledBy}}<div><b>ControlledBy</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ControlledBy}}");}); return false;'>{{ControlledBy}}</a></div>{{/ControlledBy}}
                     </div>
                     </fieldset>
 
@@ -739,8 +739,8 @@ define
                     `
                     + Common.Organisation.prototype.template.call (this) +
                     `
-                    {{#HoldsTitleTo_EnergyProducts}}<div><b>HoldsTitleTo_EnergyProducts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/HoldsTitleTo_EnergyProducts}}
-                    {{#Resells_EnergyProduct}}<div><b>Resells_EnergyProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Resells_EnergyProduct}}
+                    {{#HoldsTitleTo_EnergyProducts}}<div><b>HoldsTitleTo_EnergyProducts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/HoldsTitleTo_EnergyProducts}}
+                    {{#Resells_EnergyProduct}}<div><b>Resells_EnergyProduct</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Resells_EnergyProduct}}
                     </div>
                     </fieldset>
 
@@ -858,7 +858,7 @@ define
                     `
                     + Common.Organisation.prototype.template.call (this) +
                     `
-                    {{#CustChildOf}}<div><b>CustChildOf</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CustChildOf}}
+                    {{#CustChildOf}}<div><b>CustChildOf</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CustChildOf}}
                     </div>
                     </fieldset>
 

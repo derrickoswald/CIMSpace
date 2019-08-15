@@ -147,10 +147,10 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ProvidedBilateralIOPoint}}<div><b>ProvidedBilateralIOPoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProvidedBilateralIOPoint}}
-                    {{#ConsumerBilateralExchange}}<div><b>ConsumerBilateralExchange</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConsumerBilateralExchange}}
-                    {{#ProviderBilateralExchange}}<div><b>ProviderBilateralExchange</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProviderBilateralExchange}}
-                    {{#CommunicationLink}}<div><b>CommunicationLink</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CommunicationLink}}
+                    {{#ProvidedBilateralIOPoint}}<div><b>ProvidedBilateralIOPoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProvidedBilateralIOPoint}}
+                    {{#ConsumerBilateralExchange}}<div><b>ConsumerBilateralExchange</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConsumerBilateralExchange}}
+                    {{#ProviderBilateralExchange}}<div><b>ProviderBilateralExchange</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProviderBilateralExchange}}
+                    {{#CommunicationLink}}<div><b>CommunicationLink</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CommunicationLink}}
                     </div>
                     </fieldset>
 
@@ -280,8 +280,8 @@ define
                     `
                     {{#issuerName}}<div><b>issuerName</b>: {{issuerName}}</div>{{/issuerName}}
                     {{#serialNumber}}<div><b>serialNumber</b>: {{serialNumber}}</div>{{/serialNumber}}
-                    {{#ISOUpperLayer}}<div><b>ISOUpperLayer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ISOUpperLayer}}&quot;);}); return false;'>{{ISOUpperLayer}}</a></div>{{/ISOUpperLayer}}
-                    {{#TCPAccessPoint}}<div><b>TCPAccessPoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TCPAccessPoint}}&quot;);}); return false;'>{{TCPAccessPoint}}</a></div>{{/TCPAccessPoint}}
+                    {{#ISOUpperLayer}}<div><b>ISOUpperLayer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ISOUpperLayer}}");}); return false;'>{{ISOUpperLayer}}</a></div>{{/ISOUpperLayer}}
+                    {{#TCPAccessPoint}}<div><b>TCPAccessPoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TCPAccessPoint}}");}); return false;'>{{TCPAccessPoint}}</a></div>{{/TCPAccessPoint}}
                     </div>
                     </fieldset>
 
@@ -528,7 +528,7 @@ define
                     `
                     {{#localReference}}<div><b>localReference</b>: {{localReference}}</div>{{/localReference}}
                     {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
-                    {{#TASE2BilateralTable}}<div><b>TASE2BilateralTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TASE2BilateralTable}}
+                    {{#TASE2BilateralTable}}<div><b>TASE2BilateralTable</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TASE2BilateralTable}}
                     </div>
                     </fieldset>
 
@@ -649,7 +649,7 @@ define
                     `
                     + Meas.MeasurementValueSource.prototype.template.call (this) +
                     `
-                    {{#IOPoint}}<div><b>IOPoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IOPoint}}
+                    {{#IOPoint}}<div><b>IOPoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/IOPoint}}
                     </div>
                     </fieldset>
 
@@ -762,8 +762,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#BilateralExchangeActor}}<div><b>BilateralExchangeActor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BilateralExchangeActor}}&quot;);}); return false;'>{{BilateralExchangeActor}}</a></div>{{/BilateralExchangeActor}}
-                    {{#IOPoint}}<div><b>IOPoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IOPoint}}&quot;);}); return false;'>{{IOPoint}}</a></div>{{/IOPoint}}
+                    {{#BilateralExchangeActor}}<div><b>BilateralExchangeActor</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BilateralExchangeActor}}");}); return false;'>{{BilateralExchangeActor}}</a></div>{{/BilateralExchangeActor}}
+                    {{#IOPoint}}<div><b>IOPoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{IOPoint}}");}); return false;'>{{IOPoint}}</a></div>{{/IOPoint}}
                     </div>
                     </fieldset>
 
@@ -881,8 +881,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#Consumer}}<div><b>Consumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Consumer}}&quot;);}); return false;'>{{Consumer}}</a></div>{{/Consumer}}
-                    {{#Provider}}<div><b>Provider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Provider}}&quot;);}); return false;'>{{Provider}}</a></div>{{/Provider}}
+                    {{#Consumer}}<div><b>Consumer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Consumer}}");}); return false;'>{{Consumer}}</a></div>{{/Consumer}}
+                    {{#Provider}}<div><b>Provider</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Provider}}");}); return false;'>{{Provider}}</a></div>{{/Provider}}
                     </div>
                     </fieldset>
 
@@ -1258,7 +1258,7 @@ define
                     `
                     {{#keepAliveTime}}<div><b>keepAliveTime</b>: {{keepAliveTime}}</div>{{/keepAliveTime}}
                     {{#port}}<div><b>port</b>: {{port}}</div>{{/port}}
-                    {{#PublicX509Certificate}}<div><b>PublicX509Certificate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PublicX509Certificate}}
+                    {{#PublicX509Certificate}}<div><b>PublicX509Certificate</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PublicX509Certificate}}
                     </div>
                     </fieldset>
 
@@ -1396,7 +1396,7 @@ define
                     {{#apInvoke}}<div><b>apInvoke</b>: {{apInvoke}}</div>{{/apInvoke}}
                     {{#aeInvoke}}<div><b>aeInvoke</b>: {{aeInvoke}}</div>{{/aeInvoke}}
                     {{#aeQual}}<div><b>aeQual</b>: {{aeQual}}</div>{{/aeQual}}
-                    {{#UpperLayerPublicX509Certificate}}<div><b>UpperLayerPublicX509Certificate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UpperLayerPublicX509Certificate}}
+                    {{#UpperLayerPublicX509Certificate}}<div><b>UpperLayerPublicX509Certificate</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UpperLayerPublicX509Certificate}}
                     </div>
                     </fieldset>
 
@@ -1661,7 +1661,7 @@ define
                     {{#tase2version}}<div><b>tase2version</b>: {{tase2version}}</div>{{/tase2version}}
                     {{#bilateralTableID}}<div><b>bilateralTableID</b>: {{bilateralTableID}}</div>{{/bilateralTableID}}
                     {{#bilateralTableVersion}}<div><b>bilateralTableVersion</b>: {{bilateralTableVersion}}</div>{{/bilateralTableVersion}}
-                    {{#ICCPInformationMessage}}<div><b>ICCPInformationMessage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ICCPInformationMessage}}
+                    {{#ICCPInformationMessage}}<div><b>ICCPInformationMessage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ICCPInformationMessage}}
                     </div>
                     </fieldset>
 

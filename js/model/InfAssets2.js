@@ -222,7 +222,7 @@ define
                     {{#breastBlock}}<div><b>breastBlock</b>: {{breastBlock}}</div>{{/breastBlock}}
                     {{#construction}}<div><b>construction</b>: {{construction}}</div>{{/construction}}
                     {{#jpaReference}}<div><b>jpaReference</b>: {{jpaReference}}</div>{{/jpaReference}}
-                    {{#Streetlights}}<div><b>Streetlights</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Streetlights}}
+                    {{#Streetlights}}<div><b>Streetlights</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Streetlights}}
                     </div>
                     </fieldset>
 

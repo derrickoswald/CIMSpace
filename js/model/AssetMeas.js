@@ -396,9 +396,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#CalculationMethodOrder}}<div><b>CalculationMethodOrder</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CalculationMethodOrder}}
-                    {{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValue}}&quot;);}); return false;'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
-                    {{#Measurement}}<div><b>Measurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Measurement}}
+                    {{#CalculationMethodOrder}}<div><b>CalculationMethodOrder</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CalculationMethodOrder}}
+                    {{#MeasurementValue}}<div><b>MeasurementValue</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MeasurementValue}}");}); return false;'>{{MeasurementValue}}</a></div>{{/MeasurementValue}}
+                    {{#Measurement}}<div><b>Measurement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Measurement}}
                     </div>
                     </fieldset>
 
@@ -517,7 +517,7 @@ define
                     `
                     + Meas.Discrete.prototype.template.call (this) +
                     `
-                    {{#TestStandard}}<div><b>TestStandard</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TestStandard}}&quot;);}); return false;'>{{TestStandard}}</a></div>{{/TestStandard}}
+                    {{#TestStandard}}<div><b>TestStandard</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TestStandard}}");}); return false;'>{{TestStandard}}</a></div>{{/TestStandard}}
                     </div>
                     </fieldset>
 
@@ -639,7 +639,7 @@ define
                     {{#precision}}<div><b>precision</b>: {{precision}}</div>{{/precision}}
                     {{#reportingTemperature}}<div><b>reportingTemperature</b>: {{reportingTemperature}}</div>{{/reportingTemperature}}
                     {{#detectionLimit}}<div><b>detectionLimit</b>: {{detectionLimit}}</div>{{/detectionLimit}}
-                    {{#TestStandard}}<div><b>TestStandard</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TestStandard}}&quot;);}); return false;'>{{TestStandard}}</a></div>{{/TestStandard}}
+                    {{#TestStandard}}<div><b>TestStandard</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TestStandard}}");}); return false;'>{{TestStandard}}</a></div>{{/TestStandard}}
                     </div>
                     </fieldset>
 
@@ -761,7 +761,7 @@ define
                     + Meas.StringMeasurement.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#TestStandard}}<div><b>TestStandard</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TestStandard}}&quot;);}); return false;'>{{TestStandard}}</a></div>{{/TestStandard}}
+                    {{#TestStandard}}<div><b>TestStandard</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TestStandard}}");}); return false;'>{{TestStandard}}</a></div>{{/TestStandard}}
                     </div>
                     </fieldset>
 
@@ -884,7 +884,7 @@ define
                     `
                     {{#calculationTechnique}}<div><b>calculationTechnique</b>: {{calculationTechnique}}</div>{{/calculationTechnique}}
                     {{#calculationMode}}<div><b>calculationMode</b>: {{calculationMode}}</div>{{/calculationMode}}
-                    {{#CalculationMethodOrder}}<div><b>CalculationMethodOrder</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CalculationMethodOrder}}
+                    {{#CalculationMethodOrder}}<div><b>CalculationMethodOrder</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CalculationMethodOrder}}
                     </div>
                     </fieldset>
 
@@ -1010,8 +1010,8 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#order}}<div><b>order</b>: {{order}}</div>{{/order}}
-                    {{#CalculationMethodHierarchy}}<div><b>CalculationMethodHierarchy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CalculationMethodHierarchy}}&quot;);}); return false;'>{{CalculationMethodHierarchy}}</a></div>{{/CalculationMethodHierarchy}}
-                    {{#StatisicalCalculation}}<div><b>StatisicalCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StatisicalCalculation}}&quot;);}); return false;'>{{StatisicalCalculation}}</a></div>{{/StatisicalCalculation}}
+                    {{#CalculationMethodHierarchy}}<div><b>CalculationMethodHierarchy</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CalculationMethodHierarchy}}");}); return false;'>{{CalculationMethodHierarchy}}</a></div>{{/CalculationMethodHierarchy}}
+                    {{#StatisicalCalculation}}<div><b>StatisicalCalculation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{StatisicalCalculation}}");}); return false;'>{{StatisicalCalculation}}</a></div>{{/StatisicalCalculation}}
                     </div>
                     </fieldset>
 

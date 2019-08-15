@@ -160,9 +160,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#FrameworkPart}}<div><b>FrameworkPart</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FrameworkPart}}&quot;);}); return false;'>{{FrameworkPart}}</a></div>{{/FrameworkPart}}
-                    {{#Model}}<div><b>Model</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Model}}
-                    {{#AssemblyDescription}}<div><b>AssemblyDescription</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AssemblyDescription}}
+                    {{#FrameworkPart}}<div><b>FrameworkPart</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{FrameworkPart}}");}); return false;'>{{FrameworkPart}}</a></div>{{/FrameworkPart}}
+                    {{#Model}}<div><b>Model</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Model}}
+                    {{#AssemblyDescription}}<div><b>AssemblyDescription</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AssemblyDescription}}
                     </div>
                     </fieldset>
 
@@ -477,8 +477,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ModelSpecification}}<div><b>ModelSpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelSpecification}}
-                    {{#ModelingAuthority}}<div><b>ModelingAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelingAuthority}}&quot;);}); return false;'>{{ModelingAuthority}}</a></div>{{/ModelingAuthority}}
+                    {{#ModelSpecification}}<div><b>ModelSpecification</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ModelSpecification}}
+                    {{#ModelingAuthority}}<div><b>ModelingAuthority</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ModelingAuthority}}");}); return false;'>{{ModelingAuthority}}</a></div>{{/ModelingAuthority}}
                     </div>
                     </fieldset>
 
@@ -685,7 +685,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ModelingAuthoritySets}}<div><b>ModelingAuthoritySets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelingAuthoritySets}}
+                    {{#ModelingAuthoritySets}}<div><b>ModelingAuthoritySets</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ModelingAuthoritySets}}
                     </div>
                     </fieldset>
 
@@ -796,7 +796,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ModelSpecification}}<div><b>ModelSpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelSpecification}}
+                    {{#ModelSpecification}}<div><b>ModelSpecification</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ModelSpecification}}
                     </div>
                     </fieldset>
 
@@ -1103,7 +1103,7 @@ define
                     `
                     + ModelToBeDeleted.prototype.template.call (this) +
                     `
-                    {{#ModelSpecification}}<div><b>ModelSpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelSpecification}}&quot;);}); return false;'>{{ModelSpecification}}</a></div>{{/ModelSpecification}}
+                    {{#ModelSpecification}}<div><b>ModelSpecification</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ModelSpecification}}");}); return false;'>{{ModelSpecification}}</a></div>{{/ModelSpecification}}
                     </div>
                     </fieldset>
 
@@ -1220,8 +1220,8 @@ define
                     `
                     + ModelAuthoritySet.prototype.template.call (this) +
                     `
-                    {{#Frame}}<div><b>Frame</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Frame}}&quot;);}); return false;'>{{Frame}}</a></div>{{/Frame}}
-                    {{#ModelFrameType}}<div><b>ModelFrameType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelFrameType}}&quot;);}); return false;'>{{ModelFrameType}}</a></div>{{/ModelFrameType}}
+                    {{#Frame}}<div><b>Frame</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Frame}}");}); return false;'>{{Frame}}</a></div>{{/Frame}}
+                    {{#ModelFrameType}}<div><b>ModelFrameType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ModelFrameType}}");}); return false;'>{{ModelFrameType}}</a></div>{{/ModelFrameType}}
                     </div>
                     </fieldset>
 
@@ -1432,7 +1432,7 @@ define
                     `
                     + FrameworkPart.prototype.template.call (this) +
                     `
-                    {{#FrameworkPart}}<div><b>FrameworkPart</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FrameworkPart}}
+                    {{#FrameworkPart}}<div><b>FrameworkPart</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/FrameworkPart}}
                     </div>
                     </fieldset>
 

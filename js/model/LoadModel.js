@@ -67,7 +67,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#SubLoadArea}}<div><b>SubLoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubLoadArea}}&quot;);}); return false;'>{{SubLoadArea}}</a></div>{{/SubLoadArea}}
+                    {{#SubLoadArea}}<div><b>SubLoadArea</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SubLoadArea}}");}); return false;'>{{SubLoadArea}}</a></div>{{/SubLoadArea}}
                     </div>
                     </fieldset>
 
@@ -223,7 +223,7 @@ define
                     {{#qConstantPower}}<div><b>qConstantPower</b>: {{qConstantPower}}</div>{{/qConstantPower}}
                     {{#qFrequencyExponent}}<div><b>qFrequencyExponent</b>: {{qFrequencyExponent}}</div>{{/qFrequencyExponent}}
                     {{#qVoltageExponent}}<div><b>qVoltageExponent</b>: {{qVoltageExponent}}</div>{{/qVoltageExponent}}
-                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumer}}
+                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyConsumer}}
                     </div>
                     </fieldset>
 
@@ -364,7 +364,7 @@ define
                     `
                     {{#cutLevel1}}<div><b>cutLevel1</b>: {{cutLevel1}}</div>{{/cutLevel1}}
                     {{#cutLevel2}}<div><b>cutLevel2</b>: {{cutLevel2}}</div>{{/cutLevel2}}
-                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumers}}
+                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyConsumers}}
                     </div>
                     </fieldset>
 
@@ -483,8 +483,8 @@ define
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
                     `
-                    {{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);}); return false;'>{{Season}}</a></div>{{/Season}}
-                    {{#DayType}}<div><b>DayType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DayType}}&quot;);}); return false;'>{{DayType}}</a></div>{{/DayType}}
+                    {{#Season}}<div><b>Season</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Season}}");}); return false;'>{{Season}}</a></div>{{/Season}}
+                    {{#DayType}}<div><b>DayType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DayType}}");}); return false;'>{{DayType}}</a></div>{{/DayType}}
                     </div>
                     </fieldset>
 
@@ -602,7 +602,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#SeasonDayTypeSchedules}}<div><b>SeasonDayTypeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SeasonDayTypeSchedules}}
+                    {{#SeasonDayTypeSchedules}}<div><b>SeasonDayTypeSchedules</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SeasonDayTypeSchedules}}
                     </div>
                     </fieldset>
 
@@ -715,7 +715,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);}); return false;'>{{ControlArea}}</a></div>{{/ControlArea}}
+                    {{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ControlArea}}");}); return false;'>{{ControlArea}}</a></div>{{/ControlArea}}
                     </div>
                     </fieldset>
 
@@ -836,8 +836,8 @@ define
                     `
                     {{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
                     {{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
-                    {{#ScheduledLimits}}<div><b>ScheduledLimits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ScheduledLimits}}
-                    {{#SeasonDayTypeSchedules}}<div><b>SeasonDayTypeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SeasonDayTypeSchedules}}
+                    {{#ScheduledLimits}}<div><b>ScheduledLimits</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ScheduledLimits}}
+                    {{#SeasonDayTypeSchedules}}<div><b>SeasonDayTypeSchedules</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SeasonDayTypeSchedules}}
                     </div>
                     </fieldset>
 
@@ -959,8 +959,8 @@ define
                     `
                     + LoadGroup.prototype.template.call (this) +
                     `
-                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumers}}
-                    {{#ConformLoadSchedules}}<div><b>ConformLoadSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConformLoadSchedules}}
+                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyConsumers}}
+                    {{#ConformLoadSchedules}}<div><b>ConformLoadSchedules</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConformLoadSchedules}}
                     </div>
                     </fieldset>
 
@@ -1076,8 +1076,8 @@ define
                     `
                     + LoadGroup.prototype.template.call (this) +
                     `
-                    {{#NonConformLoadSchedules}}<div><b>NonConformLoadSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/NonConformLoadSchedules}}
-                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumers}}
+                    {{#NonConformLoadSchedules}}<div><b>NonConformLoadSchedules</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/NonConformLoadSchedules}}
+                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyConsumers}}
                     </div>
                     </fieldset>
 
@@ -1191,7 +1191,7 @@ define
                     `
                     + SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
-                    {{#NonConformLoadGroup}}<div><b>NonConformLoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NonConformLoadGroup}}&quot;);}); return false;'>{{NonConformLoadGroup}}</a></div>{{/NonConformLoadGroup}}
+                    {{#NonConformLoadGroup}}<div><b>NonConformLoadGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{NonConformLoadGroup}}");}); return false;'>{{NonConformLoadGroup}}</a></div>{{/NonConformLoadGroup}}
                     </div>
                     </fieldset>
 
@@ -1306,7 +1306,7 @@ define
                     `
                     + SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
-                    {{#ConformLoadGroup}}<div><b>ConformLoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConformLoadGroup}}&quot;);}); return false;'>{{ConformLoadGroup}}</a></div>{{/ConformLoadGroup}}
+                    {{#ConformLoadGroup}}<div><b>ConformLoadGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ConformLoadGroup}}");}); return false;'>{{ConformLoadGroup}}</a></div>{{/ConformLoadGroup}}
                     </div>
                     </fieldset>
 
@@ -1419,7 +1419,7 @@ define
                     `
                     + EnergyArea.prototype.template.call (this) +
                     `
-                    {{#SubLoadAreas}}<div><b>SubLoadAreas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SubLoadAreas}}
+                    {{#SubLoadAreas}}<div><b>SubLoadAreas</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SubLoadAreas}}
                     </div>
                     </fieldset>
 
@@ -1532,8 +1532,8 @@ define
                     `
                     + EnergyArea.prototype.template.call (this) +
                     `
-                    {{#LoadArea}}<div><b>LoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadArea}}&quot;);}); return false;'>{{LoadArea}}</a></div>{{/LoadArea}}
-                    {{#LoadGroups}}<div><b>LoadGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LoadGroups}}
+                    {{#LoadArea}}<div><b>LoadArea</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadArea}}");}); return false;'>{{LoadArea}}</a></div>{{/LoadArea}}
+                    {{#LoadGroups}}<div><b>LoadGroups</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LoadGroups}}
                     </div>
                     </fieldset>
 

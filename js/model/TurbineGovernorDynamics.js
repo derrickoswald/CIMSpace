@@ -105,8 +105,8 @@ define
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
-                    {{#LowPressureSynchronousMachineDynamics}}<div><b>LowPressureSynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LowPressureSynchronousMachineDynamics}}&quot;);}); return false;'>{{LowPressureSynchronousMachineDynamics}}</a></div>{{/LowPressureSynchronousMachineDynamics}}
-                    {{#HighPressureSynchronousMachineDynamics}}<div><b>HighPressureSynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HighPressureSynchronousMachineDynamics}}&quot;);}); return false;'>{{HighPressureSynchronousMachineDynamics}}</a></div>{{/HighPressureSynchronousMachineDynamics}}
+                    {{#LowPressureSynchronousMachineDynamics}}<div><b>LowPressureSynchronousMachineDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LowPressureSynchronousMachineDynamics}}");}); return false;'>{{LowPressureSynchronousMachineDynamics}}</a></div>{{/LowPressureSynchronousMachineDynamics}}
+                    {{#HighPressureSynchronousMachineDynamics}}<div><b>HighPressureSynchronousMachineDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{HighPressureSynchronousMachineDynamics}}");}); return false;'>{{HighPressureSynchronousMachineDynamics}}</a></div>{{/HighPressureSynchronousMachineDynamics}}
                     </div>
                     </fieldset>
 
@@ -226,9 +226,9 @@ define
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
-                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);}); return false;'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
-                    {{#TurbineLoadControllerDynamics}}<div><b>TurbineLoadControllerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerDynamics}}&quot;);}); return false;'>{{TurbineLoadControllerDynamics}}</a></div>{{/TurbineLoadControllerDynamics}}
-                    {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);}); return false;'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
+                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SynchronousMachineDynamics}}");}); return false;'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+                    {{#TurbineLoadControllerDynamics}}<div><b>TurbineLoadControllerDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TurbineLoadControllerDynamics}}");}); return false;'>{{TurbineLoadControllerDynamics}}</a></div>{{/TurbineLoadControllerDynamics}}
+                    {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AsynchronousMachineDynamics}}");}); return false;'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
                     </div>
                     </fieldset>
 

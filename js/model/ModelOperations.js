@@ -63,8 +63,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#OperationDatasetArgDescription}}<div><b>OperationDatasetArgDescription</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperationDatasetArgDescription}}
-                    {{#ModelOperation}}<div><b>ModelOperation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelOperation}}
+                    {{#OperationDatasetArgDescription}}<div><b>OperationDatasetArgDescription</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OperationDatasetArgDescription}}
+                    {{#ModelOperation}}<div><b>ModelOperation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ModelOperation}}
                     </div>
                     </fieldset>
 
@@ -180,7 +180,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ModelOperation}}<div><b>ModelOperation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelOperation}}
+                    {{#ModelOperation}}<div><b>ModelOperation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ModelOperation}}
                     </div>
                     </fieldset>
 
@@ -297,7 +297,7 @@ define
                     `
                     {{#multiplicityMaximum}}<div><b>multiplicityMaximum</b>: {{multiplicityMaximum}}</div>{{/multiplicityMaximum}}
                     {{#multiplicityMinimum}}<div><b>multiplicityMinimum</b>: {{multiplicityMinimum}}</div>{{/multiplicityMinimum}}
-                    {{#ModelOperationDefinition}}<div><b>ModelOperationDefinition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelOperationDefinition}}&quot;);}); return false;'>{{ModelOperationDefinition}}</a></div>{{/ModelOperationDefinition}}
+                    {{#ModelOperationDefinition}}<div><b>ModelOperationDefinition</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ModelOperationDefinition}}");}); return false;'>{{ModelOperationDefinition}}</a></div>{{/ModelOperationDefinition}}
                     </div>
                     </fieldset>
 
@@ -421,9 +421,9 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-                    {{#OperationSequence}}<div><b>OperationSequence</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationSequence}}&quot;);}); return false;'>{{OperationSequence}}</a></div>{{/OperationSequence}}
-                    {{#ModelOperationDescription}}<div><b>ModelOperationDescription</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelOperationDescription}}&quot;);}); return false;'>{{ModelOperationDescription}}</a></div>{{/ModelOperationDescription}}
-                    {{#ModelOperationArg}}<div><b>ModelOperationArg</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelOperationArg}}
+                    {{#OperationSequence}}<div><b>OperationSequence</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{OperationSequence}}");}); return false;'>{{OperationSequence}}</a></div>{{/OperationSequence}}
+                    {{#ModelOperationDescription}}<div><b>ModelOperationDescription</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ModelOperationDescription}}");}); return false;'>{{ModelOperationDescription}}</a></div>{{/ModelOperationDescription}}
+                    {{#ModelOperationArg}}<div><b>ModelOperationArg</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ModelOperationArg}}
                     </div>
                     </fieldset>
 
@@ -549,7 +549,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-                    {{#ModelOperation}}<div><b>ModelOperation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ModelOperation}}&quot;);}); return false;'>{{ModelOperation}}</a></div>{{/ModelOperation}}
+                    {{#ModelOperation}}<div><b>ModelOperation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ModelOperation}}");}); return false;'>{{ModelOperation}}</a></div>{{/ModelOperation}}
                     </div>
                     </fieldset>
 
@@ -660,7 +660,7 @@ define
                     `
                     + ModelOperationArgDescription.prototype.template.call (this) +
                     `
-                    {{#IncrementalDatasetArg}}<div><b>IncrementalDatasetArg</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IncrementalDatasetArg}}
+                    {{#IncrementalDatasetArg}}<div><b>IncrementalDatasetArg</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/IncrementalDatasetArg}}
                     </div>
                     </fieldset>
 
@@ -767,7 +767,7 @@ define
                     `
                     + ModelOperationArgDescription.prototype.template.call (this) +
                     `
-                    {{#OperationDatasetArg}}<div><b>OperationDatasetArg</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperationDatasetArg}}
+                    {{#OperationDatasetArg}}<div><b>OperationDatasetArg</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OperationDatasetArg}}
                     </div>
                     </fieldset>
 
@@ -880,8 +880,8 @@ define
                     `
                     + ModelOperationArg.prototype.template.call (this) +
                     `
-                    {{#OperationDatasetArgDescription}}<div><b>OperationDatasetArgDescription</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationDatasetArgDescription}}&quot;);}); return false;'>{{OperationDatasetArgDescription}}</a></div>{{/OperationDatasetArgDescription}}
-                    {{#Dataset}}<div><b>Dataset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Dataset}}&quot;);}); return false;'>{{Dataset}}</a></div>{{/Dataset}}
+                    {{#OperationDatasetArgDescription}}<div><b>OperationDatasetArgDescription</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{OperationDatasetArgDescription}}");}); return false;'>{{OperationDatasetArgDescription}}</a></div>{{/OperationDatasetArgDescription}}
+                    {{#Dataset}}<div><b>Dataset</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Dataset}}");}); return false;'>{{Dataset}}</a></div>{{/Dataset}}
                     </div>
                     </fieldset>
 
@@ -999,8 +999,8 @@ define
                     `
                     + ModelOperationArg.prototype.template.call (this) +
                     `
-                    {{#IncrementalDatasetArgDescription}}<div><b>IncrementalDatasetArgDescription</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IncrementalDatasetArgDescription}}&quot;);}); return false;'>{{IncrementalDatasetArgDescription}}</a></div>{{/IncrementalDatasetArgDescription}}
-                    {{#IncrementalDataset}}<div><b>IncrementalDataset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IncrementalDataset}}&quot;);}); return false;'>{{IncrementalDataset}}</a></div>{{/IncrementalDataset}}
+                    {{#IncrementalDatasetArgDescription}}<div><b>IncrementalDatasetArgDescription</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{IncrementalDatasetArgDescription}}");}); return false;'>{{IncrementalDatasetArgDescription}}</a></div>{{/IncrementalDatasetArgDescription}}
+                    {{#IncrementalDataset}}<div><b>IncrementalDataset</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{IncrementalDataset}}");}); return false;'>{{IncrementalDataset}}</a></div>{{/IncrementalDataset}}
                     </div>
                     </fieldset>
 

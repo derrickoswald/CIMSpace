@@ -140,8 +140,8 @@ define
                     `
                     + Core.EquipmentContainer.prototype.template.call (this) +
                     `
-                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTopologicalNode}}
-                    {{#DCNodes}}<div><b>DCNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCNodes}}
+                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCTopologicalNode}}
+                    {{#DCNodes}}<div><b>DCNodes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCNodes}}
                     </div>
                     </fieldset>
 
@@ -261,10 +261,10 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCEquipmentContainer}}&quot;);}); return false;'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
-                    {{#DCNodes}}<div><b>DCNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCNodes}}
-                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTerminals}}
-                    {{#DCTopologicalIsland}}<div><b>DCTopologicalIsland</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalIsland}}&quot;);}); return false;'>{{DCTopologicalIsland}}</a></div>{{/DCTopologicalIsland}}
+                    {{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCEquipmentContainer}}");}); return false;'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
+                    {{#DCNodes}}<div><b>DCNodes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCNodes}}
+                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCTerminals}}
+                    {{#DCTopologicalIsland}}<div><b>DCTopologicalIsland</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCTopologicalIsland}}");}); return false;'>{{DCTopologicalIsland}}</a></div>{{/DCTopologicalIsland}}
                     </div>
                     </fieldset>
 
@@ -390,8 +390,8 @@ define
                     `
                     + Core.ACDCTerminal.prototype.template.call (this) +
                     `
-                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);}); return false;'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
-                    {{#DCNode}}<div><b>DCNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCNode}}&quot;);}); return false;'>{{DCNode}}</a></div>{{/DCNode}}
+                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCTopologicalNode}}");}); return false;'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
+                    {{#DCNode}}<div><b>DCNode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCNode}}");}); return false;'>{{DCNode}}</a></div>{{/DCNode}}
                     </div>
                     </fieldset>
 
@@ -512,8 +512,8 @@ define
                     + Core.Equipment.prototype.template.call (this) +
                     `
                     {{#ratedUdc}}<div><b>ratedUdc</b>: {{ratedUdc}}</div>{{/ratedUdc}}
-                    {{#ProtectiveActionAdjustment}}<div><b>ProtectiveActionAdjustment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProtectiveActionAdjustment}}
-                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTerminals}}
+                    {{#ProtectiveActionAdjustment}}<div><b>ProtectiveActionAdjustment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProtectiveActionAdjustment}}
+                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCTerminals}}
                     </div>
                     </fieldset>
 
@@ -631,7 +631,7 @@ define
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
-                    {{#VsConverterDCSides}}<div><b>VsConverterDCSides</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VsConverterDCSides}}
+                    {{#VsConverterDCSides}}<div><b>VsConverterDCSides</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/VsConverterDCSides}}
                     </div>
                     </fieldset>
 
@@ -746,7 +746,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#DCTopologicalNodes}}<div><b>DCTopologicalNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTopologicalNodes}}
+                    {{#DCTopologicalNodes}}<div><b>DCTopologicalNodes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCTopologicalNodes}}
                     </div>
                     </fieldset>
 
@@ -866,7 +866,7 @@ define
                     {{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
                     {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
                     {{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
-                    {{#DCLineSegments}}<div><b>DCLineSegments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCLineSegments}}
+                    {{#DCLineSegments}}<div><b>DCLineSegments</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCLineSegments}}
                     </div>
                     </fieldset>
 
@@ -989,9 +989,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);}); return false;'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
-                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTerminals}}
-                    {{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCEquipmentContainer}}&quot;);}); return false;'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
+                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCTopologicalNode}}");}); return false;'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
+                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCTerminals}}
+                    {{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCEquipmentContainer}}");}); return false;'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
                     </div>
                     </fieldset>
 
@@ -1163,8 +1163,8 @@ define
                     {{#numberOfValves}}<div><b>numberOfValves</b>: {{numberOfValves}}</div>{{/numberOfValves}}
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DCTerminals}}
-                    {{#PccTerminal}}<div><b>PccTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PccTerminal}}&quot;);}); return false;'>{{PccTerminal}}</a></div>{{/PccTerminal}}
+                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCTerminals}}
+                    {{#PccTerminal}}<div><b>PccTerminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PccTerminal}}");}); return false;'>{{PccTerminal}}</a></div>{{/PccTerminal}}
                     </div>
                     </fieldset>
 
@@ -1314,7 +1314,7 @@ define
                     `
                     + DCEquipmentContainer.prototype.template.call (this) +
                     `
-                    {{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);}); return false;'>{{Region}}</a></div>{{/Region}}
+                    {{#Region}}<div><b>Region</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Region}}");}); return false;'>{{Region}}</a></div>{{/Region}}
                     </div>
                     </fieldset>
 
@@ -1430,7 +1430,7 @@ define
                     + DCEquipmentContainer.prototype.template.call (this) +
                     `
                     {{#operationMode}}<div><b>operationMode</b>: {{operationMode}}</div>{{/operationMode}}
-                    {{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);}); return false;'>{{Substation}}</a></div>{{/Substation}}
+                    {{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Substation}}");}); return false;'>{{Substation}}</a></div>{{/Substation}}
                     </div>
                     </fieldset>
 
@@ -1547,7 +1547,7 @@ define
                     `
                     + DCBaseTerminal.prototype.template.call (this) +
                     `
-                    {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);}); return false;'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
+                    {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCConductingEquipment}}");}); return false;'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
                     </div>
                     </fieldset>
 
@@ -1665,7 +1665,7 @@ define
                     + DCBaseTerminal.prototype.template.call (this) +
                     `
                     {{#polarity}}<div><b>polarity</b>: {{polarity}}</div>{{/polarity}}
-                    {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCConductingEquipment}}&quot;);}); return false;'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
+                    {{#DCConductingEquipment}}<div><b>DCConductingEquipment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCConductingEquipment}}");}); return false;'>{{DCConductingEquipment}}</a></div>{{/DCConductingEquipment}}
                     </div>
                     </fieldset>
 
@@ -1794,7 +1794,7 @@ define
                     {{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
                     {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
                     {{#length}}<div><b>length</b>: {{length}}</div>{{/length}}
-                    {{#PerLengthParameter}}<div><b>PerLengthParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PerLengthParameter}}&quot;);}); return false;'>{{PerLengthParameter}}</a></div>{{/PerLengthParameter}}
+                    {{#PerLengthParameter}}<div><b>PerLengthParameter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PerLengthParameter}}");}); return false;'>{{PerLengthParameter}}</a></div>{{/PerLengthParameter}}
                     </div>
                     </fieldset>
 
@@ -2759,7 +2759,7 @@ define
                     {{#targetIdc}}<div><b>targetIdc</b>: {{targetIdc}}</div>{{/targetIdc}}
                     {{#minIdc}}<div><b>minIdc</b>: {{minIdc}}</div>{{/minIdc}}
                     {{#operatingMode}}<div><b>operatingMode</b>: {{operatingMode}}</div>{{/operatingMode}}
-                    {{#CSCDynamics}}<div><b>CSCDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CSCDynamics}}&quot;);}); return false;'>{{CSCDynamics}}</a></div>{{/CSCDynamics}}
+                    {{#CSCDynamics}}<div><b>CSCDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CSCDynamics}}");}); return false;'>{{CSCDynamics}}</a></div>{{/CSCDynamics}}
                     </div>
                     </fieldset>
 
@@ -2939,8 +2939,8 @@ define
                     {{#maxValveCurrent}}<div><b>maxValveCurrent</b>: {{maxValveCurrent}}</div>{{/maxValveCurrent}}
                     {{#maxModulationIndex}}<div><b>maxModulationIndex</b>: {{maxModulationIndex}}</div>{{/maxModulationIndex}}
                     {{#qPccControl}}<div><b>qPccControl</b>: {{qPccControl}}</div>{{/qPccControl}}
-                    {{#CapabilityCurve}}<div><b>CapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CapabilityCurve}}&quot;);}); return false;'>{{CapabilityCurve}}</a></div>{{/CapabilityCurve}}
-                    {{#VSCDynamics}}<div><b>VSCDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCDynamics}}&quot;);}); return false;'>{{VSCDynamics}}</a></div>{{/VSCDynamics}}
+                    {{#CapabilityCurve}}<div><b>CapabilityCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CapabilityCurve}}");}); return false;'>{{CapabilityCurve}}</a></div>{{/CapabilityCurve}}
+                    {{#VSCDynamics}}<div><b>VSCDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCDynamics}}");}); return false;'>{{VSCDynamics}}</a></div>{{/VSCDynamics}}
                     </div>
                     </fieldset>
 

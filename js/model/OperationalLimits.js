@@ -97,8 +97,8 @@ define
                     {{#minimumReactivePower}}<div><b>minimumReactivePower</b>: {{minimumReactivePower}}</div>{{/minimumReactivePower}}
                     {{#monitorActivePower}}<div><b>monitorActivePower</b>: {{monitorActivePower}}</div>{{/monitorActivePower}}
                     {{#monitorReactivePower}}<div><b>monitorReactivePower</b>: {{monitorReactivePower}}</div>{{/monitorReactivePower}}
-                    {{#BranchGroupTerminal}}<div><b>BranchGroupTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BranchGroupTerminal}}
-                    {{#PinBranchGroup}}<div><b>PinBranchGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PinBranchGroup}}
+                    {{#BranchGroupTerminal}}<div><b>BranchGroupTerminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BranchGroupTerminal}}
+                    {{#PinBranchGroup}}<div><b>PinBranchGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PinBranchGroup}}
                     </div>
                     </fieldset>
 
@@ -236,9 +236,9 @@ define
                     `
                     {{#acceptableDuration}}<div><b>acceptableDuration</b>: {{acceptableDuration}}</div>{{/acceptableDuration}}
                     {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
-                    {{#TargetOperationalLimitmTypeScaling}}<div><b>TargetOperationalLimitmTypeScaling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimitmTypeScaling}}&quot;);}); return false;'>{{TargetOperationalLimitmTypeScaling}}</a></div>{{/TargetOperationalLimitmTypeScaling}}
-                    {{#SourceOperationalLimitTypeScaling}}<div><b>SourceOperationalLimitTypeScaling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SourceOperationalLimitTypeScaling}}
-                    {{#OperationalLimit}}<div><b>OperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperationalLimit}}
+                    {{#TargetOperationalLimitmTypeScaling}}<div><b>TargetOperationalLimitmTypeScaling</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TargetOperationalLimitmTypeScaling}}");}); return false;'>{{TargetOperationalLimitmTypeScaling}}</a></div>{{/TargetOperationalLimitmTypeScaling}}
+                    {{#SourceOperationalLimitTypeScaling}}<div><b>SourceOperationalLimitTypeScaling</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SourceOperationalLimitTypeScaling}}
+                    {{#OperationalLimit}}<div><b>OperationalLimit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OperationalLimit}}
                     </div>
                     </fieldset>
 
@@ -368,8 +368,8 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
-                    {{#BranchGroup}}<div><b>BranchGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BranchGroup}}&quot;);}); return false;'>{{BranchGroup}}</a></div>{{/BranchGroup}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#BranchGroup}}<div><b>BranchGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BranchGroup}}");}); return false;'>{{BranchGroup}}</a></div>{{/BranchGroup}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Terminal}}");}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     </div>
                     </fieldset>
 
@@ -493,9 +493,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
-                    {{#OperationalLimitValue}}<div><b>OperationalLimitValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperationalLimitValue}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Equipment}}");}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Terminal}}");}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#OperationalLimitValue}}<div><b>OperationalLimitValue</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OperationalLimitValue}}
                     </div>
                     </fieldset>
 
@@ -626,10 +626,10 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#LimitScalingLimit}}<div><b>LimitScalingLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LimitScalingLimit}}
-                    {{#LimitDependencyModel}}<div><b>LimitDependencyModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LimitDependencyModel}}
-                    {{#OperationalLimitType}}<div><b>OperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationalLimitType}}&quot;);}); return false;'>{{OperationalLimitType}}</a></div>{{/OperationalLimitType}}
-                    {{#OperationalLimitSet}}<div><b>OperationalLimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OperationalLimitSet}}&quot;);}); return false;'>{{OperationalLimitSet}}</a></div>{{/OperationalLimitSet}}
+                    {{#LimitScalingLimit}}<div><b>LimitScalingLimit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LimitScalingLimit}}
+                    {{#LimitDependencyModel}}<div><b>LimitDependencyModel</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LimitDependencyModel}}
+                    {{#OperationalLimitType}}<div><b>OperationalLimitType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{OperationalLimitType}}");}); return false;'>{{OperationalLimitType}}</a></div>{{/OperationalLimitType}}
+                    {{#OperationalLimitSet}}<div><b>OperationalLimitSet</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{OperationalLimitSet}}");}); return false;'>{{OperationalLimitSet}}</a></div>{{/OperationalLimitSet}}
                     </div>
                     </fieldset>
 

@@ -72,8 +72,8 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#scalingPercent}}<div><b>scalingPercent</b>: {{scalingPercent}}</div>{{/scalingPercent}}
-                    {{#TargetOperationalLimit}}<div><b>TargetOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetOperationalLimit}}&quot;);}); return false;'>{{TargetOperationalLimit}}</a></div>{{/TargetOperationalLimit}}
-                    {{#SourceOperationalLimitType}}<div><b>SourceOperationalLimitType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimitType}}&quot;);}); return false;'>{{SourceOperationalLimitType}}</a></div>{{/SourceOperationalLimitType}}
+                    {{#TargetOperationalLimit}}<div><b>TargetOperationalLimit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TargetOperationalLimit}}");}); return false;'>{{TargetOperationalLimit}}</a></div>{{/TargetOperationalLimit}}
+                    {{#SourceOperationalLimitType}}<div><b>SourceOperationalLimitType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SourceOperationalLimitType}}");}); return false;'>{{SourceOperationalLimitType}}</a></div>{{/SourceOperationalLimitType}}
                     </div>
                     </fieldset>
 
@@ -193,8 +193,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#Season}}<div><b>Season</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Season}}&quot;);}); return false;'>{{Season}}</a></div>{{/Season}}
-                    {{#ScheduledLimitDependency}}<div><b>ScheduledLimitDependency</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ScheduledLimitDependency}}&quot;);}); return false;'>{{ScheduledLimitDependency}}</a></div>{{/ScheduledLimitDependency}}
+                    {{#Season}}<div><b>Season</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Season}}");}); return false;'>{{Season}}</a></div>{{/Season}}
+                    {{#ScheduledLimitDependency}}<div><b>ScheduledLimitDependency</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ScheduledLimitDependency}}");}); return false;'>{{ScheduledLimitDependency}}</a></div>{{/ScheduledLimitDependency}}
                     </div>
                     </fieldset>
 
@@ -316,7 +316,7 @@ define
                     `
                     {{#limitPercent}}<div><b>limitPercent</b>: {{limitPercent}}</div>{{/limitPercent}}
                     {{#temperature}}<div><b>temperature</b>: {{temperature}}</div>{{/temperature}}
-                    {{#TemperatureDependentLimitTable}}<div><b>TemperatureDependentLimitTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TemperatureDependentLimitTable}}&quot;);}); return false;'>{{TemperatureDependentLimitTable}}</a></div>{{/TemperatureDependentLimitTable}}
+                    {{#TemperatureDependentLimitTable}}<div><b>TemperatureDependentLimitTable</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TemperatureDependentLimitTable}}");}); return false;'>{{TemperatureDependentLimitTable}}</a></div>{{/TemperatureDependentLimitTable}}
                     </div>
                     </fieldset>
 
@@ -437,8 +437,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
-                    {{#OperationalLimit}}<div><b>OperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperationalLimit}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Equipment}}");}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
+                    {{#OperationalLimit}}<div><b>OperationalLimit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OperationalLimit}}
                     </div>
                     </fieldset>
 
@@ -558,8 +558,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#SeriesEquipmentDependentLimit}}<div><b>SeriesEquipmentDependentLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SeriesEquipmentDependentLimit}}&quot;);}); return false;'>{{SeriesEquipmentDependentLimit}}</a></div>{{/SeriesEquipmentDependentLimit}}
-                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
+                    {{#SeriesEquipmentDependentLimit}}<div><b>SeriesEquipmentDependentLimit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SeriesEquipmentDependentLimit}}");}); return false;'>{{SeriesEquipmentDependentLimit}}</a></div>{{/SeriesEquipmentDependentLimit}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Equipment}}");}); return false;'>{{Equipment}}</a></div>{{/Equipment}}
                     </div>
                     </fieldset>
 
@@ -675,7 +675,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
-                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Equipment}}
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Equipment}}
                     </div>
                     </fieldset>
 
@@ -1413,7 +1413,7 @@ define
                     `
                     + LimitDependency.prototype.template.call (this) +
                     `
-                    {{#EquipmentLimitSeriesComponent}}<div><b>EquipmentLimitSeriesComponent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EquipmentLimitSeriesComponent}}
+                    {{#EquipmentLimitSeriesComponent}}<div><b>EquipmentLimitSeriesComponent</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EquipmentLimitSeriesComponent}}
                     </div>
                     </fieldset>
 
@@ -1527,7 +1527,7 @@ define
                     + LimitDependency.prototype.template.call (this) +
                     `
                     {{#limitScalingPercent}}<div><b>limitScalingPercent</b>: {{limitScalingPercent}}</div>{{/limitScalingPercent}}
-                    {{#SourceOperationalLimit}}<div><b>SourceOperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SourceOperationalLimit}}&quot;);}); return false;'>{{SourceOperationalLimit}}</a></div>{{/SourceOperationalLimit}}
+                    {{#SourceOperationalLimit}}<div><b>SourceOperationalLimit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SourceOperationalLimit}}");}); return false;'>{{SourceOperationalLimit}}</a></div>{{/SourceOperationalLimit}}
                     </div>
                     </fieldset>
 
@@ -1642,7 +1642,7 @@ define
                     `
                     + EnvironmentalDependentLimit.prototype.template.call (this) +
                     `
-                    {{#TemperatureLimitTablePoint}}<div><b>TemperatureLimitTablePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TemperatureLimitTablePoint}}
+                    {{#TemperatureLimitTablePoint}}<div><b>TemperatureLimitTablePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TemperatureLimitTablePoint}}
                     </div>
                     </fieldset>
 
@@ -1749,7 +1749,7 @@ define
                     `
                     + LimitDependency.prototype.template.call (this) +
                     `
-                    {{#ScheduledLimitValues}}<div><b>ScheduledLimitValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ScheduledLimitValues}}
+                    {{#ScheduledLimitValues}}<div><b>ScheduledLimitValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ScheduledLimitValues}}
                     </div>
                     </fieldset>
 

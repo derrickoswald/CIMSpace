@@ -139,8 +139,8 @@ define
                     {{#minYValue}}<div><b>minYValue</b>: {{minYValue}}</div>{{/minYValue}}
                     {{#maxYValue}}<div><b>maxYValue</b>: {{maxYValue}}</div>{{/maxYValue}}
                     {{#intervalNumber}}<div><b>intervalNumber</b>: {{intervalNumber}}</div>{{/intervalNumber}}
-                    {{#DispatchSchedule}}<div><b>DispatchSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DispatchSchedule}}&quot;);}); return false;'>{{DispatchSchedule}}</a></div>{{/DispatchSchedule}}
-                    {{#DERMonitorableParameter}}<div><b>DERMonitorableParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DERMonitorableParameter}}&quot;);}); return false;'>{{DERMonitorableParameter}}</a></div>{{/DERMonitorableParameter}}
+                    {{#DispatchSchedule}}<div><b>DispatchSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DispatchSchedule}}");}); return false;'>{{DispatchSchedule}}</a></div>{{/DispatchSchedule}}
+                    {{#DERMonitorableParameter}}<div><b>DERMonitorableParameter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DERMonitorableParameter}}");}); return false;'>{{DERMonitorableParameter}}</a></div>{{/DERMonitorableParameter}}
                     </div>
                     </fieldset>
 
@@ -284,9 +284,9 @@ define
                     {{#yUnitInstalledMax}}<div><b>yUnitInstalledMax</b>: {{yUnitInstalledMax}}</div>{{/yUnitInstalledMax}}
                     {{#flowDirection}}<div><b>flowDirection</b>: {{flowDirection}}</div>{{/flowDirection}}
                     {{#yUnitInstalledMin}}<div><b>yUnitInstalledMin</b>: {{yUnitInstalledMin}}</div>{{/yUnitInstalledMin}}
-                    {{#DispatchSchedule}}<div><b>DispatchSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DispatchSchedule}}
-                    {{#DERCurveData}}<div><b>DERCurveData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DERCurveData}}&quot;);}); return false;'>{{DERCurveData}}</a></div>{{/DERCurveData}}
-                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroup}}
+                    {{#DispatchSchedule}}<div><b>DispatchSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DispatchSchedule}}
+                    {{#DERCurveData}}<div><b>DERCurveData</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DERCurveData}}");}); return false;'>{{DERCurveData}}</a></div>{{/DERCurveData}}
+                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceGroup}}
                     </div>
                     </fieldset>
 
@@ -450,7 +450,7 @@ define
                     {{#voltWattCurveFunction}}<div><b>voltWattCurveFunction</b>: {{voltWattCurveFunction}}</div>{{/voltWattCurveFunction}}
                     {{#frequencyWattCurveFunction}}<div><b>frequencyWattCurveFunction</b>: {{frequencyWattCurveFunction}}</div>{{/frequencyWattCurveFunction}}
                     {{#connectDisconnect}}<div><b>connectDisconnect</b>: {{connectDisconnect}}</div>{{/connectDisconnect}}
-                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroup}}
+                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceGroup}}
                     </div>
                     </fieldset>
 
@@ -577,7 +577,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroup}}
+                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceGroup}}
                     </div>
                     </fieldset>
 
@@ -717,8 +717,8 @@ define
                     {{#minActivePower}}<div><b>minActivePower</b>: {{minActivePower}}</div>{{/minActivePower}}
                     {{#minApparentPower}}<div><b>minApparentPower</b>: {{minApparentPower}}</div>{{/minApparentPower}}
                     {{#minReactivePower}}<div><b>minReactivePower</b>: {{minReactivePower}}</div>{{/minReactivePower}}
-                    {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);}); return false;'>{{EndDevice}}</a></div>{{/EndDevice}}
-                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceGroup}}&quot;);}); return false;'>{{EndDeviceGroup}}</a></div>{{/EndDeviceGroup}}
+                    {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDevice}}");}); return false;'>{{EndDevice}}</a></div>{{/EndDevice}}
+                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDeviceGroup}}");}); return false;'>{{EndDeviceGroup}}</a></div>{{/EndDeviceGroup}}
                     </div>
                     </fieldset>
 
@@ -868,8 +868,8 @@ define
                     {{#numberOfIntervals}}<div><b>numberOfIntervals</b>: {{numberOfIntervals}}</div>{{/numberOfIntervals}}
                     {{#timeIntervalUnit}}<div><b>timeIntervalUnit</b>: {{timeIntervalUnit}}</div>{{/timeIntervalUnit}}
                     {{#timeIntervalDuration}}<div><b>timeIntervalDuration</b>: {{timeIntervalDuration}}</div>{{/timeIntervalDuration}}
-                    {{#DERMonitorableParameter}}<div><b>DERMonitorableParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DERMonitorableParameter}}&quot;);}); return false;'>{{DERMonitorableParameter}}</a></div>{{/DERMonitorableParameter}}
-                    {{#DERCurveData}}<div><b>DERCurveData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DERCurveData}}
+                    {{#DERMonitorableParameter}}<div><b>DERMonitorableParameter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DERMonitorableParameter}}");}); return false;'>{{DERMonitorableParameter}}</a></div>{{/DERMonitorableParameter}}
+                    {{#DERCurveData}}<div><b>DERCurveData</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DERCurveData}}
                     </div>
                     </fieldset>
 
@@ -1000,7 +1000,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#predictionCreationDate}}<div><b>predictionCreationDate</b>: {{predictionCreationDate}}</div>{{/predictionCreationDate}}
-                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroup}}
+                    {{#EndDeviceGroup}}<div><b>EndDeviceGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceGroup}}
                     </div>
                     </fieldset>
 

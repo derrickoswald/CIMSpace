@@ -158,7 +158,7 @@ define
                     `
                     + HVDCDynamics.prototype.template.call (this) +
                     `
-                    {{#VsConverter}}<div><b>VsConverter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VsConverter}}&quot;);}); return false;'>{{VsConverter}}</a></div>{{/VsConverter}}
+                    {{#VsConverter}}<div><b>VsConverter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VsConverter}}");}); return false;'>{{VsConverter}}</a></div>{{/VsConverter}}
                     </div>
                     </fieldset>
 
@@ -271,7 +271,7 @@ define
                     `
                     + HVDCDynamics.prototype.template.call (this) +
                     `
-                    {{#CSConverter}}<div><b>CSConverter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CSConverter}}&quot;);}); return false;'>{{CSConverter}}</a></div>{{/CSConverter}}
+                    {{#CSConverter}}<div><b>CSConverter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CSConverter}}");}); return false;'>{{CSConverter}}</a></div>{{/CSConverter}}
                     </div>
                     </fieldset>
 

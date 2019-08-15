@@ -245,8 +245,8 @@ define
                     {{#isDelayedDiscon}}<div><b>isDelayedDiscon</b>: {{isDelayedDiscon}}</div>{{/isDelayedDiscon}}
                     {{#eventCount}}<div><b>eventCount</b>: {{eventCount}}</div>{{/eventCount}}
                     {{#isConnected}}<div><b>isConnected</b>: {{isConnected}}</div>{{/isConnected}}
-                    {{#rcdInfo}}<div><b>rcdInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{rcdInfo}}&quot;);}); return false;'>{{rcdInfo}}</a></div>{{/rcdInfo}}
-                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Switches}}
+                    {{#rcdInfo}}<div><b>rcdInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{rcdInfo}}");}); return false;'>{{rcdInfo}}</a></div>{{/rcdInfo}}
+                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Switches}}
                     </div>
                     </fieldset>
 

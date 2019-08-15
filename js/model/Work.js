@@ -201,8 +201,8 @@ define
                     `
                     + Assets.Asset.prototype.template.call (this) +
                     `
-                    {{#CUWorkEquipmentAsset}}<div><b>CUWorkEquipmentAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUWorkEquipmentAsset}}&quot;);}); return false;'>{{CUWorkEquipmentAsset}}</a></div>{{/CUWorkEquipmentAsset}}
-                    {{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);}); return false;'>{{Crew}}</a></div>{{/Crew}}
+                    {{#CUWorkEquipmentAsset}}<div><b>CUWorkEquipmentAsset</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CUWorkEquipmentAsset}}");}); return false;'>{{CUWorkEquipmentAsset}}</a></div>{{/CUWorkEquipmentAsset}}
+                    {{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Crew}}");}); return false;'>{{Crew}}</a></div>{{/Crew}}
                     </div>
                     </fieldset>
 
@@ -447,8 +447,8 @@ define
                     `
                     + Common.TimeSchedule.prototype.template.call (this) +
                     `
-                    {{#kind}}<div><b>kind</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{kind}}&quot;);}); return false;'>{{kind}}</a></div>{{/kind}}
-                    {{#BaseWork}}<div><b>BaseWork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseWork}}&quot;);}); return false;'>{{BaseWork}}</a></div>{{/BaseWork}}
+                    {{#kind}}<div><b>kind</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{kind}}");}); return false;'>{{kind}}</a></div>{{/kind}}
+                    {{#BaseWork}}<div><b>BaseWork</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BaseWork}}");}); return false;'>{{BaseWork}}</a></div>{{/BaseWork}}
                     </div>
                     </fieldset>
 
@@ -574,11 +574,11 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#priority}}<div><b>priority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{priority}}&quot;);}); return false;'>{{priority}}</a></div>{{/priority}}
+                    {{#priority}}<div><b>priority</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{priority}}");}); return false;'>{{priority}}</a></div>{{/priority}}
                     {{#statusKind}}<div><b>statusKind</b>: {{statusKind}}</div>{{/statusKind}}
-                    {{#WorkLocation}}<div><b>WorkLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkLocation}}&quot;);}); return false;'>{{WorkLocation}}</a></div>{{/WorkLocation}}
-                    {{#TimeSchedules}}<div><b>TimeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TimeSchedules}}
-                    {{#WorkActivityRecords}}<div><b>WorkActivityRecords</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkActivityRecords}}
+                    {{#WorkLocation}}<div><b>WorkLocation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WorkLocation}}");}); return false;'>{{WorkLocation}}</a></div>{{/WorkLocation}}
+                    {{#TimeSchedules}}<div><b>TimeSchedules</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TimeSchedules}}
+                    {{#WorkActivityRecords}}<div><b>WorkActivityRecords</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WorkActivityRecords}}
                     </div>
                     </fieldset>
 
@@ -710,7 +710,7 @@ define
                     + Common.ActivityRecord.prototype.template.call (this) +
                     `
                     {{#percentComplete}}<div><b>percentComplete</b>: {{percentComplete}}</div>{{/percentComplete}}
-                    {{#BaseWork}}<div><b>BaseWork</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseWork}}&quot;);}); return false;'>{{BaseWork}}</a></div>{{/BaseWork}}
+                    {{#BaseWork}}<div><b>BaseWork</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BaseWork}}");}); return false;'>{{BaseWork}}</a></div>{{/BaseWork}}
                     </div>
                     </fieldset>
 
@@ -832,8 +832,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
-                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
-                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+                    {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WorkTask}}");}); return false;'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TypeMaterial}}");}); return false;'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
                     </div>
                     </fieldset>
 
@@ -955,9 +955,9 @@ define
                     `
                     + Common.Location.prototype.template.call (this) +
                     `
-                    {{#BaseWorks}}<div><b>BaseWorks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BaseWorks}}
-                    {{#OneCallRequest}}<div><b>OneCallRequest</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OneCallRequest}}&quot;);}); return false;'>{{OneCallRequest}}</a></div>{{/OneCallRequest}}
-                    {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DesignLocations}}
+                    {{#BaseWorks}}<div><b>BaseWorks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BaseWorks}}
+                    {{#OneCallRequest}}<div><b>OneCallRequest</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{OneCallRequest}}");}); return false;'>{{OneCallRequest}}</a></div>{{/OneCallRequest}}
+                    {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DesignLocations}}
                     </div>
                     </fieldset>
 
@@ -1084,7 +1084,7 @@ define
                     `
                     {{#breakerRepairItem}}<div><b>breakerRepairItem</b>: {{breakerRepairItem}}</div>{{/breakerRepairItem}}
                     {{#transformerRepairItem}}<div><b>transformerRepairItem</b>: {{transformerRepairItem}}</div>{{/transformerRepairItem}}
-                    {{#RepairWorkTask}}<div><b>RepairWorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RepairWorkTask}}
+                    {{#RepairWorkTask}}<div><b>RepairWorkTask</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RepairWorkTask}}
                     </div>
                     </fieldset>
 
@@ -1449,17 +1449,17 @@ define
                     `
                     {{#workOrderNumber}}<div><b>workOrderNumber</b>: {{workOrderNumber}}</div>{{/workOrderNumber}}
                     {{#requestDateTime}}<div><b>requestDateTime</b>: {{requestDateTime}}</div>{{/requestDateTime}}
-                    {{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);}); return false;'>{{Project}}</a></div>{{/Project}}
-                    {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);}); return false;'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
-                    {{#WorkFlowSteps}}<div><b>WorkFlowSteps</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkFlowSteps}}
-                    {{#Customers}}<div><b>Customers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Customers}}
-                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
-                    {{#Incidents}}<div><b>Incidents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Incidents}}
-                    {{#Designs}}<div><b>Designs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Designs}}
-                    {{#Appointments}}<div><b>Appointments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Appointments}}
-                    {{#WorkBillingInfo}}<div><b>WorkBillingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkBillingInfo}}&quot;);}); return false;'>{{WorkBillingInfo}}</a></div>{{/WorkBillingInfo}}
-                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WorkTasks}}
-                    {{#BusinessCase}}<div><b>BusinessCase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusinessCase}}&quot;);}); return false;'>{{BusinessCase}}</a></div>{{/BusinessCase}}
+                    {{#Project}}<div><b>Project</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Project}}");}); return false;'>{{Project}}</a></div>{{/Project}}
+                    {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ErpProjectAccounting}}");}); return false;'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+                    {{#WorkFlowSteps}}<div><b>WorkFlowSteps</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WorkFlowSteps}}
+                    {{#Customers}}<div><b>Customers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Customers}}
+                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WorkCostDetails}}
+                    {{#Incidents}}<div><b>Incidents</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Incidents}}
+                    {{#Designs}}<div><b>Designs</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Designs}}
+                    {{#Appointments}}<div><b>Appointments</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Appointments}}
+                    {{#WorkBillingInfo}}<div><b>WorkBillingInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WorkBillingInfo}}");}); return false;'>{{WorkBillingInfo}}</a></div>{{/WorkBillingInfo}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WorkTasks}}
+                    {{#BusinessCase}}<div><b>BusinessCase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BusinessCase}}");}); return false;'>{{BusinessCase}}</a></div>{{/BusinessCase}}
                     </div>
                     </fieldset>
 
@@ -1659,13 +1659,13 @@ define
                     {{#laborCost}}<div><b>laborCost</b>: {{laborCost}}</div>{{/laborCost}}
                     {{#materiallCost}}<div><b>materiallCost</b>: {{materiallCost}}</div>{{/materiallCost}}
                     {{#toolCost}}<div><b>toolCost</b>: {{toolCost}}</div>{{/toolCost}}
-                    {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Crews}}
-                    {{#ProcedureDataSet}}<div><b>ProcedureDataSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProcedureDataSet}}
-                    {{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingPlan}}&quot;);}); return false;'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
-                    {{#OldAsset}}<div><b>OldAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldAsset}}&quot;);}); return false;'>{{OldAsset}}</a></div>{{/OldAsset}}
-                    {{#MaterialItems}}<div><b>MaterialItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MaterialItems}}
-                    {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Assets}}
-                    {{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);}); return false;'>{{Work}}</a></div>{{/Work}}
+                    {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Crews}}
+                    {{#ProcedureDataSet}}<div><b>ProcedureDataSet</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProcedureDataSet}}
+                    {{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SwitchingPlan}}");}); return false;'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
+                    {{#OldAsset}}<div><b>OldAsset</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{OldAsset}}");}); return false;'>{{OldAsset}}</a></div>{{/OldAsset}}
+                    {{#MaterialItems}}<div><b>MaterialItems</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MaterialItems}}
+                    {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Assets}}
+                    {{#Work}}<div><b>Work</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Work}}");}); return false;'>{{Work}}</a></div>{{/Work}}
                     </div>
                     </fieldset>
 
@@ -1829,7 +1829,7 @@ define
                     + WorkTask.prototype.template.call (this) +
                     `
                     {{#emergency}}<div><b>emergency</b>: {{emergency}}</div>{{/emergency}}
-                    {{#BreakerRepairItem}}<div><b>BreakerRepairItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BreakerRepairItem}}
+                    {{#BreakerRepairItem}}<div><b>BreakerRepairItem</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BreakerRepairItem}}
                     </div>
                     </fieldset>
 

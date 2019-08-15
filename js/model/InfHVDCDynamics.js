@@ -74,7 +74,7 @@ define
                     {{#output}}<div><b>output</b>: {{output}}</div>{{/output}}
                     {{#sequence}}<div><b>sequence</b>: {{sequence}}</div>{{/sequence}}
                     {{#functionKind}}<div><b>functionKind</b>: {{functionKind}}</div>{{/functionKind}}
-                    {{#Qregulator}}<div><b>Qregulator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Qregulator}}&quot;);}); return false;'>{{Qregulator}}</a></div>{{/Qregulator}}
+                    {{#Qregulator}}<div><b>Qregulator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Qregulator}}");}); return false;'>{{Qregulator}}</a></div>{{/Qregulator}}
                     </div>
                     </fieldset>
 
@@ -214,14 +214,14 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#tm}}<div><b>tm</b>: {{tm}}</div>{{/tm}}
-                    {{#Umode}}<div><b>Umode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Umode}}&quot;);}); return false;'>{{Umode}}</a></div>{{/Umode}}
-                    {{#Qregulator}}<div><b>Qregulator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Qregulator}}&quot;);}); return false;'>{{Qregulator}}</a></div>{{/Qregulator}}
-                    {{#Qlimiter}}<div><b>Qlimiter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Qlimiter}}&quot;);}); return false;'>{{Qlimiter}}</a></div>{{/Qlimiter}}
-                    {{#Qmode}}<div><b>Qmode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Qmode}}&quot;);}); return false;'>{{Qmode}}</a></div>{{/Qmode}}
-                    {{#PFmode}}<div><b>PFmode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFmode}}&quot;);}); return false;'>{{PFmode}}</a></div>{{/PFmode}}
-                    {{#DCvoltageControl}}<div><b>DCvoltageControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCvoltageControl}}&quot;);}); return false;'>{{DCvoltageControl}}</a></div>{{/DCvoltageControl}}
-                    {{#BlockingFunction}}<div><b>BlockingFunction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BlockingFunction}}&quot;);}); return false;'>{{BlockingFunction}}</a></div>{{/BlockingFunction}}
-                    {{#Pcontrol}}<div><b>Pcontrol</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pcontrol}}&quot;);}); return false;'>{{Pcontrol}}</a></div>{{/Pcontrol}}
+                    {{#Umode}}<div><b>Umode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Umode}}");}); return false;'>{{Umode}}</a></div>{{/Umode}}
+                    {{#Qregulator}}<div><b>Qregulator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Qregulator}}");}); return false;'>{{Qregulator}}</a></div>{{/Qregulator}}
+                    {{#Qlimiter}}<div><b>Qlimiter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Qlimiter}}");}); return false;'>{{Qlimiter}}</a></div>{{/Qlimiter}}
+                    {{#Qmode}}<div><b>Qmode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Qmode}}");}); return false;'>{{Qmode}}</a></div>{{/Qmode}}
+                    {{#PFmode}}<div><b>PFmode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PFmode}}");}); return false;'>{{PFmode}}</a></div>{{/PFmode}}
+                    {{#DCvoltageControl}}<div><b>DCvoltageControl</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCvoltageControl}}");}); return false;'>{{DCvoltageControl}}</a></div>{{/DCvoltageControl}}
+                    {{#BlockingFunction}}<div><b>BlockingFunction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BlockingFunction}}");}); return false;'>{{BlockingFunction}}</a></div>{{/BlockingFunction}}
+                    {{#Pcontrol}}<div><b>Pcontrol</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Pcontrol}}");}); return false;'>{{Pcontrol}}</a></div>{{/Pcontrol}}
                     </div>
                     </fieldset>
 

@@ -164,7 +164,7 @@ define
                     `
                     {{#open}}<div><b>open</b>: {{open}}</div>{{/open}}
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-                    {{#Switch}}<div><b>Switch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Switch}}&quot;);}); return false;'>{{Switch}}</a></div>{{/Switch}}
+                    {{#Switch}}<div><b>Switch</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Switch}}");}); return false;'>{{Switch}}</a></div>{{/Switch}}
                     </div>
                     </fieldset>
 
@@ -294,7 +294,7 @@ define
                     {{#pInjection}}<div><b>pInjection</b>: {{pInjection}}</div>{{/pInjection}}
                     {{#qInjection}}<div><b>qInjection</b>: {{qInjection}}</div>{{/qInjection}}
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);}); return false;'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TopologicalNode}}");}); return false;'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
                     </div>
                     </fieldset>
 
@@ -421,7 +421,7 @@ define
                     `
                     {{#inService}}<div><b>inService</b>: {{inService}}</div>{{/inService}}
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-                    {{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);}); return false;'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
+                    {{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ConductingEquipment}}");}); return false;'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
                     </div>
                     </fieldset>
 
@@ -551,7 +551,7 @@ define
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Terminal}}");}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
                     </div>
                     </fieldset>
 
@@ -678,7 +678,7 @@ define
                     `
                     {{#sections}}<div><b>sections</b>: {{sections}}</div>{{/sections}}
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-                    {{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensator}}&quot;);}); return false;'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
+                    {{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ShuntCompensator}}");}); return false;'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
                     </div>
                     </fieldset>
 
@@ -806,7 +806,7 @@ define
                     {{#angle}}<div><b>angle</b>: {{angle}}</div>{{/angle}}
                     {{#v}}<div><b>v</b>: {{v}}</div>{{/v}}
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);}); return false;'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TopologicalNode}}");}); return false;'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
                     </div>
                     </fieldset>
 
@@ -930,7 +930,7 @@ define
                     + StateVariable.prototype.template.call (this) +
                     `
                     {{#position}}<div><b>position</b>: {{position}}</div>{{/position}}
-                    {{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TapChanger}}&quot;);}); return false;'>{{TapChanger}}</a></div>{{/TapChanger}}
+                    {{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TapChanger}}");}); return false;'>{{TapChanger}}</a></div>{{/TapChanger}}
                     </div>
                     </fieldset>
 

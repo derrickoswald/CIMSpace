@@ -78,10 +78,10 @@ define
                     `
                     + StandardModels.RotatingMachineDynamics.prototype.template.call (this) +
                     `
-                    {{#AsynchronousMachine}}<div><b>AsynchronousMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachine}}&quot;);}); return false;'>{{AsynchronousMachine}}</a></div>{{/AsynchronousMachine}}
-                    {{#WindTurbineType1or2Dynamics}}<div><b>WindTurbineType1or2Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2Dynamics}}&quot;);}); return false;'>{{WindTurbineType1or2Dynamics}}</a></div>{{/WindTurbineType1or2Dynamics}}
-                    {{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineGovernorDynamics}}&quot;);}); return false;'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
-                    {{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);}); return false;'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
+                    {{#AsynchronousMachine}}<div><b>AsynchronousMachine</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AsynchronousMachine}}");}); return false;'>{{AsynchronousMachine}}</a></div>{{/AsynchronousMachine}}
+                    {{#WindTurbineType1or2Dynamics}}<div><b>WindTurbineType1or2Dynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WindTurbineType1or2Dynamics}}");}); return false;'>{{WindTurbineType1or2Dynamics}}</a></div>{{/WindTurbineType1or2Dynamics}}
+                    {{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TurbineGovernorDynamics}}");}); return false;'>{{TurbineGovernorDynamics}}</a></div>{{/TurbineGovernorDynamics}}
+                    {{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MechanicalLoadDynamics}}");}); return false;'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
                     </div>
                     </fieldset>
 

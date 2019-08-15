@@ -260,8 +260,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#DependsOn}}<div><b>DependsOn</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DependsOn}}
-                    {{#Impacts}}<div><b>Impacts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Impacts}}
+                    {{#DependsOn}}<div><b>DependsOn</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DependsOn}}
+                    {{#Impacts}}<div><b>Impacts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Impacts}}
                     </div>
                     </fieldset>
 
@@ -373,8 +373,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#UnavailabilityScheduleImpacts}}<div><b>UnavailabilityScheduleImpacts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnavailabilityScheduleImpacts}}&quot;);}); return false;'>{{UnavailabilityScheduleImpacts}}</a></div>{{/UnavailabilityScheduleImpacts}}
-                    {{#UnavailabilityScheduleDependsOn}}<div><b>UnavailabilityScheduleDependsOn</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UnavailabilityScheduleDependsOn}}&quot;);}); return false;'>{{UnavailabilityScheduleDependsOn}}</a></div>{{/UnavailabilityScheduleDependsOn}}
+                    {{#UnavailabilityScheduleImpacts}}<div><b>UnavailabilityScheduleImpacts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{UnavailabilityScheduleImpacts}}");}); return false;'>{{UnavailabilityScheduleImpacts}}</a></div>{{/UnavailabilityScheduleImpacts}}
+                    {{#UnavailabilityScheduleDependsOn}}<div><b>UnavailabilityScheduleDependsOn</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{UnavailabilityScheduleDependsOn}}");}); return false;'>{{UnavailabilityScheduleDependsOn}}</a></div>{{/UnavailabilityScheduleDependsOn}}
                     </div>
                     </fieldset>
 

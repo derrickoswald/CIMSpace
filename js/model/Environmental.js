@@ -63,8 +63,8 @@ define
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
                     `
-                    {{#EnvironmentalAlert}}<div><b>EnvironmentalAlert</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalAlert}}
-                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalInformation}}
+                    {{#EnvironmentalAlert}}<div><b>EnvironmentalAlert</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalAlert}}
+                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalInformation}}
                     </div>
                     </fieldset>
 
@@ -194,9 +194,9 @@ define
                     {{#cancelledDateTime}}<div><b>cancelledDateTime</b>: {{cancelledDateTime}}</div>{{/cancelledDateTime}}
                     {{#headline}}<div><b>headline</b>: {{headline}}</div>{{/headline}}
                     {{#inEffect}}<div><b>inEffect</b>: {{inEffect}}</div>{{/inEffect}}
-                    {{#AlertTypeList}}<div><b>AlertTypeList</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AlertTypeList}}&quot;);}); return false;'>{{AlertTypeList}}</a></div>{{/AlertTypeList}}
-                    {{#EnvironmentalDataProvider}}<div><b>EnvironmentalDataProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalDataProvider}}&quot;);}); return false;'>{{EnvironmentalDataProvider}}</a></div>{{/EnvironmentalDataProvider}}
-                    {{#EnvironmentalLocationKind}}<div><b>EnvironmentalLocationKind</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalLocationKind}}
+                    {{#AlertTypeList}}<div><b>AlertTypeList</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AlertTypeList}}");}); return false;'>{{AlertTypeList}}</a></div>{{/AlertTypeList}}
+                    {{#EnvironmentalDataProvider}}<div><b>EnvironmentalDataProvider</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalDataProvider}}");}); return false;'>{{EnvironmentalDataProvider}}</a></div>{{/EnvironmentalDataProvider}}
+                    {{#EnvironmentalLocationKind}}<div><b>EnvironmentalLocationKind</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalLocationKind}}
                     </div>
                     </fieldset>
 
@@ -327,8 +327,8 @@ define
                     `
                     + Meas.StringMeasurement.prototype.template.call (this) +
                     `
-                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalInformation}}&quot;);}); return false;'>{{EnvironmentalInformation}}</a></div>{{/EnvironmentalInformation}}
-                    {{#ClassificationCondition}}<div><b>ClassificationCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ClassificationCondition}}&quot;);}); return false;'>{{ClassificationCondition}}</a></div>{{/ClassificationCondition}}
+                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalInformation}}");}); return false;'>{{EnvironmentalInformation}}</a></div>{{/EnvironmentalInformation}}
+                    {{#ClassificationCondition}}<div><b>ClassificationCondition</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ClassificationCondition}}");}); return false;'>{{ClassificationCondition}}</a></div>{{/ClassificationCondition}}
                     </div>
                     </fieldset>
 
@@ -457,12 +457,12 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#created}}<div><b>created</b>: {{created}}</div>{{/created}}
-                    {{#EnvironmentalAnalog}}<div><b>EnvironmentalAnalog</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalAnalog}}
-                    {{#EnvironmentalStringMeasurement}}<div><b>EnvironmentalStringMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalStringMeasurement}}
-                    {{#EnvironmentalDiscrete}}<div><b>EnvironmentalDiscrete</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalDiscrete}}
-                    {{#EnvironmentalEvent}}<div><b>EnvironmentalEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalEvent}}
-                    {{#EnvironmentalPhenomenon}}<div><b>EnvironmentalPhenomenon</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalPhenomenon}}
-                    {{#EnvironmentalDataProvider}}<div><b>EnvironmentalDataProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalDataProvider}}&quot;);}); return false;'>{{EnvironmentalDataProvider}}</a></div>{{/EnvironmentalDataProvider}}
+                    {{#EnvironmentalAnalog}}<div><b>EnvironmentalAnalog</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalAnalog}}
+                    {{#EnvironmentalStringMeasurement}}<div><b>EnvironmentalStringMeasurement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalStringMeasurement}}
+                    {{#EnvironmentalDiscrete}}<div><b>EnvironmentalDiscrete</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalDiscrete}}
+                    {{#EnvironmentalEvent}}<div><b>EnvironmentalEvent</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalEvent}}
+                    {{#EnvironmentalPhenomenon}}<div><b>EnvironmentalPhenomenon</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalPhenomenon}}
+                    {{#EnvironmentalDataProvider}}<div><b>EnvironmentalDataProvider</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalDataProvider}}");}); return false;'>{{EnvironmentalDataProvider}}</a></div>{{/EnvironmentalDataProvider}}
                     </div>
                     </fieldset>
 
@@ -600,10 +600,10 @@ define
                     `
                     + Meas.Analog.prototype.template.call (this) +
                     `
-                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalInformation}}&quot;);}); return false;'>{{EnvironmentalInformation}}</a></div>{{/EnvironmentalInformation}}
-                    {{#ClassificationCondition}}<div><b>ClassificationCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ClassificationCondition}}&quot;);}); return false;'>{{ClassificationCondition}}</a></div>{{/ClassificationCondition}}
-                    {{#ReportingCapability}}<div><b>ReportingCapability</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingCapability}}&quot;);}); return false;'>{{ReportingCapability}}</a></div>{{/ReportingCapability}}
-                    {{#EnvironmentalMonitoringStation}}<div><b>EnvironmentalMonitoringStation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalMonitoringStation}}&quot;);}); return false;'>{{EnvironmentalMonitoringStation}}</a></div>{{/EnvironmentalMonitoringStation}}
+                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalInformation}}");}); return false;'>{{EnvironmentalInformation}}</a></div>{{/EnvironmentalInformation}}
+                    {{#ClassificationCondition}}<div><b>ClassificationCondition</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ClassificationCondition}}");}); return false;'>{{ClassificationCondition}}</a></div>{{/ClassificationCondition}}
+                    {{#ReportingCapability}}<div><b>ReportingCapability</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReportingCapability}}");}); return false;'>{{ReportingCapability}}</a></div>{{/ReportingCapability}}
+                    {{#EnvironmentalMonitoringStation}}<div><b>EnvironmentalMonitoringStation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalMonitoringStation}}");}); return false;'>{{EnvironmentalMonitoringStation}}</a></div>{{/EnvironmentalMonitoringStation}}
                     </div>
                     </fieldset>
 
@@ -732,8 +732,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
-                    {{#EnvironmentalAlert}}<div><b>EnvironmentalAlert</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalAlert}}
-                    {{#EnvironmentalDataAuthority}}<div><b>EnvironmentalDataAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalDataAuthority}}&quot;);}); return false;'>{{EnvironmentalDataAuthority}}</a></div>{{/EnvironmentalDataAuthority}}
+                    {{#EnvironmentalAlert}}<div><b>EnvironmentalAlert</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalAlert}}
+                    {{#EnvironmentalDataAuthority}}<div><b>EnvironmentalDataAuthority</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalDataAuthority}}");}); return false;'>{{EnvironmentalDataAuthority}}</a></div>{{/EnvironmentalDataAuthority}}
                     </div>
                     </fieldset>
 
@@ -857,7 +857,7 @@ define
                     `
                     + Common.ActivityRecord.prototype.template.call (this) +
                     `
-                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalInformation}}
+                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalInformation}}
                     </div>
                     </fieldset>
 
@@ -974,8 +974,8 @@ define
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
                     `
-                    {{#AlertTypeList}}<div><b>AlertTypeList</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AlertTypeList}}
-                    {{#PhenomenonClassification}}<div><b>PhenomenonClassification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PhenomenonClassification}}
+                    {{#AlertTypeList}}<div><b>AlertTypeList</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AlertTypeList}}
+                    {{#PhenomenonClassification}}<div><b>PhenomenonClassification</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PhenomenonClassification}}
                     </div>
                     </fieldset>
 
@@ -1098,9 +1098,9 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);}); return false;'>{{Location}}</a></div>{{/Location}}
-                    {{#EnvironmentalPhenomenon}}<div><b>EnvironmentalPhenomenon</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalPhenomenon}}
-                    {{#EnvironmentalAlert}}<div><b>EnvironmentalAlert</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalAlert}}
+                    {{#Location}}<div><b>Location</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Location}}");}); return false;'>{{Location}}</a></div>{{/Location}}
+                    {{#EnvironmentalPhenomenon}}<div><b>EnvironmentalPhenomenon</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalPhenomenon}}
+                    {{#EnvironmentalAlert}}<div><b>EnvironmentalAlert</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalAlert}}
                     </div>
                     </fieldset>
 
@@ -1230,7 +1230,7 @@ define
                     + Meas.Discrete.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalInformation}}&quot;);}); return false;'>{{EnvironmentalInformation}}</a></div>{{/EnvironmentalInformation}}
+                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalInformation}}");}); return false;'>{{EnvironmentalInformation}}</a></div>{{/EnvironmentalInformation}}
                     </div>
                     </fieldset>
 
@@ -1482,9 +1482,9 @@ define
                     `
                     {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
                     {{#test}}<div><b>test</b>: {{test}}</div>{{/test}}
-                    {{#EnvironmentalAnalog}}<div><b>EnvironmentalAnalog</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalAnalog}}
-                    {{#PhenomenonClassification}}<div><b>PhenomenonClassification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhenomenonClassification}}&quot;);}); return false;'>{{PhenomenonClassification}}</a></div>{{/PhenomenonClassification}}
-                    {{#EnvironmentalStringMeasurement}}<div><b>EnvironmentalStringMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalStringMeasurement}}
+                    {{#EnvironmentalAnalog}}<div><b>EnvironmentalAnalog</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalAnalog}}
+                    {{#PhenomenonClassification}}<div><b>PhenomenonClassification</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PhenomenonClassification}}");}); return false;'>{{PhenomenonClassification}}</a></div>{{/PhenomenonClassification}}
+                    {{#EnvironmentalStringMeasurement}}<div><b>EnvironmentalStringMeasurement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalStringMeasurement}}
                     </div>
                     </fieldset>
 
@@ -1622,8 +1622,8 @@ define
                     {{#reportingIntervalPeriod}}<div><b>reportingIntervalPeriod</b>: {{reportingIntervalPeriod}}</div>{{/reportingIntervalPeriod}}
                     {{#reportingIntervalType}}<div><b>reportingIntervalType</b>: {{reportingIntervalType}}</div>{{/reportingIntervalType}}
                     {{#reportingMethod}}<div><b>reportingMethod</b>: {{reportingMethod}}</div>{{/reportingMethod}}
-                    {{#EnvironmentalAnalog}}<div><b>EnvironmentalAnalog</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalAnalog}}
-                    {{#EnvironmentalMonitoringStation}}<div><b>EnvironmentalMonitoringStation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalMonitoringStation}}&quot;);}); return false;'>{{EnvironmentalMonitoringStation}}</a></div>{{/EnvironmentalMonitoringStation}}
+                    {{#EnvironmentalAnalog}}<div><b>EnvironmentalAnalog</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalAnalog}}
+                    {{#EnvironmentalMonitoringStation}}<div><b>EnvironmentalMonitoringStation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalMonitoringStation}}");}); return false;'>{{EnvironmentalMonitoringStation}}</a></div>{{/EnvironmentalMonitoringStation}}
                     </div>
                     </fieldset>
 
@@ -1753,9 +1753,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#EnvironmentalPhenomenon}}<div><b>EnvironmentalPhenomenon</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalPhenomenon}}
-                    {{#ClassificationCondition}}<div><b>ClassificationCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ClassificationCondition}}
-                    {{#EnvironmentalDataAuthority}}<div><b>EnvironmentalDataAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalDataAuthority}}&quot;);}); return false;'>{{EnvironmentalDataAuthority}}</a></div>{{/EnvironmentalDataAuthority}}
+                    {{#EnvironmentalPhenomenon}}<div><b>EnvironmentalPhenomenon</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalPhenomenon}}
+                    {{#ClassificationCondition}}<div><b>ClassificationCondition</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ClassificationCondition}}
+                    {{#EnvironmentalDataAuthority}}<div><b>EnvironmentalDataAuthority</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalDataAuthority}}");}); return false;'>{{EnvironmentalDataAuthority}}</a></div>{{/EnvironmentalDataAuthority}}
                     </div>
                     </fieldset>
 
@@ -1881,9 +1881,9 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#timeInterval}}<div><b>timeInterval</b>: {{timeInterval}}</div>{{/timeInterval}}
-                    {{#PhenomenonClassification}}<div><b>PhenomenonClassification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhenomenonClassification}}&quot;);}); return false;'>{{PhenomenonClassification}}</a></div>{{/PhenomenonClassification}}
-                    {{#EnvironmentalLocationKind}}<div><b>EnvironmentalLocationKind</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnvironmentalLocationKind}}
-                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalInformation}}&quot;);}); return false;'>{{EnvironmentalInformation}}</a></div>{{/EnvironmentalInformation}}
+                    {{#PhenomenonClassification}}<div><b>PhenomenonClassification</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PhenomenonClassification}}");}); return false;'>{{PhenomenonClassification}}</a></div>{{/PhenomenonClassification}}
+                    {{#EnvironmentalLocationKind}}<div><b>EnvironmentalLocationKind</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalLocationKind}}
+                    {{#EnvironmentalInformation}}<div><b>EnvironmentalInformation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalInformation}}");}); return false;'>{{EnvironmentalInformation}}</a></div>{{/EnvironmentalInformation}}
                     </div>
                     </fieldset>
 
@@ -2929,7 +2929,7 @@ define
                     {{#errorEllipseConfidence}}<div><b>errorEllipseConfidence</b>: {{errorEllipseConfidence}}</div>{{/errorEllipseConfidence}}
                     {{#errorEllipseMajorSemiAxis}}<div><b>errorEllipseMajorSemiAxis</b>: {{errorEllipseMajorSemiAxis}}</div>{{/errorEllipseMajorSemiAxis}}
                     {{#errorEllipseMinorSemiAxis}}<div><b>errorEllipseMinorSemiAxis</b>: {{errorEllipseMinorSemiAxis}}</div>{{/errorEllipseMinorSemiAxis}}
-                    {{#errorEllipseOrientation}}<div><b>errorEllipseOrientation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{errorEllipseOrientation}}&quot;);}); return false;'>{{errorEllipseOrientation}}</a></div>{{/errorEllipseOrientation}}
+                    {{#errorEllipseOrientation}}<div><b>errorEllipseOrientation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{errorEllipseOrientation}}");}); return false;'>{{errorEllipseOrientation}}</a></div>{{/errorEllipseOrientation}}
                     {{#negativePolarity}}<div><b>negativePolarity</b>: {{negativePolarity}}</div>{{/negativePolarity}}
                     {{#peakAmplitude}}<div><b>peakAmplitude</b>: {{peakAmplitude}}</div>{{/peakAmplitude}}
                     </div>
@@ -3235,7 +3235,7 @@ define
                     `
                     + SpacePhenomenon.prototype.template.call (this) +
                     `
-                    {{#changeDst}}<div><b>changeDst</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{changeDst}}&quot;);}); return false;'>{{changeDst}}</a></div>{{/changeDst}}
+                    {{#changeDst}}<div><b>changeDst</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{changeDst}}");}); return false;'>{{changeDst}}</a></div>{{/changeDst}}
                     </div>
                     </fieldset>
 
@@ -3436,7 +3436,7 @@ define
                     `
                     + GeosphericPhenomenon.prototype.template.call (this) +
                     `
-                    {{#focalDepth}}<div><b>focalDepth</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{focalDepth}}&quot;);}); return false;'>{{focalDepth}}</a></div>{{/focalDepth}}
+                    {{#focalDepth}}<div><b>focalDepth</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{focalDepth}}");}); return false;'>{{focalDepth}}</a></div>{{/focalDepth}}
                     {{#intensity}}<div><b>intensity</b>: {{intensity}}</div>{{/intensity}}
                     {{#magnitude}}<div><b>magnitude</b>: {{magnitude}}</div>{{/magnitude}}
                     </div>
@@ -3554,9 +3554,9 @@ define
                     `
                     + EnvironmentalPhenomenon.prototype.template.call (this) +
                     `
-                    {{#altitude}}<div><b>altitude</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{altitude}}&quot;);}); return false;'>{{altitude}}</a></div>{{/altitude}}
-                    {{#base}}<div><b>base</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{base}}&quot;);}); return false;'>{{base}}</a></div>{{/base}}
-                    {{#direction}}<div><b>direction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{direction}}&quot;);}); return false;'>{{direction}}</a></div>{{/direction}}
+                    {{#altitude}}<div><b>altitude</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{altitude}}");}); return false;'>{{altitude}}</a></div>{{/altitude}}
+                    {{#base}}<div><b>base</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{base}}");}); return false;'>{{base}}</a></div>{{/base}}
+                    {{#direction}}<div><b>direction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{direction}}");}); return false;'>{{direction}}</a></div>{{/direction}}
                     {{#maxCoverage}}<div><b>maxCoverage</b>: {{maxCoverage}}</div>{{/maxCoverage}}
                     {{#minCoverage}}<div><b>minCoverage</b>: {{minCoverage}}</div>{{/minCoverage}}
                     {{#speed}}<div><b>speed</b>: {{speed}}</div>{{/speed}}
@@ -4079,7 +4079,7 @@ define
                     `
                     + AtmosphericPhenomenon.prototype.template.call (this) +
                     `
-                    {{#density}}<div><b>density</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{density}}&quot;);}); return false;'>{{density}}</a></div>{{/density}}
+                    {{#density}}<div><b>density</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{density}}");}); return false;'>{{density}}</a></div>{{/density}}
                     {{#particleSize}}<div><b>particleSize</b>: {{particleSize}}</div>{{/particleSize}}
                     </div>
                     </fieldset>

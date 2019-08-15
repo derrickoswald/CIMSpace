@@ -546,9 +546,9 @@ define
                     {{#leftDigitCount}}<div><b>leftDigitCount</b>: {{leftDigitCount}}</div>{{/leftDigitCount}}
                     {{#touTier}}<div><b>touTier</b>: {{touTier}}</div>{{/touTier}}
                     {{#touTierName}}<div><b>touTierName</b>: {{touTierName}}</div>{{/touTierName}}
-                    {{#Usage Point}}<div><b>Usage Point</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Usage Point}}&quot;);}); return false;'>{{Usage Point}}</a></div>{{/Usage Point}}
-                    {{#Channels}}<div><b>Channels</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Channels}}
-                    {{#EndDeviceFunction}}<div><b>EndDeviceFunction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceFunction}}&quot;);}); return false;'>{{EndDeviceFunction}}</a></div>{{/EndDeviceFunction}}
+                    {{#Usage Point}}<div><b>Usage Point</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Usage Point}}");}); return false;'>{{Usage Point}}</a></div>{{/Usage Point}}
+                    {{#Channels}}<div><b>Channels</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Channels}}
+                    {{#EndDeviceFunction}}<div><b>EndDeviceFunction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDeviceFunction}}");}); return false;'>{{EndDeviceFunction}}</a></div>{{/EndDeviceFunction}}
                     </div>
                     </fieldset>
 
@@ -715,15 +715,15 @@ define
                     {{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
                     {{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
                     {{#isSmartInverter}}<div><b>isSmartInverter</b>: {{isSmartInverter}}</div>{{/isSmartInverter}}
-                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroups}}
-                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-                    {{#EndDeviceInfo}}<div><b>EndDeviceInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceInfo}}&quot;);}); return false;'>{{EndDeviceInfo}}</a></div>{{/EndDeviceInfo}}
-                    {{#DispatchablePowerCapability}}<div><b>DispatchablePowerCapability</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DispatchablePowerCapability}}
-                    {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);}); return false;'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
-                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
-                    {{#EndDeviceFunctions}}<div><b>EndDeviceFunctions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceFunctions}}
-                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceEvents}}
-                    {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);}); return false;'>{{Customer}}</a></div>{{/Customer}}
+                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceGroups}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{UsagePoint}}");}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    {{#EndDeviceInfo}}<div><b>EndDeviceInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDeviceInfo}}");}); return false;'>{{EndDeviceInfo}}</a></div>{{/EndDeviceInfo}}
+                    {{#DispatchablePowerCapability}}<div><b>DispatchablePowerCapability</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DispatchablePowerCapability}}
+                    {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ServiceLocation}}");}); return false;'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
+                    {{#EndDeviceFunctions}}<div><b>EndDeviceFunctions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceFunctions}}
+                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceEvents}}
+                    {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Customer}}");}); return false;'>{{Customer}}</a></div>{{/Customer}}
                     </div>
                     </fieldset>
 
@@ -880,9 +880,9 @@ define
                     `
                     + Work.WorkTask.prototype.template.call (this) +
                     `
-                    {{#OldMeter}}<div><b>OldMeter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldMeter}}&quot;);}); return false;'>{{OldMeter}}</a></div>{{/OldMeter}}
-                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);}); return false;'>{{Meter}}</a></div>{{/Meter}}
+                    {{#OldMeter}}<div><b>OldMeter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{OldMeter}}");}); return false;'>{{OldMeter}}</a></div>{{/OldMeter}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{UsagePoint}}");}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Meter}}");}); return false;'>{{Meter}}</a></div>{{/Meter}}
                     </div>
                     </fieldset>
 
@@ -1232,10 +1232,10 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
-                    {{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);}); return false;'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
-                    {{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);}); return false;'>{{MeterReading}}</a></div>{{/MeterReading}}
-                    {{#IntervalReadings}}<div><b>IntervalReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IntervalReadings}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReadingType}}");}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PendingCalculation}}");}); return false;'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
+                    {{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MeterReading}}");}); return false;'>{{MeterReading}}</a></div>{{/MeterReading}}
+                    {{#IntervalReadings}}<div><b>IntervalReadings</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/IntervalReadings}}
                     </div>
                     </fieldset>
 
@@ -1366,8 +1366,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
-                    {{#Register}}<div><b>Register</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Register}}&quot;);}); return false;'>{{Register}}</a></div>{{/Register}}
-                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#Register}}<div><b>Register</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Register}}");}); return false;'>{{Register}}</a></div>{{/Register}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReadingType}}");}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
                     </div>
                     </fieldset>
 
@@ -1499,7 +1499,7 @@ define
                     {{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
                     {{#timePeriod}}<div><b>timePeriod</b>: {{timePeriod}}</div>{{/timePeriod}}
                     {{#reportedDateTime}}<div><b>reportedDateTime</b>: {{reportedDateTime}}</div>{{/reportedDateTime}}
-                    {{#ReadingQualities}}<div><b>ReadingQualities</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ReadingQualities}}
+                    {{#ReadingQualities}}<div><b>ReadingQualities</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ReadingQualities}}
                     </div>
                     </fieldset>
 
@@ -1789,7 +1789,7 @@ define
                     {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
                     {{#durationIndefinite}}<div><b>durationIndefinite</b>: {{durationIndefinite}}</div>{{/durationIndefinite}}
                     {{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
-                    {{#EndDeviceControl}}<div><b>EndDeviceControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControl}}&quot;);}); return false;'>{{EndDeviceControl}}</a></div>{{/EndDeviceControl}}
+                    {{#EndDeviceControl}}<div><b>EndDeviceControl</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDeviceControl}}");}); return false;'>{{EndDeviceControl}}</a></div>{{/EndDeviceControl}}
                     </div>
                     </fieldset>
 
@@ -2010,26 +2010,26 @@ define
                     {{#disconnectionMethod}}<div><b>disconnectionMethod</b>: {{disconnectionMethod}}</div>{{/disconnectionMethod}}
                     {{#physicalConnectionCapacity}}<div><b>physicalConnectionCapacity</b>: {{physicalConnectionCapacity}}</div>{{/physicalConnectionCapacity}}
                     {{#connectionCategory}}<div><b>connectionCategory</b>: {{connectionCategory}}</div>{{/connectionCategory}}
-                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Outage}}
-                    {{#ServiceMultipliers}}<div><b>ServiceMultipliers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ServiceMultipliers}}
-                    {{#Register}}<div><b>Register</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Register}}
-                    {{#ConfigurationEvents}}<div><b>ConfigurationEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConfigurationEvents}}
-                    {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);}); return false;'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
-                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDevices}}
-                    {{#UsagePointLocation}}<div><b>UsagePointLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePointLocation}}&quot;);}); return false;'>{{UsagePointLocation}}</a></div>{{/UsagePointLocation}}
-                    {{#MeterServiceWorkTasks}}<div><b>MeterServiceWorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeterServiceWorkTasks}}
-                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceEvents}}
-                    {{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);}); return false;'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
-                    {{#Equipments}}<div><b>Equipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Equipments}}
-                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeterReadings}}
-                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePointGroups}}
-                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Outage}}
-                    {{#EnvironmentalMonitoringStation}}<div><b>EnvironmentalMonitoringStation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnvironmentalMonitoringStation}}&quot;);}); return false;'>{{EnvironmentalMonitoringStation}}</a></div>{{/EnvironmentalMonitoringStation}}
-                    {{#MetrologyRequirements}}<div><b>MetrologyRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MetrologyRequirements}}
-                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);}); return false;'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
-                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
-                    {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);}); return false;'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
-                    {{#PricingStructures}}<div><b>PricingStructures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PricingStructures}}
+                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Outage}}
+                    {{#ServiceMultipliers}}<div><b>ServiceMultipliers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ServiceMultipliers}}
+                    {{#Register}}<div><b>Register</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Register}}
+                    {{#ConfigurationEvents}}<div><b>ConfigurationEvents</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConfigurationEvents}}
+                    {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ServiceCategory}}");}); return false;'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDevices}}
+                    {{#UsagePointLocation}}<div><b>UsagePointLocation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{UsagePointLocation}}");}); return false;'>{{UsagePointLocation}}</a></div>{{/UsagePointLocation}}
+                    {{#MeterServiceWorkTasks}}<div><b>MeterServiceWorkTasks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeterServiceWorkTasks}}
+                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceEvents}}
+                    {{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ServiceSupplier}}");}); return false;'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+                    {{#Equipments}}<div><b>Equipments</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Equipments}}
+                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeterReadings}}
+                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePointGroups}}
+                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Outage}}
+                    {{#EnvironmentalMonitoringStation}}<div><b>EnvironmentalMonitoringStation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnvironmentalMonitoringStation}}");}); return false;'>{{EnvironmentalMonitoringStation}}</a></div>{{/EnvironmentalMonitoringStation}}
+                    {{#MetrologyRequirements}}<div><b>MetrologyRequirements</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MetrologyRequirements}}
+                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CustomerAgreement}}");}); return false;'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
+                    {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ServiceLocation}}");}); return false;'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
+                    {{#PricingStructures}}<div><b>PricingStructures</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PricingStructures}}
                     </div>
                     </fieldset>
 
@@ -2265,7 +2265,7 @@ define
                     `
                     {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#EndDeviceEvent}}<div><b>EndDeviceEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceEvent}}&quot;);}); return false;'>{{EndDeviceEvent}}</a></div>{{/EndDeviceEvent}}
+                    {{#EndDeviceEvent}}<div><b>EndDeviceEvent</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDeviceEvent}}");}); return false;'>{{EndDeviceEvent}}</a></div>{{/EndDeviceEvent}}
                     </div>
                     </fieldset>
 
@@ -2499,12 +2499,12 @@ define
                     `
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
-                    {{#capability}}<div><b>capability</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{capability}}&quot;);}); return false;'>{{capability}}</a></div>{{/capability}}
+                    {{#capability}}<div><b>capability</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{capability}}");}); return false;'>{{capability}}</a></div>{{/capability}}
                     {{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
                     {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
                     {{#isSolidState}}<div><b>isSolidState</b>: {{isSolidState}}</div>{{/isSolidState}}
-                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDevices}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDevices}}
                     </div>
                     </fieldset>
 
@@ -2646,8 +2646,8 @@ define
                     {{#scalarDenominator}}<div><b>scalarDenominator</b>: {{scalarDenominator}}</div>{{/scalarDenominator}}
                     {{#offset}}<div><b>offset</b>: {{offset}}</div>{{/offset}}
                     {{#multiplyBeforeAdd}}<div><b>multiplyBeforeAdd</b>: {{multiplyBeforeAdd}}</div>{{/multiplyBeforeAdd}}
-                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
-                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IntervalBlocks}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReadingType}}");}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/IntervalBlocks}}
                     </div>
                     </fieldset>
 
@@ -2808,14 +2808,14 @@ define
                     {{#priceSignal}}<div><b>priceSignal</b>: {{priceSignal}}</div>{{/priceSignal}}
                     {{#drProgramLevel}}<div><b>drProgramLevel</b>: {{drProgramLevel}}</div>{{/drProgramLevel}}
                     {{#drProgramMandatory}}<div><b>drProgramMandatory</b>: {{drProgramMandatory}}</div>{{/drProgramMandatory}}
-                    {{#primaryDeviceTiming}}<div><b>primaryDeviceTiming</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{primaryDeviceTiming}}&quot;);}); return false;'>{{primaryDeviceTiming}}</a></div>{{/primaryDeviceTiming}}
-                    {{#secondaryDeviceTiming}}<div><b>secondaryDeviceTiming</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryDeviceTiming}}&quot;);}); return false;'>{{secondaryDeviceTiming}}</a></div>{{/secondaryDeviceTiming}}
-                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroups}}
-                    {{#EndDeviceControlType}}<div><b>EndDeviceControlType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControlType}}&quot;);}); return false;'>{{EndDeviceControlType}}</a></div>{{/EndDeviceControlType}}
-                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDevices}}
-                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePointGroups}}
-                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePoints}}
-                    {{#EndDeviceAction}}<div><b>EndDeviceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceAction}}&quot;);}); return false;'>{{EndDeviceAction}}</a></div>{{/EndDeviceAction}}
+                    {{#primaryDeviceTiming}}<div><b>primaryDeviceTiming</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{primaryDeviceTiming}}");}); return false;'>{{primaryDeviceTiming}}</a></div>{{/primaryDeviceTiming}}
+                    {{#secondaryDeviceTiming}}<div><b>secondaryDeviceTiming</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{secondaryDeviceTiming}}");}); return false;'>{{secondaryDeviceTiming}}</a></div>{{/secondaryDeviceTiming}}
+                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceGroups}}
+                    {{#EndDeviceControlType}}<div><b>EndDeviceControlType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDeviceControlType}}");}); return false;'>{{EndDeviceControlType}}</a></div>{{/EndDeviceControlType}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDevices}}
+                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePointGroups}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#EndDeviceAction}}<div><b>EndDeviceAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDeviceAction}}");}); return false;'>{{EndDeviceAction}}</a></div>{{/EndDeviceAction}}
                     </div>
                     </fieldset>
 
@@ -2975,7 +2975,7 @@ define
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);}); return false;'>{{Meter}}</a></div>{{/Meter}}
+                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Meter}}");}); return false;'>{{Meter}}</a></div>{{/Meter}}
                     </div>
                     </fieldset>
 
@@ -3111,11 +3111,11 @@ define
                     {{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
                     {{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
                     {{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
-                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-                    {{#EndDeviceEventDetails}}<div><b>EndDeviceEventDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceEventDetails}}
-                    {{#EndDeviceEventType}}<div><b>EndDeviceEventType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceEventType}}&quot;);}); return false;'>{{EndDeviceEventType}}</a></div>{{/EndDeviceEventType}}
-                    {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);}); return false;'>{{EndDevice}}</a></div>{{/EndDevice}}
-                    {{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);}); return false;'>{{MeterReading}}</a></div>{{/MeterReading}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{UsagePoint}}");}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    {{#EndDeviceEventDetails}}<div><b>EndDeviceEventDetails</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceEventDetails}}
+                    {{#EndDeviceEventType}}<div><b>EndDeviceEventType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDeviceEventType}}");}); return false;'>{{EndDeviceEventType}}</a></div>{{/EndDeviceEventType}}
+                    {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDevice}}");}); return false;'>{{EndDevice}}</a></div>{{/EndDevice}}
+                    {{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MeterReading}}");}); return false;'>{{MeterReading}}</a></div>{{/MeterReading}}
                     </div>
                     </fieldset>
 
@@ -3257,7 +3257,7 @@ define
                     {{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
                     {{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
                     {{#supportsAutonomousDst}}<div><b>supportsAutonomousDst</b>: {{supportsAutonomousDst}}</div>{{/supportsAutonomousDst}}
-                    {{#ComFunctions}}<div><b>ComFunctions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ComFunctions}}
+                    {{#ComFunctions}}<div><b>ComFunctions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ComFunctions}}
                     </div>
                     </fieldset>
 
@@ -3385,9 +3385,9 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#DemandResponsePrograms}}<div><b>DemandResponsePrograms</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DemandResponsePrograms}}
-                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePoints}}
-                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
+                    {{#DemandResponsePrograms}}<div><b>DemandResponsePrograms</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DemandResponsePrograms}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
                     </div>
                     </fieldset>
 
@@ -3571,15 +3571,15 @@ define
                     {{#flowDirection}}<div><b>flowDirection</b>: {{flowDirection}}</div>{{/flowDirection}}
                     {{#commodity}}<div><b>commodity</b>: {{commodity}}</div>{{/commodity}}
                     {{#measurementKind}}<div><b>measurementKind</b>: {{measurementKind}}</div>{{/measurementKind}}
-                    {{#interharmonic}}<div><b>interharmonic</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{interharmonic}}&quot;);}); return false;'>{{interharmonic}}</a></div>{{/interharmonic}}
-                    {{#argument}}<div><b>argument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{argument}}&quot;);}); return false;'>{{argument}}</a></div>{{/argument}}
+                    {{#interharmonic}}<div><b>interharmonic</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{interharmonic}}");}); return false;'>{{interharmonic}}</a></div>{{/interharmonic}}
+                    {{#argument}}<div><b>argument</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{argument}}");}); return false;'>{{argument}}</a></div>{{/argument}}
                     {{#tou}}<div><b>tou</b>: {{tou}}</div>{{/tou}}
-                    {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
-                    {{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);}); return false;'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
-                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IntervalBlocks}}
-                    {{#Channel}}<div><b>Channel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Channel}}&quot;);}); return false;'>{{Channel}}</a></div>{{/Channel}}
-                    {{#Readings}}<div><b>Readings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Readings}}
-                    {{#MetrologyRequirements}}<div><b>MetrologyRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MetrologyRequirements}}
+                    {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
+                    {{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PendingCalculation}}");}); return false;'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
+                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/IntervalBlocks}}
+                    {{#Channel}}<div><b>Channel</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Channel}}");}); return false;'>{{Channel}}</a></div>{{/Channel}}
+                    {{#Readings}}<div><b>Readings</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Readings}}
+                    {{#MetrologyRequirements}}<div><b>MetrologyRequirements</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MetrologyRequirements}}
                     </div>
                     </fieldset>
 
@@ -3893,16 +3893,16 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}
-                    {{#version}}<div><b>version</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{version}}&quot;);}); return false;'>{{version}}</a></div>{{/version}}
-                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
-                    {{#DERGroupDispatch}}<div><b>DERGroupDispatch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DERGroupDispatch}}
-                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDevices}}
-                    {{#DERGroupForecast}}<div><b>DERGroupForecast</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DERGroupForecast}}
-                    {{#DemandResponsePrograms}}<div><b>DemandResponsePrograms</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DemandResponsePrograms}}
-                    {{#DERFunction}}<div><b>DERFunction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DERFunction}}&quot;);}); return false;'>{{DERFunction}}</a></div>{{/DERFunction}}
-                    {{#DispatchablePowerCapability}}<div><b>DispatchablePowerCapability</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DispatchablePowerCapability}}&quot;);}); return false;'>{{DispatchablePowerCapability}}</a></div>{{/DispatchablePowerCapability}}
-                    {{#DERMonitorableParameter}}<div><b>DERMonitorableParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DERMonitorableParameter}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#version}}<div><b>version</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{version}}");}); return false;'>{{version}}</a></div>{{/version}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
+                    {{#DERGroupDispatch}}<div><b>DERGroupDispatch</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DERGroupDispatch}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDevices}}
+                    {{#DERGroupForecast}}<div><b>DERGroupForecast</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DERGroupForecast}}
+                    {{#DemandResponsePrograms}}<div><b>DemandResponsePrograms</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DemandResponsePrograms}}
+                    {{#DERFunction}}<div><b>DERFunction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DERFunction}}");}); return false;'>{{DERFunction}}</a></div>{{/DERFunction}}
+                    {{#DispatchablePowerCapability}}<div><b>DispatchablePowerCapability</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DispatchablePowerCapability}}");}); return false;'>{{DispatchablePowerCapability}}</a></div>{{/DispatchablePowerCapability}}
+                    {{#DERMonitorableParameter}}<div><b>DERMonitorableParameter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DERMonitorableParameter}}
                     </div>
                     </fieldset>
 
@@ -4093,7 +4093,7 @@ define
                     {{#registerTier}}<div><b>registerTier</b>: {{registerTier}}</div>{{/registerTier}}
                     {{#unitOfMeasure}}<div><b>unitOfMeasure</b>: {{unitOfMeasure}}</div>{{/unitOfMeasure}}
                     {{#priceTierLabel}}<div><b>priceTierLabel</b>: {{priceTierLabel}}</div>{{/priceTierLabel}}
-                    {{#PanPricing}}<div><b>PanPricing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PanPricing}}&quot;);}); return false;'>{{PanPricing}}</a></div>{{/PanPricing}}
+                    {{#PanPricing}}<div><b>PanPricing</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PanPricing}}");}); return false;'>{{PanPricing}}</a></div>{{/PanPricing}}
                     </div>
                     </fieldset>
 
@@ -4237,8 +4237,8 @@ define
                     + Assets.AssetFunction.prototype.template.call (this) +
                     `
                     {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
-                    {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);}); return false;'>{{EndDevice}}</a></div>{{/EndDevice}}
-                    {{#Registers}}<div><b>Registers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Registers}}
+                    {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EndDevice}}");}); return false;'>{{EndDevice}}</a></div>{{/EndDevice}}
+                    {{#Registers}}<div><b>Registers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Registers}}
                     </div>
                     </fieldset>
 
@@ -4372,12 +4372,12 @@ define
                     `
                     {{#valuesInterval}}<div><b>valuesInterval</b>: {{valuesInterval}}</div>{{/valuesInterval}}
                     {{#isCoincidentTrigger}}<div><b>isCoincidentTrigger</b>: {{isCoincidentTrigger}}</div>{{/isCoincidentTrigger}}
-                    {{#Readings}}<div><b>Readings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Readings}}
-                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
-                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IntervalBlocks}}
-                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);}); return false;'>{{Meter}}</a></div>{{/Meter}}
-                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceEvents}}
-                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);}); return false;'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+                    {{#Readings}}<div><b>Readings</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Readings}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{UsagePoint}}");}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/IntervalBlocks}}
+                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Meter}}");}); return false;'>{{Meter}}</a></div>{{/Meter}}
+                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceEvents}}
+                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CustomerAgreement}}");}); return false;'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
                     </div>
                     </fieldset>
 
@@ -4516,8 +4516,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
-                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePoints}}
-                    {{#ReadingTypes}}<div><b>ReadingTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ReadingTypes}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#ReadingTypes}}<div><b>ReadingTypes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ReadingTypes}}
                     </div>
                     </fieldset>
 
@@ -4647,7 +4647,7 @@ define
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{UsagePoint}}");}); return false;'>{{UsagePoint}}</a></div>{{/UsagePoint}}
                     </div>
                     </fieldset>
 
@@ -4776,9 +4776,9 @@ define
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
-                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePointGroups}}
-                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceGroups}}
-                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CustomerAgreements}}
+                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePointGroups}}
+                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceGroups}}
+                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CustomerAgreements}}
                     </div>
                     </fieldset>
 
@@ -4916,7 +4916,7 @@ define
                     {{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
                     {{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
                     {{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
-                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePoints}}
                     </div>
                     </fieldset>
 
@@ -5049,7 +5049,7 @@ define
                     {{#domain}}<div><b>domain</b>: {{domain}}</div>{{/domain}}
                     {{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
                     {{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
-                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceControls}}
                     </div>
                     </fieldset>
 
@@ -5300,7 +5300,7 @@ define
                     {{#systemId}}<div><b>systemId</b>: {{systemId}}</div>{{/systemId}}
                     {{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
                     {{#subCategory}}<div><b>subCategory</b>: {{subCategory}}</div>{{/subCategory}}
-                    {{#ReadingQualities}}<div><b>ReadingQualities</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ReadingQualities}}
+                    {{#ReadingQualities}}<div><b>ReadingQualities</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ReadingQualities}}
                     </div>
                     </fieldset>
 
@@ -5432,8 +5432,8 @@ define
                     {{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
                     {{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
                     {{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
-                    {{#ReadingQualityType}}<div><b>ReadingQualityType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingQualityType}}&quot;);}); return false;'>{{ReadingQualityType}}</a></div>{{/ReadingQualityType}}
-                    {{#Reading}}<div><b>Reading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reading}}&quot;);}); return false;'>{{Reading}}</a></div>{{/Reading}}
+                    {{#ReadingQualityType}}<div><b>ReadingQualityType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReadingQualityType}}");}); return false;'>{{ReadingQualityType}}</a></div>{{/ReadingQualityType}}
+                    {{#Reading}}<div><b>Reading</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Reading}}");}); return false;'>{{Reading}}</a></div>{{/Reading}}
                     </div>
                     </fieldset>
 
@@ -5569,7 +5569,7 @@ define
                     {{#domain}}<div><b>domain</b>: {{domain}}</div>{{/domain}}
                     {{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
                     {{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
-                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndDeviceEvents}}
+                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndDeviceEvents}}
                     </div>
                     </fieldset>
 
@@ -5706,11 +5706,11 @@ define
                     `
                     {{#formNumber}}<div><b>formNumber</b>: {{formNumber}}</div>{{/formNumber}}
                     {{#connectionCategory}}<div><b>connectionCategory</b>: {{connectionCategory}}</div>{{/connectionCategory}}
-                    {{#MeterReplacementWorkTasks}}<div><b>MeterReplacementWorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeterReplacementWorkTasks}}
-                    {{#MeterServiceWorkTask}}<div><b>MeterServiceWorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeterServiceWorkTask}}
-                    {{#VendingTransactions}}<div><b>VendingTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VendingTransactions}}
-                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeterReadings}}
-                    {{#MeterMultipliers}}<div><b>MeterMultipliers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeterMultipliers}}
+                    {{#MeterReplacementWorkTasks}}<div><b>MeterReplacementWorkTasks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeterReplacementWorkTasks}}
+                    {{#MeterServiceWorkTask}}<div><b>MeterServiceWorkTask</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeterServiceWorkTask}}
+                    {{#VendingTransactions}}<div><b>VendingTransactions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/VendingTransactions}}
+                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeterReadings}}
+                    {{#MeterMultipliers}}<div><b>MeterMultipliers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeterMultipliers}}
                     </div>
                     </fieldset>
 
@@ -5852,8 +5852,8 @@ define
                     {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
                     {{#position}}<div><b>position</b>: {{position}}</div>{{/position}}
                     {{#valueMissing}}<div><b>valueMissing</b>: {{valueMissing}}</div>{{/valueMissing}}
-                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MeterReadings}}
-                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeterReadings}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReadingType}}");}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
                     </div>
                     </fieldset>
 
@@ -5982,7 +5982,7 @@ define
                     `
                     + BaseReading.prototype.template.call (this) +
                     `
-                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IntervalBlocks}}
+                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/IntervalBlocks}}
                     </div>
                     </fieldset>
 
@@ -6219,7 +6219,7 @@ define
                     + EndDeviceAction.prototype.template.call (this) +
                     `
                     {{#providerID}}<div><b>providerID</b>: {{providerID}}</div>{{/providerID}}
-                    {{#PanPricingDetails}}<div><b>PanPricingDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PanPricingDetails}}
+                    {{#PanPricingDetails}}<div><b>PanPricingDetails</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PanPricingDetails}}
                     </div>
                     </fieldset>
 
@@ -6356,7 +6356,7 @@ define
                     `
                     + EndDeviceAction.prototype.template.call (this) +
                     `
-                    {{#appliance}}<div><b>appliance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{appliance}}&quot;);}); return false;'>{{appliance}}</a></div>{{/appliance}}
+                    {{#appliance}}<div><b>appliance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{appliance}}");}); return false;'>{{appliance}}</a></div>{{/appliance}}
                     {{#avgLoadAdjustment}}<div><b>avgLoadAdjustment</b>: {{avgLoadAdjustment}}</div>{{/avgLoadAdjustment}}
                     {{#coolingOffset}}<div><b>coolingOffset</b>: {{coolingOffset}}</div>{{/coolingOffset}}
                     {{#coolingSetpoint}}<div><b>coolingSetpoint</b>: {{coolingSetpoint}}</div>{{/coolingSetpoint}}
@@ -6609,7 +6609,7 @@ define
                     {{#amrRouter}}<div><b>amrRouter</b>: {{amrRouter}}</div>{{/amrRouter}}
                     {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
                     {{#technology}}<div><b>technology</b>: {{technology}}</div>{{/technology}}
-                    {{#ComModule}}<div><b>ComModule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ComModule}}&quot;);}); return false;'>{{ComModule}}</a></div>{{/ComModule}}
+                    {{#ComModule}}<div><b>ComModule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ComModule}}");}); return false;'>{{ComModule}}</a></div>{{/ComModule}}
                     </div>
                     </fieldset>
 

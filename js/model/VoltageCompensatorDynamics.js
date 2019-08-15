@@ -80,8 +80,8 @@ define
                     `
                     {{#rcij}}<div><b>rcij</b>: {{rcij}}</div>{{/rcij}}
                     {{#xcij}}<div><b>xcij</b>: {{xcij}}</div>{{/xcij}}
-                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);}); return false;'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
-                    {{#VcompIEEEType2}}<div><b>VcompIEEEType2</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VcompIEEEType2}}&quot;);}); return false;'>{{VcompIEEEType2}}</a></div>{{/VcompIEEEType2}}
+                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SynchronousMachineDynamics}}");}); return false;'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+                    {{#VcompIEEEType2}}<div><b>VcompIEEEType2</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VcompIEEEType2}}");}); return false;'>{{VcompIEEEType2}}</a></div>{{/VcompIEEEType2}}
                     </div>
                     </fieldset>
 
@@ -203,8 +203,8 @@ define
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
-                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
-                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ExcitationSystemDynamics}}");}); return false;'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RemoteInputSignal}}");}); return false;'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
                     </div>
                     </fieldset>
 
@@ -331,7 +331,7 @@ define
                     + VoltageCompensatorDynamics.prototype.template.call (this) +
                     `
                     {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
-                    {{#GenICompensationForGenJ}}<div><b>GenICompensationForGenJ</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GenICompensationForGenJ}}
+                    {{#GenICompensationForGenJ}}<div><b>GenICompensationForGenJ</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GenICompensationForGenJ}}
                     </div>
                     </fieldset>
 

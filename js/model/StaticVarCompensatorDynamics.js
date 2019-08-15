@@ -63,7 +63,7 @@ define
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
-                    {{#StaticVarCompensator}}<div><b>StaticVarCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StaticVarCompensator}}&quot;);}); return false;'>{{StaticVarCompensator}}</a></div>{{/StaticVarCompensator}}
+                    {{#StaticVarCompensator}}<div><b>StaticVarCompensator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{StaticVarCompensator}}");}); return false;'>{{StaticVarCompensator}}</a></div>{{/StaticVarCompensator}}
                     </div>
                     </fieldset>
 

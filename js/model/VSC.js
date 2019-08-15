@@ -57,8 +57,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delay}}&quot;);}); return false;'>{{Delay}}</a></div>{{/Delay}}
-                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCtype1}}&quot;);}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
+                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delay}}");}); return false;'>{{Delay}}</a></div>{{/Delay}}
+                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCtype1}}");}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
                     </div>
                     </fieldset>
 
@@ -172,8 +172,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delay}}&quot;);}); return false;'>{{Delay}}</a></div>{{/Delay}}
-                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCtype1}}&quot;);}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
+                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delay}}");}); return false;'>{{Delay}}</a></div>{{/Delay}}
+                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCtype1}}");}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
                     </div>
                     </fieldset>
 
@@ -287,8 +287,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delay}}&quot;);}); return false;'>{{Delay}}</a></div>{{/Delay}}
-                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCtype1}}&quot;);}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
+                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delay}}");}); return false;'>{{Delay}}</a></div>{{/Delay}}
+                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCtype1}}");}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
                     </div>
                     </fieldset>
 
@@ -404,9 +404,9 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delay}}&quot;);}); return false;'>{{Delay}}</a></div>{{/Delay}}
-                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCtype1}}&quot;);}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
-                    {{#HVDClookUpTable}}<div><b>HVDClookUpTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/HVDClookUpTable}}
+                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delay}}");}); return false;'>{{Delay}}</a></div>{{/Delay}}
+                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCtype1}}");}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
+                    {{#HVDClookUpTable}}<div><b>HVDClookUpTable</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/HVDClookUpTable}}
                     </div>
                     </fieldset>
 
@@ -523,8 +523,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCtype1}}&quot;);}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
-                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delay}}&quot;);}); return false;'>{{Delay}}</a></div>{{/Delay}}
+                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCtype1}}");}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
+                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delay}}");}); return false;'>{{Delay}}</a></div>{{/Delay}}
                     </div>
                     </fieldset>
 
@@ -638,8 +638,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delay}}&quot;);}); return false;'>{{Delay}}</a></div>{{/Delay}}
-                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCtype1}}&quot;);}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
+                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delay}}");}); return false;'>{{Delay}}</a></div>{{/Delay}}
+                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCtype1}}");}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
                     </div>
                     </fieldset>
 
@@ -769,8 +769,8 @@ define
                     {{#kpvdc}}<div><b>kpvdc</b>: {{kpvdc}}</div>{{/kpvdc}}
                     {{#vdcmax}}<div><b>vdcmax</b>: {{vdcmax}}</div>{{/vdcmax}}
                     {{#vdcmin}}<div><b>vdcmin</b>: {{vdcmin}}</div>{{/vdcmin}}
-                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delay}}&quot;);}); return false;'>{{Delay}}</a></div>{{/Delay}}
-                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCtype1}}&quot;);}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
+                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delay}}");}); return false;'>{{Delay}}</a></div>{{/Delay}}
+                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCtype1}}");}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
                     </div>
                     </fieldset>
 
@@ -892,8 +892,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VSCtype1}}&quot;);}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
-                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delay}}&quot;);}); return false;'>{{Delay}}</a></div>{{/Delay}}
+                    {{#VSCtype1}}<div><b>VSCtype1</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCtype1}}");}); return false;'>{{VSCtype1}}</a></div>{{/VSCtype1}}
+                    {{#Delay}}<div><b>Delay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delay}}");}); return false;'>{{Delay}}</a></div>{{/Delay}}
                     </div>
                     </fieldset>
 
@@ -1019,14 +1019,14 @@ define
                     `
                     + HVDCDynamics.VSCDynamics.prototype.template.call (this) +
                     `
-                    {{#Pcontrol}}<div><b>Pcontrol</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pcontrol}}&quot;);}); return false;'>{{Pcontrol}}</a></div>{{/Pcontrol}}
-                    {{#Qlimiter}}<div><b>Qlimiter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Qlimiter}}&quot;);}); return false;'>{{Qlimiter}}</a></div>{{/Qlimiter}}
-                    {{#BlockingFunction}}<div><b>BlockingFunction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BlockingFunction}}&quot;);}); return false;'>{{BlockingFunction}}</a></div>{{/BlockingFunction}}
-                    {{#Qregulator}}<div><b>Qregulator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Qregulator}}&quot;);}); return false;'>{{Qregulator}}</a></div>{{/Qregulator}}
-                    {{#Umode}}<div><b>Umode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Umode}}&quot;);}); return false;'>{{Umode}}</a></div>{{/Umode}}
-                    {{#Qmode}}<div><b>Qmode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Qmode}}&quot;);}); return false;'>{{Qmode}}</a></div>{{/Qmode}}
-                    {{#PFmodel}}<div><b>PFmodel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PFmodel}}&quot;);}); return false;'>{{PFmodel}}</a></div>{{/PFmodel}}
-                    {{#DCvoltageControl}}<div><b>DCvoltageControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCvoltageControl}}&quot;);}); return false;'>{{DCvoltageControl}}</a></div>{{/DCvoltageControl}}
+                    {{#Pcontrol}}<div><b>Pcontrol</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Pcontrol}}");}); return false;'>{{Pcontrol}}</a></div>{{/Pcontrol}}
+                    {{#Qlimiter}}<div><b>Qlimiter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Qlimiter}}");}); return false;'>{{Qlimiter}}</a></div>{{/Qlimiter}}
+                    {{#BlockingFunction}}<div><b>BlockingFunction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BlockingFunction}}");}); return false;'>{{BlockingFunction}}</a></div>{{/BlockingFunction}}
+                    {{#Qregulator}}<div><b>Qregulator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Qregulator}}");}); return false;'>{{Qregulator}}</a></div>{{/Qregulator}}
+                    {{#Umode}}<div><b>Umode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Umode}}");}); return false;'>{{Umode}}</a></div>{{/Umode}}
+                    {{#Qmode}}<div><b>Qmode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Qmode}}");}); return false;'>{{Qmode}}</a></div>{{/Qmode}}
+                    {{#PFmodel}}<div><b>PFmodel</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PFmodel}}");}); return false;'>{{PFmodel}}</a></div>{{/PFmodel}}
+                    {{#DCvoltageControl}}<div><b>DCvoltageControl</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DCvoltageControl}}");}); return false;'>{{DCvoltageControl}}</a></div>{{/DCvoltageControl}}
                     </div>
                     </fieldset>
 

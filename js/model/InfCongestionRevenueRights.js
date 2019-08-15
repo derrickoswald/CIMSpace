@@ -78,9 +78,9 @@ define
                     {{#baseEnergy}}<div><b>baseEnergy</b>: {{baseEnergy}}</div>{{/baseEnergy}}
                     {{#ftrType}}<div><b>ftrType</b>: {{ftrType}}</div>{{/ftrType}}
                     {{#class}}<div><b>class</b>: {{class}}</div>{{/class}}
-                    {{#EnergyPriceCurve}}<div><b>EnergyPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyPriceCurve}}&quot;);}); return false;'>{{EnergyPriceCurve}}</a></div>{{/EnergyPriceCurve}}
-                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
-                    {{#Pnodes}}<div><b>Pnodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Pnodes}}
+                    {{#EnergyPriceCurve}}<div><b>EnergyPriceCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergyPriceCurve}}");}); return false;'>{{EnergyPriceCurve}}</a></div>{{/EnergyPriceCurve}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Flowgate}}");}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#Pnodes}}<div><b>Pnodes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Pnodes}}
                     </div>
                     </fieldset>
 
@@ -216,8 +216,8 @@ define
                     + Meas.Limit.prototype.template.call (this) +
                     `
                     {{#enforced}}<div><b>enforced</b>: {{enforced}}</div>{{/enforced}}
-                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
-                    {{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktMeasurement}}&quot;);}); return false;'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Flowgate}}");}); return false;'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MktMeasurement}}");}); return false;'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
                     </div>
                     </fieldset>
 

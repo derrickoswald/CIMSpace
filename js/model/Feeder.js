@@ -57,8 +57,8 @@ define
                     `
                     + Wires.Line.prototype.template.call (this) +
                     `
-                    {{#EndBay}}<div><b>EndBay</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndBay}}
-                    {{#EndTerminal}}<div><b>EndTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EndTerminal}}
+                    {{#EndBay}}<div><b>EndBay</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndBay}}
+                    {{#EndTerminal}}<div><b>EndTerminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EndTerminal}}
                     </div>
                     </fieldset>
 

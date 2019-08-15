@@ -66,8 +66,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#tiePointMWRating}}<div><b>tiePointMWRating</b>: {{tiePointMWRating}}</div>{{/tiePointMWRating}}
-                    {{#ByMktMeasurement}}<div><b>ByMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ByMktMeasurement}}
-                    {{#ForMktMeasurement}}<div><b>ForMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ForMktMeasurement}}
+                    {{#ByMktMeasurement}}<div><b>ByMktMeasurement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ByMktMeasurement}}
+                    {{#ForMktMeasurement}}<div><b>ForMktMeasurement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ForMktMeasurement}}
                     </div>
                     </fieldset>
 

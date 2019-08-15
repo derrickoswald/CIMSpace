@@ -67,7 +67,7 @@ define
                     `
                     + Wires.EnergyConsumer.prototype.template.call (this) +
                     `
-                    {{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadGroup}}&quot;);}); return false;'>{{LoadGroup}}</a></div>{{/LoadGroup}}
+                    {{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadGroup}}");}); return false;'>{{LoadGroup}}</a></div>{{/LoadGroup}}
                     </div>
                     </fieldset>
 
@@ -180,7 +180,7 @@ define
                     `
                     + Wires.EnergyConsumer.prototype.template.call (this) +
                     `
-                    {{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadGroup}}&quot;);}); return false;'>{{LoadGroup}}</a></div>{{/LoadGroup}}
+                    {{#LoadGroup}}<div><b>LoadGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadGroup}}");}); return false;'>{{LoadGroup}}</a></div>{{/LoadGroup}}
                     </div>
                     </fieldset>
 

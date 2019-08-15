@@ -101,11 +101,11 @@ define
                     {{#offsetX}}<div><b>offsetX</b>: {{offsetX}}</div>{{/offsetX}}
                     {{#offsetY}}<div><b>offsetY</b>: {{offsetY}}</div>{{/offsetY}}
                     {{#rotation}}<div><b>rotation</b>: {{rotation}}</div>{{/rotation}}
-                    {{#VisibilityLayers}}<div><b>VisibilityLayers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VisibilityLayers}}
-                    {{#IdentifiedObject}}<div><b>IdentifiedObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IdentifiedObject}}&quot;);}); return false;'>{{IdentifiedObject}}</a></div>{{/IdentifiedObject}}
-                    {{#Diagram}}<div><b>Diagram</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Diagram}}&quot;);}); return false;'>{{Diagram}}</a></div>{{/Diagram}}
-                    {{#DiagramObjectStyle}}<div><b>DiagramObjectStyle</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObjectStyle}}&quot;);}); return false;'>{{DiagramObjectStyle}}</a></div>{{/DiagramObjectStyle}}
-                    {{#DiagramObjectPoints}}<div><b>DiagramObjectPoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DiagramObjectPoints}}
+                    {{#VisibilityLayers}}<div><b>VisibilityLayers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/VisibilityLayers}}
+                    {{#IdentifiedObject}}<div><b>IdentifiedObject</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{IdentifiedObject}}");}); return false;'>{{IdentifiedObject}}</a></div>{{/IdentifiedObject}}
+                    {{#Diagram}}<div><b>Diagram</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Diagram}}");}); return false;'>{{Diagram}}</a></div>{{/Diagram}}
+                    {{#DiagramObjectStyle}}<div><b>DiagramObjectStyle</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DiagramObjectStyle}}");}); return false;'>{{DiagramObjectStyle}}</a></div>{{/DiagramObjectStyle}}
+                    {{#DiagramObjectPoints}}<div><b>DiagramObjectPoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DiagramObjectPoints}}
                     </div>
                     </fieldset>
 
@@ -244,7 +244,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#Diagram}}<div><b>Diagram</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Diagram}}
+                    {{#Diagram}}<div><b>Diagram</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Diagram}}
                     </div>
                     </fieldset>
 
@@ -371,8 +371,8 @@ define
                     {{#xPosition}}<div><b>xPosition</b>: {{xPosition}}</div>{{/xPosition}}
                     {{#yPosition}}<div><b>yPosition</b>: {{yPosition}}</div>{{/yPosition}}
                     {{#zPosition}}<div><b>zPosition</b>: {{zPosition}}</div>{{/zPosition}}
-                    {{#DiagramObjectGluePoint}}<div><b>DiagramObjectGluePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObjectGluePoint}}&quot;);}); return false;'>{{DiagramObjectGluePoint}}</a></div>{{/DiagramObjectGluePoint}}
-                    {{#DiagramObject}}<div><b>DiagramObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramObject}}&quot;);}); return false;'>{{DiagramObject}}</a></div>{{/DiagramObject}}
+                    {{#DiagramObjectGluePoint}}<div><b>DiagramObjectGluePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DiagramObjectGluePoint}}");}); return false;'>{{DiagramObjectGluePoint}}</a></div>{{/DiagramObjectGluePoint}}
+                    {{#DiagramObject}}<div><b>DiagramObject</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DiagramObject}}");}); return false;'>{{DiagramObject}}</a></div>{{/DiagramObject}}
                     </div>
                     </fieldset>
 
@@ -498,7 +498,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#StyledObjects}}<div><b>StyledObjects</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/StyledObjects}}
+                    {{#StyledObjects}}<div><b>StyledObjects</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/StyledObjects}}
                     </div>
                     </fieldset>
 
@@ -609,7 +609,7 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#DiagramObjectPoints}}<div><b>DiagramObjectPoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DiagramObjectPoints}}
+                    {{#DiagramObjectPoints}}<div><b>DiagramObjectPoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DiagramObjectPoints}}
                     </div>
                     </fieldset>
 
@@ -739,8 +739,8 @@ define
                     {{#x2InitialView}}<div><b>x2InitialView</b>: {{x2InitialView}}</div>{{/x2InitialView}}
                     {{#y1InitialView}}<div><b>y1InitialView</b>: {{y1InitialView}}</div>{{/y1InitialView}}
                     {{#y2InitialView}}<div><b>y2InitialView</b>: {{y2InitialView}}</div>{{/y2InitialView}}
-                    {{#DiagramElements}}<div><b>DiagramElements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DiagramElements}}
-                    {{#DiagramStyle}}<div><b>DiagramStyle</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiagramStyle}}&quot;);}); return false;'>{{DiagramStyle}}</a></div>{{/DiagramStyle}}
+                    {{#DiagramElements}}<div><b>DiagramElements</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DiagramElements}}
+                    {{#DiagramStyle}}<div><b>DiagramStyle</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DiagramStyle}}");}); return false;'>{{DiagramStyle}}</a></div>{{/DiagramStyle}}
                     </div>
                     </fieldset>
 
@@ -875,7 +875,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#drawingOrder}}<div><b>drawingOrder</b>: {{drawingOrder}}</div>{{/drawingOrder}}
-                    {{#VisibleObjects}}<div><b>VisibleObjects</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VisibleObjects}}
+                    {{#VisibleObjects}}<div><b>VisibleObjects</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/VisibleObjects}}
                     </div>
                     </fieldset>
 

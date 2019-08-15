@@ -81,7 +81,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#NetworkModelProjectChangeVersion}}<div><b>NetworkModelProjectChangeVersion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/NetworkModelProjectChangeVersion}}
+                    {{#NetworkModelProjectChangeVersion}}<div><b>NetworkModelProjectChangeVersion</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/NetworkModelProjectChangeVersion}}
                     </div>
                     </fieldset>
 
@@ -404,9 +404,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ProjectARelationships}}<div><b>ProjectARelationships</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProjectARelationships}}
-                    {{#ProjectBRelationships}}<div><b>ProjectBRelationships</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProjectBRelationships}}
-                    {{#ContainingProject}}<div><b>ContainingProject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ContainingProject}}&quot;);}); return false;'>{{ContainingProject}}</a></div>{{/ContainingProject}}
+                    {{#ProjectARelationships}}<div><b>ProjectARelationships</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProjectARelationships}}
+                    {{#ProjectBRelationships}}<div><b>ProjectBRelationships</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProjectBRelationships}}
+                    {{#ContainingProject}}<div><b>ContainingProject</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ContainingProject}}");}); return false;'>{{ContainingProject}}</a></div>{{/ContainingProject}}
                     </div>
                     </fieldset>
 
@@ -544,11 +544,11 @@ define
                     {{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
                     {{#comment}}<div><b>comment</b>: {{comment}}</div>{{/comment}}
                     {{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
-                    {{#NetworkModelProjectState}}<div><b>NetworkModelProjectState</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NetworkModelProjectState}}&quot;);}); return false;'>{{NetworkModelProjectState}}</a></div>{{/NetworkModelProjectState}}
-                    {{#ChangeSet}}<div><b>ChangeSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChangeSet}}&quot;);}); return false;'>{{ChangeSet}}</a></div>{{/ChangeSet}}
-                    {{#NetworkModelProjectChange}}<div><b>NetworkModelProjectChange</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NetworkModelProjectChange}}&quot;);}); return false;'>{{NetworkModelProjectChange}}</a></div>{{/NetworkModelProjectChange}}
-                    {{#Supercedes}}<div><b>Supercedes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Supercedes}}&quot;);}); return false;'>{{Supercedes}}</a></div>{{/Supercedes}}
-                    {{#SupercededBy}}<div><b>SupercededBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SupercededBy}}&quot;);}); return false;'>{{SupercededBy}}</a></div>{{/SupercededBy}}
+                    {{#NetworkModelProjectState}}<div><b>NetworkModelProjectState</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{NetworkModelProjectState}}");}); return false;'>{{NetworkModelProjectState}}</a></div>{{/NetworkModelProjectState}}
+                    {{#ChangeSet}}<div><b>ChangeSet</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ChangeSet}}");}); return false;'>{{ChangeSet}}</a></div>{{/ChangeSet}}
+                    {{#NetworkModelProjectChange}}<div><b>NetworkModelProjectChange</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{NetworkModelProjectChange}}");}); return false;'>{{NetworkModelProjectChange}}</a></div>{{/NetworkModelProjectChange}}
+                    {{#Supercedes}}<div><b>Supercedes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Supercedes}}");}); return false;'>{{Supercedes}}</a></div>{{/Supercedes}}
+                    {{#SupercededBy}}<div><b>SupercededBy</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SupercededBy}}");}); return false;'>{{SupercededBy}}</a></div>{{/SupercededBy}}
                     </div>
                     </fieldset>
 
@@ -687,7 +687,7 @@ define
                     {{#created}}<div><b>created</b>: {{created}}</div>{{/created}}
                     {{#closed}}<div><b>closed</b>: {{closed}}</div>{{/closed}}
                     {{#updated}}<div><b>updated</b>: {{updated}}</div>{{/updated}}
-                    {{#Parent}}<div><b>Parent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Parent}}&quot;);}); return false;'>{{Parent}}</a></div>{{/Parent}}
+                    {{#Parent}}<div><b>Parent</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Parent}}");}); return false;'>{{Parent}}</a></div>{{/Parent}}
                     </div>
                     </fieldset>
 
@@ -1000,8 +1000,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ProjectA}}<div><b>ProjectA</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProjectA}}&quot;);}); return false;'>{{ProjectA}}</a></div>{{/ProjectA}}
-                    {{#ProjectB}}<div><b>ProjectB</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProjectB}}&quot;);}); return false;'>{{ProjectB}}</a></div>{{/ProjectB}}
+                    {{#ProjectA}}<div><b>ProjectA</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ProjectA}}");}); return false;'>{{ProjectA}}</a></div>{{/ProjectA}}
+                    {{#ProjectB}}<div><b>ProjectB</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ProjectB}}");}); return false;'>{{ProjectB}}</a></div>{{/ProjectB}}
                     </div>
                     </fieldset>
 
@@ -1118,8 +1118,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#dependencyType}}<div><b>dependencyType</b>: {{dependencyType}}</div>{{/dependencyType}}
-                    {{#DependentOnStage}}<div><b>DependentOnStage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DependentOnStage}}&quot;);}); return false;'>{{DependentOnStage}}</a></div>{{/DependentOnStage}}
-                    {{#DependingStage}}<div><b>DependingStage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DependingStage}}&quot;);}); return false;'>{{DependingStage}}</a></div>{{/DependingStage}}
+                    {{#DependentOnStage}}<div><b>DependentOnStage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DependentOnStage}}");}); return false;'>{{DependentOnStage}}</a></div>{{/DependentOnStage}}
+                    {{#DependingStage}}<div><b>DependingStage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DependingStage}}");}); return false;'>{{DependingStage}}</a></div>{{/DependingStage}}
                     </div>
                     </fieldset>
 
@@ -1332,7 +1332,7 @@ define
                     `
                     + NetworkModelProjectComponent.prototype.template.call (this) +
                     `
-                    {{#NetworkModelProjectChangeVersion}}<div><b>NetworkModelProjectChangeVersion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/NetworkModelProjectChangeVersion}}
+                    {{#NetworkModelProjectChangeVersion}}<div><b>NetworkModelProjectChangeVersion</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/NetworkModelProjectChangeVersion}}
                     </div>
                     </fieldset>
 
@@ -1445,7 +1445,7 @@ define
                     `
                     + NetworkModelProjectComponent.prototype.template.call (this) +
                     `
-                    {{#ContainedProject}}<div><b>ContainedProject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ContainedProject}}
+                    {{#ContainedProject}}<div><b>ContainedProject</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ContainedProject}}
                     </div>
                     </fieldset>
 
@@ -1565,9 +1565,9 @@ define
                     {{#changesetVersion}}<div><b>changesetVersion</b>: {{changesetVersion}}</div>{{/changesetVersion}}
                     {{#plannedCommissionedDate}}<div><b>plannedCommissionedDate</b>: {{plannedCommissionedDate}}</div>{{/plannedCommissionedDate}}
                     {{#commissionedDate}}<div><b>commissionedDate</b>: {{commissionedDate}}</div>{{/commissionedDate}}
-                    {{#ChangeSets}}<div><b>ChangeSets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ChangeSets}}
-                    {{#DependencyDependentOnStage}}<div><b>DependencyDependentOnStage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DependencyDependentOnStage}}&quot;);}); return false;'>{{DependencyDependentOnStage}}</a></div>{{/DependencyDependentOnStage}}
-                    {{#DenpendecyDependingStage}}<div><b>DenpendecyDependingStage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DenpendecyDependingStage}}
+                    {{#ChangeSets}}<div><b>ChangeSets</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChangeSets}}
+                    {{#DependencyDependentOnStage}}<div><b>DependencyDependentOnStage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DependencyDependentOnStage}}");}); return false;'>{{DependencyDependentOnStage}}</a></div>{{/DependencyDependentOnStage}}
+                    {{#DenpendecyDependingStage}}<div><b>DenpendecyDependingStage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DenpendecyDependingStage}}
                     </div>
                     </fieldset>
 
@@ -1688,7 +1688,7 @@ define
                     `
                     + NetworkModelProjectComponent2.prototype.template.call (this) +
                     `
-                    {{#Child}}<div><b>Child</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Child}}
+                    {{#Child}}<div><b>Child</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Child}}
                     </div>
                     </fieldset>
 

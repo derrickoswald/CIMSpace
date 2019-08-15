@@ -156,10 +156,10 @@ define
                     `
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
                     {{#startValue}}<div><b>startValue</b>: {{startValue}}</div>{{/startValue}}
-                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
-                    {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Charges}}
-                    {{#TouTariffIntervals}}<div><b>TouTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TouTariffIntervals}}
-                    {{#TariffProfiles}}<div><b>TariffProfiles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TariffProfiles}}
+                    {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReadingType}}");}); return false;'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Charges}}
+                    {{#TouTariffIntervals}}<div><b>TouTariffIntervals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TouTariffIntervals}}
+                    {{#TariffProfiles}}<div><b>TariffProfiles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TariffProfiles}}
                     </div>
                     </fieldset>
 
@@ -293,7 +293,7 @@ define
                     `
                     + Common.Agreement.prototype.template.call (this) +
                     `
-                    {{#MerchantAccounts}}<div><b>MerchantAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MerchantAccounts}}
+                    {{#MerchantAccounts}}<div><b>MerchantAccounts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MerchantAccounts}}
                     </div>
                     </fieldset>
 
@@ -404,7 +404,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#MerchantAccounts}}<div><b>MerchantAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MerchantAccounts}}
+                    {{#MerchantAccounts}}<div><b>MerchantAccounts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MerchantAccounts}}
                     </div>
                     </fieldset>
 
@@ -523,8 +523,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddress}}&quot;);}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}
-                    {{#CashierShifts}}<div><b>CashierShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CashierShifts}}
+                    {{#electronicAddress}}<div><b>electronicAddress</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{electronicAddress}}");}); return false;'>{{electronicAddress}}</a></div>{{/electronicAddress}}
+                    {{#CashierShifts}}<div><b>CashierShifts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CashierShifts}}
                     </div>
                     </fieldset>
 
@@ -900,7 +900,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#location}}<div><b>location</b>: {{location}}</div>{{/location}}
-                    {{#CashierShifts}}<div><b>CashierShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CashierShifts}}
+                    {{#CashierShifts}}<div><b>CashierShifts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CashierShifts}}
                     </div>
                     </fieldset>
 
@@ -1029,8 +1029,8 @@ define
                     {{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
                     {{#micrNumber}}<div><b>micrNumber</b>: {{micrNumber}}</div>{{/micrNumber}}
                     {{#chequeNumber}}<div><b>chequeNumber</b>: {{chequeNumber}}</div>{{/chequeNumber}}
-                    {{#bankAccountDetail}}<div><b>bankAccountDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{bankAccountDetail}}&quot;);}); return false;'>{{bankAccountDetail}}</a></div>{{/bankAccountDetail}}
-                    {{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Tender}}&quot;);}); return false;'>{{Tender}}</a></div>{{/Tender}}
+                    {{#bankAccountDetail}}<div><b>bankAccountDetail</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{bankAccountDetail}}");}); return false;'>{{bankAccountDetail}}</a></div>{{/bankAccountDetail}}
+                    {{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Tender}}");}); return false;'>{{Tender}}</a></div>{{/Tender}}
                     </div>
                     </fieldset>
 
@@ -1167,7 +1167,7 @@ define
                     {{#expiryDate}}<div><b>expiryDate</b>: {{expiryDate}}</div>{{/expiryDate}}
                     {{#pan}}<div><b>pan</b>: {{pan}}</div>{{/pan}}
                     {{#accountHolderName}}<div><b>accountHolderName</b>: {{accountHolderName}}</div>{{/accountHolderName}}
-                    {{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Tender}}&quot;);}); return false;'>{{Tender}}</a></div>{{/Tender}}
+                    {{#Tender}}<div><b>Tender</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Tender}}");}); return false;'>{{Tender}}</a></div>{{/Tender}}
                     </div>
                     </fieldset>
 
@@ -1437,15 +1437,15 @@ define
                     {{#reversedId}}<div><b>reversedId</b>: {{reversedId}}</div>{{/reversedId}}
                     {{#serviceUnitsEnergy}}<div><b>serviceUnitsEnergy</b>: {{serviceUnitsEnergy}}</div>{{/serviceUnitsEnergy}}
                     {{#serviceUnitsError}}<div><b>serviceUnitsError</b>: {{serviceUnitsError}}</div>{{/serviceUnitsError}}
-                    {{#line}}<div><b>line</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{line}}&quot;);}); return false;'>{{line}}</a></div>{{/line}}
-                    {{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt}}&quot;);}); return false;'>{{Receipt}}</a></div>{{/Receipt}}
-                    {{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VendorShift}}&quot;);}); return false;'>{{VendorShift}}</a></div>{{/VendorShift}}
-                    {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);}); return false;'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
-                    {{#UserAttributes}}<div><b>UserAttributes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UserAttributes}}
-                    {{#PricingStructure}}<div><b>PricingStructure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PricingStructure}}&quot;);}); return false;'>{{PricingStructure}}</a></div>{{/PricingStructure}}
-                    {{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CashierShift}}&quot;);}); return false;'>{{CashierShift}}</a></div>{{/CashierShift}}
-                    {{#AuxiliaryAccount}}<div><b>AuxiliaryAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxiliaryAccount}}&quot;);}); return false;'>{{AuxiliaryAccount}}</a></div>{{/AuxiliaryAccount}}
-                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);}); return false;'>{{Meter}}</a></div>{{/Meter}}
+                    {{#line}}<div><b>line</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{line}}");}); return false;'>{{line}}</a></div>{{/line}}
+                    {{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Receipt}}");}); return false;'>{{Receipt}}</a></div>{{/Receipt}}
+                    {{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VendorShift}}");}); return false;'>{{VendorShift}}</a></div>{{/VendorShift}}
+                    {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CustomerAccount}}");}); return false;'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
+                    {{#UserAttributes}}<div><b>UserAttributes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UserAttributes}}
+                    {{#PricingStructure}}<div><b>PricingStructure</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PricingStructure}}");}); return false;'>{{PricingStructure}}</a></div>{{/PricingStructure}}
+                    {{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CashierShift}}");}); return false;'>{{CashierShift}}</a></div>{{/CashierShift}}
+                    {{#AuxiliaryAccount}}<div><b>AuxiliaryAccount</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AuxiliaryAccount}}");}); return false;'>{{AuxiliaryAccount}}</a></div>{{/AuxiliaryAccount}}
+                    {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Meter}}");}); return false;'>{{Meter}}</a></div>{{/Meter}}
                     </div>
                     </fieldset>
 
@@ -1606,9 +1606,9 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     {{#tariffCycle}}<div><b>tariffCycle</b>: {{tariffCycle}}</div>{{/tariffCycle}}
-                    {{#Tariffs}}<div><b>Tariffs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Tariffs}}
-                    {{#TimeTariffIntervals}}<div><b>TimeTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TimeTariffIntervals}}
-                    {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
+                    {{#Tariffs}}<div><b>Tariffs</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Tariffs}}
+                    {{#TimeTariffIntervals}}<div><b>TimeTariffIntervals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TimeTariffIntervals}}
+                    {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
                     </div>
                     </fieldset>
 
@@ -1985,11 +1985,11 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#isBankable}}<div><b>isBankable</b>: {{isBankable}}</div>{{/isBankable}}
-                    {{#line}}<div><b>line</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{line}}&quot;);}); return false;'>{{line}}</a></div>{{/line}}
-                    {{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VendorShift}}&quot;);}); return false;'>{{VendorShift}}</a></div>{{/VendorShift}}
-                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Transactions}}
-                    {{#Tenders}}<div><b>Tenders</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Tenders}}
-                    {{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CashierShift}}&quot;);}); return false;'>{{CashierShift}}</a></div>{{/CashierShift}}
+                    {{#line}}<div><b>line</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{line}}");}); return false;'>{{line}}</a></div>{{/line}}
+                    {{#VendorShift}}<div><b>VendorShift</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VendorShift}}");}); return false;'>{{VendorShift}}</a></div>{{/VendorShift}}
+                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Transactions}}
+                    {{#Tenders}}<div><b>Tenders</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Tenders}}
+                    {{#CashierShift}}<div><b>CashierShift</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CashierShift}}");}); return false;'>{{CashierShift}}</a></div>{{/CashierShift}}
                     </div>
                     </fieldset>
 
@@ -2132,13 +2132,13 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
-                    {{#fixedPortion}}<div><b>fixedPortion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{fixedPortion}}&quot;);}); return false;'>{{fixedPortion}}</a></div>{{/fixedPortion}}
+                    {{#fixedPortion}}<div><b>fixedPortion</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{fixedPortion}}");}); return false;'>{{fixedPortion}}</a></div>{{/fixedPortion}}
                     {{#variablePortion}}<div><b>variablePortion</b>: {{variablePortion}}</div>{{/variablePortion}}
-                    {{#TimeTariffIntervals}}<div><b>TimeTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TimeTariffIntervals}}
-                    {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
-                    {{#ParentCharge}}<div><b>ParentCharge</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCharge}}&quot;);}); return false;'>{{ParentCharge}}</a></div>{{/ParentCharge}}
-                    {{#ChildCharges}}<div><b>ChildCharges</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ChildCharges}}
-                    {{#AuxiliaryAccounts}}<div><b>AuxiliaryAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxiliaryAccounts}}
+                    {{#TimeTariffIntervals}}<div><b>TimeTariffIntervals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TimeTariffIntervals}}
+                    {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
+                    {{#ParentCharge}}<div><b>ParentCharge</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ParentCharge}}");}); return false;'>{{ParentCharge}}</a></div>{{/ParentCharge}}
+                    {{#ChildCharges}}<div><b>ChildCharges</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChildCharges}}
+                    {{#AuxiliaryAccounts}}<div><b>AuxiliaryAccounts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AuxiliaryAccounts}}
                     </div>
                     </fieldset>
 
@@ -2293,12 +2293,12 @@ define
                     `
                     {{#principleAmount}}<div><b>principleAmount</b>: {{principleAmount}}</div>{{/principleAmount}}
                     {{#balance}}<div><b>balance</b>: {{balance}}</div>{{/balance}}
-                    {{#due}}<div><b>due</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{due}}&quot;);}); return false;'>{{due}}</a></div>{{/due}}
-                    {{#lastCredit}}<div><b>lastCredit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{lastCredit}}&quot;);}); return false;'>{{lastCredit}}</a></div>{{/lastCredit}}
-                    {{#lastDebit}}<div><b>lastDebit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{lastDebit}}&quot;);}); return false;'>{{lastDebit}}</a></div>{{/lastDebit}}
-                    {{#AuxiliaryAgreement}}<div><b>AuxiliaryAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxiliaryAgreement}}&quot;);}); return false;'>{{AuxiliaryAgreement}}</a></div>{{/AuxiliaryAgreement}}
-                    {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Charges}}
-                    {{#PaymentTransactions}}<div><b>PaymentTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PaymentTransactions}}
+                    {{#due}}<div><b>due</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{due}}");}); return false;'>{{due}}</a></div>{{/due}}
+                    {{#lastCredit}}<div><b>lastCredit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{lastCredit}}");}); return false;'>{{lastCredit}}</a></div>{{/lastCredit}}
+                    {{#lastDebit}}<div><b>lastDebit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{lastDebit}}");}); return false;'>{{lastDebit}}</a></div>{{/lastDebit}}
+                    {{#AuxiliaryAgreement}}<div><b>AuxiliaryAgreement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AuxiliaryAgreement}}");}); return false;'>{{AuxiliaryAgreement}}</a></div>{{/AuxiliaryAgreement}}
+                    {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Charges}}
+                    {{#PaymentTransactions}}<div><b>PaymentTransactions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PaymentTransactions}}
                     </div>
                     </fieldset>
 
@@ -2445,9 +2445,9 @@ define
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
                     {{#change}}<div><b>change</b>: {{change}}</div>{{/change}}
-                    {{#Card}}<div><b>Card</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Card}}&quot;);}); return false;'>{{Card}}</a></div>{{/Card}}
-                    {{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt}}&quot;);}); return false;'>{{Receipt}}</a></div>{{/Receipt}}
-                    {{#Cheque}}<div><b>Cheque</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Cheque}}&quot;);}); return false;'>{{Cheque}}</a></div>{{/Cheque}}
+                    {{#Card}}<div><b>Card</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Card}}");}); return false;'>{{Card}}</a></div>{{/Card}}
+                    {{#Receipt}}<div><b>Receipt</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Receipt}}");}); return false;'>{{Receipt}}</a></div>{{/Receipt}}
+                    {{#Cheque}}<div><b>Cheque</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Cheque}}");}); return false;'>{{Cheque}}</a></div>{{/Cheque}}
                     </div>
                     </fieldset>
 
@@ -2606,8 +2606,8 @@ define
                     {{#vendPortion}}<div><b>vendPortion</b>: {{vendPortion}}</div>{{/vendPortion}}
                     {{#vendPortionArrear}}<div><b>vendPortionArrear</b>: {{vendPortionArrear}}</div>{{/vendPortionArrear}}
                     {{#fixedAmount}}<div><b>fixedAmount</b>: {{fixedAmount}}</div>{{/fixedAmount}}
-                    {{#AuxiliaryAccounts}}<div><b>AuxiliaryAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxiliaryAccounts}}
-                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);}); return false;'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+                    {{#AuxiliaryAccounts}}<div><b>AuxiliaryAccounts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AuxiliaryAccounts}}
+                    {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CustomerAgreement}}");}); return false;'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
                     </div>
                     </fieldset>
 
@@ -2753,9 +2753,9 @@ define
                     `
                     {{#currentBalance}}<div><b>currentBalance</b>: {{currentBalance}}</div>{{/currentBalance}}
                     {{#provisionalBalance}}<div><b>provisionalBalance</b>: {{provisionalBalance}}</div>{{/provisionalBalance}}
-                    {{#MerchantAgreement}}<div><b>MerchantAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MerchantAgreement}}&quot;);}); return false;'>{{MerchantAgreement}}</a></div>{{/MerchantAgreement}}
-                    {{#Transactors}}<div><b>Transactors</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Transactors}}
-                    {{#VendorShifts}}<div><b>VendorShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VendorShifts}}
+                    {{#MerchantAgreement}}<div><b>MerchantAgreement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MerchantAgreement}}");}); return false;'>{{MerchantAgreement}}</a></div>{{/MerchantAgreement}}
+                    {{#Transactors}}<div><b>Transactors</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Transactors}}
+                    {{#VendorShifts}}<div><b>VendorShifts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/VendorShifts}}
                     </div>
                     </fieldset>
 
@@ -3011,9 +3011,9 @@ define
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#issuerIdentificationNumber}}<div><b>issuerIdentificationNumber</b>: {{issuerIdentificationNumber}}</div>{{/issuerIdentificationNumber}}
-                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CustomerAgreements}}
-                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/UsagePoints}}
-                    {{#BankAccounts}}<div><b>BankAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/BankAccounts}}
+                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CustomerAgreements}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#BankAccounts}}<div><b>BankAccounts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BankAccounts}}
                     </div>
                     </fieldset>
 
@@ -3150,9 +3150,9 @@ define
                     `
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
                     {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-                    {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Charges}}
-                    {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
-                    {{#TariffProfiles}}<div><b>TariffProfiles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TariffProfiles}}
+                    {{#Charges}}<div><b>Charges</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Charges}}
+                    {{#ConsumptionTariffIntervals}}<div><b>ConsumptionTariffIntervals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConsumptionTariffIntervals}}
+                    {{#TariffProfiles}}<div><b>TariffProfiles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TariffProfiles}}
                     </div>
                     </fieldset>
 
@@ -3283,7 +3283,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#VendorShifts}}<div><b>VendorShifts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VendorShifts}}
+                    {{#VendorShifts}}<div><b>VendorShifts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/VendorShifts}}
                     </div>
                     </fieldset>
 
@@ -3408,10 +3408,10 @@ define
                     `
                     {{#merchantDebitAmount}}<div><b>merchantDebitAmount</b>: {{merchantDebitAmount}}</div>{{/merchantDebitAmount}}
                     {{#posted}}<div><b>posted</b>: {{posted}}</div>{{/posted}}
-                    {{#Receipts}}<div><b>Receipts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Receipts}}
-                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Transactions}}
-                    {{#Vendor}}<div><b>Vendor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Vendor}}&quot;);}); return false;'>{{Vendor}}</a></div>{{/Vendor}}
-                    {{#MerchantAccount}}<div><b>MerchantAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MerchantAccount}}&quot;);}); return false;'>{{MerchantAccount}}</a></div>{{/MerchantAccount}}
+                    {{#Receipts}}<div><b>Receipts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Receipts}}
+                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Transactions}}
+                    {{#Vendor}}<div><b>Vendor</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Vendor}}");}); return false;'>{{Vendor}}</a></div>{{/Vendor}}
+                    {{#MerchantAccount}}<div><b>MerchantAccount</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MerchantAccount}}");}); return false;'>{{MerchantAccount}}</a></div>{{/MerchantAccount}}
                     </div>
                     </fieldset>
 
@@ -3546,10 +3546,10 @@ define
                     + Shift.prototype.template.call (this) +
                     `
                     {{#cashFloat}}<div><b>cashFloat</b>: {{cashFloat}}</div>{{/cashFloat}}
-                    {{#Cashier}}<div><b>Cashier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Cashier}}&quot;);}); return false;'>{{Cashier}}</a></div>{{/Cashier}}
-                    {{#PointOfSale}}<div><b>PointOfSale</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PointOfSale}}&quot;);}); return false;'>{{PointOfSale}}</a></div>{{/PointOfSale}}
-                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Transactions}}
-                    {{#Receipts}}<div><b>Receipts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Receipts}}
+                    {{#Cashier}}<div><b>Cashier</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Cashier}}");}); return false;'>{{Cashier}}</a></div>{{/Cashier}}
+                    {{#PointOfSale}}<div><b>PointOfSale</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PointOfSale}}");}); return false;'>{{PointOfSale}}</a></div>{{/PointOfSale}}
+                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Transactions}}
+                    {{#Receipts}}<div><b>Receipts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Receipts}}
                     </div>
                     </fieldset>
 

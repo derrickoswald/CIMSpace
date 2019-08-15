@@ -89,7 +89,7 @@ define
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
                     {{#primeMoverRating}}<div><b>primeMoverRating</b>: {{primeMoverRating}}</div>{{/primeMoverRating}}
-                    {{#SynchronousMachines}}<div><b>SynchronousMachines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SynchronousMachines}}
+                    {{#SynchronousMachines}}<div><b>SynchronousMachines</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SynchronousMachines}}
                     </div>
                     </fieldset>
 
@@ -209,7 +209,7 @@ define
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
                     {{#steamSupplyRating}}<div><b>steamSupplyRating</b>: {{steamSupplyRating}}</div>{{/steamSupplyRating}}
-                    {{#SteamTurbines}}<div><b>SteamTurbines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SteamTurbines}}
+                    {{#SteamTurbines}}<div><b>SteamTurbines</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SteamTurbines}}
                     </div>
                     </fieldset>
 
@@ -326,7 +326,7 @@ define
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
-                    {{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombustionTurbine}}&quot;);}); return false;'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
+                    {{#CombustionTurbine}}<div><b>CombustionTurbine</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CombustionTurbine}}");}); return false;'>{{CombustionTurbine}}</a></div>{{/CombustionTurbine}}
                     </div>
                     </fieldset>
 
@@ -475,7 +475,7 @@ define
                     {{#shaft2PowerLP1}}<div><b>shaft2PowerLP1</b>: {{shaft2PowerLP1}}</div>{{/shaft2PowerLP1}}
                     {{#shaft2PowerLP2}}<div><b>shaft2PowerLP2</b>: {{shaft2PowerLP2}}</div>{{/shaft2PowerLP2}}
                     {{#steamChestTC}}<div><b>steamChestTC</b>: {{steamChestTC}}</div>{{/steamChestTC}}
-                    {{#SteamSupplys}}<div><b>SteamSupplys</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SteamSupplys}}
+                    {{#SteamSupplys}}<div><b>SteamSupplys</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SteamSupplys}}
                     </div>
                     </fieldset>
 
@@ -798,9 +798,9 @@ define
                     {{#powerVariationByTemp}}<div><b>powerVariationByTemp</b>: {{powerVariationByTemp}}</div>{{/powerVariationByTemp}}
                     {{#referenceTemp}}<div><b>referenceTemp</b>: {{referenceTemp}}</div>{{/referenceTemp}}
                     {{#timeConstant}}<div><b>timeConstant</b>: {{timeConstant}}</div>{{/timeConstant}}
-                    {{#AirCompressor}}<div><b>AirCompressor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AirCompressor}}&quot;);}); return false;'>{{AirCompressor}}</a></div>{{/AirCompressor}}
-                    {{#HeatRecoveryBoiler}}<div><b>HeatRecoveryBoiler</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRecoveryBoiler}}&quot;);}); return false;'>{{HeatRecoveryBoiler}}</a></div>{{/HeatRecoveryBoiler}}
-                    {{#CTTempActivePowerCurve}}<div><b>CTTempActivePowerCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CTTempActivePowerCurve}}&quot;);}); return false;'>{{CTTempActivePowerCurve}}</a></div>{{/CTTempActivePowerCurve}}
+                    {{#AirCompressor}}<div><b>AirCompressor</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AirCompressor}}");}); return false;'>{{AirCompressor}}</a></div>{{/AirCompressor}}
+                    {{#HeatRecoveryBoiler}}<div><b>HeatRecoveryBoiler</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{HeatRecoveryBoiler}}");}); return false;'>{{HeatRecoveryBoiler}}</a></div>{{/HeatRecoveryBoiler}}
+                    {{#CTTempActivePowerCurve}}<div><b>CTTempActivePowerCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CTTempActivePowerCurve}}");}); return false;'>{{CTTempActivePowerCurve}}</a></div>{{/CTTempActivePowerCurve}}
                     </div>
                     </fieldset>
 
@@ -1561,7 +1561,7 @@ define
                     + FossilSteamSupply.prototype.template.call (this) +
                     `
                     {{#steamSupplyRating2}}<div><b>steamSupplyRating2</b>: {{steamSupplyRating2}}</div>{{/steamSupplyRating2}}
-                    {{#CombustionTurbines}}<div><b>CombustionTurbines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/CombustionTurbines}}
+                    {{#CombustionTurbines}}<div><b>CombustionTurbines</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/CombustionTurbines}}
                     </div>
                     </fieldset>
 

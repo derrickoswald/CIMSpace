@@ -59,7 +59,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#ModelFrame}}<div><b>ModelFrame</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ModelFrame}}
+                    {{#ModelFrame}}<div><b>ModelFrame</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ModelFrame}}
                     </div>
                     </fieldset>
 

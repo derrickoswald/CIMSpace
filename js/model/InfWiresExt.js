@@ -217,7 +217,7 @@ define
                     {{#lowVoltageOverride}}<div><b>lowVoltageOverride</b>: {{lowVoltageOverride}}</div>{{/lowVoltageOverride}}
                     {{#highVoltageOverride}}<div><b>highVoltageOverride</b>: {{highVoltageOverride}}</div>{{/highVoltageOverride}}
                     {{#cellSize}}<div><b>cellSize</b>: {{cellSize}}</div>{{/cellSize}}
-                    {{#ShuntCompensatorInfo}}<div><b>ShuntCompensatorInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorInfo}}&quot;);}); return false;'>{{ShuntCompensatorInfo}}</a></div>{{/ShuntCompensatorInfo}}
+                    {{#ShuntCompensatorInfo}}<div><b>ShuntCompensatorInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ShuntCompensatorInfo}}");}); return false;'>{{ShuntCompensatorInfo}}</a></div>{{/ShuntCompensatorInfo}}
                     </div>
                     </fieldset>
 

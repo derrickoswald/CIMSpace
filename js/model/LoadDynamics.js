@@ -93,7 +93,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumer}}
+                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyConsumer}}
                     </div>
                     </fieldset>
 
@@ -249,7 +249,7 @@ define
                     {{#tppo}}<div><b>tppo</b>: {{tppo}}</div>{{/tppo}}
                     {{#tv}}<div><b>tv</b>: {{tv}}</div>{{/tv}}
                     {{#vt}}<div><b>vt</b>: {{vt}}</div>{{/vt}}
-                    {{#LoadAggregate}}<div><b>LoadAggregate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadAggregate}}&quot;);}); return false;'>{{LoadAggregate}}</a></div>{{/LoadAggregate}}
+                    {{#LoadAggregate}}<div><b>LoadAggregate</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadAggregate}}");}); return false;'>{{LoadAggregate}}</a></div>{{/LoadAggregate}}
                     </div>
                     </fieldset>
 
@@ -441,7 +441,7 @@ define
                     {{#kq4}}<div><b>kq4</b>: {{kq4}}</div>{{/kq4}}
                     {{#kqf}}<div><b>kqf</b>: {{kqf}}</div>{{/kqf}}
                     {{#staticLoadModelType}}<div><b>staticLoadModelType</b>: {{staticLoadModelType}}</div>{{/staticLoadModelType}}
-                    {{#LoadAggregate}}<div><b>LoadAggregate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadAggregate}}&quot;);}); return false;'>{{LoadAggregate}}</a></div>{{/LoadAggregate}}
+                    {{#LoadAggregate}}<div><b>LoadAggregate</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadAggregate}}");}); return false;'>{{LoadAggregate}}</a></div>{{/LoadAggregate}}
                     </div>
                     </fieldset>
 
@@ -885,8 +885,8 @@ define
                     `
                     + LoadDynamics.prototype.template.call (this) +
                     `
-                    {{#LoadMotor}}<div><b>LoadMotor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadMotor}}&quot;);}); return false;'>{{LoadMotor}}</a></div>{{/LoadMotor}}
-                    {{#LoadStatic}}<div><b>LoadStatic</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadStatic}}&quot;);}); return false;'>{{LoadStatic}}</a></div>{{/LoadStatic}}
+                    {{#LoadMotor}}<div><b>LoadMotor</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadMotor}}");}); return false;'>{{LoadMotor}}</a></div>{{/LoadMotor}}
+                    {{#LoadStatic}}<div><b>LoadStatic</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadStatic}}");}); return false;'>{{LoadStatic}}</a></div>{{/LoadStatic}}
                     </div>
                     </fieldset>
 

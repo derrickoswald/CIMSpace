@@ -230,6 +230,7 @@ define
                     {{#WirePosition}}<div><b>WirePosition</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WirePosition}}");}); return false;'>{{WirePosition}}</a></div>{{/WirePosition}}
                     </div>
                     </fieldset>
+
                     `
                 );
             }

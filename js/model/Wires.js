@@ -337,9 +337,9 @@ define
                     `
                     + Core.Equipment.prototype.template.call (this) +
                     `
-                    {{#TransformerObservations}}<div><b>TransformerObservations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerObservations}}
-                    {{#PowerTransformer}}<div><b>PowerTransformer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformer}}&quot;);}); return false;'>{{PowerTransformer}}</a></div>{{/PowerTransformer}}
-                    {{#TransformerTankEnds}}<div><b>TransformerTankEnds</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerTankEnds}}
+                    {{#TransformerObservations}}<div><b>TransformerObservations</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransformerObservations}}
+                    {{#PowerTransformer}}<div><b>PowerTransformer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PowerTransformer}}");}); return false;'>{{PowerTransformer}}</a></div>{{/PowerTransformer}}
+                    {{#TransformerTankEnds}}<div><b>TransformerTankEnds</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransformerTankEnds}}
                     </div>
                     </fieldset>
 
@@ -473,7 +473,7 @@ define
                     {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
                     {{#g0}}<div><b>g0</b>: {{g0}}</div>{{/g0}}
                     {{#sectionNumber}}<div><b>sectionNumber</b>: {{sectionNumber}}</div>{{/sectionNumber}}
-                    {{#NonlinearShuntCompensator}}<div><b>NonlinearShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NonlinearShuntCompensator}}&quot;);}); return false;'>{{NonlinearShuntCompensator}}</a></div>{{/NonlinearShuntCompensator}}
+                    {{#NonlinearShuntCompensator}}<div><b>NonlinearShuntCompensator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{NonlinearShuntCompensator}}");}); return false;'>{{NonlinearShuntCompensator}}</a></div>{{/NonlinearShuntCompensator}}
                     </div>
                     </fieldset>
 
@@ -602,7 +602,7 @@ define
                     + Core.Equipment.prototype.template.call (this) +
                     `
                     {{#compositeSwitchType}}<div><b>compositeSwitchType</b>: {{compositeSwitchType}}</div>{{/compositeSwitchType}}
-                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Switches}}
+                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Switches}}
                     </div>
                     </fieldset>
 
@@ -851,7 +851,7 @@ define
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
-                    {{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TapChanger}}&quot;);}); return false;'>{{TapChanger}}</a></div>{{/TapChanger}}
+                    {{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TapChanger}}");}); return false;'>{{TapChanger}}</a></div>{{/TapChanger}}
                     </div>
                     </fieldset>
 
@@ -966,8 +966,8 @@ define
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
-                    {{#RegulatingControl}}<div><b>RegulatingControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulatingControl}}&quot;);}); return false;'>{{RegulatingControl}}</a></div>{{/RegulatingControl}}
-                    {{#VoltageControlZones}}<div><b>VoltageControlZones</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/VoltageControlZones}}
+                    {{#RegulatingControl}}<div><b>RegulatingControl</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegulatingControl}}");}); return false;'>{{RegulatingControl}}</a></div>{{/RegulatingControl}}
+                    {{#VoltageControlZones}}<div><b>VoltageControlZones</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/VoltageControlZones}}
                     </div>
                     </fieldset>
 
@@ -1117,9 +1117,9 @@ define
                     {{#subsequentDelay}}<div><b>subsequentDelay</b>: {{subsequentDelay}}</div>{{/subsequentDelay}}
                     {{#controlEnabled}}<div><b>controlEnabled</b>: {{controlEnabled}}</div>{{/controlEnabled}}
                     {{#step}}<div><b>step</b>: {{step}}</div>{{/step}}
-                    {{#TapChangerControl}}<div><b>TapChangerControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TapChangerControl}}&quot;);}); return false;'>{{TapChangerControl}}</a></div>{{/TapChangerControl}}
-                    {{#SvTapStep}}<div><b>SvTapStep</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvTapStep}}&quot;);}); return false;'>{{SvTapStep}}</a></div>{{/SvTapStep}}
-                    {{#TapSchedules}}<div><b>TapSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TapSchedules}}
+                    {{#TapChangerControl}}<div><b>TapChangerControl</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TapChangerControl}}");}); return false;'>{{TapChangerControl}}</a></div>{{/TapChangerControl}}
+                    {{#SvTapStep}}<div><b>SvTapStep</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SvTapStep}}");}); return false;'>{{SvTapStep}}</a></div>{{/SvTapStep}}
+                    {{#TapSchedules}}<div><b>TapSchedules</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TapSchedules}}
                     </div>
                     </fieldset>
 
@@ -1275,8 +1275,8 @@ define
                     {{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
                     {{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
                     {{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
-                    {{#TransformerEndInfo}}<div><b>TransformerEndInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerEndInfo}}&quot;);}); return false;'>{{TransformerEndInfo}}</a></div>{{/TransformerEndInfo}}
-                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerEnd}}
+                    {{#TransformerEndInfo}}<div><b>TransformerEndInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransformerEndInfo}}");}); return false;'>{{TransformerEndInfo}}</a></div>{{/TransformerEndInfo}}
+                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransformerEnd}}
                     </div>
                     </fieldset>
 
@@ -1406,7 +1406,7 @@ define
                     `
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
-                    {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+                    {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ACLineSegment}}");}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
                     </div>
                     </fieldset>
 
@@ -1534,7 +1534,7 @@ define
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-                    {{#PowerElectronicsConnection}}<div><b>PowerElectronicsConnection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerElectronicsConnection}}&quot;);}); return false;'>{{PowerElectronicsConnection}}</a></div>{{/PowerElectronicsConnection}}
+                    {{#PowerElectronicsConnection}}<div><b>PowerElectronicsConnection</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PowerElectronicsConnection}}");}); return false;'>{{PowerElectronicsConnection}}</a></div>{{/PowerElectronicsConnection}}
                     </div>
                     </fieldset>
 
@@ -1664,7 +1664,7 @@ define
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
                     {{#maximumSections}}<div><b>maximumSections</b>: {{maximumSections}}</div>{{/maximumSections}}
                     {{#normalSections}}<div><b>normalSections</b>: {{normalSections}}</div>{{/normalSections}}
-                    {{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensator}}&quot;);}); return false;'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
+                    {{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ShuntCompensator}}");}); return false;'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
                     </div>
                     </fieldset>
 
@@ -1794,7 +1794,7 @@ define
                     {{#sectionNumber}}<div><b>sectionNumber</b>: {{sectionNumber}}</div>{{/sectionNumber}}
                     {{#b}}<div><b>b</b>: {{b}}</div>{{/b}}
                     {{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
-                    {{#NonlinearShuntCompensatorPhase}}<div><b>NonlinearShuntCompensatorPhase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NonlinearShuntCompensatorPhase}}&quot;);}); return false;'>{{NonlinearShuntCompensatorPhase}}</a></div>{{/NonlinearShuntCompensatorPhase}}
+                    {{#NonlinearShuntCompensatorPhase}}<div><b>NonlinearShuntCompensatorPhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{NonlinearShuntCompensatorPhase}}");}); return false;'>{{NonlinearShuntCompensatorPhase}}</a></div>{{/NonlinearShuntCompensatorPhase}}
                     </div>
                     </fieldset>
 
@@ -1913,7 +1913,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#EnergySource}}<div><b>EnergySource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergySource}}
+                    {{#EnergySource}}<div><b>EnergySource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergySource}}
                     </div>
                     </fieldset>
 
@@ -2026,7 +2026,7 @@ define
                     `
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
-                    {{#GroundAction}}<div><b>GroundAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GroundAction}}&quot;);}); return false;'>{{GroundAction}}</a></div>{{/GroundAction}}
+                    {{#GroundAction}}<div><b>GroundAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{GroundAction}}");}); return false;'>{{GroundAction}}</a></div>{{/GroundAction}}
                     </div>
                     </fieldset>
 
@@ -2165,7 +2165,7 @@ define
                     {{#toPhase}}<div><b>toPhase</b>: {{toPhase}}</div>{{/toPhase}}
                     {{#row}}<div><b>row</b>: {{row}}</div>{{/row}}
                     {{#column}}<div><b>column</b>: {{column}}</div>{{/column}}
-                    {{#PhaseImpedance}}<div><b>PhaseImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhaseImpedance}}&quot;);}); return false;'>{{PhaseImpedance}}</a></div>{{/PhaseImpedance}}
+                    {{#PhaseImpedance}}<div><b>PhaseImpedance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PhaseImpedance}}");}); return false;'>{{PhaseImpedance}}</a></div>{{/PhaseImpedance}}
                     </div>
                     </fieldset>
 
@@ -2324,8 +2324,8 @@ define
                     {{#g0ch}}<div><b>g0ch</b>: {{g0ch}}</div>{{/g0ch}}
                     {{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
                     {{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
-                    {{#First_Terminal}}<div><b>First_Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{First_Terminal}}&quot;);}); return false;'>{{First_Terminal}}</a></div>{{/First_Terminal}}
-                    {{#Second_Terminal}}<div><b>Second_Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Second_Terminal}}&quot;);}); return false;'>{{Second_Terminal}}</a></div>{{/Second_Terminal}}
+                    {{#First_Terminal}}<div><b>First_Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{First_Terminal}}");}); return false;'>{{First_Terminal}}</a></div>{{/First_Terminal}}
+                    {{#Second_Terminal}}<div><b>Second_Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Second_Terminal}}");}); return false;'>{{Second_Terminal}}</a></div>{{/Second_Terminal}}
                     </div>
                     </fieldset>
 
@@ -2498,16 +2498,16 @@ define
                     {{#magSatFlux}}<div><b>magSatFlux</b>: {{magSatFlux}}</div>{{/magSatFlux}}
                     {{#rground}}<div><b>rground</b>: {{rground}}</div>{{/rground}}
                     {{#xground}}<div><b>xground</b>: {{xground}}</div>{{/xground}}
-                    {{#FromMeshImpedance}}<div><b>FromMeshImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FromMeshImpedance}}
-                    {{#ToMeshImpedance}}<div><b>ToMeshImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ToMeshImpedance}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
-                    {{#FromWindingInsulations}}<div><b>FromWindingInsulations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FromWindingInsulations}}
-                    {{#StarImpedance}}<div><b>StarImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StarImpedance}}&quot;);}); return false;'>{{StarImpedance}}</a></div>{{/StarImpedance}}
-                    {{#ToWindingInsulations}}<div><b>ToWindingInsulations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ToWindingInsulations}}
-                    {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);}); return false;'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
-                    {{#PhaseTapChanger}}<div><b>PhaseTapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhaseTapChanger}}&quot;);}); return false;'>{{PhaseTapChanger}}</a></div>{{/PhaseTapChanger}}
-                    {{#RatioTapChanger}}<div><b>RatioTapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatioTapChanger}}&quot;);}); return false;'>{{RatioTapChanger}}</a></div>{{/RatioTapChanger}}
-                    {{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);}); return false;'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
+                    {{#FromMeshImpedance}}<div><b>FromMeshImpedance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/FromMeshImpedance}}
+                    {{#ToMeshImpedance}}<div><b>ToMeshImpedance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ToMeshImpedance}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Terminal}}");}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#FromWindingInsulations}}<div><b>FromWindingInsulations</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/FromWindingInsulations}}
+                    {{#StarImpedance}}<div><b>StarImpedance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{StarImpedance}}");}); return false;'>{{StarImpedance}}</a></div>{{/StarImpedance}}
+                    {{#ToWindingInsulations}}<div><b>ToWindingInsulations</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ToWindingInsulations}}
+                    {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BaseVoltage}}");}); return false;'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+                    {{#PhaseTapChanger}}<div><b>PhaseTapChanger</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PhaseTapChanger}}");}); return false;'>{{PhaseTapChanger}}</a></div>{{/PhaseTapChanger}}
+                    {{#RatioTapChanger}}<div><b>RatioTapChanger</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RatioTapChanger}}");}); return false;'>{{RatioTapChanger}}</a></div>{{/RatioTapChanger}}
+                    {{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CoreAdmittance}}");}); return false;'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
                     </div>
                     </fieldset>
 
@@ -2761,7 +2761,7 @@ define
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
-                    {{#EnergySource}}<div><b>EnergySource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergySource}}&quot;);}); return false;'>{{EnergySource}}</a></div>{{/EnergySource}}
+                    {{#EnergySource}}<div><b>EnergySource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergySource}}");}); return false;'>{{EnergySource}}</a></div>{{/EnergySource}}
                     </div>
                     </fieldset>
 
@@ -2893,7 +2893,7 @@ define
                     {{#phaseSide2}}<div><b>phaseSide2</b>: {{phaseSide2}}</div>{{/phaseSide2}}
                     {{#closed}}<div><b>closed</b>: {{closed}}</div>{{/closed}}
                     {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
-                    {{#Switch}}<div><b>Switch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Switch}}&quot;);}); return false;'>{{Switch}}</a></div>{{/Switch}}
+                    {{#Switch}}<div><b>Switch</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Switch}}");}); return false;'>{{Switch}}</a></div>{{/Switch}}
                     </div>
                     </fieldset>
 
@@ -3041,7 +3041,7 @@ define
                     {{#qfixedPct}}<div><b>qfixedPct</b>: {{qfixedPct}}</div>{{/qfixedPct}}
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyConsumer}}&quot;);}); return false;'>{{EnergyConsumer}}</a></div>{{/EnergyConsumer}}
+                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergyConsumer}}");}); return false;'>{{EnergyConsumer}}</a></div>{{/EnergyConsumer}}
                     </div>
                     </fieldset>
 
@@ -3172,7 +3172,7 @@ define
                     `
                     + LoadModel.SeasonDayTypeSchedule.prototype.template.call (this) +
                     `
-                    {{#Switch}}<div><b>Switch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Switch}}&quot;);}); return false;'>{{Switch}}</a></div>{{/Switch}}
+                    {{#Switch}}<div><b>Switch</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Switch}}");}); return false;'>{{Switch}}</a></div>{{/Switch}}
                     </div>
                     </fieldset>
 
@@ -3316,10 +3316,10 @@ define
                     {{#targetValue}}<div><b>targetValue</b>: {{targetValue}}</div>{{/targetValue}}
                     {{#targetValueUnitMultiplier}}<div><b>targetValueUnitMultiplier</b>: {{targetValueUnitMultiplier}}</div>{{/targetValueUnitMultiplier}}
                     {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
-                    {{#ProtectiveActionRegulation}}<div><b>ProtectiveActionRegulation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ProtectiveActionRegulation}}
-                    {{#RegulationSchedule}}<div><b>RegulationSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegulationSchedule}}
-                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
-                    {{#RegulatingCondEq}}<div><b>RegulatingCondEq</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RegulatingCondEq}}
+                    {{#ProtectiveActionRegulation}}<div><b>ProtectiveActionRegulation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProtectiveActionRegulation}}
+                    {{#RegulationSchedule}}<div><b>RegulationSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegulationSchedule}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Terminal}}");}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
+                    {{#RegulatingCondEq}}<div><b>RegulatingCondEq</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegulatingCondEq}}
                     </div>
                     </fieldset>
 
@@ -3461,7 +3461,7 @@ define
                     `
                     + Core.EquipmentContainer.prototype.template.call (this) +
                     `
-                    {{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);}); return false;'>{{Region}}</a></div>{{/Region}}
+                    {{#Region}}<div><b>Region</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Region}}");}); return false;'>{{Region}}</a></div>{{/Region}}
                     </div>
                     </fieldset>
 
@@ -3721,10 +3721,10 @@ define
                     {{#r0}}<div><b>r0</b>: {{r0}}</div>{{/r0}}
                     {{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
                     {{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
-                    {{#FromTransformerEnd}}<div><b>FromTransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromTransformerEnd}}&quot;);}); return false;'>{{FromTransformerEnd}}</a></div>{{/FromTransformerEnd}}
-                    {{#FromTransformerEndInfo}}<div><b>FromTransformerEndInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FromTransformerEndInfo}}&quot;);}); return false;'>{{FromTransformerEndInfo}}</a></div>{{/FromTransformerEndInfo}}
-                    {{#ToTransformerEnd}}<div><b>ToTransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ToTransformerEnd}}
-                    {{#ToTransformerEndInfos}}<div><b>ToTransformerEndInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ToTransformerEndInfos}}
+                    {{#FromTransformerEnd}}<div><b>FromTransformerEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{FromTransformerEnd}}");}); return false;'>{{FromTransformerEnd}}</a></div>{{/FromTransformerEnd}}
+                    {{#FromTransformerEndInfo}}<div><b>FromTransformerEndInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{FromTransformerEndInfo}}");}); return false;'>{{FromTransformerEndInfo}}</a></div>{{/FromTransformerEndInfo}}
+                    {{#ToTransformerEnd}}<div><b>ToTransformerEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ToTransformerEnd}}
+                    {{#ToTransformerEndInfos}}<div><b>ToTransformerEndInfos</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ToTransformerEndInfos}}
                     </div>
                     </fieldset>
 
@@ -3886,8 +3886,8 @@ define
                     {{#isPartOfGeneratorUnit}}<div><b>isPartOfGeneratorUnit</b>: {{isPartOfGeneratorUnit}}</div>{{/isPartOfGeneratorUnit}}
                     {{#operationalValuesConsidered}}<div><b>operationalValuesConsidered</b>: {{operationalValuesConsidered}}</div>{{/operationalValuesConsidered}}
                     {{#vectorGroup}}<div><b>vectorGroup</b>: {{vectorGroup}}</div>{{/vectorGroup}}
-                    {{#TransformerTanks}}<div><b>TransformerTanks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerTanks}}
-                    {{#PowerTransformerEnd}}<div><b>PowerTransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PowerTransformerEnd}}
+                    {{#TransformerTanks}}<div><b>TransformerTanks</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransformerTanks}}
+                    {{#PowerTransformerEnd}}<div><b>PowerTransformerEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PowerTransformerEnd}}
                     </div>
                     </fieldset>
 
@@ -4019,8 +4019,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#PhaseTapChangerTablePoint}}<div><b>PhaseTapChangerTablePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PhaseTapChangerTablePoint}}
-                    {{#PhaseTapChangerTabular}}<div><b>PhaseTapChangerTabular</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PhaseTapChangerTabular}}
+                    {{#PhaseTapChangerTablePoint}}<div><b>PhaseTapChangerTablePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PhaseTapChangerTablePoint}}
+                    {{#PhaseTapChangerTabular}}<div><b>PhaseTapChangerTabular</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PhaseTapChangerTabular}}
                     </div>
                     </fieldset>
 
@@ -4229,7 +4229,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#WireAssemblyInfo}}<div><b>WireAssemblyInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireAssemblyInfo}}&quot;);}); return false;'>{{WireAssemblyInfo}}</a></div>{{/WireAssemblyInfo}}
+                    {{#WireAssemblyInfo}}<div><b>WireAssemblyInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WireAssemblyInfo}}");}); return false;'>{{WireAssemblyInfo}}</a></div>{{/WireAssemblyInfo}}
                     </div>
                     </fieldset>
 
@@ -4348,7 +4348,7 @@ define
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
                     {{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
-                    {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+                    {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ACLineSegment}}");}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
                     </div>
                     </fieldset>
 
@@ -4475,9 +4475,9 @@ define
                     `
                     {{#coolantTemperature}}<div><b>coolantTemperature</b>: {{coolantTemperature}}</div>{{/coolantTemperature}}
                     {{#hydrogenPressure}}<div><b>hydrogenPressure</b>: {{hydrogenPressure}}</div>{{/hydrogenPressure}}
-                    {{#EquivalentInjection}}<div><b>EquivalentInjection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EquivalentInjection}}
-                    {{#InitiallyUsedBySynchronousMachines}}<div><b>InitiallyUsedBySynchronousMachines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/InitiallyUsedBySynchronousMachines}}
-                    {{#SynchronousMachines}}<div><b>SynchronousMachines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SynchronousMachines}}
+                    {{#EquivalentInjection}}<div><b>EquivalentInjection</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EquivalentInjection}}
+                    {{#InitiallyUsedBySynchronousMachines}}<div><b>InitiallyUsedBySynchronousMachines</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/InitiallyUsedBySynchronousMachines}}
+                    {{#SynchronousMachines}}<div><b>SynchronousMachines</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SynchronousMachines}}
                     </div>
                     </fieldset>
 
@@ -4618,8 +4618,8 @@ define
                     {{#b0}}<div><b>b0</b>: {{b0}}</div>{{/b0}}
                     {{#g}}<div><b>g</b>: {{g}}</div>{{/g}}
                     {{#g0}}<div><b>g0</b>: {{g0}}</div>{{/g0}}
-                    {{#TransformerEndInfo}}<div><b>TransformerEndInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerEndInfo}}&quot;);}); return false;'>{{TransformerEndInfo}}</a></div>{{/TransformerEndInfo}}
-                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerEnd}}
+                    {{#TransformerEndInfo}}<div><b>TransformerEndInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransformerEndInfo}}");}); return false;'>{{TransformerEndInfo}}</a></div>{{/TransformerEndInfo}}
+                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransformerEnd}}
                     </div>
                     </fieldset>
 
@@ -4851,8 +4851,8 @@ define
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
-                    {{#RegulationSchedule}}<div><b>RegulationSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulationSchedule}}&quot;);}); return false;'>{{RegulationSchedule}}</a></div>{{/RegulationSchedule}}
-                    {{#BusbarSection}}<div><b>BusbarSection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusbarSection}}&quot;);}); return false;'>{{BusbarSection}}</a></div>{{/BusbarSection}}
+                    {{#RegulationSchedule}}<div><b>RegulationSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegulationSchedule}}");}); return false;'>{{RegulationSchedule}}</a></div>{{/RegulationSchedule}}
+                    {{#BusbarSection}}<div><b>BusbarSection</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BusbarSection}}");}); return false;'>{{BusbarSection}}</a></div>{{/BusbarSection}}
                     </div>
                     </fieldset>
 
@@ -5000,13 +5000,13 @@ define
                     {{#switchOnCount}}<div><b>switchOnCount</b>: {{switchOnCount}}</div>{{/switchOnCount}}
                     {{#switchOnDate}}<div><b>switchOnDate</b>: {{switchOnDate}}</div>{{/switchOnDate}}
                     {{#open}}<div><b>open</b>: {{open}}</div>{{/open}}
-                    {{#SvSwitch}}<div><b>SvSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SvSwitch}}
-                    {{#SwitchSchedules}}<div><b>SwitchSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SwitchSchedules}}
-                    {{#SwitchAction}}<div><b>SwitchAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchAction}}&quot;);}); return false;'>{{SwitchAction}}</a></div>{{/SwitchAction}}
-                    {{#SwitchPhase}}<div><b>SwitchPhase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SwitchPhase}}
-                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);}); return false;'>{{Outage}}</a></div>{{/Outage}}
-                    {{#ConnectDisconnectFunctions}}<div><b>ConnectDisconnectFunctions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ConnectDisconnectFunctions}}
-                    {{#CompositeSwitch}}<div><b>CompositeSwitch</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CompositeSwitch}}&quot;);}); return false;'>{{CompositeSwitch}}</a></div>{{/CompositeSwitch}}
+                    {{#SvSwitch}}<div><b>SvSwitch</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SvSwitch}}
+                    {{#SwitchSchedules}}<div><b>SwitchSchedules</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SwitchSchedules}}
+                    {{#SwitchAction}}<div><b>SwitchAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SwitchAction}}");}); return false;'>{{SwitchAction}}</a></div>{{/SwitchAction}}
+                    {{#SwitchPhase}}<div><b>SwitchPhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SwitchPhase}}
+                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Outage}}");}); return false;'>{{Outage}}</a></div>{{/Outage}}
+                    {{#ConnectDisconnectFunctions}}<div><b>ConnectDisconnectFunctions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConnectDisconnectFunctions}}
+                    {{#CompositeSwitch}}<div><b>CompositeSwitch</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CompositeSwitch}}");}); return false;'>{{CompositeSwitch}}</a></div>{{/CompositeSwitch}}
                     </div>
                     </fieldset>
 
@@ -5153,8 +5153,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#RatioTapChanger}}<div><b>RatioTapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RatioTapChanger}}
-                    {{#RatioTapChangerTablePoint}}<div><b>RatioTapChangerTablePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RatioTapChangerTablePoint}}
+                    {{#RatioTapChanger}}<div><b>RatioTapChanger</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RatioTapChanger}}
+                    {{#RatioTapChangerTablePoint}}<div><b>RatioTapChangerTablePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RatioTapChangerTablePoint}}
                     </div>
                     </fieldset>
 
@@ -5405,13 +5405,13 @@ define
                     {{#shortCircuitEndTemperature}}<div><b>shortCircuitEndTemperature</b>: {{shortCircuitEndTemperature}}</div>{{/shortCircuitEndTemperature}}
                     {{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
                     {{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
-                    {{#ACLineSegmentPhases}}<div><b>ACLineSegmentPhases</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ACLineSegmentPhases}}
-                    {{#PerLengthImpedance}}<div><b>PerLengthImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PerLengthImpedance}}&quot;);}); return false;'>{{PerLengthImpedance}}</a></div>{{/PerLengthImpedance}}
-                    {{#Cut}}<div><b>Cut</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Cut}}
-                    {{#LineFaults}}<div><b>LineFaults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/LineFaults}}
-                    {{#LineGroundingAction}}<div><b>LineGroundingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LineGroundingAction}}&quot;);}); return false;'>{{LineGroundingAction}}</a></div>{{/LineGroundingAction}}
-                    {{#Clamp}}<div><b>Clamp</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Clamp}}
-                    {{#LineJumpingAction}}<div><b>LineJumpingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LineJumpingAction}}&quot;);}); return false;'>{{LineJumpingAction}}</a></div>{{/LineJumpingAction}}
+                    {{#ACLineSegmentPhases}}<div><b>ACLineSegmentPhases</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ACLineSegmentPhases}}
+                    {{#PerLengthImpedance}}<div><b>PerLengthImpedance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PerLengthImpedance}}");}); return false;'>{{PerLengthImpedance}}</a></div>{{/PerLengthImpedance}}
+                    {{#Cut}}<div><b>Cut</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Cut}}
+                    {{#LineFaults}}<div><b>LineFaults</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LineFaults}}
+                    {{#LineGroundingAction}}<div><b>LineGroundingAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LineGroundingAction}}");}); return false;'>{{LineGroundingAction}}</a></div>{{/LineGroundingAction}}
+                    {{#Clamp}}<div><b>Clamp</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Clamp}}
+                    {{#LineJumpingAction}}<div><b>LineJumpingAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LineJumpingAction}}");}); return false;'>{{LineJumpingAction}}</a></div>{{/LineJumpingAction}}
                     </div>
                     </fieldset>
 
@@ -5570,8 +5570,8 @@ define
                     `
                     {{#stepVoltageIncrement}}<div><b>stepVoltageIncrement</b>: {{stepVoltageIncrement}}</div>{{/stepVoltageIncrement}}
                     {{#tculControlMode}}<div><b>tculControlMode</b>: {{tculControlMode}}</div>{{/tculControlMode}}
-                    {{#RatioTapChangerTable}}<div><b>RatioTapChangerTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatioTapChangerTable}}&quot;);}); return false;'>{{RatioTapChangerTable}}</a></div>{{/RatioTapChangerTable}}
-                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerEnd}}&quot;);}); return false;'>{{TransformerEnd}}</a></div>{{/TransformerEnd}}
+                    {{#RatioTapChangerTable}}<div><b>RatioTapChangerTable</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RatioTapChangerTable}}");}); return false;'>{{RatioTapChangerTable}}</a></div>{{/RatioTapChangerTable}}
+                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransformerEnd}}");}); return false;'>{{TransformerEnd}}</a></div>{{/TransformerEnd}}
                     </div>
                     </fieldset>
 
@@ -5695,7 +5695,7 @@ define
                     `
                     + TapChanger.prototype.template.call (this) +
                     `
-                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerEnd}}&quot;);}); return false;'>{{TransformerEnd}}</a></div>{{/TransformerEnd}}
+                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransformerEnd}}");}); return false;'>{{TransformerEnd}}</a></div>{{/TransformerEnd}}
                     </div>
                     </fieldset>
 
@@ -5808,7 +5808,7 @@ define
                     `
                     + PhaseTapChanger.prototype.template.call (this) +
                     `
-                    {{#PhaseTapChangerTable}}<div><b>PhaseTapChangerTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhaseTapChangerTable}}&quot;);}); return false;'>{{PhaseTapChangerTable}}</a></div>{{/PhaseTapChangerTable}}
+                    {{#PhaseTapChangerTable}}<div><b>PhaseTapChangerTable</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PhaseTapChangerTable}}");}); return false;'>{{PhaseTapChangerTable}}</a></div>{{/PhaseTapChangerTable}}
                     </div>
                     </fieldset>
 
@@ -6459,7 +6459,7 @@ define
                     `
                     + ShuntCompensatorPhase.prototype.template.call (this) +
                     `
-                    {{#NonlinearShuntCompensatorPhasePoints}}<div><b>NonlinearShuntCompensatorPhasePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/NonlinearShuntCompensatorPhasePoints}}
+                    {{#NonlinearShuntCompensatorPhasePoints}}<div><b>NonlinearShuntCompensatorPhasePoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/NonlinearShuntCompensatorPhasePoints}}
                     </div>
                     </fieldset>
 
@@ -6573,7 +6573,7 @@ define
                     + TransformerEnd.prototype.template.call (this) +
                     `
                     {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
-                    {{#TransformerTank}}<div><b>TransformerTank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerTank}}&quot;);}); return false;'>{{TransformerTank}}</a></div>{{/TransformerTank}}
+                    {{#TransformerTank}}<div><b>TransformerTank</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransformerTank}}");}); return false;'>{{TransformerTank}}</a></div>{{/TransformerTank}}
                     </div>
                     </fieldset>
 
@@ -6733,7 +6733,7 @@ define
                     {{#ratedU}}<div><b>ratedU</b>: {{ratedU}}</div>{{/ratedU}}
                     {{#x}}<div><b>x</b>: {{x}}</div>{{/x}}
                     {{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
-                    {{#PowerTransformer}}<div><b>PowerTransformer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformer}}&quot;);}); return false;'>{{PowerTransformer}}</a></div>{{/PowerTransformer}}
+                    {{#PowerTransformer}}<div><b>PowerTransformer</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PowerTransformer}}");}); return false;'>{{PowerTransformer}}</a></div>{{/PowerTransformer}}
                     </div>
                     </fieldset>
 
@@ -6890,7 +6890,7 @@ define
                     {{#lineDropX}}<div><b>lineDropX</b>: {{lineDropX}}</div>{{/lineDropX}}
                     {{#reverseLineDropR}}<div><b>reverseLineDropR</b>: {{reverseLineDropR}}</div>{{/reverseLineDropR}}
                     {{#reverseLineDropX}}<div><b>reverseLineDropX</b>: {{reverseLineDropX}}</div>{{/reverseLineDropX}}
-                    {{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TapChanger}}
+                    {{#TapChanger}}<div><b>TapChanger</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TapChanger}}
                     </div>
                     </fieldset>
 
@@ -7018,7 +7018,7 @@ define
                     + TapChangerTablePoint.prototype.template.call (this) +
                     `
                     {{#angle}}<div><b>angle</b>: {{angle}}</div>{{/angle}}
-                    {{#PhaseTapChangerTable}}<div><b>PhaseTapChangerTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PhaseTapChangerTable}}&quot;);}); return false;'>{{PhaseTapChangerTable}}</a></div>{{/PhaseTapChangerTable}}
+                    {{#PhaseTapChangerTable}}<div><b>PhaseTapChangerTable</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PhaseTapChangerTable}}");}); return false;'>{{PhaseTapChangerTable}}</a></div>{{/PhaseTapChangerTable}}
                     </div>
                     </fieldset>
 
@@ -7133,7 +7133,7 @@ define
                     `
                     + TapChangerTablePoint.prototype.template.call (this) +
                     `
-                    {{#RatioTapChangerTable}}<div><b>RatioTapChangerTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RatioTapChangerTable}}&quot;);}); return false;'>{{RatioTapChangerTable}}</a></div>{{/RatioTapChangerTable}}
+                    {{#RatioTapChangerTable}}<div><b>RatioTapChangerTable</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RatioTapChangerTable}}");}); return false;'>{{RatioTapChangerTable}}</a></div>{{/RatioTapChangerTable}}
                     </div>
                     </fieldset>
 
@@ -7249,7 +7249,7 @@ define
                     + EnergyConnection.prototype.template.call (this) +
                     `
                     {{#controlEnabled}}<div><b>controlEnabled</b>: {{controlEnabled}}</div>{{/controlEnabled}}
-                    {{#RegulatingControl}}<div><b>RegulatingControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulatingControl}}&quot;);}); return false;'>{{RegulatingControl}}</a></div>{{/RegulatingControl}}
+                    {{#RegulatingControl}}<div><b>RegulatingControl</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegulatingControl}}");}); return false;'>{{RegulatingControl}}</a></div>{{/RegulatingControl}}
                     </div>
                     </fieldset>
 
@@ -7407,9 +7407,9 @@ define
                     {{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
                     {{#xn}}<div><b>xn</b>: {{xn}}</div>{{/xn}}
                     {{#maxIFault}}<div><b>maxIFault</b>: {{maxIFault}}</div>{{/maxIFault}}
-                    {{#PowerElectronicsConnectionPhase}}<div><b>PowerElectronicsConnectionPhase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PowerElectronicsConnectionPhase}}
-                    {{#WindTurbineType3or4Dynamics}}<div><b>WindTurbineType3or4Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4Dynamics}}&quot;);}); return false;'>{{WindTurbineType3or4Dynamics}}</a></div>{{/WindTurbineType3or4Dynamics}}
-                    {{#PowerElectronicsUnit}}<div><b>PowerElectronicsUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PowerElectronicsUnit}}
+                    {{#PowerElectronicsConnectionPhase}}<div><b>PowerElectronicsConnectionPhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PowerElectronicsConnectionPhase}}
+                    {{#WindTurbineType3or4Dynamics}}<div><b>WindTurbineType3or4Dynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WindTurbineType3or4Dynamics}}");}); return false;'>{{WindTurbineType3or4Dynamics}}</a></div>{{/WindTurbineType3or4Dynamics}}
+                    {{#PowerElectronicsUnit}}<div><b>PowerElectronicsUnit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PowerElectronicsUnit}}
                     </div>
                     </fieldset>
 
@@ -7588,8 +7588,8 @@ define
                     {{#switchOnDate}}<div><b>switchOnDate</b>: {{switchOnDate}}</div>{{/switchOnDate}}
                     {{#voltageSensitivity}}<div><b>voltageSensitivity</b>: {{voltageSensitivity}}</div>{{/voltageSensitivity}}
                     {{#sections}}<div><b>sections</b>: {{sections}}</div>{{/sections}}
-                    {{#ShuntCompensatorPhase}}<div><b>ShuntCompensatorPhase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ShuntCompensatorPhase}}
-                    {{#SvShuntCompensatorSections}}<div><b>SvShuntCompensatorSections</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/SvShuntCompensatorSections}}
+                    {{#ShuntCompensatorPhase}}<div><b>ShuntCompensatorPhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ShuntCompensatorPhase}}
+                    {{#SvShuntCompensatorSections}}<div><b>SvShuntCompensatorSections</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SvShuntCompensatorSections}}
                     </div>
                     </fieldset>
 
@@ -7760,10 +7760,10 @@ define
                     {{#qfixedPct}}<div><b>qfixedPct</b>: {{qfixedPct}}</div>{{/qfixedPct}}
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-                    {{#LoadDynamics}}<div><b>LoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadDynamics}}&quot;);}); return false;'>{{LoadDynamics}}</a></div>{{/LoadDynamics}}
-                    {{#EnergyConsumerPhase}}<div><b>EnergyConsumerPhase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergyConsumerPhase}}
-                    {{#PowerCutZone}}<div><b>PowerCutZone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerCutZone}}&quot;);}); return false;'>{{PowerCutZone}}</a></div>{{/PowerCutZone}}
-                    {{#LoadResponse}}<div><b>LoadResponse</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadResponse}}&quot;);}); return false;'>{{LoadResponse}}</a></div>{{/LoadResponse}}
+                    {{#LoadDynamics}}<div><b>LoadDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadDynamics}}");}); return false;'>{{LoadDynamics}}</a></div>{{/LoadDynamics}}
+                    {{#EnergyConsumerPhase}}<div><b>EnergyConsumerPhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyConsumerPhase}}
+                    {{#PowerCutZone}}<div><b>PowerCutZone</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PowerCutZone}}");}); return false;'>{{PowerCutZone}}</a></div>{{/PowerCutZone}}
+                    {{#LoadResponse}}<div><b>LoadResponse</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadResponse}}");}); return false;'>{{LoadResponse}}</a></div>{{/LoadResponse}}
                     </div>
                     </fieldset>
 
@@ -7922,8 +7922,8 @@ define
                     {{#ratedU}}<div><b>ratedU</b>: {{ratedU}}</div>{{/ratedU}}
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-                    {{#HydroPump}}<div><b>HydroPump</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPump}}&quot;);}); return false;'>{{HydroPump}}</a></div>{{/HydroPump}}
-                    {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);}); return false;'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+                    {{#HydroPump}}<div><b>HydroPump</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{HydroPump}}");}); return false;'>{{HydroPump}}</a></div>{{/HydroPump}}
+                    {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{GeneratingUnit}}");}); return false;'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
                     </div>
                     </fieldset>
 
@@ -8049,7 +8049,7 @@ define
                     `
                     + ShuntCompensator.prototype.template.call (this) +
                     `
-                    {{#NonlinearShuntCompensatorPoints}}<div><b>NonlinearShuntCompensatorPoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/NonlinearShuntCompensatorPoints}}
+                    {{#NonlinearShuntCompensatorPoints}}<div><b>NonlinearShuntCompensatorPoints</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/NonlinearShuntCompensatorPoints}}
                     </div>
                     </fieldset>
 
@@ -8182,7 +8182,7 @@ define
                     {{#sVCControlMode}}<div><b>sVCControlMode</b>: {{sVCControlMode}}</div>{{/sVCControlMode}}
                     {{#voltageSetPoint}}<div><b>voltageSetPoint</b>: {{voltageSetPoint}}</div>{{/voltageSetPoint}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
-                    {{#StaticVarCompensatorDynamics}}<div><b>StaticVarCompensatorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StaticVarCompensatorDynamics}}&quot;);}); return false;'>{{StaticVarCompensatorDynamics}}</a></div>{{/StaticVarCompensatorDynamics}}
+                    {{#StaticVarCompensatorDynamics}}<div><b>StaticVarCompensatorDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{StaticVarCompensatorDynamics}}");}); return false;'>{{StaticVarCompensatorDynamics}}</a></div>{{/StaticVarCompensatorDynamics}}
                     </div>
                     </fieldset>
 
@@ -8352,9 +8352,9 @@ define
                     {{#reactivePower}}<div><b>reactivePower</b>: {{reactivePower}}</div>{{/reactivePower}}
                     {{#pMin}}<div><b>pMin</b>: {{pMin}}</div>{{/pMin}}
                     {{#pMax}}<div><b>pMax</b>: {{pMax}}</div>{{/pMax}}
-                    {{#EnergySourceAction}}<div><b>EnergySourceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergySourceAction}}&quot;);}); return false;'>{{EnergySourceAction}}</a></div>{{/EnergySourceAction}}
-                    {{#EnergySourcePhase}}<div><b>EnergySourcePhase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergySourcePhase}}
-                    {{#EnergySchedulingType}}<div><b>EnergySchedulingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergySchedulingType}}&quot;);}); return false;'>{{EnergySchedulingType}}</a></div>{{/EnergySchedulingType}}
+                    {{#EnergySourceAction}}<div><b>EnergySourceAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergySourceAction}}");}); return false;'>{{EnergySourceAction}}</a></div>{{/EnergySourceAction}}
+                    {{#EnergySourcePhase}}<div><b>EnergySourcePhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergySourcePhase}}
+                    {{#EnergySchedulingType}}<div><b>EnergySchedulingType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergySchedulingType}}");}); return false;'>{{EnergySchedulingType}}</a></div>{{/EnergySchedulingType}}
                     </div>
                     </fieldset>
 
@@ -9025,10 +9025,10 @@ define
                     {{#voltageRegulationRange}}<div><b>voltageRegulationRange</b>: {{voltageRegulationRange}}</div>{{/voltageRegulationRange}}
                     {{#x0}}<div><b>x0</b>: {{x0}}</div>{{/x0}}
                     {{#x2}}<div><b>x2</b>: {{x2}}</div>{{/x2}}
-                    {{#PrimeMovers}}<div><b>PrimeMovers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PrimeMovers}}
-                    {{#InitialReactiveCapabilityCurve}}<div><b>InitialReactiveCapabilityCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InitialReactiveCapabilityCurve}}&quot;);}); return false;'>{{InitialReactiveCapabilityCurve}}</a></div>{{/InitialReactiveCapabilityCurve}}
-                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachineDynamics}}&quot;);}); return false;'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
-                    {{#ReactiveCapabilityCurves}}<div><b>ReactiveCapabilityCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ReactiveCapabilityCurves}}
+                    {{#PrimeMovers}}<div><b>PrimeMovers</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PrimeMovers}}
+                    {{#InitialReactiveCapabilityCurve}}<div><b>InitialReactiveCapabilityCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{InitialReactiveCapabilityCurve}}");}); return false;'>{{InitialReactiveCapabilityCurve}}</a></div>{{/InitialReactiveCapabilityCurve}}
+                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SynchronousMachineDynamics}}");}); return false;'>{{SynchronousMachineDynamics}}</a></div>{{/SynchronousMachineDynamics}}
+                    {{#ReactiveCapabilityCurves}}<div><b>ReactiveCapabilityCurves</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ReactiveCapabilityCurves}}
                     </div>
                     </fieldset>
 
@@ -9284,7 +9284,7 @@ define
                     {{#ratedMechanicalPower}}<div><b>ratedMechanicalPower</b>: {{ratedMechanicalPower}}</div>{{/ratedMechanicalPower}}
                     {{#reversible}}<div><b>reversible</b>: {{reversible}}</div>{{/reversible}}
                     {{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
-                    {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);}); return false;'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
+                    {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AsynchronousMachineDynamics}}");}); return false;'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
                     </div>
                     </fieldset>
 
@@ -9439,7 +9439,7 @@ define
                     `
                     + PerLengthLineParameter.prototype.template.call (this) +
                     `
-                    {{#ACLineSegments}}<div><b>ACLineSegments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ACLineSegments}}
+                    {{#ACLineSegments}}<div><b>ACLineSegments</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ACLineSegments}}
                     </div>
                     </fieldset>
 
@@ -9553,7 +9553,7 @@ define
                     + PerLengthImpedance.prototype.template.call (this) +
                     `
                     {{#conductorCount}}<div><b>conductorCount</b>: {{conductorCount}}</div>{{/conductorCount}}
-                    {{#PhaseImpedanceData}}<div><b>PhaseImpedanceData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PhaseImpedanceData}}
+                    {{#PhaseImpedanceData}}<div><b>PhaseImpedanceData</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PhaseImpedanceData}}
                     </div>
                     </fieldset>
 
@@ -10149,8 +10149,8 @@ define
                     + Switch.prototype.template.call (this) +
                     `
                     {{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
-                    {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ACLineSegment}}&quot;);}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
-                    {{#CutAction}}<div><b>CutAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CutAction}}&quot;);}); return false;'>{{CutAction}}</a></div>{{/CutAction}}
+                    {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ACLineSegment}}");}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+                    {{#CutAction}}<div><b>CutAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CutAction}}");}); return false;'>{{CutAction}}</a></div>{{/CutAction}}
                     </div>
                     </fieldset>
 
@@ -10464,7 +10464,7 @@ define
                     `
                     + Switch.prototype.template.call (this) +
                     `
-                    {{#JumperAction}}<div><b>JumperAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{JumperAction}}&quot;);}); return false;'>{{JumperAction}}</a></div>{{/JumperAction}}
+                    {{#JumperAction}}<div><b>JumperAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{JumperAction}}");}); return false;'>{{JumperAction}}</a></div>{{/JumperAction}}
                     </div>
                     </fieldset>
 
@@ -10582,8 +10582,8 @@ define
                     + Switch.prototype.template.call (this) +
                     `
                     {{#breakingCapacity}}<div><b>breakingCapacity</b>: {{breakingCapacity}}</div>{{/breakingCapacity}}
-                    {{#RecloseSequences}}<div><b>RecloseSequences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/RecloseSequences}}
-                    {{#OperatedByProtectionEquipment}}<div><b>OperatedByProtectionEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OperatedByProtectionEquipment}}
+                    {{#RecloseSequences}}<div><b>RecloseSequences</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RecloseSequences}}
+                    {{#OperatedByProtectionEquipment}}<div><b>OperatedByProtectionEquipment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OperatedByProtectionEquipment}}
                     </div>
                     </fieldset>
 
@@ -11190,7 +11190,7 @@ define
                     + Connector.prototype.template.call (this) +
                     `
                     {{#ipMax}}<div><b>ipMax</b>: {{ipMax}}</div>{{/ipMax}}
-                    {{#VoltageControlZone}}<div><b>VoltageControlZone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{VoltageControlZone}}&quot;);}); return false;'>{{VoltageControlZone}}</a></div>{{/VoltageControlZone}}
+                    {{#VoltageControlZone}}<div><b>VoltageControlZone</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VoltageControlZone}}");}); return false;'>{{VoltageControlZone}}</a></div>{{/VoltageControlZone}}
                     </div>
                     </fieldset>
 

@@ -185,8 +185,8 @@ define
                     {{#mRID}}<div><b>mRID</b>: {{mRID}}</div>{{/mRID}}
                     {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
                     {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-                    {{#AlternateModel}}<div><b>AlternateModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AlternateModel}}&quot;);}); return false;'>{{AlternateModel}}</a></div>{{/AlternateModel}}
-                    {{#Profile}}<div><b>Profile</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Profile}}
+                    {{#AlternateModel}}<div><b>AlternateModel</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AlternateModel}}");}); return false;'>{{AlternateModel}}</a></div>{{/AlternateModel}}
+                    {{#Profile}}<div><b>Profile</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Profile}}
                     </div>
                     </fieldset>
 
@@ -314,9 +314,9 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#Changeset}}<div><b>Changeset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Changeset}}&quot;);}); return false;'>{{Changeset}}</a></div>{{/Changeset}}
-                    {{#PropertiesObject}}<div><b>PropertiesObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertiesObject}}&quot;);}); return false;'>{{PropertiesObject}}</a></div>{{/PropertiesObject}}
-                    {{#TargetObject}}<div><b>TargetObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetObject}}&quot;);}); return false;'>{{TargetObject}}</a></div>{{/TargetObject}}
+                    {{#Changeset}}<div><b>Changeset</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Changeset}}");}); return false;'>{{Changeset}}</a></div>{{/Changeset}}
+                    {{#PropertiesObject}}<div><b>PropertiesObject</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PropertiesObject}}");}); return false;'>{{PropertiesObject}}</a></div>{{/PropertiesObject}}
+                    {{#TargetObject}}<div><b>TargetObject</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TargetObject}}");}); return false;'>{{TargetObject}}</a></div>{{/TargetObject}}
                     </div>
                     </fieldset>
 
@@ -437,7 +437,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#DataSet}}<div><b>DataSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DataSet}}
+                    {{#DataSet}}<div><b>DataSet</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DataSet}}
                     </div>
                     </fieldset>
 
@@ -560,10 +560,10 @@ define
                     `
                     + DataSet.prototype.template.call (this) +
                     `
-                    {{#NetworkModelProjectChangeVersion}}<div><b>NetworkModelProjectChangeVersion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/NetworkModelProjectChangeVersion}}
-                    {{#NMProjectStage}}<div><b>NMProjectStage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NMProjectStage}}&quot;);}); return false;'>{{NMProjectStage}}</a></div>{{/NMProjectStage}}
-                    {{#ChangeSetMember}}<div><b>ChangeSetMember</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ChangeSetMember}}
-                    {{#IncrementalDatasetArg}}<div><b>IncrementalDatasetArg</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/IncrementalDatasetArg}}
+                    {{#NetworkModelProjectChangeVersion}}<div><b>NetworkModelProjectChangeVersion</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/NetworkModelProjectChangeVersion}}
+                    {{#NMProjectStage}}<div><b>NMProjectStage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{NMProjectStage}}");}); return false;'>{{NMProjectStage}}</a></div>{{/NMProjectStage}}
+                    {{#ChangeSetMember}}<div><b>ChangeSetMember</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChangeSetMember}}
+                    {{#IncrementalDatasetArg}}<div><b>IncrementalDatasetArg</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/IncrementalDatasetArg}}
                     </div>
                     </fieldset>
 
@@ -689,8 +689,8 @@ define
                     `
                     + DataSet.prototype.template.call (this) +
                     `
-                    {{#DatasetArg}}<div><b>DatasetArg</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/DatasetArg}}
-                    {{#InstanceSetMember}}<div><b>InstanceSetMember</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/InstanceSetMember}}
+                    {{#DatasetArg}}<div><b>DatasetArg</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DatasetArg}}
+                    {{#InstanceSetMember}}<div><b>InstanceSetMember</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/InstanceSetMember}}
                     </div>
                     </fieldset>
 
@@ -899,7 +899,7 @@ define
                     `
                     + ChangeSetMember.prototype.template.call (this) +
                     `
-                    {{#ObjectReverseModification}}<div><b>ObjectReverseModification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ObjectReverseModification}}&quot;);}); return false;'>{{ObjectReverseModification}}</a></div>{{/ObjectReverseModification}}
+                    {{#ObjectReverseModification}}<div><b>ObjectReverseModification</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ObjectReverseModification}}");}); return false;'>{{ObjectReverseModification}}</a></div>{{/ObjectReverseModification}}
                     </div>
                     </fieldset>
 
@@ -1107,7 +1107,7 @@ define
                     `
                     + ChangeSetMember.prototype.template.call (this) +
                     `
-                    {{#ObjectModification}}<div><b>ObjectModification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ObjectModification}}&quot;);}); return false;'>{{ObjectModification}}</a></div>{{/ObjectModification}}
+                    {{#ObjectModification}}<div><b>ObjectModification</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ObjectModification}}");}); return false;'>{{ObjectModification}}</a></div>{{/ObjectModification}}
                     </div>
                     </fieldset>
 

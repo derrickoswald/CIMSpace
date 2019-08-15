@@ -70,8 +70,8 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
-                    {{#TradingHubPrice}}<div><b>TradingHubPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TradingHubPrice}}&quot;);}); return false;'>{{TradingHubPrice}}</a></div>{{/TradingHubPrice}}
-                    {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);}); return false;'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
+                    {{#TradingHubPrice}}<div><b>TradingHubPrice</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TradingHubPrice}}");}); return false;'>{{TradingHubPrice}}</a></div>{{/TradingHubPrice}}
+                    {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AggregatedPnode}}");}); return false;'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
                     </div>
                     </fieldset>
 
@@ -198,7 +198,7 @@ define
                     {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-                    {{#AuxillaryData}}<div><b>AuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxillaryData}}
+                    {{#AuxillaryData}}<div><b>AuxillaryData</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AuxillaryData}}
                     </div>
                     </fieldset>
 
@@ -328,7 +328,7 @@ define
                     {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-                    {{#AllocationResultValues}}<div><b>AllocationResultValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AllocationResultValues}}
+                    {{#AllocationResultValues}}<div><b>AllocationResultValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AllocationResultValues}}
                     </div>
                     </fieldset>
 
@@ -456,7 +456,7 @@ define
                     {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-                    {{#AuxillaryValues}}<div><b>AuxillaryValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxillaryValues}}
+                    {{#AuxillaryValues}}<div><b>AuxillaryValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AuxillaryValues}}
                     </div>
                     </fieldset>
 
@@ -587,7 +587,7 @@ define
                     {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
-                    {{#AuxillaryValues}}<div><b>AuxillaryValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AuxillaryValues}}
+                    {{#AuxillaryValues}}<div><b>AuxillaryValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AuxillaryValues}}
                     </div>
                     </fieldset>
 
@@ -712,8 +712,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
-                    {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredLoad}}&quot;);}); return false;'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
+                    {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredGenerator}}");}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+                    {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredLoad}}");}); return false;'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
                     </div>
                     </fieldset>
 
@@ -846,8 +846,8 @@ define
                     {{#allocationPrice}}<div><b>allocationPrice</b>: {{allocationPrice}}</div>{{/allocationPrice}}
                     {{#energyTypeCode}}<div><b>energyTypeCode</b>: {{energyTypeCode}}</div>{{/energyTypeCode}}
                     {{#marketServiceType}}<div><b>marketServiceType</b>: {{marketServiceType}}</div>{{/marketServiceType}}
-                    {{#AllocationResult}}<div><b>AllocationResult</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AllocationResult}}&quot;);}); return false;'>{{AllocationResult}}</a></div>{{/AllocationResult}}
-                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#AllocationResult}}<div><b>AllocationResult</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AllocationResult}}");}); return false;'>{{AllocationResult}}</a></div>{{/AllocationResult}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredResource}}");}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     </div>
                     </fieldset>
 
@@ -981,8 +981,8 @@ define
                     `
                     {{#energyTypeCode}}<div><b>energyTypeCode</b>: {{energyTypeCode}}</div>{{/energyTypeCode}}
                     {{#expectedMwh}}<div><b>expectedMwh</b>: {{expectedMwh}}</div>{{/expectedMwh}}
-                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
-                    {{#ExpectedEnergy}}<div><b>ExpectedEnergy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExpectedEnergy}}&quot;);}); return false;'>{{ExpectedEnergy}}</a></div>{{/ExpectedEnergy}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredResource}}");}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#ExpectedEnergy}}<div><b>ExpectedEnergy</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ExpectedEnergy}}");}); return false;'>{{ExpectedEnergy}}</a></div>{{/ExpectedEnergy}}
                     </div>
                     </fieldset>
 
@@ -1114,7 +1114,7 @@ define
                     {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-                    {{#TradingHubValues}}<div><b>TradingHubValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TradingHubValues}}
+                    {{#TradingHubValues}}<div><b>TradingHubValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TradingHubValues}}
                     </div>
                     </fieldset>
 
@@ -1246,7 +1246,7 @@ define
                     {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
-                    {{#ExpectedEnergyValues}}<div><b>ExpectedEnergyValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ExpectedEnergyValues}}
+                    {{#ExpectedEnergyValues}}<div><b>ExpectedEnergyValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ExpectedEnergyValues}}
                     </div>
                     </fieldset>
 
@@ -1393,9 +1393,9 @@ define
                     {{#startUpCostEligibilityFlag}}<div><b>startUpCostEligibilityFlag</b>: {{startUpCostEligibilityFlag}}</div>{{/startUpCostEligibilityFlag}}
                     {{#noLoadCost}}<div><b>noLoadCost</b>: {{noLoadCost}}</div>{{/noLoadCost}}
                     {{#noLoadCostEligibilityFlag}}<div><b>noLoadCostEligibilityFlag</b>: {{noLoadCostEligibilityFlag}}</div>{{/noLoadCostEligibilityFlag}}
-                    {{#AuxillaryCost}}<div><b>AuxillaryCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AuxillaryCost}}&quot;);}); return false;'>{{AuxillaryCost}}</a></div>{{/AuxillaryCost}}
-                    {{#FiveMinAuxillaryData}}<div><b>FiveMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FiveMinAuxillaryData}}&quot;);}); return false;'>{{FiveMinAuxillaryData}}</a></div>{{/FiveMinAuxillaryData}}
-                    {{#TenMinAuxillaryData}}<div><b>TenMinAuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TenMinAuxillaryData}}&quot;);}); return false;'>{{TenMinAuxillaryData}}</a></div>{{/TenMinAuxillaryData}}
+                    {{#AuxillaryCost}}<div><b>AuxillaryCost</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AuxillaryCost}}");}); return false;'>{{AuxillaryCost}}</a></div>{{/AuxillaryCost}}
+                    {{#FiveMinAuxillaryData}}<div><b>FiveMinAuxillaryData</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{FiveMinAuxillaryData}}");}); return false;'>{{FiveMinAuxillaryData}}</a></div>{{/FiveMinAuxillaryData}}
+                    {{#TenMinAuxillaryData}}<div><b>TenMinAuxillaryData</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TenMinAuxillaryData}}");}); return false;'>{{TenMinAuxillaryData}}</a></div>{{/TenMinAuxillaryData}}
                     </div>
                     </fieldset>
 

@@ -363,10 +363,10 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     {{#unitCost}}<div><b>unitCost</b>: {{unitCost}}</div>{{/unitCost}}
-                    {{#AssetModelCatalogue}}<div><b>AssetModelCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogue}}&quot;);}); return false;'>{{AssetModelCatalogue}}</a></div>{{/AssetModelCatalogue}}
-                    {{#ErpQuoteLineItems}}<div><b>ErpQuoteLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpQuoteLineItems}}
-                    {{#ErpPOLineItems}}<div><b>ErpPOLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ErpPOLineItems}}
-                    {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);}); return false;'>{{AssetModel}}</a></div>{{/AssetModel}}
+                    {{#AssetModelCatalogue}}<div><b>AssetModelCatalogue</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AssetModelCatalogue}}");}); return false;'>{{AssetModelCatalogue}}</a></div>{{/AssetModelCatalogue}}
+                    {{#ErpQuoteLineItems}}<div><b>ErpQuoteLineItems</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ErpQuoteLineItems}}
+                    {{#ErpPOLineItems}}<div><b>ErpPOLineItems</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ErpPOLineItems}}
+                    {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AssetModel}}");}); return false;'>{{AssetModel}}</a></div>{{/AssetModel}}
                     </div>
                     </fieldset>
 
@@ -771,15 +771,15 @@ define
                     {{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
                     {{#accuracyLimit}}<div><b>accuracyLimit</b>: {{accuracyLimit}}</div>{{/accuracyLimit}}
                     {{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
-                    {{#maxRatio}}<div><b>maxRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{maxRatio}}&quot;);}); return false;'>{{maxRatio}}</a></div>{{/maxRatio}}
+                    {{#maxRatio}}<div><b>maxRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{maxRatio}}");}); return false;'>{{maxRatio}}</a></div>{{/maxRatio}}
                     {{#coreCount}}<div><b>coreCount</b>: {{coreCount}}</div>{{/coreCount}}
                     {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
                     {{#kneePointVoltage}}<div><b>kneePointVoltage</b>: {{kneePointVoltage}}</div>{{/kneePointVoltage}}
                     {{#kneePointCurrent}}<div><b>kneePointCurrent</b>: {{kneePointCurrent}}</div>{{/kneePointCurrent}}
-                    {{#nominalRatio}}<div><b>nominalRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{nominalRatio}}&quot;);}); return false;'>{{nominalRatio}}</a></div>{{/nominalRatio}}
-                    {{#primaryRatio}}<div><b>primaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{primaryRatio}}&quot;);}); return false;'>{{primaryRatio}}</a></div>{{/primaryRatio}}
-                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryRatio}}&quot;);}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}
-                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{tertiaryRatio}}&quot;);}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}
+                    {{#nominalRatio}}<div><b>nominalRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{nominalRatio}}");}); return false;'>{{nominalRatio}}</a></div>{{/nominalRatio}}
+                    {{#primaryRatio}}<div><b>primaryRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{primaryRatio}}");}); return false;'>{{primaryRatio}}</a></div>{{/primaryRatio}}
+                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{secondaryRatio}}");}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}
+                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{tertiaryRatio}}");}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}
                     {{#primaryFlsRating}}<div><b>primaryFlsRating</b>: {{primaryFlsRating}}</div>{{/primaryFlsRating}}
                     {{#secondaryFlsRating}}<div><b>secondaryFlsRating</b>: {{secondaryFlsRating}}</div>{{/secondaryFlsRating}}
                     {{#tertiaryFlsRating}}<div><b>tertiaryFlsRating</b>: {{tertiaryFlsRating}}</div>{{/tertiaryFlsRating}}
@@ -918,8 +918,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}
-                    {{#AssetModelCatalogueItems}}<div><b>AssetModelCatalogueItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AssetModelCatalogueItems}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#AssetModelCatalogueItems}}<div><b>AssetModelCatalogueItems</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AssetModelCatalogueItems}}
                     </div>
                     </fieldset>
 
@@ -1430,10 +1430,10 @@ define
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
                     {{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
                     {{#ptClass}}<div><b>ptClass</b>: {{ptClass}}</div>{{/ptClass}}
-                    {{#nominalRatio}}<div><b>nominalRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{nominalRatio}}&quot;);}); return false;'>{{nominalRatio}}</a></div>{{/nominalRatio}}
-                    {{#primaryRatio}}<div><b>primaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{primaryRatio}}&quot;);}); return false;'>{{primaryRatio}}</a></div>{{/primaryRatio}}
-                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{secondaryRatio}}&quot;);}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}
-                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{tertiaryRatio}}&quot;);}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}
+                    {{#nominalRatio}}<div><b>nominalRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{nominalRatio}}");}); return false;'>{{nominalRatio}}</a></div>{{/nominalRatio}}
+                    {{#primaryRatio}}<div><b>primaryRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{primaryRatio}}");}); return false;'>{{primaryRatio}}</a></div>{{/primaryRatio}}
+                    {{#secondaryRatio}}<div><b>secondaryRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{secondaryRatio}}");}); return false;'>{{secondaryRatio}}</a></div>{{/secondaryRatio}}
+                    {{#tertiaryRatio}}<div><b>tertiaryRatio</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{tertiaryRatio}}");}); return false;'>{{tertiaryRatio}}</a></div>{{/tertiaryRatio}}
                     </div>
                     </fieldset>
 

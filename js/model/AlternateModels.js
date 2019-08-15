@@ -55,7 +55,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#AlternateModel}}<div><b>AlternateModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/AlternateModel}}
+                    {{#AlternateModel}}<div><b>AlternateModel</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/AlternateModel}}
                     </div>
                     </fieldset>
 
@@ -164,8 +164,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#Dataset}}<div><b>Dataset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Dataset}}&quot;);}); return false;'>{{Dataset}}</a></div>{{/Dataset}}
-                    {{#AlternateModelGroup}}<div><b>AlternateModelGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AlternateModelGroup}}&quot;);}); return false;'>{{AlternateModelGroup}}</a></div>{{/AlternateModelGroup}}
+                    {{#Dataset}}<div><b>Dataset</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Dataset}}");}); return false;'>{{Dataset}}</a></div>{{/Dataset}}
+                    {{#AlternateModelGroup}}<div><b>AlternateModelGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AlternateModelGroup}}");}); return false;'>{{AlternateModelGroup}}</a></div>{{/AlternateModelGroup}}
                     </div>
                     </fieldset>
 
