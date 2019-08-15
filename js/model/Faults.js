@@ -92,7 +92,8 @@ define
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
-                    {{#impedance}}<div><b>impedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{impedance}}&quot;);}); return false;'>{{impedance}}</a></div>{{/impedance}}\n                    {{#occurredDateTime}}<div><b>occurredDateTime</b>: {{occurredDateTime}}</div>{{/occurredDateTime}}
+                    {{#impedance}}<div><b>impedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{impedance}}&quot;);}); return false;'>{{impedance}}</a></div>{{/impedance}}
+                    {{#occurredDateTime}}<div><b>occurredDateTime</b>: {{occurredDateTime}}</div>{{/occurredDateTime}}
                     {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);}); return false;'>{{Outage}}</a></div>{{/Outage}}
                     {{#FaultCauseTypes}}<div><b>FaultCauseTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FaultCauseTypes}}
                     {{#FaultyEquipment}}<div><b>FaultyEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FaultyEquipment}}&quot;);}); return false;'>{{FaultyEquipment}}</a></div>{{/FaultyEquipment}}

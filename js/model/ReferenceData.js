@@ -2721,13 +2721,18 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
-                    {{#electronicAddressAlternate}}<div><b>electronicAddressAlternate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddressAlternate}}&quot;);}); return false;'>{{electronicAddressAlternate}}</a></div>{{/electronicAddressAlternate}}\n                    {{#electronicAddressPrimary}}<div><b>electronicAddressPrimary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddressPrimary}}&quot;);}); return false;'>{{electronicAddressPrimary}}</a></div>{{/electronicAddressPrimary}}\n                    {{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
+                    {{#electronicAddressAlternate}}<div><b>electronicAddressAlternate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddressAlternate}}&quot;);}); return false;'>{{electronicAddressAlternate}}</a></div>{{/electronicAddressAlternate}}
+                    {{#electronicAddressPrimary}}<div><b>electronicAddressPrimary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{electronicAddressPrimary}}&quot;);}); return false;'>{{electronicAddressPrimary}}</a></div>{{/electronicAddressPrimary}}
+                    {{#firstName}}<div><b>firstName</b>: {{firstName}}</div>{{/firstName}}
                     {{#governmentID}}<div><b>governmentID</b>: {{governmentID}}</div>{{/governmentID}}
-                    {{#landlinePhone}}<div><b>landlinePhone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{landlinePhone}}&quot;);}); return false;'>{{landlinePhone}}</a></div>{{/landlinePhone}}\n                    {{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
+                    {{#landlinePhone}}<div><b>landlinePhone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{landlinePhone}}&quot;);}); return false;'>{{landlinePhone}}</a></div>{{/landlinePhone}}
+                    {{#lastName}}<div><b>lastName</b>: {{lastName}}</div>{{/lastName}}
                     {{#mName}}<div><b>mName</b>: {{mName}}</div>{{/mName}}
-                    {{#mobilePhone}}<div><b>mobilePhone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{mobilePhone}}&quot;);}); return false;'>{{mobilePhone}}</a></div>{{/mobilePhone}}\n                    {{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
+                    {{#mobilePhone}}<div><b>mobilePhone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{mobilePhone}}&quot;);}); return false;'>{{mobilePhone}}</a></div>{{/mobilePhone}}
+                    {{#prefix}}<div><b>prefix</b>: {{prefix}}</div>{{/prefix}}
                     {{#specialNeed}}<div><b>specialNeed</b>: {{specialNeed}}</div>{{/specialNeed}}
-                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}\n                    {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{status}}&quot;);}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
                     {{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
                     {{#MarketSkills}}<div><b>MarketSkills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MarketSkills}}
                     {{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/MarketParticipant}}

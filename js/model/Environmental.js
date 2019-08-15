@@ -2929,7 +2929,8 @@ define
                     {{#errorEllipseConfidence}}<div><b>errorEllipseConfidence</b>: {{errorEllipseConfidence}}</div>{{/errorEllipseConfidence}}
                     {{#errorEllipseMajorSemiAxis}}<div><b>errorEllipseMajorSemiAxis</b>: {{errorEllipseMajorSemiAxis}}</div>{{/errorEllipseMajorSemiAxis}}
                     {{#errorEllipseMinorSemiAxis}}<div><b>errorEllipseMinorSemiAxis</b>: {{errorEllipseMinorSemiAxis}}</div>{{/errorEllipseMinorSemiAxis}}
-                    {{#errorEllipseOrientation}}<div><b>errorEllipseOrientation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{errorEllipseOrientation}}&quot;);}); return false;'>{{errorEllipseOrientation}}</a></div>{{/errorEllipseOrientation}}\n                    {{#negativePolarity}}<div><b>negativePolarity</b>: {{negativePolarity}}</div>{{/negativePolarity}}
+                    {{#errorEllipseOrientation}}<div><b>errorEllipseOrientation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{errorEllipseOrientation}}&quot;);}); return false;'>{{errorEllipseOrientation}}</a></div>{{/errorEllipseOrientation}}
+                    {{#negativePolarity}}<div><b>negativePolarity</b>: {{negativePolarity}}</div>{{/negativePolarity}}
                     {{#peakAmplitude}}<div><b>peakAmplitude</b>: {{peakAmplitude}}</div>{{/peakAmplitude}}
                     </div>
                     </fieldset>
@@ -3234,7 +3235,8 @@ define
                     `
                     + SpacePhenomenon.prototype.template.call (this) +
                     `
-                    {{#changeDst}}<div><b>changeDst</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{changeDst}}&quot;);}); return false;'>{{changeDst}}</a></div>{{/changeDst}}\n                    </div>
+                    {{#changeDst}}<div><b>changeDst</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{changeDst}}&quot;);}); return false;'>{{changeDst}}</a></div>{{/changeDst}}
+                    </div>
                     </fieldset>
 
                     `
@@ -3434,7 +3436,8 @@ define
                     `
                     + GeosphericPhenomenon.prototype.template.call (this) +
                     `
-                    {{#focalDepth}}<div><b>focalDepth</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{focalDepth}}&quot;);}); return false;'>{{focalDepth}}</a></div>{{/focalDepth}}\n                    {{#intensity}}<div><b>intensity</b>: {{intensity}}</div>{{/intensity}}
+                    {{#focalDepth}}<div><b>focalDepth</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{focalDepth}}&quot;);}); return false;'>{{focalDepth}}</a></div>{{/focalDepth}}
+                    {{#intensity}}<div><b>intensity</b>: {{intensity}}</div>{{/intensity}}
                     {{#magnitude}}<div><b>magnitude</b>: {{magnitude}}</div>{{/magnitude}}
                     </div>
                     </fieldset>
@@ -3551,7 +3554,10 @@ define
                     `
                     + EnvironmentalPhenomenon.prototype.template.call (this) +
                     `
-                    {{#altitude}}<div><b>altitude</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{altitude}}&quot;);}); return false;'>{{altitude}}</a></div>{{/altitude}}\n                    {{#base}}<div><b>base</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{base}}&quot;);}); return false;'>{{base}}</a></div>{{/base}}\n                    {{#direction}}<div><b>direction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{direction}}&quot;);}); return false;'>{{direction}}</a></div>{{/direction}}\n                    {{#maxCoverage}}<div><b>maxCoverage</b>: {{maxCoverage}}</div>{{/maxCoverage}}
+                    {{#altitude}}<div><b>altitude</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{altitude}}&quot;);}); return false;'>{{altitude}}</a></div>{{/altitude}}
+                    {{#base}}<div><b>base</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{base}}&quot;);}); return false;'>{{base}}</a></div>{{/base}}
+                    {{#direction}}<div><b>direction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{direction}}&quot;);}); return false;'>{{direction}}</a></div>{{/direction}}
+                    {{#maxCoverage}}<div><b>maxCoverage</b>: {{maxCoverage}}</div>{{/maxCoverage}}
                     {{#minCoverage}}<div><b>minCoverage</b>: {{minCoverage}}</div>{{/minCoverage}}
                     {{#speed}}<div><b>speed</b>: {{speed}}</div>{{/speed}}
                     </div>
@@ -4073,7 +4079,8 @@ define
                     `
                     + AtmosphericPhenomenon.prototype.template.call (this) +
                     `
-                    {{#density}}<div><b>density</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{density}}&quot;);}); return false;'>{{density}}</a></div>{{/density}}\n                    {{#particleSize}}<div><b>particleSize</b>: {{particleSize}}</div>{{/particleSize}}
+                    {{#density}}<div><b>density</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{density}}&quot;);}); return false;'>{{density}}</a></div>{{/density}}
+                    {{#particleSize}}<div><b>particleSize</b>: {{particleSize}}</div>{{/particleSize}}
                     </div>
                     </fieldset>
 

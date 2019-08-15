@@ -225,12 +225,11 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#phaseInfo}}<div><b>phaseInfo</b>: {{phaseInfo}}</div>{{/phaseInfo}}
-                    {{#WireAssemblyInfo}}<div><b>WireAssemblyInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireAssemblyInfo}}&quot;);}); return false;'>{{WireAssemblyInfo}}</a></div>{{/WireAssemblyInfo}}
-                    {{#WireInfo}}<div><b>WireInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireInfo}}&quot;);}); return false;'>{{WireInfo}}</a></div>{{/WireInfo}}
-                    {{#WirePosition}}<div><b>WirePosition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WirePosition}}&quot;);}); return false;'>{{WirePosition}}</a></div>{{/WirePosition}}
+                    {{#WireAssemblyInfo}}<div><b>WireAssemblyInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WireAssemblyInfo}}");}); return false;'>{{WireAssemblyInfo}}</a></div>{{/WireAssemblyInfo}}
+                    {{#WireInfo}}<div><b>WireInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WireInfo}}");}); return false;'>{{WireInfo}}</a></div>{{/WireInfo}}
+                    {{#WirePosition}}<div><b>WirePosition</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WirePosition}}");}); return false;'>{{WirePosition}}</a></div>{{/WirePosition}}
                     </div>
                     </fieldset>
-
                     `
                 );
             }
@@ -497,8 +496,8 @@ define
                     `
                     {{#xCoord}}<div><b>xCoord</b>: {{xCoord}}</div>{{/xCoord}}
                     {{#yCoord}}<div><b>yCoord</b>: {{yCoord}}</div>{{/yCoord}}
-                    {{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WireSpacingInfo}}&quot;);}); return false;'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
-                    {{#WirePhaseInfo}}<div><b>WirePhaseInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WirePhaseInfo}}
+                    {{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WireSpacingInfo}}");}); return false;'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
+                    {{#WirePhaseInfo}}<div><b>WirePhaseInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WirePhaseInfo}}
                     </div>
                     </fieldset>
 
@@ -894,7 +893,7 @@ define
                     `
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
-                    {{#TransformerTankInfos}}<div><b>TransformerTankInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerTankInfos}}
+                    {{#TransformerTankInfos}}<div><b>TransformerTankInfos</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransformerTankInfos}}
                     </div>
                     </fieldset>
 
@@ -1023,9 +1022,9 @@ define
                     {{#phaseWireCount}}<div><b>phaseWireCount</b>: {{phaseWireCount}}</div>{{/phaseWireCount}}
                     {{#phaseWireSpacing}}<div><b>phaseWireSpacing</b>: {{phaseWireSpacing}}</div>{{/phaseWireSpacing}}
                     {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
-                    {{#DuctBank}}<div><b>DuctBank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DuctBank}}&quot;);}); return false;'>{{DuctBank}}</a></div>{{/DuctBank}}
-                    {{#Structures}}<div><b>Structures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/Structures}}
-                    {{#WirePositions}}<div><b>WirePositions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WirePositions}}
+                    {{#DuctBank}}<div><b>DuctBank</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{DuctBank}}");}); return false;'>{{DuctBank}}</a></div>{{/DuctBank}}
+                    {{#Structures}}<div><b>Structures</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Structures}}
+                    {{#WirePositions}}<div><b>WirePositions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WirePositions}}
                     </div>
                     </fieldset>
 
@@ -1158,8 +1157,8 @@ define
                     `
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
-                    {{#TransformerEndInfos}}<div><b>TransformerEndInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/TransformerEndInfos}}
-                    {{#PowerTransformerInfo}}<div><b>PowerTransformerInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformerInfo}}&quot;);}); return false;'>{{PowerTransformerInfo}}</a></div>{{/PowerTransformerInfo}}
+                    {{#TransformerEndInfos}}<div><b>TransformerEndInfos</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransformerEndInfos}}
+                    {{#PowerTransformerInfo}}<div><b>PowerTransformerInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PowerTransformerInfo}}");}); return false;'>{{PowerTransformerInfo}}</a></div>{{/PowerTransformerInfo}}
                     </div>
                     </fieldset>
 
@@ -1553,7 +1552,7 @@ define
                     {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
                     {{#ratedReactivePower}}<div><b>ratedReactivePower</b>: {{ratedReactivePower}}</div>{{/ratedReactivePower}}
                     {{#maxPowerLoss}}<div><b>maxPowerLoss</b>: {{maxPowerLoss}}</div>{{/maxPowerLoss}}
-                    {{#ShuntCompensatorControl}}<div><b>ShuntCompensatorControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShuntCompensatorControl}}&quot;);}); return false;'>{{ShuntCompensatorControl}}</a></div>{{/ShuntCompensatorControl}}
+                    {{#ShuntCompensatorControl}}<div><b>ShuntCompensatorControl</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ShuntCompensatorControl}}");}); return false;'>{{ShuntCompensatorControl}}</a></div>{{/ShuntCompensatorControl}}
                     </div>
                     </fieldset>
 
@@ -1676,8 +1675,8 @@ define
                     `
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
-                    {{#WirePhaseInfo}}<div><b>WirePhaseInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WirePhaseInfo}}
-                    {{#PerLengthLineParameter}}<div><b>PerLengthLineParameter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/PerLengthLineParameter}}
+                    {{#WirePhaseInfo}}<div><b>WirePhaseInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WirePhaseInfo}}
+                    {{#PerLengthLineParameter}}<div><b>PerLengthLineParameter</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PerLengthLineParameter}}
                     </div>
                     </fieldset>
 
@@ -1943,16 +1942,16 @@ define
                     {{#ratedS}}<div><b>ratedS</b>: {{ratedS}}</div>{{/ratedS}}
                     {{#emergencyS}}<div><b>emergencyS</b>: {{emergencyS}}</div>{{/emergencyS}}
                     {{#shortTermS}}<div><b>shortTermS</b>: {{shortTermS}}</div>{{/shortTermS}}
-                    {{#FromMeshImpedances}}<div><b>FromMeshImpedances</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/FromMeshImpedances}}
-                    {{#OpenEndOpenCircuitTests}}<div><b>OpenEndOpenCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/OpenEndOpenCircuitTests}}
-                    {{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);}); return false;'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
-                    {{#ToMeshImpedances}}<div><b>ToMeshImpedances</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/ToMeshImpedances}}
-                    {{#TransformerStarImpedance}}<div><b>TransformerStarImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerStarImpedance}}&quot;);}); return false;'>{{TransformerStarImpedance}}</a></div>{{/TransformerStarImpedance}}
-                    {{#TransformerTankInfo}}<div><b>TransformerTankInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerTankInfo}}&quot;);}); return false;'>{{TransformerTankInfo}}</a></div>{{/TransformerTankInfo}}
-                    {{#EnergisedEndOpenCircuitTests}}<div><b>EnergisedEndOpenCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergisedEndOpenCircuitTests}}
-                    {{#EnergisedEndShortCircuitTests}}<div><b>EnergisedEndShortCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergisedEndShortCircuitTests}}
-                    {{#EnergisedEndNoLoadTests}}<div><b>EnergisedEndNoLoadTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/EnergisedEndNoLoadTests}}
-                    {{#GroundedEndShortCircuitTests}}<div><b>GroundedEndShortCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GroundedEndShortCircuitTests}}
+                    {{#FromMeshImpedances}}<div><b>FromMeshImpedances</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/FromMeshImpedances}}
+                    {{#OpenEndOpenCircuitTests}}<div><b>OpenEndOpenCircuitTests</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OpenEndOpenCircuitTests}}
+                    {{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CoreAdmittance}}");}); return false;'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
+                    {{#ToMeshImpedances}}<div><b>ToMeshImpedances</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ToMeshImpedances}}
+                    {{#TransformerStarImpedance}}<div><b>TransformerStarImpedance</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransformerStarImpedance}}");}); return false;'>{{TransformerStarImpedance}}</a></div>{{/TransformerStarImpedance}}
+                    {{#TransformerTankInfo}}<div><b>TransformerTankInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransformerTankInfo}}");}); return false;'>{{TransformerTankInfo}}</a></div>{{/TransformerTankInfo}}
+                    {{#EnergisedEndOpenCircuitTests}}<div><b>EnergisedEndOpenCircuitTests</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergisedEndOpenCircuitTests}}
+                    {{#EnergisedEndShortCircuitTests}}<div><b>EnergisedEndShortCircuitTests</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergisedEndShortCircuitTests}}
+                    {{#EnergisedEndNoLoadTests}}<div><b>EnergisedEndNoLoadTests</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergisedEndNoLoadTests}}
+                    {{#GroundedEndShortCircuitTests}}<div><b>GroundedEndShortCircuitTests</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GroundedEndShortCircuitTests}}
                     </div>
                     </fieldset>
 
@@ -2305,7 +2304,7 @@ define
                     {{#rAC50}}<div><b>rAC50</b>: {{rAC50}}</div>{{/rAC50}}
                     {{#rAC75}}<div><b>rAC75</b>: {{rAC75}}</div>{{/rAC75}}
                     {{#rDC20}}<div><b>rDC20</b>: {{rDC20}}</div>{{/rDC20}}
-                    {{#WirePhaseInfo}}<div><b>WirePhaseInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/WirePhaseInfo}}
+                    {{#WirePhaseInfo}}<div><b>WirePhaseInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WirePhaseInfo}}
                     </div>
                     </fieldset>
 
@@ -2469,7 +2468,7 @@ define
                     {{#loss}}<div><b>loss</b>: {{loss}}</div>{{/loss}}
                     {{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
                     {{#energisedEndVoltage}}<div><b>energisedEndVoltage</b>: {{energisedEndVoltage}}</div>{{/energisedEndVoltage}}
-                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergisedEnd}}");}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
                     </div>
                     </fieldset>
 
@@ -2623,8 +2622,8 @@ define
                     {{#voltage}}<div><b>voltage</b>: {{voltage}}</div>{{/voltage}}
                     {{#current}}<div><b>current</b>: {{current}}</div>{{/current}}
                     {{#power}}<div><b>power</b>: {{power}}</div>{{/power}}
-                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
-                    {{#GroundedEnds}}<div><b>GroundedEnds</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/GroundedEnds}}
+                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergisedEnd}}");}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+                    {{#GroundedEnds}}<div><b>GroundedEnds</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GroundedEnds}}
                     </div>
                     </fieldset>
 
@@ -2779,8 +2778,8 @@ define
                     {{#energisedEndVoltage}}<div><b>energisedEndVoltage</b>: {{energisedEndVoltage}}</div>{{/energisedEndVoltage}}
                     {{#openEndVoltage}}<div><b>openEndVoltage</b>: {{openEndVoltage}}</div>{{/openEndVoltage}}
                     {{#phaseShift}}<div><b>phaseShift</b>: {{phaseShift}}</div>{{/phaseShift}}
-                    {{#OpenEnd}}<div><b>OpenEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OpenEnd}}&quot;);}); return false;'>{{OpenEnd}}</a></div>{{/OpenEnd}}
-                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+                    {{#OpenEnd}}<div><b>OpenEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{OpenEnd}}");}); return false;'>{{OpenEnd}}</a></div>{{/OpenEnd}}
+                    {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergisedEnd}}");}); return false;'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
                     </div>
                     </fieldset>
 

@@ -2836,7 +2836,8 @@ define
                     {{#outageKind}}<div><b>outageKind</b>: {{outageKind}}</div>{{/outageKind}}
                     {{#actualPeriod}}<div><b>actualPeriod</b>: {{actualPeriod}}</div>{{/actualPeriod}}
                     {{#estimatedPeriod}}<div><b>estimatedPeriod</b>: {{estimatedPeriod}}</div>{{/estimatedPeriod}}
-                    {{#summary}}<div><b>summary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{summary}}&quot;);}); return false;'>{{summary}}</a></div>{{/summary}}\n                    {{#communityDescriptor}}<div><b>communityDescriptor</b>: {{communityDescriptor}}</div>{{/communityDescriptor}}
+                    {{#summary}}<div><b>summary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{summary}}&quot;);}); return false;'>{{summary}}</a></div>{{/summary}}
+                    {{#communityDescriptor}}<div><b>communityDescriptor</b>: {{communityDescriptor}}</div>{{/communityDescriptor}}
                     {{#customersRestored}}<div><b>customersRestored</b>: {{customersRestored}}</div>{{/customersRestored}}
                     {{#originalCustomersServed}}<div><b>originalCustomersServed</b>: {{originalCustomersServed}}</div>{{/originalCustomersServed}}
                     {{#metersAffected}}<div><b>metersAffected</b>: {{metersAffected}}</div>{{/metersAffected}}
