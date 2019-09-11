@@ -5,14 +5,14 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "./powertransformermaker", "model/Core", "model/Wires"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "./powertransformermaker", "model/Core", "model/Wires", "model/StateVariables"],
     /**
      * @summary Make a collection of objects representing a Substation with internal data.
      * @description Digitizes a point and makes a Substation, PowerTransformer, BusbarSection, a number of Switch and Fuse with Connector and connectivity.
      * @exports substationmaker
      * @version 1.0
      */
-    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, PowerTransformerMaker, Core, Wires)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, PowerTransformerMaker, Core, Wires, StateVariables)
     {
         class SubstationMaker extends PowerSystemResourceMaker
         {
@@ -141,7 +141,6 @@ define
                 const station = array[0];
 
                 array = array.concat (this._equipmentmaker.ensure_voltages ());
-                array = array.concat (this._equipmentmaker.ensure_status ());
                 array = array.concat (this.ensure_stations ());
 
                 // remember the trafo location for later on
@@ -162,9 +161,10 @@ define
                         description: station.name + " busbar",
                         BaseVoltage: this._equipmentmaker.low_voltage (),
                         normallyInService: true,
-                        SvStatus: this._equipmentmaker.in_use (),
                         EquipmentContainer: station.id
                     }, this._cimedit.new_features ());
+                const svname = bid + "_status";
+                const svstatus = new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + bid + ".", inService: true, ConductingEquipment: bid }, this._cimedit.new_features ());
                 const bus_n_location = this._locationmaker.create_location ("pseudo_wgs84", [busbar], feature);
                 let node = new Core.ConnectivityNode (this.new_connectivity (this._cimedit.get_cimmrid ().nextIdFor ("ConnectivityNode", busbar, "_node"), station.id), this._cimedit.new_features ());
                 const tid = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", busbar, "_terminal");
@@ -182,6 +182,8 @@ define
                         ConnectivityNode: node.id
                     }, this._cimedit.new_features ());
 
+                array.push (busbar);
+                array.push (svstatus);
                 array = array.concat (bus_n_location);
                 array.push (terminal);
                 array.push (node);
@@ -195,6 +197,7 @@ define
                     let fname = null;
                     let device = null;
                     let location;
+                    let svstatus;
 
                     if (0 === i)
                     {
@@ -212,10 +215,11 @@ define
                                 open: false,
                                 normallyInService: true,
                                 retained: true,
-                                SvStatus: this._equipmentmaker.in_use (),
                                 EquipmentContainer: station.id
                             }, this._cimedit.new_features ());
                         location = this._locationmaker.create_location ("pseudo_wgs84", [device], feature);
+                        const svname = did + "_status";
+                        svstatus = new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + did + ".", inService: true, ConductingEquipment: did }, this._cimedit.new_features ());
                     }
                     else
                     {
@@ -233,10 +237,11 @@ define
                                 normalOpen: false,
                                 open: false,
                                 normallyInService: true,
-                                SvStatus: this._equipmentmaker.in_use (),
                                 EquipmentContainer: station.id
                             }, this._cimedit.new_features ());
                         location = this._locationmaker.create_location ("pseudo_wgs84", [device], feature);
+                        const svname = did + "_status";
+                        svstatus = new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + did + ".", inService: true, ConductingEquipment: did }, this._cimedit.new_features ());
                     }
 
                     const tid1 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", device, "_terminal_1");
@@ -272,6 +277,7 @@ define
                         }, this._cimedit.new_features ());
 
                     array = array.concat (location);
+                    array.push (svstatus);
                     array.push (terminal1);
                     array.push (terminal2);
                     array.push (n);
@@ -287,10 +293,11 @@ define
                             description: station.name + " connector " + (i + 1),
                             BaseVoltage: this._equipmentmaker.low_voltage (),
                             normallyInService: true,
-                            SvStatus: this._equipmentmaker.in_use (),
                             EquipmentContainer: station.id
                         }, this._cimedit.new_features ());
                     location = this._locationmaker.create_location ("pseudo_wgs84", [connector], feature);
+                    const svname = did + "_status";
+                    svstatus = new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + cid + ".", inService: true, ConductingEquipment: cid }, this._cimedit.new_features ());
                     const tid3 = this._cimedit.get_cimmrid ().nextIdFor ("Terminal", connector, "_terminal");
                     const terminal3 = new Core.Terminal (
                         {
@@ -306,6 +313,7 @@ define
                             ConnectivityNode: n.id
                         }, this._cimedit.new_features ());
                     array = array.concat (location);
+                    array.push (svstatus);
                     array.push (terminal3);
 
                     x = x + this._xoffset;

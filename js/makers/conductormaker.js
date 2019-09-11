@@ -5,14 +5,14 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Common", "model/Core"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Common", "model/Core", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the Conductor level.
      * @description Digitizes a line and makes a Conductor element with connectivity.
      * @exports conductormaker
      * @version 1.0
      */
-    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Common, Core)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Common, Core, StateVariables)
     {
         class ConductorMaker extends PowerSystemResourceMaker
         {
@@ -181,9 +181,7 @@ define
                 line.length = this.distance (pp);
                 const eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 array = array.concat (eqm.ensure_voltages ());
-                array = array.concat (eqm.ensure_status ());
                 line.normallyInService = true;
-                line.SvStatus = eqm.in_use ();
                 if (!line.BaseVoltage)
                     line.BaseVoltage = eqm.low_voltage ();
                 if (line.PerLengthImpedance)
@@ -196,6 +194,8 @@ define
                     line.r0 = plsi.r0 * km;
                     line.x0 = plsi.x0 * km;
                 }
+                const svname = line.id + "_status";
+                array.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + line.id + ".", inService: true, ConductingEquipment: line.id }, this._cimedit.new_features ()));
 
                 return (array);
             }

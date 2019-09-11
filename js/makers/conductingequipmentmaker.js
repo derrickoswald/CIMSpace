@@ -5,14 +5,14 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "model/Core", "model/StateVariables"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "model/Core"],
     /**
      * @summary Make a CIM object at the ConductingEquipment level.
      * @description Digitizes a point and makes a ConductingEquipment element with connectivity.
      * @exports conductingequipmentmaker
      * @version 1.0
      */
-    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, Core, StateVariables)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, Core)
     {
         class ConductingEquipmentMaker extends PowerSystemResourceMaker
         {
@@ -76,26 +76,6 @@ define
                     ret.push (this.make_voltage (this.medium_voltage (), "medium voltage"));
                 if (!this._cimmap.get ("BaseVoltage", this.low_voltage ()))
                     ret.push (this.make_voltage (this.low_voltage (), "low voltage"));
-                return (ret);
-            }
-
-            in_use ()
-            {
-                return ("in_use");
-            }
-
-            not_in_use ()
-            {
-                return ("not_in_use");
-            }
-
-            ensure_status ()
-            {
-                const ret = [];
-                if (!this._cimmap.get ("SvStatus", "in_use"))
-                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "in_use", mRID: "in_use", name: "In Use", description: "Status for equipment in use.", inService: true }, this._cimedit.new_features ()));
-                if (!this._cimmap.get ("SvStatus", "not_in_use"))
-                    ret.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: "not_in_use", mRID: "not_in_use", name: "Not In Use", description: "Status for equipment not in use", inService: false }, this._cimedit.new_features ()));
                 return (ret);
             }
 

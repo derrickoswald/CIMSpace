@@ -76,15 +76,19 @@ define
                 const colormap = {};
                 for (let status in statuses)
                     if (statuses.hasOwnProperty(status))
-                    colormap[status] = statuses[status].inService ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)";
+                    {
+                        const eq = statuses[status].ConductingEquipment;
+                        if ("undefined" != typeof (eq))
+                            colormap[eq] = statuses[status].inService ? "rgb(0, 255, 0)" : "rgb(255, 0, 0)";
+                    }
                 const equipment = data.ConductingEquipment;
                 for (let id in equipment)
                 {
                     if (equipment.hasOwnProperty(id))
                     {
-                        const status = equipment[id].SvStatus;
-                        if ("undefined" != typeof (status))
-                            equipment[id].color = colormap[status];
+                        const lookup = colormap[id];
+                        if ("undefined" != typeof (lookup))
+                            equipment[id].color = lookup;
                         else
                         {
                             const normal = equipment[id].normallyInService;

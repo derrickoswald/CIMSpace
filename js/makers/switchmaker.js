@@ -5,14 +5,14 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the Switch level.
      * @description Digitizes a point and makes a Switch element with connectivity.
      * @exports switchmaker
      * @version 1.0
      */
-    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Core)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, StateVariables)
     {
         class SwitchMaker extends PowerSystemResourceMaker
         {
@@ -52,7 +52,8 @@ define
                 swtch.normalOpen = false;
                 swtch.open = false;
                 swtch.normallyInService = true;
-                swtch.SvStatus = eqm.in_use ();
+                const svname = id + "_status";
+                array.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + id + ".", inService: true, ConductingEquipment: id }, this._cimedit.new_features ()));
 
                 // get the position
                 const pp = array.filter (o => o.cls === "PositionPoint")[0];
@@ -111,7 +112,6 @@ define
                 array.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
 
                 array = array.concat (eqm.ensure_voltages ());
-                array = array.concat (eqm.ensure_status ());
 
                 return (array);
             }

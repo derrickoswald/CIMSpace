@@ -5,14 +5,14 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the PowerTransformer level.
      * @description Digitizes a point and makes a PowerTransformer element with ends and connectivity.
      * @exports powertransformermaker
      * @version 1.0
      */
-    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires)
+    function (mustache, cim, LocationMaker, PowerSystemResourceMaker, ConductingEquipmentMaker, Core, Wires, StateVariables)
     {
         class PowerTransformerMaker extends PowerSystemResourceMaker
         {
@@ -81,7 +81,6 @@ define
 
                 const eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
                 trafo.normallyInService = true;
-                trafo.SvStatus = eqm.in_use ();
 
                 // ToDo: assume it's the primary?
                 const pp = array.filter (o => o.cls === "PositionPoint")[0];
@@ -136,7 +135,6 @@ define
                 terminals.push (new Core.Terminal (terminal2, this._cimedit.new_features ()));
                 array = array.concat (terminals);
                 array = array.concat (eqm.ensure_voltages ());
-                array = array.concat (eqm.ensure_status ());
 
                 // add power transformer ends
                 let endinfos = null;
@@ -224,6 +222,8 @@ define
                     array.push (new Wires.PowerTransformerEnd (end1, this._cimedit.new_features ()));
                     array.push (new Wires.PowerTransformerEnd (end2, this._cimedit.new_features ()));
                 }
+                const svname = trafo.id + "_status";
+                array.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + trafo.id + ".", inService: true, ConductingEquipment: trafo.id }, this._cimedit.new_features ()));
 
                 return (array);
             }

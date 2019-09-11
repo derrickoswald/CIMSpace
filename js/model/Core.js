@@ -761,7 +761,7 @@ define
 
                 if (null == obj.mRID)
                     obj.mRID = obj.id;
-                if ((null != obj.mRID) && (obj.id != obj.mRID))
+                if ((null != obj.mRID) && (obj.id !== obj.mRID))
                 {
                     if ("undefined" !== typeof (console))
                         console.log ("***Warning*** rdf:ID !== mRID [" + obj.id + " !== " + obj.mRID + "]");
