@@ -147,7 +147,7 @@ define
             make ()
             {
                 const parameters = this.submit_parameters ();
-                const product_model = this._cimmap.get ("AssetModel", parameters.ToTransformerEndInfos[0].AssetModel);
+                const product_model = this._cimmap.get ("ProductAssetModel", parameters.ToTransformerEndInfos[0].ProductAssetModel);
                 const mesh1 =
                 {
                     id: this._cimedit.get_cimmrid ().nextIdFor ("TransformerMeshImpedance"),

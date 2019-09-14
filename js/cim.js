@@ -382,14 +382,10 @@ define
             let trailer;
             if (difference_model)
             {
+                alert ("difference model functionality not yet implemented for CIM100 (cim17)");
                 header = [
 `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/TC57/61970-552/DifferenceModel/1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<dm:DifferenceModel rdf:about="` + about + `">
-		<md:Model.created>` + date + `</md:Model.created>
-		<md:Model.description>` + description + `</md:Model.description>
-		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
-		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>`
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">`
                 ];
                 trailer = [
 `	</dm:DifferenceModel>
@@ -400,13 +396,7 @@ define
             {
                 header = [
 `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/TC57/61970-552/DifferenceModel/1#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<md:FullModel rdf:about="` + about + `">
-		<md:Model.created>` + date + `</md:Model.created>
-		<md:Model.description>` + description + `</md:Model.description>
-		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
-		<md:Model.profile>https://github.com/derrickoswald/CIMSpace</md:Model.profile>
-	</md:FullModel>`
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">`
                 ];
                 trailer = [
 `</rdf:RDF>`

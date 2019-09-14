@@ -55,9 +55,8 @@ define
 </div>
 `;
                 const cimmap = this._cimmap;
-                const wireinfos = cimmap.fetch ("WireInfo", info => info.PerLengthParameters);
-                // for now we only understand the first PerLengthSequenceImpedance
-                const cables = wireinfos.filter (info => cimmap.get ("PerLengthSequenceImpedance", info.PerLengthParameters[0]));
+                const line_parameters = cimmap.fetch ("PerLengthLineParameter", param => param.WireAssemblyInfo);
+                const cables = line_parameters.map (param => { const wai = this._cimmap.get ("WireAssemblyInfo", param.WireAssemblyInfo); return ({ id: wai.id, name: wai.name }); });
                 function fn ()
                 {
                     return (proto && (proto.AssetDatasheet === this.id));
@@ -78,9 +77,9 @@ define
                 if (cable_name)
                 {
                     parameters.description = cable_name.options[cable_name.selectedIndex].text;
-                    cable_name = cable_name.value;
-                    parameters.AssetDatasheet = cable_name; // add the cable type
-                    parameters.PerLengthImpedance = this._cimmap.get ("WireInfo", cable_name).PerLengthParameters[0]; // add the per length parameters
+                    const wai = cable_name.value;
+                    parameters.AssetDatasheet = wai; // add the cable type
+                    parameters.PerLengthImpedance = this._cimmap.fetch ("PerLengthLineParameter", param => param.WireAssemblyInfo === wai)[0].id; // add the per length parameters
                 }
                 // ToDo: make this dependent on ProductAssetModel.usageKind (from AssetInfo.AssetModel) when we add aerial wires
                 parameters.PSRType = "PSRType_Underground";
