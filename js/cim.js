@@ -184,7 +184,7 @@ define
                 }
 
                 // parse RDF, i.e. <rdf:RDF xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:cim="http://iec.ch/TC57/2010/CIM-schema-cim15#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                regex = /<rdf:RDF([\s\S]*?)>\s*/g;
+                regex = /<(?:.*:)?RDF([\s\S]*?)>\s*/g;
                 if (null != regex.exec (subxml))
                 {
                     context.offset += regex.lastIndex;
@@ -247,7 +247,7 @@ define
                         const bytes = encode_utf8 (xml.substring (0, read + context.offset)).length;
                         // check for done
                         let done = false;
-                        const regex = /\s*<\/rdf:RDF>\s*/g;
+                        const regex = /\s*<\/(?:.*:)?RDF>\s*/g;
                         if (null != regex.exec (xml.substring (read + context.offset)))
                         {
                             context.end_character += regex.lastIndex;
