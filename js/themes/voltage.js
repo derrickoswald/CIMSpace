@@ -91,7 +91,7 @@ define
                         voltages.push (
                             {
                                 id: id,
-                                name: data.BaseVoltage[id].name,
+                                name: data.BaseVoltage[id].name ? data.BaseVoltage[id].name : `${data.BaseVoltage[id].nominalVoltage}V`,
                                 voltage: data.BaseVoltage[id].nominalVoltage
                             }
                         );

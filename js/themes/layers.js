@@ -86,7 +86,7 @@ define
          * @param {string} source - the data source
          * @param {string|Object} color - the symbol color
          * @param {Object[]} [filter] - optional filter to apply to the points
-         * @param hidelabels - if <code>true</code>
+         * @param hidelabels - if <code>true</code> don't add labels
          * @returns {Object} the layer
          */
         function symbol_layer (id, source, color, filter, hidelabels)
