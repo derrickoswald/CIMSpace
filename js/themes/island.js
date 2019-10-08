@@ -58,6 +58,11 @@ define
                 return (this._items);
             }
 
+            getRandomInt (max)
+            {
+                return (Math.floor (Math.random () * Math.floor (max)));
+            }
+
             /**
              * Override stylization information.
              * @param {Object} data - the hash table object of CIM classes by class name
@@ -67,19 +72,15 @@ define
             {
                 const islands = data.TopologicalIsland;
                 const colormap = {};
-                let index = 0;
                 for (let id in islands)
                 {
                     if (islands.hasOwnProperty (id))
-                    {
-                        colormap[id] = this._colors[index % this._colors.length];
-                        index++;
-                    }
+                        colormap[id] = this._colors[this.getRandomInt (this._colors.length)];
                 }
                 const nodes = data.TopologicalNode;
                 const maptable = {};
                 for (let id in nodes)
-                    if (nodes.hasOwnProperty( id))
+                    if (nodes.hasOwnProperty (id))
                         maptable[id] = colormap[nodes[id].TopologicalIsland];
                 const terminals = data.Terminal;
                 const psr = data.PowerSystemResource;
