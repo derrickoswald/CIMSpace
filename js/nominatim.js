@@ -35,93 +35,88 @@ define
              */
             getAddress (lon, lat)
             {
+                // form the url
+                const url = "http://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" + lat + "&lon=" + lon +"&zoom=18&addressdetails=1";
                 return (
-                    new Promise (
-                        (resolve, reject) =>
+                    util.makeRequest ("GET", url).then (
+                        (xmlhttp) =>
                         {
-                            // form the url
-                            const url = "http://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" + lat + "&lon=" + lon +"&zoom=18&addressdetails=1";
-                            const xmlhttp = util.createCORSRequest ("GET", url);
-                            xmlhttp.onreadystatechange = function ()
-                            {
-                                if (4 === xmlhttp.readyState)
-                                {
-                                    if (200 === xmlhttp.status || 201 === xmlhttp.status || 202 === xmlhttp.status)
+                            // https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=46.93000&lon=7.486286&zoom=18&addressdetails=1
+                            //    {
+                            //        "place_id": "45251734",
+                            //        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+                            //        "osm_type": "node",
+                            //        "osm_id": "3221803156",
+                            //        "lat": "46.9299967",
+                            //        "lon": "7.4862845",
+                            //        "place_rank": "30",
+                            //        "category": "place",
+                            //        "type": "house",
+                            //        "importance": "0",
+                            //        "addresstype": "place",
+                            //        "display_name": "7, Belpstrasse, Muri, Muri bei Bern, Verwaltungskreis Bern-Mittelland, Verwaltungsregion Bern-Mittelland, Bern, 3074, Switzerland",
+                            //        "name": null,
+                            //        "address": {
+                            //            "house_number": "7",
+                            //            "road": "Belpstrasse",
+                            //            "suburb": "Muri",
+                            //            "city": "Muri bei Bern",
+                            //            "county": "Verwaltungskreis Bern-Mittelland",
+                            //            "state_district": "Verwaltungsregion Bern-Mittelland",
+                            //            "state": "Bern",
+                            //            "postcode": "3074",
+                            //            "country": "Switzerland",
+                            //            "country_code": "ch"
+                            //        },
+                            //        "boundingbox": [
+                            //            "46.9298967",
+                            //            "46.9300967",
+                            //            "7.4861845",
+                            //            "7.4863845"
+                            //        ]
+                            //    }
+
+                            // http://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=46.93019&lon=7.48667&zoom=18&addressdetails=1
+                            //    {
+                            //        "place_id": "44641666",
+                            //        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+                            //        "osm_type": "node",
+                            //        "osm_id": "3224434854",
+                            //        "lat": "46.9301854",
+                            //        "lon": "7.4866743",
+                            //        "place_rank": "30",
+                            //        "category": "shop",
+                            //        "type": "bakery",
+                            //        "importance": "0",
+                            //        "addresstype": "shop",
+                            //        "display_name": "Bonbonière, 3, Belpstrasse, Muri, Muri bei Bern, Verwaltungskreis Bern-Mittelland, Verwaltungsregion Bern-Mittelland, Bern, 3074, Switzerland",
+                            //        "name": "Bonbonière",
+                            //        "address": {
+                            //            "bakery": "Bonbonière",
+                            //            "house_number": "3",
+                            //            "road": "Belpstrasse",
+                            //            "suburb": "Muri",
+                            //            "city": "Muri bei Bern",
+                            //            "county": "Verwaltungskreis Bern-Mittelland",
+                            //            "state_district": "Verwaltungsregion Bern-Mittelland",
+                            //            "state": "Bern",
+                            //            "postcode": "3074",
+                            //            "country": "Switzerland",
+                            //            "country_code": "ch"
+                            //        },
+                            //        "boundingbox": [
+                            //            "46.9300854",
+                            //            "46.9302854",
+                            //            "7.4865743",
+                            //            "7.4867743"
+                            //        ]
+                            //    }
+
+                            return (
+                                new Promise (
+                                    (resolve, reject) =>
                                     {
                                         const json = JSON.parse (xmlhttp.response);
-
-                                        // https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=46.93000&lon=7.486286&zoom=18&addressdetails=1
-
-                                        //    {
-                                        //        "place_id": "45251734",
-                                        //        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
-                                        //        "osm_type": "node",
-                                        //        "osm_id": "3221803156",
-                                        //        "lat": "46.9299967",
-                                        //        "lon": "7.4862845",
-                                        //        "place_rank": "30",
-                                        //        "category": "place",
-                                        //        "type": "house",
-                                        //        "importance": "0",
-                                        //        "addresstype": "place",
-                                        //        "display_name": "7, Belpstrasse, Muri, Muri bei Bern, Verwaltungskreis Bern-Mittelland, Verwaltungsregion Bern-Mittelland, Bern, 3074, Switzerland",
-                                        //        "name": null,
-                                        //        "address": {
-                                        //            "house_number": "7",
-                                        //            "road": "Belpstrasse",
-                                        //            "suburb": "Muri",
-                                        //            "city": "Muri bei Bern",
-                                        //            "county": "Verwaltungskreis Bern-Mittelland",
-                                        //            "state_district": "Verwaltungsregion Bern-Mittelland",
-                                        //            "state": "Bern",
-                                        //            "postcode": "3074",
-                                        //            "country": "Switzerland",
-                                        //            "country_code": "ch"
-                                        //        },
-                                        //        "boundingbox": [
-                                        //            "46.9298967",
-                                        //            "46.9300967",
-                                        //            "7.4861845",
-                                        //            "7.4863845"
-                                        //        ]
-                                        //    }
-
-                                        // http://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=46.93019&lon=7.48667&zoom=18&addressdetails=1
-                                        //    {
-                                        //        "place_id": "44641666",
-                                        //        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
-                                        //        "osm_type": "node",
-                                        //        "osm_id": "3224434854",
-                                        //        "lat": "46.9301854",
-                                        //        "lon": "7.4866743",
-                                        //        "place_rank": "30",
-                                        //        "category": "shop",
-                                        //        "type": "bakery",
-                                        //        "importance": "0",
-                                        //        "addresstype": "shop",
-                                        //        "display_name": "Bonbonière, 3, Belpstrasse, Muri, Muri bei Bern, Verwaltungskreis Bern-Mittelland, Verwaltungsregion Bern-Mittelland, Bern, 3074, Switzerland",
-                                        //        "name": "Bonbonière",
-                                        //        "address": {
-                                        //            "bakery": "Bonbonière",
-                                        //            "house_number": "3",
-                                        //            "road": "Belpstrasse",
-                                        //            "suburb": "Muri",
-                                        //            "city": "Muri bei Bern",
-                                        //            "county": "Verwaltungskreis Bern-Mittelland",
-                                        //            "state_district": "Verwaltungsregion Bern-Mittelland",
-                                        //            "state": "Bern",
-                                        //            "postcode": "3074",
-                                        //            "country": "Switzerland",
-                                        //            "country_code": "ch"
-                                        //        },
-                                        //        "boundingbox": [
-                                        //            "46.9300854",
-                                        //            "46.9302854",
-                                        //            "7.4865743",
-                                        //            "7.4867743"
-                                        //        ]
-                                        //    }
-
                                         // check provided point is inside the bounding box
                                         const bb = json.boundingbox;
                                         if (lat >= bb[0] && lat <= bb[1] && lon >= bb[2] && lon <= bb[3])
@@ -132,11 +127,8 @@ define
                                         else
                                             reject ({ error: "geocoded bounding box [" + bb + "] does not contain (" + lon + "," + lat + ")" });
                                     }
-                                    else
-                                        reject ({ error: "xmlhttp status " + xmlhttp.status });
-                                }
-                            };
-                            xmlhttp.send ();
+                                )
+                            );
                         }
                     )
                 );

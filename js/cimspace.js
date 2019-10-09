@@ -149,45 +149,43 @@ define
             let url = document.getElementById ("server_url").value;
             if ("" !== url)
             {
-                const xmlhttp = util.createCORSRequest ("GET", url);
-                if (url.endsWith (".zip"))
-                {
-                    xmlhttp.setRequestHeader ("Accept", "application/zip");
-                    xmlhttp.responseType = "blob";
-                }
-                else
-                    xmlhttp.setRequestHeader ("Accept", "application/octet-stream");
-                xmlhttp.onreadystatechange = function ()
-                {
-                    if (4 === xmlhttp.readyState)
-                        if (200 === xmlhttp.status || 201 === xmlhttp.status || 202 === xmlhttp.status)
+                util.makeRequest ("GET", url, null,
+                    (xmlhttp) =>
+                    {
+                        if (url.endsWith (".zip"))
                         {
-                            TheCurrentName = base_name (url);
-                            if (url.endsWith (".zip"))
-                            {
-                                const blob = xmlhttp.response.slice();
-                                if (!blob.name)
-                                    blob.name = url;
-                                read_zip (blob);
-                            }
-                            else
-                            {
-                                const start = new Date ().getTime ();
-                                console.log ("starting CIM read");
-                                const context = cim.read_full_xml (xmlhttp.response, 0, null);
-                                const end = new Date ().getTime ();
-                                const elements = Object.keys (context.parsed.Element).length;
-                                console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds, " + elements + " elements)");
-                                if (0 !== context.ignored)
-                                    console.log (context.ignored.toString () + " unrecognized element" + ((1 < context.ignored) ? "s" : ""));
-                                cimmap.set_data (context.parsed);
-                                cimmap.set_loaded ({ files: [TheCurrentName], options: {}, elements: elements });
-                            }
+                            xmlhttp.setRequestHeader ("Accept", "application/zip");
+                            xmlhttp.responseType = "blob";
                         }
                         else
-                            console.log ("xmlhttp status " + xmlhttp.status);
-                };
-                xmlhttp.send ();
+                            xmlhttp.setRequestHeader ("Accept", "application/octet-stream");
+                    }
+                ).then (
+                    (xmlhttp) =>
+                    {
+                        TheCurrentName = base_name (url);
+                        if (url.endsWith (".zip"))
+                        {
+                            const blob = xmlhttp.response.slice();
+                            if (!blob.name)
+                                blob.name = url;
+                            read_zip (blob);
+                        }
+                        else
+                        {
+                            const start = new Date ().getTime ();
+                            console.log ("starting CIM read");
+                            const context = cim.read_full_xml (xmlhttp.response, 0, null);
+                            const end = new Date ().getTime ();
+                            const elements = Object.keys (context.parsed.Element).length;
+                            console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds, " + elements + " elements)");
+                            if (0 !== context.ignored)
+                                console.log (context.ignored.toString () + " unrecognized element" + ((1 < context.ignored) ? "s" : ""));
+                            cimmap.set_data (context.parsed);
+                            cimmap.set_loaded ({ files: [TheCurrentName], options: {}, elements: elements });
+                        }
+                    }
+                )
             }
         }
 

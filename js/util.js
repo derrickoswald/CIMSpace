@@ -51,6 +51,44 @@ define
         }
 
         /**
+         * @typedef Problem
+         * @property status {int} XMLHttpRequest status
+         * @property statusText {string} XMLHttpRequest status text
+         */
+
+        /**
+         * Promisify native XHR using CORS.
+         *
+         * @param method HTTP verb: GET, PUT, POST, PATCH or DELETE
+         * @param url the URL to fetch
+         * @param data the data to send if POST or PATCH
+         * @param preflight function to manipulate the XMLHttpRequest prior to sending
+         * @returns {Promise<XMLHttpRequest|Problem>} to resolve with the XMLHttpRequest or reject with a problem
+         */
+        function makeRequest (method, url, data, preflight)
+        {
+            return (
+                new Promise (
+                    function (resolve, reject)
+                    {
+                        const xmlhttp = createCORSRequest (method, url);
+                        if ("function" == typeof (preflight))
+                            preflight (xmlhttp);
+                        xmlhttp.onload = function ()
+                        {
+                            if ((xmlhttp.status >= 200) && (xmlhttp.status < 300))
+                                resolve (xmlhttp);
+                            else
+                                reject ({ "status": xmlhttp.status, "statusText": xmlhttp.statusText });
+                        };
+                        xmlhttp.onerror = () => reject ({ "status": xmlhttp.status, "statusText": xmlhttp.statusText });
+                        xmlhttp.send (data);
+                    }
+                )
+            );
+        }
+
+        /**
          * @summary Checks for execution from file://.
          * @description Determines if the script is running from an active server or just loaded passively from file.
          * @returns {boolean} <code>true</code> if the code is running from file://
@@ -79,6 +117,7 @@ define
         return (
             {
                 createCORSRequest: createCORSRequest,
+                makeRequest: makeRequest,
                 running_local: running_local,
                 home: home
             }
