@@ -48,7 +48,7 @@ define
     <div class='col-sm-8'>
         <select id='cable_name' class='form-control custom-select'>
 {{#cables}}
-            <option value='{{id}}' data-paramaters='{{parameters}}'{{#isSelected}} selected{{/isSelected}}>{{name}}</option>
+            <option value='{{id}}' data-parameters='{{parameters}}'{{#isSelected}} selected{{/isSelected}}>{{name}}</option>
 {{/cables}}
         </select>
     </div>
@@ -103,7 +103,7 @@ define
                 {
                     parameters.description = cable_name.options[cable_name.selectedIndex].text;
                     parameters.AssetDatasheet = cable_name.value; // add the wire info
-                    parameters.PerLengthImpedance = cable_name.getAttribute ("data-parameters"); // add the per length parameters
+                    parameters.PerLengthImpedance = cable_name.selectedOptions[0].getAttribute("data-parameters"); // add the per length parameters
                 }
                 // ToDo: make this dependent on ProductAssetModel.usageKind (from AssetInfo.AssetModel) when we add aerial wires
                 parameters.PSRType = "PSRType_Underground";
@@ -211,11 +211,11 @@ define
                 {
                     // do we really want to set r+jx and r0+jx0 from length and PerLengthSequenceImpedance? Seems redundant.
                     const plsi = this._cimmap.get ("PerLengthSequenceImpedance", line.PerLengthImpedance);
-                    const km = line.length / 1e3;
-                    line.r = plsi.r * km;
-                    line.x = plsi.x * km;
-                    line.r0 = plsi.r0 * km;
-                    line.x0 = plsi.x0 * km;
+                    const m = line.length;
+                    line.r = plsi.r * m;
+                    line.x = plsi.x * m;
+                    line.r0 = plsi.r0 * m;
+                    line.x0 = plsi.x0 * m;
                 }
                 const svname = line.id + "_status";
                 array.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + line.id + ".", inService: true, ConductingEquipment: line.id }, this._cimedit.new_features ()));
