@@ -48,7 +48,7 @@ define
     <div class='col-sm-8'>
         <select id='cable_name' class='form-control custom-select'>
 {{#cables}}
-            <option value='{{id}}'{{#isSelected}} selected{{/isSelected}}>{{name}}</option>
+            <option value='{{id}}' data-paramaters='{{parameters}}'{{#isSelected}} selected{{/isSelected}}>{{name}}</option>
 {{/cables}}
         </select>
     </div>
@@ -56,7 +56,32 @@ define
 `;
                 const cimmap = this._cimmap;
                 const line_parameters = cimmap.fetch ("PerLengthLineParameter", param => param.WireAssemblyInfo);
-                const cables = line_parameters.map (param => { const wai = this._cimmap.get ("WireAssemblyInfo", param.WireAssemblyInfo); return ({ id: wai.id, name: wai.name }); });
+                const cables = line_parameters.flatMap (
+                    param =>
+                    {
+                        let ret = [];
+                        const wai = this._cimmap.get ("WireAssemblyInfo", param.WireAssemblyInfo);
+                        if (wai)
+                        {
+                            const wpi = this._cimmap.fetch ("WirePhaseInfo",
+                                wpi =>
+                                {
+                                    if (wpi.WireAssemblyInfo === wai.id)
+                                        return (wpi.WireInfo);
+                                    else
+                                        return (null);
+                                }
+                            );
+                            if (wpi.length > 0)
+                            {
+                                const wire_info = this._cimmap.get ("WireInfo", wpi[0].WireInfo);
+                                if (wire_info)
+                                    ret = [{id: wire_info.id, parameters: param.id, name: wire_info.name }]; // won't fit: + " [max " + wire_info.ratedCurrent + "A]"
+                            }
+                        }
+                        return (ret);
+                    }
+                );
                 function fn ()
                 {
                     return (proto && (proto.AssetDatasheet === this.id));
@@ -77,9 +102,8 @@ define
                 if (cable_name)
                 {
                     parameters.description = cable_name.options[cable_name.selectedIndex].text;
-                    const wai = cable_name.value;
-                    parameters.AssetDatasheet = wai; // add the cable type
-                    parameters.PerLengthImpedance = this._cimmap.fetch ("PerLengthLineParameter", param => param.WireAssemblyInfo === wai)[0].id; // add the per length parameters
+                    parameters.AssetDatasheet = cable_name.value; // add the wire info
+                    parameters.PerLengthImpedance = cable_name.getAttribute ("data-parameters"); // add the per length parameters
                 }
                 // ToDo: make this dependent on ProductAssetModel.usageKind (from AssetInfo.AssetModel) when we add aerial wires
                 parameters.PSRType = "PSRType_Underground";
