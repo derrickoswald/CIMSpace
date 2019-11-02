@@ -825,22 +825,21 @@ define
 
             do_connectivity (obj, callback_success, callback_failure)
             {
-                const self = this;
-                function reset ()
+                const reset = () =>
                 {
-                    self.reset_gui ();
-                    self.reset_listeners ();
-                }
-                function cb_success ()
+                    this.reset_gui ();
+                    this.reset_listeners ();
+                };
+                const cb_success = () =>
                 {
                     callback_success (obj);
                     reset ();
-                }
-                function cb_failure ()
+                };
+                const cb_failure = () =>
                 {
                     callback_failure ({canceled: true});
                     reset ();
-                }
+                };
                 this.set_gui (cb_success, cb_failure);
                 this.set_listeners (obj);
                 this._popup = this.popup ("<h1>Pick connectivity</h1>");
@@ -898,19 +897,18 @@ define
                 // start tracking
                 const obj = this._target[0].ConductingEquipment;
                 this._cpromise = new CancelablePromise (new Promise (this.do_connectivity_wait.bind (this, obj)), this.abort.bind (this));
-                const self = this;
-                function cb_success (equipment)
+                const cb_success = (equipment) =>
                 {
                     console.log ("begin success " + equipment.id);
-                    delete self._cpromise;
-                    self.set_conducting_equipment (equipment.id);
-                }
-                function cb_failure (message)
+                    delete this._cpromise;
+                    this.set_conducting_equipment (equipment.id);
+                };
+                const cb_failure = (message) =>
                 {
                     console.log ("begin not ok " + message);
-                    delete self._cpromise;
-                    self.set_conducting_equipment (obj);
-                }
+                    delete this._cpromise;
+                    this.set_conducting_equipment (obj);
+                };
                 this._cpromise.setPromise (this._cpromise.promise ().then (cb_success, cb_failure));
             }
 

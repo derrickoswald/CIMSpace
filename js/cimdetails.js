@@ -222,15 +222,12 @@ define
                             {
                                 if ("undefined" == typeof (coordinates[0]))
                                     coordinates = coordinates.slice (1);
-                                const self = this;
                                 streetview.urlFor (coordinates[0][0], coordinates[0][1]).then (
-                                    function (url)
+                                    (url) =>
                                     {
                                         if (-1 !== url.indexOf ("pano"))
-                                        {
-                                            const link = "<a href='" + url + "' target='_blank'>StreetView</a>";
-                                            self._container.getElementsByClassName ("card-subtitle")[0].innerHTML = link;
-                                        }
+                                            this._container.getElementsByClassName ("card-subtitle")[0].innerHTML =
+                                                `<a href='${url}' target='_blank'>StreetView</a>`;
                                     }
                                 );
                             }

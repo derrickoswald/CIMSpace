@@ -1239,6 +1239,8 @@ define
                     dragRotate ? TheMap.dragRotate.enable () : TheMap.dragRotate.disable ();
                 }
             }
+            if (0 == ListenerStack.length)
+                push_listeners ({"mousedown": default_mousedown_listener, "touchstart": default_touchstart_listener, "dragPan": true, "dragRotate": true});
         }
 
         /**

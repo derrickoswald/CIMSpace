@@ -259,7 +259,9 @@ define
                 if (this._maker)
                 {
                     this._maker_promise = this._maker.make ();
-                    this._maker_promise.promise ().then (this.editnew.bind (this), this.cancel.bind (this));
+                    this._maker_promise.promise ()
+                        .then (this.editnew.bind (this), this.cancel.bind (this))
+                        .finally (() => { delete this._maker_promise });
                 }
                 else
                 {
