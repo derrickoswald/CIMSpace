@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker"],
+    ["lib/mustache", "cim", "./locationmaker"],
     /**
      * @summary Make a CIM object at the PSR level.
      * @description Base class for CIM object makers

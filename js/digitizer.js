@@ -1,11 +1,14 @@
 /**
- * Digitizer for CIM Application
+ * @fileOverview Digitizer for CIM Application.
+ * @name digitizer
+ * @author Derrick Oswald
+ * @version 1.0
  */
 "use strict";
 
 define
 (
-    ["cancelablepromise", "./mapbox-gl"],
+    ["cancelablepromise", "lib/mapbox-gl"],
     /**
      * @summary Point and line digitizer.
      * @description functions to digitize a point or a line

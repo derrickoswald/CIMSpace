@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "cancelablepromise", "./powersystemresourcemaker"],
+    ["lib/mustache", "cim", "cancelablepromise", "./powersystemresourcemaker"],
     /**
      * @summary Make two TransformerMeshImpedance CIM objects based on the TransformerEndInfos and user entered nameplate data.
      * @description Calculates the positive sequence impedance from the high voltage winding to the low voltage winding and vice versa.

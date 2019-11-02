@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires", "model/StateVariables"],
+    ["lib/mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/Wires", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the PowerTransformer level.
      * @description Digitizes a point and makes a PowerTransformer element with ends and connectivity.

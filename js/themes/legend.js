@@ -5,7 +5,7 @@
 
 define
 (
-    ["../mustache"],
+    ["../lib/mustache"],
     /**
      * @summary Legend control.
      * @description UI element for legends.

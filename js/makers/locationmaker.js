@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "model/Common", "model/DiagramLayout", "nominatim"],
+    ["lib/mustache", "cim", "model/Common", "model/DiagramLayout", "nominatim"],
     /**
      * @summary Make a CIM location.
      * @description Digitizes a point and makes a PowerTransformer element with ends and connectivity.

@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "./powertransformermaker", "model/Core", "model/Wires", "model/StateVariables"],
+    ["lib/mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "./powertransformermaker", "model/Core", "model/Wires", "model/StateVariables"],
     /**
      * @summary Make a collection of objects representing a Substation with internal data.
      * @description Digitizes a point and makes a Substation, PowerTransformer, BusbarSection, a number of Switch and Fuse with Connector and connectivity.

@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "streetview"],
+    ["lib/mustache", "cim", "streetview"],
     /**
      * @summary Details control.
      * @description UI element for displaying element details.

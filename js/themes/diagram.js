@@ -5,7 +5,7 @@
 
 define
 (
-    ["../mustache", "./default_theme", "./layers"],
+    ["../lib/mustache", "./default_theme", "./layers"],
     /**
      * @summary Theme of diagrams.
      * @exports diagram_theme

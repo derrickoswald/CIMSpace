@@ -5,7 +5,7 @@
 
 define
 (
-    ["../mustache", "./default_theme"],
+    ["../lib/mustache", "./default_theme"],
     /**
      * @summary Theme on topological island.
      * @description Theme class for colorizing by topological island.
