@@ -5,7 +5,7 @@
 
 define
 (
-    ["lib/mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/StateVariables"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Core", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the Switch level.
      * @description Digitizes a point and makes a Switch element with connectivity.

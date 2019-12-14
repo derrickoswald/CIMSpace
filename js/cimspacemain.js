@@ -4,6 +4,13 @@
  * @see http://requirejs.org/docs/api.html#data-main
  */
 "use strict";
+
+requirejs.config({
+    "paths": {
+        "mustache": "lib/mustache.min"
+    }
+});
+
 requirejs
 (
     ["cimspace", "cimmap", "cimdetails", "cimedit", "cimconnectivity", "cimdiagram",

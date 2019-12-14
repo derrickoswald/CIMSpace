@@ -5,7 +5,7 @@
 
 define
 (
-    ["lib/mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Common", "model/Core", "model/StateVariables"],
+    ["mustache", "cim", "./locationmaker", "./powersystemresourcemaker", "./conductingequipmentmaker", "model/Common", "model/Core", "model/StateVariables"],
     /**
      * @summary Make a CIM object at the Conductor level.
      * @description Digitizes a line and makes a Conductor element with connectivity.

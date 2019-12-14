@@ -5,7 +5,7 @@
 
 define
 (
-    ["../lib/mustache", "./legend", "./layers"],
+    ["mustache", "./legend", "./layers"],
     /**
      * @summary Base class for themes.
      * @description Theme class for colorizing by equipment type.

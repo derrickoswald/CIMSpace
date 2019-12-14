@@ -5,7 +5,7 @@
 
 define
 (
-    ["../lib/mustache", "./default_theme"],
+    ["mustache", "./default_theme"],
     /**
      * @summary Theme on BaseVoltage.
      * @description Theme class for colorizing by nominal voltage.

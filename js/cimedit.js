@@ -5,7 +5,7 @@
 
 define
 (
-    ["lib/mustache", "cim", "cimmrid", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "makers/houseservicemaker", "makers/transformermeshimpedancemaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
+    ["mustache", "cim", "cimmrid", "digitizer", "makers/powersystemresourcemaker", "makers/conductingequipmentmaker", "makers/switchmaker", "makers/powertransformermaker", "makers/conductormaker", "makers/substationmaker", "makers/houseservicemaker", "makers/transformermeshimpedancemaker", "themes/layers", "model/Common", "model/Core", "model/Wires"],
     /**
      * @summary Edit control.
      * @description UI element for editing

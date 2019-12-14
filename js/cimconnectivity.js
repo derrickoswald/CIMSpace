@@ -5,7 +5,7 @@
 
 define
 (
-    ["lib/mustache", "cim", "cancelablepromise"],
+    ["mustache", "cim", "cancelablepromise"],
     /**
      * @summary Connectivity control.
      * @description UI element for editing connectivity.

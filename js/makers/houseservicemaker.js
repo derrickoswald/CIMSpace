@@ -5,7 +5,7 @@
 
 define
 (
-    ["lib/mustache", "cim", "./locationmaker", "./conductingequipmentmaker", "./switchmaker", "cancelablepromise", "model/Core"],
+    ["mustache", "cim", "./locationmaker", "./conductingequipmentmaker", "./switchmaker", "cancelablepromise", "model/Core"],
     /**
      * @summary Make an EnergyConsumer CIM object representing a house service.
      * @description Digitizes a point and then a conductor with connectivity.
