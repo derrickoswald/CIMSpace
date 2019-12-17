@@ -749,7 +749,7 @@ define
             const through_opens = trace_through_open_switches ();
             // the type of transformer trace
             const through_voltages = trace_though_voltage_level_changes ();
-            const transformers = (through_voltages) ? get_transformers () : {};
+            const transformers = (through_voltages) ? {} : get_transformers ();
             // the list of things to trace
             const todo = [];
 
