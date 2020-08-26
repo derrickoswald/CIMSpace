@@ -979,8 +979,10 @@ define
          * If some are found, highlight the first and zoom to the area that
          * contains the element.
          */
-        function search ()
+        function search (event)
         {
+            event.stopPropagation ();
+            event.preventDefault ();
             let text;
             if (null != CIM_Data)
                 if ("" !== (text = document.getElementById ("search_text").value.trim ()))
