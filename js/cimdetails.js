@@ -19,12 +19,14 @@ define
             constructor (cimmap)
             {
                 this._cimmap = cimmap;
+                this._model_link = "https://derrickoswald.github.io/CIMSpark/doc/scaladocs/ch/ninecode/model"
                 this._template =
                     `
                     <div class="card">
                       <div class="card-body" style="min-width:200px;">
                         <h5 class="card-title">
                           <span class="info_title">Info</span>
+                          <a class="model_link" href="${this._model_link}" target="_blank">&#x1f517;</a>
                           <button class="close" type="button" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -97,6 +99,14 @@ define
             {
                 if (this._cimmap.get_selected_feature ())
                     this.selection_change (this._cimmap.get_selected_feature (), this._cimmap.get_selected_features ());
+            }
+
+            model_link ()
+            {
+                const cimmap = this._cimmap;
+                const mrid = cimmap.get_selected_feature ();
+                const feature = cimmap.get ("Element", mrid);
+                return (this._model_link + (feature ? "/" + feature.cls + ".html" : ""));
             }
 
             detail_text ()
@@ -184,12 +194,14 @@ define
                 if (this.visible ())
                 {
                     this._container.getElementsByClassName ("info_title")[0].innerHTML = "Info";
+                    this._container.getElementsByClassName ("model_link")[0].setAttribute ("href", this._model_link)
                     this._container.getElementsByClassName ("card-text")[0].innerHTML = "";
                     this._container.getElementsByClassName ("card-subtitle")[0].innerHTML = "";
                     const mrid = this._cimmap.get_selected_feature ();
                     if (mrid)
                     {
                         this._container.getElementsByClassName ("info_title")[0].innerHTML = mrid;
+                        this._container.getElementsByClassName ("model_link")[0].setAttribute ("href", this.model_link ())
                         this._frame_height = this._container.getElementsByClassName ("card")[0].clientHeight; // frame height with no contents
                         this._container.getElementsByClassName ("card-text")[0].innerHTML = this.detail_text ();
                         this.maybe_streetview ();
