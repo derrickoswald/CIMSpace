@@ -445,22 +445,20 @@ define
                 // ToDo: should it/can it be made fully recursive
                 for (let j = 0; j < ret.length; j++)
                 {
-                    const cls = cim.class_map (ret[j]);
+                    const element = ret[j]
+                    const cls = cim.class_map (element);
                     const relations = cls.prototype.relations ();
                     for (let i = 0; i < relations.length; i++)
                         if (relations[i][1] === "0..1")
                         {
-                            const ref = ret[j][relations[i][0]];
+                            const ref = element[relations[i][0]];
                             if (ref)
                             {
                                 let obj = this._cimmap.get (relations[i][3], ref);
-                                if (obj && this.only_related (obj, ret[j]))
+                                if (obj && this.only_related (obj, element))
                                     add (obj);
                             }
                         }
-                        else
-                            if (relations[i][2] === "0..1" || relations[i][2] === "1")
-                                this._cimmap.forAll (relations[i][3], obj => { if (obj[relations[i][4]] === ret[j].id) add (obj); });
                 }
 
                 return (this.orderBySequenceNumber (ret));
