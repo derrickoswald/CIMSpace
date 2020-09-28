@@ -49,9 +49,9 @@ define
                 const swtch = array[0];
                 const id = swtch.id;
                 const eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
-                swtch.normalOpen = false;
-                swtch.open = false;
-                swtch.normallyInService = true;
+                swtch.normalOpen = typeof (swtch["normalOpen"]) == 'undefined' ? false : swtch["normalOpen"];
+                swtch.open = typeof (swtch["open"]) == 'undefined' ? false : swtch["open"];
+                swtch.normallyInService = typeof (swtch["normallyInService"]) == 'undefined' ? true : swtch["normallyInService"];
                 const svname = id + "_status";
                 array.push (new StateVariables.SvStatus ({ EditDisposition: "new", cls: "SvStatus", id: svname, mRID: svname, name: svname, description: "Status for " + id + ".", inService: true, ConductingEquipment: id }, this._cimedit.new_features ()));
 

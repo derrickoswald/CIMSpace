@@ -80,7 +80,7 @@ define
                 const trafo = array[0];
 
                 const eqm = new ConductingEquipmentMaker (this._cimmap, this._cimedit, this._digitizer);
-                trafo.normallyInService = true;
+                trafo.normallyInService = typeof (trafo["normallyInService"]) == 'undefined' ? true : trafo["normallyInService"];
 
                 // ToDo: assume it's the primary?
                 const pp = array.filter (o => o.cls === "PositionPoint")[0];
