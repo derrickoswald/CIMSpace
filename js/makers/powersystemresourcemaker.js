@@ -83,11 +83,11 @@ define
                 const index = ordered.indexOf (point);
                 let sequence;
                 if (0 === index)
-                    sequence = 1;
+                    sequence = "1";
                 else if (index < ordered.length / 2)
-                    sequence = 1;
+                    sequence = "1";
                 else
-                    sequence = 2;
+                    sequence = "2";
 
                 // get the terminal with that sequence number and the total number of terminals
                 let n = 0;
