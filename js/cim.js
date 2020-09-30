@@ -6,7 +6,7 @@
  */
 define
 (
-    ["model/base", "model/AlternateModels", "model/AssetInfo", "model/AssetMeas", "model/Assets", "model/AsynchronousMachineDynamics", "model/AuxiliaryEquipment", "model/CSC", "model/Common", "model/CongestionRevenueRights", "model/Contingency", "model/ControlArea", "model/Core", "model/Customers", "model/DC", "model/DER", "model/DiagramLayout", "model/DiscontinuousExcitationControlDynamics", "model/Domain", "model/EnergyArea", "model/EnvDomain", "model/Environmental", "model/Equivalents", "model/ExcitationSystemDynamics", "model/ExternalInputs", "model/Faults", "model/Feeder", "model/GenerationTrainingSimulation", "model/GenericDataSet", "model/HVDCDynamics", "model/ICCPConfiguration", "model/IEC61968", "model/IEC61970", "model/IEC62325", "model/InfAssetInfo", "model/InfAssets", "model/InfAssets2", "model/InfAvailabilityPlans", "model/InfCommon", "model/InfCongestionRevenueRights", "model/InfCustomers", "model/InfDomain", "model/InfERPSupport", "model/InfEnergyScheduling", "model/InfExternalInputs", "model/InfFinancial", "model/InfHVDCDynamics", "model/InfLocations", "model/InfMarketOpCommon", "model/InfMarketOperations", "model/InfMarketResults", "model/InfOperationalLimits", "model/InfParticipantInterfaces", "model/InfReferenceData", "model/InfReservation", "model/InfSIPS", "model/InfTypeAsset", "model/InfWiresExt", "model/InfWork", "model/LoadControl", "model/LoadDynamics", "model/LoadModel", "model/LoadModel2", "model/MarketCommon", "model/MarketManagement", "model/MarketOpCommon", "model/MarketPlan", "model/MarketQualitySystem", "model/MarketResults", "model/Meas", "model/MechanicalLoadDynamics", "model/Metering", "model/MktDomain", "model/ModelOperations", "model/NetworkModelFrames", "model/NetworkModelProjects", "model/OperationalLimits", "model/Operations", "model/OverexcitationLimiterDynamics", "model/PFVArControllerType1Dynamics", "model/PFVArControllerType2Dynamics", "model/PackageDependencies", "model/ParticipantInterfaces", "model/PaymentMetering", "model/PowerSystemStabilizerDynamics", "model/Production", "model/Protection", "model/ReferenceData", "model/SCADA", "model/StandardInterconnections", "model/StandardModels", "model/StateVariables", "model/StaticVarCompensatorDynamics", "model/SynchronousMachineDynamics", "model/Topology", "model/TurbineGovernorDynamics", "model/TurbineLoadControllerDynamics", "model/UnderexcitationLimiterDynamics", "model/UserDefinedModels", "model/VSC", "model/VoltageAdjusterDynamics", "model/VoltageCompensatorDynamics", "model/WindDynamics", "model/Wires", "model/Work", "model/unused"],
+    ["cimmrid", "model/base", "model/AlternateModels", "model/AssetInfo", "model/AssetMeas", "model/Assets", "model/AsynchronousMachineDynamics", "model/AuxiliaryEquipment", "model/CSC", "model/Common", "model/CongestionRevenueRights", "model/Contingency", "model/ControlArea", "model/Core", "model/Customers", "model/DC", "model/DER", "model/DiagramLayout", "model/DiscontinuousExcitationControlDynamics", "model/Domain", "model/EnergyArea", "model/EnvDomain", "model/Environmental", "model/Equivalents", "model/ExcitationSystemDynamics", "model/ExternalInputs", "model/Faults", "model/Feeder", "model/GenerationTrainingSimulation", "model/GenericDataSet", "model/HVDCDynamics", "model/ICCPConfiguration", "model/IEC61968", "model/IEC61970", "model/IEC62325", "model/InfAssetInfo", "model/InfAssets", "model/InfAssets2", "model/InfAvailabilityPlans", "model/InfCommon", "model/InfCongestionRevenueRights", "model/InfCustomers", "model/InfDomain", "model/InfERPSupport", "model/InfEnergyScheduling", "model/InfExternalInputs", "model/InfFinancial", "model/InfHVDCDynamics", "model/InfLocations", "model/InfMarketOpCommon", "model/InfMarketOperations", "model/InfMarketResults", "model/InfOperationalLimits", "model/InfParticipantInterfaces", "model/InfReferenceData", "model/InfReservation", "model/InfSIPS", "model/InfTypeAsset", "model/InfWiresExt", "model/InfWork", "model/LoadControl", "model/LoadDynamics", "model/LoadModel", "model/LoadModel2", "model/MarketCommon", "model/MarketManagement", "model/MarketOpCommon", "model/MarketPlan", "model/MarketQualitySystem", "model/MarketResults", "model/Meas", "model/MechanicalLoadDynamics", "model/Metering", "model/MktDomain", "model/ModelOperations", "model/NetworkModelFrames", "model/NetworkModelProjects", "model/OperationalLimits", "model/Operations", "model/OverexcitationLimiterDynamics", "model/PFVArControllerType1Dynamics", "model/PFVArControllerType2Dynamics", "model/PackageDependencies", "model/ParticipantInterfaces", "model/PaymentMetering", "model/PowerSystemStabilizerDynamics", "model/Production", "model/Protection", "model/ReferenceData", "model/SCADA", "model/StandardInterconnections", "model/StandardModels", "model/StateVariables", "model/StaticVarCompensatorDynamics", "model/SynchronousMachineDynamics", "model/Topology", "model/TurbineGovernorDynamics", "model/TurbineLoadControllerDynamics", "model/UnderexcitationLimiterDynamics", "model/UserDefinedModels", "model/VSC", "model/VoltageAdjusterDynamics", "model/VoltageCompensatorDynamics", "model/WindDynamics", "model/Wires", "model/Work", "model/unused"],
     /**
      * @summary CIM file reading functions.
      * @description Read an XML file with a restricted profile
@@ -15,7 +15,7 @@ define
      * @exports cim
      * @version 1.0
      */
-    function (base, AlternateModels, AssetInfo, AssetMeas, Assets, AsynchronousMachineDynamics, AuxiliaryEquipment, CSC, Common, CongestionRevenueRights, Contingency, ControlArea, Core, Customers, DC, DER, DiagramLayout, DiscontinuousExcitationControlDynamics, Domain, EnergyArea, EnvDomain, Environmental, Equivalents, ExcitationSystemDynamics, ExternalInputs, Faults, Feeder, GenerationTrainingSimulation, GenericDataSet, HVDCDynamics, ICCPConfiguration, IEC61968, IEC61970, IEC62325, InfAssetInfo, InfAssets, InfAssets2, InfAvailabilityPlans, InfCommon, InfCongestionRevenueRights, InfCustomers, InfDomain, InfERPSupport, InfEnergyScheduling, InfExternalInputs, InfFinancial, InfHVDCDynamics, InfLocations, InfMarketOpCommon, InfMarketOperations, InfMarketResults, InfOperationalLimits, InfParticipantInterfaces, InfReferenceData, InfReservation, InfSIPS, InfTypeAsset, InfWiresExt, InfWork, LoadControl, LoadDynamics, LoadModel, LoadModel2, MarketCommon, MarketManagement, MarketOpCommon, MarketPlan, MarketQualitySystem, MarketResults, Meas, MechanicalLoadDynamics, Metering, MktDomain, ModelOperations, NetworkModelFrames, NetworkModelProjects, OperationalLimits, Operations, OverexcitationLimiterDynamics, PFVArControllerType1Dynamics, PFVArControllerType2Dynamics, PackageDependencies, ParticipantInterfaces, PaymentMetering, PowerSystemStabilizerDynamics, Production, Protection, ReferenceData, SCADA, StandardInterconnections, StandardModels, StateVariables, StaticVarCompensatorDynamics, SynchronousMachineDynamics, Topology, TurbineGovernorDynamics, TurbineLoadControllerDynamics, UnderexcitationLimiterDynamics, UserDefinedModels, VSC, VoltageAdjusterDynamics, VoltageCompensatorDynamics, WindDynamics, Wires, Work, unused)
+    function (CIMmrid, base, AlternateModels, AssetInfo, AssetMeas, Assets, AsynchronousMachineDynamics, AuxiliaryEquipment, CSC, Common, CongestionRevenueRights, Contingency, ControlArea, Core, Customers, DC, DER, DiagramLayout, DiscontinuousExcitationControlDynamics, Domain, EnergyArea, EnvDomain, Environmental, Equivalents, ExcitationSystemDynamics, ExternalInputs, Faults, Feeder, GenerationTrainingSimulation, GenericDataSet, HVDCDynamics, ICCPConfiguration, IEC61968, IEC61970, IEC62325, InfAssetInfo, InfAssets, InfAssets2, InfAvailabilityPlans, InfCommon, InfCongestionRevenueRights, InfCustomers, InfDomain, InfERPSupport, InfEnergyScheduling, InfExternalInputs, InfFinancial, InfHVDCDynamics, InfLocations, InfMarketOpCommon, InfMarketOperations, InfMarketResults, InfOperationalLimits, InfParticipantInterfaces, InfReferenceData, InfReservation, InfSIPS, InfTypeAsset, InfWiresExt, InfWork, LoadControl, LoadDynamics, LoadModel, LoadModel2, MarketCommon, MarketManagement, MarketOpCommon, MarketPlan, MarketQualitySystem, MarketResults, Meas, MechanicalLoadDynamics, Metering, MktDomain, ModelOperations, NetworkModelFrames, NetworkModelProjects, OperationalLimits, Operations, OverexcitationLimiterDynamics, PFVArControllerType1Dynamics, PFVArControllerType2Dynamics, PackageDependencies, ParticipantInterfaces, PaymentMetering, PowerSystemStabilizerDynamics, Production, Protection, ReferenceData, SCADA, StandardInterconnections, StandardModels, StateVariables, StaticVarCompensatorDynamics, SynchronousMachineDynamics, Topology, TurbineGovernorDynamics, TurbineLoadControllerDynamics, UnderexcitationLimiterDynamics, UserDefinedModels, VSC, VoltageAdjusterDynamics, VoltageCompensatorDynamics, WindDynamics, Wires, Work, unused)
     {
         /**
          * The size of chunks to read into memory.
@@ -129,7 +129,7 @@ define
                         if ("undefined" != typeof (console))
                             console.log ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
                         else
-                            print ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
+                            console.log ("unrecognized element type '" + result[1] + "' at line " + base.line_number (subcontext));
                     context.ignored++;
                 }
 
@@ -359,6 +359,57 @@ define
         }
 
         /**
+         * Get the delta objects to convert "from" into "to".
+         *
+         * @param {Object} from the starting objct
+         * @param {Object} to the ending object
+         * @return {Object[]} an array of two objects, the first with properties to be deleted,
+         * and the second with properties to be added.
+         * so modified properties appear in both objects,
+         * and if there are no changes the array is empty.
+         */
+        function getDelta (from, to)
+        {
+            const final = JSON.parse (JSON.stringify (to));
+            delete final["EditDisposition"];
+            delete final["mRID"];
+            const start = JSON.parse (JSON.stringify (from));
+            start.id = final.id;
+            delete start["EditDisposition"];
+            delete start["mRID"];
+
+            const begin = {};
+            const end = {};
+            for (let property in start)
+                if (start.hasOwnProperty (property))
+                    if (start[property] !== final[property])
+                    {
+                        begin[property] = start[property];
+                        if (final[property])
+                            end[property] = final[property];
+                    }
+            for (let property in final)
+                if (final.hasOwnProperty (property))
+                    if (!start[property])
+                        end[property] = final[property];
+
+            // check for any changes, if not return an empty array
+            if ((0 === Object.keys (begin).length) && (0 === Object.keys (end).length))
+                return ([]);
+            else
+            {
+                const cimmrid = new CIMmrid (null); // null is OK, just don't call cimmrid.nextIdFor()
+                begin.cls = start.cls;
+                begin.id = cimmrid.uuidv4 ();
+                begin.mRID = begin.id;
+                end.cls = final.cls;
+                end.id = cimmrid.uuidv4 ();
+                end.mRID = end.id;
+                return ([begin, end]);
+            }
+        }
+
+        /**
          * @summary Write the elements as a CIM RDF.
          * @description Writes the RDF header, each element and the trailer to produce an RDF.
          * @param {Object} elements - the object with elements to write stored as properties of their mRID
@@ -374,50 +425,149 @@ define
         {
             const chunks = []; // array of arrays of strings
 
+            // ToDo: change "about" argument to "name"
             about = about || "CIMSpace";
             description = description || "CIMSpace cim.js export";
-            date = date || new Date ().toISOString ();
+            // date = date || new Date ().toISOString ();
 
-            let header;
-            let trailer;
-            if (difference_model)
-            {
-                alert ("difference model functionality not yet implemented for CIM100 (cim17)");
-                header = [
+            let header = [
 `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">`
                 ];
-                trailer = [
-`	</dm:DifferenceModel>
-</rdf:RDF>`
-                ];
-            }
-            else
-            {
-                header = [
-`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">`
-                ];
-                trailer = [
+            let trailer = [
 `</rdf:RDF>`
                 ];
-            }
+
             chunks.push (header);
             if (difference_model)
             {
-                // ToDo: check if we need to handle individual attributes with "rdf:Description rdf:about", or if we can use the sledgehammer: delete then new
-                chunks.push ([
-`		<dm:reverseDifferences parseType="Statements">`
-                    ]);
-                chunks.push (write_elements (elements, function (obj) { return ("delete" === obj.EditDisposition && obj.id.startsWith ("1:")); }));
-                chunks.push ([
-`		</dm:reverseDifferences>
-		<dm:forwardDifferences parseType="Statements">`
-                    ]);
-                chunks.push (write_elements (elements, function (obj) { const disp = obj.EditDisposition; return ("new" === disp || "edit" === disp); }));
-                chunks.push ([
-`		</dm:forwardDifferences>`
-                    ]);
+                // write the ChangeSet
+                const cimmrid = new CIMmrid (null); // null is OK, just don't call cimmrid.nextIdFor()
+                const csid = cimmrid.uuidv4 ();
+                const changeset = new GenericDataSet.ChangeSet (
+                    {
+                        cls: "ChangeSet",
+                        id: csid,
+                        mRID: csid,
+                        description: description,
+                        name: about
+                    },
+                    {});
+                chunks.push (GenericDataSet.ChangeSet.prototype.export (changeset, true));
+
+                // gather the element versions, filtering out the unchanged elements
+                let changes = {}
+                for (let property in elements)
+                    if (elements.hasOwnProperty (property))
+                    {
+                        const obj = elements[property];
+                        const disp = obj.EditDisposition;
+                        switch (disp)
+                        {
+                            case "new":
+                            case "edit":
+                                if (changes[obj.id])
+                                    changes[obj.id][0] = obj;
+                                else
+                                    changes[obj.id] = [obj];
+                                break;
+                            case "delete":
+                                const pair = obj.id.split (":");
+                                const index = Number (pair[0]);
+                                if (changes[pair[1]])
+                                    changes[pair[1]][index] = obj;
+                                else
+                                {
+                                    changes[pair[1]] = [];
+                                    changes[pair[1]][index] = obj;
+                                }
+                                break;
+                            case undefined:
+                                // skip
+                                break;
+                            default:
+                                alert (`unexpected EditDisposition "${disp}"`)
+                        }
+                    }
+
+                for (let mrid in changes)
+                    if (changes.hasOwnProperty (mrid))
+                    {
+                        const array = changes[mrid];
+                        if (array[0] && ("new" === array[0].EditDisposition))
+                        {
+                            // new, ignore all the other versions
+                            const obj = array[0];
+                            const id = cimmrid.uuidv4 ();
+                            const newobject = new GenericDataSet.ObjectCreation (
+                                {
+                                    cls: "ObjectCreation",
+                                    id: id,
+                                    mRID: id,
+                                    Changeset: csid,
+                                    PropertiesObject: obj.id
+                                },
+                                {});
+                            const exporter = class_map (obj);
+                            chunks.push (GenericDataSet.ObjectCreation.prototype.export (newobject, true));
+                            chunks.push (exporter.prototype.export (obj, true));
+                        }
+                        else if (array[1] && ("undefined" == typeof (array[0])) && ("delete" === array[1].EditDisposition))
+                        {
+                            // delete
+                            const obj = array[1];
+                            const id = cimmrid.uuidv4 ();
+                            const pair = obj.id.split (":");
+                            const deletedobject = new GenericDataSet.ObjectDeletion (
+                                {
+                                    cls: "ObjectDeletion",
+                                    id: id,
+                                    mRID: id,
+                                    Changeset: csid,
+                                    TargetObject: pair[1]
+                                },
+                                {});
+                            chunks.push (GenericDataSet.ObjectDeletion.prototype.export (deletedobject, true));
+                        }
+                        else if (array[0] && ("edit" === array[0].EditDisposition))
+                        {
+                            const obj = array[0];
+                            const delta = getDelta (array[array.length - 1], obj);
+                            if (0 !== delta.length)
+                            {
+                                const idm = cimmrid.uuidv4 ();
+                                const idr = cimmrid.uuidv4 ();
+
+                                const reversemodifiedobject = new GenericDataSet.ObjectReverseModification (
+                                    {
+                                        cls: "ObjectReverseModification",
+                                        id: idr,
+                                        mRID: idr,
+                                        Changeset: csid,
+                                        ObjectModification: idm,
+                                        TargetObject: obj.id,
+                                        PropertiesObject: delta[0].id
+                                    },
+                                    {});
+                                const modifiedobject = new GenericDataSet.ObjectModification (
+                                    {
+                                        cls: "ObjectModification",
+                                        id: idm,
+                                        mRID: idm,
+                                        Changeset: csid,
+                                        ObjectReverseModification: idr,
+                                        TargetObject: obj.id,
+                                        PropertiesObject: delta[1].id
+                                    },
+                                    {});
+                                const exporter = class_map (obj);
+                                chunks.push (GenericDataSet.ObjectReverseModification.prototype.export (reversemodifiedobject, true));
+                                chunks.push (exporter.prototype.export (delta[0], true));
+                                chunks.push (GenericDataSet.ObjectModification.prototype.export (modifiedobject, true));
+                                chunks.push (exporter.prototype.export (delta[1], true));
+                            }
+                        }
+                    }
             }
             else if (only_new)
                 chunks.push (write_elements (elements, function (obj) { const disp = obj.EditDisposition; return ("undefined" != typeof (disp) && "new" === disp); }));

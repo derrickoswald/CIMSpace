@@ -290,11 +290,10 @@ define
                 suffix = "_diff";
             else if (only_new)
                 suffix = "_new";
-            document.getElementById ("save_name").value = name + suffix;
             $("#save_modal").modal ("hide");
             if (null != cimmap.get_data ())
             {
-                const file = name + (difference_model ? "_diff" : "") + ".zip";
+                const file = name + ".zip";
                 const begin = new Date ().getTime ();
                 console.log ("starting xml creation");
                 const text = cim.write_xml (cimmap.get_data ().Element, difference_model, only_new, about, description);

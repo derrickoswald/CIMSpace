@@ -117,7 +117,7 @@ define
 
                 if (!equipment.BaseVoltage)
                 {
-                    array = array.concat (this.ensure_voltages (this._cimedit.new_features ()));
+                    array = array.concat (this.ensure_voltages ());
                     equipment.BaseVoltage = this.low_voltage ();
                 }
 
