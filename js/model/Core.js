@@ -9,7 +9,6 @@ define
      */
     function (base, Domain)
     {
-
         /**
          * Switching arrangement for bay.
          *
@@ -52,6 +51,7 @@ define
          *
          * Allows designation of phases for both transmission and distribution equipment, circuits and loads.   The enumeration, by itself, does not describe how the phases are connected together or connected to ground.  Ground is not explicitly denoted as a phase.
          * Residential and small commercial loads are often served from single-phase, or split-phase, secondary circuits. For the example of s12N, phases 1 and 2 refer to hot wires that are 180 degrees out of phase, while N refers to the neutral wire. Through single-phase transformer connections, these secondary circuits may be served from one or two of the primary phases A, B, and C. For three-phase loads, use the A, B, C phase codes instead of s12N.
+         * The integer values are from IEC 61968-9 to support revenue metering applications.
          *
          */
         let PhaseCode =
@@ -1412,10 +1412,10 @@ define
                 obj = obj || { id: id, cls: "BasicIntervalSchedule" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_value1Multiplier").value]; if (temp) obj["value1Multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["value1Multiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_value1Unit").value]; if (temp) obj["value1Unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["value1Unit"];
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_value2Multiplier").value]; if (temp) obj["value2Multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["value2Multiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_value2Unit").value]; if (temp) obj["value2Unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["value2Unit"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_value1Multiplier").value]; if (temp) obj["value1Multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["value1Multiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_value1Unit").value]; if (temp) obj["value1Unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["value1Unit"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_value2Multiplier").value]; if (temp) obj["value2Multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["value2Multiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_value2Unit").value]; if (temp) obj["value2Unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["value2Unit"];
 
                 return (obj);
             }
@@ -2111,15 +2111,15 @@ define
 
                 obj = obj || { id: id, cls: "Curve" };
                 super.submit (id, obj);
-                temp = CurveStyle[document.getElementById (id + "_curveStyle").value]; if (temp) obj["curveStyle"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#CurveStyle." + temp; else delete obj["curveStyle"];
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_xMultiplier").value]; if (temp) obj["xMultiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["xMultiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_xUnit").value]; if (temp) obj["xUnit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["xUnit"];
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_y1Multiplier").value]; if (temp) obj["y1Multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["y1Multiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_y1Unit").value]; if (temp) obj["y1Unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["y1Unit"];
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_y2Multiplier").value]; if (temp) obj["y2Multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["y2Multiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_y2Unit").value]; if (temp) obj["y2Unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["y2Unit"];
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_y3Multiplier").value]; if (temp) obj["y3Multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["y3Multiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_y3Unit").value]; if (temp) obj["y3Unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["y3Unit"];
+                temp = CurveStyle[document.getElementById (id + "_curveStyle").value]; if (temp) obj["curveStyle"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#CurveStyle." + temp; else delete obj["curveStyle"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_xMultiplier").value]; if (temp) obj["xMultiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["xMultiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_xUnit").value]; if (temp) obj["xUnit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["xUnit"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_y1Multiplier").value]; if (temp) obj["y1Multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["y1Multiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_y1Unit").value]; if (temp) obj["y1Unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["y1Unit"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_y2Multiplier").value]; if (temp) obj["y2Multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["y2Multiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_y2Unit").value]; if (temp) obj["y2Unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["y2Unit"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_y3Multiplier").value]; if (temp) obj["y3Multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["y3Multiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_y3Unit").value]; if (temp) obj["y3Unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["y3Unit"];
 
                 return (obj);
             }
@@ -3342,6 +3342,7 @@ define
                 base.parse_attributes (/<cim:ConductingEquipment.SvStatus\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SvStatus", sub, context);
                 base.parse_attributes (/<cim:ConductingEquipment.ProtectionEquipments\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProtectionEquipments", sub, context);
                 base.parse_attribute (/<cim:ConductingEquipment.GroundingAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GroundingAction", sub, context);
+                base.parse_attribute (/<cim:ConductingEquipment.Outage\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context);
                 base.parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BaseVoltage", sub, context);
                 base.parse_attribute (/<cim:ConductingEquipment.JumpingAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "JumpingAction", sub, context);
                 base.parse_attributes (/<cim:ConductingEquipment.Terminals\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Terminals", sub, context);
@@ -3361,6 +3362,7 @@ define
                 base.export_attributes (obj, "ConductingEquipment", "SvStatus", "SvStatus", fields);
                 base.export_attributes (obj, "ConductingEquipment", "ProtectionEquipments", "ProtectionEquipments", fields);
                 base.export_attribute (obj, "ConductingEquipment", "GroundingAction", "GroundingAction", fields);
+                base.export_attribute (obj, "ConductingEquipment", "Outage", "Outage", fields);
                 base.export_attribute (obj, "ConductingEquipment", "BaseVoltage", "BaseVoltage", fields);
                 base.export_attribute (obj, "ConductingEquipment", "JumpingAction", "JumpingAction", fields);
                 base.export_attributes (obj, "ConductingEquipment", "Terminals", "Terminals", fields);
@@ -3384,6 +3386,7 @@ define
                     {{#SvStatus}}<div><b>SvStatus</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SvStatus}}
                     {{#ProtectionEquipments}}<div><b>ProtectionEquipments</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProtectionEquipments}}
                     {{#GroundingAction}}<div><b>GroundingAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{GroundingAction}}");}); return false;'>{{GroundingAction}}</a></div>{{/GroundingAction}}
+                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Outage}}");}); return false;'>{{Outage}}</a></div>{{/Outage}}
                     {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BaseVoltage}}");}); return false;'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
                     {{#JumpingAction}}<div><b>JumpingAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{JumpingAction}}");}); return false;'>{{JumpingAction}}</a></div>{{/JumpingAction}}
                     {{#Terminals}}<div><b>Terminals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Terminals}}
@@ -3425,6 +3428,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectionEquipments'>ProtectionEquipments: </label><div class='col-sm-8'><input id='{{id}}_ProtectionEquipments' class='form-control' type='text'{{#ProtectionEquipments}} value='{{ProtectionEquipments_string}}'{{/ProtectionEquipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GroundingAction'>GroundingAction: </label><div class='col-sm-8'><input id='{{id}}_GroundingAction' class='form-control' type='text'{{#GroundingAction}} value='{{GroundingAction}}'{{/GroundingAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BaseVoltage'>BaseVoltage: </label><div class='col-sm-8'><input id='{{id}}_BaseVoltage' class='form-control' type='text'{{#BaseVoltage}} value='{{BaseVoltage}}'{{/BaseVoltage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_JumpingAction'>JumpingAction: </label><div class='col-sm-8'><input id='{{id}}_JumpingAction' class='form-control' type='text'{{#JumpingAction}} value='{{JumpingAction}}'{{/JumpingAction}}></div></div>
                     </div>
@@ -3441,6 +3445,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_ProtectionEquipments").value; if ("" !== temp) obj["ProtectionEquipments"] = temp.split (",");
                 temp = document.getElementById (id + "_GroundingAction").value; if ("" !== temp) obj["GroundingAction"] = temp;
+                temp = document.getElementById (id + "_Outage").value; if ("" !== temp) obj["Outage"] = temp;
                 temp = document.getElementById (id + "_BaseVoltage").value; if ("" !== temp) obj["BaseVoltage"] = temp;
                 temp = document.getElementById (id + "_JumpingAction").value; if ("" !== temp) obj["JumpingAction"] = temp;
 
@@ -3455,6 +3460,7 @@ define
                             ["SvStatus", "0..*", "1", "SvStatus", "ConductingEquipment"],
                             ["ProtectionEquipments", "0..*", "0..*", "ProtectionEquipment", "ConductingEquipments"],
                             ["GroundingAction", "0..1", "0..1", "GroundAction", "GroundedEquipment"],
+                            ["Outage", "0..1", "0..*", "Outage", "OutageIsolationEquipment"],
                             ["BaseVoltage", "0..1", "0..*", "BaseVoltage", "ConductingEquipment"],
                             ["JumpingAction", "0..1", "0..*", "JumperAction", "JumpedEquipments"],
                             ["Terminals", "0..*", "1", "Terminal", "ConductingEquipment"],
@@ -3877,7 +3883,7 @@ define
 
                 obj = obj || { id: id, cls: "Terminal" };
                 super.submit (id, obj);
-                temp = PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj["phases"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj["phases"];
+                temp = PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj["phases"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode." + temp; else delete obj["phases"];
                 temp = document.getElementById (id + "_NormalHeadFeeder").value; if ("" !== temp) obj["NormalHeadFeeder"] = temp;
                 temp = document.getElementById (id + "_TopologicalNode").value; if ("" !== temp) obj["TopologicalNode"] = temp;
                 temp = document.getElementById (id + "_Bushing").value; if ("" !== temp) obj["Bushing"] = temp;
@@ -4589,8 +4595,8 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_bayEnergyMeasFlag").checked; if (temp) obj["bayEnergyMeasFlag"] = true;
                 temp = document.getElementById (id + "_bayPowerMeasFlag").checked; if (temp) obj["bayPowerMeasFlag"] = true;
-                temp = BreakerConfiguration[document.getElementById (id + "_breakerConfiguration").value]; if (temp) obj["breakerConfiguration"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#BreakerConfiguration." + temp; else delete obj["breakerConfiguration"];
-                temp = BusbarConfiguration[document.getElementById (id + "_busBarConfiguration").value]; if (temp) obj["busBarConfiguration"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#BusbarConfiguration." + temp; else delete obj["busBarConfiguration"];
+                temp = BreakerConfiguration[document.getElementById (id + "_breakerConfiguration").value]; if (temp) obj["breakerConfiguration"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#BreakerConfiguration." + temp; else delete obj["breakerConfiguration"];
+                temp = BusbarConfiguration[document.getElementById (id + "_busBarConfiguration").value]; if (temp) obj["busBarConfiguration"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#BusbarConfiguration." + temp; else delete obj["busBarConfiguration"];
                 temp = document.getElementById (id + "_VoltageLevel").value; if ("" !== temp) obj["VoltageLevel"] = temp;
                 temp = document.getElementById (id + "_Circuit").value; if ("" !== temp) obj["Circuit"] = temp;
                 temp = document.getElementById (id + "_Substation").value; if ("" !== temp) obj["Substation"] = temp;

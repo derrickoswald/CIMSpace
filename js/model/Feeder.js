@@ -3,7 +3,6 @@ define
     ["model/base", "model/Wires"],
     function (base, Wires)
     {
-
         class Circuit extends Wires.Line
         {
             constructor (template, cim_data)

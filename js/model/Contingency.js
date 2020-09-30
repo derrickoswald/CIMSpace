@@ -7,7 +7,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * Indicates the state which the contingency equipment is to be in when the contingency is applied.
          *
@@ -352,7 +351,7 @@ define
 
                 obj = obj || { id: id, cls: "ContingencyEquipment" };
                 super.submit (id, obj);
-                temp = ContingencyEquipmentStatusKind[document.getElementById (id + "_contingentStatus").value]; if (temp) obj["contingentStatus"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; else delete obj["contingentStatus"];
+                temp = ContingencyEquipmentStatusKind[document.getElementById (id + "_contingentStatus").value]; if (temp) obj["contingentStatus"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ContingencyEquipmentStatusKind." + temp; else delete obj["contingentStatus"];
                 temp = document.getElementById (id + "_Equipment").value; if ("" !== temp) obj["Equipment"] = temp;
 
                 return (obj);

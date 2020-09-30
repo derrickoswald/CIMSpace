@@ -9,7 +9,6 @@ define
      */
     function (base, Core, Domain, LoadModel)
     {
-
         /**
          * Synchronous machine type.
          *
@@ -405,6 +404,8 @@ define
 
         /**
          * A non linear shunt compensator bank or section admittance value.
+         *
+         * The number of NonlinearShuntCompenstorPoint instances associated with a NonlinearShuntCompensator shall be equal to ShuntCompensator.maximumSections. ShuntCompensator.sections shall only be set to one of the NonlinearShuntCompenstorPoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPoint-s.
          *
          */
         class NonlinearShuntCompensatorPoint extends base.Element
@@ -1194,7 +1195,7 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["TapChangerControl", "0..1", "0..*", "TapChangerControl", "TapChanger"],
+                            ["TapChangerControl", "0..1", "1..*", "TapChangerControl", "TapChanger"],
                             ["SvTapStep", "0..1", "1", "SvTapStep", "TapChanger"],
                             ["TapSchedules", "0..*", "1", "TapSchedule", "TapChanger"]
                         ]
@@ -1373,6 +1374,7 @@ define
                 base.parse_attribute (/<cim:ACLineSegmentPhase.phase\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "phase", sub, context);
                 base.parse_element (/<cim:ACLineSegmentPhase.sequenceNumber>([\s\S]*?)<\/cim:ACLineSegmentPhase.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ACLineSegmentPhase.ACLineSegment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ACLineSegment", sub, context);
+                base.parse_attribute (/<cim:ACLineSegmentPhase.WireInfo\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "WireInfo", sub, context);
                 let bucket = context.parsed.ACLineSegmentPhase;
                 if (null == bucket)
                    context.parsed.ACLineSegmentPhase = bucket = {};
@@ -1388,6 +1390,7 @@ define
                 base.export_attribute (obj, "ACLineSegmentPhase", "phase", "phase", fields);
                 base.export_element (obj, "ACLineSegmentPhase", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
                 base.export_attribute (obj, "ACLineSegmentPhase", "ACLineSegment", "ACLineSegment", fields);
+                base.export_attribute (obj, "ACLineSegmentPhase", "WireInfo", "WireInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -1407,6 +1410,7 @@ define
                     {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
                     {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ACLineSegment}}");}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
+                    {{#WireInfo}}<div><b>WireInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WireInfo}}");}); return false;'>{{WireInfo}}</a></div>{{/WireInfo}}
                     </div>
                     </fieldset>
 
@@ -1439,6 +1443,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#phaseSinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACLineSegment'>ACLineSegment: </label><div class='col-sm-8'><input id='{{id}}_ACLineSegment' class='form-control' type='text'{{#ACLineSegment}} value='{{ACLineSegment}}'{{/ACLineSegment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireInfo'>WireInfo: </label><div class='col-sm-8'><input id='{{id}}_WireInfo' class='form-control' type='text'{{#WireInfo}} value='{{WireInfo}}'{{/WireInfo}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1451,9 +1456,10 @@ define
 
                 obj = obj || { id: id, cls: "ACLineSegmentPhase" };
                 super.submit (id, obj);
-                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_sequenceNumber").value; if ("" !== temp) obj["sequenceNumber"] = temp;
                 temp = document.getElementById (id + "_ACLineSegment").value; if ("" !== temp) obj["ACLineSegment"] = temp;
+                temp = document.getElementById (id + "_WireInfo").value; if ("" !== temp) obj["WireInfo"] = temp;
 
                 return (obj);
             }
@@ -1463,7 +1469,8 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["ACLineSegment", "1", "0..*", "ACLineSegment", "ACLineSegmentPhases"]
+                            ["ACLineSegment", "1", "0..*", "ACLineSegment", "ACLineSegmentPhases"],
+                            ["WireInfo", "0..1", "0..*", "WireInfo", "ACLineSegmentPhase"]
                         ]
                     )
                 );
@@ -1582,7 +1589,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_p").value; if ("" !== temp) obj["p"] = temp;
                 temp = document.getElementById (id + "_q").value; if ("" !== temp) obj["q"] = temp;
-                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_PowerElectronicsConnection").value; if ("" !== temp) obj["PowerElectronicsConnection"] = temp;
 
                 return (obj);
@@ -1625,9 +1632,10 @@ define
             {
                 let obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "ShuntCompensatorPhase";
-                base.parse_attribute (/<cim:ShuntCompensatorPhase.phase\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "phase", sub, context);
                 base.parse_element (/<cim:ShuntCompensatorPhase.maximumSections>([\s\S]*?)<\/cim:ShuntCompensatorPhase.maximumSections>/g, obj, "maximumSections", base.to_string, sub, context);
                 base.parse_element (/<cim:ShuntCompensatorPhase.normalSections>([\s\S]*?)<\/cim:ShuntCompensatorPhase.normalSections>/g, obj, "normalSections", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ShuntCompensatorPhase.phase\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "phase", sub, context);
+                base.parse_element (/<cim:ShuntCompensatorPhase.sections>([\s\S]*?)<\/cim:ShuntCompensatorPhase.sections>/g, obj, "sections", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ShuntCompensatorPhase.ShuntCompensator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ShuntCompensator", sub, context);
                 let bucket = context.parsed.ShuntCompensatorPhase;
                 if (null == bucket)
@@ -1641,9 +1649,10 @@ define
             {
                 let fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ShuntCompensatorPhase", "phase", "phase", fields);
                 base.export_element (obj, "ShuntCompensatorPhase", "maximumSections", "maximumSections",  base.from_string, fields);
                 base.export_element (obj, "ShuntCompensatorPhase", "normalSections", "normalSections",  base.from_string, fields);
+                base.export_attribute (obj, "ShuntCompensatorPhase", "phase", "phase", fields);
+                base.export_element (obj, "ShuntCompensatorPhase", "sections", "sections",  base.from_float, fields);
                 base.export_attribute (obj, "ShuntCompensatorPhase", "ShuntCompensator", "ShuntCompensator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
@@ -1661,9 +1670,10 @@ define
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
-                    {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
                     {{#maximumSections}}<div><b>maximumSections</b>: {{maximumSections}}</div>{{/maximumSections}}
                     {{#normalSections}}<div><b>normalSections</b>: {{normalSections}}</div>{{/normalSections}}
+                    {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
+                    {{#sections}}<div><b>sections</b>: {{sections}}</div>{{/sections}}
                     {{#ShuntCompensator}}<div><b>ShuntCompensator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ShuntCompensator}}");}); return false;'>{{ShuntCompensator}}</a></div>{{/ShuntCompensator}}
                     </div>
                     </fieldset>
@@ -1694,9 +1704,10 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#phaseSinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSinglePhaseKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumSections'>maximumSections: </label><div class='col-sm-8'><input id='{{id}}_maximumSections' class='form-control' type='text'{{#maximumSections}} value='{{maximumSections}}'{{/maximumSections}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalSections'>normalSections: </label><div class='col-sm-8'><input id='{{id}}_normalSections' class='form-control' type='text'{{#normalSections}} value='{{normalSections}}'{{/normalSections}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#phaseSinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSinglePhaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sections'>sections: </label><div class='col-sm-8'><input id='{{id}}_sections' class='form-control' type='text'{{#sections}} value='{{sections}}'{{/sections}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensator'>ShuntCompensator: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensator' class='form-control' type='text'{{#ShuntCompensator}} value='{{ShuntCompensator}}'{{/ShuntCompensator}}></div></div>
                     </div>
                     </fieldset>
@@ -1710,9 +1721,10 @@ define
 
                 obj = obj || { id: id, cls: "ShuntCompensatorPhase" };
                 super.submit (id, obj);
-                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_maximumSections").value; if ("" !== temp) obj["maximumSections"] = temp;
                 temp = document.getElementById (id + "_normalSections").value; if ("" !== temp) obj["normalSections"] = temp;
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = document.getElementById (id + "_sections").value; if ("" !== temp) obj["sections"] = temp;
                 temp = document.getElementById (id + "_ShuntCompensator").value; if ("" !== temp) obj["ShuntCompensator"] = temp;
 
                 return (obj);
@@ -1732,6 +1744,8 @@ define
 
         /**
          * A per phase non linear shunt compensator bank or section admittance value.
+         *
+         * The number of NonlinearShuntCompenstorPhasePoint instances associated with a NonlinearShuntCompensatorPhase shall be equal to ShuntCompensatorPhase.maximumSections. ShuntCompensator.sections shall only be set to one of the NonlinearShuntCompenstorPhasePoint.sectionNumber. There is no interpolation between NonlinearShuntCompenstorPhasePoint-s.
          *
          */
         class NonlinearShuntCompensatorPhasePoint extends base.Element
@@ -1963,6 +1977,131 @@ define
                     super.relations ().concat (
                         [
                             ["EnergySource", "0..*", "0..1", "EnergySource", "EnergySchedulingType"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Represents a single wire of an alternating current wire segment.
+         *
+         */
+        class WireSegmentPhase extends Core.PowerSystemResource
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.WireSegmentPhase;
+                if (null == bucket)
+                   cim_data.WireSegmentPhase = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.WireSegmentPhase[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
+                obj.cls = "WireSegmentPhase";
+                base.parse_attribute (/<cim:WireSegmentPhase.phase\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "phase", sub, context);
+                base.parse_element (/<cim:WireSegmentPhase.sequenceNumber>([\s\S]*?)<\/cim:WireSegmentPhase.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+                base.parse_attribute (/<cim:WireSegmentPhase.WireSegment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "WireSegment", sub, context);
+                let bucket = context.parsed.WireSegmentPhase;
+                if (null == bucket)
+                   context.parsed.WireSegmentPhase = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "WireSegmentPhase", "phase", "phase", fields);
+                base.export_element (obj, "WireSegmentPhase", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
+                base.export_attribute (obj, "WireSegmentPhase", "WireSegment", "WireSegment", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#WireSegmentPhase_collapse" aria-expanded="true" aria-controls="WireSegmentPhase_collapse" style="margin-left: 10px;">WireSegmentPhase</a></legend>
+                    <div id="WireSegmentPhase_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.template.call (this) +
+                    `
+                    {{#phase}}<div><b>phase</b>: {{phase}}</div>{{/phase}}
+                    {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#WireSegment}}<div><b>WireSegment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WireSegment}}");}); return false;'>{{WireSegment}}</a></div>{{/WireSegment}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["phaseSinglePhaseKind"] = [{ id: '', selected: (!obj["phase"])}]; for (let property in SinglePhaseKind) obj["phaseSinglePhaseKind"].push ({ id: property, selected: obj["phase"] && obj["phase"].endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["phaseSinglePhaseKind"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_WireSegmentPhase_collapse" aria-expanded="true" aria-controls="{{id}}_WireSegmentPhase_collapse" style="margin-left: 10px;">WireSegmentPhase</a></legend>
+                    <div id="{{id}}_WireSegmentPhase_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.PowerSystemResource.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><select id='{{id}}_phase' class='form-control custom-select'>{{#phaseSinglePhaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phaseSinglePhaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSegment'>WireSegment: </label><div class='col-sm-8'><input id='{{id}}_WireSegment' class='form-control' type='text'{{#WireSegment}} value='{{WireSegment}}'{{/WireSegment}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "WireSegmentPhase" };
+                super.submit (id, obj);
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = document.getElementById (id + "_sequenceNumber").value; if ("" !== temp) obj["sequenceNumber"] = temp;
+                temp = document.getElementById (id + "_WireSegment").value; if ("" !== temp) obj["WireSegment"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["WireSegment", "1", "0..*", "WireSegment", "WireSegmentPhases"]
                         ]
                     )
                 );
@@ -2222,8 +2361,8 @@ define
                 temp = document.getElementById (id + "_r").value; if ("" !== temp) obj["r"] = temp;
                 temp = document.getElementById (id + "_x").value; if ("" !== temp) obj["x"] = temp;
                 temp = document.getElementById (id + "_g").value; if ("" !== temp) obj["g"] = temp;
-                temp = SinglePhaseKind[document.getElementById (id + "_fromPhase").value]; if (temp) obj["fromPhase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["fromPhase"];
-                temp = SinglePhaseKind[document.getElementById (id + "_toPhase").value]; if (temp) obj["toPhase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["toPhase"];
+                temp = SinglePhaseKind[document.getElementById (id + "_fromPhase").value]; if (temp) obj["fromPhase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["fromPhase"];
+                temp = SinglePhaseKind[document.getElementById (id + "_toPhase").value]; if (temp) obj["toPhase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["toPhase"];
                 temp = document.getElementById (id + "_row").value; if ("" !== temp) obj["row"] = temp;
                 temp = document.getElementById (id + "_column").value; if ("" !== temp) obj["column"] = temp;
                 temp = document.getElementById (id + "_PhaseImpedance").value; if ("" !== temp) obj["PhaseImpedance"] = temp;
@@ -2805,7 +2944,7 @@ define
 
                 obj = obj || { id: id, cls: "EnergySourcePhase" };
                 super.submit (id, obj);
-                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_EnergySource").value; if ("" !== temp) obj["EnergySource"] = temp;
 
                 return (obj);
@@ -2944,8 +3083,8 @@ define
                 obj = obj || { id: id, cls: "SwitchPhase" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_normalOpen").checked; if (temp) obj["normalOpen"] = true;
-                temp = SinglePhaseKind[document.getElementById (id + "_phaseSide1").value]; if (temp) obj["phaseSide1"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phaseSide1"];
-                temp = SinglePhaseKind[document.getElementById (id + "_phaseSide2").value]; if (temp) obj["phaseSide2"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phaseSide2"];
+                temp = SinglePhaseKind[document.getElementById (id + "_phaseSide1").value]; if (temp) obj["phaseSide1"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phaseSide1"];
+                temp = SinglePhaseKind[document.getElementById (id + "_phaseSide2").value]; if (temp) obj["phaseSide2"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phaseSide2"];
                 temp = document.getElementById (id + "_closed").checked; if (temp) obj["closed"] = true;
                 temp = document.getElementById (id + "_ratedCurrent").value; if ("" !== temp) obj["ratedCurrent"] = temp;
                 temp = document.getElementById (id + "_Switch").value; if ("" !== temp) obj["Switch"] = temp;
@@ -3093,7 +3232,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_pfixed").value; if ("" !== temp) obj["pfixed"] = temp;
                 temp = document.getElementById (id + "_pfixedPct").value; if ("" !== temp) obj["pfixedPct"] = temp;
-                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_qfixed").value; if ("" !== temp) obj["qfixed"] = temp;
                 temp = document.getElementById (id + "_qfixedPct").value; if ("" !== temp) obj["qfixedPct"] = temp;
                 temp = document.getElementById (id + "_p").value; if ("" !== temp) obj["p"] = temp;
@@ -3234,8 +3373,12 @@ define
          * Specifies a set of equipment that works together to control a power system quantity such as voltage or flow.
          *
          * Remote bus voltage control is possible by specifying the controlled terminal located at some place remote from the controlling equipment.
-         * In case multiple equipment, possibly of different types, control the same terminal, there shall be only one RegulatingControl at that terminal. The specified terminal shall be associated with the connectivity node of the controlled point.  The most specific subtype of RegulatingControl shall be used in case such equipment participate in the control, e.g. TapChangerControl for tap changers.
+         * The specified terminal shall be associated with the connectivity node of the controlled point.  The most specific subtype of RegulatingControl shall be used in case such equipment participate in the control, e.g. TapChangerControl for tap changers.
          * For flow control, load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+         * The attribute minAllowedTargetValue and maxAllowedTargetValue are required in the following cases:
+         * - For a power generating module operated in power factor control mode to specify maximum and minimum power factor values;
+         * - Whenever it is necessary to have an off center target voltage for the tap changer regulator. For instance, due to long cables to off shore wind farms and the need to have a simpler setup at the off shore transformer platform, the voltage is controlled from the land at the connection point for the off shore wind farm. Since there usually is a voltage rise along the cable, there is typical and overvoltage of up 3-4 kV compared to the on shore station. Thus in normal operation the tap changer on the on shore station is operated with a target set point, which is in the lower parts of the dead band.
+         * The attributes minAllowedTargetValue and maxAllowedTargetValue are not related to the attribute targetDeadband and thus they are not treated as an alternative of the targetDeadband. They are needed due to limitations in the local substation controller. The attribute targetDeadband is used to prevent the power flow from move the tap position in circles (hunting) that is to be used regardless of the attributes minAllowedTargetValue and maxAllowedTargetValue.
          *
          */
         class RegulatingControl extends Core.PowerSystemResource
@@ -3266,6 +3409,8 @@ define
                 base.parse_element (/<cim:RegulatingControl.targetValue>([\s\S]*?)<\/cim:RegulatingControl.targetValue>/g, obj, "targetValue", base.to_float, sub, context);
                 base.parse_attribute (/<cim:RegulatingControl.targetValueUnitMultiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "targetValueUnitMultiplier", sub, context);
                 base.parse_element (/<cim:RegulatingControl.enabled>([\s\S]*?)<\/cim:RegulatingControl.enabled>/g, obj, "enabled", base.to_boolean, sub, context);
+                base.parse_element (/<cim:RegulatingControl.maxAllowedTargetValue>([\s\S]*?)<\/cim:RegulatingControl.maxAllowedTargetValue>/g, obj, "maxAllowedTargetValue", base.to_float, sub, context);
+                base.parse_element (/<cim:RegulatingControl.minAllowedTargetValue>([\s\S]*?)<\/cim:RegulatingControl.minAllowedTargetValue>/g, obj, "minAllowedTargetValue", base.to_float, sub, context);
                 base.parse_attributes (/<cim:RegulatingControl.ProtectiveActionRegulation\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionRegulation", sub, context);
                 base.parse_attributes (/<cim:RegulatingControl.RegulationSchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegulationSchedule", sub, context);
                 base.parse_attribute (/<cim:RegulatingControl.Terminal\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
@@ -3289,6 +3434,8 @@ define
                 base.export_element (obj, "RegulatingControl", "targetValue", "targetValue",  base.from_float, fields);
                 base.export_attribute (obj, "RegulatingControl", "targetValueUnitMultiplier", "targetValueUnitMultiplier", fields);
                 base.export_element (obj, "RegulatingControl", "enabled", "enabled",  base.from_boolean, fields);
+                base.export_element (obj, "RegulatingControl", "maxAllowedTargetValue", "maxAllowedTargetValue",  base.from_float, fields);
+                base.export_element (obj, "RegulatingControl", "minAllowedTargetValue", "minAllowedTargetValue",  base.from_float, fields);
                 base.export_attributes (obj, "RegulatingControl", "ProtectiveActionRegulation", "ProtectiveActionRegulation", fields);
                 base.export_attributes (obj, "RegulatingControl", "RegulationSchedule", "RegulationSchedule", fields);
                 base.export_attribute (obj, "RegulatingControl", "Terminal", "Terminal", fields);
@@ -3316,6 +3463,8 @@ define
                     {{#targetValue}}<div><b>targetValue</b>: {{targetValue}}</div>{{/targetValue}}
                     {{#targetValueUnitMultiplier}}<div><b>targetValueUnitMultiplier</b>: {{targetValueUnitMultiplier}}</div>{{/targetValueUnitMultiplier}}
                     {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+                    {{#maxAllowedTargetValue}}<div><b>maxAllowedTargetValue</b>: {{maxAllowedTargetValue}}</div>{{/maxAllowedTargetValue}}
+                    {{#minAllowedTargetValue}}<div><b>minAllowedTargetValue</b>: {{minAllowedTargetValue}}</div>{{/minAllowedTargetValue}}
                     {{#ProtectiveActionRegulation}}<div><b>ProtectiveActionRegulation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProtectiveActionRegulation}}
                     {{#RegulationSchedule}}<div><b>RegulationSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegulationSchedule}}
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Terminal}}");}); return false;'>{{Terminal}}</a></div>{{/Terminal}}
@@ -3366,6 +3515,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValue'>targetValue: </label><div class='col-sm-8'><input id='{{id}}_targetValue' class='form-control' type='text'{{#targetValue}} value='{{targetValue}}'{{/targetValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValueUnitMultiplier'>targetValueUnitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_targetValueUnitMultiplier' class='form-control custom-select'>{{#targetValueUnitMultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/targetValueUnitMultiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_enabled'>enabled: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxAllowedTargetValue'>maxAllowedTargetValue: </label><div class='col-sm-8'><input id='{{id}}_maxAllowedTargetValue' class='form-control' type='text'{{#maxAllowedTargetValue}} value='{{maxAllowedTargetValue}}'{{/maxAllowedTargetValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minAllowedTargetValue'>minAllowedTargetValue: </label><div class='col-sm-8'><input id='{{id}}_minAllowedTargetValue' class='form-control' type='text'{{#minAllowedTargetValue}} value='{{minAllowedTargetValue}}'{{/minAllowedTargetValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
                     </fieldset>
@@ -3380,12 +3531,14 @@ define
                 obj = obj || { id: id, cls: "RegulatingControl" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_discrete").checked; if (temp) obj["discrete"] = true;
-                temp = RegulatingControlModeKind[document.getElementById (id + "_mode").value]; if (temp) obj["mode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RegulatingControlModeKind." + temp; else delete obj["mode"];
-                temp = Core.PhaseCode[document.getElementById (id + "_monitoredPhase").value]; if (temp) obj["monitoredPhase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj["monitoredPhase"];
+                temp = RegulatingControlModeKind[document.getElementById (id + "_mode").value]; if (temp) obj["mode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#RegulatingControlModeKind." + temp; else delete obj["mode"];
+                temp = Core.PhaseCode[document.getElementById (id + "_monitoredPhase").value]; if (temp) obj["monitoredPhase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode." + temp; else delete obj["monitoredPhase"];
                 temp = document.getElementById (id + "_targetDeadband").value; if ("" !== temp) obj["targetDeadband"] = temp;
                 temp = document.getElementById (id + "_targetValue").value; if ("" !== temp) obj["targetValue"] = temp;
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_targetValueUnitMultiplier").value]; if (temp) obj["targetValueUnitMultiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["targetValueUnitMultiplier"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_targetValueUnitMultiplier").value]; if (temp) obj["targetValueUnitMultiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["targetValueUnitMultiplier"];
                 temp = document.getElementById (id + "_enabled").checked; if (temp) obj["enabled"] = true;
+                temp = document.getElementById (id + "_maxAllowedTargetValue").value; if ("" !== temp) obj["maxAllowedTargetValue"] = temp;
+                temp = document.getElementById (id + "_minAllowedTargetValue").value; if ("" !== temp) obj["minAllowedTargetValue"] = temp;
                 temp = document.getElementById (id + "_Terminal").value; if ("" !== temp) obj["Terminal"] = temp;
 
                 return (obj);
@@ -3399,7 +3552,7 @@ define
                             ["ProtectiveActionRegulation", "0..*", "1", "ProtectiveActionRegulation", "RegulatingControl"],
                             ["RegulationSchedule", "0..*", "1", "RegulationSchedule", "RegulatingControl"],
                             ["Terminal", "0..1", "0..*", "Terminal", "RegulatingControl"],
-                            ["RegulatingCondEq", "0..*", "0..1", "RegulatingCondEq", "RegulatingControl"]
+                            ["RegulatingCondEq", "1..*", "0..1", "RegulatingCondEq", "RegulatingControl"]
                         ]
                     )
                 );
@@ -4316,6 +4469,8 @@ define
                 let obj = Core.ConductingEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "Clamp";
                 base.parse_element (/<cim:Clamp.lengthFromTerminal1>([\s\S]*?)<\/cim:Clamp.lengthFromTerminal1>/g, obj, "lengthFromTerminal1", base.to_string, sub, context);
+                base.parse_attribute (/<cim:Clamp.ClampAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ClampAction", sub, context);
+                base.parse_attribute (/<cim:Clamp.JumperAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "JumperAction", sub, context);
                 base.parse_attribute (/<cim:Clamp.ACLineSegment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ACLineSegment", sub, context);
                 let bucket = context.parsed.Clamp;
                 if (null == bucket)
@@ -4330,6 +4485,8 @@ define
                 let fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Clamp", "lengthFromTerminal1", "lengthFromTerminal1",  base.from_string, fields);
+                base.export_attribute (obj, "Clamp", "ClampAction", "ClampAction", fields);
+                base.export_attribute (obj, "Clamp", "JumperAction", "JumperAction", fields);
                 base.export_attribute (obj, "Clamp", "ACLineSegment", "ACLineSegment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
@@ -4348,6 +4505,8 @@ define
                     + Core.ConductingEquipment.prototype.template.call (this) +
                     `
                     {{#lengthFromTerminal1}}<div><b>lengthFromTerminal1</b>: {{lengthFromTerminal1}}</div>{{/lengthFromTerminal1}}
+                    {{#ClampAction}}<div><b>ClampAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ClampAction}}");}); return false;'>{{ClampAction}}</a></div>{{/ClampAction}}
+                    {{#JumperAction}}<div><b>JumperAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{JumperAction}}");}); return false;'>{{JumperAction}}</a></div>{{/JumperAction}}
                     {{#ACLineSegment}}<div><b>ACLineSegment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ACLineSegment}}");}); return false;'>{{ACLineSegment}}</a></div>{{/ACLineSegment}}
                     </div>
                     </fieldset>
@@ -4377,6 +4536,8 @@ define
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lengthFromTerminal1'>lengthFromTerminal1: </label><div class='col-sm-8'><input id='{{id}}_lengthFromTerminal1' class='form-control' type='text'{{#lengthFromTerminal1}} value='{{lengthFromTerminal1}}'{{/lengthFromTerminal1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ClampAction'>ClampAction: </label><div class='col-sm-8'><input id='{{id}}_ClampAction' class='form-control' type='text'{{#ClampAction}} value='{{ClampAction}}'{{/ClampAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_JumperAction'>JumperAction: </label><div class='col-sm-8'><input id='{{id}}_JumperAction' class='form-control' type='text'{{#JumperAction}} value='{{JumperAction}}'{{/JumperAction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACLineSegment'>ACLineSegment: </label><div class='col-sm-8'><input id='{{id}}_ACLineSegment' class='form-control' type='text'{{#ACLineSegment}} value='{{ACLineSegment}}'{{/ACLineSegment}}></div></div>
                     </div>
                     </fieldset>
@@ -4391,6 +4552,8 @@ define
                 obj = obj || { id: id, cls: "Clamp" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_lengthFromTerminal1").value; if ("" !== temp) obj["lengthFromTerminal1"] = temp;
+                temp = document.getElementById (id + "_ClampAction").value; if ("" !== temp) obj["ClampAction"] = temp;
+                temp = document.getElementById (id + "_JumperAction").value; if ("" !== temp) obj["JumperAction"] = temp;
                 temp = document.getElementById (id + "_ACLineSegment").value; if ("" !== temp) obj["ACLineSegment"] = temp;
 
                 return (obj);
@@ -4401,6 +4564,8 @@ define
                 return (
                     super.relations ().concat (
                         [
+                            ["ClampAction", "0..1", "0..1", "ClampAction", "Clamp"],
+                            ["JumperAction", "0..1", "0..1", "JumperAction", "Clamp"],
                             ["ACLineSegment", "1", "0..*", "ACLineSegment", "Clamp"]
                         ]
                     )
@@ -4916,7 +5081,7 @@ define
         /**
          * A generic device designed to close, or open, or both, one or more electric circuits.
          *
-         * All switches are two terminal devices including grounding switches.
+         * All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.
          *
          */
         class Switch extends Core.ConductingEquipment
@@ -4946,11 +5111,11 @@ define
                 base.parse_element (/<cim:Switch.switchOnCount>([\s\S]*?)<\/cim:Switch.switchOnCount>/g, obj, "switchOnCount", base.to_string, sub, context);
                 base.parse_element (/<cim:Switch.switchOnDate>([\s\S]*?)<\/cim:Switch.switchOnDate>/g, obj, "switchOnDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Switch.open>([\s\S]*?)<\/cim:Switch.open>/g, obj, "open", base.to_boolean, sub, context);
+                base.parse_element (/<cim:Switch.locked>([\s\S]*?)<\/cim:Switch.locked>/g, obj, "locked", base.to_boolean, sub, context);
                 base.parse_attributes (/<cim:Switch.SvSwitch\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SvSwitch", sub, context);
                 base.parse_attributes (/<cim:Switch.SwitchSchedules\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SwitchSchedules", sub, context);
                 base.parse_attribute (/<cim:Switch.SwitchAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SwitchAction", sub, context);
                 base.parse_attributes (/<cim:Switch.SwitchPhase\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SwitchPhase", sub, context);
-                base.parse_attribute (/<cim:Switch.Outage\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context);
                 base.parse_attributes (/<cim:Switch.ConnectDisconnectFunctions\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ConnectDisconnectFunctions", sub, context);
                 base.parse_attribute (/<cim:Switch.CompositeSwitch\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "CompositeSwitch", sub, context);
                 let bucket = context.parsed.Switch;
@@ -4971,11 +5136,11 @@ define
                 base.export_element (obj, "Switch", "switchOnCount", "switchOnCount",  base.from_string, fields);
                 base.export_element (obj, "Switch", "switchOnDate", "switchOnDate",  base.from_datetime, fields);
                 base.export_element (obj, "Switch", "open", "open",  base.from_boolean, fields);
+                base.export_element (obj, "Switch", "locked", "locked",  base.from_boolean, fields);
                 base.export_attributes (obj, "Switch", "SvSwitch", "SvSwitch", fields);
                 base.export_attributes (obj, "Switch", "SwitchSchedules", "SwitchSchedules", fields);
                 base.export_attribute (obj, "Switch", "SwitchAction", "SwitchAction", fields);
                 base.export_attributes (obj, "Switch", "SwitchPhase", "SwitchPhase", fields);
-                base.export_attribute (obj, "Switch", "Outage", "Outage", fields);
                 base.export_attributes (obj, "Switch", "ConnectDisconnectFunctions", "ConnectDisconnectFunctions", fields);
                 base.export_attribute (obj, "Switch", "CompositeSwitch", "CompositeSwitch", fields);
                 if (full)
@@ -5000,11 +5165,11 @@ define
                     {{#switchOnCount}}<div><b>switchOnCount</b>: {{switchOnCount}}</div>{{/switchOnCount}}
                     {{#switchOnDate}}<div><b>switchOnDate</b>: {{switchOnDate}}</div>{{/switchOnDate}}
                     {{#open}}<div><b>open</b>: {{open}}</div>{{/open}}
+                    {{#locked}}<div><b>locked</b>: {{locked}}</div>{{/locked}}
                     {{#SvSwitch}}<div><b>SvSwitch</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SvSwitch}}
                     {{#SwitchSchedules}}<div><b>SwitchSchedules</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SwitchSchedules}}
                     {{#SwitchAction}}<div><b>SwitchAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SwitchAction}}");}); return false;'>{{SwitchAction}}</a></div>{{/SwitchAction}}
                     {{#SwitchPhase}}<div><b>SwitchPhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SwitchPhase}}
-                    {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Outage}}");}); return false;'>{{Outage}}</a></div>{{/Outage}}
                     {{#ConnectDisconnectFunctions}}<div><b>ConnectDisconnectFunctions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ConnectDisconnectFunctions}}
                     {{#CompositeSwitch}}<div><b>CompositeSwitch</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CompositeSwitch}}");}); return false;'>{{CompositeSwitch}}</a></div>{{/CompositeSwitch}}
                     </div>
@@ -5048,8 +5213,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOnCount'>switchOnCount: </label><div class='col-sm-8'><input id='{{id}}_switchOnCount' class='form-control' type='text'{{#switchOnCount}} value='{{switchOnCount}}'{{/switchOnCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOnDate'>switchOnDate: </label><div class='col-sm-8'><input id='{{id}}_switchOnDate' class='form-control' type='text'{{#switchOnDate}} value='{{switchOnDate}}'{{/switchOnDate}}></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_open'>open: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_open' class='form-check-input' type='checkbox'{{#open}} checked{{/open}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_locked'>locked: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_locked' class='form-check-input' type='checkbox'{{#locked}} checked{{/locked}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchAction'>SwitchAction: </label><div class='col-sm-8'><input id='{{id}}_SwitchAction' class='form-control' type='text'{{#SwitchAction}} value='{{SwitchAction}}'{{/SwitchAction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConnectDisconnectFunctions'>ConnectDisconnectFunctions: </label><div class='col-sm-8'><input id='{{id}}_ConnectDisconnectFunctions' class='form-control' type='text'{{#ConnectDisconnectFunctions}} value='{{ConnectDisconnectFunctions_string}}'{{/ConnectDisconnectFunctions}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompositeSwitch'>CompositeSwitch: </label><div class='col-sm-8'><input id='{{id}}_CompositeSwitch' class='form-control' type='text'{{#CompositeSwitch}} value='{{CompositeSwitch}}'{{/CompositeSwitch}}></div></div>
                     </div>
@@ -5070,8 +5235,8 @@ define
                 temp = document.getElementById (id + "_switchOnCount").value; if ("" !== temp) obj["switchOnCount"] = temp;
                 temp = document.getElementById (id + "_switchOnDate").value; if ("" !== temp) obj["switchOnDate"] = temp;
                 temp = document.getElementById (id + "_open").checked; if (temp) obj["open"] = true;
+                temp = document.getElementById (id + "_locked").checked; if (temp) obj["locked"] = true;
                 temp = document.getElementById (id + "_SwitchAction").value; if ("" !== temp) obj["SwitchAction"] = temp;
-                temp = document.getElementById (id + "_Outage").value; if ("" !== temp) obj["Outage"] = temp;
                 temp = document.getElementById (id + "_ConnectDisconnectFunctions").value; if ("" !== temp) obj["ConnectDisconnectFunctions"] = temp.split (",");
                 temp = document.getElementById (id + "_CompositeSwitch").value; if ("" !== temp) obj["CompositeSwitch"] = temp;
 
@@ -5087,7 +5252,6 @@ define
                             ["SwitchSchedules", "0..*", "1", "SwitchSchedule", "Switch"],
                             ["SwitchAction", "0..1", "0..1", "SwitchAction", "OperatedSwitch"],
                             ["SwitchPhase", "0..*", "1", "SwitchPhase", "Switch"],
-                            ["Outage", "0..1", "0..*", "Outage", "OpenedSwitches"],
                             ["ConnectDisconnectFunctions", "0..*", "0..*", "ConnectDisconnectFunction", "Switches"],
                             ["CompositeSwitch", "0..1", "0..*", "CompositeSwitch", "Switches"]
                         ]
@@ -5351,6 +5515,7 @@ define
                 base.parse_attributes (/<cim:ACLineSegment.LineFaults\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LineFaults", sub, context);
                 base.parse_attribute (/<cim:ACLineSegment.LineGroundingAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LineGroundingAction", sub, context);
                 base.parse_attributes (/<cim:ACLineSegment.Clamp\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Clamp", sub, context);
+                base.parse_attribute (/<cim:ACLineSegment.WireSpacingInfo\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "WireSpacingInfo", sub, context);
                 base.parse_attribute (/<cim:ACLineSegment.LineJumpingAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LineJumpingAction", sub, context);
                 let bucket = context.parsed.ACLineSegment;
                 if (null == bucket)
@@ -5379,6 +5544,7 @@ define
                 base.export_attributes (obj, "ACLineSegment", "LineFaults", "LineFaults", fields);
                 base.export_attribute (obj, "ACLineSegment", "LineGroundingAction", "LineGroundingAction", fields);
                 base.export_attributes (obj, "ACLineSegment", "Clamp", "Clamp", fields);
+                base.export_attribute (obj, "ACLineSegment", "WireSpacingInfo", "WireSpacingInfo", fields);
                 base.export_attribute (obj, "ACLineSegment", "LineJumpingAction", "LineJumpingAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
@@ -5411,6 +5577,7 @@ define
                     {{#LineFaults}}<div><b>LineFaults</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LineFaults}}
                     {{#LineGroundingAction}}<div><b>LineGroundingAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LineGroundingAction}}");}); return false;'>{{LineGroundingAction}}</a></div>{{/LineGroundingAction}}
                     {{#Clamp}}<div><b>Clamp</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Clamp}}
+                    {{#WireSpacingInfo}}<div><b>WireSpacingInfo</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{WireSpacingInfo}}");}); return false;'>{{WireSpacingInfo}}</a></div>{{/WireSpacingInfo}}
                     {{#LineJumpingAction}}<div><b>LineJumpingAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LineJumpingAction}}");}); return false;'>{{LineJumpingAction}}</a></div>{{/LineJumpingAction}}
                     </div>
                     </fieldset>
@@ -5458,6 +5625,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x0'>x0: </label><div class='col-sm-8'><input id='{{id}}_x0' class='form-control' type='text'{{#x0}} value='{{x0}}'{{/x0}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PerLengthImpedance'>PerLengthImpedance: </label><div class='col-sm-8'><input id='{{id}}_PerLengthImpedance' class='form-control' type='text'{{#PerLengthImpedance}} value='{{PerLengthImpedance}}'{{/PerLengthImpedance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LineGroundingAction'>LineGroundingAction: </label><div class='col-sm-8'><input id='{{id}}_LineGroundingAction' class='form-control' type='text'{{#LineGroundingAction}} value='{{LineGroundingAction}}'{{/LineGroundingAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfo'>WireSpacingInfo: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfo' class='form-control' type='text'{{#WireSpacingInfo}} value='{{WireSpacingInfo}}'{{/WireSpacingInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LineJumpingAction'>LineJumpingAction: </label><div class='col-sm-8'><input id='{{id}}_LineJumpingAction' class='form-control' type='text'{{#LineJumpingAction}} value='{{LineJumpingAction}}'{{/LineJumpingAction}}></div></div>
                     </div>
                     </fieldset>
@@ -5482,6 +5650,7 @@ define
                 temp = document.getElementById (id + "_x0").value; if ("" !== temp) obj["x0"] = temp;
                 temp = document.getElementById (id + "_PerLengthImpedance").value; if ("" !== temp) obj["PerLengthImpedance"] = temp;
                 temp = document.getElementById (id + "_LineGroundingAction").value; if ("" !== temp) obj["LineGroundingAction"] = temp;
+                temp = document.getElementById (id + "_WireSpacingInfo").value; if ("" !== temp) obj["WireSpacingInfo"] = temp;
                 temp = document.getElementById (id + "_LineJumpingAction").value; if ("" !== temp) obj["LineJumpingAction"] = temp;
 
                 return (obj);
@@ -5498,7 +5667,119 @@ define
                             ["LineFaults", "0..*", "0..1", "LineFault", "ACLineSegment"],
                             ["LineGroundingAction", "0..1", "0..1", "GroundAction", "AlongACLineSegment"],
                             ["Clamp", "0..*", "1", "Clamp", "ACLineSegment"],
-                            ["LineJumpingAction", "0..1", "0..*", "JumperAction", "AlongACLineSegments"]
+                            ["WireSpacingInfo", "0..1", "0..*", "WireSpacingInfo", "ACLineSegment"],
+                            ["LineJumpingAction", "0..1", "0..*", "JumperAction", "ACLineSegments"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * A two terminal and power conducting device of negligible impedance and length represented as zero impedance device that can be used to connect auxiliary equipment to its terminals.
+         *
+         */
+        class WireSegment extends Conductor
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.WireSegment;
+                if (null == bucket)
+                   cim_data.WireSegment = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.WireSegment[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Conductor.prototype.parse.call (this, context, sub);
+                obj.cls = "WireSegment";
+                base.parse_attributes (/<cim:WireSegment.WireSegmentPhases\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "WireSegmentPhases", sub, context);
+                let bucket = context.parsed.WireSegment;
+                if (null == bucket)
+                   context.parsed.WireSegment = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Conductor.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "WireSegment", "WireSegmentPhases", "WireSegmentPhases", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#WireSegment_collapse" aria-expanded="true" aria-controls="WireSegment_collapse" style="margin-left: 10px;">WireSegment</a></legend>
+                    <div id="WireSegment_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Conductor.prototype.template.call (this) +
+                    `
+                    {{#WireSegmentPhases}}<div><b>WireSegmentPhases</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/WireSegmentPhases}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["WireSegmentPhases"]) obj["WireSegmentPhases_string"] = obj["WireSegmentPhases"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["WireSegmentPhases_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_WireSegment_collapse" aria-expanded="true" aria-controls="{{id}}_WireSegment_collapse" style="margin-left: 10px;">WireSegment</a></legend>
+                    <div id="{{id}}_WireSegment_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Conductor.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "WireSegment" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["WireSegmentPhases", "0..*", "1", "WireSegmentPhase", "WireSegment"]
                         ]
                     )
                 );
@@ -5618,7 +5899,7 @@ define
                 obj = obj || { id: id, cls: "RatioTapChanger" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_stepVoltageIncrement").value; if ("" !== temp) obj["stepVoltageIncrement"] = temp;
-                temp = TransformerControlMode[document.getElementById (id + "_tculControlMode").value]; if (temp) obj["tculControlMode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerControlMode." + temp; else delete obj["tculControlMode"];
+                temp = TransformerControlMode[document.getElementById (id + "_tculControlMode").value]; if (temp) obj["tculControlMode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#TransformerControlMode." + temp; else delete obj["tculControlMode"];
                 temp = document.getElementById (id + "_RatioTapChangerTable").value; if ("" !== temp) obj["RatioTapChangerTable"] = temp;
                 temp = document.getElementById (id + "_TransformerEnd").value; if ("" !== temp) obj["TransformerEnd"] = temp;
 
@@ -5985,7 +6266,7 @@ define
          *
          * This is a mathematical model that is an approximation of a real phase tap changer.
          * The phase angle is computed as stepPhaseShiftIncrement times the tap position.
-         * The secondary side voltage magnitude is the same as at the primary side.
+         * The voltage magnitude of both sides is the same.
          *
          */
         class PhaseTapChangerLinear extends PhaseTapChanger
@@ -6097,7 +6378,7 @@ define
         }
 
         /**
-         * Describes a symmetrical phase shifting transformer tap model in which the secondary side voltage magnitude is the same as at the primary side.
+         * Describes a symmetrical phase shifting transformer tap model in which the voltage magnitude of both sides is the same.
          *
          * The difference voltage magnitude is the base in an equal-sided triangle where the sides corresponds to the primary and secondary voltages. The phase angle difference corresponds to the top angle and can be expressed as twice the arctangent of half the total difference voltage.
          *
@@ -6194,9 +6475,9 @@ define
         }
 
         /**
-         * Describes the tap model for an asymmetrical phase shifting transformer in which the difference voltage vector adds to the primary side voltage.
+         * Describes the tap model for an asymmetrical phase shifting transformer in which the difference voltage vector adds to the in-phase winding.
          *
-         * The angle between the primary side voltage and the difference voltage is named the winding connection angle. The phase shift depends on both the difference voltage magnitude and the winding connection angle.
+         * The out-of-phase winding is the transformer end where the tap changer is located.  The angle between the in-phase and out-of-phase windings is named the winding connection angle. The phase shift depends on both the difference voltage magnitude and the winding connection angle.
          *
          */
         class PhaseTapChangerAsymmetrical extends PhaseTapChangerNonLinear
@@ -6406,6 +6687,8 @@ define
 
         /**
          * A per phase non linear shunt compensator has bank or section admittance values that differ.
+         *
+         * The attributes g and b of the associated NonlinearShuntCompensatorPhasePoint describe the total conductance and admittance of a NonlinearShuntCompensatorPhasePoint at a section number specified by NonlinearShuntCompensatorPhasePoint.sectionNumber.
          *
          */
         class NonlinearShuntCompensatorPhase extends ShuntCompensatorPhase
@@ -6617,7 +6900,7 @@ define
 
                 obj = obj || { id: id, cls: "TransformerTankEnd" };
                 super.submit (id, obj);
-                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj["phases"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj["phases"];
+                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj["phases"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode." + temp; else delete obj["phases"];
                 temp = document.getElementById (id + "_TransformerTank").value; if ("" !== temp) obj["TransformerTank"] = temp;
 
                 return (obj);
@@ -6790,7 +7073,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_b").value; if ("" !== temp) obj["b"] = temp;
                 temp = document.getElementById (id + "_b0").value; if ("" !== temp) obj["b0"] = temp;
-                temp = WindingConnection[document.getElementById (id + "_connectionKind").value]; if (temp) obj["connectionKind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection." + temp; else delete obj["connectionKind"];
+                temp = WindingConnection[document.getElementById (id + "_connectionKind").value]; if (temp) obj["connectionKind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#WindingConnection." + temp; else delete obj["connectionKind"];
                 temp = document.getElementById (id + "_g").value; if ("" !== temp) obj["g"] = temp;
                 temp = document.getElementById (id + "_g0").value; if ("" !== temp) obj["g0"] = temp;
                 temp = document.getElementById (id + "_phaseAngleClock").value; if ("" !== temp) obj["phaseAngleClock"] = temp;
@@ -6953,7 +7236,7 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["TapChanger", "0..*", "0..1", "TapChanger", "TapChangerControl"]
+                            ["TapChanger", "1..*", "0..1", "TapChanger", "TapChangerControl"]
                         ]
                     )
                 );
@@ -7302,7 +7585,7 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["RegulatingControl", "0..1", "0..*", "RegulatingControl", "RegulatingCondEq"]
+                            ["RegulatingControl", "0..1", "1..*", "RegulatingControl", "RegulatingCondEq"]
                         ]
                     )
                 );
@@ -7537,6 +7820,7 @@ define
                 base.parse_element (/<cim:ShuntCompensator.voltageSensitivity>([\s\S]*?)<\/cim:ShuntCompensator.voltageSensitivity>/g, obj, "voltageSensitivity", base.to_string, sub, context);
                 base.parse_element (/<cim:ShuntCompensator.sections>([\s\S]*?)<\/cim:ShuntCompensator.sections>/g, obj, "sections", base.to_float, sub, context);
                 base.parse_attributes (/<cim:ShuntCompensator.ShuntCompensatorPhase\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ShuntCompensatorPhase", sub, context);
+                base.parse_attribute (/<cim:ShuntCompensator.ShuntCompensatorAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ShuntCompensatorAction", sub, context);
                 base.parse_attributes (/<cim:ShuntCompensator.SvShuntCompensatorSections\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SvShuntCompensatorSections", sub, context);
                 let bucket = context.parsed.ShuntCompensator;
                 if (null == bucket)
@@ -7561,6 +7845,7 @@ define
                 base.export_element (obj, "ShuntCompensator", "voltageSensitivity", "voltageSensitivity",  base.from_string, fields);
                 base.export_element (obj, "ShuntCompensator", "sections", "sections",  base.from_float, fields);
                 base.export_attributes (obj, "ShuntCompensator", "ShuntCompensatorPhase", "ShuntCompensatorPhase", fields);
+                base.export_attribute (obj, "ShuntCompensator", "ShuntCompensatorAction", "ShuntCompensatorAction", fields);
                 base.export_attributes (obj, "ShuntCompensator", "SvShuntCompensatorSections", "SvShuntCompensatorSections", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
@@ -7589,6 +7874,7 @@ define
                     {{#voltageSensitivity}}<div><b>voltageSensitivity</b>: {{voltageSensitivity}}</div>{{/voltageSensitivity}}
                     {{#sections}}<div><b>sections</b>: {{sections}}</div>{{/sections}}
                     {{#ShuntCompensatorPhase}}<div><b>ShuntCompensatorPhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ShuntCompensatorPhase}}
+                    {{#ShuntCompensatorAction}}<div><b>ShuntCompensatorAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ShuntCompensatorAction}}");}); return false;'>{{ShuntCompensatorAction}}</a></div>{{/ShuntCompensatorAction}}
                     {{#SvShuntCompensatorSections}}<div><b>SvShuntCompensatorSections</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SvShuntCompensatorSections}}
                     </div>
                     </fieldset>
@@ -7633,6 +7919,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOnDate'>switchOnDate: </label><div class='col-sm-8'><input id='{{id}}_switchOnDate' class='form-control' type='text'{{#switchOnDate}} value='{{switchOnDate}}'{{/switchOnDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltageSensitivity'>voltageSensitivity: </label><div class='col-sm-8'><input id='{{id}}_voltageSensitivity' class='form-control' type='text'{{#voltageSensitivity}} value='{{voltageSensitivity}}'{{/voltageSensitivity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sections'>sections: </label><div class='col-sm-8'><input id='{{id}}_sections' class='form-control' type='text'{{#sections}} value='{{sections}}'{{/sections}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensatorAction'>ShuntCompensatorAction: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensatorAction' class='form-control' type='text'{{#ShuntCompensatorAction}} value='{{ShuntCompensatorAction}}'{{/ShuntCompensatorAction}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -7650,11 +7937,12 @@ define
                 temp = document.getElementById (id + "_maximumSections").value; if ("" !== temp) obj["maximumSections"] = temp;
                 temp = document.getElementById (id + "_nomU").value; if ("" !== temp) obj["nomU"] = temp;
                 temp = document.getElementById (id + "_normalSections").value; if ("" !== temp) obj["normalSections"] = temp;
-                temp = PhaseShuntConnectionKind[document.getElementById (id + "_phaseConnection").value]; if (temp) obj["phaseConnection"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; else delete obj["phaseConnection"];
+                temp = PhaseShuntConnectionKind[document.getElementById (id + "_phaseConnection").value]; if (temp) obj["phaseConnection"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseShuntConnectionKind." + temp; else delete obj["phaseConnection"];
                 temp = document.getElementById (id + "_switchOnCount").value; if ("" !== temp) obj["switchOnCount"] = temp;
                 temp = document.getElementById (id + "_switchOnDate").value; if ("" !== temp) obj["switchOnDate"] = temp;
                 temp = document.getElementById (id + "_voltageSensitivity").value; if ("" !== temp) obj["voltageSensitivity"] = temp;
                 temp = document.getElementById (id + "_sections").value; if ("" !== temp) obj["sections"] = temp;
+                temp = document.getElementById (id + "_ShuntCompensatorAction").value; if ("" !== temp) obj["ShuntCompensatorAction"] = temp;
 
                 return (obj);
             }
@@ -7665,6 +7953,7 @@ define
                     super.relations ().concat (
                         [
                             ["ShuntCompensatorPhase", "0..*", "1", "ShuntCompensatorPhase", "ShuntCompensator"],
+                            ["ShuntCompensatorAction", "0..1", "0..1", "ShuntCompensatorAction", "ShuntCompensator"],
                             ["SvShuntCompensatorSections", "0..*", "1", "SvShuntCompensatorSections", "ShuntCompensator"]
                         ]
                     )
@@ -7674,6 +7963,8 @@ define
 
         /**
          * Generic user of energy - a  point of consumption on the power system model.
+         *
+         * EnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning only if there is no LoadResponseCharacteristic associated with EnergyConsumer or if LoadResponseCharacteristic.exponentModel is set to False.
          *
          */
         class EnergyConsumer extends EnergyConnection
@@ -7706,6 +7997,7 @@ define
                 base.parse_element (/<cim:EnergyConsumer.qfixedPct>([\s\S]*?)<\/cim:EnergyConsumer.qfixedPct>/g, obj, "qfixedPct", base.to_string, sub, context);
                 base.parse_element (/<cim:EnergyConsumer.p>([\s\S]*?)<\/cim:EnergyConsumer.p>/g, obj, "p", base.to_string, sub, context);
                 base.parse_element (/<cim:EnergyConsumer.q>([\s\S]*?)<\/cim:EnergyConsumer.q>/g, obj, "q", base.to_string, sub, context);
+                base.parse_attribute (/<cim:EnergyConsumer.EnergyConsumerAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumerAction", sub, context);
                 base.parse_attribute (/<cim:EnergyConsumer.LoadDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadDynamics", sub, context);
                 base.parse_attributes (/<cim:EnergyConsumer.EnergyConsumerPhase\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumerPhase", sub, context);
                 base.parse_attribute (/<cim:EnergyConsumer.PowerCutZone\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PowerCutZone", sub, context);
@@ -7731,6 +8023,7 @@ define
                 base.export_element (obj, "EnergyConsumer", "qfixedPct", "qfixedPct",  base.from_string, fields);
                 base.export_element (obj, "EnergyConsumer", "p", "p",  base.from_string, fields);
                 base.export_element (obj, "EnergyConsumer", "q", "q",  base.from_string, fields);
+                base.export_attribute (obj, "EnergyConsumer", "EnergyConsumerAction", "EnergyConsumerAction", fields);
                 base.export_attribute (obj, "EnergyConsumer", "LoadDynamics", "LoadDynamics", fields);
                 base.export_attributes (obj, "EnergyConsumer", "EnergyConsumerPhase", "EnergyConsumerPhase", fields);
                 base.export_attribute (obj, "EnergyConsumer", "PowerCutZone", "PowerCutZone", fields);
@@ -7760,6 +8053,7 @@ define
                     {{#qfixedPct}}<div><b>qfixedPct</b>: {{qfixedPct}}</div>{{/qfixedPct}}
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+                    {{#EnergyConsumerAction}}<div><b>EnergyConsumerAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergyConsumerAction}}");}); return false;'>{{EnergyConsumerAction}}</a></div>{{/EnergyConsumerAction}}
                     {{#LoadDynamics}}<div><b>LoadDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadDynamics}}");}); return false;'>{{LoadDynamics}}</a></div>{{/LoadDynamics}}
                     {{#EnergyConsumerPhase}}<div><b>EnergyConsumerPhase</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyConsumerPhase}}
                     {{#PowerCutZone}}<div><b>PowerCutZone</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PowerCutZone}}");}); return false;'>{{PowerCutZone}}</a></div>{{/PowerCutZone}}
@@ -7804,6 +8098,7 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qfixedPct'>qfixedPct: </label><div class='col-sm-8'><input id='{{id}}_qfixedPct' class='form-control' type='text'{{#qfixedPct}} value='{{qfixedPct}}'{{/qfixedPct}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p'>p: </label><div class='col-sm-8'><input id='{{id}}_p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q'>q: </label><div class='col-sm-8'><input id='{{id}}_q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyConsumerAction'>EnergyConsumerAction: </label><div class='col-sm-8'><input id='{{id}}_EnergyConsumerAction' class='form-control' type='text'{{#EnergyConsumerAction}} value='{{EnergyConsumerAction}}'{{/EnergyConsumerAction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadDynamics'>LoadDynamics: </label><div class='col-sm-8'><input id='{{id}}_LoadDynamics' class='form-control' type='text'{{#LoadDynamics}} value='{{LoadDynamics}}'{{/LoadDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerCutZone'>PowerCutZone: </label><div class='col-sm-8'><input id='{{id}}_PowerCutZone' class='form-control' type='text'{{#PowerCutZone}} value='{{PowerCutZone}}'{{/PowerCutZone}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadResponse'>LoadResponse: </label><div class='col-sm-8'><input id='{{id}}_LoadResponse' class='form-control' type='text'{{#LoadResponse}} value='{{LoadResponse}}'{{/LoadResponse}}></div></div>
@@ -7823,11 +8118,12 @@ define
                 temp = document.getElementById (id + "_grounded").checked; if (temp) obj["grounded"] = true;
                 temp = document.getElementById (id + "_pfixed").value; if ("" !== temp) obj["pfixed"] = temp;
                 temp = document.getElementById (id + "_pfixedPct").value; if ("" !== temp) obj["pfixedPct"] = temp;
-                temp = PhaseShuntConnectionKind[document.getElementById (id + "_phaseConnection").value]; if (temp) obj["phaseConnection"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; else delete obj["phaseConnection"];
+                temp = PhaseShuntConnectionKind[document.getElementById (id + "_phaseConnection").value]; if (temp) obj["phaseConnection"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseShuntConnectionKind." + temp; else delete obj["phaseConnection"];
                 temp = document.getElementById (id + "_qfixed").value; if ("" !== temp) obj["qfixed"] = temp;
                 temp = document.getElementById (id + "_qfixedPct").value; if ("" !== temp) obj["qfixedPct"] = temp;
                 temp = document.getElementById (id + "_p").value; if ("" !== temp) obj["p"] = temp;
                 temp = document.getElementById (id + "_q").value; if ("" !== temp) obj["q"] = temp;
+                temp = document.getElementById (id + "_EnergyConsumerAction").value; if ("" !== temp) obj["EnergyConsumerAction"] = temp;
                 temp = document.getElementById (id + "_LoadDynamics").value; if ("" !== temp) obj["LoadDynamics"] = temp;
                 temp = document.getElementById (id + "_PowerCutZone").value; if ("" !== temp) obj["PowerCutZone"] = temp;
                 temp = document.getElementById (id + "_LoadResponse").value; if ("" !== temp) obj["LoadResponse"] = temp;
@@ -7840,6 +8136,7 @@ define
                 return (
                     super.relations ().concat (
                         [
+                            ["EnergyConsumerAction", "0..1", "0..1", "EnergyConsumerAction", "EnergyConsumer"],
                             ["LoadDynamics", "0..1", "0..*", "LoadDynamics", "EnergyConsumer"],
                             ["EnergyConsumerPhase", "0..*", "1", "EnergyConsumerPhase", "EnergyConsumer"],
                             ["PowerCutZone", "0..1", "1..*", "PowerCutZone", "EnergyConsumers"],
@@ -7997,6 +8294,8 @@ define
         /**
          * A non linear shunt compensator has bank or section admittance values that differ.
          *
+         * The attributes g, b, g0 and b0 of the associated NonlinearShuntCompensatorPoint describe the total conductance and admittance of a NonlinearShuntCompensatorPoint at a section number specified by NonlinearShuntCompensatorPoint.sectionNumber.
+         *
          */
         class NonlinearShuntCompensator extends ShuntCompensator
         {
@@ -8109,7 +8408,7 @@ define
          * A facility for providing variable and controllable shunt reactive power.
          *
          * The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.
-         * 
+         *
          * The SVC may operate in fixed MVar output mode or in voltage control mode. When in voltage control mode, the output of the SVC will be proportional to the deviation of voltage at the controlled bus from the voltage setpoint.  The SVC characteristic slope defines the proportion.  If the voltage at the controlled bus is equal to the voltage setpoint, the SVC MVar output is zero.
          *
          */
@@ -8234,7 +8533,7 @@ define
                 temp = document.getElementById (id + "_capacitiveRating").value; if ("" !== temp) obj["capacitiveRating"] = temp;
                 temp = document.getElementById (id + "_inductiveRating").value; if ("" !== temp) obj["inductiveRating"] = temp;
                 temp = document.getElementById (id + "_slope").value; if ("" !== temp) obj["slope"] = temp;
-                temp = SVCControlMode[document.getElementById (id + "_sVCControlMode").value]; if (temp) obj["sVCControlMode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SVCControlMode." + temp; else delete obj["sVCControlMode"];
+                temp = SVCControlMode[document.getElementById (id + "_sVCControlMode").value]; if (temp) obj["sVCControlMode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SVCControlMode." + temp; else delete obj["sVCControlMode"];
                 temp = document.getElementById (id + "_voltageSetPoint").value; if ("" !== temp) obj["voltageSetPoint"] = temp;
                 temp = document.getElementById (id + "_q").value; if ("" !== temp) obj["q"] = temp;
                 temp = document.getElementById (id + "_StaticVarCompensatorDynamics").value; if ("" !== temp) obj["StaticVarCompensatorDynamics"] = temp;
@@ -9119,7 +9418,7 @@ define
                 temp = document.getElementById (id + "_baseQ").value; if ("" !== temp) obj["baseQ"] = temp;
                 temp = document.getElementById (id + "_condenserP").value; if ("" !== temp) obj["condenserP"] = temp;
                 temp = document.getElementById (id + "_coolantCondition").value; if ("" !== temp) obj["coolantCondition"] = temp;
-                temp = CoolantType[document.getElementById (id + "_coolantType").value]; if (temp) obj["coolantType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#CoolantType." + temp; else delete obj["coolantType"];
+                temp = CoolantType[document.getElementById (id + "_coolantType").value]; if (temp) obj["coolantType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#CoolantType." + temp; else delete obj["coolantType"];
                 temp = document.getElementById (id + "_earthing").checked; if (temp) obj["earthing"] = true;
                 temp = document.getElementById (id + "_earthingStarPointR").value; if ("" !== temp) obj["earthingStarPointR"] = temp;
                 temp = document.getElementById (id + "_earthingStarPointX").value; if ("" !== temp) obj["earthingStarPointX"] = temp;
@@ -9130,7 +9429,7 @@ define
                 temp = document.getElementById (id + "_minQ").value; if ("" !== temp) obj["minQ"] = temp;
                 temp = document.getElementById (id + "_minU").value; if ("" !== temp) obj["minU"] = temp;
                 temp = document.getElementById (id + "_mu").value; if ("" !== temp) obj["mu"] = temp;
-                temp = SynchronousMachineOperatingMode[document.getElementById (id + "_operatingMode").value]; if (temp) obj["operatingMode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineOperatingMode." + temp; else delete obj["operatingMode"];
+                temp = SynchronousMachineOperatingMode[document.getElementById (id + "_operatingMode").value]; if (temp) obj["operatingMode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SynchronousMachineOperatingMode." + temp; else delete obj["operatingMode"];
                 temp = document.getElementById (id + "_qPercent").value; if ("" !== temp) obj["qPercent"] = temp;
                 temp = document.getElementById (id + "_r").value; if ("" !== temp) obj["r"] = temp;
                 temp = document.getElementById (id + "_r0").value; if ("" !== temp) obj["r0"] = temp;
@@ -9139,8 +9438,8 @@ define
                 temp = document.getElementById (id + "_satDirectSubtransX").value; if ("" !== temp) obj["satDirectSubtransX"] = temp;
                 temp = document.getElementById (id + "_satDirectSyncX").value; if ("" !== temp) obj["satDirectSyncX"] = temp;
                 temp = document.getElementById (id + "_satDirectTransX").value; if ("" !== temp) obj["satDirectTransX"] = temp;
-                temp = ShortCircuitRotorKind[document.getElementById (id + "_shortCircuitRotorType").value]; if (temp) obj["shortCircuitRotorType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ShortCircuitRotorKind." + temp; else delete obj["shortCircuitRotorType"];
-                temp = SynchronousMachineKind[document.getElementById (id + "_type").value]; if (temp) obj["type"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineKind." + temp; else delete obj["type"];
+                temp = ShortCircuitRotorKind[document.getElementById (id + "_shortCircuitRotorType").value]; if (temp) obj["shortCircuitRotorType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ShortCircuitRotorKind." + temp; else delete obj["shortCircuitRotorType"];
+                temp = SynchronousMachineKind[document.getElementById (id + "_type").value]; if (temp) obj["type"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SynchronousMachineKind." + temp; else delete obj["type"];
                 temp = document.getElementById (id + "_voltageRegulationRange").value; if ("" !== temp) obj["voltageRegulationRange"] = temp;
                 temp = document.getElementById (id + "_x0").value; if ("" !== temp) obj["x0"] = temp;
                 temp = document.getElementById (id + "_x2").value; if ("" !== temp) obj["x2"] = temp;
@@ -9194,6 +9493,14 @@ define
             {
                 let obj = RotatingMachine.prototype.parse.call (this, context, sub);
                 obj.cls = "AsynchronousMachine";
+                base.parse_element (/<cim:AsynchronousMachine.converterFedDrive>([\s\S]*?)<\/cim:AsynchronousMachine.converterFedDrive>/g, obj, "converterFedDrive", base.to_boolean, sub, context);
+                base.parse_element (/<cim:AsynchronousMachine.efficiency>([\s\S]*?)<\/cim:AsynchronousMachine.efficiency>/g, obj, "efficiency", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachine.iaIrRatio>([\s\S]*?)<\/cim:AsynchronousMachine.iaIrRatio>/g, obj, "iaIrRatio", base.to_float, sub, context);
+                base.parse_element (/<cim:AsynchronousMachine.nominalFrequency>([\s\S]*?)<\/cim:AsynchronousMachine.nominalFrequency>/g, obj, "nominalFrequency", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachine.nominalSpeed>([\s\S]*?)<\/cim:AsynchronousMachine.nominalSpeed>/g, obj, "nominalSpeed", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachine.polePairNumber>([\s\S]*?)<\/cim:AsynchronousMachine.polePairNumber>/g, obj, "polePairNumber", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachine.ratedMechanicalPower>([\s\S]*?)<\/cim:AsynchronousMachine.ratedMechanicalPower>/g, obj, "ratedMechanicalPower", base.to_string, sub, context);
+                base.parse_element (/<cim:AsynchronousMachine.reversible>([\s\S]*?)<\/cim:AsynchronousMachine.reversible>/g, obj, "reversible", base.to_boolean, sub, context);
                 base.parse_element (/<cim:AsynchronousMachine.rr1>([\s\S]*?)<\/cim:AsynchronousMachine.rr1>/g, obj, "rr1", base.to_string, sub, context);
                 base.parse_element (/<cim:AsynchronousMachine.rr2>([\s\S]*?)<\/cim:AsynchronousMachine.rr2>/g, obj, "rr2", base.to_string, sub, context);
                 base.parse_element (/<cim:AsynchronousMachine.rxLockedRotorRatio>([\s\S]*?)<\/cim:AsynchronousMachine.rxLockedRotorRatio>/g, obj, "rxLockedRotorRatio", base.to_float, sub, context);
@@ -9204,16 +9511,8 @@ define
                 base.parse_element (/<cim:AsynchronousMachine.xm>([\s\S]*?)<\/cim:AsynchronousMachine.xm>/g, obj, "xm", base.to_string, sub, context);
                 base.parse_element (/<cim:AsynchronousMachine.xp>([\s\S]*?)<\/cim:AsynchronousMachine.xp>/g, obj, "xp", base.to_string, sub, context);
                 base.parse_element (/<cim:AsynchronousMachine.xpp>([\s\S]*?)<\/cim:AsynchronousMachine.xpp>/g, obj, "xpp", base.to_string, sub, context);
-                base.parse_attribute (/<cim:AsynchronousMachine.asynchronousMachineType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "asynchronousMachineType", sub, context);
-                base.parse_element (/<cim:AsynchronousMachine.converterFedDrive>([\s\S]*?)<\/cim:AsynchronousMachine.converterFedDrive>/g, obj, "converterFedDrive", base.to_boolean, sub, context);
-                base.parse_element (/<cim:AsynchronousMachine.efficiency>([\s\S]*?)<\/cim:AsynchronousMachine.efficiency>/g, obj, "efficiency", base.to_string, sub, context);
-                base.parse_element (/<cim:AsynchronousMachine.iaIrRatio>([\s\S]*?)<\/cim:AsynchronousMachine.iaIrRatio>/g, obj, "iaIrRatio", base.to_float, sub, context);
-                base.parse_element (/<cim:AsynchronousMachine.nominalFrequency>([\s\S]*?)<\/cim:AsynchronousMachine.nominalFrequency>/g, obj, "nominalFrequency", base.to_string, sub, context);
-                base.parse_element (/<cim:AsynchronousMachine.nominalSpeed>([\s\S]*?)<\/cim:AsynchronousMachine.nominalSpeed>/g, obj, "nominalSpeed", base.to_string, sub, context);
-                base.parse_element (/<cim:AsynchronousMachine.polePairNumber>([\s\S]*?)<\/cim:AsynchronousMachine.polePairNumber>/g, obj, "polePairNumber", base.to_string, sub, context);
-                base.parse_element (/<cim:AsynchronousMachine.ratedMechanicalPower>([\s\S]*?)<\/cim:AsynchronousMachine.ratedMechanicalPower>/g, obj, "ratedMechanicalPower", base.to_string, sub, context);
-                base.parse_element (/<cim:AsynchronousMachine.reversible>([\s\S]*?)<\/cim:AsynchronousMachine.reversible>/g, obj, "reversible", base.to_boolean, sub, context);
                 base.parse_element (/<cim:AsynchronousMachine.xs>([\s\S]*?)<\/cim:AsynchronousMachine.xs>/g, obj, "xs", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AsynchronousMachine.asynchronousMachineType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "asynchronousMachineType", sub, context);
                 base.parse_attribute (/<cim:AsynchronousMachine.AsynchronousMachineDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachineDynamics", sub, context);
                 let bucket = context.parsed.AsynchronousMachine;
                 if (null == bucket)
@@ -9227,6 +9526,14 @@ define
             {
                 let fields = RotatingMachine.prototype.export.call (this, obj, false);
 
+                base.export_element (obj, "AsynchronousMachine", "converterFedDrive", "converterFedDrive",  base.from_boolean, fields);
+                base.export_element (obj, "AsynchronousMachine", "efficiency", "efficiency",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachine", "iaIrRatio", "iaIrRatio",  base.from_float, fields);
+                base.export_element (obj, "AsynchronousMachine", "nominalFrequency", "nominalFrequency",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachine", "nominalSpeed", "nominalSpeed",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachine", "polePairNumber", "polePairNumber",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachine", "ratedMechanicalPower", "ratedMechanicalPower",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachine", "reversible", "reversible",  base.from_boolean, fields);
                 base.export_element (obj, "AsynchronousMachine", "rr1", "rr1",  base.from_string, fields);
                 base.export_element (obj, "AsynchronousMachine", "rr2", "rr2",  base.from_string, fields);
                 base.export_element (obj, "AsynchronousMachine", "rxLockedRotorRatio", "rxLockedRotorRatio",  base.from_float, fields);
@@ -9237,16 +9544,8 @@ define
                 base.export_element (obj, "AsynchronousMachine", "xm", "xm",  base.from_string, fields);
                 base.export_element (obj, "AsynchronousMachine", "xp", "xp",  base.from_string, fields);
                 base.export_element (obj, "AsynchronousMachine", "xpp", "xpp",  base.from_string, fields);
-                base.export_attribute (obj, "AsynchronousMachine", "asynchronousMachineType", "asynchronousMachineType", fields);
-                base.export_element (obj, "AsynchronousMachine", "converterFedDrive", "converterFedDrive",  base.from_boolean, fields);
-                base.export_element (obj, "AsynchronousMachine", "efficiency", "efficiency",  base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachine", "iaIrRatio", "iaIrRatio",  base.from_float, fields);
-                base.export_element (obj, "AsynchronousMachine", "nominalFrequency", "nominalFrequency",  base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachine", "nominalSpeed", "nominalSpeed",  base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachine", "polePairNumber", "polePairNumber",  base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachine", "ratedMechanicalPower", "ratedMechanicalPower",  base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachine", "reversible", "reversible",  base.from_boolean, fields);
                 base.export_element (obj, "AsynchronousMachine", "xs", "xs",  base.from_string, fields);
+                base.export_attribute (obj, "AsynchronousMachine", "asynchronousMachineType", "asynchronousMachineType", fields);
                 base.export_attribute (obj, "AsynchronousMachine", "AsynchronousMachineDynamics", "AsynchronousMachineDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
@@ -9264,6 +9563,14 @@ define
                     `
                     + RotatingMachine.prototype.template.call (this) +
                     `
+                    {{#converterFedDrive}}<div><b>converterFedDrive</b>: {{converterFedDrive}}</div>{{/converterFedDrive}}
+                    {{#efficiency}}<div><b>efficiency</b>: {{efficiency}}</div>{{/efficiency}}
+                    {{#iaIrRatio}}<div><b>iaIrRatio</b>: {{iaIrRatio}}</div>{{/iaIrRatio}}
+                    {{#nominalFrequency}}<div><b>nominalFrequency</b>: {{nominalFrequency}}</div>{{/nominalFrequency}}
+                    {{#nominalSpeed}}<div><b>nominalSpeed</b>: {{nominalSpeed}}</div>{{/nominalSpeed}}
+                    {{#polePairNumber}}<div><b>polePairNumber</b>: {{polePairNumber}}</div>{{/polePairNumber}}
+                    {{#ratedMechanicalPower}}<div><b>ratedMechanicalPower</b>: {{ratedMechanicalPower}}</div>{{/ratedMechanicalPower}}
+                    {{#reversible}}<div><b>reversible</b>: {{reversible}}</div>{{/reversible}}
                     {{#rr1}}<div><b>rr1</b>: {{rr1}}</div>{{/rr1}}
                     {{#rr2}}<div><b>rr2</b>: {{rr2}}</div>{{/rr2}}
                     {{#rxLockedRotorRatio}}<div><b>rxLockedRotorRatio</b>: {{rxLockedRotorRatio}}</div>{{/rxLockedRotorRatio}}
@@ -9274,16 +9581,8 @@ define
                     {{#xm}}<div><b>xm</b>: {{xm}}</div>{{/xm}}
                     {{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
                     {{#xpp}}<div><b>xpp</b>: {{xpp}}</div>{{/xpp}}
-                    {{#asynchronousMachineType}}<div><b>asynchronousMachineType</b>: {{asynchronousMachineType}}</div>{{/asynchronousMachineType}}
-                    {{#converterFedDrive}}<div><b>converterFedDrive</b>: {{converterFedDrive}}</div>{{/converterFedDrive}}
-                    {{#efficiency}}<div><b>efficiency</b>: {{efficiency}}</div>{{/efficiency}}
-                    {{#iaIrRatio}}<div><b>iaIrRatio</b>: {{iaIrRatio}}</div>{{/iaIrRatio}}
-                    {{#nominalFrequency}}<div><b>nominalFrequency</b>: {{nominalFrequency}}</div>{{/nominalFrequency}}
-                    {{#nominalSpeed}}<div><b>nominalSpeed</b>: {{nominalSpeed}}</div>{{/nominalSpeed}}
-                    {{#polePairNumber}}<div><b>polePairNumber</b>: {{polePairNumber}}</div>{{/polePairNumber}}
-                    {{#ratedMechanicalPower}}<div><b>ratedMechanicalPower</b>: {{ratedMechanicalPower}}</div>{{/ratedMechanicalPower}}
-                    {{#reversible}}<div><b>reversible</b>: {{reversible}}</div>{{/reversible}}
                     {{#xs}}<div><b>xs</b>: {{xs}}</div>{{/xs}}
+                    {{#asynchronousMachineType}}<div><b>asynchronousMachineType</b>: {{asynchronousMachineType}}</div>{{/asynchronousMachineType}}
                     {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AsynchronousMachineDynamics}}");}); return false;'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
                     </div>
                     </fieldset>
@@ -9314,6 +9613,14 @@ define
                     `
                     + RotatingMachine.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_converterFedDrive'>converterFedDrive: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_converterFedDrive' class='form-check-input' type='checkbox'{{#converterFedDrive}} checked{{/converterFedDrive}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efficiency'>efficiency: </label><div class='col-sm-8'><input id='{{id}}_efficiency' class='form-control' type='text'{{#efficiency}} value='{{efficiency}}'{{/efficiency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iaIrRatio'>iaIrRatio: </label><div class='col-sm-8'><input id='{{id}}_iaIrRatio' class='form-control' type='text'{{#iaIrRatio}} value='{{iaIrRatio}}'{{/iaIrRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalFrequency'>nominalFrequency: </label><div class='col-sm-8'><input id='{{id}}_nominalFrequency' class='form-control' type='text'{{#nominalFrequency}} value='{{nominalFrequency}}'{{/nominalFrequency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalSpeed'>nominalSpeed: </label><div class='col-sm-8'><input id='{{id}}_nominalSpeed' class='form-control' type='text'{{#nominalSpeed}} value='{{nominalSpeed}}'{{/nominalSpeed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_polePairNumber'>polePairNumber: </label><div class='col-sm-8'><input id='{{id}}_polePairNumber' class='form-control' type='text'{{#polePairNumber}} value='{{polePairNumber}}'{{/polePairNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedMechanicalPower'>ratedMechanicalPower: </label><div class='col-sm-8'><input id='{{id}}_ratedMechanicalPower' class='form-control' type='text'{{#ratedMechanicalPower}} value='{{ratedMechanicalPower}}'{{/ratedMechanicalPower}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_reversible'>reversible: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_reversible' class='form-check-input' type='checkbox'{{#reversible}} checked{{/reversible}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rr1'>rr1: </label><div class='col-sm-8'><input id='{{id}}_rr1' class='form-control' type='text'{{#rr1}} value='{{rr1}}'{{/rr1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rr2'>rr2: </label><div class='col-sm-8'><input id='{{id}}_rr2' class='form-control' type='text'{{#rr2}} value='{{rr2}}'{{/rr2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rxLockedRotorRatio'>rxLockedRotorRatio: </label><div class='col-sm-8'><input id='{{id}}_rxLockedRotorRatio' class='form-control' type='text'{{#rxLockedRotorRatio}} value='{{rxLockedRotorRatio}}'{{/rxLockedRotorRatio}}></div></div>
@@ -9324,16 +9631,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xm'>xm: </label><div class='col-sm-8'><input id='{{id}}_xm' class='form-control' type='text'{{#xm}} value='{{xm}}'{{/xm}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xp'>xp: </label><div class='col-sm-8'><input id='{{id}}_xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xpp'>xpp: </label><div class='col-sm-8'><input id='{{id}}_xpp' class='form-control' type='text'{{#xpp}} value='{{xpp}}'{{/xpp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asynchronousMachineType'>asynchronousMachineType: </label><div class='col-sm-8'><select id='{{id}}_asynchronousMachineType' class='form-control custom-select'>{{#asynchronousMachineTypeAsynchronousMachineKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/asynchronousMachineTypeAsynchronousMachineKind}}</select></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_converterFedDrive'>converterFedDrive: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_converterFedDrive' class='form-check-input' type='checkbox'{{#converterFedDrive}} checked{{/converterFedDrive}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efficiency'>efficiency: </label><div class='col-sm-8'><input id='{{id}}_efficiency' class='form-control' type='text'{{#efficiency}} value='{{efficiency}}'{{/efficiency}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iaIrRatio'>iaIrRatio: </label><div class='col-sm-8'><input id='{{id}}_iaIrRatio' class='form-control' type='text'{{#iaIrRatio}} value='{{iaIrRatio}}'{{/iaIrRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalFrequency'>nominalFrequency: </label><div class='col-sm-8'><input id='{{id}}_nominalFrequency' class='form-control' type='text'{{#nominalFrequency}} value='{{nominalFrequency}}'{{/nominalFrequency}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalSpeed'>nominalSpeed: </label><div class='col-sm-8'><input id='{{id}}_nominalSpeed' class='form-control' type='text'{{#nominalSpeed}} value='{{nominalSpeed}}'{{/nominalSpeed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_polePairNumber'>polePairNumber: </label><div class='col-sm-8'><input id='{{id}}_polePairNumber' class='form-control' type='text'{{#polePairNumber}} value='{{polePairNumber}}'{{/polePairNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedMechanicalPower'>ratedMechanicalPower: </label><div class='col-sm-8'><input id='{{id}}_ratedMechanicalPower' class='form-control' type='text'{{#ratedMechanicalPower}} value='{{ratedMechanicalPower}}'{{/ratedMechanicalPower}}></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_reversible'>reversible: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_reversible' class='form-check-input' type='checkbox'{{#reversible}} checked{{/reversible}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xs'>xs: </label><div class='col-sm-8'><input id='{{id}}_xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asynchronousMachineType'>asynchronousMachineType: </label><div class='col-sm-8'><select id='{{id}}_asynchronousMachineType' class='form-control custom-select'>{{#asynchronousMachineTypeAsynchronousMachineKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/asynchronousMachineTypeAsynchronousMachineKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
                     </div>
                     </fieldset>
@@ -9347,6 +9646,14 @@ define
 
                 obj = obj || { id: id, cls: "AsynchronousMachine" };
                 super.submit (id, obj);
+                temp = document.getElementById (id + "_converterFedDrive").checked; if (temp) obj["converterFedDrive"] = true;
+                temp = document.getElementById (id + "_efficiency").value; if ("" !== temp) obj["efficiency"] = temp;
+                temp = document.getElementById (id + "_iaIrRatio").value; if ("" !== temp) obj["iaIrRatio"] = temp;
+                temp = document.getElementById (id + "_nominalFrequency").value; if ("" !== temp) obj["nominalFrequency"] = temp;
+                temp = document.getElementById (id + "_nominalSpeed").value; if ("" !== temp) obj["nominalSpeed"] = temp;
+                temp = document.getElementById (id + "_polePairNumber").value; if ("" !== temp) obj["polePairNumber"] = temp;
+                temp = document.getElementById (id + "_ratedMechanicalPower").value; if ("" !== temp) obj["ratedMechanicalPower"] = temp;
+                temp = document.getElementById (id + "_reversible").checked; if (temp) obj["reversible"] = true;
                 temp = document.getElementById (id + "_rr1").value; if ("" !== temp) obj["rr1"] = temp;
                 temp = document.getElementById (id + "_rr2").value; if ("" !== temp) obj["rr2"] = temp;
                 temp = document.getElementById (id + "_rxLockedRotorRatio").value; if ("" !== temp) obj["rxLockedRotorRatio"] = temp;
@@ -9357,16 +9664,8 @@ define
                 temp = document.getElementById (id + "_xm").value; if ("" !== temp) obj["xm"] = temp;
                 temp = document.getElementById (id + "_xp").value; if ("" !== temp) obj["xp"] = temp;
                 temp = document.getElementById (id + "_xpp").value; if ("" !== temp) obj["xpp"] = temp;
-                temp = AsynchronousMachineKind[document.getElementById (id + "_asynchronousMachineType").value]; if (temp) obj["asynchronousMachineType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#AsynchronousMachineKind." + temp; else delete obj["asynchronousMachineType"];
-                temp = document.getElementById (id + "_converterFedDrive").checked; if (temp) obj["converterFedDrive"] = true;
-                temp = document.getElementById (id + "_efficiency").value; if ("" !== temp) obj["efficiency"] = temp;
-                temp = document.getElementById (id + "_iaIrRatio").value; if ("" !== temp) obj["iaIrRatio"] = temp;
-                temp = document.getElementById (id + "_nominalFrequency").value; if ("" !== temp) obj["nominalFrequency"] = temp;
-                temp = document.getElementById (id + "_nominalSpeed").value; if ("" !== temp) obj["nominalSpeed"] = temp;
-                temp = document.getElementById (id + "_polePairNumber").value; if ("" !== temp) obj["polePairNumber"] = temp;
-                temp = document.getElementById (id + "_ratedMechanicalPower").value; if ("" !== temp) obj["ratedMechanicalPower"] = temp;
-                temp = document.getElementById (id + "_reversible").checked; if (temp) obj["reversible"] = true;
                 temp = document.getElementById (id + "_xs").value; if ("" !== temp) obj["xs"] = temp;
+                temp = AsynchronousMachineKind[document.getElementById (id + "_asynchronousMachineType").value]; if (temp) obj["asynchronousMachineType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#AsynchronousMachineKind." + temp; else delete obj["asynchronousMachineType"];
                 temp = document.getElementById (id + "_AsynchronousMachineDynamics").value; if ("" !== temp) obj["AsynchronousMachineDynamics"] = temp;
 
                 return (obj);
@@ -9976,7 +10275,7 @@ define
 
                 obj = obj || { id: id, cls: "PetersenCoil" };
                 super.submit (id, obj);
-                temp = PetersenCoilModeKind[document.getElementById (id + "_mode").value]; if (temp) obj["mode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PetersenCoilModeKind." + temp; else delete obj["mode"];
+                temp = PetersenCoilModeKind[document.getElementById (id + "_mode").value]; if (temp) obj["mode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PetersenCoilModeKind." + temp; else delete obj["mode"];
                 temp = document.getElementById (id + "_nominalU").value; if ("" !== temp) obj["nominalU"] = temp;
                 temp = document.getElementById (id + "_offsetCurrent").value; if ("" !== temp) obj["offsetCurrent"] = temp;
                 temp = document.getElementById (id + "_positionCurrent").value; if ("" !== temp) obj["positionCurrent"] = temp;
@@ -11036,6 +11335,101 @@ define
         }
 
         /**
+         * A circuit breaking device including disconnecting function, eliminating the need for separate disconnectors.
+         *
+         */
+        class DisconnectingCircuitBreaker extends Breaker
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.DisconnectingCircuitBreaker;
+                if (null == bucket)
+                   cim_data.DisconnectingCircuitBreaker = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.DisconnectingCircuitBreaker[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Breaker.prototype.parse.call (this, context, sub);
+                obj.cls = "DisconnectingCircuitBreaker";
+                let bucket = context.parsed.DisconnectingCircuitBreaker;
+                if (null == bucket)
+                   context.parsed.DisconnectingCircuitBreaker = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Breaker.prototype.export.call (this, obj, false);
+
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DisconnectingCircuitBreaker_collapse" aria-expanded="true" aria-controls="DisconnectingCircuitBreaker_collapse" style="margin-left: 10px;">DisconnectingCircuitBreaker</a></legend>
+                    <div id="DisconnectingCircuitBreaker_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Breaker.prototype.template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DisconnectingCircuitBreaker_collapse" aria-expanded="true" aria-controls="{{id}}_DisconnectingCircuitBreaker_collapse" style="margin-left: 10px;">DisconnectingCircuitBreaker</a></legend>
+                    <div id="{{id}}_DisconnectingCircuitBreaker_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Breaker.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "DisconnectingCircuitBreaker" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+        }
+
+        /**
          * A point where one or more conducting equipments are connected with zero resistance.
          *
          */
@@ -11264,6 +11658,7 @@ define
                 RegulatingCondEq: RegulatingCondEq,
                 PerLengthImpedance: PerLengthImpedance,
                 RatioTapChanger: RatioTapChanger,
+                WireSegmentPhase: WireSegmentPhase,
                 LinearShuntCompensator: LinearShuntCompensator,
                 PhaseTapChanger: PhaseTapChanger,
                 Fuse: Fuse,
@@ -11300,6 +11695,7 @@ define
                 TapChanger: TapChanger,
                 Ground: Ground,
                 Clamp: Clamp,
+                WireSegment: WireSegment,
                 SeriesCompensator: SeriesCompensator,
                 PetersenCoilModeKind: PetersenCoilModeKind,
                 Disconnector: Disconnector,
@@ -11315,6 +11711,7 @@ define
                 RegulatingControlModeKind: RegulatingControlModeKind,
                 SwitchSchedule: SwitchSchedule,
                 SynchronousMachineKind: SynchronousMachineKind,
+                DisconnectingCircuitBreaker: DisconnectingCircuitBreaker,
                 TransformerCoreAdmittance: TransformerCoreAdmittance,
                 SVCControlMode: SVCControlMode,
                 RatioTapChangerTable: RatioTapChangerTable,

@@ -9,7 +9,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * One operational limit type scales values of another operational limit type when under the same operational limit set.
          *

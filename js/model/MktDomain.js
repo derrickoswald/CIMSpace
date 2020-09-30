@@ -7,6 +7,415 @@ define
      */
     function (base)
     {
+        /**
+         * For example:
+         * 0 - Fixed ramp rate independent of rate function unit MW output
+         * 1 - Static ramp rates as a function of unit MW output only
+         *
+         * 2 - Dynamic ramp rates as a function of unit MW output and ramping time
+         *
+         */
+        let RampCurveType =
+        {
+            "_0": "0",
+            "_1": "1",
+            "_2": "2"
+        };
+        Object.freeze (RampCurveType);
+
+        /**
+         * MPM Purpose Flag, for example:
+         *
+         * Nature of threshold data:
+         * 'M' - Mitigation threshold
+         *
+         * 'R' - Reporting threshold
+         *
+         */
+        let PurposeFlagType =
+        {
+            "M": "M",
+            "R": "R"
+        };
+        Object.freeze (PurposeFlagType);
+
+        /**
+         * Congestion Revenue Rights category types.
+         *
+         */
+        let CRRCategoryType =
+        {
+            "NSR": "NSR",
+            "PTP": "PTP"
+        };
+        Object.freeze (CRRCategoryType);
+
+        /**
+         * For example:
+         * NON_RESPONSE
+         * ACCEPT
+         * DECLINE
+         *
+         * PARTIAL
+         *
+         */
+        let DispatchResponseType =
+        {
+            "NON_RESPONSE": "NON_RESPONSE",
+            "ACCEPT": "ACCEPT",
+            "DECLINE": "DECLINE",
+            "PARTIAL": "PARTIAL"
+        };
+        Object.freeze (DispatchResponseType);
+
+        /**
+         * Time of Use used by a CRR definition for specifying the time the CRR spans.
+         *
+         * ON - CRR spans the on peak hours of the day, OFF - CRR spans the off peak hours of the day, 24HR - CRR spans the entire day.
+         *
+         */
+        let TimeOfUse =
+        {
+            "ON": "ON",
+            "OFF": "OFF",
+            "_24HR": "24HR"
+        };
+        Object.freeze (TimeOfUse);
+
+        /**
+         * Valid values, for example:
+         * INS - Instruction from RTM
+         *
+         * ACT - Actual instruction after the fact
+         *
+         */
+        let MQSInstructionSource =
+        {
+            "INS": "INS",
+            "ACT": "ACT"
+        };
+        Object.freeze (MQSInstructionSource);
+
+        /**
+         * Execution types of Market Runs.
+         *
+         */
+        let ExecutionType =
+        {
+            "DA": "DA",
+            "HASP": "HASP",
+            "RTPD": "RTPD",
+            "RTD": "RTD"
+        };
+        Object.freeze (ExecutionType);
+
+        /**
+         * For example:
+         * Initial
+         *
+         * Final
+         *
+         */
+        let BidMitigationType =
+        {
+            "I": "I",
+            "F": "F"
+        };
+        Object.freeze (BidMitigationType);
+
+        /**
+         * Direction of an intertie.
+         *
+         */
+        let InterTieDirection =
+        {
+            "E": "E",
+            "I": "I"
+        };
+        Object.freeze (InterTieDirection);
+
+        /**
+         * Commitment instruction types.
+         *
+         */
+        let AutomaticDispInstTypeCommitment =
+        {
+            "START_UP": "START_UP",
+            "SHUT_DOWN": "SHUT_DOWN",
+            "DR_DEPLOY": "DR_DEPLOY",
+            "DR_RELEASE": "DR_RELEASE",
+            "DR_ADJUSTMENT": "DR_ADJUSTMENT"
+        };
+        Object.freeze (AutomaticDispInstTypeCommitment);
+
+        /**
+         * For example:
+         * Asset Owner Sink designator for use by CRR
+         * Asset Owner Source designator for use by CRR
+         * Reliability Must Run
+         * Scheduling Coordinator
+         *
+         * Load Serving Entity
+         *
+         */
+        let ResourceAssnType =
+        {
+            "CSNK": "CSNK",
+            "CSRC": "CSRC",
+            "RMR": "RMR",
+            "SC": "SC",
+            "LSE": "LSE"
+        };
+        Object.freeze (ResourceAssnType);
+
+        /**
+         * To indicate a check out type such as adjusted capacity or dispatch capacity.
+         *
+         */
+        let CheckOutType =
+        {
+            "PRE_HOUR": "PRE_HOUR",
+            "PRE_SCHEDULE": "PRE_SCHEDULE",
+            "AFTER_THE_FACT": "AFTER_THE_FACT"
+        };
+        Object.freeze (CheckOutType);
+
+        /**
+         * ON
+         *
+         * OFF
+         *
+         */
+        let OnOff =
+        {
+            "ON": "ON",
+            "OFF": "OFF"
+        };
+        Object.freeze (OnOff);
+
+        /**
+         * Binding constraint results limit type, For example:
+         * MAXIMUM
+         *
+         * MINIMUM
+         *
+         */
+        let ConstraintLimitType =
+        {
+            "MAXIMUM": "MAXIMUM",
+            "MINIMUM": "MINIMUM"
+        };
+        Object.freeze (ConstraintLimitType);
+
+        /**
+         * Indication of which type of self schedule is being referenced.
+         *
+         */
+        let SelfSchedReferenceType =
+        {
+            "ETC": "ETC",
+            "TOR": "TOR"
+        };
+        Object.freeze (SelfSchedReferenceType);
+
+        /**
+         * Market type.
+         *
+         */
+        let MarketType =
+        {
+            "DAM": "DAM",
+            "RTM": "RTM",
+            "HAM": "HAM",
+            "RUC": "RUC"
+        };
+        Object.freeze (MarketType);
+
+        /**
+         * Automatic Dispatch mode.
+         *
+         */
+        let AutomaticDispatchMode =
+        {
+            "INTERVAL": "INTERVAL",
+            "CONTINGENCY": "CONTINGENCY",
+            "MANUAL": "MANUAL"
+        };
+        Object.freeze (AutomaticDispatchMode);
+
+        /**
+         * For example:
+         * WHOLESALE
+         * RETAIL
+         *
+         * BOTH
+         *
+         */
+        let EnergyPriceIndexType =
+        {
+            "WHOLESALE": "WHOLESALE",
+            "RETAIL": "RETAIL",
+            "BOTH": "BOTH"
+        };
+        Object.freeze (EnergyPriceIndexType);
+
+        /**
+         * Value of this enumeration for different prices include "total" for the complete/full/all-in price, "congestion" for the congestion cost associated with the total price, the "loss" for the loss price associated with the total price, "capacity" for prices related to installed or reserved capacity, "mileage" for use-based accounting, "system" for system-wide/copper-plate prices, and "delivery" for distribution-based prices.
+         *
+         */
+        let PriceTypeKind =
+        {
+            "capacity": "capacity",
+            "congestion": "congestion",
+            "delivery": "delivery",
+            "loss": "loss",
+            "mileage": "mileage",
+            "system": "system",
+            "total": "total"
+        };
+        Object.freeze (PriceTypeKind);
+
+        /**
+         * Bid self schedule type has two types as the required output of requirements and qualified pre-dispatch.
+         *
+         */
+        let BidTypeRMR =
+        {
+            "REQUIREMENTS": "REQUIREMENTS",
+            "QUALIFIED_PREDISPATCH": "QUALIFIED_PREDISPATCH"
+        };
+        Object.freeze (BidTypeRMR);
+
+        /**
+         * Unit regulation kind.
+         *
+         */
+        let UnitRegulationKind =
+        {
+            "_0": "0",
+            "_1": "1",
+            "_2": "2"
+        };
+        Object.freeze (UnitRegulationKind);
+
+        /**
+         * Ramp rate condition.
+         *
+         */
+        let RampRateCondition =
+        {
+            "WORST": "WORST",
+            "BEST": "BEST",
+            "NORMAL": "NORMAL",
+            "NA": "NA"
+        };
+        Object.freeze (RampRateCondition);
+
+        /**
+         * Transmission Contract Right type -for example:
+         *
+         * individual or chain of contract rights
+         *
+         */
+        let TRType =
+        {
+            "CHAIN": "CHAIN",
+            "INDIVIDUAL": "INDIVIDUAL"
+        };
+        Object.freeze (TRType);
+
+        /**
+         * Market power mitigation test method type.
+         *
+         * Tests with the normal (default) thresholds or tests with the alternate thresholds.
+         *
+         */
+        let MPMTestMethodType =
+        {
+            "NORMAL": "NORMAL",
+            "ALTERNATE": "ALTERNATE"
+        };
+        Object.freeze (MPMTestMethodType);
+
+        /**
+         * Defines the state of a transaction.
+         *
+         */
+        let EnergyTransactionType =
+        {
+            "approve": "approve",
+            "deny": "deny",
+            "study": "study"
+        };
+        Object.freeze (EnergyTransactionType);
+
+        /**
+         * Market event status types.
+         *
+         */
+        let MarketEventStatusKind =
+        {
+            "active": "active",
+            "cancelled": "cancelled",
+            "completed": "completed",
+            "planned": "planned"
+        };
+        Object.freeze (MarketEventStatusKind);
+
+        /**
+         * For example:
+         * Bio Gas (Landfill, Sewage, Digester, etc.)
+         * Biomass
+         * Coal
+         * DIST
+         * Natural Gas
+         * Geothermal
+         * HRCV
+         * None
+         * Nuclear
+         * Oil
+         * Other
+         * Solar
+         * Waste to Energy
+         * Water
+         *
+         * Wind
+         *
+         */
+        let FuelSource =
+        {
+            "NG": "NG",
+            "NNG": "NNG",
+            "BGAS": "BGAS",
+            "BIOM": "BIOM",
+            "COAL": "COAL",
+            "DIST": "DIST",
+            "GAS": "GAS",
+            "GEOT": "GEOT",
+            "HRCV": "HRCV",
+            "NONE": "NONE",
+            "NUCL": "NUCL",
+            "OIL": "OIL",
+            "OTHR": "OTHR",
+            "SOLR": "SOLR",
+            "WAST": "WAST",
+            "WATR": "WATR",
+            "WIND": "WIND"
+        };
+        Object.freeze (FuelSource);
+
+        /**
+         * Market results binding constraint types.
+         *
+         */
+        let ResultsConstraintType =
+        {
+            "FG_act": "FG_act",
+            "Contingency": "Contingency",
+            "Interface": "Interface",
+            "Actual": "Actual"
+        };
+        Object.freeze (ResultsConstraintType);
 
         /**
          * Aggregated Nodes Types for example:
@@ -64,87 +473,27 @@ define
         Object.freeze (AnodeType);
 
         /**
-         * ON
-         *
-         * OFF
+         * Constraint Ramp type.
          *
          */
-        let OnOff =
+        let ConstraintRampType =
         {
-            "ON": "ON",
-            "OFF": "OFF"
+            "SLOW": "SLOW",
+            "FAST": "FAST"
         };
-        Object.freeze (OnOff);
+        Object.freeze (ConstraintRampType);
 
         /**
-         * For example:
-         * Bio Gas (Landfill, Sewage, Digester, etc.)
-         * Biomass
-         * Coal
-         * DIST
-         * Natural Gas
-         * Geothermal
-         * HRCV
-         * None
-         * Nuclear
-         * Oil
-         * Other
-         * Solar
-         * Waste to Energy
-         * Water
-         *
-         * Wind
+         * Kind of invoice line item.
          *
          */
-        let FuelSource =
+        let MktInvoiceLineItemKind =
         {
-            "NG": "NG",
-            "NNG": "NNG",
-            "BGAS": "BGAS",
-            "BIOM": "BIOM",
-            "COAL": "COAL",
-            "DIST": "DIST",
-            "GAS": "GAS",
-            "GEOT": "GEOT",
-            "HRCV": "HRCV",
-            "NONE": "NONE",
-            "NUCL": "NUCL",
-            "OIL": "OIL",
-            "OTHR": "OTHR",
-            "SOLR": "SOLR",
-            "WAST": "WAST",
-            "WATR": "WATR",
-            "WIND": "WIND"
-        };
-        Object.freeze (FuelSource);
-
-        /**
-         * Indicates whether the unit is RMR and it's condition type, for example:
-         * N' - not an RMR unit
-         * '1' - RMR Condition 1 unit
-         *
-         * '2' - RMR Condition 2 unit
-         *
-         */
-        let FlagTypeRMR =
-        {
-            "N": "N",
-            "_1": "1",
-            "_2": "2"
-        };
-        Object.freeze (FlagTypeRMR);
-
-        /**
-         * Kind of bill media.
-         *
-         */
-        let MktBillMediaKind =
-        {
-            "paper": "paper",
-            "electronic": "electronic",
+            "initial": "initial",
+            "recalculation": "recalculation",
             "other": "other"
         };
-        Object.freeze (MktBillMediaKind);
+        Object.freeze (MktInvoiceLineItemKind);
 
         /**
          * Resource capacity type.
@@ -162,21 +511,6 @@ define
             "RMR": "RMR"
         };
         Object.freeze (ResourceCapacityType);
-
-        /**
-         * Ramp rate curve type.
-         *
-         */
-        let RampRateType =
-        {
-            "OP": "OP",
-            "REG": "REG",
-            "OP_RES": "OP_RES",
-            "LD_DROP": "LD_DROP",
-            "LD_PICKUP": "LD_PICKUP",
-            "INTERTIE": "INTERTIE"
-        };
-        Object.freeze (RampRateType);
 
         /**
          * Combined Cycle
@@ -208,85 +542,15 @@ define
         Object.freeze (UnitType);
 
         /**
-         * The basis used to calculate the bid price curve for an energy default bid.
+         * Specifies the direction of energy flow in the flowgate.
          *
          */
-        let BidCalculationBasis =
+        let FlowDirectionType =
         {
-            "LMP_BASED": "LMP_BASED",
-            "COST_BASED": "COST_BASED",
-            "NEGOTIATED": "NEGOTIATED"
+            "Forward": "Forward",
+            "Reverse": "Reverse"
         };
-        Object.freeze (BidCalculationBasis);
-
-        /**
-         * For example:
-         * SELF - Self commitment
-         * ISO - New commitment for this market period
-         *
-         * UC - Existing commitment that was a hold over from a previous market
-         *
-         */
-        let CommitmentType =
-        {
-            "SELF": "SELF",
-            "ISO": "ISO",
-            "UC": "UC"
-        };
-        Object.freeze (CommitmentType);
-
-        /**
-         * Constraint Ramp type.
-         *
-         */
-        let ConstraintRampType =
-        {
-            "SLOW": "SLOW",
-            "FAST": "FAST"
-        };
-        Object.freeze (ConstraintRampType);
-
-        /**
-         * Market power mitigation test method type.
-         *
-         * Tests with the normal (default) thresholds or tests with the alternate thresholds.
-         *
-         */
-        let MPMTestMethodType =
-        {
-            "NORMAL": "NORMAL",
-            "ALTERNATE": "ALTERNATE"
-        };
-        Object.freeze (MPMTestMethodType);
-
-        /**
-         * Transmission Contract Right type -for example:
-         *
-         * individual or chain of contract rights
-         *
-         */
-        let TRType =
-        {
-            "CHAIN": "CHAIN",
-            "INDIVIDUAL": "INDIVIDUAL"
-        };
-        Object.freeze (TRType);
-
-        /**
-         * MPM Purpose Flag, for example:
-         * 
-         * Nature of threshold data:
-         * 'M' - Mitigation threshold
-         *
-         * 'R' - Reporting threshold
-         *
-         */
-        let PurposeFlagType =
-        {
-            "M": "M",
-            "R": "R"
-        };
-        Object.freeze (PurposeFlagType);
+        Object.freeze (FlowDirectionType);
 
         /**
          * Energy product type.
@@ -300,92 +564,6 @@ define
             "WHL": "WHL"
         };
         Object.freeze (EnergyProductType);
-
-        /**
-         * Market product self schedule bid types.
-         *
-         */
-        let MarketProductSelfSchedType =
-        {
-            "ETC": "ETC",
-            "TOR": "TOR",
-            "RMR": "RMR",
-            "RGMR": "RGMR",
-            "RMT": "RMT",
-            "PT": "PT",
-            "LPT": "LPT",
-            "SP": "SP",
-            "RA": "RA"
-        };
-        Object.freeze (MarketProductSelfSchedType);
-
-        /**
-         * Specifies the direction of energy flow in the flowgate.
-         *
-         */
-        let FlowDirectionType =
-        {
-            "Forward": "Forward",
-            "Reverse": "Reverse"
-        };
-        Object.freeze (FlowDirectionType);
-
-        /**
-         * Direction of an intertie.
-         *
-         */
-        let InterTieDirection =
-        {
-            "E": "E",
-            "I": "I"
-        };
-        Object.freeze (InterTieDirection);
-
-        /**
-         * Role types an organisation can play with respect to a congestion revenue right.
-         *
-         */
-        let CRRRoleType =
-        {
-            "SELLER": "SELLER",
-            "BUYER": "BUYER",
-            "OWNER": "OWNER"
-        };
-        Object.freeze (CRRRoleType);
-
-        /**
-         * Types used for resource certification.
-         *
-         */
-        let ResourceCertificationKind =
-        {
-            "RegulationUp": "RegulationUp",
-            "RegulationDown": "RegulationDown",
-            "SpinningReserve": "SpinningReserve",
-            "NonSpinningReserve": "NonSpinningReserve",
-            "ReliabilityMustRun": "ReliabilityMustRun",
-            "BLACKSTART": "BLACKSTART",
-            "DemandSideResponse": "DemandSideResponse",
-            "SynchronousCondenser": "SynchronousCondenser",
-            "IntermittentResource": "IntermittentResource",
-            "ReliabilityUnitCommitment": "ReliabilityUnitCommitment",
-            "Energy": "Energy",
-            "Capacity": "Capacity"
-        };
-        Object.freeze (ResourceCertificationKind);
-
-        /**
-         * Execution types of Market Runs.
-         *
-         */
-        let ExecutionType =
-        {
-            "DA": "DA",
-            "HASP": "HASP",
-            "RTPD": "RTPD",
-            "RTD": "RTD"
-        };
-        Object.freeze (ExecutionType);
 
         /**
          * For example:
@@ -406,35 +584,47 @@ define
         Object.freeze (MPMTestOutcome);
 
         /**
-         * Kind of Market account.
+         * Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').
          *
          */
-        let MktAccountKind =
+        let CRRSegmentType =
         {
-            "normal": "normal",
-            "reversal": "reversal",
-            "statistical": "statistical",
-            "estimate": "estimate"
+            "AUC": "AUC",
+            "CAP": "CAP",
+            "CF": "CF",
+            "CVR": "CVR",
+            "ETC": "ETC",
+            "LSE": "LSE",
+            "MT": "MT",
+            "TOR": "TOR"
         };
-        Object.freeze (MktAccountKind);
+        Object.freeze (CRRSegmentType);
 
         /**
-         * For example:
-         * 'Y' - Participates in both LMPM and SMPM
-         * 'N' - Not included in LMP price measures
-         * 'S' - Participates in SMPM price measures
-         *
-         * 'L' - Participates in LMPM price measures
+         * Ramp rate curve type.
          *
          */
-        let ParticipationCategoryMPM =
+        let RampRateType =
         {
-            "Y": "Y",
-            "N": "N",
-            "S": "S",
-            "L": "L"
+            "OP": "OP",
+            "REG": "REG",
+            "OP_RES": "OP_RES",
+            "LD_DROP": "LD_DROP",
+            "LD_PICKUP": "LD_PICKUP",
+            "INTERTIE": "INTERTIE"
         };
-        Object.freeze (ParticipationCategoryMPM);
+        Object.freeze (RampRateType);
+
+        /**
+         * Circuit Breaker Status (closed or open) of the circuit breaker.
+         *
+         */
+        let SwitchStatusType =
+        {
+            "Closed": "Closed",
+            "Open": "Open"
+        };
+        Object.freeze (SwitchStatusType);
 
         /**
          * For example:
@@ -453,67 +643,22 @@ define
         Object.freeze (BidType);
 
         /**
-         * Aggregate Node Types for example:
-         * AG -  Aggregated Generation
-         * CPZ -  Custom Price Zone
-         * DPZ -  Default Price Zone
-         * LAP - Load Aggregation Point
-         * TH -  Trading  Hub
-         * SYS - System Zone
-         * CA - Control Area
-         * 
-         * GA - generic aggregation
-         * EHV - 500 kV
-         * GH - generic hub
-         * ZN - zone
-         * INT - Interface
-         *
-         * BUS - Bus
+         * Defines the individual passes that produce results per execution type/market type.
          *
          */
-        let ApnodeType =
+        let PassIndicatorType =
         {
-            "AG": "AG",
-            "CPZ": "CPZ",
-            "DPZ": "DPZ",
-            "TH": "TH",
-            "SYS": "SYS",
-            "CA": "CA",
-            "DCA": "DCA",
-            "GA": "GA",
-            "GH": "GH",
-            "EHV": "EHV",
-            "ZN": "ZN",
-            "INT": "INT",
-            "BUS": "BUS"
+            "MPM_1": "MPM-1",
+            "MPM_2": "MPM-2",
+            "MPM_3": "MPM-3",
+            "MPM_4": "MPM-4",
+            "RUC": "RUC",
+            "RTPD": "RTPD",
+            "RTED": "RTED",
+            "HA_SCUC": "HA-SCUC",
+            "DA": "DA"
         };
-        Object.freeze (ApnodeType);
-
-        /**
-         * Ramp rate condition.
-         *
-         */
-        let RampRateCondition =
-        {
-            "WORST": "WORST",
-            "BEST": "BEST",
-            "NORMAL": "NORMAL",
-            "NA": "NA"
-        };
-        Object.freeze (RampRateCondition);
-
-        /**
-         * Market event status types.
-         *
-         */
-        let MarketEventStatusKind =
-        {
-            "active": "active",
-            "cancelled": "cancelled",
-            "completed": "completed",
-            "planned": "planned"
-        };
-        Object.freeze (MarketEventStatusKind);
+        Object.freeze (PassIndicatorType);
 
         /**
          * Transmission Contract Type, For example:
@@ -542,175 +687,8 @@ define
         Object.freeze (ContractType);
 
         /**
-         * Circuit Breaker Status (closed or open) of the circuit breaker.
-         *
-         */
-        let SwitchStatusType =
-        {
-            "Closed": "Closed",
-            "Open": "Open"
-        };
-        Object.freeze (SwitchStatusType);
-
-        /**
-         * Automatic Dispatch mode.
-         *
-         */
-        let AutomaticDispatchMode =
-        {
-            "INTERVAL": "INTERVAL",
-            "CONTINGENCY": "CONTINGENCY",
-            "MANUAL": "MANUAL"
-        };
-        Object.freeze (AutomaticDispatchMode);
-
-        /**
-         * Indication of which type of self schedule is being referenced.
-         *
-         */
-        let SelfSchedReferenceType =
-        {
-            "ETC": "ETC",
-            "TOR": "TOR"
-        };
-        Object.freeze (SelfSchedReferenceType);
-
-        /**
-         * Congestion Revenue Right hedge type.
-         *
-         */
-        let CRRHedgeType =
-        {
-            "OBLIGATION": "OBLIGATION",
-            "OPTION": "OPTION"
-        };
-        Object.freeze (CRRHedgeType);
-
-        /**
-         * Unit regulation kind.
-         *
-         */
-        let UnitRegulationKind =
-        {
-            "_0": "0",
-            "_1": "1",
-            "_2": "2"
-        };
-        Object.freeze (UnitRegulationKind);
-
-        /**
-         * For example:
-         * WHOLESALE
-         * RETAIL
-         *
-         * BOTH
-         *
-         */
-        let EnergyPriceIndexType =
-        {
-            "WHOLESALE": "WHOLESALE",
-            "RETAIL": "RETAIL",
-            "BOTH": "BOTH"
-        };
-        Object.freeze (EnergyPriceIndexType);
-
-        /**
-         * Bid self schedule type has two types as the required output of requirements and qualified pre-dispatch.
-         *
-         */
-        let BidTypeRMR =
-        {
-            "REQUIREMENTS": "REQUIREMENTS",
-            "QUALIFIED_PREDISPATCH": "QUALIFIED_PREDISPATCH"
-        };
-        Object.freeze (BidTypeRMR);
-
-        /**
-         * Market type.
-         *
-         */
-        let MarketType =
-        {
-            "DAM": "DAM",
-            "RTM": "RTM",
-            "HAM": "HAM",
-            "RUC": "RUC"
-        };
-        Object.freeze (MarketType);
-
-        /**
-         * For example:
-         * Initial
-         *
-         * Final
-         *
-         */
-        let BidMitigationType =
-        {
-            "I": "I",
-            "F": "F"
-        };
-        Object.freeze (BidMitigationType);
-
-        /**
-         * Trade type.
-         *
-         */
-        let TradeType =
-        {
-            "IST": "IST",
-            "AST": "AST",
-            "UCT": "UCT"
-        };
-        Object.freeze (TradeType);
-
-        /**
-         * Defines the individual passes that produce results per execution type/market type.
-         *
-         */
-        let PassIndicatorType =
-        {
-            "MPM_1": "MPM-1",
-            "MPM_2": "MPM-2",
-            "MPM_3": "MPM-3",
-            "MPM_4": "MPM-4",
-            "RUC": "RUC",
-            "RTPD": "RTPD",
-            "RTED": "RTED",
-            "HA_SCUC": "HA-SCUC",
-            "DA": "DA"
-        };
-        Object.freeze (PassIndicatorType);
-
-        /**
-         * Defines the state of a transaction.
-         *
-         */
-        let EnergyTransactionType =
-        {
-            "approve": "approve",
-            "deny": "deny",
-            "study": "study"
-        };
-        Object.freeze (EnergyTransactionType);
-
-        /**
-         * Commitment instruction types.
-         *
-         */
-        let AutomaticDispInstTypeCommitment =
-        {
-            "START_UP": "START_UP",
-            "SHUT_DOWN": "SHUT_DOWN",
-            "DR_DEPLOY": "DR_DEPLOY",
-            "DR_RELEASE": "DR_RELEASE",
-            "DR_ADJUSTMENT": "DR_ADJUSTMENT"
-        };
-        Object.freeze (AutomaticDispInstTypeCommitment);
-
-        /**
          * Types of resource registration status, for example:
-         * 
+         *
          * Active
          * Mothballed
          * Planned
@@ -728,276 +706,116 @@ define
         Object.freeze (ResourceRegistrationStatus);
 
         /**
-         * Valid values, for example:
-         * INS - Instruction from RTM
-         *
-         * ACT - Actual instruction after the fact
+         * Market product self schedule bid types.
          *
          */
-        let MQSInstructionSource =
-        {
-            "INS": "INS",
-            "ACT": "ACT"
-        };
-        Object.freeze (MQSInstructionSource);
-
-        /**
-         * Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').
-         *
-         */
-        let CRRSegmentType =
-        {
-            "AUC": "AUC",
-            "CAP": "CAP",
-            "CF": "CF",
-            "CVR": "CVR",
-            "ETC": "ETC",
-            "LSE": "LSE",
-            "MT": "MT",
-            "TOR": "TOR"
-        };
-        Object.freeze (CRRSegmentType);
-
-        /**
-         * Action type associated with an ActionRequest against a ParticipantInterfaces::Trade.
-         *
-         */
-        let ActionType =
-        {
-            "CANCEL": "CANCEL"
-        };
-        Object.freeze (ActionType);
-
-        /**
-         * For example:
-         *
-         * Operating Reserve, Regulation, Contingency
-         *
-         */
-        let ReserveRequirementType =
-        {
-            "OPRSV": "OPRSV",
-            "CONT": "CONT",
-            "REG": "REG"
-        };
-        Object.freeze (ReserveRequirementType);
-
-        /**
-         * Load forecast zone types.
-         *
-         */
-        let LoadForecastType =
-        {
-            "LFZ": "LFZ",
-            "LZMS": "LZMS"
-        };
-        Object.freeze (LoadForecastType);
-
-        /**
-         * For example:
-         * NON_RESPONSE
-         * ACCEPT
-         * DECLINE
-         *
-         * PARTIAL
-         *
-         */
-        let DispatchResponseType =
-        {
-            "NON_RESPONSE": "NON_RESPONSE",
-            "ACCEPT": "ACCEPT",
-            "DECLINE": "DECLINE",
-            "PARTIAL": "PARTIAL"
-        };
-        Object.freeze (DispatchResponseType);
-
-        /**
-         * Area's present control mode.
-         *
-         */
-        let AreaControlMode =
-        {
-            "CF": "CF",
-            "CTL": "CTL",
-            "TLB": "TLB",
-            "OFF": "OFF"
-        };
-        Object.freeze (AreaControlMode);
-
-        /**
-         * Locational AS Flags indicating whether the Upper or Lower Bound limit of the AS regional procurement is binding.
-         *
-         */
-        let ResourceLimitIndicator =
-        {
-            "UPPER": "UPPER",
-            "LOWER": "LOWER"
-        };
-        Object.freeze (ResourceLimitIndicator);
-
-        /**
-         * For example:
-         * ADD - add
-         *
-         * CHG - change
-         *
-         */
-        let MQSCHGType =
-        {
-            "ADD": "ADD",
-            "CHG": "CHG"
-        };
-        Object.freeze (MQSCHGType);
-
-        /**
-         * For example:
-         * 0 - Fixed ramp rate independent of rate function unit MW output
-         * 1 - Static ramp rates as a function of unit MW output only
-         *
-         * 2 - Dynamic ramp rates as a function of unit MW output and ramping time
-         *
-         */
-        let RampCurveType =
-        {
-            "_2": "2",
-            "_0": "0",
-            "_1": "1"
-        };
-        Object.freeze (RampCurveType);
-
-        /**
-         * Self schedule breakdown type.
-         *
-         */
-        let SelfScheduleBreakdownType =
+        let MarketProductSelfSchedType =
         {
             "ETC": "ETC",
             "TOR": "TOR",
-            "LPT": "LPT"
-        };
-        Object.freeze (SelfScheduleBreakdownType);
-
-        /**
-         * For example:
-         * Asset Owner Sink designator for use by CRR
-         * Asset Owner Source designator for use by CRR
-         * Reliability Must Run
-         * Scheduling Coordinator
-         *
-         * Load Serving Entity
-         *
-         */
-        let ResourceAssnType =
-        {
-            "CSNK": "CSNK",
-            "CSRC": "CSRC",
             "RMR": "RMR",
-            "SC": "SC",
-            "LSE": "LSE"
+            "RGMR": "RGMR",
+            "RMT": "RMT",
+            "PT": "PT",
+            "LPT": "LPT",
+            "SP": "SP",
+            "RA": "RA"
         };
-        Object.freeze (ResourceAssnType);
+        Object.freeze (MarketProductSelfSchedType);
 
         /**
-         * Status of equipment.
+         * Aggregate Node Types for example:
+         * AG -  Aggregated Generation
+         * CPZ -  Custom Price Zone
+         * DPZ -  Default Price Zone
+         * LAP - Load Aggregation Point
+         * TH -  Trading  Hub
+         * SYS - System Zone
+         * CA - Control Area
+         *
+         * GA - generic aggregation
+         * EHV - 500 kV
+         * GH - generic hub
+         * ZN - zone
+         * INT - Interface
+         *
+         * BUS - Bus
          *
          */
-        let EquipmentStatusType =
+        let ApnodeType =
         {
-            "In": "In",
-            "Out": "Out"
+            "AG": "AG",
+            "CPZ": "CPZ",
+            "DPZ": "DPZ",
+            "TH": "TH",
+            "SYS": "SYS",
+            "CA": "CA",
+            "DCA": "DCA",
+            "GA": "GA",
+            "GH": "GH",
+            "EHV": "EHV",
+            "ZN": "ZN",
+            "INT": "INT",
+            "BUS": "BUS"
         };
-        Object.freeze (EquipmentStatusType);
+        Object.freeze (ApnodeType);
 
         /**
-         * Market results binding constraint types.
+         * Types used for resource certification.
          *
          */
-        let ResultsConstraintType =
+        let ResourceCertificationKind =
         {
-            "FG_act": "FG_act",
-            "Contingency": "Contingency",
-            "Interface": "Interface",
-            "Actual": "Actual"
+            "RegulationUp": "RegulationUp",
+            "RegulationDown": "RegulationDown",
+            "SpinningReserve": "SpinningReserve",
+            "NonSpinningReserve": "NonSpinningReserve",
+            "ReliabilityMustRun": "ReliabilityMustRun",
+            "BLACKSTART": "BLACKSTART",
+            "DemandSideResponse": "DemandSideResponse",
+            "SynchronousCondenser": "SynchronousCondenser",
+            "IntermittentResource": "IntermittentResource",
+            "ReliabilityUnitCommitment": "ReliabilityUnitCommitment",
+            "Energy": "Energy",
+            "Capacity": "Capacity"
         };
-        Object.freeze (ResultsConstraintType);
+        Object.freeze (ResourceCertificationKind);
 
         /**
-         * Kind of invoice line item.
+         * Kind of bill media.
          *
          */
-        let MktInvoiceLineItemKind =
+        let MktBillMediaKind =
         {
-            "initial": "initial",
-            "recalculation": "recalculation",
+            "paper": "paper",
+            "electronic": "electronic",
             "other": "other"
         };
-        Object.freeze (MktInvoiceLineItemKind);
+        Object.freeze (MktBillMediaKind);
 
         /**
-         * Congestion Revenue Rights category types.
+         * Role types an organisation can play with respect to a congestion revenue right.
          *
          */
-        let CRRCategoryType =
+        let CRRRoleType =
         {
-            "NSR": "NSR",
-            "PTP": "PTP"
+            "SELLER": "SELLER",
+            "BUYER": "BUYER",
+            "OWNER": "OWNER"
         };
-        Object.freeze (CRRCategoryType);
+        Object.freeze (CRRRoleType);
 
         /**
-         * To indicate a check out type such as adjusted capacity or dispatch capacity.
+         * The basis used to calculate the bid price curve for an energy default bid.
          *
          */
-        let CheckOutType =
+        let BidCalculationBasis =
         {
-            "PRE_HOUR": "PRE_HOUR",
-            "PRE_SCHEDULE": "PRE_SCHEDULE",
-            "AFTER_THE_FACT": "AFTER_THE_FACT"
+            "LMP_BASED": "LMP_BASED",
+            "COST_BASED": "COST_BASED",
+            "NEGOTIATED": "NEGOTIATED"
         };
-        Object.freeze (CheckOutType);
-
-        /**
-         * Value of this enumeration for different prices include "total" for the complete/full/all-in price, "congestion" for the congestion cost associated with the total price, the "loss" for the loss price associated with the total price, "capacity" for prices related to installed or reserved capacity, "mileage" for use-based accounting, "system" for system-wide/copper-plate prices, and "delivery" for distribution-based prices.
-         *
-         */
-        let PriceTypeKind =
-        {
-            "capacity": "capacity",
-            "congestion": "congestion",
-            "delivery": "delivery",
-            "loss": "loss",
-            "mileage": "mileage",
-            "system": "system",
-            "total": "total"
-        };
-        Object.freeze (PriceTypeKind);
-
-        /**
-         * For example:
-         * Bid Cost
-         * Proxy Cost
-         *
-         * Registered Cost
-         *
-         */
-        let CostBasis =
-        {
-            "BIDC": "BIDC",
-            "PRXC": "PRXC",
-            "REGC": "REGC"
-        };
-        Object.freeze (CostBasis);
-
-        /**
-         * Used as a flag set to Yes or No.
-         *
-         */
-        let YesNo =
-        {
-            "YES": "YES",
-            "NO": "NO"
-        };
-        Object.freeze (YesNo);
+        Object.freeze (BidCalculationBasis);
 
         /**
          * Limit type specified for AnalogLimits.
@@ -1015,7 +833,7 @@ define
 
         /**
          * Market power mitigation test identifier type, for example:
-         * 
+         *
          * 1 - Global Price Test
          * 2 - Global Conduct Test
          * 3 - Global Impact Test
@@ -1037,32 +855,89 @@ define
         Object.freeze (MPMTestIdentifierType);
 
         /**
-         * Binding constraint results limit type, For example:
-         * MAXIMUM
-         *
-         * MINIMUM
+         * Congestion Revenue Right hedge type.
          *
          */
-        let ConstraintLimitType =
+        let CRRHedgeType =
         {
-            "MAXIMUM": "MAXIMUM",
-            "MINIMUM": "MINIMUM"
+            "OBLIGATION": "OBLIGATION",
+            "OPTION": "OPTION"
         };
-        Object.freeze (ConstraintLimitType);
+        Object.freeze (CRRHedgeType);
 
         /**
-         * Time of Use used by a CRR definition for specifying the time the CRR spans.
+         * For example:
+         * ADD - add
          *
-         * ON - CRR spans the on peak hours of the day, OFF - CRR spans the off peak hours of the day, 24HR - CRR spans the entire day.
+         * CHG - change
          *
          */
-        let TimeOfUse =
+        let MQSCHGType =
         {
-            "ON": "ON",
-            "OFF": "OFF",
-            "_24HR": "24HR"
+            "ADD": "ADD",
+            "CHG": "CHG"
         };
-        Object.freeze (TimeOfUse);
+        Object.freeze (MQSCHGType);
+
+        /**
+         * Indicates whether the unit is RMR and it's condition type, for example:
+         * N' - not an RMR unit
+         * '1' - RMR Condition 1 unit
+         *
+         * '2' - RMR Condition 2 unit
+         *
+         */
+        let FlagTypeRMR =
+        {
+            "N": "N",
+            "_1": "1",
+            "_2": "2"
+        };
+        Object.freeze (FlagTypeRMR);
+
+        /**
+         * Trade type.
+         *
+         */
+        let TradeType =
+        {
+            "IST": "IST",
+            "AST": "AST",
+            "UCT": "UCT"
+        };
+        Object.freeze (TradeType);
+
+        /**
+         * For example:
+         * 'Y' - Participates in both LMPM and SMPM
+         * 'N' - Not included in LMP price measures
+         * 'S' - Participates in SMPM price measures
+         *
+         * 'L' - Participates in LMPM price measures
+         *
+         */
+        let ParticipationCategoryMPM =
+        {
+            "Y": "Y",
+            "N": "N",
+            "S": "S",
+            "L": "L"
+        };
+        Object.freeze (ParticipationCategoryMPM);
+
+        /**
+         * For example:
+         *
+         * Operating Reserve, Regulation, Contingency
+         *
+         */
+        let ReserveRequirementType =
+        {
+            "OPRSV": "OPRSV",
+            "CONT": "CONT",
+            "REG": "REG"
+        };
+        Object.freeze (ReserveRequirementType);
 
         /**
          * For example:
@@ -1087,6 +962,97 @@ define
         Object.freeze (BidMitigationStatus);
 
         /**
+         * Status of equipment.
+         *
+         */
+        let EquipmentStatusType =
+        {
+            "In": "In",
+            "Out": "Out"
+        };
+        Object.freeze (EquipmentStatusType);
+
+        /**
+         * Kind of Market account.
+         *
+         */
+        let MktAccountKind =
+        {
+            "normal": "normal",
+            "reversal": "reversal",
+            "statistical": "statistical",
+            "estimate": "estimate"
+        };
+        Object.freeze (MktAccountKind);
+
+        /**
+         * Used as a flag set to Yes or No.
+         *
+         */
+        let YesNo =
+        {
+            "YES": "YES",
+            "NO": "NO"
+        };
+        Object.freeze (YesNo);
+
+        /**
+         * Locational AS Flags indicating whether the Upper or Lower Bound limit of the AS regional procurement is binding.
+         *
+         */
+        let ResourceLimitIndicator =
+        {
+            "UPPER": "UPPER",
+            "LOWER": "LOWER"
+        };
+        Object.freeze (ResourceLimitIndicator);
+
+        /**
+         * Area's present control mode.
+         *
+         */
+        let AreaControlMode =
+        {
+            "CF": "CF",
+            "CTL": "CTL",
+            "TLB": "TLB",
+            "OFF": "OFF"
+        };
+        Object.freeze (AreaControlMode);
+
+        /**
+         * For example:
+         * Bid Cost
+         * Proxy Cost
+         *
+         * Registered Cost
+         *
+         */
+        let CostBasis =
+        {
+            "BIDC": "BIDC",
+            "PRXC": "PRXC",
+            "REGC": "REGC"
+        };
+        Object.freeze (CostBasis);
+
+        /**
+         * For example:
+         * SELF - Self commitment
+         * ISO - New commitment for this market period
+         *
+         * UC - Existing commitment that was a hold over from a previous market
+         *
+         */
+        let CommitmentType =
+        {
+            "SELF": "SELF",
+            "ISO": "ISO",
+            "UC": "UC"
+        };
+        Object.freeze (CommitmentType);
+
+        /**
          * For example:
          *
          * Energy, Reg Up, Reg Down, Spin Reserve, Nonspin Reserve, RUC, Load Folloing Up, and Load Following Down.
@@ -1105,6 +1071,39 @@ define
             "REG": "REG"
         };
         Object.freeze (MarketProductType);
+
+        /**
+         * Load forecast zone types.
+         *
+         */
+        let LoadForecastType =
+        {
+            "LFZ": "LFZ",
+            "LZMS": "LZMS"
+        };
+        Object.freeze (LoadForecastType);
+
+        /**
+         * Self schedule breakdown type.
+         *
+         */
+        let SelfScheduleBreakdownType =
+        {
+            "ETC": "ETC",
+            "TOR": "TOR",
+            "LPT": "LPT"
+        };
+        Object.freeze (SelfScheduleBreakdownType);
+
+        /**
+         * Action type associated with an ActionRequest against a ParticipantInterfaces::Trade.
+         *
+         */
+        let ActionType =
+        {
+            "CANCEL": "CANCEL"
+        };
+        Object.freeze (ActionType);
 
         return (
             {

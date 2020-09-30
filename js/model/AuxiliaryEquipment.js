@@ -9,7 +9,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * The construction kind of the potential transformer.
          *
@@ -133,101 +132,6 @@ define
                         ]
                     )
                 );
-            }
-        }
-
-        /**
-         * Represents a two terminal and power conducting device of negligible impedance that senses flow through the device.
-         *
-         */
-        class FlowSensor extends Core.ConductingEquipment
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.FlowSensor;
-                if (null == bucket)
-                   cim_data.FlowSensor = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.FlowSensor[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.ConductingEquipment.prototype.parse.call (this, context, sub);
-                obj.cls = "FlowSensor";
-                let bucket = context.parsed.FlowSensor;
-                if (null == bucket)
-                   context.parsed.FlowSensor = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
-
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#FlowSensor_collapse" aria-expanded="true" aria-controls="FlowSensor_collapse" style="margin-left: 10px;">FlowSensor</a></legend>
-                    <div id="FlowSensor_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.ConductingEquipment.prototype.template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_FlowSensor_collapse" aria-expanded="true" aria-controls="{{id}}_FlowSensor_collapse" style="margin-left: 10px;">FlowSensor</a></legend>
-                    <div id="{{id}}_FlowSensor_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.ConductingEquipment.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "FlowSensor" };
-                super.submit (id, obj);
-
-                return (obj);
             }
         }
 
@@ -640,11 +544,11 @@ define
             {
                 let obj = Sensor.prototype.parse.call (this, context, sub);
                 obj.cls = "CurrentTransformer";
-                base.parse_element (/<cim:CurrentTransformer.coreBurden>([\s\S]*?)<\/cim:CurrentTransformer.coreBurden>/g, obj, "coreBurden", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformer.accuracyClass>([\s\S]*?)<\/cim:CurrentTransformer.accuracyClass>/g, obj, "accuracyClass", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformer.accuracyLimit>([\s\S]*?)<\/cim:CurrentTransformer.accuracyLimit>/g, obj, "accuracyLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformer.ctClass>([\s\S]*?)<\/cim:CurrentTransformer.ctClass>/g, obj, "ctClass", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformer.usage>([\s\S]*?)<\/cim:CurrentTransformer.usage>/g, obj, "usage", base.to_string, sub, context);
+                base.parse_element (/<cim:CurrentTransformer.coreBurden>([\s\S]*?)<\/cim:CurrentTransformer.coreBurden>/g, obj, "coreBurden", base.to_string, sub, context);
                 let bucket = context.parsed.CurrentTransformer;
                 if (null == bucket)
                    context.parsed.CurrentTransformer = bucket = {};
@@ -657,11 +561,11 @@ define
             {
                 let fields = Sensor.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CurrentTransformer", "coreBurden", "coreBurden",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformer", "accuracyClass", "accuracyClass",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformer", "accuracyLimit", "accuracyLimit",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformer", "ctClass", "ctClass",  base.from_string, fields);
                 base.export_element (obj, "CurrentTransformer", "usage", "usage",  base.from_string, fields);
+                base.export_element (obj, "CurrentTransformer", "coreBurden", "coreBurden",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -678,11 +582,11 @@ define
                     `
                     + Sensor.prototype.template.call (this) +
                     `
-                    {{#coreBurden}}<div><b>coreBurden</b>: {{coreBurden}}</div>{{/coreBurden}}
                     {{#accuracyClass}}<div><b>accuracyClass</b>: {{accuracyClass}}</div>{{/accuracyClass}}
                     {{#accuracyLimit}}<div><b>accuracyLimit</b>: {{accuracyLimit}}</div>{{/accuracyLimit}}
                     {{#ctClass}}<div><b>ctClass</b>: {{ctClass}}</div>{{/ctClass}}
                     {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
+                    {{#coreBurden}}<div><b>coreBurden</b>: {{coreBurden}}</div>{{/coreBurden}}
                     </div>
                     </fieldset>
 
@@ -710,11 +614,11 @@ define
                     `
                     + Sensor.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreBurden'>coreBurden: </label><div class='col-sm-8'><input id='{{id}}_coreBurden' class='form-control' type='text'{{#coreBurden}} value='{{coreBurden}}'{{/coreBurden}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyLimit'>accuracyLimit: </label><div class='col-sm-8'><input id='{{id}}_accuracyLimit' class='form-control' type='text'{{#accuracyLimit}} value='{{accuracyLimit}}'{{/accuracyLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ctClass'>ctClass: </label><div class='col-sm-8'><input id='{{id}}_ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreBurden'>coreBurden: </label><div class='col-sm-8'><input id='{{id}}_coreBurden' class='form-control' type='text'{{#coreBurden}} value='{{coreBurden}}'{{/coreBurden}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -727,11 +631,11 @@ define
 
                 obj = obj || { id: id, cls: "CurrentTransformer" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_coreBurden").value; if ("" !== temp) obj["coreBurden"] = temp;
                 temp = document.getElementById (id + "_accuracyClass").value; if ("" !== temp) obj["accuracyClass"] = temp;
                 temp = document.getElementById (id + "_accuracyLimit").value; if ("" !== temp) obj["accuracyLimit"] = temp;
                 temp = document.getElementById (id + "_ctClass").value; if ("" !== temp) obj["ctClass"] = temp;
                 temp = document.getElementById (id + "_usage").value; if ("" !== temp) obj["usage"] = temp;
+                temp = document.getElementById (id + "_coreBurden").value; if ("" !== temp) obj["coreBurden"] = temp;
 
                 return (obj);
             }
@@ -947,7 +851,7 @@ define
                 temp = document.getElementById (id + "_accuracyClass").value; if ("" !== temp) obj["accuracyClass"] = temp;
                 temp = document.getElementById (id + "_nominalRatio").value; if ("" !== temp) obj["nominalRatio"] = temp;
                 temp = document.getElementById (id + "_ptClass").value; if ("" !== temp) obj["ptClass"] = temp;
-                temp = PotentialTransformerKind[document.getElementById (id + "_type").value]; if (temp) obj["type"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PotentialTransformerKind." + temp; else delete obj["type"];
+                temp = PotentialTransformerKind[document.getElementById (id + "_type").value]; if (temp) obj["type"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PotentialTransformerKind." + temp; else delete obj["type"];
 
                 return (obj);
             }
@@ -955,7 +859,6 @@ define
 
         return (
             {
-                FlowSensor: FlowSensor,
                 WaveTrap: WaveTrap,
                 CurrentTransformer: CurrentTransformer,
                 PotentialTransformerKind: PotentialTransformerKind,

@@ -3,7 +3,6 @@ define
     ["model/base", "model/Core"],
     function (base, Core)
     {
-
         /**
          * The type of model operation.
          *

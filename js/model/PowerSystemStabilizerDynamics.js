@@ -9,7 +9,6 @@ define
      */
     function (base, StandardModels)
     {
-
         /**
          * Types of input signals.
          *
@@ -358,6 +357,8 @@ define
             {
                 let obj = PowerSystemStabilizerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PssSB4";
+                base.parse_element (/<cim:PssSB4.kx>([\s\S]*?)<\/cim:PssSB4.kx>/g, obj, "kx", base.to_string, sub, context);
+                base.parse_element (/<cim:PssSB4.ta>([\s\S]*?)<\/cim:PssSB4.ta>/g, obj, "ta", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSB4.tb>([\s\S]*?)<\/cim:PssSB4.tb>/g, obj, "tb", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSB4.tc>([\s\S]*?)<\/cim:PssSB4.tc>/g, obj, "tc", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSB4.td>([\s\S]*?)<\/cim:PssSB4.td>/g, obj, "td", base.to_string, sub, context);
@@ -367,8 +368,6 @@ define
                 base.parse_element (/<cim:PssSB4.tx2>([\s\S]*?)<\/cim:PssSB4.tx2>/g, obj, "tx2", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSB4.vsmax>([\s\S]*?)<\/cim:PssSB4.vsmax>/g, obj, "vsmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSB4.vsmin>([\s\S]*?)<\/cim:PssSB4.vsmin>/g, obj, "vsmin", base.to_string, sub, context);
-                base.parse_element (/<cim:PssSB4.kx>([\s\S]*?)<\/cim:PssSB4.kx>/g, obj, "kx", base.to_string, sub, context);
-                base.parse_element (/<cim:PssSB4.ta>([\s\S]*?)<\/cim:PssSB4.ta>/g, obj, "ta", base.to_string, sub, context);
                 let bucket = context.parsed.PssSB4;
                 if (null == bucket)
                    context.parsed.PssSB4 = bucket = {};
@@ -381,6 +380,8 @@ define
             {
                 let fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
+                base.export_element (obj, "PssSB4", "kx", "kx",  base.from_string, fields);
+                base.export_element (obj, "PssSB4", "ta", "ta",  base.from_string, fields);
                 base.export_element (obj, "PssSB4", "tb", "tb",  base.from_string, fields);
                 base.export_element (obj, "PssSB4", "tc", "tc",  base.from_string, fields);
                 base.export_element (obj, "PssSB4", "td", "td",  base.from_string, fields);
@@ -390,8 +391,6 @@ define
                 base.export_element (obj, "PssSB4", "tx2", "tx2",  base.from_string, fields);
                 base.export_element (obj, "PssSB4", "vsmax", "vsmax",  base.from_string, fields);
                 base.export_element (obj, "PssSB4", "vsmin", "vsmin",  base.from_string, fields);
-                base.export_element (obj, "PssSB4", "kx", "kx",  base.from_string, fields);
-                base.export_element (obj, "PssSB4", "ta", "ta",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -408,6 +407,8 @@ define
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
+                    {{#kx}}<div><b>kx</b>: {{kx}}</div>{{/kx}}
+                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
                     {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
                     {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
                     {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
@@ -417,8 +418,6 @@ define
                     {{#tx2}}<div><b>tx2</b>: {{tx2}}</div>{{/tx2}}
                     {{#vsmax}}<div><b>vsmax</b>: {{vsmax}}</div>{{/vsmax}}
                     {{#vsmin}}<div><b>vsmin</b>: {{vsmin}}</div>{{/vsmin}}
-                    {{#kx}}<div><b>kx</b>: {{kx}}</div>{{/kx}}
-                    {{#ta}}<div><b>ta</b>: {{ta}}</div>{{/ta}}
                     </div>
                     </fieldset>
 
@@ -446,6 +445,8 @@ define
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kx'>kx: </label><div class='col-sm-8'><input id='{{id}}_kx' class='form-control' type='text'{{#kx}} value='{{kx}}'{{/kx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb'>tb: </label><div class='col-sm-8'><input id='{{id}}_tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td'>td: </label><div class='col-sm-8'><input id='{{id}}_td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
@@ -455,8 +456,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tx2'>tx2: </label><div class='col-sm-8'><input id='{{id}}_tx2' class='form-control' type='text'{{#tx2}} value='{{tx2}}'{{/tx2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kx'>kx: </label><div class='col-sm-8'><input id='{{id}}_kx' class='form-control' type='text'{{#kx}} value='{{kx}}'{{/kx}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -469,6 +468,8 @@ define
 
                 obj = obj || { id: id, cls: "PssSB4" };
                 super.submit (id, obj);
+                temp = document.getElementById (id + "_kx").value; if ("" !== temp) obj["kx"] = temp;
+                temp = document.getElementById (id + "_ta").value; if ("" !== temp) obj["ta"] = temp;
                 temp = document.getElementById (id + "_tb").value; if ("" !== temp) obj["tb"] = temp;
                 temp = document.getElementById (id + "_tc").value; if ("" !== temp) obj["tc"] = temp;
                 temp = document.getElementById (id + "_td").value; if ("" !== temp) obj["td"] = temp;
@@ -478,8 +479,6 @@ define
                 temp = document.getElementById (id + "_tx2").value; if ("" !== temp) obj["tx2"] = temp;
                 temp = document.getElementById (id + "_vsmax").value; if ("" !== temp) obj["vsmax"] = temp;
                 temp = document.getElementById (id + "_vsmin").value; if ("" !== temp) obj["vsmin"] = temp;
-                temp = document.getElementById (id + "_kx").value; if ("" !== temp) obj["kx"] = temp;
-                temp = document.getElementById (id + "_ta").value; if ("" !== temp) obj["ta"] = temp;
 
                 return (obj);
             }
@@ -897,8 +896,8 @@ define
 
                 obj = obj || { id: id, cls: "PssWECC" };
                 super.submit (id, obj);
-                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj["inputSignal1Type"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj["inputSignal1Type"];
-                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj["inputSignal2Type"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj["inputSignal2Type"];
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj["inputSignal1Type"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#InputSignalKind." + temp; else delete obj["inputSignal1Type"];
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj["inputSignal2Type"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#InputSignalKind." + temp; else delete obj["inputSignal2Type"];
                 temp = document.getElementById (id + "_k1").value; if ("" !== temp) obj["k1"] = temp;
                 temp = document.getElementById (id + "_k2").value; if ("" !== temp) obj["k2"] = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" !== temp) obj["t1"] = temp;
@@ -1067,7 +1066,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_a1").value; if ("" !== temp) obj["a1"] = temp;
                 temp = document.getElementById (id + "_a2").value; if ("" !== temp) obj["a2"] = temp;
-                temp = InputSignalKind[document.getElementById (id + "_inputSignalType").value]; if (temp) obj["inputSignalType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj["inputSignalType"];
+                temp = InputSignalKind[document.getElementById (id + "_inputSignalType").value]; if (temp) obj["inputSignalType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#InputSignalKind." + temp; else delete obj["inputSignalType"];
                 temp = document.getElementById (id + "_ks").value; if ("" !== temp) obj["ks"] = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" !== temp) obj["t1"] = temp;
                 temp = document.getElementById (id + "_t2").value; if ("" !== temp) obj["t2"] = temp;
@@ -1613,8 +1612,8 @@ define
 
                 obj = obj || { id: id, cls: "PssIEEE2B" };
                 super.submit (id, obj);
-                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj["inputSignal1Type"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj["inputSignal1Type"];
-                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj["inputSignal2Type"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj["inputSignal2Type"];
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj["inputSignal1Type"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#InputSignalKind." + temp; else delete obj["inputSignal1Type"];
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj["inputSignal2Type"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#InputSignalKind." + temp; else delete obj["inputSignal2Type"];
                 temp = document.getElementById (id + "_ks1").value; if ("" !== temp) obj["ks1"] = temp;
                 temp = document.getElementById (id + "_ks2").value; if ("" !== temp) obj["ks2"] = temp;
                 temp = document.getElementById (id + "_ks3").value; if ("" !== temp) obj["ks3"] = temp;
@@ -1965,8 +1964,8 @@ define
 
                 obj = obj || { id: id, cls: "Pss2ST" };
                 super.submit (id, obj);
-                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj["inputSignal1Type"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj["inputSignal1Type"];
-                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj["inputSignal2Type"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj["inputSignal2Type"];
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal1Type").value]; if (temp) obj["inputSignal1Type"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#InputSignalKind." + temp; else delete obj["inputSignal1Type"];
+                temp = InputSignalKind[document.getElementById (id + "_inputSignal2Type").value]; if (temp) obj["inputSignal2Type"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#InputSignalKind." + temp; else delete obj["inputSignal2Type"];
                 temp = document.getElementById (id + "_k1").value; if ("" !== temp) obj["k1"] = temp;
                 temp = document.getElementById (id + "_k2").value; if ("" !== temp) obj["k2"] = temp;
                 temp = document.getElementById (id + "_lsmax").value; if ("" !== temp) obj["lsmax"] = temp;
@@ -2166,9 +2165,6 @@ define
             {
                 let obj = PowerSystemStabilizerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PssIEEE3B";
-                base.parse_element (/<cim:PssIEEE3B.tw3>([\s\S]*?)<\/cim:PssIEEE3B.tw3>/g, obj, "tw3", base.to_string, sub, context);
-                base.parse_element (/<cim:PssIEEE3B.vstmax>([\s\S]*?)<\/cim:PssIEEE3B.vstmax>/g, obj, "vstmax", base.to_string, sub, context);
-                base.parse_element (/<cim:PssIEEE3B.vstmin>([\s\S]*?)<\/cim:PssIEEE3B.vstmin>/g, obj, "vstmin", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.a1>([\s\S]*?)<\/cim:PssIEEE3B.a1>/g, obj, "a1", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.a2>([\s\S]*?)<\/cim:PssIEEE3B.a2>/g, obj, "a2", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.a3>([\s\S]*?)<\/cim:PssIEEE3B.a3>/g, obj, "a3", base.to_string, sub, context);
@@ -2183,6 +2179,9 @@ define
                 base.parse_element (/<cim:PssIEEE3B.t2>([\s\S]*?)<\/cim:PssIEEE3B.t2>/g, obj, "t2", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.tw1>([\s\S]*?)<\/cim:PssIEEE3B.tw1>/g, obj, "tw1", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.tw2>([\s\S]*?)<\/cim:PssIEEE3B.tw2>/g, obj, "tw2", base.to_string, sub, context);
+                base.parse_element (/<cim:PssIEEE3B.tw3>([\s\S]*?)<\/cim:PssIEEE3B.tw3>/g, obj, "tw3", base.to_string, sub, context);
+                base.parse_element (/<cim:PssIEEE3B.vstmax>([\s\S]*?)<\/cim:PssIEEE3B.vstmax>/g, obj, "vstmax", base.to_string, sub, context);
+                base.parse_element (/<cim:PssIEEE3B.vstmin>([\s\S]*?)<\/cim:PssIEEE3B.vstmin>/g, obj, "vstmin", base.to_string, sub, context);
                 let bucket = context.parsed.PssIEEE3B;
                 if (null == bucket)
                    context.parsed.PssIEEE3B = bucket = {};
@@ -2195,9 +2194,6 @@ define
             {
                 let fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PssIEEE3B", "tw3", "tw3",  base.from_string, fields);
-                base.export_element (obj, "PssIEEE3B", "vstmax", "vstmax",  base.from_string, fields);
-                base.export_element (obj, "PssIEEE3B", "vstmin", "vstmin",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "a1", "a1",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "a2", "a2",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "a3", "a3",  base.from_string, fields);
@@ -2212,6 +2208,9 @@ define
                 base.export_element (obj, "PssIEEE3B", "t2", "t2",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "tw1", "tw1",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "tw2", "tw2",  base.from_string, fields);
+                base.export_element (obj, "PssIEEE3B", "tw3", "tw3",  base.from_string, fields);
+                base.export_element (obj, "PssIEEE3B", "vstmax", "vstmax",  base.from_string, fields);
+                base.export_element (obj, "PssIEEE3B", "vstmin", "vstmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -2228,9 +2227,6 @@ define
                     `
                     + PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
-                    {{#tw3}}<div><b>tw3</b>: {{tw3}}</div>{{/tw3}}
-                    {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
-                    {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
                     {{#a1}}<div><b>a1</b>: {{a1}}</div>{{/a1}}
                     {{#a2}}<div><b>a2</b>: {{a2}}</div>{{/a2}}
                     {{#a3}}<div><b>a3</b>: {{a3}}</div>{{/a3}}
@@ -2245,6 +2241,9 @@ define
                     {{#t2}}<div><b>t2</b>: {{t2}}</div>{{/t2}}
                     {{#tw1}}<div><b>tw1</b>: {{tw1}}</div>{{/tw1}}
                     {{#tw2}}<div><b>tw2</b>: {{tw2}}</div>{{/tw2}}
+                    {{#tw3}}<div><b>tw3</b>: {{tw3}}</div>{{/tw3}}
+                    {{#vstmax}}<div><b>vstmax</b>: {{vstmax}}</div>{{/vstmax}}
+                    {{#vstmin}}<div><b>vstmin</b>: {{vstmin}}</div>{{/vstmin}}
                     </div>
                     </fieldset>
 
@@ -2272,9 +2271,6 @@ define
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw3'>tw3: </label><div class='col-sm-8'><input id='{{id}}_tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a1'>a1: </label><div class='col-sm-8'><input id='{{id}}_a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a2'>a2: </label><div class='col-sm-8'><input id='{{id}}_a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a3'>a3: </label><div class='col-sm-8'><input id='{{id}}_a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
@@ -2289,6 +2285,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw1'>tw1: </label><div class='col-sm-8'><input id='{{id}}_tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw2'>tw2: </label><div class='col-sm-8'><input id='{{id}}_tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw3'>tw3: </label><div class='col-sm-8'><input id='{{id}}_tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -2301,9 +2300,6 @@ define
 
                 obj = obj || { id: id, cls: "PssIEEE3B" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_tw3").value; if ("" !== temp) obj["tw3"] = temp;
-                temp = document.getElementById (id + "_vstmax").value; if ("" !== temp) obj["vstmax"] = temp;
-                temp = document.getElementById (id + "_vstmin").value; if ("" !== temp) obj["vstmin"] = temp;
                 temp = document.getElementById (id + "_a1").value; if ("" !== temp) obj["a1"] = temp;
                 temp = document.getElementById (id + "_a2").value; if ("" !== temp) obj["a2"] = temp;
                 temp = document.getElementById (id + "_a3").value; if ("" !== temp) obj["a3"] = temp;
@@ -2318,6 +2314,9 @@ define
                 temp = document.getElementById (id + "_t2").value; if ("" !== temp) obj["t2"] = temp;
                 temp = document.getElementById (id + "_tw1").value; if ("" !== temp) obj["tw1"] = temp;
                 temp = document.getElementById (id + "_tw2").value; if ("" !== temp) obj["tw2"] = temp;
+                temp = document.getElementById (id + "_tw3").value; if ("" !== temp) obj["tw3"] = temp;
+                temp = document.getElementById (id + "_vstmax").value; if ("" !== temp) obj["vstmax"] = temp;
+                temp = document.getElementById (id + "_vstmin").value; if ("" !== temp) obj["vstmin"] = temp;
 
                 return (obj);
             }
@@ -2515,7 +2514,7 @@ define
                 temp = document.getElementById (id + "_a6").value; if ("" !== temp) obj["a6"] = temp;
                 temp = document.getElementById (id + "_a7").value; if ("" !== temp) obj["a7"] = temp;
                 temp = document.getElementById (id + "_a8").value; if ("" !== temp) obj["a8"] = temp;
-                temp = InputSignalKind[document.getElementById (id + "_inputSignalType").value]; if (temp) obj["inputSignalType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; else delete obj["inputSignalType"];
+                temp = InputSignalKind[document.getElementById (id + "_inputSignalType").value]; if (temp) obj["inputSignalType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#InputSignalKind." + temp; else delete obj["inputSignalType"];
                 temp = document.getElementById (id + "_kd").checked; if (temp) obj["kd"] = true;
                 temp = document.getElementById (id + "_ks").value; if ("" !== temp) obj["ks"] = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" !== temp) obj["t1"] = temp;
@@ -2675,7 +2674,7 @@ define
         }
 
         /**
-         * Siemens<sup>TM</sup> �H infinity� power system stabilizer with generator electrical power input.
+         * Siemens<sup>TM</sup> “H infinity” power system stabilizer with generator electrical power input.
          * [Footnote: Siemens "H infinity" power system stabilizers are an example of suitable products available commercially.
          *
          * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
@@ -2995,7 +2994,7 @@ define
          * IEEE 421.5-2005 type PSS4B power system stabilizer.
          *
          * The PSS4B model represents a structure based on multiple working frequency bands. Three separate bands, respectively dedicated to the low-, intermediate- and high-frequency modes of oscillations, are used in this delta omega (speed input) PSS.
-         * There is an error in the in IEEE 421.5-2005 PSS4B model: the <i>Pe</i> input should read �<i>Pe</i>. This implies that the input <i>Pe</i> needs to be multiplied by -1.
+         * There is an error in the in IEEE 421.5-2005 PSS4B model: the <i>Pe</i> input should read –<i>Pe</i>. This implies that the input <i>Pe</i> needs to be multiplied by -1.
          * Reference: IEEE 4B 421.5-2005, 8.4.
          * Parameter details:
          * This model has 2 input signals. They have the following fixed types (expressed in terms of InputSignalKind values): the first one is of rotorAngleFrequencyDeviation type and the second one is of generatorElectricalPower type.

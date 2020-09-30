@@ -7,7 +7,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * The class represents equivalent objects that are the result of a network reduction.
          *
@@ -124,9 +123,9 @@ define
         }
 
         /**
-         * A class that represents an external meshed network that has been reduced to an electrically equivalent model.
+         * A class that groups electrical equivalents, including internal nodes, of a network that has been reduced.
          *
-         * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
+         * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are not contained by the equivalent.
          *
          */
         class EquivalentNetwork extends Core.ConnectivityNodeContainer
@@ -238,6 +237,8 @@ define
 
         /**
          * The class represents equivalent branches.
+         *
+         * In cases where a transformer phase shift is modelled and the EquivalentBranch is spanning the same nodes, the impedance quantities for the EquivalentBranch shall consider the needed phase shift.
          *
          */
         class EquivalentBranch extends EquivalentEquipment

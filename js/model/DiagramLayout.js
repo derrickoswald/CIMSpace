@@ -9,7 +9,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * The orientation of the coordinate system with respect to top, left, and the coordinate number system.
          *
@@ -668,7 +667,7 @@ define
         /**
          * The diagram being exchanged.
          *
-         * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
+         * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation. The initial view related attributes can be used to specify an initial view with the x,y coordinates of the diagonal points.
          *
          */
         class Diagram extends Core.IdentifiedObject
@@ -790,7 +789,7 @@ define
 
                 obj = obj || { id: id, cls: "Diagram" };
                 super.submit (id, obj);
-                temp = OrientationKind[document.getElementById (id + "_orientation").value]; if (temp) obj["orientation"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind." + temp; else delete obj["orientation"];
+                temp = OrientationKind[document.getElementById (id + "_orientation").value]; if (temp) obj["orientation"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#OrientationKind." + temp; else delete obj["orientation"];
                 temp = document.getElementById (id + "_x1InitialView").value; if ("" !== temp) obj["x1InitialView"] = temp;
                 temp = document.getElementById (id + "_x2InitialView").value; if ("" !== temp) obj["x2InitialView"] = temp;
                 temp = document.getElementById (id + "_y1InitialView").value; if ("" !== temp) obj["y1InitialView"] = temp;
@@ -817,8 +816,7 @@ define
          * Layers are typically used for grouping diagram objects according to themes and scales.
          *
          * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
-         * 
-         * CIM based graphics exchange will support an m:n relationship between diagram objects and layers. It will be the task of the importing system to convert an m:n case into an appropriate 1:n representation if the importing system does not support m:n.
+         * CIM based graphics exchange supports an m:n relationship between diagram objects and layers. The importing system shall convert an m:n case into an appropriate 1:n representation if the importing system does not support m:n.
          *
          */
         class VisibilityLayer extends Core.IdentifiedObject

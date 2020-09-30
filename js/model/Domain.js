@@ -14,7 +14,6 @@ define
      */
     function (base)
     {
-
         /**
          * Monetary currencies.
          *
@@ -191,10 +190,10 @@ define
          * The unit multipliers defined for the CIM.
          *
          * When applied to unit symbols, the unit symbol is treated as a derived unit. Regardless of the contents of the unit symbol text, the unit symbol shall be treated as if it were a single-character unit symbol. Unit symbols should not contain multipliers, and it should be left to the multiplier to define the multiple for an entire data type.
-         * 
-         * For example, if a unit symbol is "m2Pers" and the multiplier is "k", then the value is k(m**2/s), and the multiplier applies to the entire final value, not to any individual part of the value. This can be conceptualized by substituting a derived unit symbol for the unit type. If one imagines that the symbol "�" represents the derived unit "m2Pers", then applying the multiplier "k" can be conceptualized simply as "k�".
-         * 
-         * For example, the SI unit for mass is "kg" and not "g".  If the unit symbol is defined as "kg", then the multiplier is applied to "kg" as a whole and does not replace the "k" in front of the "g". In this case, the multiplier of "m" would be used with the unit symbol of "kg" to represent one gram.  As a text string, this violates the instructions in IEC 80000-1. However, because the unit symbol in CIM is treated as a derived unit instead of as an SI unit, it makes more sense to conceptualize the "kg" as if it were replaced by one of the proposed replacements for the SI mass symbol. If one imagines that the "kg" were replaced by a symbol "�", then it is easier to conceptualize the multiplier "m" as creating the proper unit "m�", and not the forbidden unit "mkg".
+         *
+         * For example, if a unit symbol is "m2Pers" and the multiplier is "k", then the value is k(m**2/s), and the multiplier applies to the entire final value, not to any individual part of the value. This can be conceptualized by substituting a derived unit symbol for the unit type. If one imagines that the symbol "Þ" represents the derived unit "m2Pers", then applying the multiplier "k" can be conceptualized simply as "kÞ".
+         *
+         * For example, the SI unit for mass is "kg" and not "g".  If the unit symbol is defined as "kg", then the multiplier is applied to "kg" as a whole and does not replace the "k" in front of the "g". In this case, the multiplier of "m" would be used with the unit symbol of "kg" to represent one gram.  As a text string, this violates the instructions in IEC 80000-1. However, because the unit symbol in CIM is treated as a derived unit instead of as an SI unit, it makes more sense to conceptualize the "kg" as if it were replaced by one of the proposed replacements for the SI mass symbol. If one imagines that the "kg" were replaced by a symbol "Þ", then it is easier to conceptualize the multiplier "m" as creating the proper unit "mÞ", and not the forbidden unit "mkg".
          *
          */
         let UnitMultiplier =
@@ -227,12 +226,10 @@ define
          * The derived units defined for usage in the CIM.
          *
          * In some cases, the derived unit is equal to an SI unit. Whenever possible, the standard derived symbol is used instead of the formula for the derived unit. For example, the unit symbol Farad is defined as "F" instead of "CPerV". In cases where a standard symbol does not exist for a derived unit, the formula for the unit is used as the unit symbol. For example, density does not have a standard symbol and so it is represented as "kgPerm3". With the exception of the "kg", which is an SI unit, the unit symbols do not contain multipliers and therefore represent the base derived unit to which a multiplier can be applied as a whole.
-         * 
          * Every unit symbol is treated as an unparseable text as if it were a single-letter symbol. The meaning of each unit symbol is defined by the accompanying descriptive text and not by the text contents of the unit symbol.
-         * 
-         * To allow the widest possible range of serializations without requiring special character handling, several substitutions are made which deviate from the format described in IEC 80000-1. The division symbol "/" is replaced by the letters "Per". Exponents are written in plain text after the unit as "m3" instead of being formatted as in "m<sup>3</sup>" or introducing a symbol as in "m^3". The degree symbol "�" is replaced with the letters "deg". Any clarification of the meaning for a substitution is included in the description for the unit symbol.
-         * 
+         * To allow the widest possible range of serializations without requiring special character handling, several substitutions are made which deviate from the format described in IEC 80000-1. The division symbol "/" is replaced by the letters "Per". Exponents are written in plain text after the unit as "m3" instead of being formatted as "m" with a superscript of 3  or introducing a symbol as in "m^3". The degree symbol "°" is replaced with the letters "deg". Any clarification of the meaning for a substitution is included in the description for the unit symbol.
          * Non-SI units are included in list of unit symbols to allow sources of data to be correctly labelled with their non-SI units (for example, a GPS sensor that is reporting numbers that represent feet instead of meters). This allows software to use the unit symbol information correctly convert and scale the raw data of those sources into SI-based units.
+         * The integer values are used for harmonization with IEC 61850.
          *
          */
         let UnitSymbol =
@@ -384,7 +381,7 @@ define
         /**
          * Unit of length.
          *
-         * Never negative.
+         * It shall be a positive value or zero.
          *
          */
         class Length extends base.Element
@@ -491,8 +488,8 @@ define
 
                 obj = obj || { id: id, cls: "Length" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -609,8 +606,8 @@ define
 
                 obj = obj || { id: id, cls: "PU" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -725,8 +722,8 @@ define
 
                 obj = obj || { id: id, cls: "RotationSpeed" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -841,8 +838,8 @@ define
 
                 obj = obj || { id: id, cls: "CostPerHeatUnit" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#Currency." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -957,8 +954,8 @@ define
 
                 obj = obj || { id: id, cls: "Money" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#Currency." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -1170,8 +1167,8 @@ define
 
                 obj = obj || { id: id, cls: "ActivePowerPerFrequency" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -1480,8 +1477,8 @@ define
 
                 obj = obj || { id: id, cls: "ReactivePower" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -1611,7 +1608,6 @@ define
                 base.parse_attribute (/<cim:ActivePower.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 base.parse_attribute (/<cim:ActivePower.unit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ActivePower.value>([\s\S]*?)<\/cim:ActivePower.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:ActivePower.uncefactUnitCode>([\s\S]*?)<\/cim:ActivePower.uncefactUnitCode>/g, obj, "uncefactUnitCode", base.to_string, sub, context);
                 let bucket = context.parsed.ActivePower;
                 if (null == bucket)
                    context.parsed.ActivePower = bucket = {};
@@ -1627,7 +1623,6 @@ define
                 base.export_attribute (obj, "ActivePower", "multiplier", "multiplier", fields);
                 base.export_attribute (obj, "ActivePower", "unit", "unit", fields);
                 base.export_element (obj, "ActivePower", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "ActivePower", "uncefactUnitCode", "uncefactUnitCode",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -1647,7 +1642,6 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#uncefactUnitCode}}<div><b>uncefactUnitCode</b>: {{uncefactUnitCode}}</div>{{/uncefactUnitCode}}
                     </div>
                     </fieldset>
 
@@ -1682,7 +1676,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uncefactUnitCode'>uncefactUnitCode: </label><div class='col-sm-8'><input id='{{id}}_uncefactUnitCode' class='form-control' type='text'{{#uncefactUnitCode}} value='{{uncefactUnitCode}}'{{/uncefactUnitCode}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1695,10 +1688,9 @@ define
 
                 obj = obj || { id: id, cls: "ActivePower" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = document.getElementById (id + "_uncefactUnitCode").value; if ("" !== temp) obj["uncefactUnitCode"] = temp;
 
                 return (obj);
             }
@@ -1812,8 +1804,8 @@ define
 
                 obj = obj || { id: id, cls: "WaterLevel" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -1928,8 +1920,8 @@ define
 
                 obj = obj || { id: id, cls: "Admittance" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -2051,9 +2043,9 @@ define
                 obj = obj || { id: id, cls: "DecimalQuantity" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Currency[document.getElementById (id + "_currency").value]; if (temp) obj["currency"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; else delete obj["currency"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Currency[document.getElementById (id + "_currency").value]; if (temp) obj["currency"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#Currency." + temp; else delete obj["currency"];
 
                 return (obj);
             }
@@ -2084,9 +2076,9 @@ define
             {
                 let obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "FloatQuantity";
-                base.parse_attribute (/<cim:FloatQuantity.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 base.parse_attribute (/<cim:FloatQuantity.unit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:FloatQuantity.value>([\s\S]*?)<\/cim:FloatQuantity.value>/g, obj, "value", base.to_float, sub, context);
+                base.parse_attribute (/<cim:FloatQuantity.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 let bucket = context.parsed.FloatQuantity;
                 if (null == bucket)
                    context.parsed.FloatQuantity = bucket = {};
@@ -2099,9 +2091,9 @@ define
             {
                 let fields = [];
 
-                base.export_attribute (obj, "FloatQuantity", "multiplier", "multiplier", fields);
                 base.export_attribute (obj, "FloatQuantity", "unit", "unit", fields);
                 base.export_element (obj, "FloatQuantity", "value", "value",  base.from_float, fields);
+                base.export_attribute (obj, "FloatQuantity", "multiplier", "multiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -2118,9 +2110,9 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     </div>
                     </fieldset>
 
@@ -2131,15 +2123,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj["multiplierUnitMultiplier"] = [{ id: '', selected: (!obj["multiplier"])}]; for (let property in UnitMultiplier) obj["multiplierUnitMultiplier"].push ({ id: property, selected: obj["multiplier"] && obj["multiplier"].endsWith ('.' + property)});
                 obj["unitUnitSymbol"] = [{ id: '', selected: (!obj["unit"])}]; for (let property in UnitSymbol) obj["unitUnitSymbol"].push ({ id: property, selected: obj["unit"] && obj["unit"].endsWith ('.' + property)});
+                obj["multiplierUnitMultiplier"] = [{ id: '', selected: (!obj["multiplier"])}]; for (let property in UnitMultiplier) obj["multiplierUnitMultiplier"].push ({ id: property, selected: obj["multiplier"] && obj["multiplier"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj["multiplierUnitMultiplier"];
                 delete obj["unitUnitSymbol"];
+                delete obj["multiplierUnitMultiplier"];
             }
 
             edit_template ()
@@ -2152,9 +2144,9 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -2167,9 +2159,9 @@ define
 
                 obj = obj || { id: id, cls: "FloatQuantity" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
 
                 return (obj);
             }
@@ -2283,8 +2275,8 @@ define
 
                 obj = obj || { id: id, cls: "Frequency" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -2381,110 +2373,6 @@ define
             {
                 obj = obj || { id: id, cls: "Boolean" };
                 super.submit (id, obj);
-
-                return (obj);
-            }
-        }
-
-        /**
-         * Contains a string value for units and multipliers from a list maintained by UN/CEFACT and described in recommendation No. 20, "Codes for Units of Measure Used in International Trade".
-         *
-         * Refer to the UN/CEFACT recommendation for details.
-         *
-         */
-        class UncefactUnitCode extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.UncefactUnitCode;
-                if (null == bucket)
-                   cim_data.UncefactUnitCode = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.UncefactUnitCode[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "UncefactUnitCode";
-                base.parse_element (/<cim:UncefactUnitCode.value>([\s\S]*?)<\/cim:UncefactUnitCode.value>/g, obj, "value", base.to_string, sub, context);
-                let bucket = context.parsed.UncefactUnitCode;
-                if (null == bucket)
-                   context.parsed.UncefactUnitCode = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = [];
-
-                base.export_element (obj, "UncefactUnitCode", "value", "value",  base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#UncefactUnitCode_collapse" aria-expanded="true" aria-controls="UncefactUnitCode_collapse" style="margin-left: 10px;">UncefactUnitCode</a></legend>
-                    <div id="UncefactUnitCode_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.template.call (this) +
-                    `
-                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_UncefactUnitCode_collapse" aria-expanded="true" aria-controls="{{id}}_UncefactUnitCode_collapse" style="margin-left: 10px;">UncefactUnitCode</a></legend>
-                    <div id="{{id}}_UncefactUnitCode_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "UncefactUnitCode" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
             }
@@ -2598,8 +2486,8 @@ define
 
                 obj = obj || { id: id, cls: "Mass" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -2714,8 +2602,8 @@ define
 
                 obj = obj || { id: id, cls: "AngleDegrees" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -2830,8 +2718,8 @@ define
 
                 obj = obj || { id: id, cls: "VoltagePerReactivePower" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -2946,8 +2834,8 @@ define
 
                 obj = obj || { id: id, cls: "HeatRate" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -3062,8 +2950,8 @@ define
 
                 obj = obj || { id: id, cls: "ResistancePerLength" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -3178,8 +3066,8 @@ define
 
                 obj = obj || { id: id, cls: "Capacitance" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -3391,8 +3279,8 @@ define
 
                 obj = obj || { id: id, cls: "Reactance" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -3616,8 +3504,8 @@ define
 
                 obj = obj || { id: id, cls: "PerCent" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -3732,8 +3620,8 @@ define
 
                 obj = obj || { id: id, cls: "ActivePowerChangeRate" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -3848,8 +3736,8 @@ define
 
                 obj = obj || { id: id, cls: "Displacement" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -3859,7 +3747,7 @@ define
         /**
          * Time as "hh:mm:ss.sss", which conforms with ISO 8601.
          *
-         * UTC time zone is specified as "hh:mm:ss.sssZ". A local timezone relative UTC is specified as "hh:mm:ss.sss�hh:mm". The second component (shown here as "ss.sss") could have any number of digits in its fractional part to allow any kind of precision beyond seconds.
+         * UTC time zone is specified as "hh:mm:ss.sssZ". A local timezone relative UTC is specified as "hh:mm:ss.sss±hh:mm". The second component (shown here as "ss.sss") could have any number of digits in its fractional part to allow any kind of precision beyond seconds.
          *
          */
         class Time extends base.Element
@@ -4168,8 +4056,8 @@ define
 
                 obj = obj || { id: id, cls: "Emission" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -4284,8 +4172,8 @@ define
 
                 obj = obj || { id: id, cls: "Seconds" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -4401,8 +4289,8 @@ define
                 obj = obj || { id: id, cls: "CapacitancePerLength" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
 
                 return (obj);
             }
@@ -4516,8 +4404,8 @@ define
 
                 obj = obj || { id: id, cls: "Inductance" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -4632,8 +4520,8 @@ define
 
                 obj = obj || { id: id, cls: "Minutes" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -4748,8 +4636,8 @@ define
 
                 obj = obj || { id: id, cls: "ConductancePerLength" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -4864,8 +4752,8 @@ define
 
                 obj = obj || { id: id, cls: "AngleRadians" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -4980,8 +4868,8 @@ define
 
                 obj = obj || { id: id, cls: "Susceptance" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -5191,8 +5079,8 @@ define
 
                 obj = obj || { id: id, cls: "Volume" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -5307,8 +5195,8 @@ define
 
                 obj = obj || { id: id, cls: "CostPerVolume" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#Currency." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -5423,8 +5311,8 @@ define
 
                 obj = obj || { id: id, cls: "Impedance" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -5539,8 +5427,8 @@ define
 
                 obj = obj || { id: id, cls: "KiloActivePower" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -5657,8 +5545,8 @@ define
 
                 obj = obj || { id: id, cls: "Classification" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -5773,8 +5661,8 @@ define
 
                 obj = obj || { id: id, cls: "Hours" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -5889,8 +5777,8 @@ define
 
                 obj = obj || { id: id, cls: "Speed" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -6005,8 +5893,8 @@ define
 
                 obj = obj || { id: id, cls: "ActivePowerPerCurrentFlow" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -6043,7 +5931,6 @@ define
                 base.parse_attribute (/<cim:CurrentFlow.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 base.parse_attribute (/<cim:CurrentFlow.unit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:CurrentFlow.value>([\s\S]*?)<\/cim:CurrentFlow.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:CurrentFlow.uncefactUnitCode>([\s\S]*?)<\/cim:CurrentFlow.uncefactUnitCode>/g, obj, "uncefactUnitCode", base.to_string, sub, context);
                 let bucket = context.parsed.CurrentFlow;
                 if (null == bucket)
                    context.parsed.CurrentFlow = bucket = {};
@@ -6059,7 +5946,6 @@ define
                 base.export_attribute (obj, "CurrentFlow", "multiplier", "multiplier", fields);
                 base.export_attribute (obj, "CurrentFlow", "unit", "unit", fields);
                 base.export_element (obj, "CurrentFlow", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "CurrentFlow", "uncefactUnitCode", "uncefactUnitCode",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -6079,7 +5965,6 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#uncefactUnitCode}}<div><b>uncefactUnitCode</b>: {{uncefactUnitCode}}</div>{{/uncefactUnitCode}}
                     </div>
                     </fieldset>
 
@@ -6114,7 +5999,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uncefactUnitCode'>uncefactUnitCode: </label><div class='col-sm-8'><input id='{{id}}_uncefactUnitCode' class='form-control' type='text'{{#uncefactUnitCode}} value='{{uncefactUnitCode}}'{{/uncefactUnitCode}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -6127,10 +6011,9 @@ define
 
                 obj = obj || { id: id, cls: "CurrentFlow" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = document.getElementById (id + "_uncefactUnitCode").value; if ("" !== temp) obj["uncefactUnitCode"] = temp;
 
                 return (obj);
             }
@@ -6438,8 +6321,8 @@ define
 
                 obj = obj || { id: id, cls: "VolumeFlowRate" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -6554,8 +6437,8 @@ define
 
                 obj = obj || { id: id, cls: "Temperature" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -6670,8 +6553,8 @@ define
 
                 obj = obj || { id: id, cls: "SusceptancePerLength" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -6786,8 +6669,8 @@ define
 
                 obj = obj || { id: id, cls: "StringQuantity" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -6902,8 +6785,8 @@ define
 
                 obj = obj || { id: id, cls: "Resistance" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -7045,7 +6928,6 @@ define
                 base.parse_attribute (/<cim:Voltage.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 base.parse_attribute (/<cim:Voltage.unit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:Voltage.value>([\s\S]*?)<\/cim:Voltage.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:Voltage.uncefactUnitCode>([\s\S]*?)<\/cim:Voltage.uncefactUnitCode>/g, obj, "uncefactUnitCode", base.to_string, sub, context);
                 let bucket = context.parsed.Voltage;
                 if (null == bucket)
                    context.parsed.Voltage = bucket = {};
@@ -7061,7 +6943,6 @@ define
                 base.export_attribute (obj, "Voltage", "multiplier", "multiplier", fields);
                 base.export_attribute (obj, "Voltage", "unit", "unit", fields);
                 base.export_element (obj, "Voltage", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "Voltage", "uncefactUnitCode", "uncefactUnitCode",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -7081,7 +6962,6 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#uncefactUnitCode}}<div><b>uncefactUnitCode</b>: {{uncefactUnitCode}}</div>{{/uncefactUnitCode}}
                     </div>
                     </fieldset>
 
@@ -7116,7 +6996,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uncefactUnitCode'>uncefactUnitCode: </label><div class='col-sm-8'><input id='{{id}}_uncefactUnitCode' class='form-control' type='text'{{#uncefactUnitCode}} value='{{uncefactUnitCode}}'{{/uncefactUnitCode}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -7129,10 +7008,9 @@ define
 
                 obj = obj || { id: id, cls: "Voltage" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = document.getElementById (id + "_uncefactUnitCode").value; if ("" !== temp) obj["uncefactUnitCode"] = temp;
 
                 return (obj);
             }
@@ -7166,7 +7044,6 @@ define
                 base.parse_attribute (/<cim:ApparentPower.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 base.parse_attribute (/<cim:ApparentPower.unit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:ApparentPower.value>([\s\S]*?)<\/cim:ApparentPower.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:ApparentPower.uncfactUnitCode>([\s\S]*?)<\/cim:ApparentPower.uncfactUnitCode>/g, obj, "uncfactUnitCode", base.to_string, sub, context);
                 let bucket = context.parsed.ApparentPower;
                 if (null == bucket)
                    context.parsed.ApparentPower = bucket = {};
@@ -7182,7 +7059,6 @@ define
                 base.export_attribute (obj, "ApparentPower", "multiplier", "multiplier", fields);
                 base.export_attribute (obj, "ApparentPower", "unit", "unit", fields);
                 base.export_element (obj, "ApparentPower", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "ApparentPower", "uncfactUnitCode", "uncfactUnitCode",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -7202,7 +7078,6 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#uncfactUnitCode}}<div><b>uncfactUnitCode</b>: {{uncfactUnitCode}}</div>{{/uncfactUnitCode}}
                     </div>
                     </fieldset>
 
@@ -7237,7 +7112,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uncfactUnitCode'>uncfactUnitCode: </label><div class='col-sm-8'><input id='{{id}}_uncfactUnitCode' class='form-control' type='text'{{#uncfactUnitCode}} value='{{uncfactUnitCode}}'{{/uncfactUnitCode}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -7250,10 +7124,9 @@ define
 
                 obj = obj || { id: id, cls: "ApparentPower" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = document.getElementById (id + "_uncfactUnitCode").value; if ("" !== temp) obj["uncfactUnitCode"] = temp;
 
                 return (obj);
             }
@@ -7367,8 +7240,8 @@ define
 
                 obj = obj || { id: id, cls: "ReactancePerLength" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -7484,8 +7357,8 @@ define
                 obj = obj || { id: id, cls: "InductancePerLength" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
 
                 return (obj);
             }
@@ -7708,8 +7581,8 @@ define
 
                 obj = obj || { id: id, cls: "Conductance" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -7825,8 +7698,8 @@ define
                 obj = obj || { id: id, cls: "Area" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
 
                 return (obj);
             }
@@ -7860,7 +7733,6 @@ define
                 base.parse_attribute (/<cim:RealEnergy.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
                 base.parse_attribute (/<cim:RealEnergy.unit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
                 base.parse_element (/<cim:RealEnergy.value>([\s\S]*?)<\/cim:RealEnergy.value>/g, obj, "value", base.to_float, sub, context);
-                base.parse_element (/<cim:RealEnergy.uncefactUnitCode>([\s\S]*?)<\/cim:RealEnergy.uncefactUnitCode>/g, obj, "uncefactUnitCode", base.to_string, sub, context);
                 let bucket = context.parsed.RealEnergy;
                 if (null == bucket)
                    context.parsed.RealEnergy = bucket = {};
@@ -7876,7 +7748,6 @@ define
                 base.export_attribute (obj, "RealEnergy", "multiplier", "multiplier", fields);
                 base.export_attribute (obj, "RealEnergy", "unit", "unit", fields);
                 base.export_element (obj, "RealEnergy", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "RealEnergy", "uncefactUnitCode", "uncefactUnitCode",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -7896,7 +7767,6 @@ define
                     {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#uncefactUnitCode}}<div><b>uncefactUnitCode</b>: {{uncefactUnitCode}}</div>{{/uncefactUnitCode}}
                     </div>
                     </fieldset>
 
@@ -7931,7 +7801,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uncefactUnitCode'>uncefactUnitCode: </label><div class='col-sm-8'><input id='{{id}}_uncefactUnitCode' class='form-control' type='text'{{#uncefactUnitCode}} value='{{uncefactUnitCode}}'{{/uncefactUnitCode}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -7944,10 +7813,9 @@ define
 
                 obj = obj || { id: id, cls: "RealEnergy" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-                temp = document.getElementById (id + "_uncefactUnitCode").value; if ("" !== temp) obj["uncefactUnitCode"] = temp;
 
                 return (obj);
             }
@@ -8061,8 +7929,8 @@ define
 
                 obj = obj || { id: id, cls: "IntegerQuantity" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -8179,8 +8047,8 @@ define
 
                 obj = obj || { id: id, cls: "Damping" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -8295,8 +8163,8 @@ define
 
                 obj = obj || { id: id, cls: "Pressure" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -8411,8 +8279,8 @@ define
 
                 obj = obj || { id: id, cls: "CostPerEnergyUnit" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#Currency." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -8527,8 +8395,8 @@ define
 
                 obj = obj || { id: id, cls: "CostRate" };
                 super.submit (id, obj);
-                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; else delete obj["unit"];
+                temp = UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Currency[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#Currency." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -8599,7 +8467,6 @@ define
                 Emission: Emission,
                 ApparentPower: ApparentPower,
                 Conductance: Conductance,
-                UncefactUnitCode: UncefactUnitCode,
                 Speed: Speed,
                 Damping: Damping,
                 VolumeFlowRate: VolumeFlowRate,

@@ -7,7 +7,6 @@ define
      */
     function (base)
     {
-
         /**
          * The version of dependencies description among top level subpackages of the combined CIM model.
          *

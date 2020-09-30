@@ -10,7 +10,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * Type of static load model.
          *
@@ -517,7 +516,7 @@ define
                 temp = document.getElementById (id + "_kq3").value; if ("" !== temp) obj["kq3"] = temp;
                 temp = document.getElementById (id + "_kq4").value; if ("" !== temp) obj["kq4"] = temp;
                 temp = document.getElementById (id + "_kqf").value; if ("" !== temp) obj["kqf"] = temp;
-                temp = StaticLoadModelKind[document.getElementById (id + "_staticLoadModelType").value]; if (temp) obj["staticLoadModelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; else delete obj["staticLoadModelType"];
+                temp = StaticLoadModelKind[document.getElementById (id + "_staticLoadModelType").value]; if (temp) obj["staticLoadModelType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#StaticLoadModelKind." + temp; else delete obj["staticLoadModelType"];
                 temp = document.getElementById (id + "_LoadAggregate").value; if ("" !== temp) obj["LoadAggregate"] = temp;
 
                 return (obj);
@@ -815,7 +814,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_bs").value; if ("" !== temp) obj["bs"] = temp;
                 temp = document.getElementById (id + "_bt").value; if ("" !== temp) obj["bt"] = temp;
-                temp = GenericNonLinearLoadModelKind[document.getElementById (id + "_genericNonLinearLoadModelType").value]; if (temp) obj["genericNonLinearLoadModelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; else delete obj["genericNonLinearLoadModelType"];
+                temp = GenericNonLinearLoadModelKind[document.getElementById (id + "_genericNonLinearLoadModelType").value]; if (temp) obj["genericNonLinearLoadModelType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#GenericNonLinearLoadModelKind." + temp; else delete obj["genericNonLinearLoadModelType"];
                 temp = document.getElementById (id + "_ls").value; if ("" !== temp) obj["ls"] = temp;
                 temp = document.getElementById (id + "_lt").value; if ("" !== temp) obj["lt"] = temp;
                 temp = document.getElementById (id + "_tp").value; if ("" !== temp) obj["tp"] = temp;

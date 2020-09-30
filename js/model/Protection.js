@@ -9,7 +9,6 @@ define
      */
     function (base, Core, Domain)
     {
-
         /**
          * A reclose sequence (open and close) is defined for each possible reclosure of a breaker.
          *
@@ -276,8 +275,8 @@ define
                 temp = document.getElementById (id + "_lowLimit").value; if ("" !== temp) obj["lowLimit"] = temp;
                 temp = document.getElementById (id + "_powerDirectionFlag").checked; if (temp) obj["powerDirectionFlag"] = true;
                 temp = document.getElementById (id + "_relayDelayTime").value; if ("" !== temp) obj["relayDelayTime"] = temp;
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_unitMultiplier").value]; if (temp) obj["unitMultiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["unitMultiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj["unitSymbol"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unitSymbol"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_unitMultiplier").value]; if (temp) obj["unitMultiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["unitMultiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj["unitSymbol"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unitSymbol"];
                 temp = document.getElementById (id + "_ConductingEquipments").value; if ("" !== temp) obj["ConductingEquipments"] = temp.split (",");
                 temp = document.getElementById (id + "_ProtectedSwitches").value; if ("" !== temp) obj["ProtectedSwitches"] = temp.split (",");
 

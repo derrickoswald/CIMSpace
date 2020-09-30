@@ -11,7 +11,6 @@ define
      */
     function (base, StandardModels)
     {
-
         /**
          * Types of rate feedback signals.
          *
@@ -1036,7 +1035,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_e1").value; if ("" !== temp) obj["e1"] = temp;
                 temp = document.getElementById (id + "_e2").value; if ("" !== temp) obj["e2"] = temp;
-                temp = ExcREXSFeedbackSignalKind[document.getElementById (id + "_fbf").value]; if (temp) obj["fbf"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcREXSFeedbackSignalKind." + temp; else delete obj["fbf"];
+                temp = ExcREXSFeedbackSignalKind[document.getElementById (id + "_fbf").value]; if (temp) obj["fbf"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ExcREXSFeedbackSignalKind." + temp; else delete obj["fbf"];
                 temp = document.getElementById (id + "_flimf").value; if ("" !== temp) obj["flimf"] = temp;
                 temp = document.getElementById (id + "_kc").value; if ("" !== temp) obj["kc"] = temp;
                 temp = document.getElementById (id + "_kd").value; if ("" !== temp) obj["kd"] = temp;
@@ -4768,9 +4767,6 @@ define
             {
                 let obj = ExcitationSystemDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "ExcELIN2";
-                base.parse_element (/<cim:ExcELIN2.ve1>([\s\S]*?)<\/cim:ExcELIN2.ve1>/g, obj, "ve1", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcELIN2.ve2>([\s\S]*?)<\/cim:ExcELIN2.ve2>/g, obj, "ve2", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcELIN2.xp>([\s\S]*?)<\/cim:ExcELIN2.xp>/g, obj, "xp", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN2.efdbas>([\s\S]*?)<\/cim:ExcELIN2.efdbas>/g, obj, "efdbas", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN2.iefmax>([\s\S]*?)<\/cim:ExcELIN2.iefmax>/g, obj, "iefmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN2.iefmax2>([\s\S]*?)<\/cim:ExcELIN2.iefmax2>/g, obj, "iefmax2", base.to_string, sub, context);
@@ -4795,6 +4791,9 @@ define
                 base.parse_element (/<cim:ExcELIN2.tr4>([\s\S]*?)<\/cim:ExcELIN2.tr4>/g, obj, "tr4", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN2.upmax>([\s\S]*?)<\/cim:ExcELIN2.upmax>/g, obj, "upmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN2.upmin>([\s\S]*?)<\/cim:ExcELIN2.upmin>/g, obj, "upmin", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcELIN2.ve1>([\s\S]*?)<\/cim:ExcELIN2.ve1>/g, obj, "ve1", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcELIN2.ve2>([\s\S]*?)<\/cim:ExcELIN2.ve2>/g, obj, "ve2", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcELIN2.xp>([\s\S]*?)<\/cim:ExcELIN2.xp>/g, obj, "xp", base.to_string, sub, context);
                 let bucket = context.parsed.ExcELIN2;
                 if (null == bucket)
                    context.parsed.ExcELIN2 = bucket = {};
@@ -4807,9 +4806,6 @@ define
             {
                 let fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcELIN2", "ve1", "ve1",  base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "ve2", "ve2",  base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "xp", "xp",  base.from_string, fields);
                 base.export_element (obj, "ExcELIN2", "efdbas", "efdbas",  base.from_string, fields);
                 base.export_element (obj, "ExcELIN2", "iefmax", "iefmax",  base.from_string, fields);
                 base.export_element (obj, "ExcELIN2", "iefmax2", "iefmax2",  base.from_string, fields);
@@ -4834,6 +4830,9 @@ define
                 base.export_element (obj, "ExcELIN2", "tr4", "tr4",  base.from_string, fields);
                 base.export_element (obj, "ExcELIN2", "upmax", "upmax",  base.from_string, fields);
                 base.export_element (obj, "ExcELIN2", "upmin", "upmin",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "xp", "xp",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -4850,9 +4849,6 @@ define
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
-                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-                    {{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
                     {{#efdbas}}<div><b>efdbas</b>: {{efdbas}}</div>{{/efdbas}}
                     {{#iefmax}}<div><b>iefmax</b>: {{iefmax}}</div>{{/iefmax}}
                     {{#iefmax2}}<div><b>iefmax2</b>: {{iefmax2}}</div>{{/iefmax2}}
@@ -4877,6 +4873,9 @@ define
                     {{#tr4}}<div><b>tr4</b>: {{tr4}}</div>{{/tr4}}
                     {{#upmax}}<div><b>upmax</b>: {{upmax}}</div>{{/upmax}}
                     {{#upmin}}<div><b>upmin</b>: {{upmin}}</div>{{/upmin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#xp}}<div><b>xp</b>: {{xp}}</div>{{/xp}}
                     </div>
                     </fieldset>
 
@@ -4904,9 +4903,6 @@ define
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve1'>ve1: </label><div class='col-sm-8'><input id='{{id}}_ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve2'>ve2: </label><div class='col-sm-8'><input id='{{id}}_ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xp'>xp: </label><div class='col-sm-8'><input id='{{id}}_xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdbas'>efdbas: </label><div class='col-sm-8'><input id='{{id}}_efdbas' class='form-control' type='text'{{#efdbas}} value='{{efdbas}}'{{/efdbas}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iefmax'>iefmax: </label><div class='col-sm-8'><input id='{{id}}_iefmax' class='form-control' type='text'{{#iefmax}} value='{{iefmax}}'{{/iefmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iefmax2'>iefmax2: </label><div class='col-sm-8'><input id='{{id}}_iefmax2' class='form-control' type='text'{{#iefmax2}} value='{{iefmax2}}'{{/iefmax2}}></div></div>
@@ -4931,6 +4927,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tr4'>tr4: </label><div class='col-sm-8'><input id='{{id}}_tr4' class='form-control' type='text'{{#tr4}} value='{{tr4}}'{{/tr4}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upmax'>upmax: </label><div class='col-sm-8'><input id='{{id}}_upmax' class='form-control' type='text'{{#upmax}} value='{{upmax}}'{{/upmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upmin'>upmin: </label><div class='col-sm-8'><input id='{{id}}_upmin' class='form-control' type='text'{{#upmin}} value='{{upmin}}'{{/upmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve1'>ve1: </label><div class='col-sm-8'><input id='{{id}}_ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve2'>ve2: </label><div class='col-sm-8'><input id='{{id}}_ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xp'>xp: </label><div class='col-sm-8'><input id='{{id}}_xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -4943,9 +4942,6 @@ define
 
                 obj = obj || { id: id, cls: "ExcELIN2" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ve1").value; if ("" !== temp) obj["ve1"] = temp;
-                temp = document.getElementById (id + "_ve2").value; if ("" !== temp) obj["ve2"] = temp;
-                temp = document.getElementById (id + "_xp").value; if ("" !== temp) obj["xp"] = temp;
                 temp = document.getElementById (id + "_efdbas").value; if ("" !== temp) obj["efdbas"] = temp;
                 temp = document.getElementById (id + "_iefmax").value; if ("" !== temp) obj["iefmax"] = temp;
                 temp = document.getElementById (id + "_iefmax2").value; if ("" !== temp) obj["iefmax2"] = temp;
@@ -4970,6 +4966,9 @@ define
                 temp = document.getElementById (id + "_tr4").value; if ("" !== temp) obj["tr4"] = temp;
                 temp = document.getElementById (id + "_upmax").value; if ("" !== temp) obj["upmax"] = temp;
                 temp = document.getElementById (id + "_upmin").value; if ("" !== temp) obj["upmin"] = temp;
+                temp = document.getElementById (id + "_ve1").value; if ("" !== temp) obj["ve1"] = temp;
+                temp = document.getElementById (id + "_ve2").value; if ("" !== temp) obj["ve2"] = temp;
+                temp = document.getElementById (id + "_xp").value; if ("" !== temp) obj["xp"] = temp;
 
                 return (obj);
             }
@@ -6063,7 +6062,7 @@ define
         /**
          * IEEE 421.5-2005 type ST1A model.
          *
-         * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit�s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
+         * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit’s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
          * Reference: IEEE 421.5-2005, 7.1.
          *
          */
@@ -6245,7 +6244,7 @@ define
                 temp = document.getElementById (id + "_tc").value; if ("" !== temp) obj["tc"] = temp;
                 temp = document.getElementById (id + "_tc1").value; if ("" !== temp) obj["tc1"] = temp;
                 temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
-                temp = ExcIEEEST1AUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj["uelin"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcIEEEST1AUELselectorKind." + temp; else delete obj["uelin"];
+                temp = ExcIEEEST1AUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj["uelin"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ExcIEEEST1AUELselectorKind." + temp; else delete obj["uelin"];
                 temp = document.getElementById (id + "_vamax").value; if ("" !== temp) obj["vamax"] = temp;
                 temp = document.getElementById (id + "_vamin").value; if ("" !== temp) obj["vamin"] = temp;
                 temp = document.getElementById (id + "_vimax").value; if ("" !== temp) obj["vimax"] = temp;
@@ -7206,7 +7205,7 @@ define
                 temp = document.getElementById (id + "_klr").value; if ("" !== temp) obj["klr"] = temp;
                 temp = document.getElementById (id + "_km").value; if ("" !== temp) obj["km"] = temp;
                 temp = document.getElementById (id + "_kpa").value; if ("" !== temp) obj["kpa"] = temp;
-                temp = ExcST6BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj["oelin"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST6BOELselectorKind." + temp; else delete obj["oelin"];
+                temp = ExcST6BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj["oelin"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ExcST6BOELselectorKind." + temp; else delete obj["oelin"];
                 temp = document.getElementById (id + "_tg").value; if ("" !== temp) obj["tg"] = temp;
                 temp = document.getElementById (id + "_vamax").value; if ("" !== temp) obj["vamax"] = temp;
                 temp = document.getElementById (id + "_vamin").value; if ("" !== temp) obj["vamin"] = temp;
@@ -8702,7 +8701,7 @@ define
                 temp = document.getElementById (id + "_km").value; if ("" !== temp) obj["km"] = temp;
                 temp = document.getElementById (id + "_kpa").value; if ("" !== temp) obj["kpa"] = temp;
                 temp = document.getElementById (id + "_kvd").value; if ("" !== temp) obj["kvd"] = temp;
-                temp = ExcST6BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj["oelin"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST6BOELselectorKind." + temp; else delete obj["oelin"];
+                temp = ExcST6BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj["oelin"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ExcST6BOELselectorKind." + temp; else delete obj["oelin"];
                 temp = document.getElementById (id + "_tg").value; if ("" !== temp) obj["tg"] = temp;
                 temp = document.getElementById (id + "_ts").value; if ("" !== temp) obj["ts"] = temp;
                 temp = document.getElementById (id + "_tvd").value; if ("" !== temp) obj["tvd"] = temp;
@@ -9215,13 +9214,13 @@ define
                 temp = document.getElementById (id + "_kia").value; if ("" !== temp) obj["kia"] = temp;
                 temp = document.getElementById (id + "_kl").value; if ("" !== temp) obj["kl"] = temp;
                 temp = document.getElementById (id + "_kpa").value; if ("" !== temp) obj["kpa"] = temp;
-                temp = ExcST7BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj["oelin"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BOELselectorKind." + temp; else delete obj["oelin"];
+                temp = ExcST7BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj["oelin"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ExcST7BOELselectorKind." + temp; else delete obj["oelin"];
                 temp = document.getElementById (id + "_tb").value; if ("" !== temp) obj["tb"] = temp;
                 temp = document.getElementById (id + "_tc").value; if ("" !== temp) obj["tc"] = temp;
                 temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
                 temp = document.getElementById (id + "_tg").value; if ("" !== temp) obj["tg"] = temp;
                 temp = document.getElementById (id + "_tia").value; if ("" !== temp) obj["tia"] = temp;
-                temp = ExcST7BUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj["uelin"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BUELselectorKind." + temp; else delete obj["uelin"];
+                temp = ExcST7BUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj["uelin"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ExcST7BUELselectorKind." + temp; else delete obj["uelin"];
                 temp = document.getElementById (id + "_vmax").value; if ("" !== temp) obj["vmax"] = temp;
                 temp = document.getElementById (id + "_vmin").value; if ("" !== temp) obj["vmin"] = temp;
                 temp = document.getElementById (id + "_vrmax").value; if ("" !== temp) obj["vrmax"] = temp;
@@ -9433,13 +9432,6 @@ define
             {
                 let obj = ExcitationSystemDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "ExcIEEEAC3A";
-                base.parse_element (/<cim:ExcIEEEAC3A.tf>([\s\S]*?)<\/cim:ExcIEEEAC3A.tf>/g, obj, "tf", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEAC3A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vamax>/g, obj, "vamax", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEAC3A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vamin>/g, obj, "vamin", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEAC3A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve1>/g, obj, "ve1", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEAC3A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve2>/g, obj, "ve2", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEAC3A.vemin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vemin>/g, obj, "vemin", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcIEEEAC3A.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC3A.efdn>([\s\S]*?)<\/cim:ExcIEEEAC3A.efdn>/g, obj, "efdn", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC3A.ka>([\s\S]*?)<\/cim:ExcIEEEAC3A.ka>/g, obj, "ka", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC3A.kc>([\s\S]*?)<\/cim:ExcIEEEAC3A.kc>/g, obj, "kc", base.to_string, sub, context);
@@ -9454,6 +9446,13 @@ define
                 base.parse_element (/<cim:ExcIEEEAC3A.tb>([\s\S]*?)<\/cim:ExcIEEEAC3A.tb>/g, obj, "tb", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC3A.tc>([\s\S]*?)<\/cim:ExcIEEEAC3A.tc>/g, obj, "tc", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC3A.te>([\s\S]*?)<\/cim:ExcIEEEAC3A.te>/g, obj, "te", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcIEEEAC3A.tf>([\s\S]*?)<\/cim:ExcIEEEAC3A.tf>/g, obj, "tf", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcIEEEAC3A.vamax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vamax>/g, obj, "vamax", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcIEEEAC3A.vamin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vamin>/g, obj, "vamin", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcIEEEAC3A.ve1>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve1>/g, obj, "ve1", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcIEEEAC3A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve2>/g, obj, "ve2", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcIEEEAC3A.vemin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vemin>/g, obj, "vemin", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcIEEEAC3A.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
                 let bucket = context.parsed.ExcIEEEAC3A;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC3A = bucket = {};
@@ -9466,13 +9465,6 @@ define
             {
                 let fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC3A", "tf", "tf",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "vamax", "vamax",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "vamin", "vamin",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "ve1", "ve1",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "ve2", "ve2",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "vemin", "vemin",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "vfemax", "vfemax",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC3A", "efdn", "efdn",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC3A", "ka", "ka",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC3A", "kc", "kc",  base.from_string, fields);
@@ -9487,6 +9479,13 @@ define
                 base.export_element (obj, "ExcIEEEAC3A", "tb", "tb",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC3A", "tc", "tc",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEAC3A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "vemin", "vemin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "vfemax", "vfemax",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -9503,13 +9502,6 @@ define
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
-                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
-                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
-                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
-                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
-                    {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
-                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
                     {{#efdn}}<div><b>efdn</b>: {{efdn}}</div>{{/efdn}}
                     {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
                     {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
@@ -9524,6 +9516,13 @@ define
                     {{#tb}}<div><b>tb</b>: {{tb}}</div>{{/tb}}
                     {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
                     {{#te}}<div><b>te</b>: {{te}}</div>{{/te}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#vamax}}<div><b>vamax</b>: {{vamax}}</div>{{/vamax}}
+                    {{#vamin}}<div><b>vamin</b>: {{vamin}}</div>{{/vamin}}
+                    {{#ve1}}<div><b>ve1</b>: {{ve1}}</div>{{/ve1}}
+                    {{#ve2}}<div><b>ve2</b>: {{ve2}}</div>{{/ve2}}
+                    {{#vemin}}<div><b>vemin</b>: {{vemin}}</div>{{/vemin}}
+                    {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
                     </div>
                     </fieldset>
 
@@ -9551,13 +9550,6 @@ define
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamax'>vamax: </label><div class='col-sm-8'><input id='{{id}}_vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamin'>vamin: </label><div class='col-sm-8'><input id='{{id}}_vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve1'>ve1: </label><div class='col-sm-8'><input id='{{id}}_ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve2'>ve2: </label><div class='col-sm-8'><input id='{{id}}_ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vemin'>vemin: </label><div class='col-sm-8'><input id='{{id}}_vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vfemax'>vfemax: </label><div class='col-sm-8'><input id='{{id}}_vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdn'>efdn: </label><div class='col-sm-8'><input id='{{id}}_efdn' class='form-control' type='text'{{#efdn}} value='{{efdn}}'{{/efdn}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kc'>kc: </label><div class='col-sm-8'><input id='{{id}}_kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
@@ -9572,6 +9564,13 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb'>tb: </label><div class='col-sm-8'><input id='{{id}}_tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamax'>vamax: </label><div class='col-sm-8'><input id='{{id}}_vamax' class='form-control' type='text'{{#vamax}} value='{{vamax}}'{{/vamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vamin'>vamin: </label><div class='col-sm-8'><input id='{{id}}_vamin' class='form-control' type='text'{{#vamin}} value='{{vamin}}'{{/vamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve1'>ve1: </label><div class='col-sm-8'><input id='{{id}}_ve1' class='form-control' type='text'{{#ve1}} value='{{ve1}}'{{/ve1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ve2'>ve2: </label><div class='col-sm-8'><input id='{{id}}_ve2' class='form-control' type='text'{{#ve2}} value='{{ve2}}'{{/ve2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vemin'>vemin: </label><div class='col-sm-8'><input id='{{id}}_vemin' class='form-control' type='text'{{#vemin}} value='{{vemin}}'{{/vemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vfemax'>vfemax: </label><div class='col-sm-8'><input id='{{id}}_vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -9584,13 +9583,6 @@ define
 
                 obj = obj || { id: id, cls: "ExcIEEEAC3A" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
-                temp = document.getElementById (id + "_vamax").value; if ("" !== temp) obj["vamax"] = temp;
-                temp = document.getElementById (id + "_vamin").value; if ("" !== temp) obj["vamin"] = temp;
-                temp = document.getElementById (id + "_ve1").value; if ("" !== temp) obj["ve1"] = temp;
-                temp = document.getElementById (id + "_ve2").value; if ("" !== temp) obj["ve2"] = temp;
-                temp = document.getElementById (id + "_vemin").value; if ("" !== temp) obj["vemin"] = temp;
-                temp = document.getElementById (id + "_vfemax").value; if ("" !== temp) obj["vfemax"] = temp;
                 temp = document.getElementById (id + "_efdn").value; if ("" !== temp) obj["efdn"] = temp;
                 temp = document.getElementById (id + "_ka").value; if ("" !== temp) obj["ka"] = temp;
                 temp = document.getElementById (id + "_kc").value; if ("" !== temp) obj["kc"] = temp;
@@ -9605,6 +9597,13 @@ define
                 temp = document.getElementById (id + "_tb").value; if ("" !== temp) obj["tb"] = temp;
                 temp = document.getElementById (id + "_tc").value; if ("" !== temp) obj["tc"] = temp;
                 temp = document.getElementById (id + "_te").value; if ("" !== temp) obj["te"] = temp;
+                temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
+                temp = document.getElementById (id + "_vamax").value; if ("" !== temp) obj["vamax"] = temp;
+                temp = document.getElementById (id + "_vamin").value; if ("" !== temp) obj["vamin"] = temp;
+                temp = document.getElementById (id + "_ve1").value; if ("" !== temp) obj["ve1"] = temp;
+                temp = document.getElementById (id + "_ve2").value; if ("" !== temp) obj["ve2"] = temp;
+                temp = document.getElementById (id + "_vemin").value; if ("" !== temp) obj["vemin"] = temp;
+                temp = document.getElementById (id + "_vfemax").value; if ("" !== temp) obj["vfemax"] = temp;
 
                 return (obj);
             }
@@ -9974,14 +9973,14 @@ define
                 temp = document.getElementById (id + "_kia").value; if ("" !== temp) obj["kia"] = temp;
                 temp = document.getElementById (id + "_kl").value; if ("" !== temp) obj["kl"] = temp;
                 temp = document.getElementById (id + "_kpa").value; if ("" !== temp) obj["kpa"] = temp;
-                temp = ExcST7BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj["oelin"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BOELselectorKind." + temp; else delete obj["oelin"];
+                temp = ExcST7BOELselectorKind[document.getElementById (id + "_oelin").value]; if (temp) obj["oelin"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ExcST7BOELselectorKind." + temp; else delete obj["oelin"];
                 temp = document.getElementById (id + "_tb").value; if ("" !== temp) obj["tb"] = temp;
                 temp = document.getElementById (id + "_tc").value; if ("" !== temp) obj["tc"] = temp;
                 temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
                 temp = document.getElementById (id + "_tg").value; if ("" !== temp) obj["tg"] = temp;
                 temp = document.getElementById (id + "_tia").value; if ("" !== temp) obj["tia"] = temp;
                 temp = document.getElementById (id + "_ts").value; if ("" !== temp) obj["ts"] = temp;
-                temp = ExcST7BUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj["uelin"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BUELselectorKind." + temp; else delete obj["uelin"];
+                temp = ExcST7BUELselectorKind[document.getElementById (id + "_uelin").value]; if (temp) obj["uelin"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ExcST7BUELselectorKind." + temp; else delete obj["uelin"];
                 temp = document.getElementById (id + "_vmax").value; if ("" !== temp) obj["vmax"] = temp;
                 temp = document.getElementById (id + "_vmin").value; if ("" !== temp) obj["vmin"] = temp;
                 temp = document.getElementById (id + "_vrmax").value; if ("" !== temp) obj["vrmax"] = temp;
@@ -10410,11 +10409,6 @@ define
             {
                 let obj = ExcitationSystemDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "ExcAC8B";
-                base.parse_element (/<cim:ExcAC8B.vpidmax>([\s\S]*?)<\/cim:ExcAC8B.vpidmax>/g, obj, "vpidmax", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcAC8B.vpidmin>([\s\S]*?)<\/cim:ExcAC8B.vpidmin>/g, obj, "vpidmin", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcAC8B.vrmax>([\s\S]*?)<\/cim:ExcAC8B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcAC8B.vrmin>([\s\S]*?)<\/cim:ExcAC8B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-                base.parse_element (/<cim:ExcAC8B.vtmult>([\s\S]*?)<\/cim:ExcAC8B.vtmult>/g, obj, "vtmult", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ExcAC8B.inlim>([\s\S]*?)<\/cim:ExcAC8B.inlim>/g, obj, "inlim", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ExcAC8B.ka>([\s\S]*?)<\/cim:ExcAC8B.ka>/g, obj, "ka", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC8B.kc>([\s\S]*?)<\/cim:ExcAC8B.kc>/g, obj, "kc", base.to_string, sub, context);
@@ -10437,6 +10431,11 @@ define
                 base.parse_element (/<cim:ExcAC8B.vfemax>([\s\S]*?)<\/cim:ExcAC8B.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC8B.vimax>([\s\S]*?)<\/cim:ExcAC8B.vimax>/g, obj, "vimax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC8B.vimin>([\s\S]*?)<\/cim:ExcAC8B.vimin>/g, obj, "vimin", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcAC8B.vpidmax>([\s\S]*?)<\/cim:ExcAC8B.vpidmax>/g, obj, "vpidmax", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcAC8B.vpidmin>([\s\S]*?)<\/cim:ExcAC8B.vpidmin>/g, obj, "vpidmin", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcAC8B.vrmax>([\s\S]*?)<\/cim:ExcAC8B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcAC8B.vrmin>([\s\S]*?)<\/cim:ExcAC8B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
+                base.parse_element (/<cim:ExcAC8B.vtmult>([\s\S]*?)<\/cim:ExcAC8B.vtmult>/g, obj, "vtmult", base.to_boolean, sub, context);
                 let bucket = context.parsed.ExcAC8B;
                 if (null == bucket)
                    context.parsed.ExcAC8B = bucket = {};
@@ -10449,11 +10448,6 @@ define
             {
                 let fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAC8B", "vpidmax", "vpidmax",  base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vpidmin", "vpidmin",  base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vrmax", "vrmax",  base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vrmin", "vrmin",  base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vtmult", "vtmult",  base.from_boolean, fields);
                 base.export_element (obj, "ExcAC8B", "inlim", "inlim",  base.from_boolean, fields);
                 base.export_element (obj, "ExcAC8B", "ka", "ka",  base.from_string, fields);
                 base.export_element (obj, "ExcAC8B", "kc", "kc",  base.from_string, fields);
@@ -10476,6 +10470,11 @@ define
                 base.export_element (obj, "ExcAC8B", "vfemax", "vfemax",  base.from_string, fields);
                 base.export_element (obj, "ExcAC8B", "vimax", "vimax",  base.from_string, fields);
                 base.export_element (obj, "ExcAC8B", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vpidmax", "vpidmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vpidmin", "vpidmin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vtmult", "vtmult",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -10492,11 +10491,6 @@ define
                     `
                     + ExcitationSystemDynamics.prototype.template.call (this) +
                     `
-                    {{#vpidmax}}<div><b>vpidmax</b>: {{vpidmax}}</div>{{/vpidmax}}
-                    {{#vpidmin}}<div><b>vpidmin</b>: {{vpidmin}}</div>{{/vpidmin}}
-                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
-                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
-                    {{#vtmult}}<div><b>vtmult</b>: {{vtmult}}</div>{{/vtmult}}
                     {{#inlim}}<div><b>inlim</b>: {{inlim}}</div>{{/inlim}}
                     {{#ka}}<div><b>ka</b>: {{ka}}</div>{{/ka}}
                     {{#kc}}<div><b>kc</b>: {{kc}}</div>{{/kc}}
@@ -10519,6 +10513,11 @@ define
                     {{#vfemax}}<div><b>vfemax</b>: {{vfemax}}</div>{{/vfemax}}
                     {{#vimax}}<div><b>vimax</b>: {{vimax}}</div>{{/vimax}}
                     {{#vimin}}<div><b>vimin</b>: {{vimin}}</div>{{/vimin}}
+                    {{#vpidmax}}<div><b>vpidmax</b>: {{vpidmax}}</div>{{/vpidmax}}
+                    {{#vpidmin}}<div><b>vpidmin</b>: {{vpidmin}}</div>{{/vpidmin}}
+                    {{#vrmax}}<div><b>vrmax</b>: {{vrmax}}</div>{{/vrmax}}
+                    {{#vrmin}}<div><b>vrmin</b>: {{vrmin}}</div>{{/vrmin}}
+                    {{#vtmult}}<div><b>vtmult</b>: {{vtmult}}</div>{{/vtmult}}
                     </div>
                     </fieldset>
 
@@ -10546,11 +10545,6 @@ define
                     `
                     + ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpidmax'>vpidmax: </label><div class='col-sm-8'><input id='{{id}}_vpidmax' class='form-control' type='text'{{#vpidmax}} value='{{vpidmax}}'{{/vpidmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpidmin'>vpidmin: </label><div class='col-sm-8'><input id='{{id}}_vpidmin' class='form-control' type='text'{{#vpidmin}} value='{{vpidmin}}'{{/vpidmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vtmult'>vtmult: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vtmult' class='form-check-input' type='checkbox'{{#vtmult}} checked{{/vtmult}}></div></div></div>
                     <div class='form-group row'><div class='col-sm-4' for='{{id}}_inlim'>inlim: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_inlim' class='form-check-input' type='checkbox'{{#inlim}} checked{{/inlim}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kc'>kc: </label><div class='col-sm-8'><input id='{{id}}_kc' class='form-control' type='text'{{#kc}} value='{{kc}}'{{/kc}}></div></div>
@@ -10573,6 +10567,11 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vfemax'>vfemax: </label><div class='col-sm-8'><input id='{{id}}_vfemax' class='form-control' type='text'{{#vfemax}} value='{{vfemax}}'{{/vfemax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vimax'>vimax: </label><div class='col-sm-8'><input id='{{id}}_vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vimin'>vimin: </label><div class='col-sm-8'><input id='{{id}}_vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpidmax'>vpidmax: </label><div class='col-sm-8'><input id='{{id}}_vpidmax' class='form-control' type='text'{{#vpidmax}} value='{{vpidmax}}'{{/vpidmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpidmin'>vpidmin: </label><div class='col-sm-8'><input id='{{id}}_vpidmin' class='form-control' type='text'{{#vpidmin}} value='{{vpidmin}}'{{/vpidmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_vtmult'>vtmult: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_vtmult' class='form-check-input' type='checkbox'{{#vtmult}} checked{{/vtmult}}></div></div></div>
                     </div>
                     </fieldset>
                     `
@@ -10585,11 +10584,6 @@ define
 
                 obj = obj || { id: id, cls: "ExcAC8B" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_vpidmax").value; if ("" !== temp) obj["vpidmax"] = temp;
-                temp = document.getElementById (id + "_vpidmin").value; if ("" !== temp) obj["vpidmin"] = temp;
-                temp = document.getElementById (id + "_vrmax").value; if ("" !== temp) obj["vrmax"] = temp;
-                temp = document.getElementById (id + "_vrmin").value; if ("" !== temp) obj["vrmin"] = temp;
-                temp = document.getElementById (id + "_vtmult").checked; if (temp) obj["vtmult"] = true;
                 temp = document.getElementById (id + "_inlim").checked; if (temp) obj["inlim"] = true;
                 temp = document.getElementById (id + "_ka").value; if ("" !== temp) obj["ka"] = temp;
                 temp = document.getElementById (id + "_kc").value; if ("" !== temp) obj["kc"] = temp;
@@ -10612,6 +10606,11 @@ define
                 temp = document.getElementById (id + "_vfemax").value; if ("" !== temp) obj["vfemax"] = temp;
                 temp = document.getElementById (id + "_vimax").value; if ("" !== temp) obj["vimax"] = temp;
                 temp = document.getElementById (id + "_vimin").value; if ("" !== temp) obj["vimin"] = temp;
+                temp = document.getElementById (id + "_vpidmax").value; if ("" !== temp) obj["vpidmax"] = temp;
+                temp = document.getElementById (id + "_vpidmin").value; if ("" !== temp) obj["vpidmin"] = temp;
+                temp = document.getElementById (id + "_vrmax").value; if ("" !== temp) obj["vrmax"] = temp;
+                temp = document.getElementById (id + "_vrmin").value; if ("" !== temp) obj["vrmin"] = temp;
+                temp = document.getElementById (id + "_vtmult").checked; if (temp) obj["vtmult"] = true;
 
                 return (obj);
             }

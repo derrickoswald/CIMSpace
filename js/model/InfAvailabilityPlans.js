@@ -7,7 +7,6 @@ define
      */
     function (base, Core)
     {
-
         class EquipmentUnavailabilitySchedule extends Core.IdentifiedObject
         {
             constructor (template, cim_data)

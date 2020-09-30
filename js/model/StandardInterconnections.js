@@ -11,7 +11,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * Type of input signal coming from remote bus.
          *
@@ -164,7 +163,7 @@ define
 
                 obj = obj || { id: id, cls: "RemoteInputSignal" };
                 super.submit (id, obj);
-                temp = RemoteSignalKind[document.getElementById (id + "_remoteSignalType").value]; if (temp) obj["remoteSignalType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; else delete obj["remoteSignalType"];
+                temp = RemoteSignalKind[document.getElementById (id + "_remoteSignalType").value]; if (temp) obj["remoteSignalType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#RemoteSignalKind." + temp; else delete obj["remoteSignalType"];
                 temp = document.getElementById (id + "_WindPlantDynamics").value; if ("" !== temp) obj["WindPlantDynamics"] = temp;
                 temp = document.getElementById (id + "_WindTurbineType1or2Dynamics").value; if ("" !== temp) obj["WindTurbineType1or2Dynamics"] = temp;
                 temp = document.getElementById (id + "_Terminal").value; if ("" !== temp) obj["Terminal"] = temp;

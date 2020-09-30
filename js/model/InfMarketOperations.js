@@ -3,7 +3,6 @@ define
     ["model/base", "model/Core", "model/MktDomain"],
     function (base, Core, MktDomain)
     {
-
         /**
          * This class represent the resource certification for a specific product type.
          *
@@ -40,10 +39,10 @@ define
                 base.parse_attribute (/<cim:ResourceCertification2.certifiedRegulation\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "certifiedRegulation", sub, context);
                 base.parse_element (/<cim:ResourceCertification2.certifiedRegulationMw>([\s\S]*?)<\/cim:ResourceCertification2.certifiedRegulationMw>/g, obj, "certifiedRegulationMw", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ResourceCertification2.certifiedReplaceAS\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "certifiedReplaceAS", sub, context);
-                base.parse_attribute (/<cim:ResourceCertification2.certifiedSpin\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "certifiedSpin", sub, context);
-                base.parse_element (/<cim:ResourceCertification2.certifiedSpinMw>([\s\S]*?)<\/cim:ResourceCertification2.certifiedSpinMw>/g, obj, "certifiedSpinMw", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ResourceCertification2.certifiedRTM\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "certifiedRTM", sub, context);
                 base.parse_attribute (/<cim:ResourceCertification2.certifiedRUC\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "certifiedRUC", sub, context);
+                base.parse_attribute (/<cim:ResourceCertification2.certifiedSpin\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "certifiedSpin", sub, context);
+                base.parse_element (/<cim:ResourceCertification2.certifiedSpinMw>([\s\S]*?)<\/cim:ResourceCertification2.certifiedSpinMw>/g, obj, "certifiedSpinMw", base.to_float, sub, context);
                 base.parse_attributes (/<cim:ResourceCertification2.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 let bucket = context.parsed.ResourceCertification2;
                 if (null == bucket)
@@ -66,10 +65,10 @@ define
                 base.export_attribute (obj, "ResourceCertification2", "certifiedRegulation", "certifiedRegulation", fields);
                 base.export_element (obj, "ResourceCertification2", "certifiedRegulationMw", "certifiedRegulationMw",  base.from_float, fields);
                 base.export_attribute (obj, "ResourceCertification2", "certifiedReplaceAS", "certifiedReplaceAS", fields);
-                base.export_attribute (obj, "ResourceCertification2", "certifiedSpin", "certifiedSpin", fields);
-                base.export_element (obj, "ResourceCertification2", "certifiedSpinMw", "certifiedSpinMw",  base.from_float, fields);
                 base.export_attribute (obj, "ResourceCertification2", "certifiedRTM", "certifiedRTM", fields);
                 base.export_attribute (obj, "ResourceCertification2", "certifiedRUC", "certifiedRUC", fields);
+                base.export_attribute (obj, "ResourceCertification2", "certifiedSpin", "certifiedSpin", fields);
+                base.export_element (obj, "ResourceCertification2", "certifiedSpinMw", "certifiedSpinMw",  base.from_float, fields);
                 base.export_attributes (obj, "ResourceCertification2", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
@@ -96,10 +95,10 @@ define
                     {{#certifiedRegulation}}<div><b>certifiedRegulation</b>: {{certifiedRegulation}}</div>{{/certifiedRegulation}}
                     {{#certifiedRegulationMw}}<div><b>certifiedRegulationMw</b>: {{certifiedRegulationMw}}</div>{{/certifiedRegulationMw}}
                     {{#certifiedReplaceAS}}<div><b>certifiedReplaceAS</b>: {{certifiedReplaceAS}}</div>{{/certifiedReplaceAS}}
-                    {{#certifiedSpin}}<div><b>certifiedSpin</b>: {{certifiedSpin}}</div>{{/certifiedSpin}}
-                    {{#certifiedSpinMw}}<div><b>certifiedSpinMw</b>: {{certifiedSpinMw}}</div>{{/certifiedSpinMw}}
                     {{#certifiedRTM}}<div><b>certifiedRTM</b>: {{certifiedRTM}}</div>{{/certifiedRTM}}
                     {{#certifiedRUC}}<div><b>certifiedRUC</b>: {{certifiedRUC}}</div>{{/certifiedRUC}}
+                    {{#certifiedSpin}}<div><b>certifiedSpin</b>: {{certifiedSpin}}</div>{{/certifiedSpin}}
+                    {{#certifiedSpinMw}}<div><b>certifiedSpinMw</b>: {{certifiedSpinMw}}</div>{{/certifiedSpinMw}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
                     </fieldset>
@@ -117,9 +116,9 @@ define
                 obj["certifiedPIRPYesNo"] = [{ id: '', selected: (!obj["certifiedPIRP"])}]; for (let property in MktDomain.YesNo) obj["certifiedPIRPYesNo"].push ({ id: property, selected: obj["certifiedPIRP"] && obj["certifiedPIRP"].endsWith ('.' + property)});
                 obj["certifiedRegulationYesNo"] = [{ id: '', selected: (!obj["certifiedRegulation"])}]; for (let property in MktDomain.YesNo) obj["certifiedRegulationYesNo"].push ({ id: property, selected: obj["certifiedRegulation"] && obj["certifiedRegulation"].endsWith ('.' + property)});
                 obj["certifiedReplaceASYesNo"] = [{ id: '', selected: (!obj["certifiedReplaceAS"])}]; for (let property in MktDomain.YesNo) obj["certifiedReplaceASYesNo"].push ({ id: property, selected: obj["certifiedReplaceAS"] && obj["certifiedReplaceAS"].endsWith ('.' + property)});
-                obj["certifiedSpinYesNo"] = [{ id: '', selected: (!obj["certifiedSpin"])}]; for (let property in MktDomain.YesNo) obj["certifiedSpinYesNo"].push ({ id: property, selected: obj["certifiedSpin"] && obj["certifiedSpin"].endsWith ('.' + property)});
                 obj["certifiedRTMYesNo"] = [{ id: '', selected: (!obj["certifiedRTM"])}]; for (let property in MktDomain.YesNo) obj["certifiedRTMYesNo"].push ({ id: property, selected: obj["certifiedRTM"] && obj["certifiedRTM"].endsWith ('.' + property)});
                 obj["certifiedRUCYesNo"] = [{ id: '', selected: (!obj["certifiedRUC"])}]; for (let property in MktDomain.YesNo) obj["certifiedRUCYesNo"].push ({ id: property, selected: obj["certifiedRUC"] && obj["certifiedRUC"].endsWith ('.' + property)});
+                obj["certifiedSpinYesNo"] = [{ id: '', selected: (!obj["certifiedSpin"])}]; for (let property in MktDomain.YesNo) obj["certifiedSpinYesNo"].push ({ id: property, selected: obj["certifiedSpin"] && obj["certifiedSpin"].endsWith ('.' + property)});
                 if (obj["RegisteredResource"]) obj["RegisteredResource_string"] = obj["RegisteredResource"].join ();
             }
 
@@ -132,9 +131,9 @@ define
                 delete obj["certifiedPIRPYesNo"];
                 delete obj["certifiedRegulationYesNo"];
                 delete obj["certifiedReplaceASYesNo"];
-                delete obj["certifiedSpinYesNo"];
                 delete obj["certifiedRTMYesNo"];
                 delete obj["certifiedRUCYesNo"];
+                delete obj["certifiedSpinYesNo"];
                 delete obj["RegisteredResource_string"];
             }
 
@@ -157,10 +156,10 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulation'>certifiedRegulation: </label><div class='col-sm-8'><select id='{{id}}_certifiedRegulation' class='form-control custom-select'>{{#certifiedRegulationYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedRegulationYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulationMw'>certifiedRegulationMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedRegulationMw' class='form-control' type='text'{{#certifiedRegulationMw}} value='{{certifiedRegulationMw}}'{{/certifiedRegulationMw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedReplaceAS'>certifiedReplaceAS: </label><div class='col-sm-8'><select id='{{id}}_certifiedReplaceAS' class='form-control custom-select'>{{#certifiedReplaceASYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedReplaceASYesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><select id='{{id}}_certifiedSpin' class='form-control custom-select'>{{#certifiedSpinYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedSpinYesNo}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><select id='{{id}}_certifiedRTM' class='form-control custom-select'>{{#certifiedRTMYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedRTMYesNo}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><select id='{{id}}_certifiedRUC' class='form-control custom-select'>{{#certifiedRUCYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedRUCYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><select id='{{id}}_certifiedSpin' class='form-control custom-select'>{{#certifiedSpinYesNo}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/certifiedSpinYesNo}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
                     </div>
                     </fieldset>
@@ -174,19 +173,19 @@ define
 
                 obj = obj || { id: id, cls: "ResourceCertification2" };
                 super.submit (id, obj);
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedDAM").value]; if (temp) obj["certifiedDAM"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedDAM"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedNonspinDAM").value]; if (temp) obj["certifiedNonspinDAM"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedNonspinDAM"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedDAM").value]; if (temp) obj["certifiedDAM"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedDAM"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedNonspinDAM").value]; if (temp) obj["certifiedNonspinDAM"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedNonspinDAM"];
                 temp = document.getElementById (id + "_certifiedNonspinDAMMw").value; if ("" !== temp) obj["certifiedNonspinDAMMw"] = temp;
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedNonspinRTM").value]; if (temp) obj["certifiedNonspinRTM"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedNonspinRTM"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedNonspinRTM").value]; if (temp) obj["certifiedNonspinRTM"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedNonspinRTM"];
                 temp = document.getElementById (id + "_certifiedNonspinRTMMw").value; if ("" !== temp) obj["certifiedNonspinRTMMw"] = temp;
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedPIRP").value]; if (temp) obj["certifiedPIRP"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedPIRP"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRegulation").value]; if (temp) obj["certifiedRegulation"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedRegulation"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedPIRP").value]; if (temp) obj["certifiedPIRP"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedPIRP"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRegulation").value]; if (temp) obj["certifiedRegulation"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedRegulation"];
                 temp = document.getElementById (id + "_certifiedRegulationMw").value; if ("" !== temp) obj["certifiedRegulationMw"] = temp;
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedReplaceAS").value]; if (temp) obj["certifiedReplaceAS"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedReplaceAS"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedSpin").value]; if (temp) obj["certifiedSpin"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedSpin"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedReplaceAS").value]; if (temp) obj["certifiedReplaceAS"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedReplaceAS"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRTM").value]; if (temp) obj["certifiedRTM"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedRTM"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRUC").value]; if (temp) obj["certifiedRUC"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedRUC"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedSpin").value]; if (temp) obj["certifiedSpin"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["certifiedSpin"];
                 temp = document.getElementById (id + "_certifiedSpinMw").value; if ("" !== temp) obj["certifiedSpinMw"] = temp;
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRTM").value]; if (temp) obj["certifiedRTM"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedRTM"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_certifiedRUC").value]; if (temp) obj["certifiedRUC"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["certifiedRUC"];
                 temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp.split (",");
 
                 return (obj);
@@ -229,14 +228,14 @@ define
             {
                 let obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "BilateralTransaction";
-                base.parse_element (/<cim:BilateralTransaction.scope>([\s\S]*?)<\/cim:BilateralTransaction.scope>/g, obj, "scope", base.to_string, sub, context);
-                base.parse_element (/<cim:BilateralTransaction.transactionType>([\s\S]*?)<\/cim:BilateralTransaction.transactionType>/g, obj, "transactionType", base.to_string, sub, context);
-                base.parse_element (/<cim:BilateralTransaction.marketType>([\s\S]*?)<\/cim:BilateralTransaction.marketType>/g, obj, "marketType", base.to_string, sub, context);
-                base.parse_element (/<cim:BilateralTransaction.purchaseTimeMin>([\s\S]*?)<\/cim:BilateralTransaction.purchaseTimeMin>/g, obj, "purchaseTimeMin", base.to_string, sub, context);
-                base.parse_element (/<cim:BilateralTransaction.purchaseTimeMax>([\s\S]*?)<\/cim:BilateralTransaction.purchaseTimeMax>/g, obj, "purchaseTimeMax", base.to_string, sub, context);
-                base.parse_element (/<cim:BilateralTransaction.curtailTimeMin>([\s\S]*?)<\/cim:BilateralTransaction.curtailTimeMin>/g, obj, "curtailTimeMin", base.to_string, sub, context);
                 base.parse_element (/<cim:BilateralTransaction.curtailTimeMax>([\s\S]*?)<\/cim:BilateralTransaction.curtailTimeMax>/g, obj, "curtailTimeMax", base.to_string, sub, context);
+                base.parse_element (/<cim:BilateralTransaction.curtailTimeMin>([\s\S]*?)<\/cim:BilateralTransaction.curtailTimeMin>/g, obj, "curtailTimeMin", base.to_string, sub, context);
+                base.parse_element (/<cim:BilateralTransaction.marketType>([\s\S]*?)<\/cim:BilateralTransaction.marketType>/g, obj, "marketType", base.to_string, sub, context);
+                base.parse_element (/<cim:BilateralTransaction.purchaseTimeMax>([\s\S]*?)<\/cim:BilateralTransaction.purchaseTimeMax>/g, obj, "purchaseTimeMax", base.to_string, sub, context);
+                base.parse_element (/<cim:BilateralTransaction.purchaseTimeMin>([\s\S]*?)<\/cim:BilateralTransaction.purchaseTimeMin>/g, obj, "purchaseTimeMin", base.to_string, sub, context);
+                base.parse_element (/<cim:BilateralTransaction.scope>([\s\S]*?)<\/cim:BilateralTransaction.scope>/g, obj, "scope", base.to_string, sub, context);
                 base.parse_element (/<cim:BilateralTransaction.totalTranChargeMax>([\s\S]*?)<\/cim:BilateralTransaction.totalTranChargeMax>/g, obj, "totalTranChargeMax", base.to_string, sub, context);
+                base.parse_element (/<cim:BilateralTransaction.transactionType>([\s\S]*?)<\/cim:BilateralTransaction.transactionType>/g, obj, "transactionType", base.to_string, sub, context);
                 let bucket = context.parsed.BilateralTransaction;
                 if (null == bucket)
                    context.parsed.BilateralTransaction = bucket = {};
@@ -249,14 +248,14 @@ define
             {
                 let fields = [];
 
-                base.export_element (obj, "BilateralTransaction", "scope", "scope",  base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "transactionType", "transactionType",  base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "marketType", "marketType",  base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "purchaseTimeMin", "purchaseTimeMin",  base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "purchaseTimeMax", "purchaseTimeMax",  base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "curtailTimeMin", "curtailTimeMin",  base.from_string, fields);
                 base.export_element (obj, "BilateralTransaction", "curtailTimeMax", "curtailTimeMax",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "curtailTimeMin", "curtailTimeMin",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "marketType", "marketType",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "purchaseTimeMax", "purchaseTimeMax",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "purchaseTimeMin", "purchaseTimeMin",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "scope", "scope",  base.from_string, fields);
                 base.export_element (obj, "BilateralTransaction", "totalTranChargeMax", "totalTranChargeMax",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "transactionType", "transactionType",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -273,14 +272,14 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
-                    {{#transactionType}}<div><b>transactionType</b>: {{transactionType}}</div>{{/transactionType}}
-                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-                    {{#purchaseTimeMin}}<div><b>purchaseTimeMin</b>: {{purchaseTimeMin}}</div>{{/purchaseTimeMin}}
-                    {{#purchaseTimeMax}}<div><b>purchaseTimeMax</b>: {{purchaseTimeMax}}</div>{{/purchaseTimeMax}}
-                    {{#curtailTimeMin}}<div><b>curtailTimeMin</b>: {{curtailTimeMin}}</div>{{/curtailTimeMin}}
                     {{#curtailTimeMax}}<div><b>curtailTimeMax</b>: {{curtailTimeMax}}</div>{{/curtailTimeMax}}
+                    {{#curtailTimeMin}}<div><b>curtailTimeMin</b>: {{curtailTimeMin}}</div>{{/curtailTimeMin}}
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    {{#purchaseTimeMax}}<div><b>purchaseTimeMax</b>: {{purchaseTimeMax}}</div>{{/purchaseTimeMax}}
+                    {{#purchaseTimeMin}}<div><b>purchaseTimeMin</b>: {{purchaseTimeMin}}</div>{{/purchaseTimeMin}}
+                    {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
                     {{#totalTranChargeMax}}<div><b>totalTranChargeMax</b>: {{totalTranChargeMax}}</div>{{/totalTranChargeMax}}
+                    {{#transactionType}}<div><b>transactionType</b>: {{transactionType}}</div>{{/transactionType}}
                     </div>
                     </fieldset>
 
@@ -308,14 +307,14 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><input id='{{id}}_scope' class='form-control' type='text'{{#scope}} value='{{scope}}'{{/scope}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionType'>transactionType: </label><div class='col-sm-8'><input id='{{id}}_transactionType' class='form-control' type='text'{{#transactionType}} value='{{transactionType}}'{{/transactionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseTimeMin'>purchaseTimeMin: </label><div class='col-sm-8'><input id='{{id}}_purchaseTimeMin' class='form-control' type='text'{{#purchaseTimeMin}} value='{{purchaseTimeMin}}'{{/purchaseTimeMin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseTimeMax'>purchaseTimeMax: </label><div class='col-sm-8'><input id='{{id}}_purchaseTimeMax' class='form-control' type='text'{{#purchaseTimeMax}} value='{{purchaseTimeMax}}'{{/purchaseTimeMax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curtailTimeMin'>curtailTimeMin: </label><div class='col-sm-8'><input id='{{id}}_curtailTimeMin' class='form-control' type='text'{{#curtailTimeMin}} value='{{curtailTimeMin}}'{{/curtailTimeMin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curtailTimeMax'>curtailTimeMax: </label><div class='col-sm-8'><input id='{{id}}_curtailTimeMax' class='form-control' type='text'{{#curtailTimeMax}} value='{{curtailTimeMax}}'{{/curtailTimeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curtailTimeMin'>curtailTimeMin: </label><div class='col-sm-8'><input id='{{id}}_curtailTimeMin' class='form-control' type='text'{{#curtailTimeMin}} value='{{curtailTimeMin}}'{{/curtailTimeMin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseTimeMax'>purchaseTimeMax: </label><div class='col-sm-8'><input id='{{id}}_purchaseTimeMax' class='form-control' type='text'{{#purchaseTimeMax}} value='{{purchaseTimeMax}}'{{/purchaseTimeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseTimeMin'>purchaseTimeMin: </label><div class='col-sm-8'><input id='{{id}}_purchaseTimeMin' class='form-control' type='text'{{#purchaseTimeMin}} value='{{purchaseTimeMin}}'{{/purchaseTimeMin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><input id='{{id}}_scope' class='form-control' type='text'{{#scope}} value='{{scope}}'{{/scope}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalTranChargeMax'>totalTranChargeMax: </label><div class='col-sm-8'><input id='{{id}}_totalTranChargeMax' class='form-control' type='text'{{#totalTranChargeMax}} value='{{totalTranChargeMax}}'{{/totalTranChargeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionType'>transactionType: </label><div class='col-sm-8'><input id='{{id}}_transactionType' class='form-control' type='text'{{#transactionType}} value='{{transactionType}}'{{/transactionType}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -328,14 +327,14 @@ define
 
                 obj = obj || { id: id, cls: "BilateralTransaction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_scope").value; if ("" !== temp) obj["scope"] = temp;
-                temp = document.getElementById (id + "_transactionType").value; if ("" !== temp) obj["transactionType"] = temp;
-                temp = document.getElementById (id + "_marketType").value; if ("" !== temp) obj["marketType"] = temp;
-                temp = document.getElementById (id + "_purchaseTimeMin").value; if ("" !== temp) obj["purchaseTimeMin"] = temp;
-                temp = document.getElementById (id + "_purchaseTimeMax").value; if ("" !== temp) obj["purchaseTimeMax"] = temp;
-                temp = document.getElementById (id + "_curtailTimeMin").value; if ("" !== temp) obj["curtailTimeMin"] = temp;
                 temp = document.getElementById (id + "_curtailTimeMax").value; if ("" !== temp) obj["curtailTimeMax"] = temp;
+                temp = document.getElementById (id + "_curtailTimeMin").value; if ("" !== temp) obj["curtailTimeMin"] = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" !== temp) obj["marketType"] = temp;
+                temp = document.getElementById (id + "_purchaseTimeMax").value; if ("" !== temp) obj["purchaseTimeMax"] = temp;
+                temp = document.getElementById (id + "_purchaseTimeMin").value; if ("" !== temp) obj["purchaseTimeMin"] = temp;
+                temp = document.getElementById (id + "_scope").value; if ("" !== temp) obj["scope"] = temp;
                 temp = document.getElementById (id + "_totalTranChargeMax").value; if ("" !== temp) obj["totalTranChargeMax"] = temp;
+                temp = document.getElementById (id + "_transactionType").value; if ("" !== temp) obj["transactionType"] = temp;
 
                 return (obj);
             }

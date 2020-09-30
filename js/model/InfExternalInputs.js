@@ -3,255 +3,6 @@ define
     ["model/base", "model/Core"],
     function (base, Core)
     {
-
-        /**
-         * Optionally, this curve expresses elasticity of the associated requirement.
-         *
-         * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
-         * X axis is constrained quantity (e.g., MW)
-         * Y1 axis is money per constrained quantity
-         *
-         */
-        class SensitivityPriceCurve extends Core.Curve
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.SensitivityPriceCurve;
-                if (null == bucket)
-                   cim_data.SensitivityPriceCurve = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.SensitivityPriceCurve[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.Curve.prototype.parse.call (this, context, sub);
-                obj.cls = "SensitivityPriceCurve";
-                base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
-                let bucket = context.parsed.SensitivityPriceCurve;
-                if (null == bucket)
-                   context.parsed.SensitivityPriceCurve = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.Curve.prototype.export.call (this, obj, false);
-
-                base.export_attribute (obj, "SensitivityPriceCurve", "ReserveReq", "ReserveReq", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
-                    <div id="SensitivityPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.template.call (this) +
-                    `
-                    {{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReserveReq}}");}); return false;'>{{ReserveReq}}</a></div>{{/ReserveReq}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
-                    <div id="{{id}}_SensitivityPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='{{id}}_ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "SensitivityPriceCurve" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_ReserveReq").value; if ("" !== temp) obj["ReserveReq"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["ReserveReq", "0..1", "0..1", "ReserveReq", "SensitivityPriceCurve"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
-         *
-         */
-        class ResourceGroup extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.ResourceGroup;
-                if (null == bucket)
-                   cim_data.ResourceGroup = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.ResourceGroup[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "ResourceGroup";
-                base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, obj, "type", base.to_string, sub, context);
-                base.parse_attribute (/<cim:ResourceGroup.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
-                base.parse_attributes (/<cim:ResourceGroup.RegisteredResources\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResources", sub, context);
-                base.parse_attributes (/<cim:ResourceGroup.ResourceGroupReqs\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroupReqs", sub, context);
-                let bucket = context.parsed.ResourceGroup;
-                if (null == bucket)
-                   context.parsed.ResourceGroup = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "ResourceGroup", "type", "type",  base.from_string, fields);
-                base.export_attribute (obj, "ResourceGroup", "status", "status", fields);
-                base.export_attributes (obj, "ResourceGroup", "RegisteredResources", "RegisteredResources", fields);
-                base.export_attributes (obj, "ResourceGroup", "ResourceGroupReqs", "ResourceGroupReqs", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceGroup_collapse" aria-expanded="true" aria-controls="ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
-                    <div id="ResourceGroup_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
-                    {{#RegisteredResources}}<div><b>RegisteredResources</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResources}}
-                    {{#ResourceGroupReqs}}<div><b>ResourceGroupReqs</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ResourceGroupReqs}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["RegisteredResources"]) obj["RegisteredResources_string"] = obj["RegisteredResources"].join ();
-                if (obj["ResourceGroupReqs"]) obj["ResourceGroupReqs_string"] = obj["ResourceGroupReqs"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["RegisteredResources_string"];
-                delete obj["ResourceGroupReqs_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
-                    <div id="{{id}}_ResourceGroup_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources_string}}'{{/RegisteredResources}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "ResourceGroup" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
-                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
-                temp = document.getElementById (id + "_RegisteredResources").value; if ("" !== temp) obj["RegisteredResources"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["RegisteredResources", "1..*", "0..*", "RegisteredResource", "ResourceGroups"],
-                            ["ResourceGroupReqs", "0..*", "1", "ResourceGroupReq", "ResourceGroup"]
-                        ]
-                    )
-                );
-            }
-        }
-
         /**
          * A curve relating  reserve requirement versus time, showing the values of a specific reserve requirement for each unit of the period covered.
          *
@@ -363,6 +114,137 @@ define
                     super.relations ().concat (
                         [
                             ["ReserveReq", "1", "1", "ReserveReq", "ReserveReqCurve"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
+         *
+         */
+        class ResourceGroup extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.ResourceGroup;
+                if (null == bucket)
+                   cim_data.ResourceGroup = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.ResourceGroup[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "ResourceGroup";
+                base.parse_attribute (/<cim:ResourceGroup.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attributes (/<cim:ResourceGroup.RegisteredResources\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResources", sub, context);
+                base.parse_attributes (/<cim:ResourceGroup.ResourceGroupReqs\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroupReqs", sub, context);
+                let bucket = context.parsed.ResourceGroup;
+                if (null == bucket)
+                   context.parsed.ResourceGroup = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "ResourceGroup", "status", "status", fields);
+                base.export_element (obj, "ResourceGroup", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "ResourceGroup", "RegisteredResources", "RegisteredResources", fields);
+                base.export_attributes (obj, "ResourceGroup", "ResourceGroupReqs", "ResourceGroupReqs", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceGroup_collapse" aria-expanded="true" aria-controls="ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
+                    <div id="ResourceGroup_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#RegisteredResources}}<div><b>RegisteredResources</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResources}}
+                    {{#ResourceGroupReqs}}<div><b>ResourceGroupReqs</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ResourceGroupReqs}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["RegisteredResources"]) obj["RegisteredResources_string"] = obj["RegisteredResources"].join ();
+                if (obj["ResourceGroupReqs"]) obj["ResourceGroupReqs_string"] = obj["ResourceGroupReqs"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["RegisteredResources_string"];
+                delete obj["ResourceGroupReqs_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
+                    <div id="{{id}}_ResourceGroup_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources_string}}'{{/RegisteredResources}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "ResourceGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
+                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
+                temp = document.getElementById (id + "_RegisteredResources").value; if ("" !== temp) obj["RegisteredResources"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResources", "1..*", "0..*", "RegisteredResource", "ResourceGroups"],
+                            ["ResourceGroupReqs", "0..*", "1", "ResourceGroupReq", "ResourceGroup"]
                         ]
                     )
                 );
@@ -484,6 +366,123 @@ define
                         [
                             ["RTOs", "0..*", "0..*", "RTO", "ResourceGroupReqs"],
                             ["ResourceGroup", "1", "0..*", "ResourceGroup", "ResourceGroupReqs"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Optionally, this curve expresses elasticity of the associated requirement.
+         *
+         * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
+         * X axis is constrained quantity (e.g., MW)
+         * Y1 axis is money per constrained quantity
+         *
+         */
+        class SensitivityPriceCurve extends Core.Curve
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.SensitivityPriceCurve;
+                if (null == bucket)
+                   cim_data.SensitivityPriceCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.SensitivityPriceCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "SensitivityPriceCurve";
+                base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
+                let bucket = context.parsed.SensitivityPriceCurve;
+                if (null == bucket)
+                   context.parsed.SensitivityPriceCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.Curve.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "SensitivityPriceCurve", "ReserveReq", "ReserveReq", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
+                    <div id="SensitivityPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#ReserveReq}}<div><b>ReserveReq</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ReserveReq}}");}); return false;'>{{ReserveReq}}</a></div>{{/ReserveReq}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
+                    <div id="{{id}}_SensitivityPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='{{id}}_ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "SensitivityPriceCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ReserveReq").value; if ("" !== temp) obj["ReserveReq"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["ReserveReq", "0..1", "0..1", "ReserveReq", "SensitivityPriceCurve"]
                         ]
                     )
                 );

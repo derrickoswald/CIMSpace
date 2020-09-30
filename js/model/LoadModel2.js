@@ -5,13 +5,12 @@ define
      * This package is responsible for modelling the energy consumers and the system load as curves and associated curve data.
      *
      * Special circumstances that may affect the load, such as seasons and day types, are also included here.
-     * 
+     *
      * This information is used by Load Forecasting and Load Management.
      *
      */
     function (base, Wires)
     {
-
         /**
          * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
          *

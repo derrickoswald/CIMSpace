@@ -9,7 +9,6 @@ define
      */
     function (base)
     {
-
         /**
          * IEC 61968 version number assigned to this UML model.
          *

@@ -14,7 +14,6 @@ define
      */
     function (base, Core, StandardModels)
     {
-
         /**
          * Function of the lookup table.
          *
@@ -2052,7 +2051,7 @@ define
                 temp = document.getElementById (id + "_txft").value; if ("" !== temp) obj["txft"] = temp;
                 temp = document.getElementById (id + "_txfv").value; if ("" !== temp) obj["txfv"] = temp;
                 temp = document.getElementById (id + "_uwpqdip").value; if ("" !== temp) obj["uwpqdip"] = temp;
-                temp = WindPlantQcontrolModeKind[document.getElementById (id + "_windPlantQcontrolModesType").value]; if (temp) obj["windPlantQcontrolModesType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindPlantQcontrolModeKind." + temp; else delete obj["windPlantQcontrolModesType"];
+                temp = WindPlantQcontrolModeKind[document.getElementById (id + "_windPlantQcontrolModesType").value]; if (temp) obj["windPlantQcontrolModesType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#WindPlantQcontrolModeKind." + temp; else delete obj["windPlantQcontrolModesType"];
                 temp = document.getElementById (id + "_xrefmax").value; if ("" !== temp) obj["xrefmax"] = temp;
                 temp = document.getElementById (id + "_xrefmin").value; if ("" !== temp) obj["xrefmin"] = temp;
                 temp = document.getElementById (id + "_WindPlantIEC").value; if ("" !== temp) obj["WindPlantIEC"] = temp;
@@ -3307,8 +3306,8 @@ define
                 temp = document.getElementById (id + "_umin").value; if ("" !== temp) obj["umin"] = temp;
                 temp = document.getElementById (id + "_uqdip").value; if ("" !== temp) obj["uqdip"] = temp;
                 temp = document.getElementById (id + "_uref0").value; if ("" !== temp) obj["uref0"] = temp;
-                temp = WindQcontrolModeKind[document.getElementById (id + "_windQcontrolModesType").value]; if (temp) obj["windQcontrolModesType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindQcontrolModeKind." + temp; else delete obj["windQcontrolModesType"];
-                temp = WindUVRTQcontrolModeKind[document.getElementById (id + "_windUVRTQcontrolModesType").value]; if (temp) obj["windUVRTQcontrolModesType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindUVRTQcontrolModeKind." + temp; else delete obj["windUVRTQcontrolModesType"];
+                temp = WindQcontrolModeKind[document.getElementById (id + "_windQcontrolModesType").value]; if (temp) obj["windQcontrolModesType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#WindQcontrolModeKind." + temp; else delete obj["windQcontrolModesType"];
+                temp = WindUVRTQcontrolModeKind[document.getElementById (id + "_windUVRTQcontrolModesType").value]; if (temp) obj["windUVRTQcontrolModesType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#WindUVRTQcontrolModeKind." + temp; else delete obj["windUVRTQcontrolModesType"];
                 temp = document.getElementById (id + "_xdroop").value; if ("" !== temp) obj["xdroop"] = temp;
                 temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" !== temp) obj["WindTurbineType3or4IEC"] = temp;
 
@@ -3599,7 +3598,7 @@ define
                 obj = obj || { id: id, cls: "WindDynamicsLookupTable" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_input").value; if ("" !== temp) obj["input"] = temp;
-                temp = WindLookupTableFunctionKind[document.getElementById (id + "_lookupTableFunctionType").value]; if (temp) obj["lookupTableFunctionType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindLookupTableFunctionKind." + temp; else delete obj["lookupTableFunctionType"];
+                temp = WindLookupTableFunctionKind[document.getElementById (id + "_lookupTableFunctionType").value]; if (temp) obj["lookupTableFunctionType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#WindLookupTableFunctionKind." + temp; else delete obj["lookupTableFunctionType"];
                 temp = document.getElementById (id + "_output").value; if ("" !== temp) obj["output"] = temp;
                 temp = document.getElementById (id + "_sequence").value; if ("" !== temp) obj["sequence"] = temp;
                 temp = document.getElementById (id + "_WindPlantReactiveControlIEC").value; if ("" !== temp) obj["WindPlantReactiveControlIEC"] = temp;

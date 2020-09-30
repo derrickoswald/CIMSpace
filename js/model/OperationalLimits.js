@@ -7,7 +7,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * The direction attribute describes the side of  a limit that is a violation.
          *
@@ -198,6 +197,7 @@ define
                 obj.cls = "OperationalLimitType";
                 base.parse_element (/<cim:OperationalLimitType.acceptableDuration>([\s\S]*?)<\/cim:OperationalLimitType.acceptableDuration>/g, obj, "acceptableDuration", base.to_string, sub, context);
                 base.parse_attribute (/<cim:OperationalLimitType.direction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "direction", sub, context);
+                base.parse_element (/<cim:OperationalLimitType.isInfiniteDuration>([\s\S]*?)<\/cim:OperationalLimitType.isInfiniteDuration>/g, obj, "isInfiniteDuration", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:OperationalLimitType.TargetOperationalLimitmTypeScaling\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TargetOperationalLimitmTypeScaling", sub, context);
                 base.parse_attributes (/<cim:OperationalLimitType.SourceOperationalLimitTypeScaling\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SourceOperationalLimitTypeScaling", sub, context);
                 base.parse_attributes (/<cim:OperationalLimitType.OperationalLimit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "OperationalLimit", sub, context);
@@ -215,6 +215,7 @@ define
 
                 base.export_element (obj, "OperationalLimitType", "acceptableDuration", "acceptableDuration",  base.from_string, fields);
                 base.export_attribute (obj, "OperationalLimitType", "direction", "direction", fields);
+                base.export_element (obj, "OperationalLimitType", "isInfiniteDuration", "isInfiniteDuration",  base.from_boolean, fields);
                 base.export_attribute (obj, "OperationalLimitType", "TargetOperationalLimitmTypeScaling", "TargetOperationalLimitmTypeScaling", fields);
                 base.export_attributes (obj, "OperationalLimitType", "SourceOperationalLimitTypeScaling", "SourceOperationalLimitTypeScaling", fields);
                 base.export_attributes (obj, "OperationalLimitType", "OperationalLimit", "OperationalLimit", fields);
@@ -236,6 +237,7 @@ define
                     `
                     {{#acceptableDuration}}<div><b>acceptableDuration</b>: {{acceptableDuration}}</div>{{/acceptableDuration}}
                     {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+                    {{#isInfiniteDuration}}<div><b>isInfiniteDuration</b>: {{isInfiniteDuration}}</div>{{/isInfiniteDuration}}
                     {{#TargetOperationalLimitmTypeScaling}}<div><b>TargetOperationalLimitmTypeScaling</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TargetOperationalLimitmTypeScaling}}");}); return false;'>{{TargetOperationalLimitmTypeScaling}}</a></div>{{/TargetOperationalLimitmTypeScaling}}
                     {{#SourceOperationalLimitTypeScaling}}<div><b>SourceOperationalLimitTypeScaling</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SourceOperationalLimitTypeScaling}}
                     {{#OperationalLimit}}<div><b>OperationalLimit</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OperationalLimit}}
@@ -274,6 +276,7 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptableDuration'>acceptableDuration: </label><div class='col-sm-8'><input id='{{id}}_acceptableDuration' class='form-control' type='text'{{#acceptableDuration}} value='{{acceptableDuration}}'{{/acceptableDuration}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control custom-select'>{{#directionOperationalLimitDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/directionOperationalLimitDirectionKind}}</select></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isInfiniteDuration'>isInfiniteDuration: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isInfiniteDuration' class='form-check-input' type='checkbox'{{#isInfiniteDuration}} checked{{/isInfiniteDuration}}></div></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TargetOperationalLimitmTypeScaling'>TargetOperationalLimitmTypeScaling: </label><div class='col-sm-8'><input id='{{id}}_TargetOperationalLimitmTypeScaling' class='form-control' type='text'{{#TargetOperationalLimitmTypeScaling}} value='{{TargetOperationalLimitmTypeScaling}}'{{/TargetOperationalLimitmTypeScaling}}></div></div>
                     </div>
                     </fieldset>
@@ -288,7 +291,8 @@ define
                 obj = obj || { id: id, cls: "OperationalLimitType" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_acceptableDuration").value; if ("" !== temp) obj["acceptableDuration"] = temp;
-                temp = OperationalLimitDirectionKind[document.getElementById (id + "_direction").value]; if (temp) obj["direction"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; else delete obj["direction"];
+                temp = OperationalLimitDirectionKind[document.getElementById (id + "_direction").value]; if (temp) obj["direction"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#OperationalLimitDirectionKind." + temp; else delete obj["direction"];
+                temp = document.getElementById (id + "_isInfiniteDuration").checked; if (temp) obj["isInfiniteDuration"] = true;
                 temp = document.getElementById (id + "_TargetOperationalLimitmTypeScaling").value; if ("" !== temp) obj["TargetOperationalLimitmTypeScaling"] = temp;
 
                 return (obj);
@@ -560,13 +564,10 @@ define
         }
 
         /**
-         * A value associated with a specific kind of limit.
+         * A value and normal value associated with a specific kind of limit.
          *
-         * The sub class value attribute shall be positive.
-         * The sub class value attribute is inversely proportional to OperationalLimitType.acceptableDuration (acceptableDuration for short). A pair of value_x and acceptableDuration_x are related to each other as follows:
-         * if value_1 &gt; value_2 &gt; value_3 &gt;... then
-         * acceptableDuration_1 &lt; acceptableDuration_2 &lt; acceptableDuration_3 &lt; ...
-         * A value_x with direction="high" shall be greater than a value_y with direction="low".
+         * The sub class value and normalValue attributes vary inversely to the associated OperationalLimitType.acceptableDuration (acceptableDuration for short).
+         * If a particular piece of equipment has multiple operational limits of the same kind (apparent power, current, etc.), the limit with the greatest acceptableDuration shall have the smallest limit value and the limit with the smallest acceptableDuration shall have the largest limit value.  Note: A large current can only be allowed to flow through a piece of equipment for a short duration without causing damage, but a lesser current can be allowed to flow for a longer duration.
          *
          */
         class OperationalLimit extends Core.IdentifiedObject
@@ -700,6 +701,8 @@ define
 
         /**
          * Operational limit applied to voltage.
+         *
+         * The use of operational VoltageLimit is preferred instead of limits defined at VoltageLevel. The operational VoltageLimits are used, if present.
          *
          */
         class VoltageLimit extends OperationalLimit

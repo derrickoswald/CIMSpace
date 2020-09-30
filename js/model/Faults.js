@@ -7,7 +7,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * The type of fault connection among phases.
          *
@@ -151,8 +150,8 @@ define
 
                 obj = obj || { id: id, cls: "Fault" };
                 super.submit (id, obj);
-                temp = PhaseConnectedFaultKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; else delete obj["kind"];
-                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj["phases"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj["phases"];
+                temp = PhaseConnectedFaultKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseConnectedFaultKind." + temp; else delete obj["kind"];
+                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj["phases"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode." + temp; else delete obj["phases"];
                 temp = document.getElementById (id + "_impedance").value; if ("" !== temp) obj["impedance"] = temp;
                 temp = document.getElementById (id + "_occurredDateTime").value; if ("" !== temp) obj["occurredDateTime"] = temp;
                 temp = document.getElementById (id + "_Outage").value; if ("" !== temp) obj["Outage"] = temp;

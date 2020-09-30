@@ -10,7 +10,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * Source gives information related to the origin of a value.
          *
@@ -147,7 +146,7 @@ define
 
                 obj = obj || { id: id, cls: "RemoteUnit" };
                 super.submit (id, obj);
-                temp = RemoteUnitType[document.getElementById (id + "_remoteUnitType").value]; if (temp) obj["remoteUnitType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteUnitType." + temp; else delete obj["remoteUnitType"];
+                temp = RemoteUnitType[document.getElementById (id + "_remoteUnitType").value]; if (temp) obj["remoteUnitType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#RemoteUnitType." + temp; else delete obj["remoteUnitType"];
                 temp = document.getElementById (id + "_CommunicationLinks").value; if ("" !== temp) obj["CommunicationLinks"] = temp.split (",");
 
                 return (obj);

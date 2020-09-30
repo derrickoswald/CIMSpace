@@ -7,7 +7,6 @@ define
      */
     function (base, Core)
     {
-
         class GenericDataSetVersion extends base.Element
         {
             constructor (template, cim_data)

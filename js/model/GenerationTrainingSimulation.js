@@ -7,7 +7,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * Type of turbine.
          *
@@ -708,7 +707,7 @@ define
                 temp = document.getElementById (id + "_transientDroopTime").value; if ("" !== temp) obj["transientDroopTime"] = temp;
                 temp = document.getElementById (id + "_transientRegulation").value; if ("" !== temp) obj["transientRegulation"] = temp;
                 temp = document.getElementById (id + "_turbineRating").value; if ("" !== temp) obj["turbineRating"] = temp;
-                temp = HydroTurbineKind[document.getElementById (id + "_turbineType").value]; if (temp) obj["turbineType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroTurbineKind." + temp; else delete obj["turbineType"];
+                temp = HydroTurbineKind[document.getElementById (id + "_turbineType").value]; if (temp) obj["turbineType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#HydroTurbineKind." + temp; else delete obj["turbineType"];
                 temp = document.getElementById (id + "_waterStartingTime").value; if ("" !== temp) obj["waterStartingTime"] = temp;
 
                 return (obj);
@@ -1080,7 +1079,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_auxPowerVersusFrequency").value; if ("" !== temp) obj["auxPowerVersusFrequency"] = temp;
                 temp = document.getElementById (id + "_auxPowerVersusVoltage").value; if ("" !== temp) obj["auxPowerVersusVoltage"] = temp;
-                temp = BoilerControlMode[document.getElementById (id + "_boilerControlMode").value]; if (temp) obj["boilerControlMode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; else delete obj["boilerControlMode"];
+                temp = BoilerControlMode[document.getElementById (id + "_boilerControlMode").value]; if (temp) obj["boilerControlMode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#BoilerControlMode." + temp; else delete obj["boilerControlMode"];
                 temp = document.getElementById (id + "_controlErrorBiasP").value; if ("" !== temp) obj["controlErrorBiasP"] = temp;
                 temp = document.getElementById (id + "_controlIC").value; if ("" !== temp) obj["controlIC"] = temp;
                 temp = document.getElementById (id + "_controlPC").value; if ("" !== temp) obj["controlPC"] = temp;

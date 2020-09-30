@@ -9,7 +9,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * Categorisation of type of compare done on Equipment.
          *
@@ -243,7 +242,7 @@ define
                 obj = obj || { id: id, cls: "GateInputPin" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj["absoluteValue"] = true;
-                temp = AnalogToDigitalLogicKind[document.getElementById (id + "_aDLogicKind").value]; if (temp) obj["aDLogicKind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; else delete obj["aDLogicKind"];
+                temp = AnalogToDigitalLogicKind[document.getElementById (id + "_aDLogicKind").value]; if (temp) obj["aDLogicKind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#AnalogToDigitalLogicKind." + temp; else delete obj["aDLogicKind"];
                 temp = document.getElementById (id + "_duration").value; if ("" !== temp) obj["duration"] = temp;
                 temp = document.getElementById (id + "_negate").checked; if (temp) obj["negate"] = true;
                 temp = document.getElementById (id + "_thresholdPercentage").value; if ("" !== temp) obj["thresholdPercentage"] = temp;
@@ -517,7 +516,7 @@ define
                 obj = obj || { id: id, cls: "RemedialActionScheme" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_armed").checked; if (temp) obj["armed"] = true;
-                temp = RemedialActionSchemeKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; else delete obj["kind"];
+                temp = RemedialActionSchemeKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#RemedialActionSchemeKind." + temp; else delete obj["kind"];
                 temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj["normalArmed"] = true;
                 temp = document.getElementById (id + "_GateArmed").value; if ("" !== temp) obj["GateArmed"] = temp;
 
@@ -1023,7 +1022,7 @@ define
 
                 obj = obj || { id: id, cls: "MeasurementCalculator" };
                 super.submit (id, obj);
-                temp = CalculationKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; else delete obj["kind"];
+                temp = CalculationKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#CalculationKind." + temp; else delete obj["kind"];
 
                 return (obj);
             }
@@ -1336,7 +1335,7 @@ define
 
                 obj = obj || { id: id, cls: "Gate" };
                 super.submit (id, obj);
-                temp = GateLogicKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; else delete obj["kind"];
+                temp = GateLogicKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#GateLogicKind." + temp; else delete obj["kind"];
 
                 return (obj);
             }
@@ -1587,7 +1586,7 @@ define
 
                 obj = obj || { id: id, cls: "PinBranchGroup" };
                 super.submit (id, obj);
-                temp = PinBranchGroupKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; else delete obj["kind"];
+                temp = PinBranchGroupKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PinBranchGroupKind." + temp; else delete obj["kind"];
                 temp = document.getElementById (id + "_BranchGroup").value; if ("" !== temp) obj["BranchGroup"] = temp;
 
                 return (obj);
@@ -1707,7 +1706,7 @@ define
 
                 obj = obj || { id: id, cls: "PinEquipment" };
                 super.submit (id, obj);
-                temp = PinEquipmentKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; else delete obj["kind"];
+                temp = PinEquipmentKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PinEquipmentKind." + temp; else delete obj["kind"];
                 temp = document.getElementById (id + "_Equipment").value; if ("" !== temp) obj["Equipment"] = temp;
 
                 return (obj);
@@ -1827,7 +1826,7 @@ define
 
                 obj = obj || { id: id, cls: "PinTerminal" };
                 super.submit (id, obj);
-                temp = PinTerminalKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; else delete obj["kind"];
+                temp = PinTerminalKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PinTerminalKind." + temp; else delete obj["kind"];
                 temp = document.getElementById (id + "_Terminal").value; if ("" !== temp) obj["Terminal"] = temp;
 
                 return (obj);
@@ -2448,7 +2447,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_byPercentage").value; if ("" !== temp) obj["byPercentage"] = temp;
                 temp = document.getElementById (id + "_byValue").value; if ("" !== temp) obj["byValue"] = temp;
-                temp = ProtectiveActionAdjustmentKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; else delete obj["kind"];
+                temp = ProtectiveActionAdjustmentKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ProtectiveActionAdjustmentKind." + temp; else delete obj["kind"];
                 temp = document.getElementById (id + "_reduce").checked; if (temp) obj["reduce"] = true;
                 temp = document.getElementById (id + "_setValue").value; if ("" !== temp) obj["setValue"] = temp;
                 temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" !== temp) obj["DCConductingEquipment"] = temp;

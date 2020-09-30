@@ -7,7 +7,6 @@ define
      */
     function (base)
     {
-
         /**
          * This is the IEC 61970 CIM version number assigned to this UML model.
          *

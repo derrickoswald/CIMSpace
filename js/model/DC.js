@@ -7,7 +7,6 @@ define
      */
     function (base, Core, Wires)
     {
-
         /**
          * Polarity for DC circuits.
          *
@@ -41,7 +40,8 @@ define
             "udc": "udc",
             "pPccAndUdcDroop": "pPccAndUdcDroop",
             "pPccAndUdcDroopWithCompensation": "pPccAndUdcDroopWithCompensation",
-            "pPccAndUdcDroopPilot": "pPccAndUdcDroopPilot"
+            "pPccAndUdcDroopPilot": "pPccAndUdcDroopPilot",
+            "phasePcc": "phasePcc"
         };
         Object.freeze (VsPpccControlKind);
 
@@ -51,9 +51,9 @@ define
          */
         let DCConverterOperatingModeKind =
         {
+            "bipolar": "bipolar",
             "monopolarMetallicReturn": "monopolarMetallicReturn",
-            "monopolarGroundReturn": "monopolarGroundReturn",
-            "bipolar": "bipolar"
+            "monopolarGroundReturn": "monopolarGroundReturn"
         };
         Object.freeze (DCConverterOperatingModeKind);
 
@@ -77,14 +77,15 @@ define
         {
             "reactivePcc": "reactivePcc",
             "voltagePcc": "voltagePcc",
-            "powerFactorPcc": "powerFactorPcc"
+            "powerFactorPcc": "powerFactorPcc",
+            "pulseWidthModulation": "pulseWidthModulation"
         };
         Object.freeze (VsQpccControlKind);
 
         /**
          * A modelling construct to provide a root class for containment of DC as well as AC equipment.
          *
-         * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
+         * The class differ from the EquipmentContaner for AC in that it may also contain DCNode-s. Hence it can contain both AC and DC equipment.
          *
          */
         class DCEquipmentContainer extends Core.EquipmentContainer
@@ -690,9 +691,10 @@ define
         /**
          * An electrically connected subset of the network.
          *
-         * DC topological islands can change as the current network state changes: e.g. due to
+         * DC topological islands can change as the current network state changes, e.g. due to:
          * - disconnect switches or breakers changing state in a SCADA/EMS.
          * - manual creation, change or deletion of topological nodes in a planning tool.
+         * Only energised TopologicalNode-s shall be part of the topological island.
          *
          */
         class DCTopologicalIsland extends Core.IdentifiedObject
@@ -1097,6 +1099,8 @@ define
                 base.parse_element (/<cim:ACDCConverter.numberOfValves>([\s\S]*?)<\/cim:ACDCConverter.numberOfValves>/g, obj, "numberOfValves", base.to_string, sub, context);
                 base.parse_element (/<cim:ACDCConverter.p>([\s\S]*?)<\/cim:ACDCConverter.p>/g, obj, "p", base.to_string, sub, context);
                 base.parse_element (/<cim:ACDCConverter.q>([\s\S]*?)<\/cim:ACDCConverter.q>/g, obj, "q", base.to_string, sub, context);
+                base.parse_element (/<cim:ACDCConverter.maxP>([\s\S]*?)<\/cim:ACDCConverter.maxP>/g, obj, "maxP", base.to_string, sub, context);
+                base.parse_element (/<cim:ACDCConverter.minP>([\s\S]*?)<\/cim:ACDCConverter.minP>/g, obj, "minP", base.to_string, sub, context);
                 base.parse_attributes (/<cim:ACDCConverter.DCTerminals\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "DCTerminals", sub, context);
                 base.parse_attribute (/<cim:ACDCConverter.PccTerminal\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PccTerminal", sub, context);
                 let bucket = context.parsed.ACDCConverter;
@@ -1128,6 +1132,8 @@ define
                 base.export_element (obj, "ACDCConverter", "numberOfValves", "numberOfValves",  base.from_string, fields);
                 base.export_element (obj, "ACDCConverter", "p", "p",  base.from_string, fields);
                 base.export_element (obj, "ACDCConverter", "q", "q",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "maxP", "maxP",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "minP", "minP",  base.from_string, fields);
                 base.export_attributes (obj, "ACDCConverter", "DCTerminals", "DCTerminals", fields);
                 base.export_attribute (obj, "ACDCConverter", "PccTerminal", "PccTerminal", fields);
                 if (full)
@@ -1163,6 +1169,8 @@ define
                     {{#numberOfValves}}<div><b>numberOfValves</b>: {{numberOfValves}}</div>{{/numberOfValves}}
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+                    {{#maxP}}<div><b>maxP</b>: {{maxP}}</div>{{/maxP}}
+                    {{#minP}}<div><b>minP</b>: {{minP}}</div>{{/minP}}
                     {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/DCTerminals}}
                     {{#PccTerminal}}<div><b>PccTerminal</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{PccTerminal}}");}); return false;'>{{PccTerminal}}</a></div>{{/PccTerminal}}
                     </div>
@@ -1211,6 +1219,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_numberOfValves'>numberOfValves: </label><div class='col-sm-8'><input id='{{id}}_numberOfValves' class='form-control' type='text'{{#numberOfValves}} value='{{numberOfValves}}'{{/numberOfValves}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p'>p: </label><div class='col-sm-8'><input id='{{id}}_p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q'>q: </label><div class='col-sm-8'><input id='{{id}}_q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxP'>maxP: </label><div class='col-sm-8'><input id='{{id}}_maxP' class='form-control' type='text'{{#maxP}} value='{{maxP}}'{{/maxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minP'>minP: </label><div class='col-sm-8'><input id='{{id}}_minP' class='form-control' type='text'{{#minP}} value='{{minP}}'{{/minP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PccTerminal'>PccTerminal: </label><div class='col-sm-8'><input id='{{id}}_PccTerminal' class='form-control' type='text'{{#PccTerminal}} value='{{PccTerminal}}'{{/PccTerminal}}></div></div>
                     </div>
                     </fieldset>
@@ -1241,6 +1251,8 @@ define
                 temp = document.getElementById (id + "_numberOfValves").value; if ("" !== temp) obj["numberOfValves"] = temp;
                 temp = document.getElementById (id + "_p").value; if ("" !== temp) obj["p"] = temp;
                 temp = document.getElementById (id + "_q").value; if ("" !== temp) obj["q"] = temp;
+                temp = document.getElementById (id + "_maxP").value; if ("" !== temp) obj["maxP"] = temp;
+                temp = document.getElementById (id + "_minP").value; if ("" !== temp) obj["minP"] = temp;
                 temp = document.getElementById (id + "_PccTerminal").value; if ("" !== temp) obj["PccTerminal"] = temp;
 
                 return (obj);
@@ -1373,7 +1385,7 @@ define
         }
 
         /**
-         * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling � DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
+         * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling – DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
          *
          */
         class DCConverterUnit extends DCEquipmentContainer
@@ -1474,7 +1486,7 @@ define
 
                 obj = obj || { id: id, cls: "DCConverterUnit" };
                 super.submit (id, obj);
-                temp = DCConverterOperatingModeKind[document.getElementById (id + "_operationMode").value]; if (temp) obj["operationMode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#DCConverterOperatingModeKind." + temp; else delete obj["operationMode"];
+                temp = DCConverterOperatingModeKind[document.getElementById (id + "_operationMode").value]; if (temp) obj["operationMode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#DCConverterOperatingModeKind." + temp; else delete obj["operationMode"];
                 temp = document.getElementById (id + "_Substation").value; if ("" !== temp) obj["Substation"] = temp;
 
                 return (obj);
@@ -1709,7 +1721,7 @@ define
 
                 obj = obj || { id: id, cls: "ACDCConverterDCTerminal" };
                 super.submit (id, obj);
-                temp = DCPolarityKind[document.getElementById (id + "_polarity").value]; if (temp) obj["polarity"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#DCPolarityKind." + temp; else delete obj["polarity"];
+                temp = DCPolarityKind[document.getElementById (id + "_polarity").value]; if (temp) obj["polarity"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#DCPolarityKind." + temp; else delete obj["polarity"];
                 temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" !== temp) obj["DCConductingEquipment"] = temp;
 
                 return (obj);
@@ -2665,6 +2677,11 @@ define
         /**
          * DC side of the current source converter (CSC).
          *
+         * The firing angle controls the dc voltage at the converter, both for rectifier and inverter. The difference between the dc voltages of the rectifier and inverter determines the dc current. The extinction angle is used to limit the dc voltage at the inverter, if needed, and is not used in active power control. The firing angle, transformer tap position and number of connected filters are the primary means to control a current source dc line. Higher level controls are built on top, e.g. dc voltage, dc current and active power. From a steady state perspective it is sufficient to specify the wanted active power transfer (ACDCConverter.targetPpcc) and the control functions will set the dc voltage, dc current, firing angle, transformer tap position and number of connected filters to meet this. Therefore attributes targetAlpha and targetGamma are not applicable in this case.
+         * The reactive power consumed by the converter is a function of the firing angle, transformer tap position and number of connected filter, which can be approximated with half of the active power. The losses is a function of the dc voltage and dc current.
+         * The attributes minAlpha and maxAlpha define the range of firing angles for rectifier operation between which no discrete tap changer action takes place. The range is typically 10-18 degrees.
+         * The attributes minGamma and maxGamma define the range of extinction angles for inverter operation between which no discrete tap changer action takes place. The range is typically 17-20 degrees.
+         *
          */
         class CsConverter extends ACDCConverter
         {
@@ -2820,7 +2837,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_maxIdc").value; if ("" !== temp) obj["maxIdc"] = temp;
                 temp = document.getElementById (id + "_ratedIdc").value; if ("" !== temp) obj["ratedIdc"] = temp;
-                temp = CsPpccControlKind[document.getElementById (id + "_pPccControl").value]; if (temp) obj["pPccControl"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#CsPpccControlKind." + temp; else delete obj["pPccControl"];
+                temp = CsPpccControlKind[document.getElementById (id + "_pPccControl").value]; if (temp) obj["pPccControl"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#CsPpccControlKind." + temp; else delete obj["pPccControl"];
                 temp = document.getElementById (id + "_alpha").value; if ("" !== temp) obj["alpha"] = temp;
                 temp = document.getElementById (id + "_gamma").value; if ("" !== temp) obj["gamma"] = temp;
                 temp = document.getElementById (id + "_maxAlpha").value; if ("" !== temp) obj["maxAlpha"] = temp;
@@ -2831,7 +2848,7 @@ define
                 temp = document.getElementById (id + "_targetGamma").value; if ("" !== temp) obj["targetGamma"] = temp;
                 temp = document.getElementById (id + "_targetIdc").value; if ("" !== temp) obj["targetIdc"] = temp;
                 temp = document.getElementById (id + "_minIdc").value; if ("" !== temp) obj["minIdc"] = temp;
-                temp = CsOperatingModeKind[document.getElementById (id + "_operatingMode").value]; if (temp) obj["operatingMode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#CsOperatingModeKind." + temp; else delete obj["operatingMode"];
+                temp = CsOperatingModeKind[document.getElementById (id + "_operatingMode").value]; if (temp) obj["operatingMode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#CsOperatingModeKind." + temp; else delete obj["operatingMode"];
                 temp = document.getElementById (id + "_CSCDynamics").value; if ("" !== temp) obj["CSCDynamics"] = temp;
 
                 return (obj);
@@ -2885,6 +2902,9 @@ define
                 base.parse_element (/<cim:VsConverter.maxValveCurrent>([\s\S]*?)<\/cim:VsConverter.maxValveCurrent>/g, obj, "maxValveCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:VsConverter.maxModulationIndex>([\s\S]*?)<\/cim:VsConverter.maxModulationIndex>/g, obj, "maxModulationIndex", base.to_float, sub, context);
                 base.parse_attribute (/<cim:VsConverter.qPccControl\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "qPccControl", sub, context);
+                base.parse_element (/<cim:VsConverter.targetPowerFactorPcc>([\s\S]*?)<\/cim:VsConverter.targetPowerFactorPcc>/g, obj, "targetPowerFactorPcc", base.to_float, sub, context);
+                base.parse_element (/<cim:VsConverter.targetPhasePcc>([\s\S]*?)<\/cim:VsConverter.targetPhasePcc>/g, obj, "targetPhasePcc", base.to_string, sub, context);
+                base.parse_element (/<cim:VsConverter.targetPWMfactor>([\s\S]*?)<\/cim:VsConverter.targetPWMfactor>/g, obj, "targetPWMfactor", base.to_float, sub, context);
                 base.parse_attribute (/<cim:VsConverter.CapabilityCurve\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "CapabilityCurve", sub, context);
                 base.parse_attribute (/<cim:VsConverter.VSCDynamics\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "VSCDynamics", sub, context);
                 let bucket = context.parsed.VsConverter;
@@ -2910,6 +2930,9 @@ define
                 base.export_element (obj, "VsConverter", "maxValveCurrent", "maxValveCurrent",  base.from_string, fields);
                 base.export_element (obj, "VsConverter", "maxModulationIndex", "maxModulationIndex",  base.from_float, fields);
                 base.export_attribute (obj, "VsConverter", "qPccControl", "qPccControl", fields);
+                base.export_element (obj, "VsConverter", "targetPowerFactorPcc", "targetPowerFactorPcc",  base.from_float, fields);
+                base.export_element (obj, "VsConverter", "targetPhasePcc", "targetPhasePcc",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "targetPWMfactor", "targetPWMfactor",  base.from_float, fields);
                 base.export_attribute (obj, "VsConverter", "CapabilityCurve", "CapabilityCurve", fields);
                 base.export_attribute (obj, "VsConverter", "VSCDynamics", "VSCDynamics", fields);
                 if (full)
@@ -2939,6 +2962,9 @@ define
                     {{#maxValveCurrent}}<div><b>maxValveCurrent</b>: {{maxValveCurrent}}</div>{{/maxValveCurrent}}
                     {{#maxModulationIndex}}<div><b>maxModulationIndex</b>: {{maxModulationIndex}}</div>{{/maxModulationIndex}}
                     {{#qPccControl}}<div><b>qPccControl</b>: {{qPccControl}}</div>{{/qPccControl}}
+                    {{#targetPowerFactorPcc}}<div><b>targetPowerFactorPcc</b>: {{targetPowerFactorPcc}}</div>{{/targetPowerFactorPcc}}
+                    {{#targetPhasePcc}}<div><b>targetPhasePcc</b>: {{targetPhasePcc}}</div>{{/targetPhasePcc}}
+                    {{#targetPWMfactor}}<div><b>targetPWMfactor</b>: {{targetPWMfactor}}</div>{{/targetPWMfactor}}
                     {{#CapabilityCurve}}<div><b>CapabilityCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CapabilityCurve}}");}); return false;'>{{CapabilityCurve}}</a></div>{{/CapabilityCurve}}
                     {{#VSCDynamics}}<div><b>VSCDynamics</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{VSCDynamics}}");}); return false;'>{{VSCDynamics}}</a></div>{{/VSCDynamics}}
                     </div>
@@ -2983,6 +3009,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxValveCurrent'>maxValveCurrent: </label><div class='col-sm-8'><input id='{{id}}_maxValveCurrent' class='form-control' type='text'{{#maxValveCurrent}} value='{{maxValveCurrent}}'{{/maxValveCurrent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxModulationIndex'>maxModulationIndex: </label><div class='col-sm-8'><input id='{{id}}_maxModulationIndex' class='form-control' type='text'{{#maxModulationIndex}} value='{{maxModulationIndex}}'{{/maxModulationIndex}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qPccControl'>qPccControl: </label><div class='col-sm-8'><select id='{{id}}_qPccControl' class='form-control custom-select'>{{#qPccControlVsQpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/qPccControlVsQpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetPowerFactorPcc'>targetPowerFactorPcc: </label><div class='col-sm-8'><input id='{{id}}_targetPowerFactorPcc' class='form-control' type='text'{{#targetPowerFactorPcc}} value='{{targetPowerFactorPcc}}'{{/targetPowerFactorPcc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetPhasePcc'>targetPhasePcc: </label><div class='col-sm-8'><input id='{{id}}_targetPhasePcc' class='form-control' type='text'{{#targetPhasePcc}} value='{{targetPhasePcc}}'{{/targetPhasePcc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetPWMfactor'>targetPWMfactor: </label><div class='col-sm-8'><input id='{{id}}_targetPWMfactor' class='form-control' type='text'{{#targetPWMfactor}} value='{{targetPWMfactor}}'{{/targetPWMfactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CapabilityCurve'>CapabilityCurve: </label><div class='col-sm-8'><input id='{{id}}_CapabilityCurve' class='form-control' type='text'{{#CapabilityCurve}} value='{{CapabilityCurve}}'{{/CapabilityCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VSCDynamics'>VSCDynamics: </label><div class='col-sm-8'><input id='{{id}}_VSCDynamics' class='form-control' type='text'{{#VSCDynamics}} value='{{VSCDynamics}}'{{/VSCDynamics}}></div></div>
                     </div>
@@ -2997,7 +3026,7 @@ define
 
                 obj = obj || { id: id, cls: "VsConverter" };
                 super.submit (id, obj);
-                temp = VsPpccControlKind[document.getElementById (id + "_pPccControl").value]; if (temp) obj["pPccControl"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#VsPpccControlKind." + temp; else delete obj["pPccControl"];
+                temp = VsPpccControlKind[document.getElementById (id + "_pPccControl").value]; if (temp) obj["pPccControl"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#VsPpccControlKind." + temp; else delete obj["pPccControl"];
                 temp = document.getElementById (id + "_qShare").value; if ("" !== temp) obj["qShare"] = temp;
                 temp = document.getElementById (id + "_targetQpcc").value; if ("" !== temp) obj["targetQpcc"] = temp;
                 temp = document.getElementById (id + "_targetUpcc").value; if ("" !== temp) obj["targetUpcc"] = temp;
@@ -3007,7 +3036,10 @@ define
                 temp = document.getElementById (id + "_uv").value; if ("" !== temp) obj["uv"] = temp;
                 temp = document.getElementById (id + "_maxValveCurrent").value; if ("" !== temp) obj["maxValveCurrent"] = temp;
                 temp = document.getElementById (id + "_maxModulationIndex").value; if ("" !== temp) obj["maxModulationIndex"] = temp;
-                temp = VsQpccControlKind[document.getElementById (id + "_qPccControl").value]; if (temp) obj["qPccControl"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#VsQpccControlKind." + temp; else delete obj["qPccControl"];
+                temp = VsQpccControlKind[document.getElementById (id + "_qPccControl").value]; if (temp) obj["qPccControl"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#VsQpccControlKind." + temp; else delete obj["qPccControl"];
+                temp = document.getElementById (id + "_targetPowerFactorPcc").value; if ("" !== temp) obj["targetPowerFactorPcc"] = temp;
+                temp = document.getElementById (id + "_targetPhasePcc").value; if ("" !== temp) obj["targetPhasePcc"] = temp;
+                temp = document.getElementById (id + "_targetPWMfactor").value; if ("" !== temp) obj["targetPWMfactor"] = temp;
                 temp = document.getElementById (id + "_CapabilityCurve").value; if ("" !== temp) obj["CapabilityCurve"] = temp;
                 temp = document.getElementById (id + "_VSCDynamics").value; if ("" !== temp) obj["VSCDynamics"] = temp;
 

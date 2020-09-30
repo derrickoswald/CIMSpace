@@ -3,7 +3,6 @@ define
     ["model/base"],
     function (base)
     {
-
         let LookUpTableFunctionKind =
         {
             "additionalQcurrent": "additionalQcurrent",
@@ -124,7 +123,7 @@ define
                 temp = document.getElementById (id + "_input").value; if ("" !== temp) obj["input"] = temp;
                 temp = document.getElementById (id + "_output").value; if ("" !== temp) obj["output"] = temp;
                 temp = document.getElementById (id + "_sequence").value; if ("" !== temp) obj["sequence"] = temp;
-                temp = LookUpTableFunctionKind[document.getElementById (id + "_functionKind").value]; if (temp) obj["functionKind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#LookUpTableFunctionKind." + temp; else delete obj["functionKind"];
+                temp = LookUpTableFunctionKind[document.getElementById (id + "_functionKind").value]; if (temp) obj["functionKind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#LookUpTableFunctionKind." + temp; else delete obj["functionKind"];
                 temp = document.getElementById (id + "_Qregulator").value; if ("" !== temp) obj["Qregulator"] = temp;
 
                 return (obj);

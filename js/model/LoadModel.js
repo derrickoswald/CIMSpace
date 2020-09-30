@@ -5,13 +5,12 @@ define
      * This package is responsible for modelling the energy consumers and the system load as curves and associated curve data.
      *
      * Special circumstances that may affect the load, such as seasons and day types, are also included here.
-     * 
+     *
      * This information is used by Load Forecasting and Load Management.
      *
      */
     function (base, Core)
     {
-
         /**
          * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
          *
@@ -128,15 +127,18 @@ define
         /**
          * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
          *
-         * This is not related to demand response.
-         * 
-         * If LoadResponseCharacteristic.exponentModel is True, the voltage exponents are specified and used as to calculate:
-         * 
-         * Active power component = Pnominal * (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent
-         * 
-         * Reactive power component = Qnominal * (Voltage/cim:BaseVoltage.nominalVoltage)** cim:LoadResponseCharacteristic.qVoltageExponent
-         * 
-         * Where  * means "multiply" and ** is "raised to power of".
+         * It is not related to demand response.
+         * If LoadResponseCharacteristic.exponentModel is True, the exponential voltage or frequency dependent models are specified and used as to calculate active and reactive power components of the load model.
+         * The equations to calculate active and reactive power components of the load model are internal to the power flow calculation, hence they use different quantities depending on the use case of the data exchange.
+         * The equations for exponential voltage dependent load model injected power are:
+         * pInjection= Pnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent
+         * qInjection= Qnominal* (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.qVoltageExponent
+         * Where:
+         * 1) * means "multiply" and ** is "raised to power of";
+         * 2) Pnominal and Qnominal represent the active power and reactive power at nominal voltage as any load described by the voltage exponential model shall be given at nominal voltage.  This means that EnergyConsumer.p and EnergyConsumer.q  are at nominal voltage.
+         * 3) After power flow is solved:
+         * -pInjection and qInjection correspond to SvPowerflow.p and SvPowerflow.q respectively.
+         * - Voltage corresponds to SvVoltage.v at the TopologicalNode where the load is connected.
          *
          */
         class LoadResponseCharacteristic extends Core.IdentifiedObject

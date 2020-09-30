@@ -7,7 +7,6 @@ define
      */
     function (base, Core, Domain, SCADA)
     {
-
         /**
          * Validity for MeasurementValue.
          *
@@ -507,10 +506,10 @@ define
                 temp = document.getElementById (id + "_oscillatory").checked; if (temp) obj["oscillatory"] = true;
                 temp = document.getElementById (id + "_outOfRange").checked; if (temp) obj["outOfRange"] = true;
                 temp = document.getElementById (id + "_overFlow").checked; if (temp) obj["overFlow"] = true;
-                temp = SCADA.Source[document.getElementById (id + "_source").value]; if (temp) obj["source"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#Source." + temp; else delete obj["source"];
+                temp = SCADA.Source[document.getElementById (id + "_source").value]; if (temp) obj["source"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#Source." + temp; else delete obj["source"];
                 temp = document.getElementById (id + "_suspect").checked; if (temp) obj["suspect"] = true;
                 temp = document.getElementById (id + "_test").checked; if (temp) obj["test"] = true;
-                temp = Validity[document.getElementById (id + "_validity").value]; if (temp) obj["validity"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#Validity." + temp; else delete obj["validity"];
+                temp = Validity[document.getElementById (id + "_validity").value]; if (temp) obj["validity"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#Validity." + temp; else delete obj["validity"];
 
                 return (obj);
             }
@@ -668,7 +667,6 @@ define
                 base.parse_attribute (/<cim:Measurement.phases\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "phases", sub, context);
                 base.parse_attribute (/<cim:Measurement.unitMultiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unitMultiplier", sub, context);
                 base.parse_attribute (/<cim:Measurement.unitSymbol\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unitSymbol", sub, context);
-                base.parse_element (/<cim:Measurement.uncefactUnitCode>([\s\S]*?)<\/cim:Measurement.uncefactUnitCode>/g, obj, "uncefactUnitCode", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Measurement.PinMeasurement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PinMeasurement", sub, context);
                 base.parse_attribute (/<cim:Measurement.MeasurementAction\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementAction", sub, context);
                 base.parse_attributes (/<cim:Measurement.MeasurementCalculatorInput\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculatorInput", sub, context);
@@ -695,7 +693,6 @@ define
                 base.export_attribute (obj, "Measurement", "phases", "phases", fields);
                 base.export_attribute (obj, "Measurement", "unitMultiplier", "unitMultiplier", fields);
                 base.export_attribute (obj, "Measurement", "unitSymbol", "unitSymbol", fields);
-                base.export_element (obj, "Measurement", "uncefactUnitCode", "uncefactUnitCode",  base.from_string, fields);
                 base.export_attributes (obj, "Measurement", "PinMeasurement", "PinMeasurement", fields);
                 base.export_attribute (obj, "Measurement", "MeasurementAction", "MeasurementAction", fields);
                 base.export_attributes (obj, "Measurement", "MeasurementCalculatorInput", "MeasurementCalculatorInput", fields);
@@ -726,7 +723,6 @@ define
                     {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
                     {{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
                     {{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
-                    {{#uncefactUnitCode}}<div><b>uncefactUnitCode</b>: {{uncefactUnitCode}}</div>{{/uncefactUnitCode}}
                     {{#PinMeasurement}}<div><b>PinMeasurement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PinMeasurement}}
                     {{#MeasurementAction}}<div><b>MeasurementAction</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MeasurementAction}}");}); return false;'>{{MeasurementAction}}</a></div>{{/MeasurementAction}}
                     {{#MeasurementCalculatorInput}}<div><b>MeasurementCalculatorInput</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeasurementCalculatorInput}}
@@ -784,7 +780,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><select id='{{id}}_phases' class='form-control custom-select'>{{#phasesPhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/phasesPhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><select id='{{id}}_unitMultiplier' class='form-control custom-select'>{{#unitMultiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitMultiplierUnitMultiplier}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><select id='{{id}}_unitSymbol' class='form-control custom-select'>{{#unitSymbolUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitSymbolUnitSymbol}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uncefactUnitCode'>uncefactUnitCode: </label><div class='col-sm-8'><input id='{{id}}_uncefactUnitCode' class='form-control' type='text'{{#uncefactUnitCode}} value='{{uncefactUnitCode}}'{{/uncefactUnitCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementAction'>MeasurementAction: </label><div class='col-sm-8'><input id='{{id}}_MeasurementAction' class='form-control' type='text'{{#MeasurementAction}} value='{{MeasurementAction}}'{{/MeasurementAction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
@@ -805,10 +800,9 @@ define
                 obj = obj || { id: id, cls: "Measurement" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_measurementType").value; if ("" !== temp) obj["measurementType"] = temp;
-                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj["phases"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; else delete obj["phases"];
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_unitMultiplier").value]; if (temp) obj["unitMultiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["unitMultiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj["unitSymbol"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unitSymbol"];
-                temp = document.getElementById (id + "_uncefactUnitCode").value; if ("" !== temp) obj["uncefactUnitCode"] = temp;
+                temp = Core.PhaseCode[document.getElementById (id + "_phases").value]; if (temp) obj["phases"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode." + temp; else delete obj["phases"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_unitMultiplier").value]; if (temp) obj["unitMultiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["unitMultiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj["unitSymbol"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unitSymbol"];
                 temp = document.getElementById (id + "_MeasurementAction").value; if ("" !== temp) obj["MeasurementAction"] = temp;
                 temp = document.getElementById (id + "_Asset").value; if ("" !== temp) obj["Asset"] = temp;
                 temp = document.getElementById (id + "_PowerSystemResource").value; if ("" !== temp) obj["PowerSystemResource"] = temp;
@@ -2330,8 +2324,8 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_operationInProgress").checked; if (temp) obj["operationInProgress"] = true;
                 temp = document.getElementById (id + "_timeStamp").value; if ("" !== temp) obj["timeStamp"] = temp;
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_unitMultiplier").value]; if (temp) obj["unitMultiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["unitMultiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj["unitSymbol"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unitSymbol"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_unitMultiplier").value]; if (temp) obj["unitMultiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["unitMultiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj["unitSymbol"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unitSymbol"];
                 temp = document.getElementById (id + "_controlType").value; if ("" !== temp) obj["controlType"] = temp;
                 temp = document.getElementById (id + "_PowerSystemResource").value; if ("" !== temp) obj["PowerSystemResource"] = temp;
                 temp = document.getElementById (id + "_ControlAction").value; if ("" !== temp) obj["ControlAction"] = temp;

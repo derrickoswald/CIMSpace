@@ -9,6 +9,347 @@ define
      */
     function (base, Common, Core)
     {
+        /**
+         * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
+         *
+         */
+        class Marketer extends Common.Organisation
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.Marketer;
+                if (null == bucket)
+                   cim_data.Marketer = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.Marketer[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.Organisation.prototype.parse.call (this, context, sub);
+                obj.cls = "Marketer";
+                base.parse_attributes (/<cim:Marketer.HoldsTitleTo_EnergyProducts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "HoldsTitleTo_EnergyProducts", sub, context);
+                base.parse_attributes (/<cim:Marketer.Resells_EnergyProduct\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Resells_EnergyProduct", sub, context);
+                let bucket = context.parsed.Marketer;
+                if (null == bucket)
+                   context.parsed.Marketer = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.Organisation.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "Marketer", "HoldsTitleTo_EnergyProducts", "HoldsTitleTo_EnergyProducts", fields);
+                base.export_attributes (obj, "Marketer", "Resells_EnergyProduct", "Resells_EnergyProduct", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Marketer_collapse" aria-expanded="true" aria-controls="Marketer_collapse" style="margin-left: 10px;">Marketer</a></legend>
+                    <div id="Marketer_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    {{#HoldsTitleTo_EnergyProducts}}<div><b>HoldsTitleTo_EnergyProducts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/HoldsTitleTo_EnergyProducts}}
+                    {{#Resells_EnergyProduct}}<div><b>Resells_EnergyProduct</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Resells_EnergyProduct}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["HoldsTitleTo_EnergyProducts"]) obj["HoldsTitleTo_EnergyProducts_string"] = obj["HoldsTitleTo_EnergyProducts"].join ();
+                if (obj["Resells_EnergyProduct"]) obj["Resells_EnergyProduct_string"] = obj["Resells_EnergyProduct"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["HoldsTitleTo_EnergyProducts_string"];
+                delete obj["Resells_EnergyProduct_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Marketer_collapse" aria-expanded="true" aria-controls="{{id}}_Marketer_collapse" style="margin-left: 10px;">Marketer</a></legend>
+                    <div id="{{id}}_Marketer_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Resells_EnergyProduct'>Resells_EnergyProduct: </label><div class='col-sm-8'><input id='{{id}}_Resells_EnergyProduct' class='form-control' type='text'{{#Resells_EnergyProduct}} value='{{Resells_EnergyProduct_string}}'{{/Resells_EnergyProduct}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "Marketer" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Resells_EnergyProduct").value; if ("" !== temp) obj["Resells_EnergyProduct"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["HoldsTitleTo_EnergyProducts", "0..*", "0..1", "EnergyProduct", "TitleHeldBy_Marketer"],
+                            ["Resells_EnergyProduct", "0..*", "0..*", "EnergyProduct", "ResoldBy_Marketer"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Provider of  the transmission capacity (interconnecting wires between Generation and Consumption) required  to fulfill and Energy Transaction's energy exchange.
+         *
+         * Posts information for transmission paths and AvailableTransmissionCapacities  on a reservation node.  Buys and sells its products and services on the same reservation node.
+         *
+         */
+        class TransmissionProvider extends Common.Organisation
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.TransmissionProvider;
+                if (null == bucket)
+                   cim_data.TransmissionProvider = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.TransmissionProvider[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.Organisation.prototype.parse.call (this, context, sub);
+                obj.cls = "TransmissionProvider";
+                base.parse_attributes (/<cim:TransmissionProvider.TransmissionProducts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionProducts", sub, context);
+                base.parse_attributes (/<cim:TransmissionProvider.For\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "For", sub, context);
+                let bucket = context.parsed.TransmissionProvider;
+                if (null == bucket)
+                   context.parsed.TransmissionProvider = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.Organisation.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "TransmissionProvider", "TransmissionProducts", "TransmissionProducts", fields);
+                base.export_attributes (obj, "TransmissionProvider", "For", "For", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransmissionProvider_collapse" aria-expanded="true" aria-controls="TransmissionProvider_collapse" style="margin-left: 10px;">TransmissionProvider</a></legend>
+                    <div id="TransmissionProvider_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    {{#TransmissionProducts}}<div><b>TransmissionProducts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransmissionProducts}}
+                    {{#For}}<div><b>For</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/For}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["TransmissionProducts"]) obj["TransmissionProducts_string"] = obj["TransmissionProducts"].join ();
+                if (obj["For"]) obj["For_string"] = obj["For"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["TransmissionProducts_string"];
+                delete obj["For_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransmissionProvider_collapse" aria-expanded="true" aria-controls="{{id}}_TransmissionProvider_collapse" style="margin-left: 10px;">TransmissionProvider</a></legend>
+                    <div id="{{id}}_TransmissionProvider_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "TransmissionProvider" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["TransmissionProducts", "1..*", "1", "TransmissionProduct", "TransmissionProvider"],
+                            ["For", "0..*", "0..1", "LossProfile", "HasLoss_"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * A type of agreement that provides the default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
+         *
+         */
+        class IntSchedAgreement extends Common.Agreement
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.IntSchedAgreement;
+                if (null == bucket)
+                   cim_data.IntSchedAgreement = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.IntSchedAgreement[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.Agreement.prototype.parse.call (this, context, sub);
+                obj.cls = "IntSchedAgreement";
+                base.parse_element (/<cim:IntSchedAgreement.defaultIntegrationMethod>([\s\S]*?)<\/cim:IntSchedAgreement.defaultIntegrationMethod>/g, obj, "defaultIntegrationMethod", base.to_string, sub, context);
+                let bucket = context.parsed.IntSchedAgreement;
+                if (null == bucket)
+                   context.parsed.IntSchedAgreement = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.Agreement.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "IntSchedAgreement", "defaultIntegrationMethod", "defaultIntegrationMethod",  base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#IntSchedAgreement_collapse" aria-expanded="true" aria-controls="IntSchedAgreement_collapse" style="margin-left: 10px;">IntSchedAgreement</a></legend>
+                    <div id="IntSchedAgreement_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    {{#defaultIntegrationMethod}}<div><b>defaultIntegrationMethod</b>: {{defaultIntegrationMethod}}</div>{{/defaultIntegrationMethod}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_IntSchedAgreement_collapse" aria-expanded="true" aria-controls="{{id}}_IntSchedAgreement_collapse" style="margin-left: 10px;">IntSchedAgreement</a></legend>
+                    <div id="{{id}}_IntSchedAgreement_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultIntegrationMethod'>defaultIntegrationMethod: </label><div class='col-sm-8'><input id='{{id}}_defaultIntegrationMethod' class='form-control' type='text'{{#defaultIntegrationMethod}} value='{{defaultIntegrationMethod}}'{{/defaultIntegrationMethod}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "IntSchedAgreement" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_defaultIntegrationMethod").value; if ("" !== temp) obj["defaultIntegrationMethod"] = temp;
+
+                return (obj);
+            }
+        }
 
         /**
          * The energy seller in the energy marketplace.
@@ -244,322 +585,6 @@ define
         }
 
         /**
-         * A type of agreement that provides the default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
-         *
-         */
-        class IntSchedAgreement extends Common.Agreement
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.IntSchedAgreement;
-                if (null == bucket)
-                   cim_data.IntSchedAgreement = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.IntSchedAgreement[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.Agreement.prototype.parse.call (this, context, sub);
-                obj.cls = "IntSchedAgreement";
-                base.parse_element (/<cim:IntSchedAgreement.defaultIntegrationMethod>([\s\S]*?)<\/cim:IntSchedAgreement.defaultIntegrationMethod>/g, obj, "defaultIntegrationMethod", base.to_string, sub, context);
-                let bucket = context.parsed.IntSchedAgreement;
-                if (null == bucket)
-                   context.parsed.IntSchedAgreement = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.Agreement.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "IntSchedAgreement", "defaultIntegrationMethod", "defaultIntegrationMethod",  base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#IntSchedAgreement_collapse" aria-expanded="true" aria-controls="IntSchedAgreement_collapse" style="margin-left: 10px;">IntSchedAgreement</a></legend>
-                    <div id="IntSchedAgreement_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Agreement.prototype.template.call (this) +
-                    `
-                    {{#defaultIntegrationMethod}}<div><b>defaultIntegrationMethod</b>: {{defaultIntegrationMethod}}</div>{{/defaultIntegrationMethod}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_IntSchedAgreement_collapse" aria-expanded="true" aria-controls="{{id}}_IntSchedAgreement_collapse" style="margin-left: 10px;">IntSchedAgreement</a></legend>
-                    <div id="{{id}}_IntSchedAgreement_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Agreement.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultIntegrationMethod'>defaultIntegrationMethod: </label><div class='col-sm-8'><input id='{{id}}_defaultIntegrationMethod' class='form-control' type='text'{{#defaultIntegrationMethod}} value='{{defaultIntegrationMethod}}'{{/defaultIntegrationMethod}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "IntSchedAgreement" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_defaultIntegrationMethod").value; if ("" !== temp) obj["defaultIntegrationMethod"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * Provider of  the transmission capacity (interconnecting wires between Generation and Consumption) required  to fulfill and Energy Transaction's energy exchange.
-         *
-         * Posts information for transmission paths and AvailableTransmissionCapacities  on a reservation node.  Buys and sells its products and services on the same reservation node.
-         *
-         */
-        class TransmissionProvider extends Common.Organisation
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.TransmissionProvider;
-                if (null == bucket)
-                   cim_data.TransmissionProvider = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.TransmissionProvider[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.Organisation.prototype.parse.call (this, context, sub);
-                obj.cls = "TransmissionProvider";
-                base.parse_attributes (/<cim:TransmissionProvider.TransmissionProducts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionProducts", sub, context);
-                base.parse_attributes (/<cim:TransmissionProvider.For\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "For", sub, context);
-                let bucket = context.parsed.TransmissionProvider;
-                if (null == bucket)
-                   context.parsed.TransmissionProvider = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.Organisation.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "TransmissionProvider", "TransmissionProducts", "TransmissionProducts", fields);
-                base.export_attributes (obj, "TransmissionProvider", "For", "For", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransmissionProvider_collapse" aria-expanded="true" aria-controls="TransmissionProvider_collapse" style="margin-left: 10px;">TransmissionProvider</a></legend>
-                    <div id="TransmissionProvider_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Organisation.prototype.template.call (this) +
-                    `
-                    {{#TransmissionProducts}}<div><b>TransmissionProducts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransmissionProducts}}
-                    {{#For}}<div><b>For</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/For}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["TransmissionProducts"]) obj["TransmissionProducts_string"] = obj["TransmissionProducts"].join ();
-                if (obj["For"]) obj["For_string"] = obj["For"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["TransmissionProducts_string"];
-                delete obj["For_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransmissionProvider_collapse" aria-expanded="true" aria-controls="{{id}}_TransmissionProvider_collapse" style="margin-left: 10px;">TransmissionProvider</a></legend>
-                    <div id="{{id}}_TransmissionProvider_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Organisation.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "TransmissionProvider" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["TransmissionProducts", "1..*", "1", "TransmissionProduct", "TransmissionProvider"],
-                            ["For", "0..*", "0..1", "LossProfile", "HasLoss_"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Contracts for services offered commercially.
-         *
-         */
-        class OpenAccessProduct extends Common.Agreement
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.OpenAccessProduct;
-                if (null == bucket)
-                   cim_data.OpenAccessProduct = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.OpenAccessProduct[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.Agreement.prototype.parse.call (this, context, sub);
-                obj.cls = "OpenAccessProduct";
-                let bucket = context.parsed.OpenAccessProduct;
-                if (null == bucket)
-                   context.parsed.OpenAccessProduct = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.Agreement.prototype.export.call (this, obj, false);
-
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OpenAccessProduct_collapse" aria-expanded="true" aria-controls="OpenAccessProduct_collapse" style="margin-left: 10px;">OpenAccessProduct</a></legend>
-                    <div id="OpenAccessProduct_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Agreement.prototype.template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OpenAccessProduct_collapse" aria-expanded="true" aria-controls="{{id}}_OpenAccessProduct_collapse" style="margin-left: 10px;">OpenAccessProduct</a></legend>
-                    <div id="{{id}}_OpenAccessProduct_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Agreement.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "OpenAccessProduct" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-        }
-
-        /**
          * Operates the Control Area.
          *
          * Approves and implements energy transactions. Verifies both Inter-Control Area and Intra-Control Area transactions for the power system  before granting approval (and implementing) the transactions.
@@ -683,127 +708,6 @@ define
         }
 
         /**
-         * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
-         *
-         */
-        class Marketer extends Common.Organisation
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.Marketer;
-                if (null == bucket)
-                   cim_data.Marketer = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.Marketer[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.Organisation.prototype.parse.call (this, context, sub);
-                obj.cls = "Marketer";
-                base.parse_attributes (/<cim:Marketer.HoldsTitleTo_EnergyProducts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "HoldsTitleTo_EnergyProducts", sub, context);
-                base.parse_attributes (/<cim:Marketer.Resells_EnergyProduct\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Resells_EnergyProduct", sub, context);
-                let bucket = context.parsed.Marketer;
-                if (null == bucket)
-                   context.parsed.Marketer = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.Organisation.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "Marketer", "HoldsTitleTo_EnergyProducts", "HoldsTitleTo_EnergyProducts", fields);
-                base.export_attributes (obj, "Marketer", "Resells_EnergyProduct", "Resells_EnergyProduct", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Marketer_collapse" aria-expanded="true" aria-controls="Marketer_collapse" style="margin-left: 10px;">Marketer</a></legend>
-                    <div id="Marketer_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Organisation.prototype.template.call (this) +
-                    `
-                    {{#HoldsTitleTo_EnergyProducts}}<div><b>HoldsTitleTo_EnergyProducts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/HoldsTitleTo_EnergyProducts}}
-                    {{#Resells_EnergyProduct}}<div><b>Resells_EnergyProduct</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Resells_EnergyProduct}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["HoldsTitleTo_EnergyProducts"]) obj["HoldsTitleTo_EnergyProducts_string"] = obj["HoldsTitleTo_EnergyProducts"].join ();
-                if (obj["Resells_EnergyProduct"]) obj["Resells_EnergyProduct_string"] = obj["Resells_EnergyProduct"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["HoldsTitleTo_EnergyProducts_string"];
-                delete obj["Resells_EnergyProduct_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Marketer_collapse" aria-expanded="true" aria-controls="{{id}}_Marketer_collapse" style="margin-left: 10px;">Marketer</a></legend>
-                    <div id="{{id}}_Marketer_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Organisation.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Resells_EnergyProduct'>Resells_EnergyProduct: </label><div class='col-sm-8'><input id='{{id}}_Resells_EnergyProduct' class='form-control' type='text'{{#Resells_EnergyProduct}} value='{{Resells_EnergyProduct_string}}'{{/Resells_EnergyProduct}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "Marketer" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_Resells_EnergyProduct").value; if ("" !== temp) obj["Resells_EnergyProduct"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["HoldsTitleTo_EnergyProducts", "0..*", "0..1", "EnergyProduct", "TitleHeldBy_Marketer"],
-                            ["Resells_EnergyProduct", "0..*", "0..*", "EnergyProduct", "ResoldBy_Marketer"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
          * The energy buyer in the energy marketplace.
          *
          */
@@ -911,6 +815,101 @@ define
                         ]
                     )
                 );
+            }
+        }
+
+        /**
+         * Contracts for services offered commercially.
+         *
+         */
+        class OpenAccessProduct extends Common.Agreement
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.OpenAccessProduct;
+                if (null == bucket)
+                   cim_data.OpenAccessProduct = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.OpenAccessProduct[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.Agreement.prototype.parse.call (this, context, sub);
+                obj.cls = "OpenAccessProduct";
+                let bucket = context.parsed.OpenAccessProduct;
+                if (null == bucket)
+                   context.parsed.OpenAccessProduct = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.Agreement.prototype.export.call (this, obj, false);
+
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OpenAccessProduct_collapse" aria-expanded="true" aria-controls="OpenAccessProduct_collapse" style="margin-left: 10px;">OpenAccessProduct</a></legend>
+                    <div id="OpenAccessProduct_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OpenAccessProduct_collapse" aria-expanded="true" aria-controls="{{id}}_OpenAccessProduct_collapse" style="margin-left: 10px;">OpenAccessProduct</a></legend>
+                    <div id="{{id}}_OpenAccessProduct_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Agreement.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "OpenAccessProduct" };
+                super.submit (id, obj);
+
+                return (obj);
             }
         }
 

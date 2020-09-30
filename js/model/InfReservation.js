@@ -3,7 +3,6 @@ define
     ["model/base", "model/Core"],
     function (base, Core)
     {
-
         /**
          * Site of an interface between interchange areas.
          *

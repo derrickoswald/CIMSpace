@@ -7,7 +7,6 @@ define
      */
     function (base, Common, Core)
     {
-
         /**
          * Kind of skill level.
          *
@@ -20,6 +19,437 @@ define
             "other": "other"
         };
         Object.freeze (SkillLevelKind);
+
+        /**
+         * Role an organisation plays with respect to persons.
+         *
+         */
+        class PersonOrganisationRole extends Common.OrganisationRole
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.PersonOrganisationRole;
+                if (null == bucket)
+                   cim_data.PersonOrganisationRole = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.PersonOrganisationRole[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
+                obj.cls = "PersonOrganisationRole";
+                base.parse_element (/<cim:PersonOrganisationRole.clientID>([\s\S]*?)<\/cim:PersonOrganisationRole.clientID>/g, obj, "clientID", base.to_string, sub, context);
+                base.parse_attribute (/<cim:PersonOrganisationRole.ErpPerson\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context);
+                let bucket = context.parsed.PersonOrganisationRole;
+                if (null == bucket)
+                   context.parsed.PersonOrganisationRole = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "PersonOrganisationRole", "clientID", "clientID",  base.from_string, fields);
+                base.export_attribute (obj, "PersonOrganisationRole", "ErpPerson", "ErpPerson", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
+                    <div id="PersonOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
+                    {{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ErpPerson}}");}); return false;'>{{ErpPerson}}</a></div>{{/ErpPerson}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
+                    <div id="{{id}}_PersonOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clientID'>clientID: </label><div class='col-sm-8'><input id='{{id}}_clientID' class='form-control' type='text'{{#clientID}} value='{{clientID}}'{{/clientID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "PersonOrganisationRole" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_clientID").value; if ("" !== temp) obj["clientID"] = temp;
+                temp = document.getElementById (id + "_ErpPerson").value; if ("" !== temp) obj["ErpPerson"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["ErpPerson", "1", "0..*", "OldPerson", "OrganisationRoles"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
+         *
+         */
+        class Ratio extends base.Element
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.Ratio;
+                if (null == bucket)
+                   cim_data.Ratio = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.Ratio[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "Ratio";
+                base.parse_element (/<cim:Ratio.denominator>([\s\S]*?)<\/cim:Ratio.denominator>/g, obj, "denominator", base.to_float, sub, context);
+                base.parse_element (/<cim:Ratio.numerator>([\s\S]*?)<\/cim:Ratio.numerator>/g, obj, "numerator", base.to_float, sub, context);
+                let bucket = context.parsed.Ratio;
+                if (null == bucket)
+                   context.parsed.Ratio = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = [];
+
+                base.export_element (obj, "Ratio", "denominator", "denominator",  base.from_float, fields);
+                base.export_element (obj, "Ratio", "numerator", "numerator",  base.from_float, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Ratio_collapse" aria-expanded="true" aria-controls="Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
+                    <div id="Ratio_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
+                    {{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Ratio_collapse" aria-expanded="true" aria-controls="{{id}}_Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
+                    <div id="{{id}}_Ratio_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominator'>denominator: </label><div class='col-sm-8'><input id='{{id}}_denominator' class='form-control' type='text'{{#denominator}} value='{{denominator}}'{{/denominator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_numerator'>numerator: </label><div class='col-sm-8'><input id='{{id}}_numerator' class='form-control' type='text'{{#numerator}} value='{{numerator}}'{{/numerator}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "Ratio" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_denominator").value; if ("" !== temp) obj["denominator"] = temp;
+                temp = document.getElementById (id + "_numerator").value; if ("" !== temp) obj["numerator"] = temp;
+
+                return (obj);
+            }
+        }
+
+        /**
+         * Role an organisation plays with respect to documents.
+         *
+         */
+        class DocumentOrganisationRole extends Common.OrganisationRole
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.DocumentOrganisationRole;
+                if (null == bucket)
+                   cim_data.DocumentOrganisationRole = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.DocumentOrganisationRole[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
+                obj.cls = "DocumentOrganisationRole";
+                let bucket = context.parsed.DocumentOrganisationRole;
+                if (null == bucket)
+                   context.parsed.DocumentOrganisationRole = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
+
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
+                    <div id="DocumentOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
+                    <div id="{{id}}_DocumentOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "DocumentOrganisationRole" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+        }
+
+        /**
+         * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
+         *
+         */
+        class PropertyOrganisationRole extends Common.OrganisationRole
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.PropertyOrganisationRole;
+                if (null == bucket)
+                   cim_data.PropertyOrganisationRole = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.PropertyOrganisationRole[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
+                obj.cls = "PropertyOrganisationRole";
+                base.parse_attributes (/<cim:PropertyOrganisationRole.LandProperty\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LandProperty", sub, context);
+                let bucket = context.parsed.PropertyOrganisationRole;
+                if (null == bucket)
+                   context.parsed.PropertyOrganisationRole = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "PropertyOrganisationRole", "LandProperty", "LandProperty", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
+                    <div id="PropertyOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LandProperty}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["LandProperty"]) obj["LandProperty_string"] = obj["LandProperty"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["LandProperty_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
+                    <div id="{{id}}_PropertyOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "PropertyOrganisationRole" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["LandProperty", "1..", "0..*", "LandProperty", "ErpOrganisationRoles"]
+                        ]
+                    )
+                );
+            }
+        }
 
         /**
          * A crew is a group of people with specific skills, tools, and vehicles.
@@ -170,117 +600,6 @@ define
         }
 
         /**
-         * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
-         *
-         */
-        class PropertyOrganisationRole extends Common.OrganisationRole
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.PropertyOrganisationRole;
-                if (null == bucket)
-                   cim_data.PropertyOrganisationRole = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.PropertyOrganisationRole[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
-                obj.cls = "PropertyOrganisationRole";
-                base.parse_attributes (/<cim:PropertyOrganisationRole.LandProperty\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LandProperty", sub, context);
-                let bucket = context.parsed.PropertyOrganisationRole;
-                if (null == bucket)
-                   context.parsed.PropertyOrganisationRole = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "PropertyOrganisationRole", "LandProperty", "LandProperty", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
-                    <div id="PropertyOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.template.call (this) +
-                    `
-                    {{#LandProperty}}<div><b>LandProperty</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LandProperty}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["LandProperty"]) obj["LandProperty_string"] = obj["LandProperty"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["LandProperty_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PropertyOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_PropertyOrganisationRole_collapse" style="margin-left: 10px;">PropertyOrganisationRole</a></legend>
-                    <div id="{{id}}_PropertyOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "PropertyOrganisationRole" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["LandProperty", "1..", "0..*", "LandProperty", "ErpOrganisationRoles"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
          * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
          *
          */
@@ -305,9 +624,9 @@ define
             {
                 let obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "Skill";
-                base.parse_attribute (/<cim:Skill.level\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "level", sub, context);
                 base.parse_attribute (/<cim:Skill.certificationPeriod\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "certificationPeriod", sub, context);
                 base.parse_element (/<cim:Skill.effectiveDateTime>([\s\S]*?)<\/cim:Skill.effectiveDateTime>/g, obj, "effectiveDateTime", base.to_datetime, sub, context);
+                base.parse_attribute (/<cim:Skill.level\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "level", sub, context);
                 base.parse_attribute (/<cim:Skill.ErpPerson\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context);
                 base.parse_attributes (/<cim:Skill.QualificationRequirements\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "QualificationRequirements", sub, context);
                 base.parse_attributes (/<cim:Skill.Crafts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Crafts", sub, context);
@@ -323,9 +642,9 @@ define
             {
                 let fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "Skill", "level", "level", fields);
                 base.export_attribute (obj, "Skill", "certificationPeriod", "certificationPeriod", fields);
                 base.export_element (obj, "Skill", "effectiveDateTime", "effectiveDateTime",  base.from_datetime, fields);
+                base.export_attribute (obj, "Skill", "level", "level", fields);
                 base.export_attribute (obj, "Skill", "ErpPerson", "ErpPerson", fields);
                 base.export_attributes (obj, "Skill", "QualificationRequirements", "QualificationRequirements", fields);
                 base.export_attributes (obj, "Skill", "Crafts", "Crafts", fields);
@@ -345,9 +664,9 @@ define
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
-                    {{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
                     {{#certificationPeriod}}<div><b>certificationPeriod</b>: {{certificationPeriod}}</div>{{/certificationPeriod}}
                     {{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
+                    {{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
                     {{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ErpPerson}}");}); return false;'>{{ErpPerson}}</a></div>{{/ErpPerson}}
                     {{#QualificationRequirements}}<div><b>QualificationRequirements</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/QualificationRequirements}}
                     {{#Crafts}}<div><b>Crafts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Crafts}}
@@ -384,9 +703,9 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><select id='{{id}}_level' class='form-control custom-select'>{{#levelSkillLevelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/levelSkillLevelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='{{id}}_certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><select id='{{id}}_level' class='form-control custom-select'>{{#levelSkillLevelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/levelSkillLevelKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements_string}}'{{/QualificationRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
@@ -402,9 +721,9 @@ define
 
                 obj = obj || { id: id, cls: "Skill" };
                 super.submit (id, obj);
-                temp = SkillLevelKind[document.getElementById (id + "_level").value]; if (temp) obj["level"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SkillLevelKind." + temp; else delete obj["level"];
                 temp = document.getElementById (id + "_certificationPeriod").value; if ("" !== temp) obj["certificationPeriod"] = temp;
                 temp = document.getElementById (id + "_effectiveDateTime").value; if ("" !== temp) obj["effectiveDateTime"] = temp;
+                temp = SkillLevelKind[document.getElementById (id + "_level").value]; if (temp) obj["level"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SkillLevelKind." + temp; else delete obj["level"];
                 temp = document.getElementById (id + "_ErpPerson").value; if ("" !== temp) obj["ErpPerson"] = temp;
                 temp = document.getElementById (id + "_QualificationRequirements").value; if ("" !== temp) obj["QualificationRequirements"] = temp.split (",");
                 temp = document.getElementById (id + "_Crafts").value; if ("" !== temp) obj["Crafts"] = temp.split (",");
@@ -420,290 +739,6 @@ define
                             ["ErpPerson", "0..1", "0..*", "OldPerson", "Skills"],
                             ["QualificationRequirements", "0..*", "0..*", "QualificationRequirement", "Skills"],
                             ["Crafts", "0..*", "0..*", "Craft", "Skills"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * A business role that this organisation plays.
-         *
-         * A single organisation typically performs many functions, each one described as a role.
-         *
-         */
-        class BusinessRole extends Common.OrganisationRole
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.BusinessRole;
-                if (null == bucket)
-                   cim_data.BusinessRole = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.BusinessRole[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
-                obj.cls = "BusinessRole";
-                base.parse_element (/<cim:BusinessRole.type>([\s\S]*?)<\/cim:BusinessRole.type>/g, obj, "type", base.to_string, sub, context);
-                base.parse_attribute (/<cim:BusinessRole.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
-                let bucket = context.parsed.BusinessRole;
-                if (null == bucket)
-                   context.parsed.BusinessRole = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "BusinessRole", "type", "type",  base.from_string, fields);
-                base.export_attribute (obj, "BusinessRole", "status", "status", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BusinessRole_collapse" aria-expanded="true" aria-controls="BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
-                    <div id="BusinessRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.template.call (this) +
-                    `
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BusinessRole_collapse" aria-expanded="true" aria-controls="{{id}}_BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
-                    <div id="{{id}}_BusinessRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "BusinessRole" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
-                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * General purpose information for name and other information to contact people.
-         *
-         */
-        class OldPerson extends Common.Person
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.OldPerson;
-                if (null == bucket)
-                   cim_data.OldPerson = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.OldPerson[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.Person.prototype.parse.call (this, context, sub);
-                obj.cls = "OldPerson";
-                base.parse_element (/<cim:OldPerson.type>([\s\S]*?)<\/cim:OldPerson.type>/g, obj, "type", base.to_string, sub, context);
-                base.parse_attribute (/<cim:OldPerson.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
-                base.parse_attributes (/<cim:OldPerson.MeasurementValues\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValues", sub, context);
-                base.parse_attributes (/<cim:OldPerson.Crafts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Crafts", sub, context);
-                base.parse_attribute (/<cim:OldPerson.ErpPersonnel\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersonnel", sub, context);
-                base.parse_attributes (/<cim:OldPerson.Skills\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Skills", sub, context);
-                base.parse_attribute (/<cim:OldPerson.CustomerData\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "CustomerData", sub, context);
-                base.parse_attribute (/<cim:OldPerson.ErpCompetency\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ErpCompetency", sub, context);
-                base.parse_attributes (/<cim:OldPerson.LaborItems\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LaborItems", sub, context);
-                base.parse_attributes (/<cim:OldPerson.LandPropertyRoles\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LandPropertyRoles", sub, context);
-                base.parse_attributes (/<cim:OldPerson.OrganisationRoles\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "OrganisationRoles", sub, context);
-                let bucket = context.parsed.OldPerson;
-                if (null == bucket)
-                   context.parsed.OldPerson = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.Person.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "OldPerson", "type", "type",  base.from_string, fields);
-                base.export_attribute (obj, "OldPerson", "status", "status", fields);
-                base.export_attributes (obj, "OldPerson", "MeasurementValues", "MeasurementValues", fields);
-                base.export_attributes (obj, "OldPerson", "Crafts", "Crafts", fields);
-                base.export_attribute (obj, "OldPerson", "ErpPersonnel", "ErpPersonnel", fields);
-                base.export_attributes (obj, "OldPerson", "Skills", "Skills", fields);
-                base.export_attribute (obj, "OldPerson", "CustomerData", "CustomerData", fields);
-                base.export_attribute (obj, "OldPerson", "ErpCompetency", "ErpCompetency", fields);
-                base.export_attributes (obj, "OldPerson", "LaborItems", "LaborItems", fields);
-                base.export_attributes (obj, "OldPerson", "LandPropertyRoles", "LandPropertyRoles", fields);
-                base.export_attributes (obj, "OldPerson", "OrganisationRoles", "OrganisationRoles", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OldPerson_collapse" aria-expanded="true" aria-controls="OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
-                    <div id="OldPerson_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Person.prototype.template.call (this) +
-                    `
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
-                    {{#MeasurementValues}}<div><b>MeasurementValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeasurementValues}}
-                    {{#Crafts}}<div><b>Crafts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Crafts}}
-                    {{#ErpPersonnel}}<div><b>ErpPersonnel</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ErpPersonnel}}");}); return false;'>{{ErpPersonnel}}</a></div>{{/ErpPersonnel}}
-                    {{#Skills}}<div><b>Skills</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Skills}}
-                    {{#CustomerData}}<div><b>CustomerData</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CustomerData}}");}); return false;'>{{CustomerData}}</a></div>{{/CustomerData}}
-                    {{#ErpCompetency}}<div><b>ErpCompetency</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ErpCompetency}}");}); return false;'>{{ErpCompetency}}</a></div>{{/ErpCompetency}}
-                    {{#LaborItems}}<div><b>LaborItems</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LaborItems}}
-                    {{#LandPropertyRoles}}<div><b>LandPropertyRoles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LandPropertyRoles}}
-                    {{#OrganisationRoles}}<div><b>OrganisationRoles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OrganisationRoles}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["MeasurementValues"]) obj["MeasurementValues_string"] = obj["MeasurementValues"].join ();
-                if (obj["Crafts"]) obj["Crafts_string"] = obj["Crafts"].join ();
-                if (obj["Skills"]) obj["Skills_string"] = obj["Skills"].join ();
-                if (obj["LaborItems"]) obj["LaborItems_string"] = obj["LaborItems"].join ();
-                if (obj["LandPropertyRoles"]) obj["LandPropertyRoles_string"] = obj["LandPropertyRoles"].join ();
-                if (obj["OrganisationRoles"]) obj["OrganisationRoles_string"] = obj["OrganisationRoles"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["MeasurementValues_string"];
-                delete obj["Crafts_string"];
-                delete obj["Skills_string"];
-                delete obj["LaborItems_string"];
-                delete obj["LandPropertyRoles_string"];
-                delete obj["OrganisationRoles_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OldPerson_collapse" aria-expanded="true" aria-controls="{{id}}_OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
-                    <div id="{{id}}_OldPerson_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Person.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersonnel'>ErpPersonnel: </label><div class='col-sm-8'><input id='{{id}}_ErpPersonnel' class='form-control' type='text'{{#ErpPersonnel}} value='{{ErpPersonnel}}'{{/ErpPersonnel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerData'>CustomerData: </label><div class='col-sm-8'><input id='{{id}}_CustomerData' class='form-control' type='text'{{#CustomerData}} value='{{CustomerData}}'{{/CustomerData}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpCompetency'>ErpCompetency: </label><div class='col-sm-8'><input id='{{id}}_ErpCompetency' class='form-control' type='text'{{#ErpCompetency}} value='{{ErpCompetency}}'{{/ErpCompetency}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LaborItems'>LaborItems: </label><div class='col-sm-8'><input id='{{id}}_LaborItems' class='form-control' type='text'{{#LaborItems}} value='{{LaborItems_string}}'{{/LaborItems}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "OldPerson" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
-                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
-                temp = document.getElementById (id + "_Crafts").value; if ("" !== temp) obj["Crafts"] = temp.split (",");
-                temp = document.getElementById (id + "_ErpPersonnel").value; if ("" !== temp) obj["ErpPersonnel"] = temp;
-                temp = document.getElementById (id + "_CustomerData").value; if ("" !== temp) obj["CustomerData"] = temp;
-                temp = document.getElementById (id + "_ErpCompetency").value; if ("" !== temp) obj["ErpCompetency"] = temp;
-                temp = document.getElementById (id + "_LaborItems").value; if ("" !== temp) obj["LaborItems"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["MeasurementValues", "0..*", "0..1", "MeasurementValue", "ErpPerson"],
-                            ["Crafts", "0..*", "0..*", "Craft", "ErpPersons"],
-                            ["ErpPersonnel", "0..1", "0..*", "ErpPersonnel", "ErpPersons"],
-                            ["Skills", "0..*", "0..1", "Skill", "ErpPerson"],
-                            ["CustomerData", "0..1", "0..*", "Customer", "ErpPersons"],
-                            ["ErpCompetency", "0..1", "0..*", "ErpCompetency", "ErpPersons"],
-                            ["LaborItems", "0..*", "0..*", "LaborItem", "ErpPersons"],
-                            ["LandPropertyRoles", "0..*", "1", "PersonPropertyRole", "Person"],
-                            ["OrganisationRoles", "0..*", "1", "PersonOrganisationRole", "ErpPerson"]
                         ]
                     )
                 );
@@ -801,313 +836,6 @@ define
             submit (id, obj)
             {
                 obj = obj || { id: id, cls: "BusinessPlan" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-        }
-
-        /**
-         * Enumeration of potential roles that might be played by one object relative to another.
-         *
-         */
-        class Role extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.Role;
-                if (null == bucket)
-                   cim_data.Role = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.Role[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "Role";
-                base.parse_element (/<cim:Role.type>([\s\S]*?)<\/cim:Role.type>/g, obj, "type", base.to_string, sub, context);
-                base.parse_attribute (/<cim:Role.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
-                let bucket = context.parsed.Role;
-                if (null == bucket)
-                   context.parsed.Role = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "Role", "type", "type",  base.from_string, fields);
-                base.export_attribute (obj, "Role", "status", "status", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Role_collapse" aria-expanded="true" aria-controls="Role_collapse" style="margin-left: 10px;">Role</a></legend>
-                    <div id="Role_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Role_collapse" aria-expanded="true" aria-controls="{{id}}_Role_collapse" style="margin-left: 10px;">Role</a></legend>
-                    <div id="{{id}}_Role_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "Role" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
-                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * Roles played between Organisations and other Organisations.
-         *
-         * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
-         * Note that the parent and child relationship is indicated by the name on each end of the association.
-         *
-         */
-        class OrgOrgRole extends Common.OrganisationRole
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.OrgOrgRole;
-                if (null == bucket)
-                   cim_data.OrgOrgRole = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.OrgOrgRole[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
-                obj.cls = "OrgOrgRole";
-                base.parse_element (/<cim:OrgOrgRole.clientID>([\s\S]*?)<\/cim:OrgOrgRole.clientID>/g, obj, "clientID", base.to_string, sub, context);
-                let bucket = context.parsed.OrgOrgRole;
-                if (null == bucket)
-                   context.parsed.OrgOrgRole = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "OrgOrgRole", "clientID", "clientID",  base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OrgOrgRole_collapse" aria-expanded="true" aria-controls="OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
-                    <div id="OrgOrgRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.template.call (this) +
-                    `
-                    {{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OrgOrgRole_collapse" aria-expanded="true" aria-controls="{{id}}_OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
-                    <div id="{{id}}_OrgOrgRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clientID'>clientID: </label><div class='col-sm-8'><input id='{{id}}_clientID' class='form-control' type='text'{{#clientID}} value='{{clientID}}'{{/clientID}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "OrgOrgRole" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_clientID").value; if ("" !== temp) obj["clientID"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * Role an organisation plays with respect to documents.
-         *
-         */
-        class DocumentOrganisationRole extends Common.OrganisationRole
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.DocumentOrganisationRole;
-                if (null == bucket)
-                   cim_data.DocumentOrganisationRole = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.DocumentOrganisationRole[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
-                obj.cls = "DocumentOrganisationRole";
-                let bucket = context.parsed.DocumentOrganisationRole;
-                if (null == bucket)
-                   context.parsed.DocumentOrganisationRole = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
-
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
-                    <div id="DocumentOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DocumentOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_DocumentOrganisationRole_collapse" style="margin-left: 10px;">DocumentOrganisationRole</a></legend>
-                    <div id="{{id}}_DocumentOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "DocumentOrganisationRole" };
                 super.submit (id, obj);
 
                 return (obj);
@@ -1239,35 +967,44 @@ define
         }
 
         /**
-         * Fraction specified explicitly with a numerator and denominator, which can be used to calculate the quotient.
+         * General purpose information for name and other information to contact people.
          *
          */
-        class Ratio extends base.Element
+        class OldPerson extends Common.Person
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.Ratio;
+                let bucket = cim_data.OldPerson;
                 if (null == bucket)
-                   cim_data.Ratio = bucket = {};
+                   cim_data.OldPerson = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.Ratio[obj.id];
+               delete cim_data.OldPerson[obj.id];
             }
 
             parse (context, sub)
             {
-                let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "Ratio";
-                base.parse_element (/<cim:Ratio.numerator>([\s\S]*?)<\/cim:Ratio.numerator>/g, obj, "numerator", base.to_float, sub, context);
-                base.parse_element (/<cim:Ratio.denominator>([\s\S]*?)<\/cim:Ratio.denominator>/g, obj, "denominator", base.to_float, sub, context);
-                let bucket = context.parsed.Ratio;
+                let obj = Common.Person.prototype.parse.call (this, context, sub);
+                obj.cls = "OldPerson";
+                base.parse_attribute (/<cim:OldPerson.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_element (/<cim:OldPerson.type>([\s\S]*?)<\/cim:OldPerson.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attributes (/<cim:OldPerson.MeasurementValues\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValues", sub, context);
+                base.parse_attributes (/<cim:OldPerson.Crafts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Crafts", sub, context);
+                base.parse_attribute (/<cim:OldPerson.ErpPersonnel\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersonnel", sub, context);
+                base.parse_attributes (/<cim:OldPerson.Skills\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Skills", sub, context);
+                base.parse_attribute (/<cim:OldPerson.CustomerData\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "CustomerData", sub, context);
+                base.parse_attribute (/<cim:OldPerson.ErpCompetency\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ErpCompetency", sub, context);
+                base.parse_attributes (/<cim:OldPerson.LaborItems\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LaborItems", sub, context);
+                base.parse_attributes (/<cim:OldPerson.LandPropertyRoles\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LandPropertyRoles", sub, context);
+                base.parse_attributes (/<cim:OldPerson.OrganisationRoles\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "OrganisationRoles", sub, context);
+                let bucket = context.parsed.OldPerson;
                 if (null == bucket)
-                   context.parsed.Ratio = bucket = {};
+                   context.parsed.OldPerson = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -1275,10 +1012,19 @@ define
 
             export (obj, full)
             {
-                let fields = [];
+                let fields = Common.Person.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Ratio", "numerator", "numerator",  base.from_float, fields);
-                base.export_element (obj, "Ratio", "denominator", "denominator",  base.from_float, fields);
+                base.export_attribute (obj, "OldPerson", "status", "status", fields);
+                base.export_element (obj, "OldPerson", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "OldPerson", "MeasurementValues", "MeasurementValues", fields);
+                base.export_attributes (obj, "OldPerson", "Crafts", "Crafts", fields);
+                base.export_attribute (obj, "OldPerson", "ErpPersonnel", "ErpPersonnel", fields);
+                base.export_attributes (obj, "OldPerson", "Skills", "Skills", fields);
+                base.export_attribute (obj, "OldPerson", "CustomerData", "CustomerData", fields);
+                base.export_attribute (obj, "OldPerson", "ErpCompetency", "ErpCompetency", fields);
+                base.export_attributes (obj, "OldPerson", "LaborItems", "LaborItems", fields);
+                base.export_attributes (obj, "OldPerson", "LandPropertyRoles", "LandPropertyRoles", fields);
+                base.export_attributes (obj, "OldPerson", "OrganisationRoles", "OrganisationRoles", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -1290,13 +1036,22 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Ratio_collapse" aria-expanded="true" aria-controls="Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
-                    <div id="Ratio_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OldPerson_collapse" aria-expanded="true" aria-controls="OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
+                    <div id="OldPerson_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + base.Element.prototype.template.call (this) +
+                    + Common.Person.prototype.template.call (this) +
                     `
-                    {{#numerator}}<div><b>numerator</b>: {{numerator}}</div>{{/numerator}}
-                    {{#denominator}}<div><b>denominator</b>: {{denominator}}</div>{{/denominator}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#MeasurementValues}}<div><b>MeasurementValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MeasurementValues}}
+                    {{#Crafts}}<div><b>Crafts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Crafts}}
+                    {{#ErpPersonnel}}<div><b>ErpPersonnel</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ErpPersonnel}}");}); return false;'>{{ErpPersonnel}}</a></div>{{/ErpPersonnel}}
+                    {{#Skills}}<div><b>Skills</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Skills}}
+                    {{#CustomerData}}<div><b>CustomerData</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{CustomerData}}");}); return false;'>{{CustomerData}}</a></div>{{/CustomerData}}
+                    {{#ErpCompetency}}<div><b>ErpCompetency</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ErpCompetency}}");}); return false;'>{{ErpCompetency}}</a></div>{{/ErpCompetency}}
+                    {{#LaborItems}}<div><b>LaborItems</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LaborItems}}
+                    {{#LandPropertyRoles}}<div><b>LandPropertyRoles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LandPropertyRoles}}
+                    {{#OrganisationRoles}}<div><b>OrganisationRoles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/OrganisationRoles}}
                     </div>
                     </fieldset>
 
@@ -1307,11 +1062,23 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj["MeasurementValues"]) obj["MeasurementValues_string"] = obj["MeasurementValues"].join ();
+                if (obj["Crafts"]) obj["Crafts_string"] = obj["Crafts"].join ();
+                if (obj["Skills"]) obj["Skills_string"] = obj["Skills"].join ();
+                if (obj["LaborItems"]) obj["LaborItems_string"] = obj["LaborItems"].join ();
+                if (obj["LandPropertyRoles"]) obj["LandPropertyRoles_string"] = obj["LandPropertyRoles"].join ();
+                if (obj["OrganisationRoles"]) obj["OrganisationRoles_string"] = obj["OrganisationRoles"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj["MeasurementValues_string"];
+                delete obj["Crafts_string"];
+                delete obj["Skills_string"];
+                delete obj["LaborItems_string"];
+                delete obj["LandPropertyRoles_string"];
+                delete obj["OrganisationRoles_string"];
             }
 
             edit_template ()
@@ -1319,13 +1086,18 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Ratio_collapse" aria-expanded="true" aria-controls="{{id}}_Ratio_collapse" style="margin-left: 10px;">Ratio</a></legend>
-                    <div id="{{id}}_Ratio_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OldPerson_collapse" aria-expanded="true" aria-controls="{{id}}_OldPerson_collapse" style="margin-left: 10px;">OldPerson</a></legend>
+                    <div id="{{id}}_OldPerson_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + base.Element.prototype.edit_template.call (this) +
+                    + Common.Person.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_numerator'>numerator: </label><div class='col-sm-8'><input id='{{id}}_numerator' class='form-control' type='text'{{#numerator}} value='{{numerator}}'{{/numerator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_denominator'>denominator: </label><div class='col-sm-8'><input id='{{id}}_denominator' class='form-control' type='text'{{#denominator}} value='{{denominator}}'{{/denominator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts_string}}'{{/Crafts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersonnel'>ErpPersonnel: </label><div class='col-sm-8'><input id='{{id}}_ErpPersonnel' class='form-control' type='text'{{#ErpPersonnel}} value='{{ErpPersonnel}}'{{/ErpPersonnel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerData'>CustomerData: </label><div class='col-sm-8'><input id='{{id}}_CustomerData' class='form-control' type='text'{{#CustomerData}} value='{{CustomerData}}'{{/CustomerData}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpCompetency'>ErpCompetency: </label><div class='col-sm-8'><input id='{{id}}_ErpCompetency' class='form-control' type='text'{{#ErpCompetency}} value='{{ErpCompetency}}'{{/ErpCompetency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LaborItems'>LaborItems: </label><div class='col-sm-8'><input id='{{id}}_LaborItems' class='form-control' type='text'{{#LaborItems}} value='{{LaborItems_string}}'{{/LaborItems}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1336,117 +1108,15 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "Ratio" };
+                obj = obj || { id: id, cls: "OldPerson" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_numerator").value; if ("" !== temp) obj["numerator"] = temp;
-                temp = document.getElementById (id + "_denominator").value; if ("" !== temp) obj["denominator"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * Role an organisation plays with respect to persons.
-         *
-         */
-        class PersonOrganisationRole extends Common.OrganisationRole
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.PersonOrganisationRole;
-                if (null == bucket)
-                   cim_data.PersonOrganisationRole = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.PersonOrganisationRole[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
-                obj.cls = "PersonOrganisationRole";
-                base.parse_element (/<cim:PersonOrganisationRole.clientID>([\s\S]*?)<\/cim:PersonOrganisationRole.clientID>/g, obj, "clientID", base.to_string, sub, context);
-                base.parse_attribute (/<cim:PersonOrganisationRole.ErpPerson\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context);
-                let bucket = context.parsed.PersonOrganisationRole;
-                if (null == bucket)
-                   context.parsed.PersonOrganisationRole = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "PersonOrganisationRole", "clientID", "clientID",  base.from_string, fields);
-                base.export_attribute (obj, "PersonOrganisationRole", "ErpPerson", "ErpPerson", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
-                    <div id="PersonOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.template.call (this) +
-                    `
-                    {{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
-                    {{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ErpPerson}}");}); return false;'>{{ErpPerson}}</a></div>{{/ErpPerson}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PersonOrganisationRole_collapse" aria-expanded="true" aria-controls="{{id}}_PersonOrganisationRole_collapse" style="margin-left: 10px;">PersonOrganisationRole</a></legend>
-                    <div id="{{id}}_PersonOrganisationRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clientID'>clientID: </label><div class='col-sm-8'><input id='{{id}}_clientID' class='form-control' type='text'{{#clientID}} value='{{clientID}}'{{/clientID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='{{id}}_ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "PersonOrganisationRole" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_clientID").value; if ("" !== temp) obj["clientID"] = temp;
-                temp = document.getElementById (id + "_ErpPerson").value; if ("" !== temp) obj["ErpPerson"] = temp;
+                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
+                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
+                temp = document.getElementById (id + "_Crafts").value; if ("" !== temp) obj["Crafts"] = temp.split (",");
+                temp = document.getElementById (id + "_ErpPersonnel").value; if ("" !== temp) obj["ErpPersonnel"] = temp;
+                temp = document.getElementById (id + "_CustomerData").value; if ("" !== temp) obj["CustomerData"] = temp;
+                temp = document.getElementById (id + "_ErpCompetency").value; if ("" !== temp) obj["ErpCompetency"] = temp;
+                temp = document.getElementById (id + "_LaborItems").value; if ("" !== temp) obj["LaborItems"] = temp.split (",");
 
                 return (obj);
             }
@@ -1456,10 +1126,339 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["ErpPerson", "1", "0..*", "OldPerson", "OrganisationRoles"]
+                            ["MeasurementValues", "0..*", "0..1", "MeasurementValue", "ErpPerson"],
+                            ["Crafts", "0..*", "0..*", "Craft", "ErpPersons"],
+                            ["ErpPersonnel", "0..1", "0..*", "ErpPersonnel", "ErpPersons"],
+                            ["Skills", "0..*", "0..1", "Skill", "ErpPerson"],
+                            ["CustomerData", "0..1", "0..*", "Customer", "ErpPersons"],
+                            ["ErpCompetency", "0..1", "0..*", "ErpCompetency", "ErpPersons"],
+                            ["LaborItems", "0..*", "0..*", "LaborItem", "ErpPersons"],
+                            ["LandPropertyRoles", "0..*", "1", "PersonPropertyRole", "Person"],
+                            ["OrganisationRoles", "0..*", "1", "PersonOrganisationRole", "ErpPerson"]
                         ]
                     )
                 );
+            }
+        }
+
+        /**
+         * A business role that this organisation plays.
+         *
+         * A single organisation typically performs many functions, each one described as a role.
+         *
+         */
+        class BusinessRole extends Common.OrganisationRole
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.BusinessRole;
+                if (null == bucket)
+                   cim_data.BusinessRole = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.BusinessRole[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
+                obj.cls = "BusinessRole";
+                base.parse_attribute (/<cim:BusinessRole.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_element (/<cim:BusinessRole.type>([\s\S]*?)<\/cim:BusinessRole.type>/g, obj, "type", base.to_string, sub, context);
+                let bucket = context.parsed.BusinessRole;
+                if (null == bucket)
+                   context.parsed.BusinessRole = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "BusinessRole", "status", "status", fields);
+                base.export_element (obj, "BusinessRole", "type", "type",  base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BusinessRole_collapse" aria-expanded="true" aria-controls="BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
+                    <div id="BusinessRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BusinessRole_collapse" aria-expanded="true" aria-controls="{{id}}_BusinessRole_collapse" style="margin-left: 10px;">BusinessRole</a></legend>
+                    <div id="{{id}}_BusinessRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "BusinessRole" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
+                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
+
+                return (obj);
+            }
+        }
+
+        /**
+         * Roles played between Organisations and other Organisations.
+         *
+         * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
+         * Note that the parent and child relationship is indicated by the name on each end of the association.
+         *
+         */
+        class OrgOrgRole extends Common.OrganisationRole
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.OrgOrgRole;
+                if (null == bucket)
+                   cim_data.OrgOrgRole = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.OrgOrgRole[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
+                obj.cls = "OrgOrgRole";
+                base.parse_element (/<cim:OrgOrgRole.clientID>([\s\S]*?)<\/cim:OrgOrgRole.clientID>/g, obj, "clientID", base.to_string, sub, context);
+                let bucket = context.parsed.OrgOrgRole;
+                if (null == bucket)
+                   context.parsed.OrgOrgRole = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "OrgOrgRole", "clientID", "clientID",  base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OrgOrgRole_collapse" aria-expanded="true" aria-controls="OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
+                    <div id="OrgOrgRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#clientID}}<div><b>clientID</b>: {{clientID}}</div>{{/clientID}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OrgOrgRole_collapse" aria-expanded="true" aria-controls="{{id}}_OrgOrgRole_collapse" style="margin-left: 10px;">OrgOrgRole</a></legend>
+                    <div id="{{id}}_OrgOrgRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clientID'>clientID: </label><div class='col-sm-8'><input id='{{id}}_clientID' class='form-control' type='text'{{#clientID}} value='{{clientID}}'{{/clientID}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "OrgOrgRole" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_clientID").value; if ("" !== temp) obj["clientID"] = temp;
+
+                return (obj);
+            }
+        }
+
+        /**
+         * Enumeration of potential roles that might be played by one object relative to another.
+         *
+         */
+        class Role extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.Role;
+                if (null == bucket)
+                   cim_data.Role = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.Role[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "Role";
+                base.parse_attribute (/<cim:Role.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_element (/<cim:Role.type>([\s\S]*?)<\/cim:Role.type>/g, obj, "type", base.to_string, sub, context);
+                let bucket = context.parsed.Role;
+                if (null == bucket)
+                   context.parsed.Role = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "Role", "status", "status", fields);
+                base.export_element (obj, "Role", "type", "type",  base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Role_collapse" aria-expanded="true" aria-controls="Role_collapse" style="margin-left: 10px;">Role</a></legend>
+                    <div id="Role_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Role_collapse" aria-expanded="true" aria-controls="{{id}}_Role_collapse" style="margin-left: 10px;">Role</a></legend>
+                    <div id="{{id}}_Role_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "Role" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
+                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
+
+                return (obj);
             }
         }
 
@@ -1490,8 +1489,8 @@ define
             {
                 let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Craft";
-                base.parse_element (/<cim:Craft.type>([\s\S]*?)<\/cim:Craft.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Craft.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_element (/<cim:Craft.type>([\s\S]*?)<\/cim:Craft.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Craft.ErpPersons\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersons", sub, context);
                 base.parse_attributes (/<cim:Craft.Capabilities\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Capabilities", sub, context);
                 base.parse_attributes (/<cim:Craft.Skills\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Skills", sub, context);
@@ -1507,8 +1506,8 @@ define
             {
                 let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Craft", "type", "type",  base.from_string, fields);
                 base.export_attribute (obj, "Craft", "status", "status", fields);
+                base.export_element (obj, "Craft", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "Craft", "ErpPersons", "ErpPersons", fields);
                 base.export_attributes (obj, "Craft", "Capabilities", "Capabilities", fields);
                 base.export_attributes (obj, "Craft", "Skills", "Skills", fields);
@@ -1528,8 +1527,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ErpPersons}}
                     {{#Capabilities}}<div><b>Capabilities</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Capabilities}}
                     {{#Skills}}<div><b>Skills</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Skills}}
@@ -1566,8 +1565,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='{{id}}_ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons_string}}'{{/ErpPersons}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='{{id}}_Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities_string}}'{{/Capabilities}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills_string}}'{{/Skills}}></div></div>
@@ -1583,8 +1582,8 @@ define
 
                 obj = obj || { id: id, cls: "Craft" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
                 temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
+                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
                 temp = document.getElementById (id + "_ErpPersons").value; if ("" !== temp) obj["ErpPersons"] = temp.split (",");
                 temp = document.getElementById (id + "_Capabilities").value; if ("" !== temp) obj["Capabilities"] = temp.split (",");
                 temp = document.getElementById (id + "_Skills").value; if ("" !== temp) obj["Skills"] = temp.split (",");
@@ -1631,8 +1630,8 @@ define
             {
                 let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "Bank";
-                base.parse_element (/<cim:Bank.iban>([\s\S]*?)<\/cim:Bank.iban>/g, obj, "iban", base.to_string, sub, context);
                 base.parse_element (/<cim:Bank.bic>([\s\S]*?)<\/cim:Bank.bic>/g, obj, "bic", base.to_string, sub, context);
+                base.parse_element (/<cim:Bank.iban>([\s\S]*?)<\/cim:Bank.iban>/g, obj, "iban", base.to_string, sub, context);
                 base.parse_attributes (/<cim:Bank.BankAccounts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BankAccounts", sub, context);
                 let bucket = context.parsed.Bank;
                 if (null == bucket)
@@ -1646,8 +1645,8 @@ define
             {
                 let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Bank", "iban", "iban",  base.from_string, fields);
                 base.export_element (obj, "Bank", "bic", "bic",  base.from_string, fields);
+                base.export_element (obj, "Bank", "iban", "iban",  base.from_string, fields);
                 base.export_attributes (obj, "Bank", "BankAccounts", "BankAccounts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
@@ -1665,8 +1664,8 @@ define
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
                     `
-                    {{#iban}}<div><b>iban</b>: {{iban}}</div>{{/iban}}
                     {{#bic}}<div><b>bic</b>: {{bic}}</div>{{/bic}}
+                    {{#iban}}<div><b>iban</b>: {{iban}}</div>{{/iban}}
                     {{#BankAccounts}}<div><b>BankAccounts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BankAccounts}}
                     </div>
                     </fieldset>
@@ -1697,8 +1696,8 @@ define
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iban'>iban: </label><div class='col-sm-8'><input id='{{id}}_iban' class='form-control' type='text'{{#iban}} value='{{iban}}'{{/iban}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bic'>bic: </label><div class='col-sm-8'><input id='{{id}}_bic' class='form-control' type='text'{{#bic}} value='{{bic}}'{{/bic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iban'>iban: </label><div class='col-sm-8'><input id='{{id}}_iban' class='form-control' type='text'{{#iban}} value='{{iban}}'{{/iban}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1711,8 +1710,8 @@ define
 
                 obj = obj || { id: id, cls: "Bank" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_iban").value; if ("" !== temp) obj["iban"] = temp;
                 temp = document.getElementById (id + "_bic").value; if ("" !== temp) obj["bic"] = temp;
+                temp = document.getElementById (id + "_iban").value; if ("" !== temp) obj["iban"] = temp;
 
                 return (obj);
             }

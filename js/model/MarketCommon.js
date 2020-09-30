@@ -7,6 +7,695 @@ define
      */
     function (base, Common, Core, Domain, MktDomain, Production)
     {
+        /**
+         * This class model the various capacities of a resource.
+         *
+         * A resource may have numbers of capacities related to operating, ancillary services, energy trade and so forth. Capacities may be defined for active power or reactive power.
+         *
+         */
+        class ResourceCapacity extends base.Element
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.ResourceCapacity;
+                if (null == bucket)
+                   cim_data.ResourceCapacity = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.ResourceCapacity[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "ResourceCapacity";
+                base.parse_attribute (/<cim:ResourceCapacity.capacityType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "capacityType", sub, context);
+                base.parse_element (/<cim:ResourceCapacity.defaultCapacity>([\s\S]*?)<\/cim:ResourceCapacity.defaultCapacity>/g, obj, "defaultCapacity", base.to_string, sub, context);
+                base.parse_element (/<cim:ResourceCapacity.maximumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.maximumCapacity>/g, obj, "maximumCapacity", base.to_string, sub, context);
+                base.parse_element (/<cim:ResourceCapacity.minimumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.minimumCapacity>/g, obj, "minimumCapacity", base.to_string, sub, context);
+                base.parse_attribute (/<cim:ResourceCapacity.unitSymbol\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unitSymbol", sub, context);
+                base.parse_attributes (/<cim:ResourceCapacity.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                let bucket = context.parsed.ResourceCapacity;
+                if (null == bucket)
+                   context.parsed.ResourceCapacity = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = [];
+
+                base.export_attribute (obj, "ResourceCapacity", "capacityType", "capacityType", fields);
+                base.export_element (obj, "ResourceCapacity", "defaultCapacity", "defaultCapacity",  base.from_string, fields);
+                base.export_element (obj, "ResourceCapacity", "maximumCapacity", "maximumCapacity",  base.from_string, fields);
+                base.export_element (obj, "ResourceCapacity", "minimumCapacity", "minimumCapacity",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceCapacity", "unitSymbol", "unitSymbol", fields);
+                base.export_attributes (obj, "ResourceCapacity", "RegisteredResource", "RegisteredResource", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceCapacity_collapse" aria-expanded="true" aria-controls="ResourceCapacity_collapse" style="margin-left: 10px;">ResourceCapacity</a></legend>
+                    <div id="ResourceCapacity_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#capacityType}}<div><b>capacityType</b>: {{capacityType}}</div>{{/capacityType}}
+                    {{#defaultCapacity}}<div><b>defaultCapacity</b>: {{defaultCapacity}}</div>{{/defaultCapacity}}
+                    {{#maximumCapacity}}<div><b>maximumCapacity</b>: {{maximumCapacity}}</div>{{/maximumCapacity}}
+                    {{#minimumCapacity}}<div><b>minimumCapacity</b>: {{minimumCapacity}}</div>{{/minimumCapacity}}
+                    {{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["capacityTypeResourceCapacityType"] = [{ id: '', selected: (!obj["capacityType"])}]; for (let property in MktDomain.ResourceCapacityType) obj["capacityTypeResourceCapacityType"].push ({ id: property, selected: obj["capacityType"] && obj["capacityType"].endsWith ('.' + property)});
+                obj["unitSymbolUnitSymbol"] = [{ id: '', selected: (!obj["unitSymbol"])}]; for (let property in Domain.UnitSymbol) obj["unitSymbolUnitSymbol"].push ({ id: property, selected: obj["unitSymbol"] && obj["unitSymbol"].endsWith ('.' + property)});
+                if (obj["RegisteredResource"]) obj["RegisteredResource_string"] = obj["RegisteredResource"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["capacityTypeResourceCapacityType"];
+                delete obj["unitSymbolUnitSymbol"];
+                delete obj["RegisteredResource_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceCapacity_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceCapacity_collapse" style="margin-left: 10px;">ResourceCapacity</a></legend>
+                    <div id="{{id}}_ResourceCapacity_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacityType'>capacityType: </label><div class='col-sm-8'><select id='{{id}}_capacityType' class='form-control custom-select'>{{#capacityTypeResourceCapacityType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/capacityTypeResourceCapacityType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultCapacity'>defaultCapacity: </label><div class='col-sm-8'><input id='{{id}}_defaultCapacity' class='form-control' type='text'{{#defaultCapacity}} value='{{defaultCapacity}}'{{/defaultCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumCapacity'>maximumCapacity: </label><div class='col-sm-8'><input id='{{id}}_maximumCapacity' class='form-control' type='text'{{#maximumCapacity}} value='{{maximumCapacity}}'{{/maximumCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumCapacity'>minimumCapacity: </label><div class='col-sm-8'><input id='{{id}}_minimumCapacity' class='form-control' type='text'{{#minimumCapacity}} value='{{minimumCapacity}}'{{/minimumCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><select id='{{id}}_unitSymbol' class='form-control custom-select'>{{#unitSymbolUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitSymbolUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "ResourceCapacity" };
+                super.submit (id, obj);
+                temp = MktDomain.ResourceCapacityType[document.getElementById (id + "_capacityType").value]; if (temp) obj["capacityType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ResourceCapacityType." + temp; else delete obj["capacityType"];
+                temp = document.getElementById (id + "_defaultCapacity").value; if ("" !== temp) obj["defaultCapacity"] = temp;
+                temp = document.getElementById (id + "_maximumCapacity").value; if ("" !== temp) obj["maximumCapacity"] = temp;
+                temp = document.getElementById (id + "_minimumCapacity").value; if ("" !== temp) obj["minimumCapacity"] = temp;
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj["unitSymbol"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unitSymbol"];
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResource", "0..*", "0..*", "RegisteredResource", "ResourceCapacity"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * An environmental monitoring station, examples of which could be a weather station or a seismic monitoring station.
+         *
+         */
+        class EnvironmentalMonitoringStation extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.EnvironmentalMonitoringStation;
+                if (null == bucket)
+                   cim_data.EnvironmentalMonitoringStation = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.EnvironmentalMonitoringStation[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "EnvironmentalMonitoringStation";
+                base.parse_element (/<cim:EnvironmentalMonitoringStation.dstObserved>([\s\S]*?)<\/cim:EnvironmentalMonitoringStation.dstObserved>/g, obj, "dstObserved", base.to_boolean, sub, context);
+                base.parse_element (/<cim:EnvironmentalMonitoringStation.isNetworked>([\s\S]*?)<\/cim:EnvironmentalMonitoringStation.isNetworked>/g, obj, "isNetworked", base.to_boolean, sub, context);
+                base.parse_element (/<cim:EnvironmentalMonitoringStation.timeZoneOffset>([\s\S]*?)<\/cim:EnvironmentalMonitoringStation.timeZoneOffset>/g, obj, "timeZoneOffset", base.to_string, sub, context);
+                base.parse_attributes (/<cim:EnvironmentalMonitoringStation.TimeSeries\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
+                base.parse_attributes (/<cim:EnvironmentalMonitoringStation.UsagePoint\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
+                base.parse_attributes (/<cim:EnvironmentalMonitoringStation.ReportingCapability\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ReportingCapability", sub, context);
+                base.parse_attributes (/<cim:EnvironmentalMonitoringStation.EnvironmentalAnalog\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnvironmentalAnalog", sub, context);
+                base.parse_attribute (/<cim:EnvironmentalMonitoringStation.Location\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Location", sub, context);
+                let bucket = context.parsed.EnvironmentalMonitoringStation;
+                if (null == bucket)
+                   context.parsed.EnvironmentalMonitoringStation = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "EnvironmentalMonitoringStation", "dstObserved", "dstObserved",  base.from_boolean, fields);
+                base.export_element (obj, "EnvironmentalMonitoringStation", "isNetworked", "isNetworked",  base.from_boolean, fields);
+                base.export_element (obj, "EnvironmentalMonitoringStation", "timeZoneOffset", "timeZoneOffset",  base.from_string, fields);
+                base.export_attributes (obj, "EnvironmentalMonitoringStation", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "EnvironmentalMonitoringStation", "UsagePoint", "UsagePoint", fields);
+                base.export_attributes (obj, "EnvironmentalMonitoringStation", "ReportingCapability", "ReportingCapability", fields);
+                base.export_attributes (obj, "EnvironmentalMonitoringStation", "EnvironmentalAnalog", "EnvironmentalAnalog", fields);
+                base.export_attribute (obj, "EnvironmentalMonitoringStation", "Location", "Location", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EnvironmentalMonitoringStation_collapse" aria-expanded="true" aria-controls="EnvironmentalMonitoringStation_collapse" style="margin-left: 10px;">EnvironmentalMonitoringStation</a></legend>
+                    <div id="EnvironmentalMonitoringStation_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#dstObserved}}<div><b>dstObserved</b>: {{dstObserved}}</div>{{/dstObserved}}
+                    {{#isNetworked}}<div><b>isNetworked</b>: {{isNetworked}}</div>{{/isNetworked}}
+                    {{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TimeSeries}}
+                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePoint}}
+                    {{#ReportingCapability}}<div><b>ReportingCapability</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ReportingCapability}}
+                    {{#EnvironmentalAnalog}}<div><b>EnvironmentalAnalog</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalAnalog}}
+                    {{#Location}}<div><b>Location</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Location}}");}); return false;'>{{Location}}</a></div>{{/Location}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["TimeSeries"]) obj["TimeSeries_string"] = obj["TimeSeries"].join ();
+                if (obj["UsagePoint"]) obj["UsagePoint_string"] = obj["UsagePoint"].join ();
+                if (obj["ReportingCapability"]) obj["ReportingCapability_string"] = obj["ReportingCapability"].join ();
+                if (obj["EnvironmentalAnalog"]) obj["EnvironmentalAnalog_string"] = obj["EnvironmentalAnalog"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["TimeSeries_string"];
+                delete obj["UsagePoint_string"];
+                delete obj["ReportingCapability_string"];
+                delete obj["EnvironmentalAnalog_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EnvironmentalMonitoringStation_collapse" aria-expanded="true" aria-controls="{{id}}_EnvironmentalMonitoringStation_collapse" style="margin-left: 10px;">EnvironmentalMonitoringStation</a></legend>
+                    <div id="{{id}}_EnvironmentalMonitoringStation_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_dstObserved'>dstObserved: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_dstObserved' class='form-check-input' type='checkbox'{{#dstObserved}} checked{{/dstObserved}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetworked'>isNetworked: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetworked' class='form-check-input' type='checkbox'{{#isNetworked}} checked{{/isNetworked}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeZoneOffset'>timeZoneOffset: </label><div class='col-sm-8'><input id='{{id}}_timeZoneOffset' class='form-control' type='text'{{#timeZoneOffset}} value='{{timeZoneOffset}}'{{/timeZoneOffset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='{{id}}_TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries_string}}'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Location'>Location: </label><div class='col-sm-8'><input id='{{id}}_Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "EnvironmentalMonitoringStation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dstObserved").checked; if (temp) obj["dstObserved"] = true;
+                temp = document.getElementById (id + "_isNetworked").checked; if (temp) obj["isNetworked"] = true;
+                temp = document.getElementById (id + "_timeZoneOffset").value; if ("" !== temp) obj["timeZoneOffset"] = temp;
+                temp = document.getElementById (id + "_TimeSeries").value; if ("" !== temp) obj["TimeSeries"] = temp.split (",");
+                temp = document.getElementById (id + "_Location").value; if ("" !== temp) obj["Location"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "EnvironmentalMonitoringStation"],
+                            ["UsagePoint", "0..*", "0..1", "UsagePoint", "EnvironmentalMonitoringStation"],
+                            ["ReportingCapability", "0..*", "1", "ReportingCapability", "EnvironmentalMonitoringStation"],
+                            ["EnvironmentalAnalog", "0..*", "0..1", "EnvironmentalAnalog", "EnvironmentalMonitoringStation"],
+                            ["Location", "0..1", "0..*", "Location", "EnvironmentalMonitoringStation"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * An identification of a party acting in a electricity market business process.
+         *
+         * This class is used to identify organizations that can participate in market management and/or market operations.
+         *
+         */
+        class MarketParticipant extends Common.Organisation
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.MarketParticipant;
+                if (null == bucket)
+                   cim_data.MarketParticipant = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.MarketParticipant[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.Organisation.prototype.parse.call (this, context, sub);
+                obj.cls = "MarketParticipant";
+                base.parse_attributes (/<cim:MarketParticipant.SchedulingCoordinator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SchedulingCoordinator", sub, context);
+                base.parse_attributes (/<cim:MarketParticipant.TimeSeries\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
+                base.parse_attributes (/<cim:MarketParticipant.MarketPerson\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketPerson", sub, context);
+                base.parse_attributes (/<cim:MarketParticipant.MarketDocument\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
+                base.parse_attributes (/<cim:MarketParticipant.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                base.parse_attributes (/<cim:MarketParticipant.MarketRole\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketRole", sub, context);
+                base.parse_attributes (/<cim:MarketParticipant.Bid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
+                let bucket = context.parsed.MarketParticipant;
+                if (null == bucket)
+                   context.parsed.MarketParticipant = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.Organisation.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "MarketParticipant", "SchedulingCoordinator", "SchedulingCoordinator", fields);
+                base.export_attributes (obj, "MarketParticipant", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "MarketParticipant", "MarketPerson", "MarketPerson", fields);
+                base.export_attributes (obj, "MarketParticipant", "MarketDocument", "MarketDocument", fields);
+                base.export_attributes (obj, "MarketParticipant", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attributes (obj, "MarketParticipant", "MarketRole", "MarketRole", fields);
+                base.export_attributes (obj, "MarketParticipant", "Bid", "Bid", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketParticipant_collapse" aria-expanded="true" aria-controls="MarketParticipant_collapse" style="margin-left: 10px;">MarketParticipant</a></legend>
+                    <div id="MarketParticipant_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.template.call (this) +
+                    `
+                    {{#SchedulingCoordinator}}<div><b>SchedulingCoordinator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SchedulingCoordinator}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TimeSeries}}
+                    {{#MarketPerson}}<div><b>MarketPerson</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketPerson}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketDocument}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
+                    {{#MarketRole}}<div><b>MarketRole</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketRole}}
+                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Bid}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["SchedulingCoordinator"]) obj["SchedulingCoordinator_string"] = obj["SchedulingCoordinator"].join ();
+                if (obj["TimeSeries"]) obj["TimeSeries_string"] = obj["TimeSeries"].join ();
+                if (obj["MarketPerson"]) obj["MarketPerson_string"] = obj["MarketPerson"].join ();
+                if (obj["MarketDocument"]) obj["MarketDocument_string"] = obj["MarketDocument"].join ();
+                if (obj["RegisteredResource"]) obj["RegisteredResource_string"] = obj["RegisteredResource"].join ();
+                if (obj["MarketRole"]) obj["MarketRole_string"] = obj["MarketRole"].join ();
+                if (obj["Bid"]) obj["Bid_string"] = obj["Bid"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["SchedulingCoordinator_string"];
+                delete obj["TimeSeries_string"];
+                delete obj["MarketPerson_string"];
+                delete obj["MarketDocument_string"];
+                delete obj["RegisteredResource_string"];
+                delete obj["MarketRole_string"];
+                delete obj["Bid_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketParticipant_collapse" aria-expanded="true" aria-controls="{{id}}_MarketParticipant_collapse" style="margin-left: 10px;">MarketParticipant</a></legend>
+                    <div id="{{id}}_MarketParticipant_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Organisation.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='{{id}}_TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries_string}}'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketPerson'>MarketPerson: </label><div class='col-sm-8'><input id='{{id}}_MarketPerson' class='form-control' type='text'{{#MarketPerson}} value='{{MarketPerson_string}}'{{/MarketPerson}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='{{id}}_MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument_string}}'{{/MarketDocument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketRole'>MarketRole: </label><div class='col-sm-8'><input id='{{id}}_MarketRole' class='form-control' type='text'{{#MarketRole}} value='{{MarketRole_string}}'{{/MarketRole}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "MarketParticipant" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_TimeSeries").value; if ("" !== temp) obj["TimeSeries"] = temp.split (",");
+                temp = document.getElementById (id + "_MarketPerson").value; if ("" !== temp) obj["MarketPerson"] = temp.split (",");
+                temp = document.getElementById (id + "_MarketDocument").value; if ("" !== temp) obj["MarketDocument"] = temp.split (",");
+                temp = document.getElementById (id + "_MarketRole").value; if ("" !== temp) obj["MarketRole"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["SchedulingCoordinator", "0..*", "0..1", "SchedulingCoordinator", "MarketParticipant"],
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "MarketParticipant"],
+                            ["MarketPerson", "0..*", "0..*", "MarketPerson", "MarketParticipant"],
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "MarketParticipant"],
+                            ["RegisteredResource", "0..*", "0..1", "RegisteredResource", "MarketParticipant"],
+                            ["MarketRole", "0..*", "0..*", "MarketRole", "MarketParticipant"],
+                            ["Bid", "0..*", "0..1", "Bid", "MarketParticipant"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Subclass of IEC61970:Production:GeneratingUnit.
+         *
+         */
+        class MktGeneratingUnit extends Production.GeneratingUnit
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.MktGeneratingUnit;
+                if (null == bucket)
+                   cim_data.MktGeneratingUnit = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.MktGeneratingUnit[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Production.GeneratingUnit.prototype.parse.call (this, context, sub);
+                obj.cls = "MktGeneratingUnit";
+                base.parse_attributes (/<cim:MktGeneratingUnit.GeneratingUnitDynamicValues\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnitDynamicValues", sub, context);
+                let bucket = context.parsed.MktGeneratingUnit;
+                if (null == bucket)
+                   context.parsed.MktGeneratingUnit = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Production.GeneratingUnit.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "MktGeneratingUnit", "GeneratingUnitDynamicValues", "GeneratingUnitDynamicValues", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MktGeneratingUnit_collapse" aria-expanded="true" aria-controls="MktGeneratingUnit_collapse" style="margin-left: 10px;">MktGeneratingUnit</a></legend>
+                    <div id="MktGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Production.GeneratingUnit.prototype.template.call (this) +
+                    `
+                    {{#GeneratingUnitDynamicValues}}<div><b>GeneratingUnitDynamicValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingUnitDynamicValues}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["GeneratingUnitDynamicValues"]) obj["GeneratingUnitDynamicValues_string"] = obj["GeneratingUnitDynamicValues"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["GeneratingUnitDynamicValues_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MktGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_MktGeneratingUnit_collapse" style="margin-left: 10px;">MktGeneratingUnit</a></legend>
+                    <div id="{{id}}_MktGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Production.GeneratingUnit.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "MktGeneratingUnit" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["GeneratingUnitDynamicValues", "0..*", "1", "GeneratingUnitDynamicValues", "MktGeneratingUnit"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * The external intended behavior played by a party within the electricity market.
+         *
+         */
+        class MarketRole extends Common.OrganisationRole
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.MarketRole;
+                if (null == bucket)
+                   cim_data.MarketRole = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.MarketRole[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
+                obj.cls = "MarketRole";
+                base.parse_element (/<cim:MarketRole.type>([\s\S]*?)<\/cim:MarketRole.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attributes (/<cim:MarketRole.MarketParticipant\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketParticipant", sub, context);
+                let bucket = context.parsed.MarketRole;
+                if (null == bucket)
+                   context.parsed.MarketRole = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "MarketRole", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "MarketRole", "MarketParticipant", "MarketParticipant", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketRole_collapse" aria-expanded="true" aria-controls="MarketRole_collapse" style="margin-left: 10px;">MarketRole</a></legend>
+                    <div id="MarketRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.template.call (this) +
+                    `
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketParticipant}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["MarketParticipant"]) obj["MarketParticipant_string"] = obj["MarketParticipant"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["MarketParticipant_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketRole_collapse" aria-expanded="true" aria-controls="{{id}}_MarketRole_collapse" style="margin-left: 10px;">MarketRole</a></legend>
+                    <div id="{{id}}_MarketRole_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.OrganisationRole.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='{{id}}_MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant_string}}'{{/MarketParticipant}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "MarketRole" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
+                temp = document.getElementById (id + "_MarketParticipant").value; if ("" !== temp) obj["MarketParticipant"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["MarketParticipant", "0..*", "0..*", "MarketParticipant", "MarketRole"]
+                        ]
+                    )
+                );
+            }
+        }
 
         /**
          * A resource that is registered through the market participant registration system.
@@ -462,31 +1151,31 @@ define
 
                 obj = obj || { id: id, cls: "RegisteredResource" };
                 super.submit (id, obj);
-                temp = MktDomain.YesNo[document.getElementById (id + "_ACAFlag").value]; if (temp) obj["ACAFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["ACAFlag"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_ASSPOptimizationFlag").value]; if (temp) obj["ASSPOptimizationFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["ASSPOptimizationFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_ACAFlag").value]; if (temp) obj["ACAFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["ACAFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_ASSPOptimizationFlag").value]; if (temp) obj["ASSPOptimizationFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["ASSPOptimizationFlag"];
                 temp = document.getElementById (id + "_commercialOpDate").value; if ("" !== temp) obj["commercialOpDate"] = temp;
-                temp = MktDomain.YesNo[document.getElementById (id + "_contingencyAvailFlag").value]; if (temp) obj["contingencyAvailFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["contingencyAvailFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_contingencyAvailFlag").value]; if (temp) obj["contingencyAvailFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["contingencyAvailFlag"];
                 temp = document.getElementById (id + "_dispatchable").checked; if (temp) obj["dispatchable"] = true;
-                temp = MktDomain.YesNo[document.getElementById (id + "_ECAFlag").value]; if (temp) obj["ECAFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["ECAFlag"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_flexibleOfferFlag").value]; if (temp) obj["flexibleOfferFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["flexibleOfferFlag"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_hourlyPredispatch").value]; if (temp) obj["hourlyPredispatch"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["hourlyPredispatch"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_isAggregatedRes").value]; if (temp) obj["isAggregatedRes"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["isAggregatedRes"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_ECAFlag").value]; if (temp) obj["ECAFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["ECAFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_flexibleOfferFlag").value]; if (temp) obj["flexibleOfferFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["flexibleOfferFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_hourlyPredispatch").value]; if (temp) obj["hourlyPredispatch"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["hourlyPredispatch"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_isAggregatedRes").value]; if (temp) obj["isAggregatedRes"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["isAggregatedRes"];
                 temp = document.getElementById (id + "_lastModified").value; if ("" !== temp) obj["lastModified"] = temp;
-                temp = MktDomain.YesNo[document.getElementById (id + "_LMPMFlag").value]; if (temp) obj["LMPMFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["LMPMFlag"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_marketParticipationFlag").value]; if (temp) obj["marketParticipationFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["marketParticipationFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_LMPMFlag").value]; if (temp) obj["LMPMFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["LMPMFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_marketParticipationFlag").value]; if (temp) obj["marketParticipationFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["marketParticipationFlag"];
                 temp = document.getElementById (id + "_maxBaseSelfSchedQty ").value; if ("" !== temp) obj["maxBaseSelfSchedQty "] = temp;
                 temp = document.getElementById (id + "_maxOnTime").value; if ("" !== temp) obj["maxOnTime"] = temp;
                 temp = document.getElementById (id + "_minDispatchTime").value; if ("" !== temp) obj["minDispatchTime"] = temp;
                 temp = document.getElementById (id + "_minOffTime").value; if ("" !== temp) obj["minOffTime"] = temp;
                 temp = document.getElementById (id + "_minOnTime").value; if ("" !== temp) obj["minOnTime"] = temp;
-                temp = MktDomain.YesNo[document.getElementById (id + "_mustOfferFlag").value]; if (temp) obj["mustOfferFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["mustOfferFlag"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_nonMarket").value]; if (temp) obj["nonMarket"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["nonMarket"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_pointOfDeliveryFlag").value]; if (temp) obj["pointOfDeliveryFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["pointOfDeliveryFlag"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_priceSetFlagDA").value]; if (temp) obj["priceSetFlagDA"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["priceSetFlagDA"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_priceSetFlagRT").value]; if (temp) obj["priceSetFlagRT"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["priceSetFlagRT"];
-                temp = MktDomain.ResourceRegistrationStatus[document.getElementById (id + "_registrationStatus").value]; if (temp) obj["registrationStatus"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceRegistrationStatus." + temp; else delete obj["registrationStatus"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_resourceAdequacyFlag").value]; if (temp) obj["resourceAdequacyFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["resourceAdequacyFlag"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_SMPMFlag").value]; if (temp) obj["SMPMFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["SMPMFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_mustOfferFlag").value]; if (temp) obj["mustOfferFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["mustOfferFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_nonMarket").value]; if (temp) obj["nonMarket"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["nonMarket"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_pointOfDeliveryFlag").value]; if (temp) obj["pointOfDeliveryFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["pointOfDeliveryFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_priceSetFlagDA").value]; if (temp) obj["priceSetFlagDA"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["priceSetFlagDA"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_priceSetFlagRT").value]; if (temp) obj["priceSetFlagRT"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["priceSetFlagRT"];
+                temp = MktDomain.ResourceRegistrationStatus[document.getElementById (id + "_registrationStatus").value]; if (temp) obj["registrationStatus"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ResourceRegistrationStatus." + temp; else delete obj["registrationStatus"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_resourceAdequacyFlag").value]; if (temp) obj["resourceAdequacyFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["resourceAdequacyFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_SMPMFlag").value]; if (temp) obj["SMPMFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["SMPMFlag"];
                 temp = document.getElementById (id + "_Reason").value; if ("" !== temp) obj["Reason"] = temp.split (",");
                 temp = document.getElementById (id + "_SubControlArea").value; if ("" !== temp) obj["SubControlArea"] = temp.split (",");
                 temp = document.getElementById (id + "_MarketObjectStatus").value; if ("" !== temp) obj["MarketObjectStatus"] = temp.split (",");
@@ -562,696 +1251,6 @@ define
                             ["HostControlArea", "0..1", "0..*", "HostControlArea", "RegisteredResource"],
                             ["DopInstruction", "0..*", "0..1", "DopInstruction", "RegisteredResouce"],
                             ["MPMTestThreshold", "0..*", "0..*", "MPMTestThreshold", "RegisteredResource"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * The external intended behavior played by a party within the electricity market.
-         *
-         */
-        class MarketRole extends Common.OrganisationRole
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.MarketRole;
-                if (null == bucket)
-                   cim_data.MarketRole = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.MarketRole[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
-                obj.cls = "MarketRole";
-                base.parse_element (/<cim:MarketRole.type>([\s\S]*?)<\/cim:MarketRole.type>/g, obj, "type", base.to_string, sub, context);
-                base.parse_attributes (/<cim:MarketRole.MarketParticipant\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketParticipant", sub, context);
-                let bucket = context.parsed.MarketRole;
-                if (null == bucket)
-                   context.parsed.MarketRole = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "MarketRole", "type", "type",  base.from_string, fields);
-                base.export_attributes (obj, "MarketRole", "MarketParticipant", "MarketParticipant", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketRole_collapse" aria-expanded="true" aria-controls="MarketRole_collapse" style="margin-left: 10px;">MarketRole</a></legend>
-                    <div id="MarketRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.template.call (this) +
-                    `
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketParticipant}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["MarketParticipant"]) obj["MarketParticipant_string"] = obj["MarketParticipant"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["MarketParticipant_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketRole_collapse" aria-expanded="true" aria-controls="{{id}}_MarketRole_collapse" style="margin-left: 10px;">MarketRole</a></legend>
-                    <div id="{{id}}_MarketRole_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.OrganisationRole.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='{{id}}_MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant_string}}'{{/MarketParticipant}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "MarketRole" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
-                temp = document.getElementById (id + "_MarketParticipant").value; if ("" !== temp) obj["MarketParticipant"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["MarketParticipant", "0..*", "0..*", "MarketParticipant", "MarketRole"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * An environmental monitoring station, examples of which could be a weather station or a seismic monitoring station.
-         *
-         */
-        class EnvironmentalMonitoringStation extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.EnvironmentalMonitoringStation;
-                if (null == bucket)
-                   cim_data.EnvironmentalMonitoringStation = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.EnvironmentalMonitoringStation[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "EnvironmentalMonitoringStation";
-                base.parse_element (/<cim:EnvironmentalMonitoringStation.dstObserved>([\s\S]*?)<\/cim:EnvironmentalMonitoringStation.dstObserved>/g, obj, "dstObserved", base.to_boolean, sub, context);
-                base.parse_element (/<cim:EnvironmentalMonitoringStation.isNetworked>([\s\S]*?)<\/cim:EnvironmentalMonitoringStation.isNetworked>/g, obj, "isNetworked", base.to_boolean, sub, context);
-                base.parse_element (/<cim:EnvironmentalMonitoringStation.timeZoneOffset>([\s\S]*?)<\/cim:EnvironmentalMonitoringStation.timeZoneOffset>/g, obj, "timeZoneOffset", base.to_string, sub, context);
-                base.parse_attributes (/<cim:EnvironmentalMonitoringStation.TimeSeries\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
-                base.parse_attributes (/<cim:EnvironmentalMonitoringStation.UsagePoint\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
-                base.parse_attributes (/<cim:EnvironmentalMonitoringStation.ReportingCapability\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ReportingCapability", sub, context);
-                base.parse_attributes (/<cim:EnvironmentalMonitoringStation.EnvironmentalAnalog\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnvironmentalAnalog", sub, context);
-                base.parse_attribute (/<cim:EnvironmentalMonitoringStation.Location\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Location", sub, context);
-                let bucket = context.parsed.EnvironmentalMonitoringStation;
-                if (null == bucket)
-                   context.parsed.EnvironmentalMonitoringStation = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "EnvironmentalMonitoringStation", "dstObserved", "dstObserved",  base.from_boolean, fields);
-                base.export_element (obj, "EnvironmentalMonitoringStation", "isNetworked", "isNetworked",  base.from_boolean, fields);
-                base.export_element (obj, "EnvironmentalMonitoringStation", "timeZoneOffset", "timeZoneOffset",  base.from_string, fields);
-                base.export_attributes (obj, "EnvironmentalMonitoringStation", "TimeSeries", "TimeSeries", fields);
-                base.export_attributes (obj, "EnvironmentalMonitoringStation", "UsagePoint", "UsagePoint", fields);
-                base.export_attributes (obj, "EnvironmentalMonitoringStation", "ReportingCapability", "ReportingCapability", fields);
-                base.export_attributes (obj, "EnvironmentalMonitoringStation", "EnvironmentalAnalog", "EnvironmentalAnalog", fields);
-                base.export_attribute (obj, "EnvironmentalMonitoringStation", "Location", "Location", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EnvironmentalMonitoringStation_collapse" aria-expanded="true" aria-controls="EnvironmentalMonitoringStation_collapse" style="margin-left: 10px;">EnvironmentalMonitoringStation</a></legend>
-                    <div id="EnvironmentalMonitoringStation_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#dstObserved}}<div><b>dstObserved</b>: {{dstObserved}}</div>{{/dstObserved}}
-                    {{#isNetworked}}<div><b>isNetworked</b>: {{isNetworked}}</div>{{/isNetworked}}
-                    {{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
-                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TimeSeries}}
-                    {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UsagePoint}}
-                    {{#ReportingCapability}}<div><b>ReportingCapability</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ReportingCapability}}
-                    {{#EnvironmentalAnalog}}<div><b>EnvironmentalAnalog</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnvironmentalAnalog}}
-                    {{#Location}}<div><b>Location</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Location}}");}); return false;'>{{Location}}</a></div>{{/Location}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["TimeSeries"]) obj["TimeSeries_string"] = obj["TimeSeries"].join ();
-                if (obj["UsagePoint"]) obj["UsagePoint_string"] = obj["UsagePoint"].join ();
-                if (obj["ReportingCapability"]) obj["ReportingCapability_string"] = obj["ReportingCapability"].join ();
-                if (obj["EnvironmentalAnalog"]) obj["EnvironmentalAnalog_string"] = obj["EnvironmentalAnalog"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["TimeSeries_string"];
-                delete obj["UsagePoint_string"];
-                delete obj["ReportingCapability_string"];
-                delete obj["EnvironmentalAnalog_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EnvironmentalMonitoringStation_collapse" aria-expanded="true" aria-controls="{{id}}_EnvironmentalMonitoringStation_collapse" style="margin-left: 10px;">EnvironmentalMonitoringStation</a></legend>
-                    <div id="{{id}}_EnvironmentalMonitoringStation_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_dstObserved'>dstObserved: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_dstObserved' class='form-check-input' type='checkbox'{{#dstObserved}} checked{{/dstObserved}}></div></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_isNetworked'>isNetworked: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_isNetworked' class='form-check-input' type='checkbox'{{#isNetworked}} checked{{/isNetworked}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeZoneOffset'>timeZoneOffset: </label><div class='col-sm-8'><input id='{{id}}_timeZoneOffset' class='form-control' type='text'{{#timeZoneOffset}} value='{{timeZoneOffset}}'{{/timeZoneOffset}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='{{id}}_TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries_string}}'{{/TimeSeries}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Location'>Location: </label><div class='col-sm-8'><input id='{{id}}_Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "EnvironmentalMonitoringStation" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_dstObserved").checked; if (temp) obj["dstObserved"] = true;
-                temp = document.getElementById (id + "_isNetworked").checked; if (temp) obj["isNetworked"] = true;
-                temp = document.getElementById (id + "_timeZoneOffset").value; if ("" !== temp) obj["timeZoneOffset"] = temp;
-                temp = document.getElementById (id + "_TimeSeries").value; if ("" !== temp) obj["TimeSeries"] = temp.split (",");
-                temp = document.getElementById (id + "_Location").value; if ("" !== temp) obj["Location"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "EnvironmentalMonitoringStation"],
-                            ["UsagePoint", "0..*", "0..1", "UsagePoint", "EnvironmentalMonitoringStation"],
-                            ["ReportingCapability", "0..*", "1", "ReportingCapability", "EnvironmentalMonitoringStation"],
-                            ["EnvironmentalAnalog", "0..*", "0..1", "EnvironmentalAnalog", "EnvironmentalMonitoringStation"],
-                            ["Location", "0..1", "0..*", "Location", "EnvironmentalMonitoringStation"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * An identification of a party acting in a electricity market business process.
-         *
-         * This class is used to identify organizations that can participate in market management and/or market operations.
-         *
-         */
-        class MarketParticipant extends Common.Organisation
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.MarketParticipant;
-                if (null == bucket)
-                   cim_data.MarketParticipant = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.MarketParticipant[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.Organisation.prototype.parse.call (this, context, sub);
-                obj.cls = "MarketParticipant";
-                base.parse_attributes (/<cim:MarketParticipant.SchedulingCoordinator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SchedulingCoordinator", sub, context);
-                base.parse_attributes (/<cim:MarketParticipant.TimeSeries\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
-                base.parse_attributes (/<cim:MarketParticipant.MarketPerson\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketPerson", sub, context);
-                base.parse_attributes (/<cim:MarketParticipant.MarketDocument\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
-                base.parse_attributes (/<cim:MarketParticipant.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-                base.parse_attributes (/<cim:MarketParticipant.MarketRole\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketRole", sub, context);
-                base.parse_attributes (/<cim:MarketParticipant.Bid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-                let bucket = context.parsed.MarketParticipant;
-                if (null == bucket)
-                   context.parsed.MarketParticipant = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.Organisation.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "MarketParticipant", "SchedulingCoordinator", "SchedulingCoordinator", fields);
-                base.export_attributes (obj, "MarketParticipant", "TimeSeries", "TimeSeries", fields);
-                base.export_attributes (obj, "MarketParticipant", "MarketPerson", "MarketPerson", fields);
-                base.export_attributes (obj, "MarketParticipant", "MarketDocument", "MarketDocument", fields);
-                base.export_attributes (obj, "MarketParticipant", "RegisteredResource", "RegisteredResource", fields);
-                base.export_attributes (obj, "MarketParticipant", "MarketRole", "MarketRole", fields);
-                base.export_attributes (obj, "MarketParticipant", "Bid", "Bid", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketParticipant_collapse" aria-expanded="true" aria-controls="MarketParticipant_collapse" style="margin-left: 10px;">MarketParticipant</a></legend>
-                    <div id="MarketParticipant_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Organisation.prototype.template.call (this) +
-                    `
-                    {{#SchedulingCoordinator}}<div><b>SchedulingCoordinator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SchedulingCoordinator}}
-                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TimeSeries}}
-                    {{#MarketPerson}}<div><b>MarketPerson</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketPerson}}
-                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketDocument}}
-                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
-                    {{#MarketRole}}<div><b>MarketRole</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketRole}}
-                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Bid}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["SchedulingCoordinator"]) obj["SchedulingCoordinator_string"] = obj["SchedulingCoordinator"].join ();
-                if (obj["TimeSeries"]) obj["TimeSeries_string"] = obj["TimeSeries"].join ();
-                if (obj["MarketPerson"]) obj["MarketPerson_string"] = obj["MarketPerson"].join ();
-                if (obj["MarketDocument"]) obj["MarketDocument_string"] = obj["MarketDocument"].join ();
-                if (obj["RegisteredResource"]) obj["RegisteredResource_string"] = obj["RegisteredResource"].join ();
-                if (obj["MarketRole"]) obj["MarketRole_string"] = obj["MarketRole"].join ();
-                if (obj["Bid"]) obj["Bid_string"] = obj["Bid"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["SchedulingCoordinator_string"];
-                delete obj["TimeSeries_string"];
-                delete obj["MarketPerson_string"];
-                delete obj["MarketDocument_string"];
-                delete obj["RegisteredResource_string"];
-                delete obj["MarketRole_string"];
-                delete obj["Bid_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketParticipant_collapse" aria-expanded="true" aria-controls="{{id}}_MarketParticipant_collapse" style="margin-left: 10px;">MarketParticipant</a></legend>
-                    <div id="{{id}}_MarketParticipant_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Organisation.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='{{id}}_TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries_string}}'{{/TimeSeries}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketPerson'>MarketPerson: </label><div class='col-sm-8'><input id='{{id}}_MarketPerson' class='form-control' type='text'{{#MarketPerson}} value='{{MarketPerson_string}}'{{/MarketPerson}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='{{id}}_MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument_string}}'{{/MarketDocument}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketRole'>MarketRole: </label><div class='col-sm-8'><input id='{{id}}_MarketRole' class='form-control' type='text'{{#MarketRole}} value='{{MarketRole_string}}'{{/MarketRole}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "MarketParticipant" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_TimeSeries").value; if ("" !== temp) obj["TimeSeries"] = temp.split (",");
-                temp = document.getElementById (id + "_MarketPerson").value; if ("" !== temp) obj["MarketPerson"] = temp.split (",");
-                temp = document.getElementById (id + "_MarketDocument").value; if ("" !== temp) obj["MarketDocument"] = temp.split (",");
-                temp = document.getElementById (id + "_MarketRole").value; if ("" !== temp) obj["MarketRole"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["SchedulingCoordinator", "0..*", "0..1", "SchedulingCoordinator", "MarketParticipant"],
-                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "MarketParticipant"],
-                            ["MarketPerson", "0..*", "0..*", "MarketPerson", "MarketParticipant"],
-                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "MarketParticipant"],
-                            ["RegisteredResource", "0..*", "0..1", "RegisteredResource", "MarketParticipant"],
-                            ["MarketRole", "0..*", "0..*", "MarketRole", "MarketParticipant"],
-                            ["Bid", "0..*", "0..1", "Bid", "MarketParticipant"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * This class model the various capacities of a resource.
-         *
-         * A resource may have numbers of capacities related to operating, ancillary services, energy trade and so forth. Capacities may be defined for active power or reactive power.
-         *
-         */
-        class ResourceCapacity extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.ResourceCapacity;
-                if (null == bucket)
-                   cim_data.ResourceCapacity = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.ResourceCapacity[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ResourceCapacity";
-                base.parse_attribute (/<cim:ResourceCapacity.capacityType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "capacityType", sub, context);
-                base.parse_element (/<cim:ResourceCapacity.defaultCapacity>([\s\S]*?)<\/cim:ResourceCapacity.defaultCapacity>/g, obj, "defaultCapacity", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceCapacity.maximumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.maximumCapacity>/g, obj, "maximumCapacity", base.to_string, sub, context);
-                base.parse_element (/<cim:ResourceCapacity.minimumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.minimumCapacity>/g, obj, "minimumCapacity", base.to_string, sub, context);
-                base.parse_attribute (/<cim:ResourceCapacity.unitSymbol\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unitSymbol", sub, context);
-                base.parse_attributes (/<cim:ResourceCapacity.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-                let bucket = context.parsed.ResourceCapacity;
-                if (null == bucket)
-                   context.parsed.ResourceCapacity = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = [];
-
-                base.export_attribute (obj, "ResourceCapacity", "capacityType", "capacityType", fields);
-                base.export_element (obj, "ResourceCapacity", "defaultCapacity", "defaultCapacity",  base.from_string, fields);
-                base.export_element (obj, "ResourceCapacity", "maximumCapacity", "maximumCapacity",  base.from_string, fields);
-                base.export_element (obj, "ResourceCapacity", "minimumCapacity", "minimumCapacity",  base.from_string, fields);
-                base.export_attribute (obj, "ResourceCapacity", "unitSymbol", "unitSymbol", fields);
-                base.export_attributes (obj, "ResourceCapacity", "RegisteredResource", "RegisteredResource", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ResourceCapacity_collapse" aria-expanded="true" aria-controls="ResourceCapacity_collapse" style="margin-left: 10px;">ResourceCapacity</a></legend>
-                    <div id="ResourceCapacity_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.template.call (this) +
-                    `
-                    {{#capacityType}}<div><b>capacityType</b>: {{capacityType}}</div>{{/capacityType}}
-                    {{#defaultCapacity}}<div><b>defaultCapacity</b>: {{defaultCapacity}}</div>{{/defaultCapacity}}
-                    {{#maximumCapacity}}<div><b>maximumCapacity</b>: {{maximumCapacity}}</div>{{/maximumCapacity}}
-                    {{#minimumCapacity}}<div><b>minimumCapacity</b>: {{minimumCapacity}}</div>{{/minimumCapacity}}
-                    {{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
-                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                obj["capacityTypeResourceCapacityType"] = [{ id: '', selected: (!obj["capacityType"])}]; for (let property in MktDomain.ResourceCapacityType) obj["capacityTypeResourceCapacityType"].push ({ id: property, selected: obj["capacityType"] && obj["capacityType"].endsWith ('.' + property)});
-                obj["unitSymbolUnitSymbol"] = [{ id: '', selected: (!obj["unitSymbol"])}]; for (let property in Domain.UnitSymbol) obj["unitSymbolUnitSymbol"].push ({ id: property, selected: obj["unitSymbol"] && obj["unitSymbol"].endsWith ('.' + property)});
-                if (obj["RegisteredResource"]) obj["RegisteredResource_string"] = obj["RegisteredResource"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["capacityTypeResourceCapacityType"];
-                delete obj["unitSymbolUnitSymbol"];
-                delete obj["RegisteredResource_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ResourceCapacity_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceCapacity_collapse" style="margin-left: 10px;">ResourceCapacity</a></legend>
-                    <div id="{{id}}_ResourceCapacity_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacityType'>capacityType: </label><div class='col-sm-8'><select id='{{id}}_capacityType' class='form-control custom-select'>{{#capacityTypeResourceCapacityType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/capacityTypeResourceCapacityType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultCapacity'>defaultCapacity: </label><div class='col-sm-8'><input id='{{id}}_defaultCapacity' class='form-control' type='text'{{#defaultCapacity}} value='{{defaultCapacity}}'{{/defaultCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumCapacity'>maximumCapacity: </label><div class='col-sm-8'><input id='{{id}}_maximumCapacity' class='form-control' type='text'{{#maximumCapacity}} value='{{maximumCapacity}}'{{/maximumCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumCapacity'>minimumCapacity: </label><div class='col-sm-8'><input id='{{id}}_minimumCapacity' class='form-control' type='text'{{#minimumCapacity}} value='{{minimumCapacity}}'{{/minimumCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><select id='{{id}}_unitSymbol' class='form-control custom-select'>{{#unitSymbolUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitSymbolUnitSymbol}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "ResourceCapacity" };
-                super.submit (id, obj);
-                temp = MktDomain.ResourceCapacityType[document.getElementById (id + "_capacityType").value]; if (temp) obj["capacityType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ResourceCapacityType." + temp; else delete obj["capacityType"];
-                temp = document.getElementById (id + "_defaultCapacity").value; if ("" !== temp) obj["defaultCapacity"] = temp;
-                temp = document.getElementById (id + "_maximumCapacity").value; if ("" !== temp) obj["maximumCapacity"] = temp;
-                temp = document.getElementById (id + "_minimumCapacity").value; if ("" !== temp) obj["minimumCapacity"] = temp;
-                temp = Domain.UnitSymbol[document.getElementById (id + "_unitSymbol").value]; if (temp) obj["unitSymbol"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unitSymbol"];
-                temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["RegisteredResource", "0..*", "0..*", "RegisteredResource", "ResourceCapacity"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Subclass of IEC61970:Production:GeneratingUnit.
-         *
-         */
-        class MktGeneratingUnit extends Production.GeneratingUnit
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.MktGeneratingUnit;
-                if (null == bucket)
-                   cim_data.MktGeneratingUnit = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.MktGeneratingUnit[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Production.GeneratingUnit.prototype.parse.call (this, context, sub);
-                obj.cls = "MktGeneratingUnit";
-                base.parse_attributes (/<cim:MktGeneratingUnit.GeneratingUnitDynamicValues\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnitDynamicValues", sub, context);
-                let bucket = context.parsed.MktGeneratingUnit;
-                if (null == bucket)
-                   context.parsed.MktGeneratingUnit = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Production.GeneratingUnit.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "MktGeneratingUnit", "GeneratingUnitDynamicValues", "GeneratingUnitDynamicValues", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MktGeneratingUnit_collapse" aria-expanded="true" aria-controls="MktGeneratingUnit_collapse" style="margin-left: 10px;">MktGeneratingUnit</a></legend>
-                    <div id="MktGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Production.GeneratingUnit.prototype.template.call (this) +
-                    `
-                    {{#GeneratingUnitDynamicValues}}<div><b>GeneratingUnitDynamicValues</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingUnitDynamicValues}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["GeneratingUnitDynamicValues"]) obj["GeneratingUnitDynamicValues_string"] = obj["GeneratingUnitDynamicValues"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["GeneratingUnitDynamicValues_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MktGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_MktGeneratingUnit_collapse" style="margin-left: 10px;">MktGeneratingUnit</a></legend>
-                    <div id="{{id}}_MktGeneratingUnit_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Production.GeneratingUnit.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "MktGeneratingUnit" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["GeneratingUnitDynamicValues", "0..*", "1", "GeneratingUnitDynamicValues", "MktGeneratingUnit"]
                         ]
                     )
                 );

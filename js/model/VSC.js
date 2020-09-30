@@ -3,7 +3,6 @@ define
     ["model/base", "model/HVDCDynamics"],
     function (base, HVDCDynamics)
     {
-
         class Qlimiter extends base.Element
         {
             constructor (template, cim_data)

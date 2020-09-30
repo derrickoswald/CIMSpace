@@ -3,7 +3,6 @@ define
     ["model/base", "model/Core"],
     function (base, Core)
     {
-
         /**
          * Examples would be "Boundary" or "Region" type of frame.
          *

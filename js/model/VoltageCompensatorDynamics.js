@@ -8,15 +8,14 @@ define
      * <font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation can be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
      * <font color="#0f0f0f">Care shall be taken to ensure that a consistent PU system is utilized for the compensator parameters and the synchronous machine current base.</font>
      * <font color="#0f0f0f">For further information see IEEE 421.5-2005, 4.</font>
-     * 
-     * 
+     *
+     *
      * <font color="#0f0f0f">
      * </font>
      *
      */
     function (base, Core, StandardModels)
     {
-
         /**
          * Resistive and reactive components of compensation for generator associated with IEEE type 2 voltage compensator for current flow out of another generator in the interconnection.
          *

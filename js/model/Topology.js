@@ -9,7 +9,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * Used to apply user standard names to TopologicalNodes.
          *
@@ -325,9 +324,10 @@ define
         /**
          * An electrically connected subset of the network.
          *
-         * Topological islands can change as the current network state changes: e.g. due to
+         * Topological islands can change as the current network state changes, e.g. due to:
          * - disconnect switches or breakers changing state in a SCADA/EMS.
          * - manual creation, change or deletion of topological nodes in a planning tool.
+         * Only energised TopologicalNode-s shall be part of the topological island.
          *
          */
         class TopologicalIsland extends Core.IdentifiedObject

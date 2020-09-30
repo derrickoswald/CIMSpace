@@ -9,7 +9,6 @@ define
      */
     function (base, Core, GenerationTrainingSimulation)
     {
-
         /**
          * The state of the battery unit.
          *
@@ -103,10 +102,10 @@ define
          */
         let FuelType =
         {
+            "coal": "coal",
             "oil": "oil",
             "gas": "gas",
             "lignite": "lignite",
-            "coal": "coal",
             "hardCoal": "hardCoal",
             "oilShale": "oilShale",
             "brownCoalLignite": "brownCoalLignite",
@@ -399,7 +398,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_dischargeTravelDelay").value; if ("" !== temp) obj["dischargeTravelDelay"] = temp;
                 temp = document.getElementById (id + "_genRatedP").value; if ("" !== temp) obj["genRatedP"] = temp;
-                temp = HydroPlantStorageKind[document.getElementById (id + "_hydroPlantStorageType").value]; if (temp) obj["hydroPlantStorageType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroPlantStorageKind." + temp; else delete obj["hydroPlantStorageType"];
+                temp = HydroPlantStorageKind[document.getElementById (id + "_hydroPlantStorageType").value]; if (temp) obj["hydroPlantStorageType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#HydroPlantStorageKind." + temp; else delete obj["hydroPlantStorageType"];
                 temp = document.getElementById (id + "_penstockType").value; if ("" !== temp) obj["penstockType"] = temp;
                 temp = document.getElementById (id + "_plantDischargeCapacity").value; if ("" !== temp) obj["plantDischargeCapacity"] = temp;
                 temp = document.getElementById (id + "_plantRatedHead").value; if ("" !== temp) obj["plantRatedHead"] = temp;
@@ -1380,7 +1379,7 @@ define
 
                 obj = obj || { id: id, cls: "StartIgnFuelCurve" };
                 super.submit (id, obj);
-                temp = FuelType[document.getElementById (id + "_ignitionFuelType").value]; if (temp) obj["ignitionFuelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; else delete obj["ignitionFuelType"];
+                temp = FuelType[document.getElementById (id + "_ignitionFuelType").value]; if (temp) obj["ignitionFuelType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#FuelType." + temp; else delete obj["ignitionFuelType"];
                 temp = document.getElementById (id + "_StartupModel").value; if ("" !== temp) obj["StartupModel"] = temp;
 
                 return (obj);
@@ -1543,7 +1542,7 @@ define
 
                 obj = obj || { id: id, cls: "FossilFuel" };
                 super.submit (id, obj);
-                temp = FuelType[document.getElementById (id + "_fossilFuelType").value]; if (temp) obj["fossilFuelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; else delete obj["fossilFuelType"];
+                temp = FuelType[document.getElementById (id + "_fossilFuelType").value]; if (temp) obj["fossilFuelType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#FuelType." + temp; else delete obj["fossilFuelType"];
                 temp = document.getElementById (id + "_fuelCost").value; if ("" !== temp) obj["fuelCost"] = temp;
                 temp = document.getElementById (id + "_fuelDispatchCost").value; if ("" !== temp) obj["fuelDispatchCost"] = temp;
                 temp = document.getElementById (id + "_fuelEffFactor").value; if ("" !== temp) obj["fuelEffFactor"] = temp;
@@ -2035,8 +2034,8 @@ define
                 base.parse_attributes (/<cim:Reservoir.HydroPowerPlants\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "HydroPowerPlants", sub, context);
                 base.parse_attribute (/<cim:Reservoir.TargetLevelSchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TargetLevelSchedule", sub, context);
                 base.parse_attributes (/<cim:Reservoir.UpstreamFromHydroPowerPlants\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "UpstreamFromHydroPowerPlants", sub, context);
-                base.parse_attribute (/<cim:Reservoir.SpillsFromReservoir\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SpillsFromReservoir", sub, context);
                 base.parse_attributes (/<cim:Reservoir.SpillsIntoReservoirs\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SpillsIntoReservoirs", sub, context);
+                base.parse_attribute (/<cim:Reservoir.SpillsFromReservoir\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SpillsFromReservoir", sub, context);
                 base.parse_attributes (/<cim:Reservoir.InflowForecasts\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "InflowForecasts", sub, context);
                 base.parse_attributes (/<cim:Reservoir.LevelVsVolumeCurves\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LevelVsVolumeCurves", sub, context);
                 let bucket = context.parsed.Reservoir;
@@ -2065,8 +2064,8 @@ define
                 base.export_attributes (obj, "Reservoir", "HydroPowerPlants", "HydroPowerPlants", fields);
                 base.export_attribute (obj, "Reservoir", "TargetLevelSchedule", "TargetLevelSchedule", fields);
                 base.export_attributes (obj, "Reservoir", "UpstreamFromHydroPowerPlants", "UpstreamFromHydroPowerPlants", fields);
-                base.export_attribute (obj, "Reservoir", "SpillsFromReservoir", "SpillsFromReservoir", fields);
                 base.export_attributes (obj, "Reservoir", "SpillsIntoReservoirs", "SpillsIntoReservoirs", fields);
+                base.export_attribute (obj, "Reservoir", "SpillsFromReservoir", "SpillsFromReservoir", fields);
                 base.export_attributes (obj, "Reservoir", "InflowForecasts", "InflowForecasts", fields);
                 base.export_attributes (obj, "Reservoir", "LevelVsVolumeCurves", "LevelVsVolumeCurves", fields);
                 if (full)
@@ -2099,8 +2098,8 @@ define
                     {{#HydroPowerPlants}}<div><b>HydroPowerPlants</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/HydroPowerPlants}}
                     {{#TargetLevelSchedule}}<div><b>TargetLevelSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TargetLevelSchedule}}");}); return false;'>{{TargetLevelSchedule}}</a></div>{{/TargetLevelSchedule}}
                     {{#UpstreamFromHydroPowerPlants}}<div><b>UpstreamFromHydroPowerPlants</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/UpstreamFromHydroPowerPlants}}
-                    {{#SpillsFromReservoir}}<div><b>SpillsFromReservoir</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SpillsFromReservoir}}");}); return false;'>{{SpillsFromReservoir}}</a></div>{{/SpillsFromReservoir}}
                     {{#SpillsIntoReservoirs}}<div><b>SpillsIntoReservoirs</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/SpillsIntoReservoirs}}
+                    {{#SpillsFromReservoir}}<div><b>SpillsFromReservoir</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SpillsFromReservoir}}");}); return false;'>{{SpillsFromReservoir}}</a></div>{{/SpillsFromReservoir}}
                     {{#InflowForecasts}}<div><b>InflowForecasts</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/InflowForecasts}}
                     {{#LevelVsVolumeCurves}}<div><b>LevelVsVolumeCurves</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LevelVsVolumeCurves}}
                     </div>
@@ -2190,8 +2189,8 @@ define
                             ["HydroPowerPlants", "0..*", "0..1", "HydroPowerPlant", "Reservoir"],
                             ["TargetLevelSchedule", "0..1", "1", "TargetLevelSchedule", "Reservoir"],
                             ["UpstreamFromHydroPowerPlants", "0..*", "1", "HydroPowerPlant", "GenSourcePumpDischargeReservoir"],
-                            ["SpillsFromReservoir", "0..1", "0..*", "Reservoir", "SpillsIntoReservoirs"],
                             ["SpillsIntoReservoirs", "0..*", "0..1", "Reservoir", "SpillsFromReservoir"],
+                            ["SpillsFromReservoir", "0..1", "0..*", "Reservoir", "SpillsIntoReservoirs"],
                             ["InflowForecasts", "0..*", "1", "InflowForecast", "Reservoir"],
                             ["LevelVsVolumeCurves", "0..*", "1", "LevelVsVolumeCurve", "Reservoir"]
                         ]
@@ -2478,8 +2477,8 @@ define
                 temp = document.getElementById (id + "_controlPulseLow").value; if ("" !== temp) obj["controlPulseLow"] = temp;
                 temp = document.getElementById (id + "_controlResponseRate").value; if ("" !== temp) obj["controlResponseRate"] = temp;
                 temp = document.getElementById (id + "_efficiency").value; if ("" !== temp) obj["efficiency"] = temp;
-                temp = GeneratorControlMode[document.getElementById (id + "_genControlMode").value]; if (temp) obj["genControlMode"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlMode." + temp; else delete obj["genControlMode"];
-                temp = GeneratorControlSource[document.getElementById (id + "_genControlSource").value]; if (temp) obj["genControlSource"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlSource." + temp; else delete obj["genControlSource"];
+                temp = GeneratorControlMode[document.getElementById (id + "_genControlMode").value]; if (temp) obj["genControlMode"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#GeneratorControlMode." + temp; else delete obj["genControlMode"];
+                temp = GeneratorControlSource[document.getElementById (id + "_genControlSource").value]; if (temp) obj["genControlSource"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#GeneratorControlSource." + temp; else delete obj["genControlSource"];
                 temp = document.getElementById (id + "_governorMPL").value; if ("" !== temp) obj["governorMPL"] = temp;
                 temp = document.getElementById (id + "_governorSCD").value; if ("" !== temp) obj["governorSCD"] = temp;
                 temp = document.getElementById (id + "_highControlLimit").value; if ("" !== temp) obj["highControlLimit"] = temp;
@@ -2652,7 +2651,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_fuelAllocationEndDate").value; if ("" !== temp) obj["fuelAllocationEndDate"] = temp;
                 temp = document.getElementById (id + "_fuelAllocationStartDate").value; if ("" !== temp) obj["fuelAllocationStartDate"] = temp;
-                temp = FuelType[document.getElementById (id + "_fuelType").value]; if (temp) obj["fuelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; else delete obj["fuelType"];
+                temp = FuelType[document.getElementById (id + "_fuelType").value]; if (temp) obj["fuelType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#FuelType." + temp; else delete obj["fuelType"];
                 temp = document.getElementById (id + "_maxFuelAllocation").value; if ("" !== temp) obj["maxFuelAllocation"] = temp;
                 temp = document.getElementById (id + "_minFuelAllocation").value; if ("" !== temp) obj["minFuelAllocation"] = temp;
                 temp = document.getElementById (id + "_FossilFuel").value; if ("" !== temp) obj["FossilFuel"] = temp;
@@ -3640,7 +3639,7 @@ define
                 obj = obj || { id: id, cls: "EmissionCurve" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_emissionContent").value; if ("" !== temp) obj["emissionContent"] = temp;
-                temp = EmissionType[document.getElementById (id + "_emissionType").value]; if (temp) obj["emissionType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; else delete obj["emissionType"];
+                temp = EmissionType[document.getElementById (id + "_emissionType").value]; if (temp) obj["emissionType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#EmissionType." + temp; else delete obj["emissionType"];
                 temp = document.getElementById (id + "_isNetGrossP").checked; if (temp) obj["isNetGrossP"] = true;
                 temp = document.getElementById (id + "_ThermalGeneratingUnit").value; if ("" !== temp) obj["ThermalGeneratingUnit"] = temp;
 
@@ -3769,8 +3768,8 @@ define
 
                 obj = obj || { id: id, cls: "EmissionAccount" };
                 super.submit (id, obj);
-                temp = EmissionType[document.getElementById (id + "_emissionType").value]; if (temp) obj["emissionType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; else delete obj["emissionType"];
-                temp = EmissionValueSource[document.getElementById (id + "_emissionValueSource").value]; if (temp) obj["emissionValueSource"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionValueSource." + temp; else delete obj["emissionValueSource"];
+                temp = EmissionType[document.getElementById (id + "_emissionType").value]; if (temp) obj["emissionType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#EmissionType." + temp; else delete obj["emissionType"];
+                temp = EmissionValueSource[document.getElementById (id + "_emissionValueSource").value]; if (temp) obj["emissionValueSource"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#EmissionValueSource." + temp; else delete obj["emissionValueSource"];
                 temp = document.getElementById (id + "_ThermalGeneratingUnit").value; if ("" !== temp) obj["ThermalGeneratingUnit"] = temp;
 
                 return (obj);
@@ -4134,7 +4133,7 @@ define
 
                 obj = obj || { id: id, cls: "StartMainFuelCurve" };
                 super.submit (id, obj);
-                temp = FuelType[document.getElementById (id + "_mainFuelType").value]; if (temp) obj["mainFuelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; else delete obj["mainFuelType"];
+                temp = FuelType[document.getElementById (id + "_mainFuelType").value]; if (temp) obj["mainFuelType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#FuelType." + temp; else delete obj["mainFuelType"];
                 temp = document.getElementById (id + "_StartupModel").value; if ("" !== temp) obj["StartupModel"] = temp;
 
                 return (obj);
@@ -4636,7 +4635,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_ratedE").value; if ("" !== temp) obj["ratedE"] = temp;
                 temp = document.getElementById (id + "_storedE").value; if ("" !== temp) obj["storedE"] = temp;
-                temp = BatteryStateKind[document.getElementById (id + "_batteryState").value]; if (temp) obj["batteryState"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#BatteryStateKind." + temp; else delete obj["batteryState"];
+                temp = BatteryStateKind[document.getElementById (id + "_batteryState").value]; if (temp) obj["batteryState"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#BatteryStateKind." + temp; else delete obj["batteryState"];
 
                 return (obj);
             }
@@ -5154,9 +5153,9 @@ define
 
                 obj = obj || { id: id, cls: "HydroGeneratingUnit" };
                 super.submit (id, obj);
-                temp = HydroEnergyConversionKind[document.getElementById (id + "_energyConversionCapability").value]; if (temp) obj["energyConversionCapability"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroEnergyConversionKind." + temp; else delete obj["energyConversionCapability"];
+                temp = HydroEnergyConversionKind[document.getElementById (id + "_energyConversionCapability").value]; if (temp) obj["energyConversionCapability"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#HydroEnergyConversionKind." + temp; else delete obj["energyConversionCapability"];
                 temp = document.getElementById (id + "_hydroUnitWaterCost").value; if ("" !== temp) obj["hydroUnitWaterCost"] = temp;
-                temp = GenerationTrainingSimulation.HydroTurbineKind[document.getElementById (id + "_turbineType").value]; if (temp) obj["turbineType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroTurbineKind." + temp; else delete obj["turbineType"];
+                temp = GenerationTrainingSimulation.HydroTurbineKind[document.getElementById (id + "_turbineType").value]; if (temp) obj["turbineType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#HydroTurbineKind." + temp; else delete obj["turbineType"];
                 temp = document.getElementById (id + "_dropHeight").value; if ("" !== temp) obj["dropHeight"] = temp;
                 temp = document.getElementById (id + "_HydroPowerPlant").value; if ("" !== temp) obj["HydroPowerPlant"] = temp;
                 temp = document.getElementById (id + "_PenstockLossCurve").value; if ("" !== temp) obj["PenstockLossCurve"] = temp;
@@ -5463,7 +5462,7 @@ define
 
                 obj = obj || { id: id, cls: "WindGeneratingUnit" };
                 super.submit (id, obj);
-                temp = WindGenUnitKind[document.getElementById (id + "_windGenUnitType").value]; if (temp) obj["windGenUnitType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindGenUnitKind." + temp; else delete obj["windGenUnitType"];
+                temp = WindGenUnitKind[document.getElementById (id + "_windGenUnitType").value]; if (temp) obj["windGenUnitType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#WindGenUnitKind." + temp; else delete obj["windGenUnitType"];
 
                 return (obj);
             }

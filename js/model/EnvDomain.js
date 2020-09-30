@@ -3,81 +3,19 @@ define
     ["model/base", "model/Domain"],
     function (base, Domain)
     {
-
         /**
-         * Method by which information is gathered from station.
+         * The test applied to determine if the condition is met.
          *
          */
-        let ReportingMethodKind =
+        let TestKind =
         {
-            "automated": "automated",
-            "queried": "queried",
-            "manual": "manual"
+            "equalTo": "equalTo",
+            "greaterThan": "greaterThan",
+            "lessThan": "lessThan",
+            "greaterThanOrEqualTo": "greaterThanOrEqualTo",
+            "lessThanOrEqualTo": "lessThanOrEqualTo"
         };
-        Object.freeze (ReportingMethodKind);
-
-        /**
-         * Kinds of weather conditions.
-         *
-         */
-        let WeatherCodeKind =
-        {
-            "hail": "hail",
-            "blowingDust": "blowingDust",
-            "blowingSand": "blowingSand",
-            "mist": "mist",
-            "blowingSnow": "blowingSnow",
-            "fog": "fog",
-            "frost": "frost",
-            "haze": "haze",
-            "iceCrystals": "iceCrystals",
-            "iceFog": "iceFog",
-            "sleet": "sleet",
-            "smoke": "smoke",
-            "drizzle": "drizzle",
-            "rain": "rain",
-            "rainShowers": "rainShowers",
-            "rainSnowMix": "rainSnowMix",
-            "snowSleetMix": "snowSleetMix",
-            "wintryMix": "wintryMix",
-            "snow": "snow",
-            "snowShowers": "snowShowers",
-            "thunderStorms": "thunderStorms",
-            "volcanicAsh": "volcanicAsh",
-            "waterSpouts": "waterSpouts",
-            "freezingSpray": "freezingSpray",
-            "freezingDrizzle": "freezingDrizzle",
-            "freezingRain": "freezingRain",
-            "cloudy": "cloudy",
-            "sunny": "sunny"
-        };
-        Object.freeze (WeatherCodeKind);
-
-        /**
-         * The types of relative displacement
-         *
-         */
-        let RelativeDisplacementKind =
-        {
-            "seaLevel": "seaLevel",
-            "ground": "ground",
-            "centreEarth": "centreEarth"
-        };
-        Object.freeze (RelativeDisplacementKind);
-
-        /**
-         * Kinds of analogs (floats) measuring a hydrospheric condition.
-         *
-         */
-        let HydrosphericAnalogKind =
-        {
-            "floodLevel": "floodLevel",
-            "stormSurgeHeight": "stormSurgeHeight",
-            "waveHeight": "waveHeight",
-            "surfaceTemperature": "surfaceTemperature",
-            "waterTemperature": "waterTemperature"
-        };
-        Object.freeze (HydrosphericAnalogKind);
+        Object.freeze (TestKind);
 
         /**
          * Kind of cloud.
@@ -101,113 +39,6 @@ define
         Object.freeze (CloudKind);
 
         /**
-         * Discrete (integer) measuring an environmental condition.
-         *
-         */
-        let EnvironmentalDiscreteKind =
-        {
-            "cloudCover": "cloudCover"
-        };
-        Object.freeze (EnvironmentalDiscreteKind);
-
-        /**
-         * Kinds of weather condition intensity.
-         *
-         */
-        let IntensityCodeKind =
-        {
-            "heavy": "heavy",
-            "light": "light",
-            "veryHeavy": "veryHeavy",
-            "veryLight": "veryLight"
-        };
-        Object.freeze (IntensityCodeKind);
-
-        /**
-         * Kinds of weather condition coverage.
-         *
-         */
-        let CoverageCodeKind =
-        {
-            "brief": "brief",
-            "frequent": "frequent",
-            "intermittant": "intermittant",
-            "isolated": "isolated",
-            "numerous": "numerous",
-            "occasional": "occasional",
-            "partly": "partly",
-            "patchy": "patchy",
-            "periodsOf": "periodsOf",
-            "scattered": "scattered",
-            "widespread": "widespread"
-        };
-        Object.freeze (CoverageCodeKind);
-
-        /**
-         * Units in which reporting frequency is specified.
-         *
-         */
-        let TimePeriodUnit =
-        {
-            "seconds": "seconds",
-            "minutes": "minutes",
-            "hours": "hours",
-            "days": "days",
-            "weeks": "weeks",
-            "months": "months"
-        };
-        Object.freeze (TimePeriodUnit);
-
-        /**
-         * Fujita scale (referred to as EF-scale starting in 2007) for tornado damage.
-         *
-         * A set of wind estimates (not measurements) based on damage. It uses three-second gusts estimated at the point of damage based on a judgment of 8 levels of damage to 28 indicators. These estimates vary with height and exposure.
-         * The 3 second gust is not the same wind as in standard surface observations.
-         * Enumerations based on NOAA conventions.
-         *
-         */
-        let FScale =
-        {
-            "zero": "zero",
-            "one": "one",
-            "two": "two",
-            "three": "three",
-            "four": "four",
-            "five": "five",
-            "minusNine": "minusNine"
-        };
-        Object.freeze (FScale);
-
-        /**
-         * The nature of the location being defined for an environmental entity.
-         *
-         * Possible values are center, perimeter, primary, secondary.
-         *
-         */
-        let LocationKind =
-        {
-            "center": "center",
-            "extent": "extent",
-            "primary": "primary",
-            "secondary": "secondary"
-        };
-        Object.freeze (LocationKind);
-
-        /**
-         * The test applied to determine if the condition is met.
-         *
-         */
-        let TestKind =
-        {
-            "equalTo": "equalTo",
-            "greaterThan": "greaterThan",
-            "lessThan": "lessThan",
-            "greaterThanOrEqualTo": "greaterThanOrEqualTo",
-            "lessThanOrEqualTo": "lessThanOrEqualTo"
-        };
-        Object.freeze (TestKind);
-
-        /**
          * The type of uncertainty for a reading.
          *
          */
@@ -221,15 +52,17 @@ define
         Object.freeze (UncertaintyKind);
 
         /**
-         * Kinds of analogs (floats) measuring a space condition.
+         * Kinds of weather condition intensity.
          *
          */
-        let SpaceAnalogKind =
+        let IntensityCodeKind =
         {
-            "magneticFieldDirection": "magneticFieldDirection",
-            "magneticFieldStrength": "magneticFieldStrength"
+            "heavy": "heavy",
+            "light": "light",
+            "veryHeavy": "veryHeavy",
+            "veryLight": "veryLight"
         };
-        Object.freeze (SpaceAnalogKind);
+        Object.freeze (IntensityCodeKind);
 
         /**
          * Kinds of analogs (floats) measuring a geospheric condition.
@@ -283,6 +116,172 @@ define
             "verticalVisibility": "verticalVisibility"
         };
         Object.freeze (AtmosphericAnalogKind);
+
+        /**
+         * Units in which reporting frequency is specified.
+         *
+         */
+        let TimePeriodUnit =
+        {
+            "seconds": "seconds",
+            "minutes": "minutes",
+            "hours": "hours",
+            "days": "days",
+            "weeks": "weeks",
+            "months": "months"
+        };
+        Object.freeze (TimePeriodUnit);
+
+        /**
+         * The nature of the location being defined for an environmental entity.
+         *
+         * Possible values are center, perimeter, primary, secondary.
+         *
+         */
+        let LocationKind =
+        {
+            "center": "center",
+            "extent": "extent",
+            "primary": "primary",
+            "secondary": "secondary"
+        };
+        Object.freeze (LocationKind);
+
+        /**
+         * Fujita scale (referred to as EF-scale starting in 2007) for tornado damage.
+         *
+         * A set of wind estimates (not measurements) based on damage. It uses three-second gusts estimated at the point of damage based on a judgment of 8 levels of damage to 28 indicators. These estimates vary with height and exposure.
+         * The 3 second gust is not the same wind as in standard surface observations.
+         * Enumerations based on NOAA conventions.
+         *
+         */
+        let FScale =
+        {
+            "zero": "zero",
+            "one": "one",
+            "two": "two",
+            "three": "three",
+            "four": "four",
+            "five": "five",
+            "minusNine": "minusNine"
+        };
+        Object.freeze (FScale);
+
+        /**
+         * Method by which information is gathered from station.
+         *
+         */
+        let ReportingMethodKind =
+        {
+            "automated": "automated",
+            "queried": "queried",
+            "manual": "manual"
+        };
+        Object.freeze (ReportingMethodKind);
+
+        /**
+         * The types of relative displacement
+         *
+         */
+        let RelativeDisplacementKind =
+        {
+            "seaLevel": "seaLevel",
+            "ground": "ground",
+            "centreEarth": "centreEarth"
+        };
+        Object.freeze (RelativeDisplacementKind);
+
+        /**
+         * Discrete (integer) measuring an environmental condition.
+         *
+         */
+        let EnvironmentalDiscreteKind =
+        {
+            "cloudCover": "cloudCover"
+        };
+        Object.freeze (EnvironmentalDiscreteKind);
+
+        /**
+         * Kinds of analogs (floats) measuring a space condition.
+         *
+         */
+        let SpaceAnalogKind =
+        {
+            "magneticFieldDirection": "magneticFieldDirection",
+            "magneticFieldStrength": "magneticFieldStrength"
+        };
+        Object.freeze (SpaceAnalogKind);
+
+        /**
+         * Kinds of weather conditions.
+         *
+         */
+        let WeatherCodeKind =
+        {
+            "hail": "hail",
+            "blowingDust": "blowingDust",
+            "blowingSand": "blowingSand",
+            "mist": "mist",
+            "blowingSnow": "blowingSnow",
+            "fog": "fog",
+            "frost": "frost",
+            "haze": "haze",
+            "iceCrystals": "iceCrystals",
+            "iceFog": "iceFog",
+            "sleet": "sleet",
+            "smoke": "smoke",
+            "drizzle": "drizzle",
+            "rain": "rain",
+            "rainShowers": "rainShowers",
+            "rainSnowMix": "rainSnowMix",
+            "snowSleetMix": "snowSleetMix",
+            "wintryMix": "wintryMix",
+            "snow": "snow",
+            "snowShowers": "snowShowers",
+            "thunderStorms": "thunderStorms",
+            "volcanicAsh": "volcanicAsh",
+            "waterSpouts": "waterSpouts",
+            "freezingSpray": "freezingSpray",
+            "freezingDrizzle": "freezingDrizzle",
+            "freezingRain": "freezingRain",
+            "cloudy": "cloudy",
+            "sunny": "sunny"
+        };
+        Object.freeze (WeatherCodeKind);
+
+        /**
+         * Kinds of weather condition coverage.
+         *
+         */
+        let CoverageCodeKind =
+        {
+            "brief": "brief",
+            "frequent": "frequent",
+            "intermittant": "intermittant",
+            "isolated": "isolated",
+            "numerous": "numerous",
+            "occasional": "occasional",
+            "partly": "partly",
+            "patchy": "patchy",
+            "periodsOf": "periodsOf",
+            "scattered": "scattered",
+            "widespread": "widespread"
+        };
+        Object.freeze (CoverageCodeKind);
+
+        /**
+         * Kinds of analogs (floats) measuring a hydrospheric condition.
+         *
+         */
+        let HydrosphericAnalogKind =
+        {
+            "floodLevel": "floodLevel",
+            "stormSurgeHeight": "stormSurgeHeight",
+            "waveHeight": "waveHeight",
+            "surfaceTemperature": "surfaceTemperature",
+            "waterTemperature": "waterTemperature"
+        };
+        Object.freeze (HydrosphericAnalogKind);
 
         /**
          * Particulate density as kg/m<sup>3</sup>.
@@ -392,8 +391,8 @@ define
 
                 obj = obj || { id: id, cls: "ParticulateDensity" };
                 super.submit (id, obj);
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -401,35 +400,36 @@ define
         }
 
         /**
-         * Vertical displacement relative to either sealevel, ground or the center of the earth.
+         * Magnetic field in nanotesla.
          *
          */
-        class RelativeDisplacement extends base.Element
+        class MagneticField extends base.Element
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.RelativeDisplacement;
+                let bucket = cim_data.MagneticField;
                 if (null == bucket)
-                   cim_data.RelativeDisplacement = bucket = {};
+                   cim_data.MagneticField = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.RelativeDisplacement[obj.id];
+               delete cim_data.MagneticField[obj.id];
             }
 
             parse (context, sub)
             {
                 let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "RelativeDisplacement";
-                base.parse_element (/<cim:RelativeDisplacement.displacement>([\s\S]*?)<\/cim:RelativeDisplacement.displacement>/g, obj, "displacement", base.to_string, sub, context);
-                base.parse_attribute (/<cim:RelativeDisplacement.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-                let bucket = context.parsed.RelativeDisplacement;
+                obj.cls = "MagneticField";
+                base.parse_attribute (/<cim:MagneticField.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
+                base.parse_attribute (/<cim:MagneticField.unit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
+                base.parse_element (/<cim:MagneticField.value>([\s\S]*?)<\/cim:MagneticField.value>/g, obj, "value", base.to_float, sub, context);
+                let bucket = context.parsed.MagneticField;
                 if (null == bucket)
-                   context.parsed.RelativeDisplacement = bucket = {};
+                   context.parsed.MagneticField = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -439,8 +439,9 @@ define
             {
                 let fields = [];
 
-                base.export_element (obj, "RelativeDisplacement", "displacement", "displacement",  base.from_string, fields);
-                base.export_attribute (obj, "RelativeDisplacement", "kind", "kind", fields);
+                base.export_attribute (obj, "MagneticField", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "MagneticField", "unit", "unit", fields);
+                base.export_element (obj, "MagneticField", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -452,13 +453,14 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RelativeDisplacement_collapse" aria-expanded="true" aria-controls="RelativeDisplacement_collapse" style="margin-left: 10px;">RelativeDisplacement</a></legend>
-                    <div id="RelativeDisplacement_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MagneticField_collapse" aria-expanded="true" aria-controls="MagneticField_collapse" style="margin-left: 10px;">MagneticField</a></legend>
+                    <div id="MagneticField_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#displacement}}<div><b>displacement</b>: {{displacement}}</div>{{/displacement}}
-                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
+                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
                     </fieldset>
 
@@ -469,13 +471,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj["kindRelativeDisplacementKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in RelativeDisplacementKind) obj["kindRelativeDisplacementKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
+                obj["multiplierUnitMultiplier"] = [{ id: '', selected: (!obj["multiplier"])}]; for (let property in Domain.UnitMultiplier) obj["multiplierUnitMultiplier"].push ({ id: property, selected: obj["multiplier"] && obj["multiplier"].endsWith ('.' + property)});
+                obj["unitUnitSymbol"] = [{ id: '', selected: (!obj["unit"])}]; for (let property in Domain.UnitSymbol) obj["unitUnitSymbol"].push ({ id: property, selected: obj["unit"] && obj["unit"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj["kindRelativeDisplacementKind"];
+                delete obj["multiplierUnitMultiplier"];
+                delete obj["unitUnitSymbol"];
             }
 
             edit_template ()
@@ -483,13 +487,14 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RelativeDisplacement_collapse" aria-expanded="true" aria-controls="{{id}}_RelativeDisplacement_collapse" style="margin-left: 10px;">RelativeDisplacement</a></legend>
-                    <div id="{{id}}_RelativeDisplacement_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MagneticField_collapse" aria-expanded="true" aria-controls="{{id}}_MagneticField_collapse" style="margin-left: 10px;">MagneticField</a></legend>
+                    <div id="{{id}}_MagneticField_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_displacement'>displacement: </label><div class='col-sm-8'><input id='{{id}}_displacement' class='form-control' type='text'{{#displacement}} value='{{displacement}}'{{/displacement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindRelativeDisplacementKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindRelativeDisplacementKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -500,10 +505,11 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "RelativeDisplacement" };
+                obj = obj || { id: id, cls: "MagneticField" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_displacement").value; if ("" !== temp) obj["displacement"] = temp;
-                temp = RelativeDisplacementKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RelativeDisplacementKind." + temp; else delete obj["kind"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
+                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
             }
@@ -619,8 +625,8 @@ define
 
                 obj = obj || { id: id, cls: "Bearing" };
                 super.submit (id, obj);
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
+                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitMultiplier." + temp; else delete obj["multiplier"];
+                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#UnitSymbol." + temp; else delete obj["unit"];
                 temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
 
                 return (obj);
@@ -628,36 +634,35 @@ define
         }
 
         /**
-         * Magnetic field in nanotesla.
+         * Vertical displacement relative to either sealevel, ground or the center of the earth.
          *
          */
-        class MagneticField extends base.Element
+        class RelativeDisplacement extends base.Element
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.MagneticField;
+                let bucket = cim_data.RelativeDisplacement;
                 if (null == bucket)
-                   cim_data.MagneticField = bucket = {};
+                   cim_data.RelativeDisplacement = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.MagneticField[obj.id];
+               delete cim_data.RelativeDisplacement[obj.id];
             }
 
             parse (context, sub)
             {
                 let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "MagneticField";
-                base.parse_attribute (/<cim:MagneticField.multiplier\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "multiplier", sub, context);
-                base.parse_attribute (/<cim:MagneticField.unit\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "unit", sub, context);
-                base.parse_element (/<cim:MagneticField.value>([\s\S]*?)<\/cim:MagneticField.value>/g, obj, "value", base.to_float, sub, context);
-                let bucket = context.parsed.MagneticField;
+                obj.cls = "RelativeDisplacement";
+                base.parse_element (/<cim:RelativeDisplacement.displacement>([\s\S]*?)<\/cim:RelativeDisplacement.displacement>/g, obj, "displacement", base.to_string, sub, context);
+                base.parse_attribute (/<cim:RelativeDisplacement.kind\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                let bucket = context.parsed.RelativeDisplacement;
                 if (null == bucket)
-                   context.parsed.MagneticField = bucket = {};
+                   context.parsed.RelativeDisplacement = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -667,9 +672,8 @@ define
             {
                 let fields = [];
 
-                base.export_attribute (obj, "MagneticField", "multiplier", "multiplier", fields);
-                base.export_attribute (obj, "MagneticField", "unit", "unit", fields);
-                base.export_element (obj, "MagneticField", "value", "value",  base.from_float, fields);
+                base.export_element (obj, "RelativeDisplacement", "displacement", "displacement",  base.from_string, fields);
+                base.export_attribute (obj, "RelativeDisplacement", "kind", "kind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -681,14 +685,13 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MagneticField_collapse" aria-expanded="true" aria-controls="MagneticField_collapse" style="margin-left: 10px;">MagneticField</a></legend>
-                    <div id="MagneticField_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RelativeDisplacement_collapse" aria-expanded="true" aria-controls="RelativeDisplacement_collapse" style="margin-left: 10px;">RelativeDisplacement</a></legend>
+                    <div id="RelativeDisplacement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#multiplier}}<div><b>multiplier</b>: {{multiplier}}</div>{{/multiplier}}
-                    {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
-                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#displacement}}<div><b>displacement</b>: {{displacement}}</div>{{/displacement}}
+                    {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     </div>
                     </fieldset>
 
@@ -699,15 +702,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj["multiplierUnitMultiplier"] = [{ id: '', selected: (!obj["multiplier"])}]; for (let property in Domain.UnitMultiplier) obj["multiplierUnitMultiplier"].push ({ id: property, selected: obj["multiplier"] && obj["multiplier"].endsWith ('.' + property)});
-                obj["unitUnitSymbol"] = [{ id: '', selected: (!obj["unit"])}]; for (let property in Domain.UnitSymbol) obj["unitUnitSymbol"].push ({ id: property, selected: obj["unit"] && obj["unit"].endsWith ('.' + property)});
+                obj["kindRelativeDisplacementKind"] = [{ id: '', selected: (!obj["kind"])}]; for (let property in RelativeDisplacementKind) obj["kindRelativeDisplacementKind"].push ({ id: property, selected: obj["kind"] && obj["kind"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj["multiplierUnitMultiplier"];
-                delete obj["unitUnitSymbol"];
+                delete obj["kindRelativeDisplacementKind"];
             }
 
             edit_template ()
@@ -715,14 +716,13 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MagneticField_collapse" aria-expanded="true" aria-controls="{{id}}_MagneticField_collapse" style="margin-left: 10px;">MagneticField</a></legend>
-                    <div id="{{id}}_MagneticField_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RelativeDisplacement_collapse" aria-expanded="true" aria-controls="{{id}}_RelativeDisplacement_collapse" style="margin-left: 10px;">RelativeDisplacement</a></legend>
+                    <div id="{{id}}_RelativeDisplacement_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><select id='{{id}}_multiplier' class='form-control custom-select'>{{#multiplierUnitMultiplier}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/multiplierUnitMultiplier}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><select id='{{id}}_unit' class='form-control custom-select'>{{#unitUnitSymbol}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/unitUnitSymbol}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_displacement'>displacement: </label><div class='col-sm-8'><input id='{{id}}_displacement' class='form-control' type='text'{{#displacement}} value='{{displacement}}'{{/displacement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control custom-select'>{{#kindRelativeDisplacementKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/kindRelativeDisplacementKind}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -733,11 +733,10 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "MagneticField" };
+                obj = obj || { id: id, cls: "RelativeDisplacement" };
                 super.submit (id, obj);
-                temp = Domain.UnitMultiplier[document.getElementById (id + "_multiplier").value]; if (temp) obj["multiplier"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; else delete obj["multiplier"];
-                temp = Domain.UnitSymbol[document.getElementById (id + "_unit").value]; if (temp) obj["unit"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; else delete obj["unit"];
-                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
+                temp = document.getElementById (id + "_displacement").value; if ("" !== temp) obj["displacement"] = temp;
+                temp = RelativeDisplacementKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#RelativeDisplacementKind." + temp; else delete obj["kind"];
 
                 return (obj);
             }
@@ -763,8 +762,8 @@ define
                 TimePeriodUnit: TimePeriodUnit,
                 UncertaintyKind: UncertaintyKind,
                 ParticulateDensity: ParticulateDensity,
-                RelativeDisplacementKind: RelativeDisplacementKind,
-                AtmosphericAnalogKind: AtmosphericAnalogKind
+                AtmosphericAnalogKind: AtmosphericAnalogKind,
+                RelativeDisplacementKind: RelativeDisplacementKind
             }
         );
     }

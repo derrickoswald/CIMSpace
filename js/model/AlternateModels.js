@@ -3,7 +3,6 @@ define
     ["model/base", "model/Core"],
     function (base, Core)
     {
-
         class AlternateModelGroup extends Core.IdentifiedObject
         {
             constructor (template, cim_data)

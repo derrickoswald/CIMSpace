@@ -7,36 +7,40 @@ define
      */
     function (base, Common, Core, MktDomain)
     {
-
         /**
-         * Containment for bid parameters that are dependent on a market product type.
+         * Component of a bid that pertains to one market product.
          *
          */
-        class BidHourlyProductSchedule extends Core.RegularIntervalSchedule
+        class ProductBid extends Core.IdentifiedObject
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.BidHourlyProductSchedule;
+                let bucket = cim_data.ProductBid;
                 if (null == bucket)
-                   cim_data.BidHourlyProductSchedule = bucket = {};
+                   cim_data.ProductBid = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.BidHourlyProductSchedule[obj.id];
+               delete cim_data.ProductBid[obj.id];
             }
 
             parse (context, sub)
             {
-                let obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
-                obj.cls = "BidHourlyProductSchedule";
-                base.parse_attribute (/<cim:BidHourlyProductSchedule.ProductBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProductBid", sub, context);
-                let bucket = context.parsed.BidHourlyProductSchedule;
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "ProductBid";
+                base.parse_attributes (/<cim:ProductBid.BidDistributionFactor\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidDistributionFactor", sub, context);
+                base.parse_attribute (/<cim:ProductBid.Bid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
+                base.parse_attributes (/<cim:ProductBid.BidSchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidSchedule", sub, context);
+                base.parse_attributes (/<cim:ProductBid.BidSelfSched\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
+                base.parse_attributes (/<cim:ProductBid.BidHourlyProductSchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidHourlyProductSchedule", sub, context);
+                base.parse_attribute (/<cim:ProductBid.MarketProduct\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
+                let bucket = context.parsed.ProductBid;
                 if (null == bucket)
-                   context.parsed.BidHourlyProductSchedule = bucket = {};
+                   context.parsed.ProductBid = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -44,9 +48,14 @@ define
 
             export (obj, full)
             {
-                let fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "BidHourlyProductSchedule", "ProductBid", "ProductBid", fields);
+                base.export_attributes (obj, "ProductBid", "BidDistributionFactor", "BidDistributionFactor", fields);
+                base.export_attribute (obj, "ProductBid", "Bid", "Bid", fields);
+                base.export_attributes (obj, "ProductBid", "BidSchedule", "BidSchedule", fields);
+                base.export_attributes (obj, "ProductBid", "BidSelfSched", "BidSelfSched", fields);
+                base.export_attributes (obj, "ProductBid", "BidHourlyProductSchedule", "BidHourlyProductSchedule", fields);
+                base.export_attribute (obj, "ProductBid", "MarketProduct", "MarketProduct", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -58,12 +67,595 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="BidHourlyProductSchedule_collapse" style="margin-left: 10px;">BidHourlyProductSchedule</a></legend>
-                    <div id="BidHourlyProductSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProductBid_collapse" aria-expanded="true" aria-controls="ProductBid_collapse" style="margin-left: 10px;">ProductBid</a></legend>
+                    <div id="ProductBid_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#BidDistributionFactor}}<div><b>BidDistributionFactor</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidDistributionFactor}}
+                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Bid}}");}); return false;'>{{Bid}}</a></div>{{/Bid}}
+                    {{#BidSchedule}}<div><b>BidSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidSchedule}}
+                    {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidSelfSched}}
+                    {{#BidHourlyProductSchedule}}<div><b>BidHourlyProductSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidHourlyProductSchedule}}
+                    {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MarketProduct}}");}); return false;'>{{MarketProduct}}</a></div>{{/MarketProduct}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["BidDistributionFactor"]) obj["BidDistributionFactor_string"] = obj["BidDistributionFactor"].join ();
+                if (obj["BidSchedule"]) obj["BidSchedule_string"] = obj["BidSchedule"].join ();
+                if (obj["BidSelfSched"]) obj["BidSelfSched_string"] = obj["BidSelfSched"].join ();
+                if (obj["BidHourlyProductSchedule"]) obj["BidHourlyProductSchedule_string"] = obj["BidHourlyProductSchedule"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["BidDistributionFactor_string"];
+                delete obj["BidSchedule_string"];
+                delete obj["BidSelfSched_string"];
+                delete obj["BidHourlyProductSchedule_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProductBid_collapse" aria-expanded="true" aria-controls="{{id}}_ProductBid_collapse" style="margin-left: 10px;">ProductBid</a></legend>
+                    <div id="{{id}}_ProductBid_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bid'>Bid: </label><div class='col-sm-8'><input id='{{id}}_Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "ProductBid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Bid").value; if ("" !== temp) obj["Bid"] = temp;
+                temp = document.getElementById (id + "_MarketProduct").value; if ("" !== temp) obj["MarketProduct"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["BidDistributionFactor", "0..*", "1", "BidDistributionFactor", "ProductBid"],
+                            ["Bid", "1", "1..*", "Bid", "ProductBids"],
+                            ["BidSchedule", "0..*", "1", "BidPriceSchedule", "ProductBid"],
+                            ["BidSelfSched", "0..*", "1", "BidSelfSched", "ProductBid"],
+                            ["BidHourlyProductSchedule", "0..*", "1", "BidHourlyProductSchedule", "ProductBid"],
+                            ["MarketProduct", "1", "0..*", "MarketProduct", "ProductBids"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Startup costs and time as a function of down time.
+         *
+         * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
+         *
+         */
+        class StartUpCostCurve extends Core.Curve
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.StartUpCostCurve;
+                if (null == bucket)
+                   cim_data.StartUpCostCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.StartUpCostCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "StartUpCostCurve";
+                base.parse_attributes (/<cim:StartUpCostCurve.GeneratingBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
+                base.parse_attributes (/<cim:StartUpCostCurve.RegisteredGenerators\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerators", sub, context);
+                let bucket = context.parsed.StartUpCostCurve;
+                if (null == bucket)
+                   context.parsed.StartUpCostCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.Curve.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "StartUpCostCurve", "GeneratingBid", "GeneratingBid", fields);
+                base.export_attributes (obj, "StartUpCostCurve", "RegisteredGenerators", "RegisteredGenerators", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StartUpCostCurve_collapse" aria-expanded="true" aria-controls="StartUpCostCurve_collapse" style="margin-left: 10px;">StartUpCostCurve</a></legend>
+                    <div id="StartUpCostCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingBid}}
+                    {{#RegisteredGenerators}}<div><b>RegisteredGenerators</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredGenerators}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["GeneratingBid"]) obj["GeneratingBid_string"] = obj["GeneratingBid"].join ();
+                if (obj["RegisteredGenerators"]) obj["RegisteredGenerators_string"] = obj["RegisteredGenerators"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["GeneratingBid_string"];
+                delete obj["RegisteredGenerators_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StartUpCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpCostCurve_collapse" style="margin-left: 10px;">StartUpCostCurve</a></legend>
+                    <div id="{{id}}_StartUpCostCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerators'>RegisteredGenerators: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerators' class='form-control' type='text'{{#RegisteredGenerators}} value='{{RegisteredGenerators_string}}'{{/RegisteredGenerators}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "StartUpCostCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerators").value; if ("" !== temp) obj["RegisteredGenerators"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["GeneratingBid", "0..*", "0..1", "GeneratingBid", "StartUpCostCurve"],
+                            ["RegisteredGenerators", "0..*", "0..*", "RegisteredGenerator", "StartUpCostCurves"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Charge Type is the basic level configuration for settlement to process specific charges for invoicing purpose.
+         *
+         * Examples such as: Day Ahead Spinning Reserve Default Invoice Interest Charge, etc.
+         *
+         */
+        class ChargeType extends Common.Document
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.ChargeType;
+                if (null == bucket)
+                   cim_data.ChargeType = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.ChargeType[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.Document.prototype.parse.call (this, context, sub);
+                obj.cls = "ChargeType";
+                base.parse_element (/<cim:ChargeType.chargeOrder>([\s\S]*?)<\/cim:ChargeType.chargeOrder>/g, obj, "chargeOrder", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeType.chargeVersion>([\s\S]*?)<\/cim:ChargeType.chargeVersion>/g, obj, "chargeVersion", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeType.effectiveDate>([\s\S]*?)<\/cim:ChargeType.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
+                base.parse_element (/<cim:ChargeType.factor>([\s\S]*?)<\/cim:ChargeType.factor>/g, obj, "factor", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeType.frequencyType>([\s\S]*?)<\/cim:ChargeType.frequencyType>/g, obj, "frequencyType", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeType.terminationDate>([\s\S]*?)<\/cim:ChargeType.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
+                base.parse_element (/<cim:ChargeType.totalInterval>([\s\S]*?)<\/cim:ChargeType.totalInterval>/g, obj, "totalInterval", base.to_string, sub, context);
+                base.parse_attributes (/<cim:ChargeType.MajorChargeGroup\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MajorChargeGroup", sub, context);
+                base.parse_attributes (/<cim:ChargeType.ChargeGroup\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroup", sub, context);
+                base.parse_attributes (/<cim:ChargeType.ChargeComponents\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeComponents", sub, context);
+                base.parse_attributes (/<cim:ChargeType.MktUserAttribute\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
+                let bucket = context.parsed.ChargeType;
+                if (null == bucket)
+                   context.parsed.ChargeType = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.Document.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "ChargeType", "chargeOrder", "chargeOrder",  base.from_string, fields);
+                base.export_element (obj, "ChargeType", "chargeVersion", "chargeVersion",  base.from_string, fields);
+                base.export_element (obj, "ChargeType", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "ChargeType", "factor", "factor",  base.from_string, fields);
+                base.export_element (obj, "ChargeType", "frequencyType", "frequencyType",  base.from_string, fields);
+                base.export_element (obj, "ChargeType", "terminationDate", "terminationDate",  base.from_datetime, fields);
+                base.export_element (obj, "ChargeType", "totalInterval", "totalInterval",  base.from_string, fields);
+                base.export_attributes (obj, "ChargeType", "MajorChargeGroup", "MajorChargeGroup", fields);
+                base.export_attributes (obj, "ChargeType", "ChargeGroup", "ChargeGroup", fields);
+                base.export_attributes (obj, "ChargeType", "ChargeComponents", "ChargeComponents", fields);
+                base.export_attributes (obj, "ChargeType", "MktUserAttribute", "MktUserAttribute", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ChargeType_collapse" aria-expanded="true" aria-controls="ChargeType_collapse" style="margin-left: 10px;">ChargeType</a></legend>
+                    <div id="ChargeType_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#chargeOrder}}<div><b>chargeOrder</b>: {{chargeOrder}}</div>{{/chargeOrder}}
+                    {{#chargeVersion}}<div><b>chargeVersion</b>: {{chargeVersion}}</div>{{/chargeVersion}}
+                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+                    {{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
+                    {{#frequencyType}}<div><b>frequencyType</b>: {{frequencyType}}</div>{{/frequencyType}}
+                    {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
+                    {{#totalInterval}}<div><b>totalInterval</b>: {{totalInterval}}</div>{{/totalInterval}}
+                    {{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MajorChargeGroup}}
+                    {{#ChargeGroup}}<div><b>ChargeGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeGroup}}
+                    {{#ChargeComponents}}<div><b>ChargeComponents</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeComponents}}
+                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MktUserAttribute}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["MajorChargeGroup"]) obj["MajorChargeGroup_string"] = obj["MajorChargeGroup"].join ();
+                if (obj["ChargeGroup"]) obj["ChargeGroup_string"] = obj["ChargeGroup"].join ();
+                if (obj["ChargeComponents"]) obj["ChargeComponents_string"] = obj["ChargeComponents"].join ();
+                if (obj["MktUserAttribute"]) obj["MktUserAttribute_string"] = obj["MktUserAttribute"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["MajorChargeGroup_string"];
+                delete obj["ChargeGroup_string"];
+                delete obj["ChargeComponents_string"];
+                delete obj["MktUserAttribute_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ChargeType_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeType_collapse" style="margin-left: 10px;">ChargeType</a></legend>
+                    <div id="{{id}}_ChargeType_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chargeOrder'>chargeOrder: </label><div class='col-sm-8'><input id='{{id}}_chargeOrder' class='form-control' type='text'{{#chargeOrder}} value='{{chargeOrder}}'{{/chargeOrder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chargeVersion'>chargeVersion: </label><div class='col-sm-8'><input id='{{id}}_chargeVersion' class='form-control' type='text'{{#chargeVersion}} value='{{chargeVersion}}'{{/chargeVersion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='{{id}}_frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalInterval'>totalInterval: </label><div class='col-sm-8'><input id='{{id}}_totalInterval' class='form-control' type='text'{{#totalInterval}} value='{{totalInterval}}'{{/totalInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup_string}}'{{/MajorChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroup'>ChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroup' class='form-control' type='text'{{#ChargeGroup}} value='{{ChargeGroup_string}}'{{/ChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='{{id}}_ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents_string}}'{{/ChargeComponents}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "ChargeType" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_chargeOrder").value; if ("" !== temp) obj["chargeOrder"] = temp;
+                temp = document.getElementById (id + "_chargeVersion").value; if ("" !== temp) obj["chargeVersion"] = temp;
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" !== temp) obj["effectiveDate"] = temp;
+                temp = document.getElementById (id + "_factor").value; if ("" !== temp) obj["factor"] = temp;
+                temp = document.getElementById (id + "_frequencyType").value; if ("" !== temp) obj["frequencyType"] = temp;
+                temp = document.getElementById (id + "_terminationDate").value; if ("" !== temp) obj["terminationDate"] = temp;
+                temp = document.getElementById (id + "_totalInterval").value; if ("" !== temp) obj["totalInterval"] = temp;
+                temp = document.getElementById (id + "_MajorChargeGroup").value; if ("" !== temp) obj["MajorChargeGroup"] = temp.split (",");
+                temp = document.getElementById (id + "_ChargeGroup").value; if ("" !== temp) obj["ChargeGroup"] = temp.split (",");
+                temp = document.getElementById (id + "_ChargeComponents").value; if ("" !== temp) obj["ChargeComponents"] = temp.split (",");
+                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" !== temp) obj["MktUserAttribute"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["MajorChargeGroup", "0..*", "0..*", "MajorChargeGroup", "ChargeType"],
+                            ["ChargeGroup", "0..*", "0..*", "ChargeGroup", "ChargeType"],
+                            ["ChargeComponents", "0..*", "0..*", "ChargeComponent", "ChargeTypes"],
+                            ["MktUserAttribute", "0..*", "0..*", "MktUserAttribute", "ChargeType"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Defines bid schedules to allow a product bid to use specified bid price curves for different time intervals.
+         *
+         */
+        class BidPriceSchedule extends Core.RegularIntervalSchedule
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.BidPriceSchedule;
+                if (null == bucket)
+                   cim_data.BidPriceSchedule = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.BidPriceSchedule[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
+                obj.cls = "BidPriceSchedule";
+                base.parse_attribute (/<cim:BidPriceSchedule.bidType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "bidType", sub, context);
+                base.parse_attribute (/<cim:BidPriceSchedule.mitigationStatus\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "mitigationStatus", sub, context);
+                base.parse_attribute (/<cim:BidPriceSchedule.BidPriceCurve\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidPriceCurve", sub, context);
+                base.parse_attribute (/<cim:BidPriceSchedule.ProductBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProductBid", sub, context);
+                let bucket = context.parsed.BidPriceSchedule;
+                if (null == bucket)
+                   context.parsed.BidPriceSchedule = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "BidPriceSchedule", "bidType", "bidType", fields);
+                base.export_attribute (obj, "BidPriceSchedule", "mitigationStatus", "mitigationStatus", fields);
+                base.export_attribute (obj, "BidPriceSchedule", "BidPriceCurve", "BidPriceCurve", fields);
+                base.export_attribute (obj, "BidPriceSchedule", "ProductBid", "ProductBid", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidPriceSchedule_collapse" aria-expanded="true" aria-controls="BidPriceSchedule_collapse" style="margin-left: 10px;">BidPriceSchedule</a></legend>
+                    <div id="BidPriceSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
                     `
+                    {{#bidType}}<div><b>bidType</b>: {{bidType}}</div>{{/bidType}}
+                    {{#mitigationStatus}}<div><b>mitigationStatus</b>: {{mitigationStatus}}</div>{{/mitigationStatus}}
+                    {{#BidPriceCurve}}<div><b>BidPriceCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BidPriceCurve}}");}); return false;'>{{BidPriceCurve}}</a></div>{{/BidPriceCurve}}
                     {{#ProductBid}}<div><b>ProductBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ProductBid}}");}); return false;'>{{ProductBid}}</a></div>{{/ProductBid}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["bidTypeBidMitigationType"] = [{ id: '', selected: (!obj["bidType"])}]; for (let property in MktDomain.BidMitigationType) obj["bidTypeBidMitigationType"].push ({ id: property, selected: obj["bidType"] && obj["bidType"].endsWith ('.' + property)});
+                obj["mitigationStatusBidMitigationStatus"] = [{ id: '', selected: (!obj["mitigationStatus"])}]; for (let property in MktDomain.BidMitigationStatus) obj["mitigationStatusBidMitigationStatus"].push ({ id: property, selected: obj["mitigationStatus"] && obj["mitigationStatus"].endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["bidTypeBidMitigationType"];
+                delete obj["mitigationStatusBidMitigationStatus"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidPriceSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceSchedule_collapse" style="margin-left: 10px;">BidPriceSchedule</a></legend>
+                    <div id="{{id}}_BidPriceSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#bidTypeBidMitigationType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/bidTypeBidMitigationType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mitigationStatus'>mitigationStatus: </label><div class='col-sm-8'><select id='{{id}}_mitigationStatus' class='form-control custom-select'>{{#mitigationStatusBidMitigationStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/mitigationStatusBidMitigationStatus}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidPriceCurve'>BidPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_BidPriceCurve' class='form-control' type='text'{{#BidPriceCurve}} value='{{BidPriceCurve}}'{{/BidPriceCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "BidPriceSchedule" };
+                super.submit (id, obj);
+                temp = MktDomain.BidMitigationType[document.getElementById (id + "_bidType").value]; if (temp) obj["bidType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#BidMitigationType." + temp; else delete obj["bidType"];
+                temp = MktDomain.BidMitigationStatus[document.getElementById (id + "_mitigationStatus").value]; if (temp) obj["mitigationStatus"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#BidMitigationStatus." + temp; else delete obj["mitigationStatus"];
+                temp = document.getElementById (id + "_BidPriceCurve").value; if ("" !== temp) obj["BidPriceCurve"] = temp;
+                temp = document.getElementById (id + "_ProductBid").value; if ("" !== temp) obj["ProductBid"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["BidPriceCurve", "1", "0..*", "BidPriceCurve", "BidSchedule"],
+                            ["ProductBid", "1", "0..*", "ProductBid", "BidSchedule"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Trade error and warning messages associated with the rule engine processing of the submitted trade.
+         *
+         */
+        class TradeError extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.TradeError;
+                if (null == bucket)
+                   cim_data.TradeError = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.TradeError[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "TradeError";
+                base.parse_element (/<cim:TradeError.endTime>([\s\S]*?)<\/cim:TradeError.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
+                base.parse_element (/<cim:TradeError.errMessage>([\s\S]*?)<\/cim:TradeError.errMessage>/g, obj, "errMessage", base.to_string, sub, context);
+                base.parse_element (/<cim:TradeError.errPriority>([\s\S]*?)<\/cim:TradeError.errPriority>/g, obj, "errPriority", base.to_string, sub, context);
+                base.parse_element (/<cim:TradeError.logTimeStamp>([\s\S]*?)<\/cim:TradeError.logTimeStamp>/g, obj, "logTimeStamp", base.to_datetime, sub, context);
+                base.parse_element (/<cim:TradeError.ruleID>([\s\S]*?)<\/cim:TradeError.ruleID>/g, obj, "ruleID", base.to_string, sub, context);
+                base.parse_element (/<cim:TradeError.startTime>([\s\S]*?)<\/cim:TradeError.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
+                base.parse_attribute (/<cim:TradeError.Trade\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
+                let bucket = context.parsed.TradeError;
+                if (null == bucket)
+                   context.parsed.TradeError = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "TradeError", "endTime", "endTime",  base.from_datetime, fields);
+                base.export_element (obj, "TradeError", "errMessage", "errMessage",  base.from_string, fields);
+                base.export_element (obj, "TradeError", "errPriority", "errPriority",  base.from_string, fields);
+                base.export_element (obj, "TradeError", "logTimeStamp", "logTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "TradeError", "ruleID", "ruleID",  base.from_string, fields);
+                base.export_element (obj, "TradeError", "startTime", "startTime",  base.from_datetime, fields);
+                base.export_attribute (obj, "TradeError", "Trade", "Trade", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TradeError_collapse" aria-expanded="true" aria-controls="TradeError_collapse" style="margin-left: 10px;">TradeError</a></legend>
+                    <div id="TradeError_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
+                    {{#errMessage}}<div><b>errMessage</b>: {{errMessage}}</div>{{/errMessage}}
+                    {{#errPriority}}<div><b>errPriority</b>: {{errPriority}}</div>{{/errPriority}}
+                    {{#logTimeStamp}}<div><b>logTimeStamp</b>: {{logTimeStamp}}</div>{{/logTimeStamp}}
+                    {{#ruleID}}<div><b>ruleID</b>: {{ruleID}}</div>{{/ruleID}}
+                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+                    {{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Trade}}");}); return false;'>{{Trade}}</a></div>{{/Trade}}
                     </div>
                     </fieldset>
 
@@ -86,12 +678,18 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidHourlyProductSchedule_collapse" style="margin-left: 10px;">BidHourlyProductSchedule</a></legend>
-                    <div id="{{id}}_BidHourlyProductSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TradeError_collapse" aria-expanded="true" aria-controls="{{id}}_TradeError_collapse" style="margin-left: 10px;">TradeError</a></legend>
+                    <div id="{{id}}_TradeError_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errMessage'>errMessage: </label><div class='col-sm-8'><input id='{{id}}_errMessage' class='form-control' type='text'{{#errMessage}} value='{{errMessage}}'{{/errMessage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errPriority'>errPriority: </label><div class='col-sm-8'><input id='{{id}}_errPriority' class='form-control' type='text'{{#errPriority}} value='{{errPriority}}'{{/errPriority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ruleID'>ruleID: </label><div class='col-sm-8'><input id='{{id}}_ruleID' class='form-control' type='text'{{#ruleID}} value='{{ruleID}}'{{/ruleID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Trade'>Trade: </label><div class='col-sm-8'><input id='{{id}}_Trade' class='form-control' type='text'{{#Trade}} value='{{Trade}}'{{/Trade}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -102,9 +700,15 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "BidHourlyProductSchedule" };
+                obj = obj || { id: id, cls: "TradeError" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ProductBid").value; if ("" !== temp) obj["ProductBid"] = temp;
+                temp = document.getElementById (id + "_endTime").value; if ("" !== temp) obj["endTime"] = temp;
+                temp = document.getElementById (id + "_errMessage").value; if ("" !== temp) obj["errMessage"] = temp;
+                temp = document.getElementById (id + "_errPriority").value; if ("" !== temp) obj["errPriority"] = temp;
+                temp = document.getElementById (id + "_logTimeStamp").value; if ("" !== temp) obj["logTimeStamp"] = temp;
+                temp = document.getElementById (id + "_ruleID").value; if ("" !== temp) obj["ruleID"] = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
+                temp = document.getElementById (id + "_Trade").value; if ("" !== temp) obj["Trade"] = temp;
 
                 return (obj);
             }
@@ -114,7 +718,2494 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["ProductBid", "1", "0..*", "ProductBid", "BidHourlyProductSchedule"]
+                            ["Trade", "0..1", "0..*", "Trade", "TradeError"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * This class represent the error information for a bid that is detected during bid validation.
+         *
+         */
+        class BidError extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.BidError;
+                if (null == bucket)
+                   cim_data.BidError = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.BidError[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "BidError";
+                base.parse_element (/<cim:BidError.componentType>([\s\S]*?)<\/cim:BidError.componentType>/g, obj, "componentType", base.to_string, sub, context);
+                base.parse_element (/<cim:BidError.endTime>([\s\S]*?)<\/cim:BidError.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
+                base.parse_element (/<cim:BidError.errMessage>([\s\S]*?)<\/cim:BidError.errMessage>/g, obj, "errMessage", base.to_string, sub, context);
+                base.parse_element (/<cim:BidError.errPriority>([\s\S]*?)<\/cim:BidError.errPriority>/g, obj, "errPriority", base.to_string, sub, context);
+                base.parse_element (/<cim:BidError.logTimeStamp>([\s\S]*?)<\/cim:BidError.logTimeStamp>/g, obj, "logTimeStamp", base.to_datetime, sub, context);
+                base.parse_element (/<cim:BidError.msgLevel>([\s\S]*?)<\/cim:BidError.msgLevel>/g, obj, "msgLevel", base.to_string, sub, context);
+                base.parse_element (/<cim:BidError.ruleID>([\s\S]*?)<\/cim:BidError.ruleID>/g, obj, "ruleID", base.to_string, sub, context);
+                base.parse_element (/<cim:BidError.startTime>([\s\S]*?)<\/cim:BidError.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:BidError.ResourceBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ResourceBid", sub, context);
+                base.parse_attribute (/<cim:BidError.MarketProduct\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
+                let bucket = context.parsed.BidError;
+                if (null == bucket)
+                   context.parsed.BidError = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "BidError", "componentType", "componentType",  base.from_string, fields);
+                base.export_element (obj, "BidError", "endTime", "endTime",  base.from_datetime, fields);
+                base.export_element (obj, "BidError", "errMessage", "errMessage",  base.from_string, fields);
+                base.export_element (obj, "BidError", "errPriority", "errPriority",  base.from_string, fields);
+                base.export_element (obj, "BidError", "logTimeStamp", "logTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "BidError", "msgLevel", "msgLevel",  base.from_string, fields);
+                base.export_element (obj, "BidError", "ruleID", "ruleID",  base.from_string, fields);
+                base.export_element (obj, "BidError", "startTime", "startTime",  base.from_datetime, fields);
+                base.export_attributes (obj, "BidError", "ResourceBid", "ResourceBid", fields);
+                base.export_attribute (obj, "BidError", "MarketProduct", "MarketProduct", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidError_collapse" aria-expanded="true" aria-controls="BidError_collapse" style="margin-left: 10px;">BidError</a></legend>
+                    <div id="BidError_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#componentType}}<div><b>componentType</b>: {{componentType}}</div>{{/componentType}}
+                    {{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
+                    {{#errMessage}}<div><b>errMessage</b>: {{errMessage}}</div>{{/errMessage}}
+                    {{#errPriority}}<div><b>errPriority</b>: {{errPriority}}</div>{{/errPriority}}
+                    {{#logTimeStamp}}<div><b>logTimeStamp</b>: {{logTimeStamp}}</div>{{/logTimeStamp}}
+                    {{#msgLevel}}<div><b>msgLevel</b>: {{msgLevel}}</div>{{/msgLevel}}
+                    {{#ruleID}}<div><b>ruleID</b>: {{ruleID}}</div>{{/ruleID}}
+                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+                    {{#ResourceBid}}<div><b>ResourceBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ResourceBid}}
+                    {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MarketProduct}}");}); return false;'>{{MarketProduct}}</a></div>{{/MarketProduct}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["ResourceBid"]) obj["ResourceBid_string"] = obj["ResourceBid"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["ResourceBid_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidError_collapse" aria-expanded="true" aria-controls="{{id}}_BidError_collapse" style="margin-left: 10px;">BidError</a></legend>
+                    <div id="{{id}}_BidError_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_componentType'>componentType: </label><div class='col-sm-8'><input id='{{id}}_componentType' class='form-control' type='text'{{#componentType}} value='{{componentType}}'{{/componentType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errMessage'>errMessage: </label><div class='col-sm-8'><input id='{{id}}_errMessage' class='form-control' type='text'{{#errMessage}} value='{{errMessage}}'{{/errMessage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errPriority'>errPriority: </label><div class='col-sm-8'><input id='{{id}}_errPriority' class='form-control' type='text'{{#errPriority}} value='{{errPriority}}'{{/errPriority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_msgLevel'>msgLevel: </label><div class='col-sm-8'><input id='{{id}}_msgLevel' class='form-control' type='text'{{#msgLevel}} value='{{msgLevel}}'{{/msgLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ruleID'>ruleID: </label><div class='col-sm-8'><input id='{{id}}_ruleID' class='form-control' type='text'{{#ruleID}} value='{{ruleID}}'{{/ruleID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceBid'>ResourceBid: </label><div class='col-sm-8'><input id='{{id}}_ResourceBid' class='form-control' type='text'{{#ResourceBid}} value='{{ResourceBid_string}}'{{/ResourceBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "BidError" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_componentType").value; if ("" !== temp) obj["componentType"] = temp;
+                temp = document.getElementById (id + "_endTime").value; if ("" !== temp) obj["endTime"] = temp;
+                temp = document.getElementById (id + "_errMessage").value; if ("" !== temp) obj["errMessage"] = temp;
+                temp = document.getElementById (id + "_errPriority").value; if ("" !== temp) obj["errPriority"] = temp;
+                temp = document.getElementById (id + "_logTimeStamp").value; if ("" !== temp) obj["logTimeStamp"] = temp;
+                temp = document.getElementById (id + "_msgLevel").value; if ("" !== temp) obj["msgLevel"] = temp;
+                temp = document.getElementById (id + "_ruleID").value; if ("" !== temp) obj["ruleID"] = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
+                temp = document.getElementById (id + "_ResourceBid").value; if ("" !== temp) obj["ResourceBid"] = temp.split (",");
+                temp = document.getElementById (id + "_MarketProduct").value; if ("" !== temp) obj["MarketProduct"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["ResourceBid", "0..*", "0..*", "ResourceBid", "BidError"],
+                            ["MarketProduct", "0..1", "0..*", "MarketProduct", "BidError"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * A Major Charge Group is the same as Invoice Type which provides the highest level of grouping for charge types configuration.
+         *
+         * Examples: Market, FERC, RMR.
+         *
+         */
+        class MajorChargeGroup extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.MajorChargeGroup;
+                if (null == bucket)
+                   cim_data.MajorChargeGroup = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.MajorChargeGroup[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "MajorChargeGroup";
+                base.parse_element (/<cim:MajorChargeGroup.effectiveDate>([\s\S]*?)<\/cim:MajorChargeGroup.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
+                base.parse_element (/<cim:MajorChargeGroup.frequencyType>([\s\S]*?)<\/cim:MajorChargeGroup.frequencyType>/g, obj, "frequencyType", base.to_string, sub, context);
+                base.parse_element (/<cim:MajorChargeGroup.invoiceType>([\s\S]*?)<\/cim:MajorChargeGroup.invoiceType>/g, obj, "invoiceType", base.to_string, sub, context);
+                base.parse_element (/<cim:MajorChargeGroup.requireAutorun>([\s\S]*?)<\/cim:MajorChargeGroup.requireAutorun>/g, obj, "requireAutorun", base.to_string, sub, context);
+                base.parse_element (/<cim:MajorChargeGroup.revisionNumber>([\s\S]*?)<\/cim:MajorChargeGroup.revisionNumber>/g, obj, "revisionNumber", base.to_string, sub, context);
+                base.parse_element (/<cim:MajorChargeGroup.runType>([\s\S]*?)<\/cim:MajorChargeGroup.runType>/g, obj, "runType", base.to_string, sub, context);
+                base.parse_element (/<cim:MajorChargeGroup.runVersion>([\s\S]*?)<\/cim:MajorChargeGroup.runVersion>/g, obj, "runVersion", base.to_string, sub, context);
+                base.parse_element (/<cim:MajorChargeGroup.terminationDate>([\s\S]*?)<\/cim:MajorChargeGroup.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:MajorChargeGroup.ChargeType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeType", sub, context);
+                base.parse_attributes (/<cim:MajorChargeGroup.MarketInvoice\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketInvoice", sub, context);
+                base.parse_attributes (/<cim:MajorChargeGroup.MktScheduledEvent\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MktScheduledEvent", sub, context);
+                base.parse_attributes (/<cim:MajorChargeGroup.Settlement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Settlement", sub, context);
+                let bucket = context.parsed.MajorChargeGroup;
+                if (null == bucket)
+                   context.parsed.MajorChargeGroup = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "MajorChargeGroup", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "MajorChargeGroup", "frequencyType", "frequencyType",  base.from_string, fields);
+                base.export_element (obj, "MajorChargeGroup", "invoiceType", "invoiceType",  base.from_string, fields);
+                base.export_element (obj, "MajorChargeGroup", "requireAutorun", "requireAutorun",  base.from_string, fields);
+                base.export_element (obj, "MajorChargeGroup", "revisionNumber", "revisionNumber",  base.from_string, fields);
+                base.export_element (obj, "MajorChargeGroup", "runType", "runType",  base.from_string, fields);
+                base.export_element (obj, "MajorChargeGroup", "runVersion", "runVersion",  base.from_string, fields);
+                base.export_element (obj, "MajorChargeGroup", "terminationDate", "terminationDate",  base.from_datetime, fields);
+                base.export_attributes (obj, "MajorChargeGroup", "ChargeType", "ChargeType", fields);
+                base.export_attributes (obj, "MajorChargeGroup", "MarketInvoice", "MarketInvoice", fields);
+                base.export_attributes (obj, "MajorChargeGroup", "MktScheduledEvent", "MktScheduledEvent", fields);
+                base.export_attributes (obj, "MajorChargeGroup", "Settlement", "Settlement", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MajorChargeGroup_collapse" aria-expanded="true" aria-controls="MajorChargeGroup_collapse" style="margin-left: 10px;">MajorChargeGroup</a></legend>
+                    <div id="MajorChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+                    {{#frequencyType}}<div><b>frequencyType</b>: {{frequencyType}}</div>{{/frequencyType}}
+                    {{#invoiceType}}<div><b>invoiceType</b>: {{invoiceType}}</div>{{/invoiceType}}
+                    {{#requireAutorun}}<div><b>requireAutorun</b>: {{requireAutorun}}</div>{{/requireAutorun}}
+                    {{#revisionNumber}}<div><b>revisionNumber</b>: {{revisionNumber}}</div>{{/revisionNumber}}
+                    {{#runType}}<div><b>runType</b>: {{runType}}</div>{{/runType}}
+                    {{#runVersion}}<div><b>runVersion</b>: {{runVersion}}</div>{{/runVersion}}
+                    {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
+                    {{#ChargeType}}<div><b>ChargeType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeType}}
+                    {{#MarketInvoice}}<div><b>MarketInvoice</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketInvoice}}
+                    {{#MktScheduledEvent}}<div><b>MktScheduledEvent</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MktScheduledEvent}}
+                    {{#Settlement}}<div><b>Settlement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Settlement}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["ChargeType"]) obj["ChargeType_string"] = obj["ChargeType"].join ();
+                if (obj["MarketInvoice"]) obj["MarketInvoice_string"] = obj["MarketInvoice"].join ();
+                if (obj["MktScheduledEvent"]) obj["MktScheduledEvent_string"] = obj["MktScheduledEvent"].join ();
+                if (obj["Settlement"]) obj["Settlement_string"] = obj["Settlement"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["ChargeType_string"];
+                delete obj["MarketInvoice_string"];
+                delete obj["MktScheduledEvent_string"];
+                delete obj["Settlement_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MajorChargeGroup_collapse" aria-expanded="true" aria-controls="{{id}}_MajorChargeGroup_collapse" style="margin-left: 10px;">MajorChargeGroup</a></legend>
+                    <div id="{{id}}_MajorChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='{{id}}_frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_invoiceType'>invoiceType: </label><div class='col-sm-8'><input id='{{id}}_invoiceType' class='form-control' type='text'{{#invoiceType}} value='{{invoiceType}}'{{/invoiceType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_requireAutorun'>requireAutorun: </label><div class='col-sm-8'><input id='{{id}}_requireAutorun' class='form-control' type='text'{{#requireAutorun}} value='{{requireAutorun}}'{{/requireAutorun}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_revisionNumber'>revisionNumber: </label><div class='col-sm-8'><input id='{{id}}_revisionNumber' class='form-control' type='text'{{#revisionNumber}} value='{{revisionNumber}}'{{/revisionNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runType'>runType: </label><div class='col-sm-8'><input id='{{id}}_runType' class='form-control' type='text'{{#runType}} value='{{runType}}'{{/runType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runVersion'>runVersion: </label><div class='col-sm-8'><input id='{{id}}_runVersion' class='form-control' type='text'{{#runVersion}} value='{{runVersion}}'{{/runVersion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType_string}}'{{/ChargeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketInvoice'>MarketInvoice: </label><div class='col-sm-8'><input id='{{id}}_MarketInvoice' class='form-control' type='text'{{#MarketInvoice}} value='{{MarketInvoice_string}}'{{/MarketInvoice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Settlement'>Settlement: </label><div class='col-sm-8'><input id='{{id}}_Settlement' class='form-control' type='text'{{#Settlement}} value='{{Settlement_string}}'{{/Settlement}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "MajorChargeGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" !== temp) obj["effectiveDate"] = temp;
+                temp = document.getElementById (id + "_frequencyType").value; if ("" !== temp) obj["frequencyType"] = temp;
+                temp = document.getElementById (id + "_invoiceType").value; if ("" !== temp) obj["invoiceType"] = temp;
+                temp = document.getElementById (id + "_requireAutorun").value; if ("" !== temp) obj["requireAutorun"] = temp;
+                temp = document.getElementById (id + "_revisionNumber").value; if ("" !== temp) obj["revisionNumber"] = temp;
+                temp = document.getElementById (id + "_runType").value; if ("" !== temp) obj["runType"] = temp;
+                temp = document.getElementById (id + "_runVersion").value; if ("" !== temp) obj["runVersion"] = temp;
+                temp = document.getElementById (id + "_terminationDate").value; if ("" !== temp) obj["terminationDate"] = temp;
+                temp = document.getElementById (id + "_ChargeType").value; if ("" !== temp) obj["ChargeType"] = temp.split (",");
+                temp = document.getElementById (id + "_MarketInvoice").value; if ("" !== temp) obj["MarketInvoice"] = temp.split (",");
+                temp = document.getElementById (id + "_Settlement").value; if ("" !== temp) obj["Settlement"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["ChargeType", "0..*", "0..*", "ChargeType", "MajorChargeGroup"],
+                            ["MarketInvoice", "0..*", "1..*", "MarketInvoice", "MajorChargeGroup"],
+                            ["MktScheduledEvent", "0..*", "0..1", "MarketScheduledEvent", "MajorChargeGroup"],
+                            ["Settlement", "0..*", "1..*", "Settlement", "MajorChargeGroup"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Property for a particular attribute that contains name and value.
+         *
+         */
+        class AttributeProperty extends base.Element
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.AttributeProperty;
+                if (null == bucket)
+                   cim_data.AttributeProperty = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.AttributeProperty[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "AttributeProperty";
+                base.parse_element (/<cim:AttributeProperty.propertyName>([\s\S]*?)<\/cim:AttributeProperty.propertyName>/g, obj, "propertyName", base.to_string, sub, context);
+                base.parse_element (/<cim:AttributeProperty.propertyValue>([\s\S]*?)<\/cim:AttributeProperty.propertyValue>/g, obj, "propertyValue", base.to_string, sub, context);
+                base.parse_element (/<cim:AttributeProperty.sequence>([\s\S]*?)<\/cim:AttributeProperty.sequence>/g, obj, "sequence", base.to_string, sub, context);
+                base.parse_attribute (/<cim:AttributeProperty.MktUserAttribute\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
+                let bucket = context.parsed.AttributeProperty;
+                if (null == bucket)
+                   context.parsed.AttributeProperty = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = [];
+
+                base.export_element (obj, "AttributeProperty", "propertyName", "propertyName",  base.from_string, fields);
+                base.export_element (obj, "AttributeProperty", "propertyValue", "propertyValue",  base.from_string, fields);
+                base.export_element (obj, "AttributeProperty", "sequence", "sequence",  base.from_string, fields);
+                base.export_attribute (obj, "AttributeProperty", "MktUserAttribute", "MktUserAttribute", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AttributeProperty_collapse" aria-expanded="true" aria-controls="AttributeProperty_collapse" style="margin-left: 10px;">AttributeProperty</a></legend>
+                    <div id="AttributeProperty_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#propertyName}}<div><b>propertyName</b>: {{propertyName}}</div>{{/propertyName}}
+                    {{#propertyValue}}<div><b>propertyValue</b>: {{propertyValue}}</div>{{/propertyValue}}
+                    {{#sequence}}<div><b>sequence</b>: {{sequence}}</div>{{/sequence}}
+                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MktUserAttribute}}");}); return false;'>{{MktUserAttribute}}</a></div>{{/MktUserAttribute}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AttributeProperty_collapse" aria-expanded="true" aria-controls="{{id}}_AttributeProperty_collapse" style="margin-left: 10px;">AttributeProperty</a></legend>
+                    <div id="{{id}}_AttributeProperty_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyName'>propertyName: </label><div class='col-sm-8'><input id='{{id}}_propertyName' class='form-control' type='text'{{#propertyName}} value='{{propertyName}}'{{/propertyName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyValue'>propertyValue: </label><div class='col-sm-8'><input id='{{id}}_propertyValue' class='form-control' type='text'{{#propertyValue}} value='{{propertyValue}}'{{/propertyValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequence'>sequence: </label><div class='col-sm-8'><input id='{{id}}_sequence' class='form-control' type='text'{{#sequence}} value='{{sequence}}'{{/sequence}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}'{{/MktUserAttribute}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "AttributeProperty" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_propertyName").value; if ("" !== temp) obj["propertyName"] = temp;
+                temp = document.getElementById (id + "_propertyValue").value; if ("" !== temp) obj["propertyValue"] = temp;
+                temp = document.getElementById (id + "_sequence").value; if ("" !== temp) obj["sequence"] = temp;
+                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" !== temp) obj["MktUserAttribute"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["MktUserAttribute", "1", "0..*", "MktUserAttribute", "AttributeProperty"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * A Charge Component is a list of configurable charge quality items to feed into settlement calculation and/or bill determinants.
+         *
+         */
+        class ChargeComponent extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.ChargeComponent;
+                if (null == bucket)
+                   cim_data.ChargeComponent = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.ChargeComponent[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "ChargeComponent";
+                base.parse_element (/<cim:ChargeComponent.deleteStatus>([\s\S]*?)<\/cim:ChargeComponent.deleteStatus>/g, obj, "deleteStatus", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeComponent.effectiveDate>([\s\S]*?)<\/cim:ChargeComponent.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
+                base.parse_element (/<cim:ChargeComponent.equation>([\s\S]*?)<\/cim:ChargeComponent.equation>/g, obj, "equation", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeComponent.message>([\s\S]*?)<\/cim:ChargeComponent.message>/g, obj, "message", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeComponent.roundOff>([\s\S]*?)<\/cim:ChargeComponent.roundOff>/g, obj, "roundOff", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeComponent.sum>([\s\S]*?)<\/cim:ChargeComponent.sum>/g, obj, "sum", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeComponent.terminationDate>([\s\S]*?)<\/cim:ChargeComponent.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
+                base.parse_element (/<cim:ChargeComponent.type>([\s\S]*?)<\/cim:ChargeComponent.type>/g, obj, "type", base.to_string, sub, context);
+                base.parse_attributes (/<cim:ChargeComponent.BillDeterminants\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BillDeterminants", sub, context);
+                base.parse_attributes (/<cim:ChargeComponent.ChargeTypes\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeTypes", sub, context);
+                let bucket = context.parsed.ChargeComponent;
+                if (null == bucket)
+                   context.parsed.ChargeComponent = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "ChargeComponent", "deleteStatus", "deleteStatus",  base.from_string, fields);
+                base.export_element (obj, "ChargeComponent", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "ChargeComponent", "equation", "equation",  base.from_string, fields);
+                base.export_element (obj, "ChargeComponent", "message", "message",  base.from_string, fields);
+                base.export_element (obj, "ChargeComponent", "roundOff", "roundOff",  base.from_string, fields);
+                base.export_element (obj, "ChargeComponent", "sum", "sum",  base.from_string, fields);
+                base.export_element (obj, "ChargeComponent", "terminationDate", "terminationDate",  base.from_datetime, fields);
+                base.export_element (obj, "ChargeComponent", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "ChargeComponent", "BillDeterminants", "BillDeterminants", fields);
+                base.export_attributes (obj, "ChargeComponent", "ChargeTypes", "ChargeTypes", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ChargeComponent_collapse" aria-expanded="true" aria-controls="ChargeComponent_collapse" style="margin-left: 10px;">ChargeComponent</a></legend>
+                    <div id="ChargeComponent_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#deleteStatus}}<div><b>deleteStatus</b>: {{deleteStatus}}</div>{{/deleteStatus}}
+                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+                    {{#equation}}<div><b>equation</b>: {{equation}}</div>{{/equation}}
+                    {{#message}}<div><b>message</b>: {{message}}</div>{{/message}}
+                    {{#roundOff}}<div><b>roundOff</b>: {{roundOff}}</div>{{/roundOff}}
+                    {{#sum}}<div><b>sum</b>: {{sum}}</div>{{/sum}}
+                    {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
+                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#BillDeterminants}}<div><b>BillDeterminants</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BillDeterminants}}
+                    {{#ChargeTypes}}<div><b>ChargeTypes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeTypes}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["BillDeterminants"]) obj["BillDeterminants_string"] = obj["BillDeterminants"].join ();
+                if (obj["ChargeTypes"]) obj["ChargeTypes_string"] = obj["ChargeTypes"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["BillDeterminants_string"];
+                delete obj["ChargeTypes_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ChargeComponent_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeComponent_collapse" style="margin-left: 10px;">ChargeComponent</a></legend>
+                    <div id="{{id}}_ChargeComponent_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deleteStatus'>deleteStatus: </label><div class='col-sm-8'><input id='{{id}}_deleteStatus' class='form-control' type='text'{{#deleteStatus}} value='{{deleteStatus}}'{{/deleteStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_equation'>equation: </label><div class='col-sm-8'><input id='{{id}}_equation' class='form-control' type='text'{{#equation}} value='{{equation}}'{{/equation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_message'>message: </label><div class='col-sm-8'><input id='{{id}}_message' class='form-control' type='text'{{#message}} value='{{message}}'{{/message}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_roundOff'>roundOff: </label><div class='col-sm-8'><input id='{{id}}_roundOff' class='form-control' type='text'{{#roundOff}} value='{{roundOff}}'{{/roundOff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sum'>sum: </label><div class='col-sm-8'><input id='{{id}}_sum' class='form-control' type='text'{{#sum}} value='{{sum}}'{{/sum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BillDeterminants'>BillDeterminants: </label><div class='col-sm-8'><input id='{{id}}_BillDeterminants' class='form-control' type='text'{{#BillDeterminants}} value='{{BillDeterminants_string}}'{{/BillDeterminants}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeTypes'>ChargeTypes: </label><div class='col-sm-8'><input id='{{id}}_ChargeTypes' class='form-control' type='text'{{#ChargeTypes}} value='{{ChargeTypes_string}}'{{/ChargeTypes}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "ChargeComponent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_deleteStatus").value; if ("" !== temp) obj["deleteStatus"] = temp;
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" !== temp) obj["effectiveDate"] = temp;
+                temp = document.getElementById (id + "_equation").value; if ("" !== temp) obj["equation"] = temp;
+                temp = document.getElementById (id + "_message").value; if ("" !== temp) obj["message"] = temp;
+                temp = document.getElementById (id + "_roundOff").value; if ("" !== temp) obj["roundOff"] = temp;
+                temp = document.getElementById (id + "_sum").value; if ("" !== temp) obj["sum"] = temp;
+                temp = document.getElementById (id + "_terminationDate").value; if ("" !== temp) obj["terminationDate"] = temp;
+                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
+                temp = document.getElementById (id + "_BillDeterminants").value; if ("" !== temp) obj["BillDeterminants"] = temp.split (",");
+                temp = document.getElementById (id + "_ChargeTypes").value; if ("" !== temp) obj["ChargeTypes"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["BillDeterminants", "0..*", "0..*", "BillDeterminant", "ChargeComponents"],
+                            ["ChargeTypes", "0..*", "0..*", "ChargeType", "ChargeComponents"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Response from registered resource acknowledging receipt of dispatch instructions.
+         *
+         */
+        class DispatchInstReply extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.DispatchInstReply;
+                if (null == bucket)
+                   cim_data.DispatchInstReply = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.DispatchInstReply[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "DispatchInstReply";
+                base.parse_element (/<cim:DispatchInstReply.acceptMW>([\s\S]*?)<\/cim:DispatchInstReply.acceptMW>/g, obj, "acceptMW", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DispatchInstReply.acceptStatus\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "acceptStatus", sub, context);
+                base.parse_element (/<cim:DispatchInstReply.certificationName>([\s\S]*?)<\/cim:DispatchInstReply.certificationName>/g, obj, "certificationName", base.to_string, sub, context);
+                base.parse_element (/<cim:DispatchInstReply.clearedMW>([\s\S]*?)<\/cim:DispatchInstReply.clearedMW>/g, obj, "clearedMW", base.to_string, sub, context);
+                base.parse_element (/<cim:DispatchInstReply.instructionTime>([\s\S]*?)<\/cim:DispatchInstReply.instructionTime>/g, obj, "instructionTime", base.to_datetime, sub, context);
+                base.parse_element (/<cim:DispatchInstReply.instructionType>([\s\S]*?)<\/cim:DispatchInstReply.instructionType>/g, obj, "instructionType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:DispatchInstReply.passIndicator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "passIndicator", sub, context);
+                base.parse_element (/<cim:DispatchInstReply.receivedTime>([\s\S]*?)<\/cim:DispatchInstReply.receivedTime>/g, obj, "receivedTime", base.to_datetime, sub, context);
+                base.parse_element (/<cim:DispatchInstReply.startTime>([\s\S]*?)<\/cim:DispatchInstReply.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
+                base.parse_attribute (/<cim:DispatchInstReply.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                let bucket = context.parsed.DispatchInstReply;
+                if (null == bucket)
+                   context.parsed.DispatchInstReply = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "DispatchInstReply", "acceptMW", "acceptMW",  base.from_string, fields);
+                base.export_attribute (obj, "DispatchInstReply", "acceptStatus", "acceptStatus", fields);
+                base.export_element (obj, "DispatchInstReply", "certificationName", "certificationName",  base.from_string, fields);
+                base.export_element (obj, "DispatchInstReply", "clearedMW", "clearedMW",  base.from_string, fields);
+                base.export_element (obj, "DispatchInstReply", "instructionTime", "instructionTime",  base.from_datetime, fields);
+                base.export_element (obj, "DispatchInstReply", "instructionType", "instructionType",  base.from_string, fields);
+                base.export_attribute (obj, "DispatchInstReply", "passIndicator", "passIndicator", fields);
+                base.export_element (obj, "DispatchInstReply", "receivedTime", "receivedTime",  base.from_datetime, fields);
+                base.export_element (obj, "DispatchInstReply", "startTime", "startTime",  base.from_datetime, fields);
+                base.export_attribute (obj, "DispatchInstReply", "RegisteredResource", "RegisteredResource", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DispatchInstReply_collapse" aria-expanded="true" aria-controls="DispatchInstReply_collapse" style="margin-left: 10px;">DispatchInstReply</a></legend>
+                    <div id="DispatchInstReply_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#acceptMW}}<div><b>acceptMW</b>: {{acceptMW}}</div>{{/acceptMW}}
+                    {{#acceptStatus}}<div><b>acceptStatus</b>: {{acceptStatus}}</div>{{/acceptStatus}}
+                    {{#certificationName}}<div><b>certificationName</b>: {{certificationName}}</div>{{/certificationName}}
+                    {{#clearedMW}}<div><b>clearedMW</b>: {{clearedMW}}</div>{{/clearedMW}}
+                    {{#instructionTime}}<div><b>instructionTime</b>: {{instructionTime}}</div>{{/instructionTime}}
+                    {{#instructionType}}<div><b>instructionType</b>: {{instructionType}}</div>{{/instructionType}}
+                    {{#passIndicator}}<div><b>passIndicator</b>: {{passIndicator}}</div>{{/passIndicator}}
+                    {{#receivedTime}}<div><b>receivedTime</b>: {{receivedTime}}</div>{{/receivedTime}}
+                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredResource}}");}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["acceptStatusDispatchResponseType"] = [{ id: '', selected: (!obj["acceptStatus"])}]; for (let property in MktDomain.DispatchResponseType) obj["acceptStatusDispatchResponseType"].push ({ id: property, selected: obj["acceptStatus"] && obj["acceptStatus"].endsWith ('.' + property)});
+                obj["passIndicatorPassIndicatorType"] = [{ id: '', selected: (!obj["passIndicator"])}]; for (let property in MktDomain.PassIndicatorType) obj["passIndicatorPassIndicatorType"].push ({ id: property, selected: obj["passIndicator"] && obj["passIndicator"].endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["acceptStatusDispatchResponseType"];
+                delete obj["passIndicatorPassIndicatorType"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DispatchInstReply_collapse" aria-expanded="true" aria-controls="{{id}}_DispatchInstReply_collapse" style="margin-left: 10px;">DispatchInstReply</a></legend>
+                    <div id="{{id}}_DispatchInstReply_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='{{id}}_acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><select id='{{id}}_acceptStatus' class='form-control custom-select'>{{#acceptStatusDispatchResponseType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/acceptStatusDispatchResponseType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationName'>certificationName: </label><div class='col-sm-8'><input id='{{id}}_certificationName' class='form-control' type='text'{{#certificationName}} value='{{certificationName}}'{{/certificationName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='{{id}}_clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionTime'>instructionTime: </label><div class='col-sm-8'><input id='{{id}}_instructionTime' class='form-control' type='text'{{#instructionTime}} value='{{instructionTime}}'{{/instructionTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionType'>instructionType: </label><div class='col-sm-8'><input id='{{id}}_instructionType' class='form-control' type='text'{{#instructionType}} value='{{instructionType}}'{{/instructionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><select id='{{id}}_passIndicator' class='form-control custom-select'>{{#passIndicatorPassIndicatorType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/passIndicatorPassIndicatorType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receivedTime'>receivedTime: </label><div class='col-sm-8'><input id='{{id}}_receivedTime' class='form-control' type='text'{{#receivedTime}} value='{{receivedTime}}'{{/receivedTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "DispatchInstReply" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_acceptMW").value; if ("" !== temp) obj["acceptMW"] = temp;
+                temp = MktDomain.DispatchResponseType[document.getElementById (id + "_acceptStatus").value]; if (temp) obj["acceptStatus"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#DispatchResponseType." + temp; else delete obj["acceptStatus"];
+                temp = document.getElementById (id + "_certificationName").value; if ("" !== temp) obj["certificationName"] = temp;
+                temp = document.getElementById (id + "_clearedMW").value; if ("" !== temp) obj["clearedMW"] = temp;
+                temp = document.getElementById (id + "_instructionTime").value; if ("" !== temp) obj["instructionTime"] = temp;
+                temp = document.getElementById (id + "_instructionType").value; if ("" !== temp) obj["instructionType"] = temp;
+                temp = MktDomain.PassIndicatorType[document.getElementById (id + "_passIndicator").value]; if (temp) obj["passIndicator"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PassIndicatorType." + temp; else delete obj["passIndicator"];
+                temp = document.getElementById (id + "_receivedTime").value; if ("" !== temp) obj["receivedTime"] = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResource", "1", "0..*", "RegisteredResource", "DispatchInstReply"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Relationship between unit operating price in \$/hour (Y-axis) and unit output in MW (X-axis).
+         *
+         */
+        class BidPriceCurve extends Core.Curve
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.BidPriceCurve;
+                if (null == bucket)
+                   cim_data.BidPriceCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.BidPriceCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "BidPriceCurve";
+                base.parse_attributes (/<cim:BidPriceCurve.BidSchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidSchedule", sub, context);
+                let bucket = context.parsed.BidPriceCurve;
+                if (null == bucket)
+                   context.parsed.BidPriceCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.Curve.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "BidPriceCurve", "BidSchedule", "BidSchedule", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidPriceCurve_collapse" aria-expanded="true" aria-controls="BidPriceCurve_collapse" style="margin-left: 10px;">BidPriceCurve</a></legend>
+                    <div id="BidPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#BidSchedule}}<div><b>BidSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidSchedule}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["BidSchedule"]) obj["BidSchedule_string"] = obj["BidSchedule"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["BidSchedule_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceCurve_collapse" style="margin-left: 10px;">BidPriceCurve</a></legend>
+                    <div id="{{id}}_BidPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "BidPriceCurve" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["BidSchedule", "0..*", "1", "BidPriceSchedule", "BidPriceCurve"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * This is the price sensitivity that bidder expresses for allowing market load interruption.
+         *
+         * Relationship between price (Y1-axis) vs. MW (X-axis).
+         *
+         */
+        class LoadReductionPriceCurve extends Core.Curve
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.LoadReductionPriceCurve;
+                if (null == bucket)
+                   cim_data.LoadReductionPriceCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.LoadReductionPriceCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "LoadReductionPriceCurve";
+                base.parse_attribute (/<cim:LoadReductionPriceCurve.LoadBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
+                let bucket = context.parsed.LoadReductionPriceCurve;
+                if (null == bucket)
+                   context.parsed.LoadReductionPriceCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.Curve.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "LoadReductionPriceCurve", "LoadBid", "LoadBid", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="LoadReductionPriceCurve_collapse" style="margin-left: 10px;">LoadReductionPriceCurve</a></legend>
+                    <div id="LoadReductionPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadBid}}");}); return false;'>{{LoadBid}}</a></div>{{/LoadBid}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LoadReductionPriceCurve_collapse" style="margin-left: 10px;">LoadReductionPriceCurve</a></legend>
+                    <div id="{{id}}_LoadReductionPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "LoadReductionPriceCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_LoadBid").value; if ("" !== temp) obj["LoadBid"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["LoadBid", "1", "0..*", "LoadBid", "LoadReductionPriceCurve"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * As set of mutually exclusive bids for which a maximum of one may be scheduled.
+         *
+         * Of these generating bids, only one generating bid can be scheduled at a time.
+         *
+         */
+        class BidSet extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.BidSet;
+                if (null == bucket)
+                   cim_data.BidSet = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.BidSet[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "BidSet";
+                base.parse_attributes (/<cim:BidSet.GeneratingBids\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBids", sub, context);
+                let bucket = context.parsed.BidSet;
+                if (null == bucket)
+                   context.parsed.BidSet = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "BidSet", "GeneratingBids", "GeneratingBids", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidSet_collapse" aria-expanded="true" aria-controls="BidSet_collapse" style="margin-left: 10px;">BidSet</a></legend>
+                    <div id="BidSet_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#GeneratingBids}}<div><b>GeneratingBids</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingBids}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["GeneratingBids"]) obj["GeneratingBids_string"] = obj["GeneratingBids"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["GeneratingBids_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidSet_collapse" aria-expanded="true" aria-controls="{{id}}_BidSet_collapse" style="margin-left: 10px;">BidSet</a></legend>
+                    <div id="{{id}}_BidSet_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "BidSet" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["GeneratingBids", "1..*", "0..1", "GeneratingBid", "BidSet"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Represents both bids to purchase and offers to sell energy or ancillary services in an RTO-sponsored market.
+         *
+         */
+        class Bid extends Common.Document
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.Bid;
+                if (null == bucket)
+                   cim_data.Bid = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.Bid[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Common.Document.prototype.parse.call (this, context, sub);
+                obj.cls = "Bid";
+                base.parse_attribute (/<cim:Bid.marketType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
+                base.parse_element (/<cim:Bid.startTime>([\s\S]*?)<\/cim:Bid.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
+                base.parse_element (/<cim:Bid.stopTime>([\s\S]*?)<\/cim:Bid.stopTime>/g, obj, "stopTime", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:Bid.RMRDetermination\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RMRDetermination", sub, context);
+                base.parse_attribute (/<cim:Bid.ActionRequest\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ActionRequest", sub, context);
+                base.parse_attributes (/<cim:Bid.ProductBids\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProductBids", sub, context);
+                base.parse_attribute (/<cim:Bid.EnergyMarket\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyMarket", sub, context);
+                base.parse_attributes (/<cim:Bid.MitigatedBidSegment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBidSegment", sub, context);
+                base.parse_attributes (/<cim:Bid.ChargeProfiles\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeProfiles", sub, context);
+                base.parse_attributes (/<cim:Bid.MitigatedBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBid", sub, context);
+                base.parse_attributes (/<cim:Bid.BidHourlySchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidHourlySchedule", sub, context);
+                base.parse_attribute (/<cim:Bid.MarketParticipant\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketParticipant", sub, context);
+                let bucket = context.parsed.Bid;
+                if (null == bucket)
+                   context.parsed.Bid = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Common.Document.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "Bid", "marketType", "marketType", fields);
+                base.export_element (obj, "Bid", "startTime", "startTime",  base.from_datetime, fields);
+                base.export_element (obj, "Bid", "stopTime", "stopTime",  base.from_datetime, fields);
+                base.export_attributes (obj, "Bid", "RMRDetermination", "RMRDetermination", fields);
+                base.export_attribute (obj, "Bid", "ActionRequest", "ActionRequest", fields);
+                base.export_attributes (obj, "Bid", "ProductBids", "ProductBids", fields);
+                base.export_attribute (obj, "Bid", "EnergyMarket", "EnergyMarket", fields);
+                base.export_attributes (obj, "Bid", "MitigatedBidSegment", "MitigatedBidSegment", fields);
+                base.export_attributes (obj, "Bid", "ChargeProfiles", "ChargeProfiles", fields);
+                base.export_attributes (obj, "Bid", "MitigatedBid", "MitigatedBid", fields);
+                base.export_attributes (obj, "Bid", "BidHourlySchedule", "BidHourlySchedule", fields);
+                base.export_attribute (obj, "Bid", "MarketParticipant", "MarketParticipant", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Bid_collapse" aria-expanded="true" aria-controls="Bid_collapse" style="margin-left: 10px;">Bid</a></legend>
+                    <div id="Bid_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.template.call (this) +
+                    `
+                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
+                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+                    {{#stopTime}}<div><b>stopTime</b>: {{stopTime}}</div>{{/stopTime}}
+                    {{#RMRDetermination}}<div><b>RMRDetermination</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RMRDetermination}}
+                    {{#ActionRequest}}<div><b>ActionRequest</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ActionRequest}}");}); return false;'>{{ActionRequest}}</a></div>{{/ActionRequest}}
+                    {{#ProductBids}}<div><b>ProductBids</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProductBids}}
+                    {{#EnergyMarket}}<div><b>EnergyMarket</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergyMarket}}");}); return false;'>{{EnergyMarket}}</a></div>{{/EnergyMarket}}
+                    {{#MitigatedBidSegment}}<div><b>MitigatedBidSegment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MitigatedBidSegment}}
+                    {{#ChargeProfiles}}<div><b>ChargeProfiles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeProfiles}}
+                    {{#MitigatedBid}}<div><b>MitigatedBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MitigatedBid}}
+                    {{#BidHourlySchedule}}<div><b>BidHourlySchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidHourlySchedule}}
+                    {{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MarketParticipant}}");}); return false;'>{{MarketParticipant}}</a></div>{{/MarketParticipant}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["marketTypeMarketType"] = [{ id: '', selected: (!obj["marketType"])}]; for (let property in MktDomain.MarketType) obj["marketTypeMarketType"].push ({ id: property, selected: obj["marketType"] && obj["marketType"].endsWith ('.' + property)});
+                if (obj["RMRDetermination"]) obj["RMRDetermination_string"] = obj["RMRDetermination"].join ();
+                if (obj["ProductBids"]) obj["ProductBids_string"] = obj["ProductBids"].join ();
+                if (obj["MitigatedBidSegment"]) obj["MitigatedBidSegment_string"] = obj["MitigatedBidSegment"].join ();
+                if (obj["ChargeProfiles"]) obj["ChargeProfiles_string"] = obj["ChargeProfiles"].join ();
+                if (obj["MitigatedBid"]) obj["MitigatedBid_string"] = obj["MitigatedBid"].join ();
+                if (obj["BidHourlySchedule"]) obj["BidHourlySchedule_string"] = obj["BidHourlySchedule"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["marketTypeMarketType"];
+                delete obj["RMRDetermination_string"];
+                delete obj["ProductBids_string"];
+                delete obj["MitigatedBidSegment_string"];
+                delete obj["ChargeProfiles_string"];
+                delete obj["MitigatedBid_string"];
+                delete obj["BidHourlySchedule_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Bid_collapse" aria-expanded="true" aria-controls="{{id}}_Bid_collapse" style="margin-left: 10px;">Bid</a></legend>
+                    <div id="{{id}}_Bid_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Common.Document.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stopTime'>stopTime: </label><div class='col-sm-8'><input id='{{id}}_stopTime' class='form-control' type='text'{{#stopTime}} value='{{stopTime}}'{{/stopTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActionRequest'>ActionRequest: </label><div class='col-sm-8'><input id='{{id}}_ActionRequest' class='form-control' type='text'{{#ActionRequest}} value='{{ActionRequest}}'{{/ActionRequest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyMarket'>EnergyMarket: </label><div class='col-sm-8'><input id='{{id}}_EnergyMarket' class='form-control' type='text'{{#EnergyMarket}} value='{{EnergyMarket}}'{{/EnergyMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='{{id}}_MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}'{{/MarketParticipant}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "Bid" };
+                super.submit (id, obj);
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj["marketType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#MarketType." + temp; else delete obj["marketType"];
+                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
+                temp = document.getElementById (id + "_stopTime").value; if ("" !== temp) obj["stopTime"] = temp;
+                temp = document.getElementById (id + "_ActionRequest").value; if ("" !== temp) obj["ActionRequest"] = temp;
+                temp = document.getElementById (id + "_EnergyMarket").value; if ("" !== temp) obj["EnergyMarket"] = temp;
+                temp = document.getElementById (id + "_MarketParticipant").value; if ("" !== temp) obj["MarketParticipant"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["RMRDetermination", "0..*", "0..1", "RMRDetermination", "Bid"],
+                            ["ActionRequest", "1", "0..*", "ActionRequest", "Bid"],
+                            ["ProductBids", "1..*", "1", "ProductBid", "Bid"],
+                            ["EnergyMarket", "1", "0..*", "EnergyMarket", "Bids"],
+                            ["MitigatedBidSegment", "0..*", "1", "MitigatedBidSegment", "Bid"],
+                            ["ChargeProfiles", "0..*", "0..1", "ChargeProfile", "Bid"],
+                            ["MitigatedBid", "0..*", "0..1", "MitigatedBid", "Bid"],
+                            ["BidHourlySchedule", "0..*", "1", "BidHourlySchedule", "Bid"],
+                            ["MarketParticipant", "0..1", "0..*", "MarketParticipant", "Bid"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Relationship between a price in \$(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
+         *
+         */
+        class EnergyPriceCurve extends base.Element
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.EnergyPriceCurve;
+                if (null == bucket)
+                   cim_data.EnergyPriceCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.EnergyPriceCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "EnergyPriceCurve";
+                base.parse_attributes (/<cim:EnergyPriceCurve.FTRs\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "FTRs", sub, context);
+                base.parse_attributes (/<cim:EnergyPriceCurve.EnergyTransactions\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyTransactions", sub, context);
+                let bucket = context.parsed.EnergyPriceCurve;
+                if (null == bucket)
+                   context.parsed.EnergyPriceCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = [];
+
+                base.export_attributes (obj, "EnergyPriceCurve", "FTRs", "FTRs", fields);
+                base.export_attributes (obj, "EnergyPriceCurve", "EnergyTransactions", "EnergyTransactions", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="EnergyPriceCurve_collapse" style="margin-left: 10px;">EnergyPriceCurve</a></legend>
+                    <div id="EnergyPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#FTRs}}<div><b>FTRs</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/FTRs}}
+                    {{#EnergyTransactions}}<div><b>EnergyTransactions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyTransactions}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["FTRs"]) obj["FTRs_string"] = obj["FTRs"].join ();
+                if (obj["EnergyTransactions"]) obj["EnergyTransactions_string"] = obj["EnergyTransactions"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["FTRs_string"];
+                delete obj["EnergyTransactions_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyPriceCurve_collapse" style="margin-left: 10px;">EnergyPriceCurve</a></legend>
+                    <div id="{{id}}_EnergyPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransactions'>EnergyTransactions: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransactions' class='form-control' type='text'{{#EnergyTransactions}} value='{{EnergyTransactions_string}}'{{/EnergyTransactions}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "EnergyPriceCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_EnergyTransactions").value; if ("" !== temp) obj["EnergyTransactions"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["FTRs", "0..*", "0..1", "FTR", "EnergyPriceCurve"],
+                            ["EnergyTransactions", "0..*", "0..*", "EnergyTransaction", "EnergyPriceCurves"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Response from an intertie resource acknowledging receipt of dispatch instructions.
+         *
+         */
+        class InterTieDispatchResponse extends base.Element
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.InterTieDispatchResponse;
+                if (null == bucket)
+                   cim_data.InterTieDispatchResponse = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.InterTieDispatchResponse[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "InterTieDispatchResponse";
+                base.parse_element (/<cim:InterTieDispatchResponse.acceptMW>([\s\S]*?)<\/cim:InterTieDispatchResponse.acceptMW>/g, obj, "acceptMW", base.to_float, sub, context);
+                base.parse_attribute (/<cim:InterTieDispatchResponse.acceptStatus\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "acceptStatus", sub, context);
+                base.parse_element (/<cim:InterTieDispatchResponse.clearedMW>([\s\S]*?)<\/cim:InterTieDispatchResponse.clearedMW>/g, obj, "clearedMW", base.to_float, sub, context);
+                base.parse_attribute (/<cim:InterTieDispatchResponse.passIndicator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "passIndicator", sub, context);
+                base.parse_element (/<cim:InterTieDispatchResponse.startTime>([\s\S]*?)<\/cim:InterTieDispatchResponse.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
+                base.parse_attribute (/<cim:InterTieDispatchResponse.RegisteredInterTie\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredInterTie", sub, context);
+                let bucket = context.parsed.InterTieDispatchResponse;
+                if (null == bucket)
+                   context.parsed.InterTieDispatchResponse = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = [];
+
+                base.export_element (obj, "InterTieDispatchResponse", "acceptMW", "acceptMW",  base.from_float, fields);
+                base.export_attribute (obj, "InterTieDispatchResponse", "acceptStatus", "acceptStatus", fields);
+                base.export_element (obj, "InterTieDispatchResponse", "clearedMW", "clearedMW",  base.from_float, fields);
+                base.export_attribute (obj, "InterTieDispatchResponse", "passIndicator", "passIndicator", fields);
+                base.export_element (obj, "InterTieDispatchResponse", "startTime", "startTime",  base.from_datetime, fields);
+                base.export_attribute (obj, "InterTieDispatchResponse", "RegisteredInterTie", "RegisteredInterTie", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="InterTieDispatchResponse_collapse" style="margin-left: 10px;">InterTieDispatchResponse</a></legend>
+                    <div id="InterTieDispatchResponse_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#acceptMW}}<div><b>acceptMW</b>: {{acceptMW}}</div>{{/acceptMW}}
+                    {{#acceptStatus}}<div><b>acceptStatus</b>: {{acceptStatus}}</div>{{/acceptStatus}}
+                    {{#clearedMW}}<div><b>clearedMW</b>: {{clearedMW}}</div>{{/clearedMW}}
+                    {{#passIndicator}}<div><b>passIndicator</b>: {{passIndicator}}</div>{{/passIndicator}}
+                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+                    {{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredInterTie}}");}); return false;'>{{RegisteredInterTie}}</a></div>{{/RegisteredInterTie}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["acceptStatusDispatchResponseType"] = [{ id: '', selected: (!obj["acceptStatus"])}]; for (let property in MktDomain.DispatchResponseType) obj["acceptStatusDispatchResponseType"].push ({ id: property, selected: obj["acceptStatus"] && obj["acceptStatus"].endsWith ('.' + property)});
+                obj["passIndicatorPassIndicatorType"] = [{ id: '', selected: (!obj["passIndicator"])}]; for (let property in MktDomain.PassIndicatorType) obj["passIndicatorPassIndicatorType"].push ({ id: property, selected: obj["passIndicator"] && obj["passIndicator"].endsWith ('.' + property)});
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["acceptStatusDispatchResponseType"];
+                delete obj["passIndicatorPassIndicatorType"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieDispatchResponse_collapse" style="margin-left: 10px;">InterTieDispatchResponse</a></legend>
+                    <div id="{{id}}_InterTieDispatchResponse_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='{{id}}_acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><select id='{{id}}_acceptStatus' class='form-control custom-select'>{{#acceptStatusDispatchResponseType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/acceptStatusDispatchResponseType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='{{id}}_clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><select id='{{id}}_passIndicator' class='form-control custom-select'>{{#passIndicatorPassIndicatorType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/passIndicatorPassIndicatorType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "InterTieDispatchResponse" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_acceptMW").value; if ("" !== temp) obj["acceptMW"] = temp;
+                temp = MktDomain.DispatchResponseType[document.getElementById (id + "_acceptStatus").value]; if (temp) obj["acceptStatus"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#DispatchResponseType." + temp; else delete obj["acceptStatus"];
+                temp = document.getElementById (id + "_clearedMW").value; if ("" !== temp) obj["clearedMW"] = temp;
+                temp = MktDomain.PassIndicatorType[document.getElementById (id + "_passIndicator").value]; if (temp) obj["passIndicator"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#PassIndicatorType." + temp; else delete obj["passIndicator"];
+                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
+                temp = document.getElementById (id + "_RegisteredInterTie").value; if ("" !== temp) obj["RegisteredInterTie"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["RegisteredInterTie", "1", "0..*", "RegisteredInterTie", "InterTieDispatchResponse"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Startup time curve as a function of down time, where time is specified in minutes.
+         *
+         * Relationship between unit startup time (Y1-axis) vs. unit elapsed down time (X-axis).
+         *
+         */
+        class StartUpTimeCurve extends Core.Curve
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.StartUpTimeCurve;
+                if (null == bucket)
+                   cim_data.StartUpTimeCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.StartUpTimeCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "StartUpTimeCurve";
+                base.parse_attribute (/<cim:StartUpTimeCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
+                base.parse_attributes (/<cim:StartUpTimeCurve.GeneratingBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
+                let bucket = context.parsed.StartUpTimeCurve;
+                if (null == bucket)
+                   context.parsed.StartUpTimeCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.Curve.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "StartUpTimeCurve", "RegisteredGenerator", "RegisteredGenerator", fields);
+                base.export_attributes (obj, "StartUpTimeCurve", "GeneratingBid", "GeneratingBid", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="StartUpTimeCurve_collapse" style="margin-left: 10px;">StartUpTimeCurve</a></legend>
+                    <div id="StartUpTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredGenerator}}");}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingBid}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["GeneratingBid"]) obj["GeneratingBid_string"] = obj["GeneratingBid"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["GeneratingBid_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpTimeCurve_collapse" style="margin-left: 10px;">StartUpTimeCurve</a></legend>
+                    <div id="{{id}}_StartUpTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "StartUpTimeCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" !== temp) obj["RegisteredGenerator"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["RegisteredGenerator", "0..1", "0..1", "RegisteredGenerator", "StartUpTimeCurve"],
+                            ["GeneratingBid", "0..*", "0..1", "GeneratingBid", "StartUpTimeCurve"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Notification time curve as a function of down time.
+         *
+         * Relationship between crew notification time (Y1-axis) and unit startup time (Y2-axis) vs. unit elapsed down time (X-axis).
+         *
+         */
+        class NotificationTimeCurve extends Core.Curve
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.NotificationTimeCurve;
+                if (null == bucket)
+                   cim_data.NotificationTimeCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.NotificationTimeCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "NotificationTimeCurve";
+                base.parse_attributes (/<cim:NotificationTimeCurve.GeneratingBids\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBids", sub, context);
+                let bucket = context.parsed.NotificationTimeCurve;
+                if (null == bucket)
+                   context.parsed.NotificationTimeCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.Curve.prototype.export.call (this, obj, false);
+
+                base.export_attributes (obj, "NotificationTimeCurve", "GeneratingBids", "GeneratingBids", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="NotificationTimeCurve_collapse" style="margin-left: 10px;">NotificationTimeCurve</a></legend>
+                    <div id="NotificationTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#GeneratingBids}}<div><b>GeneratingBids</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingBids}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["GeneratingBids"]) obj["GeneratingBids_string"] = obj["GeneratingBids"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["GeneratingBids_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_NotificationTimeCurve_collapse" style="margin-left: 10px;">NotificationTimeCurve</a></legend>
+                    <div id="{{id}}_NotificationTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                obj = obj || { id: id, cls: "NotificationTimeCurve" };
+                super.submit (id, obj);
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["GeneratingBids", "0..*", "0..1", "GeneratingBid", "NotificationTimeCurve"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Containment for bid hourly parameters that are not product dependent.
+         *
+         */
+        class BidHourlySchedule extends Core.RegularIntervalSchedule
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.BidHourlySchedule;
+                if (null == bucket)
+                   cim_data.BidHourlySchedule = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.BidHourlySchedule[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
+                obj.cls = "BidHourlySchedule";
+                base.parse_attribute (/<cim:BidHourlySchedule.Bid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
+                let bucket = context.parsed.BidHourlySchedule;
+                if (null == bucket)
+                   context.parsed.BidHourlySchedule = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "BidHourlySchedule", "Bid", "Bid", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidHourlySchedule_collapse" aria-expanded="true" aria-controls="BidHourlySchedule_collapse" style="margin-left: 10px;">BidHourlySchedule</a></legend>
+                    <div id="BidHourlySchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.template.call (this) +
+                    `
+                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Bid}}");}); return false;'>{{Bid}}</a></div>{{/Bid}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidHourlySchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidHourlySchedule_collapse" style="margin-left: 10px;">BidHourlySchedule</a></legend>
+                    <div id="{{id}}_BidHourlySchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bid'>Bid: </label><div class='col-sm-8'><input id='{{id}}_Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "BidHourlySchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Bid").value; if ("" !== temp) obj["Bid"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["Bid", "1", "0..*", "Bid", "BidHourlySchedule"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Metered SubSystem Load Following Instruction.
+         *
+         */
+        class LoadFollowingInst extends base.Element
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.LoadFollowingInst;
+                if (null == bucket)
+                   cim_data.LoadFollowingInst = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.LoadFollowingInst[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = base.Element.prototype.parse.call (this, context, sub);
+                obj.cls = "LoadFollowingInst";
+                base.parse_element (/<cim:LoadFollowingInst.endTime>([\s\S]*?)<\/cim:LoadFollowingInst.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
+                base.parse_element (/<cim:LoadFollowingInst.loadFollowingMW>([\s\S]*?)<\/cim:LoadFollowingInst.loadFollowingMW>/g, obj, "loadFollowingMW", base.to_float, sub, context);
+                base.parse_element (/<cim:LoadFollowingInst.mssInstructionID>([\s\S]*?)<\/cim:LoadFollowingInst.mssInstructionID>/g, obj, "mssInstructionID", base.to_string, sub, context);
+                base.parse_element (/<cim:LoadFollowingInst.startTime>([\s\S]*?)<\/cim:LoadFollowingInst.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
+                base.parse_attribute (/<cim:LoadFollowingInst.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                let bucket = context.parsed.LoadFollowingInst;
+                if (null == bucket)
+                   context.parsed.LoadFollowingInst = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = [];
+
+                base.export_element (obj, "LoadFollowingInst", "endTime", "endTime",  base.from_datetime, fields);
+                base.export_element (obj, "LoadFollowingInst", "loadFollowingMW", "loadFollowingMW",  base.from_float, fields);
+                base.export_element (obj, "LoadFollowingInst", "mssInstructionID", "mssInstructionID",  base.from_string, fields);
+                base.export_element (obj, "LoadFollowingInst", "startTime", "startTime",  base.from_datetime, fields);
+                base.export_attribute (obj, "LoadFollowingInst", "RegisteredResource", "RegisteredResource", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadFollowingInst_collapse" aria-expanded="true" aria-controls="LoadFollowingInst_collapse" style="margin-left: 10px;">LoadFollowingInst</a></legend>
+                    <div id="LoadFollowingInst_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.template.call (this) +
+                    `
+                    {{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
+                    {{#loadFollowingMW}}<div><b>loadFollowingMW</b>: {{loadFollowingMW}}</div>{{/loadFollowingMW}}
+                    {{#mssInstructionID}}<div><b>mssInstructionID</b>: {{mssInstructionID}}</div>{{/mssInstructionID}}
+                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredResource}}");}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadFollowingInst_collapse" aria-expanded="true" aria-controls="{{id}}_LoadFollowingInst_collapse" style="margin-left: 10px;">LoadFollowingInst</a></legend>
+                    <div id="{{id}}_LoadFollowingInst_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + base.Element.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingMW'>loadFollowingMW: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingMW' class='form-control' type='text'{{#loadFollowingMW}} value='{{loadFollowingMW}}'{{/loadFollowingMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mssInstructionID'>mssInstructionID: </label><div class='col-sm-8'><input id='{{id}}_mssInstructionID' class='form-control' type='text'{{#mssInstructionID}} value='{{mssInstructionID}}'{{/mssInstructionID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "LoadFollowingInst" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endTime").value; if ("" !== temp) obj["endTime"] = temp;
+                temp = document.getElementById (id + "_loadFollowingMW").value; if ("" !== temp) obj["loadFollowingMW"] = temp;
+                temp = document.getElementById (id + "_mssInstructionID").value; if ("" !== temp) obj["mssInstructionID"] = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResource", "1", "0..*", "RegisteredResource", "LoadFollowingInst"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Ramp rate as a function of resource MW output.
+         *
+         */
+        class RampRateCurve extends Core.Curve
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.RampRateCurve;
+                if (null == bucket)
+                   cim_data.RampRateCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.RampRateCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "RampRateCurve";
+                base.parse_attribute (/<cim:RampRateCurve.condition\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "condition", sub, context);
+                base.parse_attribute (/<cim:RampRateCurve.constraintRampType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "constraintRampType", sub, context);
+                base.parse_attribute (/<cim:RampRateCurve.rampRateType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "rampRateType", sub, context);
+                base.parse_attribute (/<cim:RampRateCurve.GeneratingBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
+                base.parse_attribute (/<cim:RampRateCurve.LoadBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
+                base.parse_attributes (/<cim:RampRateCurve.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                base.parse_attribute (/<cim:RampRateCurve.InterTieBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "InterTieBid", sub, context);
+                let bucket = context.parsed.RampRateCurve;
+                if (null == bucket)
+                   context.parsed.RampRateCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.Curve.prototype.export.call (this, obj, false);
+
+                base.export_attribute (obj, "RampRateCurve", "condition", "condition", fields);
+                base.export_attribute (obj, "RampRateCurve", "constraintRampType", "constraintRampType", fields);
+                base.export_attribute (obj, "RampRateCurve", "rampRateType", "rampRateType", fields);
+                base.export_attribute (obj, "RampRateCurve", "GeneratingBid", "GeneratingBid", fields);
+                base.export_attribute (obj, "RampRateCurve", "LoadBid", "LoadBid", fields);
+                base.export_attributes (obj, "RampRateCurve", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attribute (obj, "RampRateCurve", "InterTieBid", "InterTieBid", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RampRateCurve_collapse" aria-expanded="true" aria-controls="RampRateCurve_collapse" style="margin-left: 10px;">RampRateCurve</a></legend>
+                    <div id="RampRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#condition}}<div><b>condition</b>: {{condition}}</div>{{/condition}}
+                    {{#constraintRampType}}<div><b>constraintRampType</b>: {{constraintRampType}}</div>{{/constraintRampType}}
+                    {{#rampRateType}}<div><b>rampRateType</b>: {{rampRateType}}</div>{{/rampRateType}}
+                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{GeneratingBid}}");}); return false;'>{{GeneratingBid}}</a></div>{{/GeneratingBid}}
+                    {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadBid}}");}); return false;'>{{LoadBid}}</a></div>{{/LoadBid}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
+                    {{#InterTieBid}}<div><b>InterTieBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{InterTieBid}}");}); return false;'>{{InterTieBid}}</a></div>{{/InterTieBid}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                obj["conditionRampRateCondition"] = [{ id: '', selected: (!obj["condition"])}]; for (let property in MktDomain.RampRateCondition) obj["conditionRampRateCondition"].push ({ id: property, selected: obj["condition"] && obj["condition"].endsWith ('.' + property)});
+                obj["constraintRampTypeConstraintRampType"] = [{ id: '', selected: (!obj["constraintRampType"])}]; for (let property in MktDomain.ConstraintRampType) obj["constraintRampTypeConstraintRampType"].push ({ id: property, selected: obj["constraintRampType"] && obj["constraintRampType"].endsWith ('.' + property)});
+                obj["rampRateTypeRampRateType"] = [{ id: '', selected: (!obj["rampRateType"])}]; for (let property in MktDomain.RampRateType) obj["rampRateTypeRampRateType"].push ({ id: property, selected: obj["rampRateType"] && obj["rampRateType"].endsWith ('.' + property)});
+                if (obj["RegisteredResource"]) obj["RegisteredResource_string"] = obj["RegisteredResource"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["conditionRampRateCondition"];
+                delete obj["constraintRampTypeConstraintRampType"];
+                delete obj["rampRateTypeRampRateType"];
+                delete obj["RegisteredResource_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RampRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RampRateCurve_collapse" style="margin-left: 10px;">RampRateCurve</a></legend>
+                    <div id="{{id}}_RampRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><select id='{{id}}_condition' class='form-control custom-select'>{{#conditionRampRateCondition}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/conditionRampRateCondition}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constraintRampType'>constraintRampType: </label><div class='col-sm-8'><select id='{{id}}_constraintRampType' class='form-control custom-select'>{{#constraintRampTypeConstraintRampType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/constraintRampTypeConstraintRampType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampRateType'>rampRateType: </label><div class='col-sm-8'><select id='{{id}}_rampRateType' class='form-control custom-select'>{{#rampRateTypeRampRateType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rampRateTypeRampRateType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingBid'>GeneratingBid: </label><div class='col-sm-8'><input id='{{id}}_GeneratingBid' class='form-control' type='text'{{#GeneratingBid}} value='{{GeneratingBid}}'{{/GeneratingBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='{{id}}_InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "RampRateCurve" };
+                super.submit (id, obj);
+                temp = MktDomain.RampRateCondition[document.getElementById (id + "_condition").value]; if (temp) obj["condition"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#RampRateCondition." + temp; else delete obj["condition"];
+                temp = MktDomain.ConstraintRampType[document.getElementById (id + "_constraintRampType").value]; if (temp) obj["constraintRampType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ConstraintRampType." + temp; else delete obj["constraintRampType"];
+                temp = MktDomain.RampRateType[document.getElementById (id + "_rampRateType").value]; if (temp) obj["rampRateType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#RampRateType." + temp; else delete obj["rampRateType"];
+                temp = document.getElementById (id + "_GeneratingBid").value; if ("" !== temp) obj["GeneratingBid"] = temp;
+                temp = document.getElementById (id + "_LoadBid").value; if ("" !== temp) obj["LoadBid"] = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp.split (",");
+                temp = document.getElementById (id + "_InterTieBid").value; if ("" !== temp) obj["InterTieBid"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["GeneratingBid", "0..1", "0..*", "GeneratingBid", "RampRateCurve"],
+                            ["LoadBid", "0..1", "0..*", "LoadBid", "RampRateCurve"],
+                            ["RegisteredResource", "0..*", "0..*", "RegisteredResource", "RampRateCurve"],
+                            ["InterTieBid", "0..1", "0..*", "InterTieBid", "RampRateCurve"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Charge Group is the grouping of Charge Types for settlement invoicing purpose.
+         *
+         * Examples such as Ancillary Services, Interests, etc.
+         *
+         */
+        class ChargeGroup extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.ChargeGroup;
+                if (null == bucket)
+                   cim_data.ChargeGroup = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.ChargeGroup[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "ChargeGroup";
+                base.parse_element (/<cim:ChargeGroup.effectiveDate>([\s\S]*?)<\/cim:ChargeGroup.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
+                base.parse_element (/<cim:ChargeGroup.marketCode>([\s\S]*?)<\/cim:ChargeGroup.marketCode>/g, obj, "marketCode", base.to_string, sub, context);
+                base.parse_element (/<cim:ChargeGroup.terminationDate>([\s\S]*?)<\/cim:ChargeGroup.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:ChargeGroup.MktUserAttribute\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
+                base.parse_attribute (/<cim:ChargeGroup.ChargeGroupParent\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroupParent", sub, context);
+                base.parse_attributes (/<cim:ChargeGroup.ChargeGroupChild\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroupChild", sub, context);
+                base.parse_attributes (/<cim:ChargeGroup.ChargeType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeType", sub, context);
+                let bucket = context.parsed.ChargeGroup;
+                if (null == bucket)
+                   context.parsed.ChargeGroup = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "ChargeGroup", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "ChargeGroup", "marketCode", "marketCode",  base.from_string, fields);
+                base.export_element (obj, "ChargeGroup", "terminationDate", "terminationDate",  base.from_datetime, fields);
+                base.export_attributes (obj, "ChargeGroup", "MktUserAttribute", "MktUserAttribute", fields);
+                base.export_attribute (obj, "ChargeGroup", "ChargeGroupParent", "ChargeGroupParent", fields);
+                base.export_attributes (obj, "ChargeGroup", "ChargeGroupChild", "ChargeGroupChild", fields);
+                base.export_attributes (obj, "ChargeGroup", "ChargeType", "ChargeType", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ChargeGroup_collapse" aria-expanded="true" aria-controls="ChargeGroup_collapse" style="margin-left: 10px;">ChargeGroup</a></legend>
+                    <div id="ChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
+                    {{#marketCode}}<div><b>marketCode</b>: {{marketCode}}</div>{{/marketCode}}
+                    {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
+                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MktUserAttribute}}
+                    {{#ChargeGroupParent}}<div><b>ChargeGroupParent</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ChargeGroupParent}}");}); return false;'>{{ChargeGroupParent}}</a></div>{{/ChargeGroupParent}}
+                    {{#ChargeGroupChild}}<div><b>ChargeGroupChild</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeGroupChild}}
+                    {{#ChargeType}}<div><b>ChargeType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeType}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+                if (obj["MktUserAttribute"]) obj["MktUserAttribute_string"] = obj["MktUserAttribute"].join ();
+                if (obj["ChargeGroupChild"]) obj["ChargeGroupChild_string"] = obj["ChargeGroupChild"].join ();
+                if (obj["ChargeType"]) obj["ChargeType_string"] = obj["ChargeType"].join ();
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+                delete obj["MktUserAttribute_string"];
+                delete obj["ChargeGroupChild_string"];
+                delete obj["ChargeType_string"];
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ChargeGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeGroup_collapse" style="margin-left: 10px;">ChargeGroup</a></legend>
+                    <div id="{{id}}_ChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketCode'>marketCode: </label><div class='col-sm-8'><input id='{{id}}_marketCode' class='form-control' type='text'{{#marketCode}} value='{{marketCode}}'{{/marketCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroupParent'>ChargeGroupParent: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroupParent' class='form-control' type='text'{{#ChargeGroupParent}} value='{{ChargeGroupParent}}'{{/ChargeGroupParent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType_string}}'{{/ChargeType}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "ChargeGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" !== temp) obj["effectiveDate"] = temp;
+                temp = document.getElementById (id + "_marketCode").value; if ("" !== temp) obj["marketCode"] = temp;
+                temp = document.getElementById (id + "_terminationDate").value; if ("" !== temp) obj["terminationDate"] = temp;
+                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" !== temp) obj["MktUserAttribute"] = temp.split (",");
+                temp = document.getElementById (id + "_ChargeGroupParent").value; if ("" !== temp) obj["ChargeGroupParent"] = temp;
+                temp = document.getElementById (id + "_ChargeType").value; if ("" !== temp) obj["ChargeType"] = temp.split (",");
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["MktUserAttribute", "0..*", "0..*", "MktUserAttribute", "ChargeGroup"],
+                            ["ChargeGroupParent", "0..1", "0..*", "ChargeGroup", "ChargeGroupChild"],
+                            ["ChargeGroupChild", "0..*", "0..1", "ChargeGroup", "ChargeGroupParent"],
+                            ["ChargeType", "0..*", "0..*", "ChargeType", "ChargeGroup"]
+                        ]
+                    )
+                );
+            }
+        }
+
+        /**
+         * Signifies an event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units shall be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
+         *
+         */
+        class MarketScheduledEvent extends Core.IdentifiedObject
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.MarketScheduledEvent;
+                if (null == bucket)
+                   cim_data.MarketScheduledEvent = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.MarketScheduledEvent[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
+                obj.cls = "MarketScheduledEvent";
+                base.parse_element (/<cim:MarketScheduledEvent.category>([\s\S]*?)<\/cim:MarketScheduledEvent.category>/g, obj, "category", base.to_string, sub, context);
+                base.parse_element (/<cim:MarketScheduledEvent.duration>([\s\S]*?)<\/cim:MarketScheduledEvent.duration>/g, obj, "duration", base.to_string, sub, context);
+                base.parse_attribute (/<cim:MarketScheduledEvent.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
+                base.parse_attribute (/<cim:MarketScheduledEvent.MajorChargeGroup\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MajorChargeGroup", sub, context);
+                let bucket = context.parsed.MarketScheduledEvent;
+                if (null == bucket)
+                   context.parsed.MarketScheduledEvent = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "MarketScheduledEvent", "category", "category",  base.from_string, fields);
+                base.export_element (obj, "MarketScheduledEvent", "duration", "duration",  base.from_string, fields);
+                base.export_attribute (obj, "MarketScheduledEvent", "status", "status", fields);
+                base.export_attribute (obj, "MarketScheduledEvent", "MajorChargeGroup", "MajorChargeGroup", fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="MarketScheduledEvent_collapse" style="margin-left: 10px;">MarketScheduledEvent</a></legend>
+                    <div id="MarketScheduledEvent_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    `
+                    {{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
+                    {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
+                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
+                    {{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MajorChargeGroup}}");}); return false;'>{{MajorChargeGroup}}</a></div>{{/MajorChargeGroup}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="{{id}}_MarketScheduledEvent_collapse" style="margin-left: 10px;">MarketScheduledEvent</a></legend>
+                    <div id="{{id}}_MarketScheduledEvent_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_category'>category: </label><div class='col-sm-8'><input id='{{id}}_category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}'{{/MajorChargeGroup}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "MarketScheduledEvent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_category").value; if ("" !== temp) obj["category"] = temp;
+                temp = document.getElementById (id + "_duration").value; if ("" !== temp) obj["duration"] = temp;
+                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
+                temp = document.getElementById (id + "_MajorChargeGroup").value; if ("" !== temp) obj["MajorChargeGroup"] = temp;
+
+                return (obj);
+            }
+
+            relations ()
+            {
+                return (
+                    super.relations ().concat (
+                        [
+                            ["MajorChargeGroup", "0..1", "0..*", "MajorChargeGroup", "MktScheduledEvent"]
                         ]
                     )
                 );
@@ -146,8 +3237,8 @@ define
             {
                 let obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "BidDistributionFactor";
-                base.parse_element (/<cim:BidDistributionFactor.timeIntervalStart>([\s\S]*?)<\/cim:BidDistributionFactor.timeIntervalStart>/g, obj, "timeIntervalStart", base.to_datetime, sub, context);
                 base.parse_element (/<cim:BidDistributionFactor.timeIntervalEnd>([\s\S]*?)<\/cim:BidDistributionFactor.timeIntervalEnd>/g, obj, "timeIntervalEnd", base.to_datetime, sub, context);
+                base.parse_element (/<cim:BidDistributionFactor.timeIntervalStart>([\s\S]*?)<\/cim:BidDistributionFactor.timeIntervalStart>/g, obj, "timeIntervalStart", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:BidDistributionFactor.ProductBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProductBid", sub, context);
                 base.parse_attributes (/<cim:BidDistributionFactor.PnodeDistributionFactor\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "PnodeDistributionFactor", sub, context);
                 let bucket = context.parsed.BidDistributionFactor;
@@ -162,8 +3253,8 @@ define
             {
                 let fields = [];
 
-                base.export_element (obj, "BidDistributionFactor", "timeIntervalStart", "timeIntervalStart",  base.from_datetime, fields);
                 base.export_element (obj, "BidDistributionFactor", "timeIntervalEnd", "timeIntervalEnd",  base.from_datetime, fields);
+                base.export_element (obj, "BidDistributionFactor", "timeIntervalStart", "timeIntervalStart",  base.from_datetime, fields);
                 base.export_attribute (obj, "BidDistributionFactor", "ProductBid", "ProductBid", fields);
                 base.export_attributes (obj, "BidDistributionFactor", "PnodeDistributionFactor", "PnodeDistributionFactor", fields);
                 if (full)
@@ -182,8 +3273,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#timeIntervalStart}}<div><b>timeIntervalStart</b>: {{timeIntervalStart}}</div>{{/timeIntervalStart}}
                     {{#timeIntervalEnd}}<div><b>timeIntervalEnd</b>: {{timeIntervalEnd}}</div>{{/timeIntervalEnd}}
+                    {{#timeIntervalStart}}<div><b>timeIntervalStart</b>: {{timeIntervalStart}}</div>{{/timeIntervalStart}}
                     {{#ProductBid}}<div><b>ProductBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ProductBid}}");}); return false;'>{{ProductBid}}</a></div>{{/ProductBid}}
                     {{#PnodeDistributionFactor}}<div><b>PnodeDistributionFactor</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/PnodeDistributionFactor}}
                     </div>
@@ -215,8 +3306,8 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeIntervalStart'>timeIntervalStart: </label><div class='col-sm-8'><input id='{{id}}_timeIntervalStart' class='form-control' type='text'{{#timeIntervalStart}} value='{{timeIntervalStart}}'{{/timeIntervalStart}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeIntervalEnd'>timeIntervalEnd: </label><div class='col-sm-8'><input id='{{id}}_timeIntervalEnd' class='form-control' type='text'{{#timeIntervalEnd}} value='{{timeIntervalEnd}}'{{/timeIntervalEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeIntervalStart'>timeIntervalStart: </label><div class='col-sm-8'><input id='{{id}}_timeIntervalStart' class='form-control' type='text'{{#timeIntervalStart}} value='{{timeIntervalStart}}'{{/timeIntervalStart}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
                     </div>
                     </fieldset>
@@ -230,8 +3321,8 @@ define
 
                 obj = obj || { id: id, cls: "BidDistributionFactor" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_timeIntervalStart").value; if ("" !== temp) obj["timeIntervalStart"] = temp;
                 temp = document.getElementById (id + "_timeIntervalEnd").value; if ("" !== temp) obj["timeIntervalEnd"] = temp;
+                temp = document.getElementById (id + "_timeIntervalStart").value; if ("" !== temp) obj["timeIntervalStart"] = temp;
                 temp = document.getElementById (id + "_ProductBid").value; if ("" !== temp) obj["ProductBid"] = temp;
 
                 return (obj);
@@ -445,7 +3536,7 @@ define
                 temp = document.getElementById (id + "_counterTradeQuantity").value; if ("" !== temp) obj["counterTradeQuantity"] = temp;
                 temp = document.getElementById (id + "_dependOnTradeName").value; if ("" !== temp) obj["dependOnTradeName"] = temp;
                 temp = document.getElementById (id + "_lastModified").value; if ("" !== temp) obj["lastModified"] = temp;
-                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj["marketType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj["marketType"];
+                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj["marketType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#MarketType." + temp; else delete obj["marketType"];
                 temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
                 temp = document.getElementById (id + "_stopTime").value; if ("" !== temp) obj["stopTime"] = temp;
                 temp = document.getElementById (id + "_submitFromTimeStamp").value; if ("" !== temp) obj["submitFromTimeStamp"] = temp;
@@ -489,35 +3580,36 @@ define
         }
 
         /**
-         * Relationship between a price in \$(or other monetary unit) /hour (Y-axis) and a MW value (X-axis).
+         * Action request against an existing Trade.
          *
          */
-        class EnergyPriceCurve extends base.Element
+        class ActionRequest extends base.Element
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.EnergyPriceCurve;
+                let bucket = cim_data.ActionRequest;
                 if (null == bucket)
-                   cim_data.EnergyPriceCurve = bucket = {};
+                   cim_data.ActionRequest = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.EnergyPriceCurve[obj.id];
+               delete cim_data.ActionRequest[obj.id];
             }
 
             parse (context, sub)
             {
                 let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "EnergyPriceCurve";
-                base.parse_attributes (/<cim:EnergyPriceCurve.FTRs\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "FTRs", sub, context);
-                base.parse_attributes (/<cim:EnergyPriceCurve.EnergyTransactions\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyTransactions", sub, context);
-                let bucket = context.parsed.EnergyPriceCurve;
+                obj.cls = "ActionRequest";
+                base.parse_attribute (/<cim:ActionRequest.actionName\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "actionName", sub, context);
+                base.parse_attributes (/<cim:ActionRequest.Trade\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
+                base.parse_attributes (/<cim:ActionRequest.Bid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
+                let bucket = context.parsed.ActionRequest;
                 if (null == bucket)
-                   context.parsed.EnergyPriceCurve = bucket = {};
+                   context.parsed.ActionRequest = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -527,8 +3619,9 @@ define
             {
                 let fields = [];
 
-                base.export_attributes (obj, "EnergyPriceCurve", "FTRs", "FTRs", fields);
-                base.export_attributes (obj, "EnergyPriceCurve", "EnergyTransactions", "EnergyTransactions", fields);
+                base.export_attribute (obj, "ActionRequest", "actionName", "actionName", fields);
+                base.export_attributes (obj, "ActionRequest", "Trade", "Trade", fields);
+                base.export_attributes (obj, "ActionRequest", "Bid", "Bid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -540,298 +3633,14 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="EnergyPriceCurve_collapse" style="margin-left: 10px;">EnergyPriceCurve</a></legend>
-                    <div id="EnergyPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ActionRequest_collapse" aria-expanded="true" aria-controls="ActionRequest_collapse" style="margin-left: 10px;">ActionRequest</a></legend>
+                    <div id="ActionRequest_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#FTRs}}<div><b>FTRs</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/FTRs}}
-                    {{#EnergyTransactions}}<div><b>EnergyTransactions</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyTransactions}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["FTRs"]) obj["FTRs_string"] = obj["FTRs"].join ();
-                if (obj["EnergyTransactions"]) obj["EnergyTransactions_string"] = obj["EnergyTransactions"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["FTRs_string"];
-                delete obj["EnergyTransactions_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyPriceCurve_collapse" style="margin-left: 10px;">EnergyPriceCurve</a></legend>
-                    <div id="{{id}}_EnergyPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransactions'>EnergyTransactions: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransactions' class='form-control' type='text'{{#EnergyTransactions}} value='{{EnergyTransactions_string}}'{{/EnergyTransactions}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "EnergyPriceCurve" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_EnergyTransactions").value; if ("" !== temp) obj["EnergyTransactions"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["FTRs", "0..*", "0..1", "FTR", "EnergyPriceCurve"],
-                            ["EnergyTransactions", "0..*", "0..*", "EnergyTransaction", "EnergyPriceCurves"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Charge Group is the grouping of Charge Types for settlement invoicing purpose.
-         *
-         * Examples such as Ancillary Services, Interests, etc.
-         *
-         */
-        class ChargeGroup extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.ChargeGroup;
-                if (null == bucket)
-                   cim_data.ChargeGroup = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.ChargeGroup[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "ChargeGroup";
-                base.parse_element (/<cim:ChargeGroup.marketCode>([\s\S]*?)<\/cim:ChargeGroup.marketCode>/g, obj, "marketCode", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeGroup.effectiveDate>([\s\S]*?)<\/cim:ChargeGroup.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ChargeGroup.terminationDate>([\s\S]*?)<\/cim:ChargeGroup.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
-                base.parse_attributes (/<cim:ChargeGroup.MktUserAttribute\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
-                base.parse_attributes (/<cim:ChargeGroup.ChargeGroupChild\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroupChild", sub, context);
-                base.parse_attribute (/<cim:ChargeGroup.ChargeGroupParent\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroupParent", sub, context);
-                base.parse_attributes (/<cim:ChargeGroup.ChargeType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeType", sub, context);
-                let bucket = context.parsed.ChargeGroup;
-                if (null == bucket)
-                   context.parsed.ChargeGroup = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "ChargeGroup", "marketCode", "marketCode",  base.from_string, fields);
-                base.export_element (obj, "ChargeGroup", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ChargeGroup", "terminationDate", "terminationDate",  base.from_datetime, fields);
-                base.export_attributes (obj, "ChargeGroup", "MktUserAttribute", "MktUserAttribute", fields);
-                base.export_attributes (obj, "ChargeGroup", "ChargeGroupChild", "ChargeGroupChild", fields);
-                base.export_attribute (obj, "ChargeGroup", "ChargeGroupParent", "ChargeGroupParent", fields);
-                base.export_attributes (obj, "ChargeGroup", "ChargeType", "ChargeType", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ChargeGroup_collapse" aria-expanded="true" aria-controls="ChargeGroup_collapse" style="margin-left: 10px;">ChargeGroup</a></legend>
-                    <div id="ChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#marketCode}}<div><b>marketCode</b>: {{marketCode}}</div>{{/marketCode}}
-                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
-                    {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
-                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MktUserAttribute}}
-                    {{#ChargeGroupChild}}<div><b>ChargeGroupChild</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeGroupChild}}
-                    {{#ChargeGroupParent}}<div><b>ChargeGroupParent</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ChargeGroupParent}}");}); return false;'>{{ChargeGroupParent}}</a></div>{{/ChargeGroupParent}}
-                    {{#ChargeType}}<div><b>ChargeType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeType}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["MktUserAttribute"]) obj["MktUserAttribute_string"] = obj["MktUserAttribute"].join ();
-                if (obj["ChargeGroupChild"]) obj["ChargeGroupChild_string"] = obj["ChargeGroupChild"].join ();
-                if (obj["ChargeType"]) obj["ChargeType_string"] = obj["ChargeType"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["MktUserAttribute_string"];
-                delete obj["ChargeGroupChild_string"];
-                delete obj["ChargeType_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ChargeGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeGroup_collapse" style="margin-left: 10px;">ChargeGroup</a></legend>
-                    <div id="{{id}}_ChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketCode'>marketCode: </label><div class='col-sm-8'><input id='{{id}}_marketCode' class='form-control' type='text'{{#marketCode}} value='{{marketCode}}'{{/marketCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroupParent'>ChargeGroupParent: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroupParent' class='form-control' type='text'{{#ChargeGroupParent}} value='{{ChargeGroupParent}}'{{/ChargeGroupParent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType_string}}'{{/ChargeType}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "ChargeGroup" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_marketCode").value; if ("" !== temp) obj["marketCode"] = temp;
-                temp = document.getElementById (id + "_effectiveDate").value; if ("" !== temp) obj["effectiveDate"] = temp;
-                temp = document.getElementById (id + "_terminationDate").value; if ("" !== temp) obj["terminationDate"] = temp;
-                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" !== temp) obj["MktUserAttribute"] = temp.split (",");
-                temp = document.getElementById (id + "_ChargeGroupParent").value; if ("" !== temp) obj["ChargeGroupParent"] = temp;
-                temp = document.getElementById (id + "_ChargeType").value; if ("" !== temp) obj["ChargeType"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["MktUserAttribute", "0..*", "0..*", "MktUserAttribute", "ChargeGroup"],
-                            ["ChargeGroupChild", "0..*", "0..1", "ChargeGroup", "ChargeGroupParent"],
-                            ["ChargeGroupParent", "0..1", "0..*", "ChargeGroup", "ChargeGroupChild"],
-                            ["ChargeType", "0..*", "0..*", "ChargeType", "ChargeGroup"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * <b>TradeType</b>                                        <b>TradeProduct</b>
-         * IST  (InterSC Trade)                          PHY (Physical Energy Trade)
-         * IST                                                  APN (Energy Trades at Aggregated Pricing Nodes)
-         * IST                                                  CPT (Converted Physical Energy Trade)
-         * AST (Ancilliary Services Trade)             RUT (Regulation Up Trade)
-         * AST                                                 RDT (Regulation Down Trade)
-         * AST                                                 SRT (Spinning Reserve Trade)
-         * AST                                                 NRT (Non-Spinning Reserve Trade)
-         *
-         * UCT (Unit Commitment Trade)            null
-         *
-         */
-        class TradeProduct extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.TradeProduct;
-                if (null == bucket)
-                   cim_data.TradeProduct = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.TradeProduct[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "TradeProduct";
-                base.parse_attribute (/<cim:TradeProduct.tradeType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "tradeType", sub, context);
-                base.parse_element (/<cim:TradeProduct.tradeProductType>([\s\S]*?)<\/cim:TradeProduct.tradeProductType>/g, obj, "tradeProductType", base.to_string, sub, context);
-                base.parse_attributes (/<cim:TradeProduct.Trade\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
-                let bucket = context.parsed.TradeProduct;
-                if (null == bucket)
-                   context.parsed.TradeProduct = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = [];
-
-                base.export_attribute (obj, "TradeProduct", "tradeType", "tradeType", fields);
-                base.export_element (obj, "TradeProduct", "tradeProductType", "tradeProductType",  base.from_string, fields);
-                base.export_attributes (obj, "TradeProduct", "Trade", "Trade", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TradeProduct_collapse" aria-expanded="true" aria-controls="TradeProduct_collapse" style="margin-left: 10px;">TradeProduct</a></legend>
-                    <div id="TradeProduct_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.template.call (this) +
-                    `
-                    {{#tradeType}}<div><b>tradeType</b>: {{tradeType}}</div>{{/tradeType}}
-                    {{#tradeProductType}}<div><b>tradeProductType</b>: {{tradeProductType}}</div>{{/tradeProductType}}
+                    {{#actionName}}<div><b>actionName</b>: {{actionName}}</div>{{/actionName}}
                     {{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Trade}}
+                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Bid}}
                     </div>
                     </fieldset>
 
@@ -842,15 +3651,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj["tradeTypeTradeType"] = [{ id: '', selected: (!obj["tradeType"])}]; for (let property in MktDomain.TradeType) obj["tradeTypeTradeType"].push ({ id: property, selected: obj["tradeType"] && obj["tradeType"].endsWith ('.' + property)});
+                obj["actionNameActionType"] = [{ id: '', selected: (!obj["actionName"])}]; for (let property in MktDomain.ActionType) obj["actionNameActionType"].push ({ id: property, selected: obj["actionName"] && obj["actionName"].endsWith ('.' + property)});
                 if (obj["Trade"]) obj["Trade_string"] = obj["Trade"].join ();
+                if (obj["Bid"]) obj["Bid_string"] = obj["Bid"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj["tradeTypeTradeType"];
+                delete obj["actionNameActionType"];
                 delete obj["Trade_string"];
+                delete obj["Bid_string"];
             }
 
             edit_template ()
@@ -858,13 +3669,12 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TradeProduct_collapse" aria-expanded="true" aria-controls="{{id}}_TradeProduct_collapse" style="margin-left: 10px;">TradeProduct</a></legend>
-                    <div id="{{id}}_TradeProduct_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ActionRequest_collapse" aria-expanded="true" aria-controls="{{id}}_ActionRequest_collapse" style="margin-left: 10px;">ActionRequest</a></legend>
+                    <div id="{{id}}_ActionRequest_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeType'>tradeType: </label><div class='col-sm-8'><select id='{{id}}_tradeType' class='form-control custom-select'>{{#tradeTypeTradeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/tradeTypeTradeType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeProductType'>tradeProductType: </label><div class='col-sm-8'><input id='{{id}}_tradeProductType' class='form-control' type='text'{{#tradeProductType}} value='{{tradeProductType}}'{{/tradeProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actionName'>actionName: </label><div class='col-sm-8'><select id='{{id}}_actionName' class='form-control custom-select'>{{#actionNameActionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/actionNameActionType}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -875,10 +3685,9 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "TradeProduct" };
+                obj = obj || { id: id, cls: "ActionRequest" };
                 super.submit (id, obj);
-                temp = MktDomain.TradeType[document.getElementById (id + "_tradeType").value]; if (temp) obj["tradeType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#TradeType." + temp; else delete obj["tradeType"];
-                temp = document.getElementById (id + "_tradeProductType").value; if ("" !== temp) obj["tradeProductType"] = temp;
+                temp = MktDomain.ActionType[document.getElementById (id + "_actionName").value]; if (temp) obj["actionName"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ActionType." + temp; else delete obj["actionName"];
 
                 return (obj);
             }
@@ -888,603 +3697,8 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["Trade", "0..*", "1", "Trade", "TradeProduct"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Containment for bid hourly parameters that are not product dependent.
-         *
-         */
-        class BidHourlySchedule extends Core.RegularIntervalSchedule
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.BidHourlySchedule;
-                if (null == bucket)
-                   cim_data.BidHourlySchedule = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.BidHourlySchedule[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
-                obj.cls = "BidHourlySchedule";
-                base.parse_attribute (/<cim:BidHourlySchedule.Bid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-                let bucket = context.parsed.BidHourlySchedule;
-                if (null == bucket)
-                   context.parsed.BidHourlySchedule = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
-
-                base.export_attribute (obj, "BidHourlySchedule", "Bid", "Bid", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidHourlySchedule_collapse" aria-expanded="true" aria-controls="BidHourlySchedule_collapse" style="margin-left: 10px;">BidHourlySchedule</a></legend>
-                    <div id="BidHourlySchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.RegularIntervalSchedule.prototype.template.call (this) +
-                    `
-                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Bid}}");}); return false;'>{{Bid}}</a></div>{{/Bid}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidHourlySchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidHourlySchedule_collapse" style="margin-left: 10px;">BidHourlySchedule</a></legend>
-                    <div id="{{id}}_BidHourlySchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bid'>Bid: </label><div class='col-sm-8'><input id='{{id}}_Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "BidHourlySchedule" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_Bid").value; if ("" !== temp) obj["Bid"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["Bid", "1", "0..*", "Bid", "BidHourlySchedule"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Component of a bid that pertains to one market product.
-         *
-         */
-        class ProductBid extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.ProductBid;
-                if (null == bucket)
-                   cim_data.ProductBid = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.ProductBid[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "ProductBid";
-                base.parse_attributes (/<cim:ProductBid.BidDistributionFactor\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidDistributionFactor", sub, context);
-                base.parse_attribute (/<cim:ProductBid.Bid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-                base.parse_attributes (/<cim:ProductBid.BidSchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidSchedule", sub, context);
-                base.parse_attributes (/<cim:ProductBid.BidSelfSched\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
-                base.parse_attributes (/<cim:ProductBid.BidHourlyProductSchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidHourlyProductSchedule", sub, context);
-                base.parse_attribute (/<cim:ProductBid.MarketProduct\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
-                let bucket = context.parsed.ProductBid;
-                if (null == bucket)
-                   context.parsed.ProductBid = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "ProductBid", "BidDistributionFactor", "BidDistributionFactor", fields);
-                base.export_attribute (obj, "ProductBid", "Bid", "Bid", fields);
-                base.export_attributes (obj, "ProductBid", "BidSchedule", "BidSchedule", fields);
-                base.export_attributes (obj, "ProductBid", "BidSelfSched", "BidSelfSched", fields);
-                base.export_attributes (obj, "ProductBid", "BidHourlyProductSchedule", "BidHourlyProductSchedule", fields);
-                base.export_attribute (obj, "ProductBid", "MarketProduct", "MarketProduct", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ProductBid_collapse" aria-expanded="true" aria-controls="ProductBid_collapse" style="margin-left: 10px;">ProductBid</a></legend>
-                    <div id="ProductBid_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#BidDistributionFactor}}<div><b>BidDistributionFactor</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidDistributionFactor}}
-                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Bid}}");}); return false;'>{{Bid}}</a></div>{{/Bid}}
-                    {{#BidSchedule}}<div><b>BidSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidSchedule}}
-                    {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidSelfSched}}
-                    {{#BidHourlyProductSchedule}}<div><b>BidHourlyProductSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidHourlyProductSchedule}}
-                    {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MarketProduct}}");}); return false;'>{{MarketProduct}}</a></div>{{/MarketProduct}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["BidDistributionFactor"]) obj["BidDistributionFactor_string"] = obj["BidDistributionFactor"].join ();
-                if (obj["BidSchedule"]) obj["BidSchedule_string"] = obj["BidSchedule"].join ();
-                if (obj["BidSelfSched"]) obj["BidSelfSched_string"] = obj["BidSelfSched"].join ();
-                if (obj["BidHourlyProductSchedule"]) obj["BidHourlyProductSchedule_string"] = obj["BidHourlyProductSchedule"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["BidDistributionFactor_string"];
-                delete obj["BidSchedule_string"];
-                delete obj["BidSelfSched_string"];
-                delete obj["BidHourlyProductSchedule_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ProductBid_collapse" aria-expanded="true" aria-controls="{{id}}_ProductBid_collapse" style="margin-left: 10px;">ProductBid</a></legend>
-                    <div id="{{id}}_ProductBid_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bid'>Bid: </label><div class='col-sm-8'><input id='{{id}}_Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "ProductBid" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_Bid").value; if ("" !== temp) obj["Bid"] = temp;
-                temp = document.getElementById (id + "_MarketProduct").value; if ("" !== temp) obj["MarketProduct"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["BidDistributionFactor", "0..*", "1", "BidDistributionFactor", "ProductBid"],
-                            ["Bid", "1", "1..*", "Bid", "ProductBids"],
-                            ["BidSchedule", "0..*", "1", "BidPriceSchedule", "ProductBid"],
-                            ["BidSelfSched", "0..*", "1", "BidSelfSched", "ProductBid"],
-                            ["BidHourlyProductSchedule", "0..*", "1", "BidHourlyProductSchedule", "ProductBid"],
-                            ["MarketProduct", "1", "0..*", "MarketProduct", "ProductBids"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * A Major Charge Group is the same as Invoice Type which provides the highest level of grouping for charge types configuration.
-         *
-         * Examples: Market, FERC, RMR.
-         *
-         */
-        class MajorChargeGroup extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.MajorChargeGroup;
-                if (null == bucket)
-                   cim_data.MajorChargeGroup = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.MajorChargeGroup[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "MajorChargeGroup";
-                base.parse_element (/<cim:MajorChargeGroup.runType>([\s\S]*?)<\/cim:MajorChargeGroup.runType>/g, obj, "runType", base.to_string, sub, context);
-                base.parse_element (/<cim:MajorChargeGroup.runVersion>([\s\S]*?)<\/cim:MajorChargeGroup.runVersion>/g, obj, "runVersion", base.to_string, sub, context);
-                base.parse_element (/<cim:MajorChargeGroup.frequencyType>([\s\S]*?)<\/cim:MajorChargeGroup.frequencyType>/g, obj, "frequencyType", base.to_string, sub, context);
-                base.parse_element (/<cim:MajorChargeGroup.invoiceType>([\s\S]*?)<\/cim:MajorChargeGroup.invoiceType>/g, obj, "invoiceType", base.to_string, sub, context);
-                base.parse_element (/<cim:MajorChargeGroup.effectiveDate>([\s\S]*?)<\/cim:MajorChargeGroup.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:MajorChargeGroup.terminationDate>([\s\S]*?)<\/cim:MajorChargeGroup.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:MajorChargeGroup.requireAutorun>([\s\S]*?)<\/cim:MajorChargeGroup.requireAutorun>/g, obj, "requireAutorun", base.to_string, sub, context);
-                base.parse_element (/<cim:MajorChargeGroup.revisionNumber>([\s\S]*?)<\/cim:MajorChargeGroup.revisionNumber>/g, obj, "revisionNumber", base.to_string, sub, context);
-                base.parse_attributes (/<cim:MajorChargeGroup.ChargeType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeType", sub, context);
-                base.parse_attributes (/<cim:MajorChargeGroup.MarketInvoice\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketInvoice", sub, context);
-                base.parse_attributes (/<cim:MajorChargeGroup.MktScheduledEvent\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MktScheduledEvent", sub, context);
-                base.parse_attributes (/<cim:MajorChargeGroup.Settlement\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Settlement", sub, context);
-                let bucket = context.parsed.MajorChargeGroup;
-                if (null == bucket)
-                   context.parsed.MajorChargeGroup = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "MajorChargeGroup", "runType", "runType",  base.from_string, fields);
-                base.export_element (obj, "MajorChargeGroup", "runVersion", "runVersion",  base.from_string, fields);
-                base.export_element (obj, "MajorChargeGroup", "frequencyType", "frequencyType",  base.from_string, fields);
-                base.export_element (obj, "MajorChargeGroup", "invoiceType", "invoiceType",  base.from_string, fields);
-                base.export_element (obj, "MajorChargeGroup", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "MajorChargeGroup", "terminationDate", "terminationDate",  base.from_datetime, fields);
-                base.export_element (obj, "MajorChargeGroup", "requireAutorun", "requireAutorun",  base.from_string, fields);
-                base.export_element (obj, "MajorChargeGroup", "revisionNumber", "revisionNumber",  base.from_string, fields);
-                base.export_attributes (obj, "MajorChargeGroup", "ChargeType", "ChargeType", fields);
-                base.export_attributes (obj, "MajorChargeGroup", "MarketInvoice", "MarketInvoice", fields);
-                base.export_attributes (obj, "MajorChargeGroup", "MktScheduledEvent", "MktScheduledEvent", fields);
-                base.export_attributes (obj, "MajorChargeGroup", "Settlement", "Settlement", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MajorChargeGroup_collapse" aria-expanded="true" aria-controls="MajorChargeGroup_collapse" style="margin-left: 10px;">MajorChargeGroup</a></legend>
-                    <div id="MajorChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#runType}}<div><b>runType</b>: {{runType}}</div>{{/runType}}
-                    {{#runVersion}}<div><b>runVersion</b>: {{runVersion}}</div>{{/runVersion}}
-                    {{#frequencyType}}<div><b>frequencyType</b>: {{frequencyType}}</div>{{/frequencyType}}
-                    {{#invoiceType}}<div><b>invoiceType</b>: {{invoiceType}}</div>{{/invoiceType}}
-                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
-                    {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
-                    {{#requireAutorun}}<div><b>requireAutorun</b>: {{requireAutorun}}</div>{{/requireAutorun}}
-                    {{#revisionNumber}}<div><b>revisionNumber</b>: {{revisionNumber}}</div>{{/revisionNumber}}
-                    {{#ChargeType}}<div><b>ChargeType</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeType}}
-                    {{#MarketInvoice}}<div><b>MarketInvoice</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MarketInvoice}}
-                    {{#MktScheduledEvent}}<div><b>MktScheduledEvent</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MktScheduledEvent}}
-                    {{#Settlement}}<div><b>Settlement</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Settlement}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["ChargeType"]) obj["ChargeType_string"] = obj["ChargeType"].join ();
-                if (obj["MarketInvoice"]) obj["MarketInvoice_string"] = obj["MarketInvoice"].join ();
-                if (obj["MktScheduledEvent"]) obj["MktScheduledEvent_string"] = obj["MktScheduledEvent"].join ();
-                if (obj["Settlement"]) obj["Settlement_string"] = obj["Settlement"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["ChargeType_string"];
-                delete obj["MarketInvoice_string"];
-                delete obj["MktScheduledEvent_string"];
-                delete obj["Settlement_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MajorChargeGroup_collapse" aria-expanded="true" aria-controls="{{id}}_MajorChargeGroup_collapse" style="margin-left: 10px;">MajorChargeGroup</a></legend>
-                    <div id="{{id}}_MajorChargeGroup_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runType'>runType: </label><div class='col-sm-8'><input id='{{id}}_runType' class='form-control' type='text'{{#runType}} value='{{runType}}'{{/runType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runVersion'>runVersion: </label><div class='col-sm-8'><input id='{{id}}_runVersion' class='form-control' type='text'{{#runVersion}} value='{{runVersion}}'{{/runVersion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='{{id}}_frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_invoiceType'>invoiceType: </label><div class='col-sm-8'><input id='{{id}}_invoiceType' class='form-control' type='text'{{#invoiceType}} value='{{invoiceType}}'{{/invoiceType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_requireAutorun'>requireAutorun: </label><div class='col-sm-8'><input id='{{id}}_requireAutorun' class='form-control' type='text'{{#requireAutorun}} value='{{requireAutorun}}'{{/requireAutorun}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_revisionNumber'>revisionNumber: </label><div class='col-sm-8'><input id='{{id}}_revisionNumber' class='form-control' type='text'{{#revisionNumber}} value='{{revisionNumber}}'{{/revisionNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType_string}}'{{/ChargeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketInvoice'>MarketInvoice: </label><div class='col-sm-8'><input id='{{id}}_MarketInvoice' class='form-control' type='text'{{#MarketInvoice}} value='{{MarketInvoice_string}}'{{/MarketInvoice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Settlement'>Settlement: </label><div class='col-sm-8'><input id='{{id}}_Settlement' class='form-control' type='text'{{#Settlement}} value='{{Settlement_string}}'{{/Settlement}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "MajorChargeGroup" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_runType").value; if ("" !== temp) obj["runType"] = temp;
-                temp = document.getElementById (id + "_runVersion").value; if ("" !== temp) obj["runVersion"] = temp;
-                temp = document.getElementById (id + "_frequencyType").value; if ("" !== temp) obj["frequencyType"] = temp;
-                temp = document.getElementById (id + "_invoiceType").value; if ("" !== temp) obj["invoiceType"] = temp;
-                temp = document.getElementById (id + "_effectiveDate").value; if ("" !== temp) obj["effectiveDate"] = temp;
-                temp = document.getElementById (id + "_terminationDate").value; if ("" !== temp) obj["terminationDate"] = temp;
-                temp = document.getElementById (id + "_requireAutorun").value; if ("" !== temp) obj["requireAutorun"] = temp;
-                temp = document.getElementById (id + "_revisionNumber").value; if ("" !== temp) obj["revisionNumber"] = temp;
-                temp = document.getElementById (id + "_ChargeType").value; if ("" !== temp) obj["ChargeType"] = temp.split (",");
-                temp = document.getElementById (id + "_MarketInvoice").value; if ("" !== temp) obj["MarketInvoice"] = temp.split (",");
-                temp = document.getElementById (id + "_Settlement").value; if ("" !== temp) obj["Settlement"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["ChargeType", "0..*", "0..*", "ChargeType", "MajorChargeGroup"],
-                            ["MarketInvoice", "0..*", "1..*", "MarketInvoice", "MajorChargeGroup"],
-                            ["MktScheduledEvent", "0..*", "0..1", "MarketScheduledEvent", "MajorChargeGroup"],
-                            ["Settlement", "0..*", "1..*", "Settlement", "MajorChargeGroup"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * This class represent the error information for a bid that is detected during bid validation.
-         *
-         */
-        class BidError extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.BidError;
-                if (null == bucket)
-                   cim_data.BidError = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.BidError[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "BidError";
-                base.parse_element (/<cim:BidError.errPriority>([\s\S]*?)<\/cim:BidError.errPriority>/g, obj, "errPriority", base.to_string, sub, context);
-                base.parse_element (/<cim:BidError.errMessage>([\s\S]*?)<\/cim:BidError.errMessage>/g, obj, "errMessage", base.to_string, sub, context);
-                base.parse_element (/<cim:BidError.ruleID>([\s\S]*?)<\/cim:BidError.ruleID>/g, obj, "ruleID", base.to_string, sub, context);
-                base.parse_element (/<cim:BidError.startTime>([\s\S]*?)<\/cim:BidError.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:BidError.endTime>([\s\S]*?)<\/cim:BidError.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:BidError.logTimeStamp>([\s\S]*?)<\/cim:BidError.logTimeStamp>/g, obj, "logTimeStamp", base.to_datetime, sub, context);
-                base.parse_element (/<cim:BidError.componentType>([\s\S]*?)<\/cim:BidError.componentType>/g, obj, "componentType", base.to_string, sub, context);
-                base.parse_element (/<cim:BidError.msgLevel>([\s\S]*?)<\/cim:BidError.msgLevel>/g, obj, "msgLevel", base.to_string, sub, context);
-                base.parse_attributes (/<cim:BidError.ResourceBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ResourceBid", sub, context);
-                base.parse_attribute (/<cim:BidError.MarketProduct\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
-                let bucket = context.parsed.BidError;
-                if (null == bucket)
-                   context.parsed.BidError = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "BidError", "errPriority", "errPriority",  base.from_string, fields);
-                base.export_element (obj, "BidError", "errMessage", "errMessage",  base.from_string, fields);
-                base.export_element (obj, "BidError", "ruleID", "ruleID",  base.from_string, fields);
-                base.export_element (obj, "BidError", "startTime", "startTime",  base.from_datetime, fields);
-                base.export_element (obj, "BidError", "endTime", "endTime",  base.from_datetime, fields);
-                base.export_element (obj, "BidError", "logTimeStamp", "logTimeStamp",  base.from_datetime, fields);
-                base.export_element (obj, "BidError", "componentType", "componentType",  base.from_string, fields);
-                base.export_element (obj, "BidError", "msgLevel", "msgLevel",  base.from_string, fields);
-                base.export_attributes (obj, "BidError", "ResourceBid", "ResourceBid", fields);
-                base.export_attribute (obj, "BidError", "MarketProduct", "MarketProduct", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidError_collapse" aria-expanded="true" aria-controls="BidError_collapse" style="margin-left: 10px;">BidError</a></legend>
-                    <div id="BidError_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#errPriority}}<div><b>errPriority</b>: {{errPriority}}</div>{{/errPriority}}
-                    {{#errMessage}}<div><b>errMessage</b>: {{errMessage}}</div>{{/errMessage}}
-                    {{#ruleID}}<div><b>ruleID</b>: {{ruleID}}</div>{{/ruleID}}
-                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-                    {{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
-                    {{#logTimeStamp}}<div><b>logTimeStamp</b>: {{logTimeStamp}}</div>{{/logTimeStamp}}
-                    {{#componentType}}<div><b>componentType</b>: {{componentType}}</div>{{/componentType}}
-                    {{#msgLevel}}<div><b>msgLevel</b>: {{msgLevel}}</div>{{/msgLevel}}
-                    {{#ResourceBid}}<div><b>ResourceBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ResourceBid}}
-                    {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MarketProduct}}");}); return false;'>{{MarketProduct}}</a></div>{{/MarketProduct}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["ResourceBid"]) obj["ResourceBid_string"] = obj["ResourceBid"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["ResourceBid_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidError_collapse" aria-expanded="true" aria-controls="{{id}}_BidError_collapse" style="margin-left: 10px;">BidError</a></legend>
-                    <div id="{{id}}_BidError_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errPriority'>errPriority: </label><div class='col-sm-8'><input id='{{id}}_errPriority' class='form-control' type='text'{{#errPriority}} value='{{errPriority}}'{{/errPriority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errMessage'>errMessage: </label><div class='col-sm-8'><input id='{{id}}_errMessage' class='form-control' type='text'{{#errMessage}} value='{{errMessage}}'{{/errMessage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ruleID'>ruleID: </label><div class='col-sm-8'><input id='{{id}}_ruleID' class='form-control' type='text'{{#ruleID}} value='{{ruleID}}'{{/ruleID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_componentType'>componentType: </label><div class='col-sm-8'><input id='{{id}}_componentType' class='form-control' type='text'{{#componentType}} value='{{componentType}}'{{/componentType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_msgLevel'>msgLevel: </label><div class='col-sm-8'><input id='{{id}}_msgLevel' class='form-control' type='text'{{#msgLevel}} value='{{msgLevel}}'{{/msgLevel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceBid'>ResourceBid: </label><div class='col-sm-8'><input id='{{id}}_ResourceBid' class='form-control' type='text'{{#ResourceBid}} value='{{ResourceBid_string}}'{{/ResourceBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "BidError" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_errPriority").value; if ("" !== temp) obj["errPriority"] = temp;
-                temp = document.getElementById (id + "_errMessage").value; if ("" !== temp) obj["errMessage"] = temp;
-                temp = document.getElementById (id + "_ruleID").value; if ("" !== temp) obj["ruleID"] = temp;
-                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
-                temp = document.getElementById (id + "_endTime").value; if ("" !== temp) obj["endTime"] = temp;
-                temp = document.getElementById (id + "_logTimeStamp").value; if ("" !== temp) obj["logTimeStamp"] = temp;
-                temp = document.getElementById (id + "_componentType").value; if ("" !== temp) obj["componentType"] = temp;
-                temp = document.getElementById (id + "_msgLevel").value; if ("" !== temp) obj["msgLevel"] = temp;
-                temp = document.getElementById (id + "_ResourceBid").value; if ("" !== temp) obj["ResourceBid"] = temp.split (",");
-                temp = document.getElementById (id + "_MarketProduct").value; if ("" !== temp) obj["MarketProduct"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["ResourceBid", "0..*", "0..*", "ResourceBid", "BidError"],
-                            ["MarketProduct", "0..1", "0..*", "MarketProduct", "BidError"]
+                            ["Trade", "0..*", "1", "Trade", "ActionRequest"],
+                            ["Bid", "0..*", "1", "Bid", "ActionRequest"]
                         ]
                     )
                 );
@@ -1655,15 +3869,15 @@ define
 
                 obj = obj || { id: id, cls: "BidSelfSched" };
                 super.submit (id, obj);
-                temp = MktDomain.YesNo[document.getElementById (id + "_balancingFlag").value]; if (temp) obj["balancingFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["balancingFlag"];
-                temp = MktDomain.BidTypeRMR[document.getElementById (id + "_bidType").value]; if (temp) obj["bidType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidTypeRMR." + temp; else delete obj["bidType"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_priorityFlag").value]; if (temp) obj["priorityFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["priorityFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_balancingFlag").value]; if (temp) obj["balancingFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["balancingFlag"];
+                temp = MktDomain.BidTypeRMR[document.getElementById (id + "_bidType").value]; if (temp) obj["bidType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#BidTypeRMR." + temp; else delete obj["bidType"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_priorityFlag").value]; if (temp) obj["priorityFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["priorityFlag"];
                 temp = document.getElementById (id + "_pumpSelfSchedMw").value; if ("" !== temp) obj["pumpSelfSchedMw"] = temp;
-                temp = MktDomain.SelfSchedReferenceType[document.getElementById (id + "_referenceType").value]; if (temp) obj["referenceType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SelfSchedReferenceType." + temp; else delete obj["referenceType"];
+                temp = MktDomain.SelfSchedReferenceType[document.getElementById (id + "_referenceType").value]; if (temp) obj["referenceType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SelfSchedReferenceType." + temp; else delete obj["referenceType"];
                 temp = document.getElementById (id + "_selfSchedMw").value; if ("" !== temp) obj["selfSchedMw"] = temp;
                 temp = document.getElementById (id + "_selfSchedSptResource").value; if ("" !== temp) obj["selfSchedSptResource"] = temp;
-                temp = MktDomain.MarketProductSelfSchedType[document.getElementById (id + "_selfSchedType").value]; if (temp) obj["selfSchedType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketProductSelfSchedType." + temp; else delete obj["selfSchedType"];
-                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj["updateType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#MQSCHGType." + temp; else delete obj["updateType"];
+                temp = MktDomain.MarketProductSelfSchedType[document.getElementById (id + "_selfSchedType").value]; if (temp) obj["selfSchedType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#MarketProductSelfSchedType." + temp; else delete obj["selfSchedType"];
+                temp = MktDomain.MQSCHGType[document.getElementById (id + "_updateType").value]; if (temp) obj["updateType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#MQSCHGType." + temp; else delete obj["updateType"];
                 temp = document.getElementById (id + "_wheelingTransactionReference").value; if ("" !== temp) obj["wheelingTransactionReference"] = temp;
                 temp = document.getElementById (id + "_SubControlArea").value; if ("" !== temp) obj["SubControlArea"] = temp;
                 temp = document.getElementById (id + "_ProductBid").value; if ("" !== temp) obj["ProductBid"] = temp;
@@ -1691,36 +3905,45 @@ define
         }
 
         /**
-         * Action request against an existing Trade.
+         * <b>TradeType</b>                                        <b>TradeProduct</b>
+         * IST  (InterSC Trade)                          PHY (Physical Energy Trade)
+         * IST                                                  APN (Energy Trades at Aggregated Pricing Nodes)
+         * IST                                                  CPT (Converted Physical Energy Trade)
+         * AST (Ancilliary Services Trade)             RUT (Regulation Up Trade)
+         * AST                                                 RDT (Regulation Down Trade)
+         * AST                                                 SRT (Spinning Reserve Trade)
+         * AST                                                 NRT (Non-Spinning Reserve Trade)
+         *
+         * UCT (Unit Commitment Trade)            null
          *
          */
-        class ActionRequest extends base.Element
+        class TradeProduct extends base.Element
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.ActionRequest;
+                let bucket = cim_data.TradeProduct;
                 if (null == bucket)
-                   cim_data.ActionRequest = bucket = {};
+                   cim_data.TradeProduct = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.ActionRequest[obj.id];
+               delete cim_data.TradeProduct[obj.id];
             }
 
             parse (context, sub)
             {
                 let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "ActionRequest";
-                base.parse_attribute (/<cim:ActionRequest.actionName\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "actionName", sub, context);
-                base.parse_attributes (/<cim:ActionRequest.Trade\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
-                base.parse_attributes (/<cim:ActionRequest.Bid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-                let bucket = context.parsed.ActionRequest;
+                obj.cls = "TradeProduct";
+                base.parse_element (/<cim:TradeProduct.tradeProductType>([\s\S]*?)<\/cim:TradeProduct.tradeProductType>/g, obj, "tradeProductType", base.to_string, sub, context);
+                base.parse_attribute (/<cim:TradeProduct.tradeType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "tradeType", sub, context);
+                base.parse_attributes (/<cim:TradeProduct.Trade\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
+                let bucket = context.parsed.TradeProduct;
                 if (null == bucket)
-                   context.parsed.ActionRequest = bucket = {};
+                   context.parsed.TradeProduct = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -1730,9 +3953,9 @@ define
             {
                 let fields = [];
 
-                base.export_attribute (obj, "ActionRequest", "actionName", "actionName", fields);
-                base.export_attributes (obj, "ActionRequest", "Trade", "Trade", fields);
-                base.export_attributes (obj, "ActionRequest", "Bid", "Bid", fields);
+                base.export_element (obj, "TradeProduct", "tradeProductType", "tradeProductType",  base.from_string, fields);
+                base.export_attribute (obj, "TradeProduct", "tradeType", "tradeType", fields);
+                base.export_attributes (obj, "TradeProduct", "Trade", "Trade", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -1744,14 +3967,14 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ActionRequest_collapse" aria-expanded="true" aria-controls="ActionRequest_collapse" style="margin-left: 10px;">ActionRequest</a></legend>
-                    <div id="ActionRequest_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TradeProduct_collapse" aria-expanded="true" aria-controls="TradeProduct_collapse" style="margin-left: 10px;">TradeProduct</a></legend>
+                    <div id="TradeProduct_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.template.call (this) +
                     `
-                    {{#actionName}}<div><b>actionName</b>: {{actionName}}</div>{{/actionName}}
+                    {{#tradeProductType}}<div><b>tradeProductType</b>: {{tradeProductType}}</div>{{/tradeProductType}}
+                    {{#tradeType}}<div><b>tradeType</b>: {{tradeType}}</div>{{/tradeType}}
                     {{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Trade}}
-                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/Bid}}
                     </div>
                     </fieldset>
 
@@ -1762,17 +3985,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj["actionNameActionType"] = [{ id: '', selected: (!obj["actionName"])}]; for (let property in MktDomain.ActionType) obj["actionNameActionType"].push ({ id: property, selected: obj["actionName"] && obj["actionName"].endsWith ('.' + property)});
+                obj["tradeTypeTradeType"] = [{ id: '', selected: (!obj["tradeType"])}]; for (let property in MktDomain.TradeType) obj["tradeTypeTradeType"].push ({ id: property, selected: obj["tradeType"] && obj["tradeType"].endsWith ('.' + property)});
                 if (obj["Trade"]) obj["Trade_string"] = obj["Trade"].join ();
-                if (obj["Bid"]) obj["Bid_string"] = obj["Bid"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj["actionNameActionType"];
+                delete obj["tradeTypeTradeType"];
                 delete obj["Trade_string"];
-                delete obj["Bid_string"];
             }
 
             edit_template ()
@@ -1780,12 +4001,13 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ActionRequest_collapse" aria-expanded="true" aria-controls="{{id}}_ActionRequest_collapse" style="margin-left: 10px;">ActionRequest</a></legend>
-                    <div id="{{id}}_ActionRequest_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TradeProduct_collapse" aria-expanded="true" aria-controls="{{id}}_TradeProduct_collapse" style="margin-left: 10px;">TradeProduct</a></legend>
+                    <div id="{{id}}_TradeProduct_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actionName'>actionName: </label><div class='col-sm-8'><select id='{{id}}_actionName' class='form-control custom-select'>{{#actionNameActionType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/actionNameActionType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeProductType'>tradeProductType: </label><div class='col-sm-8'><input id='{{id}}_tradeProductType' class='form-control' type='text'{{#tradeProductType}} value='{{tradeProductType}}'{{/tradeProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeType'>tradeType: </label><div class='col-sm-8'><select id='{{id}}_tradeType' class='form-control custom-select'>{{#tradeTypeTradeType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/tradeTypeTradeType}}</select></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1796,9 +4018,10 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "ActionRequest" };
+                obj = obj || { id: id, cls: "TradeProduct" };
                 super.submit (id, obj);
-                temp = MktDomain.ActionType[document.getElementById (id + "_actionName").value]; if (temp) obj["actionName"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ActionType." + temp; else delete obj["actionName"];
+                temp = document.getElementById (id + "_tradeProductType").value; if ("" !== temp) obj["tradeProductType"] = temp;
+                temp = MktDomain.TradeType[document.getElementById (id + "_tradeType").value]; if (temp) obj["tradeType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#TradeType." + temp; else delete obj["tradeType"];
 
                 return (obj);
             }
@@ -1808,8 +4031,7 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["Trade", "0..*", "1", "Trade", "ActionRequest"],
-                            ["Bid", "0..*", "1", "Bid", "ActionRequest"]
+                            ["Trade", "0..*", "1", "Trade", "TradeProduct"]
                         ]
                     )
                 );
@@ -1817,758 +4039,34 @@ define
         }
 
         /**
-         * Ramp rate as a function of resource MW output.
+         * Containment for bid parameters that are dependent on a market product type.
          *
          */
-        class RampRateCurve extends Core.Curve
+        class BidHourlyProductSchedule extends Core.RegularIntervalSchedule
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.RampRateCurve;
+                let bucket = cim_data.BidHourlyProductSchedule;
                 if (null == bucket)
-                   cim_data.RampRateCurve = bucket = {};
+                   cim_data.BidHourlyProductSchedule = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.RampRateCurve[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.Curve.prototype.parse.call (this, context, sub);
-                obj.cls = "RampRateCurve";
-                base.parse_attribute (/<cim:RampRateCurve.condition\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "condition", sub, context);
-                base.parse_attribute (/<cim:RampRateCurve.constraintRampType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "constraintRampType", sub, context);
-                base.parse_attribute (/<cim:RampRateCurve.rampRateType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "rampRateType", sub, context);
-                base.parse_attribute (/<cim:RampRateCurve.GeneratingBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
-                base.parse_attribute (/<cim:RampRateCurve.LoadBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
-                base.parse_attributes (/<cim:RampRateCurve.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-                base.parse_attribute (/<cim:RampRateCurve.InterTieBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "InterTieBid", sub, context);
-                let bucket = context.parsed.RampRateCurve;
-                if (null == bucket)
-                   context.parsed.RampRateCurve = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.Curve.prototype.export.call (this, obj, false);
-
-                base.export_attribute (obj, "RampRateCurve", "condition", "condition", fields);
-                base.export_attribute (obj, "RampRateCurve", "constraintRampType", "constraintRampType", fields);
-                base.export_attribute (obj, "RampRateCurve", "rampRateType", "rampRateType", fields);
-                base.export_attribute (obj, "RampRateCurve", "GeneratingBid", "GeneratingBid", fields);
-                base.export_attribute (obj, "RampRateCurve", "LoadBid", "LoadBid", fields);
-                base.export_attributes (obj, "RampRateCurve", "RegisteredResource", "RegisteredResource", fields);
-                base.export_attribute (obj, "RampRateCurve", "InterTieBid", "InterTieBid", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#RampRateCurve_collapse" aria-expanded="true" aria-controls="RampRateCurve_collapse" style="margin-left: 10px;">RampRateCurve</a></legend>
-                    <div id="RampRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.template.call (this) +
-                    `
-                    {{#condition}}<div><b>condition</b>: {{condition}}</div>{{/condition}}
-                    {{#constraintRampType}}<div><b>constraintRampType</b>: {{constraintRampType}}</div>{{/constraintRampType}}
-                    {{#rampRateType}}<div><b>rampRateType</b>: {{rampRateType}}</div>{{/rampRateType}}
-                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{GeneratingBid}}");}); return false;'>{{GeneratingBid}}</a></div>{{/GeneratingBid}}
-                    {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadBid}}");}); return false;'>{{LoadBid}}</a></div>{{/LoadBid}}
-                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredResource}}
-                    {{#InterTieBid}}<div><b>InterTieBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{InterTieBid}}");}); return false;'>{{InterTieBid}}</a></div>{{/InterTieBid}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                obj["conditionRampRateCondition"] = [{ id: '', selected: (!obj["condition"])}]; for (let property in MktDomain.RampRateCondition) obj["conditionRampRateCondition"].push ({ id: property, selected: obj["condition"] && obj["condition"].endsWith ('.' + property)});
-                obj["constraintRampTypeConstraintRampType"] = [{ id: '', selected: (!obj["constraintRampType"])}]; for (let property in MktDomain.ConstraintRampType) obj["constraintRampTypeConstraintRampType"].push ({ id: property, selected: obj["constraintRampType"] && obj["constraintRampType"].endsWith ('.' + property)});
-                obj["rampRateTypeRampRateType"] = [{ id: '', selected: (!obj["rampRateType"])}]; for (let property in MktDomain.RampRateType) obj["rampRateTypeRampRateType"].push ({ id: property, selected: obj["rampRateType"] && obj["rampRateType"].endsWith ('.' + property)});
-                if (obj["RegisteredResource"]) obj["RegisteredResource_string"] = obj["RegisteredResource"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["conditionRampRateCondition"];
-                delete obj["constraintRampTypeConstraintRampType"];
-                delete obj["rampRateTypeRampRateType"];
-                delete obj["RegisteredResource_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_RampRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RampRateCurve_collapse" style="margin-left: 10px;">RampRateCurve</a></legend>
-                    <div id="{{id}}_RampRateCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><select id='{{id}}_condition' class='form-control custom-select'>{{#conditionRampRateCondition}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/conditionRampRateCondition}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constraintRampType'>constraintRampType: </label><div class='col-sm-8'><select id='{{id}}_constraintRampType' class='form-control custom-select'>{{#constraintRampTypeConstraintRampType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/constraintRampTypeConstraintRampType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampRateType'>rampRateType: </label><div class='col-sm-8'><select id='{{id}}_rampRateType' class='form-control custom-select'>{{#rampRateTypeRampRateType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/rampRateTypeRampRateType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingBid'>GeneratingBid: </label><div class='col-sm-8'><input id='{{id}}_GeneratingBid' class='form-control' type='text'{{#GeneratingBid}} value='{{GeneratingBid}}'{{/GeneratingBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource_string}}'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='{{id}}_InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "RampRateCurve" };
-                super.submit (id, obj);
-                temp = MktDomain.RampRateCondition[document.getElementById (id + "_condition").value]; if (temp) obj["condition"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampRateCondition." + temp; else delete obj["condition"];
-                temp = MktDomain.ConstraintRampType[document.getElementById (id + "_constraintRampType").value]; if (temp) obj["constraintRampType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ConstraintRampType." + temp; else delete obj["constraintRampType"];
-                temp = MktDomain.RampRateType[document.getElementById (id + "_rampRateType").value]; if (temp) obj["rampRateType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RampRateType." + temp; else delete obj["rampRateType"];
-                temp = document.getElementById (id + "_GeneratingBid").value; if ("" !== temp) obj["GeneratingBid"] = temp;
-                temp = document.getElementById (id + "_LoadBid").value; if ("" !== temp) obj["LoadBid"] = temp;
-                temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp.split (",");
-                temp = document.getElementById (id + "_InterTieBid").value; if ("" !== temp) obj["InterTieBid"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["GeneratingBid", "0..1", "0..*", "GeneratingBid", "RampRateCurve"],
-                            ["LoadBid", "0..1", "0..*", "LoadBid", "RampRateCurve"],
-                            ["RegisteredResource", "0..*", "0..*", "RegisteredResource", "RampRateCurve"],
-                            ["InterTieBid", "0..1", "0..*", "InterTieBid", "RampRateCurve"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * A Charge Component is a list of configurable charge quality items to feed into settlement calculation and/or bill determinants.
-         *
-         */
-        class ChargeComponent extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.ChargeComponent;
-                if (null == bucket)
-                   cim_data.ChargeComponent = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.ChargeComponent[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "ChargeComponent";
-                base.parse_element (/<cim:ChargeComponent.deleteStatus>([\s\S]*?)<\/cim:ChargeComponent.deleteStatus>/g, obj, "deleteStatus", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeComponent.effectiveDate>([\s\S]*?)<\/cim:ChargeComponent.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ChargeComponent.terminationDate>([\s\S]*?)<\/cim:ChargeComponent.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ChargeComponent.message>([\s\S]*?)<\/cim:ChargeComponent.message>/g, obj, "message", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeComponent.type>([\s\S]*?)<\/cim:ChargeComponent.type>/g, obj, "type", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeComponent.sum>([\s\S]*?)<\/cim:ChargeComponent.sum>/g, obj, "sum", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeComponent.roundOff>([\s\S]*?)<\/cim:ChargeComponent.roundOff>/g, obj, "roundOff", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeComponent.equation>([\s\S]*?)<\/cim:ChargeComponent.equation>/g, obj, "equation", base.to_string, sub, context);
-                base.parse_attributes (/<cim:ChargeComponent.BillDeterminants\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BillDeterminants", sub, context);
-                base.parse_attributes (/<cim:ChargeComponent.ChargeTypes\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeTypes", sub, context);
-                let bucket = context.parsed.ChargeComponent;
-                if (null == bucket)
-                   context.parsed.ChargeComponent = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "ChargeComponent", "deleteStatus", "deleteStatus",  base.from_string, fields);
-                base.export_element (obj, "ChargeComponent", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ChargeComponent", "terminationDate", "terminationDate",  base.from_datetime, fields);
-                base.export_element (obj, "ChargeComponent", "message", "message",  base.from_string, fields);
-                base.export_element (obj, "ChargeComponent", "type", "type",  base.from_string, fields);
-                base.export_element (obj, "ChargeComponent", "sum", "sum",  base.from_string, fields);
-                base.export_element (obj, "ChargeComponent", "roundOff", "roundOff",  base.from_string, fields);
-                base.export_element (obj, "ChargeComponent", "equation", "equation",  base.from_string, fields);
-                base.export_attributes (obj, "ChargeComponent", "BillDeterminants", "BillDeterminants", fields);
-                base.export_attributes (obj, "ChargeComponent", "ChargeTypes", "ChargeTypes", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ChargeComponent_collapse" aria-expanded="true" aria-controls="ChargeComponent_collapse" style="margin-left: 10px;">ChargeComponent</a></legend>
-                    <div id="ChargeComponent_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#deleteStatus}}<div><b>deleteStatus</b>: {{deleteStatus}}</div>{{/deleteStatus}}
-                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
-                    {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
-                    {{#message}}<div><b>message</b>: {{message}}</div>{{/message}}
-                    {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#sum}}<div><b>sum</b>: {{sum}}</div>{{/sum}}
-                    {{#roundOff}}<div><b>roundOff</b>: {{roundOff}}</div>{{/roundOff}}
-                    {{#equation}}<div><b>equation</b>: {{equation}}</div>{{/equation}}
-                    {{#BillDeterminants}}<div><b>BillDeterminants</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BillDeterminants}}
-                    {{#ChargeTypes}}<div><b>ChargeTypes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeTypes}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["BillDeterminants"]) obj["BillDeterminants_string"] = obj["BillDeterminants"].join ();
-                if (obj["ChargeTypes"]) obj["ChargeTypes_string"] = obj["ChargeTypes"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["BillDeterminants_string"];
-                delete obj["ChargeTypes_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ChargeComponent_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeComponent_collapse" style="margin-left: 10px;">ChargeComponent</a></legend>
-                    <div id="{{id}}_ChargeComponent_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deleteStatus'>deleteStatus: </label><div class='col-sm-8'><input id='{{id}}_deleteStatus' class='form-control' type='text'{{#deleteStatus}} value='{{deleteStatus}}'{{/deleteStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_message'>message: </label><div class='col-sm-8'><input id='{{id}}_message' class='form-control' type='text'{{#message}} value='{{message}}'{{/message}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sum'>sum: </label><div class='col-sm-8'><input id='{{id}}_sum' class='form-control' type='text'{{#sum}} value='{{sum}}'{{/sum}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_roundOff'>roundOff: </label><div class='col-sm-8'><input id='{{id}}_roundOff' class='form-control' type='text'{{#roundOff}} value='{{roundOff}}'{{/roundOff}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_equation'>equation: </label><div class='col-sm-8'><input id='{{id}}_equation' class='form-control' type='text'{{#equation}} value='{{equation}}'{{/equation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BillDeterminants'>BillDeterminants: </label><div class='col-sm-8'><input id='{{id}}_BillDeterminants' class='form-control' type='text'{{#BillDeterminants}} value='{{BillDeterminants_string}}'{{/BillDeterminants}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeTypes'>ChargeTypes: </label><div class='col-sm-8'><input id='{{id}}_ChargeTypes' class='form-control' type='text'{{#ChargeTypes}} value='{{ChargeTypes_string}}'{{/ChargeTypes}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "ChargeComponent" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_deleteStatus").value; if ("" !== temp) obj["deleteStatus"] = temp;
-                temp = document.getElementById (id + "_effectiveDate").value; if ("" !== temp) obj["effectiveDate"] = temp;
-                temp = document.getElementById (id + "_terminationDate").value; if ("" !== temp) obj["terminationDate"] = temp;
-                temp = document.getElementById (id + "_message").value; if ("" !== temp) obj["message"] = temp;
-                temp = document.getElementById (id + "_type").value; if ("" !== temp) obj["type"] = temp;
-                temp = document.getElementById (id + "_sum").value; if ("" !== temp) obj["sum"] = temp;
-                temp = document.getElementById (id + "_roundOff").value; if ("" !== temp) obj["roundOff"] = temp;
-                temp = document.getElementById (id + "_equation").value; if ("" !== temp) obj["equation"] = temp;
-                temp = document.getElementById (id + "_BillDeterminants").value; if ("" !== temp) obj["BillDeterminants"] = temp.split (",");
-                temp = document.getElementById (id + "_ChargeTypes").value; if ("" !== temp) obj["ChargeTypes"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["BillDeterminants", "0..*", "0..*", "BillDeterminant", "ChargeComponents"],
-                            ["ChargeTypes", "0..*", "0..*", "ChargeType", "ChargeComponents"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * This is the price sensitivity that bidder expresses for allowing market load interruption.
-         *
-         * Relationship between price (Y1-axis) vs. MW (X-axis).
-         *
-         */
-        class LoadReductionPriceCurve extends Core.Curve
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.LoadReductionPriceCurve;
-                if (null == bucket)
-                   cim_data.LoadReductionPriceCurve = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.LoadReductionPriceCurve[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.Curve.prototype.parse.call (this, context, sub);
-                obj.cls = "LoadReductionPriceCurve";
-                base.parse_attribute (/<cim:LoadReductionPriceCurve.LoadBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
-                let bucket = context.parsed.LoadReductionPriceCurve;
-                if (null == bucket)
-                   context.parsed.LoadReductionPriceCurve = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.Curve.prototype.export.call (this, obj, false);
-
-                base.export_attribute (obj, "LoadReductionPriceCurve", "LoadBid", "LoadBid", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="LoadReductionPriceCurve_collapse" style="margin-left: 10px;">LoadReductionPriceCurve</a></legend>
-                    <div id="LoadReductionPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.template.call (this) +
-                    `
-                    {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{LoadBid}}");}); return false;'>{{LoadBid}}</a></div>{{/LoadBid}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LoadReductionPriceCurve_collapse" style="margin-left: 10px;">LoadReductionPriceCurve</a></legend>
-                    <div id="{{id}}_LoadReductionPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "LoadReductionPriceCurve" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_LoadBid").value; if ("" !== temp) obj["LoadBid"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["LoadBid", "1", "0..*", "LoadBid", "LoadReductionPriceCurve"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Notification time curve as a function of down time.
-         *
-         * Relationship between crew notification time (Y1-axis) and unit startup time (Y2-axis) vs. unit elapsed down time (X-axis).
-         *
-         */
-        class NotificationTimeCurve extends Core.Curve
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.NotificationTimeCurve;
-                if (null == bucket)
-                   cim_data.NotificationTimeCurve = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.NotificationTimeCurve[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.Curve.prototype.parse.call (this, context, sub);
-                obj.cls = "NotificationTimeCurve";
-                base.parse_attributes (/<cim:NotificationTimeCurve.GeneratingBids\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBids", sub, context);
-                let bucket = context.parsed.NotificationTimeCurve;
-                if (null == bucket)
-                   context.parsed.NotificationTimeCurve = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.Curve.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "NotificationTimeCurve", "GeneratingBids", "GeneratingBids", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="NotificationTimeCurve_collapse" style="margin-left: 10px;">NotificationTimeCurve</a></legend>
-                    <div id="NotificationTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.template.call (this) +
-                    `
-                    {{#GeneratingBids}}<div><b>GeneratingBids</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingBids}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["GeneratingBids"]) obj["GeneratingBids_string"] = obj["GeneratingBids"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["GeneratingBids_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_NotificationTimeCurve_collapse" style="margin-left: 10px;">NotificationTimeCurve</a></legend>
-                    <div id="{{id}}_NotificationTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "NotificationTimeCurve" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["GeneratingBids", "0..*", "0..1", "GeneratingBid", "NotificationTimeCurve"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Charge Type is the basic level configuration for settlement to process specific charges for invoicing purpose.
-         *
-         * Examples such as: Day Ahead Spinning Reserve Default Invoice Interest Charge, etc.
-         *
-         */
-        class ChargeType extends Common.Document
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.ChargeType;
-                if (null == bucket)
-                   cim_data.ChargeType = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.ChargeType[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.Document.prototype.parse.call (this, context, sub);
-                obj.cls = "ChargeType";
-                base.parse_element (/<cim:ChargeType.effectiveDate>([\s\S]*?)<\/cim:ChargeType.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ChargeType.terminationDate>([\s\S]*?)<\/cim:ChargeType.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:ChargeType.factor>([\s\S]*?)<\/cim:ChargeType.factor>/g, obj, "factor", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeType.chargeOrder>([\s\S]*?)<\/cim:ChargeType.chargeOrder>/g, obj, "chargeOrder", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeType.frequencyType>([\s\S]*?)<\/cim:ChargeType.frequencyType>/g, obj, "frequencyType", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeType.chargeVersion>([\s\S]*?)<\/cim:ChargeType.chargeVersion>/g, obj, "chargeVersion", base.to_string, sub, context);
-                base.parse_element (/<cim:ChargeType.totalInterval>([\s\S]*?)<\/cim:ChargeType.totalInterval>/g, obj, "totalInterval", base.to_string, sub, context);
-                base.parse_attributes (/<cim:ChargeType.MajorChargeGroup\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MajorChargeGroup", sub, context);
-                base.parse_attributes (/<cim:ChargeType.ChargeGroup\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroup", sub, context);
-                base.parse_attributes (/<cim:ChargeType.ChargeComponents\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeComponents", sub, context);
-                base.parse_attributes (/<cim:ChargeType.MktUserAttribute\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
-                let bucket = context.parsed.ChargeType;
-                if (null == bucket)
-                   context.parsed.ChargeType = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.Document.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "ChargeType", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
-                base.export_element (obj, "ChargeType", "terminationDate", "terminationDate",  base.from_datetime, fields);
-                base.export_element (obj, "ChargeType", "factor", "factor",  base.from_string, fields);
-                base.export_element (obj, "ChargeType", "chargeOrder", "chargeOrder",  base.from_string, fields);
-                base.export_element (obj, "ChargeType", "frequencyType", "frequencyType",  base.from_string, fields);
-                base.export_element (obj, "ChargeType", "chargeVersion", "chargeVersion",  base.from_string, fields);
-                base.export_element (obj, "ChargeType", "totalInterval", "totalInterval",  base.from_string, fields);
-                base.export_attributes (obj, "ChargeType", "MajorChargeGroup", "MajorChargeGroup", fields);
-                base.export_attributes (obj, "ChargeType", "ChargeGroup", "ChargeGroup", fields);
-                base.export_attributes (obj, "ChargeType", "ChargeComponents", "ChargeComponents", fields);
-                base.export_attributes (obj, "ChargeType", "MktUserAttribute", "MktUserAttribute", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#ChargeType_collapse" aria-expanded="true" aria-controls="ChargeType_collapse" style="margin-left: 10px;">ChargeType</a></legend>
-                    <div id="ChargeType_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Document.prototype.template.call (this) +
-                    `
-                    {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
-                    {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
-                    {{#factor}}<div><b>factor</b>: {{factor}}</div>{{/factor}}
-                    {{#chargeOrder}}<div><b>chargeOrder</b>: {{chargeOrder}}</div>{{/chargeOrder}}
-                    {{#frequencyType}}<div><b>frequencyType</b>: {{frequencyType}}</div>{{/frequencyType}}
-                    {{#chargeVersion}}<div><b>chargeVersion</b>: {{chargeVersion}}</div>{{/chargeVersion}}
-                    {{#totalInterval}}<div><b>totalInterval</b>: {{totalInterval}}</div>{{/totalInterval}}
-                    {{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MajorChargeGroup}}
-                    {{#ChargeGroup}}<div><b>ChargeGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeGroup}}
-                    {{#ChargeComponents}}<div><b>ChargeComponents</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeComponents}}
-                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MktUserAttribute}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["MajorChargeGroup"]) obj["MajorChargeGroup_string"] = obj["MajorChargeGroup"].join ();
-                if (obj["ChargeGroup"]) obj["ChargeGroup_string"] = obj["ChargeGroup"].join ();
-                if (obj["ChargeComponents"]) obj["ChargeComponents_string"] = obj["ChargeComponents"].join ();
-                if (obj["MktUserAttribute"]) obj["MktUserAttribute_string"] = obj["MktUserAttribute"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["MajorChargeGroup_string"];
-                delete obj["ChargeGroup_string"];
-                delete obj["ChargeComponents_string"];
-                delete obj["MktUserAttribute_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_ChargeType_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeType_collapse" style="margin-left: 10px;">ChargeType</a></legend>
-                    <div id="{{id}}_ChargeType_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Document.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chargeOrder'>chargeOrder: </label><div class='col-sm-8'><input id='{{id}}_chargeOrder' class='form-control' type='text'{{#chargeOrder}} value='{{chargeOrder}}'{{/chargeOrder}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='{{id}}_frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chargeVersion'>chargeVersion: </label><div class='col-sm-8'><input id='{{id}}_chargeVersion' class='form-control' type='text'{{#chargeVersion}} value='{{chargeVersion}}'{{/chargeVersion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalInterval'>totalInterval: </label><div class='col-sm-8'><input id='{{id}}_totalInterval' class='form-control' type='text'{{#totalInterval}} value='{{totalInterval}}'{{/totalInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup_string}}'{{/MajorChargeGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroup'>ChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroup' class='form-control' type='text'{{#ChargeGroup}} value='{{ChargeGroup_string}}'{{/ChargeGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='{{id}}_ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents_string}}'{{/ChargeComponents}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute_string}}'{{/MktUserAttribute}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "ChargeType" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_effectiveDate").value; if ("" !== temp) obj["effectiveDate"] = temp;
-                temp = document.getElementById (id + "_terminationDate").value; if ("" !== temp) obj["terminationDate"] = temp;
-                temp = document.getElementById (id + "_factor").value; if ("" !== temp) obj["factor"] = temp;
-                temp = document.getElementById (id + "_chargeOrder").value; if ("" !== temp) obj["chargeOrder"] = temp;
-                temp = document.getElementById (id + "_frequencyType").value; if ("" !== temp) obj["frequencyType"] = temp;
-                temp = document.getElementById (id + "_chargeVersion").value; if ("" !== temp) obj["chargeVersion"] = temp;
-                temp = document.getElementById (id + "_totalInterval").value; if ("" !== temp) obj["totalInterval"] = temp;
-                temp = document.getElementById (id + "_MajorChargeGroup").value; if ("" !== temp) obj["MajorChargeGroup"] = temp.split (",");
-                temp = document.getElementById (id + "_ChargeGroup").value; if ("" !== temp) obj["ChargeGroup"] = temp.split (",");
-                temp = document.getElementById (id + "_ChargeComponents").value; if ("" !== temp) obj["ChargeComponents"] = temp.split (",");
-                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" !== temp) obj["MktUserAttribute"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["MajorChargeGroup", "0..*", "0..*", "MajorChargeGroup", "ChargeType"],
-                            ["ChargeGroup", "0..*", "0..*", "ChargeGroup", "ChargeType"],
-                            ["ChargeComponents", "0..*", "0..*", "ChargeComponent", "ChargeTypes"],
-                            ["MktUserAttribute", "0..*", "0..*", "MktUserAttribute", "ChargeType"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Defines bid schedules to allow a product bid to use specified bid price curves for different time intervals.
-         *
-         */
-        class BidPriceSchedule extends Core.RegularIntervalSchedule
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.BidPriceSchedule;
-                if (null == bucket)
-                   cim_data.BidPriceSchedule = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.BidPriceSchedule[obj.id];
+               delete cim_data.BidHourlyProductSchedule[obj.id];
             }
 
             parse (context, sub)
             {
                 let obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
-                obj.cls = "BidPriceSchedule";
-                base.parse_attribute (/<cim:BidPriceSchedule.bidType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "bidType", sub, context);
-                base.parse_attribute (/<cim:BidPriceSchedule.mitigationStatus\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "mitigationStatus", sub, context);
-                base.parse_attribute (/<cim:BidPriceSchedule.BidPriceCurve\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidPriceCurve", sub, context);
-                base.parse_attribute (/<cim:BidPriceSchedule.ProductBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProductBid", sub, context);
-                let bucket = context.parsed.BidPriceSchedule;
+                obj.cls = "BidHourlyProductSchedule";
+                base.parse_attribute (/<cim:BidHourlyProductSchedule.ProductBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProductBid", sub, context);
+                let bucket = context.parsed.BidHourlyProductSchedule;
                 if (null == bucket)
-                   context.parsed.BidPriceSchedule = bucket = {};
+                   context.parsed.BidHourlyProductSchedule = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -2578,10 +4076,7 @@ define
             {
                 let fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "BidPriceSchedule", "bidType", "bidType", fields);
-                base.export_attribute (obj, "BidPriceSchedule", "mitigationStatus", "mitigationStatus", fields);
-                base.export_attribute (obj, "BidPriceSchedule", "BidPriceCurve", "BidPriceCurve", fields);
-                base.export_attribute (obj, "BidPriceSchedule", "ProductBid", "ProductBid", fields);
+                base.export_attribute (obj, "BidHourlyProductSchedule", "ProductBid", "ProductBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -2593,14 +4088,11 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidPriceSchedule_collapse" aria-expanded="true" aria-controls="BidPriceSchedule_collapse" style="margin-left: 10px;">BidPriceSchedule</a></legend>
-                    <div id="BidPriceSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="BidHourlyProductSchedule_collapse" style="margin-left: 10px;">BidHourlyProductSchedule</a></legend>
+                    <div id="BidHourlyProductSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.template.call (this) +
                     `
-                    {{#bidType}}<div><b>bidType</b>: {{bidType}}</div>{{/bidType}}
-                    {{#mitigationStatus}}<div><b>mitigationStatus</b>: {{mitigationStatus}}</div>{{/mitigationStatus}}
-                    {{#BidPriceCurve}}<div><b>BidPriceCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{BidPriceCurve}}");}); return false;'>{{BidPriceCurve}}</a></div>{{/BidPriceCurve}}
                     {{#ProductBid}}<div><b>ProductBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ProductBid}}");}); return false;'>{{ProductBid}}</a></div>{{/ProductBid}}
                     </div>
                     </fieldset>
@@ -2612,15 +4104,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                obj["bidTypeBidMitigationType"] = [{ id: '', selected: (!obj["bidType"])}]; for (let property in MktDomain.BidMitigationType) obj["bidTypeBidMitigationType"].push ({ id: property, selected: obj["bidType"] && obj["bidType"].endsWith ('.' + property)});
-                obj["mitigationStatusBidMitigationStatus"] = [{ id: '', selected: (!obj["mitigationStatus"])}]; for (let property in MktDomain.BidMitigationStatus) obj["mitigationStatusBidMitigationStatus"].push ({ id: property, selected: obj["mitigationStatus"] && obj["mitigationStatus"].endsWith ('.' + property)});
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj["bidTypeBidMitigationType"];
-                delete obj["mitigationStatusBidMitigationStatus"];
             }
 
             edit_template ()
@@ -2628,14 +4116,11 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidPriceSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceSchedule_collapse" style="margin-left: 10px;">BidPriceSchedule</a></legend>
-                    <div id="{{id}}_BidPriceSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidHourlyProductSchedule_collapse" style="margin-left: 10px;">BidHourlyProductSchedule</a></legend>
+                    <div id="{{id}}_BidHourlyProductSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><select id='{{id}}_bidType' class='form-control custom-select'>{{#bidTypeBidMitigationType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/bidTypeBidMitigationType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mitigationStatus'>mitigationStatus: </label><div class='col-sm-8'><select id='{{id}}_mitigationStatus' class='form-control custom-select'>{{#mitigationStatusBidMitigationStatus}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/mitigationStatusBidMitigationStatus}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidPriceCurve'>BidPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_BidPriceCurve' class='form-control' type='text'{{#BidPriceCurve}} value='{{BidPriceCurve}}'{{/BidPriceCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
                     </div>
                     </fieldset>
@@ -2647,11 +4132,8 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "BidPriceSchedule" };
+                obj = obj || { id: id, cls: "BidHourlyProductSchedule" };
                 super.submit (id, obj);
-                temp = MktDomain.BidMitigationType[document.getElementById (id + "_bidType").value]; if (temp) obj["bidType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidMitigationType." + temp; else delete obj["bidType"];
-                temp = MktDomain.BidMitigationStatus[document.getElementById (id + "_mitigationStatus").value]; if (temp) obj["mitigationStatus"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#BidMitigationStatus." + temp; else delete obj["mitigationStatus"];
-                temp = document.getElementById (id + "_BidPriceCurve").value; if ("" !== temp) obj["BidPriceCurve"] = temp;
                 temp = document.getElementById (id + "_ProductBid").value; if ("" !== temp) obj["ProductBid"] = temp;
 
                 return (obj);
@@ -2662,8 +4144,7 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["BidPriceCurve", "1", "0..*", "BidPriceCurve", "BidSchedule"],
-                            ["ProductBid", "1", "0..*", "ProductBid", "BidSchedule"]
+                            ["ProductBid", "1", "0..*", "ProductBid", "BidHourlyProductSchedule"]
                         ]
                     )
                 );
@@ -2671,40 +4152,41 @@ define
         }
 
         /**
-         * Trade error and warning messages associated with the rule engine processing of the submitted trade.
+         * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process.
          *
          */
-        class TradeError extends Core.IdentifiedObject
+        class TransactionBid extends Bid
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.TradeError;
+                let bucket = cim_data.TransactionBid;
                 if (null == bucket)
-                   cim_data.TradeError = bucket = {};
+                   cim_data.TransactionBid = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.TradeError[obj.id];
+               delete cim_data.TransactionBid[obj.id];
             }
 
             parse (context, sub)
             {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "TradeError";
-                base.parse_element (/<cim:TradeError.errPriority>([\s\S]*?)<\/cim:TradeError.errPriority>/g, obj, "errPriority", base.to_string, sub, context);
-                base.parse_element (/<cim:TradeError.errMessage>([\s\S]*?)<\/cim:TradeError.errMessage>/g, obj, "errMessage", base.to_string, sub, context);
-                base.parse_element (/<cim:TradeError.ruleID>([\s\S]*?)<\/cim:TradeError.ruleID>/g, obj, "ruleID", base.to_string, sub, context);
-                base.parse_element (/<cim:TradeError.startTime>([\s\S]*?)<\/cim:TradeError.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:TradeError.endTime>([\s\S]*?)<\/cim:TradeError.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:TradeError.logTimeStamp>([\s\S]*?)<\/cim:TradeError.logTimeStamp>/g, obj, "logTimeStamp", base.to_datetime, sub, context);
-                base.parse_attribute (/<cim:TradeError.Trade\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
-                let bucket = context.parsed.TradeError;
+                let obj = Bid.prototype.parse.call (this, context, sub);
+                obj.cls = "TransactionBid";
+                base.parse_element (/<cim:TransactionBid.demandTransaction>([\s\S]*?)<\/cim:TransactionBid.demandTransaction>/g, obj, "demandTransaction", base.to_boolean, sub, context);
+                base.parse_element (/<cim:TransactionBid.dispatchable>([\s\S]*?)<\/cim:TransactionBid.dispatchable>/g, obj, "dispatchable", base.to_boolean, sub, context);
+                base.parse_element (/<cim:TransactionBid.payCongestion>([\s\S]*?)<\/cim:TransactionBid.payCongestion>/g, obj, "payCongestion", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:TransactionBid.TransactionBidResults\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TransactionBidResults", sub, context);
+                base.parse_attribute (/<cim:TransactionBid.TransmissionReservation\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionReservation", sub, context);
+                base.parse_attribute (/<cim:TransactionBid.Delivery_Pnode\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Delivery_Pnode", sub, context);
+                base.parse_attributes (/<cim:TransactionBid.EnergyProfiles\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyProfiles", sub, context);
+                base.parse_attribute (/<cim:TransactionBid.Receipt_Pnode\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Receipt_Pnode", sub, context);
+                let bucket = context.parsed.TransactionBid;
                 if (null == bucket)
-                   context.parsed.TradeError = bucket = {};
+                   context.parsed.TransactionBid = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -2712,15 +4194,16 @@ define
 
             export (obj, full)
             {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
+                let fields = Bid.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TradeError", "errPriority", "errPriority",  base.from_string, fields);
-                base.export_element (obj, "TradeError", "errMessage", "errMessage",  base.from_string, fields);
-                base.export_element (obj, "TradeError", "ruleID", "ruleID",  base.from_string, fields);
-                base.export_element (obj, "TradeError", "startTime", "startTime",  base.from_datetime, fields);
-                base.export_element (obj, "TradeError", "endTime", "endTime",  base.from_datetime, fields);
-                base.export_element (obj, "TradeError", "logTimeStamp", "logTimeStamp",  base.from_datetime, fields);
-                base.export_attribute (obj, "TradeError", "Trade", "Trade", fields);
+                base.export_element (obj, "TransactionBid", "demandTransaction", "demandTransaction",  base.from_boolean, fields);
+                base.export_element (obj, "TransactionBid", "dispatchable", "dispatchable",  base.from_boolean, fields);
+                base.export_element (obj, "TransactionBid", "payCongestion", "payCongestion",  base.from_boolean, fields);
+                base.export_attributes (obj, "TransactionBid", "TransactionBidResults", "TransactionBidResults", fields);
+                base.export_attribute (obj, "TransactionBid", "TransmissionReservation", "TransmissionReservation", fields);
+                base.export_attribute (obj, "TransactionBid", "Delivery_Pnode", "Delivery_Pnode", fields);
+                base.export_attributes (obj, "TransactionBid", "EnergyProfiles", "EnergyProfiles", fields);
+                base.export_attribute (obj, "TransactionBid", "Receipt_Pnode", "Receipt_Pnode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -2732,18 +4215,19 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TradeError_collapse" aria-expanded="true" aria-controls="TradeError_collapse" style="margin-left: 10px;">TradeError</a></legend>
-                    <div id="TradeError_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransactionBid_collapse" aria-expanded="true" aria-controls="TransactionBid_collapse" style="margin-left: 10px;">TransactionBid</a></legend>
+                    <div id="TransactionBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
+                    + Bid.prototype.template.call (this) +
                     `
-                    {{#errPriority}}<div><b>errPriority</b>: {{errPriority}}</div>{{/errPriority}}
-                    {{#errMessage}}<div><b>errMessage</b>: {{errMessage}}</div>{{/errMessage}}
-                    {{#ruleID}}<div><b>ruleID</b>: {{ruleID}}</div>{{/ruleID}}
-                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-                    {{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
-                    {{#logTimeStamp}}<div><b>logTimeStamp</b>: {{logTimeStamp}}</div>{{/logTimeStamp}}
-                    {{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Trade}}");}); return false;'>{{Trade}}</a></div>{{/Trade}}
+                    {{#demandTransaction}}<div><b>demandTransaction</b>: {{demandTransaction}}</div>{{/demandTransaction}}
+                    {{#dispatchable}}<div><b>dispatchable</b>: {{dispatchable}}</div>{{/dispatchable}}
+                    {{#payCongestion}}<div><b>payCongestion</b>: {{payCongestion}}</div>{{/payCongestion}}
+                    {{#TransactionBidResults}}<div><b>TransactionBidResults</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransactionBidResults}}
+                    {{#TransmissionReservation}}<div><b>TransmissionReservation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransmissionReservation}}");}); return false;'>{{TransmissionReservation}}</a></div>{{/TransmissionReservation}}
+                    {{#Delivery_Pnode}}<div><b>Delivery_Pnode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delivery_Pnode}}");}); return false;'>{{Delivery_Pnode}}</a></div>{{/Delivery_Pnode}}
+                    {{#EnergyProfiles}}<div><b>EnergyProfiles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyProfiles}}
+                    {{#Receipt_Pnode}}<div><b>Receipt_Pnode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Receipt_Pnode}}");}); return false;'>{{Receipt_Pnode}}</a></div>{{/Receipt_Pnode}}
                     </div>
                     </fieldset>
 
@@ -2754,11 +4238,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj["TransactionBidResults"]) obj["TransactionBidResults_string"] = obj["TransactionBidResults"].join ();
+                if (obj["EnergyProfiles"]) obj["EnergyProfiles_string"] = obj["EnergyProfiles"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj["TransactionBidResults_string"];
+                delete obj["EnergyProfiles_string"];
             }
 
             edit_template ()
@@ -2766,18 +4254,17 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TradeError_collapse" aria-expanded="true" aria-controls="{{id}}_TradeError_collapse" style="margin-left: 10px;">TradeError</a></legend>
-                    <div id="{{id}}_TradeError_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransactionBid_collapse" aria-expanded="true" aria-controls="{{id}}_TransactionBid_collapse" style="margin-left: 10px;">TransactionBid</a></legend>
+                    <div id="{{id}}_TransactionBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
+                    + Bid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errPriority'>errPriority: </label><div class='col-sm-8'><input id='{{id}}_errPriority' class='form-control' type='text'{{#errPriority}} value='{{errPriority}}'{{/errPriority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errMessage'>errMessage: </label><div class='col-sm-8'><input id='{{id}}_errMessage' class='form-control' type='text'{{#errMessage}} value='{{errMessage}}'{{/errMessage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ruleID'>ruleID: </label><div class='col-sm-8'><input id='{{id}}_ruleID' class='form-control' type='text'{{#ruleID}} value='{{ruleID}}'{{/ruleID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Trade'>Trade: </label><div class='col-sm-8'><input id='{{id}}_Trade' class='form-control' type='text'{{#Trade}} value='{{Trade}}'{{/Trade}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_demandTransaction'>demandTransaction: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_demandTransaction' class='form-check-input' type='checkbox'{{#demandTransaction}} checked{{/demandTransaction}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_dispatchable'>dispatchable: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_dispatchable' class='form-check-input' type='checkbox'{{#dispatchable}} checked{{/dispatchable}}></div></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_payCongestion'>payCongestion: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionReservation'>TransmissionReservation: </label><div class='col-sm-8'><input id='{{id}}_TransmissionReservation' class='form-control' type='text'{{#TransmissionReservation}} value='{{TransmissionReservation}}'{{/TransmissionReservation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Delivery_Pnode'>Delivery_Pnode: </label><div class='col-sm-8'><input id='{{id}}_Delivery_Pnode' class='form-control' type='text'{{#Delivery_Pnode}} value='{{Delivery_Pnode}}'{{/Delivery_Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Receipt_Pnode'>Receipt_Pnode: </label><div class='col-sm-8'><input id='{{id}}_Receipt_Pnode' class='form-control' type='text'{{#Receipt_Pnode}} value='{{Receipt_Pnode}}'{{/Receipt_Pnode}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -2788,15 +4275,14 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "TradeError" };
+                obj = obj || { id: id, cls: "TransactionBid" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_errPriority").value; if ("" !== temp) obj["errPriority"] = temp;
-                temp = document.getElementById (id + "_errMessage").value; if ("" !== temp) obj["errMessage"] = temp;
-                temp = document.getElementById (id + "_ruleID").value; if ("" !== temp) obj["ruleID"] = temp;
-                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
-                temp = document.getElementById (id + "_endTime").value; if ("" !== temp) obj["endTime"] = temp;
-                temp = document.getElementById (id + "_logTimeStamp").value; if ("" !== temp) obj["logTimeStamp"] = temp;
-                temp = document.getElementById (id + "_Trade").value; if ("" !== temp) obj["Trade"] = temp;
+                temp = document.getElementById (id + "_demandTransaction").checked; if (temp) obj["demandTransaction"] = true;
+                temp = document.getElementById (id + "_dispatchable").checked; if (temp) obj["dispatchable"] = true;
+                temp = document.getElementById (id + "_payCongestion").checked; if (temp) obj["payCongestion"] = true;
+                temp = document.getElementById (id + "_TransmissionReservation").value; if ("" !== temp) obj["TransmissionReservation"] = temp;
+                temp = document.getElementById (id + "_Delivery_Pnode").value; if ("" !== temp) obj["Delivery_Pnode"] = temp;
+                temp = document.getElementById (id + "_Receipt_Pnode").value; if ("" !== temp) obj["Receipt_Pnode"] = temp;
 
                 return (obj);
             }
@@ -2806,7 +4292,11 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["Trade", "0..1", "0..*", "Trade", "TradeError"]
+                            ["TransactionBidResults", "0..*", "0..1", "TransactionBidResults", "TransactionBid"],
+                            ["TransmissionReservation", "0..1", "0..1", "TransmissionReservation", "TransactionBid"],
+                            ["Delivery_Pnode", "0..1", "0..*", "Pnode", "DeliveryTransactionBids"],
+                            ["EnergyProfiles", "1..*", "1", "EnergyProfile", "TransactionBid"],
+                            ["Receipt_Pnode", "0..1", "0..*", "Pnode", "ReceiptTransactionBids"]
                         ]
                     )
                 );
@@ -2814,38 +4304,37 @@ define
         }
 
         /**
-         * Metered SubSystem Load Following Instruction.
+         * AreaLoadBid is not submitted by a market participant into the Markets.
+         *
+         * Instead, it is simply an aggregation of all LoadBids contained wtihin a specific SubControlArea. This entity should inherit from Bid for representation of the timeframe (startTime, stopTime) and the market type.
          *
          */
-        class LoadFollowingInst extends base.Element
+        class AreaLoadBid extends Bid
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.LoadFollowingInst;
+                let bucket = cim_data.AreaLoadBid;
                 if (null == bucket)
-                   cim_data.LoadFollowingInst = bucket = {};
+                   cim_data.AreaLoadBid = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.LoadFollowingInst[obj.id];
+               delete cim_data.AreaLoadBid[obj.id];
             }
 
             parse (context, sub)
             {
-                let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "LoadFollowingInst";
-                base.parse_element (/<cim:LoadFollowingInst.mssInstructionID>([\s\S]*?)<\/cim:LoadFollowingInst.mssInstructionID>/g, obj, "mssInstructionID", base.to_string, sub, context);
-                base.parse_element (/<cim:LoadFollowingInst.startTime>([\s\S]*?)<\/cim:LoadFollowingInst.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:LoadFollowingInst.endTime>([\s\S]*?)<\/cim:LoadFollowingInst.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:LoadFollowingInst.loadFollowingMW>([\s\S]*?)<\/cim:LoadFollowingInst.loadFollowingMW>/g, obj, "loadFollowingMW", base.to_float, sub, context);
-                base.parse_attribute (/<cim:LoadFollowingInst.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-                let bucket = context.parsed.LoadFollowingInst;
+                let obj = Bid.prototype.parse.call (this, context, sub);
+                obj.cls = "AreaLoadBid";
+                base.parse_element (/<cim:AreaLoadBid.demandBidMW>([\s\S]*?)<\/cim:AreaLoadBid.demandBidMW>/g, obj, "demandBidMW", base.to_float, sub, context);
+                base.parse_attributes (/<cim:AreaLoadBid.LoadBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
+                let bucket = context.parsed.AreaLoadBid;
                 if (null == bucket)
-                   context.parsed.LoadFollowingInst = bucket = {};
+                   context.parsed.AreaLoadBid = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -2853,13 +4342,10 @@ define
 
             export (obj, full)
             {
-                let fields = [];
+                let fields = Bid.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LoadFollowingInst", "mssInstructionID", "mssInstructionID",  base.from_string, fields);
-                base.export_element (obj, "LoadFollowingInst", "startTime", "startTime",  base.from_datetime, fields);
-                base.export_element (obj, "LoadFollowingInst", "endTime", "endTime",  base.from_datetime, fields);
-                base.export_element (obj, "LoadFollowingInst", "loadFollowingMW", "loadFollowingMW",  base.from_float, fields);
-                base.export_attribute (obj, "LoadFollowingInst", "RegisteredResource", "RegisteredResource", fields);
+                base.export_element (obj, "AreaLoadBid", "demandBidMW", "demandBidMW",  base.from_float, fields);
+                base.export_attributes (obj, "AreaLoadBid", "LoadBid", "LoadBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -2871,16 +4357,13 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadFollowingInst_collapse" aria-expanded="true" aria-controls="LoadFollowingInst_collapse" style="margin-left: 10px;">LoadFollowingInst</a></legend>
-                    <div id="LoadFollowingInst_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AreaLoadBid_collapse" aria-expanded="true" aria-controls="AreaLoadBid_collapse" style="margin-left: 10px;">AreaLoadBid</a></legend>
+                    <div id="AreaLoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + base.Element.prototype.template.call (this) +
+                    + Bid.prototype.template.call (this) +
                     `
-                    {{#mssInstructionID}}<div><b>mssInstructionID</b>: {{mssInstructionID}}</div>{{/mssInstructionID}}
-                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-                    {{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
-                    {{#loadFollowingMW}}<div><b>loadFollowingMW</b>: {{loadFollowingMW}}</div>{{/loadFollowingMW}}
-                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredResource}}");}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#demandBidMW}}<div><b>demandBidMW</b>: {{demandBidMW}}</div>{{/demandBidMW}}
+                    {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LoadBid}}
                     </div>
                     </fieldset>
 
@@ -2891,11 +4374,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj["LoadBid"]) obj["LoadBid_string"] = obj["LoadBid"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj["LoadBid_string"];
             }
 
             edit_template ()
@@ -2903,16 +4388,12 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadFollowingInst_collapse" aria-expanded="true" aria-controls="{{id}}_LoadFollowingInst_collapse" style="margin-left: 10px;">LoadFollowingInst</a></legend>
-                    <div id="{{id}}_LoadFollowingInst_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AreaLoadBid_collapse" aria-expanded="true" aria-controls="{{id}}_AreaLoadBid_collapse" style="margin-left: 10px;">AreaLoadBid</a></legend>
+                    <div id="{{id}}_AreaLoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + base.Element.prototype.edit_template.call (this) +
+                    + Bid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mssInstructionID'>mssInstructionID: </label><div class='col-sm-8'><input id='{{id}}_mssInstructionID' class='form-control' type='text'{{#mssInstructionID}} value='{{mssInstructionID}}'{{/mssInstructionID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingMW'>loadFollowingMW: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingMW' class='form-control' type='text'{{#loadFollowingMW}} value='{{loadFollowingMW}}'{{/loadFollowingMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_demandBidMW'>demandBidMW: </label><div class='col-sm-8'><input id='{{id}}_demandBidMW' class='form-control' type='text'{{#demandBidMW}} value='{{demandBidMW}}'{{/demandBidMW}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -2923,13 +4404,9 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "LoadFollowingInst" };
+                obj = obj || { id: id, cls: "AreaLoadBid" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_mssInstructionID").value; if ("" !== temp) obj["mssInstructionID"] = temp;
-                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
-                temp = document.getElementById (id + "_endTime").value; if ("" !== temp) obj["endTime"] = temp;
-                temp = document.getElementById (id + "_loadFollowingMW").value; if ("" !== temp) obj["loadFollowingMW"] = temp;
-                temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp;
+                temp = document.getElementById (id + "_demandBidMW").value; if ("" !== temp) obj["demandBidMW"] = temp;
 
                 return (obj);
             }
@@ -2939,1740 +4416,10 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["RegisteredResource", "1", "0..*", "RegisteredResource", "LoadFollowingInst"]
+                            ["LoadBid", "0..*", "0..1", "LoadBid", "AreaLoadBid"]
                         ]
                     )
                 );
-            }
-        }
-
-        /**
-         * As set of mutually exclusive bids for which a maximum of one may be scheduled.
-         *
-         * Of these generating bids, only one generating bid can be scheduled at a time.
-         *
-         */
-        class BidSet extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.BidSet;
-                if (null == bucket)
-                   cim_data.BidSet = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.BidSet[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "BidSet";
-                base.parse_attributes (/<cim:BidSet.GeneratingBids\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBids", sub, context);
-                let bucket = context.parsed.BidSet;
-                if (null == bucket)
-                   context.parsed.BidSet = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "BidSet", "GeneratingBids", "GeneratingBids", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidSet_collapse" aria-expanded="true" aria-controls="BidSet_collapse" style="margin-left: 10px;">BidSet</a></legend>
-                    <div id="BidSet_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#GeneratingBids}}<div><b>GeneratingBids</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingBids}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["GeneratingBids"]) obj["GeneratingBids_string"] = obj["GeneratingBids"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["GeneratingBids_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidSet_collapse" aria-expanded="true" aria-controls="{{id}}_BidSet_collapse" style="margin-left: 10px;">BidSet</a></legend>
-                    <div id="{{id}}_BidSet_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "BidSet" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["GeneratingBids", "1..*", "0..1", "GeneratingBid", "BidSet"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Response from an intertie resource acknowledging receipt of dispatch instructions.
-         *
-         */
-        class InterTieDispatchResponse extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.InterTieDispatchResponse;
-                if (null == bucket)
-                   cim_data.InterTieDispatchResponse = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.InterTieDispatchResponse[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "InterTieDispatchResponse";
-                base.parse_attribute (/<cim:InterTieDispatchResponse.acceptStatus\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "acceptStatus", sub, context);
-                base.parse_element (/<cim:InterTieDispatchResponse.acceptMW>([\s\S]*?)<\/cim:InterTieDispatchResponse.acceptMW>/g, obj, "acceptMW", base.to_float, sub, context);
-                base.parse_element (/<cim:InterTieDispatchResponse.clearedMW>([\s\S]*?)<\/cim:InterTieDispatchResponse.clearedMW>/g, obj, "clearedMW", base.to_float, sub, context);
-                base.parse_element (/<cim:InterTieDispatchResponse.startTime>([\s\S]*?)<\/cim:InterTieDispatchResponse.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
-                base.parse_attribute (/<cim:InterTieDispatchResponse.passIndicator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "passIndicator", sub, context);
-                base.parse_attribute (/<cim:InterTieDispatchResponse.RegisteredInterTie\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredInterTie", sub, context);
-                let bucket = context.parsed.InterTieDispatchResponse;
-                if (null == bucket)
-                   context.parsed.InterTieDispatchResponse = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = [];
-
-                base.export_attribute (obj, "InterTieDispatchResponse", "acceptStatus", "acceptStatus", fields);
-                base.export_element (obj, "InterTieDispatchResponse", "acceptMW", "acceptMW",  base.from_float, fields);
-                base.export_element (obj, "InterTieDispatchResponse", "clearedMW", "clearedMW",  base.from_float, fields);
-                base.export_element (obj, "InterTieDispatchResponse", "startTime", "startTime",  base.from_datetime, fields);
-                base.export_attribute (obj, "InterTieDispatchResponse", "passIndicator", "passIndicator", fields);
-                base.export_attribute (obj, "InterTieDispatchResponse", "RegisteredInterTie", "RegisteredInterTie", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="InterTieDispatchResponse_collapse" style="margin-left: 10px;">InterTieDispatchResponse</a></legend>
-                    <div id="InterTieDispatchResponse_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.template.call (this) +
-                    `
-                    {{#acceptStatus}}<div><b>acceptStatus</b>: {{acceptStatus}}</div>{{/acceptStatus}}
-                    {{#acceptMW}}<div><b>acceptMW</b>: {{acceptMW}}</div>{{/acceptMW}}
-                    {{#clearedMW}}<div><b>clearedMW</b>: {{clearedMW}}</div>{{/clearedMW}}
-                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-                    {{#passIndicator}}<div><b>passIndicator</b>: {{passIndicator}}</div>{{/passIndicator}}
-                    {{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredInterTie}}");}); return false;'>{{RegisteredInterTie}}</a></div>{{/RegisteredInterTie}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                obj["acceptStatusDispatchResponseType"] = [{ id: '', selected: (!obj["acceptStatus"])}]; for (let property in MktDomain.DispatchResponseType) obj["acceptStatusDispatchResponseType"].push ({ id: property, selected: obj["acceptStatus"] && obj["acceptStatus"].endsWith ('.' + property)});
-                obj["passIndicatorPassIndicatorType"] = [{ id: '', selected: (!obj["passIndicator"])}]; for (let property in MktDomain.PassIndicatorType) obj["passIndicatorPassIndicatorType"].push ({ id: property, selected: obj["passIndicator"] && obj["passIndicator"].endsWith ('.' + property)});
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["acceptStatusDispatchResponseType"];
-                delete obj["passIndicatorPassIndicatorType"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieDispatchResponse_collapse" style="margin-left: 10px;">InterTieDispatchResponse</a></legend>
-                    <div id="{{id}}_InterTieDispatchResponse_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><select id='{{id}}_acceptStatus' class='form-control custom-select'>{{#acceptStatusDispatchResponseType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/acceptStatusDispatchResponseType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='{{id}}_acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='{{id}}_clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><select id='{{id}}_passIndicator' class='form-control custom-select'>{{#passIndicatorPassIndicatorType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/passIndicatorPassIndicatorType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "InterTieDispatchResponse" };
-                super.submit (id, obj);
-                temp = MktDomain.DispatchResponseType[document.getElementById (id + "_acceptStatus").value]; if (temp) obj["acceptStatus"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#DispatchResponseType." + temp; else delete obj["acceptStatus"];
-                temp = document.getElementById (id + "_acceptMW").value; if ("" !== temp) obj["acceptMW"] = temp;
-                temp = document.getElementById (id + "_clearedMW").value; if ("" !== temp) obj["clearedMW"] = temp;
-                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
-                temp = MktDomain.PassIndicatorType[document.getElementById (id + "_passIndicator").value]; if (temp) obj["passIndicator"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PassIndicatorType." + temp; else delete obj["passIndicator"];
-                temp = document.getElementById (id + "_RegisteredInterTie").value; if ("" !== temp) obj["RegisteredInterTie"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["RegisteredInterTie", "1", "0..*", "RegisteredInterTie", "InterTieDispatchResponse"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Response from registered resource acknowledging receipt of dispatch instructions.
-         *
-         */
-        class DispatchInstReply extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.DispatchInstReply;
-                if (null == bucket)
-                   cim_data.DispatchInstReply = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.DispatchInstReply[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "DispatchInstReply";
-                base.parse_element (/<cim:DispatchInstReply.acceptMW>([\s\S]*?)<\/cim:DispatchInstReply.acceptMW>/g, obj, "acceptMW", base.to_string, sub, context);
-                base.parse_attribute (/<cim:DispatchInstReply.acceptStatus\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "acceptStatus", sub, context);
-                base.parse_element (/<cim:DispatchInstReply.certificationName>([\s\S]*?)<\/cim:DispatchInstReply.certificationName>/g, obj, "certificationName", base.to_string, sub, context);
-                base.parse_element (/<cim:DispatchInstReply.clearedMW>([\s\S]*?)<\/cim:DispatchInstReply.clearedMW>/g, obj, "clearedMW", base.to_string, sub, context);
-                base.parse_element (/<cim:DispatchInstReply.instructionTime>([\s\S]*?)<\/cim:DispatchInstReply.instructionTime>/g, obj, "instructionTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:DispatchInstReply.instructionType>([\s\S]*?)<\/cim:DispatchInstReply.instructionType>/g, obj, "instructionType", base.to_string, sub, context);
-                base.parse_attribute (/<cim:DispatchInstReply.passIndicator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "passIndicator", sub, context);
-                base.parse_element (/<cim:DispatchInstReply.receivedTime>([\s\S]*?)<\/cim:DispatchInstReply.receivedTime>/g, obj, "receivedTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:DispatchInstReply.startTime>([\s\S]*?)<\/cim:DispatchInstReply.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
-                base.parse_attribute (/<cim:DispatchInstReply.RegisteredResource\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-                let bucket = context.parsed.DispatchInstReply;
-                if (null == bucket)
-                   context.parsed.DispatchInstReply = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "DispatchInstReply", "acceptMW", "acceptMW",  base.from_string, fields);
-                base.export_attribute (obj, "DispatchInstReply", "acceptStatus", "acceptStatus", fields);
-                base.export_element (obj, "DispatchInstReply", "certificationName", "certificationName",  base.from_string, fields);
-                base.export_element (obj, "DispatchInstReply", "clearedMW", "clearedMW",  base.from_string, fields);
-                base.export_element (obj, "DispatchInstReply", "instructionTime", "instructionTime",  base.from_datetime, fields);
-                base.export_element (obj, "DispatchInstReply", "instructionType", "instructionType",  base.from_string, fields);
-                base.export_attribute (obj, "DispatchInstReply", "passIndicator", "passIndicator", fields);
-                base.export_element (obj, "DispatchInstReply", "receivedTime", "receivedTime",  base.from_datetime, fields);
-                base.export_element (obj, "DispatchInstReply", "startTime", "startTime",  base.from_datetime, fields);
-                base.export_attribute (obj, "DispatchInstReply", "RegisteredResource", "RegisteredResource", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#DispatchInstReply_collapse" aria-expanded="true" aria-controls="DispatchInstReply_collapse" style="margin-left: 10px;">DispatchInstReply</a></legend>
-                    <div id="DispatchInstReply_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#acceptMW}}<div><b>acceptMW</b>: {{acceptMW}}</div>{{/acceptMW}}
-                    {{#acceptStatus}}<div><b>acceptStatus</b>: {{acceptStatus}}</div>{{/acceptStatus}}
-                    {{#certificationName}}<div><b>certificationName</b>: {{certificationName}}</div>{{/certificationName}}
-                    {{#clearedMW}}<div><b>clearedMW</b>: {{clearedMW}}</div>{{/clearedMW}}
-                    {{#instructionTime}}<div><b>instructionTime</b>: {{instructionTime}}</div>{{/instructionTime}}
-                    {{#instructionType}}<div><b>instructionType</b>: {{instructionType}}</div>{{/instructionType}}
-                    {{#passIndicator}}<div><b>passIndicator</b>: {{passIndicator}}</div>{{/passIndicator}}
-                    {{#receivedTime}}<div><b>receivedTime</b>: {{receivedTime}}</div>{{/receivedTime}}
-                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredResource}}");}); return false;'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                obj["acceptStatusDispatchResponseType"] = [{ id: '', selected: (!obj["acceptStatus"])}]; for (let property in MktDomain.DispatchResponseType) obj["acceptStatusDispatchResponseType"].push ({ id: property, selected: obj["acceptStatus"] && obj["acceptStatus"].endsWith ('.' + property)});
-                obj["passIndicatorPassIndicatorType"] = [{ id: '', selected: (!obj["passIndicator"])}]; for (let property in MktDomain.PassIndicatorType) obj["passIndicatorPassIndicatorType"].push ({ id: property, selected: obj["passIndicator"] && obj["passIndicator"].endsWith ('.' + property)});
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["acceptStatusDispatchResponseType"];
-                delete obj["passIndicatorPassIndicatorType"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_DispatchInstReply_collapse" aria-expanded="true" aria-controls="{{id}}_DispatchInstReply_collapse" style="margin-left: 10px;">DispatchInstReply</a></legend>
-                    <div id="{{id}}_DispatchInstReply_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='{{id}}_acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><select id='{{id}}_acceptStatus' class='form-control custom-select'>{{#acceptStatusDispatchResponseType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/acceptStatusDispatchResponseType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationName'>certificationName: </label><div class='col-sm-8'><input id='{{id}}_certificationName' class='form-control' type='text'{{#certificationName}} value='{{certificationName}}'{{/certificationName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='{{id}}_clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionTime'>instructionTime: </label><div class='col-sm-8'><input id='{{id}}_instructionTime' class='form-control' type='text'{{#instructionTime}} value='{{instructionTime}}'{{/instructionTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionType'>instructionType: </label><div class='col-sm-8'><input id='{{id}}_instructionType' class='form-control' type='text'{{#instructionType}} value='{{instructionType}}'{{/instructionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><select id='{{id}}_passIndicator' class='form-control custom-select'>{{#passIndicatorPassIndicatorType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/passIndicatorPassIndicatorType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receivedTime'>receivedTime: </label><div class='col-sm-8'><input id='{{id}}_receivedTime' class='form-control' type='text'{{#receivedTime}} value='{{receivedTime}}'{{/receivedTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "DispatchInstReply" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_acceptMW").value; if ("" !== temp) obj["acceptMW"] = temp;
-                temp = MktDomain.DispatchResponseType[document.getElementById (id + "_acceptStatus").value]; if (temp) obj["acceptStatus"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#DispatchResponseType." + temp; else delete obj["acceptStatus"];
-                temp = document.getElementById (id + "_certificationName").value; if ("" !== temp) obj["certificationName"] = temp;
-                temp = document.getElementById (id + "_clearedMW").value; if ("" !== temp) obj["clearedMW"] = temp;
-                temp = document.getElementById (id + "_instructionTime").value; if ("" !== temp) obj["instructionTime"] = temp;
-                temp = document.getElementById (id + "_instructionType").value; if ("" !== temp) obj["instructionType"] = temp;
-                temp = MktDomain.PassIndicatorType[document.getElementById (id + "_passIndicator").value]; if (temp) obj["passIndicator"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#PassIndicatorType." + temp; else delete obj["passIndicator"];
-                temp = document.getElementById (id + "_receivedTime").value; if ("" !== temp) obj["receivedTime"] = temp;
-                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
-                temp = document.getElementById (id + "_RegisteredResource").value; if ("" !== temp) obj["RegisteredResource"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["RegisteredResource", "1", "0..*", "RegisteredResource", "DispatchInstReply"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Startup time curve as a function of down time, where time is specified in minutes.
-         *
-         * Relationship between unit startup time (Y1-axis) vs. unit elapsed down time (X-axis).
-         *
-         */
-        class StartUpTimeCurve extends Core.Curve
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.StartUpTimeCurve;
-                if (null == bucket)
-                   cim_data.StartUpTimeCurve = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.StartUpTimeCurve[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.Curve.prototype.parse.call (this, context, sub);
-                obj.cls = "StartUpTimeCurve";
-                base.parse_attribute (/<cim:StartUpTimeCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-                base.parse_attributes (/<cim:StartUpTimeCurve.GeneratingBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
-                let bucket = context.parsed.StartUpTimeCurve;
-                if (null == bucket)
-                   context.parsed.StartUpTimeCurve = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.Curve.prototype.export.call (this, obj, false);
-
-                base.export_attribute (obj, "StartUpTimeCurve", "RegisteredGenerator", "RegisteredGenerator", fields);
-                base.export_attributes (obj, "StartUpTimeCurve", "GeneratingBid", "GeneratingBid", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="StartUpTimeCurve_collapse" style="margin-left: 10px;">StartUpTimeCurve</a></legend>
-                    <div id="StartUpTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.template.call (this) +
-                    `
-                    {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredGenerator}}");}); return false;'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
-                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingBid}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["GeneratingBid"]) obj["GeneratingBid_string"] = obj["GeneratingBid"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["GeneratingBid_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpTimeCurve_collapse" style="margin-left: 10px;">StartUpTimeCurve</a></legend>
-                    <div id="{{id}}_StartUpTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "StartUpTimeCurve" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" !== temp) obj["RegisteredGenerator"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["RegisteredGenerator", "0..1", "0..1", "RegisteredGenerator", "StartUpTimeCurve"],
-                            ["GeneratingBid", "0..*", "0..1", "GeneratingBid", "StartUpTimeCurve"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Represents both bids to purchase and offers to sell energy or ancillary services in an RTO-sponsored market.
-         *
-         */
-        class Bid extends Common.Document
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.Bid;
-                if (null == bucket)
-                   cim_data.Bid = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.Bid[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Common.Document.prototype.parse.call (this, context, sub);
-                obj.cls = "Bid";
-                base.parse_element (/<cim:Bid.startTime>([\s\S]*?)<\/cim:Bid.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
-                base.parse_element (/<cim:Bid.stopTime>([\s\S]*?)<\/cim:Bid.stopTime>/g, obj, "stopTime", base.to_datetime, sub, context);
-                base.parse_attribute (/<cim:Bid.marketType\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "marketType", sub, context);
-                base.parse_attributes (/<cim:Bid.RMRDetermination\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RMRDetermination", sub, context);
-                base.parse_attribute (/<cim:Bid.ActionRequest\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ActionRequest", sub, context);
-                base.parse_attributes (/<cim:Bid.ProductBids\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ProductBids", sub, context);
-                base.parse_attribute (/<cim:Bid.EnergyMarket\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyMarket", sub, context);
-                base.parse_attributes (/<cim:Bid.MitigatedBidSegment\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBidSegment", sub, context);
-                base.parse_attributes (/<cim:Bid.ChargeProfiles\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChargeProfiles", sub, context);
-                base.parse_attributes (/<cim:Bid.MitigatedBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBid", sub, context);
-                base.parse_attributes (/<cim:Bid.BidHourlySchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidHourlySchedule", sub, context);
-                base.parse_attribute (/<cim:Bid.MarketParticipant\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MarketParticipant", sub, context);
-                let bucket = context.parsed.Bid;
-                if (null == bucket)
-                   context.parsed.Bid = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Common.Document.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "Bid", "startTime", "startTime",  base.from_datetime, fields);
-                base.export_element (obj, "Bid", "stopTime", "stopTime",  base.from_datetime, fields);
-                base.export_attribute (obj, "Bid", "marketType", "marketType", fields);
-                base.export_attributes (obj, "Bid", "RMRDetermination", "RMRDetermination", fields);
-                base.export_attribute (obj, "Bid", "ActionRequest", "ActionRequest", fields);
-                base.export_attributes (obj, "Bid", "ProductBids", "ProductBids", fields);
-                base.export_attribute (obj, "Bid", "EnergyMarket", "EnergyMarket", fields);
-                base.export_attributes (obj, "Bid", "MitigatedBidSegment", "MitigatedBidSegment", fields);
-                base.export_attributes (obj, "Bid", "ChargeProfiles", "ChargeProfiles", fields);
-                base.export_attributes (obj, "Bid", "MitigatedBid", "MitigatedBid", fields);
-                base.export_attributes (obj, "Bid", "BidHourlySchedule", "BidHourlySchedule", fields);
-                base.export_attribute (obj, "Bid", "MarketParticipant", "MarketParticipant", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#Bid_collapse" aria-expanded="true" aria-controls="Bid_collapse" style="margin-left: 10px;">Bid</a></legend>
-                    <div id="Bid_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Document.prototype.template.call (this) +
-                    `
-                    {{#startTime}}<div><b>startTime</b>: {{startTime}}</div>{{/startTime}}
-                    {{#stopTime}}<div><b>stopTime</b>: {{stopTime}}</div>{{/stopTime}}
-                    {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
-                    {{#RMRDetermination}}<div><b>RMRDetermination</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RMRDetermination}}
-                    {{#ActionRequest}}<div><b>ActionRequest</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ActionRequest}}");}); return false;'>{{ActionRequest}}</a></div>{{/ActionRequest}}
-                    {{#ProductBids}}<div><b>ProductBids</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ProductBids}}
-                    {{#EnergyMarket}}<div><b>EnergyMarket</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{EnergyMarket}}");}); return false;'>{{EnergyMarket}}</a></div>{{/EnergyMarket}}
-                    {{#MitigatedBidSegment}}<div><b>MitigatedBidSegment</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MitigatedBidSegment}}
-                    {{#ChargeProfiles}}<div><b>ChargeProfiles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/ChargeProfiles}}
-                    {{#MitigatedBid}}<div><b>MitigatedBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/MitigatedBid}}
-                    {{#BidHourlySchedule}}<div><b>BidHourlySchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidHourlySchedule}}
-                    {{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MarketParticipant}}");}); return false;'>{{MarketParticipant}}</a></div>{{/MarketParticipant}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                obj["marketTypeMarketType"] = [{ id: '', selected: (!obj["marketType"])}]; for (let property in MktDomain.MarketType) obj["marketTypeMarketType"].push ({ id: property, selected: obj["marketType"] && obj["marketType"].endsWith ('.' + property)});
-                if (obj["RMRDetermination"]) obj["RMRDetermination_string"] = obj["RMRDetermination"].join ();
-                if (obj["ProductBids"]) obj["ProductBids_string"] = obj["ProductBids"].join ();
-                if (obj["MitigatedBidSegment"]) obj["MitigatedBidSegment_string"] = obj["MitigatedBidSegment"].join ();
-                if (obj["ChargeProfiles"]) obj["ChargeProfiles_string"] = obj["ChargeProfiles"].join ();
-                if (obj["MitigatedBid"]) obj["MitigatedBid_string"] = obj["MitigatedBid"].join ();
-                if (obj["BidHourlySchedule"]) obj["BidHourlySchedule_string"] = obj["BidHourlySchedule"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["marketTypeMarketType"];
-                delete obj["RMRDetermination_string"];
-                delete obj["ProductBids_string"];
-                delete obj["MitigatedBidSegment_string"];
-                delete obj["ChargeProfiles_string"];
-                delete obj["MitigatedBid_string"];
-                delete obj["BidHourlySchedule_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_Bid_collapse" aria-expanded="true" aria-controls="{{id}}_Bid_collapse" style="margin-left: 10px;">Bid</a></legend>
-                    <div id="{{id}}_Bid_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Common.Document.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stopTime'>stopTime: </label><div class='col-sm-8'><input id='{{id}}_stopTime' class='form-control' type='text'{{#stopTime}} value='{{stopTime}}'{{/stopTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><select id='{{id}}_marketType' class='form-control custom-select'>{{#marketTypeMarketType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/marketTypeMarketType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActionRequest'>ActionRequest: </label><div class='col-sm-8'><input id='{{id}}_ActionRequest' class='form-control' type='text'{{#ActionRequest}} value='{{ActionRequest}}'{{/ActionRequest}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyMarket'>EnergyMarket: </label><div class='col-sm-8'><input id='{{id}}_EnergyMarket' class='form-control' type='text'{{#EnergyMarket}} value='{{EnergyMarket}}'{{/EnergyMarket}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='{{id}}_MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}'{{/MarketParticipant}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "Bid" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_startTime").value; if ("" !== temp) obj["startTime"] = temp;
-                temp = document.getElementById (id + "_stopTime").value; if ("" !== temp) obj["stopTime"] = temp;
-                temp = MktDomain.MarketType[document.getElementById (id + "_marketType").value]; if (temp) obj["marketType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketType." + temp; else delete obj["marketType"];
-                temp = document.getElementById (id + "_ActionRequest").value; if ("" !== temp) obj["ActionRequest"] = temp;
-                temp = document.getElementById (id + "_EnergyMarket").value; if ("" !== temp) obj["EnergyMarket"] = temp;
-                temp = document.getElementById (id + "_MarketParticipant").value; if ("" !== temp) obj["MarketParticipant"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["RMRDetermination", "0..*", "0..1", "RMRDetermination", "Bid"],
-                            ["ActionRequest", "1", "0..*", "ActionRequest", "Bid"],
-                            ["ProductBids", "1..*", "1", "ProductBid", "Bid"],
-                            ["EnergyMarket", "1", "0..*", "EnergyMarket", "Bids"],
-                            ["MitigatedBidSegment", "0..*", "1", "MitigatedBidSegment", "Bid"],
-                            ["ChargeProfiles", "0..*", "0..1", "ChargeProfile", "Bid"],
-                            ["MitigatedBid", "0..*", "0..1", "MitigatedBid", "Bid"],
-                            ["BidHourlySchedule", "0..*", "1", "BidHourlySchedule", "Bid"],
-                            ["MarketParticipant", "0..1", "0..*", "MarketParticipant", "Bid"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Startup costs and time as a function of down time.
-         *
-         * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
-         *
-         */
-        class StartUpCostCurve extends Core.Curve
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.StartUpCostCurve;
-                if (null == bucket)
-                   cim_data.StartUpCostCurve = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.StartUpCostCurve[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.Curve.prototype.parse.call (this, context, sub);
-                obj.cls = "StartUpCostCurve";
-                base.parse_attributes (/<cim:StartUpCostCurve.GeneratingBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
-                base.parse_attributes (/<cim:StartUpCostCurve.RegisteredGenerators\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerators", sub, context);
-                let bucket = context.parsed.StartUpCostCurve;
-                if (null == bucket)
-                   context.parsed.StartUpCostCurve = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.Curve.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "StartUpCostCurve", "GeneratingBid", "GeneratingBid", fields);
-                base.export_attributes (obj, "StartUpCostCurve", "RegisteredGenerators", "RegisteredGenerators", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#StartUpCostCurve_collapse" aria-expanded="true" aria-controls="StartUpCostCurve_collapse" style="margin-left: 10px;">StartUpCostCurve</a></legend>
-                    <div id="StartUpCostCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.template.call (this) +
-                    `
-                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/GeneratingBid}}
-                    {{#RegisteredGenerators}}<div><b>RegisteredGenerators</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RegisteredGenerators}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["GeneratingBid"]) obj["GeneratingBid_string"] = obj["GeneratingBid"].join ();
-                if (obj["RegisteredGenerators"]) obj["RegisteredGenerators_string"] = obj["RegisteredGenerators"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["GeneratingBid_string"];
-                delete obj["RegisteredGenerators_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_StartUpCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpCostCurve_collapse" style="margin-left: 10px;">StartUpCostCurve</a></legend>
-                    <div id="{{id}}_StartUpCostCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerators'>RegisteredGenerators: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerators' class='form-control' type='text'{{#RegisteredGenerators}} value='{{RegisteredGenerators_string}}'{{/RegisteredGenerators}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "StartUpCostCurve" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_RegisteredGenerators").value; if ("" !== temp) obj["RegisteredGenerators"] = temp.split (",");
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["GeneratingBid", "0..*", "0..1", "GeneratingBid", "StartUpCostCurve"],
-                            ["RegisteredGenerators", "0..*", "0..*", "RegisteredGenerator", "StartUpCostCurves"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Signifies an event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units shall be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
-         *
-         */
-        class MarketScheduledEvent extends Core.IdentifiedObject
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.MarketScheduledEvent;
-                if (null == bucket)
-                   cim_data.MarketScheduledEvent = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.MarketScheduledEvent[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
-                obj.cls = "MarketScheduledEvent";
-                base.parse_element (/<cim:MarketScheduledEvent.category>([\s\S]*?)<\/cim:MarketScheduledEvent.category>/g, obj, "category", base.to_string, sub, context);
-                base.parse_element (/<cim:MarketScheduledEvent.duration>([\s\S]*?)<\/cim:MarketScheduledEvent.duration>/g, obj, "duration", base.to_string, sub, context);
-                base.parse_attribute (/<cim:MarketScheduledEvent.status\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
-                base.parse_attribute (/<cim:MarketScheduledEvent.MajorChargeGroup\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MajorChargeGroup", sub, context);
-                let bucket = context.parsed.MarketScheduledEvent;
-                if (null == bucket)
-                   context.parsed.MarketScheduledEvent = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "MarketScheduledEvent", "category", "category",  base.from_string, fields);
-                base.export_element (obj, "MarketScheduledEvent", "duration", "duration",  base.from_string, fields);
-                base.export_attribute (obj, "MarketScheduledEvent", "status", "status", fields);
-                base.export_attribute (obj, "MarketScheduledEvent", "MajorChargeGroup", "MajorChargeGroup", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="MarketScheduledEvent_collapse" style="margin-left: 10px;">MarketScheduledEvent</a></legend>
-                    <div id="MarketScheduledEvent_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.template.call (this) +
-                    `
-                    {{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
-                    {{#duration}}<div><b>duration</b>: {{duration}}</div>{{/duration}}
-                    {{#status}}<div><b>status</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{status}}");}); return false;'>{{status}}</a></div>{{/status}}
-                    {{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MajorChargeGroup}}");}); return false;'>{{MajorChargeGroup}}</a></div>{{/MajorChargeGroup}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="{{id}}_MarketScheduledEvent_collapse" style="margin-left: 10px;">MarketScheduledEvent</a></legend>
-                    <div id="{{id}}_MarketScheduledEvent_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.IdentifiedObject.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_category'>category: </label><div class='col-sm-8'><input id='{{id}}_category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}'{{/MajorChargeGroup}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "MarketScheduledEvent" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_category").value; if ("" !== temp) obj["category"] = temp;
-                temp = document.getElementById (id + "_duration").value; if ("" !== temp) obj["duration"] = temp;
-                temp = document.getElementById (id + "_status").value; if ("" !== temp) obj["status"] = temp;
-                temp = document.getElementById (id + "_MajorChargeGroup").value; if ("" !== temp) obj["MajorChargeGroup"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["MajorChargeGroup", "0..1", "0..*", "MajorChargeGroup", "MktScheduledEvent"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Property for a particular attribute that contains name and value.
-         *
-         */
-        class AttributeProperty extends base.Element
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.AttributeProperty;
-                if (null == bucket)
-                   cim_data.AttributeProperty = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.AttributeProperty[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = base.Element.prototype.parse.call (this, context, sub);
-                obj.cls = "AttributeProperty";
-                base.parse_element (/<cim:AttributeProperty.sequence>([\s\S]*?)<\/cim:AttributeProperty.sequence>/g, obj, "sequence", base.to_string, sub, context);
-                base.parse_element (/<cim:AttributeProperty.propertyName>([\s\S]*?)<\/cim:AttributeProperty.propertyName>/g, obj, "propertyName", base.to_string, sub, context);
-                base.parse_element (/<cim:AttributeProperty.propertyValue>([\s\S]*?)<\/cim:AttributeProperty.propertyValue>/g, obj, "propertyValue", base.to_string, sub, context);
-                base.parse_attribute (/<cim:AttributeProperty.MktUserAttribute\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
-                let bucket = context.parsed.AttributeProperty;
-                if (null == bucket)
-                   context.parsed.AttributeProperty = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = [];
-
-                base.export_element (obj, "AttributeProperty", "sequence", "sequence",  base.from_string, fields);
-                base.export_element (obj, "AttributeProperty", "propertyName", "propertyName",  base.from_string, fields);
-                base.export_element (obj, "AttributeProperty", "propertyValue", "propertyValue",  base.from_string, fields);
-                base.export_attribute (obj, "AttributeProperty", "MktUserAttribute", "MktUserAttribute", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AttributeProperty_collapse" aria-expanded="true" aria-controls="AttributeProperty_collapse" style="margin-left: 10px;">AttributeProperty</a></legend>
-                    <div id="AttributeProperty_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.template.call (this) +
-                    `
-                    {{#sequence}}<div><b>sequence</b>: {{sequence}}</div>{{/sequence}}
-                    {{#propertyName}}<div><b>propertyName</b>: {{propertyName}}</div>{{/propertyName}}
-                    {{#propertyValue}}<div><b>propertyValue</b>: {{propertyValue}}</div>{{/propertyValue}}
-                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{MktUserAttribute}}");}); return false;'>{{MktUserAttribute}}</a></div>{{/MktUserAttribute}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AttributeProperty_collapse" aria-expanded="true" aria-controls="{{id}}_AttributeProperty_collapse" style="margin-left: 10px;">AttributeProperty</a></legend>
-                    <div id="{{id}}_AttributeProperty_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + base.Element.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequence'>sequence: </label><div class='col-sm-8'><input id='{{id}}_sequence' class='form-control' type='text'{{#sequence}} value='{{sequence}}'{{/sequence}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyName'>propertyName: </label><div class='col-sm-8'><input id='{{id}}_propertyName' class='form-control' type='text'{{#propertyName}} value='{{propertyName}}'{{/propertyName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyValue'>propertyValue: </label><div class='col-sm-8'><input id='{{id}}_propertyValue' class='form-control' type='text'{{#propertyValue}} value='{{propertyValue}}'{{/propertyValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}'{{/MktUserAttribute}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "AttributeProperty" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_sequence").value; if ("" !== temp) obj["sequence"] = temp;
-                temp = document.getElementById (id + "_propertyName").value; if ("" !== temp) obj["propertyName"] = temp;
-                temp = document.getElementById (id + "_propertyValue").value; if ("" !== temp) obj["propertyValue"] = temp;
-                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" !== temp) obj["MktUserAttribute"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["MktUserAttribute", "1", "0..*", "MktUserAttribute", "AttributeProperty"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * Relationship between unit operating price in \$/hour (Y-axis) and unit output in MW (X-axis).
-         *
-         */
-        class BidPriceCurve extends Core.Curve
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.BidPriceCurve;
-                if (null == bucket)
-                   cim_data.BidPriceCurve = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.BidPriceCurve[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.Curve.prototype.parse.call (this, context, sub);
-                obj.cls = "BidPriceCurve";
-                base.parse_attributes (/<cim:BidPriceCurve.BidSchedule\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "BidSchedule", sub, context);
-                let bucket = context.parsed.BidPriceCurve;
-                if (null == bucket)
-                   context.parsed.BidPriceCurve = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.Curve.prototype.export.call (this, obj, false);
-
-                base.export_attributes (obj, "BidPriceCurve", "BidSchedule", "BidSchedule", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#BidPriceCurve_collapse" aria-expanded="true" aria-controls="BidPriceCurve_collapse" style="margin-left: 10px;">BidPriceCurve</a></legend>
-                    <div id="BidPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.template.call (this) +
-                    `
-                    {{#BidSchedule}}<div><b>BidSchedule</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/BidSchedule}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["BidSchedule"]) obj["BidSchedule_string"] = obj["BidSchedule"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["BidSchedule_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_BidPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceCurve_collapse" style="margin-left: 10px;">BidPriceCurve</a></legend>
-                    <div id="{{id}}_BidPriceCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.edit_template.call (this) +
-                    `
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                obj = obj || { id: id, cls: "BidPriceCurve" };
-                super.submit (id, obj);
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["BidSchedule", "0..*", "1", "BidPriceSchedule", "BidPriceCurve"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * The cost to shutdown a Pump Storage Hydro Unit (in pump mode) or a pump.
-         *
-         * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
-         *
-         */
-        class PumpingShutDownCostSchedule extends BidHourlyProductSchedule
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.PumpingShutDownCostSchedule;
-                if (null == bucket)
-                   cim_data.PumpingShutDownCostSchedule = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.PumpingShutDownCostSchedule[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
-                obj.cls = "PumpingShutDownCostSchedule";
-                base.parse_element (/<cim:PumpingShutDownCostSchedule.value>([\s\S]*?)<\/cim:PumpingShutDownCostSchedule.value>/g, obj, "value", base.to_float, sub, context);
-                let bucket = context.parsed.PumpingShutDownCostSchedule;
-                if (null == bucket)
-                   context.parsed.PumpingShutDownCostSchedule = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "PumpingShutDownCostSchedule", "value", "value",  base.from_float, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingShutDownCostSchedule_collapse" style="margin-left: 10px;">PumpingShutDownCostSchedule</a></legend>
-                    <div id="PumpingShutDownCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlyProductSchedule.prototype.template.call (this) +
-                    `
-                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingShutDownCostSchedule_collapse" style="margin-left: 10px;">PumpingShutDownCostSchedule</a></legend>
-                    <div id="{{id}}_PumpingShutDownCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlyProductSchedule.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "PumpingShutDownCostSchedule" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * The fixed operating level of a Pump Storage Hydro Unit operating as a hydro pump.
-         *
-         * Associated with the energy market product type.
-         * 
-         * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
-         *
-         */
-        class PumpingLevelSchedule extends BidHourlyProductSchedule
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.PumpingLevelSchedule;
-                if (null == bucket)
-                   cim_data.PumpingLevelSchedule = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.PumpingLevelSchedule[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
-                obj.cls = "PumpingLevelSchedule";
-                base.parse_element (/<cim:PumpingLevelSchedule.value>([\s\S]*?)<\/cim:PumpingLevelSchedule.value>/g, obj, "value", base.to_float, sub, context);
-                let bucket = context.parsed.PumpingLevelSchedule;
-                if (null == bucket)
-                   context.parsed.PumpingLevelSchedule = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "PumpingLevelSchedule", "value", "value",  base.from_float, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="PumpingLevelSchedule_collapse" style="margin-left: 10px;">PumpingLevelSchedule</a></legend>
-                    <div id="PumpingLevelSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlyProductSchedule.prototype.template.call (this) +
-                    `
-                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingLevelSchedule_collapse" style="margin-left: 10px;">PumpingLevelSchedule</a></legend>
-                    <div id="{{id}}_PumpingLevelSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlyProductSchedule.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "PumpingLevelSchedule" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * The operating cost of a Pump Storage Hydro Unit operating as a hydro pump.
-         *
-         * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
-         *
-         */
-        class PumpingCostSchedule extends BidHourlyProductSchedule
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.PumpingCostSchedule;
-                if (null == bucket)
-                   cim_data.PumpingCostSchedule = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.PumpingCostSchedule[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
-                obj.cls = "PumpingCostSchedule";
-                base.parse_element (/<cim:PumpingCostSchedule.value>([\s\S]*?)<\/cim:PumpingCostSchedule.value>/g, obj, "value", base.to_float, sub, context);
-                let bucket = context.parsed.PumpingCostSchedule;
-                if (null == bucket)
-                   context.parsed.PumpingCostSchedule = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "PumpingCostSchedule", "value", "value",  base.from_float, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingCostSchedule_collapse" style="margin-left: 10px;">PumpingCostSchedule</a></legend>
-                    <div id="PumpingCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlyProductSchedule.prototype.template.call (this) +
-                    `
-                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingCostSchedule_collapse" style="margin-left: 10px;">PumpingCostSchedule</a></legend>
-                    <div id="{{id}}_PumpingCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlyProductSchedule.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "PumpingCostSchedule" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * Result of bid validation against conditions that may exist on an interchange that becomes disconnected or is heavily discounted with respect the MW flow.
-         *
-         * This schedule is assocated with the hourly parameters in a resource bid.
-         *
-         */
-        class OpenTieSchedule extends BidHourlySchedule
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.OpenTieSchedule;
-                if (null == bucket)
-                   cim_data.OpenTieSchedule = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.OpenTieSchedule[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = BidHourlySchedule.prototype.parse.call (this, context, sub);
-                obj.cls = "OpenTieSchedule";
-                base.parse_element (/<cim:OpenTieSchedule.value>([\s\S]*?)<\/cim:OpenTieSchedule.value>/g, obj, "value", base.to_boolean, sub, context);
-                let bucket = context.parsed.OpenTieSchedule;
-                if (null == bucket)
-                   context.parsed.OpenTieSchedule = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = BidHourlySchedule.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "OpenTieSchedule", "value", "value",  base.from_boolean, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OpenTieSchedule_collapse" aria-expanded="true" aria-controls="OpenTieSchedule_collapse" style="margin-left: 10px;">OpenTieSchedule</a></legend>
-                    <div id="OpenTieSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlySchedule.prototype.template.call (this) +
-                    `
-                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OpenTieSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_OpenTieSchedule_collapse" style="margin-left: 10px;">OpenTieSchedule</a></legend>
-                    <div id="{{id}}_OpenTieSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlySchedule.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_value'>value: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "OpenTieSchedule" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_value").checked; if (temp) obj["value"] = true;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * An indicator specifying that a resource shall have an Hourly Pre-Dispatch.
-         *
-         * The resource could be a RegisteredGenerator or a RegisteredInterTie.
-         * 
-         * This schedule is assocated with the hourly parameters in a resource bid.
-         *
-         */
-        class HourlyPreDispatchSchedule extends BidHourlySchedule
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.HourlyPreDispatchSchedule;
-                if (null == bucket)
-                   cim_data.HourlyPreDispatchSchedule = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.HourlyPreDispatchSchedule[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = BidHourlySchedule.prototype.parse.call (this, context, sub);
-                obj.cls = "HourlyPreDispatchSchedule";
-                base.parse_element (/<cim:HourlyPreDispatchSchedule.value>([\s\S]*?)<\/cim:HourlyPreDispatchSchedule.value>/g, obj, "value", base.to_boolean, sub, context);
-                let bucket = context.parsed.HourlyPreDispatchSchedule;
-                if (null == bucket)
-                   context.parsed.HourlyPreDispatchSchedule = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = BidHourlySchedule.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "HourlyPreDispatchSchedule", "value", "value",  base.from_boolean, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="HourlyPreDispatchSchedule_collapse" style="margin-left: 10px;">HourlyPreDispatchSchedule</a></legend>
-                    <div id="HourlyPreDispatchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlySchedule.prototype.template.call (this) +
-                    `
-                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_HourlyPreDispatchSchedule_collapse" style="margin-left: 10px;">HourlyPreDispatchSchedule</a></legend>
-                    <div id="{{id}}_HourlyPreDispatchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + BidHourlySchedule.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_value'>value: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "HourlyPreDispatchSchedule" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_value").checked; if (temp) obj["value"] = true;
-
-                return (obj);
             }
         }
 
@@ -4841,8 +4588,8 @@ define
                 temp = document.getElementById (id + "_aggregationFlag").value; if ("" !== temp) obj["aggregationFlag"] = temp;
                 temp = document.getElementById (id + "_bidStatus").value; if ("" !== temp) obj["bidStatus"] = temp;
                 temp = document.getElementById (id + "_commodityType").value; if ("" !== temp) obj["commodityType"] = temp;
-                temp = MktDomain.YesNo[document.getElementById (id + "_contingencyAvailFlag").value]; if (temp) obj["contingencyAvailFlag"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["contingencyAvailFlag"];
-                temp = MktDomain.YesNo[document.getElementById (id + "_createdISO").value]; if (temp) obj["createdISO"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#YesNo." + temp; else delete obj["createdISO"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_contingencyAvailFlag").value]; if (temp) obj["contingencyAvailFlag"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["contingencyAvailFlag"];
+                temp = MktDomain.YesNo[document.getElementById (id + "_createdISO").value]; if (temp) obj["createdISO"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#YesNo." + temp; else delete obj["createdISO"];
                 temp = document.getElementById (id + "_energyMaxDay").value; if ("" !== temp) obj["energyMaxDay"] = temp;
                 temp = document.getElementById (id + "_energyMinDay").value; if ("" !== temp) obj["energyMinDay"] = temp;
                 temp = document.getElementById (id + "_marketSepFlag").value; if ("" !== temp) obj["marketSepFlag"] = temp;
@@ -4864,126 +4611,6 @@ define
                     super.relations ().concat (
                         [
                             ["BidError", "0..*", "0..*", "BidError", "ResourceBid"]
-                        ]
-                    )
-                );
-            }
-        }
-
-        /**
-         * AreaLoadBid is not submitted by a market participant into the Markets.
-         *
-         * Instead, it is simply an aggregation of all LoadBids contained wtihin a specific SubControlArea. This entity should inherit from Bid for representation of the timeframe (startTime, stopTime) and the market type.
-         *
-         */
-        class AreaLoadBid extends Bid
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.AreaLoadBid;
-                if (null == bucket)
-                   cim_data.AreaLoadBid = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.AreaLoadBid[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Bid.prototype.parse.call (this, context, sub);
-                obj.cls = "AreaLoadBid";
-                base.parse_element (/<cim:AreaLoadBid.demandBidMW>([\s\S]*?)<\/cim:AreaLoadBid.demandBidMW>/g, obj, "demandBidMW", base.to_float, sub, context);
-                base.parse_attributes (/<cim:AreaLoadBid.LoadBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
-                let bucket = context.parsed.AreaLoadBid;
-                if (null == bucket)
-                   context.parsed.AreaLoadBid = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Bid.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "AreaLoadBid", "demandBidMW", "demandBidMW",  base.from_float, fields);
-                base.export_attributes (obj, "AreaLoadBid", "LoadBid", "LoadBid", fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#AreaLoadBid_collapse" aria-expanded="true" aria-controls="AreaLoadBid_collapse" style="margin-left: 10px;">AreaLoadBid</a></legend>
-                    <div id="AreaLoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Bid.prototype.template.call (this) +
-                    `
-                    {{#demandBidMW}}<div><b>demandBidMW</b>: {{demandBidMW}}</div>{{/demandBidMW}}
-                    {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LoadBid}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-                if (obj["LoadBid"]) obj["LoadBid_string"] = obj["LoadBid"].join ();
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-                delete obj["LoadBid_string"];
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_AreaLoadBid_collapse" aria-expanded="true" aria-controls="{{id}}_AreaLoadBid_collapse" style="margin-left: 10px;">AreaLoadBid</a></legend>
-                    <div id="{{id}}_AreaLoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Bid.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_demandBidMW'>demandBidMW: </label><div class='col-sm-8'><input id='{{id}}_demandBidMW' class='form-control' type='text'{{#demandBidMW}} value='{{demandBidMW}}'{{/demandBidMW}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "AreaLoadBid" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_demandBidMW").value; if ("" !== temp) obj["demandBidMW"] = temp;
-
-                return (obj);
-            }
-
-            relations ()
-            {
-                return (
-                    super.relations ().concat (
-                        [
-                            ["LoadBid", "0..*", "0..1", "LoadBid", "AreaLoadBid"]
                         ]
                     )
                 );
@@ -5115,41 +4742,51 @@ define
         }
 
         /**
-         * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process.
+         * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption).
          *
          */
-        class TransactionBid extends Bid
+        class LoadBid extends ResourceBid
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.TransactionBid;
+                let bucket = cim_data.LoadBid;
                 if (null == bucket)
-                   cim_data.TransactionBid = bucket = {};
+                   cim_data.LoadBid = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.TransactionBid[obj.id];
+               delete cim_data.LoadBid[obj.id];
             }
 
             parse (context, sub)
             {
-                let obj = Bid.prototype.parse.call (this, context, sub);
-                obj.cls = "TransactionBid";
-                base.parse_element (/<cim:TransactionBid.demandTransaction>([\s\S]*?)<\/cim:TransactionBid.demandTransaction>/g, obj, "demandTransaction", base.to_boolean, sub, context);
-                base.parse_element (/<cim:TransactionBid.dispatchable>([\s\S]*?)<\/cim:TransactionBid.dispatchable>/g, obj, "dispatchable", base.to_boolean, sub, context);
-                base.parse_element (/<cim:TransactionBid.payCongestion>([\s\S]*?)<\/cim:TransactionBid.payCongestion>/g, obj, "payCongestion", base.to_boolean, sub, context);
-                base.parse_attributes (/<cim:TransactionBid.TransactionBidResults\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TransactionBidResults", sub, context);
-                base.parse_attribute (/<cim:TransactionBid.TransmissionReservation\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionReservation", sub, context);
-                base.parse_attribute (/<cim:TransactionBid.Delivery_Pnode\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Delivery_Pnode", sub, context);
-                base.parse_attributes (/<cim:TransactionBid.EnergyProfiles\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "EnergyProfiles", sub, context);
-                base.parse_attribute (/<cim:TransactionBid.Receipt_Pnode\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Receipt_Pnode", sub, context);
-                let bucket = context.parsed.TransactionBid;
+                let obj = ResourceBid.prototype.parse.call (this, context, sub);
+                obj.cls = "LoadBid";
+                base.parse_element (/<cim:LoadBid.dropRampRate>([\s\S]*?)<\/cim:LoadBid.dropRampRate>/g, obj, "dropRampRate", base.to_string, sub, context);
+                base.parse_element (/<cim:LoadBid.loadRedInitiationCost>([\s\S]*?)<\/cim:LoadBid.loadRedInitiationCost>/g, obj, "loadRedInitiationCost", base.to_string, sub, context);
+                base.parse_element (/<cim:LoadBid.loadRedInitiationTime>([\s\S]*?)<\/cim:LoadBid.loadRedInitiationTime>/g, obj, "loadRedInitiationTime", base.to_float, sub, context);
+                base.parse_element (/<cim:LoadBid.marketDate>([\s\S]*?)<\/cim:LoadBid.marketDate>/g, obj, "marketDate", base.to_datetime, sub, context);
+                base.parse_element (/<cim:LoadBid.meteredValue>([\s\S]*?)<\/cim:LoadBid.meteredValue>/g, obj, "meteredValue", base.to_boolean, sub, context);
+                base.parse_element (/<cim:LoadBid.minLoad>([\s\S]*?)<\/cim:LoadBid.minLoad>/g, obj, "minLoad", base.to_string, sub, context);
+                base.parse_element (/<cim:LoadBid.minLoadReduction>([\s\S]*?)<\/cim:LoadBid.minLoadReduction>/g, obj, "minLoadReduction", base.to_string, sub, context);
+                base.parse_element (/<cim:LoadBid.minLoadReductionCost>([\s\S]*?)<\/cim:LoadBid.minLoadReductionCost>/g, obj, "minLoadReductionCost", base.to_string, sub, context);
+                base.parse_element (/<cim:LoadBid.minLoadReductionInterval>([\s\S]*?)<\/cim:LoadBid.minLoadReductionInterval>/g, obj, "minLoadReductionInterval", base.to_float, sub, context);
+                base.parse_element (/<cim:LoadBid.minTimeBetLoadRed>([\s\S]*?)<\/cim:LoadBid.minTimeBetLoadRed>/g, obj, "minTimeBetLoadRed", base.to_float, sub, context);
+                base.parse_element (/<cim:LoadBid.pickUpRampRate>([\s\S]*?)<\/cim:LoadBid.pickUpRampRate>/g, obj, "pickUpRampRate", base.to_string, sub, context);
+                base.parse_element (/<cim:LoadBid.priceSetting>([\s\S]*?)<\/cim:LoadBid.priceSetting>/g, obj, "priceSetting", base.to_boolean, sub, context);
+                base.parse_element (/<cim:LoadBid.reqNoticeTime>([\s\S]*?)<\/cim:LoadBid.reqNoticeTime>/g, obj, "reqNoticeTime", base.to_float, sub, context);
+                base.parse_element (/<cim:LoadBid.shutdownCost>([\s\S]*?)<\/cim:LoadBid.shutdownCost>/g, obj, "shutdownCost", base.to_string, sub, context);
+                base.parse_attribute (/<cim:LoadBid.AreaLoadBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "AreaLoadBid", sub, context);
+                base.parse_attributes (/<cim:LoadBid.RampRateCurve\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RampRateCurve", sub, context);
+                base.parse_attribute (/<cim:LoadBid.RegisteredLoad\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredLoad", sub, context);
+                base.parse_attributes (/<cim:LoadBid.LoadReductionPriceCurve\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadReductionPriceCurve", sub, context);
+                let bucket = context.parsed.LoadBid;
                 if (null == bucket)
-                   context.parsed.TransactionBid = bucket = {};
+                   context.parsed.LoadBid = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -5157,16 +4794,26 @@ define
 
             export (obj, full)
             {
-                let fields = Bid.prototype.export.call (this, obj, false);
+                let fields = ResourceBid.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TransactionBid", "demandTransaction", "demandTransaction",  base.from_boolean, fields);
-                base.export_element (obj, "TransactionBid", "dispatchable", "dispatchable",  base.from_boolean, fields);
-                base.export_element (obj, "TransactionBid", "payCongestion", "payCongestion",  base.from_boolean, fields);
-                base.export_attributes (obj, "TransactionBid", "TransactionBidResults", "TransactionBidResults", fields);
-                base.export_attribute (obj, "TransactionBid", "TransmissionReservation", "TransmissionReservation", fields);
-                base.export_attribute (obj, "TransactionBid", "Delivery_Pnode", "Delivery_Pnode", fields);
-                base.export_attributes (obj, "TransactionBid", "EnergyProfiles", "EnergyProfiles", fields);
-                base.export_attribute (obj, "TransactionBid", "Receipt_Pnode", "Receipt_Pnode", fields);
+                base.export_element (obj, "LoadBid", "dropRampRate", "dropRampRate",  base.from_string, fields);
+                base.export_element (obj, "LoadBid", "loadRedInitiationCost", "loadRedInitiationCost",  base.from_string, fields);
+                base.export_element (obj, "LoadBid", "loadRedInitiationTime", "loadRedInitiationTime",  base.from_float, fields);
+                base.export_element (obj, "LoadBid", "marketDate", "marketDate",  base.from_datetime, fields);
+                base.export_element (obj, "LoadBid", "meteredValue", "meteredValue",  base.from_boolean, fields);
+                base.export_element (obj, "LoadBid", "minLoad", "minLoad",  base.from_string, fields);
+                base.export_element (obj, "LoadBid", "minLoadReduction", "minLoadReduction",  base.from_string, fields);
+                base.export_element (obj, "LoadBid", "minLoadReductionCost", "minLoadReductionCost",  base.from_string, fields);
+                base.export_element (obj, "LoadBid", "minLoadReductionInterval", "minLoadReductionInterval",  base.from_float, fields);
+                base.export_element (obj, "LoadBid", "minTimeBetLoadRed", "minTimeBetLoadRed",  base.from_float, fields);
+                base.export_element (obj, "LoadBid", "pickUpRampRate", "pickUpRampRate",  base.from_string, fields);
+                base.export_element (obj, "LoadBid", "priceSetting", "priceSetting",  base.from_boolean, fields);
+                base.export_element (obj, "LoadBid", "reqNoticeTime", "reqNoticeTime",  base.from_float, fields);
+                base.export_element (obj, "LoadBid", "shutdownCost", "shutdownCost",  base.from_string, fields);
+                base.export_attribute (obj, "LoadBid", "AreaLoadBid", "AreaLoadBid", fields);
+                base.export_attributes (obj, "LoadBid", "RampRateCurve", "RampRateCurve", fields);
+                base.export_attribute (obj, "LoadBid", "RegisteredLoad", "RegisteredLoad", fields);
+                base.export_attributes (obj, "LoadBid", "LoadReductionPriceCurve", "LoadReductionPriceCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -5178,19 +4825,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#TransactionBid_collapse" aria-expanded="true" aria-controls="TransactionBid_collapse" style="margin-left: 10px;">TransactionBid</a></legend>
-                    <div id="TransactionBid_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadBid_collapse" aria-expanded="true" aria-controls="LoadBid_collapse" style="margin-left: 10px;">LoadBid</a></legend>
+                    <div id="LoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + Bid.prototype.template.call (this) +
+                    + ResourceBid.prototype.template.call (this) +
                     `
-                    {{#demandTransaction}}<div><b>demandTransaction</b>: {{demandTransaction}}</div>{{/demandTransaction}}
-                    {{#dispatchable}}<div><b>dispatchable</b>: {{dispatchable}}</div>{{/dispatchable}}
-                    {{#payCongestion}}<div><b>payCongestion</b>: {{payCongestion}}</div>{{/payCongestion}}
-                    {{#TransactionBidResults}}<div><b>TransactionBidResults</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/TransactionBidResults}}
-                    {{#TransmissionReservation}}<div><b>TransmissionReservation</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{TransmissionReservation}}");}); return false;'>{{TransmissionReservation}}</a></div>{{/TransmissionReservation}}
-                    {{#Delivery_Pnode}}<div><b>Delivery_Pnode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Delivery_Pnode}}");}); return false;'>{{Delivery_Pnode}}</a></div>{{/Delivery_Pnode}}
-                    {{#EnergyProfiles}}<div><b>EnergyProfiles</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/EnergyProfiles}}
-                    {{#Receipt_Pnode}}<div><b>Receipt_Pnode</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Receipt_Pnode}}");}); return false;'>{{Receipt_Pnode}}</a></div>{{/Receipt_Pnode}}
+                    {{#dropRampRate}}<div><b>dropRampRate</b>: {{dropRampRate}}</div>{{/dropRampRate}}
+                    {{#loadRedInitiationCost}}<div><b>loadRedInitiationCost</b>: {{loadRedInitiationCost}}</div>{{/loadRedInitiationCost}}
+                    {{#loadRedInitiationTime}}<div><b>loadRedInitiationTime</b>: {{loadRedInitiationTime}}</div>{{/loadRedInitiationTime}}
+                    {{#marketDate}}<div><b>marketDate</b>: {{marketDate}}</div>{{/marketDate}}
+                    {{#meteredValue}}<div><b>meteredValue</b>: {{meteredValue}}</div>{{/meteredValue}}
+                    {{#minLoad}}<div><b>minLoad</b>: {{minLoad}}</div>{{/minLoad}}
+                    {{#minLoadReduction}}<div><b>minLoadReduction</b>: {{minLoadReduction}}</div>{{/minLoadReduction}}
+                    {{#minLoadReductionCost}}<div><b>minLoadReductionCost</b>: {{minLoadReductionCost}}</div>{{/minLoadReductionCost}}
+                    {{#minLoadReductionInterval}}<div><b>minLoadReductionInterval</b>: {{minLoadReductionInterval}}</div>{{/minLoadReductionInterval}}
+                    {{#minTimeBetLoadRed}}<div><b>minTimeBetLoadRed</b>: {{minTimeBetLoadRed}}</div>{{/minTimeBetLoadRed}}
+                    {{#pickUpRampRate}}<div><b>pickUpRampRate</b>: {{pickUpRampRate}}</div>{{/pickUpRampRate}}
+                    {{#priceSetting}}<div><b>priceSetting</b>: {{priceSetting}}</div>{{/priceSetting}}
+                    {{#reqNoticeTime}}<div><b>reqNoticeTime</b>: {{reqNoticeTime}}</div>{{/reqNoticeTime}}
+                    {{#shutdownCost}}<div><b>shutdownCost</b>: {{shutdownCost}}</div>{{/shutdownCost}}
+                    {{#AreaLoadBid}}<div><b>AreaLoadBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AreaLoadBid}}");}); return false;'>{{AreaLoadBid}}</a></div>{{/AreaLoadBid}}
+                    {{#RampRateCurve}}<div><b>RampRateCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RampRateCurve}}
+                    {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredLoad}}");}); return false;'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
+                    {{#LoadReductionPriceCurve}}<div><b>LoadReductionPriceCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LoadReductionPriceCurve}}
                     </div>
                     </fieldset>
 
@@ -5201,15 +4858,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj["TransactionBidResults"]) obj["TransactionBidResults_string"] = obj["TransactionBidResults"].join ();
-                if (obj["EnergyProfiles"]) obj["EnergyProfiles_string"] = obj["EnergyProfiles"].join ();
+                if (obj["RampRateCurve"]) obj["RampRateCurve_string"] = obj["RampRateCurve"].join ();
+                if (obj["LoadReductionPriceCurve"]) obj["LoadReductionPriceCurve_string"] = obj["LoadReductionPriceCurve"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj["TransactionBidResults_string"];
-                delete obj["EnergyProfiles_string"];
+                delete obj["RampRateCurve_string"];
+                delete obj["LoadReductionPriceCurve_string"];
             }
 
             edit_template ()
@@ -5217,17 +4874,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_TransactionBid_collapse" aria-expanded="true" aria-controls="{{id}}_TransactionBid_collapse" style="margin-left: 10px;">TransactionBid</a></legend>
-                    <div id="{{id}}_TransactionBid_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadBid_collapse" aria-expanded="true" aria-controls="{{id}}_LoadBid_collapse" style="margin-left: 10px;">LoadBid</a></legend>
+                    <div id="{{id}}_LoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + Bid.prototype.edit_template.call (this) +
+                    + ResourceBid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_demandTransaction'>demandTransaction: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_demandTransaction' class='form-check-input' type='checkbox'{{#demandTransaction}} checked{{/demandTransaction}}></div></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_dispatchable'>dispatchable: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_dispatchable' class='form-check-input' type='checkbox'{{#dispatchable}} checked{{/dispatchable}}></div></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_payCongestion'>payCongestion: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionReservation'>TransmissionReservation: </label><div class='col-sm-8'><input id='{{id}}_TransmissionReservation' class='form-control' type='text'{{#TransmissionReservation}} value='{{TransmissionReservation}}'{{/TransmissionReservation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Delivery_Pnode'>Delivery_Pnode: </label><div class='col-sm-8'><input id='{{id}}_Delivery_Pnode' class='form-control' type='text'{{#Delivery_Pnode}} value='{{Delivery_Pnode}}'{{/Delivery_Pnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Receipt_Pnode'>Receipt_Pnode: </label><div class='col-sm-8'><input id='{{id}}_Receipt_Pnode' class='form-control' type='text'{{#Receipt_Pnode}} value='{{Receipt_Pnode}}'{{/Receipt_Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dropRampRate'>dropRampRate: </label><div class='col-sm-8'><input id='{{id}}_dropRampRate' class='form-control' type='text'{{#dropRampRate}} value='{{dropRampRate}}'{{/dropRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRedInitiationCost'>loadRedInitiationCost: </label><div class='col-sm-8'><input id='{{id}}_loadRedInitiationCost' class='form-control' type='text'{{#loadRedInitiationCost}} value='{{loadRedInitiationCost}}'{{/loadRedInitiationCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRedInitiationTime'>loadRedInitiationTime: </label><div class='col-sm-8'><input id='{{id}}_loadRedInitiationTime' class='form-control' type='text'{{#loadRedInitiationTime}} value='{{loadRedInitiationTime}}'{{/loadRedInitiationTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketDate'>marketDate: </label><div class='col-sm-8'><input id='{{id}}_marketDate' class='form-control' type='text'{{#marketDate}} value='{{marketDate}}'{{/marketDate}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_meteredValue'>meteredValue: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_meteredValue' class='form-check-input' type='checkbox'{{#meteredValue}} checked{{/meteredValue}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoad'>minLoad: </label><div class='col-sm-8'><input id='{{id}}_minLoad' class='form-control' type='text'{{#minLoad}} value='{{minLoad}}'{{/minLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReduction'>minLoadReduction: </label><div class='col-sm-8'><input id='{{id}}_minLoadReduction' class='form-control' type='text'{{#minLoadReduction}} value='{{minLoadReduction}}'{{/minLoadReduction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionCost'>minLoadReductionCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionCost' class='form-control' type='text'{{#minLoadReductionCost}} value='{{minLoadReductionCost}}'{{/minLoadReductionCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='{{id}}_minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pickUpRampRate'>pickUpRampRate: </label><div class='col-sm-8'><input id='{{id}}_pickUpRampRate' class='form-control' type='text'{{#pickUpRampRate}} value='{{pickUpRampRate}}'{{/pickUpRampRate}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_priceSetting'>priceSetting: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_priceSetting' class='form-check-input' type='checkbox'{{#priceSetting}} checked{{/priceSetting}}></div></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='{{id}}_reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shutdownCost'>shutdownCost: </label><div class='col-sm-8'><input id='{{id}}_shutdownCost' class='form-control' type='text'{{#shutdownCost}} value='{{shutdownCost}}'{{/shutdownCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AreaLoadBid'>AreaLoadBid: </label><div class='col-sm-8'><input id='{{id}}_AreaLoadBid' class='form-control' type='text'{{#AreaLoadBid}} value='{{AreaLoadBid}}'{{/AreaLoadBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}'{{/RegisteredLoad}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -5238,14 +4905,24 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "TransactionBid" };
+                obj = obj || { id: id, cls: "LoadBid" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_demandTransaction").checked; if (temp) obj["demandTransaction"] = true;
-                temp = document.getElementById (id + "_dispatchable").checked; if (temp) obj["dispatchable"] = true;
-                temp = document.getElementById (id + "_payCongestion").checked; if (temp) obj["payCongestion"] = true;
-                temp = document.getElementById (id + "_TransmissionReservation").value; if ("" !== temp) obj["TransmissionReservation"] = temp;
-                temp = document.getElementById (id + "_Delivery_Pnode").value; if ("" !== temp) obj["Delivery_Pnode"] = temp;
-                temp = document.getElementById (id + "_Receipt_Pnode").value; if ("" !== temp) obj["Receipt_Pnode"] = temp;
+                temp = document.getElementById (id + "_dropRampRate").value; if ("" !== temp) obj["dropRampRate"] = temp;
+                temp = document.getElementById (id + "_loadRedInitiationCost").value; if ("" !== temp) obj["loadRedInitiationCost"] = temp;
+                temp = document.getElementById (id + "_loadRedInitiationTime").value; if ("" !== temp) obj["loadRedInitiationTime"] = temp;
+                temp = document.getElementById (id + "_marketDate").value; if ("" !== temp) obj["marketDate"] = temp;
+                temp = document.getElementById (id + "_meteredValue").checked; if (temp) obj["meteredValue"] = true;
+                temp = document.getElementById (id + "_minLoad").value; if ("" !== temp) obj["minLoad"] = temp;
+                temp = document.getElementById (id + "_minLoadReduction").value; if ("" !== temp) obj["minLoadReduction"] = temp;
+                temp = document.getElementById (id + "_minLoadReductionCost").value; if ("" !== temp) obj["minLoadReductionCost"] = temp;
+                temp = document.getElementById (id + "_minLoadReductionInterval").value; if ("" !== temp) obj["minLoadReductionInterval"] = temp;
+                temp = document.getElementById (id + "_minTimeBetLoadRed").value; if ("" !== temp) obj["minTimeBetLoadRed"] = temp;
+                temp = document.getElementById (id + "_pickUpRampRate").value; if ("" !== temp) obj["pickUpRampRate"] = temp;
+                temp = document.getElementById (id + "_priceSetting").checked; if (temp) obj["priceSetting"] = true;
+                temp = document.getElementById (id + "_reqNoticeTime").value; if ("" !== temp) obj["reqNoticeTime"] = temp;
+                temp = document.getElementById (id + "_shutdownCost").value; if ("" !== temp) obj["shutdownCost"] = temp;
+                temp = document.getElementById (id + "_AreaLoadBid").value; if ("" !== temp) obj["AreaLoadBid"] = temp;
+                temp = document.getElementById (id + "_RegisteredLoad").value; if ("" !== temp) obj["RegisteredLoad"] = temp;
 
                 return (obj);
             }
@@ -5255,11 +4932,10 @@ define
                 return (
                     super.relations ().concat (
                         [
-                            ["TransactionBidResults", "0..*", "0..1", "TransactionBidResults", "TransactionBid"],
-                            ["TransmissionReservation", "0..1", "0..1", "TransmissionReservation", "TransactionBid"],
-                            ["Delivery_Pnode", "0..1", "0..*", "Pnode", "DeliveryTransactionBids"],
-                            ["EnergyProfiles", "1..*", "1", "EnergyProfile", "TransactionBid"],
-                            ["Receipt_Pnode", "0..1", "0..*", "Pnode", "ReceiptTransactionBids"]
+                            ["AreaLoadBid", "0..1", "0..*", "AreaLoadBid", "LoadBid"],
+                            ["RampRateCurve", "0..*", "0..1", "RampRateCurve", "LoadBid"],
+                            ["RegisteredLoad", "0..1", "0..*", "RegisteredLoad", "LoadBids"],
+                            ["LoadReductionPriceCurve", "0..*", "1", "LoadReductionPriceCurve", "LoadBid"]
                         ]
                     )
                 );
@@ -5501,51 +5177,38 @@ define
         }
 
         /**
-         * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption).
+         * An indicator specifying that a resource shall have an Hourly Pre-Dispatch.
+         *
+         * The resource could be a RegisteredGenerator or a RegisteredInterTie.
+         *
+         * This schedule is assocated with the hourly parameters in a resource bid.
          *
          */
-        class LoadBid extends ResourceBid
+        class HourlyPreDispatchSchedule extends BidHourlySchedule
         {
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                let bucket = cim_data.LoadBid;
+                let bucket = cim_data.HourlyPreDispatchSchedule;
                 if (null == bucket)
-                   cim_data.LoadBid = bucket = {};
+                   cim_data.HourlyPreDispatchSchedule = bucket = {};
                 bucket[template.id] = template;
             }
 
             remove (obj, cim_data)
             {
                super.remove (obj, cim_data);
-               delete cim_data.LoadBid[obj.id];
+               delete cim_data.HourlyPreDispatchSchedule[obj.id];
             }
 
             parse (context, sub)
             {
-                let obj = ResourceBid.prototype.parse.call (this, context, sub);
-                obj.cls = "LoadBid";
-                base.parse_element (/<cim:LoadBid.dropRampRate>([\s\S]*?)<\/cim:LoadBid.dropRampRate>/g, obj, "dropRampRate", base.to_string, sub, context);
-                base.parse_element (/<cim:LoadBid.loadRedInitiationCost>([\s\S]*?)<\/cim:LoadBid.loadRedInitiationCost>/g, obj, "loadRedInitiationCost", base.to_string, sub, context);
-                base.parse_element (/<cim:LoadBid.loadRedInitiationTime>([\s\S]*?)<\/cim:LoadBid.loadRedInitiationTime>/g, obj, "loadRedInitiationTime", base.to_float, sub, context);
-                base.parse_element (/<cim:LoadBid.marketDate>([\s\S]*?)<\/cim:LoadBid.marketDate>/g, obj, "marketDate", base.to_datetime, sub, context);
-                base.parse_element (/<cim:LoadBid.meteredValue>([\s\S]*?)<\/cim:LoadBid.meteredValue>/g, obj, "meteredValue", base.to_boolean, sub, context);
-                base.parse_element (/<cim:LoadBid.minLoad>([\s\S]*?)<\/cim:LoadBid.minLoad>/g, obj, "minLoad", base.to_string, sub, context);
-                base.parse_element (/<cim:LoadBid.minLoadReduction>([\s\S]*?)<\/cim:LoadBid.minLoadReduction>/g, obj, "minLoadReduction", base.to_string, sub, context);
-                base.parse_element (/<cim:LoadBid.minLoadReductionCost>([\s\S]*?)<\/cim:LoadBid.minLoadReductionCost>/g, obj, "minLoadReductionCost", base.to_string, sub, context);
-                base.parse_element (/<cim:LoadBid.minLoadReductionInterval>([\s\S]*?)<\/cim:LoadBid.minLoadReductionInterval>/g, obj, "minLoadReductionInterval", base.to_float, sub, context);
-                base.parse_element (/<cim:LoadBid.minTimeBetLoadRed>([\s\S]*?)<\/cim:LoadBid.minTimeBetLoadRed>/g, obj, "minTimeBetLoadRed", base.to_float, sub, context);
-                base.parse_element (/<cim:LoadBid.pickUpRampRate>([\s\S]*?)<\/cim:LoadBid.pickUpRampRate>/g, obj, "pickUpRampRate", base.to_string, sub, context);
-                base.parse_element (/<cim:LoadBid.priceSetting>([\s\S]*?)<\/cim:LoadBid.priceSetting>/g, obj, "priceSetting", base.to_boolean, sub, context);
-                base.parse_element (/<cim:LoadBid.reqNoticeTime>([\s\S]*?)<\/cim:LoadBid.reqNoticeTime>/g, obj, "reqNoticeTime", base.to_float, sub, context);
-                base.parse_element (/<cim:LoadBid.shutdownCost>([\s\S]*?)<\/cim:LoadBid.shutdownCost>/g, obj, "shutdownCost", base.to_string, sub, context);
-                base.parse_attribute (/<cim:LoadBid.AreaLoadBid\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "AreaLoadBid", sub, context);
-                base.parse_attributes (/<cim:LoadBid.RampRateCurve\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RampRateCurve", sub, context);
-                base.parse_attribute (/<cim:LoadBid.RegisteredLoad\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredLoad", sub, context);
-                base.parse_attributes (/<cim:LoadBid.LoadReductionPriceCurve\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "LoadReductionPriceCurve", sub, context);
-                let bucket = context.parsed.LoadBid;
+                let obj = BidHourlySchedule.prototype.parse.call (this, context, sub);
+                obj.cls = "HourlyPreDispatchSchedule";
+                base.parse_element (/<cim:HourlyPreDispatchSchedule.value>([\s\S]*?)<\/cim:HourlyPreDispatchSchedule.value>/g, obj, "value", base.to_boolean, sub, context);
+                let bucket = context.parsed.HourlyPreDispatchSchedule;
                 if (null == bucket)
-                   context.parsed.LoadBid = bucket = {};
+                   context.parsed.HourlyPreDispatchSchedule = bucket = {};
                 bucket[obj.id] = obj;
 
                 return (obj);
@@ -5553,26 +5216,9 @@ define
 
             export (obj, full)
             {
-                let fields = ResourceBid.prototype.export.call (this, obj, false);
+                let fields = BidHourlySchedule.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LoadBid", "dropRampRate", "dropRampRate",  base.from_string, fields);
-                base.export_element (obj, "LoadBid", "loadRedInitiationCost", "loadRedInitiationCost",  base.from_string, fields);
-                base.export_element (obj, "LoadBid", "loadRedInitiationTime", "loadRedInitiationTime",  base.from_float, fields);
-                base.export_element (obj, "LoadBid", "marketDate", "marketDate",  base.from_datetime, fields);
-                base.export_element (obj, "LoadBid", "meteredValue", "meteredValue",  base.from_boolean, fields);
-                base.export_element (obj, "LoadBid", "minLoad", "minLoad",  base.from_string, fields);
-                base.export_element (obj, "LoadBid", "minLoadReduction", "minLoadReduction",  base.from_string, fields);
-                base.export_element (obj, "LoadBid", "minLoadReductionCost", "minLoadReductionCost",  base.from_string, fields);
-                base.export_element (obj, "LoadBid", "minLoadReductionInterval", "minLoadReductionInterval",  base.from_float, fields);
-                base.export_element (obj, "LoadBid", "minTimeBetLoadRed", "minTimeBetLoadRed",  base.from_float, fields);
-                base.export_element (obj, "LoadBid", "pickUpRampRate", "pickUpRampRate",  base.from_string, fields);
-                base.export_element (obj, "LoadBid", "priceSetting", "priceSetting",  base.from_boolean, fields);
-                base.export_element (obj, "LoadBid", "reqNoticeTime", "reqNoticeTime",  base.from_float, fields);
-                base.export_element (obj, "LoadBid", "shutdownCost", "shutdownCost",  base.from_string, fields);
-                base.export_attribute (obj, "LoadBid", "AreaLoadBid", "AreaLoadBid", fields);
-                base.export_attributes (obj, "LoadBid", "RampRateCurve", "RampRateCurve", fields);
-                base.export_attribute (obj, "LoadBid", "RegisteredLoad", "RegisteredLoad", fields);
-                base.export_attributes (obj, "LoadBid", "LoadReductionPriceCurve", "LoadReductionPriceCurve", fields);
+                base.export_element (obj, "HourlyPreDispatchSchedule", "value", "value",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -5584,29 +5230,12 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadBid_collapse" aria-expanded="true" aria-controls="LoadBid_collapse" style="margin-left: 10px;">LoadBid</a></legend>
-                    <div id="LoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="HourlyPreDispatchSchedule_collapse" style="margin-left: 10px;">HourlyPreDispatchSchedule</a></legend>
+                    <div id="HourlyPreDispatchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + ResourceBid.prototype.template.call (this) +
+                    + BidHourlySchedule.prototype.template.call (this) +
                     `
-                    {{#dropRampRate}}<div><b>dropRampRate</b>: {{dropRampRate}}</div>{{/dropRampRate}}
-                    {{#loadRedInitiationCost}}<div><b>loadRedInitiationCost</b>: {{loadRedInitiationCost}}</div>{{/loadRedInitiationCost}}
-                    {{#loadRedInitiationTime}}<div><b>loadRedInitiationTime</b>: {{loadRedInitiationTime}}</div>{{/loadRedInitiationTime}}
-                    {{#marketDate}}<div><b>marketDate</b>: {{marketDate}}</div>{{/marketDate}}
-                    {{#meteredValue}}<div><b>meteredValue</b>: {{meteredValue}}</div>{{/meteredValue}}
-                    {{#minLoad}}<div><b>minLoad</b>: {{minLoad}}</div>{{/minLoad}}
-                    {{#minLoadReduction}}<div><b>minLoadReduction</b>: {{minLoadReduction}}</div>{{/minLoadReduction}}
-                    {{#minLoadReductionCost}}<div><b>minLoadReductionCost</b>: {{minLoadReductionCost}}</div>{{/minLoadReductionCost}}
-                    {{#minLoadReductionInterval}}<div><b>minLoadReductionInterval</b>: {{minLoadReductionInterval}}</div>{{/minLoadReductionInterval}}
-                    {{#minTimeBetLoadRed}}<div><b>minTimeBetLoadRed</b>: {{minTimeBetLoadRed}}</div>{{/minTimeBetLoadRed}}
-                    {{#pickUpRampRate}}<div><b>pickUpRampRate</b>: {{pickUpRampRate}}</div>{{/pickUpRampRate}}
-                    {{#priceSetting}}<div><b>priceSetting</b>: {{priceSetting}}</div>{{/priceSetting}}
-                    {{#reqNoticeTime}}<div><b>reqNoticeTime</b>: {{reqNoticeTime}}</div>{{/reqNoticeTime}}
-                    {{#shutdownCost}}<div><b>shutdownCost</b>: {{shutdownCost}}</div>{{/shutdownCost}}
-                    {{#AreaLoadBid}}<div><b>AreaLoadBid</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{AreaLoadBid}}");}); return false;'>{{AreaLoadBid}}</a></div>{{/AreaLoadBid}}
-                    {{#RampRateCurve}}<div><b>RampRateCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/RampRateCurve}}
-                    {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{RegisteredLoad}}");}); return false;'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
-                    {{#LoadReductionPriceCurve}}<div><b>LoadReductionPriceCurve</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{.}}");}); return false;'>{{.}}</a></div>{{/LoadReductionPriceCurve}}
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
                     </div>
                     </fieldset>
 
@@ -5617,15 +5246,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj["RampRateCurve"]) obj["RampRateCurve_string"] = obj["RampRateCurve"].join ();
-                if (obj["LoadReductionPriceCurve"]) obj["LoadReductionPriceCurve_string"] = obj["LoadReductionPriceCurve"].join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj["RampRateCurve_string"];
-                delete obj["LoadReductionPriceCurve_string"];
             }
 
             edit_template ()
@@ -5633,27 +5258,12 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadBid_collapse" aria-expanded="true" aria-controls="{{id}}_LoadBid_collapse" style="margin-left: 10px;">LoadBid</a></legend>
-                    <div id="{{id}}_LoadBid_collapse" class="collapse in show" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_HourlyPreDispatchSchedule_collapse" style="margin-left: 10px;">HourlyPreDispatchSchedule</a></legend>
+                    <div id="{{id}}_HourlyPreDispatchSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
                     `
-                    + ResourceBid.prototype.edit_template.call (this) +
+                    + BidHourlySchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dropRampRate'>dropRampRate: </label><div class='col-sm-8'><input id='{{id}}_dropRampRate' class='form-control' type='text'{{#dropRampRate}} value='{{dropRampRate}}'{{/dropRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRedInitiationCost'>loadRedInitiationCost: </label><div class='col-sm-8'><input id='{{id}}_loadRedInitiationCost' class='form-control' type='text'{{#loadRedInitiationCost}} value='{{loadRedInitiationCost}}'{{/loadRedInitiationCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRedInitiationTime'>loadRedInitiationTime: </label><div class='col-sm-8'><input id='{{id}}_loadRedInitiationTime' class='form-control' type='text'{{#loadRedInitiationTime}} value='{{loadRedInitiationTime}}'{{/loadRedInitiationTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketDate'>marketDate: </label><div class='col-sm-8'><input id='{{id}}_marketDate' class='form-control' type='text'{{#marketDate}} value='{{marketDate}}'{{/marketDate}}></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_meteredValue'>meteredValue: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_meteredValue' class='form-check-input' type='checkbox'{{#meteredValue}} checked{{/meteredValue}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoad'>minLoad: </label><div class='col-sm-8'><input id='{{id}}_minLoad' class='form-control' type='text'{{#minLoad}} value='{{minLoad}}'{{/minLoad}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReduction'>minLoadReduction: </label><div class='col-sm-8'><input id='{{id}}_minLoadReduction' class='form-control' type='text'{{#minLoadReduction}} value='{{minLoadReduction}}'{{/minLoadReduction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionCost'>minLoadReductionCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionCost' class='form-control' type='text'{{#minLoadReductionCost}} value='{{minLoadReductionCost}}'{{/minLoadReductionCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='{{id}}_minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pickUpRampRate'>pickUpRampRate: </label><div class='col-sm-8'><input id='{{id}}_pickUpRampRate' class='form-control' type='text'{{#pickUpRampRate}} value='{{pickUpRampRate}}'{{/pickUpRampRate}}></div></div>
-                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_priceSetting'>priceSetting: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_priceSetting' class='form-check-input' type='checkbox'{{#priceSetting}} checked{{/priceSetting}}></div></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='{{id}}_reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shutdownCost'>shutdownCost: </label><div class='col-sm-8'><input id='{{id}}_shutdownCost' class='form-control' type='text'{{#shutdownCost}} value='{{shutdownCost}}'{{/shutdownCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AreaLoadBid'>AreaLoadBid: </label><div class='col-sm-8'><input id='{{id}}_AreaLoadBid' class='form-control' type='text'{{#AreaLoadBid}} value='{{AreaLoadBid}}'{{/AreaLoadBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}'{{/RegisteredLoad}}></div></div>
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_value'>value: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div></div>
                     </div>
                     </fieldset>
                     `
@@ -5664,40 +5274,429 @@ define
             {
                 let temp;
 
-                obj = obj || { id: id, cls: "LoadBid" };
+                obj = obj || { id: id, cls: "HourlyPreDispatchSchedule" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_dropRampRate").value; if ("" !== temp) obj["dropRampRate"] = temp;
-                temp = document.getElementById (id + "_loadRedInitiationCost").value; if ("" !== temp) obj["loadRedInitiationCost"] = temp;
-                temp = document.getElementById (id + "_loadRedInitiationTime").value; if ("" !== temp) obj["loadRedInitiationTime"] = temp;
-                temp = document.getElementById (id + "_marketDate").value; if ("" !== temp) obj["marketDate"] = temp;
-                temp = document.getElementById (id + "_meteredValue").checked; if (temp) obj["meteredValue"] = true;
-                temp = document.getElementById (id + "_minLoad").value; if ("" !== temp) obj["minLoad"] = temp;
-                temp = document.getElementById (id + "_minLoadReduction").value; if ("" !== temp) obj["minLoadReduction"] = temp;
-                temp = document.getElementById (id + "_minLoadReductionCost").value; if ("" !== temp) obj["minLoadReductionCost"] = temp;
-                temp = document.getElementById (id + "_minLoadReductionInterval").value; if ("" !== temp) obj["minLoadReductionInterval"] = temp;
-                temp = document.getElementById (id + "_minTimeBetLoadRed").value; if ("" !== temp) obj["minTimeBetLoadRed"] = temp;
-                temp = document.getElementById (id + "_pickUpRampRate").value; if ("" !== temp) obj["pickUpRampRate"] = temp;
-                temp = document.getElementById (id + "_priceSetting").checked; if (temp) obj["priceSetting"] = true;
-                temp = document.getElementById (id + "_reqNoticeTime").value; if ("" !== temp) obj["reqNoticeTime"] = temp;
-                temp = document.getElementById (id + "_shutdownCost").value; if ("" !== temp) obj["shutdownCost"] = temp;
-                temp = document.getElementById (id + "_AreaLoadBid").value; if ("" !== temp) obj["AreaLoadBid"] = temp;
-                temp = document.getElementById (id + "_RegisteredLoad").value; if ("" !== temp) obj["RegisteredLoad"] = temp;
+                temp = document.getElementById (id + "_value").checked; if (temp) obj["value"] = true;
+
+                return (obj);
+            }
+        }
+
+        /**
+         * Result of bid validation against conditions that may exist on an interchange that becomes disconnected or is heavily discounted with respect the MW flow.
+         *
+         * This schedule is assocated with the hourly parameters in a resource bid.
+         *
+         */
+        class OpenTieSchedule extends BidHourlySchedule
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.OpenTieSchedule;
+                if (null == bucket)
+                   cim_data.OpenTieSchedule = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.OpenTieSchedule[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = BidHourlySchedule.prototype.parse.call (this, context, sub);
+                obj.cls = "OpenTieSchedule";
+                base.parse_element (/<cim:OpenTieSchedule.value>([\s\S]*?)<\/cim:OpenTieSchedule.value>/g, obj, "value", base.to_boolean, sub, context);
+                let bucket = context.parsed.OpenTieSchedule;
+                if (null == bucket)
+                   context.parsed.OpenTieSchedule = bucket = {};
+                bucket[obj.id] = obj;
 
                 return (obj);
             }
 
-            relations ()
+            export (obj, full)
+            {
+                let fields = BidHourlySchedule.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "OpenTieSchedule", "value", "value",  base.from_boolean, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
             {
                 return (
-                    super.relations ().concat (
-                        [
-                            ["AreaLoadBid", "0..1", "0..*", "AreaLoadBid", "LoadBid"],
-                            ["RampRateCurve", "0..*", "0..1", "RampRateCurve", "LoadBid"],
-                            ["RegisteredLoad", "0..1", "0..*", "RegisteredLoad", "LoadBids"],
-                            ["LoadReductionPriceCurve", "0..*", "1", "LoadReductionPriceCurve", "LoadBid"]
-                        ]
-                    )
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#OpenTieSchedule_collapse" aria-expanded="true" aria-controls="OpenTieSchedule_collapse" style="margin-left: 10px;">OpenTieSchedule</a></legend>
+                    <div id="OpenTieSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + BidHourlySchedule.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    </fieldset>
+
+                    `
                 );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_OpenTieSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_OpenTieSchedule_collapse" style="margin-left: 10px;">OpenTieSchedule</a></legend>
+                    <div id="{{id}}_OpenTieSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + BidHourlySchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_value'>value: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "OpenTieSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").checked; if (temp) obj["value"] = true;
+
+                return (obj);
+            }
+        }
+
+        /**
+         * The operating cost of a Pump Storage Hydro Unit operating as a hydro pump.
+         *
+         * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
+         *
+         */
+        class PumpingCostSchedule extends BidHourlyProductSchedule
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.PumpingCostSchedule;
+                if (null == bucket)
+                   cim_data.PumpingCostSchedule = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.PumpingCostSchedule[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
+                obj.cls = "PumpingCostSchedule";
+                base.parse_element (/<cim:PumpingCostSchedule.value>([\s\S]*?)<\/cim:PumpingCostSchedule.value>/g, obj, "value", base.to_float, sub, context);
+                let bucket = context.parsed.PumpingCostSchedule;
+                if (null == bucket)
+                   context.parsed.PumpingCostSchedule = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "PumpingCostSchedule", "value", "value",  base.from_float, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingCostSchedule_collapse" style="margin-left: 10px;">PumpingCostSchedule</a></legend>
+                    <div id="PumpingCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + BidHourlyProductSchedule.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingCostSchedule_collapse" style="margin-left: 10px;">PumpingCostSchedule</a></legend>
+                    <div id="{{id}}_PumpingCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + BidHourlyProductSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "PumpingCostSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
+
+                return (obj);
+            }
+        }
+
+        /**
+         * The fixed operating level of a Pump Storage Hydro Unit operating as a hydro pump.
+         *
+         * Associated with the energy market product type.
+         *
+         * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
+         *
+         */
+        class PumpingLevelSchedule extends BidHourlyProductSchedule
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.PumpingLevelSchedule;
+                if (null == bucket)
+                   cim_data.PumpingLevelSchedule = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.PumpingLevelSchedule[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
+                obj.cls = "PumpingLevelSchedule";
+                base.parse_element (/<cim:PumpingLevelSchedule.value>([\s\S]*?)<\/cim:PumpingLevelSchedule.value>/g, obj, "value", base.to_float, sub, context);
+                let bucket = context.parsed.PumpingLevelSchedule;
+                if (null == bucket)
+                   context.parsed.PumpingLevelSchedule = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "PumpingLevelSchedule", "value", "value",  base.from_float, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="PumpingLevelSchedule_collapse" style="margin-left: 10px;">PumpingLevelSchedule</a></legend>
+                    <div id="PumpingLevelSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + BidHourlyProductSchedule.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingLevelSchedule_collapse" style="margin-left: 10px;">PumpingLevelSchedule</a></legend>
+                    <div id="{{id}}_PumpingLevelSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + BidHourlyProductSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "PumpingLevelSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
+
+                return (obj);
+            }
+        }
+
+        /**
+         * The cost to shutdown a Pump Storage Hydro Unit (in pump mode) or a pump.
+         *
+         * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
+         *
+         */
+        class PumpingShutDownCostSchedule extends BidHourlyProductSchedule
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.PumpingShutDownCostSchedule;
+                if (null == bucket)
+                   cim_data.PumpingShutDownCostSchedule = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.PumpingShutDownCostSchedule[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
+                obj.cls = "PumpingShutDownCostSchedule";
+                base.parse_element (/<cim:PumpingShutDownCostSchedule.value>([\s\S]*?)<\/cim:PumpingShutDownCostSchedule.value>/g, obj, "value", base.to_float, sub, context);
+                let bucket = context.parsed.PumpingShutDownCostSchedule;
+                if (null == bucket)
+                   context.parsed.PumpingShutDownCostSchedule = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = BidHourlyProductSchedule.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "PumpingShutDownCostSchedule", "value", "value",  base.from_float, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingShutDownCostSchedule_collapse" style="margin-left: 10px;">PumpingShutDownCostSchedule</a></legend>
+                    <div id="PumpingShutDownCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + BidHourlyProductSchedule.prototype.template.call (this) +
+                    `
+                    {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingShutDownCostSchedule_collapse" style="margin-left: 10px;">PumpingShutDownCostSchedule</a></legend>
+                    <div id="{{id}}_PumpingShutDownCostSchedule_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + BidHourlyProductSchedule.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "PumpingShutDownCostSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" !== temp) obj["value"] = temp;
+
+                return (obj);
             }
         }
 

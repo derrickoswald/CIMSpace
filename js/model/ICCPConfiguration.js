@@ -7,7 +7,6 @@ define
      */
     function (base, Core, Meas, SCADA)
     {
-
         /**
          * Specifies the expected security mechanism, per IEC 62351-4, to be utilized.
          *
@@ -347,7 +346,7 @@ define
         }
 
         /**
-         * Internet Protocol Access Point � used to represent an addressing structure is based upon an Internet Protocol (IP) address.
+         * Internet Protocol Access Point – used to represent an addressing structure is based upon an Internet Protocol (IP) address.
          *
          */
         class IPAccessPoint extends SCADA.CommunicationLink
@@ -457,7 +456,7 @@ define
                 obj = obj || { id: id, cls: "IPAccessPoint" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_address").value; if ("" !== temp) obj["address"] = temp;
-                temp = IPAddressKind[document.getElementById (id + "_addressType").value]; if (temp) obj["addressType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#IPAddressKind." + temp; else delete obj["addressType"];
+                temp = IPAddressKind[document.getElementById (id + "_addressType").value]; if (temp) obj["addressType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#IPAddressKind." + temp; else delete obj["addressType"];
                 temp = document.getElementById (id + "_gateway").value; if ("" !== temp) obj["gateway"] = temp;
                 temp = document.getElementById (id + "_subnet").value; if ("" !== temp) obj["subnet"] = temp;
 
@@ -576,7 +575,7 @@ define
                 obj = obj || { id: id, cls: "ICCPInformationMessage" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_localReference").value; if ("" !== temp) obj["localReference"] = temp;
-                temp = ICCPScopeKind[document.getElementById (id + "_scope").value]; if (temp) obj["scope"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPScopeKind." + temp; else delete obj["scope"];
+                temp = ICCPScopeKind[document.getElementById (id + "_scope").value]; if (temp) obj["scope"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ICCPScopeKind." + temp; else delete obj["scope"];
                 temp = document.getElementById (id + "_TASE2BilateralTable").value; if ("" !== temp) obj["TASE2BilateralTable"] = temp.split (",");
 
                 return (obj);
@@ -1184,7 +1183,7 @@ define
                 temp = document.getElementById (id + "_minimumUpdateInterval").value; if ("" !== temp) obj["minimumUpdateInterval"] = temp;
                 temp = document.getElementById (id + "_calling").checked; if (temp) obj["calling"] = true;
                 temp = document.getElementById (id + "_transportSecurityRequirement").checked; if (temp) obj["transportSecurityRequirement"] = true;
-                temp = ApplicationSecurityKind[document.getElementById (id + "_applicationSecurityRequirement").value]; if (temp) obj["applicationSecurityRequirement"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ApplicationSecurityKind." + temp; else delete obj["applicationSecurityRequirement"];
+                temp = ApplicationSecurityKind[document.getElementById (id + "_applicationSecurityRequirement").value]; if (temp) obj["applicationSecurityRequirement"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ApplicationSecurityKind." + temp; else delete obj["applicationSecurityRequirement"];
                 temp = document.getElementById (id + "_nameOfLocalICC").value; if ("" !== temp) obj["nameOfLocalICC"] = temp;
                 temp = document.getElementById (id + "_supportForBlock1").checked; if (temp) obj["supportForBlock1"] = true;
                 temp = document.getElementById (id + "_supportForBlock2").checked; if (temp) obj["supportForBlock2"] = true;
@@ -1586,10 +1585,10 @@ define
 
                 obj = obj || { id: id, cls: "ICCPProvidedPoint" };
                 super.submit (id, obj);
-                temp = ICCPScopeKind[document.getElementById (id + "_scope").value]; if (temp) obj["scope"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPScopeKind." + temp; else delete obj["scope"];
-                temp = ICCPPointKind[document.getElementById (id + "_pointType").value]; if (temp) obj["pointType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPointKind." + temp; else delete obj["pointType"];
-                temp = ICCPQualityKind[document.getElementById (id + "_pointQuality").value]; if (temp) obj["pointQuality"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPQualityKind." + temp; else delete obj["pointQuality"];
-                temp = ICCPAccessPrivilegeKind[document.getElementById (id + "_accessPriviledge").value]; if (temp) obj["accessPriviledge"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPAccessPrivilegeKind." + temp; else delete obj["accessPriviledge"];
+                temp = ICCPScopeKind[document.getElementById (id + "_scope").value]; if (temp) obj["scope"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ICCPScopeKind." + temp; else delete obj["scope"];
+                temp = ICCPPointKind[document.getElementById (id + "_pointType").value]; if (temp) obj["pointType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ICCPPointKind." + temp; else delete obj["pointType"];
+                temp = ICCPQualityKind[document.getElementById (id + "_pointQuality").value]; if (temp) obj["pointQuality"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ICCPQualityKind." + temp; else delete obj["pointQuality"];
+                temp = ICCPAccessPrivilegeKind[document.getElementById (id + "_accessPriviledge").value]; if (temp) obj["accessPriviledge"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#ICCPAccessPrivilegeKind." + temp; else delete obj["accessPriviledge"];
 
                 return (obj);
             }

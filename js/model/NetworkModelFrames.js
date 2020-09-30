@@ -3,7 +3,6 @@ define
     ["model/base", "model/Core"],
     function (base, Core)
     {
-
         /**
          * A collection of model parts when combined form a case or part of a case.
          *

@@ -5,12 +5,11 @@ define
      * For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.
      *
      * Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.
-     * The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+     * The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor’s equipment could also differ due to input and output signals required by standard models.
      *
      */
     function (base, StandardModels)
     {
-
         /**
          * Excitation base system mode.
          *
@@ -214,7 +213,7 @@ define
          * The several variations differ in the following ways:
          * - the number of  equivalent windings that are included;
          * - the way in which saturation is incorporated into the model;
-         * - whether or not �subtransient saliency� (<i>X''q</i> not = <i>X''d</i>) is represented.
+         * - whether or not “subtransient saliency” (<i>X''q</i> not = <i>X''d</i>) is represented.
          * It is not necessary for each simulation tool to have separate models for each of the model types.  The same model can often be used for several types by alternative logic within the model.  Also, differences in saturation representation might not result in significant model performance differences so model substitutions are often acceptable.
          *
          */
@@ -325,7 +324,7 @@ define
                 obj = obj || { id: id, cls: "SynchronousMachineDetailed" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_efdBaseRatio").value; if ("" !== temp) obj["efdBaseRatio"] = temp;
-                temp = IfdBaseKind[document.getElementById (id + "_ifdBaseType").value]; if (temp) obj["ifdBaseType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#IfdBaseKind." + temp; else delete obj["ifdBaseType"];
+                temp = IfdBaseKind[document.getElementById (id + "_ifdBaseType").value]; if (temp) obj["ifdBaseType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#IfdBaseKind." + temp; else delete obj["ifdBaseType"];
                 temp = document.getElementById (id + "_saturationFactor120QAxis").value; if ("" !== temp) obj["saturationFactor120QAxis"] = temp;
                 temp = document.getElementById (id + "_saturationFactorQAxis").value; if ("" !== temp) obj["saturationFactorQAxis"] = temp;
 
@@ -441,7 +440,7 @@ define
          *
          * Parameter details:
          * <ol>
-         * <li>The �p� in the time-related attribute names is a substitution for a �prime� in the usual parameter notation, e.g. tpdo refers to <i>T'do</i>.</li>
+         * <li>The “p” in the time-related attribute names is a substitution for a “prime” in the usual parameter notation, e.g. tpdo refers to <i>T'do</i>.</li>
          * <li>The parameters used for models expressed in time constant reactance form include:</li>
          * </ol>
          * - RotatingMachine.ratedS (<i>MVAbase</i>);
@@ -618,8 +617,8 @@ define
                 obj = obj || { id: id, cls: "SynchronousMachineTimeConstantReactance" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_ks").value; if ("" !== temp) obj["ks"] = temp;
-                temp = SynchronousMachineModelKind[document.getElementById (id + "_modelType").value]; if (temp) obj["modelType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineModelKind." + temp; else delete obj["modelType"];
-                temp = RotorKind[document.getElementById (id + "_rotorType").value]; if (temp) obj["rotorType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#RotorKind." + temp; else delete obj["rotorType"];
+                temp = SynchronousMachineModelKind[document.getElementById (id + "_modelType").value]; if (temp) obj["modelType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SynchronousMachineModelKind." + temp; else delete obj["modelType"];
+                temp = RotorKind[document.getElementById (id + "_rotorType").value]; if (temp) obj["rotorType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#RotorKind." + temp; else delete obj["rotorType"];
                 temp = document.getElementById (id + "_tc").value; if ("" !== temp) obj["tc"] = temp;
                 temp = document.getElementById (id + "_tpdo").value; if ("" !== temp) obj["tpdo"] = temp;
                 temp = document.getElementById (id + "_tppdo").value; if ("" !== temp) obj["tppdo"] = temp;
@@ -641,15 +640,15 @@ define
          *
          * Equations for conversion between equivalent circuit and time constant reactance forms:
          * <i>Xd</i> = <i>Xad </i>+<i> Xl</i>
-         * <i>X�d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> / (<i>Xad</i> + <i>Xfd</i>)
-         * <i>X�d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> x <i>X1d</i> / (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>)
+         * <i>X’d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> / (<i>Xad</i> + <i>Xfd</i>)
+         * <i>X”d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> x <i>X1d</i> / (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>)
          * <i>Xq</i> = <i>Xaq</i> + <i>Xl</i>
-         * <i>X�q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> / (<i>Xaq</i> + <i>X1q</i>)
-         * <i>X�q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> x <i>X2q</i> / (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>)
-         * <i>T�do</i> = (<i>Xad</i> + <i>Xfd</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>Rfd</i>)
-         * <i>T�do</i> = (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1d</i> x (<i>Xad</i> + <i>Xfd</i>)
-         * <i>T�qo</i> = (<i>Xaq</i> + <i>X1q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1q</i>)
-         * <i>T�qo</i> = (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R2q</i> x (<i>Xaq</i> + <i>X1q</i>)
+         * <i>X’q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> / (<i>Xaq</i> + <i>X1q</i>)
+         * <i>X”q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> x <i>X2q</i> / (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>)
+         * <i>T’do</i> = (<i>Xad</i> + <i>Xfd</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>Rfd</i>)
+         * <i>T”do</i> = (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1d</i> x (<i>Xad</i> + <i>Xfd</i>)
+         * <i>T’qo</i> = (<i>Xaq</i> + <i>X1q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1q</i>)
+         * <i>T”qo</i> = (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R2q</i> x (<i>Xaq</i> + <i>X1q</i>)
          * Same equations using CIM attributes from SynchronousMachineTimeConstantReactance class on left of "=" and SynchronousMachineEquivalentCircuit class on right (except as noted):
          * xDirectSync = xad + RotatingMachineDynamics.statorLeakageReactance
          * xDirectTrans = RotatingMachineDynamics.statorLeakageReactance + xad x xfd / (xad + xfd)

@@ -7,7 +7,6 @@ define
      */
     function (base, Wires)
     {
-
         /**
          * An abstract class for state variables.
          *
@@ -210,7 +209,7 @@ define
                 obj = obj || { id: id, cls: "SvSwitch" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_open").checked; if (temp) obj["open"] = true;
-                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_Switch").value; if ("" !== temp) obj["Switch"] = temp;
 
                 return (obj);
@@ -342,7 +341,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_pInjection").value; if ("" !== temp) obj["pInjection"] = temp;
                 temp = document.getElementById (id + "_qInjection").value; if ("" !== temp) obj["qInjection"] = temp;
-                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_TopologicalNode").value; if ("" !== temp) obj["TopologicalNode"] = temp;
 
                 return (obj);
@@ -467,7 +466,7 @@ define
                 obj = obj || { id: id, cls: "SvStatus" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_inService").checked; if (temp) obj["inService"] = true;
-                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_ConductingEquipment").value; if ("" !== temp) obj["ConductingEquipment"] = temp;
 
                 return (obj);
@@ -599,7 +598,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_p").value; if ("" !== temp) obj["p"] = temp;
                 temp = document.getElementById (id + "_q").value; if ("" !== temp) obj["q"] = temp;
-                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_Terminal").value; if ("" !== temp) obj["Terminal"] = temp;
 
                 return (obj);
@@ -724,7 +723,7 @@ define
                 obj = obj || { id: id, cls: "SvShuntCompensatorSections" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_sections").value; if ("" !== temp) obj["sections"] = temp;
-                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_ShuntCompensator").value; if ("" !== temp) obj["ShuntCompensator"] = temp;
 
                 return (obj);
@@ -854,7 +853,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_angle").value; if ("" !== temp) obj["angle"] = temp;
                 temp = document.getElementById (id + "_v").value; if ("" !== temp) obj["v"] = temp;
-                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; else delete obj["phase"];
+                temp = Wires.SinglePhaseKind[document.getElementById (id + "_phase").value]; if (temp) obj["phase"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#SinglePhaseKind." + temp; else delete obj["phase"];
                 temp = document.getElementById (id + "_TopologicalNode").value; if ("" !== temp) obj["TopologicalNode"] = temp;
 
                 return (obj);

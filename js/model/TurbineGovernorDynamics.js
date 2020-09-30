@@ -10,7 +10,6 @@ define
      */
     function (base, StandardModels)
     {
-
         /**
          * Governor control flag for Francis hydro model.
          *
@@ -319,6 +318,13 @@ define
             {
                 let obj = CrossCompoundTurbineGovernorDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "GovSteamCC";
+                base.parse_element (/<cim:GovSteamCC.dhp>([\s\S]*?)<\/cim:GovSteamCC.dhp>/g, obj, "dhp", base.to_string, sub, context);
+                base.parse_element (/<cim:GovSteamCC.dlp>([\s\S]*?)<\/cim:GovSteamCC.dlp>/g, obj, "dlp", base.to_string, sub, context);
+                base.parse_element (/<cim:GovSteamCC.fhp>([\s\S]*?)<\/cim:GovSteamCC.fhp>/g, obj, "fhp", base.to_string, sub, context);
+                base.parse_element (/<cim:GovSteamCC.flp>([\s\S]*?)<\/cim:GovSteamCC.flp>/g, obj, "flp", base.to_string, sub, context);
+                base.parse_element (/<cim:GovSteamCC.mwbase>([\s\S]*?)<\/cim:GovSteamCC.mwbase>/g, obj, "mwbase", base.to_string, sub, context);
+                base.parse_element (/<cim:GovSteamCC.pmaxhp>([\s\S]*?)<\/cim:GovSteamCC.pmaxhp>/g, obj, "pmaxhp", base.to_string, sub, context);
+                base.parse_element (/<cim:GovSteamCC.pmaxlp>([\s\S]*?)<\/cim:GovSteamCC.pmaxlp>/g, obj, "pmaxlp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamCC.rhp>([\s\S]*?)<\/cim:GovSteamCC.rhp>/g, obj, "rhp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamCC.rlp>([\s\S]*?)<\/cim:GovSteamCC.rlp>/g, obj, "rlp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamCC.t1hp>([\s\S]*?)<\/cim:GovSteamCC.t1hp>/g, obj, "t1hp", base.to_string, sub, context);
@@ -329,13 +335,6 @@ define
                 base.parse_element (/<cim:GovSteamCC.t4lp>([\s\S]*?)<\/cim:GovSteamCC.t4lp>/g, obj, "t4lp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamCC.t5hp>([\s\S]*?)<\/cim:GovSteamCC.t5hp>/g, obj, "t5hp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamCC.t5lp>([\s\S]*?)<\/cim:GovSteamCC.t5lp>/g, obj, "t5lp", base.to_string, sub, context);
-                base.parse_element (/<cim:GovSteamCC.dhp>([\s\S]*?)<\/cim:GovSteamCC.dhp>/g, obj, "dhp", base.to_string, sub, context);
-                base.parse_element (/<cim:GovSteamCC.dlp>([\s\S]*?)<\/cim:GovSteamCC.dlp>/g, obj, "dlp", base.to_string, sub, context);
-                base.parse_element (/<cim:GovSteamCC.fhp>([\s\S]*?)<\/cim:GovSteamCC.fhp>/g, obj, "fhp", base.to_string, sub, context);
-                base.parse_element (/<cim:GovSteamCC.flp>([\s\S]*?)<\/cim:GovSteamCC.flp>/g, obj, "flp", base.to_string, sub, context);
-                base.parse_element (/<cim:GovSteamCC.mwbase>([\s\S]*?)<\/cim:GovSteamCC.mwbase>/g, obj, "mwbase", base.to_string, sub, context);
-                base.parse_element (/<cim:GovSteamCC.pmaxhp>([\s\S]*?)<\/cim:GovSteamCC.pmaxhp>/g, obj, "pmaxhp", base.to_string, sub, context);
-                base.parse_element (/<cim:GovSteamCC.pmaxlp>([\s\S]*?)<\/cim:GovSteamCC.pmaxlp>/g, obj, "pmaxlp", base.to_string, sub, context);
                 let bucket = context.parsed.GovSteamCC;
                 if (null == bucket)
                    context.parsed.GovSteamCC = bucket = {};
@@ -348,6 +347,13 @@ define
             {
                 let fields = CrossCompoundTurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
+                base.export_element (obj, "GovSteamCC", "dhp", "dhp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "dlp", "dlp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "fhp", "fhp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "flp", "flp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "pmaxhp", "pmaxhp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "pmaxlp", "pmaxlp",  base.from_string, fields);
                 base.export_element (obj, "GovSteamCC", "rhp", "rhp",  base.from_string, fields);
                 base.export_element (obj, "GovSteamCC", "rlp", "rlp",  base.from_string, fields);
                 base.export_element (obj, "GovSteamCC", "t1hp", "t1hp",  base.from_string, fields);
@@ -358,13 +364,6 @@ define
                 base.export_element (obj, "GovSteamCC", "t4lp", "t4lp",  base.from_string, fields);
                 base.export_element (obj, "GovSteamCC", "t5hp", "t5hp",  base.from_string, fields);
                 base.export_element (obj, "GovSteamCC", "t5lp", "t5lp",  base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "dhp", "dhp",  base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "dlp", "dlp",  base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "fhp", "fhp",  base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "flp", "flp",  base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "mwbase", "mwbase",  base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "pmaxhp", "pmaxhp",  base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "pmaxlp", "pmaxlp",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -381,6 +380,13 @@ define
                     `
                     + CrossCompoundTurbineGovernorDynamics.prototype.template.call (this) +
                     `
+                    {{#dhp}}<div><b>dhp</b>: {{dhp}}</div>{{/dhp}}
+                    {{#dlp}}<div><b>dlp</b>: {{dlp}}</div>{{/dlp}}
+                    {{#fhp}}<div><b>fhp</b>: {{fhp}}</div>{{/fhp}}
+                    {{#flp}}<div><b>flp</b>: {{flp}}</div>{{/flp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pmaxhp}}<div><b>pmaxhp</b>: {{pmaxhp}}</div>{{/pmaxhp}}
+                    {{#pmaxlp}}<div><b>pmaxlp</b>: {{pmaxlp}}</div>{{/pmaxlp}}
                     {{#rhp}}<div><b>rhp</b>: {{rhp}}</div>{{/rhp}}
                     {{#rlp}}<div><b>rlp</b>: {{rlp}}</div>{{/rlp}}
                     {{#t1hp}}<div><b>t1hp</b>: {{t1hp}}</div>{{/t1hp}}
@@ -391,13 +397,6 @@ define
                     {{#t4lp}}<div><b>t4lp</b>: {{t4lp}}</div>{{/t4lp}}
                     {{#t5hp}}<div><b>t5hp</b>: {{t5hp}}</div>{{/t5hp}}
                     {{#t5lp}}<div><b>t5lp</b>: {{t5lp}}</div>{{/t5lp}}
-                    {{#dhp}}<div><b>dhp</b>: {{dhp}}</div>{{/dhp}}
-                    {{#dlp}}<div><b>dlp</b>: {{dlp}}</div>{{/dlp}}
-                    {{#fhp}}<div><b>fhp</b>: {{fhp}}</div>{{/fhp}}
-                    {{#flp}}<div><b>flp</b>: {{flp}}</div>{{/flp}}
-                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-                    {{#pmaxhp}}<div><b>pmaxhp</b>: {{pmaxhp}}</div>{{/pmaxhp}}
-                    {{#pmaxlp}}<div><b>pmaxlp</b>: {{pmaxlp}}</div>{{/pmaxlp}}
                     </div>
                     </fieldset>
 
@@ -425,6 +424,13 @@ define
                     `
                     + CrossCompoundTurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dhp'>dhp: </label><div class='col-sm-8'><input id='{{id}}_dhp' class='form-control' type='text'{{#dhp}} value='{{dhp}}'{{/dhp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dlp'>dlp: </label><div class='col-sm-8'><input id='{{id}}_dlp' class='form-control' type='text'{{#dlp}} value='{{dlp}}'{{/dlp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fhp'>fhp: </label><div class='col-sm-8'><input id='{{id}}_fhp' class='form-control' type='text'{{#fhp}} value='{{fhp}}'{{/fhp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flp'>flp: </label><div class='col-sm-8'><input id='{{id}}_flp' class='form-control' type='text'{{#flp}} value='{{flp}}'{{/flp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwbase'>mwbase: </label><div class='col-sm-8'><input id='{{id}}_mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmaxhp'>pmaxhp: </label><div class='col-sm-8'><input id='{{id}}_pmaxhp' class='form-control' type='text'{{#pmaxhp}} value='{{pmaxhp}}'{{/pmaxhp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmaxlp'>pmaxlp: </label><div class='col-sm-8'><input id='{{id}}_pmaxlp' class='form-control' type='text'{{#pmaxlp}} value='{{pmaxlp}}'{{/pmaxlp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rhp'>rhp: </label><div class='col-sm-8'><input id='{{id}}_rhp' class='form-control' type='text'{{#rhp}} value='{{rhp}}'{{/rhp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rlp'>rlp: </label><div class='col-sm-8'><input id='{{id}}_rlp' class='form-control' type='text'{{#rlp}} value='{{rlp}}'{{/rlp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1hp'>t1hp: </label><div class='col-sm-8'><input id='{{id}}_t1hp' class='form-control' type='text'{{#t1hp}} value='{{t1hp}}'{{/t1hp}}></div></div>
@@ -435,13 +441,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4lp'>t4lp: </label><div class='col-sm-8'><input id='{{id}}_t4lp' class='form-control' type='text'{{#t4lp}} value='{{t4lp}}'{{/t4lp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5hp'>t5hp: </label><div class='col-sm-8'><input id='{{id}}_t5hp' class='form-control' type='text'{{#t5hp}} value='{{t5hp}}'{{/t5hp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5lp'>t5lp: </label><div class='col-sm-8'><input id='{{id}}_t5lp' class='form-control' type='text'{{#t5lp}} value='{{t5lp}}'{{/t5lp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dhp'>dhp: </label><div class='col-sm-8'><input id='{{id}}_dhp' class='form-control' type='text'{{#dhp}} value='{{dhp}}'{{/dhp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dlp'>dlp: </label><div class='col-sm-8'><input id='{{id}}_dlp' class='form-control' type='text'{{#dlp}} value='{{dlp}}'{{/dlp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fhp'>fhp: </label><div class='col-sm-8'><input id='{{id}}_fhp' class='form-control' type='text'{{#fhp}} value='{{fhp}}'{{/fhp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flp'>flp: </label><div class='col-sm-8'><input id='{{id}}_flp' class='form-control' type='text'{{#flp}} value='{{flp}}'{{/flp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwbase'>mwbase: </label><div class='col-sm-8'><input id='{{id}}_mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmaxhp'>pmaxhp: </label><div class='col-sm-8'><input id='{{id}}_pmaxhp' class='form-control' type='text'{{#pmaxhp}} value='{{pmaxhp}}'{{/pmaxhp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmaxlp'>pmaxlp: </label><div class='col-sm-8'><input id='{{id}}_pmaxlp' class='form-control' type='text'{{#pmaxlp}} value='{{pmaxlp}}'{{/pmaxlp}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -454,6 +453,13 @@ define
 
                 obj = obj || { id: id, cls: "GovSteamCC" };
                 super.submit (id, obj);
+                temp = document.getElementById (id + "_dhp").value; if ("" !== temp) obj["dhp"] = temp;
+                temp = document.getElementById (id + "_dlp").value; if ("" !== temp) obj["dlp"] = temp;
+                temp = document.getElementById (id + "_fhp").value; if ("" !== temp) obj["fhp"] = temp;
+                temp = document.getElementById (id + "_flp").value; if ("" !== temp) obj["flp"] = temp;
+                temp = document.getElementById (id + "_mwbase").value; if ("" !== temp) obj["mwbase"] = temp;
+                temp = document.getElementById (id + "_pmaxhp").value; if ("" !== temp) obj["pmaxhp"] = temp;
+                temp = document.getElementById (id + "_pmaxlp").value; if ("" !== temp) obj["pmaxlp"] = temp;
                 temp = document.getElementById (id + "_rhp").value; if ("" !== temp) obj["rhp"] = temp;
                 temp = document.getElementById (id + "_rlp").value; if ("" !== temp) obj["rlp"] = temp;
                 temp = document.getElementById (id + "_t1hp").value; if ("" !== temp) obj["t1hp"] = temp;
@@ -464,13 +470,6 @@ define
                 temp = document.getElementById (id + "_t4lp").value; if ("" !== temp) obj["t4lp"] = temp;
                 temp = document.getElementById (id + "_t5hp").value; if ("" !== temp) obj["t5hp"] = temp;
                 temp = document.getElementById (id + "_t5lp").value; if ("" !== temp) obj["t5lp"] = temp;
-                temp = document.getElementById (id + "_dhp").value; if ("" !== temp) obj["dhp"] = temp;
-                temp = document.getElementById (id + "_dlp").value; if ("" !== temp) obj["dlp"] = temp;
-                temp = document.getElementById (id + "_fhp").value; if ("" !== temp) obj["fhp"] = temp;
-                temp = document.getElementById (id + "_flp").value; if ("" !== temp) obj["flp"] = temp;
-                temp = document.getElementById (id + "_mwbase").value; if ("" !== temp) obj["mwbase"] = temp;
-                temp = document.getElementById (id + "_pmaxhp").value; if ("" !== temp) obj["pmaxhp"] = temp;
-                temp = document.getElementById (id + "_pmaxlp").value; if ("" !== temp) obj["pmaxlp"] = temp;
 
                 return (obj);
             }
@@ -687,7 +686,7 @@ define
                 temp = document.getElementById (id + "_bp").value; if ("" !== temp) obj["bp"] = temp;
                 temp = document.getElementById (id + "_db1").value; if ("" !== temp) obj["db1"] = temp;
                 temp = document.getElementById (id + "_etamax").value; if ("" !== temp) obj["etamax"] = temp;
-                temp = FrancisGovernorControlKind[document.getElementById (id + "_governorControl").value]; if (temp) obj["governorControl"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#FrancisGovernorControlKind." + temp; else delete obj["governorControl"];
+                temp = FrancisGovernorControlKind[document.getElementById (id + "_governorControl").value]; if (temp) obj["governorControl"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#FrancisGovernorControlKind." + temp; else delete obj["governorControl"];
                 temp = document.getElementById (id + "_h1").value; if ("" !== temp) obj["h1"] = temp;
                 temp = document.getElementById (id + "_h2").value; if ("" !== temp) obj["h2"] = temp;
                 temp = document.getElementById (id + "_hn").value; if ("" !== temp) obj["hn"] = temp;
@@ -740,6 +739,14 @@ define
             {
                 let obj = TurbineGovernorDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "GovSteamIEEE1";
+                base.parse_element (/<cim:GovSteamIEEE1.k>([\s\S]*?)<\/cim:GovSteamIEEE1.k>/g, obj, "k", base.to_string, sub, context);
+                base.parse_element (/<cim:GovSteamIEEE1.k1>([\s\S]*?)<\/cim:GovSteamIEEE1.k1>/g, obj, "k1", base.to_float, sub, context);
+                base.parse_element (/<cim:GovSteamIEEE1.k2>([\s\S]*?)<\/cim:GovSteamIEEE1.k2>/g, obj, "k2", base.to_float, sub, context);
+                base.parse_element (/<cim:GovSteamIEEE1.k3>([\s\S]*?)<\/cim:GovSteamIEEE1.k3>/g, obj, "k3", base.to_float, sub, context);
+                base.parse_element (/<cim:GovSteamIEEE1.k4>([\s\S]*?)<\/cim:GovSteamIEEE1.k4>/g, obj, "k4", base.to_float, sub, context);
+                base.parse_element (/<cim:GovSteamIEEE1.k5>([\s\S]*?)<\/cim:GovSteamIEEE1.k5>/g, obj, "k5", base.to_float, sub, context);
+                base.parse_element (/<cim:GovSteamIEEE1.k6>([\s\S]*?)<\/cim:GovSteamIEEE1.k6>/g, obj, "k6", base.to_float, sub, context);
+                base.parse_element (/<cim:GovSteamIEEE1.k7>([\s\S]*?)<\/cim:GovSteamIEEE1.k7>/g, obj, "k7", base.to_float, sub, context);
                 base.parse_element (/<cim:GovSteamIEEE1.k8>([\s\S]*?)<\/cim:GovSteamIEEE1.k8>/g, obj, "k8", base.to_float, sub, context);
                 base.parse_element (/<cim:GovSteamIEEE1.mwbase>([\s\S]*?)<\/cim:GovSteamIEEE1.mwbase>/g, obj, "mwbase", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamIEEE1.pmax>([\s\S]*?)<\/cim:GovSteamIEEE1.pmax>/g, obj, "pmax", base.to_string, sub, context);
@@ -753,14 +760,6 @@ define
                 base.parse_element (/<cim:GovSteamIEEE1.t7>([\s\S]*?)<\/cim:GovSteamIEEE1.t7>/g, obj, "t7", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamIEEE1.uc>([\s\S]*?)<\/cim:GovSteamIEEE1.uc>/g, obj, "uc", base.to_float, sub, context);
                 base.parse_element (/<cim:GovSteamIEEE1.uo>([\s\S]*?)<\/cim:GovSteamIEEE1.uo>/g, obj, "uo", base.to_float, sub, context);
-                base.parse_element (/<cim:GovSteamIEEE1.k>([\s\S]*?)<\/cim:GovSteamIEEE1.k>/g, obj, "k", base.to_string, sub, context);
-                base.parse_element (/<cim:GovSteamIEEE1.k1>([\s\S]*?)<\/cim:GovSteamIEEE1.k1>/g, obj, "k1", base.to_float, sub, context);
-                base.parse_element (/<cim:GovSteamIEEE1.k2>([\s\S]*?)<\/cim:GovSteamIEEE1.k2>/g, obj, "k2", base.to_float, sub, context);
-                base.parse_element (/<cim:GovSteamIEEE1.k3>([\s\S]*?)<\/cim:GovSteamIEEE1.k3>/g, obj, "k3", base.to_float, sub, context);
-                base.parse_element (/<cim:GovSteamIEEE1.k4>([\s\S]*?)<\/cim:GovSteamIEEE1.k4>/g, obj, "k4", base.to_float, sub, context);
-                base.parse_element (/<cim:GovSteamIEEE1.k5>([\s\S]*?)<\/cim:GovSteamIEEE1.k5>/g, obj, "k5", base.to_float, sub, context);
-                base.parse_element (/<cim:GovSteamIEEE1.k6>([\s\S]*?)<\/cim:GovSteamIEEE1.k6>/g, obj, "k6", base.to_float, sub, context);
-                base.parse_element (/<cim:GovSteamIEEE1.k7>([\s\S]*?)<\/cim:GovSteamIEEE1.k7>/g, obj, "k7", base.to_float, sub, context);
                 let bucket = context.parsed.GovSteamIEEE1;
                 if (null == bucket)
                    context.parsed.GovSteamIEEE1 = bucket = {};
@@ -773,6 +772,14 @@ define
             {
                 let fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
+                base.export_element (obj, "GovSteamIEEE1", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k1", "k1",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k2", "k2",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k3", "k3",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k4", "k4",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k5", "k5",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k6", "k6",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k7", "k7",  base.from_float, fields);
                 base.export_element (obj, "GovSteamIEEE1", "k8", "k8",  base.from_float, fields);
                 base.export_element (obj, "GovSteamIEEE1", "mwbase", "mwbase",  base.from_string, fields);
                 base.export_element (obj, "GovSteamIEEE1", "pmax", "pmax",  base.from_string, fields);
@@ -786,14 +793,6 @@ define
                 base.export_element (obj, "GovSteamIEEE1", "t7", "t7",  base.from_string, fields);
                 base.export_element (obj, "GovSteamIEEE1", "uc", "uc",  base.from_float, fields);
                 base.export_element (obj, "GovSteamIEEE1", "uo", "uo",  base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k", "k",  base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k1", "k1",  base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k2", "k2",  base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k3", "k3",  base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k4", "k4",  base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k5", "k5",  base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k6", "k6",  base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k7", "k7",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -810,6 +809,14 @@ define
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
+                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
+                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
+                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
+                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
+                    {{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
+                    {{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
+                    {{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
+                    {{#k7}}<div><b>k7</b>: {{k7}}</div>{{/k7}}
                     {{#k8}}<div><b>k8</b>: {{k8}}</div>{{/k8}}
                     {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
                     {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
@@ -823,14 +830,6 @@ define
                     {{#t7}}<div><b>t7</b>: {{t7}}</div>{{/t7}}
                     {{#uc}}<div><b>uc</b>: {{uc}}</div>{{/uc}}
                     {{#uo}}<div><b>uo</b>: {{uo}}</div>{{/uo}}
-                    {{#k}}<div><b>k</b>: {{k}}</div>{{/k}}
-                    {{#k1}}<div><b>k1</b>: {{k1}}</div>{{/k1}}
-                    {{#k2}}<div><b>k2</b>: {{k2}}</div>{{/k2}}
-                    {{#k3}}<div><b>k3</b>: {{k3}}</div>{{/k3}}
-                    {{#k4}}<div><b>k4</b>: {{k4}}</div>{{/k4}}
-                    {{#k5}}<div><b>k5</b>: {{k5}}</div>{{/k5}}
-                    {{#k6}}<div><b>k6</b>: {{k6}}</div>{{/k6}}
-                    {{#k7}}<div><b>k7</b>: {{k7}}</div>{{/k7}}
                     </div>
                     </fieldset>
 
@@ -858,6 +857,14 @@ define
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k3'>k3: </label><div class='col-sm-8'><input id='{{id}}_k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k4'>k4: </label><div class='col-sm-8'><input id='{{id}}_k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k5'>k5: </label><div class='col-sm-8'><input id='{{id}}_k5' class='form-control' type='text'{{#k5}} value='{{k5}}'{{/k5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k6'>k6: </label><div class='col-sm-8'><input id='{{id}}_k6' class='form-control' type='text'{{#k6}} value='{{k6}}'{{/k6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k7'>k7: </label><div class='col-sm-8'><input id='{{id}}_k7' class='form-control' type='text'{{#k7}} value='{{k7}}'{{/k7}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k8'>k8: </label><div class='col-sm-8'><input id='{{id}}_k8' class='form-control' type='text'{{#k8}} value='{{k8}}'{{/k8}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwbase'>mwbase: </label><div class='col-sm-8'><input id='{{id}}_mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmax'>pmax: </label><div class='col-sm-8'><input id='{{id}}_pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
@@ -871,14 +878,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t7'>t7: </label><div class='col-sm-8'><input id='{{id}}_t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uc'>uc: </label><div class='col-sm-8'><input id='{{id}}_uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uo'>uo: </label><div class='col-sm-8'><input id='{{id}}_uo' class='form-control' type='text'{{#uo}} value='{{uo}}'{{/uo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k3'>k3: </label><div class='col-sm-8'><input id='{{id}}_k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k4'>k4: </label><div class='col-sm-8'><input id='{{id}}_k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k5'>k5: </label><div class='col-sm-8'><input id='{{id}}_k5' class='form-control' type='text'{{#k5}} value='{{k5}}'{{/k5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k6'>k6: </label><div class='col-sm-8'><input id='{{id}}_k6' class='form-control' type='text'{{#k6}} value='{{k6}}'{{/k6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k7'>k7: </label><div class='col-sm-8'><input id='{{id}}_k7' class='form-control' type='text'{{#k7}} value='{{k7}}'{{/k7}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -891,6 +890,14 @@ define
 
                 obj = obj || { id: id, cls: "GovSteamIEEE1" };
                 super.submit (id, obj);
+                temp = document.getElementById (id + "_k").value; if ("" !== temp) obj["k"] = temp;
+                temp = document.getElementById (id + "_k1").value; if ("" !== temp) obj["k1"] = temp;
+                temp = document.getElementById (id + "_k2").value; if ("" !== temp) obj["k2"] = temp;
+                temp = document.getElementById (id + "_k3").value; if ("" !== temp) obj["k3"] = temp;
+                temp = document.getElementById (id + "_k4").value; if ("" !== temp) obj["k4"] = temp;
+                temp = document.getElementById (id + "_k5").value; if ("" !== temp) obj["k5"] = temp;
+                temp = document.getElementById (id + "_k6").value; if ("" !== temp) obj["k6"] = temp;
+                temp = document.getElementById (id + "_k7").value; if ("" !== temp) obj["k7"] = temp;
                 temp = document.getElementById (id + "_k8").value; if ("" !== temp) obj["k8"] = temp;
                 temp = document.getElementById (id + "_mwbase").value; if ("" !== temp) obj["mwbase"] = temp;
                 temp = document.getElementById (id + "_pmax").value; if ("" !== temp) obj["pmax"] = temp;
@@ -904,14 +911,6 @@ define
                 temp = document.getElementById (id + "_t7").value; if ("" !== temp) obj["t7"] = temp;
                 temp = document.getElementById (id + "_uc").value; if ("" !== temp) obj["uc"] = temp;
                 temp = document.getElementById (id + "_uo").value; if ("" !== temp) obj["uo"] = temp;
-                temp = document.getElementById (id + "_k").value; if ("" !== temp) obj["k"] = temp;
-                temp = document.getElementById (id + "_k1").value; if ("" !== temp) obj["k1"] = temp;
-                temp = document.getElementById (id + "_k2").value; if ("" !== temp) obj["k2"] = temp;
-                temp = document.getElementById (id + "_k3").value; if ("" !== temp) obj["k3"] = temp;
-                temp = document.getElementById (id + "_k4").value; if ("" !== temp) obj["k4"] = temp;
-                temp = document.getElementById (id + "_k5").value; if ("" !== temp) obj["k5"] = temp;
-                temp = document.getElementById (id + "_k6").value; if ("" !== temp) obj["k6"] = temp;
-                temp = document.getElementById (id + "_k7").value; if ("" !== temp) obj["k7"] = temp;
 
                 return (obj);
             }
@@ -1190,7 +1189,7 @@ define
                 temp = document.getElementById (id + "_gv4").value; if ("" !== temp) obj["gv4"] = temp;
                 temp = document.getElementById (id + "_gv5").value; if ("" !== temp) obj["gv5"] = temp;
                 temp = document.getElementById (id + "_hdam").value; if ("" !== temp) obj["hdam"] = temp;
-                temp = GovHydro4ModelKind[document.getElementById (id + "_model").value]; if (temp) obj["model"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#GovHydro4ModelKind." + temp; else delete obj["model"];
+                temp = GovHydro4ModelKind[document.getElementById (id + "_model").value]; if (temp) obj["model"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#GovHydro4ModelKind." + temp; else delete obj["model"];
                 temp = document.getElementById (id + "_mwbase").value; if ("" !== temp) obj["mwbase"] = temp;
                 temp = document.getElementById (id + "_pgv0").value; if ("" !== temp) obj["pgv0"] = temp;
                 temp = document.getElementById (id + "_pgv1").value; if ("" !== temp) obj["pgv1"] = temp;
@@ -1238,22 +1237,6 @@ define
             {
                 let obj = TurbineGovernorDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "GovHydroPID";
-                base.parse_element (/<cim:GovHydroPID.pgv1>([\s\S]*?)<\/cim:GovHydroPID.pgv1>/g, obj, "pgv1", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.pgv2>([\s\S]*?)<\/cim:GovHydroPID.pgv2>/g, obj, "pgv2", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.pgv3>([\s\S]*?)<\/cim:GovHydroPID.pgv3>/g, obj, "pgv3", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.pgv4>([\s\S]*?)<\/cim:GovHydroPID.pgv4>/g, obj, "pgv4", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.pgv5>([\s\S]*?)<\/cim:GovHydroPID.pgv5>/g, obj, "pgv5", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.pgv6>([\s\S]*?)<\/cim:GovHydroPID.pgv6>/g, obj, "pgv6", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.pmax>([\s\S]*?)<\/cim:GovHydroPID.pmax>/g, obj, "pmax", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.pmin>([\s\S]*?)<\/cim:GovHydroPID.pmin>/g, obj, "pmin", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.r>([\s\S]*?)<\/cim:GovHydroPID.r>/g, obj, "r", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.td>([\s\S]*?)<\/cim:GovHydroPID.td>/g, obj, "td", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.tf>([\s\S]*?)<\/cim:GovHydroPID.tf>/g, obj, "tf", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.tp>([\s\S]*?)<\/cim:GovHydroPID.tp>/g, obj, "tp", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.tt>([\s\S]*?)<\/cim:GovHydroPID.tt>/g, obj, "tt", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.tturb>([\s\S]*?)<\/cim:GovHydroPID.tturb>/g, obj, "tturb", base.to_string, sub, context);
-                base.parse_element (/<cim:GovHydroPID.velcl>([\s\S]*?)<\/cim:GovHydroPID.velcl>/g, obj, "velcl", base.to_float, sub, context);
-                base.parse_element (/<cim:GovHydroPID.velop>([\s\S]*?)<\/cim:GovHydroPID.velop>/g, obj, "velop", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydroPID.aturb>([\s\S]*?)<\/cim:GovHydroPID.aturb>/g, obj, "aturb", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroPID.bturb>([\s\S]*?)<\/cim:GovHydroPID.bturb>/g, obj, "bturb", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroPID.db1>([\s\S]*?)<\/cim:GovHydroPID.db1>/g, obj, "db1", base.to_string, sub, context);
@@ -1271,6 +1254,22 @@ define
                 base.parse_element (/<cim:GovHydroPID.ki>([\s\S]*?)<\/cim:GovHydroPID.ki>/g, obj, "ki", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroPID.kp>([\s\S]*?)<\/cim:GovHydroPID.kp>/g, obj, "kp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroPID.mwbase>([\s\S]*?)<\/cim:GovHydroPID.mwbase>/g, obj, "mwbase", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.pgv1>([\s\S]*?)<\/cim:GovHydroPID.pgv1>/g, obj, "pgv1", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.pgv2>([\s\S]*?)<\/cim:GovHydroPID.pgv2>/g, obj, "pgv2", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.pgv3>([\s\S]*?)<\/cim:GovHydroPID.pgv3>/g, obj, "pgv3", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.pgv4>([\s\S]*?)<\/cim:GovHydroPID.pgv4>/g, obj, "pgv4", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.pgv5>([\s\S]*?)<\/cim:GovHydroPID.pgv5>/g, obj, "pgv5", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.pgv6>([\s\S]*?)<\/cim:GovHydroPID.pgv6>/g, obj, "pgv6", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.pmax>([\s\S]*?)<\/cim:GovHydroPID.pmax>/g, obj, "pmax", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.pmin>([\s\S]*?)<\/cim:GovHydroPID.pmin>/g, obj, "pmin", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.r>([\s\S]*?)<\/cim:GovHydroPID.r>/g, obj, "r", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.td>([\s\S]*?)<\/cim:GovHydroPID.td>/g, obj, "td", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.tf>([\s\S]*?)<\/cim:GovHydroPID.tf>/g, obj, "tf", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.tp>([\s\S]*?)<\/cim:GovHydroPID.tp>/g, obj, "tp", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.tt>([\s\S]*?)<\/cim:GovHydroPID.tt>/g, obj, "tt", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.tturb>([\s\S]*?)<\/cim:GovHydroPID.tturb>/g, obj, "tturb", base.to_string, sub, context);
+                base.parse_element (/<cim:GovHydroPID.velcl>([\s\S]*?)<\/cim:GovHydroPID.velcl>/g, obj, "velcl", base.to_float, sub, context);
+                base.parse_element (/<cim:GovHydroPID.velop>([\s\S]*?)<\/cim:GovHydroPID.velop>/g, obj, "velop", base.to_float, sub, context);
                 let bucket = context.parsed.GovHydroPID;
                 if (null == bucket)
                    context.parsed.GovHydroPID = bucket = {};
@@ -1283,22 +1282,6 @@ define
             {
                 let fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroPID", "pgv1", "pgv1",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv2", "pgv2",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv3", "pgv3",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv4", "pgv4",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv5", "pgv5",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv6", "pgv6",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pmax", "pmax",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pmin", "pmin",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "r", "r",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "td", "td",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "tf", "tf",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "tp", "tp",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "tt", "tt",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "tturb", "tturb",  base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "velcl", "velcl",  base.from_float, fields);
-                base.export_element (obj, "GovHydroPID", "velop", "velop",  base.from_float, fields);
                 base.export_element (obj, "GovHydroPID", "aturb", "aturb",  base.from_string, fields);
                 base.export_element (obj, "GovHydroPID", "bturb", "bturb",  base.from_string, fields);
                 base.export_element (obj, "GovHydroPID", "db1", "db1",  base.from_string, fields);
@@ -1316,6 +1299,22 @@ define
                 base.export_element (obj, "GovHydroPID", "ki", "ki",  base.from_string, fields);
                 base.export_element (obj, "GovHydroPID", "kp", "kp",  base.from_string, fields);
                 base.export_element (obj, "GovHydroPID", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "tt", "tt",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "tturb", "tturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "velcl", "velcl",  base.from_float, fields);
+                base.export_element (obj, "GovHydroPID", "velop", "velop",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -1332,22 +1331,6 @@ define
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
-                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
-                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
-                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
-                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
-                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
-                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
-                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
-                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
-                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
-                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
-                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
-                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
-                    {{#tturb}}<div><b>tturb</b>: {{tturb}}</div>{{/tturb}}
-                    {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
-                    {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
                     {{#aturb}}<div><b>aturb</b>: {{aturb}}</div>{{/aturb}}
                     {{#bturb}}<div><b>bturb</b>: {{bturb}}</div>{{/bturb}}
                     {{#db1}}<div><b>db1</b>: {{db1}}</div>{{/db1}}
@@ -1365,6 +1348,22 @@ define
                     {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
                     {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
                     {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#pgv1}}<div><b>pgv1</b>: {{pgv1}}</div>{{/pgv1}}
+                    {{#pgv2}}<div><b>pgv2</b>: {{pgv2}}</div>{{/pgv2}}
+                    {{#pgv3}}<div><b>pgv3</b>: {{pgv3}}</div>{{/pgv3}}
+                    {{#pgv4}}<div><b>pgv4</b>: {{pgv4}}</div>{{/pgv4}}
+                    {{#pgv5}}<div><b>pgv5</b>: {{pgv5}}</div>{{/pgv5}}
+                    {{#pgv6}}<div><b>pgv6</b>: {{pgv6}}</div>{{/pgv6}}
+                    {{#pmax}}<div><b>pmax</b>: {{pmax}}</div>{{/pmax}}
+                    {{#pmin}}<div><b>pmin</b>: {{pmin}}</div>{{/pmin}}
+                    {{#r}}<div><b>r</b>: {{r}}</div>{{/r}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
+                    {{#tp}}<div><b>tp</b>: {{tp}}</div>{{/tp}}
+                    {{#tt}}<div><b>tt</b>: {{tt}}</div>{{/tt}}
+                    {{#tturb}}<div><b>tturb</b>: {{tturb}}</div>{{/tturb}}
+                    {{#velcl}}<div><b>velcl</b>: {{velcl}}</div>{{/velcl}}
+                    {{#velop}}<div><b>velop</b>: {{velop}}</div>{{/velop}}
                     </div>
                     </fieldset>
 
@@ -1392,22 +1391,6 @@ define
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv1'>pgv1: </label><div class='col-sm-8'><input id='{{id}}_pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv2'>pgv2: </label><div class='col-sm-8'><input id='{{id}}_pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv3'>pgv3: </label><div class='col-sm-8'><input id='{{id}}_pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv4'>pgv4: </label><div class='col-sm-8'><input id='{{id}}_pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv5'>pgv5: </label><div class='col-sm-8'><input id='{{id}}_pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv6'>pgv6: </label><div class='col-sm-8'><input id='{{id}}_pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmax'>pmax: </label><div class='col-sm-8'><input id='{{id}}_pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmin'>pmin: </label><div class='col-sm-8'><input id='{{id}}_pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td'>td: </label><div class='col-sm-8'><input id='{{id}}_td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tt'>tt: </label><div class='col-sm-8'><input id='{{id}}_tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tturb'>tturb: </label><div class='col-sm-8'><input id='{{id}}_tturb' class='form-control' type='text'{{#tturb}} value='{{tturb}}'{{/tturb}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velcl'>velcl: </label><div class='col-sm-8'><input id='{{id}}_velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velop'>velop: </label><div class='col-sm-8'><input id='{{id}}_velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aturb'>aturb: </label><div class='col-sm-8'><input id='{{id}}_aturb' class='form-control' type='text'{{#aturb}} value='{{aturb}}'{{/aturb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bturb'>bturb: </label><div class='col-sm-8'><input id='{{id}}_bturb' class='form-control' type='text'{{#bturb}} value='{{bturb}}'{{/bturb}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_db1'>db1: </label><div class='col-sm-8'><input id='{{id}}_db1' class='form-control' type='text'{{#db1}} value='{{db1}}'{{/db1}}></div></div>
@@ -1425,6 +1408,22 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwbase'>mwbase: </label><div class='col-sm-8'><input id='{{id}}_mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv1'>pgv1: </label><div class='col-sm-8'><input id='{{id}}_pgv1' class='form-control' type='text'{{#pgv1}} value='{{pgv1}}'{{/pgv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv2'>pgv2: </label><div class='col-sm-8'><input id='{{id}}_pgv2' class='form-control' type='text'{{#pgv2}} value='{{pgv2}}'{{/pgv2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv3'>pgv3: </label><div class='col-sm-8'><input id='{{id}}_pgv3' class='form-control' type='text'{{#pgv3}} value='{{pgv3}}'{{/pgv3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv4'>pgv4: </label><div class='col-sm-8'><input id='{{id}}_pgv4' class='form-control' type='text'{{#pgv4}} value='{{pgv4}}'{{/pgv4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv5'>pgv5: </label><div class='col-sm-8'><input id='{{id}}_pgv5' class='form-control' type='text'{{#pgv5}} value='{{pgv5}}'{{/pgv5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pgv6'>pgv6: </label><div class='col-sm-8'><input id='{{id}}_pgv6' class='form-control' type='text'{{#pgv6}} value='{{pgv6}}'{{/pgv6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmax'>pmax: </label><div class='col-sm-8'><input id='{{id}}_pmax' class='form-control' type='text'{{#pmax}} value='{{pmax}}'{{/pmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmin'>pmin: </label><div class='col-sm-8'><input id='{{id}}_pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td'>td: </label><div class='col-sm-8'><input id='{{id}}_td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tt'>tt: </label><div class='col-sm-8'><input id='{{id}}_tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tturb'>tturb: </label><div class='col-sm-8'><input id='{{id}}_tturb' class='form-control' type='text'{{#tturb}} value='{{tturb}}'{{/tturb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velcl'>velcl: </label><div class='col-sm-8'><input id='{{id}}_velcl' class='form-control' type='text'{{#velcl}} value='{{velcl}}'{{/velcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_velop'>velop: </label><div class='col-sm-8'><input id='{{id}}_velop' class='form-control' type='text'{{#velop}} value='{{velop}}'{{/velop}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -1437,22 +1436,6 @@ define
 
                 obj = obj || { id: id, cls: "GovHydroPID" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_pgv1").value; if ("" !== temp) obj["pgv1"] = temp;
-                temp = document.getElementById (id + "_pgv2").value; if ("" !== temp) obj["pgv2"] = temp;
-                temp = document.getElementById (id + "_pgv3").value; if ("" !== temp) obj["pgv3"] = temp;
-                temp = document.getElementById (id + "_pgv4").value; if ("" !== temp) obj["pgv4"] = temp;
-                temp = document.getElementById (id + "_pgv5").value; if ("" !== temp) obj["pgv5"] = temp;
-                temp = document.getElementById (id + "_pgv6").value; if ("" !== temp) obj["pgv6"] = temp;
-                temp = document.getElementById (id + "_pmax").value; if ("" !== temp) obj["pmax"] = temp;
-                temp = document.getElementById (id + "_pmin").value; if ("" !== temp) obj["pmin"] = temp;
-                temp = document.getElementById (id + "_r").value; if ("" !== temp) obj["r"] = temp;
-                temp = document.getElementById (id + "_td").value; if ("" !== temp) obj["td"] = temp;
-                temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
-                temp = document.getElementById (id + "_tp").value; if ("" !== temp) obj["tp"] = temp;
-                temp = document.getElementById (id + "_tt").value; if ("" !== temp) obj["tt"] = temp;
-                temp = document.getElementById (id + "_tturb").value; if ("" !== temp) obj["tturb"] = temp;
-                temp = document.getElementById (id + "_velcl").value; if ("" !== temp) obj["velcl"] = temp;
-                temp = document.getElementById (id + "_velop").value; if ("" !== temp) obj["velop"] = temp;
                 temp = document.getElementById (id + "_aturb").value; if ("" !== temp) obj["aturb"] = temp;
                 temp = document.getElementById (id + "_bturb").value; if ("" !== temp) obj["bturb"] = temp;
                 temp = document.getElementById (id + "_db1").value; if ("" !== temp) obj["db1"] = temp;
@@ -1470,6 +1453,22 @@ define
                 temp = document.getElementById (id + "_ki").value; if ("" !== temp) obj["ki"] = temp;
                 temp = document.getElementById (id + "_kp").value; if ("" !== temp) obj["kp"] = temp;
                 temp = document.getElementById (id + "_mwbase").value; if ("" !== temp) obj["mwbase"] = temp;
+                temp = document.getElementById (id + "_pgv1").value; if ("" !== temp) obj["pgv1"] = temp;
+                temp = document.getElementById (id + "_pgv2").value; if ("" !== temp) obj["pgv2"] = temp;
+                temp = document.getElementById (id + "_pgv3").value; if ("" !== temp) obj["pgv3"] = temp;
+                temp = document.getElementById (id + "_pgv4").value; if ("" !== temp) obj["pgv4"] = temp;
+                temp = document.getElementById (id + "_pgv5").value; if ("" !== temp) obj["pgv5"] = temp;
+                temp = document.getElementById (id + "_pgv6").value; if ("" !== temp) obj["pgv6"] = temp;
+                temp = document.getElementById (id + "_pmax").value; if ("" !== temp) obj["pmax"] = temp;
+                temp = document.getElementById (id + "_pmin").value; if ("" !== temp) obj["pmin"] = temp;
+                temp = document.getElementById (id + "_r").value; if ("" !== temp) obj["r"] = temp;
+                temp = document.getElementById (id + "_td").value; if ("" !== temp) obj["td"] = temp;
+                temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
+                temp = document.getElementById (id + "_tp").value; if ("" !== temp) obj["tp"] = temp;
+                temp = document.getElementById (id + "_tt").value; if ("" !== temp) obj["tt"] = temp;
+                temp = document.getElementById (id + "_tturb").value; if ("" !== temp) obj["tturb"] = temp;
+                temp = document.getElementById (id + "_velcl").value; if ("" !== temp) obj["velcl"] = temp;
+                temp = document.getElementById (id + "_velop").value; if ("" !== temp) obj["velop"] = temp;
 
                 return (obj);
             }
@@ -3924,7 +3923,7 @@ define
                 temp = document.getElementById (id + "_rclose").value; if ("" !== temp) obj["rclose"] = temp;
                 temp = document.getElementById (id + "_rdown").value; if ("" !== temp) obj["rdown"] = temp;
                 temp = document.getElementById (id + "_ropen").value; if ("" !== temp) obj["ropen"] = temp;
-                temp = DroopSignalFeedbackKind[document.getElementById (id + "_rselect").value]; if (temp) obj["rselect"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; else delete obj["rselect"];
+                temp = DroopSignalFeedbackKind[document.getElementById (id + "_rselect").value]; if (temp) obj["rselect"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#DroopSignalFeedbackKind." + temp; else delete obj["rselect"];
                 temp = document.getElementById (id + "_rup").value; if ("" !== temp) obj["rup"] = temp;
                 temp = document.getElementById (id + "_ta").value; if ("" !== temp) obj["ta"] = temp;
                 temp = document.getElementById (id + "_tact").value; if ("" !== temp) obj["tact"] = temp;
@@ -4175,7 +4174,7 @@ define
         }
 
         /**
-         * Woodward� gas turbine governor.
+         * Woodward™ gas turbine governor.
          * [Footnote: Woodward gas turbines are an example of suitable products available commercially.
          *
          * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
@@ -4202,16 +4201,6 @@ define
             {
                 let obj = TurbineGovernorDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "GovGASTWD";
-                base.parse_element (/<cim:GovGASTWD.kp>([\s\S]*?)<\/cim:GovGASTWD.kp>/g, obj, "kp", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.mwbase>([\s\S]*?)<\/cim:GovGASTWD.mwbase>/g, obj, "mwbase", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.t>([\s\S]*?)<\/cim:GovGASTWD.t>/g, obj, "t", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.t3>([\s\S]*?)<\/cim:GovGASTWD.t3>/g, obj, "t3", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.t4>([\s\S]*?)<\/cim:GovGASTWD.t4>/g, obj, "t4", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.t5>([\s\S]*?)<\/cim:GovGASTWD.t5>/g, obj, "t5", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.tc>([\s\S]*?)<\/cim:GovGASTWD.tc>/g, obj, "tc", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.tcd>([\s\S]*?)<\/cim:GovGASTWD.tcd>/g, obj, "tcd", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.td>([\s\S]*?)<\/cim:GovGASTWD.td>/g, obj, "td", base.to_string, sub, context);
-                base.parse_element (/<cim:GovGASTWD.tf>([\s\S]*?)<\/cim:GovGASTWD.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.a>([\s\S]*?)<\/cim:GovGASTWD.a>/g, obj, "a", base.to_float, sub, context);
                 base.parse_element (/<cim:GovGASTWD.af1>([\s\S]*?)<\/cim:GovGASTWD.af1>/g, obj, "af1", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.af2>([\s\S]*?)<\/cim:GovGASTWD.af2>/g, obj, "af2", base.to_string, sub, context);
@@ -4230,6 +4219,16 @@ define
                 base.parse_element (/<cim:GovGASTWD.kdroop>([\s\S]*?)<\/cim:GovGASTWD.kdroop>/g, obj, "kdroop", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.kf>([\s\S]*?)<\/cim:GovGASTWD.kf>/g, obj, "kf", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.ki>([\s\S]*?)<\/cim:GovGASTWD.ki>/g, obj, "ki", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.kp>([\s\S]*?)<\/cim:GovGASTWD.kp>/g, obj, "kp", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.mwbase>([\s\S]*?)<\/cim:GovGASTWD.mwbase>/g, obj, "mwbase", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.t>([\s\S]*?)<\/cim:GovGASTWD.t>/g, obj, "t", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.t3>([\s\S]*?)<\/cim:GovGASTWD.t3>/g, obj, "t3", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.t4>([\s\S]*?)<\/cim:GovGASTWD.t4>/g, obj, "t4", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.t5>([\s\S]*?)<\/cim:GovGASTWD.t5>/g, obj, "t5", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.tc>([\s\S]*?)<\/cim:GovGASTWD.tc>/g, obj, "tc", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.tcd>([\s\S]*?)<\/cim:GovGASTWD.tcd>/g, obj, "tcd", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.td>([\s\S]*?)<\/cim:GovGASTWD.td>/g, obj, "td", base.to_string, sub, context);
+                base.parse_element (/<cim:GovGASTWD.tf>([\s\S]*?)<\/cim:GovGASTWD.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.tmax>([\s\S]*?)<\/cim:GovGASTWD.tmax>/g, obj, "tmax", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.tmin>([\s\S]*?)<\/cim:GovGASTWD.tmin>/g, obj, "tmin", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.tr>([\s\S]*?)<\/cim:GovGASTWD.tr>/g, obj, "tr", base.to_string, sub, context);
@@ -4247,16 +4246,6 @@ define
             {
                 let fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovGASTWD", "kp", "kp",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "mwbase", "mwbase",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "t", "t",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "t3", "t3",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "t4", "t4",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "t5", "t5",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tc", "tc",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tcd", "tcd",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "td", "td",  base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tf", "tf",  base.from_string, fields);
                 base.export_element (obj, "GovGASTWD", "a", "a",  base.from_float, fields);
                 base.export_element (obj, "GovGASTWD", "af1", "af1",  base.from_string, fields);
                 base.export_element (obj, "GovGASTWD", "af2", "af2",  base.from_string, fields);
@@ -4275,6 +4264,16 @@ define
                 base.export_element (obj, "GovGASTWD", "kdroop", "kdroop",  base.from_string, fields);
                 base.export_element (obj, "GovGASTWD", "kf", "kf",  base.from_string, fields);
                 base.export_element (obj, "GovGASTWD", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "t", "t",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tcd", "tcd",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tf", "tf",  base.from_string, fields);
                 base.export_element (obj, "GovGASTWD", "tmax", "tmax",  base.from_string, fields);
                 base.export_element (obj, "GovGASTWD", "tmin", "tmin",  base.from_string, fields);
                 base.export_element (obj, "GovGASTWD", "tr", "tr",  base.from_string, fields);
@@ -4296,16 +4295,6 @@ define
                     `
                     + TurbineGovernorDynamics.prototype.template.call (this) +
                     `
-                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
-                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
-                    {{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
-                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
-                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
-                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
-                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
-                    {{#tcd}}<div><b>tcd</b>: {{tcd}}</div>{{/tcd}}
-                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
-                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
                     {{#a}}<div><b>a</b>: {{a}}</div>{{/a}}
                     {{#af1}}<div><b>af1</b>: {{af1}}</div>{{/af1}}
                     {{#af2}}<div><b>af2</b>: {{af2}}</div>{{/af2}}
@@ -4324,6 +4313,16 @@ define
                     {{#kdroop}}<div><b>kdroop</b>: {{kdroop}}</div>{{/kdroop}}
                     {{#kf}}<div><b>kf</b>: {{kf}}</div>{{/kf}}
                     {{#ki}}<div><b>ki</b>: {{ki}}</div>{{/ki}}
+                    {{#kp}}<div><b>kp</b>: {{kp}}</div>{{/kp}}
+                    {{#mwbase}}<div><b>mwbase</b>: {{mwbase}}</div>{{/mwbase}}
+                    {{#t}}<div><b>t</b>: {{t}}</div>{{/t}}
+                    {{#t3}}<div><b>t3</b>: {{t3}}</div>{{/t3}}
+                    {{#t4}}<div><b>t4</b>: {{t4}}</div>{{/t4}}
+                    {{#t5}}<div><b>t5</b>: {{t5}}</div>{{/t5}}
+                    {{#tc}}<div><b>tc</b>: {{tc}}</div>{{/tc}}
+                    {{#tcd}}<div><b>tcd</b>: {{tcd}}</div>{{/tcd}}
+                    {{#td}}<div><b>td</b>: {{td}}</div>{{/td}}
+                    {{#tf}}<div><b>tf</b>: {{tf}}</div>{{/tf}}
                     {{#tmax}}<div><b>tmax</b>: {{tmax}}</div>{{/tmax}}
                     {{#tmin}}<div><b>tmin</b>: {{tmin}}</div>{{/tmin}}
                     {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
@@ -4356,16 +4355,6 @@ define
                     `
                     + TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwbase'>mwbase: </label><div class='col-sm-8'><input id='{{id}}_mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t'>t: </label><div class='col-sm-8'><input id='{{id}}_t' class='form-control' type='text'{{#t}} value='{{t}}'{{/t}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tcd'>tcd: </label><div class='col-sm-8'><input id='{{id}}_tcd' class='form-control' type='text'{{#tcd}} value='{{tcd}}'{{/tcd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td'>td: </label><div class='col-sm-8'><input id='{{id}}_td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a'>a: </label><div class='col-sm-8'><input id='{{id}}_a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_af1'>af1: </label><div class='col-sm-8'><input id='{{id}}_af1' class='form-control' type='text'{{#af1}} value='{{af1}}'{{/af1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_af2'>af2: </label><div class='col-sm-8'><input id='{{id}}_af2' class='form-control' type='text'{{#af2}} value='{{af2}}'{{/af2}}></div></div>
@@ -4384,6 +4373,16 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kdroop'>kdroop: </label><div class='col-sm-8'><input id='{{id}}_kdroop' class='form-control' type='text'{{#kdroop}} value='{{kdroop}}'{{/kdroop}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwbase'>mwbase: </label><div class='col-sm-8'><input id='{{id}}_mwbase' class='form-control' type='text'{{#mwbase}} value='{{mwbase}}'{{/mwbase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t'>t: </label><div class='col-sm-8'><input id='{{id}}_t' class='form-control' type='text'{{#t}} value='{{t}}'{{/t}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tcd'>tcd: </label><div class='col-sm-8'><input id='{{id}}_tcd' class='form-control' type='text'{{#tcd}} value='{{tcd}}'{{/tcd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td'>td: </label><div class='col-sm-8'><input id='{{id}}_td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tmax'>tmax: </label><div class='col-sm-8'><input id='{{id}}_tmax' class='form-control' type='text'{{#tmax}} value='{{tmax}}'{{/tmax}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tmin'>tmin: </label><div class='col-sm-8'><input id='{{id}}_tmin' class='form-control' type='text'{{#tmin}} value='{{tmin}}'{{/tmin}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tr'>tr: </label><div class='col-sm-8'><input id='{{id}}_tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
@@ -4401,16 +4400,6 @@ define
 
                 obj = obj || { id: id, cls: "GovGASTWD" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kp").value; if ("" !== temp) obj["kp"] = temp;
-                temp = document.getElementById (id + "_mwbase").value; if ("" !== temp) obj["mwbase"] = temp;
-                temp = document.getElementById (id + "_t").value; if ("" !== temp) obj["t"] = temp;
-                temp = document.getElementById (id + "_t3").value; if ("" !== temp) obj["t3"] = temp;
-                temp = document.getElementById (id + "_t4").value; if ("" !== temp) obj["t4"] = temp;
-                temp = document.getElementById (id + "_t5").value; if ("" !== temp) obj["t5"] = temp;
-                temp = document.getElementById (id + "_tc").value; if ("" !== temp) obj["tc"] = temp;
-                temp = document.getElementById (id + "_tcd").value; if ("" !== temp) obj["tcd"] = temp;
-                temp = document.getElementById (id + "_td").value; if ("" !== temp) obj["td"] = temp;
-                temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
                 temp = document.getElementById (id + "_a").value; if ("" !== temp) obj["a"] = temp;
                 temp = document.getElementById (id + "_af1").value; if ("" !== temp) obj["af1"] = temp;
                 temp = document.getElementById (id + "_af2").value; if ("" !== temp) obj["af2"] = temp;
@@ -4429,6 +4418,16 @@ define
                 temp = document.getElementById (id + "_kdroop").value; if ("" !== temp) obj["kdroop"] = temp;
                 temp = document.getElementById (id + "_kf").value; if ("" !== temp) obj["kf"] = temp;
                 temp = document.getElementById (id + "_ki").value; if ("" !== temp) obj["ki"] = temp;
+                temp = document.getElementById (id + "_kp").value; if ("" !== temp) obj["kp"] = temp;
+                temp = document.getElementById (id + "_mwbase").value; if ("" !== temp) obj["mwbase"] = temp;
+                temp = document.getElementById (id + "_t").value; if ("" !== temp) obj["t"] = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" !== temp) obj["t3"] = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" !== temp) obj["t4"] = temp;
+                temp = document.getElementById (id + "_t5").value; if ("" !== temp) obj["t5"] = temp;
+                temp = document.getElementById (id + "_tc").value; if ("" !== temp) obj["tc"] = temp;
+                temp = document.getElementById (id + "_tcd").value; if ("" !== temp) obj["tcd"] = temp;
+                temp = document.getElementById (id + "_td").value; if ("" !== temp) obj["td"] = temp;
+                temp = document.getElementById (id + "_tf").value; if ("" !== temp) obj["tf"] = temp;
                 temp = document.getElementById (id + "_tmax").value; if ("" !== temp) obj["tmax"] = temp;
                 temp = document.getElementById (id + "_tmin").value; if ("" !== temp) obj["tmin"] = temp;
                 temp = document.getElementById (id + "_tr").value; if ("" !== temp) obj["tr"] = temp;
@@ -5733,7 +5732,7 @@ define
                 temp = document.getElementById (id + "_rclose").value; if ("" !== temp) obj["rclose"] = temp;
                 temp = document.getElementById (id + "_rdown").value; if ("" !== temp) obj["rdown"] = temp;
                 temp = document.getElementById (id + "_ropen").value; if ("" !== temp) obj["ropen"] = temp;
-                temp = DroopSignalFeedbackKind[document.getElementById (id + "_rselect").value]; if (temp) obj["rselect"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; else delete obj["rselect"];
+                temp = DroopSignalFeedbackKind[document.getElementById (id + "_rselect").value]; if (temp) obj["rselect"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#DroopSignalFeedbackKind." + temp; else delete obj["rselect"];
                 temp = document.getElementById (id + "_rup").value; if ("" !== temp) obj["rup"] = temp;
                 temp = document.getElementById (id + "_ta").value; if ("" !== temp) obj["ta"] = temp;
                 temp = document.getElementById (id + "_tact").value; if ("" !== temp) obj["tact"] = temp;

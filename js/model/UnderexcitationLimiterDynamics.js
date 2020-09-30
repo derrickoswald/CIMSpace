@@ -9,7 +9,6 @@ define
      */
     function (base, StandardModels)
     {
-
         /**
          * Underexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
          *
@@ -264,7 +263,7 @@ define
         /**
          * Simplified type UEL2 underexcitation limiter.
          *
-         * This model can be derived from UnderexcLimIEEE2.  The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
+         * This model can be derived from UnderexcLimIEEE2.  The limit characteristic (look –up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
          *
          */
         class UnderexcLim2Simplified extends UnderexcitationLimiterDynamics

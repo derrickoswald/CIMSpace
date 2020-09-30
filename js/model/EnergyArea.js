@@ -3,7 +3,6 @@ define
     ["model/base", "model/Core"],
     function (base, Core)
     {
-
         let EnergyTypeKind =
         {
             "IndustrialLoad": "IndustrialLoad",
@@ -108,7 +107,7 @@ define
 
                 obj = obj || { id: id, cls: "EnergyTypeReference" };
                 super.submit (id, obj);
-                temp = EnergyTypeKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#EnergyTypeKind." + temp; else delete obj["kind"];
+                temp = EnergyTypeKind[document.getElementById (id + "_kind").value]; if (temp) obj["kind"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#EnergyTypeKind." + temp; else delete obj["kind"];
 
                 return (obj);
             }

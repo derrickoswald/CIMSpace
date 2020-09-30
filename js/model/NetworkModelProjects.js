@@ -7,7 +7,6 @@ define
      */
     function (base, Core)
     {
-
         let DependencyKind =
         {
             "mutuallyExclusive": "mutuallyExclusive",
@@ -503,8 +502,8 @@ define
                 base.parse_attribute (/<cim:NetworkModelProjectChangeVersion.NetworkModelProjectState\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "NetworkModelProjectState", sub, context);
                 base.parse_attribute (/<cim:NetworkModelProjectChangeVersion.ChangeSet\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "ChangeSet", sub, context);
                 base.parse_attribute (/<cim:NetworkModelProjectChangeVersion.NetworkModelProjectChange\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "NetworkModelProjectChange", sub, context);
-                base.parse_attribute (/<cim:NetworkModelProjectChangeVersion.Supercedes\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Supercedes", sub, context);
                 base.parse_attribute (/<cim:NetworkModelProjectChangeVersion.SupercededBy\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "SupercededBy", sub, context);
+                base.parse_attribute (/<cim:NetworkModelProjectChangeVersion.Supercedes\s+rdf:resource\s*?=\s*?(["'])([\s\S]*?)\1\s*?\/>/g, obj, "Supercedes", sub, context);
                 let bucket = context.parsed.NetworkModelProjectChangeVersion;
                 if (null == bucket)
                    context.parsed.NetworkModelProjectChangeVersion = bucket = {};
@@ -523,8 +522,8 @@ define
                 base.export_attribute (obj, "NetworkModelProjectChangeVersion", "NetworkModelProjectState", "NetworkModelProjectState", fields);
                 base.export_attribute (obj, "NetworkModelProjectChangeVersion", "ChangeSet", "ChangeSet", fields);
                 base.export_attribute (obj, "NetworkModelProjectChangeVersion", "NetworkModelProjectChange", "NetworkModelProjectChange", fields);
-                base.export_attribute (obj, "NetworkModelProjectChangeVersion", "Supercedes", "Supercedes", fields);
                 base.export_attribute (obj, "NetworkModelProjectChangeVersion", "SupercededBy", "SupercededBy", fields);
+                base.export_attribute (obj, "NetworkModelProjectChangeVersion", "Supercedes", "Supercedes", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields);
 
@@ -547,8 +546,8 @@ define
                     {{#NetworkModelProjectState}}<div><b>NetworkModelProjectState</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{NetworkModelProjectState}}");}); return false;'>{{NetworkModelProjectState}}</a></div>{{/NetworkModelProjectState}}
                     {{#ChangeSet}}<div><b>ChangeSet</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{ChangeSet}}");}); return false;'>{{ChangeSet}}</a></div>{{/ChangeSet}}
                     {{#NetworkModelProjectChange}}<div><b>NetworkModelProjectChange</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{NetworkModelProjectChange}}");}); return false;'>{{NetworkModelProjectChange}}</a></div>{{/NetworkModelProjectChange}}
-                    {{#Supercedes}}<div><b>Supercedes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Supercedes}}");}); return false;'>{{Supercedes}}</a></div>{{/Supercedes}}
                     {{#SupercededBy}}<div><b>SupercededBy</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{SupercededBy}}");}); return false;'>{{SupercededBy}}</a></div>{{/SupercededBy}}
+                    {{#Supercedes}}<div><b>Supercedes</b>: <a href='#' onclick='require(["cimmap"], function(cimmap) {cimmap.select ("{{Supercedes}}");}); return false;'>{{Supercedes}}</a></div>{{/Supercedes}}
                     </div>
                     </fieldset>
 
@@ -582,8 +581,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NetworkModelProjectState'>NetworkModelProjectState: </label><div class='col-sm-8'><input id='{{id}}_NetworkModelProjectState' class='form-control' type='text'{{#NetworkModelProjectState}} value='{{NetworkModelProjectState}}'{{/NetworkModelProjectState}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChangeSet'>ChangeSet: </label><div class='col-sm-8'><input id='{{id}}_ChangeSet' class='form-control' type='text'{{#ChangeSet}} value='{{ChangeSet}}'{{/ChangeSet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NetworkModelProjectChange'>NetworkModelProjectChange: </label><div class='col-sm-8'><input id='{{id}}_NetworkModelProjectChange' class='form-control' type='text'{{#NetworkModelProjectChange}} value='{{NetworkModelProjectChange}}'{{/NetworkModelProjectChange}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Supercedes'>Supercedes: </label><div class='col-sm-8'><input id='{{id}}_Supercedes' class='form-control' type='text'{{#Supercedes}} value='{{Supercedes}}'{{/Supercedes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SupercededBy'>SupercededBy: </label><div class='col-sm-8'><input id='{{id}}_SupercededBy' class='form-control' type='text'{{#SupercededBy}} value='{{SupercededBy}}'{{/SupercededBy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Supercedes'>Supercedes: </label><div class='col-sm-8'><input id='{{id}}_Supercedes' class='form-control' type='text'{{#Supercedes}} value='{{Supercedes}}'{{/Supercedes}}></div></div>
                     </div>
                     </fieldset>
                     `
@@ -602,8 +601,8 @@ define
                 temp = document.getElementById (id + "_NetworkModelProjectState").value; if ("" !== temp) obj["NetworkModelProjectState"] = temp;
                 temp = document.getElementById (id + "_ChangeSet").value; if ("" !== temp) obj["ChangeSet"] = temp;
                 temp = document.getElementById (id + "_NetworkModelProjectChange").value; if ("" !== temp) obj["NetworkModelProjectChange"] = temp;
-                temp = document.getElementById (id + "_Supercedes").value; if ("" !== temp) obj["Supercedes"] = temp;
                 temp = document.getElementById (id + "_SupercededBy").value; if ("" !== temp) obj["SupercededBy"] = temp;
+                temp = document.getElementById (id + "_Supercedes").value; if ("" !== temp) obj["Supercedes"] = temp;
 
                 return (obj);
             }
@@ -616,8 +615,8 @@ define
                             ["NetworkModelProjectState", "0..1", "0..*", "NetworkModelProjectState", "NetworkModelProjectChangeVersion"],
                             ["ChangeSet", "0..1", "0..*", "ChangeSet", "NetworkModelProjectChangeVersion"],
                             ["NetworkModelProjectChange", "1", "1..*", "NetworkModelProjectChange", "NetworkModelProjectChangeVersion"],
-                            ["Supercedes", "0..1", "0..1", "NetworkModelProjectChangeVersion", "SupercededBy"],
-                            ["SupercededBy", "0..1", "0..1", "NetworkModelProjectChangeVersion", "Supercedes"]
+                            ["SupercededBy", "0..1", "0..1", "NetworkModelProjectChangeVersion", "Supercedes"],
+                            ["Supercedes", "0..1", "0..1", "NetworkModelProjectChangeVersion", "SupercededBy"]
                         ]
                     )
                 );
@@ -1164,7 +1163,7 @@ define
 
                 obj = obj || { id: id, cls: "AnnotatedProjectDependency" };
                 super.submit (id, obj);
-                temp = DependencyKind[document.getElementById (id + "_dependencyType").value]; if (temp) obj["dependencyType"] = "http://iec.ch/TC57/2013/CIM-schema-cim16#DependencyKind." + temp; else delete obj["dependencyType"];
+                temp = DependencyKind[document.getElementById (id + "_dependencyType").value]; if (temp) obj["dependencyType"] = "http://iec.ch/TC57/2016/CIM-schema-cim17#DependencyKind." + temp; else delete obj["dependencyType"];
                 temp = document.getElementById (id + "_DependentOnStage").value; if ("" !== temp) obj["DependentOnStage"] = temp;
                 temp = document.getElementById (id + "_DependingStage").value; if ("" !== temp) obj["DependingStage"] = temp;
 

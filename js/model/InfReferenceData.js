@@ -3,6 +3,109 @@ define
     ["model/base", "model/Core"],
     function (base, Core)
     {
+        /**
+         * This is the cureve that describes the load reduction time.
+         *
+         * Relationship between time (Y1-axis) vs. MW (X-axis).
+         *
+         */
+        class LoadReductionTimeCurve extends Core.Curve
+        {
+            constructor (template, cim_data)
+            {
+                super (template, cim_data);
+                let bucket = cim_data.LoadReductionTimeCurve;
+                if (null == bucket)
+                   cim_data.LoadReductionTimeCurve = bucket = {};
+                bucket[template.id] = template;
+            }
+
+            remove (obj, cim_data)
+            {
+               super.remove (obj, cim_data);
+               delete cim_data.LoadReductionTimeCurve[obj.id];
+            }
+
+            parse (context, sub)
+            {
+                let obj = Core.Curve.prototype.parse.call (this, context, sub);
+                obj.cls = "LoadReductionTimeCurve";
+                base.parse_element (/<cim:LoadReductionTimeCurve.loadReductionTimeCurveType>([\s\S]*?)<\/cim:LoadReductionTimeCurve.loadReductionTimeCurveType>/g, obj, "loadReductionTimeCurveType", base.to_string, sub, context);
+                let bucket = context.parsed.LoadReductionTimeCurve;
+                if (null == bucket)
+                   context.parsed.LoadReductionTimeCurve = bucket = {};
+                bucket[obj.id] = obj;
+
+                return (obj);
+            }
+
+            export (obj, full)
+            {
+                let fields = Core.Curve.prototype.export.call (this, obj, false);
+
+                base.export_element (obj, "LoadReductionTimeCurve", "loadReductionTimeCurveType", "loadReductionTimeCurveType",  base.from_string, fields);
+                if (full)
+                    base.Element.prototype.export.call (this, obj, fields);
+
+                return (fields);
+            }
+
+            template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadReductionTimeCurve_collapse" aria-expanded="true" aria-controls="LoadReductionTimeCurve_collapse" style="margin-left: 10px;">LoadReductionTimeCurve</a></legend>
+                    <div id="LoadReductionTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.template.call (this) +
+                    `
+                    {{#loadReductionTimeCurveType}}<div><b>loadReductionTimeCurveType</b>: {{loadReductionTimeCurveType}}</div>{{/loadReductionTimeCurveType}}
+                    </div>
+                    </fieldset>
+
+                    `
+                );
+            }
+
+            condition (obj)
+            {
+                super.condition (obj);
+            }
+
+            uncondition (obj)
+            {
+                super.uncondition (obj);
+            }
+
+            edit_template ()
+            {
+                return (
+                    `
+                    <fieldset>
+                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadReductionTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LoadReductionTimeCurve_collapse" style="margin-left: 10px;">LoadReductionTimeCurve</a></legend>
+                    <div id="{{id}}_LoadReductionTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
+                    `
+                    + Core.Curve.prototype.edit_template.call (this) +
+                    `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadReductionTimeCurveType'>loadReductionTimeCurveType: </label><div class='col-sm-8'><input id='{{id}}_loadReductionTimeCurveType' class='form-control' type='text'{{#loadReductionTimeCurveType}} value='{{loadReductionTimeCurveType}}'{{/loadReductionTimeCurveType}}></div></div>
+                    </div>
+                    </fieldset>
+                    `
+                );
+            }
+
+            submit (id, obj)
+            {
+                let temp;
+
+                obj = obj || { id: id, cls: "LoadReductionTimeCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_loadReductionTimeCurveType").value; if ("" !== temp) obj["loadReductionTimeCurveType"] = temp;
+
+                return (obj);
+            }
+        }
 
         /**
          * Temporary holding for load reduction attributes removed from RegisteredLoad.
@@ -158,110 +261,6 @@ define
                 temp = document.getElementById (id + "_minReductionTime").value; if ("" !== temp) obj["minReductionTime"] = temp;
                 temp = document.getElementById (id + "_minTimeBetLoadRed").value; if ("" !== temp) obj["minTimeBetLoadRed"] = temp;
                 temp = document.getElementById (id + "_reqNoticeTime").value; if ("" !== temp) obj["reqNoticeTime"] = temp;
-
-                return (obj);
-            }
-        }
-
-        /**
-         * This is the cureve that describes the load reduction time.
-         *
-         * Relationship between time (Y1-axis) vs. MW (X-axis).
-         *
-         */
-        class LoadReductionTimeCurve extends Core.Curve
-        {
-            constructor (template, cim_data)
-            {
-                super (template, cim_data);
-                let bucket = cim_data.LoadReductionTimeCurve;
-                if (null == bucket)
-                   cim_data.LoadReductionTimeCurve = bucket = {};
-                bucket[template.id] = template;
-            }
-
-            remove (obj, cim_data)
-            {
-               super.remove (obj, cim_data);
-               delete cim_data.LoadReductionTimeCurve[obj.id];
-            }
-
-            parse (context, sub)
-            {
-                let obj = Core.Curve.prototype.parse.call (this, context, sub);
-                obj.cls = "LoadReductionTimeCurve";
-                base.parse_element (/<cim:LoadReductionTimeCurve.loadReductionTimeCurveType>([\s\S]*?)<\/cim:LoadReductionTimeCurve.loadReductionTimeCurveType>/g, obj, "loadReductionTimeCurveType", base.to_string, sub, context);
-                let bucket = context.parsed.LoadReductionTimeCurve;
-                if (null == bucket)
-                   context.parsed.LoadReductionTimeCurve = bucket = {};
-                bucket[obj.id] = obj;
-
-                return (obj);
-            }
-
-            export (obj, full)
-            {
-                let fields = Core.Curve.prototype.export.call (this, obj, false);
-
-                base.export_element (obj, "LoadReductionTimeCurve", "loadReductionTimeCurveType", "loadReductionTimeCurveType",  base.from_string, fields);
-                if (full)
-                    base.Element.prototype.export.call (this, obj, fields);
-
-                return (fields);
-            }
-
-            template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#LoadReductionTimeCurve_collapse" aria-expanded="true" aria-controls="LoadReductionTimeCurve_collapse" style="margin-left: 10px;">LoadReductionTimeCurve</a></legend>
-                    <div id="LoadReductionTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.template.call (this) +
-                    `
-                    {{#loadReductionTimeCurveType}}<div><b>loadReductionTimeCurveType</b>: {{loadReductionTimeCurveType}}</div>{{/loadReductionTimeCurveType}}
-                    </div>
-                    </fieldset>
-
-                    `
-                );
-            }
-
-            condition (obj)
-            {
-                super.condition (obj);
-            }
-
-            uncondition (obj)
-            {
-                super.uncondition (obj);
-            }
-
-            edit_template ()
-            {
-                return (
-                    `
-                    <fieldset>
-                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_LoadReductionTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LoadReductionTimeCurve_collapse" style="margin-left: 10px;">LoadReductionTimeCurve</a></legend>
-                    <div id="{{id}}_LoadReductionTimeCurve_collapse" class="collapse in show" style="margin-left: 10px;">
-                    `
-                    + Core.Curve.prototype.edit_template.call (this) +
-                    `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadReductionTimeCurveType'>loadReductionTimeCurveType: </label><div class='col-sm-8'><input id='{{id}}_loadReductionTimeCurveType' class='form-control' type='text'{{#loadReductionTimeCurveType}} value='{{loadReductionTimeCurveType}}'{{/loadReductionTimeCurveType}}></div></div>
-                    </div>
-                    </fieldset>
-                    `
-                );
-            }
-
-            submit (id, obj)
-            {
-                let temp;
-
-                obj = obj || { id: id, cls: "LoadReductionTimeCurve" };
-                super.submit (id, obj);
-                temp = document.getElementById (id + "_loadReductionTimeCurveType").value; if ("" !== temp) obj["loadReductionTimeCurveType"] = temp;
 
                 return (obj);
             }

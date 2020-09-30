@@ -2,7 +2,7 @@ define
 (
     ["model/base", "model/StandardModels"],
     /**
-     * <font color="#0f0f0f">A var/pf regulator is defined as �a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+     * <font color="#0f0f0f">A var/pf regulator is defined as “a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.”  </font>
      * <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
      * <font color="#0f0f0f">
      *
@@ -11,7 +11,6 @@ define
      */
     function (base, StandardModels)
     {
-
         /**
          * Power factor or VAr controller type 2 function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
          *

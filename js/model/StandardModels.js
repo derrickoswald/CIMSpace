@@ -9,7 +9,6 @@ define
      */
     function (base, Core)
     {
-
         /**
          * Abstract parent class for all Dynamics function blocks.
          *
