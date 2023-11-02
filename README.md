@@ -8,7 +8,7 @@ CIMSpace allows you to read, display, analyze and edit CIM files, which are a da
 See [CIM users group](http://cimug.ucaiug.org/default.aspx) for additional details on the CIM format.
 
 # Online
-The program is available online [http://derrickoswald.github.io/CIMSpace/](http://derrickoswald.github.io/CIMSpace/).
+The program is available online [https://derrickoswald.github.io/CIMSpace/](http://derrickoswald.github.io/CIMSpace/).
 
 # Video
 
@@ -30,7 +30,7 @@ An overview of the current release:
 *View a CIM file from the internet*
 
 - click *Load* menu item in the upper nav bar
-- enter the URL in the text box, e.g. http://9code.ch/data/sample.zip, or choose one of the presets from the drop down menu.
+- enter the URL in the text box, e.g. https://9code.ch/data/sample.zip, or choose one of the presets from the drop down menu.
 - click the *Load* button
 
 <code>note: the specified server must have Cross Origin Resource Sharing ([CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)) enabled</code>
